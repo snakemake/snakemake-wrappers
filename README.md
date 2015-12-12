@@ -4,6 +4,7 @@
 
 The Snakemake Wrapper Repository is a collection of reusable wrappers that allow to quickly use popular command line tools 
 from [Snakemake](https://bitbucket.org/johanneskoester/snakemake) rules and workflows.
+**This repository is experimental and subject to unannounced changes.**
 
 ## Structure
 
