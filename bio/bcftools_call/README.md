@@ -13,6 +13,8 @@ rule bcftools_call:
     params:
         mpileup=""  # optional parameters for samtools mpileup (except -r, -g, -f)
         call=""  # optional parameters for bcftools call (except -v, -o)
+    log:
+        "logs/bcftools_call/{region}.log"
     script:
         "master/bio/bcftools_call"
 ```

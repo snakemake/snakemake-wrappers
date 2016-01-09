@@ -9,4 +9,4 @@ from snakemake.shell import shell
 
 prefix = os.path.splitext(snakemake.output.bam)[0]
 
-shell("samtools index {snakemake.input.bam} {snakemake.output.bai}")
+shell("samtools index {snakemake.input[0]} {snakemake.output[0]}")
