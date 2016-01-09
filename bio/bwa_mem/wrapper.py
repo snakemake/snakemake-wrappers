@@ -8,6 +8,6 @@ from snakemake.shell import shell
 
 
 shell(
-    "bwa mem {snakemake.params} {snakemake.threads} {snakemake.input.fasta} "
+    "(bwa mem {snakemake.params} -t {snakemake.threads} {snakemake.input.fasta} "
     "{snakemake.input.fastq} | samtools view -Sbh - > "
-    "{snakemake.output.bam} 2> {snakemake.log}")
+    "{snakemake.output.bam}) 2> {snakemake.log}")
