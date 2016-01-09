@@ -15,5 +15,5 @@ rule bwa_mem:
         ""  # optional parameters for bwa mem (e.g. read group)
     threads: 8
     script:
-        "ce8c887/bio/bwa_mem"
+        "master/bio/bwa_mem"
 ```

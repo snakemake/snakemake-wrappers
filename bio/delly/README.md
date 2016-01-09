@@ -15,5 +15,5 @@ rule delly:
         "logs/delly/{type}.log"
     threads: 16
     script:
-        "ce8c887/bio/delly"
+        "master/bio/delly"
 ```

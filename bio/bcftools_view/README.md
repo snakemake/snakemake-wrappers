@@ -11,5 +11,5 @@ rule bcf_to_vcf:
     params:
         ""  # optional parameters for bcftools view (except -o)
     script:
-        "ce8c887/bio/bcftools_view"
+        "master/bio/bcftools_view"
 ```
