@@ -10,7 +10,7 @@ rule delly:
     output:
         bam="sv/{type,(DEL|DUP|INV|TRA|INS)}.vcf"
     params:
-        ""  # optional params for delly
+        ""  # optional parameters for delly (except -t, -g)
     log:
         "logs/delly/{type}.log"
     threads: 16

@@ -11,8 +11,8 @@ rule bcftools_call:
     output:
         bam="called/{region}.bcf"  # region as expected by samtools mpileup (chr:start-stop)
     params:
-        mpileup=""  # optional params for samtools mpileup
-        call=""  # optional params for bcftools call
+        mpileup=""  # optional parameters for samtools mpileup (except -r, -g, -f)
+        call=""  # optional params for bcftools call (except -v, -o)
     script:
         "ce8c887/bio/bcftools_call"
 ```

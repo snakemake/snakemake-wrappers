@@ -9,7 +9,7 @@ rule bcf_to_vcf:
     output:
         "{prefix}.vcf"
     params:
-        ""  # add additional bcftools view parameters here (e.g., for filtering)
+        ""  # optional parameters for bcftools view (except -o)
     script:
         "ce8c887/bio/bcftools_view"
 ```
