@@ -10,5 +10,5 @@ rule samtools_sort:
         "mapped/{sample}.sorted.bam"
     threads: 2
     wrapper:
-        "master/bio/samtools_sort"
+        "0.0.1/bio/samtools_sort"
 ```

@@ -9,5 +9,5 @@ rule samtools_index:
     output:
         "mapped/{sample}.sorted.bam.bai"
     wrapper:
-        "master/bio/samtools_index"
+        "0.0.1/bio/samtools_index"
 ```

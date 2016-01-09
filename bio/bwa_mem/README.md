@@ -15,5 +15,5 @@ rule bwa_mem:
         ""  # optional parameters for bwa mem (e.g. read group)
     threads: 8
     wrapper:
-        "master/bio/bwa_mem"
+        "0.0.1/bio/bwa_mem"
 ```
