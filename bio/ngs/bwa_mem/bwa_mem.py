@@ -11,7 +11,7 @@ Example:
 rule bwa_mem:
     input:
         fasta="genome.fasta",
-        fastq=["reads/{sample}.fastq.gz", "reads/{sample}.fastq.gz"]
+        fastq=["reads/{sample}.1.fastq.gz", "reads/{sample}.2.fastq.gz"]
     output:
         bam="mapped/{sample}.bam"
     log:
