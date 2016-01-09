@@ -15,8 +15,8 @@ rule delly:
     output:
         bam="sv/{type,(DEL|DUP|INV|TRA|INS)}.vcf"
     log:
-        "logs/delly.log"
-    threads: 24
+        "logs/delly/{type}.log"
+    threads: 16
     script:
         "ce8c887/bio/delly"
 """
