@@ -9,6 +9,8 @@ rule delly:
         bams=expand("mapped/{sample}.bam", sample=config["samples"])
     output:
         bam="sv/{type,(DEL|DUP|INV|TRA|INS)}.vcf"
+    params:
+        ""  # optional params for delly
     log:
         "logs/delly/{type}.log"
     threads: 16

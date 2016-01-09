@@ -8,6 +8,6 @@ from snakemake.shell import shell
 
 
 shell(
-    "OMP_NUM_THREADS={snakemake.threads} delly -t {snakemake.wildcards.type} "
-    "-g {snakemake.input.fasta} {snakemake.input.bams} "
-    "> {snakemake.output} 2> {snakemake.log}")
+    "OMP_NUM_THREADS={snakemake.threads} delly {snakemake.params} "
+    "-t {snakemake.wildcards.type} -g {snakemake.input.fasta} "
+    "{snakemake.input.bams} > {snakemake.output} 2> {snakemake.log}")

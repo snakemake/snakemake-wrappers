@@ -11,6 +11,8 @@ rule bwa_mem:
         bam="mapped/{sample}.bam"
     log:
         "logs/bwa_mem/{sample}.log"
+    params:
+        ""  # optional params for bwa mem (e.g. read group)
     threads: 8
     script:
         "ce8c887/bio/bwa_mem"
