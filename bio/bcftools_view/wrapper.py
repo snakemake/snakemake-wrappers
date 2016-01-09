@@ -7,8 +7,6 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 
-prefix = os.path.splitext(snakemake.output.bam)[0]
-
 shell(
     "bcftools view {snakemake.params} {snakemake.input[0]} "
     "-o {snakemake.output[0]}")

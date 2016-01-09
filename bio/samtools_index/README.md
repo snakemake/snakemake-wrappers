@@ -8,6 +8,6 @@ rule samtools_index:
         "mapped/{sample}.sorted.bam"
     output:
         "mapped/{sample}.sorted.bam.bai"
-    script:
+    wrapper:
         "master/bio/samtools_index"
 ```

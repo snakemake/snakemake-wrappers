@@ -10,6 +10,6 @@ rule bcf_to_vcf:
         "{prefix}.vcf"
     params:
         ""  # optional parameters for bcftools view (except -o)
-    script:
+    wrapper:
         "master/bio/bcftools_view"
 ```

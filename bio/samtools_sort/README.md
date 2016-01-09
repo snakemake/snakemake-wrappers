@@ -9,6 +9,6 @@ rule samtools_sort:
     output:
         "mapped/{sample}.sorted.bam"
     threads: 2
-    script:
+    wrapper:
         "master/bio/samtools_sort"
 ```

@@ -14,6 +14,6 @@ rule delly:
     log:
         "logs/delly/{type}.log"
     threads: 16
-    script:
+    wrapper:
         "master/bio/delly"
 ```

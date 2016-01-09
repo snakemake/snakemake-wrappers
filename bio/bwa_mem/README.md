@@ -14,6 +14,6 @@ rule bwa_mem:
     params:
         ""  # optional parameters for bwa mem (e.g. read group)
     threads: 8
-    script:
+    wrapper:
         "master/bio/bwa_mem"
 ```

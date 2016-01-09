@@ -7,10 +7,8 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 
-prefix = os.path.splitext(snakemake.output.bam)[0]
-
 shell(
     "(samtools mpileup {snakemake.params.mpileup} "
     "--region {snakemake.wildcards.region} {snakemake.input.bams} "
     "--fasta-ref {snakemake.input.fasta} --BCF --uncompressed | "
-    "bcftools call {snakemake.params.call} -o {snakemake.output.bcf} -v) 2> {log}"
+    "bcftools call {snakemake.params.call} -o {snakemake.output.bcf} -v) 2> {log}")

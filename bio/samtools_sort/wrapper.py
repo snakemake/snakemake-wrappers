@@ -4,6 +4,7 @@ __email__ = "koester@jimmy.harvard.edu"
 __license__ = "MIT"
 
 
+import os
 from snakemake.shell import shell
 
 
