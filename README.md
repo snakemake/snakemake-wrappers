@@ -1,4 +1,4 @@
-[![Snakemake](https://img.shields.io/badge/snakemake-≥3.5.0-brightgreen.svg?style=flat-square)](https://bitbucket.org/johanneskoester/snakemake)
+[![Snakemake](https://img.shields.io/badge/snakemake-≥3.6.0-brightgreen.svg?style=flat-square)](https://bitbucket.org/johanneskoester/snakemake)
 
 # The Snakemake Wrapper Repository
 
