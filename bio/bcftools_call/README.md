@@ -9,12 +9,12 @@ rule bcftools_call:
         bams=expand("mapped/{sample}.sorted.bam", sample=config["samples"]),
         bais=expand("mapped/{sample}.sorted.bam.bai", sample=config["samples"])
     output:
-        bam="called/{region}.bcf"  # region as expected by samtools mpileup (chr:start-stop)
+        bcf="called/{region}.bcf"  # region as expected by samtools mpileup (chr:start-stop)
     params:
         mpileup="",  # optional parameters for samtools mpileup (except -r, -g, -f)
-        call=""  # optional parameters for bcftools call (except -v, -o)
+        call=""  # optional parameters for bcftools call (except -v, -o, -m)
     log:
         "logs/bcftools_call/{region}.log"
     wrapper:
-        "0.0.1/bio/bcftools_call"
+        "0.0.5/bio/bcftools_call"
 ```
