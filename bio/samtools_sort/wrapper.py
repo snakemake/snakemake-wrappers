@@ -11,5 +11,5 @@ from snakemake.shell import shell
 prefix = os.path.splitext(snakemake.output[0])[0]
 
 shell(
-    "samtools sort -@ {snakemake.threads} -o {snakemake.output[0]} "
+    "samtools sort {snakemake.params} -@ {snakemake.threads} -o {snakemake.output[0]} "
     "-T {prefix} {snakemake.input[0]}")
