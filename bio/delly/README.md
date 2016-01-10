@@ -8,7 +8,7 @@ rule delly:
         fasta="genome.fasta",
         bams=expand("mapped/{sample}.bam", sample=config["samples"])
     output:
-        bam="sv/{type,(DEL|DUP|INV|TRA|INS)}.vcf"
+        vcf="sv/{type,(DEL|DUP|INV|TRA|INS)}.vcf"
     params:
         ""  # optional parameters for delly (except -t, -g)
     log:
