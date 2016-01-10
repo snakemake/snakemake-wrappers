@@ -1,2 +1,2 @@
-bwa >=0.7.10
-samtools >=1.1
+bwa ==0.7.12
+samtools ==1.2

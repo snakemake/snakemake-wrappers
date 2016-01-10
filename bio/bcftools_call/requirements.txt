@@ -1,2 +1,2 @@
-samtools >=1.1
-bcftools >=1.3
+samtools ==1.2
+bcftools ==1.3
