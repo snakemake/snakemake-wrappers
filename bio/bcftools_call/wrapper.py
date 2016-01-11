@@ -9,6 +9,6 @@ from snakemake.shell import shell
 
 shell(
     "(samtools mpileup {snakemake.params.mpileup} "
-    "--region {snakemake.wildcards.region} {snakemake.input.bams} "
-    "--fasta-ref {snakemake.input.fasta} --BCF --uncompressed | "
-    "bcftools call -m {snakemake.params.call} -o {snakemake.output.bcf} -v -) 2> {snakemake.log}")
+    "--region {snakemake.wildcards.region} {snakemake.input.samples} "
+    "--fasta-ref {snakemake.input.ref} --BCF --uncompressed | "
+    "bcftools call -m {snakemake.params.call} -o {snakemake.output[0]} -v -) 2> {snakemake.log}")

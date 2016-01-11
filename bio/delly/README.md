@@ -5,10 +5,11 @@
 ```
 rule delly:
     input:
-        fasta="genome.fasta",
-        bams=expand("mapped/{sample}.bam", sample=config["samples"])
+        ref="genome.fasta",
+        samples=expand("mapped/{sample}.bam", sample=config["samples"]),
+        indexes=expand("mapped/{sample}.bam.bai", sample=config["samples"])
     output:
-        vcf="sv/{type,(DEL|DUP|INV|TRA|INS)}.vcf"
+        "sv/{type,(DEL|DUP|INV|TRA|INS)}.vcf"
     params:
         ""  # optional parameters for delly (except -t, -g)
     log:
