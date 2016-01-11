@@ -16,5 +16,5 @@ rule bcftools_call:
     log:
         "logs/bcftools_call/{region}.log"
     wrapper:
-        "0.0.5/bio/bcftools_call"
+        "0.0.8/bio/bcftools_call"
 ```
