@@ -1,4 +1,4 @@
-# Wrapper for samtools sort.
+# Wrapper for bcftools view.
 
 ## Example:
 
