@@ -14,7 +14,7 @@ rule delly:
         ""  # optional parameters for delly (except -t, -g)
     log:
         "logs/delly/{type}.log"
-    threads: 16
+    threads: 3
     wrapper:
-        "0.0.8/bio/delly"
+        "0.0.10/bio/delly"
 ```

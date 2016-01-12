@@ -10,4 +10,4 @@ from snakemake.shell import shell
 shell(
     "OMP_NUM_THREADS={snakemake.threads} delly {snakemake.params} "
     "-t {snakemake.wildcards.type} -g {snakemake.input.ref} "
-    "{snakemake.input.samples} > {snakemake.output[0]} 2> {snakemake.log}")
+    "-o {snakemake.output[0]} {snakemake.input.samples} &> {snakemake.log}")
