@@ -29,7 +29,7 @@ rule samtools_sort:
     wrapper:
         "0.0.8/bio/samtools_sort"
 ```
-Here, Snakemake will automatically download the corresponding wrapper from https://bitbucket.org/snakemake/snakemake-wrappers/src/0.0.8/bio/samtools_sort/wrapper.py. Thereby, 0.0.8 can be replaced with the version tag you want to use, or a commit id (see [here](https://bitbucket.org/snakemake/snakemake-wrappers/commits/)). This ensures reproducibility since changes in the wrapper implementation won't be propagated automatically to your workflow.
+Here, Snakemake will automatically download the corresponding wrapper from https://bitbucket.org/snakemake/snakemake-wrappers/src/0.0.8/bio/samtools_sort/wrapper.py. Thereby, 0.0.8 can be replaced with the version tag you want to use, or a commit id (see [here](https://bitbucket.org/snakemake/snakemake-wrappers/commits/)). This ensures reproducibility since changes in the wrapper implementation won't be propagated automatically to your workflow. Alternatively, e.g., for development, the wrapper directive can also point to full URLs, including the local ``file://``.
 Examples for each wrapper can be found in the READMEs located in the wrapper subdirectories.
 
 ## Contribute
