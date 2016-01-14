@@ -13,7 +13,24 @@ Wrappers can be found under
 <discipline>/<name>/
 ```
 
-The general strategy is to include these into your workflow via the [wrapper](https://bitbucket.org/snakemake/snakemake/wiki/Documentation#markdown-header-external-wrapper) directive. Examples can be found in the READMEs located in the wrapper subdirectories.
+in this repository.
+The general strategy is to include these into your workflow via the [wrapper](https://bitbucket.org/snakemake/snakemake/wiki/Documentation#markdown-header-external-wrapper) directive, e.g.
+```
+#!python
+
+rule samtools_sort:
+    input:
+        "mapped/{sample}.bam"
+    output:
+        "mapped/{sample}.sorted.bam"
+    params:
+        "-m 4G"
+    threads: 8
+    wrapper:
+        "0.0.8/bio/samtools_sort"
+```
+Here, Snakemake will automatically download the corresponding wrapper from https://bitbucket.org/snakemake/snakemake-wrappers/src/0.0.8/bio/samtools_sort/wrapper.py. Thereby, 0.0.8 can be replaced with the version tag you want to use, or a commit id (see [here](https://bitbucket.org/snakemake/snakemake-wrappers/commits/)). This ensures reproducibility since changes in the wrapper implementation won't be propagated automatically to your workflow.
+Examples for each wrapper can be found in the READMEs located in the wrapper subdirectories.
 
 ## Contribute
 
