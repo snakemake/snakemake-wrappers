@@ -14,7 +14,7 @@ Wrappers can be found under
 ```
 
 in this repository.
-The general strategy is to include these into your workflow via the [wrapper](https://bitbucket.org/snakemake/snakemake/wiki/Documentation#markdown-header-external-wrapper) directive, e.g.
+The general strategy is to include these into your workflow via the [wrapper](https://bitbucket.org/snakemake/snakemake/wiki/Documentation#markdown-header-wrappers) directive, e.g.
 ```
 #!python
 
