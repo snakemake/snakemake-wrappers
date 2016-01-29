@@ -9,12 +9,17 @@ rule bcftools_call:
         samples=expand("mapped/{sample}.sorted.bam", sample=config["samples"]),
         indexes=expand("mapped/{sample}.sorted.bam.bai", sample=config["samples"])
     output:
-        "called/{region}.bcf"  # region as expected by samtools mpileup (chr:start-stop)
+        # Here, we optionally use a region as wildcard and constrain it to the
+        # format accepted by samtools mpileup.
+        "called/{region,.+(:[0-9]+-[0-9]+)?}.bcf"
     params:
-        mpileup="",  # optional parameters for samtools mpileup (except -r, -g, -f)
-        call=""  # optional parameters for bcftools call (except -v, -o, -m)
+        # Optional parameters for samtools mpileup (except -g, -f).
+        # In this example, we forward the region wildcard from the output file to mpileup.
+        mpileup="--region {region}",
+        # Optional parameters for bcftools call (except -v, -o, -m).
+        call=""
     log:
         "logs/bcftools_call/{region}.log"
     wrapper:
-        "0.0.8/bio/bcftools_call"
+        "0.0.12/bio/bcftools_call"
 ```
