@@ -8,7 +8,7 @@ rule delly:
         ref="genome.fasta",
         samples=expand("mapped/{sample}.bam", sample=config["samples"]),
         indexes=expand("mapped/{sample}.bam.bai", sample=config["samples"]),
-        # optional exclude template
+        # optional exclude template (see https://github.com/tobiasrausch/delly)
         exclude="human.hg19.excl.tsv"
     output:
         "sv/{type,(DEL|DUP|INV|TRA|INS)}.vcf"
