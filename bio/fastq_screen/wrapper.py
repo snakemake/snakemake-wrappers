@@ -33,7 +33,9 @@ if isinstance(_config, dict):
                     'DATABASE', label, index, aligner.upper()]) + '\n')
         for aligner, path in _config['aligner_paths'].items():
             fout.write('\t'.join([aligner.upper(), path]) + '\n')
-
+    config_file = tmp
+else:
+    config_file = _config
 
 # fastq_screen hard-codes filenames according to this prefix. We will send
 # hard-coded output to a temp dir, and then move them later.
@@ -44,7 +46,7 @@ shell(
     "fastq_screen --outdir {tempdir} "
     "--force "
     "--aligner {defaults[aligner]} "
-    "--conf {tmp} "
+    "--conf {config_file} "
     "--subset {defaults[subset]} "
     "--threads {snakemake.threads} "
     "{defaults[extra]} "
