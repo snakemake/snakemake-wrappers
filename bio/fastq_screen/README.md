@@ -38,7 +38,7 @@ fastq_screen_config = {
  },
  'aligner_paths': {'bowtie': 'bowtie', 'bowtie2': 'bowtie2'}
 }
-
+```
 
 By default, the wrapper will use bowtie2 as the aligner and a subset of 100000
 reads.  These can be overridden using `params.aligner` and `params.subset`
