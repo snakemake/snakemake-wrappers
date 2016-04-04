@@ -15,5 +15,5 @@ rule bwa_mem:
         "-R '@RG\tID:{sample}\tSM:{sample}'"  # optional parameters for bwa mem (e.g. read group)
     threads: 8
     wrapper:
-        "0.1.0/bio/bwa/mem"
+        "0.2.0/bio/bwa/mem"
 ```

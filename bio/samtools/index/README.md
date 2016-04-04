@@ -11,5 +11,5 @@ rule samtools_index:
     params:
         "" # optional params string
     wrapper:
-        "0.1.0/bio/samtools/index"
+        "0.2.0/bio/samtools/index"
 ```

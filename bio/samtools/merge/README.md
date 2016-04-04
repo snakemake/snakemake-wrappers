@@ -12,5 +12,5 @@ rule samtools_merge:
         "" # optional additional parameters as string
     threads: 8
     wrapper:
-        "0.1.0/bio/samtools/merge"
+        "0.2.0/bio/samtools/merge"
 ```

@@ -11,5 +11,5 @@ rule bcftools_concat:
     params:
         ""  # optional parameters for bcftools concat (except -o)
     wrapper:
-        "0.1.0/bio/bcftools/concat"
+        "0.2.0/bio/bcftools/concat"
 ```
