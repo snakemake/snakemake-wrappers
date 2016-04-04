@@ -2,7 +2,7 @@
 
 # The Snakemake Wrapper Repository
 
-The Snakemake Wrapper Repository is a collection of reusable wrappers that allow to quickly use popular command line tools 
+The Snakemake Wrapper Repository is a collection of reusable wrappers that allow to quickly use popular command line tools
 from [Snakemake](https://bitbucket.org/johanneskoester/snakemake) rules and workflows.
 
 ## Usage
@@ -27,7 +27,7 @@ rule samtools_sort:
         "-m 4G"
     threads: 8
     wrapper:
-        "0.0.8/bio/samtools_sort"
+        "0.2.0/bio/samtools/sort"
 ```
 Here, Snakemake will automatically download the corresponding wrapper from https://bitbucket.org/snakemake/snakemake-wrappers/src/0.0.8/bio/samtools_sort/wrapper.py. Thereby, 0.0.8 can be replaced with the version tag you want to use, or a commit id (see [here](https://bitbucket.org/snakemake/snakemake-wrappers/commits/)). This ensures reproducibility since changes in the wrapper implementation won't be propagated automatically to your workflow. Alternatively, e.g., for development, the wrapper directive can also point to full URLs, including the local ``file://``.
 Examples for each wrapper can be found in the READMEs located in the wrapper subdirectories.
