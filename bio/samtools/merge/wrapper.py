@@ -7,4 +7,5 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 
-shell("samtools index {snakemake.input[0]} {snakemake.output[0]}")
+shell("samtools merge --threads {snakemake.threads} {snakemake.params} "
+      "{snakemake.output[0]} {snakemake.input}")

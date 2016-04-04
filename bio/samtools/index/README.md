@@ -8,6 +8,8 @@ rule samtools_index:
         "mapped/{sample}.sorted.bam"
     output:
         "mapped/{sample}.sorted.bam.bai"
+    params:
+        "" # optional params string
     wrapper:
-        "0.0.8/bio/samtools_index"
+        "0.1.0/bio/samtools/index"
 ```

@@ -12,5 +12,5 @@ rule sambamba_sort:
         ""  # optional parameters
     threads: 8
     wrapper:
-        "0.0.8/bio/sambamba_sort"
+        "0.1.0/bio/sambamba/sort"
 ```
