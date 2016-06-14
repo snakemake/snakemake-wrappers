@@ -1,4 +1,5 @@
 channels:
   - bioconda
+  - r
 dependencies:
   - bcftools ==1.3

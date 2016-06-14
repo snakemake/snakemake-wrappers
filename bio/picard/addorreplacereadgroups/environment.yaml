@@ -2,4 +2,4 @@ channels:
   - bioconda
   - r
 dependencies:
-  - sambamba ==0.5.9
+  - picard ==2.3.0
