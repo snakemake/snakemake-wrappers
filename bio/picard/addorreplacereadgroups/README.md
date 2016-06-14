@@ -8,6 +8,8 @@ rule replace_rg:
         "mapped/{sample}.bam"
     output:
         "fixed-rg/{sample}.bam"
+    log:
+        "logs/picard/replace_rg/{sample}.log"
     params:
         "RGLB=lib1 RGPL=illumina RGPU={sample} RGSM={sample}"
     wrapper:
