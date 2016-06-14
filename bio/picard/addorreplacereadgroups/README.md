@@ -13,5 +13,5 @@ rule replace_rg:
     params:
         "RGLB=lib1 RGPL=illumina RGPU={sample} RGSM={sample}"
     wrapper:
-        "0.4.0/bio/picard/addorreplacereadgroups"
+        "0.5.0/bio/picard/addorreplacereadgroups"
 ```
