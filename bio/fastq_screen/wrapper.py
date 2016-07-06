@@ -39,7 +39,7 @@ else:
 
 # fastq_screen hard-codes filenames according to this prefix. We will send
 # hard-coded output to a temp dir, and then move them later.
-prefix = snakemake.input[0].split('.fastq')[0]
+prefix = os.path.basename(snakemake.input[0].split('.fastq')[0])
 tempdir = tempfile.mkdtemp()
 
 shell(
@@ -50,7 +50,7 @@ shell(
     "--subset {defaults[subset]} "
     "--threads {snakemake.threads} "
     "{defaults[extra]} "
-    "{snakemake.input[0]}"
+    "{snakemake.input[0]} "
 )
 
 # Move output to the filenames specified by the rule
