@@ -1,0 +1,6 @@
+channels:
+  - bioconda
+  - r
+dependencies:
+  - bwa ==0.7.12
+  - samtools ==1.2
