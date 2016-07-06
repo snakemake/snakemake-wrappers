@@ -1,4 +1,4 @@
-# Wrapper for samtools index.
+# Wrapper for picard AddOrReplaceReadGroups.
 
 ## Example:
 
