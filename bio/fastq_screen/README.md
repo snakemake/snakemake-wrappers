@@ -49,6 +49,12 @@ arguments verbatim to `fastq_screen`, for example `extra="--illumina1_3"` or
 Note that `fastq_screen` hard-codes the output filenames. This wrapper moves
 the hard-coded output files to those specified by the rule.
 
+Also note that while the dictionary form of `fastq_screen_config` is
+convenient, the unordered nature of the dictionary may cause `snakemake
+--list-params-changed` to incorrectly report changed parameters even though the
+contents remain the same. If you plan on using `--list-params-changed` then it
+will be better to write a config file and pass that as `fastq_screen_config`.
+
 ## Input
 
 A FASTQ file, gzipped or not.
