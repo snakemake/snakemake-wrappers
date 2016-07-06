@@ -21,6 +21,11 @@ for key, default in list(defaults.items()):
     except AttributeError:
         pass
 
+if snakemake.log:
+    log = " > {0} 2>&1 ".format(snakemake.log)
+else:
+    log = ""
+
 # snakemake.params.fastq_screen_config can be either a dict or a string. If
 # string, interpret as a filename pointing to the fastq_screen config file.
 # Otherwise, create a new tempfile out of the contents of the dict:
@@ -51,6 +56,7 @@ shell(
     "--threads {snakemake.threads} "
     "{defaults[extra]} "
     "{snakemake.input[0]} "
+    "{log}"
 )
 
 # Move output to the filenames specified by the rule
