@@ -46,14 +46,24 @@ respectively. Furthermore, `params.extra` can be used to pass additional
 arguments verbatim to `fastq_screen`, for example `extra="--illumina1_3"` or
 `extra="--bowtie2 '--trim5=8'"`.
 
-Note that `fastq_screen` hard-codes the output filenames. This wrapper moves
-the hard-coded output files to those specified by the rule.
+## Notes
 
-Also note that while the dictionary form of `fastq_screen_config` is
-convenient, the unordered nature of the dictionary may cause `snakemake
---list-params-changed` to incorrectly report changed parameters even though the
-contents remain the same. If you plan on using `--list-params-changed` then it
-will be better to write a config file and pass that as `fastq_screen_config`.
+- `fastq_screen` hard-codes the output filenames. This wrapper moves the
+  hard-coded output files to those specified by the rule.
+
+- While the dictionary form of `fastq_screen_config` is convenient, the
+  unordered nature of the dictionary may cause `snakemake --list-params-changed`
+  to incorrectly report changed parameters even though the contents remain the
+  same. If you plan on using `--list-params-changed` then it will be better to
+  write a config file and pass that as `fastq_screen_config`.
+
+- When providing the dictionary form of `fastq_screen_config`, the wrapper will
+  write a temp file using Python's `tempfile` module. To control the temp file
+  directory, make sure the `$TMPDIR` environmental variable is set (see [tempfile
+  docs](https://docs.python.org/3/library/tempfile.html#tempfile.mkstemp) for
+  details). One way of doing this is by adding  something like
+  `shell.prefix("export TMPDIR=/scratch; ")` to the snakefile calling this
+  wrapper.
 
 ## Input
 
