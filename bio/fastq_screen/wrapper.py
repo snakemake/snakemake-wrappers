@@ -9,22 +9,10 @@ __license__ = "MIT"
 
 _config = snakemake.params['fastq_screen_config']
 
-# Override defaults if specified in params
-defaults = {
-    'subset': 100000,
-    'aligner': 'bowtie2',
-    'extra': ''
-}
-for key, default in list(defaults.items()):
-    try:
-        defaults[key] = getattr(snakemake.params, key)
-    except AttributeError:
-        pass
-
-if snakemake.log:
-    log = " > {0} 2>&1 ".format(snakemake.log)
-else:
-    log = ""
+subset = snakemake.params.get('subset', 100000)
+aligner = snakemake.params.get('aligner', 'bowtie2')
+extra = snakemake.params.get('extra', '')
+log = snakemake.get_log()
 
 # snakemake.params.fastq_screen_config can be either a dict or a string. If
 # string, interpret as a filename pointing to the fastq_screen config file.
@@ -50,11 +38,11 @@ tempdir = tempfile.mkdtemp()
 shell(
     "fastq_screen --outdir {tempdir} "
     "--force "
-    "--aligner {defaults[aligner]} "
+    "--aligner {aligner} "
     "--conf {config_file} "
-    "--subset {defaults[subset]} "
+    "--subset {subset} "
     "--threads {snakemake.threads} "
-    "{defaults[extra]} "
+    "{extra} "
     "{snakemake.input[0]} "
     "{log}"
 )
