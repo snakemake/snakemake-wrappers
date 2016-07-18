@@ -6,12 +6,12 @@ __license__ = "BSD"
 from snakemake.shell import shell
 
 # Placeholder for optional parameters
-opt_params = snakemake.params.other \
-    if "other" in snakemake.params.keys() else ""
+extra = snakemake.params.get("extra", "")
+log = snakemake.get_log()
 
 shell(
     "(sickle pe -f {snakemake.input.r1} -r {snakemake.input.r2} "
     "-o {snakemake.output.r1} -p {snakemake.output.r2} "
     "-s {snakemake.output.rs} -t {snakemake.params.qual_type} "
-    "{opt_params}) > {snakemake.log}"
+    "{extra}) > {log}"
 )
