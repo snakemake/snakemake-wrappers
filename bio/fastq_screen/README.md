@@ -91,5 +91,5 @@ rule fastq_screen:
         aligner='bowtie2'
     threads: 8
     wrapper:
-        "0.0.8/bio/fastq_screen"
+        "0.7.0/bio/fastq_screen"
 ```
