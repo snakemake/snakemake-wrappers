@@ -13,5 +13,5 @@ shell(
     "(sickle pe -f {snakemake.input.r1} -r {snakemake.input.r2} "
     "-o {snakemake.output.r1} -p {snakemake.output.r2} "
     "-s {snakemake.output.rs} -t {snakemake.params.qual_type} "
-    "{extra}) > {log}"
+    "{extra}) {log}"
 )

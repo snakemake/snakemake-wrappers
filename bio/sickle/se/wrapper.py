@@ -11,5 +11,5 @@ log = snakemake.get_log()
 
 shell(
     "(sickle se -f {snakemake.input[0]} -o {snakemake.output[0]} "
-    "-t {snakemake.params.qual_type} {params}) > {log}"
+    "-t {snakemake.params.qual_type} {extra}) {log}"
 )
