@@ -42,5 +42,5 @@ rule sickle_pe:
   log:
     "logs/sickle/job.log"
   wrapper:
-    "0.7.0/bio/sickle/pe"
+    "0.8.0/bio/sickle/pe"
 ```
