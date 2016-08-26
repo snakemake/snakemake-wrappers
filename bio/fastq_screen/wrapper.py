@@ -12,7 +12,7 @@ _config = snakemake.params['fastq_screen_config']
 subset = snakemake.params.get('subset', 100000)
 aligner = snakemake.params.get('aligner', 'bowtie2')
 extra = snakemake.params.get('extra', '')
-log = snakemake.get_log()
+log = snakemake.log_fmt_shell()
 
 # snakemake.params.fastq_screen_config can be either a dict or a string. If
 # string, interpret as a filename pointing to the fastq_screen config file.

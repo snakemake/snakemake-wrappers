@@ -7,7 +7,7 @@ from snakemake.shell import shell
 
 # Placeholder for optional parameters
 extra = snakemake.params.get("extra", "")
-log = snakemake.get_log()
+log = snakemake.log_fmt_shell()
 
 shell(
     "(sickle pe -f {snakemake.input.r1} -r {snakemake.input.r2} "
