@@ -1,0 +1,6 @@
+channels:
+  - bioconda
+  - r
+dependencies:
+  - hisat2 ==2.0.4
+  - samtools
