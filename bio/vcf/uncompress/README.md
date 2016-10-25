@@ -9,5 +9,5 @@ rule uncompress_vcf:
     output:
         "{prefix}.vcf"
     wrapper:
-        "0.3.0/bio/vcf/uncompress"
+        "0.9.0/bio/vcf/uncompress"
 ```

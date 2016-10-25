@@ -9,5 +9,5 @@ rule compress_vcf:
     output:
         "{prefix}.vcf.gz"
     wrapper:
-        "0.3.0/bio/vcf/compress"
+        "0.9.0/bio/vcf/compress"
 ```
