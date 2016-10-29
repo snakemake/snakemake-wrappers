@@ -13,7 +13,10 @@ except AttributeError:
     exclude = ""
 
 
+extra = params.get("extra", "")
+
+
 shell(
-    "OMP_NUM_THREADS={snakemake.threads} delly {snakemake.params} "
-    "{exclude} -t {snakemake.wildcards.type} -g {snakemake.input.ref} "
+    "OMP_NUM_THREADS={snakemake.threads} delly {extra} "
+    "{exclude} {snakemake.params.vartype} -g {snakemake.input.ref} "
     "-o {snakemake.output[0]} {snakemake.input.samples} &> {snakemake.log}")

@@ -13,10 +13,11 @@ rule delly:
     output:
         "sv/{type,(DEL|DUP|INV|TRA|INS)}.vcf"
     params:
-        ""  # optional parameters for delly (except -t, -g)
+        vartype="{type}" # variant type to call (can be wildcard, hardcoded string or function)
+        extra=""  # optional parameters for delly (except -t, -g)
     log:
         "logs/delly/{type}.log"
     threads: 3
     wrapper:
-        "0.0.13/bio/delly"
+        "0.0.14/bio/delly"
 ```
