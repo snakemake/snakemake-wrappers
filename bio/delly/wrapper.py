@@ -13,7 +13,7 @@ except AttributeError:
     exclude = ""
 
 
-extra = params.get("extra", "")
+extra = snakemake.params.get("extra", "")
 
 
 shell(
