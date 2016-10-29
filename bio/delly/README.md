@@ -19,5 +19,5 @@ rule delly:
         "logs/delly/{type}.log"
     threads: 3
     wrapper:
-        "0.0.14/bio/delly"
+        "0.10.0/bio/delly"
 ```
