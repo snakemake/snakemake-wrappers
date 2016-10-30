@@ -8,7 +8,7 @@ rule hisat2:
       reads=["reads/{sample}.1.fastq.gz", "reads/{sample}.2.fastq.gz"],
     output:
       "mapped/{sample}.bam"
-    log:                                # required
+    log:                                # optional
       "logs/hisat2/{sample}.log"
     params:                             # ref is required, extra is optional
       ref="genome.fa",
