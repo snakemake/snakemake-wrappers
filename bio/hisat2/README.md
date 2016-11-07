@@ -10,8 +10,8 @@ rule hisat2:
       "mapped/{sample}.bam"
     log:                                # optional
       "logs/hisat2/{sample}.log"
-    params:                             # ref is required, extra is optional
-      ref="genome.fa",
+    params:                             # idx is required, extra is optional
+      idx="genome.fa",
       extra="--min-intronlen 1000"
     threads: 8                          # optional, defaults to 1
     wrapper:
