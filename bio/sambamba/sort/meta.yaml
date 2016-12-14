@@ -1,0 +1,6 @@
+name: sambamba sort
+description: Sort bam file with sambamba
+input:
+  - bam file
+output:
+  - sorted bam file

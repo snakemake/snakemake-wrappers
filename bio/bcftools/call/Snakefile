@@ -1,0 +1,19 @@
+rule bcftools_call:
+    input:
+        ref="genome.fasta",
+        samples=expand("mapped/{sample}.sorted.bam", sample=config["samples"]),
+        indexes=expand("mapped/{sample}.sorted.bam.bai", sample=config["samples"])
+    output:
+        # Here, we optionally use a region as wildcard and constrain it to the
+        # format accepted by samtools mpileup.
+        "called/{region,.+(:[0-9]+-[0-9]+)?}.bcf"
+    params:
+        # Optional parameters for samtools mpileup (except -g, -f).
+        # In this example, we forward the region wildcard from the output file to mpileup.
+        mpileup="--region {region}",
+        # Optional parameters for bcftools call (except -v, -o, -m).
+        call=""
+    log:
+        "logs/bcftools_call/{region}.log"
+    wrapper:
+        "0.2.0/bio/bcftools/call"

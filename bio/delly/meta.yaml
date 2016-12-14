@@ -1,0 +1,11 @@
+name: delly
+description: Call variants with delly.
+input:
+  - ref: reference genome
+  - samples: sample bams
+  - indexes: sample bais (bam indexes)
+  - exclude: regions to exclude (see delly homepage)
+output:
+  - calls in vcf format
+wildcards:
+  - type: (DEL|DUP|INV|TRA|INS)

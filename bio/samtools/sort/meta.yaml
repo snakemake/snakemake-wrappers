@@ -1,0 +1,2 @@
+name: samtools sort
+description: Sort bam file with samtools.

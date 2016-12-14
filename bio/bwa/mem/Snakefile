@@ -1,8 +1,3 @@
-# Wrapper for bwa mem.
-
-## Example:
-
-```
 rule bwa_mem:
     input:
         ref="genome.fasta",
@@ -16,4 +11,3 @@ rule bwa_mem:
     threads: 8
     wrapper:
         "0.2.0/bio/bwa/mem"
-```

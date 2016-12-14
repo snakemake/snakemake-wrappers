@@ -1,0 +1,7 @@
+name: "bwa mem"
+description: Map reads with bwa mem.
+input:
+  - ref: reference genome (with indexes in same directory)
+  - sample: sample FASTQ files (either 1 or 2)
+output:
+  - bam file with mapped reads

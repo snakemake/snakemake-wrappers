@@ -1,0 +1,6 @@
+name: samtools merge
+description: Merge two bam files with samtools.
+input:
+  - list of bam files to merge
+output:
+  - merged bam file

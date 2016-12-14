@@ -1,0 +1,13 @@
+rule fastq_screen:
+    input:
+        "samples/{sample}.fastq.gz"
+    output:
+        txt="qc/{sample}.fastq_screen.txt",
+        png="qc/{sample}.fastq_screen.png"
+    params:
+        fastq_screen_config=fastq_screen_config,
+        subset=100000,
+        aligner='bowtie2'
+    threads: 8
+    wrapper:
+        "0.8.0/bio/fastq_screen"

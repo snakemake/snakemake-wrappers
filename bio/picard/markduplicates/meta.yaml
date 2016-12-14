@@ -1,0 +1,7 @@
+name: picard MarkDuplicates
+description: |
+  Mark PCR and optical duplicates with picard tools.
+input:
+  - bam file
+output:
+  - bam file with marked or removed duplicates

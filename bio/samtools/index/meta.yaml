@@ -1,0 +1,6 @@
+name: samtools index
+description: Index bam file with samtools.
+input:
+  - bam file
+output:
+  - bam file index (.bai)

@@ -1,0 +1,13 @@
+rule sickle_pe:
+  input:
+    "input_R1.fq"
+  output:
+    "output_R1.fq"
+  params:
+    qual_type="sanger",
+    # optional extra parameters
+    extra=""
+  log:
+    "logs/sickle/job.log"
+  wrapper:
+    "0.8.0/bio/sickle/pe"

@@ -6,10 +6,15 @@
 Welcome to Snakemake Wrappers's documentation!
 ==============================================
 
+{% for tool in tools %}
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
+   :maxdepth: 0
+   :glob:
+   :hidden:
+   :caption: {{ tool }}
+   
+   wrappers/{{ tool }}/*
+{% endfor %}
 
 
 Indices and tables

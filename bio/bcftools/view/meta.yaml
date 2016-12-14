@@ -1,0 +1,2 @@
+name: bcftools view
+description: View vcf/bcf file in a different format.

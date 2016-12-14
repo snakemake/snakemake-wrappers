@@ -1,0 +1,9 @@
+rule samtools_index:
+    input:
+        "A.sorted.bam"
+    output:
+        "A.sorted.bam.bai"
+    params:
+        "" # optional params string
+    wrapper:
+        "0.2.0/bio/samtools/index"

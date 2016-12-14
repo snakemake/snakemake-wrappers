@@ -1,0 +1,6 @@
+name: picard AddOrReplaceReadGroups
+description: Add or replace read groups with picard tools.
+input:
+  - bam file
+output:
+  - bam file with added or replaced read groups

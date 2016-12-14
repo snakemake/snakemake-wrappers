@@ -1,0 +1,2 @@
+name: bcftools concat
+description: Concatenate vcf/bcf files with bcftools.

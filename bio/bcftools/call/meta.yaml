@@ -1,0 +1,2 @@
+name: bcftools call
+description: Call variants with bcftools.
