@@ -54,8 +54,8 @@ notes: |
     disappear with Python 3.6.
   * When providing the dictionary form of ``fastq_screen_config``, the wrapper will
     write a temp file using Python's ``tempfile`` module. To control the temp file
-    directory, make sure the `$TMPDIR` environmental variable is set (see [tempfile
-    docs](https://docs.python.org/3/library/tempfile.html#tempfile.mkstemp) for
+    directory, make sure the `$TMPDIR` environmental variable is set (see the `tempfile
+    docs <https://docs.python.org/3/library/tempfile.html#tempfile.mkstemp>`_) for
     details). One way of doing this is by adding  something like
     ``shell.prefix("export TMPDIR=/scratch; ")`` to the snakefile calling this
     wrapper.
