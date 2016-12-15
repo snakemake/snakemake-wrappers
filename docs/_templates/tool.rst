@@ -1,10 +1,10 @@
 .. _`{{name}}`:
 
-{{ name }}
+{{ name|upper }}
 ==========
 
-Supported subcommands
----------------------
+Wrappers
+--------
 
 .. toctree::
    :maxdepth: 1

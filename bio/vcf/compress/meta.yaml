@@ -1,4 +1,4 @@
 name: compress vcf
 description: Compress and index vcf file with bgzip and tabix.
-author: Johannes Köster
-email: johannes.koester@protonmail.com
+authors:
+  - Johannes Köster

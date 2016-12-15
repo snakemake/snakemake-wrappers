@@ -1,6 +1,8 @@
 name: picard MarkDuplicates
 description: |
   Mark PCR and optical duplicates with picard tools.
+authors:
+  - Johannes Köster
 input:
   - bam file
 output:

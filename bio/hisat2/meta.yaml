@@ -1,4 +1,6 @@
 name: hisat2
+authors:
+  - Wibowo Arindrarto
 description: |
   Map reads with hisat2.
 input:

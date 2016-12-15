@@ -1,4 +1,4 @@
 name: uncompress vcf
 description: Uncompress vcf file with bgzip.
-author: Johannes Köster
-email: johannes.koester@protonmail.com
+authors:
+  - Johannes Köster

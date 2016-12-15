@@ -1,6 +1,6 @@
 .. _`{{name}}`:
 
-{{ name }}
+{{ name|upper }}
 ==========
 
 {{ description }}
@@ -21,7 +21,7 @@ This wrapper can be used in the following way:
 
 .. code-block:: python
 
-    {{ snakefile }}
+{{ snakefile }}
 
 Note that input, output and log file paths can be chosen freely.
 
@@ -33,3 +33,9 @@ Notes
 {{ notes }}
 {% endif %}
 
+Authors
+-------
+
+{% for author in authors %}
+* {{ author }}
+{% endfor %}

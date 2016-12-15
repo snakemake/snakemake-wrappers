@@ -1,5 +1,7 @@
 name: sambamba sort
 description: Sort bam file with sambamba
+authors:
+  - Johannes Köster
 input:
   - bam file
 output:

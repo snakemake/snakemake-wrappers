@@ -1,3 +1,5 @@
 name: sickle pe
 description: Trim paired-end reads with sickle.
 homepage: https://github.com/najoshi/sickle
+authors:
+  - Wibowo Arindrarto

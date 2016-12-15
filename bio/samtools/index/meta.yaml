@@ -1,5 +1,7 @@
 name: samtools index
 description: Index bam file with samtools.
+authors:
+  - Johannes Köster
 input:
   - bam file
 output:

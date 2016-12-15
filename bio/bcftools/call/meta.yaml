@@ -1,2 +1,4 @@
 name: bcftools call
 description: Call variants with bcftools.
+authors:
+  - Johannes Köster

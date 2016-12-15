@@ -1,4 +1,6 @@
 name: fastq_screen
+authors:
+  - Ryan Dale
 description: |
   `fastq_screen <http://www.bioinformatics.babraham.ac.uk/projects/fastq_screen>`_
   screens a library of sequences in FASTQ format against a set of sequence

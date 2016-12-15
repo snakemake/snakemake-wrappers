@@ -1,4 +1,5 @@
 import os
+import textwrap
 from jinja2 import Template
 import yaml
 
@@ -35,7 +36,7 @@ def render_wrapper(path, target):
         env = yaml.load(env)
         pkgs = env["dependencies"]
     with open(os.path.join(path, "Snakefile")) as snakefile:
-        snakefile = snakefile.read()
+        snakefile = textwrap.indent(snakefile.read(), "    ")
     name = meta["name"].replace(" ", "_") + ".rst"
     with open(target, "w") as readme:
         rst = TEMPLATE.render(snakefile=snakefile, pkgs=pkgs, **meta)
