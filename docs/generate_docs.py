@@ -28,15 +28,17 @@ def render_tool(tool, subcmds):
 
 
 def render_wrapper(path, target):
+    print("rendering", path)
     with open(os.path.join(path, "meta.yaml")) as meta:
         meta = yaml.load(meta)
     with open(os.path.join(path, "environment.yaml")) as env:
-        pkgs = yaml.load(env)["dependencies"]
+        env = yaml.load(env)
+        pkgs = env["dependencies"]
     with open(os.path.join(path, "Snakefile")) as snakefile:
         snakefile = snakefile.read()
     name = meta["name"].replace(" ", "_") + ".rst"
     with open(target, "w") as readme:
-        rst = TEMPLATE.render(snakefile=snakefile, **meta)
+        rst = TEMPLATE.render(snakefile=snakefile, pkgs=pkgs, **meta)
         readme.write(rst)
     return name
 
