@@ -6,6 +6,14 @@
 {{ description }}
 
 
+Software dependencies
+---------------------
+
+{% for pkg in pkgs %}
+* {{ pkg }}
+{% endfor %}
+
+
 Example
 -------
 
