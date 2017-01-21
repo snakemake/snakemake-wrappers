@@ -6,9 +6,9 @@ rule delly:
         # optional exclude template (see https://github.com/tobiasrausch/delly)
         exclude="human.hg19.excl.tsv"
     output:
-        "sv/{type,(DEL|DUP|INV|TRA|INS)}.vcf"
+        "sv/{type,(DEL|DUP|INV|TRA|INS)}.bcf"
     params:
-        vartype="{type}" # variant type to call (can be wildcard, hardcoded string or function)
+        vartype="{type}", # variant type to call (can be wildcard, hardcoded string or function)
         extra=""  # optional parameters for delly (except -t, -g)
     log:
         "logs/delly/{type}.log"
