@@ -6,4 +6,4 @@ def setup_module():
     os.chdir(workdir)
 
 def test():
-    subprocess.check_call(["snakemake", "mapped/a.bam", "--use-conda", "-F"])
+    subprocess.check_call(["snakemake", "mapped/a.bam", "--use-conda", "-F"], executable="/bin/bash")
