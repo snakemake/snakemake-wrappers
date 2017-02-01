@@ -6,10 +6,6 @@ box:
 build:
   steps:
     - script:
-        name: pip
-        code: pip install -e .
-
-    - script:
         name: pytest
         code: conda install pytest
 
