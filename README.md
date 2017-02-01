@@ -1,4 +1,5 @@
 [![Snakemake](https://img.shields.io/badge/snakemake-≥3.8.0-brightgreen.svg?style=flat-square)](https://bitbucket.org/johanneskoester/snakemake)
+[![Wercker](https://img.shields.io/wercker/ci/snakemake/snakemake-wrappers.svg?style=flat-square)](https://app.wercker.com/snakemake/snakemake-wrappers/runs)
 
 # The Snakemake Wrapper Repository
 
