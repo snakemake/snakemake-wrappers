@@ -35,7 +35,7 @@ def render_wrapper(path, target):
     with open(os.path.join(path, "environment.yaml")) as env:
         env = yaml.load(env)
         pkgs = env["dependencies"]
-    with open(os.path.join(path, "Snakefile")) as snakefile:
+    with open(os.path.join(path, "test", "Snakefile")) as snakefile:
         snakefile = textwrap.indent(snakefile.read(), "    ")
     name = meta["name"].replace(" ", "_") + ".rst"
     with open(target, "w") as readme:

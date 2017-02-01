@@ -1,7 +1,7 @@
 rule bwa_mem:
     input:
         ref="genome.fasta",
-        sample=["reads/{sample}.1.fastq.gz", "reads/{sample}.2.fastq.gz"]
+        sample=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"]
     output:
         "mapped/{sample}.bam"
     log:
