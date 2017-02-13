@@ -1,0 +1,15 @@
+rule alignment_summary:
+    input:
+        ref="genome.fasta",
+        bam="mapped/{sample}.bam"
+    output:
+        txt="stats/{sample}.summary.txt"
+    log:
+        "logs/picard/alignment-summary/{sample}.log"
+    params:
+        # optional parameters (e.g. relax checks as below)
+        "VALIDATION_STRINGENCY=LENIENT "
+        "METRIC_ACCUMULATION_LEVEL=null "
+        "METRIC_ACCUMULATION_LEVEL=SAMPLE"
+    wrapper:
+        "master/bio/picard/collectalignmentsummarymetrics"

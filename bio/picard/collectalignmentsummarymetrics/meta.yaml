@@ -1,0 +1,10 @@
+name: picard CollectInsertSizeMetrics
+description: |
+  Collect metrics on insert size of paired end reads with picard tools.
+authors:
+  - Johannes Köster
+input:
+  - bam file
+output:
+  - txt: textual representation of metrics
+  - pdf: insert size histogram
