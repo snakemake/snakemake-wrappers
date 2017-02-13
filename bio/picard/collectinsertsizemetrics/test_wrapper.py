@@ -5,4 +5,4 @@ def setup_module():
     os.chdir(os.path.join(os.path.dirname(__file__), "test"))
 
 def test():
-    subprocess.check_call(["snakemake", "mapped/a.bam", "--use-conda", "-F"])
+    subprocess.check_call(["snakemake", "stats/a.isize.txt", "--use-conda", "-F"])

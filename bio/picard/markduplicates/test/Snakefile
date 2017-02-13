@@ -9,4 +9,4 @@ rule mark_duplicates:
     params:
         "REMOVE_DUPLICATES=true"
     wrapper:
-        "0.14.0/bio/picard/markduplicates"
+        "master/bio/picard/markduplicates"

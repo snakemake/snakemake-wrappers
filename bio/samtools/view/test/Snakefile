@@ -6,4 +6,4 @@ rule samtools_view:
     params:
         "-b" # optional params string
     wrapper:
-        "0.6.0/bio/samtools/view"
+        "master/bio/samtools/view"

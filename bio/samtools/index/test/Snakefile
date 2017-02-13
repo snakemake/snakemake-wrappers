@@ -6,4 +6,4 @@ rule samtools_index:
     params:
         "" # optional params string
     wrapper:
-        "0.2.0/bio/samtools/index"
+        "master/bio/samtools/index"

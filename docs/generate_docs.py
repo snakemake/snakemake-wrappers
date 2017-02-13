@@ -2,13 +2,16 @@ import os
 import textwrap
 from jinja2 import Template
 import yaml
+import subprocess
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 WRAPPER_DIR = os.path.dirname(BASE_DIR)
 OUTPUT_DIR = os.path.join(BASE_DIR, "wrappers")
 SCRIPTS = {"wrapper.py", "wrapper.R"}
-BLACKLIST = {"docs", "environment.yaml", ".git", ".gitignore", "README.md"} | SCRIPTS
+BLACKLIST = {"wercker.yml", "docs", "environment.yaml", ".git", ".gitignore", "README.md", ".cache"} | SCRIPTS
+TAG = subprocess.check_output(["git", "describe", "--tags"]).decode().strip()
+
 
 with open(os.path.join(BASE_DIR, "_templates", "tool.rst")) as f:
     TOOL_TEMPLATE = Template(f.read())
@@ -36,7 +39,7 @@ def render_wrapper(path, target):
         env = yaml.load(env)
         pkgs = env["dependencies"]
     with open(os.path.join(path, "test", "Snakefile")) as snakefile:
-        snakefile = textwrap.indent(snakefile.read(), "    ")
+        snakefile = textwrap.indent(snakefile.read(), "    ").replace("master", TAG)
     name = meta["name"].replace(" ", "_") + ".rst"
     with open(target, "w") as readme:
         rst = TEMPLATE.render(snakefile=snakefile, pkgs=pkgs, **meta)
@@ -50,6 +53,8 @@ def setup(*args):
         if discipline in BLACKLIST:
             continue
         for tool in os.listdir(os.path.join(WRAPPER_DIR, discipline)):
+            if tool in BLACKLIST:
+                continue
             path = os.path.join(WRAPPER_DIR, discipline, tool)
             if any(f in SCRIPTS for f in os.listdir(path)):
                 render_wrapper(path, os.path.join(OUTPUT_DIR, tool + ".rst"))

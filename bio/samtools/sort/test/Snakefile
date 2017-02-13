@@ -7,4 +7,4 @@ rule samtools_sort:
         "-m 4G"
     threads: 8
     wrapper:
-        "0.2.0/bio/samtools/sort"
+        "master/bio/samtools/sort"

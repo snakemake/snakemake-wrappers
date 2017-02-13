@@ -14,4 +14,4 @@ rule sickle_pe:
     # optional log file
     "logs/sickle/job.log"
   wrapper:
-    "0.8.0/bio/sickle/pe"
+    "master/bio/sickle/pe"
