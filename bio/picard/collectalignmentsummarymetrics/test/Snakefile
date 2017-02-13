@@ -3,7 +3,7 @@ rule alignment_summary:
         ref="genome.fasta",
         bam="mapped/{sample}.bam"
     output:
-        txt="stats/{sample}.summary.txt"
+        "stats/{sample}.summary.txt"
     log:
         "logs/picard/alignment-summary/{sample}.log"
     params:
