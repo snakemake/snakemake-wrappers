@@ -24,6 +24,13 @@ This wrapper can be used in the following way:
 {{ snakefile }}
 
 Note that input, output and log file paths can be chosen freely.
+When running with
+
+.. code-block:: bash
+
+    snakemake --use-conda
+
+the software dependencies will be automatically deployed into an isolated environment before execution.
 
 {% if notes %}
 
