@@ -18,4 +18,4 @@ rule pindel:
         "logs/pindel.log"
     threads: 4
     wrapper:
-        "master/bio/pindel"
+        "master/bio/pindel/call"

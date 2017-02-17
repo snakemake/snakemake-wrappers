@@ -1,0 +1,12 @@
+rule pindel2vcf:
+    input:
+        ref="genome.fasta",
+        pindel="pindel/all_{type}"
+    output:
+        "calls/{type}.vcf"
+    params:
+        refname="hg38",  # mandatory, see pindel manual
+        refdate="20170110",  # mandatory, see pindel manual
+        extra=""  # extra params (except -f, -p, -R, -d, -v)
+    wrapper:
+        "master/bio/pindel/pindel2vcf"

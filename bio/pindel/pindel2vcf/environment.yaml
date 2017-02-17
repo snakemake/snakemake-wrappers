@@ -1,0 +1,5 @@
+channels:
+  - bioconda
+  - r
+dependencies:
+  - pindel ==0.2.5b8

@@ -1,0 +1,4 @@
+name: pindel2vcf
+description: Convert pindel output to vcf.
+authors:
+  - Johannes Köster
