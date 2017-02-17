@@ -10,4 +10,4 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 prefix = os.path.dirname(snakemake.output[0])
 
-shell("pindel {snakemake.params} -i {snakemake.input.conf} -f {snakemake.input.ref} -o {prefix} {log}")
+shell("pindel {snakemake.params} -i {snakemake.input.config} -f {snakemake.input.ref} -o {prefix} {log}")
