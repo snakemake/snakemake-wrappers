@@ -1,3 +1,6 @@
+pindel_types = ["D", "BP", "INV", "TD", "LI", "SI", "RP"]
+
+
 rule pindel:
     input:
         ref="genome.fasta",
@@ -6,10 +9,10 @@ rule pindel:
         # bam configuration file, see http://gmt.genome.wustl.edu/packages/pindel/quick-start.html
         config="pindel_config.txt"
     output:
-        "calls/pindel.vcf"
+        expand("pindel/all_{type}", type=pindel_types)
     params:
         # prefix must be consistent with output files
-        prefix="calls/pindel",
+        prefix="pindel/all",
         extra=""  # optional parameters (except -i, -f, -o)
     log:
         "logs/pindel.log"

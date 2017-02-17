@@ -1,1 +1,1 @@
-mapped/a.bam	40	a
+mapped/a.bam	500	a

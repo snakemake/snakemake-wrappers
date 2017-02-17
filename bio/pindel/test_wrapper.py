@@ -5,4 +5,4 @@ def setup_module():
     os.chdir(os.path.join(os.path.dirname(__file__), "test"))
 
 def test():
-    subprocess.check_call(["snakemake", "calls/pindel.vcf", "--use-conda", "-F"])
+    subprocess.check_call(["snakemake", "pindel/all_D", "--use-conda", "-F"])
