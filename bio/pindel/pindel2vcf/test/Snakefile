@@ -3,7 +3,7 @@ rule pindel2vcf:
         ref="genome.fasta",
         pindel="pindel/all_{type}"
     output:
-        "calls/{type}.vcf"
+        "pindel/all_{type}.vcf"
     params:
         refname="hg38",  # mandatory, see pindel manual
         refdate="20170110",  # mandatory, see pindel manual
