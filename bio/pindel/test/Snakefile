@@ -8,7 +8,9 @@ rule pindel:
     output:
         "calls/pindel.vcf"
     params:
-        ""  # optional parameters (except -i, -f, -o)
+        # prefix must be consistent with output files
+        prefix="calls/pindel",
+        extra=""  # optional parameters (except -i, -f, -o)
     log:
         "logs/pindel.log"
     threads: 4

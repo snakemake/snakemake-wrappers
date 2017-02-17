@@ -6,8 +6,7 @@ __license__ = "MIT"
 import os
 from snakemake.shell import shell
 
-
+extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-prefix = os.path.dirname(snakemake.output[0])
 
-shell("pindel {snakemake.params} -i {snakemake.input.config} -f {snakemake.input.ref} -o {prefix} {log}")
+shell("pindel {snakemake.params.extra} -i {snakemake.input.config} -f {snakemake.input.ref} -o {snakemake.params.prefix} {log}")
