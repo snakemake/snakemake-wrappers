@@ -7,6 +7,8 @@ rule pindel2vcf:
     params:
         refname="hg38",  # mandatory, see pindel manual
         refdate="20170110",  # mandatory, see pindel manual
-        extra=""  # extra params (except -f, -p, -R, -d, -v)
+        extra=""  # extra params (except -r, -p, -R, -d, -v)
+    log:
+        "logs/pindel/pindel2vcf.{type}.log"
     wrapper:
         "master/bio/pindel/pindel2vcf"
