@@ -1,0 +1,4 @@
+name: "bowtie2"
+description: Map reads with bowtie2.
+authors:
+  - Johannes Köster
