@@ -29,7 +29,7 @@ shell(
     "--genomeDir {snakemake.params.index} "
     "--readFilesIn {snakemake.input.sample} "
     "{readcmd} "
-    "--outSAMtype BAM "
+    "--outSAMtype BAM Unsorted "
     "--outFileNamePrefix {outprefix} "
     "--outStd Log "
     "{log}")
