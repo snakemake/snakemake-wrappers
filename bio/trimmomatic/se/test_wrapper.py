@@ -5,4 +5,4 @@ def setup_module():
     os.chdir(os.path.join(os.path.dirname(__file__), "test"))
 
 def test():
-    subprocess.check_call(["snakemake", "trimmed/a.1.fastq.gz", "--use-conda", "-F"])
+    subprocess.check_call(["snakemake", "trimmed/a.fastq.gz", "--use-conda", "-F"])

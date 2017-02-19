@@ -1,0 +1,4 @@
+name: "trimmomatic se"
+description: Trim single-end reads with trimmomatic.
+authors:
+  - Johannes Köster

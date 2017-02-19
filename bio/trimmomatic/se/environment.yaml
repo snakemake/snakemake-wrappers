@@ -1,0 +1,5 @@
+channels:
+  - bioconda
+  - r
+dependencies:
+  - trimmomatic ==0.36
