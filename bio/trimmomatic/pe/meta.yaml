@@ -1,0 +1,4 @@
+name: "trimmomatic pe"
+description: Trim paired-end reads with trimmomatic.
+authors:
+  - Johannes Köster
