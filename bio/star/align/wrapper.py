@@ -23,7 +23,7 @@ outprefix = os.path.dirname(snakemake.output[0])
 
 
 shell(
-    "(STAR "
+    "STAR "
     "{snakemake.params.extra} "
     "--runThreadN {snakemake.threads} "
     "--genomeDir {snakemake.params.index} "
@@ -31,4 +31,5 @@ shell(
     "{readcmd} "
     "--outSAMtype BAM "
     "--outFileNamePrefix {outprefix} "
-    "--outStd Log")
+    "--outStd Log "
+    "{log}")
