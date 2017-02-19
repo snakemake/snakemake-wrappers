@@ -1,0 +1,4 @@
+name: "rsem-calculcate-expression"
+description: Calculate transcript expressions with RSEM.
+authors:
+  - Johannes Köster
