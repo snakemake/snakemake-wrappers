@@ -8,7 +8,7 @@ rule star:
         "logs/star/{sample}.log"
     params:
         # path to STAR reference genome index
-        index="index/",
+        index="index",
         # optional parameters
         extra=""
     threads: 8
