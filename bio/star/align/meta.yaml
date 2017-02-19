@@ -1,0 +1,4 @@
+name: "star"
+description: Map reads with STAR.
+authors:
+  - Johannes Köster

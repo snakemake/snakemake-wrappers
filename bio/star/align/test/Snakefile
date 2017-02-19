@@ -1,0 +1,16 @@
+rule star:
+    input:
+        sample=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"]
+    output:
+        # see STAR manual for additional output files
+        "star/{sample}/Aligned.out.bam"
+    log:
+        "logs/star/{sample}.log"
+    params:
+        # path to STAR reference genome index
+        index="index/",
+        # optional parameters
+        extra=""
+    threads: 8
+    wrapper:
+        "master/bio/star/align"

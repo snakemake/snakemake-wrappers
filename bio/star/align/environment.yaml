@@ -1,0 +1,5 @@
+channels:
+  - bioconda
+  - r
+dependencies:
+  - star ==2.5.2b
