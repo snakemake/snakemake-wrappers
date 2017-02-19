@@ -7,7 +7,7 @@ rule trimmomatic_pe:
         "logs/trimmomatic/{sample}.log"
     params:
         # list of trimmers (see manual)
-        trimmer=["TRAILING:3"]
+        trimmer=["TRAILING:3"],
         # optional parameters
         extra=""
     wrapper:
