@@ -10,4 +10,4 @@ rule bowtie2:
         ""  # optional parameters
     threads: 8
     wrapper:
-        "master/bio/bowtie/align"
+        "master/bio/bowtie2/align"
