@@ -20,4 +20,4 @@ else:
 shell(
     "(bowtie2 --threads {snakemake.threads} {snakemake.params.extra} "
     "-x {snakemake.params.index} {reads} "
-    "| samtools view -Sbh -o {snakemake.output[0]} -)")
+    "| samtools view -Sbh -o {snakemake.output[0]} -) {log}")
