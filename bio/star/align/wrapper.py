@@ -19,7 +19,7 @@ else:
     readcmd = ""
 
 
-outprefix = os.path.dirname(snakemake.output[0])
+outprefix = os.path.dirname(snakemake.output[0]) + "/"
 
 
 shell(
