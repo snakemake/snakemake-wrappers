@@ -16,5 +16,4 @@ shell(
     "--alignments "
     "{snakemake.input[0]} "
     "{snakemake.params.index} "
-    "{snakemake.params.prefix} "
-    "{log}")
+    "{snakemake.params.prefix} ")
