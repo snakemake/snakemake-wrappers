@@ -7,8 +7,8 @@ def setup_module():
 
     # generate index on the fly, because it is huge regardless of genome size
     os.makedirs("index", exist_ok=True)
-    subprocess.check_call("conda env create --file ../environment.yaml -p star-env", shell=True)
-    subprocess.check_call("source activate star; STAR --genomeDir index --genomeFastaFiles genome.fasta --runMode genomeGenerate", shell=True)
+    subprocess.check_call("conda env create --file ../environment.yaml -p star-env", shell=True, executable="/bin/bash")
+    subprocess.check_call("source activate star-env; STAR --genomeDir index --genomeFastaFiles genome.fasta --runMode genomeGenerate", shell=True, excecutable="/bin/bash")
     shutil.rmtree(".star-env", ignore_errors=True)
 
 def test():
