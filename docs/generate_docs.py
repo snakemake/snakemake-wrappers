@@ -9,7 +9,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 WRAPPER_DIR = os.path.dirname(BASE_DIR)
 OUTPUT_DIR = os.path.join(BASE_DIR, "wrappers")
 SCRIPTS = {"wrapper.py", "wrapper.R"}
-BLACKLIST = {"wercker.yml", "docs", "environment.yaml", ".git", ".gitignore", "README.md", ".cache"} | SCRIPTS
+BLACKLIST = {"wercker.yml", "docs", "environment.yaml", ".git", ".gitignore", "README.md", ".cache", "__init__.py"} | SCRIPTS
 TAG = subprocess.check_output(["git", "describe", "--tags"]).decode().strip()
 
 
