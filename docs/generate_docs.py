@@ -61,6 +61,8 @@ def setup(*args):
                 continue
             subcmds = list(os.listdir(path))
             for subcommand in subcmds:
+                if subcommand in BLACKLIST:
+                    continue
                 render_wrapper(os.path.join(path, subcommand), os.path.join(get_tool_dir(tool), subcommand + ".rst"))
             render_tool(tool, subcmds)
 
