@@ -14,8 +14,8 @@ rule pindel:
         # prefix must be consistent with output files
         prefix="pindel/all",
         extra=""  # optional parameters (except -i, -f, -o)
-        #log:
-        #    "logs/pindel.log"
+    log:
+        "logs/pindel.log"
     threads: 4
     wrapper:
         "master/bio/pindel/call"
