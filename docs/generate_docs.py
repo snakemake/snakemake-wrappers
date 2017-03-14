@@ -9,7 +9,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 WRAPPER_DIR = os.path.dirname(BASE_DIR)
 OUTPUT_DIR = os.path.join(BASE_DIR, "wrappers")
 SCRIPTS = {"wrapper.py", "wrapper.R"}
-BLACKLIST = {"wercker.yml", "docs", "environment.yaml", ".git", ".gitignore", "README.md", ".cache", "__init__.py"} | SCRIPTS
+BLACKLIST = {"wercker.yml", "docs", "__pycache__", "environment.yaml", ".git", ".gitignore", "README.md", ".cache", "__init__.py"} | SCRIPTS
 TAG = subprocess.check_output(["git", "describe", "--tags"]).decode().strip()
 
 
@@ -35,14 +35,25 @@ def render_wrapper(path, target):
     print("rendering", path)
     with open(os.path.join(path, "meta.yaml")) as meta:
         meta = yaml.load(meta)
+
     with open(os.path.join(path, "environment.yaml")) as env:
         env = yaml.load(env)
         pkgs = env["dependencies"]
+
     with open(os.path.join(path, "test", "Snakefile")) as snakefile:
         snakefile = textwrap.indent(snakefile.read(), "    ").replace("master", TAG)
+
+    wrapper = os.path.join(path, "wrapper.py")
+    wrapper_lang = "python"
+    if not os.path.exists(wrapper):
+        wrapper = os.path.join(path, "wrapper.R")
+        wrapper_lang = "R"
+    with open(wrapper) as wrapper:
+        wrapper = textwrap.indent(wrapper.read(), "    ")
+
     name = meta["name"].replace(" ", "_") + ".rst"
     with open(target, "w") as readme:
-        rst = TEMPLATE.render(snakefile=snakefile, pkgs=pkgs, **meta)
+        rst = TEMPLATE.render(snakefile=snakefile, wrapper=wrapper, wrapper_lang=wrapper_lang, pkgs=pkgs, **meta)
         readme.write(rst)
     return name
 

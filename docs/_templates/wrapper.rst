@@ -40,9 +40,18 @@ Notes
 {{ notes }}
 {% endif %}
 
+
 Authors
 -------
 
 {% for author in authors %}
 * {{ author }}
 {% endfor %}
+
+
+Code
+----
+
+.. code-block:: {{ wrapper_lang }}
+
+{{ wrapper }}
