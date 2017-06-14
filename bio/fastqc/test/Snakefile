@@ -1,0 +1,10 @@
+
+rule fastqc:
+    input:
+        'reads/{sample}.fastq'
+    output:
+        html='qc/{sample}_fastqc.html',
+        zip='qc/{sample}_fastqc.zip'
+    params: ''
+    wrapper:
+        'file:///Users/Julian/Software/snakemake/snakemake-wrappers/bio/fastqc/'
