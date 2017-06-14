@@ -1,0 +1,7 @@
+channels:
+  - bioconda
+  - r
+  - default
+  - conda-forge
+dependencies:
+  - cutadapt ==1.13
