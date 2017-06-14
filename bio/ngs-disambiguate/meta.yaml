@@ -1,0 +1,14 @@
+name: ngs-disambiguate
+description: |
+  Disambiguation algorithm for reads aligned to two species (e.g. human
+  and mouse genomes) from Tophat, Hisat2, STAR or BWA mem.
+authors:
+  - Julian de Ruiter
+input:
+  - species a bam file (name sorted)
+  - species b bam file (name sorted)
+output:
+  - bam file with ambiguous alignments for species a
+  - bam file with ambiguous alignments for species b
+  - bam file with unambiguous alignments for species a
+  - bam file with unambiguous alignments for species b
