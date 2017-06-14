@@ -7,4 +7,4 @@ rule fastqc:
         zip='qc/{sample}_fastqc.zip'
     params: ''
     wrapper:
-        'file:///Users/Julian/Software/snakemake/snakemake-wrappers/bio/fastqc/'
+        "master/bio/fastqc"
