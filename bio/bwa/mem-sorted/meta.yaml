@@ -1,0 +1,4 @@
+name: "bwa mem sorted"
+description: Map reads with bwa mem and sort the alignments using picard tools.
+authors:
+  - Julian de Ruiter

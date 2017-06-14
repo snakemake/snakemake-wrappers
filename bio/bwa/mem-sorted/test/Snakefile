@@ -1,0 +1,15 @@
+rule bwa_mem:
+    input:
+        ref="genome.fasta",
+        sample=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"]
+    output:
+        "mapped/{sample}.bam"
+    log:
+        "logs/bwa_mem/{sample}.log"
+    params:
+        bwa_extra=r"-R '@RG\tID:{sample}\tSM:{sample}'",
+        sort_order="coordinate",
+        sort_extra="-XX:ParallelGCThreads=5"
+    threads: 8
+    wrapper:
+        "file:///Users/Julian/Dropbox/Software/snakemake/snakemake-wrappers/bio/bwa/mem-sorted"
