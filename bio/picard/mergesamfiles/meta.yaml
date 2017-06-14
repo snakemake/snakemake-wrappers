@@ -1,0 +1,9 @@
+name: picard MergeSamFiles
+description: |
+  Merge sam/bam files using picard tools.
+authors:
+  - Julian de Ruiter
+input:
+  - sam/bam files
+output:
+  - merged sam/bam file
