@@ -10,8 +10,8 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
-    'cutadapt'
-    ' {snakemake.params}'
-    ' -o {snakemake.output.fastq}'
-    ' {snakemake.input[0]}'
-    ' > {snakemake.output.qc} {log}')
+    "cutadapt"
+    " {snakemake.params}"
+    " -o {snakemake.output.fastq}"
+    " {snakemake.input[0]}"
+    " > {snakemake.output.qc} {log}")

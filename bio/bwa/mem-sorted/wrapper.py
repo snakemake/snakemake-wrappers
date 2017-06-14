@@ -9,18 +9,18 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
-sort_order = snakemake.params.get('sort_order', 'coordinate')
+sort_order = snakemake.params.get("sort_order", "coordinate")
 log = snakemake.log_fmt_shell(stderr=True)
 
 shell(
-    '(bwa mem'
-    ' -t {snakemake.threads}'
-    ' {snakemake.params.bwa_extra}'
-    ' {snakemake.input.ref}'
-    ' {snakemake.input.sample} |'
-    ' picard SortSam'
-    ' {snakemake.params.sort_extra}'
-    ' INPUT=/dev/stdin'
-    ' OUTPUT={snakemake.output[0]}'
-    ' SORT_ORDER={sort_order}'
-    ') {log}')
+    "(bwa mem"
+    " -t {snakemake.threads}"
+    " {snakemake.params.bwa_extra}"
+    " {snakemake.input.ref}"
+    " {snakemake.input.sample} |"
+    " picard SortSam"
+    " {snakemake.params.sort_extra}"
+    " INPUT=/dev/stdin"
+    " OUTPUT={snakemake.output[0]}"
+    " SORT_ORDER={sort_order}"
+    ") {log}")

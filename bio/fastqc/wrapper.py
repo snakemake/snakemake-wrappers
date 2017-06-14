@@ -10,5 +10,5 @@ from snakemake.shell import shell
 
 output_dir = path.dirname(snakemake.output.html)
 
-shell('fastqc {snakemake.params} --quiet '
-      '--outdir {output_dir} {snakemake.input[0]}')
+shell("fastqc {snakemake.params} --quiet "
+      "--outdir {output_dir} {snakemake.input[0]}")

@@ -1,10 +1,10 @@
 
 rule fastqc:
     input:
-        'reads/{sample}.fastq'
+        "reads/{sample}.fastq"
     output:
-        html='qc/{sample}_fastqc.html',
-        zip='qc/{sample}_fastqc.zip'
-    params: ''
+        html="qc/{sample}_fastqc.html",
+        zip="qc/{sample}_fastqc.zip"
+    params: ""
     wrapper:
         "master/bio/fastqc"

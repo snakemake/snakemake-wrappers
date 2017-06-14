@@ -1,12 +1,12 @@
 rule cutadapt:
     input:
-        'reads/{sample}.fastq'
+        "reads/{sample}.fastq"
     output:
-        fastq='trimmed/{sample}.fastq',
-        qc='trimmed/{sample}.qc.txt'
+        fastq="trimmed/{sample}.fastq",
+        qc="trimmed/{sample}.qc.txt"
     params:
-        '-a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC -q 20'
+        "-a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC -q 20"
     log:
-        'logs/cutadapt/{sample}.log'
+        "logs/cutadapt/{sample}.log"
     wrapper:
-        'file:///Users/Julian/Dropbox/Software/snakemake/snakemake-wrappers/bio/cutadapt/se'
+        "masterbio/cutadapt/se"

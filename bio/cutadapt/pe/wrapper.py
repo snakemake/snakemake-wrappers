@@ -13,9 +13,9 @@ assert n == 2, "Input must contain 2 (paired-end) elements."
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
-    'cutadapt'
-    ' {snakemake.params}'
-    ' -o {snakemake.output.fastq1}'
-    ' -p {snakemake.output.fastq2}'
-    ' {snakemake.input}'
-    ' > {snakemake.output.qc} {log}')
+    "cutadapt"
+    " {snakemake.params}"
+    " -o {snakemake.output.fastq1}"
+    " -p {snakemake.output.fastq2}"
+    " {snakemake.input}"
+    " > {snakemake.output.qc} {log}")
