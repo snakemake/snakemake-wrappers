@@ -1,0 +1,7 @@
+channels:
+  - bioconda
+  - r
+  - defaults
+  - conda-forge
+dependencies:
+  - bwa ==0.7.15
