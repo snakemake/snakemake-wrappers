@@ -1,0 +1,15 @@
+rule bwa_sampe:
+    input:
+        fastq=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        sai=["sai/{sample}.1.sai", "sai/{sample}.2.sai"]
+    output:
+        "mapped/{sample}.bam"
+    params:
+        index="genome",
+        extra=""
+    log:
+        "logs/bwa_sampe/{sample}.log"
+    threads: 8
+    wrapper:
+        "file:///Users/Julian/Software/snakemake/snakemake-wrappers/bio/bwa/sampe"
+        #"master/bio/bwa/aln"
