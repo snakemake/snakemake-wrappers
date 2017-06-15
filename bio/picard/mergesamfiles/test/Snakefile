@@ -1,6 +1,6 @@
 rule merge_bams:
     input:
-        ["mapped/a.bam", "mapped/b.bam"]
+        expand("mapped/{sample}.bam", sample=["a", "b"])
     output:
         "merged.bam"
     log:
