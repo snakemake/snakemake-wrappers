@@ -1,4 +1,0 @@
-name: "bwa mem sorted"
-description: Map reads with bwa mem and sort the alignments using samtools.
-authors:
-  - Julian de Ruiter
