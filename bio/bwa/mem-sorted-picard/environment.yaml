@@ -5,4 +5,4 @@ channels:
   - conda-forge
 dependencies:
   - bwa ==0.7.12
-  - samtools ==1.2
+  - picard ==2.7.1
