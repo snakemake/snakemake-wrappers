@@ -1,0 +1,7 @@
+rule samtools_flagstat:
+    input:
+        "A.bam"
+    output:
+        "A.flagstat"
+    wrapper:
+        "master/bio/samtools/flagstat"
