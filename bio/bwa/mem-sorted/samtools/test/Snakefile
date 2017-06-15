@@ -11,4 +11,4 @@ rule bwa_mem:
         sort_extra="-n"
     threads: 8
     wrapper:
-        "master/bio/bwa/mem-sorted"
+        "master/bio/bwa/mem-sorted/samtools"
