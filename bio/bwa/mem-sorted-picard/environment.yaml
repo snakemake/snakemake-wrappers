@@ -4,5 +4,5 @@ channels:
   - defaults
   - conda-forge
 dependencies:
-  - bwa ==0.7.12
-  - picard ==2.7.1
+  - bwa ==0.7.15
+  - picard ==2.9.2
