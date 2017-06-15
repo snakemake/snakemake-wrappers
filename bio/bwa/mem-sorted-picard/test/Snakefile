@@ -12,4 +12,4 @@ rule bwa_mem:
         sort_extra="-XX:ParallelGCThreads=5"
     threads: 8
     wrapper:
-        "masterbio/bwa/mem-sorted"
+        "master/bio/bwa/mem-sorted-picard"
