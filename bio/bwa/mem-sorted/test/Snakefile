@@ -11,5 +11,4 @@ rule bwa_mem:
         sort_extra="-n"
     threads: 8
     wrapper:
-        'file:///Users/Julian/Software/snakemake/snakemake-wrappers/bio/bwa/mem-sorted'
-        # "masterbio/bwa/mem-sorted"
+        "masterbio/bwa/mem-sorted"
