@@ -16,5 +16,4 @@ rule bwa_mem:
         sort_extra=sort_extra    # Extra args for samtools/picard.
     threads: 8
     wrapper:
-        'file:///Users/Julian/Software/snakemake/snakemake-wrappers/bio/bwa/mem'
-        #"master/bio/bwa/mem"
+        "master/bio/bwa/mem"
