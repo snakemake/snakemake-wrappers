@@ -17,5 +17,4 @@ rule bwa_samse:
         "logs/bwa_samse/{sample}.log"
     threads: 8
     wrapper:
-        "file:///Users/Julian/Software/snakemake/snakemake-wrappers/bio/bwa/samse"
-        #"master/bio/bwa/samse"
+        "master/bio/bwa/samse"
