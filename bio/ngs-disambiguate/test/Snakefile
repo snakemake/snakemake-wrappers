@@ -12,5 +12,4 @@ rule disambiguate:
         algorithm="bwa",
         extra=""
     wrapper:
-        #"master/bio/ngs-disambiguate"
-        "file:///Users/Julian/Software/snakemake/snakemake-wrappers/bio/ngs-disambiguate"
+        "master/bio/ngs-disambiguate"
