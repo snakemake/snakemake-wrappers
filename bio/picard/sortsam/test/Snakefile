@@ -7,6 +7,6 @@ rule sort_bam:
         "logs/picard/sort_sam/{sample}.log"
     params:
         sort_order="coordinate",
-        extra="VALIDATION_STRINGENCY=LENIENT"
+        extra="VALIDATION_STRINGENCY=LENIENT" # optional: Extra arguments for picard.
     wrapper:
         "master/bio/picard/sortsam"

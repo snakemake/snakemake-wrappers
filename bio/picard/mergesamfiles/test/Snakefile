@@ -6,6 +6,6 @@ rule merge_bams:
     log:
         "logs/picard_mergesamfiles.log"
     params:
-        extra="VALIDATION_STRINGENCY=LENIENT" # optional: Extra arguments for MergeSamFiles.
+        "VALIDATION_STRINGENCY=LENIENT"
     wrapper:
         "master/bio/picard/mergesamfiles"
