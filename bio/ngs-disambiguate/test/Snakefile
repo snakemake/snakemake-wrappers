@@ -3,12 +3,14 @@ rule disambiguate:
         a="mapped/{sample}.a.bam",
         b="mapped/{sample}.b.bam"
     output:
-        "disambiguate/{sample}.ambiguousSpeciesA.bam",
-        "disambiguate/{sample}.ambiguousSpeciesB.bam",
-        "disambiguate/{sample}.disambiguatedSpeciesA.bam",
-        "disambiguate/{sample}.disambiguatedSpeciesB.bam"
+        a_ambiguous='disambiguate/{sample}.graft.ambiguous.bam',
+        b_ambiguous='disambiguate/{sample}.host.ambiguous.bam',
+        a_disambiguated='disambiguate/{sample}.graft.bam',
+        b_disambiguated='disambiguate/{sample}.host.bam',
+        stats='disambiguate/{sample}.stats.txt'
     params:
         algorithm="bwa",
         extra=""
     wrapper:
-        "master/bio/ngs-disambiguate"
+        #"master/bio/ngs-disambiguate"
+        "file:///Users/Julian/Software/snakemake/snakemake-wrappers/bio/ngs-disambiguate"

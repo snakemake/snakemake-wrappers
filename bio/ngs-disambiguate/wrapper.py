@@ -39,6 +39,8 @@ output_map = {
         snakemake.output.a_disambiguated,
     output_base + ".disambiguatedSpeciesB.bam":
         snakemake.output.b_disambiguated,
+    output_base + "_summary.txt":
+        snakemake.output.stats
 }
 
 for src, dest in output_map.items():
