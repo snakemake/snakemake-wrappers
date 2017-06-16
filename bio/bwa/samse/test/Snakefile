@@ -1,10 +1,10 @@
 sort = config.get('sort', 'none')
 sort_extra = config.get('sort_extra', '')
 
-rule bwa_sampe:
+rule bwa_samse:
     input:
-        fastq=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
-        sai=["sai/{sample}.1.sai", "sai/{sample}.2.sai"]
+        fastq="reads/{sample}.1.fastq",
+        sai="sai/{sample}.1.sai"
     output:
         "mapped/{sample}.bam"
     params:
@@ -14,8 +14,8 @@ rule bwa_sampe:
         sort_order="queryname",  # optional: Sort by 'queryname' or 'coordinate'
         sort_extra=sort_extra  # optional: extra arguments for samtools/picard
     log:
-        "logs/bwa_sampe/{sample}.log"
+        "logs/bwa_samse/{sample}.log"
     threads: 8
     wrapper:
-        "file:///Users/Julian/Software/snakemake/snakemake-wrappers/bio/bwa/sampe"
-        #"master/bio/bwa/aln"
+        "file:///Users/Julian/Software/snakemake/snakemake-wrappers/bio/bwa/samse"
+        #"master/bio/bwa/samse"

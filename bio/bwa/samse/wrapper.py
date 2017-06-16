@@ -9,13 +9,6 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 
-# Check inputs.
-if not len(snakemake.input.sai) == 2:
-    raise ValueError('input.sai must have 2 elements')
-
-if not len(snakemake.input.fastq) == 2:
-    raise ValueError('input.fastq must have 2 elements')
-
 # Extract arguments.
 extra = snakemake.params.get("extra", "")
 
@@ -51,7 +44,7 @@ else:
 
 # Run command.
 shell(
-    "(bwa sampe"
+    "(bwa samse"
     " {extra}"
     " {snakemake.params.index}"
     " {snakemake.input.sai}"
