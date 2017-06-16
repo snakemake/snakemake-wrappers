@@ -7,7 +7,7 @@ rule disambiguate:
         b_ambiguous='disambiguate/{sample}.host.ambiguous.bam',
         a_disambiguated='disambiguate/{sample}.graft.bam',
         b_disambiguated='disambiguate/{sample}.host.bam',
-        stats='disambiguate/{sample}.stats.txt'
+        summary='disambiguate/{sample}.summary.txt'
     params:
         algorithm="bwa",
         extra=""
