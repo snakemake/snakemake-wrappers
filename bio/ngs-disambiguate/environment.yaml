@@ -1,7 +1,0 @@
-channels:
-  - bioconda
-  - r
-  - default
-  - conda-forge
-dependencies:
-  - ngs-disambiguate ==2016.11.10

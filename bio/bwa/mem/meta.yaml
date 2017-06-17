@@ -1,6 +1,4 @@
 name: "bwa mem"
-description: Map reads using bwa mem, with optional sorting using
-  samtools or picard.
+description: Map reads with bwa mem.
 authors:
   - Johannes Köster
-  - Julian de Ruiter

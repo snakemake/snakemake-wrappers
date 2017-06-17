@@ -1,7 +1,0 @@
-channels:
-  - bioconda
-  - r
-  - default
-  - conda-forge
-dependencies:
-  - fastqc ==0.11.5

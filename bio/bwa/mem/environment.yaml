@@ -1,9 +1,6 @@
 channels:
   - bioconda
   - r
-  - defaults
-  - conda-forge
 dependencies:
-  - bwa ==0.7.15
-  - samtools ==1.3
-  - picard ==2.9.2
+  - bwa ==0.7.12
+  - samtools ==1.2

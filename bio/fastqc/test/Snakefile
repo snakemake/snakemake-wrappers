@@ -1,9 +1,0 @@
-rule fastqc:
-    input:
-        "reads/{sample}.fastq"
-    output:
-        html="qc/{sample}.html",
-        zip="qc/{sample}.zip"
-    params: ""
-    wrapper:
-        "master/bio/fastqc"

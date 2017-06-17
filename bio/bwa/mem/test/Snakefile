@@ -1,19 +1,13 @@
-sort = config.get('sort', 'none')
-sort_extra = config.get('sort_extra', '')
-
 rule bwa_mem:
     input:
-        ["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"]
+        ref="genome.fasta",
+        sample=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"]
     output:
         "mapped/{sample}.bam"
     log:
         "logs/bwa_mem/{sample}.log"
     params:
-        index="genome",
-        extra=r"-R '@RG\tID:{sample}\tSM:{sample}'",
-        sort=sort,               # Can be 'none', 'samtools' or 'picard'.
-        sort_order="queryname",  # Can be 'queryname' or 'coordinate'.
-        sort_extra=sort_extra    # Extra args for samtools/picard.
+        "-R '@RG\tID:{sample}\tSM:{sample}'"  # optional parameters for bwa mem (e.g. read group)
     threads: 8
     wrapper:
         "master/bio/bwa/mem"
