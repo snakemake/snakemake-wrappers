@@ -11,4 +11,4 @@ build:
 
     - script:
         name: run tests
-        code: bash -c "for f in */*/*/test_wrapper.py */*/test_wrapper.py; do pytest $f; done"
+        code: bash -c pytest test.py
