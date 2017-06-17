@@ -11,4 +11,4 @@ build:
 
     - script:
         name: run tests
-        code: bash -c pytest test.py
+        code: bash -c "pytest test.py"
