@@ -1,0 +1,10 @@
+name: fastqc
+description: |
+  Generate fastq qc statistics using fastqc.
+authors:
+  - Julian de Ruiter
+input:
+  - fastq file
+output:
+  - html file containing statistics
+  - zip file containing statistics

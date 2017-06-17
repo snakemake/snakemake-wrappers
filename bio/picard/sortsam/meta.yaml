@@ -1,0 +1,9 @@
+name: picard SortSam
+description: |
+  Sort sam/bam files using picard tools.
+authors:
+  - Julian de Ruiter
+input:
+  - sam/bam file
+output:
+  - sorted sam/bam file.

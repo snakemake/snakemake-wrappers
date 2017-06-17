@@ -1,0 +1,10 @@
+name: cutadapt-pe
+description: |
+  Trim paired-end reads using cutadapt.
+authors:
+  - Julian de Ruiter
+input:
+  - two (paired-end) fastq files
+output:
+  - two trimmed (paired-end) fastq files
+  - text file containing trimming statistics

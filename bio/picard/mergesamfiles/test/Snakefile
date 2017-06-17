@@ -1,0 +1,11 @@
+rule merge_bams:
+    input:
+        expand("mapped/{sample}.bam", sample=["a", "b"])
+    output:
+        "merged.bam"
+    log:
+        "logs/picard_mergesamfiles.log"
+    params:
+        "VALIDATION_STRINGENCY=LENIENT"
+    wrapper:
+        "master/bio/picard/mergesamfiles"
