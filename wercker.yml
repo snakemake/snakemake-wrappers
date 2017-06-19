@@ -10,5 +10,9 @@ build:
         code: conda install pytest
 
     - script:
+        name: snakemake version
+        code: snakemake --version
+
+    - script:
         name: run tests
         code: bash -c "pytest test.py"
