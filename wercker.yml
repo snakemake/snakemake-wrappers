@@ -1,6 +1,6 @@
 box: 
   id: quay.io/snakemake/snakemake
-  tag: master
+  tag: v3.13.0
   registry: quay.io
 
 build:
@@ -15,4 +15,5 @@ build:
 
     - script:
         name: run tests
-        code: bash -c "pytest test.py"
+        code: |
+          SHELL=/bin/bash pytest test.py
