@@ -41,6 +41,11 @@ def test_bwa_mem():
         ["snakemake", "mapped/a.bam", "--use-conda", "-F"])
 
 
+def test_cutadapt_pe():
+    run("bio/cutadapt/pe",
+        ["snakemake", "trimmed/a.1.fastq", "--use-conda", "-F"])
+
+
 def test_freebayes():
     run("bio/freebayes",
         ["snakemake", "calls/a.vcf", "--use-conda", "-F"])
