@@ -13,8 +13,10 @@ def run(wrapper, cmd):
         copy("environment.yaml")
         testdir = os.path.join(wrapper, "test")
         os.chdir(testdir)
-        shutil.rmtree(".snakemake")
+        if os.path.exists(".snakemake"):
+            shutil.rmtree(".snakemake")
         cmd = cmd + ["--wrapper-prefix", "file://{}/".format(d)]
+        subprocess.check_call(["snakemake", "--version"])
         try:
             subprocess.check_call(cmd)
         finally:

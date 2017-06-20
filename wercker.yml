@@ -1,6 +1,6 @@
 box: 
   id: quay.io/snakemake/snakemake
-  tag: v3.13.1
+  tag: v3.13.2
   registry: quay.io
 
 build:
@@ -8,10 +8,6 @@ build:
     - script:
         name: pytest
         code: conda install pytest
-
-    - script:
-        name: snakemake version
-        code: snakemake --version
 
     - script:
         name: run tests
