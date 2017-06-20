@@ -3,14 +3,10 @@ __copyright__ = "Copyright 2016, Johannes Köster and Julian de Ruiter"
 __email__ = "koester@jimmy.harvard.edu, julianderuiter@gmail.com"
 __license__ = "MIT"
 
+from os import path
 
 from snakemake.shell import shell
 
-
-# Check inputs.
-if len(snakemake.input) not in {1, 2}:
-    raise ValueError("input must have 1 (single-end) or "
-                     "2 (paired-end) elements")
 
 # Extract arguments.
 extra = snakemake.params.get("extra", "")
@@ -20,6 +16,14 @@ sort_order = snakemake.params.get("sort_order", "coordinate")
 sort_extra = snakemake.params.get("sort_extra", "")
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+
+# Check inputs/arguments.
+if len(snakemake.input) not in {1, 2}:
+    raise ValueError("input must have 1 (single-end) or "
+                     "2 (paired-end) elements")
+
+if sort_order not in {"coordinate", "queryname"}:
+    raise ValueError("Unexpected value for sort_order ({})".format(sort_order))
 
 # Determine which pipe command to use for converting to bam or sorting.
 if sort == "none":
@@ -35,6 +39,9 @@ elif sort == "samtools":
     # Add name flag if needed.
     if sort_order == "queryname":
         sort_extra += " -n"
+
+    prefix = path.splitext(snakemake.output[0])[0]
+    sort_extra += " -T " + prefix + ".tmp"
 
 elif sort == "picard":
 
