@@ -16,4 +16,4 @@ build:
     - script:
         name: run tests
         code: |
-          SHELL=/bin/bash pytest test.py
+          SHELL=/bin/bash pytest test.py -s
