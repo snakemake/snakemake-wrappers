@@ -7,13 +7,13 @@ build:
   steps:
     - script:
         name: apt-get
-        code: apt-get update && apt-get install -qq ttf-dejavu fontconfig
+        code: apt-get update && apt-get install -qq ttf-dejavu
 
     - script:
-        name: pytest
-        code: conda install pytest
+      name: pytest
+      code: conda install pytest
 
     - script:
-        name: run tests
-        code: |
-          SHELL=/bin/bash pytest test.py -s
+      name: run tests
+      code: |
+        SHELL=/bin/bash pytest test.py -s

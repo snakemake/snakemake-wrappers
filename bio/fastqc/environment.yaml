@@ -4,4 +4,5 @@ channels:
   - default
   - conda-forge
 dependencies:
+  - fontconfig ==2.12.1
   - fastqc ==0.11.5
