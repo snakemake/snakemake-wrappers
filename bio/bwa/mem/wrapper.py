@@ -3,6 +3,7 @@ __copyright__ = "Copyright 2016, Johannes Köster and Julian de Ruiter"
 __email__ = "koester@jimmy.harvard.edu, julianderuiter@gmail.com"
 __license__ = "MIT"
 
+
 from os import path
 
 from snakemake.shell import shell

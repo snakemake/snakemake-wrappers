@@ -5,7 +5,9 @@ __copyright__ = "Copyright 2017, Julian de Ruiter"
 __email__ = "julianderuiter@gmail.com"
 __license__ = "MIT"
 
+
 from snakemake.shell import shell
+
 
 n = len(snakemake.input)
 assert n == 2, "Input must contain 2 (paired-end) elements."
