@@ -19,7 +19,7 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 # Run command.
-prefix = uuid.uuid1()
+prefix = str(uuid.uuid1())
 
 shell(
     "ngs_disambiguate"
