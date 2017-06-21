@@ -1,10 +1,14 @@
-box: 
+box:
   id: quay.io/snakemake/snakemake
   tag: v3.13.2
   registry: quay.io
 
 build:
   steps:
+    - script:
+        name: apt-get
+        code: apt-get update && apt-get install -qq ttf-dejavu fontconfig
+
     - script:
         name: pytest
         code: conda install pytest
