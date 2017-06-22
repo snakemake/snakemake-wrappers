@@ -6,8 +6,8 @@ box:
 build:
   steps:
     - script:
-        name: apt-get
-        code: apt-get update && apt-get install -qq ttf-dejavu
+      name: install_packages
+      code: install_packages ttf-dejavu
 
     - script:
       name: pytest
