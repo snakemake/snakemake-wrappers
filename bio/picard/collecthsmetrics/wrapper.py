@@ -16,9 +16,9 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 shell(
     "picard CollectHsMetrics"
     " {extra}"
-    " INPUT={snakemake.input[0]}"
+    " INPUT={snakemake.input.bam[0]}"
     " OUTPUT={snakemake.output[0]}"
-    " REFERENCE_SEQUENCE={snakemake.params.reference}"
-    " BAIT_INTERVALS={snakemake.params.bait_intervals}"
-    " TARGET_INTERVALS={snakemake.params.target_intervals}"
+    " REFERENCE_SEQUENCE={snakemake.input.reference[0]}"
+    " BAIT_INTERVALS={snakemake.input.bait_intervals[0]}"
+    " TARGET_INTERVALS={snakemake.input.target_intervals[0]}"
     " {log}")
