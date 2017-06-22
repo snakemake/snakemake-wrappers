@@ -41,9 +41,42 @@ def test_bwa_mem():
         ["snakemake", "mapped/a.bam", "--use-conda", "-F"])
 
 
+def test_bwa_mem_sort_samtools():
+    run("bio/bwa/mem",
+        ["snakemake", "mapped/a.bam", "--use-conda", "-F",
+         "--config", "sort=samtools"])
+
+
+def test_bwa_mem_sort_picard():
+    run("bio/bwa/mem",
+        ["snakemake", "mapped/a.bam", "--use-conda", "-F",
+         "--config", "sort=picard"])
+
+
+def test_cutadapt_pe():
+    run("bio/cutadapt/pe",
+        ["snakemake", "trimmed/a.1.fastq", "--use-conda", "-F"])
+
+
+def test_cutadapt_se():
+    run("bio/cutadapt/se",
+        ["snakemake", "trimmed/a.fastq", "--use-conda", "-F"])
+
+
+def test_fastqc():
+    run("bio/fastqc",
+        ["snakemake", "qc/a.html", "--use-conda", "-F"])
+
+
 def test_freebayes():
     run("bio/freebayes",
         ["snakemake", "calls/a.vcf", "--use-conda", "-F"])
+
+
+def test_ngs_disambiguate():
+    run("bio/ngs-disambiguate",
+        ["snakemake", "disambiguate/s1.graft.ambiguous.bam",
+         "--use-conda", "-F"])
 
 
 def test_picard_collectalignmentsummarymetrics():
@@ -54,6 +87,16 @@ def test_picard_collectalignmentsummarymetrics():
 def test_picard_collectinsertsizemetrics():
     run("bio/picard/collectinsertsizemetrics",
         ["snakemake", "stats/a.isize.txt", "--use-conda", "-F"])
+
+
+def test_picard_mergesamfiles():
+    run("bio/picard/mergesamfiles",
+        ["snakemake", "merged.bam", "--use-conda", "-F"])
+
+
+def test_picard_sortsam():
+    run("bio/picard/sortsam",
+        ["snakemake", "sorted/a.bam", "--use-conda", "-F"])
 
 
 def test_pindel_call():

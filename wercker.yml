@@ -1,15 +1,21 @@
-box: 
+box:
   id: quay.io/snakemake/snakemake
   tag: v3.13.2
   registry: quay.io
 
 build:
   steps:
+    # TODO: Remove ttf-dejavu dependency as soon as it has been added
+    # to the fastqc recipe in bioconda.
     - script:
-        name: pytest
-        code: conda install pytest
+      name: install_packages
+      code: install_packages ttf-dejavu
 
     - script:
-        name: run tests
-        code: |
-          SHELL=/bin/bash pytest test.py -s
+      name: pytest
+      code: conda install pytest
+
+    - script:
+      name: run tests
+      code: |
+        SHELL=/bin/bash pytest test.py -s

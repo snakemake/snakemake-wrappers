@@ -1,0 +1,15 @@
+rule disambiguate:
+    input:
+        a="mapped/{sample}.a.bam",
+        b="mapped/{sample}.b.bam"
+    output:
+        a_ambiguous='disambiguate/{sample}.graft.ambiguous.bam',
+        b_ambiguous='disambiguate/{sample}.host.ambiguous.bam',
+        a_disambiguated='disambiguate/{sample}.graft.bam',
+        b_disambiguated='disambiguate/{sample}.host.bam',
+        summary='disambiguate/{sample}.summary.txt'
+    params:
+        algorithm="bwa",
+        extra=""
+    wrapper:
+        "master/bio/ngs-disambiguate"

@@ -1,0 +1,10 @@
+name: cutadapt-se
+description: |
+  Trim single-end reads using cutadapt.
+authors:
+  - Julian de Ruiter
+input:
+  - fastq file
+output:
+  - trimmed fastq file
+  - text file containing trimming statistics
