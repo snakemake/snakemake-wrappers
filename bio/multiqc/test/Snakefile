@@ -1,17 +1,10 @@
 rule multiqc:
     input:
-        directory=".",
-        # QC inputs, needed to generate DAG (otherwise the jobs that
-        # generate the QC metrics won"t be run before multiqc.)
-        samtools_stats=expand("samtools_stats/{sample}.txt",
-                              sample=["a"])
+        [expand("samtools_stats/{sample}.txt", sample=["a", "b"])]
     output:
         "qc/multiqc.html"
     params:
-        # Optional extra parameters. It can be beneficial to ignore the
-        # .snakemake directory, as shouldn't contain QC metrics and can
-        # confuse multiqc (especially when combined with --use-conda).
-        "--ignore .snakemake"
+        ""
     log:
         "logs/multiqc.log"
     wrapper:
