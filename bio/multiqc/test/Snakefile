@@ -1,6 +1,6 @@
 rule multiqc:
     input:
-        [expand("samtools_stats/{sample}.txt", sample=["a", "b"])]
+        expand("samtools_stats/{sample}.txt", sample=["a", "b"])
     output:
         "qc/multiqc.html"
     params:
