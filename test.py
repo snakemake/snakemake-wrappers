@@ -44,13 +44,13 @@ def test_bwa_mem():
 def test_bwa_mem_sort_samtools():
     run("bio/bwa/mem",
         ["snakemake", "mapped/a.bam", "--use-conda", "-F",
-         "--config", "sort=samtools"])
+         "-s", "Snakefile_samtools"])
 
 
 def test_bwa_mem_sort_picard():
     run("bio/bwa/mem",
         ["snakemake", "mapped/a.bam", "--use-conda", "-F",
-         "--config", "sort=picard"])
+         "-s", "Snakefile_picard"])
 
 
 def test_bwa_aln():
@@ -63,9 +63,33 @@ def test_bwa_sampe():
         ["snakemake", "mapped/a.bam", "--use-conda", "-F"])
 
 
+def test_bwa_sampe_sort_samtools():
+    run("bio/bwa/sampe",
+        ["snakemake", "mapped/a.bam", "--use-conda", "-F",
+         "-s", "Snakefile_samtools"])
+
+
+def test_bwa_sampe_sort_picard():
+    run("bio/bwa/sampe",
+        ["snakemake", "mapped/a.bam", "--use-conda", "-F",
+         "-s", "Snakefile_picard"])
+
+
 def test_bwa_samse():
     run("bio/bwa/samse",
         ["snakemake", "mapped/a.bam", "--use-conda", "-F"])
+
+
+def test_bwa_samse_sort_samtools():
+    run("bio/bwa/samse",
+        ["snakemake", "mapped/a.bam", "--use-conda", "-F",
+         "-s", "Snakefile_samtools"])
+
+
+def test_bwa_samse_sort_picard():
+    run("bio/bwa/samse",
+        ["snakemake", "mapped/a.bam", "--use-conda", "-F",
+         "-s", "Snakefile_picard"])
 
 
 def test_cutadapt_pe():

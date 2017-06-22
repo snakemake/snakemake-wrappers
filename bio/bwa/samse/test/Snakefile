@@ -1,6 +1,3 @@
-sort = config.get('sort', 'none')
-sort_extra = config.get('sort_extra', '')
-
 rule bwa_samse:
     input:
         fastq="reads/{sample}.1.fastq",
@@ -10,11 +7,10 @@ rule bwa_samse:
     params:
         index="genome",
         extra=r"-r '@RG\tID:{sample}\tSM:{sample}'", # optional: Extra parameters for bwa.
-        sort=sort,  # optional: Enable sorting. Possible values: 'none', 'samtools' or 'picard'`
-        sort_order="queryname",  # optional: Sort by 'queryname' or 'coordinate'
-        sort_extra=sort_extra  # optional: extra arguments for samtools/picard
+        sort="none",                                 # optional: Enable sorting. Possible values: 'none', 'samtools' or 'picard'`
+        sort_order="queryname",                      # optional: Sort by 'queryname' or 'coordinate'
+        sort_extra=""                                # optional: extra arguments for samtools/picard
     log:
         "logs/bwa_samse/{sample}.log"
-    threads: 8
     wrapper:
         "master/bio/bwa/samse"

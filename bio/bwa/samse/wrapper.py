@@ -6,6 +6,8 @@ __email__ = "julianderuiter@gmail.com"
 __license__ = "MIT"
 
 
+from os import path
+
 from snakemake.shell import shell
 
 
