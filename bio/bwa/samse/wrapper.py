@@ -33,6 +33,10 @@ elif sort == "samtools":
     if sort_order == "queryname":
         sort_extra += " -n"
 
+    # Use prefix for temp.
+    prefix = path.splitext(snakemake.output[0])[0]
+    sort_extra += " -T " + prefix + ".tmp"
+
 elif sort == "picard":
 
     # Sort alignments using picard SortSam.
@@ -47,6 +51,6 @@ shell(
     "(bwa samse"
     " {extra}"
     " {snakemake.params.index}"
-    " {snakemake.input.sai}"
-    " {snakemake.input.fastq}"
+    " {snakemake.input.sai[0]}"
+    " {snakemake.input.fastq[0]}"
     " | " + pipe_cmd + ") {log}")

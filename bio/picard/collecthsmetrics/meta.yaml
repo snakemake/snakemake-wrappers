@@ -1,0 +1,9 @@
+name: picard CollectHSMetrics
+description: |
+  Collects hybrid-selection (HS) metrics for a SAM or BAM file using picard.
+authors:
+  - Julian de Ruiter
+input:
+  - bam file
+output:
+  - metrics file

@@ -1,0 +1,4 @@
+name: samtools stats
+description: Generate stats using samtools.
+authors:
+  - Julian de Ruiter

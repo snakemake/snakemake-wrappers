@@ -17,5 +17,5 @@ shell(
     " {extra}"
     " -t {snakemake.threads}"
     " {snakemake.params.index}"
-    " {snakemake.input}"
+    " {snakemake.input[0]}"
     " > {snakemake.output[0]} {log}")

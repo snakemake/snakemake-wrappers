@@ -1,0 +1,7 @@
+channels:
+  - bioconda
+  - r
+  - default
+  - conda-forge
+dependencies:
+  - multiqc ==1.0
