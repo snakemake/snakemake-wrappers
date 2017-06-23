@@ -10,6 +10,11 @@ rule disambiguate:
         summary='disambiguate/{sample}.summary.txt'
     params:
         algorithm="bwa",
+        # optional: Prefix to use for sample. If omitted, a
+        # suitable value is guessed from the output paths. Prefix
+        # is used for the intermediate output paths, as well as
+        # sample name in summary file.
+        prefix="{sample}",
         extra=""
     wrapper:
         "master/bio/ngs-disambiguate"
