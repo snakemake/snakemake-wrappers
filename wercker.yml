@@ -12,12 +12,6 @@ build:
       code: install_packages ttf-dejavu
 
     - script:
-      name: set-env
-      code: |
-        export LC_ALL=C.UTF-8
-        export LANG=C.UTF-8
-
-    - script:
       name: pytest
       code: conda install pytest
 

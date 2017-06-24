@@ -4,7 +4,7 @@ rule multiqc:
     output:
         "qc/multiqc.html"
     params:
-        ""
+        ""  # Optional: extra parameters for multiqc.
     log:
         "logs/multiqc.log"
     wrapper:
