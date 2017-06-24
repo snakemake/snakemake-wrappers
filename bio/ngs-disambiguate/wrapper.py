@@ -15,7 +15,7 @@ from snakemake.shell import shell
 prefix = snakemake.params.get("prefix", None)
 extra = snakemake.params.get("extra", "")
 
-output_dir = path.dirname(str(snakemake.output.a_ambiguous))
+output_dir = path.dirname(snakemake.output.a_ambiguous)
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 # If prefix is not given, we use the summary path to derive the most
@@ -23,7 +23,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 # additional suffixes. This is better than using a random id as prefix,
 # the prefix is also used as the sample name in the summary file.
 if prefix is None:
-    prefix = path.splitext(path.basename(str(snakemake.output.summary)))[0]
+    prefix = path.splitext(path.basename(snakemake.output.summary))[0]
 
 # Run command.
 shell(
