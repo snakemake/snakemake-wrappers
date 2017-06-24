@@ -23,7 +23,7 @@ def basename_without_ext(file_path):
 
 
 # Run fastqc.
-output_dir = path.dirname(snakemake.output.html[0])
+output_dir = path.dirname(snakemake.output.html)
 
 shell("fastqc {snakemake.params} --quiet "
       "--outdir {output_dir} {snakemake.input[0]}")

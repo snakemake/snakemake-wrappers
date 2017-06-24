@@ -53,6 +53,6 @@ shell(
     "(bwa samse"
     " {extra}"
     " {snakemake.params.index}"
-    " {snakemake.input.sai[0]}"
-    " {snakemake.input.fastq[0]}"
+    " {snakemake.input.sai}"
+    " {snakemake.input.fastq}"
     " | " + pipe_cmd + ") {log}")
