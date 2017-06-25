@@ -8,7 +8,7 @@ build:
     # TODO: Remove ttf-dejavu dependency as soon as it has been added
     # to the fastqc recipe in bioconda.
     - script:
-      name: install_packages
+      name: install-packages
       code: install_packages ttf-dejavu
 
     - script:

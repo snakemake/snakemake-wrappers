@@ -1,7 +1,5 @@
 channels:
   - bioconda
-  - r
-  - default
   - conda-forge
 dependencies:
   # TODO: Remove fontconfig dependency as soon as it has been added

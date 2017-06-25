@@ -1,0 +1,9 @@
+name: multiqc
+description: |
+  Generate qc report using multiqc.
+authors:
+  - Julian de Ruiter
+input:
+  - input directory containing qc files
+output:
+  - qc report (html)

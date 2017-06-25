@@ -1,0 +1,18 @@
+rule picard_collect_hs_metrics:
+    input:
+        bam="mapped/{sample}.bam",
+        reference="genome.fasta",
+        # Baits and targets should be given as interval lists. These can
+        # be generated from bed files using picard BedToIntervalList.
+        bait_intervals="regions.intervals",
+        target_intervals="regions.intervals"
+    output:
+        "stats/hs_metrics/{sample}.txt"
+    params:
+        # Optional extra arguments. Here we reduce sample size
+        # to reduce the runtime in our unit test.
+        "SAMPLE_SIZE=1000"
+    log:
+        "logs/picard_collect_hs_metrics/{sample}.log"
+    wrapper:
+        "master/bio/picard/collecthsmetrics"

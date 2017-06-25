@@ -1,0 +1,13 @@
+rule bwa_aln:
+    input:
+        "reads/{sample}.{pair}.fastq"
+    output:
+        "sai/{sample}.{pair}.sai"
+    params:
+        index="genome",
+        extra=""
+    log:
+        "logs/bwa_aln/{sample}.{pair}.log"
+    threads: 8
+    wrapper:
+        "master/bio/bwa/aln"

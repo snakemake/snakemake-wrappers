@@ -1,0 +1,11 @@
+rule multiqc:
+    input:
+        expand("samtools_stats/{sample}.txt", sample=["a", "b"])
+    output:
+        "qc/multiqc.html"
+    params:
+        ""  # Optional: extra parameters for multiqc.
+    log:
+        "logs/multiqc.log"
+    wrapper:
+        "master/bio/multiqc"

@@ -44,13 +44,52 @@ def test_bwa_mem():
 def test_bwa_mem_sort_samtools():
     run("bio/bwa/mem",
         ["snakemake", "mapped/a.bam", "--use-conda", "-F",
-         "--config", "sort=samtools"])
+         "-s", "Snakefile_samtools"])
 
 
 def test_bwa_mem_sort_picard():
     run("bio/bwa/mem",
         ["snakemake", "mapped/a.bam", "--use-conda", "-F",
-         "--config", "sort=picard"])
+         "-s", "Snakefile_picard"])
+
+
+def test_bwa_aln():
+    run("bio/bwa/aln",
+        ["snakemake", "sai/a.1.sai", "sai/a.2.sai", "--use-conda", "-F"])
+
+
+def test_bwa_sampe():
+    run("bio/bwa/sampe",
+        ["snakemake", "mapped/a.bam", "--use-conda", "-F"])
+
+
+def test_bwa_sampe_sort_samtools():
+    run("bio/bwa/sampe",
+        ["snakemake", "mapped/a.bam", "--use-conda", "-F",
+         "-s", "Snakefile_samtools"])
+
+
+def test_bwa_sampe_sort_picard():
+    run("bio/bwa/sampe",
+        ["snakemake", "mapped/a.bam", "--use-conda", "-F",
+         "-s", "Snakefile_picard"])
+
+
+def test_bwa_samse():
+    run("bio/bwa/samse",
+        ["snakemake", "mapped/a.bam", "--use-conda", "-F"])
+
+
+def test_bwa_samse_sort_samtools():
+    run("bio/bwa/samse",
+        ["snakemake", "mapped/a.bam", "--use-conda", "-F",
+         "-s", "Snakefile_samtools"])
+
+
+def test_bwa_samse_sort_picard():
+    run("bio/bwa/samse",
+        ["snakemake", "mapped/a.bam", "--use-conda", "-F",
+         "-s", "Snakefile_picard"])
 
 
 def test_cutadapt_pe():
@@ -73,6 +112,11 @@ def test_freebayes():
         ["snakemake", "calls/a.vcf", "--use-conda", "-F"])
 
 
+def test_multiqc():
+    run("bio/multiqc",
+        ["snakemake", "qc/multiqc.html", "--use-conda", "-F"])
+
+
 def test_ngs_disambiguate():
     run("bio/ngs-disambiguate",
         ["snakemake", "disambiguate/s1.graft.ambiguous.bam",
@@ -87,6 +131,11 @@ def test_picard_collectalignmentsummarymetrics():
 def test_picard_collectinsertsizemetrics():
     run("bio/picard/collectinsertsizemetrics",
         ["snakemake", "stats/a.isize.txt", "--use-conda", "-F"])
+
+
+def test_picard_collecthsmetrics():
+    run("bio/picard/collecthsmetrics",
+        ["snakemake", "stats/hs_metrics/a.txt", "--use-conda", "-F"])
 
 
 def test_picard_mergesamfiles():
@@ -107,6 +156,11 @@ def test_pindel_call():
 def test_pindel_pindel2vcf():
     run("bio/pindel/pindel2vcf",
         ["snakemake", "pindel/all_D.vcf", "--use-conda", "-F"])
+
+
+def test_samtools_stats():
+    run("bio/samtools/stats",
+        ["snakemake", "samtools_stats/a.txt", "--use-conda", "-F"])
 
 
 def test_star_align():
