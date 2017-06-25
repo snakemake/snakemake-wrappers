@@ -7,9 +7,14 @@ rule disambiguate:
         b_ambiguous='disambiguate/{sample}.host.ambiguous.bam',
         a_disambiguated='disambiguate/{sample}.graft.bam',
         b_disambiguated='disambiguate/{sample}.host.bam',
-        summary='disambiguate/{sample}.summary.txt'
+        summary='qc/disambiguate/{sample}.txt'
     params:
         algorithm="bwa",
+        # optional: Prefix to use for output. If omitted, a
+        # suitable value is guessed from the output paths. Prefix
+        # is used for the intermediate output paths, as well as
+        # sample name in summary file.
+        prefix="{sample}",
         extra=""
     wrapper:
         "master/bio/ngs-disambiguate"
