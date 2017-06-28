@@ -176,6 +176,10 @@ def test_samtools_view():
     run("bio/samtools/view",
         ["snakemake", "a.bam", "--use-conda", "-F"])
 
+def test_samtools_flagstat():
+    run("bio/samtools/flagstat",
+        ["snakemake", "mapped/a.bam.flagstat", "--use-conda", "-F"])
+
 def test_star_align():
     # generate index on the fly, because it is huge regardless of genome size
     os.makedirs("bio/star/align/test/index", exist_ok=True)
