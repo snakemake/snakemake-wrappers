@@ -1,0 +1,13 @@
+rule cutadapt:
+    input:
+        ["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"]
+    output:
+        fastq1="trimmed/{sample}.1.fastq",
+        fastq2="trimmed/{sample}.2.fastq",
+        qc="trimmed/{sample}.qc.txt"
+    params:
+        "-a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC -q 20"
+    log:
+        "logs/cutadapt/{sample}.log"
+    wrapper:
+        "master/bio/cutadapt/pe"

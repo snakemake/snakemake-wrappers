@@ -1,0 +1,4 @@
+name: "bwa sampe"
+description: Map paired-end reads with bwa sampe.
+authors:
+  - Julian de Ruiter
