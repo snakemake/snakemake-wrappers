@@ -152,16 +152,29 @@ def test_pindel_call():
     run("bio/pindel/call",
         ["snakemake", "pindel/all_D", "--use-conda", "-F"])
 
-
 def test_pindel_pindel2vcf():
     run("bio/pindel/pindel2vcf",
         ["snakemake", "pindel/all_D.vcf", "--use-conda", "-F"])
-
 
 def test_samtools_stats():
     run("bio/samtools/stats",
         ["snakemake", "samtools_stats/a.txt", "--use-conda", "-F"])
 
+def test_samtools_sort():
+    run("bio/samtools/sort",
+        ["snakemake", "mapped/a.sorted.bam", "--use-conda", "-F"])
+
+def test_samtools_index():
+    run("bio/samtools/index",
+        ["snakemake", "mapped/a.sorted.bam.bai", "--use-conda", "-F"])
+
+def test_samtools_merge():
+    run("bio/samtools/merge",
+        ["snakemake", "merged.bam", "--use-conda", "-F"])
+
+def test_samtools_view():
+    run("bio/samtools/view",
+        ["snakemake", "a.bam", "--use-conda", "-F"])
 
 def test_star_align():
     # generate index on the fly, because it is huge regardless of genome size
