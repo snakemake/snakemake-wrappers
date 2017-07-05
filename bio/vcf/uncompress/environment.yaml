@@ -1,5 +1,5 @@
 channels:
   - bioconda
-  - r
+  - conda-forge
 dependencies:
   - htslib ==1.5
