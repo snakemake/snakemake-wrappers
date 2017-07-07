@@ -1,5 +1,6 @@
 channels:
   - bioconda
-  - r
+  - conda-forge
+  - defaults
 dependencies:
   - sickle-trim ==1.33

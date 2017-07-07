@@ -1,5 +1,6 @@
 channels:
   - bioconda
-  - r
+  - conda-forge
+  - defaults
 dependencies:
-  - delly ==0.7.6
+  - delly ==0.7.7

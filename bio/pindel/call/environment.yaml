@@ -1,5 +1,6 @@
 channels:
   - bioconda
-  - r
+  - conda-forge
+  - defaults
 dependencies:
   - pindel ==0.2.5b8

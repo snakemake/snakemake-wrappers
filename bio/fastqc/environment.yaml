@@ -1,6 +1,7 @@
 channels:
   - bioconda
   - conda-forge
+  - defaults
 dependencies:
   # TODO: Remove fontconfig dependency as soon as it has been added
   # to the fastqc recipe in bioconda.
