@@ -59,4 +59,4 @@ shell(
     " {extra}"
     " {snakemake.params.index}"
     " {snakemake.input}"
-    " | " + pipe_cmd + ") {log}")
+    " | {pipe_cmd}) {log}")

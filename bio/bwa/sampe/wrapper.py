@@ -62,4 +62,4 @@ shell(
     " {snakemake.params.index}"
     " {snakemake.input.sai}"
     " {snakemake.input.fastq}"
-    " | " + pipe_cmd + ") {log}")
+    " | {pipe_cmd}) {log}")
