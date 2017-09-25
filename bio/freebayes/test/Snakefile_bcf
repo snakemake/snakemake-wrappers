@@ -1,0 +1,13 @@
+rule freebayes:
+    input:
+        ref="genome.fasta",
+        # you can have a list of samples here
+        samples="mapped/{sample}.bam"
+    output:
+        "calls/{sample}.bcf"
+    log:
+        "logs/freebayes/{sample}.log"
+    params:
+        ""  # optional parameters
+    wrapper:
+        "master/bio/freebayes"

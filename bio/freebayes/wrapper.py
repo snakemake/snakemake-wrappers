@@ -8,5 +8,9 @@ from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
+pipe = ""
+if snakemake.output[0].endswith(".bcf"):
+    pipe = "bcftools view -Ob -"
+
 shell("freebayes {snakemake.params} -f {snakemake.input.ref} "
-      "{snakemake.input.samples} > {snakemake.output[0]} {log}")
+      "{snakemake.input.samples} {pipe} > {snakemake.output[0]} {log}")

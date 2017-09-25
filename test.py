@@ -112,6 +112,11 @@ def test_freebayes():
         ["snakemake", "calls/a.vcf", "--use-conda", "-F"])
 
 
+def test_freebayes_bcf():
+    run("bio/freebayes",
+        ["snakemake", "calls/a.bcf", "--use-conda", "-F", "-s", "Snakefile_bcf"])
+
+
 def test_multiqc():
     run("bio/multiqc",
         ["snakemake", "qc/multiqc.html", "--use-conda", "-F"])
