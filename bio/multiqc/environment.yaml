@@ -4,3 +4,5 @@ channels:
   - defaults
 dependencies:
   - multiqc ==1.2
+  # work around API incompatibility of colormath dependency
+  - networkx <2.0
