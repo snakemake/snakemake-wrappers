@@ -4,7 +4,7 @@ rule freebayes:
         # you can have a list of samples here
         samples="mapped/{sample}.bam"
     output:
-        "calls/{sample}.vcf"
+        "calls/{sample}.vcf"  # either .vcf or .bcf
     log:
         "logs/freebayes/{sample}.log"
     params:
