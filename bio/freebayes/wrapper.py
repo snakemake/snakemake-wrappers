@@ -10,7 +10,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 pipe = ""
 if snakemake.output[0].endswith(".bcf"):
-    pipe = "bcftools view -Ob -"
+    pipe = "| bcftools view -Ob -"
 
-shell("freebayes {snakemake.params} -f {snakemake.input.ref} "
-      "{snakemake.input.samples} {pipe} > {snakemake.output[0]} {log}")
+shell("(freebayes {snakemake.params} -f {snakemake.input.ref} "
+      " {snakemake.input.samples} {pipe} > {snakemake.output[0]}) {log}")
