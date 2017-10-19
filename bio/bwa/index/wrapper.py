@@ -15,19 +15,22 @@ if len(snakemake.input) == 0:
 elif len(snakemake.input) > 1:
     raise ValueError("Only one reference genome can be inputed!")
 
-#Prefix that should be used with for the database
+#Prefix that should be used for the database
 prefix = snakemake.params.get("prefix", "")
 
 if len(prefix) > 0:
     prefix = "-p " + prefix
 
 #Contrunction algorithm that will be used to build the database, default is bwtsw
-construction_algorithm = snakemake.params.get("algorithm", "bwtsw")
+construction_algorithm = snakemake.params.get("algorithm", "")
+
+if len(construction_algorithm) != 0:
+    construction_algorithm = "-a " + construction_algorithm
 
 shell(
     "bwa index"
     " {prefix}"
-    " -a {construction_algorithm}"
+    " {construction_algorithm}"
     " {snakemake.input[0]}"
     " {log}")
 

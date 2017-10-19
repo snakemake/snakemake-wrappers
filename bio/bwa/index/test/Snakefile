@@ -10,6 +10,7 @@ rule bwa_index:
     log:
         "logs/bwa_index/{genome}.log"
     params:
-        prefix="{genome}"
+        prefix="{genome}",
+        algorithm="bwtsw"
     wrapper:
         "master/bio/bwa/index"
