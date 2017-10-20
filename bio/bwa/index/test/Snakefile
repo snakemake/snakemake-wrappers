@@ -1,0 +1,16 @@
+rule bwa_index:
+    input:
+        "{genome}.fasta"
+    output:
+        "{genome}.amb",
+        "{genome}.ann",
+        "{genome}.bwt",
+        "{genome}.pac",
+        "{genome}.sa"
+    log:
+        "logs/bwa_index/{genome}.log"
+    params:
+        prefix="{genome}",
+        algorithm="bwtsw"
+    wrapper:
+        "master/bio/bwa/index"

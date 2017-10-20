@@ -57,6 +57,9 @@ def test_bwa_aln():
     run("bio/bwa/aln",
         ["snakemake", "sai/a.1.sai", "sai/a.2.sai", "--use-conda", "-F"])
 
+def test_bwa_index():
+    run("bio/bwa/index",
+        ["snakemake", "genome.amb", "genome.ann", "genome.bwt","genome.pac", "genome.sa", "--use-conda", "-F"])
 
 def test_bwa_sampe():
     run("bio/bwa/sampe",
