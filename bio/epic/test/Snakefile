@@ -1,0 +1,16 @@
+rule epic:
+    input:
+      treatment = ["chip1.bed", "chip2.bed"],
+      background = ["input1.bed.gz"]
+    output:
+      enriched_regions = "epic/enriched_regions.csv", # required
+      bed = "epic/enriched_regions.bed" # optional
+      matrix = "epic/matrix.gz" # optional
+    log:
+        "logs/epic/{sample}.log" # optional
+    params:                             # idx is required, extra is optional
+      genome = "hg38" # optional, default hg19
+      extra="-g 3 -w 200 --bigwig epic/bigwigs"
+    threads: 25 # optional, defaults to 1
+    wrapper:
+      "master/bio/epic"
