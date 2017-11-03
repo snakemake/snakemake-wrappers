@@ -13,4 +13,4 @@ rule epic:
       extra="-g 3 -w 200" # "--bigwig epic/bigwigs"
     threads: 1 # optional, defaults to 1
     wrapper:
-        "master/bio/epic"
+        "master/bio/epic/peaks"
