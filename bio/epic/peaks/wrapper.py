@@ -8,7 +8,7 @@ from snakemake.shell import shell
 
 # Placeholder for optional parameters
 extra = snakemake.params.get("extra", "")
-threads = snakemake.get("threads", "1")
+threads = snakemake.threads or 1
 
 treatment = snakemake.input.get("treatment")
 background = snakemake.input.get("background")
