@@ -1,4 +1,0 @@
-channels:
-  - bioconda
-dependencies:
-  - epic>=0.2.5
