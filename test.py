@@ -105,6 +105,11 @@ def test_cutadapt_se():
         ["snakemake", "trimmed/a.fastq", "--use-conda", "-F"])
 
 
+def test_epic_peaks():
+    run("bio/epic/peaks",
+        ["snakemake", "epic/enriched_regions.bed", "--use-conda", "-F"])
+
+
 def test_fastqc():
     run("bio/fastqc",
         ["snakemake", "qc/a.html", "--use-conda", "-F"])
