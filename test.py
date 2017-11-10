@@ -118,7 +118,7 @@ def test_freebayes():
 def test_freebayes_bcf():
     for c in [1, 2]:
         run("bio/freebayes",
-            ["snakemake", "--cores", str(c), "calls/a.bcf", "--use-conda", "-pF", "-s", "Snakefile_bcf"])
+            ["snakemake", "--cores", str(c), "calls/a.bcf", "--use-conda", "-F", "-s", "Snakefile_bcf"])
 
 
 def test_multiqc():

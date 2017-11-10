@@ -5,8 +5,8 @@ rule freebayes:
         samples="mapped/{sample}.bam"
     output:
         "calls/{sample}.bcf"
-    #log:
-    #    "logs/freebayes/{sample}.log"
+    log:
+        "logs/freebayes/{sample}.log"
     params:
         extra="",         # optional parameters
         chunksize=100000  # reference genome chunk size for parallelization (default: 100000)
