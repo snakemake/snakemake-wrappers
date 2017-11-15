@@ -104,10 +104,10 @@ def test_cutadapt_se():
     run("bio/cutadapt/se",
         ["snakemake", "trimmed/a.fastq", "--use-conda", "-F"])
 
-
-def test_epic_peaks():
-    run("bio/epic/peaks",
-        ["snakemake", "epic/enriched_regions.bed", "--use-conda", "-F"])
+# TODO epic is too slow for testing. Find a smaller example dataset.
+#def test_epic_peaks():
+#    run("bio/epic/peaks",
+#        ["snakemake", "epic/enriched_regions.bed", "--use-conda", "-F"])
 
 
 def test_fastqc():
