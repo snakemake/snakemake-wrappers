@@ -1,4 +1,6 @@
 channels:
   - bioconda
+  - conda-forge
+  - defaults
 dependencies:
   - epic>=0.2.5
