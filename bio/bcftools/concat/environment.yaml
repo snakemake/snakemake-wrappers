@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - bcftools ==1.5
+  - bcftools ==1.6
