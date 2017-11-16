@@ -1,6 +1,6 @@
 rule bwa_mem:
     input:
-        ["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"]
+        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"]
     output:
         "mapped/{sample}.bam"
     log:
