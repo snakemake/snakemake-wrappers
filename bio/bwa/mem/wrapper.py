@@ -19,7 +19,7 @@ sort_extra = snakemake.params.get("sort_extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 # Check inputs/arguments.
-if len(snakemake.input) not in {1, 2}:
+if len(snakemake.input.reads) not in {1, 2}:
     raise ValueError("input must have 1 (single-end) or "
                      "2 (paired-end) elements")
 
@@ -58,5 +58,5 @@ shell(
     " -t {snakemake.threads}"
     " {extra}"
     " {snakemake.params.index}"
-    " {snakemake.input}"
+    " {snakemake.input.reads}"
     " | " + pipe_cmd + ") {log}")

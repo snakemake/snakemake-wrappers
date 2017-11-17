@@ -8,9 +8,20 @@ from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
+params = snakemake.params.get("extra", "")
+
 pipe = ""
 if snakemake.output[0].endswith(".bcf"):
     pipe = "| bcftools view -Ob -"
 
-shell("(freebayes {snakemake.params} -f {snakemake.input.ref} "
+if snakemake.threads == 1:
+    freebayes = "freebayes"
+else:
+    chunksize = snakemake.params.get("chunksize", 100000)
+    freebayes = ("freebayes-parallel <(fasta_generate_regions.py "
+                 "{snakemake.input.ref}.fai {chunksize}) "
+                 "{snakemake.threads}").format(snakemake=snakemake,
+                                               chunksize=chunksize)
+
+shell("({freebayes} {params} -f {snakemake.input.ref}"
       " {snakemake.input.samples} {pipe} > {snakemake.output[0]}) {log}")

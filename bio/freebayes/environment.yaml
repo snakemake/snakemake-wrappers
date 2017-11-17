@@ -5,3 +5,4 @@ channels:
 dependencies:
   - freebayes ==1.1.0
   - bcftools ==1.5
+  - parallel ==20170422

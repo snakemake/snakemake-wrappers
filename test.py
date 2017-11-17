@@ -104,6 +104,11 @@ def test_cutadapt_se():
     run("bio/cutadapt/se",
         ["snakemake", "trimmed/a.fastq", "--use-conda", "-F"])
 
+# TODO epic is too slow for testing. Find a smaller example dataset.
+#def test_epic_peaks():
+#    run("bio/epic/peaks",
+#        ["snakemake", "epic/enriched_regions.bed", "--use-conda", "-F"])
+
 
 def test_fastqc():
     run("bio/fastqc",
@@ -116,8 +121,9 @@ def test_freebayes():
 
 
 def test_freebayes_bcf():
-    run("bio/freebayes",
-        ["snakemake", "calls/a.bcf", "--use-conda", "-F", "-s", "Snakefile_bcf"])
+    for c in [1, 2]:
+        run("bio/freebayes",
+            ["snakemake", "--cores", str(c), "calls/a.bcf", "--use-conda", "-F", "-s", "Snakefile_bcf"])
 
 
 def test_multiqc():
@@ -160,16 +166,37 @@ def test_pindel_call():
     run("bio/pindel/call",
         ["snakemake", "pindel/all_D", "--use-conda", "-F"])
 
-
 def test_pindel_pindel2vcf():
     run("bio/pindel/pindel2vcf",
         ["snakemake", "pindel/all_D.vcf", "--use-conda", "-F"])
-
 
 def test_samtools_stats():
     run("bio/samtools/stats",
         ["snakemake", "samtools_stats/a.txt", "--use-conda", "-F"])
 
+def test_samtools_sort():
+    run("bio/samtools/sort",
+        ["snakemake", "mapped/a.sorted.bam", "--use-conda", "-F"])
+
+def test_samtools_index():
+    run("bio/samtools/index",
+        ["snakemake", "mapped/a.sorted.bam.bai", "--use-conda", "-F"])
+
+def test_samtools_merge():
+    run("bio/samtools/merge",
+        ["snakemake", "merged.bam", "--use-conda", "-F"])
+
+def test_samtools_view():
+    run("bio/samtools/view",
+        ["snakemake", "a.bam", "--use-conda", "-F"])
+
+def test_samtools_flagstat():
+    run("bio/samtools/flagstat",
+        ["snakemake", "mapped/a.bam.flagstat", "--use-conda", "-F"])
+
+def test_bcftools_concat():
+    run("bio/bcftools/concat",
+        ["snakemake", "all.bcf", "--use-conda", "-F"])
 
 def test_star_align():
     # generate index on the fly, because it is huge regardless of genome size

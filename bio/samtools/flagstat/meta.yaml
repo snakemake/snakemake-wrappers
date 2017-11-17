@@ -1,0 +1,8 @@
+name: samtools flagstat
+description: Use samtools to create a flagstat file from a bam or sam file.
+authors:
+  - Christopher Preusch
+input:
+  - bam or sam file (.bam,.sam)
+output:
+  - flagstat file (.flagstat)

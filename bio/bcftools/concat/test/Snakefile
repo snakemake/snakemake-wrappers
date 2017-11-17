@@ -1,8 +1,8 @@
 rule bcftools_concat:
     input:
-        expand("called/{region}.bcf", region=chromosomes)
+        calls=["a.bcf", "b.bcf"]
     output:
-        "called/all.bcf"
+        "all.bcf"
     params:
         ""  # optional parameters for bcftools concat (except -o)
     wrapper:
