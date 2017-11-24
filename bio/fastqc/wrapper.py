@@ -10,6 +10,7 @@ from os import path
 
 from snakemake.shell import shell
 
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 def basename_without_ext(file_path):
     """Returns basename of file path, without the file extension."""
@@ -26,7 +27,8 @@ def basename_without_ext(file_path):
 output_dir = path.dirname(snakemake.output.html)
 
 shell("fastqc {snakemake.params} --quiet "
-      "--outdir {output_dir} {snakemake.input[0]}")
+      "--outdir {output_dir} {snakemake.input[0]}"
+      " {log}")
 
 # Move outputs into proper position.
 output_base = basename_without_ext(snakemake.input[0])
