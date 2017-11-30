@@ -10,10 +10,12 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-n = len(snakemake.input.sample)
+
+sample = [snakemake.input.sample] if isinstance(snakemake.input.sample, str) else snakemake.input.sample
+n = len(sample)
 assert n == 1 or n == 2, "input->sample must have 1 (single-end) or 2 (paired-end) elements."
 
-if snakemake.input.sample[0].endswith(".gz"):
+if sample[0].endswith(".gz"):
     readcmd = "--readFilesCommand zcat"
 else:
     readcmd = ""
