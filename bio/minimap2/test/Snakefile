@@ -1,7 +1,8 @@
 rule minimap2 :
-    input : seqs1="genome.fasta", seqs2="reads.fasta"
-    output : "aligned/aln.paf"
-    log: "logs/minimap2/minimap2.log"
+    input : target="target/{input1}.fasta", 
+            query=["query/reads.fasta", "query/reads2.fasta"]
+    output : "aligned/{input1}_aln.paf"
+    log: "logs/minimap2/{input1}.log"
     params : opts="-x map-pb",extra=""
     threads : 3
     wrapper : "master/bio/minimap2"
