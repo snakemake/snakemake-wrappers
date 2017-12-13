@@ -125,6 +125,9 @@ def test_freebayes_bcf():
         run("bio/freebayes",
             ["snakemake", "--cores", str(c), "calls/a.bcf", "--use-conda", "-F", "-s", "Snakefile_bcf"])
 
+def test_minimap2():
+    run("bio/minimap2",
+        ["snakemake", "aligned/aln.paf", "--use-conda", "-F"])
 
 def test_multiqc():
     run("bio/multiqc",
