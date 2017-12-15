@@ -10,26 +10,30 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
+fq1 = snakemake.input.get("fq1")
+assert(fq1 is not None, "input-> fq1 is a required input parameter")
+fq1 = [snakemake.input.fq1] if isinstance(snakemake.input.fq1, str) else snakemake.input.fq1
+fq2 =  snakemake.input.get("fq2")
+if fq2:
+    fq2 = [snakemake.input.fq2] if isinstance(snakemake.input.fq2, str) else snakemake.input.fq2
+    assert(len(fq1) == len(fq2), "input-> equal number of files required for fq1 and fq2"
+input_str_fq1 = ",".join(sorted(fq1))
+input_str_fq2 = ",".join(sorted(fq2)) if fq2 is not None else ""
+input_str =  " ".join([input_str_fq1, input_str_fq2])
 
-sample = [snakemake.input.sample] if isinstance(snakemake.input.sample, str) else snakemake.input.sample
-n = len(sample)
-assert n == 1 or n == 2, "input->sample must have 1 (single-end) or 2 (paired-end) elements."
-
-if sample[0].endswith(".gz"):
+if fq1[0].endswith(".gz"):
     readcmd = "--readFilesCommand zcat"
 else:
     readcmd = ""
 
-
 outprefix = os.path.dirname(snakemake.output[0]) + "/"
-
 
 shell(
     "STAR "
-    "{snakemake.params.extra} "
+    "{extra} "
     "--runThreadN {snakemake.threads} "
     "--genomeDir {snakemake.params.index} "
-    "--readFilesIn {snakemake.input.sample} "
+    "--readFilesIn {input_str} "
     "{readcmd} "
     "--outSAMtype BAM Unsorted "
     "--outFileNamePrefix {outprefix} "
