@@ -2,7 +2,7 @@ name: epic
 authors:
   - Endre Bakken Stovner
 description: |
-  Find enriched domains in ChIP-Seq data with epic
+  Find broad enriched domains in ChIP-Seq data with epic
 input:
   - treatment: chip .bed(.gz/.bz) files
   - background: input .bed(.gz/.bz) files
