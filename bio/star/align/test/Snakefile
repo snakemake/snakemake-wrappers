@@ -1,7 +1,7 @@
 rule star:
     input:
-        fq1 = ["reads/{sample}.1.fastq"],
-        fq2 = ["reads/{sample}.2.fastq"] #optional
+        fq1 = ["reads/{sample}_R1.1.fastq", "reads/{sample}_R1.2.fastq"],
+        fq2 = ["reads/{sample}_R2.1.fastq", "reads/{sample}_R2.2.fastq"] #optional
     output:
         # see STAR manual for additional output files
         "star/{sample}/Aligned.out.bam"
