@@ -198,7 +198,7 @@ def test_bcftools_concat():
     run("bio/bcftools/concat",
         ["snakemake", "all.bcf", "--use-conda", "-F"])
 
-def test_star_align_pe_multi():
+def test_star_align():
     # generate index on the fly, because it is huge regardless of genome size
     os.makedirs("bio/star/align/test/index", exist_ok=True)
     try:
@@ -218,7 +218,8 @@ def test_star_align_pe_multi():
 
     run("bio/star/align",
         ["snakemake", "star/a/Aligned.out.bam", "--use-conda", "-F"])
-
+    run("bio/star/align",
+        ["snakemake", "star/pe/a/Aligned.out.bam", "--use-conda", "-F"])
 
 def test_trimmomatic_pe():
     run("bio/trimmomatic/pe",
