@@ -1,9 +1,9 @@
 rule minimap2 :
-    input : target="target/{input1}.fasta", 
+    input : target="target/{input1}.mmi", # can be either genome index or genome fasta
             query=["query/reads1.fasta", "query/reads2.fasta"]
     output : "aligned/{input1}_aln.paf"
     log: "logs/minimap2/{input1}.log"
     params : opts="-x map-pb",extra=""
     threads : 3
-    wrapper : "master/bio/minimap2"
+    wrapper : "master/bio/minimap2/aligner"
 

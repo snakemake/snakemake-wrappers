@@ -1,0 +1,10 @@
+[WARNING][1;31m Indexing parameters (-k, -w or -H) overridden by parameters used in the prebuilt index.[0m
+[M::main::0.007*1.10] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.007*1.09] mid_occ = 2
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_HPC: 0; #seq: 1
+[M::mm_idx_stat::0.007*1.09] distinct minimizers: 185 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.405
+[M::worker_pipeline::0.007*1.07] mapped 1 sequences
+[M::worker_pipeline::0.008*1.05] mapped 1 sequences
+[M::main] Version: 2.5-r572
+[M::main] CMD: minimap2 -t 1 -x map-pb target/genome.mmi query/reads1.fasta query/reads2.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.010 sec
