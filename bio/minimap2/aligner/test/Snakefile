@@ -7,8 +7,7 @@ rule minimap2:
     log:
         "logs/minimap2/{input1}.log"
     params:
-        opts="-x map-pb",
-        extra=""
+        extra="-x map-pb"  # optional
     threads: 3
     wrapper:
         "master/bio/minimap2/aligner"

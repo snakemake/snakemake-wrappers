@@ -6,8 +6,7 @@ rule minimap2_index:
     log:
         "logs/minimap2_index/{input1}.log"
     params:
-        opts="",
-        extra=""
+        extra=""  # optional additional args
     threads: 3
     wrapper:
         "master/bio/minimap2/index"
