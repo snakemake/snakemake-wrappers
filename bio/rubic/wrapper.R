@@ -13,7 +13,6 @@ system(paste("mkdir -p ", out_folder))
 all_genes <- if (snakemake@params[["genefile"]] == "") system.file("extdata", "genes.tsv", package="RUBIC") else snakemake@params[["genefile"]]
 fdr <- if (snakemake@params[["fdr"]] == "") 0.25 else snakemake@params[["fdr"]]
 
-
 ##----Run RUBIC----
 rbc <- rubic(fdr, snakemake@input[["seg"]], snakemake@input[["markers"]], genes=all_genes)
 rbc$save.focal.gains(paste(out_folder, "Focal_gains.tsv", sep = "/"))
