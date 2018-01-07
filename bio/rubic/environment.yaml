@@ -2,7 +2,7 @@ channels:
     - r
     - bioconda
     - conda-forge
-dependencies:   #r removed
+dependencies:
     - r-rubic
     - r-data.table
     - r-pracma
