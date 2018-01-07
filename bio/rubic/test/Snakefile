@@ -1,0 +1,11 @@
+rule rubic:
+    input:
+        seg="input/{samples}.segments.txt",
+        markers="input/{samples}.markers.txt"
+    output:
+        "{samples}.results"
+    params:
+        fdr="",
+        genefile="",
+    wrapper:
+        "master/bio/rubic"

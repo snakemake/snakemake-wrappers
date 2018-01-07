@@ -234,3 +234,7 @@ def test_trimmomatic_pe():
 def test_trimmomatic_se():
     run("bio/trimmomatic/se",
         ["snakemake", "trimmed/a.fastq.gz", "--use-conda", "-F"])
+
+def test_rubic():
+    run("bio/RUBIC",
+        ["snakemake", "BRCA_subset.results", "--use-conda", "-F"])

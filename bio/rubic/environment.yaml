@@ -1,0 +1,12 @@
+channels:
+    - r
+    - bioconda
+    - conda-forge
+dependencies:   #r removed
+    - r-rubic
+    - r-data.table
+    - r-pracma
+    - r-ggplot2
+    - r-gtable
+    - r-codetools
+    - r-digest
