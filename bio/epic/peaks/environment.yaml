@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - epic>=0.2.5
+  - epic>=0.2.7
