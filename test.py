@@ -224,7 +224,8 @@ def test_star_align():
 
     run("bio/star/align",
         ["snakemake", "star/a/Aligned.out.bam", "--use-conda", "-F"])
-
+    run("bio/star/align",
+        ["snakemake", "star/pe/a/Aligned.out.bam", "--use-conda", "-F"])
 
 def test_trimmomatic_pe():
     run("bio/trimmomatic/pe",
