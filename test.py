@@ -238,4 +238,4 @@ def test_trimmomatic_se():
 
 def test_rubic():
     run("bio/RUBIC",
-        ["snakemake", "BRCA_subset.results", "--use-conda", "-F"])
+        ["snakemake", "BRCA_subset/gains.txt", "--use-conda", "-F"])
