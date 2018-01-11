@@ -1,11 +1,13 @@
 rule rubic:
     input:
-        seg="input/{samples}.segments.txt",
-        markers="input/{samples}.markers.txt"
+        seg="{samples}/segments.txt",
+        markers="{samples}/markers.txt"
     output:
-        "{samples}.results"
+        out_gains="{samples}/gains.txt",
+        out_losses="{samples}/losses.txt",
+        out_plots="{samples}/plots"
     params:
         fdr="",
-        genefile="",
+        genefile=""
     wrapper:
         "master/bio/rubic"

@@ -1,12 +1,12 @@
 channels:
-    - r
     - bioconda
     - conda-forge
 dependencies:
-    - r-rubic
-    - r-data.table
-    - r-pracma
-    - r-ggplot2
-    - r-gtable
-    - r-codetools
-    - r-digest
+    - r-base =3.4.1
+    - r-rubic =1.0.3
+    - r-data.table =1.10.4
+    - r-pracma =2.0.4
+    - r-ggplot2 =2.2.1
+    - r-gtable =0.2.0
+    - r-codetools =0.2.9
+    - r-digest =0.6.12

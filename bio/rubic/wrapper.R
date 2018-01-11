@@ -5,16 +5,10 @@
 
 library(RUBIC)
 
-##----Create output folder----
-out_folder <- snakemake@output[[1]]
-system(paste("mkdir -p ", out_folder))
-
-##----Parse arguments----
 all_genes <- if (snakemake@params[["genefile"]] == "") system.file("extdata", "genes.tsv", package="RUBIC") else snakemake@params[["genefile"]]
 fdr <- if (snakemake@params[["fdr"]] == "") 0.25 else snakemake@params[["fdr"]]
 
-##----Run RUBIC----
 rbc <- rubic(fdr, snakemake@input[["seg"]], snakemake@input[["markers"]], genes=all_genes)
-rbc$save.focal.gains(paste(out_folder, "Focal_gains.tsv", sep = "/"))
-rbc$save.focal.losses(paste(out_folder, "Focal_losses.tsv", sep = "/"))
-rbc$save.plots(paste(out_folder, "Plots", sep = "/"))
+rbc$save.focal.gains(snakemake@output[["out_gains"]])
+rbc$save.focal.losses(snakemake@output[["out_losses"]])
+rbc$save.plots(snakemake@output[["out_plots"]])

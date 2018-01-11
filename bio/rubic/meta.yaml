@@ -5,10 +5,12 @@ description: |
   `RUBIC <http://ccb.nki.nl/software/rubic/doc/>`_
   detects recurrent copy number alterations using copy number breaks.
 input:
-  seg: segmentation file containing copy number profiles for multiple tumor samples
-  markers: file with all marker positions
+  seg: segmentation file containing copy number profiles from multiple tumor samples
+  markers: file with marker positions
 output:
-  folder to write output from RUBIC
+  out_gains: output file with recurrent gains
+  out_losses: output file with recurrent losses
+  out_plots: output folder with plots per chromosome showing recurrent regions
 params:
   fdr: false discovery rate (optional, leave empty to use default value of 0.25)
   genefile: file path to use custom gene file (optional, leave empty to use default file)
