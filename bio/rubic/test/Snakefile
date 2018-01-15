@@ -10,4 +10,4 @@ rule rubic:
         fdr="",
         genefile=""
     wrapper:
-        "master/bio/rubic.R"
+        "master/bio/rubic"
