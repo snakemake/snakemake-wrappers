@@ -9,7 +9,14 @@ def run(wrapper, cmd):
         dst = os.path.join(d, "master", wrapper)
         os.makedirs(dst, exist_ok=True)
         copy = lambda src: shutil.copy(os.path.join(wrapper, src), dst)
-        copy("wrapper.py")
+        success = False
+        for ext in ("py", "R", "Rmd"):
+            script = "wrapper." + ext
+            if os.path.exists(os.path.join(wrapper, script)):
+                copy(script)
+                success = True
+                break
+        assert success, "No wrapper.{py,R,Rmd} found"
         copy("environment.yaml")
         testdir = os.path.join(wrapper, "test")
         os.chdir(testdir)
