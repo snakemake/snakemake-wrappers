@@ -11,3 +11,4 @@ rule rubic:
         genefile=""
     wrapper:
         "master/bio/rubic"
+
