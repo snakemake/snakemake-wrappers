@@ -5,10 +5,9 @@ rule rubic:
     output:
         out_gains="{samples}/gains.txt",
         out_losses="{samples}/losses.txt",
-        out_plots="{samples}/plots"
+        out_plots="{samples}/plots" #only possible to provide output directory for plots
     params:
         fdr="",
         genefile=""
     wrapper:
         "master/bio/rubic"
-
