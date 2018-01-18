@@ -1,6 +1,6 @@
 box:
   id: quay.io/snakemake/snakemake
-  tag: v4.4.0
+  tag: v4.5.0
   registry: quay.io
 
 build:
