@@ -217,7 +217,7 @@ def test_star_align():
     try:
         subprocess.check_call("conda env create "
                               "--file bio/star/align/environment.yaml "
-                              "-p star-env",
+                              "-n star-env",
                               shell=True,
                               executable="/bin/bash")
         subprocess.check_call("source activate star-env; STAR --genomeDir "
