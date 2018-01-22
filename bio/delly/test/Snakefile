@@ -5,12 +5,11 @@ rule delly:
         # optional exclude template (see https://github.com/dellytools/delly)
         exclude="human.hg19.excl.tsv"
     output:
-        "sv/{type,(DEL|DUP|INV|TRA|INS)}.bcf"
+        "sv/calls.bcf"
     params:
-        vartype="{type}", # variant type to call (can be wildcard, hardcoded string or function)
-        extra=""  # optional parameters for delly (except -t, -g)
+        extra=""  # optional parameters for delly (except -g, -x)
     log:
-        "logs/delly/{type}.log"
-    threads: 3
+        "logs/delly.log"
+    threads: 2  # It is best to use as many threads as samples
     wrapper:
         "master/bio/delly"

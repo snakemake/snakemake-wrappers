@@ -242,3 +242,7 @@ def test_trimmomatic_pe():
 def test_trimmomatic_se():
     run("bio/trimmomatic/se",
         ["snakemake", "trimmed/a.fastq.gz", "--use-conda", "-F"])
+
+
+def test_delly():
+    run("bio/delly", ["snakemake", "sv/calls.bcf", "--use-conda", "-F"])
