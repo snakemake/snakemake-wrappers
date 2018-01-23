@@ -246,3 +246,6 @@ def test_trimmomatic_se():
 def test_rubic():
     run("bio/rubic",
         ["snakemake", "BRCA/gains.txt", "--use-conda", "-F"])
+
+def test_delly():
+    run("bio/delly", ["snakemake", "sv/calls.bcf", "--use-conda", "-F"])
