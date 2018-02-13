@@ -1,0 +1,4 @@
+name: bcftools merge
+description: Merge vcf/bcf files with bcftools.
+authors:
+  - Patrik Smeds
