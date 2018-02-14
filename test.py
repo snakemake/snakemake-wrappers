@@ -211,6 +211,10 @@ def test_bcftools_concat():
     run("bio/bcftools/concat",
         ["snakemake", "all.bcf", "--use-conda", "-F"])
 
+def test_bcftools_merge():
+    run("bio/bcftools/merge",
+        ["snakemake", "all.bcf", "--use-conda", "-F"])
+
 def test_star_align():
     # generate index on the fly, because it is huge regardless of genome size
     os.makedirs("bio/star/align/test/index", exist_ok=True)
