@@ -4,3 +4,4 @@ channels:
   - defaults
 dependencies:
   - ngs-disambiguate ==2016.11.10
+  - bamtools ==2.4.0
