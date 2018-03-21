@@ -238,6 +238,10 @@ def test_star_align():
     run("bio/star/align",
         ["snakemake", "star/pe/a/Aligned.out.bam", "--use-conda", "-F"])
 
+def test_snpeff():
+    run("bio/snpeff",
+        ["snakemake", "snpeff/fake_KJ660346.vcf", "--use-conda", "-F"])
+
 def test_trimmomatic_pe():
     run("bio/trimmomatic/pe",
         ["snakemake", "trimmed/a.1.fastq.gz", "--use-conda", "-F"])

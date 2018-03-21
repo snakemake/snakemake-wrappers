@@ -1,0 +1,13 @@
+rule snpeff:
+    input:
+        "{sample}.vcf",
+    output:
+        vcf="snpeff/{sample}.vcf",
+        stats="snpeff/{sample}.html"
+    log:
+        "logs/snpeff/{sample}.log"
+    params:
+        reference="ebola_zaire", # reference name (from `snpeff databases`)
+        extra=""                 # optional parameters
+    wrapper:
+        "master/bio/snpeff"
