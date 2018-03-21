@@ -1,0 +1,14 @@
+##fileformat=VCFv4.1
+##description=This file contains a few variants for inheritance testing.
+##description=The gene DDX11L1 matches AUTOSOMAL_DOMINANT and AUTOSOMAL_RECESSIVE
+##description=The gene FAM138A matches AUTOSOMAL_RECESSIVE
+##description=The gene FGFR2 matches AUTOSOMAL_RECESSIVE but is not included in hg19_small.ser
+##contig=<ID=1,length=249250621>
+##contig=<ID=10,length=135534747>
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	index	father	mother
+1	11876	.	CA	CC	100.15	PASS	GENE=DDX11L1	GT:DP	0/1:33	0/1:33	0/0:33
+1	11880	.	T	C	123.15	PASS	GENE=DDX11L1	GT:DP	1/1:21	0/1:33	0/1:33
+1	35723	.	T	C	123.15	PASS	GENE=FAM138A	GT:DP	0/1:21	1/0:33	0/0:33
+1	35729	.	G	A	260.15	PASS	GENE=FAM138A	GT:DP	0/1:21	0/0:33	1/0:33
+10	123239370	.	G	A	260.15	PASS	GENE=FGFR2	GT:DP	1/1:21	0/1:33	0/1:33
+10	123357972	.	G	A	260.15	PASS	GENE=FGFR2	GT:DP	1/1:21	1/1:33	0/1:33

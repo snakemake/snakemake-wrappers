@@ -253,3 +253,6 @@ def test_rubic():
 
 def test_delly():
     run("bio/delly", ["snakemake", "sv/calls.bcf", "--use-conda", "-F"])
+
+def test_jannovar():
+    run("bio/jannovar", ["snakemake", "jannovar/pedigree_vars.vcf.gz", "--use-conda", "-F"])

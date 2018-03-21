@@ -1,0 +1,4 @@
+name: "jannovar"
+description: Annotate predicted effect of nucleotide changes with Jannovar
+authors:
+  - Bradford Powell
