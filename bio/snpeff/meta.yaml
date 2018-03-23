@@ -1,0 +1,4 @@
+name: "snpeff"
+description: Annotate predicted effect of nucleotide changes with SnpEff
+authors:
+  - Bradford Powell

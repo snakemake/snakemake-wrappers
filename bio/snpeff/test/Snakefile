@@ -1,0 +1,15 @@
+rule snpeff:
+    input:
+        "{sample}.vcf",
+    output:
+        vcf="snpeff/{sample}.vcf",    # the main output file, required
+        stats="snpeff/{sample}.html", # summary statistics (in HTML), optional
+        genes="snpeff/{sample}.genes" # summary statistics by gene (TSV), optional
+        # if either "genes" or "stats" outputs are provided, both are created
+    log:
+        "logs/snpeff/{sample}.log"
+    params:
+        reference="ebola_zaire", # reference name (from `snpeff databases`)
+        extra=""                 # optional parameters
+    wrapper:
+        "master/bio/snpeff"
