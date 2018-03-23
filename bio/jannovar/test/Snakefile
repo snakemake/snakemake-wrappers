@@ -1,0 +1,13 @@
+rule jannovar:
+    input:
+        vcf="{sample}.vcf",
+        pedigree="pedigree_ar.ped" # optional, contains familial relationships
+    output:
+        "jannovar/{sample}.vcf.gz"
+    log:
+        "logs/jannovar/{sample}.log"
+    params:
+        database="hg19_small.ser", # path to jannovar reference dataset
+        extra="--show-all"         # optional parameters
+    wrapper:
+        "master/bio/jannovar"
