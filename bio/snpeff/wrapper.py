@@ -5,6 +5,9 @@ __license__ = "BSD"
 
 
 from snakemake.shell import shell
+from os import path
+import shutil
+import tempfile
 
 shell.executable("bash")
 
@@ -17,10 +20,28 @@ if dataDir:
     dataDir = '-dataDir "%s"'%dataDir
 
 stats = snakemake.output.get("stats", "")
-if stats:
-    stats = '-stats "%s"'%stats
+genes = snakemake.output.get("genes", "")
+if stats or genes:
+    stats_tempdir = tempfile.mkdtemp()
+    if not stats:
+        if genes.endswith('.genes.txt'):
+            stats = genes[:-10] + '.html'
+        else:
+            stats = genes + '.html'
+    if not genes:
+        if stats.endswith('.html'):
+            genes = stats[:-5] + '.genes.txt'
+        else:
+            genes = stats + '.genes.txt'
+    statsOpt = '-stats "%s"'%path.join(stats_tempdir, 'stats')
 else:
-    stats = '-noStats'
+    stats_tempdir = None
+    statsOpt = '-noStats'
 
-shell("(snpEff {dataDir} {stats} {extra} {snakemake.params.reference} {snakemake.input}"
+shell("(snpEff {dataDir} {statsOpt} {extra} {snakemake.params.reference} {snakemake.input}"
       " > {snakemake.output.vcf}) {log}")
+
+if stats_tempdir:
+    shutil.move(path.join(stats_tempdir, 'stats'), stats)
+    shutil.move(path.join(stats_tempdir, 'stats.genes.txt'), genes)
+    shutil.rmtree(stats_tempdir)
