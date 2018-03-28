@@ -1,0 +1,29 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - snakemake-{{ checksum ".circleci/setup.sh" }}
+      - run:
+          name: Update PATH
+          command: echo 'export PATH="`pwd`/miniconda/bin:$PATH"' >> $BASH_ENV
+      - run:
+          name: Setup Conda
+          command: .circleci/setup.sh
+      - save_cache:
+          key: snakemake-{{ checksum ".circleci/setup.sh" }}
+          paths:
+            - miniconda
+      - run:
+          name: Update Snakemake
+          command: |
+            source activate snakemake
+            conda update snakemake
+      - run:
+          name: Run tests
+          command: |
+            source activate snakemake
+            pytest test.py -v
