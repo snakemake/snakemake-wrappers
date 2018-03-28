@@ -1,0 +1,16 @@
+name: trim_galore-pe
+description: |
+  Trim paired-end reads using trim_galore.
+authors:
+  - Kerrin Mendler
+input:
+  - two (paired-end) fastq files (can be gzip compressed)
+output:
+  - two trimmed (paired-end) fastq files
+  - two trimming reports
+params:
+  - extra: additional parameters
+notes: |
+  * It is expected that the fastqc Snakemake wrapper be used in place
+    of the `--fastqc` option.
+  * All output files must be placed in the same directory.
