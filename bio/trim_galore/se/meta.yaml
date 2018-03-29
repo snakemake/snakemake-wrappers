@@ -1,0 +1,16 @@
+name: trim_galore-se
+description: |
+  Trim unpaired reads using trim_galore.
+authors:
+  - Kerrin Mendler
+input:
+  - fastq file with untrimmed reads (can be gzip compressed)
+output:
+  - trimmed fastq file
+  - trimming report
+params:
+  - extra: additional parameters
+notes: |
+  * It is expected that the fastqc Snakemake wrapper be used in place
+    of the `--fastqc` option.
+  * All output files must be placed in the same directory.
