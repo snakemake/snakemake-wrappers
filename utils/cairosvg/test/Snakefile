@@ -1,0 +1,7 @@
+rule:
+    input:
+        "{prefix}.svg"
+    output:
+        "{prefix}.{fmt,(pdf|png)}"
+    wrapper:
+        "master/utils/cairosvg"
