@@ -4,3 +4,4 @@ channels:
   - defaults
 dependencies:
   - epic =0.2.7
+  - pandas =0.22.0
