@@ -1,0 +1,4 @@
+name: cairosvg
+description: Convert SVG files with cairosvg.
+authors:
+  - Johannes Köster

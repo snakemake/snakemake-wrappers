@@ -272,3 +272,6 @@ def test_delly():
 
 def test_jannovar():
     run("bio/jannovar", ["snakemake", "jannovar/pedigree_vars.vcf.gz", "--use-conda", "-F"])
+
+def test_cairosvg():
+    run("utils/cairosvg", ["snakemake", "pca.pdf", "--use-conda", "-F"])
