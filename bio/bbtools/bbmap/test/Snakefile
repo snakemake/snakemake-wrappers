@@ -1,0 +1,19 @@
+rule bbmap:
+    input:
+        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        ref="genome.fasta"
+    output:
+        "mapped/{sample}.sam"
+    log:
+        "logs/bbmap/{sample}.log"
+    params:   # all parameters are oprional
+        sort_bam= True, # all other keywords have toe correspond to the bbmap key words
+        nodisk = True,
+        minid = 0.76,
+        ambigous = 'best',
+        k=13
+    threads: 8
+    resources:
+        mem=50*1e9                # oprional: bbmap normaly needs a lot of memory
+    wrapper:
+        "master/bio/bbtools/bbmap"
