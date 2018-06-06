@@ -275,3 +275,8 @@ def test_jannovar():
 
 def test_cairosvg():
     run("utils/cairosvg", ["snakemake", "pca.pdf", "--use-conda", "-F"])
+
+def test_trinity():
+    run("bio/trinity",
+        ["snakemake", "trinity_out_dir/Trinity.fasta", "--use-conda", "-F"])
+
