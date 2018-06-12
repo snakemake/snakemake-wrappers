@@ -280,3 +280,19 @@ def test_trinity():
     run("bio/trinity",
         ["snakemake", "trinity_out_dir/Trinity.fasta", "--use-conda", "-F"])
 
+def test_salmon_index():
+    run("bio/salmon/index",
+        ["snakemake", "salmon/transcriptome_index", "--use-conda", "-F"])
+
+def test_salmon_quant_reads():
+    run("bio/salmon/quant/quant-reads",
+        ["snakemake", "salmon/a_x_transcriptome/quant.sf",
+        "--use-conda", "-F", "-s", "Snakefile_pe"])
+
+    run("bio/salmon/quant/quant-reads",
+        ["snakemake", "salmon/a_se_x_transcriptome/quant.sf",
+        "--use-conda", "-F","-s", "Snakefile_se"])
+
+    run("bio/salmon/quant/quant-reads",
+        ["snakemake", "salmon/ab_pe_x_transcriptome/quant.sf",
+        "--use-conda", "-F", "-s", "Snakefile_pe_multi"])

@@ -1,0 +1,9 @@
+name: salmon_index
+description: |
+  Index a transcriptome assembly with salmon 
+authors:
+  - Tessa Pierce
+input:
+  - assembly fasta
+output:
+  - indexed assembly 
