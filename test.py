@@ -296,3 +296,11 @@ def test_salmon_quant_reads():
     run("bio/salmon/quant/quant-reads",
         ["snakemake", "salmon/ab_pe_x_transcriptome/quant.sf",
         "--use-conda", "-F", "-s", "Snakefile_pe_multi"])
+
+def test_sourmash_compute():
+    run("bio/sourmash/compute/",
+        ["snakemake","transcriptome.sig",
+         "--use-conda","-F","-s","Snakefile_transcriptome"])
+    run("bio/sourmash/compute/",
+        ["snakemake","reads.sig",
+         "--use-conda","-F","-s","Snakefile_reads"])

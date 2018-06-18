@@ -1,0 +1,15 @@
+rule sourmash_compute:
+    input:
+        "reads/a.fastq"
+    output:
+        "reads.sig"
+    log:
+        "logs/sourmash/sourmash_compute_reads.log"
+    threads: 2
+    params:
+        # optional parameters
+        k = "31",
+        scaled = "1000",
+	extra=""
+    wrapper:
+        "master/bio/sourmash/compute"

@@ -1,0 +1,8 @@
+[Ksetting num_hashes to 0 because --scaled is set
+[Kcomputing signatures for files: assembly/transcriptome.fasta
+[KComputing signature for ksizes: [31]
+[KComputing only DNA (and not protein) signatures.
+[KComputing a total of 1 signature(s).
+[K... reading sequences from assembly/transcriptome.fasta
+[K...assembly/transcriptome.fasta 1 sequences[Kcalculated 1 signatures for 2 sequences in assembly/transcriptome.fasta
+[Ksaved 1 signature(s). Note: signature license is CC0.
