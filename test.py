@@ -284,29 +284,28 @@ def test_salmon_index():
     run("bio/salmon/index",
         ["snakemake", "salmon/transcriptome_index", "--use-conda", "-F"])
 
-def test_salmon_quant_reads():
-    run("bio/salmon/quant/quant-reads",
-        ["snakemake", "salmon/a_x_transcriptome/quant.sf",
-        "--use-conda", "-F", "-s", "Snakefile_pe"])
+def test_salmon_quant():
+    run("bio/salmon/quant",
+        ["snakemake", "salmon/a/quant.sf",
+        "--use-conda", "-F", "-s", "Snakefile"])
 
-    run("bio/salmon/quant/quant-reads",
+    run("bio/salmon/quant",
         ["snakemake", "salmon/a_se_x_transcriptome/quant.sf",
         "--use-conda", "-F","-s", "Snakefile_se"])
 
-    run("bio/salmon/quant/quant-reads",
+    run("bio/salmon/quant",
         ["snakemake", "salmon/ab_pe_x_transcriptome/quant.sf",
         "--use-conda", "-F", "-s", "Snakefile_pe_multi"])
 
 def test_sourmash_compute():
     run("bio/sourmash/compute/",
         ["snakemake","transcriptome.sig",
-         "--use-conda","-F","-s","Snakefile_transcriptome"])
+         "--use-conda","-F","-s","Snakefile"])
     run("bio/sourmash/compute/",
         ["snakemake","reads.sig",
-         "--use-conda","-F","-s","Snakefile_reads"])
+         "--use-conda","-F","-s","Snakefile"])
 
 def test_busco():
     run("bio/busco",
         ["snakemake", "run_txome_busco/full_table_txome_busco.tsv",
         "--use-conda", "-F"])
-
