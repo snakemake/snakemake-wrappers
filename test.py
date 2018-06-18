@@ -304,3 +304,9 @@ def test_sourmash_compute():
     run("bio/sourmash/compute/",
         ["snakemake","reads.sig",
          "--use-conda","-F","-s","Snakefile_reads"])
+
+def test_busco():
+    run("bio/busco",
+        ["snakemake", "run_txome_busco/full_table_txome_busco.tsv",
+        "--use-conda", "-F"])
+
