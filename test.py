@@ -183,6 +183,10 @@ def test_pindel_pindel2vcf():
     run("bio/pindel/pindel2vcf",
         ["snakemake", "pindel/all_D.vcf", "--use-conda", "-F"])
 
+def test_pindel_pindel2vcf_multi_input():
+    run("bio/pindel/pindel2vcf",
+        ["snakemake", "pindel/all.vcf", "--use-conda", "-F"])
+
 def test_samtools_stats():
     run("bio/samtools/stats",
         ["snakemake", "samtools_stats/a.txt", "--use-conda", "-F"])
