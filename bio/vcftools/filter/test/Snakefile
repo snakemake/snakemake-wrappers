@@ -1,0 +1,9 @@
+rule filter_vcf:
+    input:
+        "{sample}.vcf"
+    output:
+        "{sample}.filtered.vcf"
+    params:
+        extra="--chr 1 --recode-INFO-all"
+    wrapper:
+        "master/bio/vcftools/filter"
