@@ -1,6 +1,6 @@
 name: gatk BaseRecalibrator
 description: |
-  Run gatk BaseRecalibrator and PrintReads in one step.
+  Run gatk BaseRecalibrator and ApplyBQSR in one step.
 authors:
   - Johannes Köster
 input:
