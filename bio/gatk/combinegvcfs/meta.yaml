@@ -1,0 +1,9 @@
+name: gatk CombineGVCFs
+description: |
+  Run gatk CombineGVCFs.
+authors:
+  - Johannes Köster
+input:
+  - GVCF files of multiple samples
+output:
+  - Combined GVCF

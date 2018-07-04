@@ -1,0 +1,9 @@
+name: gatk GenotypeGVCFs
+description: |
+  Run gatk GenotypeGVCFs.
+authors:
+  - Johannes Köster
+input:
+  - GVCF files
+output:
+  - VCF file with genotypes

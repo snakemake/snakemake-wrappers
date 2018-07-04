@@ -1,0 +1,10 @@
+name: gatk VariantRecalibrator
+description: |
+  Run gatk VariantRecalibrator.
+authors:
+  - Johannes Köster
+input:
+  - VCF file
+output:
+  - .recal file
+  - .tranches file

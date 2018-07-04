@@ -1,0 +1,9 @@
+name: gatk HaplotypeCaller
+description: |
+  Run gatk HaplotypeCaller.
+authors:
+  - Johannes Köster
+input:
+  - bam file
+output:
+  - GVCF file

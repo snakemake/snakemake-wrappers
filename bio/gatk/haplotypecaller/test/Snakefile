@@ -1,0 +1,14 @@
+rule haplotype_caller:
+    input:
+        # single or list of bam files
+        bam="mapped/{sample}.bam",
+        ref="genome.fasta"
+        # known="dbsnp.vcf"  # optional
+    output:
+        gvcf="calls/{sample}.g.vcf",
+    log:
+        "logs/gatk/haplotypecaller/{sample}.log"
+    params:
+        extra="",  # optional
+    wrapper:
+        "master/bio/gatk/haplotypecaller"

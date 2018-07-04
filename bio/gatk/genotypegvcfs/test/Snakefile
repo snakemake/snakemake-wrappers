@@ -1,0 +1,12 @@
+rule genotype_gvcfs:
+    input:
+        gvcf="calls/all.g.vcf",  # combined gvcf over multiple samples
+        ref="genome.fasta"
+    output:
+        vcf="calls/all.vcf",
+    log:
+        "logs/gatk/genotypegvcfs.log"
+    params:
+        extra="",  # optional
+    wrapper:
+        "master/bio/gatk/genotypegvcfs"

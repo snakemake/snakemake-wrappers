@@ -1,0 +1,12 @@
+rule gatk_select:
+    input:
+        vcf="calls/all.vcf",
+        ref="genome.fasta",
+    output:
+        vcf="calls/snvs.vcf"
+    log:
+        "logs/gatk/select/snvs.log"
+    params:
+        extra="--select-type-to-include SNP",  # optional filter arguments, see GATK docs
+    wrapper:
+        "master/bio/gatk/selectvariants"

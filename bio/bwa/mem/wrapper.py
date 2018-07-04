@@ -19,7 +19,7 @@ sort_extra = snakemake.params.get("sort_extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 # Check inputs/arguments.
-if len(snakemake.input.reads) not in {1, 2}:
+if not isinstance(snakemake.input.reads, str) and len(snakemake.input.reads) not in {1, 2}:
     raise ValueError("input must have 1 (single-end) or "
                      "2 (paired-end) elements")
 

@@ -3,7 +3,7 @@ import os
 import tempfile
 import shutil
 
-def run(wrapper, cmd):
+def run(wrapper, cmd, check_log=None):
     origdir = os.getcwd()
     with tempfile.TemporaryDirectory() as d:
         dst = os.path.join(d, "master", wrapper)
@@ -19,23 +19,35 @@ def run(wrapper, cmd):
         assert success, "No wrapper.{py,R,Rmd} found"
         copy("environment.yaml")
         testdir = os.path.join(wrapper, "test")
+        # switch to test directory
         os.chdir(testdir)
         if os.path.exists(".snakemake"):
             shutil.rmtree(".snakemake")
         cmd = cmd + ["--wrapper-prefix", "file://{}/".format(d)]
         subprocess.check_call(["snakemake", "--version"])
+
         try:
             subprocess.check_call(cmd)
-        finally:
+        except Exception as e:
+            # go back to original directory
             os.chdir(origdir)
-            for d, _, files in os.walk(os.path.join(testdir, "logs")):
-                for f in files:
-                    path = os.path.join(d, f)
-                    with open(path) as f:
-                        msg = "###### Logfile: " + path + " ######"
-                        print(msg, "\n")
-                        print(f.read())
-                        print("#" * len(msg))
+            logfiles = [os.path.join(d, f)
+                for d, _, files in os.walk(os.path.join(testdir, "logs"))
+                for f in files]
+            for path in logfiles:
+                with open(path) as f:
+                    msg = "###### Logfile: " + path + " ######"
+                    print(msg, "\n")
+                    print(f.read())
+                    print("#" * len(msg))
+            if check_log is not None:
+                for f in logfiles:
+                    check_log(open(f).read())
+            else:
+                raise e
+        finally:
+            # go back to original directory
+            os.chdir(origdir)
 
 
 def test_bowtie2_align():
@@ -174,6 +186,9 @@ def test_picard_sortsam():
     run("bio/picard/sortsam",
         ["snakemake", "sorted/a.bam", "--use-conda", "-F"])
 
+def test_picard_createsequencedictionary():
+    run("bio/picard/createsequencedictionary",
+        ["snakemake", "genome.dict", "--use-conda", "-F"])
 
 def test_pindel_call():
     run("bio/pindel/call",
@@ -316,3 +331,37 @@ def test_busco():
 
 def test_vcftoolsfilter():
     run("bio/vcftools/filter", ["snakemake", "sample.filtered.vcf", "--use-conda", "-F"])
+
+def test_gatk_baserecalibrator():
+    run("bio/gatk/baserecalibrator", ["snakemake", "recal/a.bam", "--use-conda", "-F"])
+
+def test_gatk_haplotypecaller():
+    run("bio/gatk/haplotypecaller", ["snakemake", "calls/a.g.vcf", "--use-conda", "-F"])
+
+def test_gatk_variantrecalibrator():
+    def check_log(log):
+        assert "USAGE" not in log
+
+    run("bio/gatk/variantrecalibrator",
+        ["snakemake", "-s", "test.smk", "calls/all.recal.vcf", "--use-conda", "-F"],
+        check_log=check_log)
+
+def test_gatk_selectvariants():
+    run("bio/gatk/selectvariants", ["snakemake", "calls/snvs.vcf", "--use-conda", "-F"])
+
+def test_gatk_variantfiltration():
+    run("bio/gatk/variantfiltration", ["snakemake", "calls/snvs.filtered.vcf", "--use-conda", "-F"])
+
+def test_gatk_genotypegvcfs():
+    run("bio/gatk/genotypegvcfs", ["snakemake", "calls/all.vcf", "--use-conda", "-F"])
+
+# this GATK tool does not work with our test data so far... Error is unclear.
+#def test_gatk_genomicsdbimport():
+#    run("bio/gatk/genomicsdbimport", ["snakemake", "genomicsdb/ref", "--use-conda", "-F"])
+
+def test_gatk_combinegvcfs():
+    run("bio/gatk/combinegvcfs", ["snakemake", "calls/all.g.vcf", "--use-conda", "-F"])
+
+
+def test_picard_mergevcfs():
+    run("bio/picard/mergevcfs", ["snakemake", "snvs.vcf", "--use-conda", "-F"])

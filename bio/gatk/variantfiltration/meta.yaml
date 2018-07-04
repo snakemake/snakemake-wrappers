@@ -1,0 +1,10 @@
+name: gatk VariantFiltration
+description: |
+  Run gatk VariantFiltration.
+authors:
+  - Johannes Köster
+input:
+  - vcf file
+  - reference genome
+output:
+  - filtered vcf file

@@ -1,0 +1,11 @@
+rule create_dict:
+    input:
+        "genome.fasta"
+    output:
+        "genome.dict"
+    log:
+        "logs/picard/create_dict.log"
+    params:
+        extra=""  # optional: extra arguments for picard.
+    wrapper:
+        "master/bio/picard/createsequencedictionary"

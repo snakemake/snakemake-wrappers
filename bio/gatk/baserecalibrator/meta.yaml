@@ -1,0 +1,9 @@
+name: gatk BaseRecalibrator
+description: |
+  Run gatk BaseRecalibrator and PrintReads in one step.
+authors:
+  - Johannes Köster
+input:
+  - bam file
+output:
+  - recalibrated bam file

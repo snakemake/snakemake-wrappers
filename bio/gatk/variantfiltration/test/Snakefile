@@ -1,0 +1,13 @@
+rule gatk_filter:
+    input:
+        vcf="calls/snvs.vcf",
+        ref="genome.fasta",
+    output:
+        vcf="calls/snvs.filtered.vcf"
+    log:
+        "logs/gatk/filter/snvs.log"
+    params:
+        filters={"myfilter": "AB < 0.2 || MQ0 > 50"},
+        extra="",  # optional arguments, see GATK docs
+    wrapper:
+        "master/bio/gatk/variantfiltration"
