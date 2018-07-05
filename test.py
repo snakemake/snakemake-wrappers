@@ -130,7 +130,7 @@ def test_epic_peaks():
 
 def test_fastqc():
     run("bio/fastqc",
-        ["snakemake", "qc/a.html", "--use-conda", "-F"])
+        ["snakemake", "qc/fastqc/a.html", "--use-conda", "-F"])
 
 
 def test_freebayes():
