@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - trinity ==2.5.1
+  - trinity ==2.6.6
