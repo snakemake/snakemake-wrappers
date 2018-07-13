@@ -1,4 +1,4 @@
-"""Snakemake wrapper for Salmon Index."""
+"""Snakemake wrapper for BUSCO assessment"""
 
 __author__ = "Tessa Pierce"
 __copyright__ = "Copyright 2018, Tessa Pierce"
@@ -15,15 +15,23 @@ assert mode is not None, "please input a run mode: genome, transcriptome or prot
 lineage = snakemake.params.get("lineage_path")
 assert lineage is not None, "please input the path to a lineage for busco assessment"
 
-out_name = path.dirname(snakemake.output[0])
-assert '/' not in out_name, "out name cannot be path"
-assert out_name.startswith('run_'), " out name must start with run_"
-out_name = out_name.split('run_')[1] # busco adds "run_" automatically
+# busco does not allow you to direct output location: handle this by moving output
+outdir = path.dirname(snakemake.output[0])
+if '/' in outdir:
+    out_name = path.basename(outdir)
+else:
+    out_name = outdir
 
 #note: --force allows snakemake to handle rewriting files as necessary
 # without needing to specify *all* busco outputs as snakemake outputs
 shell("run_busco --in {snakemake.input} --out {out_name} --force "
       " --cpu {snakemake.threads} --mode {mode} --lineage {lineage} "
       " {extra} {log}" )
+
+busco_outname = 'run_' + out_name
+
+# move to intended location
+shell("cp -r {busco_outname}/* {outdir}")
+shell("rm -rf {busco_outname}")
 
 

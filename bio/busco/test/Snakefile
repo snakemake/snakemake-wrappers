@@ -1,14 +1,14 @@
 rule run_busco:
     input:
-        "transcriptome.fasta"
+        "sample_data/target.fa"
     output:
-        "run_txome_busco/full_table_txome_busco.tsv",
+        "txome_busco/full_table_txome_busco.tsv",
     log:
         "logs/quality/transcriptome_busco.log"
     threads: 8
     params:
         mode="transcriptome",
-        lineage_path="metazoa_test",
+        lineage_path="sample_data/example",
         # optional parameters
         extra="" 
     wrapper:

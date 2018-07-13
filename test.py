@@ -326,7 +326,7 @@ def test_sourmash_compute():
 
 def test_busco():
     run("bio/busco",
-        ["snakemake", "run_txome_busco/full_table_txome_busco.tsv",
+        ["snakemake", "txome_busco/full_table_txome_busco.tsv",
         "--use-conda", "-F"])
 
 def test_vcftoolsfilter():
