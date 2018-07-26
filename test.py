@@ -274,13 +274,34 @@ def test_trim_galore_se():
         ["snakemake", "trimmed/a_trimmed.fq.gz", "--use-conda", "-F"])
 
 def test_trimmomatic_pe():
+    """Four tests, one per fq-gz combination"""
     run("bio/trimmomatic/pe",
-        ["snakemake", "trimmed/a.1.fastq.gz", "--use-conda", "-F"])
-
+        ["snakemake", "trimmed/a.1.fastq", "--use-conda", "-F",
+        "-s", "Snakefile_fq_fq"])
+    run("bio/trimmomatic/pe",
+        ["snakemake", "trimmed/a.1.fastq.gz", "--use-conda", "-F",
+        "-s", "Snakefile_fq_gz"])
+    run("bio/trimmomatic/pe",
+        ["snakemake", "trimmed/a.1.fastq", "--use-conda", "-F",
+        "-s", "Snakefile_gz_fq"])
+    run("bio/trimmomatic/pe",
+        ["snakemake", "trimmed/a.1.fastq.gz", "--use-conda", "-F",
+        "-s", "Snakefile_gz_gz"])
 
 def test_trimmomatic_se():
+    """Four tests, one per fq-gz combination"""
     run("bio/trimmomatic/se",
-        ["snakemake", "trimmed/a.fastq.gz", "--use-conda", "-F"])
+        ["snakemake", "trimmed/a.fastq", "--use-conda", "-F",
+        "-s", "Snakefile_fq_fq"])
+    run("bio/trimmomatic/se",
+        ["snakemake", "trimmed/a.fastq.gz", "--use-conda", "-F",
+        "-s", "Snakefile_fq_gz"])
+    run("bio/trimmomatic/se",
+        ["snakemake", "trimmed/a.fastq", "--use-conda", "-F",
+        "-s", "Snakefile_gz_fq"])
+    run("bio/trimmomatic/se",
+        ["snakemake", "trimmed/a.fastq.gz", "--use-conda", "-F",
+        "-s", "Snakefile_gz_gz"])
 
 def test_rubic():
     run("bio/rubic",

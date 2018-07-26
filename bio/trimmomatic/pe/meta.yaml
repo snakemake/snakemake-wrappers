@@ -1,4 +1,5 @@
 name: "trimmomatic pe"
-description: Trim paired-end reads with trimmomatic.
+description: Trim paired-end reads with trimmomatic. (De)compress with pigz.
 authors:
   - Johannes Köster
+  - Jorge Langa

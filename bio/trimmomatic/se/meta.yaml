@@ -1,4 +1,5 @@
 name: "trimmomatic se"
-description: Trim single-end reads with trimmomatic.
+description: Trim single-end reads with trimmomatic. (De)compress with pigz.
 authors:
   - Johannes Köster
+  - Jorge Langa

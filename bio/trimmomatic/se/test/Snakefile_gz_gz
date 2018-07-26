@@ -1,0 +1,20 @@
+rule trimmomatic_se_pigz:
+    """Use trimmomatic + pigz via process substitution"""
+    input:
+        "reads/{sample}.fastq.gz"  # fastq accepted
+    output:
+        "trimmed/{sample}.fastq.gz"
+    log:
+        "logs/trimmomatic/{sample}.log"
+    params:
+        # list of trimmers (see manual)
+        trimmer=["TRAILING:3"],
+        # optional parameters
+        extra="",
+        pigz="both",
+        # compression levels from -0 to -9 and -11
+        compression_level="-9"
+    threads:
+        32
+    wrapper:
+        "master/bio/trimmomatic/se"
