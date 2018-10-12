@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - sambamba==0.6.8
+  - sambamba ==0.6.8
