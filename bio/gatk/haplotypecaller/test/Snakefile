@@ -10,5 +10,6 @@ rule haplotype_caller:
         "logs/gatk/haplotypecaller/{sample}.log"
     params:
         extra="",  # optional
+        java_opts="", # optional
     wrapper:
         "master/bio/gatk/haplotypecaller"

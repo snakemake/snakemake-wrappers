@@ -9,5 +9,6 @@ rule gatk_bqsr:
         "logs/gatk/bqsr/{sample}.log"
     params:
         extra="",  # optional
+        java_opts="", # optional
     wrapper:
         "master/bio/gatk/baserecalibrator"

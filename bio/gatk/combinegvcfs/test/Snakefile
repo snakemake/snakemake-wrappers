@@ -8,5 +8,6 @@ rule genotype_gvcfs:
         "logs/gatk/combinegvcfs.log"
     params:
         extra="",  # optional
+        java_opts="",  # optional
     wrapper:
         "master/bio/gatk/combinegvcfs"
