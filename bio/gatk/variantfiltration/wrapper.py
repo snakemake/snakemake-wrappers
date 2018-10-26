@@ -12,5 +12,5 @@ filters = ["--filter-name {} --filter-expression '{}'".format(name, expr.replace
            for name, expr in snakemake.params.filters.items()]
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-shell("gatk --java-options {java_opts} VariantFiltration -R {snakemake.input.ref} -V {snakemake.input.vcf} "
+shell("gatk --java-options '{java_opts}' VariantFiltration -R {snakemake.input.ref} -V {snakemake.input.vcf} "
       "{extra} {filters} -O {snakemake.output.vcf} {log}")

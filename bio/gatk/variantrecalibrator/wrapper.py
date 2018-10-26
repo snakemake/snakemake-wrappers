@@ -30,7 +30,7 @@ if snakemake.output.tranches:
     tranches = "--tranches-file " + snakemake.output.tranches
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-shell("gatk --java-options {java_opts} VariantRecalibrator {extra} {resources} "
+shell("gatk --java-options '{java_opts}' VariantRecalibrator {extra} {resources} "
       "-R {snakemake.input.ref} -V {snakemake.input.vcf} "
       "-mode {snakemake.params.mode} "
       "--output {snakemake.output.vcf} "
