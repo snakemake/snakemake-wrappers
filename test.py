@@ -2,6 +2,7 @@ import subprocess
 import os
 import tempfile
 import shutil
+import pytest
 
 def run(wrapper, cmd, check_log=None):
     origdir = os.getcwd()
