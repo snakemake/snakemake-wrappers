@@ -37,5 +37,6 @@ rule haplotype_caller:
                    "dbsnp":  {"known": True, "training": False, "truth": False, "prior": 2.0}},
         annotation=["QD", "FisherStrand"],  # which fields to use with -an (see VariantRecalibrator docs)
         extra="",  # optional
+        java_opts="", # optional
     wrapper:
         "master/bio/gatk/haplotypecaller"
