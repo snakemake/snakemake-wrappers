@@ -2,7 +2,7 @@ rule salmon_index:
     input:
         "assembly/transcriptome.fasta"
     output:
-        "salmon/transcriptome_index"
+        directory("salmon/transcriptome_index")
     log:
         "logs/salmon/transcriptome_index.log"
     threads: 2
