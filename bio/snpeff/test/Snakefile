@@ -4,12 +4,11 @@ rule snpeff:
     output:
         vcf="snpeff/{sample}.vcf",    # the main output file, required
         stats="snpeff/{sample}.html", # summary statistics (in HTML), optional
-        genes="snpeff/{sample}.genes" # summary statistics by gene (TSV), optional
-        # if either "genes" or "stats" outputs are provided, both are created
+        csvstats="snpeff/{sample}.csv" # summary statistics in CSV, optional
     log:
         "logs/snpeff/{sample}.log"
     params:
         reference="ebola_zaire", # reference name (from `snpeff databases`)
-        extra=""                 # optional parameters
+        extra="-Xmx4g"                 # optional parameters (e.g., max memory 4g)
     wrapper:
         "master/bio/snpeff"

@@ -1,0 +1,25 @@
+rule trimmomatic_pe_gz_fq:
+    """Trim reads with trimmomatic + pigz compressionself.
+
+    Note: in SE mode, stick with using the placehorlder r1 for your input
+    and ouptut file.
+    """
+    input:
+        r1="reads/{sample}.1.fastq.gz",
+        r2="reads/{sample}.2.fastq.gz"
+    output:
+        r1="trimmed/{sample}.1.fastq",
+        r2="trimmed/{sample}.2.fastq",
+        # reads where trimming entirely removed the mate
+        r1_unpaired="trimmed/{sample}.1.unpaired.fastq",
+        r2_unpaired="trimmed/{sample}.2.unpaired.fastq"
+    log:
+        "logs/trimmomatic/{sample}.log"
+    params:
+        # list of trimmers (see manual)
+        trimmer=["TRAILING:3"],
+        # optional parameters
+        extra="",
+        pigz="input"
+    wrapper:
+        "master/bio/trimmomatic/pe"

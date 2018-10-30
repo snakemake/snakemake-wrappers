@@ -10,7 +10,7 @@ import shutil
 import tempfile
 
 shell.executable("bash")
-shell_command =("(snpEff {dataDir} {statsOpt} {extra}"
+shell_command =("(snpEff {data_dir} {stats_opt} {csvstats_opt} {extra}"
                 " {snakemake.params.reference} {snakemake.input}"
                 " > {snakemake.output.vcf}) {log}")
 
@@ -18,28 +18,17 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 extra = snakemake.params.get("extra", "")
 
-dataDir = snakemake.params.get("dataDir", "")
-if dataDir:
-    dataDir = '-dataDir "%s"'%dataDir
+data_dir = snakemake.params.get("data_dir", "")
+if data_dir:
+    data_dir = '-dataDir "%s"'%data_dir
 
 stats = snakemake.output.get("stats", "")
-genes = snakemake.output.get("genes", "")
-if stats or genes:
-    with tempfile.TemporaryDirectory() as stats_tempdir:
-        if not stats:
-            if genes.endswith('.genes.txt'):
-                stats = genes[:-10] + '.html'
-            else:
-                stats = genes + '.html'
-        if not genes:
-            if stats.endswith('.html'):
-                genes = stats[:-5] + '.genes.txt'
-            else:
-                genes = stats + '.genes.txt'
-        statsOpt = '-stats "%s"'%path.join(stats_tempdir, 'stats')
-        shell(shell_command)
-        shutil.move(path.join(stats_tempdir, 'stats'), stats)
-        shutil.move(path.join(stats_tempdir, 'stats.genes.txt'), genes)
-else:
-    statsOpt = '-noStats'
-    shell(shell_command)
+csvstats = snakemake.output.get("csvstats", "")
+csvstats_opt = '' if not csvstats else '-csvStats {}'.format(csvstats)
+stats_opt = '-noStats' if not stats  else '-stats {}'.format(stats)
+    
+shell(shell_command)
+    #if stats:
+    #    shutil.copy(path.join(stats_tempdir, 'stats'), stats)
+    #if genes:
+    #    shutil.copy(path.join(stats_tempdir, 'stats.genes.txt'), genes)

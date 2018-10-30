@@ -1,0 +1,9 @@
+name: picard CreateSequenceDictionary
+description: |
+  Create a .dict file for a given FASTA file
+authors:
+  - Johannes Köster
+input:
+  - FASTA file
+output:
+  - .dict file

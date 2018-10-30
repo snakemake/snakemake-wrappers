@@ -1,0 +1,9 @@
+name: trinity
+description: |
+  Generate transcriptome assembly with Trinity
+authors:
+  - Tessa Pierce
+input:
+  - fastq files
+output:
+  - fasta containing assembly

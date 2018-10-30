@@ -1,0 +1,15 @@
+rule run_busco:
+    input:
+        "sample_data/target.fa"
+    output:
+        "txome_busco/full_table_txome_busco.tsv",
+    log:
+        "logs/quality/transcriptome_busco.log"
+    threads: 8
+    params:
+        mode="transcriptome",
+        lineage_path="sample_data/example",
+        # optional parameters
+        extra="" 
+    wrapper:
+        "master/bio/busco"

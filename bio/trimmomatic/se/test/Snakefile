@@ -1,14 +1,1 @@
-rule trimmomatic_pe:
-    input:
-        "reads/{sample}.fastq"
-    output:
-        "trimmed/{sample}.fastq.gz"
-    log:
-        "logs/trimmomatic/{sample}.log"
-    params:
-        # list of trimmers (see manual)
-        trimmer=["TRAILING:3"],
-        # optional parameters
-        extra=""
-    wrapper:
-        "master/bio/trimmomatic/se"
+Snakefile_fq_fq

@@ -1,0 +1,8 @@
+[Ksetting num_hashes to 0 because --scaled is set
+[Kcomputing signatures for files: reads/a.fastq
+[KComputing signature for ksizes: [31]
+[KComputing only DNA (and not protein) signatures.
+[KComputing a total of 1 signature(s).
+[K... reading sequences from reads/a.fastq
+[K...reads/a.fastq 0 sequences[Kcalculated 1 signatures for 1 sequences in reads/a.fastq
+[Ksaved 1 signature(s). Note: signature license is CC0.

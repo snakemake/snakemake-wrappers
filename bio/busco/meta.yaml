@@ -1,0 +1,9 @@
+name: busco
+description: |
+ Assess assembly and annotation completeness with BUSCO 
+authors:
+  - Tessa Pierce
+input:
+  - assembly fasta
+output:
+  - annotation quality files

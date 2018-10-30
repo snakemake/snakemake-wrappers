@@ -1,0 +1,15 @@
+name: gatk BaseRecalibrator
+description: |
+  Run gatk BaseRecalibrator and ApplyBQSR in one step.
+authors:
+  - Johannes Köster
+  - Jake VanCampen
+input:
+  - bam file
+output:
+  - recalibrated bam file
+notes: |
+  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-Xmx4G" for one, and "-Xmx4G -XX:ParallelGCThreads=10" for two options.
+  * The `extra` param alllows for additional program arguments.
+  * For more inforamtion see, https://software.broadinstitute.org/gatk/documentation/article?id=11050
+

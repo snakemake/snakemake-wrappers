@@ -1,0 +1,14 @@
+rule gatk_bqsr:
+    input:
+        bam="mapped/{sample}.bam",
+        ref="genome.fasta",
+        known="dbsnp.vcf.gz"
+    output:
+        bam="recal/{sample}.bam"
+    log:
+        "logs/gatk/bqsr/{sample}.log"
+    params:
+        extra="",  # optional
+        java_opts="", # optional
+    wrapper:
+        "master/bio/gatk/baserecalibrator"

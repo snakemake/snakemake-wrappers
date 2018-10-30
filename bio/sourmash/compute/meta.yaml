@@ -1,0 +1,9 @@
+name: sourmash_compute
+description: |
+  Build a MinHash signature for a transcriptome, genome, or reads 
+authors:
+  - Lisa K. Johnson
+input:
+  - assembly fasta, or reads fastq
+output:
+  - sourmash signature 

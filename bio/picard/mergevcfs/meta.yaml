@@ -1,0 +1,9 @@
+name: picard MergeVcfs
+description: |
+  Merge vcf files using picard tools.
+authors:
+  - Johannes Köster
+input:
+  - vcf files
+output:
+  - merged vcf file

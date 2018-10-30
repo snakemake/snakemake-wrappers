@@ -2,8 +2,10 @@ rule fastqc:
     input:
         "reads/{sample}.fastq"
     output:
-        html="qc/{sample}.html",
-        zip="qc/{sample}.zip"
+        html="qc/fastqc/{sample}.html",
+        zip="qc/fastqc/{sample}.zip"
     params: ""
+    log:
+        "logs/fastqc/{sample}.log"
     wrapper:
         "master/bio/fastqc"

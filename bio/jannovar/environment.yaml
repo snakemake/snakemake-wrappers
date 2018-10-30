@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - jannovar-cli ==0.24
+  - jannovar-cli ==0.25

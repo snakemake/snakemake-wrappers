@@ -1,0 +1,17 @@
+rule salmon_quant_reads:
+    input:
+        r = "reads/{sample}.fq.gz",
+        index = "salmon/transcriptome_index"
+    output:
+        quant = 'salmon/{sample}_x_transcriptome/quant.sf',
+        lib = 'salmon/{sample}_x_transcriptome/lib_format_counts.json'
+    log:
+        'logs/salmon/{sample}_x_transcriptome.log'
+    params:
+        # optional parameters
+        libtype ="A",
+        #zip_ext = bz2 # req'd for bz2 files ('bz2'); optional for gz files('gz')
+        extra=""
+    threads: 2
+    wrapper:
+        "master/bio/salmon/quant"

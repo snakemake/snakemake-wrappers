@@ -12,3 +12,18 @@ rule pindel2vcf:
         "logs/pindel/pindel2vcf.{type}.log"
     wrapper:
         "master/bio/pindel/pindel2vcf"
+
+rule pindel2vcf_multi_input:
+    input:
+        ref="genome.fasta",
+        pindel=["pindel/all_D", "pindel/all_INV"]
+    output:
+        "pindel/all.vcf"
+    params:
+        refname="hg38",  # mandatory, see pindel manual
+        refdate="20170110",  # mandatory, see pindel manual
+        extra=""  # extra params (except -r, -p, -R, -d, -v)
+    log:
+        "logs/pindel/pindel2vcf.log"
+    wrapper:
+        "master/bio/pindel/pindel2vcf"

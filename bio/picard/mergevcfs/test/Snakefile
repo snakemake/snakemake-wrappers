@@ -1,0 +1,11 @@
+rule merge_vcfs:
+    input:
+        ["snvs.chr1.vcf", "snvs.chr2.vcf"]
+    output:
+        "snvs.vcf"
+    log:
+        "logs/picard/mergevcfs.log"
+    params:
+        extra=""
+    wrapper:
+        "master/bio/picard/mergevcfs"

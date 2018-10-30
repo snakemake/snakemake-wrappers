@@ -1,0 +1,9 @@
+name: salmon_quant
+description: |
+  Quantify transcripts with salmon 
+authors:
+  - Tessa Pierce
+input:
+  - assembly index, fastq files
+output:
+  - quantification files 

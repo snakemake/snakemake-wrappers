@@ -1,0 +1,20 @@
+rule salmon_quant_reads:
+    input:
+        # If you have multiple fastq files for a single sample (e.g. technical replicates, flowcells),
+        # use a list for multiple fastq files for each sample.
+        r1 = ['reads/a_1.fq.gz','reads/b_1.fq.gz'],
+        r2 = ['reads/a_2.fq.gz','reads/b_2.fq.gz'],
+        index = "salmon/transcriptome_index"
+    output:
+        quant = 'salmon/ab_pe_x_transcriptome/quant.sf',
+        lib = 'salmon/ab_pe_x_transcriptome/lib_format_counts.json'
+    log:
+        'logs/salmon/ab_pe_x_transcriptome.log'
+    params:
+        # optional parameters
+        libtype ="A",
+        #zip_ext = bz2 # req'd for bz2 files ('bz2'); optional for gz files('gz')
+        extra=""
+    threads: 2
+    wrapper:
+        "master/bio/salmon/quant"
