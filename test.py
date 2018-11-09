@@ -182,6 +182,9 @@ def test_picard_mergesamfiles():
     run("bio/picard/mergesamfiles",
         ["snakemake", "merged.bam", "--use-conda", "-F"])
 
+def test_picard_bam_to_fastq():
+    run("bio/picard/samtofastq",
+        ["snakemake", "reads/a.R1.fastq", "reads/a.R2.fastq",  "--use-conda", "-F"])
 
 def test_picard_sortsam():
     run("bio/picard/sortsam",
