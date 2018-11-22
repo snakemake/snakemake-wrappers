@@ -1,0 +1,9 @@
+name: picard RevertSam
+description: |
+  Reverts SAM or BAM files to a previous state. .
+authors:
+  - Patrik Smeds
+input:
+  - sam/bam file
+output:
+  - sam/bam file.

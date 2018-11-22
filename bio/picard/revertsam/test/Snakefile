@@ -1,0 +1,11 @@
+rule revert_bam:
+    input:
+        "mapped/{sample}.bam"
+    output:
+        "revert/{sample}.bam"
+    log:
+        "logs/picard/revert_sam/{sample}.log"
+    params:
+        extra="SANITIZE=true" # optional: Extra arguments for picard.
+    wrapper:
+        "master/bio/picard/revertsam"

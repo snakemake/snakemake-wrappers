@@ -211,6 +211,10 @@ def test_picard_sortsam():
     run("bio/picard/sortsam",
         ["snakemake", "sorted/a.bam", "--use-conda", "-F"])
 
+def test_picard_revertsam():
+    run("bio/picard/revertsam",
+        ["snakemake", "revert/a.bam", "--use-conda", "-F"])
+
 def test_picard_createsequencedictionary():
     run("bio/picard/createsequencedictionary",
         ["snakemake", "genome.dict", "--use-conda", "-F"])
