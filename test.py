@@ -159,6 +159,12 @@ def test_freebayes_bcf():
         run("bio/freebayes",
             ["snakemake", "--cores", str(c), "calls/a.bcf", "--use-conda", "-F", "-s", "Snakefile_bcf"])
 
+
+def test_lofreq_call():
+    run("bio/lofreq/call",
+        ["snakemake", "calls/a.vcf", "--use-conda", "-F"])
+
+
 def test_minimap2_aligner():
     run("bio/minimap2/aligner",
         ["snakemake", "aligned/genome_aln.paf", "--use-conda", "-F"])

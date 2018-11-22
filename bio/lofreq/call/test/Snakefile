@@ -1,0 +1,13 @@
+rule lofreq:
+    input:
+        "data/{sample}.bam"
+    output:
+        "calls/{sample}.vcf"
+    log:
+        "logs/lofreq_call/{sample}.log"
+    params:
+        ref="data/genome.fasta",
+        extra=""
+    threads: 8
+    wrapper:
+        "master/bio/lofreq/call"
