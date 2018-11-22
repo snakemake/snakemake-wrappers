@@ -1,0 +1,11 @@
+rule GroupReads:
+    input:
+        "mapped/a.bam"
+    output:
+        "mapped/{sample}.gu.bam"
+    params:
+        extra="-s adjacency --edits 1"
+    log:
+        "logs/fgbio/group_reads/{sample}.log"
+    wrapper:
+        "master/bio/fgbio/groupreadsbyumi"

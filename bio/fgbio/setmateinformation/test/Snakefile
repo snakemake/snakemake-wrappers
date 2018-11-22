@@ -1,0 +1,10 @@
+rule SetMateInfo:
+    input:
+        "mapped/a.bam"
+    output:
+        "mapped/{sample}.mi.bam"
+    params: ""
+    log:
+        "logs/fgbio/set_mate_info/{sample}.log"
+    wrapper:
+        "master/bio/fgbio/setmateinformation"

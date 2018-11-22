@@ -1,0 +1,11 @@
+rule AnnotateBam:
+    input:
+        bam="mapped/{sample}.bam",
+        umi="umi/{sample}.fastq"
+    output:
+        "mapped/{sample}.annotated.bam"
+    params: ""
+    log:
+        "logs/fgbio/annotate_bam/{sample}.log"
+    wrapper:
+        "master/bio/fgbio/annotatebamwithumis"

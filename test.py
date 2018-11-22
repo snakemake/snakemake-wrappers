@@ -133,6 +133,21 @@ def test_fastqc():
     run("bio/fastqc",
         ["snakemake", "qc/fastqc/a.html", "--use-conda", "-F"])
 
+def test_fgbio_annotate():
+     run("bio/fgbio/annotatebamwithumis",
+         ["snakemake", "mapped/a.annotated.bam", "--use-conda", "-F"])
+
+def test_fgbio_group():
+     run("bio/fgbio/groupreadsbyumi",
+          ["snakemake", "mapped/a.gu.bam", "--use-conda", "-F"])
+
+def test_fgbio_set_mate_information():
+       run("bio/fgbio/setmateinformation",
+            ["snakemake", "mapped/a.mi.bam", "--use-conda", "-F"])
+
+def test_fgbio_call_molecular_consensus_reads():
+       run("bio/fgbio/callmolecularconsensusreads",
+            ["snakemake", "mapped/a.m3.bam", "--use-conda", "-F"])
 
 def test_freebayes():
     run("bio/freebayes",

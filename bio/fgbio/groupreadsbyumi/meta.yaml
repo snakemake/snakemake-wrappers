@@ -1,0 +1,4 @@
+name: "fgbio GroupReadsByUmi"
+description: Groups reads together that appear to have come from the same original molecule.
+authors:
+  - Patrik Smeds

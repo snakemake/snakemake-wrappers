@@ -1,0 +1,4 @@
+name: "fgbio AnnotateBamWithUmis"
+description: Annotates existing BAM files with UMIs (Unique Molecular Indices, aka Molecular IDs, Molecular barcodes) from a separate FASTQ file.
+authors:
+  - Patrik Smeds

@@ -1,0 +1,11 @@
+rule ConsensusReads:
+    input:
+        "mapped/a.bam"
+    output:
+        "mapped/{sample}.m3.bam"
+    params:
+        extra="-M 3"
+    log:
+        "logs/fgbio/consensus_reads/{sample}.log"
+    wrapper:
+        "master/bio/fgbio/callmolecularconsensusreads"

@@ -1,0 +1,4 @@
+name: "fgbio CallMolecularConsensusReads"
+description: Calls consensus sequences from reads with the same unique molecular tag.
+authors:
+  - Patrik Smeds
