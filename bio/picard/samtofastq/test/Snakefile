@@ -1,0 +1,12 @@
+rule bam_to_fastq:
+    input:
+        "mapped/{sample}.bam"
+    output:
+        fastq1="reads/{sample}.R1.fastq",
+        fastq2="reads/{sample}.R2.fastq"
+    log:
+        "logs/picard/sam_to_fastq/{sample}.log"
+    params:
+        extra="" # optional: Extra arguments for picard.
+    wrapper:
+        "master/bio/picard/samtofastq"

@@ -1,0 +1,9 @@
+name: picard SomToFastq
+description: |
+  Converts a SAM or BAM file to FASTQ.
+authors:
+  - Patrik Smeds
+input:
+  - sam/bam file
+output:
+  - fastq files.
