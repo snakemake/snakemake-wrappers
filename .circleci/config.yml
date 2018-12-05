@@ -27,3 +27,10 @@ jobs:
           command: |
             source activate snakemake
             pytest test.py -v
+      - run:
+          name: Test doc generation
+          command: |
+            conda create -f docs/requirements.txt -n sphinx
+            source activate sphinx
+            cd docs
+            make html
