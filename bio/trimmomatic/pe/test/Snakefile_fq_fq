@@ -1,9 +1,4 @@
-rule trimmomatic_pe_fq_fq:
-    """Trim reads with trimmomatic + pigz compressionself.
-
-    Note: in SE mode, stick with using the placehorlder r1 for your input
-    and ouptut file.
-    """
+rule trimmomatic_pe:
     input:
         r1="reads/{sample}.1.fastq",
         r2="reads/{sample}.2.fastq"
@@ -19,7 +14,6 @@ rule trimmomatic_pe_fq_fq:
         # list of trimmers (see manual)
         trimmer=["TRAILING:3"],
         # optional parameters
-        extra="",
-        pigz="none"
+        extra=""
     wrapper:
         "master/bio/trimmomatic/pe"

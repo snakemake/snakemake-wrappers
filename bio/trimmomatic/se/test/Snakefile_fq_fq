@@ -1,7 +1,6 @@
-rule trimmomatic_fq_fq:
-    """Use trimmomatic + pigz via process substitution"""
+rule trimmomatic:
     input:
-        "reads/{sample}.fastq"  # fastq accepted
+        "reads/{sample}.fastq"
     output:
         "trimmed/{sample}.fastq"
     log:
@@ -9,10 +8,8 @@ rule trimmomatic_fq_fq:
     params:
         # list of trimmers (see manual)
         trimmer=["TRAILING:3"],
-        # compression levels from -0 to -9 and -11
-        compression_level="-5",
         # optional parameters
-        extra=""
+        extra="",
     threads:
         32
     wrapper:
