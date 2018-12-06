@@ -1,8 +1,8 @@
 rule trimmomatic:
     input:
-        "reads/{sample}.fastq.gz"  # fastq accepted
+        "reads/{sample}.fastq"
     output:
-        "trimmed/{sample}.fastq.gz"
+        "trimmed/{sample}.fastq"
     log:
         "logs/trimmomatic/{sample}.log"
     params:
@@ -10,9 +10,6 @@ rule trimmomatic:
         trimmer=["TRAILING:3"],
         # optional parameters
         extra="",
-        pigz="both",
-        # compression levels from -0 to -9 and -11
-        compression_level="-9"
     threads:
         32
     wrapper:
