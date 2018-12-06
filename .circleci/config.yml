@@ -30,7 +30,7 @@ jobs:
       - run:
           name: Test doc generation
           command: |
-            conda create --file docs/requirements.txt -n sphinx
+            conda create --file docs/requirements.txt -n sphinx python=3
             source activate sphinx
             cd docs
             make html
