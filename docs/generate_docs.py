@@ -4,6 +4,7 @@ from jinja2 import Template
 import yaml
 import subprocess
 
+DISCIPLINES = ["bio"]
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 WRAPPER_DIR = os.path.dirname(BASE_DIR)
@@ -60,9 +61,7 @@ def render_wrapper(path, target):
 
 def setup(*args):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-    for discipline in os.listdir(WRAPPER_DIR):
-        if discipline in BLACKLIST:
-            continue
+    for discipline in DISCIPLINES:
         for tool in os.listdir(os.path.join(WRAPPER_DIR, discipline)):
             if tool in BLACKLIST:
                 continue
