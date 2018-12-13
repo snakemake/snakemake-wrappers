@@ -1,7 +1,7 @@
 .. _`{{name}}`:
 
 {{ name|upper }}
-==========
+{{ name | length * '=' }}
 
 {{ description }}
 
