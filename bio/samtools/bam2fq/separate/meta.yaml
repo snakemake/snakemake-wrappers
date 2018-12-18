@@ -1,0 +1,9 @@
+name: samtools bam2fq separate
+description:
+  Convert a bam file with paired end reads back to unaligned reads in a two
+  separate fastq files with samtools. Reads that are not properly paired are
+  discarded (READ_OTHER and singleton reads in samtools bam2fq documentation),
+  as are secondary (0x100) and supplementary reads (0x800).
+authors:
+  - David Laehnemann
+  - Victoria Sack

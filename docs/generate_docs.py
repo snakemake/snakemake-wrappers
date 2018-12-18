@@ -27,7 +27,7 @@ def get_tool_dir(tool):
     return outdir
 
 
-def render_tool(tool, subcmds, max_depth):
+def render_tool(tool, subcmds):
     if '' in subcmds:
         raise NotImplementedError(  'You are trying to render the tool "', tool,
                                     '" for subcommands "', subcmds,
@@ -35,7 +35,7 @@ def render_tool(tool, subcmds, max_depth):
                                     'as the subcommand(s) have wrappers. This case requires a Template hybrid ',
                                     'between wrapper.rst and tool.rst that has not been implemented.')
     with open(os.path.join(get_tool_dir(tool) + ".rst"), "w") as f:
-        f.write(TOOL_TEMPLATE.render(name=tool, subcmds=subcmds, max_depth=max_depth))
+        f.write(TOOL_TEMPLATE.render(name=tool))
 
 
 def render_wrapper(path, target):
@@ -59,6 +59,7 @@ def render_wrapper(path, target):
         wrapper = textwrap.indent(wrapper.read(), "    ")
 
     name = meta["name"].replace(" ", "_") + ".rst"
+    os.makedirs(os.path.dirname(target), exist_ok=True)
     with open(target, "w") as readme:
         rst = TEMPLATE.render(snakefile=snakefile, wrapper=wrapper, wrapper_lang=wrapper_lang, pkgs=pkgs, **meta)
         readme.write(rst)
@@ -93,7 +94,7 @@ def setup(*args):
                 render_wrapper(path, os.path.join(OUTPUT_DIR, tool + ".rst"))
             else:
                 # subcommands found (and rendered above), render the tool's table of content
-                render_tool(tool, subcmds, max_depth)
+                render_tool(tool, subcmds)
 
 
 if __name__ == '__main__':

@@ -3,12 +3,10 @@
 {{ name|upper }}
 {{ name | length * '=' }}
 
-
-Wrappers
---------
+For {{ name }}, the following wrappers are available:
 
 .. toctree::
-   :maxdepth: {{ max_depth }}
+   :maxdepth: 1
    :glob:
 
-   {{ name }}/*
+   {{ name }}/**

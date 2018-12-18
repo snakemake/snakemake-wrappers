@@ -255,6 +255,14 @@ def test_samtools_flagstat():
     run("bio/samtools/flagstat",
         ["snakemake", "mapped/a.bam.flagstat", "--use-conda", "-F"])
 
+def test_samtools_bam2fq_interleaved():
+    run("bio/samtools/bam2fq/interleaved",
+        ["snakemake", "reads/a.fq", "--use-conda", "-F"])
+
+def test_samtools_bam2fq_separate():
+    run("bio/samtools/bam2fq/separate",
+        ["snakemake", "reads/a.1.fq", "--use-conda", "-F"])
+
 def test_bcftools_concat():
     run("bio/bcftools/concat",
         ["snakemake", "all.bcf", "--use-conda", "-F"])

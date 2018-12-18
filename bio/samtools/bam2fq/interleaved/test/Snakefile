@@ -1,0 +1,10 @@
+rule samtools_bam2fq_interleaved:
+    input:
+        "mapped/{sample}.bam"
+    output:
+        "reads/{sample}.fq"
+    params:
+        " "
+    threads: 3
+    wrapper:
+        "master/bio/samtools/bam2fq/interleaved"

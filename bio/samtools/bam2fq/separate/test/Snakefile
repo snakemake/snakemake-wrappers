@@ -1,0 +1,12 @@
+rule samtools_bam2fq_separate:
+    input:
+        "mapped/{sample}.bam"
+    output:
+        "reads/{sample}.1.fq",
+        "reads/{sample}.2.fq"
+    params:
+        sort = "-m 4G",
+        bam2fq = "-n"
+    threads: 3
+    wrapper:
+        "master/bio/samtools/bam2fq/separate"

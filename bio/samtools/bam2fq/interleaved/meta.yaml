@@ -1,0 +1,7 @@
+name: samtools bam2fq interleaved
+description:
+  Convert a bam file back to unaligned reads in a single fastq file with
+  samtools. For paired end reads, this results in an unsorted interleaved file.
+authors:
+  - David Laehnemann
+  - Victoria Sack
