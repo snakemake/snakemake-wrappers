@@ -50,6 +50,10 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+def test_art_profiler_illumina():
+    run("bio/art/profiler_illumina",
+        ["snakemake", "profiles/a.1.txt", "profiles/a.2.txt" , "--use-conda", "-F"])
+
 
 def test_bowtie2_align():
     run("bio/bowtie2/align",

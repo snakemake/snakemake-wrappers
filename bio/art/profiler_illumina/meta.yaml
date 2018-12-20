@@ -1,0 +1,6 @@
+name: art_profiler_illumina
+description: Use the art profiler to create a base quality score profile for
+  Illumina read data from a fastq file.
+authors:
+  - David Laehnemann
+  - Victoria Sack
