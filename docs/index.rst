@@ -39,6 +39,7 @@ If you want to contribute we suggest the following procedure:
 
 * fork the repository
 * develop your contribution
+* run tests against your wrapper
 * perform a pull request
 
 The pull request will be reviewed and included as fast as possible.
@@ -49,7 +50,7 @@ Thereby, contributions should follow the coding style of the already present exa
 * provide an example Snakefile that shows how to use the wrapper,
 * follow the python `style guide <http://legacy.python.org/dev/peps/pep-0008>`_,
 * use 4 spaces for indentation.
-
+* make sure your tests pass by running pytest: i.e ``pytest -k (samtools and view) test.py`` to run your contributions locally before submitting code to CI.
 
 .. toctree::
    :maxdepth: 3
