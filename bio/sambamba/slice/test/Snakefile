@@ -1,10 +1,10 @@
 rule sambamba_slice:
     input:
-        "mapped/{sample}.bam"
+        "{sample}.bam"
     output:
-        "mapped/{sample}.sliced.bam"
+        "{sample}.sliced.bam"
     params:
-        ""  # optional parameters
+        "xx:1-11"
     threads: 8
     wrapper:
         "master/bio/sambamba/slice"
