@@ -37,18 +37,62 @@ Contribute
 We invite anybody to contribute to the Snakemake Wrapper Repository.
 If you want to contribute we suggest the following procedure:
 
-* fork the repository
-* develop your contribution
-* perform a pull request
+#. Fork the repository: https://bitbucket.org/snakemake/snakemake-wrappers/fork
+#. Clone the repo locally: ``git clone https://MY_PROFILE@bitbucket.org/MY_PROFILE/snakemake-wrappers.git``
+#. Locally, create a new branch: ``git checkout -b my-new-snakemake-wrapper``
+#. Commit your contributions to that branch and push them to you fork: ``git push -u origin my-new-snakemake-wrapper``
+#. Create a pull request: ``https://bitbucket.org/MY_PROFILE/snakemake-wrappers/pull-requests/new``
 
 The pull request will be reviewed and included as fast as possible.
-Thereby, contributions should follow the coding style of the already present examples, i.e.
+Contributions should follow the coding style of the already present examples, i.e.:
 
-* provide a meta.yaml with name, description and author of the wrapper,
-* provide an environment.yaml which lists all required software packages (the packages shall be available via https://anaconda.org),
-* provide an example Snakefile that shows how to use the wrapper,
+* provide a ``meta.yaml`` with name, description and author(s) of the wrapper
+* provide an ``environment.yaml`` which lists all required software packages (the
+  packages should be available for installation via the
+  `default anaconda channels <https://anaconda.org/anaconda>`_ or via the
+  `conda <https://conda.io/docs/>`_ channels
+  `bioconda <https://bioconda.github.io/recipes.html>`_ or
+  `conda-forge <https://conda-forge.org/feedstocks/>`_ )
+* provide a minimal test case in a subfolder called ``test``, with an example
+  ``Snakefile`` that shows how to use the wrapper, some minimal testing data
+  (also check existing wrappers for suitable data) and add an invocation of the
+  test in ``test.py``
 * follow the python `style guide <http://legacy.python.org/dev/peps/pep-0008>`_,
-* use 4 spaces for indentation.
+  using 4 spaces for indentation.
+
+Testing locally
+^^^^^^^^^^^^^^^
+
+If you want to debug your contribution locally, before creating a pull request,
+we recommend adding your test case to the start of the list in ``test.py``, so
+that it runs first. Then, `install miniconda with the channels as described for
+bioconda <https://bioconda.github.io/#using-bioconda>`_ and set up an
+environment with the necessary dependencies and activate it::
+
+  conda create -n test-snakemake-wrappers snakemake pytest conda
+  conda activate test-snakemake-wrappers
+
+Afterwards, from the main directory of the repo, you can run the tests with::
+
+  pytest test.py -v
+
+If you use a keyboard interrupt after your test has failed, you will get all
+the relevant stdout and stderr messages printed.
+
+If you also want to test the docs generation locally, create another environment
+and activate it::
+
+  conda create -n test-snakemake-wrapper-docs sphinx sphinx_rtd_theme pyyaml
+  conda activate test-snakemake-wrapper-docs
+
+Then, enter the respective directory and build the docs::
+
+  cd docs
+  make html
+
+If it runs through, you can open the main page at ``docs/_build/html/index.html``
+in a web browser. If you want to start fresh, you can clean up the build
+with ``make clean``.
 
 
 .. toctree::
