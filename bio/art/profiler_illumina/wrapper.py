@@ -39,7 +39,8 @@ with tempfile.TemporaryDirectory() as temp_input:
                 #   extension, because otherwise art does read enumeration magic
                 #   that messes up output file naming
                 os.path.join(   temp_input,
-                                filename.replace(fq_extension, "preventing_art_magic_spacer" + fq_extension ) )
+                                filename.replace("." + fq_extension, "_preventing_art_magic_spacer." + fq_extension )
+                                )
                 )
 
     # include output folder name in the profile_name command line argument and
