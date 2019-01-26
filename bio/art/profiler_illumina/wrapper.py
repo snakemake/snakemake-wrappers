@@ -30,9 +30,17 @@ with tempfile.TemporaryDirectory() as temp_input:
     os.symlink(
                 # snakemake paths are relative, but the symlink needs to be absolute
                 os.path.abspath(snakemake.input[0] ),
-                # strip temp file name of any infixes, to circumvent art read
-                # enumeration magic
-                os.path.join(temp_input, "input." + fq_extension)
+                # the following awkward file name generation has reasons:
+                # * the file name needs to be unique to the execution of the
+                #   rule, as art will create and mv temporary files with its basename
+                #   in the output directory, which causes utter confusion when
+                #   executing instances of the rule in parallel
+                # * temp file name cannot have any read infixes before the file
+                #   extension, because otherwise art does read enumeration magic
+                #   that messes up output file naming
+                os.path.join(   temp_input,
+                                filename.replace("." + fq_extension, "_preventing_art_magic_spacer." + fq_extension )
+                                )
                 )
 
     # include output folder name in the profile_name command line argument and
