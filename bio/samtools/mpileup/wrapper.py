@@ -1,4 +1,4 @@
-"""Snakemake wrapper for trimming paired-end reads using cutadapt."""
+"""Snakemake wrapper for running mpileup."""
 
 __author__ = "Julian de Ruiter"
 __copyright__ = "Copyright 2017, Julian de Ruiter"
@@ -14,10 +14,6 @@ bam_input = snakemake.input.bam
 reference_genome = snakemake.input.reference_genome
 
 extra = snakemake.params.get("extra", "")
-
-input = ""
-for i in bam_input:
-    input = input + "-b {} ".format(i)
 
 if not snakemake.output[0].endswith(".gz"):
     raise Exception("output file will be compressed and therefore filename should end with \".gz\"")
