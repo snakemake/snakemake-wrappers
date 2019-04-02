@@ -1,0 +1,16 @@
+name: gatk3 PrintReads
+description: |
+  Run gatk3 PrintReads
+authors:
+  - Patrik Smeds
+input:
+  - bam file
+  - recalibration table
+  - reference genome
+output:
+  - bam file
+notes: |
+  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-Xmx4G" for one, and "-Xmx4G -XX:ParallelGCThreads=10" for two options.
+  * The `extra` param alllows for additional program arguments.
+  * For more inforamtion see, https://software.broadinstitute.org/gatk/documentation/article?id=11050
+  * Gatk3.jar is not included in the bioconda package, i.e it need to be added to the conda environment manually.
