@@ -16,5 +16,7 @@ rule trimmomatic_pe_fq_gz:
         # optional parameters
         extra="",
         compression_level="-9"
+    threads:
+        32
     wrapper:
         "master/bio/trimmomatic/pe"

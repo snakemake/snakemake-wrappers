@@ -15,5 +15,7 @@ rule trimmomatic_pe:
         trimmer=["TRAILING:3"],
         # optional parameters
         extra=""
+    threads:
+        32
     wrapper:
         "master/bio/trimmomatic/pe"

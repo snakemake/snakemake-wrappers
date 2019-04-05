@@ -16,5 +16,7 @@ rule trimmomatic_pe:
         # optional parameters
         extra="",
         compression_level="-9"
+    threads:
+        32
     wrapper:
         "master/bio/trimmomatic/pe"
