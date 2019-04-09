@@ -1,9 +1,3 @@
-"""
-Note that the conda gatk3 recipe requires manual intervention, as the gatk3 jar
-have to be provided by the user due to licens restrictions. Therefor these test
-can't be run with circleci.
-"""
-
 rule printreads:
     input:
         bam="mapped/{sample}.bam",
