@@ -1,0 +1,21 @@
+"""
+Note that the conda gatk3 recipe requires manual intervention, as the gatk3 jar
+have to be provided by the user due to licens restrictions. Therefor these test
+can't be run with circleci.
+"""
+
+rule realignertargetcreator:
+    input:
+        bam="mapped/{sample}.bam"
+        ref="genome.fasta",
+        known="dbsnp.vcf.gz"
+    output:
+        "{sample}.intervals"
+    log:
+        "logs/gatk/realignertargetcreator/{sample}.log"
+    params:
+        extra="",  # optional
+        java_opts="",
+    threads: 16
+    wrapper:
+        "bio/gatk3/realignertargetcreator"

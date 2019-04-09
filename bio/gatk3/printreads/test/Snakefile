@@ -1,0 +1,21 @@
+"""
+Note that the conda gatk3 recipe requires manual intervention, as the gatk3 jar
+have to be provided by the user due to licens restrictions. Therefor these test
+can't be run with circleci.
+"""
+
+rule printreads:
+    input:
+        bam="mapped/{sample}.bam",
+        ref="genome.fasta",
+        recal_data="{sample}.recal_data_table"
+    output:
+        "alignment/{sample}.bqsr.bam"
+    log:
+        "logs/gatk/bqsr/{sample}..log"
+    params:
+        extra="",  # optional
+        java_opts="",
+    threads: 16
+    wrapper:
+        "bio/gatk3/printreads"

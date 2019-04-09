@@ -1,0 +1,22 @@
+"""
+Note that the conda gatk3 recipe requires manual intervention, as the gatk3 jar
+have to be provided by the user due to licens restrictions. Therefor these test
+can't be run with circleci.
+"""
+
+rule indelrealigner:
+    input:
+        bam="mapped/{sample}.bam",
+        ref="genome.fasta",
+        known="dbsnp.vcf.gz",
+        target_intervals="{sample}.intervals"
+    output:
+        bam="realigned/{sample}.bam"
+    log:
+        "logs/gatk3/indelrealigner/{sample}.log"
+    params:
+        extra="",  # optional
+        java_opts="", # optional
+    threads: 16
+    wrapper:
+        "bio/gatk/indelrealigner"

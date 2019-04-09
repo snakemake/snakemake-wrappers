@@ -1,0 +1,21 @@
+"""
+Note that the conda gatk3 recipe requires manual intervention, as the gatk3 jar
+have to be provided by the user due to licens restrictions. Therefor these test
+can't be run with circleci.
+"""
+
+rule baserecalibrator:
+    input:
+        bam="mapped/{sample}.bam",
+        ref="genome.fasta",
+        known="dbsnp.vcf.gz"
+    output:
+        "{sample}.recal_data_table"
+    log:
+        "logs/gatk3/bqsr/{sample}.log"
+    params:
+        extra="",  # optional
+        java_opts="", # optional
+    threads: 16
+    wrapper:
+        "bio/gatk/baserecalibrator"
