@@ -1,0 +1,4 @@
+name: "fgbio CollectDuplexSeqMetrics"
+description: Collects a suite of metrics to QC duplex sequencing data.g.
+authors:
+  - Patrik Smeds

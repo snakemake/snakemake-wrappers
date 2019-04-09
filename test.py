@@ -146,6 +146,12 @@ def test_fgbio_annotate():
      run("bio/fgbio/annotatebamwithumis",
          ["snakemake", "mapped/a.annotated.bam", "--use-conda", "-F"])
 
+def test_fgbio_collectduplexseqmetrics():
+   run("bio/fgbio/collectduplexseqmetrics",
+        ["snakemake", "stats/a.family_sizes.txt", "stats/a.duplex_family_sizes.txt",
+            "stats/a.duplex_yield_metrics.txt", "stats/a.umi_counts.txt",
+            "stats/a.duplex_qc.pdf", "stats/a.duplex_umi_counts.txt", "--use-conda", "-F"])
+
 def test_fgbio_group():
      run("bio/fgbio/groupreadsbyumi",
           ["snakemake", "mapped/a.gu.bam", "--use-conda", "-F"])

@@ -1,0 +1,16 @@
+rule CollectDuplexSeqMetrics:
+    input:
+        "mapped/{sample}.gu.bam"
+    output:
+        family_sizes="stats/{sample}.family_sizes.txt",
+        duplex_family_sizes="stats/{sample}.duplex_family_sizes.txt",
+        duplex_yield_metrics="stats/{sample}.duplex_yield_metrics.txt",
+        umi_counts="stats/{sample}.umi_counts.txt",
+        duplex_qc="stats/{sample}.duplex_qc.pdf",
+        duplex_umi_counts="stats/{sample}.duplex_umi_counts.txt",
+    params:
+        extra=lambda wildcards: "-d " + wildcards.sample
+    log:
+        "logs/fgbio/collectduplexseqmetrics/{sample}.log"
+    wrapper:
+        "master/bio/fgbio/collectduplexseqmetrics"
