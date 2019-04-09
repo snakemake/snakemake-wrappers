@@ -119,6 +119,11 @@ def test_bwa_samse_sort_picard():
          "-s", "Snakefile_picard"])
 
 
+def test_clustalo():
+    run("bio/clustalo",
+        ["snakemake", "test.msa.fa", "--use-conda", "-F"])
+
+
 def test_cutadapt_pe():
     run("bio/cutadapt/pe",
         ["snakemake", "trimmed/a.1.fastq", "--use-conda", "-F"])

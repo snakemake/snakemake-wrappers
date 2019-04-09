@@ -1,0 +1,12 @@
+rule clustalo:
+    input:
+        "{sample}.fa"
+    output:
+        "{sample}.msa.fa"
+    params:
+        extra=""
+    log:
+        "logs/clustalo/test/{sample}.log"
+    threads: 8
+    wrapper:
+        "master/bio/clustalo"
