@@ -304,6 +304,10 @@ def test_bcftools_merge():
     run("bio/bcftools/merge",
         ["snakemake", "all.bcf", "--use-conda", "-F"])
 
+def test_snpmutator():
+    run("bio/snp-mutator",
+        ["snakemake", "test_mutated_1.fasta", "test_mutated_2.fasta", "--use-conda", "-F"])
+
 def test_star_align():
     # generate index on the fly, because it is huge regardless of genome size
     os.makedirs("bio/star/align/test/index", exist_ok=True)

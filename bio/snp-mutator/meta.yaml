@@ -1,0 +1,4 @@
+name: snp-mutator
+description: Generate mutated sequence files from a reference genome.
+authors:
+  - Michael Hall  

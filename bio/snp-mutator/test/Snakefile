@@ -1,0 +1,22 @@
+NUM_SIMULATIONS = 2
+
+rule snpmutator:
+    input:
+        "{sample}.fa"
+    output:
+        vcf = "{sample}.mutated.vcf",
+        sequences = expand(
+            "{{sample}}_mutated_{simulation_number}.fasta",
+            simulation_number=range(1, NUM_SIMULATIONS + 1)
+        )
+    params:
+        num_simulations = NUM_SIMULATIONS,
+        extra = " ".join([
+            "--num-substitutions 2",
+            "--num-insertions 2",
+            "--num-deletions 0"
+        ]),
+    log:
+        "logs/snp-mutator/test/{sample}.log"
+    wrapper:
+        "master/bio/snp-mutator"
