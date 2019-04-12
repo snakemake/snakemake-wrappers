@@ -50,6 +50,7 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+
 def test_art_profiler_illumina():
     run("bio/art/profiler_illumina",
         ["snakemake", "profiles/a.1.txt", "profiles/a.2.txt" , "--use-conda", "-F"])
@@ -192,6 +193,18 @@ def test_multiqc():
     run("bio/multiqc",
         ["snakemake", "qc/multiqc.html", "--use-conda", "-F"])
 
+def test_nanosimh():
+    run(
+        "bio/nanosim-h",
+        [
+            "snakemake",
+            "test.simulated.fa",
+            "test.simulated.log",
+            "test.simulated.errors.txt",
+            "--use-conda",
+            "-F",
+        ],
+    )
 
 def test_ngs_disambiguate():
     run("bio/ngs-disambiguate",
