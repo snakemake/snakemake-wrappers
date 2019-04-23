@@ -10,4 +10,4 @@ rule splitncigarreads:
         extra="",  # optional
         java_opts="",  # optional
     wrapper:
-        "bio/gatk/splitncigarreads"
+        "master/bio/gatk/splitncigarreads"
