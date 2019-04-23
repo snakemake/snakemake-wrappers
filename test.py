@@ -464,6 +464,8 @@ def test_gatk_genotypegvcfs():
 def test_gatk_combinegvcfs():
     run("bio/gatk/combinegvcfs", ["snakemake", "calls/all.g.vcf", "--use-conda", "-F"])
 
+def test_gatk_splitncigarreads():
+    run("bio/gatk/splitncigarreads", ["snakemake", "split/a.bam", "--use-conda", "-F"])
 
 def test_picard_mergevcfs():
     run("bio/picard/mergevcfs", ["snakemake", "snvs.vcf", "--use-conda", "-F"])

@@ -1,0 +1,36 @@
+18:56:07.727 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/home/forster/Projects/snakemake-wrappers/bio/gatk/splitncigarreads/test/.snakemake/conda/f5522d97/share/gatk4-4.0.5.1-0/gatk-package-4.0.5.1-local.jar!/com/intel/gkl/native/libgkl_compression.so
+18:56:07.813 INFO  SplitNCigarReads - ------------------------------------------------------------
+18:56:07.813 INFO  SplitNCigarReads - The Genome Analysis Toolkit (GATK) v4.0.5.1
+18:56:07.813 INFO  SplitNCigarReads - For support and documentation go to https://software.broadinstitute.org/gatk/
+18:56:07.813 INFO  SplitNCigarReads - Executing as forster@spock on Linux v4.15.0-47-generic amd64
+18:56:07.813 INFO  SplitNCigarReads - Java runtime: OpenJDK 64-Bit Server VM v1.8.0_192-b01
+18:56:07.814 INFO  SplitNCigarReads - Start Date/Time: April 23, 2019 6:56:07 PM CEST
+18:56:07.814 INFO  SplitNCigarReads - ------------------------------------------------------------
+18:56:07.814 INFO  SplitNCigarReads - ------------------------------------------------------------
+18:56:07.814 INFO  SplitNCigarReads - HTSJDK Version: 2.15.1
+18:56:07.814 INFO  SplitNCigarReads - Picard Version: 2.18.2
+18:56:07.814 INFO  SplitNCigarReads - HTSJDK Defaults.COMPRESSION_LEVEL : 2
+18:56:07.814 INFO  SplitNCigarReads - HTSJDK Defaults.USE_ASYNC_IO_READ_FOR_SAMTOOLS : false
+18:56:07.814 INFO  SplitNCigarReads - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_SAMTOOLS : true
+18:56:07.814 INFO  SplitNCigarReads - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_TRIBBLE : false
+18:56:07.814 INFO  SplitNCigarReads - Deflater: IntelDeflater
+18:56:07.814 INFO  SplitNCigarReads - Inflater: IntelInflater
+18:56:07.814 INFO  SplitNCigarReads - GCS max retries/reopens: 20
+18:56:07.815 INFO  SplitNCigarReads - Using google-cloud-java patch 6d11bef1c81f885c26b2b56c8616b7a705171e4f from https://github.com/droazen/google-cloud-java/tree/dr_all_nio_fixes
+18:56:07.815 INFO  SplitNCigarReads - Initializing engine
+18:56:08.032 INFO  SplitNCigarReads - Done initializing engine
+18:56:08.035 WARN  ReadUtils - Skipping index file creation for: split/a.bam. Index file creation requires reads in coordinate sorted order.
+18:56:08.039 INFO  ProgressMeter - Starting traversal
+18:56:08.039 INFO  ProgressMeter -        Current Locus  Elapsed Minutes       Reads Processed     Reads/Minute
+18:56:08.060 INFO  SplitNCigarReads - Finished first pass through the reads
+18:56:08.060 INFO  OverhangFixingManager - Overhang Fixing Manager saved 0 reads in the first pass
+18:56:08.062 INFO  SplitNCigarReads - Starting second pass through the reads
+18:56:08.066 INFO  SplitNCigarReads - No reads filtered by: AllowAllReadsReadFilter
+18:56:08.067 INFO  ProgressMeter -             unmapped              0.0                    24          53333.3
+18:56:08.067 INFO  ProgressMeter - Traversal complete. Processed 24 total reads in 0.0 minutes.
+18:56:08.068 INFO  SplitNCigarReads - Shutting down engine
+[April 23, 2019 6:56:08 PM CEST] org.broadinstitute.hellbender.tools.walkers.rnaseq.SplitNCigarReads done. Elapsed time: 0.01 minutes.
+Runtime.totalMemory()=638582784
+Using GATK jar /home/forster/Projects/snakemake-wrappers/bio/gatk/splitncigarreads/test/.snakemake/conda/f5522d97/share/gatk4-4.0.5.1-0/gatk-package-4.0.5.1-local.jar
+Running:
+    java -Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=2 -jar /home/forster/Projects/snakemake-wrappers/bio/gatk/splitncigarreads/test/.snakemake/conda/f5522d97/share/gatk4-4.0.5.1-0/gatk-package-4.0.5.1-local.jar SplitNCigarReads -R genome.fasta -I mapped/a.bam -O split/a.bam
