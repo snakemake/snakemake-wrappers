@@ -4,15 +4,15 @@ rule star_pe_multi:
         # usually technical replicates across lanes/flowcells
         fq1 = ["reads/{sample}_R1.1.fastq", "reads/{sample}_R1.2.fastq"],
         # paired end reads needs to be ordered so each item in the two lists match
-        fq2 = ["reads/{sample}_R2.1.fastq", "reads/{sample}_R2.2.fastq"] #optional
+        fq2 = ["reads/{sample}_R2.1.fastq", "reads/{sample}_R2.2.fastq"], #optional
+        # path to STAR reference genome index
+        index = "index"
     output:
         # see STAR manual for additional output files
         "star/pe/{sample}/Aligned.out.bam"
     log:
         "logs/star/pe/{sample}.log"
     params:
-        # path to STAR reference genome index
-        index="index",
         # optional parameters
         extra=""
     threads: 8
