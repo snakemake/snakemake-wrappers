@@ -10,6 +10,9 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
+index = snakemake.input.get("index")
+assert index is not None, "input -> index is a required input parameter"
+
 fq1 = snakemake.input.get("fq1")
 assert fq1 is not None, "input-> fq1 is a required input parameter"
 fq1 = [snakemake.input.fq1] if isinstance(snakemake.input.fq1, str) else snakemake.input.fq1
