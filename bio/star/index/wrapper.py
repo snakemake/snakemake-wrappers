@@ -29,7 +29,7 @@ shell(
     "--runThreadN {snakemake.threads} "            # Number of threads
     "--genomeDir {snakemake.output} "              # Path to output
     "--genomeFastaFiles {snakemake.input.fasta} "  # Path to fasta files
-    "{sjdb_overhang}"                              # Read-len - 1
+    "{sjdb_overhang} "                             # Read-len - 1
     "{gtf} "                                       # Highly recommended GTF
     "{log}"                                        # Logging
 )
