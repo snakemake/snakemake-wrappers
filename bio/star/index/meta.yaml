@@ -1,0 +1,8 @@
+name: "STAR Index"
+description: Index fasta sequences with STAR
+authors:
+  - Thibault Dayris
+input:
+  - A (multi)fasta formatted file
+output:
+  - A directory containing the indexed sequence for downstream STAR mapping
