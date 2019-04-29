@@ -32,7 +32,7 @@ shell(
     "STAR "
     "{extra} "
     "--runThreadN {snakemake.threads} "
-    "--genomeDir {snakemake.prams.index} "
+    "--genomeDir {snakemake.params.index} "
     "--readFilesIn {input_str} "
     "{readcmd} "
     "--outSAMtype BAM Unsorted "
