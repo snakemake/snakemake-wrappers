@@ -331,6 +331,9 @@ def test_star_align():
     run("bio/star/align",
         ["snakemake", "star/pe/a/Aligned.out.bam", "--use-conda", "-F"])
 
+def test_star_index():
+    run("bio/star/index", ["snakemake", "genome", "--use-conda", "-F"])
+
 def test_snpeff():
     run("bio/snpeff",
         ["snakemake", "snpeff/fake_KJ660346.vcf", "--use-conda", "-F"])
