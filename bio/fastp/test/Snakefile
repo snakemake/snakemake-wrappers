@@ -1,0 +1,30 @@
+rule fastp_se:
+    input:
+        sample=["reads/se/{sample}.fastq"]
+    output:
+        trimmed="trimmed/se/{sample}.fastq",
+        html="report/se/{sample}.html",
+        json="report/se/{sample}.json"
+    log:
+        "logs/fastp/se/{sample}.log"
+    params:
+        extra=""
+    threads: 1
+    wrapper:
+        "master/bio/fastp"
+
+
+rule fastp_pe:
+    input:
+        sample=["reads/pe/{sample}.1.fastq", "reads/pe/{sample}.2.fastq"] 
+    output:
+        trimmed=["trimmed/pe/{sample}.1.fastq", "trimmed/pe/{sample}.2.fastq"],
+        html="report/pe/{sample}.html",
+        json="report/pe/{sample}.json"
+    log:
+        "logs/fastp/pe/{sample}.log"
+    params:
+        extra=""
+    threads: 2
+    wrapper:
+        "master/bio/fastp"

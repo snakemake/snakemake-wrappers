@@ -50,7 +50,6 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
-
 def test_art_profiler_illumina():
     run("bio/art/profiler_illumina",
         ["snakemake", "profiles/a.1.txt", "profiles/a.2.txt" , "--use-conda", "-F"])
@@ -138,6 +137,13 @@ def test_epic_peaks():
     run("bio/epic/peaks",
         ["snakemake", "epic/enriched_regions.bed", "--use-conda", "-F"])
 
+def test_fastp_pe():
+    run("bio/fastp",
+        ["snakemake", "trimmed/pe/a.1.fastq", "trimmed/pe/a.2.fastq", "report/pe/a.html", "report/pe/a.json", "--use-conda", "-F"])
+
+def test_fastp_se():
+    run("bio/fastp",
+        ["snakemake", "trimmed/se/a.fastq", "report/se/a.html", "report/se/a.json", "--use-conda", "-F"])
 
 def test_fastqc():
     run("bio/fastqc",
@@ -467,6 +473,8 @@ def test_gatk_genotypegvcfs():
 def test_gatk_combinegvcfs():
     run("bio/gatk/combinegvcfs", ["snakemake", "calls/all.g.vcf", "--use-conda", "-F"])
 
+def test_gatk_splitncigarreads():
+    run("bio/gatk/splitncigarreads", ["snakemake", "split/a.bam", "--use-conda", "-F"])
 
 def test_picard_mergevcfs():
     run("bio/picard/mergevcfs", ["snakemake", "snvs.vcf", "--use-conda", "-F"])

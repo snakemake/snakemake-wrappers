@@ -1,0 +1,13 @@
+rule splitncigarreads:
+    input:
+        bam="mapped/{sample}.bam",
+        ref="genome.fasta"
+    output:
+        "split/{sample}.bam"
+    log:
+        "logs/gatk/splitNCIGARreads/{sample}.log"
+    params:
+        extra="",  # optional
+        java_opts="",  # optional
+    wrapper:
+        "master/bio/gatk/splitncigarreads"
