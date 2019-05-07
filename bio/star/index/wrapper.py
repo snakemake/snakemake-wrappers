@@ -16,11 +16,7 @@ sjdb_overhang = snakemake.params.get("sjdbOverhang", "100")
 gtf = snakemake.input.get("gtf")
 if gtf is not None:
     gtf = "--sjdbGTFfile " + gtf
-<<<<<<< HEAD
     sjdb_overhang = "--sjdbOverhang " + sjdb_overhang
-=======
-    sjdb_overhang = "--sjdbOverhang" + sjdb_overhang
->>>>>>> upstream/master
 else:
     gtf = sjdb_overhang = ""
 
