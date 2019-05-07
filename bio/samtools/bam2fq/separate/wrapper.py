@@ -8,10 +8,14 @@ import os
 from snakemake.shell import shell
 
 prefix = os.path.splitext(snakemake.output[0])[0]
+threads = (
+    "" if snakemake.threads <= 1
+    else " -@ {} ".format(snakemake.threads - 1)
+)
 
 shell(
     "samtools sort -n "
-    " -@ {snakemake.threads} "
+    " {threads} "
     " -T {prefix} "
     " {snakemake.params.sort} "
     " {snakemake.input[0]} | "

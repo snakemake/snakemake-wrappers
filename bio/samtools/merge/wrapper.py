@@ -5,7 +5,10 @@ __license__ = "MIT"
 
 
 from snakemake.shell import shell
+threads = (
+    "" if snakemake.threads <= 1
+    else " -@ {} ".format(snakemake.threads - 1)
+)
 
-
-shell("samtools merge --threads {snakemake.threads} {snakemake.params} "
+shell("samtools merge {threads} {snakemake.params} "
       "{snakemake.output[0]} {snakemake.input}")
