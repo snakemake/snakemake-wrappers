@@ -7,3 +7,5 @@ description:
 authors:
   - David Laehnemann
   - Victoria Sack
+notes: |
+  * Samtools -@/--threads takes one integer as input. This is the number of additional threads and not raw threads.

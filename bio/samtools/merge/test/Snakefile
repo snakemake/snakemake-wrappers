@@ -5,6 +5,7 @@ rule samtools_merge:
         "merged.bam"
     params:
         "" # optional additional parameters as string
-    threads: 8
+    threads:  # Samtools takes additional threads through its option -@
+        8     # This value - 1 will be sent to -@
     wrapper:
         "master/bio/samtools/merge"
