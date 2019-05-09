@@ -8,7 +8,7 @@ rule samtools_bam2fq_separate:
         sort = "-m 4G",
         bam2fq = "-n"
     threads:  # Remember, this is the number of samtools' additional threads
-        3     # At lease 2 threads has to be requested on cluster sumbission.
+        3     # At least 2 threads have to be requested on cluster sumbission.
               # Thus, this value - 2 will be sent to samtools sort -@ argument.
     wrapper:
         "master/bio/samtools/bam2fq/separate"
