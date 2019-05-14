@@ -1,0 +1,12 @@
+name: hisat2 index
+authors:
+  - Joël Simoneau
+description: |
+  Create index with hisat2.
+input:
+  - sequence: list of FASTA files of list of sequences
+output:
+  - Directory of the hisat2 custom index.
+params:
+  - prefix: prefix of index file path (required). Must be related to output
+  - extra: additional parameters

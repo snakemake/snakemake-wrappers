@@ -1,0 +1,22 @@
+name: hisat2 align
+authors:
+  - Wibowo Arindrarto
+description: |
+  Map reads with hisat2.
+input:
+  - reads: either 1 or 2 FASTQ files with reads
+output:
+  - bam file with mapped reads
+params:
+  - idx: prefix of index file path (required)
+  - extra: additional parameters
+notes: |
+  * The `-S` flag must not be used since output is already directly piped to
+    `samtools` for compression.
+  * The `--threads/-p` flag must not be used since threads is set separately
+    via the snakemake `threads` directive.
+  * The wrapper does not yet handle SRA input accessions.
+  * No reference index files checking is done since the actual number of files
+    may differ depending on the reference sequence size. This is also why
+    the index is supplied in the `params` directive instead of the `input`
+    directive.
