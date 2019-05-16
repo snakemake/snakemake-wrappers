@@ -3,5 +3,5 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - bowtie2 ==2.3.2
-  - samtools ==1.5
+  - bowtie2 ==2.3.5
+  - samtools ==1.9

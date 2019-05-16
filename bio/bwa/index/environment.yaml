@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - bwa ==0.7.15
+  - bwa ==0.7.17
