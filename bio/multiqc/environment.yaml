@@ -3,6 +3,6 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - multiqc ==1.2
+  - multiqc ==1.7
   # work around API incompatibility of colormath dependency
-  - networkx <2.0
+  # - networkx <2.0
