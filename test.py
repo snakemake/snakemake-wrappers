@@ -182,6 +182,26 @@ def test_freebayes_bcf():
             ["snakemake", "--cores", str(c), "calls/a.bcf", "--use-conda", "-F", "-s", "Snakefile_bcf"])
 
 
+def test_hisat2_index():
+    run("bio/hisat2/index",
+        ["snakemake", "index_genome", "--use-conda", "-F"])
+
+
+def test_hisat2_align():
+    run("bio/hisat2/align",
+        ["snakemake", "mapped/A.bam", "--use-conda", "-F"])
+
+
+def test_kallisto_index():
+    run("bio/kallisto/index",
+        ["snakemake", "transcriptome.idx", "--use-conda", "-F"])
+
+
+def test_kallisto_quant():
+    run("bio/kallisto/quant",
+        ["snakemake", "quant_results_A", "--use-conda", "-F"])
+
+
 def test_lofreq_call():
     run("bio/lofreq/call",
         ["snakemake", "calls/a.vcf", "--use-conda", "-F"])
