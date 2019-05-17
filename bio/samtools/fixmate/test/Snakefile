@@ -2,10 +2,10 @@ rule samtools_fixmate:
     input:
         "mapped/{input}"
     output:
-        "fixed/{output}"
+        "fixed/{input}"
     message:
         "Fixing mate information in {wildcards.input}"
     threads:
         1
     wrapper:
-        "bio/samtools/fixmate"
+        "https://bitbucket.org/tdayris/snakemake-wrappers/raw/332d3ed8c1bf1b678fc404536eeb4f54d57ee431/bio/samtools/fixmate/"
