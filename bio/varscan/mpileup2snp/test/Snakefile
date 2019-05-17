@@ -1,0 +1,11 @@
+rule mpileup_to_vcf:
+    input:
+        "mpileup/{sample}.mpileup.gz"
+    output:
+        "vcf/{sample}.vcf"
+    message:
+        "Calling SNP with Varscan2"
+    threads:  # No threads take into account in this wrapper.
+        1     # Keep it to one, no more.
+    wrapper:
+        "https://bitbucket.org/tdayris/snakemake-wrappers/raw/varscan2/bio/varscan/mpileup2snp/"

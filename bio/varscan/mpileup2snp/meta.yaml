@@ -1,0 +1,8 @@
+name: Varscan2
+description: Detect variants in NGS data from Samtools mpileup
+authors:
+  - Thibault Dayris
+input:
+  - A mpileup file
+output:
+  - A VCF file
