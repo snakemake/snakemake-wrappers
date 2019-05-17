@@ -265,6 +265,10 @@ def test_pindel_pindel2vcf_multi_input():
     run("bio/pindel/pindel2vcf",
         ["snakemake", "pindel/all.vcf", "--use-conda", "-F"])
 
+def test_samtools_fixmate():
+    run("bio/samtools/fixmate",
+        ["snakemake", "", "--use-conda", "-F"])
+
 
 def test_samtools_mpileup():
      run("bio/samtools/mpileup",

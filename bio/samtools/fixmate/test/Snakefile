@@ -1,0 +1,11 @@
+rule samtools_fixmate:
+    input:
+        "mapped/{input}"
+    output:
+        "fixed/{output}"
+    message:
+        "Fixing mate information in {wildcards.input}"
+    threads:
+        1
+    wrapper:
+        "bio/samtools/fixmate"
