@@ -1,0 +1,9 @@
+name: GATK Mutect2
+description: Call somatic SNVs and indels via local assembly of haplotypes
+authors:
+  - Thibault Dayris
+input:
+  - Mapped reads (SAM/BAM/CRAM)
+  - Reference Fasta file
+output:
+  - Variant file

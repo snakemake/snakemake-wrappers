@@ -1,0 +1,12 @@
+rule mutect2:
+    input:
+        fasta = "raw_data/gene.fasta",
+        map = "raw_data/{sample}.bam"
+    output:
+        "variant/{sample}.vcf"
+    message:
+        "Testing Mutect2 with {wildcards.sample}"
+    threads:
+        1
+    wrapper:
+        "???"
