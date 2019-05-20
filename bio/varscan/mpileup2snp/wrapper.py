@@ -10,18 +10,22 @@ from snakemake.shell import shell
 from snakemake.utils import makedirs
 
 # Gathering extra parameters and logging behaviour
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
 java_opt = snakemake.params.get("java_opt", "")
+
+pileup = (" <( cat {snakemake.input[0]} ) "
+          if not snakemake.input[0].endswith("gz")
+          else " <(zcat {snakemake.input[0]}) ")
 
 # Building output directories
 makedirs(op.dirname(snakemake.output[0]))
 
 shell(
-    "varscan mpileup2snp "        # Tool and its subprocess
-    "--output-vcf "
-    "{extra} "                   # Extra parameters
+    "varscan mpileup2snp "       # Tool and its subprocess
     "{snakemake.input[0]} "      # Path to pileup file
-    "{snakemake.output[0]} "     # Path to vcf file
+    " "
+    "{extra} "                   # Extra parameters
+    " > {snakemake.output[0]} "  # Path to vcf file
     "{log}"                      # Logging behaviour
 )
