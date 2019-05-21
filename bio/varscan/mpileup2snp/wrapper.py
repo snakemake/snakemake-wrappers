@@ -23,8 +23,7 @@ makedirs(op.dirname(snakemake.output[0]))
 
 shell(
     "varscan mpileup2snp "       # Tool and its subprocess
-    "{snakemake.input[0]} "      # Path to pileup file
-    " "
+    "{pileup} "                  # Path to pileup file
     "{extra} "                   # Extra parameters
     " > {snakemake.output[0]} "  # Path to vcf file
     "{log}"                      # Logging behaviour
