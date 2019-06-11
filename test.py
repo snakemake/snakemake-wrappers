@@ -498,3 +498,7 @@ def test_gatk_splitncigarreads():
 
 def test_picard_mergevcfs():
     run("bio/picard/mergevcfs", ["snakemake", "snvs.vcf", "--use-conda", "-F"])
+
+def test_gatk_mutect2():
+    run("bio/gatk/mutect",
+        ["snakemake", "variant/a.vcf", "--use-conda", "-F"])
