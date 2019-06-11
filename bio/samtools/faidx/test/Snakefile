@@ -1,0 +1,7 @@
+rule samtools_index:
+    input: "{sample}.fasta"
+    output: "{sample}.fasta.fai"
+    params:
+        "" # optional params string
+    wrapper:
+        "master/bio/samtools/faidx"
