@@ -1,6 +1,8 @@
 rule samtools_index:
-    input: "mapped/{sample}.sorted.bam"
-    output: "mapped/{sample}.sorted.bam.bai"
+    input:
+        "mapped/{sample}.sorted.bam"
+    output:
+        "mapped/{sample}.sorted.bam.bai"
     params:
         "" # optional params string
     wrapper:

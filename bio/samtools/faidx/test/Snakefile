@@ -1,6 +1,8 @@
 rule samtools_index:
-    input: "{sample}.fasta"
-    output: "{sample}.fasta.fai"
+    input:
+        "{sample}.fa"
+    output:
+        "{sample}.fa.fai"
     params:
         "" # optional params string
     wrapper:
