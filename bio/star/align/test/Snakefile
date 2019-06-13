@@ -7,7 +7,7 @@ rule star_pe_multi:
         fq2 = ["reads/{sample}_R2.1.fastq", "reads/{sample}_R2.2.fastq"] #optional
     output:
         # see STAR manual for additional output files
-        "star/pe/{sample}/Aligned.out.bam"
+        "star/pe/{sample}/Aligned.out.sam"
     log:
         "logs/star/pe/{sample}.log"
     params:
@@ -24,7 +24,7 @@ rule star_se:
         fq1 = "reads/{sample}_R1.1.fastq"
     output:
         # see STAR manual for additional output files
-        "star/{sample}/Aligned.out.bam"
+        "star/{sample}/Aligned.out.sam"
     log:
         "logs/star/{sample}.log"
     params:
