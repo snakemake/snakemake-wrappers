@@ -1,0 +1,15 @@
+rule star_index:
+    input:
+        fasta = "{genome}.fasta"
+    output:
+        directory("{genome}")
+    message:
+        "Testing STAR index"
+    threads:
+        1
+    params:
+        extra = ""
+    log:
+        "logs/star_index_{genome}.log"
+    wrapper:
+        "master/bio/star/index"

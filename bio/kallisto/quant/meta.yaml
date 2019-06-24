@@ -1,0 +1,4 @@
+name: "kallisto quant"
+description: Pseudoalign reads and quantify transcripts using kallisto.
+authors:
+  - Joël Simoneau

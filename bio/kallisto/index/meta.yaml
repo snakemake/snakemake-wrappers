@@ -1,0 +1,4 @@
+name: "kallisto index"
+description: Index a transcriptome using kallisto.
+authors:
+  - Joël Simoneau

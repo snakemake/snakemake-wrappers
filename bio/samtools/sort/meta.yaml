@@ -2,3 +2,5 @@ name: samtools sort
 description: Sort bam file with samtools.
 authors:
   - Johannes Köster
+notes: |
+  * Samtools -@/--threads takes one integer as input. This is the number of additional threads and not raw threads.

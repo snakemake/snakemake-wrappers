@@ -50,7 +50,6 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
-
 def test_art_profiler_illumina():
     run("bio/art/profiler_illumina",
         ["snakemake", "profiles/a.1.txt", "profiles/a.2.txt" , "--use-conda", "-F"])
@@ -138,6 +137,13 @@ def test_epic_peaks():
     run("bio/epic/peaks",
         ["snakemake", "epic/enriched_regions.bed", "--use-conda", "-F"])
 
+def test_fastp_pe():
+    run("bio/fastp",
+        ["snakemake", "trimmed/pe/a.1.fastq", "trimmed/pe/a.2.fastq", "report/pe/a.html", "report/pe/a.json", "--use-conda", "-F"])
+
+def test_fastp_se():
+    run("bio/fastp",
+        ["snakemake", "trimmed/se/a.fastq", "report/se/a.html", "report/se/a.json", "--use-conda", "-F"])
 
 def test_fastqc():
     run("bio/fastqc",
@@ -174,6 +180,26 @@ def test_freebayes_bcf():
     for c in [1, 2]:
         run("bio/freebayes",
             ["snakemake", "--cores", str(c), "calls/a.bcf", "--use-conda", "-F", "-s", "Snakefile_bcf"])
+
+
+def test_hisat2_index():
+    run("bio/hisat2/index",
+        ["snakemake", "index_genome", "--use-conda", "-F"])
+
+
+def test_hisat2_align():
+    run("bio/hisat2/align",
+        ["snakemake", "mapped/A.bam", "--use-conda", "-F"])
+
+
+def test_kallisto_index():
+    run("bio/kallisto/index",
+        ["snakemake", "transcriptome.idx", "--use-conda", "-F"])
+
+
+def test_kallisto_quant():
+    run("bio/kallisto/quant",
+        ["snakemake", "quant_results_A", "--use-conda", "-F"])
 
 
 def test_lofreq_call():
@@ -320,16 +346,20 @@ def test_star_align():
         subprocess.check_call("source activate star-env; STAR --genomeDir "
                               "bio/star/align/test/index "
                               "--genomeFastaFiles bio/star/align/test/genome.fasta "
-                              "--runMode genomeGenerate",
+                              "--runMode genomeGenerate "
+                              "--genomeSAindexNbases 8",
                               shell=True,
                               executable="/bin/bash")
     finally:
         shutil.rmtree("star-env", ignore_errors=True)
 
     run("bio/star/align",
-        ["snakemake", "star/a/Aligned.out.bam", "--use-conda", "-F"])
+        ["snakemake", "star/a/Aligned.out.sam", "--use-conda", "-F"])
     run("bio/star/align",
-        ["snakemake", "star/pe/a/Aligned.out.bam", "--use-conda", "-F"])
+        ["snakemake", "star/pe/a/Aligned.out.sam", "--use-conda", "-F"])
+
+def test_star_index():
+    run("bio/star/index", ["snakemake", "genome", "--use-conda", "-F"])
 
 def test_snpeff():
     run("bio/snpeff",
@@ -469,3 +499,6 @@ def test_gatk_splitncigarreads():
 
 def test_picard_mergevcfs():
     run("bio/picard/mergevcfs", ["snakemake", "snvs.vcf", "--use-conda", "-F"])
+
+def test_igv_reports():
+    run("bio/igv-reports", ["snakemake", "igv-report.html", "--use-conda", "-F"])

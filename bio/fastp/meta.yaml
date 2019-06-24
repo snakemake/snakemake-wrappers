@@ -1,0 +1,4 @@
+name: "fastp"
+description: trim and QC fastq reads with fastp
+authors:
+  - Sebastian Kurscheid (sebastian.kurscheid@anu.edu.au)
