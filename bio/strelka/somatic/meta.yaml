@@ -1,0 +1,4 @@
+name: "Strelka somatic"
+description: Tumor-normal calling with Strelka.
+authors:
+  - Jan Forster

@@ -1,0 +1,19 @@
+rule strelka_somatic:
+    input:
+        tumor = "mapped/{sample}.tumor.bam",
+        normal = "mapped/{sample}.normal.bam"
+    output:
+        # see Strelka manual for additional output files
+        "strelka/{sample}/results/variants/somatic.snvs.vcf.gz"
+    log:
+        "logs/strelka/somatic/{sample}.log"
+    params:
+        # path to reference genome fasta
+        ref="genome.fasta",
+        # Strelka call regions
+        callRegions="callregions.bed.gz"
+        # optional parameters
+        extra=""
+    threads: 8
+    wrapper:
+        "master/bio/strelka/somatic"
