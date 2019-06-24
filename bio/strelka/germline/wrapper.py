@@ -21,8 +21,8 @@ shell(
     "--bam {bam} "
     "--referenceFasta {snakemake.params.ref} "
     "--runDir {rundir} "
-    "--callRegions {snakemake.params.callRegions "
-    "{params.extra} > {log}"
-    "&& {rundir}/runworkflow.py -m local "
+    "{extra} "
+    "{log} "
+    "&& {rundir}/runWorkflow.py -m local "
     "-j {snakemake.threads} "
-    ">> {log}")
+    "{log}")

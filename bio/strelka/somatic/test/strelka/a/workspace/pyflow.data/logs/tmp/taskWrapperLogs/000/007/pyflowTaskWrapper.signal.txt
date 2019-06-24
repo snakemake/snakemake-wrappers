@@ -1,0 +1,4 @@
+[2019-06-24T16:27:08.353116Z] [spock] [26256_1] [pyflowTaskWrapper:CallGenome+makeTmpDir] [wrapperSignal] wrapperStart
+[2019-06-24T16:27:08.367759Z] [spock] [26256_1] [pyflowTaskWrapper:CallGenome+makeTmpDir] [wrapperSignal] taskStart
+[2019-06-24T16:27:08.379953Z] [spock] [26256_1] [pyflowTaskWrapper:CallGenome+makeTmpDir] [wrapperSignal] taskExitCode 0
+[2019-06-24T16:27:08.409225Z] [spock] [26256_1] [pyflowTaskWrapper:CallGenome+makeTmpDir] [wrapperSignal] taskElapsedSec 0

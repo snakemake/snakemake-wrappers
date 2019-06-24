@@ -1,6 +1,6 @@
 rule strelka_germline:
     input:
-        bam = "bam/{sample}.bam"
+        bam = "mapped/{sample}.bam"
     output:
         # see Strelka manual for additional output files
         "strelka/{sample}/results/variants/variants.vcf.gz"
@@ -9,10 +9,8 @@ rule strelka_germline:
     params:
         # path to reference genome fasta
         ref="genome.fasta",
-        # Strelka call regions
-        callRegions="callregions.bed.gz"
         # optional parameters
         extra=""
     threads: 8
     wrapper:
-        "master/bio/strelka/somatic"
+        "master/bio/strelka/germline"

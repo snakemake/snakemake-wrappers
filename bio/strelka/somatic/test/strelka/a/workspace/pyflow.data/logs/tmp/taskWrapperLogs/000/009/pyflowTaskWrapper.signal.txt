@@ -1,0 +1,4 @@
+[2019-06-24T16:27:08.645932Z] [spock] [26256_1] [pyflowTaskWrapper:CallGenome+fixVcfHeader_chromId_000_Sheila_0000] [wrapperSignal] wrapperStart
+[2019-06-24T16:27:08.660959Z] [spock] [26256_1] [pyflowTaskWrapper:CallGenome+fixVcfHeader_chromId_000_Sheila_0000] [wrapperSignal] taskStart
+[2019-06-24T16:27:08.683513Z] [spock] [26256_1] [pyflowTaskWrapper:CallGenome+fixVcfHeader_chromId_000_Sheila_0000] [wrapperSignal] taskExitCode 0
+[2019-06-24T16:27:08.699168Z] [spock] [26256_1] [pyflowTaskWrapper:CallGenome+fixVcfHeader_chromId_000_Sheila_0000] [wrapperSignal] taskElapsedSec 0

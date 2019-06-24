@@ -20,11 +20,11 @@ rundir = snakemake.output[0].split("/results/variants/")[0]
 shell(
     "configureStrelkaSomaticWorkflow.py "
     "--normalBam {normal} "
-    "-tumorBam {tumor} "
+    "--tumorBam {tumor} "
     "--referenceFasta {snakemake.params.ref} "
     "--runDir {rundir} "
-    "--callRegions {snakemake.params.callRegions "
-    "{params.extra} > {log}"
-    "&& {rundir}/runworkflow.py -m local "
+    "{extra} "
+    "{log}"
+    "&& {rundir}/runWorkflow.py -m local "
     "-j {snakemake.threads} "
-    ">> {log}")
+    "{log}")

@@ -10,8 +10,6 @@ rule strelka_somatic:
     params:
         # path to reference genome fasta
         ref="genome.fasta",
-        # Strelka call regions
-        callRegions="callregions.bed.gz"
         # optional parameters
         extra=""
     threads: 8

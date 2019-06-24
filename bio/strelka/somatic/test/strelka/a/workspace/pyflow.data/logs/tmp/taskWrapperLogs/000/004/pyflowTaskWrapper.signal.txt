@@ -1,0 +1,4 @@
+[2019-06-24T16:27:07.967888Z] [spock] [26256_1] [pyflowTaskWrapper:getChromDepth_mergeChromDepth] [wrapperSignal] wrapperStart
+[2019-06-24T16:27:07.983344Z] [spock] [26256_1] [pyflowTaskWrapper:getChromDepth_mergeChromDepth] [wrapperSignal] taskStart
+[2019-06-24T16:27:08.004033Z] [spock] [26256_1] [pyflowTaskWrapper:getChromDepth_mergeChromDepth] [wrapperSignal] taskExitCode 0
+[2019-06-24T16:27:08.019573Z] [spock] [26256_1] [pyflowTaskWrapper:getChromDepth_mergeChromDepth] [wrapperSignal] taskElapsedSec 0

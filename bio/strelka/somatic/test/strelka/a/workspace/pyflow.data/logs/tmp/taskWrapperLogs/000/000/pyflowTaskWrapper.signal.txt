@@ -1,0 +1,4 @@
+[2019-06-24T16:27:07.340202Z] [spock] [26256_1] [pyflowTaskWrapper:getChromDepth_makeTmpDir] [wrapperSignal] wrapperStart
+[2019-06-24T16:27:07.356677Z] [spock] [26256_1] [pyflowTaskWrapper:getChromDepth_makeTmpDir] [wrapperSignal] taskStart
+[2019-06-24T16:27:07.369318Z] [spock] [26256_1] [pyflowTaskWrapper:getChromDepth_makeTmpDir] [wrapperSignal] taskExitCode 0
+[2019-06-24T16:27:07.402983Z] [spock] [26256_1] [pyflowTaskWrapper:getChromDepth_makeTmpDir] [wrapperSignal] taskElapsedSec 0

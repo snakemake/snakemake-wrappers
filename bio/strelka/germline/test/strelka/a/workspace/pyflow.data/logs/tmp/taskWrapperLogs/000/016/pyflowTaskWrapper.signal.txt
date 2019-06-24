@@ -1,0 +1,4 @@
+[2019-06-24T16:26:57.312026Z] [spock] [26043_1] [pyflowTaskWrapper:CallGenome+addLegacyOutputLink] [wrapperSignal] wrapperStart
+[2019-06-24T16:26:57.325919Z] [spock] [26043_1] [pyflowTaskWrapper:CallGenome+addLegacyOutputLink] [wrapperSignal] taskStart
+[2019-06-24T16:26:57.335674Z] [spock] [26043_1] [pyflowTaskWrapper:CallGenome+addLegacyOutputLink] [wrapperSignal] taskExitCode 0
+[2019-06-24T16:26:57.351462Z] [spock] [26043_1] [pyflowTaskWrapper:CallGenome+addLegacyOutputLink] [wrapperSignal] taskElapsedSec 0

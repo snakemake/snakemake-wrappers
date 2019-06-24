@@ -1,0 +1,26 @@
+(dp0
+S'isShellCmd'
+p1
+I01
+sS'cmd'
+p2
+S'"/home/forster/Projects/snakemake-wrappers/bio/strelka/somatic/test/.snakemake/conda/06528e59/share/strelka-2.9.10-0/libexec/bgzip" "/home/forster/Projects/snakemake-wrappers/bio/strelka/somatic/test/strelka/a/workspace/genomeSegment.tmpdir/somatic.snvs.unfiltered.chromId_000_Sheila_0000.vcf" && "/home/forster/Projects/snakemake-wrappers/bio/strelka/somatic/test/.snakemake/conda/06528e59/share/strelka-2.9.10-0/libexec/bgzip" "/home/forster/Projects/snakemake-wrappers/bio/strelka/somatic/test/strelka/a/workspace/genomeSegment.tmpdir/somatic.indels.unfiltered.chromId_000_Sheila_0000.vcf"'
+p3
+sS'errFile'
+p4
+S'/home/forster/Projects/snakemake-wrappers/bio/strelka/somatic/test/strelka/a/workspace/pyflow.data/logs/pyflow_tasks_stderr_log.txt'
+p5
+sS'outFile'
+p6
+S'/home/forster/Projects/snakemake-wrappers/bio/strelka/somatic/test/strelka/a/workspace/pyflow.data/logs/pyflow_tasks_stdout_log.txt'
+p7
+sS'env'
+p8
+NsS'nCores'
+p9
+I1
+sS'cwd'
+p10
+S''
+p11
+s.

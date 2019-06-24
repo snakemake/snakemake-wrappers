@@ -1,0 +1,26 @@
+(dp0
+S'isShellCmd'
+p1
+I01
+sS'cmd'
+p2
+S'cat "/home/forster/Projects/snakemake-wrappers/bio/strelka/germline/test/strelka/a/workspace/genomeSegment.tmpdir/segment.chromId_000_Sheila_0000.genome.S1.vcf" | "/home/forster/Projects/snakemake-wrappers/bio/strelka/germline/test/.snakemake/conda/b74a8fd4/bin/python2" -E "/home/forster/Projects/snakemake-wrappers/bio/strelka/germline/test/.snakemake/conda/b74a8fd4/share/strelka-2.9.10-0/libexec/vcfCmdlineSwapper.py" "/home/forster/Projects/snakemake-wrappers/bio/strelka/germline/test/.snakemake/conda/b74a8fd4/bin/configureStrelkaGermlineWorkflow.py --bam mapped/a.bam --referenceFasta genome.fasta --runDir strelka/a" | "/home/forster/Projects/snakemake-wrappers/bio/strelka/germline/test/.snakemake/conda/b74a8fd4/share/strelka-2.9.10-0/libexec/bgzip9" -c >| "/home/forster/Projects/snakemake-wrappers/bio/strelka/germline/test/strelka/a/workspace/genomeSegment.tmpdir/segment.chromId_000_Sheila_0000.genome.S1.vcf.gz"'
+p3
+sS'errFile'
+p4
+S'/home/forster/Projects/snakemake-wrappers/bio/strelka/germline/test/strelka/a/workspace/pyflow.data/logs/pyflow_tasks_stderr_log.txt'
+p5
+sS'outFile'
+p6
+S'/home/forster/Projects/snakemake-wrappers/bio/strelka/germline/test/strelka/a/workspace/pyflow.data/logs/pyflow_tasks_stdout_log.txt'
+p7
+sS'env'
+p8
+NsS'nCores'
+p9
+I1
+sS'cwd'
+p10
+S''
+p11
+s.
