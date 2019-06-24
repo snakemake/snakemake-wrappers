@@ -1,7 +1,0 @@
-channels:
-  - bioconda
-  - conda-forge
-  - defaults
-dependencies:
-  - python =2.7
-  - strelka =2.9
