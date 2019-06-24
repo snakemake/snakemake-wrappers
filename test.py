@@ -502,3 +502,6 @@ def test_picard_mergevcfs():
 
 def test_igv_reports():
     run("bio/igv-reports", ["snakemake", "igv-report.html", "--use-conda", "-F"])
+
+def test_strelka_somatic():
+    run("bio/strelka/somatic", ["snakemake", "a_vcf", "--use-conda", "-F", "-j 2"])
