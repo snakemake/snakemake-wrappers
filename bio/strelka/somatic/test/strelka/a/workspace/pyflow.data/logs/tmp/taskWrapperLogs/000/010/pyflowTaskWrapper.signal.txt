@@ -1,4 +1,0 @@
-[2019-06-24T16:27:08.799928Z] [spock] [26256_1] [pyflowTaskWrapper:CallGenome+compressSegmentOutput_chromId_000_Sheila_0000] [wrapperSignal] wrapperStart
-[2019-06-24T16:27:08.821253Z] [spock] [26256_1] [pyflowTaskWrapper:CallGenome+compressSegmentOutput_chromId_000_Sheila_0000] [wrapperSignal] taskStart
-[2019-06-24T16:27:08.852777Z] [spock] [26256_1] [pyflowTaskWrapper:CallGenome+compressSegmentOutput_chromId_000_Sheila_0000] [wrapperSignal] taskExitCode 0
-[2019-06-24T16:27:08.868023Z] [spock] [26256_1] [pyflowTaskWrapper:CallGenome+compressSegmentOutput_chromId_000_Sheila_0000] [wrapperSignal] taskElapsedSec 0

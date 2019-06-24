@@ -1,4 +1,0 @@
-[2019-06-24T16:26:57.739941Z] [spock] [26043_1] [pyflowTaskWrapper:CallGenome+variants_index_vcf] [wrapperSignal] wrapperStart
-[2019-06-24T16:26:57.754305Z] [spock] [26043_1] [pyflowTaskWrapper:CallGenome+variants_index_vcf] [wrapperSignal] taskStart
-[2019-06-24T16:26:57.770796Z] [spock] [26043_1] [pyflowTaskWrapper:CallGenome+variants_index_vcf] [wrapperSignal] taskExitCode 0
-[2019-06-24T16:26:57.784222Z] [spock] [26043_1] [pyflowTaskWrapper:CallGenome+variants_index_vcf] [wrapperSignal] taskElapsedSec 0

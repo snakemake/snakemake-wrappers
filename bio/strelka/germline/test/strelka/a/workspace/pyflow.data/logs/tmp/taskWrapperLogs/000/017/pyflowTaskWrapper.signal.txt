@@ -1,4 +1,0 @@
-[2019-06-24T16:26:57.454655Z] [spock] [26043_1] [pyflowTaskWrapper:CallGenome+mergeRunStats] [wrapperSignal] wrapperStart
-[2019-06-24T16:26:57.475000Z] [spock] [26043_1] [pyflowTaskWrapper:CallGenome+mergeRunStats] [wrapperSignal] taskStart
-[2019-06-24T16:26:57.483192Z] [spock] [26043_1] [pyflowTaskWrapper:CallGenome+mergeRunStats] [wrapperSignal] taskExitCode 0
-[2019-06-24T16:26:57.505654Z] [spock] [26043_1] [pyflowTaskWrapper:CallGenome+mergeRunStats] [wrapperSignal] taskElapsedSec 0

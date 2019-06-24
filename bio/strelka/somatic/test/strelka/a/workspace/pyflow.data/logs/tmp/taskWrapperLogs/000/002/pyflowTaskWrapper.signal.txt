@@ -1,4 +1,0 @@
-[2019-06-24T16:27:07.663889Z] [spock] [26256_1] [pyflowTaskWrapper:getChromDepth_sample000_estimateChromDepth_000_Sheila] [wrapperSignal] wrapperStart
-[2019-06-24T16:27:07.678771Z] [spock] [26256_1] [pyflowTaskWrapper:getChromDepth_sample000_estimateChromDepth_000_Sheila] [wrapperSignal] taskStart
-[2019-06-24T16:27:07.687291Z] [spock] [26256_1] [pyflowTaskWrapper:getChromDepth_sample000_estimateChromDepth_000_Sheila] [wrapperSignal] taskExitCode 0
-[2019-06-24T16:27:07.702456Z] [spock] [26256_1] [pyflowTaskWrapper:getChromDepth_sample000_estimateChromDepth_000_Sheila] [wrapperSignal] taskElapsedSec 0
