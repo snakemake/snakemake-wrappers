@@ -371,11 +371,7 @@ def test_snpeff_nostats():
 
 def test_strelka_germline():
     runt("bio/strelka/germline",
-        ["snakemake", "strelka/a/results/variants/variants.vcf.gz", "--use-conda", "-F"])
-
-def test_strelka_somatic():
-    runt("bio/strelka/somatic",
-        ["snakemake", "strelka/a/results/variants/somatic.snvs.vcf.gz", "--use-conda", "-F"])
+        ["snakemake", "strelka/a", "--use-conda", "-F"])
 
 def test_trim_galore_pe():
     run("bio/trim_galore/pe",
