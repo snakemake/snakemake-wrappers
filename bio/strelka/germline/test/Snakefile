@@ -4,7 +4,7 @@ rule strelka_germline:
         bam = "mapped/{sample}.bam"
     output:
         # Strelka results directory
-        directory("strelka/{sample})"
+        directory("strelka/{sample}")
     log:
         "logs/strelka/germline/{sample}.log"
     params:
