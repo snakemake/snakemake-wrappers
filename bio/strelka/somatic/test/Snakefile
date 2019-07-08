@@ -1,0 +1,23 @@
+rule strelka:
+    input:
+        # The normal bam and its index
+        # are optional input
+        # normal = "data/b.bam",
+        # normal_index = "data/b.bam.bai"
+        tumor = "data/{tumor}.bam",
+        tumor_index = "data/{tumor}.bam.bai",
+        fasta = "data/genome.fasta",
+        fasta_index = "data/genome.fasta.fai"
+    output:
+        directory("{tumor}_vcf")
+    message:
+        "Testing Strelka"
+    threads:
+        1
+    params:
+        run_extra = "",
+        config_extra = ""
+    log:
+        "logs/strelka_{tumor}.log"
+    wrapper:
+        "master/bio/strelka/somatic"
