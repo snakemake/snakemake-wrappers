@@ -1,0 +1,3 @@
+[submodule "bio/igv-report/test/upstream"]
+	path = bio/igv-reports/test/upstream
+	url = https://github.com/igvteam/igv-reports.git
