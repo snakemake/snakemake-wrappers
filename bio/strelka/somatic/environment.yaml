@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - htslib ==1.9
+  - strelka ==2.9.10

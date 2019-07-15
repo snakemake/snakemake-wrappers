@@ -1,6 +1,5 @@
 channels:
   - conda-forge
   - bioconda
-  - defaults
 dependencies:
-  - star ==2.7.1a
+  - igv-reports =0.9.1
