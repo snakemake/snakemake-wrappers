@@ -499,5 +499,14 @@ def test_gatk_splitncigarreads():
 def test_picard_mergevcfs():
     run("bio/picard/mergevcfs", ["snakemake", "snvs.vcf", "--use-conda", "-F"])
 
-def test_varscan_mpileup2snp():
-    run("bio/varscan/mpileup2snp", ["snakemake", "vcf/a.vcf", "--use-conda", "-F"])
+def test_gatk_mutect():
+    run("bio/gatk/mutect",
+        ["snakemake", "variant/a.vcf", "--use-conda", "-F"])
+
+def test_varscan_mpileup2indel():
+    run("bio/varscan/mpileup2indel",
+        ["snakemake", "vcf/a.vcf", "--use-conda", "-F"])
+
+def test_varscan_mpileup2cns():
+    run("bio/varscan/mpileup2cns",
+        ["snakemake", "vcf/a.vcf", "--use-conda", "-F"])
