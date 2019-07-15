@@ -11,5 +11,5 @@ rule mutect2:
     log:
         "logs/mutect_{sample}.log"
     wrapper:
-         # "https://bitbucket.org/tdayris/snakemake-wrappers/raw/mutect/bio/gatk/mutect"
+         # "bio/gatk/mutect"
          'file:..'
