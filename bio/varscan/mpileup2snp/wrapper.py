@@ -13,6 +13,11 @@ from snakemake.utils import makedirs
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
 
+# In case input files are gzipped mpileup files,
+# they are being unzipped and piped
+# In that case, it is recommended to use at least 2 threads:
+# - One for unzipping with zcat
+# - One for running varscan
 pileup = (" cat {} ".format(snakemake.input[0])
           if not snakemake.input[0].endswith("gz")
           else " zcat {} ".format(snakemake.input[0]))
