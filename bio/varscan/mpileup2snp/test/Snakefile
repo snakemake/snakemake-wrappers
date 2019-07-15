@@ -9,5 +9,8 @@ rule mpileup_to_vcf:
         1     # However, mpileup must be gunzipped. Keep threading value to
               # one for unzipped mpileup input, or set it to two, and the
               # wrapper will unzip your mpileup on the fly.
+    log:
+        "logs/varscan_{sample}.log"
     wrapper:
-        "https://bitbucket.org/tdayris/snakemake-wrappers/raw/varscan2/bio/varscan/mpileup2snp"
+        # "bio/varscan/mpileup2snp"
+        "file:../"
