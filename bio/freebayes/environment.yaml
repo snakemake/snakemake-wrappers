@@ -1,8 +1,7 @@
 channels:
   - bioconda
   - conda-forge
-  - defaults
 dependencies:
-  - freebayes ==1.1.0
-  - bcftools ==1.5
-  - parallel ==20170422
+  - freebayes ==1.3.1
+  - bcftools ==1.9
+  - parallel ==20190522

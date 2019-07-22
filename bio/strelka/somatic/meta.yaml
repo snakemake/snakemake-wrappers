@@ -1,0 +1,16 @@
+name: "Strelka"
+description: |
+  Strelka calls somatic and germline small variants from mapped sequencing reads
+authors:
+  - Thibault Dayris
+input:
+  - A tumor bam file, with its index.
+  - A reference genome sequence in fasta format, with its index.
+  - An optional normal bam file for somatic calling, with its index.
+output:
+  - Statistics about calling results
+  - Variants called
+note: |
+  Strelka runs an internal pipeline an is able to submit its own jobs. Here, I removed this behaviour. Each sample will be submitted in a separated job, and each job behaves like a 'local' run.
+
+  See Strelka documentation for more information.

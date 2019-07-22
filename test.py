@@ -346,16 +346,17 @@ def test_star_align():
         subprocess.check_call("source activate star-env; STAR --genomeDir "
                               "bio/star/align/test/index "
                               "--genomeFastaFiles bio/star/align/test/genome.fasta "
-                              "--runMode genomeGenerate",
+                              "--runMode genomeGenerate "
+                              "--genomeSAindexNbases 8",
                               shell=True,
                               executable="/bin/bash")
     finally:
         shutil.rmtree("star-env", ignore_errors=True)
 
     run("bio/star/align",
-        ["snakemake", "star/a/Aligned.out.bam", "--use-conda", "-F"])
+        ["snakemake", "star/a/Aligned.out.sam", "--use-conda", "-F"])
     run("bio/star/align",
-        ["snakemake", "star/pe/a/Aligned.out.bam", "--use-conda", "-F"])
+        ["snakemake", "star/pe/a/Aligned.out.sam", "--use-conda", "-F"])
 
 def test_star_index():
     run("bio/star/index", ["snakemake", "genome", "--use-conda", "-F"])
@@ -498,3 +499,9 @@ def test_gatk_splitncigarreads():
 
 def test_picard_mergevcfs():
     run("bio/picard/mergevcfs", ["snakemake", "snvs.vcf", "--use-conda", "-F"])
+
+def test_igv_reports():
+    run("bio/igv-reports", ["snakemake", "igv-report.html", "--use-conda", "-F"])
+
+def test_strelka_somatic():
+    run("bio/strelka/somatic", ["snakemake", "a_vcf", "--use-conda", "-F", "-j 2"])
