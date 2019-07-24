@@ -376,6 +376,10 @@ def test_snpeff_nostats():
     run("bio/snpeff",
         ["snakemake", "snpeff_nostats/fake_KJ660346.vcf", "--use-conda", "-F", "-s", "Snakefile_nostats"])
 
+def test_strelka_germline():
+    run("bio/strelka/germline",
+        ["snakemake", "strelka/a", "--use-conda", "-F"])
+
 def test_trim_galore_pe():
     run("bio/trim_galore/pe",
         ["snakemake", "trimmed/a.1_val_1.fq.gz", "--use-conda", "-F"])
