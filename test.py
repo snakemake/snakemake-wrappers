@@ -322,6 +322,10 @@ def test_samtools_bam2fq_separate():
     run("bio/samtools/bam2fq/separate",
         ["snakemake", "reads/a.1.fq", "--use-conda", "-F"])
 
+def test_samtools_faidx():
+    run("bio/samtools/faidx",
+        ["snakemake", "genome.fa.fai", "--use-conda", "-F"])
+
 def test_bcftools_concat():
     run("bio/bcftools/concat",
         ["snakemake", "all.bcf", "--use-conda", "-F"])
