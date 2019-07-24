@@ -16,7 +16,9 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
     "cutadapt"
-    " {snakemake.params}"
+    " {snakemake.params.adapters_r1}"
+    " {snakemake.params.adapters_r2}"
+    " {snakemake.params.others}"
     " -o {snakemake.output.fastq1}"
     " -p {snakemake.output.fastq2}"
     " {snakemake.input}"

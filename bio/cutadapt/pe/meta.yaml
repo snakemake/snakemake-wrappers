@@ -3,6 +3,7 @@ description: |
   Trim paired-end reads using cutadapt.
 authors:
   - Julian de Ruiter
+  - David Laehnemann
 input:
   - two (paired-end) fastq files
 output:
