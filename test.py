@@ -171,6 +171,10 @@ def test_fgbio_call_molecular_consensus_reads():
        run("bio/fgbio/callmolecularconsensusreads",
             ["snakemake", "mapped/a.m3.bam", "--use-conda", "-F"])
 
+def test_filtlong():
+    run("bio/filtlong",
+        ["snakemake", "reads.filtered.fastq", "--use-conda", "-F"])
+
 def test_freebayes():
     run("bio/freebayes",
         ["snakemake", "calls/a.vcf", "--use-conda", "-F"])
