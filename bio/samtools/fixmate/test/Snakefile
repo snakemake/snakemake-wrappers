@@ -8,4 +8,4 @@ rule samtools_fixmate:
     threads:
         1
     wrapper:
-        "https://bitbucket.org/tdayris/snakemake-wrappers/raw/332d3ed8c1bf1b678fc404536eeb4f54d57ee431/bio/samtools/fixmate/"
+        "/bio/samtools/fixmate/"
