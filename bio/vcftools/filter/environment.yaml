@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - vcftools ==0.1.15
+  - vcftools ==0.1.16

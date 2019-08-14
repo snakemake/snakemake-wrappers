@@ -171,6 +171,10 @@ def test_fgbio_call_molecular_consensus_reads():
        run("bio/fgbio/callmolecularconsensusreads",
             ["snakemake", "mapped/a.m3.bam", "--use-conda", "-F"])
 
+def test_filtlong():
+    run("bio/filtlong",
+        ["snakemake", "reads.filtered.fastq", "--use-conda", "-F"])
+
 def test_freebayes():
     run("bio/freebayes",
         ["snakemake", "calls/a.vcf", "--use-conda", "-F"])
@@ -180,6 +184,26 @@ def test_freebayes_bcf():
     for c in [1, 2]:
         run("bio/freebayes",
             ["snakemake", "--cores", str(c), "calls/a.bcf", "--use-conda", "-F", "-s", "Snakefile_bcf"])
+
+
+def test_hisat2_index():
+    run("bio/hisat2/index",
+        ["snakemake", "index_genome", "--use-conda", "-F"])
+
+
+def test_hisat2_align():
+    run("bio/hisat2/align",
+        ["snakemake", "mapped/A.bam", "--use-conda", "-F"])
+
+
+def test_kallisto_index():
+    run("bio/kallisto/index",
+        ["snakemake", "transcriptome.idx", "--use-conda", "-F"])
+
+
+def test_kallisto_quant():
+    run("bio/kallisto/quant",
+        ["snakemake", "quant_results_A", "--use-conda", "-F"])
 
 
 def test_lofreq_call():
@@ -269,6 +293,9 @@ def test_samtools_fixmate():
     run("bio/samtools/fixmate",
         ["snakemake", "fixed/a.bam", "--use-conda", "-F"])
 
+def test_pyfastaq_replace_bases():
+    run("bio/pyfastaq/replace_bases",
+        ["snakemake", "sample1.dna.fa", "--use-conda", "-F"])
 
 def test_samtools_mpileup():
      run("bio/samtools/mpileup",
@@ -306,6 +333,10 @@ def test_samtools_bam2fq_separate():
     run("bio/samtools/bam2fq/separate",
         ["snakemake", "reads/a.1.fq", "--use-conda", "-F"])
 
+def test_samtools_faidx():
+    run("bio/samtools/faidx",
+        ["snakemake", "genome.fa.fai", "--use-conda", "-F"])
+
 def test_bcftools_concat():
     run("bio/bcftools/concat",
         ["snakemake", "all.bcf", "--use-conda", "-F"])
@@ -330,16 +361,17 @@ def test_star_align():
         subprocess.check_call("source activate star-env; STAR --genomeDir "
                               "bio/star/align/test/index "
                               "--genomeFastaFiles bio/star/align/test/genome.fasta "
-                              "--runMode genomeGenerate",
+                              "--runMode genomeGenerate "
+                              "--genomeSAindexNbases 8",
                               shell=True,
                               executable="/bin/bash")
     finally:
         shutil.rmtree("star-env", ignore_errors=True)
 
     run("bio/star/align",
-        ["snakemake", "star/a/Aligned.out.bam", "--use-conda", "-F"])
+        ["snakemake", "star/a/Aligned.out.sam", "--use-conda", "-F"])
     run("bio/star/align",
-        ["snakemake", "star/pe/a/Aligned.out.bam", "--use-conda", "-F"])
+        ["snakemake", "star/pe/a/Aligned.out.sam", "--use-conda", "-F"])
 
 def test_star_index():
     run("bio/star/index", ["snakemake", "genome", "--use-conda", "-F"])
@@ -351,6 +383,10 @@ def test_snpeff():
 def test_snpeff_nostats():
     run("bio/snpeff",
         ["snakemake", "snpeff_nostats/fake_KJ660346.vcf", "--use-conda", "-F", "-s", "Snakefile_nostats"])
+
+def test_strelka_germline():
+    run("bio/strelka/germline",
+        ["snakemake", "strelka/a", "--use-conda", "-F"])
 
 def test_trim_galore_pe():
     run("bio/trim_galore/pe",
@@ -404,6 +440,11 @@ def test_delly():
     run("bio/delly", ["snakemake", "sv/calls.bcf", "--use-conda", "-F"])
 
 def test_jannovar():
+    env_file = "bio/jannovar/environment.yaml"
+    env = ".envs/jannovar"
+    subprocess.run(f"conda env create -f {env_file} --prefix {env}", shell=True, executable='bash')
+    subprocess.run(f"source activate {env}; jannovar download -d hg19/ucsc", shell=True, executable='bash')
+    shutil.move("data/hg19_ucsc.ser", "bio/jannovar/test")
     run("bio/jannovar", ["snakemake", "jannovar/pedigree_vars.vcf.gz", "--use-conda", "-F"])
 
 def test_cairosvg():
@@ -482,3 +523,9 @@ def test_gatk_splitncigarreads():
 
 def test_picard_mergevcfs():
     run("bio/picard/mergevcfs", ["snakemake", "snvs.vcf", "--use-conda", "-F"])
+
+def test_igv_reports():
+    run("bio/igv-reports", ["snakemake", "igv-report.html", "--use-conda", "-F"])
+
+def test_strelka_somatic():
+    run("bio/strelka/somatic", ["snakemake", "a_vcf", "--use-conda", "-F", "-j 2"])
