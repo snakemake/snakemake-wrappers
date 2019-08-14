@@ -11,5 +11,4 @@ rule mutect2:
     log:
         "logs/mutect_{sample}.log"
     wrapper:
-         # "bio/gatk/mutect"
-         'file:..'
+         "master/bio/gatk/mutect"
