@@ -1,0 +1,18 @@
+rule strelka_germline:
+    input:
+        # the required bam file
+        bam = "mapped/{sample}.bam"
+    output:
+        # Strelka results directory
+        directory("strelka/{sample}")
+    log:
+        "logs/strelka/germline/{sample}.log"
+    params:
+        # path to reference genome fasta
+        ref="genome.fasta",
+        # optional parameters
+        config_extra="",
+        run_extra=""
+    threads: 8
+    wrapper:
+        "master/bio/strelka/germline"

@@ -1,6 +1,5 @@
 channels:
   - bioconda
   - conda-forge
-  - defaults
 dependencies:
-  - delly ==0.7.9
+  - samtools ==1.9
