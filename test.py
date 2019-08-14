@@ -529,3 +529,6 @@ def test_igv_reports():
 
 def test_strelka_somatic():
     run("bio/strelka/somatic", ["snakemake", "a_vcf", "--use-conda", "-F", "-j 2"])
+
+def test_varscan_somatic():
+    run("bio/varscan/somatic", ["snakemake", "vcf/a.snp", "--use-conda", "-F", "-pr"])

@@ -1,0 +1,17 @@
+rule varscan_somatic:
+    input:
+        # A pair of pileup files can be used *instead* of the mpileup
+        # normal_pileup = ""
+        # tumor_pileup = ""
+        mpileup = "mpileup/{sample}.mpileup.gz"
+    output:
+        snp = "vcf/{sample}.snp",
+        indel = "vcf/{sample}.indel"
+    message:
+        "Calling somatic variants {wildcards.sample}"
+    threads:
+        1
+    params:
+        extra = ""
+    wrapper:
+        "master/bio/varscan/somatic"
