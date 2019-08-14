@@ -7,5 +7,7 @@ rule samtools_fixmate:
         "Fixing mate information in {wildcards.input}"
     threads:
         1
+    params:
+        extra = ""
     wrapper:
         "/bio/samtools/fixmate/"
