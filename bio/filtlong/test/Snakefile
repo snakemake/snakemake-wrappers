@@ -1,0 +1,12 @@
+rule filtlong:
+    input:
+        reads = "{sample}.fastq"
+    output:
+        "{sample}.filtered.fastq"
+    params:
+        extra=" --mean_q_weight 5.0",
+        target_bases = 10
+    log:
+        "logs/filtlong/test/{sample}.log"
+    wrapper:
+        "master/bio/filtlong"

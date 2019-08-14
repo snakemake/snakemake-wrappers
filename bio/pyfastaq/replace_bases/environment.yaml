@@ -1,0 +1,4 @@
+channels:
+  - bioconda
+dependencies:
+  - pyfastaq ==3.17.0

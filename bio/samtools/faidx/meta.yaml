@@ -1,0 +1,8 @@
+name: samtools faidx
+description: index reference sequence in FASTA format from reference sequence
+authors:
+  - Michael Chambers
+input:
+  - reference sequence file (.fa)
+output:
+  - indexed reference sequence file (.fai)
