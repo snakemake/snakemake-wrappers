@@ -1,0 +1,8 @@
+name: igv-reports 
+description: Create self-contained igv.js HTML pages.
+authors:
+  - Johannes Köster
+input:
+  - BAM, VCF, ...
+output:
+  - HTML

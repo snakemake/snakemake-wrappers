@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - delly ==0.7.8
+  - delly ==0.7.9

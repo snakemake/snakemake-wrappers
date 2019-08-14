@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - htslib ==1.5
+  - htslib ==1.9
