@@ -1,0 +1,4 @@
+name: filtlong
+description: Quality filtering tool for long reads.
+authors:
+  - Michael Hall

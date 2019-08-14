@@ -6,7 +6,11 @@ rule cutadapt:
         fastq2="trimmed/{sample}.2.fastq",
         qc="trimmed/{sample}.qc.txt"
     params:
-        "-a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC -q 20"
+        # https://cutadapt.readthedocs.io/en/stable/guide.html#adapter-types
+        adapters_r1 = "-a AGAGCACACGTCTGAACTCCAGTCAC -g AGATCGGAAGAGCACACGT",
+        adapters_r2 = "-A AGAGCACACGTCTGAACTCCAGTCAC -G AGATCGGAAGAGCACACGT",
+        # https://cutadapt.readthedocs.io/en/stable/guide.html#
+        others = "--minimum-length 1 -q 20"
     log:
         "logs/cutadapt/{sample}.log"
     wrapper:
