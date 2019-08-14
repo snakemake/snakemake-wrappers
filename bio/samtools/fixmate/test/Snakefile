@@ -10,4 +10,4 @@ rule samtools_fixmate:
     params:
         extra = ""
     wrapper:
-        "/bio/samtools/fixmate/"
+        "master/bio/samtools/fixmate/"
