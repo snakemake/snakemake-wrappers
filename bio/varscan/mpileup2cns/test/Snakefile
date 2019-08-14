@@ -12,4 +12,4 @@ rule mpileup_to_vcf:
     log:
         "logs/varscan_{sample}.log"
     wrapper:
-        "bio/varscan/mpileup2cns"
+        "master/bio/varscan/mpileup2cns"
