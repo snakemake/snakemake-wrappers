@@ -289,10 +289,6 @@ def test_pindel_pindel2vcf_multi_input():
     run("bio/pindel/pindel2vcf",
         ["snakemake", "pindel/all.vcf", "--use-conda", "-F"])
 
-def test_samtools_fixmate():
-    run("bio/samtools/fixmate",
-        ["snakemake", "fixed/a.bam", "--use-conda", "-F"])
-
 def test_pyfastaq_replace_bases():
     run("bio/pyfastaq/replace_bases",
         ["snakemake", "sample1.dna.fa", "--use-conda", "-F"])
