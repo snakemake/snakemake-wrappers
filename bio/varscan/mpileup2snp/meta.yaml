@@ -1,0 +1,16 @@
+name: Varscan2
+description: Detect variants in NGS data from Samtools mpileup
+authors:
+  - Thibault Dayris
+input:
+  - A mpileup file
+output:
+  - A VCF file
+notes: |
+  Varscan does not take any threading information by itself. However, mpileup
+  files given as input, might be gzipped.
+
+  If so, it's recommended to use two threads:
+
+  * 1 for varscan itself
+  * 1 for zcat
