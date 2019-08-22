@@ -1,0 +1,15 @@
+rule FilterConsensusReads:
+    input:
+        "mapped/{sample}.bam"
+    output:
+        "mapped/{sample}.filtered.bam"
+    params:
+        extra="",
+        min_base_quality="2",
+        min_reads="2 2 2",
+        ref="genome.fasta"
+    log:
+        "logs/fgbio/filterconsensusreads/{sample}.log"
+    threads: 1
+    wrapper:
+        "master/bio/fgbio/filterconsensusreads"

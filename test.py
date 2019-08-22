@@ -159,6 +159,10 @@ def test_fgbio_collectduplexseqmetrics():
             "stats/a.duplex_yield_metrics.txt", "stats/a.umi_counts.txt",
             "stats/a.duplex_qc.pdf", "stats/a.duplex_umi_counts.txt", "--use-conda", "-F"])
 
+def test_fgbio_filterconsensusreads():
+   run("bio/fgbio/filterconsensusreads",
+        ["snakemake", "mapped/a.filtered.bam", "--use-conda", "-F"])
+
 def test_fgbio_group():
      run("bio/fgbio/groupreadsbyumi",
           ["snakemake", "mapped/a.gu.bam", "--use-conda", "-F"])
