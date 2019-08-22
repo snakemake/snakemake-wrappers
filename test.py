@@ -289,6 +289,10 @@ def test_pindel_pindel2vcf_multi_input():
     run("bio/pindel/pindel2vcf",
         ["snakemake", "pindel/all.vcf", "--use-conda", "-F"])
 
+def test_samtools_fixmate():
+    run("bio/samtools/fixmate",
+        ["snakemake", "fixed/a.bam", "--use-conda", "-F"])
+
 def test_pyfastaq_replace_bases():
     run("bio/pyfastaq/replace_bases",
         ["snakemake", "sample1.dna.fa", "--use-conda", "-F"])
@@ -525,6 +529,10 @@ def test_igv_reports():
 
 def test_strelka_somatic():
     run("bio/strelka/somatic", ["snakemake", "a_vcf", "--use-conda", "-F", "-j 2"])
+
+def test_varscan_mpileup2indel():
+    run("bio/varscan/mpileup2indel",
+        ["snakemake", "vcf/a.vcf", "--use-conda", "-F"])
 
 def test_varscan_mpileup2snp():
     run("bio/varscan/mpileup2snp", ["snakemake", "vcf/a.vcf", "--use-conda", "-F"])
