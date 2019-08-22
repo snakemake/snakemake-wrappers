@@ -530,6 +530,10 @@ def test_igv_reports():
 def test_strelka_somatic():
     run("bio/strelka/somatic", ["snakemake", "a_vcf", "--use-conda", "-F", "-j 2"])
 
+def test_gatk_mutect():
+    run("bio/gatk/mutect",
+        ["snakemake", "variant/a.vcf", "--use-conda", "-F"])
+
 def test_varscan_mpileup2indel():
     run("bio/varscan/mpileup2indel",
         ["snakemake", "vcf/a.vcf", "--use-conda", "-F"])

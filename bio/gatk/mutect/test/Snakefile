@@ -1,0 +1,14 @@
+rule mutect2:
+    input:
+        fasta = "genome/genome.fasta",
+        map = "mapped/{sample}.bam"
+    output:
+        vcf = "variant/{sample}.vcf"
+    message:
+        "Testing Mutect2 with {wildcards.sample}"
+    threads:
+        1
+    log:
+        "logs/mutect_{sample}.log"
+    wrapper:
+         "master/bio/gatk/mutect"
