@@ -1,0 +1,7 @@
+name: varscan-pileup2cns
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - varscan ==2.4.3

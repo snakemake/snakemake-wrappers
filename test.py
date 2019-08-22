@@ -520,6 +520,10 @@ def test_gatk_splitncigarreads():
 def test_picard_mergevcfs():
     run("bio/picard/mergevcfs", ["snakemake", "snvs.vcf", "--use-conda", "-F"])
 
+def test_varscan_mpileup2cns():
+    run("bio/varscan/mpileup2cns",
+        ["snakemake", "vcf/a.vcf", "--use-conda", "-F"])
+
 def test_igv_reports():
     run("bio/igv-reports", ["snakemake", "igv-report.html", "--use-conda", "-F"])
 

@@ -1,0 +1,16 @@
+rule mpileup_to_vcf:
+    input:
+        "mpileup/{sample}.mpileup.gz"
+    output:
+        "vcf/{sample}.vcf"
+    message:
+        "Calling SNP with Varscan2"
+    threads:  # Varscan does not take threadding information
+        1     # However, mpileup might have to be unzipped.
+              # Keep threading value to one for unzipped mpileup input
+              # Set it to two for zipped mipileup files
+    log:
+        "logs/varscan_{sample}.log"
+    wrapper:
+        # "bio/varscan/mpileup2snp"
+        "file:../"
