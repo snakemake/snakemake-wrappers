@@ -165,7 +165,7 @@ def test_fgbio_filterconsensusreads():
 
 def test_fgbio_group():
      run("bio/fgbio/groupreadsbyumi",
-          ["snakemake", "mapped/a.gu.bam", "--use-conda", "-F"])
+          ["snakemake", "mapped/a.gu.bam", "mapped/a.gu.histo", "--use-conda", "-F"])
 
 def test_fgbio_set_mate_information():
        run("bio/fgbio/setmateinformation",
