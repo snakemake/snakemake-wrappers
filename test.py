@@ -544,3 +544,6 @@ def test_varscan_mpileup2indel():
 
 def test_varscan_mpileup2snp():
     run("bio/varscan/mpileup2snp", ["snakemake", "vcf/a.vcf", "--use-conda", "-F"])
+
+def test_umis_bamtag():
+    run("bio/umis/bamtag", ["snakemake", "data/a.annotated.bam", "--use-conda", "-F"])
