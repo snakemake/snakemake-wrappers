@@ -1,0 +1,8 @@
+name: samtools fixmate
+description: Use samtools to correct mate information after BWA mapping.
+authors:
+  - Thibault Dayris
+input:
+  - bam or sam file (.bam,.sam)
+output:
+  - bam or sam file (.bam,.sam)

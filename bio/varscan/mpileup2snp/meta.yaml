@@ -7,8 +7,10 @@ input:
 output:
   - A VCF file
 notes: |
-  Varscan does not take threading information by itself. However, mpileup files
-  given as input, might be gzipped. If so, it's recommended to use two threads:
+  Varscan does not take any threading information by itself. However, mpileup
+  files given as input, might be gzipped.
+
+  If so, it's recommended to use two threads:
 
   * 1 for varscan itself
   * 1 for zcat
