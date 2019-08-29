@@ -5,8 +5,8 @@ rule varscan_somatic:
         # tumor_pileup = ""
         mpileup = "mpileup/{sample}.mpileup.gz"
     output:
-        snp = "vcf/{sample}.snp",
-        indel = "vcf/{sample}.indel"
+        snp = "vcf/{sample}.snp.vcf",
+        indel = "vcf/{sample}.indel.vcf"
     message:
         "Calling somatic variants {wildcards.sample}"
     threads:
