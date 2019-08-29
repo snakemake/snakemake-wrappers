@@ -3,7 +3,7 @@ rule GroupReads:
         "mapped/a.bam"
     output:
         bam="mapped/{sample}.gu.bam",
-        hist="mapped/{sample}.gu.histo",
+        hist="mapped/{sample}.gu.histo.tsv",
     params:
         extra="-s adjacency --edits 1"
     log:
