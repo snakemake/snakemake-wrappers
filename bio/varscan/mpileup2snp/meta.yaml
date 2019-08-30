@@ -1,4 +1,4 @@
-name: Varscan2
+name: varscan mpileup2snp
 description: Detect variants in NGS data from Samtools mpileup
 authors:
   - Thibault Dayris

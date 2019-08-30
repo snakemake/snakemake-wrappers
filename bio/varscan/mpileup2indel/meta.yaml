@@ -1,4 +1,4 @@
-name: Varscan
+name: varscan mpileup2indel
 description: Detect indel in NGS data from mpileup files
 authors:
   - Thibault Dayris
