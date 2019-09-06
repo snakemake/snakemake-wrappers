@@ -4,3 +4,4 @@ channels:
   - defaults
 dependencies:
   - cutadapt ==2.5
+  - pigz ==2.3.4
