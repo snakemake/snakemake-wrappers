@@ -19,5 +19,6 @@ shell(
     " {snakemake.params}"
     " -o {snakemake.output.fastq1}"
     " -p {snakemake.output.fastq2}"
+    " -j {snakemake.threads}"
     " {snakemake.input}"
     " > {snakemake.output.qc} {log}")
