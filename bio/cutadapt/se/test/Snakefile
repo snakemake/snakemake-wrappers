@@ -8,5 +8,6 @@ rule cutadapt:
         "-a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC -q 20"
     log:
         "logs/cutadapt/{sample}.log"
+    threads: 4 # set desired number of threads here
     wrapper:
         "master/bio/cutadapt/se"
