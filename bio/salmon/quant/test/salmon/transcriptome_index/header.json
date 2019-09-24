@@ -1,7 +1,7 @@
 {
     "value0": {
         "IndexType": 1,
-        "IndexVersion": "q5",
+        "IndexVersion": "q6",
         "UsesKmers": true,
         "KmerLen": 31,
         "BigSA": false,
