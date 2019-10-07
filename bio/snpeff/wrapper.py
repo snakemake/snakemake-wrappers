@@ -30,7 +30,4 @@ csvstats_opt = "" if not csvstats else "-csvStats {}".format(csvstats)
 stats_opt = "-noStats" if not stats else "-stats {}".format(stats)
 
 shell(shell_command)
-# if stats:
-#    shutil.copy(path.join(stats_tempdir, 'stats'), stats)
-# if genes:
-#    shutil.copy(path.join(stats_tempdir, 'stats.genes.txt'), genes)
+
