@@ -3,10 +3,10 @@ The Snakemake Wrappers repository
 =================================
 
 .. image:: https://img.shields.io/badge/snakemake-≥4.5.0-brightgreen.svg?style=flat-square
-      :target: http://snakemake.bitbucket.io
+      :target: http://snakemake.readthedocs.io
 
 The Snakemake Wrapper Repository is a collection of reusable wrappers that allow to quickly use popular tools
-from `Snakemake <https://snakemake.bitbucket.io>`_ rules and workflows.
+from `Snakemake <https://snakemake.readthedocs.io>`_ rules and workflows.
 
 Usage
 -----
@@ -27,21 +27,21 @@ The general strategy is to include a wrapper into your workflow via the `wrapper
             "0.2.0/bio/samtools/sort"
 
 
-Here, Snakemake will automatically download the corresponding wrapper from https://bitbucket.org/snakemake/snakemake-wrappers/src/0.2.0/bio/samtools/sort/wrapper.py. Thereby, 0.2.0 can be replaced with the version tag you want to use, or a commit id (see `here <https://bitbucket.org/snakemake/snakemake-wrappers/commits/>`_). This ensures reproducibility since changes in the wrapper implementation won't be propagated automatically to your workflow. Alternatively, e.g., for development, the wrapper directive can also point to full URLs, including the local ``file://``.
+Here, Snakemake will automatically download the corresponding wrapper from https://bitbucket.org/snakemake/snakemake-wrappers/src/0.2.0/bio/samtools/sort/wrapper.py. Thereby, 0.2.0 can be replaced with the `version tag <https://github.com/snakemake/snakemake-wrappers/releases>`_ you want to use, or a `commit id <https://github.com/snakemake/snakemake-wrappers/commits/master>`_. This ensures reproducibility since changes in the wrapper implementation won't be propagated automatically to your workflow. Alternatively, e.g., for development, the wrapper directive can also point to full URLs, including the local ``file://``.
 
 Each wrapper defines required software packages and versions. In combination with the ``--use-conda`` flag of Snakemake, these will be deployed automatically.
 
-Contribute
+Contribute 
 ----------
 
 We invite anybody to contribute to the Snakemake Wrapper Repository.
 If you want to contribute we suggest the following procedure:
 
-#. Fork the repository: https://bitbucket.org/snakemake/snakemake-wrappers/fork
-#. Clone the repo locally: ``git clone https://MY_PROFILE@bitbucket.org/MY_PROFILE/snakemake-wrappers.git``
+#. Fork the repository: https://github.com/snakemake/snakemake-wrappers
+#. Clone your fork locally.
 #. Locally, create a new branch: ``git checkout -b my-new-snakemake-wrapper``
-#. Commit your contributions to that branch and push them to you fork: ``git push -u origin my-new-snakemake-wrapper``
-#. Create a pull request: ``https://bitbucket.org/MY_PROFILE/snakemake-wrappers/pull-requests/new``
+#. Commit your contributions to that branch and push them to your fork: ``git push -u origin my-new-snakemake-wrapper``
+#. Create a pull request.
 
 The pull request will be reviewed and included as fast as possible.
 Contributions should follow the coding style of the already present examples, i.e.:
@@ -52,7 +52,8 @@ Contributions should follow the coding style of the already present examples, i.
   `default anaconda channels <https://anaconda.org/anaconda>`_ or via the
   `conda <https://conda.io/docs/>`_ channels
   `bioconda <https://bioconda.github.io/recipes.html>`_ or
-  `conda-forge <https://conda-forge.org/feedstocks/>`_ )
+  `conda-forge <https://conda-forge.org/feedstocks/>`_. 
+  Other sustainable community maintained channels are possible as well.)
 * provide a minimal test case in a subfolder called ``test``, with an example
   ``Snakefile`` that shows how to use the wrapper, some minimal testing data
   (also check existing wrappers for suitable data) and add an invocation of the
