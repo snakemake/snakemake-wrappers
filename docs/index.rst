@@ -2,7 +2,7 @@
 The Snakemake Wrappers repository
 =================================
 
-.. image:: https://img.shields.io/badge/snakemake-≥4.5.0-brightgreen.svg?style=flat-square
+.. image:: https://img.shields.io/badge/snakemake-≥5.7.0-brightgreen.svg?style=flat-square
       :target: http://snakemake.readthedocs.io
 
 The Snakemake Wrapper Repository is a collection of reusable wrappers that allow to quickly use popular tools
