@@ -1,5 +1,5 @@
 [![Snakemake](https://img.shields.io/badge/snakemake-≥3.8.0-brightgreen.svg)](https://bitbucket.org/johanneskoester/snakemake)
-[![CircleCI](https://circleci.com/bb/snakemake/snakemake-wrappers/tree/master.svg?style=shield)](https://circleci.com/bb/snakemake/snakemake-wrappers/tree/master)
+[![CircleCI](https://circleci.com/gh/snakemake/snakemake-wrappers/tree/master.svg?style=shield)](https://circleci.com/gh/snakemake/snakemake-wrappers/tree/master)
 
 
 # The Snakemake Wrapper Repository
