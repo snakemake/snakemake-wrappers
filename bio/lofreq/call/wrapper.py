@@ -35,4 +35,5 @@ shell(
     " {bam_input}"
     " -o {output_file}"
     " {extra}"
-    " {log}")
+    " {log}"
+)

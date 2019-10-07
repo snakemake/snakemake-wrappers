@@ -21,8 +21,8 @@ elif len(reads) == 2:
     input_flags = "-1 {0} -2 {1}".format(*reads)
 else:
     raise RuntimeError(
-        "Reads parameter must contain at least 1 and at most 2"
-        " input files.")
+        "Reads parameter must contain at least 1 and at most 2" " input files."
+    )
 
 # Executed shell command
 shell(

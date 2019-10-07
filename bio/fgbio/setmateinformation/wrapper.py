@@ -22,8 +22,10 @@ output_file = snakemake.output[0]
 if not isinstance(output_file, str) and len(snakemake.output) != 1:
     raise ValueError("Output should be one bam file: " + str(output_file) + "!")
 
-shell("fgbio SetMateInformation"
-      " -i {bam_input}"
-      " -o {output_file}"
-      " {extra_params}"
-      " {log}")
+shell(
+    "fgbio SetMateInformation"
+    " -i {bam_input}"
+    " -o {output_file}"
+    " {extra_params}"
+    " {log}"
+)

@@ -23,13 +23,13 @@ else:
 makedirs(snakemake.output)
 
 shell(
-    "STAR "                                        # Tool
-    "--runMode genomeGenerate "                    # Indexation mode
-    "{extra} "                                     # Optional parameters
-    "--runThreadN {snakemake.threads} "            # Number of threads
-    "--genomeDir {snakemake.output} "              # Path to output
+    "STAR "  # Tool
+    "--runMode genomeGenerate "  # Indexation mode
+    "{extra} "  # Optional parameters
+    "--runThreadN {snakemake.threads} "  # Number of threads
+    "--genomeDir {snakemake.output} "  # Path to output
     "--genomeFastaFiles {snakemake.input.fasta} "  # Path to fasta files
-    "{sjdb_overhang} "                             # Read-len - 1
-    "{gtf} "                                       # Highly recommended GTF
-    "{log}"                                        # Logging
+    "{sjdb_overhang} "  # Read-len - 1
+    "{gtf} "  # Highly recommended GTF
+    "{log}"  # Logging
 )

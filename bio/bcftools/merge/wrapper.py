@@ -8,4 +8,5 @@ from snakemake.shell import shell
 
 shell(
     "bcftools merge {snakemake.params} -o {snakemake.output[0]} "
-    "{snakemake.input.calls}")
+    "{snakemake.input.calls}"
+)

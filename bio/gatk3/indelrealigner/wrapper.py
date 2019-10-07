@@ -27,12 +27,14 @@ for known in input_known:
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-shell("gatk3 {java_opts} -T IndelRealigner"
-      " {extra}"
-      " -I {input_bam}"
-      " -R {input_ref}"
-      " {input_known_string}"
-      " {bed}"
-      " --targetIntervals {input_target_intervals}"
-      " -o {snakemake.output}"
-      " {log}")
+shell(
+    "gatk3 {java_opts} -T IndelRealigner"
+    " {extra}"
+    " -I {input_bam}"
+    " -R {input_ref}"
+    " {input_known_string}"
+    " {bed}"
+    " --targetIntervals {input_target_intervals}"
+    " -o {snakemake.output}"
+    " {log}"
+)

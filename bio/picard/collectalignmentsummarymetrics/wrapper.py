@@ -10,6 +10,8 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell()
 
 
-shell("picard CollectAlignmentSummaryMetrics {snakemake.params} "
-      "INPUT={snakemake.input.bam} OUTPUT={snakemake.output[0]} "
-      "REFERENCE_SEQUENCE={snakemake.input.ref} {log}")
+shell(
+    "picard CollectAlignmentSummaryMetrics {snakemake.params} "
+    "INPUT={snakemake.input.bam} OUTPUT={snakemake.output[0]} "
+    "REFERENCE_SEQUENCE={snakemake.input.ref} {log}"
+)

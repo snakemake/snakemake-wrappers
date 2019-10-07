@@ -16,13 +16,17 @@ reference_genome = snakemake.input.reference_genome
 extra = snakemake.params.get("extra", "")
 
 if not snakemake.output[0].endswith(".gz"):
-    raise Exception("output file will be compressed and therefore filename should end with \".gz\"")
+    raise Exception(
+        'output file will be compressed and therefore filename should end with ".gz"'
+    )
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell("samtools mpileup "
-        "{extra} "
-        "-f {reference_genome} "
-        "{bam_input}  "
-        " | pigz > {snakemake.output} "
-        "{log}")
+shell(
+    "samtools mpileup "
+    "{extra} "
+    "-f {reference_genome} "
+    "{bam_input}  "
+    " | pigz > {snakemake.output} "
+    "{log}"
+)

@@ -10,4 +10,5 @@ from snakemake.shell import shell
 shell(
     "(samtools mpileup {snakemake.params.mpileup} {snakemake.input.samples} "
     "--fasta-ref {snakemake.input.ref} --BCF --uncompressed | "
-    "bcftools call -m {snakemake.params.call} -o {snakemake.output[0]} -v -) 2> {snakemake.log}")
+    "bcftools call -m {snakemake.params.call} -o {snakemake.output[0]} -v -) 2> {snakemake.log}"
+)

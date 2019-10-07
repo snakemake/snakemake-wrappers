@@ -7,5 +7,7 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 
-shell("picard AddOrReplaceReadGroups {snakemake.params} I={snakemake.input} "
-      "O={snakemake.output} &> {snakemake.log}")
+shell(
+    "picard AddOrReplaceReadGroups {snakemake.params} I={snakemake.input} "
+    "O={snakemake.output} &> {snakemake.log}"
+)

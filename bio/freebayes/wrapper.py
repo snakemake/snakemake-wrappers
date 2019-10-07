@@ -20,10 +20,13 @@ if snakemake.threads == 1:
     freebayes = "freebayes"
 else:
     chunksize = snakemake.params.get("chunksize", 100000)
-    freebayes = ("freebayes-parallel <(fasta_generate_regions.py "
-                 "{snakemake.input.ref}.fai {chunksize}) "
-                 "{snakemake.threads}").format(snakemake=snakemake,
-                                               chunksize=chunksize)
+    freebayes = (
+        "freebayes-parallel <(fasta_generate_regions.py "
+        "{snakemake.input.ref}.fai {chunksize}) "
+        "{snakemake.threads}"
+    ).format(snakemake=snakemake, chunksize=chunksize)
 
-shell("({freebayes} {params} -f {snakemake.input.ref}"
-      " {snakemake.input.samples} {pipe} > {snakemake.output[0]}) {log}")
+shell(
+    "({freebayes} {params} -f {snakemake.input.ref}"
+    " {snakemake.input.samples} {pipe} > {snakemake.output[0]}) {log}"
+)

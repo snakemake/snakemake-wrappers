@@ -9,7 +9,7 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 
-extra = snakemake.params.get('extra', '')
+extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
@@ -18,4 +18,5 @@ shell(
     " -t {snakemake.threads}"
     " {snakemake.params.index}"
     " {snakemake.input[0]}"
-    " > {snakemake.output[0]} {log}")
+    " > {snakemake.output[0]} {log}"
+)

@@ -18,11 +18,13 @@ assert n == 2, "Input must contain 2 files. Given: %r." % n
 
 # Don't run with `--fastqc` flag
 if "--fastqc" in snakemake.params.get("extra", ""):
-    raise ValueError("The trim_galore Snakemake wrapper cannot "
-                       "be run with the `--fastqc` flag. Please "
-                       "remove the flag from extra params. "
-                       "You can use the fastqc Snakemake wrapper on "
-                       "the input and output files instead.")
+    raise ValueError(
+        "The trim_galore Snakemake wrapper cannot "
+        "be run with the `--fastqc` flag. Please "
+        "remove the flag from extra params. "
+        "You can use the fastqc Snakemake wrapper on "
+        "the input and output files instead."
+    )
 
 # Check that four output files were supplied
 m = len(snakemake.output)
@@ -31,9 +33,10 @@ assert m == 4, "Output must contain 4 files. Given: %r." % m
 # Check that all output files are in the same directory
 out_dir = os.path.dirname(snakemake.output[0])
 for file_path in snakemake.output[1:]:
-    assert out_dir == os.path.dirname(file_path), \
-        "trim_galore can only output files to a single directory." \
+    assert out_dir == os.path.dirname(file_path), (
+        "trim_galore can only output files to a single directory."
         " Please indicate only one directory for the output files."
+    )
 
 shell(
     "(trim_galore"
@@ -41,5 +44,5 @@ shell(
     " --paired"
     " -o {out_dir}"
     " {snakemake.input})"
-    " {log}")
-
+    " {log}"
+)

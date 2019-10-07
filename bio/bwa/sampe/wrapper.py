@@ -13,10 +13,10 @@ from snakemake.shell import shell
 
 # Check inputs.
 if not len(snakemake.input.sai) == 2:
-    raise ValueError('input.sai must have 2 elements')
+    raise ValueError("input.sai must have 2 elements")
 
 if not len(snakemake.input.fastq) == 2:
-    raise ValueError('input.fastq must have 2 elements')
+    raise ValueError("input.fastq must have 2 elements")
 
 # Extract arguments.
 extra = snakemake.params.get("extra", "")
@@ -49,8 +49,10 @@ elif sort == "samtools":
 elif sort == "picard":
 
     # Sort alignments using picard SortSam.
-    pipe_cmd = ("picard SortSam {sort_extra} INPUT=/dev/stdin"
-                " OUTPUT={snakemake.output[0]} SORT_ORDER={sort_order}")
+    pipe_cmd = (
+        "picard SortSam {sort_extra} INPUT=/dev/stdin"
+        " OUTPUT={snakemake.output[0]} SORT_ORDER={sort_order}"
+    )
 
 else:
     raise ValueError("Unexpected value for params.sort ({})".format(sort))
@@ -62,4 +64,5 @@ shell(
     " {snakemake.params.index}"
     " {snakemake.input.sai}"
     " {snakemake.input.fastq}"
-    " | " + pipe_cmd + ") {log}")
+    " | " + pipe_cmd + ") {log}"
+)

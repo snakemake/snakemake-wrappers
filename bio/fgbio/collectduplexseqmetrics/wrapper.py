@@ -27,17 +27,44 @@ name = str(path.basename(family_sizes)).split(".")[0]
 path_name_prefix = str(path.join(file_path, name))
 
 if not family_sizes == path_name_prefix + ".family_sizes.txt":
-    raise Exception("Unexpected family_sizes path/name format, expected {}, got {}.".format(path_name_prefix+".family_sizes.txt", family_sizes))
+    raise Exception(
+        "Unexpected family_sizes path/name format, expected {}, got {}.".format(
+            path_name_prefix + ".family_sizes.txt", family_sizes
+        )
+    )
 if not duplex_family_sizes == path_name_prefix + ".duplex_family_sizes.txt":
-    raise Exception("Unexpected duplex_family_sizes path/name format, expected {}, got {}. Note that dirname will be extracted from family_sizes variable.".format(path_name_prefix+".duplex_family_sizes.txt", duplex_family_sizes))
+    raise Exception(
+        "Unexpected duplex_family_sizes path/name format, expected {}, got {}. Note that dirname will be extracted from family_sizes variable.".format(
+            path_name_prefix + ".duplex_family_sizes.txt", duplex_family_sizes
+        )
+    )
 if not duplex_yield_metrics == path_name_prefix + ".duplex_yield_metrics.txt":
-    raise Exception("Unexpected duplex_yield_metrics path/name format, expected {}, got {}. Note that dirname will be extracted from family_sizes variable.".format(path_name_prefix+".duplex_yield_metrics.txt", duplex_yield_metrics))
+    raise Exception(
+        "Unexpected duplex_yield_metrics path/name format, expected {}, got {}. Note that dirname will be extracted from family_sizes variable.".format(
+            path_name_prefix + ".duplex_yield_metrics.txt", duplex_yield_metrics
+        )
+    )
 if not umi_counts == path_name_prefix + ".umi_counts.txt":
-    raise Exception("Unexpected umi_counts path/name format, expected {}, got {}. Note that dirname will be extracted from family_sizes variable.".format(path_name_prefix+".umi_counts.txt", umi_counts))
+    raise Exception(
+        "Unexpected umi_counts path/name format, expected {}, got {}. Note that dirname will be extracted from family_sizes variable.".format(
+            path_name_prefix + ".umi_counts.txt", umi_counts
+        )
+    )
 if not duplex_qc == path_name_prefix + ".duplex_qc.pdf":
-    raise Exception("Unexpected duplex_qc path/name format, expected {}, got {}. Note that dirname will be extracted from family_sizes variable.".format(path_name_prefix+".duplex_qc.pdf", duplex_qc))
-if duplex_umi_counts is not None and not duplex_umi_counts == path_name_prefix + ".duplex_umi_counts.txt":
-    raise Exception("Unexpected duplex_umi_counts path/name format, expected {}, got {}. Note that dirname will be extracted from family_sizes variable.".format(path_name_prefix+".duplex_umi_counts.txt", duplex_umi_counts))
+    raise Exception(
+        "Unexpected duplex_qc path/name format, expected {}, got {}. Note that dirname will be extracted from family_sizes variable.".format(
+            path_name_prefix + ".duplex_qc.pdf", duplex_qc
+        )
+    )
+if (
+    duplex_umi_counts is not None
+    and not duplex_umi_counts == path_name_prefix + ".duplex_umi_counts.txt"
+):
+    raise Exception(
+        "Unexpected duplex_umi_counts path/name format, expected {}, got {}. Note that dirname will be extracted from family_sizes variable.".format(
+            path_name_prefix + ".duplex_umi_counts.txt", duplex_umi_counts
+        )
+    )
 
 duplex_umi_counts_flag = ""
 if duplex_umi_counts is not None:
@@ -46,9 +73,11 @@ if duplex_umi_counts is not None:
 if not isinstance(bam_input, str) and len(snakemake.input) != 1:
     raise ValueError("Input bam should be one bam file: " + str(bam_input) + "!")
 
-shell("fgbio CollectDuplexSeqMetrics"
-      " -i {bam_input}"
-      " -o {path_name_prefix}"
-      " {duplex_umi_counts_flag}"
-      " {extra_params}"
-      " {log}")
+shell(
+    "fgbio CollectDuplexSeqMetrics"
+    " -i {bam_input}"
+    " -o {path_name_prefix}"
+    " {duplex_umi_counts_flag}"
+    " {extra_params}"
+    " {log}"
+)

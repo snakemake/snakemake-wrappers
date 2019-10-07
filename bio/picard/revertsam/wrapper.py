@@ -12,9 +12,10 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
-    'picard'
-    ' RevertSam'
-    ' {extra}'
-    ' INPUT={snakemake.input[0]}'
-    ' OUTPUT={snakemake.output[0]}'
-    ' {log}')
+    "picard"
+    " RevertSam"
+    " {extra}"
+    " INPUT={snakemake.input[0]}"
+    " OUTPUT={snakemake.output[0]}"
+    " {log}"
+)

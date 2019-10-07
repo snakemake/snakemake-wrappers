@@ -13,10 +13,11 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
-    'picard'
-    ' SortSam'
-    ' {extra}'
-    ' INPUT={snakemake.input[0]}'
-    ' OUTPUT={snakemake.output[0]}'
-    ' SORT_ORDER={snakemake.params.sort_order}'
-    ' {log}')
+    "picard"
+    " SortSam"
+    " {extra}"
+    " INPUT={snakemake.input[0]}"
+    " OUTPUT={snakemake.output[0]}"
+    " SORT_ORDER={snakemake.params.sort_order}"
+    " {log}"
+)

@@ -33,24 +33,20 @@ shell(
     " -s {prefix}"
     " -a {snakemake.params.algorithm}"
     " {snakemake.input.a}"
-    " {snakemake.input.b}")
+    " {snakemake.input.b}"
+)
 
 # Move outputs into expected positions.
 output_base = path.join(output_dir, prefix)
 
 output_map = {
-    output_base + ".ambiguousSpeciesA.bam":
-        snakemake.output.a_ambiguous,
-    output_base + ".ambiguousSpeciesB.bam":
-        snakemake.output.b_ambiguous,
-    output_base + ".disambiguatedSpeciesA.bam":
-        snakemake.output.a_disambiguated,
-    output_base + ".disambiguatedSpeciesB.bam":
-        snakemake.output.b_disambiguated,
-    output_base + "_summary.txt":
-        snakemake.output.summary
+    output_base + ".ambiguousSpeciesA.bam": snakemake.output.a_ambiguous,
+    output_base + ".ambiguousSpeciesB.bam": snakemake.output.b_ambiguous,
+    output_base + ".disambiguatedSpeciesA.bam": snakemake.output.a_disambiguated,
+    output_base + ".disambiguatedSpeciesB.bam": snakemake.output.b_disambiguated,
+    output_base + "_summary.txt": snakemake.output.summary,
 }
 
 for src, dest in output_map.items():
     if src != dest:
-        shell('mv {src} {dest}')
+        shell("mv {src} {dest}")

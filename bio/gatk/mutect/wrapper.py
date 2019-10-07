@@ -13,10 +13,10 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
 shell(
-    "gatk Mutect2 "                         # Tool and its subprocess
-    "--input {snakemake.input.map} "        # Path to input mapping file
-    "--output {snakemake.output.vcf} "      # Path to output vcf file
+    "gatk Mutect2 "  # Tool and its subprocess
+    "--input {snakemake.input.map} "  # Path to input mapping file
+    "--output {snakemake.output.vcf} "  # Path to output vcf file
     "--reference {snakemake.input.fasta} "  # Path to reference fasta file
-    "{extra} "                              # Extra parameters
-    "{log}"                                 # Logging behaviour
+    "{extra} "  # Extra parameters
+    "{log}"  # Logging behaviour
 )

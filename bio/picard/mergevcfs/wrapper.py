@@ -19,4 +19,5 @@ shell(
     " {extra}"
     " {inputs}"
     " OUTPUT={snakemake.output[0]}"
-    " {log}")
+    " {log}"
+)

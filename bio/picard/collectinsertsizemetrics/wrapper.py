@@ -10,6 +10,8 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell()
 
 
-shell("picard CollectInsertSizeMetrics {snakemake.params} "
-      "INPUT={snakemake.input} OUTPUT={snakemake.output.txt} "
-      "HISTOGRAM_FILE={snakemake.output.pdf} {log}")
+shell(
+    "picard CollectInsertSizeMetrics {snakemake.params} "
+    "INPUT={snakemake.input} OUTPUT={snakemake.output.txt} "
+    "HISTOGRAM_FILE={snakemake.output.pdf} {log}"
+)

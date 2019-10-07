@@ -7,11 +7,11 @@ __copyright__ = "Copyright 2016, Ryan Dale"
 __email__ = "dalerr@niddk.nih.gov"
 __license__ = "MIT"
 
-_config = snakemake.params['fastq_screen_config']
+_config = snakemake.params["fastq_screen_config"]
 
-subset = snakemake.params.get('subset', 100000)
-aligner = snakemake.params.get('aligner', 'bowtie2')
-extra = snakemake.params.get('extra', '')
+subset = snakemake.params.get("subset", 100000)
+aligner = snakemake.params.get("aligner", "bowtie2")
+extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell()
 
 # snakemake.params.fastq_screen_config can be either a dict or a string. If
@@ -19,20 +19,21 @@ log = snakemake.log_fmt_shell()
 # Otherwise, create a new tempfile out of the contents of the dict:
 if isinstance(_config, dict):
     tmp = tempfile.NamedTemporaryFile(delete=False).name
-    with open(tmp, 'w') as fout:
-        for label, indexes in _config['database'].items():
+    with open(tmp, "w") as fout:
+        for label, indexes in _config["database"].items():
             for aligner, index in indexes.items():
-                fout.write('\t'.join([
-                    'DATABASE', label, index, aligner.upper()]) + '\n')
-        for aligner, path in _config['aligner_paths'].items():
-            fout.write('\t'.join([aligner.upper(), path]) + '\n')
+                fout.write(
+                    "\t".join(["DATABASE", label, index, aligner.upper()]) + "\n"
+                )
+        for aligner, path in _config["aligner_paths"].items():
+            fout.write("\t".join([aligner.upper(), path]) + "\n")
     config_file = tmp
 else:
     config_file = _config
 
 # fastq_screen hard-codes filenames according to this prefix. We will send
 # hard-coded output to a temp dir, and then move them later.
-prefix = os.path.basename(snakemake.input[0].split('.fastq')[0])
+prefix = os.path.basename(snakemake.input[0].split(".fastq")[0])
 tempdir = tempfile.mkdtemp()
 
 shell(

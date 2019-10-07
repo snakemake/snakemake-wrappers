@@ -14,8 +14,10 @@ extra = snakemake.params.get("extra", "")
 
 pedigree = snakemake.input.get("pedigree", "")
 if pedigree:
-      pedigree = '--pedigree-file "%s"'%pedigree
+    pedigree = '--pedigree-file "%s"' % pedigree
 
-shell("jannovar annotate-vcf --database {snakemake.params.database}"
-      " --input-vcf {snakemake.input.vcf} --output-vcf {snakemake.output}"
-      " {pedigree} {extra} {log}")
+shell(
+    "jannovar annotate-vcf --database {snakemake.params.database}"
+    " --input-vcf {snakemake.input.vcf} --output-vcf {snakemake.output}"
+    " {pedigree} {extra} {log}"
+)

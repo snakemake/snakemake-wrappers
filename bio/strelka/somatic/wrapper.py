@@ -26,14 +26,14 @@ normal = (
 makedirs(snakemake.output)
 
 shell(
-    "(configureStrelkaSomaticWorkflow.py "       # Configuration script
-    "{normal} "                                  # Path to normal bam (if any)
-    "--tumorBam {snakemake.input.tumor} "        # Path to tumor bam
+    "(configureStrelkaSomaticWorkflow.py "  # Configuration script
+    "{normal} "  # Path to normal bam (if any)
+    "--tumorBam {snakemake.input.tumor} "  # Path to tumor bam
     "--referenceFasta {snakemake.input.fasta} "  # Path to fasta file
-    "--runDir {snakemake.output} "               # Path to output directory
+    "--runDir {snakemake.output} "  # Path to output directory
     " && "
-    "{snakemake.output}/runWorkflow.py "         # Run the pipeline
-    "--mode local "                              # Stop internal job submission
-    "--jobs {snakemake.threads}) "                         # Nomber of threads
-    "{log}"                                      # Logging behaviour
+    "{snakemake.output}/runWorkflow.py "  # Run the pipeline
+    "--mode local "  # Stop internal job submission
+    "--jobs {snakemake.threads}) "  # Nomber of threads
+    "{log}"  # Logging behaviour
 )

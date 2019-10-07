@@ -18,11 +18,13 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 extra = snakemake.params.get("extra", "")
 
-shell("vcftools "
-      "{input_flag} "
-      "{snakemake.input} "
-      "{extra} "
-      "--recode "
-      "--stdout "
-      "{output} "
-       "{log}")
+shell(
+    "vcftools "
+    "{input_flag} "
+    "{snakemake.input} "
+    "{extra} "
+    "--recode "
+    "--stdout "
+    "{output} "
+    "{log}"
+)

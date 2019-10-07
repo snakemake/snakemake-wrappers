@@ -19,4 +19,5 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 shell(
     "OMP_NUM_THREADS={snakemake.threads} delly call {extra} "
     "{exclude} -g {snakemake.input.ref} "
-    "-o {snakemake.output[0]} {snakemake.input.samples} {log}")
+    "-o {snakemake.output[0]} {snakemake.input.samples} {log}"
+)

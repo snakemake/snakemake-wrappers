@@ -16,10 +16,12 @@ input_ref = snakemake.input.ref
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-shell("gatk3 {java_opts} -T PrintReads"
-      " {extra}"
-      " -I {input_bam}"
-      " -R {input_ref}"
-      " -BQSR {input_recal_data}"
-      " -o {snakemake.output}"
-      " {log}")
+shell(
+    "gatk3 {java_opts} -T PrintReads"
+    " {extra}"
+    " -I {input_bam}"
+    " -R {input_ref}"
+    " -BQSR {input_recal_data}"
+    " -o {snakemake.output}"
+    " {log}"
+)

@@ -25,11 +25,17 @@ if not isinstance(output_bam_file, str) and len(output_bam_file) != 1:
 output_histo_file = snakemake.output.hist
 
 if not isinstance(output_histo_file, str) and len(output_histo_file) != 1:
-    raise ValueError("Histo output should be one histogram file path: " + str(output_histo_file) + "!")
+    raise ValueError(
+        "Histo output should be one histogram file path: "
+        + str(output_histo_file)
+        + "!"
+    )
 
-shell("fgbio GroupReadsByUmi"
-      " -i {bam_input}"
-      " -o {output_bam_file}"
-      " -f {output_histo_file}"
-      " {extra_params}"
-      " {log}")
+shell(
+    "fgbio GroupReadsByUmi"
+    " -i {bam_input}"
+    " -o {output_bam_file}"
+    " -f {output_histo_file}"
+    " {extra_params}"
+    " {log}"
+)

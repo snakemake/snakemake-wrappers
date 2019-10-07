@@ -21,4 +21,5 @@ shell(
     " REFERENCE_SEQUENCE={snakemake.input.reference}"
     " BAIT_INTERVALS={snakemake.input.bait_intervals}"
     " TARGET_INTERVALS={snakemake.input.target_intervals}"
-    " {log}")
+    " {log}"
+)

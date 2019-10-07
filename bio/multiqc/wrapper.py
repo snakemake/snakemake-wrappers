@@ -23,4 +23,5 @@ shell(
     " -o {output_dir}"
     " -n {output_name}"
     " {input_dirs}"
-    " {log}")
+    " {log}"
+)

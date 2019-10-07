@@ -8,5 +8,5 @@ from snakemake.shell import shell
 
 
 shell(
-    "bcftools view {snakemake.params} {snakemake.input[0]} "
-    "-o {snakemake.output[0]}")
+    "bcftools view {snakemake.params} {snakemake.input[0]} " "-o {snakemake.output[0]}"
+)

@@ -42,8 +42,10 @@ elif sort == "samtools":
 elif sort == "picard":
 
     # Sort alignments using picard SortSam.
-    pipe_cmd = ("picard SortSam {sort_extra} INPUT=/dev/stdin"
-                " OUTPUT={snakemake.output[0]} SORT_ORDER={sort_order}")
+    pipe_cmd = (
+        "picard SortSam {sort_extra} INPUT=/dev/stdin"
+        " OUTPUT={snakemake.output[0]} SORT_ORDER={sort_order}"
+    )
 
 else:
     raise ValueError("Unexpected value for params.sort ({})".format(sort))
@@ -55,4 +57,5 @@ shell(
     " {snakemake.params.index}"
     " {snakemake.input.sai}"
     " {snakemake.input.fastq}"
-    " | " + pipe_cmd + ") {log}")
+    " | " + pipe_cmd + ") {log}"
+)

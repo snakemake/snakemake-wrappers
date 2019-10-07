@@ -9,7 +9,9 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 n = len(snakemake.input.sample)
-assert n == 1 or n == 2, "input->sample must have 1 (single-end) or 2 (paired-end) elements."
+assert (
+    n == 1 or n == 2
+), "input->sample must have 1 (single-end) or 2 (paired-end) elements."
 
 if n == 1:
     reads = "--in1 {}".format(snakemake.input.sample)
@@ -26,4 +28,5 @@ shell(
     "{reads} "
     "{trimmed} "
     "{json} "
-    "{html} ) {log}")
+    "{html} ) {log}"
+)

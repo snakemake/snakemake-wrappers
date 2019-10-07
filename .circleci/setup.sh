@@ -10,3 +10,4 @@ conda config --add channels defaults
 conda config --add channels conda-forge
 conda config --add channels bioconda
 conda create --name snakemake snakemake pytest
+conda create --name black black

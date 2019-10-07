@@ -16,14 +16,14 @@ extra = snakemake.params.get("extra", "")
 # Allowing for multiple FASTQ files
 fastq = snakemake.input.get("fastq")
 assert fastq is not None, "input-> a FASTQ-file is required"
-fastq = ' '.join(fastq) if isinstance(fastq, list) else fastq
+fastq = " ".join(fastq) if isinstance(fastq, list) else fastq
 
 shell(
-    "kallisto quant "                       # Tool
-    "{extra} "                              # Optional parameters
-    "--threads={snakemake.threads} "        # Number of threads
-    "--index={snakemake.input.index} "      # Input file
-    "--output-dir={snakemake.output} "      # Output directory
-    "{fastq} "                              # Input FASTQ files
-    "{log}"                                 # Logging
+    "kallisto quant "  # Tool
+    "{extra} "  # Optional parameters
+    "--threads={snakemake.threads} "  # Number of threads
+    "--index={snakemake.input.index} "  # Input file
+    "--output-dir={snakemake.output} "  # Output directory
+    "{fastq} "  # Input FASTQ files
+    "{log}"  # Logging
 )

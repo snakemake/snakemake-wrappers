@@ -22,15 +22,25 @@ from snakemake.shell import shell
 def distribute_threads(input_files, output_files, available_threads):
     gzipped_input_files = sum(1 for file in input_files if file.endswith(".gz"))
     gzipped_output_files = sum(1 for file in output_files if file.endswith(".gz"))
-    potential_threads_per_process = available_threads // (1 + gzipped_input_files + gzipped_output_files)
+    potential_threads_per_process = available_threads // (
+        1 + gzipped_input_files + gzipped_output_files
+    )
     if potential_threads_per_process > 0:
         # decompressing pigz creates at most 4 threads
-        pigz_input_threads = min(4, potential_threads_per_process) if gzipped_input_files != 0 else 0
-        pigz_output_threads = \
-            (available_threads - pigz_input_threads * gzipped_input_files) // (1 + gzipped_output_files) \
-                if gzipped_output_files != 0 else 0
-        trimmomatic_threads = available_threads - pigz_input_threads * gzipped_input_files - \
-                              pigz_output_threads * gzipped_output_files
+        pigz_input_threads = (
+            min(4, potential_threads_per_process) if gzipped_input_files != 0 else 0
+        )
+        pigz_output_threads = (
+            (available_threads - pigz_input_threads * gzipped_input_files)
+            // (1 + gzipped_output_files)
+            if gzipped_output_files != 0
+            else 0
+        )
+        trimmomatic_threads = (
+            available_threads
+            - pigz_input_threads * gzipped_input_files
+            - pigz_output_threads * gzipped_output_files
+        )
     else:
         # not enough threads for pigz
         pigz_input_threads = 0
@@ -42,8 +52,7 @@ def distribute_threads(input_files, output_files, available_threads):
 def compose_input_gz(filename, threads):
     if filename.endswith(".gz") and threads > 0:
         return "<(pigz -p {threads} --decompress --stdout {filename})".format(
-            threads=threads,
-            filename=filename
+            threads=threads, filename=filename
         )
     return filename
 
@@ -51,9 +60,7 @@ def compose_input_gz(filename, threads):
 def compose_output_gz(filename, threads, compression_level):
     if filename.endswith(".gz") and threads > 0:
         return ">(pigz -p {threads} {compression_level} > {filename})".format(
-            threads=threads,
-            compression_level=compression_level,
-            filename=filename
+            threads=threads, compression_level=compression_level, filename=filename
         )
     return filename
 
@@ -65,19 +72,24 @@ trimmer = " ".join(snakemake.params.trimmer)
 
 # Distribute threads
 input_files = [snakemake.input.r1, snakemake.input.r2]
-output_files = [snakemake.output.r1, snakemake.output.r1_unpaired,
-                snakemake.output.r2, snakemake.output.r2_unpaired]
+output_files = [
+    snakemake.output.r1,
+    snakemake.output.r1_unpaired,
+    snakemake.output.r2,
+    snakemake.output.r2_unpaired,
+]
 
 trimmomatic_threads, input_threads, output_threads = distribute_threads(
-    input_files,
-    output_files,
-    snakemake.threads
+    input_files, output_files, snakemake.threads
 )
 
-input_r1, input_r2 = [compose_input_gz(filename, input_threads) for filename in input_files]
+input_r1, input_r2 = [
+    compose_input_gz(filename, input_threads) for filename in input_files
+]
 
 output_r1, output_r1_unp, output_r2, output_r2_unp = [
-    compose_output_gz(filename, output_threads, compression_level) for filename in output_files
+    compose_output_gz(filename, output_threads, compression_level)
+    for filename in output_files
 ]
 
 shell(

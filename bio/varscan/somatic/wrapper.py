@@ -33,21 +33,16 @@ if "mpileup" in snakemake.input.keys():
     mpileup = "--mpileup 1"
 elif all(pileup in snakemake.input.keys() for pileup in pileup_pair):
     # Case there are two separate pileup files
-    in_pileup = (
-        " {snakemake.input.normal_pileup}"
-        " {snakemakeinput.tumor_pileup} "
-    )
+    in_pileup = " {snakemake.input.normal_pileup}" " {snakemakeinput.tumor_pileup} "
 else:
-    raise KeyError(
-        "Could not find either a mpileup, or a pair of pileup files"
-    )
+    raise KeyError("Could not find either a mpileup, or a pair of pileup files")
 
 shell(
     "varscan somatic"  # Tool and its subcommand
-    " {in_pileup}"     # Path to input file(s)
-    " {prefix}"        # Path to output
-    " {extra}"         # Extra parameters
+    " {in_pileup}"  # Path to input file(s)
+    " {prefix}"  # Path to output
+    " {extra}"  # Extra parameters
     " {mpileup}"
-    " --output-snp {snakemake.output.snp}"      # Path to snp output file
+    " --output-snp {snakemake.output.snp}"  # Path to snp output file
     " --output-indel {snakemake.output.indel}"  # Path to indel output file
 )

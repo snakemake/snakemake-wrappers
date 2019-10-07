@@ -28,6 +28,13 @@ jobs:
             source activate snakemake
             conda update snakemake
       - run:
+          name: Check formatting
+          command: |
+            source activate black
+            msg="Please reformat code with black and commit the result."
+            black --check bio/*/*/wrapper.py || echo $msg
+            black --check bio/*/wrapper.py || echo $msg
+      - run:
           name: Run tests
           command: |
             source activate snakemake

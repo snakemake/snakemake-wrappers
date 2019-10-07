@@ -36,9 +36,11 @@ if output_file is None:
 elif not isinstance(output_file, str):
     raise ValueError("Output bam-file should be a string: " + str(output_file) + "!")
 
-shell("fgbio AnnotateBamWithUmis"
-      " -i {bam_input}"
-      " -f {umi_input}"
-      " -o {output_file}"
-      " {extra_params}"
-      " {log}")
+shell(
+    "fgbio AnnotateBamWithUmis"
+    " -i {bam_input}"
+    " -f {umi_input}"
+    " -o {output_file}"
+    " {extra_params}"
+    " {log}"
+)

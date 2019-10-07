@@ -18,9 +18,9 @@ extra = snakemake.params.get("extra", "")
 fasta = snakemake.input.get("fasta")
 assert fasta is not None, "input-> a FASTA-file or a sequence is required"
 input_seq = ""
-if not '.' in fasta:
+if not "." in fasta:
     input_seq += "-c "
-input_seq += ','.join(fasta) if isinstance(fasta, list) else fasta
+input_seq += ",".join(fasta) if isinstance(fasta, list) else fasta
 
 hisat_dir = snakemake.params.get("prefix", "")
 if hisat_dir:

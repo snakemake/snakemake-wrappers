@@ -18,17 +18,19 @@ extra = snakemake.params.get("extra", "")
 # In that case, it is recommended to use at least 2 threads:
 # - One for unzipping with zcat
 # - One for running varscan
-pileup = (" cat {} ".format(snakemake.input[0])
-          if not snakemake.input[0].endswith("gz")
-          else " zcat {} ".format(snakemake.input[0]))
+pileup = (
+    " cat {} ".format(snakemake.input[0])
+    if not snakemake.input[0].endswith("gz")
+    else " zcat {} ".format(snakemake.input[0])
+)
 
 # Building output directories
 makedirs(op.dirname(snakemake.output[0]))
 
 shell(
-    "varscan mpileup2indel "     # Tool and its subprocess
-    "{extra} "                   # Extra parameters
+    "varscan mpileup2indel "  # Tool and its subprocess
+    "{extra} "  # Extra parameters
     "<( {pileup} ) "
-    "> {snakemake.output[0]} "   # Path to vcf file
-    "{log}"                      # Logging behaviour
+    "> {snakemake.output[0]} "  # Path to vcf file
+    "{log}"  # Logging behaviour
 )

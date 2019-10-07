@@ -26,12 +26,14 @@ for known in input_known:
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
-shell("gatk3 {java_opts} -T RealignerTargetCreator"
-      " -nt {snakemake.threads}"
-      " {extra}"
-      " -I {input_bam}"
-      " -R {input_ref}"
-      " {input_known_string}"
-      " {bed}"
-      " -o {snakemake.output}"
-      " {log}")
+shell(
+    "gatk3 {java_opts} -T RealignerTargetCreator"
+    " -nt {snakemake.threads}"
+    " {extra}"
+    " -I {input_bam}"
+    " -R {input_ref}"
+    " {input_known_string}"
+    " {bed}"
+    " -o {snakemake.output}"
+    " {log}"
+)

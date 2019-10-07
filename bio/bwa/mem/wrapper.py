@@ -19,9 +19,11 @@ sort_extra = snakemake.params.get("sort_extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 # Check inputs/arguments.
-if not isinstance(snakemake.input.reads, str) and len(snakemake.input.reads) not in {1, 2}:
-    raise ValueError("input must have 1 (single-end) or "
-                     "2 (paired-end) elements")
+if not isinstance(snakemake.input.reads, str) and len(snakemake.input.reads) not in {
+    1,
+    2,
+}:
+    raise ValueError("input must have 1 (single-end) or " "2 (paired-end) elements")
 
 if sort_order not in {"coordinate", "queryname"}:
     raise ValueError("Unexpected value for sort_order ({})".format(sort_order))
@@ -47,8 +49,10 @@ elif sort == "samtools":
 elif sort == "picard":
 
     # Sort alignments using picard SortSam.
-    pipe_cmd = ("picard SortSam {sort_extra} INPUT=/dev/stdin"
-                " OUTPUT={snakemake.output[0]} SORT_ORDER={sort_order}")
+    pipe_cmd = (
+        "picard SortSam {sort_extra} INPUT=/dev/stdin"
+        " OUTPUT={snakemake.output[0]} SORT_ORDER={sort_order}"
+    )
 
 else:
     raise ValueError("Unexpected value for params.sort ({})".format(sort))
@@ -59,4 +63,5 @@ shell(
     " {extra}"
     " {snakemake.params.index}"
     " {snakemake.input.reads}"
-    " | " + pipe_cmd + ") {log}")
+    " | " + pipe_cmd + ") {log}"
+)

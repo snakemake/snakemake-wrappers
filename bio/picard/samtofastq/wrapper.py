@@ -22,7 +22,7 @@ if not isinstance(fastq1, str):
 output = " FASTQ=" + fastq1
 
 if isinstance(fastq2, str):
-     output += " SECOND_END_FASTQ=" + fastq2
+    output += " SECOND_END_FASTQ=" + fastq2
 
 if isinstance(fastq_unpaired, str):
     if not isinstance(fastq2, str):
@@ -31,9 +31,5 @@ if isinstance(fastq_unpaired, str):
         output += " UNPAIRED_FASTQ=" + fastq_unpaired
 
 shell(
-    'picard'
-    ' SamToFastq'
-    ' {extra}'
-    ' INPUT={snakemake.input[0]}'
-    ' {output}'
-    ' {log}')
+    "picard" " SamToFastq" " {extra}" " INPUT={snakemake.input[0]}" " {output}" " {log}"
+)

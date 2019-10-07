@@ -35,7 +35,5 @@ if not output_file.endswith(".sam"):
     out_pipe = " | samtools view -S -b - "
 
 shell(
-    " {in_pipe} {bam_input} | "
-    " umis bamtag -"
-    " {out_pipe} > {output_file}"
-    " {log}")
+    " {in_pipe} {bam_input} | " " umis bamtag -" " {out_pipe} > {output_file}" " {log}"
+)

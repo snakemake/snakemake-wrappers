@@ -10,6 +10,8 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 inputQuery = " ".join(snakemake.input.query)
 
-shell("(minimap2 -t {snakemake.threads} {extra} "
-      "{snakemake.input.target} {inputQuery} >"
-      "{snakemake.output[0]}) {log}")
+shell(
+    "(minimap2 -t {snakemake.threads} {extra} "
+    "{snakemake.input.target} {inputQuery} >"
+    "{snakemake.output[0]}) {log}"
+)

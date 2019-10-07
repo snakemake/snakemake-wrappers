@@ -23,7 +23,7 @@ def get_length_of_longest_sequence(fh):
             all_lengths.append(current_length)
             current_length = 0
     all_lengths.append(current_length)
-    
+
     return max(all_lengths)
 
 

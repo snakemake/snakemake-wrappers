@@ -7,4 +7,6 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 
-shell("bgzip --stdout {snakemake.input} > {snakemake.output} && tabix -p vcf {snakemake.output}")
+shell(
+    "bgzip --stdout {snakemake.input} > {snakemake.output} && tabix -p vcf {snakemake.output}"
+)

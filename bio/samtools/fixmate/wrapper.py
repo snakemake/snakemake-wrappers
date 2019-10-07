@@ -16,12 +16,10 @@ extra = snakemake.params.get("extra", "")
 
 # Samtools' threads parameter lists ADDITIONAL threads.
 # that is why threads - 1 has to be given to the -@ parameter
-threads = (
-    "" if snakemake.threads <= 1
-    else " -@ {} ".format(snakemake.threads - 1)
-)
+threads = "" if snakemake.threads <= 1 else " -@ {} ".format(snakemake.threads - 1)
 
 makedirs(op.dirname(snakemake.output[0]))
 
-shell("samtools fixmate {extra} {threads}"
-      " {snakemake.input[0]} {snakemake.output[0]}")
+shell(
+    "samtools fixmate {extra} {threads}" " {snakemake.input[0]} {snakemake.output[0]}"
+)
