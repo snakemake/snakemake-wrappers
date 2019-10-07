@@ -10,11 +10,15 @@ import shutil
 import tempfile
 
 shell.executable("bash")
-shell_command = (
-    "(snpEff {data_dir} {stats_opt} {csvstats_opt} {extra}"
-    " {snakemake.params.reference} {snakemake.input}"
-    " > {snakemake.output.vcf}) {log}"
-)
+
+outcalls = snakemake.output.calls
+if outcalls.endswith(".vcf.gz"):
+    outprefix = "| bcftools view -Oz"
+elif outcalls.endswith(".bcf"):
+    outprefix = "| bcftools view -Ob"
+else:
+    outprefix = ""
+
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -29,5 +33,8 @@ csvstats = snakemake.output.get("csvstats", "")
 csvstats_opt = "" if not csvstats else "-csvStats {}".format(csvstats)
 stats_opt = "-noStats" if not stats else "-stats {}".format(stats)
 
-shell(shell_command)
-
+shell(
+    "(snpEff {data_dir} {stats_opt} {csvstats_opt} {extra} "
+    "{snakemake.params.reference} {snakemake.input} "
+    "{outprefix} > {outcalls}) {log}"
+)
