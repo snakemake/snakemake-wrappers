@@ -2,7 +2,7 @@ rule snpeff:
     input:
         "{sample}.vcf",
     output:
-        vcf="snpeff_nostats/{sample}.vcf",    # the main output file, required
+        calls="snpeff_nostats/{sample}.vcf",    # the main output file
         # if either "genes" or "stats" outputs are provided, both are created
     log:
         "logs/snpeff_nostats/{sample}.log"
