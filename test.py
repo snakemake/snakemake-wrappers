@@ -552,4 +552,7 @@ def test_umis_bamtag():
     run("bio/umis/bamtag", ["snakemake", "data/a.annotated.bam", "--use-conda", "-F"])
 
 def test_bbmap():
-    run("bio/bbtools/bbmap", ["snakemake", "mapped/a.sam", "--use-conda", "-F"])
+    run("bio/bbtools/bbmap", ["snakemake", "mapped/a.bam", "--use-conda", "-F"])
+
+def test_bbmap_advanced():
+    run("bio/bbtools/bbmap", ["snakemake", "-s", "Snakefile_complicated.smk", "mapped/a.bam", "--use-conda", "-F"])

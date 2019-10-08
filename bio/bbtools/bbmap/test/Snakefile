@@ -3,7 +3,7 @@ rule bbmap:
         reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
         ref="genome.fasta"
     output:
-        "mapped/{sample}.sam"
+        "mapped/{sample}.bam"
     log:
         "logs/bbmap/{sample}.log"
     params:   # all parameters are oprional
