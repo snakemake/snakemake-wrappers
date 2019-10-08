@@ -1,0 +1,29 @@
+# Example: Pair-ended reads
+rule bismark2report_pe:
+    input:
+        alignment_report = "{sample}_{genome}_PE_report.txt",
+        nucleotide_report= "{sample}_{genome}_pe.nucleotide_stats.txt",
+        dedup_report="{sample}_{genome}_pe.deduplication_report.txt",
+        mbias_report = "{sample}_{genome}_pe.deduplicated.M-bias.txt",
+        splitting_report = "{sample}_{genome}_pe.deduplicated_splitting_report.txt"
+    output:
+        html="{sample}_{genome}.bismark2report.html",
+    params:
+        skip_optional_reports=True
+    wrapper:
+        "master/bio/bismark/bismark2report"
+
+# Example: Single-ended reads
+rule bismark2report_se:
+    input:
+        alignment_report = "{sample}_{genome}_SE_report.txt",
+        nucleotide_report= "{sample}_{genome}.nucleotide_stats.txt",
+        dedup_report="{sample}_{genome}.deduplication_report.txt",
+        mbias_report = "{sample}_{genome}.deduplicated.M-bias.txt",
+        splitting_report = "{sample}_{genome}.deduplicated_splitting_report.txt"
+    output:
+        html="{sample}_{genome}.bismark2report.html",
+    params:
+        skip_optional_reports=True
+    wrapper:
+        "master/bio/bismark/bismark2report"

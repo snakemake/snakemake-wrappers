@@ -900,3 +900,54 @@ def test_plass_paired():
 
 def test_plass_single():
     run("bio/plass", ["snakemake", "plass/prot_single.fasta", "--use-conda", "-F"])
+
+
+def test_bismark_genome_preparation():
+    run("bio/bismark/bismark_genome_preparation",
+        ["snakemake", "genome/Bisulfite_Genome", "genome_gz/Bisulfite_Genome", "--use-conda", "-F"])
+
+
+def test_bismark_genome_bam2nuc():
+    run("bio/bismark/bam2nuc",
+        ["snakemake", "genome/genomic_nucleotide_frequencies.txt", "b_genome.nucleotide_stats.txt", "--use-conda", "-F"])
+
+
+def test_bismark_bismark():
+    run("bio/bismark/bismark",
+        ["snakemake", "a_genome_pe.bam", "b_genome.bam", "--use-conda", "-F"])
+
+
+def test_bismark_deduplicate_bismark():
+    run("bio/bismark/deduplicate_bismark",
+        ["snakemake", "a_genome_pe.deduplicated.bam", "b_genome.deduplicated.bam", "--use-conda", "-F"])
+
+
+def test_bismark_bismark_methylation_extractor():
+    run("bio/bismark/bismark_methylation_extractor",
+        [
+            "snakemake",
+            "a_genome_pe.deduplicated.bismark.cov.gz",
+            "b_genome.deduplicated.bismark.cov.gz",
+            "b_genome.bismark.cov.gz",
+            "--use-conda", "-F"
+        ])
+
+
+def test_bismark_bismark2report():
+    run("bio/bismark/bismark2report",
+        ["snakemake", "a_genome.bismark2report.html", "b_genome.bismark2report.html", "--use-conda", "-F"])
+
+
+def test_bismark_bismark2summary():
+    run("bio/bismark/bismark2summary",
+        ["snakemake", "experiment.bismark2summary.html", "--use-conda", "-F"])
+
+
+def test_bismark_bismark2bedGraph():
+    run("bio/bismark/bismark2bedGraph",
+        [
+            "snakemake",
+            "a_genome_pe.deduplicated_CpG.bismark.cov.gz",
+            "a_genome_pe.deduplicated_non_cpg.bismark.cov.gz",
+            "--use-conda", "-F"
+        ])

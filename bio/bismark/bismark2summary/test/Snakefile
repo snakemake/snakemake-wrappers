@@ -1,0 +1,18 @@
+rule bismark2summary:
+    input:
+        bam=["a_genome_pe.bam", "b_genome.bam"],
+
+        # Just to ensure that corresponding rules has already finished
+        # Otherwise some reports will be missing.
+        dependencies=[
+            "a_genome_PE_report.txt",
+            "a_genome_pe.deduplication_report.txt",
+            "b_genome_SE_report.txt",
+            "b_genome.deduplication_report.txt",
+            "b_genome.deduplicated_splitting_report.txt"
+        ]
+    output:
+        html="{experiment}.bismark2summary.html",
+        txt="{experiment}.bismark2summary.txt"
+    wrapper:
+        "master/bio/bismark/bismark2summary"

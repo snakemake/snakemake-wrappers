@@ -1,0 +1,22 @@
+# Example for CHG+CHH summary coverage:
+rule bismark2bedGraph_noncpg:
+    input:
+        "CHG_context_{sample}.txt.gz",
+        "CHH_context_{sample}.txt.gz"
+    output:
+        bedGraph="{sample}_non_cpg.bedGraph.gz",
+        cov="{sample}_non_cpg.bismark.cov.gz"
+    params:
+        extra="--CX"
+    wrapper:
+        "master/bio/bismark/bismark2bedGraph"
+
+# Example for CpG only coverage
+rule bismark2bedGraph_cpg:
+    input:
+        "CpG_context_{sample}.txt.gz"
+    output:
+        bedGraph="{sample}_CpG.bedGraph.gz",
+        cov="{sample}_CpG.bismark.cov.gz"
+    wrapper:
+        "master/bio/bismark/bismark2bedGraph"

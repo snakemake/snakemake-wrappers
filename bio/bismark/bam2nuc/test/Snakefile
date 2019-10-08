@@ -1,0 +1,18 @@
+# Nucleotide stats for genome is required for further stats for BAM file
+rule bam2nuc_for_genome:
+    input:
+        genome_fa = "{genome}/{genome}.fa.gz"
+    output:
+        "{genome}/genomic_nucleotide_frequencies.txt"
+    wrapper:
+        "master/bio/bismark/bam2nuc"
+
+# Nucleotide stats for BAM file
+rule bam2nuc_for_bam:
+    input:
+        genome_fa = "{genome}/{genome}.fa.gz",
+        bam = "{sample}_{genome}.bam"
+    output:
+        report="{sample}_{genome}.nucleotide_stats.txt"
+    wrapper:
+        "master/bio/bismark/bam2nuc"
