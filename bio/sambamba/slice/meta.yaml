@@ -1,0 +1,8 @@
+name: sambamba slice
+description: Slice bam file with sambamba
+authors:
+  - Roman Valls Guimera 
+input:
+  - bam file
+output:
+  - sliced bam file

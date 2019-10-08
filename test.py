@@ -70,6 +70,15 @@ def test_bwa_mem_sort_samtools():
         ["snakemake", "mapped/a.bam", "--use-conda", "-F",
          "-s", "Snakefile_samtools"])
 
+def test_sambamba_slice():
+    run("bio/sambamba/slice",
+        ["snakemake", "a.bam", "--use-conda", "-F",
+         "-s", "Snakefile"])
+
+def test_sambamba_sort():
+    run("bio/sambamba/sort",
+        ["snakemake", "a.bam", "--use-conda", "-F",
+         "-s", "Snakefile"])
 
 def test_bwa_mem_sort_picard():
     run("bio/bwa/mem",

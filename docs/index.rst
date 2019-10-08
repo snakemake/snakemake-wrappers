@@ -73,12 +73,9 @@ environment with the necessary dependencies and activate it::
   conda create -n test-snakemake-wrappers snakemake pytest conda
   conda activate test-snakemake-wrappers
 
-Afterwards, from the main directory of the repo, you can run the tests with::
+Afterwards, from the main directory of the repo, you can run your test with::
 
-  pytest test.py -v
-
-If you use a keyboard interrupt after your test has failed, you will get all
-the relevant stdout and stderr messages printed.
+  pytest test.py -v -k <name_of_your_test>
 
 If you also want to test the docs generation locally, create another environment
 and activate it::

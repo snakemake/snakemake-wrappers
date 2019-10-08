@@ -1,0 +1,10 @@
+rule sambamba_slice:
+    input:
+        "{sample}.bam"
+    output:
+        "{sample}.sliced.bam"
+    params:
+        "xx:1-11"
+    threads: 8
+    wrapper:
+        "master/bio/sambamba/slice"
