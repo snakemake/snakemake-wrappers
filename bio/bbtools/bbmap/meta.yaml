@@ -1,0 +1,4 @@
+name: "bbmap"
+description: Map reads using bbmap
+authors:
+  - Silas Kieser
