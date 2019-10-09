@@ -9,9 +9,9 @@ from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell()
 
+extra = snakemake.params.get("extra", "")
+java_options = snakemake.params.get("java_options", "")
 
-shell(
-    "picard CollectAlignmentSummaryMetrics {snakemake.params} "
-    "INPUT={snakemake.input.bam} OUTPUT={snakemake.output[0]} "
-    "REFERENCE_SEQUENCE={snakemake.input.ref} {log}"
-)
+shell("picard {java_options} CollectAlignmentSummaryMetrics {extra} "
+      "INPUT={snakemake.input.bam} OUTPUT={snakemake.output[0]} "
+      "REFERENCE_SEQUENCE={snakemake.input.ref} {log}")

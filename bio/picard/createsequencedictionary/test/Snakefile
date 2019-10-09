@@ -6,6 +6,7 @@ rule create_dict:
     log:
         "logs/picard/create_dict.log"
     params:
+        java_options="-Xmx8g",
         extra=""  # optional: extra arguments for picard.
     wrapper:
         "master/bio/picard/createsequencedictionary"

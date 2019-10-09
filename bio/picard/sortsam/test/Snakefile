@@ -6,6 +6,7 @@ rule sort_bam:
     log:
         "logs/picard/sort_sam/{sample}.log"
     params:
+        java_options="-Xmx8g",
         sort_order="coordinate",
         extra="VALIDATION_STRINGENCY=LENIENT" # optional: Extra arguments for picard.
     wrapper:

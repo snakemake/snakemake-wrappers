@@ -10,6 +10,7 @@ from snakemake.shell import shell
 
 
 extra = snakemake.params.get("extra", "")
+java_options = snakemake.params.get("java_options", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 fastq1 = snakemake.output.fastq1
@@ -22,7 +23,7 @@ if not isinstance(fastq1, str):
 output = " FASTQ=" + fastq1
 
 if isinstance(fastq2, str):
-    output += " SECOND_END_FASTQ=" + fastq2
+     output += " SECOND_END_FASTQ=" + fastq2
 
 if isinstance(fastq_unpaired, str):
     if not isinstance(fastq2, str):
@@ -31,5 +32,10 @@ if isinstance(fastq_unpaired, str):
         output += " UNPAIRED_FASTQ=" + fastq_unpaired
 
 shell(
-    "picard" " SamToFastq" " {extra}" " INPUT={snakemake.input[0]}" " {output}" " {log}"
-)
+    'picard'
+    ' {java_options}'
+    ' SamToFastq'
+    ' {extra}'
+    ' INPUT={snakemake.input[0]}'
+    ' {output}'
+    ' {log}')

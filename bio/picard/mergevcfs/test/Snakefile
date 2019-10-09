@@ -6,6 +6,7 @@ rule merge_vcfs:
     log:
         "logs/picard/mergevcfs.log"
     params:
+        java_options="-Xmx8g",
         extra=""
     wrapper:
         "master/bio/picard/mergevcfs"

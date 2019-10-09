@@ -9,12 +9,13 @@ from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+java_options = snakemake.params.get("java_options", "")
 
 shell(
-    "picard "
-    "CreateSequenceDictionary "
-    "{extra} "
-    "R={snakemake.input[0]} "
-    "O={snakemake.output[0]} "
-    "{log}"
-)
+    'picard '
+    '{java_options} '
+    'CreateSequenceDictionary '
+    '{extra} '
+    'R={snakemake.input[0]} '
+    'O={snakemake.output[0]} '
+    '{log}')

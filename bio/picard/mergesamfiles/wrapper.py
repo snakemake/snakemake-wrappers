@@ -11,12 +11,14 @@ from snakemake.shell import shell
 
 inputs = " ".join("INPUT={}".format(in_) for in_ in snakemake.input)
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+java_options = snakemake.params.get("java_options", "")
+extra = snakemake.params.get("extra", "")
 
 shell(
     "picard"
+    ' {java_options}'
     " MergeSamFiles"
-    " {snakemake.params}"
+    " {extra}"
     " {inputs}"
     " OUTPUT={snakemake.output[0]}"
-    " {log}"
-)
+    " {log}")

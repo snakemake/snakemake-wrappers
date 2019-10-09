@@ -6,6 +6,7 @@ rule revert_bam:
     log:
         "logs/picard/revert_sam/{sample}.log"
     params:
+        java_options="-Xmx8g",
         extra="SANITIZE=true" # optional: Extra arguments for picard.
     wrapper:
         "master/bio/picard/revertsam"

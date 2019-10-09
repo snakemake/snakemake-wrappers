@@ -7,9 +7,8 @@ rule insert_size:
     log:
         "logs/picard/insert_size/{sample}.log"
     params:
+        java_options="-Xmx8g",
         # optional parameters (e.g. relax checks as below)
-        "VALIDATION_STRINGENCY=LENIENT "
-        "METRIC_ACCUMULATION_LEVEL=null "
-        "METRIC_ACCUMULATION_LEVEL=SAMPLE"
+        extra="VALIDATION_STRINGENCY=LENIENT METRIC_ACCUMULATION_LEVEL=null METRIC_ACCUMULATION_LEVEL=SAMPLE"
     wrapper:
         "master/bio/picard/collectinsertsizemetrics"

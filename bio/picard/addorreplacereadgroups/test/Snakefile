@@ -6,6 +6,7 @@ rule replace_rg:
     log:
         "logs/picard/replace_rg/{sample}.log"
     params:
-        "RGLB=lib1 RGPL=illumina RGPU={sample} RGSM={sample}"
+        java_options="-Xmx8g",
+        extra="RGLB=lib1 RGPL=illumina RGPU={sample} RGSM={sample}"
     wrapper:
         "master/bio/picard/addorreplacereadgroups"

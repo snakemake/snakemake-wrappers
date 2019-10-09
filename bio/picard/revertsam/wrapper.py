@@ -9,13 +9,14 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
+java_options = snakemake.params.get("java_options", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
-    "picard"
-    " RevertSam"
-    " {extra}"
-    " INPUT={snakemake.input[0]}"
-    " OUTPUT={snakemake.output[0]}"
-    " {log}"
-)
+    'picard'
+    ' {java_options}'
+    ' RevertSam'
+    ' {extra}'
+    ' INPUT={snakemake.input[0]}'
+    ' OUTPUT={snakemake.output[0]}'
+    ' {log}')

@@ -8,10 +8,9 @@ from snakemake.shell import shell
 
 
 log = snakemake.log_fmt_shell()
+extra = snakemake.params.get("extra", "")
+java_options = snakemake.params.get("java_options", "")
 
-
-shell(
-    "picard CollectInsertSizeMetrics {snakemake.params} "
-    "INPUT={snakemake.input} OUTPUT={snakemake.output.txt} "
-    "HISTOGRAM_FILE={snakemake.output.pdf} {log}"
-)
+shell("picard {java_options} CollectInsertSizeMetrics {extra} "
+      "INPUT={snakemake.input} OUTPUT={snakemake.output.txt} "
+      "HISTOGRAM_FILE={snakemake.output.pdf} {log}")
