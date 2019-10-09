@@ -1,4 +1,4 @@
-rule replace_rg:
+rule primerclip:
     input:
         master_file="master_primer_file",
         sam="mapped/{sample}.sam"
@@ -7,6 +7,6 @@ rule replace_rg:
     log:
         "logs/primerclip/{sample}.log"
     params:
-        extra="RGLB=lib1 RGPL=illumina RGPU={sample} RGSM={sample}"
+        extra=""
     wrapper:
         "master/bio/primerclip"

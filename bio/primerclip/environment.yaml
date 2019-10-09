@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-#  - primerclip  
+  - primerclip=0.3.8-0
