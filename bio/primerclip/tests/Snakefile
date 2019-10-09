@@ -1,0 +1,12 @@
+rule replace_rg:
+    input:
+        master_file="master_primer_file",
+        sam="mapped/{sample}.sam"
+    output:
+        sam=mapped/{sample}.trimmed.sam"
+    log:
+        "logs/primerclip/{sample}.log"
+    params:
+        extra="RGLB=lib1 RGPL=illumina RGPU={sample} RGSM={sample}"
+    wrapper:
+        "master/bio/primerclip"
