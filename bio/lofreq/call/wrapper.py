@@ -14,12 +14,14 @@ ref = snakemake.params.get("ref", None)
 if ref is None:
     raise ValueError("A reference must be provided")
 
-bam_input = snakemake.input[0]
+bam_input = snakemake.input.bam
+bai_input = snakemake.input.bai
 
 if bam_input is None:
     raise ValueError("Missing bam input file!")
-elif not len(snakemake.input) == 1:
-    raise ValueError("Only expecting one input file: " + str(snakemake.input) + "!")
+
+if bai_input is None:
+    raise ValueError("Missing bai input file!")
 
 output_file = snakemake.output[0]
 
