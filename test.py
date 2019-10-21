@@ -50,9 +50,31 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+
+
+def test_prepy():
+    run("bio/hap.py/pre.py",
+        ["snakemake", "normalized/variants.vcf", "--use-conda", "-F"])
+
+
 def test_art_profiler_illumina():
     run("bio/art/profiler_illumina",
         ["snakemake", "profiles/a.1.txt", "profiles/a.2.txt" , "--use-conda", "-F"])
+
+
+def test_bcftools_index():
+    run("bio/bcftools/index",
+        ["snakemake", "a.bcf.csi", "--use-conda", "-F"])
+
+
+def test_bcftools_concat():
+    run("bio/bcftools/concat",
+        ["snakemake", "all.bcf", "--use-conda", "-F"])
+
+
+def test_bcftools_merge():
+    run("bio/bcftools/merge",
+        ["snakemake", "all.bcf", "--use-conda", "-F"])
 
 
 def test_bowtie2_align():
@@ -340,14 +362,6 @@ def test_samtools_bam2fq_separate():
 def test_samtools_faidx():
     run("bio/samtools/faidx",
         ["snakemake", "genome.fa.fai", "--use-conda", "-F"])
-
-def test_bcftools_concat():
-    run("bio/bcftools/concat",
-        ["snakemake", "all.bcf", "--use-conda", "-F"])
-
-def test_bcftools_merge():
-    run("bio/bcftools/merge",
-        ["snakemake", "all.bcf", "--use-conda", "-F"])
 
 def test_snpmutator():
     run("bio/snp-mutator",
