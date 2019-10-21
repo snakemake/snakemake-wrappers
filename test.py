@@ -52,11 +52,6 @@ def run(wrapper, cmd, check_log=None):
 
 
 
-def test_prepy():
-    run("bio/hap.py/pre.py",
-        ["snakemake", "normalized/variants.vcf", "--use-conda", "-F"])
-
-
 def test_art_profiler_illumina():
     run("bio/art/profiler_illumina",
         ["snakemake", "profiles/a.1.txt", "profiles/a.2.txt" , "--use-conda", "-F"])
@@ -211,6 +206,9 @@ def test_freebayes_bcf():
         run("bio/freebayes",
             ["snakemake", "--cores", str(c), "calls/a.bcf", "--use-conda", "-F", "-s", "Snakefile_bcf"])
 
+def test_happy_prepy():
+    run("bio/hap.py/pre.py",
+        ["snakemake", "normalized/variants.vcf", "--use-conda", "-F"])
 
 def test_hisat2_index():
     run("bio/hisat2/index",
