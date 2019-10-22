@@ -2,7 +2,7 @@ rule gatk_bqsr:
     input:
         bam="mapped/{sample}.bam",
         ref="genome.fasta",
-        known="dbsnp.vcf.gz"
+        known="dbsnp.vcf.gz"  # optional known sites
     output:
         bam="recal/{sample}.bam"
     log:
