@@ -1,0 +1,9 @@
+name: dammit
+description: |
+ Annotate transcriptomes with Dammit!
+authors:
+  - Tessa Pierce
+input:
+  - transcriptome fasta
+output:
+  - annotated fasta file and csv with annotations

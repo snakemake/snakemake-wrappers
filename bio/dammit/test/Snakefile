@@ -1,0 +1,28 @@
+#Install dammit databases & run annotation
+
+rule dammit_install_databases:
+    output: 
+        'transcriptome.dammit/transcriptome.fasta.dammit.gff3'
+    log:
+        'logs/dammit/dammit_install.log'
+    params:
+        database_dir='databases',
+        db_extra="--quick",
+    threads: 4
+    wrapper:
+        "master/bio/dammit"
+
+rule dammit_annotate:
+    input: 
+        'transcriptome.fasta'
+    output:
+        'transcriptome.dammit/transcriptome.fasta.dammit.gff3'
+    log:
+        'logs/dammit/dammit_annotate.log'
+    params:
+        database_dir='databases',
+        busco_dbs='eukaryota'
+        annot_extra="--quick",
+    threads: 4
+    wrapper:
+        "master/bio/dammit"
