@@ -1,28 +1,41 @@
 #Install dammit databases & run annotation
 
+rule all:
+    input: 'transcriptome.dammit/transcriptome.fasta.dammit.gff3'
+
 rule dammit_install_databases:
-    output: 
-        'transcriptome.dammit/transcriptome.fasta.dammit.gff3'
+    output:
+        #donefile = touch("dammit_install.done"),
+        #databases_doit = "databases/databases.doit.db"
+        databases_doit = "/Users/tessa/Dropbox/dib-lab/elvers/databases/databases.doit.db"
     log:
         'logs/dammit/dammit_install.log'
     params:
-        database_dir='databases',
+        #database_dir='databases',
+        database_dir='/Users/tessa/Dropbox/dib-lab/elvers/databases',
         db_extra="--quick",
     threads: 4
-    wrapper:
-        "master/bio/dammit"
+    conda: "../environment.yaml"
+    script:"../dammit-databases.py"
+   # wrapper:
+   #     "master/bio/dammit"
 
 rule dammit_annotate:
     input: 
-        'transcriptome.fasta'
+        #databases_donefile = "dammit_install.done",
+        databases_donefile = "/Users/tessa/Dropbox/dib-lab/elvers/databases/databases.doit.db",
+        fasta = "transcriptome.fasta",
     output:
         'transcriptome.dammit/transcriptome.fasta.dammit.gff3'
     log:
         'logs/dammit/dammit_annotate.log'
     params:
-        database_dir='databases',
-        busco_dbs='eukaryota'
+        #database_dir='databases',
+        database_dir='/Users/tessa/Dropbox/dib-lab/elvers/databases',
+        #busco_dbs='eukaryota',
         annot_extra="--quick",
     threads: 4
-    wrapper:
-        "master/bio/dammit"
+    conda: "../environment.yaml"
+    script:"../dammit-annotate.py"
+    #wrapper:
+    #    "master/bio/dammit"

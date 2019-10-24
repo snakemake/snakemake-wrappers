@@ -9,7 +9,7 @@ from os import path
 from snakemake.shell import shell
 
 # handle database params
-db_dir = snakemake.params.get("db_dir")
+db_dir = snakemake.params.get("database_dir")
 db_dir = path.abspath(db_dir)
 busco_dbs = snakemake.params.get("busco_dbs", [])
 db_extra = snakemake.params.get("db_extra", "")
@@ -30,7 +30,7 @@ outdir = path.dirname(snakemake.output[0])
 annot_extra = snakemake.params.get("annot_extra", "")
 
 # make informative output dir for *all* dammit output
-assembly_name = path.basename(str(snakemake.input))
+assembly_name = path.basename(str(snakemake.input.fasta))
 dammit_dir =  path.join(outdir, assembly_name + '.dammit')
 dammit_fasta = path.join(dammit_dir, assembly_name + '.dammit.fasta')
 dammit_gff3 = path.join(dammit_dir, assembly_name + '.dammit.gff3')
@@ -45,7 +45,7 @@ for busco_grp in busco_dbs:
     shell("dammit databases --install {db_cmd} --busco-group {busco_grp} {db_extra} {log}")
 
 # run annotation
-shell("dammit annotate {snakemake.input} {db_cmd} --no-rename --n_threads {snakemake.threads} --output-dir {dammit_dir} {annot_extra} {log}")
+shell("dammit annotate {snakemake.input.fasta} {db_cmd} --no-rename --n_threads {snakemake.threads} --output-dir {dammit_dir} {annot_extra} {log}")
 
 # cp final dammit annot files to desired location / names
 shell("cp {dammit_fasta} {snakemake.output.fasta}")

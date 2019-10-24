@@ -550,3 +550,8 @@ def test_varscan_mpileup2snp():
 
 def test_umis_bamtag():
     run("bio/umis/bamtag", ["snakemake", "data/a.annotated.bam", "--use-conda", "-F"])
+
+def test_dammit():
+    #run("bio/dammit", ["snakemake",  'databases/databases.doit.db', "--use-conda", "-F"])
+    run("bio/dammit", ["snakemake",  'dammit_install.done', "--use-conda", "-F"])
+    run("bio/dammit", ["snakemake", "transcriptome.dammit/transcriptome.fasta.dammit.gff3", "--use-conda", "-F"])

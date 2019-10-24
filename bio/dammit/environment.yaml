@@ -1,8 +1,9 @@
 channels:
-  - bioconda
   - conda-forge
+  - bioconda
   - defaults
 dependencies:
+  - pip
   - python
   - numpy 
   - pandas 
