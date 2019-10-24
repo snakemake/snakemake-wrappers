@@ -1,0 +1,4 @@
+name: "bowtie2"
+description: Index transcriptome for mapping with bowtie2.
+authors:
+  - N. Tessa Pierce

@@ -1,0 +1,13 @@
+rule bowtie2_index:
+    input:
+        "genome.fasta" 
+    output:
+        donefile = join(bt2_dir, "{assembly}.bowtie2index.done")
+    log:
+        "logs/bowtie2/{sample}.log"
+    params:
+        index="index/genome",  # prefix of reference genome index (built with bowtie2-build)
+        extra=""  # optional parameters
+    threads: 8
+    wrapper:
+        "master/bio/bowtie2/index"

@@ -59,6 +59,10 @@ def test_bowtie2_align():
     run("bio/bowtie2/align",
         ["snakemake", "mapped/a.bam", "--use-conda", "-F"])
 
+def test_bowtie2_index():
+    run("bio/bowtie2/index",
+        ["snakemake", "index/genome", "--use-conda", "-F"])
+
 
 def test_bwa_mem():
     run("bio/bwa/mem",
