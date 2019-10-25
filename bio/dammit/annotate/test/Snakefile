@@ -2,7 +2,7 @@
 
 rule dammit_annotate:
     input: 
-        databases_donefile = "dammit_install.done",
+        databases_file = "databases/databases.doit.db",
         fasta = "transcriptome.fasta",
     output:
         'transcriptome.dammit/transcriptome.fasta.dammit.gff3'

@@ -35,4 +35,3 @@ shell("dammit databases --install {db_cmd} {db_extra} {log}") #--n_threads {snak
 # busco groups need to be installed separately
 for busco_grp in busco_dbs:
     shell("dammit databases --install {db_cmd} --busco-group {busco_grp} {db_extra} {log}")
-
