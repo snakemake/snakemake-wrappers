@@ -1,0 +1,16 @@
+#run dammit annotation
+
+rule dammit_annotate:
+    input: 
+        databases_donefile = "dammit_install.done",
+        fasta = "transcriptome.fasta",
+    output:
+        'transcriptome.dammit/transcriptome.fasta.dammit.gff3'
+    log:
+        'logs/dammit/dammit_annotate.log'
+    params:
+        database_dir='databases',
+        annot_extra="--quick",
+    threads: 4
+    wrapper:
+        "master/bio/annotate/dammit"

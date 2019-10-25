@@ -1,0 +1,14 @@
+#Install dammit databases
+
+rule dammit_install_databases:
+    output:
+        #donefile = touch("dammit_install.done"),
+        databases_doit = "databases/databases.doit.db"
+    log:
+        'logs/dammit/dammit_install.log'
+    params:
+        database_dir='databases',
+        db_extra="--quick",
+    threads: 4
+    wrapper:
+        "master/bio/databases/dammit"

@@ -1,4 +1,4 @@
-"""Snakemake wrapper for Dammit"""
+"""Snakemake wrapper for Dammit Annotation"""
 
 __author__ = "Tessa Pierce"
 __copyright__ = "Copyright 2019, Tessa Pierce"
