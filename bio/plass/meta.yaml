@@ -1,0 +1,9 @@
+name: plass
+description: |
+  Generate protein-level assemblies from RNAseq reads  with PLASS
+authors:
+  - N. Tessa Pierce
+input:
+  - fastq files
+output:
+  - fasta containing protein assembly

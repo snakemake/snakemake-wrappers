@@ -1,0 +1,14 @@
+
+rule trinity:
+    input:
+        left=["reads/reads.left.fq.gz", "reads/reads2.left.fq.gz"],
+        right=["reads/reads.right.fq.gz", "reads/reads2.right.fq.gz"] 
+    output:
+        "plass/prot.fasta"
+    log:
+        'logs/plass.log'
+    params:
+        extra=""
+    threads: 4
+    wrapper:
+        "master/bio/plass"
