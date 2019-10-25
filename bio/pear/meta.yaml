@@ -1,0 +1,9 @@
+name: pear
+description: |
+  Merge PE reads with PEAR 
+authors:
+  - N Tessa Pierce
+input:
+  - paired fastq files
+output:
+  - merged fastq

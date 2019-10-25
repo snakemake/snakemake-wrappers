@@ -1,0 +1,16 @@
+rule pear_merge:
+    input:
+        r1="reads/reads.left.fq.gz",
+        r2="reads/reads.right.fq.gz"
+    output:
+        assembled = "pear/reads_pear_assembled.fq.gz",
+        discarded = "pear/reads_pear_discarded.fq.gz",
+        unassembled_r1 = "pear/reads_pear_unassembled_r1.fq.gz",
+        unassembled_r2 = "pear/reads_pear_unassembled_r1.fq.gz",
+    log:
+        'logs/pear.log'
+    params:
+        extra=""
+    threads: 4
+    wrapper:
+        "master/bio/pear"

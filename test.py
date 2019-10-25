@@ -550,3 +550,7 @@ def test_varscan_mpileup2snp():
 
 def test_umis_bamtag():
     run("bio/umis/bamtag", ["snakemake", "data/a.annotated.bam", "--use-conda", "-F"])
+
+def test_pear():
+    run("bio/pear", ["snakemake", "pear/reads_pear_assembled.fq.gz", "--use-conda", "-F"])
+
