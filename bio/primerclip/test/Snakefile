@@ -1,9 +1,10 @@
 rule primerclip:
     input:
-        master_file="master_primer_file",
-        sam="mapped/{sample}.sam"
+        master_file="master_file",
+        alignment_file="mapped/{sample}.bam"
     output:
-        sam=mapped/{sample}.trimmed.sam"
+        #Not for now it only possible to get output as a sam-file
+        alignment_file="mapped/{sample}.trimmed.sam"
     log:
         "logs/primerclip/{sample}.log"
     params:

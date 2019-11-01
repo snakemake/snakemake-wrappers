@@ -1,6 +1,5 @@
 channels:
   - bioconda
-  - conda-forge
-  - defaults
 dependencies:
-  - primerclip=0.3.8-0
+  - samtools ==1.9
+  - primerclip ==0.3.8

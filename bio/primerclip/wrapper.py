@@ -11,22 +11,24 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 master_file = snakemake.input.master_file
-in_sam_file = snakemake.input.sam
-out_sam_file = snakemake.output.sam
+in_alignment_file = snakemake.input.alignment_file
+out_alignment_file = snakemake.output.alignment_file
 
 # Check inputs/arguments.
 if not isinstance(master_file, str):
     raise ValueError("master_file, path to the master file")
 
-if not isinstance(in_sam_file, str):
-    raise ValueError("sam, path to the input sam file")
+if not isinstance(in_alignment_file, str):
+    raise ValueError("in_alignment_file, path to the input alignment file")
 
-if not isinstance(out_sam_file, str):
-    raise ValueError("sam, path to the output sam file")
+if not isinstance(out_alignment_file, str):
+    raise ValueError("out_alignment_file, path to the output file")
 
-shell(
-    "primerclip"
+samtools_input_command="samtools view -h " + in_alignment_file
+
+shell("{samtools_input_command} |"
+    " primerclip"
     " {master_file}"
-    " {in_sam_file}"
-    " {out_sam_file}"
+    " /dev/stdin"
+    " {out_alignment_file}"
     " {log}")
