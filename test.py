@@ -61,7 +61,7 @@ def test_bowtie2_align():
 
 def test_bowtie2_index():
     run("bio/bowtie2/index",
-        ["snakemake", "index/genome", "--use-conda", "-F"])
+        ["snakemake", "bt2_index/genome.bowtie2index.done", "--use-conda", "-F"])
 
 
 def test_bwa_mem():

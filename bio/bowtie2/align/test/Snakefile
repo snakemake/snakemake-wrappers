@@ -1,6 +1,6 @@
 rule bowtie2:
     input:
-        sample=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"]
+        r=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"]
     output:
         "mapped/{sample}.bam"
     log:
@@ -8,6 +8,6 @@ rule bowtie2:
     params:
         index="index/genome",  # prefix of reference genome index (built with bowtie2-build)
         extra=""  # optional parameters
-    threads: 8
+    threads: 4
     wrapper:
         "master/bio/bowtie2/align"

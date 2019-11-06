@@ -1,5 +1,5 @@
 __author__ = "Johannes Köster and N Tessa Pierce"
-__copyright__ = "Copyright 2016, Johannes Köster"
+__copyright__ = "Copyright 2016, Johannes Köster and 2019, N Tessa Pierce"
 __email__ = "koester@jimmy.harvard.edu"
 __license__ = "MIT"
 
