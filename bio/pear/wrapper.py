@@ -46,7 +46,7 @@ def move_files(in_list, out_list, gzip):
         elif gzip:
             shell('gzip -9 {f}')
 
-pval =  snakemake.params.get("pval", '.01')
+pval =  float(snakemake.params.get("pval", '.01'))
 max_mem = snakemake.params.get('max_memory', "4G")
 extra = snakemake.params.get('extra', "")
 
