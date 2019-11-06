@@ -12,7 +12,7 @@ from snakemake.shell import shell
 db_dir = snakemake.params.get("database_dir")
 db_dir = path.abspath(db_dir)
 busco_dbs = snakemake.params.get("busco_dbs", [])
-db_extra = snakemake.params.get("db_extra", "")
+db_extra = snakemake.params.get("db_extra", "--quick") # default so db install is *just* to check installs have already happened
 
 if db_dir:
     db_dir = path.expanduser(db_dir)
@@ -34,6 +34,9 @@ assembly_name = path.basename(str(snakemake.input.fasta))
 dammit_dir =  path.join(outdir, assembly_name + '.dammit')
 dammit_fasta = path.join(dammit_dir, assembly_name + '.dammit.fasta')
 dammit_gff3 = path.join(dammit_dir, assembly_name + '.dammit.gff3')
+
+## Note: databases can be installed using the databases wrapper standalone. In that case, these install cmds
+# will just check that databases are properly installed. They will _not_ reinstall.
 
 # databases breaks with multiple threads https://github.com/dib-lab/dammit/issues/140
 

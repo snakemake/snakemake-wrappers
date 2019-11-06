@@ -10,4 +10,4 @@ rule dammit_install_databases:
         db_extra="--quick",
     threads: 4
     wrapper:
-        "master/bio/databases/dammit"
+        "master/bio/dammit/databases"

@@ -5,7 +5,8 @@ rule dammit_annotate:
         databases_file = "databases/databases.doit.db",
         fasta = "transcriptome.fasta",
     output:
-        'transcriptome.dammit/transcriptome.fasta.dammit.gff3'
+        fasta = 'transcriptome.dammit.fasta',
+        gff3 = 'transcriptome.dammit.gff3'
     log:
         'logs/dammit/dammit_annotate.log'
     params:
@@ -13,4 +14,4 @@ rule dammit_annotate:
         annot_extra="--quick",
     threads: 4
     wrapper:
-        "master/bio/annotate/dammit"
+        "master/bio/dammit/annotate"

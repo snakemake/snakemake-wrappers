@@ -552,5 +552,5 @@ def test_umis_bamtag():
     run("bio/umis/bamtag", ["snakemake", "data/a.annotated.bam", "--use-conda", "-F"])
 
 def test_dammit():
-    run("bio/databases/dammit", ["snakemake",  'databases/databases.doit.db', "--use-conda", "-F"])
-    run("bio/annotate/dammit", ["snakemake", "transcriptome.dammit/transcriptome.fasta.dammit.gff3", "--use-conda", "-F"])
+    run("bio/dammit/databases", ["snakemake",  'databases/databases.doit.db', "--use-conda", "-F"])
+    run("bio/dammit/annotate", ["snakemake", "transcriptome.dammit.gff3", "--use-conda", "-F"])

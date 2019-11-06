@@ -9,7 +9,7 @@ from os import path
 from snakemake.shell import shell
 
 # handle database params
-db_dir = snakemake.params.get("db_dir")
+db_dir = snakemake.params.get("database_dir")
 db_dir = path.abspath(db_dir)
 busco_dbs = snakemake.params.get("busco_dbs", [])
 db_extra = snakemake.params.get("db_extra", "")
