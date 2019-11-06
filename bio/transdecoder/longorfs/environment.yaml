@@ -1,0 +1,10 @@
+channels:
+    - conda-forge
+    - bioconda
+    - defaults
+dependencies:
+    - transdecoder=5.0.2=pl5.22.0_0
+    - coreutils=8.25-0  # split
+    - samtools  # any version
+    - hmmer=3.1b2=2
+    - blast=2.6.0=boost1.61_0
