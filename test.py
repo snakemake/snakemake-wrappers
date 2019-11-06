@@ -51,7 +51,6 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
-
 def test_art_profiler_illumina():
     run("bio/art/profiler_illumina",
         ["snakemake", "profiles/a.1.txt", "profiles/a.2.txt" , "--use-conda", "-F"])
@@ -70,6 +69,21 @@ def test_bcftools_concat():
 def test_bcftools_merge():
     run("bio/bcftools/merge",
         ["snakemake", "all.bcf", "--use-conda", "-F"])
+
+
+def test_bedtools_intersect():
+    run("bio/bedtools/intersect",
+        ["snakemake", "A_B.intersected.bed", "--use-conda", "-F"])
+
+
+def test_bedtools_merge():
+    run("bio/bedtools/merge",
+        ["snakemake", "A.merged.bed", "--use-conda", "-F"])
+
+
+def test_bedtools_slop():
+    run("bio/bedtools/slop",
+        ["snakemake", "A.slop.bed", "--use-conda", "-F"])
 
 
 def test_bowtie2_align():
