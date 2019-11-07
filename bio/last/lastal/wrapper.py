@@ -13,19 +13,6 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 cutoff = snakemake.params.get("evalue_threshold", 0.000001)
 
-#-Q: input format: 0=fasta or fastq-ignore, 1=fastq-sanger, 2=fastq-solexa,
-#                  3=fastq-illumina, 4=prb, 5=PSSM (fasta)
-
-#input_format = snakemake.params.get("input-format", "")
-#if not input_format:
-#    if "fq" in input_data or "fastq" in input_data:
-#        input_format = 3 # guess illumina? or fastq-ignore? (0)
-#    elif "fa" in input_data or "fasta" in input_data:
-#        input_format = 0
-#    else:
-#        assert (input_format is not None), "Please specify 'input_format' param (0=fasta or fastq-ignore, 1=fastq-sanger, 2=fastq-solexa, 3=fastq-illumina, 4=prb, 5=PSSM (fasta)"
-
-
 # set output file formats
 maf_out = snakemake.output.get("maf", "")
 tab_out = snakemake.output.get("tab", "")
@@ -57,5 +44,4 @@ if frameshift_cost:
 
 lastdb_name = str(snakemake.input["lastdb"]).rsplit('.', 1)[0]
 
-#lastal [options] lastdb-name fasta-sequence-file(s)
 shell("lastal -D {cutoff} -P {snakemake.threads} {extra} {lastdb_name} {snakemake.input.data} > {outF} {log}")
