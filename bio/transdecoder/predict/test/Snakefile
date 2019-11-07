@@ -1,0 +1,15 @@
+rule transdecoder_predict:
+    input:
+        "test.fa.gz"
+    output:
+        "test.fa.transdecoder.bed",
+        "test.fa.transdecoder.cds",
+        "test.fa.transdecoder.pep",
+        "test.fa.transdecoder.gff3"
+    log:
+        'logs/transdecoder/test-predict.log'
+    params:
+        extra=""
+    threads: 4
+    wrapper:
+        "master/bio/transdecoder/predict"
