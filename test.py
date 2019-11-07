@@ -550,3 +550,7 @@ def test_varscan_mpileup2snp():
 
 def test_umis_bamtag():
     run("bio/umis/bamtag", ["snakemake", "data/a.annotated.bam", "--use-conda", "-F"])
+
+def test_hmmpress():
+    run("bio/hmmer/hmmpress", ["snakemake", "test-profile.hmm.h3f", "--use-conda", "-F"])
+
