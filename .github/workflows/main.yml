@@ -52,6 +52,8 @@ jobs:
         run: conda create -c bioconda -c conda-forge --quiet --name snakemake snakemake-minimal pytest
 
       - name: Run tests
+        env:
+          DIFF_ONLY: ${{ github.ref != "master" }}
         run: |
           # activate conda env
           export PATH="/usr/share/miniconda/bin:$PATH"
