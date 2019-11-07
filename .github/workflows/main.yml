@@ -65,4 +65,4 @@ jobs:
           source activate snakemake
           
           # run tests
-          pytest test.py -v
+          pytest test.py -v -s
