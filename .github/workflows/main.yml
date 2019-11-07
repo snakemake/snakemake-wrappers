@@ -54,7 +54,7 @@ jobs:
       - name: Fetch master
         if: github.ref != 'master'
         run: |
-          git pull origin master
+          git fetch origin master
 
       - name: Run tests
         env:
