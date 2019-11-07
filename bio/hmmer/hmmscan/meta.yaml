@@ -1,0 +1,10 @@
+name: hmmer
+description: |
+ "HMMER: biosequence analysis using profile hidden Markov models"
+authors:
+  - N Tessa Pierce
+input:
+  - protein fasta files
+  - database hmm files
+output:
+  - matches to hmm files 

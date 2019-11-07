@@ -1,0 +1,9 @@
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python>=3.6
+  #- screed
+  - hmmer=3.2.1
+  #- cd-hit=4.8.1
