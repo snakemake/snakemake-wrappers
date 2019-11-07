@@ -1,9 +1,23 @@
-rule lastal:
+rule lastal_nucl_x_nucl:
     input:
         data   = "test-transcript.fa",
         lastdb ="test-transcript.fa.prj"
     output:
         maf = "test-transcript.maf"
+    params:
+        extra=""
+    log:
+        "logs/lastal/test.log"
+    threads: 8
+    wrapper:
+        "master/bio/last/lastal"
+
+rule lastal_nucl_x_prot:
+    input:
+        data   = "test-transcript.fa",
+        lastdb ="test-protein.fa.prj"
+    output:
+        maf = "test-tr-x-prot.maf"
     params:
         extra=""
     log:

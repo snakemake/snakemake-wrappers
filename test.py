@@ -557,3 +557,4 @@ def test_lastdb():
 
 def test_lastal():
     run("bio/last/lastal", ["snakemake", "test-transcript.maf", "--use-conda", "-F"])
+    run("bio/last/lastal", ["snakemake", "test-tr-x-prot.maf", "--use-conda", "-F"])
