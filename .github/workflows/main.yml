@@ -52,7 +52,7 @@ jobs:
         run: conda create -c bioconda -c conda-forge --quiet --name snakemake snakemake-minimal pytest
 
       - name: Fetch master
-        if: ${{ github.ref != 'master' }}
+        if: github.ref != 'master'
         run: |
           git fetch master
 
