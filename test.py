@@ -9,7 +9,7 @@ DIFF_ONLY = os.environ.get("DIFF_ONLY", "false") == "true"
 
 if DIFF_ONLY:
     # check if wrapper is modified compared to master
-    DIFF_FILES = set(subprocess.check_output(["git", "diff", "master", "--name-only"]).decode().split("\n"))
+    DIFF_FILES = set(subprocess.check_output(["git", "diff", "origin/master", "--name-only"]).decode().split("\n"))
 
 def run(wrapper, cmd, check_log=None):
     origdir = os.getcwd()
