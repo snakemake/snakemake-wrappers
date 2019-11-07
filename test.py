@@ -552,4 +552,8 @@ def test_umis_bamtag():
     run("bio/umis/bamtag", ["snakemake", "data/a.annotated.bam", "--use-conda", "-F"])
 
 def test_lastdb():
-    run("bio/last/lastdb", ["snakemake", "test-genome.fa.prj", "--use-conda", "-F"])
+    run("bio/last/lastdb", ["snakemake", "test-transcript.fa.prj", "--use-conda", "-F"])
+    run("bio/last/lastdb", ["snakemake", "test-protein.fa.prj", "--use-conda", "-F"])
+
+def test_lastal():
+    run("bio/last/lastal", ["snakemake", "test-transcript.maf", "--use-conda", "-F"])

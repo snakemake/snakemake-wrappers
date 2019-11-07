@@ -7,7 +7,15 @@ from os import path
 
 from snakemake.shell import shell
 
-extra = snakemake.params.get("extra", "-cR01") # want this option? yes/no
+extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell("lastdb {extra} -P {snakemake.threads} {snakemake.input} {log}")
+
+protein_cmd = ""
+protein = snakemake.params.get("protein_input", False)
+
+if protein:
+    protein_cmd = " -p " #{} ".format(protein)
+
+
+shell("lastdb {extra} {protein_cmd} -P {snakemake.threads} {snakemake.input} {log}")

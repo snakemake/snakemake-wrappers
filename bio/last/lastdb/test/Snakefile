@@ -1,17 +1,26 @@
-rule lastdb:
+rule lastdb_transcript:
     input:
-        "test-genome.fa"
+        "test-transcript.fa"
     output:
-        "test-genome.fa.prj",
-        #"test-genome.fa.bck",
-        #"test-genome.fa.des",
-        #"test-genome.fa.sds",
-        #"test-genome.fa.ssp",
-        #"test-genome.fa.suf",
-        #"test-genome.fa.tis",
-    log:
-        "logs/lastdb/test-genome.log"
+        "test-transcript.fa.prj",
     params:
-        prefix="test-genome",
+        protein_input = False,
+        extra = ""
+    log:
+        "logs/lastdb/test-transcript.log"
     wrapper:
         "master/bio/last/lastdb"
+
+rule lastdb_protein:
+    input:
+        "test-protein.fa"
+    output:
+        "test-protein.fa.prj",
+    params:
+        protein_input = True,
+        extra = ""
+    log:
+        "logs/lastdb/test-protein.log"
+    wrapper:
+        "master/bio/last/lastdb"
+

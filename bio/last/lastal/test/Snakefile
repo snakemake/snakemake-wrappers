@@ -1,0 +1,13 @@
+rule lastal:
+    input:
+        data   = "test-transcript.fa",
+        lastdb ="test-transcript.fa.prj"
+    output:
+        maf = "test-transcript.maf"
+    params:
+        extra=""
+    log:
+        "logs/lastal/test.log"
+    threads: 8
+    wrapper:
+        "master/bio/last/lastal"
