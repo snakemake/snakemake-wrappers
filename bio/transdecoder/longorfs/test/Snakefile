@@ -1,0 +1,12 @@
+rule transdecoder_longorfs:
+    input:
+        fasta = "test.fa"
+    output:
+        "test.fa.transdecoder_dir/longest_orfs.pep"
+    log:
+        'logs/transdecoder/test-longorfs.log'
+    params:
+        extra=""
+    threads: 4
+    wrapper:
+        "master/bio/transdecoder/longorfs"

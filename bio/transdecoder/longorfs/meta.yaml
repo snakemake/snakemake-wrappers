@@ -1,6 +1,6 @@
 name: transdecoder 
 description: |
-  Find ORFs with transdecoder
+  Find ORFs with transdecoder longorf
 authors:
   - N Tessa Pierce
 input:

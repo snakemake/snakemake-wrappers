@@ -559,3 +559,7 @@ def test_paladin_align():
     run("bio/paladin/align",
         ["snakemake", "paladin_mapped/a.bam", "--use-conda", "-F"])
 
+def test_transdecoder_longorfs():
+    run("bio/transdecoder/longorfs",
+        ["snakemake", "test.fa.transdecoder_dir/longest_orfs.pep", "--use-conda", "-F"])
+
