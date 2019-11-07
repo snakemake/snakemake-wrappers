@@ -9,7 +9,7 @@ from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell()
 
-extra=snakemake.params.get("extra","")
+extra = snakemake.params.get("extra", "")
 
 shell(
     "picard CollectTargetedPcrMetrics "

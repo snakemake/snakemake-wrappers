@@ -3,6 +3,13 @@ import os
 import tempfile
 import shutil
 import pytest
+import sys
+
+DIFF_ONLY = os.environ.get("DIFF_ONLY", "false") == "true"
+
+if DIFF_ONLY:
+    # check if wrapper is modified compared to master
+    DIFF_FILES = set(subprocess.check_output(["git", "diff", "origin/master", "--name-only"]).decode().split("\n"))
 
 def run(wrapper, cmd, check_log=None):
     origdir = os.getcwd()
@@ -18,6 +25,11 @@ def run(wrapper, cmd, check_log=None):
                 success = True
                 break
         assert success, "No wrapper.{py,R,Rmd} found"
+
+        if DIFF_ONLY and os.path.join(wrapper, script) not in DIFF_FILES:
+            print("Skipping wrapper {} (not modified).".format(wrapper), file=sys.stderr)
+            return
+
         copy("environment.yaml")
         testdir = os.path.join(wrapper, "test")
         # switch to test directory
