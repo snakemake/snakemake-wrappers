@@ -53,7 +53,7 @@ jobs:
 
       - name: Run tests
         env:
-          DIFF_ONLY: ${{ github.ref != "master" }}
+          DIFF_ONLY: ${{ github.ref != 'master' }}
         run: |
           # activate conda env
           export PATH="/usr/share/miniconda/bin:$PATH"
