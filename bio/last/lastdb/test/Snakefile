@@ -1,0 +1,17 @@
+rule lastdb:
+    input:
+        "test-genome.fa"
+    output:
+        "test-genome.fa.prj",
+        #"test-genome.fa.bck",
+        #"test-genome.fa.des",
+        #"test-genome.fa.sds",
+        #"test-genome.fa.ssp",
+        #"test-genome.fa.suf",
+        #"test-genome.fa.tis",
+    log:
+        "logs/lastdb/test-genome.log"
+    params:
+        prefix="test-genome",
+    wrapper:
+        "master/bio/last/lastdb"

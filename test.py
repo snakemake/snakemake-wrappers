@@ -550,3 +550,6 @@ def test_varscan_mpileup2snp():
 
 def test_umis_bamtag():
     run("bio/umis/bamtag", ["snakemake", "data/a.annotated.bam", "--use-conda", "-F"])
+
+def test_lastdb():
+    run("bio/last/lastdb", ["snakemake", "test-genome.fa.prj", "--use-conda", "-F"])
