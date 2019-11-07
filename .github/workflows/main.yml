@@ -51,6 +51,11 @@ jobs:
       - name: Setup Snakemake environment
         run: conda create -c bioconda -c conda-forge --quiet --name snakemake snakemake-minimal pytest
 
+      - name: Fetch master
+        if: ${{ github.ref != 'master' }}
+        run: |
+          git fetch master
+
       - name: Run tests
         env:
           DIFF_ONLY: ${{ github.ref != 'master' }}
