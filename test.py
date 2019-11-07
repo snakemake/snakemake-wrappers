@@ -559,3 +559,7 @@ def test_paladin_align():
     run("bio/paladin/align",
         ["snakemake", "paladin_mapped/a.bam", "--use-conda", "-F"])
 
+def test_paladin_prepare():
+    run("bio/paladin/prepare",
+        ["snakemake", "uniprot_sprot.fasta.gz", "--use-conda", "-F"])
+

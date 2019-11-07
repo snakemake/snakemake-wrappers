@@ -1,0 +1,4 @@
+name: "paladin prepare"
+description: Prepare uniprot refs 
+authors:
+  - N. Tessa Pierce
