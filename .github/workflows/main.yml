@@ -13,10 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Black Code Formatter
-        uses: lgeiger/black-action@v1.0.1
-        with:
-          args: 'bio/*/*/wrapper.py bio/*/wrapper.py --check'
+      - name: Setup black environment
+        run: conda create --quiet --name black black
+
+      - name: Check formatting
+        run: |
+          export PATH="/usr/share/miniconda/bin:$PATH"
+          source activate black
+          black --check bio/*/*/wrapper.py bio/*/wrapper.py
   
   docs:
     runs-on: ubuntu-latest
