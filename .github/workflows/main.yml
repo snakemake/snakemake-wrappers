@@ -63,6 +63,8 @@ jobs:
           # activate conda env
           export PATH="/usr/share/miniconda/bin:$PATH"
           source activate snakemake
+
+          echo $DIFF_ONLY
           
           # run tests
           pytest test.py -v -s
