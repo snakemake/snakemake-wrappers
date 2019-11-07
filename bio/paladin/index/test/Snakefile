@@ -5,6 +5,6 @@ rule paladin_index:
         "index/prot.fasta.bwt" 
     log:
         "logs/paladin/prot_index.log"
-    threads: 8
+    threads: 4
     wrapper:
-        "master/bio/paladin/align"
+        "master/bio/paladin/index"
