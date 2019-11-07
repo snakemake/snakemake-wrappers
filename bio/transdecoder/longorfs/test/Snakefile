@@ -1,6 +1,6 @@
 rule transdecoder_longorfs:
     input:
-        fasta = "test.fa"
+        fasta = "test.fa.gz"
     output:
         "test.fa.transdecoder_dir/longest_orfs.pep"
     log:

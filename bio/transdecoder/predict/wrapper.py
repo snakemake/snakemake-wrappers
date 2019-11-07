@@ -1,4 +1,4 @@
-"""Snakemake wrapper for Transdecoder"""
+"""Snakemake wrapper for Transdecoder Predict"""
 
 __author__ = "N Tessa Pierce"
 __copyright__ = "Copyright 2019, Tessa Pierce"
@@ -12,22 +12,20 @@ extra = snakemake.params.get("extra", "")
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-gtm_cmd = ""
-gtm = snakemake.input.get("gene_trans_map", "")
-if gtm:
-    gtm_cmd = " --gene_trans_map " + gtm
+addl_outputs = ""
+pfam = snakemake.input.get("pfam_hits", "")
+if pfam:
+    addl_outputs += " --retain_pfam_hits " + pfam
 
-output_dir = path.dirname(str(snakemake.output))
+blast = snakemake.input.get("blastp_hits", "")
+if blast:
+    addl_outputs += " --retain_blastp_hits " + blast
 
-
-# transdecoder fails if output already exists. No force option available
-shell("rm -rf {output_dir}")
-
-input_fasta = str(snakemake.input.fasta)
+input_fasta = str(snakemake.input)
 if input_fasta.endswith('gz'):
     input_fa = input_fasta.rsplit('.gz')[0]
     shell("gunzip -c {input_fasta} > {input_fa}")
 else:
     input_fa = input_fasta
 
-shell("TransDecoder.LongOrfs -t {input_fa} {gtm_cmd} {log}")
+shell("TransDecoder.Predict -t {input_fa} {addl_outputs} {extra} {log}")
