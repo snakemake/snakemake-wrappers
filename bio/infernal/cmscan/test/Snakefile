@@ -1,7 +1,7 @@
 rule cmscan_profile:
     input:
         fasta= "test-transcript.fa",
-        profile= "test-covariance-model.cm"
+        profile= "test-covariance-model.cm.i1i"
     output:
         tblout = "tr-infernal-tblout.txt",
     log:

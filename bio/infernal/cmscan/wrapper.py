@@ -9,10 +9,9 @@ from os import path
 from snakemake.shell import shell
 
 profile = snakemake.input.get("profile")
+profile = profile.rsplit('.i', 1)[0]
 
-for ext in ['.ilf', '.ili', '.ilm', '.ilp']:
-    profile = profile.rsplit(ext)[0]
-    assert profile.endswith(".cm"), 'your profile file should end with ".hmm"'
+assert profile.endswith(".cm"), 'your profile file should end with ".cm"'
 
 #direct output to file <f>, not stdout
 out_cmd = ""
