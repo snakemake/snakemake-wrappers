@@ -4,7 +4,7 @@ channels:
   - defaults
 dependencies:
   - pip
-  - python
+  - python>=3.6
   - numpy 
   - pandas 
   - numexpr>=2.3.1 

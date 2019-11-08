@@ -3,8 +3,7 @@ channels:
   - bioconda
   - defaults
 dependencies:
-  - pip
-  - python
+  - python>=3.6
   - numpy 
   - pandas 
   - numexpr>=2.3.1 
@@ -18,7 +17,7 @@ dependencies:
   - infernal 
   - hmmer 
   - transdecoder=3.0.1 
-  - last 
+  - last
   - busco=3.0.2 
   - parallel 
   - bioconductor-seqlogo
