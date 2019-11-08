@@ -16,11 +16,13 @@ cutoff = snakemake.params.get("evalue_threshold", 0.000001)
 # set output file formats
 maf_out = snakemake.output.get("maf", "")
 tab_out = snakemake.output.get("tab", "")
-btab_out= snakemake.output.get("blast-tab", "")
+btab_out = snakemake.output.get("blast-tab", "")
 btabplus_out = snakemake.output.get("blast-tab-plus", "")
 outfiles = [maf_out, tab_out, btab_out, btabplus_out]
-#TAB, MAF, BlastTab, BlastTab+ (default=MAF)
-assert list(map(bool, outfiles)).count(True) == 1, "please specify ONE output file using one of: 'maf', 'tab', 'blasttab', or 'blasttabplus' keywords in the output field)"
+# TAB, MAF, BlastTab, BlastTab+ (default=MAF)
+assert (
+    list(map(bool, outfiles)).count(True) == 1
+), "please specify ONE output file using one of: 'maf', 'tab', 'blasttab', or 'blasttabplus' keywords in the output field)"
 
 out_cmd = ""
 
@@ -42,6 +44,8 @@ if frameshift_cost:
     f_cmd = f"-F {frameshift_cost}"
 
 
-lastdb_name = str(snakemake.input["lastdb"]).rsplit('.', 1)[0]
+lastdb_name = str(snakemake.input["lastdb"]).rsplit(".", 1)[0]
 
-shell("lastal -D {cutoff} -P {snakemake.threads} {extra} {lastdb_name} {snakemake.input.data} > {outF} {log}")
+shell(
+    "lastal -D {cutoff} -P {snakemake.threads} {extra} {lastdb_name} {snakemake.input.data} > {outF} {log}"
+)

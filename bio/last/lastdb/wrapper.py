@@ -15,7 +15,7 @@ protein_cmd = ""
 protein = snakemake.params.get("protein_input", False)
 
 if protein:
-    protein_cmd = " -p " #{} ".format(protein)
+    protein_cmd = " -p "
 
 
 shell("lastdb {extra} {protein_cmd} -P {snakemake.threads} {snakemake.input} {log}")
