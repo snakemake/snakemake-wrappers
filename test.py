@@ -563,14 +563,6 @@ def test_varscan_mpileup2snp():
 def test_umis_bamtag():
     run("bio/umis/bamtag", ["snakemake", "data/a.annotated.bam", "--use-conda", "-F"])
 
-def test_paladin_index():
-    run("bio/paladin/index",
-        ["snakemake", "index/prot.fasta.bwt", "--use-conda", "-F"])
-
-def test_paladin_align():
-    run("bio/paladin/align",
-        ["snakemake", "paladin_mapped/a.bam", "--use-conda", "-F"])
-
 def test_transdecoder_longorfs():
     run("bio/transdecoder/longorfs",
         ["snakemake", "test.fa.transdecoder_dir/longest_orfs.pep", "--use-conda", "-F"])
