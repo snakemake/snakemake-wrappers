@@ -6,14 +6,7 @@ rule paladin_index:
     log:
         "logs/paladin/prot_index.log"
     params:
-      reference_type: 3
+      reference_type= 3
     threads: 4
     wrapper:
         "master/bio/paladin/index"
-
-# reference types:
-  #1: Reference contains nucleotide sequences (requires corresponding .gff annotation)
-  #2: Reference contains nucleotide sequences (coding only, eg curated transcriptome)
-  #3: Reference contains protein sequences (UniProt or other source)
-  #4: Development tests
-
