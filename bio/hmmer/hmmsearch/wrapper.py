@@ -10,25 +10,25 @@ from snakemake.shell import shell
 
 profile = snakemake.input.get("profile")
 
-profile = profile.rsplit('.h3', 1)[0]
+profile = profile.rsplit(".h3", 1)[0]
 assert profile.endswith(".hmm"), 'your profile file should end with ".hmm" '
 
-#direct output to file <f>, not stdout
+# direct output to file <f>, not stdout
 out_cmd = ""
 outfile = snakemake.output.get("outfile", "")
 if outfile:
     out_cmd += " -o {} ".format(outfile)
 
-#save parseable table of per-sequence hits to file <f>
+# save parseable table of per-sequence hits to file <f>
 tblout = snakemake.output.get("tblout", "")
 if tblout:
     out_cmd += " --tblout {} ".format(tblout)
-#save parseable table of per-domain hits to file <f>
+# save parseable table of per-domain hits to file <f>
 domtblout = snakemake.output.get("domtblout", "")
 if domtblout:
     out_cmd += " --domtblout {} ".format(domtblout)
 
-#save table of hits and domains to file, in Pfam format <f>
+# save table of hits and domains to file, in Pfam format <f>
 pfamtblout = snakemake.output.get("pfamtblout", "")
 if pfamtblout:
     out_cmd += " --pfamtblout {} ".format(pfamtblout)
