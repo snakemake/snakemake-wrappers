@@ -20,9 +20,11 @@ output_file = snakemake.output[0]
 if not isinstance(output_file, str) and len(snakemake.output) != 1:
     raise ValueError("Output should be one file: " + str(output_file) + "!")
 
-shell("coverageBed"
-      " -a {input_a}"
-      " -b {input_b}"
-      " {extra_params}"
-      " > {output_file}"
-      " {log}")
+shell(
+    "coverageBed"
+    " -a {input_a}"
+    " -b {input_b}"
+    " {extra_params}"
+    " > {output_file}"
+    " {log}"
+)

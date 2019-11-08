@@ -1,6 +1,6 @@
 rule merge_vcfs:
     input:
-        ["snvs.chr1.vcf", "snvs.chr2.vcf"]
+        vcfs=["snvs.chr1.vcf", "snvs.chr2.vcf"]
     output:
         "snvs.vcf"
     log:
