@@ -12,4 +12,7 @@ extra = snakemake.params.get("extra", "")
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell("hmmbuild {extra} {snakemake.output} {snakemake.input} {log}")
+shell(
+    " hmmbuild {extra} --cpu {snakemake.threads} "
+    " {snakemake.output} {snakemake.input} {log} "
+)

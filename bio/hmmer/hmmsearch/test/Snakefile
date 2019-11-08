@@ -1,0 +1,14 @@
+rule hmmscan_profile:
+    input:
+        fasta= "test-protein.fa",
+        profile= "test-profile.hmm.h3f",
+    output:
+        tblout = "test-prot-tbl.txt",
+        pfamtblout = "test-prot-pfamtbl.txt",
+    log:
+        "logs/hmmscan.log"
+    params:
+        extra = "",
+    threads: 4
+    wrapper:
+        "master/bio/hmmer/hmmsearch"

@@ -1,4 +1,4 @@
-"""Snakemake wrapper for hmmscan"""
+"""Snakemake wrapper for hmmsearch"""
 
 __author__ = "N. Tessa Pierce"
 __copyright__ = "Copyright 2019, N. Tessa Pierce"
@@ -10,7 +10,7 @@ from snakemake.shell import shell
 
 profile = snakemake.input.get("profile")
 
-profile = profile.rsplit(".h3", 1)[0]
+profile = profile.rsplit('.h3', 1)[0]
 assert profile.endswith(".hmm"), 'your profile file should end with ".hmm" '
 
 #direct output to file <f>, not stdout
@@ -33,6 +33,10 @@ pfamtblout = snakemake.output.get("pfamtblout", "")
 if pfamtblout:
     out_cmd += " --pfamtblout {} ".format(pfamtblout)
 
+alignment_hits = snakemake.output.get("alignment_hits", "")
+if alignment_hits:
+    out_cmd += " -A {} ".format(alignment_hits)
+
 ## default params: enable evalue threshold. If bitscore thresh is provided, use that instead (both not allowed)
 # report models >= this score threshold in output
 evalue_threshold = snakemake.params.get("evalue_threshold", 0.00001)
@@ -49,6 +53,7 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
-    "hmmscan {out_cmd} {thresh_cmd} --cpu {snakemake.threads}"
-    " {extra} {profile} {snakemake.input.fasta} {log}"
+    " hmmsearch --cpu {snakemake.threads} "
+    " {out_cmd} {thresh_cmd} {extra} {profile} "
+    " {snakemake.input.fasta} {log}"
 )

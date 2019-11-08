@@ -559,3 +559,6 @@ def test_hmmpress():
 
 def test_hmmscan():
     run("bio/hmmer/hmmscan", ["snakemake", "test-prot-tbl.txt", "--use-conda", "-F"])
+
+def test_hmmsearch():
+    run("bio/hmmer/hmmsearch", ["snakemake", "test-prot-tbl.txt", "--use-conda", "-F"])
