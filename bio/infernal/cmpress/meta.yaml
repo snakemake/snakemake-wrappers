@@ -1,0 +1,9 @@
+name: infernal
+description: |
+  inference of rna alignments 
+authors:
+  - N. Tessa Pierce
+input:
+  - sequence files
+output:
+  - rna alignments 

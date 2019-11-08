@@ -550,3 +550,7 @@ def test_varscan_mpileup2snp():
 
 def test_umis_bamtag():
     run("bio/umis/bamtag", ["snakemake", "data/a.annotated.bam", "--use-conda", "-F"])
+
+def test_infernal_cmpress():
+    run("bio/infernal/cmpress", ["snakemake", "test-covariance-model.cm.i1f", "--use-conda", "-F"])
+
