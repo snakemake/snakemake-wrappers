@@ -6,6 +6,8 @@ on:
       - master
   pull_request:
     branches_ignore: []
+  schedule:
+    - cron: '0 0 * * 0'
 
 jobs:
   formatting:
@@ -58,13 +60,11 @@ jobs:
 
       - name: Run tests
         env:
-          DIFF_ONLY: ${{ github.ref != 'master' }}
+          DIFF_ONLY: ${{ github.event_name == 'pull_request' }}
         run: |
           # activate conda env
           export PATH="/usr/share/miniconda/bin:$PATH"
           source activate snakemake
-
-          echo $DIFF_ONLY
           
           # run tests
-          pytest test.py -v -s
+          pytest test.py -v
