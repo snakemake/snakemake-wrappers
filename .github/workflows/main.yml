@@ -6,6 +6,8 @@ on:
       - master
   pull_request:
     branches_ignore: []
+  schedule:
+    - cron: '0 0 * * 0'
 
 jobs:
   formatting:
