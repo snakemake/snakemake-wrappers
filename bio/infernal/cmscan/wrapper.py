@@ -9,11 +9,11 @@ from os import path
 from snakemake.shell import shell
 
 profile = snakemake.input.get("profile")
-profile = profile.rsplit('.i', 1)[0]
+profile = profile.rsplit(".i", 1)[0]
 
 assert profile.endswith(".cm"), 'your profile file should end with ".cm"'
 
-#direct output to file <f>, not stdout
+# direct output to file <f>, not stdout
 out_cmd = ""
 outfile = snakemake.output.get("outfile", "")
 if outfile:
@@ -28,7 +28,7 @@ if tblout:
 
 # report models <= this evalue threshold in output
 evalue_threshold = snakemake.params.get("evalue_threshold", 1.0)
-#report sequences >= this score threshold in output
+# report sequences >= this score threshold in output
 score_threshold = snakemake.params.get("score_threshold", "")
 
 if score_threshold:
@@ -40,9 +40,6 @@ extra = snakemake.params.get("extra", "")
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell("cmscan {out_cmd} {thresh_cmd} {extra} {profile} {snakemake.input.fasta} {log}")
-
-# cutoff=1.0
-
-#shell("hmmscan {out_cmd} {thresh_cmd} {extra} {profile} {snakemake.input.fasta} {log}")
-
+shell(
+    "cmscan {out_cmd} {thresh_cmd} {extra} --cpu {snakemake.threads} {profile} {snakemake.input.fasta} {log}"
+)
