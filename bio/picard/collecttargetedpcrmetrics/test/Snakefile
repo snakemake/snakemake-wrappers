@@ -1,0 +1,13 @@
+rule CollectTargetedPcrMetrics:
+    input:
+        bam="mapped/{sample}.bam",
+        amplicon_intervals="amplicon.list",
+        target_intervals="target.list"
+    output:
+        "stats/{sample}.pcr.txt"
+    log:
+        "logs/picard/collecttargetedpcrmetrics/{sample}.log"
+    params:
+        extra=""
+    wrapper:
+        "master/bio/picard/collecttargetedpcrmetrics"
