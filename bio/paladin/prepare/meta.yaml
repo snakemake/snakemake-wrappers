@@ -1,4 +1,4 @@
 name: "paladin prepare"
-description: Prepare uniprot refs 
+description: Prepare uniprot refs for paladin mapping
 authors:
   - N. Tessa Pierce
