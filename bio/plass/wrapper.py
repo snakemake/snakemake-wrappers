@@ -10,26 +10,42 @@ from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 
-#allow multiple input files for single assembly
+# allow multiple input files for single assembly
 left = snakemake.input.get("left")
-single =  snakemake.input.get("single")
+single = snakemake.input.get("single")
 assert left is not None or single is not None, "please check read inputs"
-left = [snakemake.input.left] if isinstance(snakemake.input.left, str) else snakemake.input.left
-right =  snakemake.input.get("right")
+left = (
+    [snakemake.input.left]
+    if isinstance(snakemake.input.left, str)
+    else snakemake.input.left
+)
+right = snakemake.input.get("right")
 if left:
-    right = [snakemake.input.right] if isinstance(snakemake.input.right, str) else snakemake.input.right
-    assert len(left) == len(right), "left input needs to contain the same number of files as the right input"
-    input_str_left = ' ' + " ".join(left)
-    input_str_right = ' ' + " ".join(right)
-    input_cmd = input_str_left + ' ' +  input_str_right
+    right = (
+        [snakemake.input.right]
+        if isinstance(snakemake.input.right, str)
+        else snakemake.input.right
+    )
+    assert len(left) == len(
+        right
+    ), "left input needs to contain the same number of files as the right input"
+    input_str_left = " " + " ".join(left)
+    input_str_right = " " + " ".join(right)
+    input_cmd = input_str_left + " " + input_str_right
 else:
-    single = [snakemake.input.single] if isinstance(snakemake.input.single, str) else snakemake.input.single
-    input_cmd = ' ' + ' '.join(single)
+    single = (
+        [snakemake.input.single]
+        if isinstance(snakemake.input.single, str)
+        else snakemake.input.single
+    )
+    input_cmd = " " + " ".join(single)
 
 
 outdir = path.dirname(snakemake.output[0])
-tmpdir = path.join(outdir,'tmp')
+tmpdir = path.join(outdir, "tmp")
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell("plass assemble {input_cmd} {snakemake.output} {tmpdir} --threads {snakemake.threads} {snakemake.params.extra} {log}")
+shell(
+    "plass assemble {input_cmd} {snakemake.output} {tmpdir} --threads {snakemake.threads} {snakemake.params.extra} {log}"
+)
