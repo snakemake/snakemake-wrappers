@@ -5,10 +5,6 @@ __copyright__ = "Copyright 2019, Tessa Pierce"
 __email__ = "ntpierce@gmail.com"
 __license__ = "MIT"
 
-
-# this wrapper temporarily copies your assembly into the output dir
-# so that all the paladin output files end up in the desired spot
-
 from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
