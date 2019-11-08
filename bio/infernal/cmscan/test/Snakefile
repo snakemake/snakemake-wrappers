@@ -1,0 +1,13 @@
+rule cmscan_profile:
+    input:
+        fasta= "test-transcript.fa",
+        profile= "test-covariance-model.cm"
+    output:
+        tblout = "tr-infernal-tblout.txt",
+    log:
+        "logs/cmscan.log"
+    params:
+        extra = "",
+    threads: 4
+    wrapper:
+        "master/bio/infernal/cmscan"
