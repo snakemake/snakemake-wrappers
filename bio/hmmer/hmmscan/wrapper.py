@@ -10,9 +10,8 @@ from snakemake.shell import shell
 
 profile = snakemake.input.get("profile")
 
-for ext in ['.h3f', '.h3i', '.h3m', '.h3p']:
-    profile = profile.rsplit(ext)[0]
-    assert profile.endswith(".hmm"), 'your profile file should end with ".hmm" '
+profile = profile.rsplit('.h3', 1)[0]
+assert profile.endswith(".hmm"), 'your profile file should end with ".hmm" '
 
 #direct output to file <f>, not stdout
 out_cmd = ""
