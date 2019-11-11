@@ -1,4 +1,11 @@
-name: "bowtie2"
-description: Index transcriptome for mapping with bowtie2.
+name: bowtie2 index
+description: |
+    Index nucleotide fasta for mapping with bowtie2
 authors:
-  - N. Tessa Pierce
+  - Johannes Köster, N. Tessa Pierce
+input:
+  - nucleotide fasta
+output:
+  - indexed fasta for mapping with bowtie2 
+citations:
+  - "Langmead B, Salzberg S. Fast gapped-read alignment with Bowtie 2. Nature Methods.      2012, 9:357-359"
