@@ -1,4 +1,14 @@
-name: "paladin"
-description: Map reads to a protein assembly with paladin.
+name: paladin index
+description: |
+Index a protein fasta file for mapping with paladin.
+
+PALADIN is a protein sequence alignment tool designed for the accurate functional    characterization of metagenomes.
+
+Westbrook, Anthony et al. 'PALADIN: protein alignment for functional profiling whole   metagenome shotgun data' Bioinformatics (Oxford, England) vol. 33,10 (2017): 1473-1478
+
 authors:
   - N. Tessa Pierce
+input:
+  - protein fasta file 
+output:
+  - file indexed for paladin mapping 
