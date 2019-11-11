@@ -5,13 +5,14 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
-# Extract arguments
-
+## Extract arguments
 extra = snakemake.params.get("extra", "")
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 shell("(bedtools slop"
     " {extra}"
-    " -i {snakemake.input[0]} -g {snakemake.params.genome}" 
-    " > {snakemake.output}) {log}")
+    " -i {snakemake.input[0]}"
+    " -g {snakemake.params.genome}" 
+    " > {snakemake.output})"
+    " {log}")

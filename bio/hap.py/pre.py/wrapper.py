@@ -7,8 +7,7 @@ from os import path
 
 from snakemake.shell import shell
 
-# Extract arguments
-
+## Extract arguments
 extra = snakemake.params.get("extra", "")
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
@@ -18,4 +17,6 @@ shell(
     " --threads {snakemake.threads}"
     " -r {snakemake.params.genome}"
     " {extra}"
-    " {snakemake.input.variants} {snakemake.output}) {log}")
+    " {snakemake.input.variants}"
+    " {snakemake.output})"
+    " {log}")

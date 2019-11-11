@@ -5,8 +5,7 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
-# Extract arguments
-
+## Extract arguments
 extra = snakemake.params.get("extra", "")
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -14,4 +13,5 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 shell("(bedtools merge"
     " {extra}"
     " -i {snakemake.input}"
-    " > {snakemake.output}) {log}")
+    " > {snakemake.output})"
+    " {log}")
