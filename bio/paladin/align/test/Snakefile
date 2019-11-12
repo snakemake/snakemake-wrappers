@@ -3,7 +3,7 @@ rule paladin_align:
         reads=["reads/reads.left.fq.gz"], 
         index="index/prot.fasta.bwt", 
     output:
-        "paladin_mapped/{sample}.bam"
+        "paladin_mapped/{sample}.bam" # will output BAM format if output file ends with ".bam", otherwise SAM format
     log:
         "logs/paladin/{sample}.log"
     threads: 4

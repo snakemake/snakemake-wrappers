@@ -6,6 +6,6 @@ input:
   - nucleotide reads (fastq)
   - indexed protein fasta file (output of paladin index or prepare)
 output:
-  - mapped reads (BAM format) 
+  - mapped reads (SAM or BAM format) 
 citations:
   - "`Westbrook, Anthony et al. 'PALADIN: protein alignment for functional profiling whole metagenome shotgun data' Bioinformatics (Oxford, England) vol. 33,10 (2017): 1473-1478 <https://doi.org/10.1093/bioinformatics/btx021>`_"
