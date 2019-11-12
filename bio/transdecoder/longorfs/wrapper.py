@@ -1,4 +1,4 @@
-"""Snakemake wrapper for Transdecoder"""
+"""Snakemake wrapper for Transdecoder LongOrfs"""
 
 __author__ = "N Tessa Pierce"
 __copyright__ = "Copyright 2019, Tessa Pierce"
