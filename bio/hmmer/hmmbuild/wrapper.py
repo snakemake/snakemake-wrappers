@@ -1,7 +1,7 @@
 """Snakemake wrapper for hmmbuild"""
 
-__author__ = "Tessa Pierce"
-__copyright__ = "Copyright 2019, Tessa Pierce"
+__author__ = "N. Tessa Pierce"
+__copyright__ = "Copyright 2019, N. Tessa Pierce"
 __email__ = "ntpierce@gmail.com"
 __license__ = "MIT"
 
