@@ -9,4 +9,4 @@ input:
 output:
   - mapped reads (BAM format)
 citations:
-  - "Langmead B, Salzberg S. Fast gapped-read alignment with Bowtie 2. Nature Methods.      2012, 9:357-359"
+  - "Langmead B, Salzberg S. Fast gapped-read alignment with Bowtie 2. Nature Methods. 2012, 9:357-359"
