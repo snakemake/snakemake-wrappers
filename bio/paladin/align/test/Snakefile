@@ -1,7 +1,7 @@
 rule paladin_align:
     input:
-        r= ["reads/reads.left.fq.gz"], 
-        index = "index/prot.fasta.bwt", 
+        reads=["reads/reads.left.fq.gz"], 
+        index="index/prot.fasta.bwt", 
     output:
         "paladin_mapped/{sample}.bam"
     log:

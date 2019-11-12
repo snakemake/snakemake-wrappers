@@ -11,8 +11,10 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-r = snakemake.input.get("r")
-assert r is not None, "reads are required as input"
+r = snakemake.input.get("reads")
+assert (
+    r is not None
+), "reads are required as input. If you have paired end reads, please merge them first (e.g. with PEAR)"
 index = snakemake.input.get("index")
 assert (
     index is not None
