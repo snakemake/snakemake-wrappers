@@ -5,3 +5,4 @@ channels:
 dependencies:
   - cutadapt ==2.5
   - pigz ==2.3.4
+  - pandas ==0.25
