@@ -1,6 +1,5 @@
 name: plass
-description: |
-  "Plass (Protein-Level ASSembler) is software to assemble short read sequencing data on a protein level. The main purpose of Plass is the assembly of complex metagenomic datasets."
+description: "Plass (Protein-Level ASSembler) is software to assemble short read sequencing data on a protein level. The main purpose of Plass is the assembly of complex metagenomic datasets."
 authors:
   - N. Tessa Pierce
 input:
