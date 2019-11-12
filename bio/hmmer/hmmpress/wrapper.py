@@ -10,6 +10,6 @@ from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-# -f Force; overwrites any previous hmmpress'ed datafiles. The default is to bitch about any existing files and ask you to delete them first.
+# -f Force; overwrites any previous hmmpress-ed datafiles. The default is to bitch about any existing files and ask you to delete them first.
 
 shell("hmmpress -f {snakemake.input} {log}")

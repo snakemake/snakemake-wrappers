@@ -9,7 +9,7 @@ rule hmmpress_profile:
     log:
         "logs/hmmpress.log"
     params:
-        extra = "",
+        extra="",
     threads: 4
     wrapper:
         "master/bio/hmmer/hmmpress"

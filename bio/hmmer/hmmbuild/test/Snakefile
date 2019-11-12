@@ -1,4 +1,3 @@
-#hmmbuild - build a profile HMM from an alignment
 rule hmmbuild_profile:
     input:
         "test-profile.sto"
@@ -7,7 +6,7 @@ rule hmmbuild_profile:
     log:
         "logs/test-profile-hmmbuild.log"
     params:
-        extra = "",
+        extra="",
     threads: 4
     wrapper:
         "master/bio/hmmer/hmmbuild"

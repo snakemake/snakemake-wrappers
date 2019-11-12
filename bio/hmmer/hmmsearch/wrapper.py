@@ -13,7 +13,7 @@ profile = snakemake.input.get("profile")
 profile = profile.rsplit(".h3", 1)[0]
 assert profile.endswith(".hmm"), 'your profile file should end with ".hmm" '
 
-# direct output to file <f>, not stdout
+# Direct the main human-readable output to a file <f> instead of the default stdout.
 out_cmd = ""
 outfile = snakemake.output.get("outfile", "")
 if outfile:
@@ -23,6 +23,7 @@ if outfile:
 tblout = snakemake.output.get("tblout", "")
 if tblout:
     out_cmd += " --tblout {} ".format(tblout)
+
 # save parseable table of per-domain hits to file <f>
 domtblout = snakemake.output.get("domtblout", "")
 if domtblout:
@@ -33,6 +34,7 @@ pfamtblout = snakemake.output.get("pfamtblout", "")
 if pfamtblout:
     out_cmd += " --pfamtblout {} ".format(pfamtblout)
 
+# Save a multiple alignment of all significant hits (those satisfying inclusion thresholds) to the file <f>
 alignment_hits = snakemake.output.get("alignment_hits", "")
 if alignment_hits:
     out_cmd += " -A {} ".format(alignment_hits)
