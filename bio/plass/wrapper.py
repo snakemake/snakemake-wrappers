@@ -13,14 +13,19 @@ extra = snakemake.params.get("extra", "")
 # allow multiple input files for single assembly
 left = snakemake.input.get("left")
 single = snakemake.input.get("single")
-assert left is not None or single is not None, "please check read inputs"
-left = (
-    [snakemake.input.left]
-    if isinstance(snakemake.input.left, str)
-    else snakemake.input.left
-)
-right = snakemake.input.get("right")
+assert (
+    left is not None or single is not None
+), "please check read inputs: either left/right or single read file inputs are required"
 if left:
+    left = (
+        [snakemake.input.left]
+        if isinstance(snakemake.input.left, str)
+        else snakemake.input.left
+    )
+    right = snakemake.input.get("right")
+    assert (
+        right is not None
+    ), "please input 'right' reads or specify that the reads are 'single'"
     right = (
         [snakemake.input.right]
         if isinstance(snakemake.input.right, str)
