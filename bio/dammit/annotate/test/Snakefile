@@ -1,16 +1,15 @@
-#run dammit annotation
-
 rule dammit_annotate:
     input: 
-        databases_file = "databases/databases.doit.db",
-        fasta = "transcriptome.fasta",
+        databases_file="databases/databases.doit.db",
+        fasta="transcriptome.fasta",
+        user_database="pep.fa" # optional: add a non-default peptide file to use as an additional database
     output:
-        fasta = 'transcriptome.dammit.fasta',
-        gff3 = 'transcriptome.dammit.gff3'
+        fasta="transcriptome.dammit.fasta",
+        gff3="transcriptome.dammit.gff3"
     log:
-        'logs/dammit/dammit_annotate.log'
+        "logs/dammit/dammit_annotate.log"
     params:
-        database_dir='databases',
+        database_dir="databases",
         annot_extra="--quick",
     threads: 4
     wrapper:

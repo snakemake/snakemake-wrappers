@@ -13,7 +13,6 @@ db_dir = snakemake.params.get("database_dir")
 db_dir = path.abspath(db_dir)
 busco_dbs = snakemake.params.get("busco_dbs", [])
 db_extra = snakemake.params.get("db_extra", "")
-db_only = snakemake.params.get("db_install_only", False)
 
 if db_dir:
     db_dir = path.expanduser(db_dir)
@@ -30,8 +29,7 @@ busco_cmd = (
     else ""
 )
 
-# databases breaks with multiple threads https://github.com/dib-lab/dammit/issues/140
-# only a single busco group can be installed at once: https://github.com/dib-lab/dammit/issues/141
+# databases (dammit v1.1) breaks with multiple threads https://github.com/dib-lab/dammit/issues/140
 
 # run installation of everything *except* busco groups
 shell(
@@ -39,7 +37,8 @@ shell(
 )  # --n_threads {snakemake.threads}
 
 # busco groups need to be installed separately
+# only a single busco group can be installed at once: https://github.com/dib-lab/dammit/issues/141
 for busco_grp in busco_dbs:
     shell(
-        "dammit databases --install {db_cmd} --busco-group {busco_grp} {db_extra} {log}"
+        "dammit databases --install {db_cmd} --busco-group {busco_grp} {db_extra} {log}" # --n_threads {snakemake.threads}
     )

@@ -1,7 +1,8 @@
-name: dammit
-description: |
- Install Dammit databases for Annotation 
+name: dammit databases
+description: Install Dammit databases for Annotation 
 authors:
-  - Tessa Pierce
+  - N. Tessa Pierce
 output:
-  - formatted dammit databases 
+  - downloaded and formatted dammit databases 
+documentation:
+  - "`dib-lab.github.io/dammit <http://dib-lab.github.io/dammit>_`"

@@ -1,9 +1,11 @@
-name: dammit
-description: |
- Annotate transcriptomes with Dammit!
+name: dammit annotate
+description: "dammit is a simple de novo transcriptome annotator. It was born out of the observation that: annotation is mundane and annoying; all the individual pieces of the process exist already; and, the existing solutions are overly complicated or rely on crappy non-free software." 
 authors:
-  - Tessa Pierce
+  - N. Tessa Pierce
 input:
   - transcriptome fasta
+  - formatted databases (from dammit databases)
 output:
-  - annotated fasta file and csv with annotations
+  - annotated fasta file and gff3
+documentation:
+  - "`dib-lab.github.io/dammit <http://dib-lab.github.io/dammit>_`"

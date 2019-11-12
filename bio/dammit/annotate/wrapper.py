@@ -18,7 +18,7 @@ db_extra = snakemake.params.get(
 
 if db_dir:
     db_dir = path.expanduser(db_dir)
-    db_cmd = " --database-dir " + db_dir  # if db_dir is not None else ""
+    db_cmd = " --database-dir " + db_dir
 else:
     db_cmd = ""
 
@@ -32,6 +32,11 @@ busco_cmd = (
 )
 
 # handle annotate params
+user_db_cmd = ""
+user_db = snakemake.input.get("user_database", "")
+if user_db:
+    " --user_databases " + user_db
+
 outdir = path.dirname(snakemake.output[0])
 annot_extra = snakemake.params.get("annot_extra", "")
 
@@ -57,7 +62,7 @@ for busco_grp in busco_dbs:
 
 # run annotation
 shell(
-    "dammit annotate {snakemake.input.fasta} {db_cmd} --no-rename --n_threads {snakemake.threads} --output-dir {dammit_dir} {annot_extra} {log}"
+    "dammit annotate {snakemake.input.fasta} {db_cmd} --no-rename {user_db_cmd} --n_threads {snakemake.threads} --output-dir {dammit_dir} {annot_extra} {log}"
 )
 
 # cp final dammit annot files to desired location / names
