@@ -26,9 +26,9 @@ if tblout:
 
 ## default params: enable evalue threshold. If bitscore thresh is provided, use that instead (both not allowed)
 
-# report models <= this evalue threshold in output
-evalue_threshold = snakemake.params.get("evalue_threshold", 1.0)
-# report sequences >= this score threshold in output
+# report <= this evalue threshold in output
+evalue_threshold = snakemake.params.get("evalue_threshold", 10)  # use cmscan default
+# report >= this score threshold in output
 score_threshold = snakemake.params.get("score_threshold", "")
 
 if score_threshold:
