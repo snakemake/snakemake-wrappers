@@ -67,9 +67,15 @@ def test_art_profiler_illumina():
         ["snakemake", "profiles/a.1.txt", "profiles/a.2.txt" , "--use-conda", "-F"])
 
 
-def test_bowtie2_align():
+def test_bowtie2_align_paired():
     run("bio/bowtie2/align",
-        ["snakemake", "mapped/a.bam", "--use-conda", "-F"])
+        ["snakemake", "mapped/a_pe.bam", "--use-conda", "-F"])
+
+
+def test_bowtie2_align_single():
+    run("bio/bowtie2/align",
+        ["snakemake", "mapped/a_se.bam", "--use-conda", "-F"])
+
 
 def test_bowtie2_index():
     run("bio/bowtie2/index",

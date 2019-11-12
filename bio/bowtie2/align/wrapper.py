@@ -10,23 +10,23 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 # if multiple files, join them with ',' before mapping with bt2
-r1 = snakemake.input.get("r1")
-r2 = snakemake.input.get("r2")
-r = snakemake.input.get("r")
+r1 = snakemake.input.get("read1")
+r2 = snakemake.input.get("read2")
+r = snakemake.input.get("single")
 
 assert (
     r1 is not None and r2 is not None
 ) or r is not None, "either r1 and r2 (paired), or r (unpaired) are required as input"
 if r1:
     r1 = (
-        [snakemake.input.r1]
-        if isinstance(snakemake.input.r1, str)
-        else snakemake.input.r1
+        [snakemake.input.read1]
+        if isinstance(snakemake.input.read1, str)
+        else snakemake.input.read1
     )
     r2 = (
-        [snakemake.input.r2]
-        if isinstance(snakemake.input.r2, str)
-        else snakemake.input.r2
+        [snakemake.input.read2]
+        if isinstance(snakemake.input.read2, str)
+        else snakemake.input.read2
     )
     assert len(r1) == len(
         r2
@@ -38,7 +38,11 @@ if r:
     assert (
         r1 is None and r2 is None
     ), "Bowtie2 cannot quantify mixed paired/unpaired input files. Please input either r1,r2 (paired) or r (unpaired)"
-    r = [snakemake.input.r] if isinstance(snakemake.input.r, str) else snakemake.input.r
+    r = (
+        [snakemake.input.single]
+        if isinstance(snakemake.input.single, str)
+        else snakemake.input.single
+    )
     read_cmd = " -U " + ",".join(r)
 
 shell(

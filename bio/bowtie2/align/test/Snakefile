@@ -1,10 +1,25 @@
-rule bowtie2:
+rule bowtie2_paired:
     input:
-        r=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"]
+        read1=["reads/{sample}.1.fastq"],
+        read2=["reads/{sample}.2.fastq"]
     output:
-        "mapped/{sample}.bam"
+        "mapped/{sample}_pe.bam"
     log:
-        "logs/bowtie2/{sample}.log"
+        "logs/bowtie2/{sample}_pe.log"
+    params:
+        index="index/genome",  # prefix of reference genome index (built with bowtie2-build)
+        extra=""  # optional parameters
+    threads: 4
+    wrapper:
+        "master/bio/bowtie2/align"
+
+rule bowtie2_single:
+    input:
+        single=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"]
+    output:
+        "mapped/{sample}_se.bam"
+    log:
+        "logs/bowtie2/{sample}_se.log"
     params:
         index="index/genome",  # prefix of reference genome index (built with bowtie2-build)
         extra=""  # optional parameters
