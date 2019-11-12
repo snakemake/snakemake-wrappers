@@ -1,13 +1,15 @@
 rule transdecoder_predict:
     input:
-        "test.fa.gz"
+        fasta="test.fa.gz", # required input; optionally gzipped
+        pfam_hits="pfam_hits.txt", # optionally retain ORFs with hits by inputting pfam results here (run separately)
+        blastp_hits="blastp_hits.txt", # optionally retain ORFs with hits by inputting blastp results here (run separately) 
     output:
         "test.fa.transdecoder.bed",
         "test.fa.transdecoder.cds",
         "test.fa.transdecoder.pep",
         "test.fa.transdecoder.gff3"
     log:
-        'logs/transdecoder/test-predict.log'
+        "logs/transdecoder/test-predict.log"
     params:
         extra=""
     threads: 4

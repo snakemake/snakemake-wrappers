@@ -1,10 +1,11 @@
 rule transdecoder_longorfs:
     input:
-        fasta = "test.fa.gz"
+        fasta="test.fa.gz", # required
+        gene_trans_map="test.gtm" # optional gene-to-transcript identifier mapping file (tab-delimited, gene_id<tab>trans_id<return> )
     output:
         "test.fa.transdecoder_dir/longest_orfs.pep"
     log:
-        'logs/transdecoder/test-longorfs.log'
+        "logs/transdecoder/test-longorfs.log"
     params:
         extra=""
     threads: 4

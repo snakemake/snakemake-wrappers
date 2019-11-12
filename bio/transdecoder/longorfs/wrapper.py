@@ -19,7 +19,6 @@ if gtm:
 
 output_dir = path.dirname(str(snakemake.output))
 
-
 # transdecoder fails if output already exists. No force option available
 shell("rm -rf {output_dir}")
 
