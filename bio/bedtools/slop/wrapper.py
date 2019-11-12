@@ -10,9 +10,11 @@ extra = snakemake.params.get("extra", "")
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-shell("(bedtools slop"
+shell(
+    "(bedtools slop"
     " {extra}"
     " -i {snakemake.input[0]}"
-    " -g {snakemake.params.genome}" 
+    " -g {snakemake.params.genome}"
     " > {snakemake.output})"
-    " {log}")
+    " {log}"
+)

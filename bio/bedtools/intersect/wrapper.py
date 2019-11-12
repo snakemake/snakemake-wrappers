@@ -7,13 +7,13 @@ from snakemake.shell import shell
 
 ## Extract arguments
 extra = snakemake.params.get("extra", "")
-
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-shell("(bedtools intersect"
+shell(
+    "(bedtools intersect"
     " {extra}"
-    " -a {snakemake.input.left} "
+    " -a {snakemake.input.left}"
     " -b {snakemake.input.right}"
     " > {snakemake.output})"
-    " {log}")
-
+    " {log}"
+)

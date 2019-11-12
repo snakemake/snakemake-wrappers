@@ -19,4 +19,5 @@ shell(
     " {extra}"
     " {snakemake.input.variants}"
     " {snakemake.output})"
-    " {log}")
+    " {log}"
+)

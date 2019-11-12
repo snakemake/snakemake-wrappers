@@ -10,8 +10,10 @@ extra = snakemake.params.get("extra", "")
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-shell("(bedtools merge"
+shell(
+    "( bedtools merge"
     " {extra}"
     " -i {snakemake.input}"
     " > {snakemake.output})"
-    " {log}")
+    " {log}"
+)
