@@ -1,5 +1,5 @@
-__author__ = "N Tessa Pierce"
-__copyright__ = "Copyright 2018, N Tessa Pierce"
+__author__ = "N. Tessa Pierce"
+__copyright__ = "Copyright 2018, N. Tessa Pierce"
 __email__ = "ntpierce@ucdavis.edu"
 __license__ = "MIT"
 

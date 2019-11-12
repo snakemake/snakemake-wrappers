@@ -1,7 +1,8 @@
 rule bowtie2_paired:
     input:
         read1=["reads/{sample}.1.fastq"],
-        read2=["reads/{sample}.2.fastq"]
+        read2=["reads/{sample}.2.fastq"],
+        index_donefile="index/genome.bowtie2index.done" # required for workflows to ensure index is built first
     output:
         "mapped/{sample}_pe.bam"
     log:
@@ -15,7 +16,8 @@ rule bowtie2_paired:
 
 rule bowtie2_single:
     input:
-        single=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"]
+        single=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        index_donefile="index/genome.bowtie2index.done" # required for workflows to ensure index is built first
     output:
         "mapped/{sample}_se.bam"
     log:
