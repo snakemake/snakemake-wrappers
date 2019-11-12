@@ -1,4 +1,4 @@
-rule bcf_index:
+rule bcftools_index:
     input:
         "a.bcf"
     output:
