@@ -9,8 +9,8 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-r1 = snakemake.input.get("r1")
-r2 = snakemake.input.get("r2")
+r1 = snakemake.input.get("read1")
+r2 = snakemake.input.get("read2")
 assert r1 is not None and r2 is not None, "r1 and r2 files are required as input"
 
 assembled = snakemake.output.get("assembled")
@@ -29,10 +29,10 @@ df_outputs = [df_assembled, df_discarded, df_unassembled_r1, df_unassembled_r2]
 
 discarded = snakemake.output.get("discarded", out_base + ".discarded" + out_end)
 unassembled_r1 = snakemake.output.get(
-    "unassembled_r1", out_base + ".unassembled_r1" + out_end
+    "unassembled_read1", out_base + ".unassembled_r1" + out_end
 )
 unassembled_r2 = snakemake.output.get(
-    "unassembled_r2", out_base + ".unassembled_r2" + out_end
+    "unassembled_read2", out_base + ".unassembled_r2" + out_end
 )
 
 final_outputs = [assembled, discarded, unassembled_r1, unassembled_r2]
@@ -52,7 +52,7 @@ def move_files(in_list, out_list, gzip):
 
 
 pval = float(snakemake.params.get("pval", ".01"))
-max_mem = snakemake.params.get("max_memory", "4G")
+max_mem = snakemake.resources.get("mem_mb", "4000")
 extra = snakemake.params.get("extra", "")
 
 shell(
