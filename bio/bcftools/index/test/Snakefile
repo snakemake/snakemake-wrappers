@@ -4,6 +4,6 @@ rule bcf_index:
     output:
         "a.bcf.csi"
     params:
-        extra=""  # optional parameters for bcftools view
+        extra=""  # optional parameters for bcftools index
     wrapper:
         "master/bio/bcftools/index"
