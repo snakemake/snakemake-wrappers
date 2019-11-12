@@ -563,10 +563,14 @@ def test_varscan_mpileup2snp():
 def test_umis_bamtag():
     run("bio/umis/bamtag", ["snakemake", "data/a.annotated.bam", "--use-conda", "-F"])
 
-def test_lastdb():
+def test_lastdb_nucl():
     run("bio/last/lastdb", ["snakemake", "test-transcript.fa.prj", "--use-conda", "-F"])
+
+def test_lastdb_prot():
     run("bio/last/lastdb", ["snakemake", "test-protein.fa.prj", "--use-conda", "-F"])
 
-def test_lastal():
+def test_lastal_nucl():
     run("bio/last/lastal", ["snakemake", "test-transcript.maf", "--use-conda", "-F"])
+
+def test_lastal_prot():
     run("bio/last/lastal", ["snakemake", "test-tr-x-prot.maf", "--use-conda", "-F"])

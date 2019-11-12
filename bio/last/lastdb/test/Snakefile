@@ -4,8 +4,8 @@ rule lastdb_transcript:
     output:
         "test-transcript.fa.prj",
     params:
-        protein_input = False,
-        extra = ""
+        protein_input=False,
+        extra=""
     log:
         "logs/lastdb/test-transcript.log"
     wrapper:
@@ -17,8 +17,8 @@ rule lastdb_protein:
     output:
         "test-protein.fa.prj",
     params:
-        protein_input = True,
-        extra = ""
+        protein_input=True,
+        extra=""
     log:
         "logs/lastdb/test-protein.log"
     wrapper:
