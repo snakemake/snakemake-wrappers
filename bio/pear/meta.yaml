@@ -1,7 +1,7 @@
 name: pear
 description: PEAR is an ultrafast, memory-efficient and highly accurate pair-end read merger
 authors:
-  - N Tessa Pierce
+  - N. Tessa Pierce
 input:
   - paired fastq files
 output:
