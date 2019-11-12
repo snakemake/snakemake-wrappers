@@ -1,9 +1,8 @@
-name: transdecoder 
-description: |
-  Find ORFs with transdecoder predict
+name: transdecoder predict
+description: "Predict the likely coding regions from the ORFs identified by Transdecoder.LongOrfs. Optionally include results from homology searches (blast/hmmer results) as ORF retention criteria."
 authors:
   - N Tessa Pierce
 input:
   - fasta assembly 
 output:
-  - ORFs peptide file(s) 
+  - candidate coding regions (pep, cds, gff3, bed output formats) 
