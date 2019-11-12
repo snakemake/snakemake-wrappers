@@ -26,7 +26,7 @@ def run(wrapper, cmd, check_log=None):
                 break
         assert success, "No wrapper.{py,R,Rmd} found"
 
-        if DIFF_ONLY and os.path.join(wrapper, script) not in DIFF_FILES:
+        if DIFF_ONLY and not any(f.startswith(wrapper) for f in DIFF_FILES):
             print("Skipping wrapper {} (not modified).".format(wrapper), file=sys.stderr)
             return
 
