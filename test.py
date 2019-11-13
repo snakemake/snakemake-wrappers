@@ -26,7 +26,7 @@ def run(wrapper, cmd, check_log=None):
                 break
         assert success, "No wrapper.{py,R,Rmd} found"
 
-        if DIFF_ONLY and os.path.join(wrapper, script) not in DIFF_FILES:
+        if DIFF_ONLY and not any(f.startswith(wrapper) for f in DIFF_FILES):
             print("Skipping wrapper {} (not modified).".format(wrapper), file=sys.stderr)
             return
 
@@ -62,9 +62,40 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+
 def test_art_profiler_illumina():
     run("bio/art/profiler_illumina",
         ["snakemake", "profiles/a.1.txt", "profiles/a.2.txt" , "--use-conda", "-F"])
+
+
+def test_bcftools_index():
+    run("bio/bcftools/index",
+        ["snakemake", "a.bcf.csi", "--use-conda", "-F"])
+
+
+def test_bcftools_concat():
+    run("bio/bcftools/concat",
+        ["snakemake", "all.bcf", "--use-conda", "-F"])
+
+
+def test_bcftools_merge():
+    run("bio/bcftools/merge",
+        ["snakemake", "all.bcf", "--use-conda", "-F"])
+
+
+def test_bedtools_intersect():
+    run("bio/bedtools/intersect",
+        ["snakemake", "A_B.intersected.bed", "--use-conda", "-F"])
+
+
+def test_bedtools_merge():
+    run("bio/bedtools/merge",
+        ["snakemake", "A.merged.bed", "--use-conda", "-F"])
+
+
+def test_bedtools_slop():
+    run("bio/bedtools/slop",
+        ["snakemake", "A.slop.bed", "--use-conda", "-F"])
 
 
 def test_bowtie2_align():
@@ -201,6 +232,9 @@ def test_freebayes_bcf():
         run("bio/freebayes",
             ["snakemake", "--cores", str(c), "calls/a.bcf", "--use-conda", "-F", "-s", "Snakefile_bcf"])
 
+def test_happy_prepy():
+    run("bio/hap.py/pre.py",
+        ["snakemake", "normalized/variants.vcf", "--use-conda", "-F"])
 
 def test_hisat2_index():
     run("bio/hisat2/index",
@@ -352,14 +386,6 @@ def test_samtools_bam2fq_separate():
 def test_samtools_faidx():
     run("bio/samtools/faidx",
         ["snakemake", "genome.fa.fai", "--use-conda", "-F"])
-
-def test_bcftools_concat():
-    run("bio/bcftools/concat",
-        ["snakemake", "all.bcf", "--use-conda", "-F"])
-
-def test_bcftools_merge():
-    run("bio/bcftools/merge",
-        ["snakemake", "all.bcf", "--use-conda", "-F"])
 
 def test_snpmutator():
     run("bio/snp-mutator",
@@ -563,15 +589,17 @@ def test_varscan_mpileup2snp():
 def test_umis_bamtag():
     run("bio/umis/bamtag", ["snakemake", "data/a.annotated.bam", "--use-conda", "-F"])
 
-def test_paladin_index():
-    run("bio/paladin/index",
-        ["snakemake", "index/prot.fasta.bwt", "--use-conda", "-F"])
+def test_plass_paired():
+    run("bio/plass", ["snakemake", "plass/prot.fasta", "--use-conda", "-F"])
 
-def test_paladin_align():
-    run("bio/paladin/align",
-        ["snakemake", "paladin_mapped/a.bam", "--use-conda", "-F"])
+def test_plass_single():
+    run("bio/plass", ["snakemake", "plass/prot_single.fasta", "--use-conda", "-F"])
+    
+def test_paladin_index():
+    run("bio/paladin/index", ["snakemake", "index/prot.fasta.bwt", "--use-conda", "-F"])
 
 def test_paladin_prepare():
-    run("bio/paladin/prepare",
-        ["snakemake", "uniprot_sprot.fasta.gz", "--use-conda", "-F"])
-
+    run("bio/paladin/prepare", ["snakemake", "uniprot_sprot.fasta.gz", "--use-conda", "-F"])
+    
+def test_paladin_align():
+    run("bio/paladin/align", ["snakemake", "paladin_mapped/a.bam", "--use-conda", "-F"])

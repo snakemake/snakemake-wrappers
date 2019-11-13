@@ -1,0 +1,4 @@
+name: bcftools index
+description: Index vcf/bcf file.
+authors:
+  - Jan Forster

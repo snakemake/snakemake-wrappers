@@ -1,0 +1,14 @@
+rule bedtools_merge:
+    input:
+        "A.bed"
+    output:
+        "A.slop.bed"
+    params:
+        ## Genome file, tab-seperated file defining the length of every contig
+        genome="genome.txt",
+        ## Add optional parameters
+        extra = "-b 10" ## in this example, we want to increase the feature by 10 bases to both sides
+    log:
+        "logs/slop/A.log"
+    wrapper:
+        "master/bio/bedtools/slop"
