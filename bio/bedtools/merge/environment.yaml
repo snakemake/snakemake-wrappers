@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - delly ==0.8.1
+  - bedtools =2.29.0
