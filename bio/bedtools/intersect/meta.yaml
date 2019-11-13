@@ -1,0 +1,4 @@
+name: "bedtools intersect"
+description: Intersect BED/BAM/VCF files with bedtools.
+authors:
+  - Jan Forster
