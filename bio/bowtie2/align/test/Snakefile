@@ -2,13 +2,12 @@ rule bowtie2_paired:
     input:
         read1=["reads/{sample}.1.fastq"],
         read2=["reads/{sample}.2.fastq"],
-        index_donefile="index/genome.bowtie2index.done" # required for workflows to ensure index is built first
+        index="index/genome.1.bt2"# the <prefix>.1.bt2 index file built with bowtie2-build
     output:
         "mapped/{sample}_pe.bam"
     log:
         "logs/bowtie2/{sample}_pe.log"
     params:
-        index="index/genome",  # prefix of reference genome index (built with bowtie2-build)
         extra=""  # optional parameters
     threads: 4
     wrapper:
@@ -17,13 +16,12 @@ rule bowtie2_paired:
 rule bowtie2_single:
     input:
         single=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
-        index_donefile="index/genome.bowtie2index.done" # required for workflows to ensure index is built first
+        index="index/genome.1.bt2"# the <prefix>.1.bt2 index file built with bowtie2-build
     output:
         "mapped/{sample}_se.bam"
     log:
         "logs/bowtie2/{sample}_se.log"
     params:
-        index="index/genome",  # prefix of reference genome index (built with bowtie2-build)
         extra=""  # optional parameters
     threads: 4
     wrapper:

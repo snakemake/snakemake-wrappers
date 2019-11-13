@@ -4,6 +4,8 @@ __email__ = "koester@jimmy.harvard.edu"
 __license__ = "MIT"
 
 ## modified from original wrapper to enable multiple files per sample
+import os
+import re
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
@@ -45,8 +47,19 @@ if r:
     )
     read_cmd = " -U " + ",".join(r)
 
+index = snakemake.input.get("index")
+try:
+    index_dirname = os.path.dirname(index)
+    # get index prefix from index file. pattern should be <prefix>.(\d).bt2 or <prefix>.rev.(\d).bt2
+    index_prefix = re.match("^([^.]*).(rev.)?\d+.bt2", os.path.basename(index)).groups()[0]
+    index_prefix = os.path.join(index_dirname, index_prefix)
+except:
+    raise ValueError(
+        "please index your assembly with bowtie2-build and provide an index file (e.g. with '.1.bt2' extension) via the 'index' input param"
+    )
+
 shell(
     "(bowtie2 --threads {snakemake.threads} {snakemake.params.extra} "
-    "-x {snakemake.params.index} {read_cmd} "
+    "-x {index_prefix} {read_cmd} "
     "| samtools view -Sbh -o {snakemake.output[0]} -) {log}"
 )
