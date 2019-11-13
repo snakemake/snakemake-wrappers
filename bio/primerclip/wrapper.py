@@ -26,9 +26,19 @@ if not isinstance(out_alignment_file, str):
 
 samtools_input_command="samtools view -h " + in_alignment_file
 
+samtools_output_command=" | head -n -3 | samtools view -Sh"
+
+if out_alignment_file.endswith(".cram"):
+    samtools_output_command += "C -o " + out_alignment_file
+elif out_alignment_file.endswith(".sam"):
+    samtools_output_command += " -o " + out_alignment_file
+else:
+    samtools_output_command += "b -o " + out_alignment_file
+
 shell("{samtools_input_command} |"
     " primerclip"
     " {master_file}"
     " /dev/stdin"
-    " {out_alignment_file}"
+    " /dev/stdout"
+    " {samtools_input_command}"
     " {log}")
