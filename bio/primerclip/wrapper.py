@@ -35,10 +35,12 @@ elif out_alignment_file.endswith(".sam"):
 else:
     samtools_output_command += "b -o " + out_alignment_file
 
-shell("{samtools_input_command} |"
-      " primerclip"
-      " {master_file}"
-      " /dev/stdin"
-      " /dev/stdout"
-      " {samtools_input_command}"
-      " {log}")
+shell(
+    "{samtools_input_command} |"
+    " primerclip"
+    " {master_file}"
+    " /dev/stdin"
+    " /dev/stdout"
+    " {samtools_input_command}"
+    " {log}"
+)
