@@ -24,9 +24,9 @@ if not isinstance(in_alignment_file, str):
 if not isinstance(out_alignment_file, str):
     raise ValueError("out_alignment_file, path to the output file")
 
-samtools_input_command="samtools view -h " + in_alignment_file
+samtools_input_command = "samtools view -h " + in_alignment_file
 
-samtools_output_command=" | head -n -3 | samtools view -Sh"
+samtools_output_command = " | head -n -3 | samtools view -Sh"
 
 if out_alignment_file.endswith(".cram"):
     samtools_output_command += "C -o " + out_alignment_file
@@ -36,9 +36,9 @@ else:
     samtools_output_command += "b -o " + out_alignment_file
 
 shell("{samtools_input_command} |"
-    " primerclip"
-    " {master_file}"
-    " /dev/stdin"
-    " /dev/stdout"
-    " {samtools_input_command}"
-    " {log}")
+      " primerclip"
+      " {master_file}"
+      " /dev/stdin"
+      " /dev/stdout"
+      " {samtools_input_command}"
+      " {log}")
