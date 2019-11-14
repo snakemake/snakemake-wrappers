@@ -1,0 +1,26 @@
+rule lastdb_transcript:
+    input:
+        "test-transcript.fa"
+    output:
+        "test-transcript.fa.prj",
+    params:
+        protein_input=False,
+        extra=""
+    log:
+        "logs/lastdb/test-transcript.log"
+    wrapper:
+        "master/bio/last/lastdb"
+
+rule lastdb_protein:
+    input:
+        "test-protein.fa"
+    output:
+        "test-protein.fa.prj",
+    params:
+        protein_input=True,
+        extra=""
+    log:
+        "logs/lastdb/test-protein.log"
+    wrapper:
+        "master/bio/last/lastdb"
+
