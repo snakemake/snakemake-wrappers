@@ -1,0 +1,9 @@
+rule bcftools_index:
+    input:
+        "a.bcf"
+    output:
+        "a.bcf.csi"
+    params:
+        extra=""  # optional parameters for bcftools index
+    wrapper:
+        "master/bio/bcftools/index"
