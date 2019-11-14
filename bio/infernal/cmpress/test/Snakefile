@@ -10,6 +10,5 @@ rule infernal_cmpress:
         "logs/cmpress.log"
     params:
         extra="",
-    threads: 4
     wrapper:
         "master/bio/infernal/cmpress"
