@@ -871,6 +871,22 @@ def test_umis_bamtag():
     run("bio/umis/bamtag", ["snakemake", "data/a.annotated.bam", "--use-conda", "-F"])
 
 
+def test_lastdb_nucl():
+    run("bio/last/lastdb", ["snakemake", "test-transcript.fa.prj", "--use-conda", "-F"])
+
+
+def test_lastdb_prot():
+    run("bio/last/lastdb", ["snakemake", "test-protein.fa.prj", "--use-conda", "-F"])
+
+
+def test_lastal_nucl():
+    run("bio/last/lastal", ["snakemake", "test-transcript.maf", "--use-conda", "-F"])
+
+
+def test_lastal_prot():
+    run("bio/last/lastal", ["snakemake", "test-tr-x-prot.maf", "--use-conda", "-F"])
+
+
 def test_pear():
     run(
         "bio/pear",
@@ -884,3 +900,4 @@ def test_plass_paired():
 
 def test_plass_single():
     run("bio/plass", ["snakemake", "plass/prot_single.fasta", "--use-conda", "-F"])
+
