@@ -900,4 +900,3 @@ def test_plass_paired():
 
 def test_plass_single():
     run("bio/plass", ["snakemake", "plass/prot_single.fasta", "--use-conda", "-F"])
-
