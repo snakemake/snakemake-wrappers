@@ -12,6 +12,5 @@ rule transdecoder_predict:
         "logs/transdecoder/test-predict.log"
     params:
         extra=""
-    threads: 4
     wrapper:
         "master/bio/transdecoder/predict"

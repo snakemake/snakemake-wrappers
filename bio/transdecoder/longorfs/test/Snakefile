@@ -8,6 +8,5 @@ rule transdecoder_longorfs:
         "logs/transdecoder/test-longorfs.log"
     params:
         extra=""
-    threads: 4
     wrapper:
         "master/bio/transdecoder/longorfs"
