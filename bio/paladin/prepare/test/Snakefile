@@ -6,6 +6,5 @@ rule paladin_prepare:
         "logs/paladin/prepare_sprot.log"
     params:
         reference_type=1, # 1=swiss-prot, 2=uniref90 
-    threads: 4
     wrapper:
         "master/bio/paladin/prepare"

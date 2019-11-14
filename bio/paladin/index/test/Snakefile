@@ -7,6 +7,5 @@ rule paladin_index:
         "logs/paladin/prot_index.log"
     params:
       reference_type=3
-    threads: 4
     wrapper:
         "master/bio/paladin/index"
