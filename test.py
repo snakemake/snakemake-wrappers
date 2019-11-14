@@ -589,9 +589,13 @@ def test_varscan_mpileup2snp():
 def test_umis_bamtag():
     run("bio/umis/bamtag", ["snakemake", "data/a.annotated.bam", "--use-conda", "-F"])
 
+def test_pear():
+    run("bio/pear", ["snakemake", "pear/reads_pear_assembled.fq.gz", "--use-conda", "-F"])
+
 def test_plass_paired():
     run("bio/plass", ["snakemake", "plass/prot.fasta", "--use-conda", "-F"])
 
 def test_plass_single():
     run("bio/plass", ["snakemake", "plass/prot_single.fasta", "--use-conda", "-F"])
+
 
