@@ -1,0 +1,13 @@
+rule bedtools_merge:
+    input:
+        left="A.bed",
+        right="B.bed"
+    output:
+        "A_B.intersected.bed"
+    params:
+        ## Add optional parameters 
+        extra="-wa -wb" ## In this example, we want to write original entries in A and B for each overlap.
+    log:
+        "logs/intersect/A_B.log"
+    wrapper:
+        "master/bio/bedtools/intersect"
