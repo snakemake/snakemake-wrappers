@@ -21,4 +21,4 @@ txnode_cmd=""
 if taxonnodes:
     txnode_cmd = f" --taxonnodes {taxonnodes} "
 
-shell("diamond makedb --in {snakemake.input} --db {snakemake.output} --threads {snakemake.threads} {txmap_cmd} {txnode_cmd} {extra} {log}")
+shell("diamond makedb --in {snakemake.input.db} --db {snakemake.output} --threads {snakemake.threads} {txmap_cmd} {txnode_cmd} {extra} {log}")

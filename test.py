@@ -562,3 +562,20 @@ def test_varscan_mpileup2snp():
 
 def test_umis_bamtag():
     run("bio/umis/bamtag", ["snakemake", "data/a.annotated.bam", "--use-conda", "-F"])
+
+
+def test_diamond_makedb():
+    run("bio/diamond/makedb", ["snakemake", "pep.dmnd", "--use-conda", "-F"])
+
+def test_diamond_makedb_taxinfo():
+    run("bio/diamond/makedb", ["snakemake", "pep_with_taxinfo.dmnd", "--use-conda", "-F"])
+
+def test_diamond_blastp():
+    run("bio/diamond/blast", ["snakemake", "pep_blastp_dmnd.txt.gz", "--use-conda", "-F"])
+
+def test_diamond_blastx():
+    run("bio/diamond/blast", ["snakemake", "nucl_blastx_dmnd.txt.gz", "--use-conda", "-F"])
+
+def test_diamond_blastp_taxinfo():
+    run("bio/diamond/blast", ["snakemake", "pep_blastp_dmnd_txlst.txt.gz", "--use-conda", "-F"])
+

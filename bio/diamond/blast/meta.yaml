@@ -1,0 +1,11 @@
+name: diamond blast
+description: DIAMOND is a sequence aligner for protein and translated DNA searches, designed for high performance analysis of big sequence data.  
+authors:
+  - N. Tessa Pierce
+input:
+  - nucleotide (for blastx) or peptide (for blastp) sequence data
+  - indexed peptides (from diamond makedb)
+output:
+  - sequence matches to the indexed peptides
+citations:
+  - "`Buchfink, B., Xie, C. & Huson, D. Fast and sensitive protein alignment using DIAMOND. Nat Methods 12, 59–60 (2015) doi:10.1038/nmeth.3176 <https://doi.org/10.1038/nmeth.3176>`_"

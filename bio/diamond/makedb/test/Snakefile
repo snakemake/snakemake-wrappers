@@ -1,15 +1,14 @@
 rule diamond_makedb:
     input: 
-        db="test.fa",
+        db="pep.fa",
     output: 
-        "test.dmnd"
+        "pep.dmnd"
     params:
         extra=""
     wrapper: 
         "master/bio/diamond/makedb"
 
-## code  below enables taxonomy info
-
+## code below enables taxonomy info
 from snakemake.remote.FTP import RemoteProvider as FTPRemoteProvider
 FTP = FTPRemoteProvider()
 
@@ -20,16 +19,22 @@ rule ftp_get_taxonmap:
 
 rule ftp_get_taxonnodes:
     input: FTP.remote(f"ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdmp.zip", static=True, keep_local=True, immediate_close=True)
-    output: "taxdmp.zip"
-    shell: "mv {input} {output}"
+    output: "nodes.dmp"
+    params:
+        zipfile= "taxdmp.zip"
+    shell:
+        """
+        mv {input} {params.zipfile}
+        unzip {params.zipfile}
+        """
 
 rule diamond_makedb_taxinfo:
     input: 
-        db="test.fa",
+        db="pep.fa",
         taxonmap="prot.accession2taxid.gz",
-        taxonnodes="taxdmp.zip",
+        taxonnodes="nodes.dmp",
     output: 
-        "test_with_taxinfo.dmnd"
+        "pep_with_taxinfo.dmnd"
     params:
         extra=""
     wrapper: 
