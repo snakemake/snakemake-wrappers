@@ -9,4 +9,4 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-shell("diamond blastp -d {snakemake.input.db} -q {snakemake.input.query} -o {output} {log}")
+shell("diamond blastp -d {snakemake.input.db} -q {snakemake.input.query} -o {output} --threads {snakemake.threads} {log}")

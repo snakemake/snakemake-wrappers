@@ -3,5 +3,7 @@ rule diamond_makedb:
         "test.fa",
     output: 
         "test.dmnd"
+    params:
+        use_taxonomy_info=False
     wrapper: 
         "master/bio/diamond/makedb"

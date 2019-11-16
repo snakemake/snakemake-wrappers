@@ -1,6 +1,6 @@
 rule diamond_blastp:
     input: 
-        pep = "test.fa",
+        pep_query = "test.fa",
         db =  "test.dmnd"
     output:
         "test_dmnd.txt.gz"
