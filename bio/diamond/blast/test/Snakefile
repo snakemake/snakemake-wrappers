@@ -1,46 +1,46 @@
 rule diamond_blastp:
     input: 
-        pep_query = "pep.fa",
-        db =  "pep.dmnd",
+        pep_query="pep.fa",
+        db="pep.dmnd",
     output:
         "pep_blastp_dmnd.txt.gz"
     params:
         strand="both", # options: both (default), plus, minus
         # optionally increase sensitivity. Default = off
-        alignment_sensitivity="sensitive", #options: default, sensitive, more-sensitive
+        #alignment_sensitivity="sensitive", #options: sensitive, more-sensitive
         extra=""
     threads: 4
     wrapper:
-        "master/bio/diamond"
+        "master/bio/diamond/blast"
 
 rule diamond_blastx:
     input: 
-        nucl_query = "nucl.fa",
-        db =  "pep.dmnd",
+        nucl_query="nucl.fa",
+        db="pep.dmnd",
     output:
         "nucl_blastx_dmnd.txt.gz"
     params:
         strand="both", # options: both (default), plus, minus
         # optionally increase sensitivity. Default = off
-        alignment_sensitivity="sensitive", #options: default, sensitive, more-sensitive
+        alignment_sensitivity="sensitive", #options: sensitive, more-sensitive
         extra=""
     threads: 4
     wrapper:
-        "master/bio/diamond"
+        "master/bio/diamond/blast"
 
 rule diamond_blastp_taxonlist:
     input: 
-        pep = "pep.fa",
-        db =  "pep_with_taxinfo.dmnd", # see diamond makedb wrapper for how to generate this file
+        pep_query="pep.fa",
+        db="pep_with_taxinfo.dmnd", # see diamond makedb wrapper for how to generate this file
         #Comma-separated list of NCBI taxonomic IDs to filter the database by. Any taxonomic rank can be used, and only reference sequences matching one of the specified taxon ids will be searched against. Using this option requires setting the --taxonmap and --taxonnodes parameters for makedb.
-        taxonlist = "taxonlist.txt"
     output:
         "pep_blastp_dmnd_txlst.txt.gz"
     params:
+        taxonlist="3760", 
         strand="both", # options: both (default), plus, minus
         # optionally increase sensitivity. Default = off
-        alignment_sensitivity="sensitive", #options: default, sensitive, more-sensitive
+        alignment_sensitivity="sensitive", #options: sensitive, more-sensitive
         extra=""
     threads: 4
     wrapper:
-        "master/bio/diamond"
+        "master/bio/diamond/blast"
