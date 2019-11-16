@@ -1,9 +1,36 @@
 rule diamond_makedb:
     input: 
-        "test.fa",
+        db="test.fa",
     output: 
         "test.dmnd"
     params:
-        use_taxonomy_info=False
+        extra=""
+    wrapper: 
+        "master/bio/diamond/makedb"
+
+## code  below enables taxonomy info
+
+from snakemake.remote.FTP import RemoteProvider as FTPRemoteProvider
+FTP = FTPRemoteProvider()
+
+rule ftp_get_taxonmap:
+    input: FTP.remote(f"ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/prot.accession2taxid.gz", static=True, keep_local=True, immediate_close=True)
+    output: "prot.accession2taxid.gz"
+    shell: "mv {input} {output}"
+
+rule ftp_get_taxonnodes:
+    input: FTP.remote(f"ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdmp.zip", static=True, keep_local=True, immediate_close=True)
+    output: "taxdmp.zip"
+    shell: "mv {input} {output}"
+
+rule diamond_makedb_taxinfo:
+    input: 
+        db="test.fa",
+        taxonmap="prot.accession2taxid.gz",
+        taxonnodes="taxdmp.zip",
+    output: 
+        "test_with_taxinfo.dmnd"
+    params:
+        extra=""
     wrapper: 
         "master/bio/diamond/makedb"
