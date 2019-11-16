@@ -1,0 +1,7 @@
+rule diamond_makedb:
+    input: 
+        "test.fa",
+    output: 
+        "test.dmnd"
+    wrapper: 
+        "master/bio/diamond/makedb"
