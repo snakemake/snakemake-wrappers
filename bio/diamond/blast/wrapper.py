@@ -29,12 +29,18 @@ taxonlist = snakemake.params.get("taxonlist")
 txlist_cmd = ""
 if taxonlist:
     taxonlist = str(taxonlist)
-    assert (taxonlist !="0" and taxonlist !="1"), "Option --taxonlist cannot be used with invalid argument (0 or 1)"
+    assert (
+        taxonlist != "0" and taxonlist != "1"
+    ), "Option --taxonlist cannot be used with invalid argument (0 or 1)"
     txlist_cmd = f" --taxonlist {str(taxonlist)} "
 
 # Set strand of query to align for translated searches. By default both strands are searched.
 strand = snakemake.params.get("strand", "both")  # both, plus, minus
-assert strand in ["both", "plus", "minus"], "please specify 'both', 'plus', or 'minus' for the strand parameter"
+assert strand in [
+    "both",
+    "plus",
+    "minus",
+], "please specify 'both', 'plus', or 'minus' for the strand parameter"
 
 # The default mode is mainly designed for short read alignment, i.e. finding significant matches of >50 bits on 30-40aa fragments.
 sensitivity = snakemake.params.get(
