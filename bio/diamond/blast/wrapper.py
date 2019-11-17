@@ -34,6 +34,7 @@ if taxonlist:
 
 # Set strand of query to align for translated searches. By default both strands are searched.
 strand = snakemake.params.get("strand", "both")  # both, plus, minus
+assert strand in ["both", "plus", "minus"], "please specify 'both', 'plus', or 'minus' for the strand parameter"
 
 # The default mode is mainly designed for short read alignment, i.e. finding significant matches of >50 bits on 30-40aa fragments.
 sensitivity = snakemake.params.get(

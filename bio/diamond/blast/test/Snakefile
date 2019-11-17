@@ -20,7 +20,7 @@ rule diamond_blastx:
     output:
         "nucl_blastx_dmnd.txt.gz"
     params:
-        strand="both", # options: both (default), plus, minus
+        strand="plus", # options: both (default), plus, minus
         # optionally increase sensitivity. Default = off
         alignment_sensitivity="sensitive", #options: sensitive, more-sensitive
         extra=""
@@ -37,9 +37,9 @@ rule diamond_blastp_taxonlist:
         "pep_blastp_dmnd_txlst.txt.gz"
     params:
         taxonlist="3760", 
-        strand="both", # options: both (default), plus, minus
+        #strand="both", # options: both (default), plus, minus
         # optionally increase sensitivity. Default = off
-        alignment_sensitivity="sensitive", #options: sensitive, more-sensitive
+        #alignment_sensitivity="sensitive", #options: sensitive, more-sensitive
         extra=""
     threads: 4
     wrapper:
