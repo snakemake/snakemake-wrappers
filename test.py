@@ -943,7 +943,7 @@ def test_bismark_bismark2summary():
         ["snakemake", "experiment.bismark2summary.html", "--use-conda", "-F"])
 
 
-def test_bismark_bismark2bedGraph():
+def test_bismark_bismark2bedgraph():
     run("bio/bismark/bismark2bedGraph",
         [
             "snakemake",
