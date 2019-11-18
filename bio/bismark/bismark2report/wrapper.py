@@ -25,13 +25,16 @@ if output_dir is None:
         output_dir = os.path.dirname(html_file)
 else:
     if html_file:
-        raise ValueError("bismark/bismark2report: Choose one: 'html=...' for a single dir or 'html_dir=...' for batch processing.")
+        raise ValueError(
+            "bismark/bismark2report: Choose one: 'html=...' for a single dir or 'html_dir=...' for batch processing."
+        )
 
 if output_dir is None:
     raise ValueError(
         "bismark/bismark2report: Output file or directory not specified. "
         "Use 'html=...' for a single dir or 'html_dir=...' for batch "
-        "processing.")
+        "processing."
+    )
 
 if output_dir:
     cmds.append("--dir {output_dir:q}")
@@ -42,10 +45,15 @@ if html_file:
 
 # reports
 reports = [
-    "alignment_report", "dedup_report", "splitting_report", "mbias_report",
-    "nucleotide_report"
+    "alignment_report",
+    "dedup_report",
+    "splitting_report",
+    "mbias_report",
+    "nucleotide_report",
 ]
-skip_optional_reports = answer2bool(snakemake.params.get("skip_optional_reports", False))
+skip_optional_reports = answer2bool(
+    snakemake.params.get("skip_optional_reports", False)
+)
 for report_name in reports:
     path = snakemake.input.get(report_name, "")
     if path:

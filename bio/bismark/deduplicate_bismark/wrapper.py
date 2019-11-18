@@ -29,8 +29,10 @@ arg_multiple = "--multiple" if len(snakemake.input) > 1 else ""
 params_extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 log_append = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
-shell("deduplicate_bismark {params_extra} --bam {arg_multiple}"
-      " {arg_output_dir} {snakemake.input} {log}")
+shell(
+    "deduplicate_bismark {params_extra} --bam {arg_multiple}"
+    " {arg_output_dir} {snakemake.input} {log}"
+)
 
 # Move outputs into proper position.
 fst_input_filename = os.path.basename(snakemake.input[0])
@@ -46,7 +48,10 @@ if arg_multiple:
 
 expected_2_actual_paths = [
     (bam_path, deduplicated_bam_actual_name),
-    (report_path, prefix + (".multiple" if arg_multiple else "") + ".deduplication_report.txt"),
+    (
+        report_path,
+        prefix + (".multiple" if arg_multiple else "") + ".deduplication_report.txt",
+    ),
 ]
 for (exp_path, actual_path) in expected_2_actual_paths:
     if exp_path and (exp_path != actual_path):

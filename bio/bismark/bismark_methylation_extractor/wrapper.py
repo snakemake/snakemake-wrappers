@@ -20,10 +20,10 @@ if output_dir:
 
 # trimming options
 trimming_options = [
-    "ignore",           # meth_bias_r1_5end
-    "ignore_3prime",    # meth_bias_r1_3end
-    "ignore_r2",        # meth_bias_r2_5end
-    "ignore_3prime_r2"  # meth_bias_r2_3end
+    "ignore",  # meth_bias_r1_5end
+    "ignore_3prime",  # meth_bias_r1_3end
+    "ignore_r2",  # meth_bias_r2_5end
+    "ignore_3prime_r2",  # meth_bias_r2_3end
 ]
 for key in trimming_options:
     value = snakemake.params.get(key, None)

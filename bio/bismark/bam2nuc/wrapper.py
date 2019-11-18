@@ -14,25 +14,21 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 cmdline_args = ["bam2nuc {extra}"]
 
-genome_fa = snakemake.input.get('genome_fa', None)
+genome_fa = snakemake.input.get("genome_fa", None)
 if not genome_fa:
-    raise ValueError(
-        "bismark/bam2nuc: Error 'genome_fa' input not specified."
-    )
+    raise ValueError("bismark/bam2nuc: Error 'genome_fa' input not specified.")
 genome_folder = os.path.dirname(genome_fa)
 cmdline_args.append("--genome_folder {genome_folder:q}")
 
 
-bam = snakemake.input.get('bam', None)
+bam = snakemake.input.get("bam", None)
 if bam:
     cmdline_args.append("{bam}")
     bams = bam if isinstance(bam, list) else [bam]
 
-    report = snakemake.output.get('report', None)
+    report = snakemake.output.get("report", None)
     if not report:
-        raise ValueError(
-            "bismark/bam2nuc: Error 'report' output isn't specified."
-        )
+        raise ValueError("bismark/bam2nuc: Error 'report' output isn't specified.")
 
     reports = report if isinstance(report, list) else [report]
     if len(reports) != len(bams):
@@ -72,7 +68,9 @@ if bam:
         expected_2_actual_paths.append(
             (
                 report_path,
-                os.path.join(output_dir, "{}.nucleotide_stats.txt".format(bam_basename))
+                os.path.join(
+                    output_dir, "{}.nucleotide_stats.txt".format(bam_basename)
+                ),
             )
         )
 

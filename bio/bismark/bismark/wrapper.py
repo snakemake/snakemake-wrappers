@@ -11,6 +11,7 @@ import os
 from snakemake.shell import shell
 from tempfile import TemporaryDirectory
 
+
 def basename_without_ext(file_path):
     """Returns basename of file path, without the file extension."""
 
@@ -33,13 +34,9 @@ genome_indexes_dir = os.path.dirname(snakemake.input.bismark_indexes_dir)
 cmdline_args.append("{genome_indexes_dir}")
 
 if not snakemake.output.get("bam", None):
-    raise ValueError(
-        "bismark/bismark: Error 'bam' output file isn't specified."
-    )
+    raise ValueError("bismark/bismark: Error 'bam' output file isn't specified.")
 if not snakemake.output.get("report", None):
-    raise ValueError(
-        "bismark/bismark: Error 'report' output file isn't specified."
-    )
+    raise ValueError("bismark/bismark: Error 'report' output file isn't specified.")
 
 # basename
 if snakemake.params.get("basename", None):
@@ -76,15 +73,28 @@ shell(" ".join(cmdline_args))
 
 # Move outputs into proper position.
 expected_2_actual_paths = [
-    (snakemake.output.bam,  os.path.join(outdir, "{}{}.bam".format(
-        basename, "" if single_end_mode else "_pe"
-    ))),
-    (snakemake.output.report, os.path.join(outdir, "{}_{}_report.txt".format(
-        basename,  "SE" if single_end_mode else "PE"
-    ))),
-    (snakemake.output.get("nucleotide_stats", None), os.path.join(outdir, "{}{}.nucleotide_stats.txt".format(
-        basename,  "" if single_end_mode else "_pe"
-    ))),
+    (
+        snakemake.output.bam,
+        os.path.join(
+            outdir, "{}{}.bam".format(basename, "" if single_end_mode else "_pe")
+        ),
+    ),
+    (
+        snakemake.output.report,
+        os.path.join(
+            outdir,
+            "{}_{}_report.txt".format(basename, "SE" if single_end_mode else "PE"),
+        ),
+    ),
+    (
+        snakemake.output.get("nucleotide_stats", None),
+        os.path.join(
+            outdir,
+            "{}{}.nucleotide_stats.txt".format(
+                basename, "" if single_end_mode else "_pe"
+            ),
+        ),
+    ),
 ]
 log_append = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 for (exp_path, actual_path) in expected_2_actual_paths:
