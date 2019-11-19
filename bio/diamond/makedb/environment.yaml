@@ -3,6 +3,6 @@ channels:
   - bioconda
   - defaults
 dependencies:
-  - ftputil
   - python>=3.6
   - diamond=0.9.26
+  - ftputil

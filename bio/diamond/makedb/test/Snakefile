@@ -9,6 +9,7 @@ rule diamond_makedb:
         "master/bio/diamond/makedb"
 
 ## code below enables taxonomy info
+import ftputil
 from snakemake.remote.FTP import RemoteProvider as FTPRemoteProvider
 FTP = FTPRemoteProvider()
 
