@@ -20,4 +20,3 @@ rgc.pull_asset(genome, asset, tag, force=False)
 for seek_key, out in snakemake.output.items():
     path = rgc.get_asset(genome, asset, tag, seek_key=seek_key)
     os.symlink(path, out)
-
