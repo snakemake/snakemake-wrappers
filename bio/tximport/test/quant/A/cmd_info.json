@@ -1,0 +1,10 @@
+{
+    "salmon_version": "0.13.1",
+    "index": "salmon/transcriptome_index",
+    "libType": "A",
+    "mates1": "reads/a_1.fq.gz",
+    "mates2": "reads/a_2.fq.gz",
+    "output": "salmon/a",
+    "threads": "1",
+    "auxDir": "aux_info"
+}

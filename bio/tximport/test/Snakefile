@@ -1,0 +1,12 @@
+rule tximport:
+    input:
+        quant = expand("quant/A/quant.sf")
+    output:
+        txi = "txi.RDS"
+    message:
+        "Testing tximport"
+    params:
+        type = "salmon",
+        txOut = True
+    wrapper:
+        "file:.."
