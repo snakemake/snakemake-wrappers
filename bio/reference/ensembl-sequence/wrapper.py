@@ -23,12 +23,16 @@ success = False
 with FTP("ftp.ensembl.org") as ftp, open(snakemake.output[0], "wb") as out:
     ftp.login()
     for suffix in suffixes:
-        url = "pub/release-{release}/fasta/{species}/{datatype}/{species.capitalize()}.{build}.{suffix}".format(
-            release=release, species=species, datatype=datatype, fmt=fmt, build=build
+        url = "pub/release-{release}/fasta/{species}/{datatype}/{species_cap}.{build}.{suffix}".format(
+            release=release, species=species, datatype=datatype, build=build, suffix=suffix, species_cap=species.capitalize()
         )
-        if ftp.size(url):
-            ftp.retrbinary("RETR " + url, out.write)
-            success = True
+        try:
+            ftp.size(url)
+        except:
+            continue
+        
+        ftp.retrbinary("RETR " + url, out.write)
+        success = True
 
 if not success:
     raise ValueError(
