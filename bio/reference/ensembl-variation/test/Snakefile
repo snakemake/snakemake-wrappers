@@ -1,0 +1,8 @@
+rule get_variation:
+    output:
+        "refs/variation.vcf.gz"
+    params:
+        species="mus_musculus",
+        release="98"
+    wrapper:
+        "master/bio/references/ensembl-variation"
