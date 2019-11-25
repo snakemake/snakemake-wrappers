@@ -1,0 +1,4 @@
+name: dbsnp
+description: Download dbsnp.
+authors:
+  - Johannes Köster

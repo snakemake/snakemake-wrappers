@@ -1,0 +1,8 @@
+rule get_dbsnp:
+    output:
+        "resources/dbsnp.vcf.gz"
+    params:
+        organism="human_9606",
+        release="20180418"
+    wrapper:
+        "master/bio/reference/dbsnp"
