@@ -3,6 +3,7 @@ rule get_variation:
         "refs/variation.vcf.gz"
     params:
         species="mus_musculus",
-        release="98"
+        release="98",
+        type="structural_variations" # one of "all", "somatic", "structural_variation"
     wrapper:
-        "master/bio/references/ensembl-variation"
+        "master/bio/reference/ensembl-variation"

@@ -1,3 +1,8 @@
+__author__ = "Johannes Köster"
+__copyright__ = "Copyright 2019, Johannes Köster"
+__email__ = "johannes.koester@uni-due.de"
+__license__ = "MIT"
+
 from ftplib import FTP
 
 species = snakemake.params.species.lower()
@@ -30,7 +35,7 @@ with FTP("ftp.ensembl.org") as ftp, open(snakemake.output[0], "wb") as out:
             ftp.size(url)
         except:
             continue
-        
+
         ftp.retrbinary("RETR " + url, out.write)
         success = True
 

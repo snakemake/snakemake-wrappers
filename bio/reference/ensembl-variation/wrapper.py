@@ -1,4 +1,9 @@
-from ftplib import FTP
+__author__ = "Johannes Köster"
+__copyright__ = "Copyright 2019, Johannes Köster"
+__email__ = "johannes.koester@uni-due.de"
+__license__ = "MIT"
+
+from snakemake.shell import shell
 
 species = snakemake.params.species.lower()
 release = snakemake.params.release
@@ -23,7 +28,7 @@ else:
     )
 
 urls = [
-    "ftp://ftp.ensembl.org/pub/release-{release}/variation/{species}/{species}_{suffix}.vcf.gz".format(
+    "ftp://ftp.ensembl.org/pub/release-{release}/variation/vcf/{species}/{species}_{suffix}.vcf.gz".format(
         release=release, species=species, suffix=suffix
     )
     for suffix in suffixes
