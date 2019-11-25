@@ -903,12 +903,12 @@ def test_plass_single():
 
 
 def test_ensembl_sequence():
-    run("bio/ensembl-sequence", ["snakemake", "-F"])
+    run("bio/reference/ensembl-sequence", ["snakemake", "-F"])
 
 
 def test_ensembl_annotation():
-    run("bio/ensembl-annotation", ["snakemake", "-F"])
+    run("bio/reference/ensembl-annotation", ["snakemake", "-F"])
 
 
 def test_ensembl_variation():
-    run("bio/ensembl-variation", ["snakemake", "-F"])
+    run("bio/reference/ensembl-variation", ["snakemake", "-F"])
