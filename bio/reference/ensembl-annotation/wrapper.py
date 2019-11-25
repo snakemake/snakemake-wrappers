@@ -16,10 +16,7 @@ with FTP("ftp.ensembl.org") as ftp, open(snakemake.output[0], "wb") as out:
     ftp.login()
     ftp.retrbinary(
         "STOR pub/release-{release}/{fmt}/{species}/{species.capitalize()}.{build}.{release}.{suffix}".format(
-            release=release,
-            build=build
-            species=species,
-            fmt=fmt
+            release=release, build=build, species=species, fmt=fmt
         ),
         out.write,
     )

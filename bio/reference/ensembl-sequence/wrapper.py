@@ -24,15 +24,15 @@ with FTP("ftp.ensembl.org") as ftp, open(snakemake.output[0], "wb") as out:
     ftp.login()
     for suffix in suffixes:
         url = "pub/release-{release}/fasta/{species}/{datatype}/{species.capitalize()}.{build}.{suffix}".format(
-            release=release,
-            species=species,
-            datatype=datatype,
-            fmt=fmt,
-            build=build
+            release=release, species=species, datatype=datatype, fmt=fmt, build=build
         )
         if ftp.size(url):
             ftp.retrbinary("RETR " + url, out.write)
             success = True
 
 if not success:
-    raise ValueError("Requested sequence does not seem to exist on ensembl FTP servers (url {})".format(url))
+    raise ValueError(
+        "Requested sequence does not seem to exist on ensembl FTP servers (url {})".format(
+            url
+        )
+    )
