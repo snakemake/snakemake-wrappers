@@ -1,0 +1,4 @@
+name: ensembl-variation
+description: Download known genomic variants from ENSEMBL FTP servers, and store them in a single .vcf.gz file.
+authors:
+  - Johannes Köster
