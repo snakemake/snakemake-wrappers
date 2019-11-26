@@ -3,10 +3,8 @@ rule tximport:
         quant = expand("quant/A/quant.sf")
     output:
         txi = "txi.RDS"
-    message:
-        "Testing tximport"
     params:
         type = "salmon",
         txOut = True
     wrapper:
-        "file:.."
+        "master/bio/tximport"
