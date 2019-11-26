@@ -21,7 +21,12 @@ with FTP("ftp.ensembl.org") as ftp, open(snakemake.output[0], "wb") as out:
     ftp.login()
     ftp.retrbinary(
         "RETR pub/release-{release}/{fmt}/{species}/{species_cap}.{build}.{release}.{suffix}".format(
-            release=release, build=build, species=species, fmt=fmt, species_cap=species.capitalize(), suffix=suffix
+            release=release,
+            build=build,
+            species=species,
+            fmt=fmt,
+            species_cap=species.capitalize(),
+            suffix=suffix,
         ),
         out.write,
     )

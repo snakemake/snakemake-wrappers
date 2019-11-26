@@ -29,7 +29,12 @@ with FTP("ftp.ensembl.org") as ftp, open(snakemake.output[0], "wb") as out:
     ftp.login()
     for suffix in suffixes:
         url = "pub/release-{release}/fasta/{species}/{datatype}/{species_cap}.{build}.{suffix}".format(
-            release=release, species=species, datatype=datatype, build=build, suffix=suffix, species_cap=species.capitalize()
+            release=release,
+            species=species,
+            datatype=datatype,
+            build=build,
+            suffix=suffix,
+            species_cap=species.capitalize(),
         )
         try:
             ftp.size(url)
