@@ -34,4 +34,5 @@ urls = [
     for suffix in suffixes
 ]
 
-shell("bcftools concat {urls} > {snakemake.output[0]}")
+shell("bcftools concat -Oz {urls} > {snakemake.output[0]}")
+shell("tabix {snakemake.output[0]")
