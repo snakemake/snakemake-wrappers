@@ -5,8 +5,6 @@ rule tximport:
         # tx2gene = /path/to/tx2gene
     output:
         txi = "txi.RDS"
-    message:
-        "Testing tximport"
     params:
         type = "salmon",
         txOut = True
