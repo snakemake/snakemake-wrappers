@@ -1,6 +1,8 @@
 rule tximport:
     input:
         quant = expand("quant/A/quant.sf")
+        # Optional transcript/gene links as described in tximport
+        # tx2gene = /path/to/tx2gene
     output:
         txi = "txi.RDS"
     message:
@@ -9,4 +11,4 @@ rule tximport:
         type = "salmon",
         txOut = True
     wrapper:
-        "file:.."
+        "master/bio/tximport"
