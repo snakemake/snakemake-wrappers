@@ -902,5 +902,16 @@ def test_plass_single():
     run("bio/plass", ["snakemake", "plass/prot_single.fasta", "--use-conda", "-F"])
 
 
+def test_ensembl_sequence():
+    run("bio/reference/ensembl-sequence", ["snakemake", "--use-conda", "-F"])
+
+
+def test_ensembl_annotation():
+    run("bio/reference/ensembl-annotation", ["snakemake", "--use-conda", "-F"])
+
+
+def test_ensembl_variation():
+    run("bio/reference/ensembl-variation", ["snakemake", "--use-conda", "-F"])
+
 def test_tximport():
     run("bio/tximport", ["snakemake", "txi.RDS", "--use-conda", "-F"])
