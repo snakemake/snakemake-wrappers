@@ -902,10 +902,22 @@ def test_plass_single():
     run("bio/plass", ["snakemake", "plass/prot_single.fasta", "--use-conda", "-F"])
 
 
+def test_ensembl_sequence():
+    run("bio/reference/ensembl-sequence", ["snakemake", "--use-conda", "-F"])
+
+
+def test_ensembl_annotation():
+    run("bio/reference/ensembl-annotation", ["snakemake", "--use-conda", "-F"])
+
+
+def test_ensembl_variation():
+    run("bio/reference/ensembl-variation", ["snakemake", "--use-conda", "-F"])
+
+    
 def test_infernal_cmpress():
     run("bio/infernal/cmpress", ["snakemake", "test-covariance-model.cm.i1f", "--use-conda", "-F"])
 
 
 def test_infernal_cmscan():
     run("bio/infernal/cmscan", ["snakemake", "tr-infernal-tblout.txt", "--use-conda", "-F"])
-
+   
