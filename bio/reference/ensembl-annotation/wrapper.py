@@ -2,6 +2,7 @@ __author__ = "Johannes Köster"
 __copyright__ = "Copyright 2019, Johannes Köster"
 __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
+__contributor__= "Johannes Köster, Fritjof Lammers"
 
 from ftplib import FTP
 from io import StringIO
