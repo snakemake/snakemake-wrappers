@@ -14,16 +14,23 @@ fmt = snakemake.params.fmt
 build = snakemake.params.build
 
 
-def parse_checksums():
+def checksum():
     lines = r.getvalue().strip().split("\n")
     for line in lines:
-        fields = line.split()
-        yield {
-            "cksum": int(fields[0]),
-            "blksize": int(fields[1]),
-            "filename": fields[2]
-        }
-
+        fields = line.strip().split()
+        cksum = int(fields[0])
+        filename = fields[2]
+        if filename == basename(snakemake.output[0]):
+            cksum_local = int(run(["sum", snakemake.output[0]], capture_output=True).stdout.strip().split()[0])
+            if cksum_local == cksum:
+                print("CHECKSUM OK: %s" % snakemake.output[0])
+                exit(0)
+            else:
+                print("CHECKSUM FAILED: %s" % snakemake.output[0])
+                exit(1)
+        else:
+            # print("No matching file for CHECKSUM test found")
+            continue
 
 suffix = ""
 if fmt == "gtf":
@@ -34,14 +41,6 @@ elif fmt == "gff3":
 r = StringIO()
 
 with FTP("ftp.ensembl.org") as ftp, open(snakemake.output[0], "wb") as out:
-    print("starting download: pub/release-{release}/{fmt}/{species}/{species_cap}.{build}.{release}.{suffix}".format(
-        release=release,
-        build=build,
-        species=species,
-        fmt=fmt,
-        species_cap=species.capitalize(),
-        suffix=suffix,
-    ))
     ftp.login()
     ftp.retrbinary(
         "RETR pub/release-{release}/{fmt}/{species}/{species_cap}.{build}.{release}.{suffix}".format(
@@ -67,18 +66,4 @@ with FTP("ftp.ensembl.org") as ftp, open(snakemake.output[0], "wb") as out:
         # use StringIO instance for callback, add "\n" because ftplib.retrlines omits newlines
     )
 
-for elem in parse_checksums():
-    if elem["filename"] == basename(snakemake.output[0]):
-        cksum_remote = elem["cksum"]
-        cksum_local = int(run(["sum", snakemake.output[0]], capture_output=True).stdout.strip().split()[0])
-        print(cksum_remote)
-        print(cksum_local)
-        if cksum_local == cksum_remote:
-            print("CHECKSUM OK: %s" % snakemake.output[0])
-            exit(0)
-        else:
-            print("CHECKSUM FAILED: %s" % snakemake.output[0])
-            exit(1)
-    else:
-        print("No matching file for CHECKSUM test found")
-        continue
+    checksum()
