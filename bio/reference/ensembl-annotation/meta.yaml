@@ -1,4 +1,5 @@
 name: ensembl-annotation
-description: Download annotation of genomic sites (e.g. transcripts) from ENSEMBL FTP servers, and store them in a single .gtf or .gff3 file.
+description: Download annotation of genomic sites (e.g. transcripts) from ENSEMBL FTP servers, and store them in a single .gtf or .gff3 file. After download compare checksums with ENSEMBL FTP 'CHECKSUMS' file.
 authors:
   - Johannes Köster
+  - Fritjof Lammers
