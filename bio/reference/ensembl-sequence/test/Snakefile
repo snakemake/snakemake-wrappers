@@ -1,6 +1,6 @@
 rule get_sequence:
     output:
-        "refs/genome.fasta"
+        "refs/genome.fasta.gz"
     params:
         species="drosophila_melanogaster",
         datatype="dna",
