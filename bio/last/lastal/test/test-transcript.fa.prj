@@ -1,0 +1,10 @@
+version=874
+alphabet=ACGT
+numofsequences=0
+numofletters=0
+letterfreqs=0 0 0 0
+maxunsortedinterval=0
+keeplowercase=1
+masklowercase=0
+volumes=0
+integersize=32

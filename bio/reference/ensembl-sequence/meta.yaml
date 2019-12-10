@@ -1,0 +1,4 @@
+name: ensembl-sequence
+description: Download sequences (e.g. genome) from ENSEMBL FTP servers, and store them in a single .fasta file.
+authors:
+  - Johannes Köster

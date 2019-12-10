@@ -1,0 +1,38 @@
+rule lastal_nucl_x_nucl:
+    input:
+        data="test-transcript.fa",
+        lastdb="test-transcript.fa.prj"
+    output:
+        # only one of these outputs is allowed
+        maf="test-transcript.maf",
+        #tab="test-transcript.tab",
+        #blasttab="test-transcript.blasttab",
+        #blasttabplus="test-transcript.blasttabplus",
+    params:
+        #Report alignments that are expected by chance at most once per LENGTH query letters. By default, LAST reports alignments that are expected by chance at most once per million query letters (for a given database). http://last.cbrc.jp/doc/last-evalues.html
+        D_length=1000000,
+        extra=""
+    log:
+        "logs/lastal/test.log"
+    threads: 8
+    wrapper:
+        "master/bio/last/lastal"
+
+rule lastal_nucl_x_prot:
+    input:
+        data="test-transcript.fa",
+        lastdb="test-protein.fa.prj"
+    output:
+        # only one of these outputs is allowed
+        maf="test-tr-x-prot.maf"
+        #tab="test-tr-x-prot.tab",
+        #blasttab="test-tr-x-prot.blasttab",
+        #blasttabplus="test-tr-x-prot.blasttabplus",
+    params:
+        frameshift_cost=15, #Align DNA queries to protein reference sequences using specified frameshift cost. 15 is reasonable. Special case, -F0 means DNA-versus-protein alignment without frameshifts, which is faster.) 
+        extra="",
+    log:
+        "logs/lastal/test.log"
+    threads: 8
+    wrapper:
+        "master/bio/last/lastal"

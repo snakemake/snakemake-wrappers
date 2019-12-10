@@ -1,0 +1,4 @@
+name: "pre.py"
+description: Preprocessing/normalisation of vcf/bcf files. Part of the hap.py suite by Illumina (see https://github.com/Illumina/hap.py/blob/master/doc/normalisation.md).
+authors:
+  - Jan Forster

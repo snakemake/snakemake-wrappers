@@ -1,0 +1,6 @@
+name: "coverageBed"
+description:
+  Returns the depth and breadth of coverage of features from B
+  on the intervals in A.
+authors:
+  - Patrik Smeds

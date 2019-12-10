@@ -1,0 +1,13 @@
+rule coverageBed:
+    input:
+        a="bed/{sample}.bed",
+        b="mapped/{sample}.bam"
+    output:
+        "stats/{sample}.cov"
+    log:
+        "logs/coveragebed/{sample}.log"
+    params:
+        extra=""  # optional parameters
+    threads: 8
+    wrapper:
+        "master/bio/bedtools/coveragebed"
