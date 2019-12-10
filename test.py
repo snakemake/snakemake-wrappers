@@ -902,6 +902,26 @@ def test_plass_single():
     run("bio/plass", ["snakemake", "plass/prot_single.fasta", "--use-conda", "-F"])
 
 
+def test_ucsc_bedgraphtobigwig():
+    run("bio/ucsc/bedGraphToBigWig",
+        ["snakemake", "a.bw", "--use-conda", "-F"])
+
+
+def test_ucsc_fatotwobit():
+    run("bio/ucsc/faToTwoBit",
+        ["snakemake", "genome.2bit", "genome_gz.2bit", "--use-conda", "-F"])
+
+
+def test_ucsc_twobitinfo():
+    run("bio/ucsc/twoBitInfo",
+        ["snakemake", "genome.chrom.sizes", "--use-conda", "-F"])
+
+
+def test_ucsc_twobittofa():
+    run("bio/ucsc/twoBitToFa",
+        ["snakemake", "genome.fa", "--use-conda", "-F"])
+
+
 def test_ensembl_sequence():
     run("bio/reference/ensembl-sequence", ["snakemake", "--use-conda", "-F"])
 
