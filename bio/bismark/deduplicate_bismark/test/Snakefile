@@ -4,6 +4,6 @@ rule deduplicate_bismark:
         bam="{sample}.deduplicated.bam",
         report="{sample}.deduplication_report.txt",
     params:
-        extra = "" # optional params string
+        extra=""  # optional params string
     wrapper:
         "master/bio/bismark/deduplicate_bismark"
