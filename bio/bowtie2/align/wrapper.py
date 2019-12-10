@@ -51,7 +51,9 @@ index = snakemake.input.get("index")
 try:
     index_dirname = os.path.dirname(index)
     # get index prefix from index file. pattern should be <prefix>.(\d).bt2 or <prefix>.rev.(\d).bt2
-    index_prefix = re.match("^([^.]*).(rev.)?\d+.bt2", os.path.basename(index)).groups()[0]
+    index_prefix = re.match(
+        "^([^.]*).(rev.)?\d+.bt2", os.path.basename(index)
+    ).groups()[0]
     index_prefix = os.path.join(index_dirname, index_prefix)
 except:
     raise ValueError(
