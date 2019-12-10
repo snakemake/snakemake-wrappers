@@ -901,13 +901,9 @@ def test_plass_paired():
 def test_plass_single():
     run("bio/plass", ["snakemake", "plass/prot_single.fasta", "--use-conda", "-F"])
 
-    
+
 def test_diamond_makedb():
     run("bio/diamond/makedb", ["snakemake", "pep.dmnd", "--use-conda", "-F"])
-
-
-def test_diamond_makedb_taxinfo():
-    run("bio/diamond/makedb", ["snakemake", "pep_with_taxinfo.dmnd", "--use-conda", "-F"])
 
 
 def test_diamond_blastp():
@@ -918,6 +914,3 @@ def test_diamond_blastx():
     run("bio/diamond/blast", ["snakemake", "nucl_blastx_dmnd.txt.gz", "--use-conda", "-F"])
 
 
-def test_diamond_blastp_taxinfo():
-    run("bio/diamond/blast", ["snakemake", "pep_blastp_dmnd_txlst.txt.gz", "--use-conda", "-F"])
-    
