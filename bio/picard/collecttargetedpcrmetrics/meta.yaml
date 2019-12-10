@@ -1,0 +1,5 @@
+name: picard CollectTargetedPcrMetrics
+description: |
+  Collect metric information for target pcr metrics runs, with picard tools.
+authors:
+  - Patrik Smeds

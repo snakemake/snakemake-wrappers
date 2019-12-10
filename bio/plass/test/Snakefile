@@ -1,0 +1,26 @@
+rule plass_paired:
+    input:
+        left=["reads/reads.left.fq.gz", "reads/reads2.left.fq.gz"],
+        right=["reads/reads.right.fq.gz", "reads/reads2.right.fq.gz"] 
+    output:
+        "plass/prot.fasta"
+    log:
+        "logs/plass.log"
+    params:
+        extra=""
+    threads: 4
+    wrapper:
+        "master/bio/plass"
+
+rule plass_single:
+    input:
+        single=["reads/reads.left.fq.gz", "reads/reads2.left.fq.gz"],
+    output:
+        "plass/prot_single.fasta"
+    log:
+        "logs/plass_single.log"
+    params:
+        extra=""
+    threads: 4
+    wrapper:
+        "master/bio/plass"

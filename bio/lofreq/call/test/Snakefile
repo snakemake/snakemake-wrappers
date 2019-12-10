@@ -1,6 +1,7 @@
 rule lofreq:
     input:
-        "data/{sample}.bam"
+        bam="data/{sample}.bam",
+        bai="data/{sample}.bai"
     output:
         "calls/{sample}.vcf"
     log:
