@@ -1,8 +1,10 @@
 rule deduplicate_bismark:
-    input: "a_genome_pe.bam"
+    input: "bams/a_genome_pe.bam"
     output:
-        bam="{sample}.deduplicated.bam",
-        report="{sample}.deduplication_report.txt",
+        bam="bams/{sample}.deduplicated.bam",
+        report="bams/{sample}.deduplication_report.txt",
+    log:
+        "logs/bams/{sample}.deduplicated.log",
     params:
         extra=""  # optional params string
     wrapper:

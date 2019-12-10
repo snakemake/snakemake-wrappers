@@ -904,50 +904,50 @@ def test_plass_single():
 
 def test_bismark_genome_preparation():
     run("bio/bismark/bismark_genome_preparation",
-        ["snakemake", "genome/Bisulfite_Genome", "genome_gz/Bisulfite_Genome", "--use-conda", "-F"])
+        ["snakemake", "indexes/genome/Bisulfite_Genome", "indexes/genome_gz/Bisulfite_Genome", "--use-conda", "-F"])
 
 
 def test_bismark_genome_bam2nuc():
     run("bio/bismark/bam2nuc",
-        ["snakemake", "genome/genomic_nucleotide_frequencies.txt", "b_genome.nucleotide_stats.txt", "--use-conda", "-F"])
+        ["snakemake", "indexes/genome/genomic_nucleotide_frequencies.txt", "bams/b_genome.nucleotide_stats.txt", "--use-conda", "-F"])
 
 
 def test_bismark_bismark():
     run("bio/bismark/bismark",
-        ["snakemake", "a_genome_pe.bam", "b_genome.bam", "--use-conda", "-F"])
+        ["snakemake", "bams/a_genome_pe.bam", "bams/b_genome.bam", "--use-conda", "-F"])
 
 
 def test_bismark_deduplicate_bismark():
     run("bio/bismark/deduplicate_bismark",
-        ["snakemake", "a_genome_pe.deduplicated.bam", "b_genome.deduplicated.bam", "--use-conda", "-F"])
+        ["snakemake", "bams/a_genome_pe.deduplicated.bam", "bams/b_genome.deduplicated.bam", "--use-conda", "-F"])
 
 
 def test_bismark_bismark_methylation_extractor():
     run("bio/bismark/bismark_methylation_extractor",
         [
             "snakemake",
-            "a_genome_pe.deduplicated.bismark.cov.gz",
-            "b_genome.deduplicated.bismark.cov.gz",
-            "b_genome.bismark.cov.gz",
+            "meth_cpg/a_genome_pe.deduplicated.bismark.cov.gz",
+            "meth_cpg/b_genome.deduplicated.bismark.cov.gz",
+            "meth_cpg/b_genome.bismark.cov.gz",
             "--use-conda", "-F"
         ])
 
 
 def test_bismark_bismark2report():
     run("bio/bismark/bismark2report",
-        ["snakemake", "a_genome.bismark2report.html", "b_genome.bismark2report.html", "--use-conda", "-F"])
+        ["snakemake", "qc/meth/a_genome.bismark2report.html", "qc/meth/b_genome.bismark2report.html", "--use-conda", "-F"])
 
 
 def test_bismark_bismark2summary():
     run("bio/bismark/bismark2summary",
-        ["snakemake", "experiment.bismark2summary.html", "--use-conda", "-F"])
+        ["snakemake", "qc/experiment.bismark2summary.html", "--use-conda", "-F"])
 
 
 def test_bismark_bismark2bedgraph():
     run("bio/bismark/bismark2bedGraph",
         [
             "snakemake",
-            "a_genome_pe.deduplicated_CpG.bismark.cov.gz",
-            "a_genome_pe.deduplicated_non_cpg.bismark.cov.gz",
+            "meth_cpg/a_genome_pe.deduplicated_CpG.bismark.cov.gz",
+            "meth_non_cpg/a_genome_pe.deduplicated_non_cpg.bismark.cov.gz",
             "--use-conda", "-F"
         ])

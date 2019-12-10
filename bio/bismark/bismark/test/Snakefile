@@ -1,19 +1,21 @@
 # Example: Pair-ended reads
 rule bismark_pe:
     input:
-        fq_1="{sample}.1.fastq",
-        fq_2="{sample}.2.fastq",
-        genome="{genome}/{genome}.fa",
-        bismark_indexes_dir="{genome}/Bisulfite_Genome",
-        genomic_freq="{genome}/genomic_nucleotide_frequencies.txt"
+        fq_1="reads/{sample}.1.fastq",
+        fq_2="reads/{sample}.2.fastq",
+        genome="indexes/{genome}/{genome}.fa",
+        bismark_indexes_dir="indexes/{genome}/Bisulfite_Genome",
+        genomic_freq="indexes/{genome}/genomic_nucleotide_frequencies.txt"
     output:
-        bam="{sample}_{genome}_pe.bam",
-        report="{sample}_{genome}_PE_report.txt",
-        nucleotide_stats="{sample}_{genome}_pe.nucleotide_stats.txt",
-        bam_unmapped_1="{sample}_{genome}_unmapped_reads_1.fq.gz",
-        bam_unmapped_2="{sample}_{genome}_unmapped_reads_2.fq.gz",
-        ambiguous_1="{sample}_{genome}_ambiguous_reads_1.fq.gz",
-        ambiguous_2="{sample}_{genome}_ambiguous_reads_2.fq.gz",
+        bam="bams/{sample}_{genome}_pe.bam",
+        report="bams/{sample}_{genome}_PE_report.txt",
+        nucleotide_stats="bams/{sample}_{genome}_pe.nucleotide_stats.txt",
+        bam_unmapped_1="bams/{sample}_{genome}_unmapped_reads_1.fq.gz",
+        bam_unmapped_2="bams/{sample}_{genome}_unmapped_reads_2.fq.gz",
+        ambiguous_1="bams/{sample}_{genome}_ambiguous_reads_1.fq.gz",
+        ambiguous_2="bams/{sample}_{genome}_ambiguous_reads_2.fq.gz"
+    log:
+        "logs/bams/{sample}_{genome}.log"
     params:
         # optional params string, e.g: -L32 -N0 -X400 --gzip
         # Useful options to tune:
@@ -38,16 +40,18 @@ rule bismark_pe:
 # Example: Single-ended reads
 rule bismark_se:
     input:
-        fq="{sample}.fq.gz",
-        genome="{genome}/{genome}.fa",
-        bismark_indexes_dir="{genome}/Bisulfite_Genome",
-        genomic_freq="{genome}/genomic_nucleotide_frequencies.txt"
+        fq="reads/{sample}.fq.gz",
+        genome="indexes/{genome}/{genome}.fa",
+        bismark_indexes_dir="indexes/{genome}/Bisulfite_Genome",
+        genomic_freq="indexes/{genome}/genomic_nucleotide_frequencies.txt"
     output:
-        bam="{sample}_{genome}.bam",
-        report="{sample}_{genome}_SE_report.txt",
-        nucleotide_stats="{sample}_{genome}.nucleotide_stats.txt",
-        bam_unmapped="{sample}_{genome}_unmapped_reads.fq.gz",
-        ambiguous="{sample}_{genome}_ambiguous_reads.fq.gz",
+        bam="bams/{sample}_{genome}.bam",
+        report="bams/{sample}_{genome}_SE_report.txt",
+        nucleotide_stats="bams/{sample}_{genome}.nucleotide_stats.txt",
+        bam_unmapped="bams/{sample}_{genome}_unmapped_reads.fq.gz",
+        ambiguous="bams/{sample}_{genome}_ambiguous_reads.fq.gz"
+    log:
+        "logs/bams/{sample}_{genome}.log",
     params:
         # optional params string
         extra=' --ambiguous --unmapped --nucleotide_coverage',
