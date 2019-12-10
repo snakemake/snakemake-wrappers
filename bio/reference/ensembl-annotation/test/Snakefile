@@ -1,0 +1,10 @@
+rule get_annotation:
+    output:
+        "refs/annotation.gtf"
+    params:
+        species="homo_sapiens",
+        release="98",
+        build="GRCh38",
+        fmt="gtf"
+    wrapper:
+        "master/bio/reference/ensembl-annotation"

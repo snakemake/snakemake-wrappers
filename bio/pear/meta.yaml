@@ -1,0 +1,10 @@
+name: pear
+description: PEAR is an ultrafast, memory-efficient and highly accurate pair-end read merger
+authors:
+  - N. Tessa Pierce
+input:
+  - paired fastq files
+output:
+  - merged fastq
+citations:
+  - "`Jiajie Zhang, Kassian Kobert, Tomáš Flouri, Alexandros Stamatakis; PEAR: a fast and accurate Illumina Paired-End reAd mergeR, Bioinformatics, Volume 30, Issue 5, 1 March 2014, Pages 614–620 <https://doi.org/10.1093/bioinformatics/btt593>`_"

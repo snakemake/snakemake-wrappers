@@ -1,0 +1,12 @@
+rule primerclip:
+    input:
+        master_file="master_file",
+        alignment_file="mapped/{sample}.bam"
+    output:
+        alignment_file="mapped/{sample}.trimmed.bam"
+    log:
+        "logs/primerclip/{sample}.log"
+    params:
+        extra=""
+    wrapper:
+        "master/bio/primerclip"

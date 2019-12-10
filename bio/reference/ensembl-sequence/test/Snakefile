@@ -1,0 +1,10 @@
+rule get_sequence:
+    output:
+        "refs/genome.fasta"
+    params:
+        species="drosophila_melanogaster",
+        datatype="dna",
+        build="BDGP6.22",
+        release="98"
+    wrapper:
+        "master/bio/reference/ensembl-sequence"
