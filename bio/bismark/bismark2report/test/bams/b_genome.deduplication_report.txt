@@ -1,0 +1,7 @@
+
+Total number of alignments analysed in a_genome_pe.bam:	4
+Total number duplicated alignments removed:	2 (50.00%)
+Duplicated alignments were found at:	2 different position(s)
+
+Total count of deduplicated leftover sequences: 2 (50.00% of total)
+

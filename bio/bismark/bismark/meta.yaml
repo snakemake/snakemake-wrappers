@@ -1,0 +1,16 @@
+name: bismark
+description: |
+  Align BS-Seq reads using Bismark (see https://github.com/FelixKrueger/Bismark/blob/master/bismark).
+authors:
+  - Roman Cherniatchik
+input:
+  - In SE mode one reads file with keay 'fq=...'
+  - In PE mode two reads files with keys 'fq_1=...', 'fq_2=...'
+  - bismark_indexes_dir: The path to the folder `Bisulfite_Genome` created by the Bismark_Genome_Preparation script, e.g. 'indexes/hg19/Bisulfite_Genome'
+params:
+  - basename: File base name
+  - extra: Any additional args
+output:
+  - bam: Bam file. Output file will be renamed if differs from default `NAME_pe.bam` or `NAME_se.bam`
+  - report: Aligning report file. Output file will be renamed if differs from default `NAME_PE_report.txt` or `NAME_SE_report.txt`
+  - nucleotide_stats: Optional nucleotides report file. Output file will be renamed if differs from default `NAME_pe.nucleotide_stats.txt` or `NAME_se.nucleotide_stats.txt`

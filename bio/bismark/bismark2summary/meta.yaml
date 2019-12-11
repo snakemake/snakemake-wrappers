@@ -1,0 +1,14 @@
+name: bismark2summary
+description: |
+  Generate summary graphical HTML report from several Bismark text report files reports (see https://github.com/FelixKrueger/Bismark/blob/master/bismark2summary).
+authors:
+  - Roman Cherniatchik
+input:
+  - bam: One or several (space separated) BAM file paths (aligned bam files with bismark reports in same folder). Also, it is recommended to add dependencies for all required reports using rules order or specifing them in input section using any other keys. E.g. deduplicaton report could be missing if rule only depends on aligned bam file. If you add dependency on deduplicated bam file bismark2report will fail because it expects input files to be initial aligned files with aligning report in same directory.
+params:
+  - extra: Any additional args
+  - title: Optional report custom title.
+
+output:
+  - html: Output HTML report path (e.g. 'bismark_summary_report.html').
+  - txt: Output txt table path (e.g. 'bismark_summary_report.txt'). Should have same as 'html' report but with suffix '.txt'.

@@ -1,0 +1,11 @@
+name: hmmsearch
+description: "search profile(s) against a sequence database"
+authors:
+  - N Tessa Pierce
+input:
+  - hmm profile(s)
+  - sequence database
+output:
+  - matches between sequences and hmm profiles
+citations:
+  - "`Challenges in Homology Search: HMMER3 and Convergent Evolution of Coiled-Coil Regions. J. Mistry, R. D. Finn, S. R. Eddy, A. Bateman, M. Punta. Nucleic Acids Research, 41:e121, 2013   <https://doi.org/10.1093/nar/gkt263>`_"
