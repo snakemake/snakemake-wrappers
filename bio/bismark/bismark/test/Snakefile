@@ -1,0 +1,60 @@
+# Example: Pair-ended reads
+rule bismark_pe:
+    input:
+        fq_1="reads/{sample}.1.fastq",
+        fq_2="reads/{sample}.2.fastq",
+        genome="indexes/{genome}/{genome}.fa",
+        bismark_indexes_dir="indexes/{genome}/Bisulfite_Genome",
+        genomic_freq="indexes/{genome}/genomic_nucleotide_frequencies.txt"
+    output:
+        bam="bams/{sample}_{genome}_pe.bam",
+        report="bams/{sample}_{genome}_PE_report.txt",
+        nucleotide_stats="bams/{sample}_{genome}_pe.nucleotide_stats.txt",
+        bam_unmapped_1="bams/{sample}_{genome}_unmapped_reads_1.fq.gz",
+        bam_unmapped_2="bams/{sample}_{genome}_unmapped_reads_2.fq.gz",
+        ambiguous_1="bams/{sample}_{genome}_ambiguous_reads_1.fq.gz",
+        ambiguous_2="bams/{sample}_{genome}_ambiguous_reads_2.fq.gz"
+    log:
+        "logs/bams/{sample}_{genome}.log"
+    params:
+        # optional params string, e.g: -L32 -N0 -X400 --gzip
+        # Useful options to tune:
+        # (for bowtie2)
+        # -N: The maximum number of mismatches permitted in the "seed", i.e. the first L base pairs
+        # of the read (deafault: 1)
+        # -L: The "seed length" (deafault: 28)
+        # -I: The minimum insert size for valid paired-end alignments. ~ min fragment size filter (for
+        # PE reads)
+        # -X: The maximum insert size for valid paired-end alignments. ~ max fragment size filter (for
+        # PE reads)
+        # --gzip: Gzip intermediate fastq files
+        # --ambiguous --unmapped
+        # -p: bowtie2 parallel execution
+        # --multicore: bismark parallel execution
+        # --temp_dir: tmp dir for intermediate files instead of output directory
+        extra=' --ambiguous --unmapped --nucleotide_coverage',
+        basename='{sample}_{genome}'
+    wrapper:
+        "master/bio/bismark/bismark"
+
+# Example: Single-ended reads
+rule bismark_se:
+    input:
+        fq="reads/{sample}.fq.gz",
+        genome="indexes/{genome}/{genome}.fa",
+        bismark_indexes_dir="indexes/{genome}/Bisulfite_Genome",
+        genomic_freq="indexes/{genome}/genomic_nucleotide_frequencies.txt"
+    output:
+        bam="bams/{sample}_{genome}.bam",
+        report="bams/{sample}_{genome}_SE_report.txt",
+        nucleotide_stats="bams/{sample}_{genome}.nucleotide_stats.txt",
+        bam_unmapped="bams/{sample}_{genome}_unmapped_reads.fq.gz",
+        ambiguous="bams/{sample}_{genome}_ambiguous_reads.fq.gz"
+    log:
+        "logs/bams/{sample}_{genome}.log",
+    params:
+        # optional params string
+        extra=' --ambiguous --unmapped --nucleotide_coverage',
+        basename='{sample}_{genome}'
+    wrapper:
+        "master/bio/bismark/bismark"

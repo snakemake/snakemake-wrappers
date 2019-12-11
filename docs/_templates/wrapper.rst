@@ -6,12 +6,14 @@
 {{ description }}
 
 
+{% if pkgs|length %}
 Software dependencies
 ---------------------
 
 {% for pkg in pkgs %}
 * {{ pkg }}
 {% endfor %}
+{% endif %}
 
 
 Example

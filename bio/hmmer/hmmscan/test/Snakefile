@@ -1,0 +1,20 @@
+rule hmmscan_profile:
+    input:
+        fasta="test-protein.fa",
+        profile="test-profile.hmm.h3f",
+    output:
+        # only one of these is required
+        tblout="test-prot-tbl.txt", # save parseable table of per-sequence hits to file <f>
+        domtblout="test-prot-domtbl.txt", # save parseable table of per-domain hits to file <f>
+        pfamtblout="test-prot-pfamtbl.txt", # save table of hits and domains to file, in Pfam format <f>
+        outfile="test-prot-out.txt", # Direct the main human-readable output to a file <f> instead of the default stdout.
+    log:
+        "logs/hmmscan.log"
+    params:
+        evalue_threshold=0.00001,
+        # if bitscore threshold provided, hmmscan will use that instead
+        #score_threshold=50,
+        extra="",
+    threads: 4
+    wrapper:
+        "master/bio/hmmer/hmmscan"

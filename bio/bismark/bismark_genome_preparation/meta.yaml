@@ -1,0 +1,9 @@
+name: bismark_genome_preparation
+description: |
+  Generate indexes for Bismark (see https://github.com/FelixKrueger/Bismark/blob/master/bismark_genome_preparation).
+authors:
+  - Roman Cherniatchik
+input:
+  - path to genome *.fa (or *.fasta, *.fa.gz, *.fasta.gz) file
+output:
+  - No ouptut, generates bismark indexes in parent directory of input file
