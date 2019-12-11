@@ -901,7 +901,23 @@ def test_plass_paired():
 def test_plass_single():
     run("bio/plass", ["snakemake", "plass/prot_single.fasta", "--use-conda", "-F"])
 
+
+def test_hmmbuild():
+    run("bio/hmmer/hmmbuild", ["snakemake", "test-profile.hmm", "--use-conda", "-F"])
+
     
+def test_hmmpress():
+    run("bio/hmmer/hmmpress", ["snakemake", "test-profile.hmm.h3f", "--use-conda", "-F"])
+
+    
+def test_hmmscan():
+    run("bio/hmmer/hmmscan", ["snakemake", "test-prot-tbl.txt", "--use-conda", "-F"])
+
+    
+def test_hmmsearch():
+    run("bio/hmmer/hmmsearch", ["snakemake", "test-prot-tbl.txt", "--use-conda", "-F"])
+
+
 def test_paladin_index():
     run("bio/paladin/index", ["snakemake", "index/prot.fasta.bwt", "--use-conda", "-F"])
 
