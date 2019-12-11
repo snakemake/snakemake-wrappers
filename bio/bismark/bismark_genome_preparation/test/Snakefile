@@ -1,0 +1,25 @@
+# For *.fa file
+rule bismark_genome_preparation_fa:
+    input:
+        "indexes/{genome}/{genome}.fa"
+    output:
+        directory("indexes/{genome}/Bisulfite_Genome")
+    log:
+        "logs/indexes/{genome}/Bisulfite_Genome.log"
+    params:
+        ""  # optional params string
+    wrapper:
+        "master/bio/bismark/bismark_genome_preparation"
+
+# Fo *.fa.gz file:
+rule bismark_genome_preparation_fa_gz:
+    input:
+        "indexes/{genome}/{genome}.fa.gz"
+    output:
+        directory("indexes/{genome}/Bisulfite_Genome")
+    log:
+        "logs/indexes/{genome}/Bisulfite_Genome.log"
+    params:
+        ""  # optional params string
+    wrapper:
+        "master/bio/bismark/bismark_genome_preparation"

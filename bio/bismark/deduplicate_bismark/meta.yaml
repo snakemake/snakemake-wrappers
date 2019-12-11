@@ -1,0 +1,12 @@
+name: deduplicate_bismark
+description: |
+  Deduplicate Bismark Bam Files and saves as *.bam file (see https://github.com/FelixKrueger/Bismark/blob/master/deduplicate_bismark).
+authors:
+  - Roman Cherniatchik
+input:
+  - path to one or multiple *.bam files aligned by Bismark, if multiple passed '--multiple' argument will be added automatically.
+params:
+  - extra: Additional deduplicate_bismark args
+output:
+  - bam: Result bam file path. The file will be renamed if differs from `NAME.deduplicated.bam` for given 'NAME.bam' input.
+  - report: Result report path. The file will be renamed if differs from `NAME.deduplication_report.txt` for given 'NAME.bam' input.
