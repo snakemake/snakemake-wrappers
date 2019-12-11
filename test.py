@@ -871,6 +871,16 @@ def test_umis_bamtag():
     run("bio/umis/bamtag", ["snakemake", "data/a.annotated.bam", "--use-conda", "-F"])
 
 
+def test_transdecoder_longorfs():
+    run("bio/transdecoder/longorfs",
+        ["snakemake", "test.fa.transdecoder_dir/longest_orfs.pep", "--use-conda", "-F"])
+
+
+def test_transdecoder_predict():
+    run("bio/transdecoder/predict",
+        ["snakemake", "test.fa.transdecoder.gff3", "--use-conda", "-F"])
+
+
 def test_lastdb_nucl():
     run("bio/last/lastdb", ["snakemake", "test-transcript.fa.prj", "--use-conda", "-F"])
 
