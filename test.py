@@ -901,6 +901,18 @@ def test_plass_paired():
 def test_plass_single():
     run("bio/plass", ["snakemake", "plass/prot_single.fasta", "--use-conda", "-F"])
 
+    
+def test_paladin_index():
+    run("bio/paladin/index", ["snakemake", "index/prot.fasta.bwt", "--use-conda", "-F"])
+
+    
+def test_paladin_prepare():
+    run("bio/paladin/prepare", ["snakemake", "uniprot_sprot.fasta.gz", "--use-conda", "-F"])
+    
+    
+def test_paladin_align():
+    run("bio/paladin/align", ["snakemake", "paladin_mapped/a.bam", "--use-conda", "-F"])
+
 
 def test_ucsc_bedgraphtobigwig():
     run("bio/ucsc/bedGraphToBigWig",
