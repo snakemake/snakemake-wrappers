@@ -122,7 +122,7 @@ def test_bwa_mem_sort_samtools():
 
 def test_sambamba_slice():
     run("bio/sambamba/slice",
-        ["snakemake", "a.bam", "--use-conda", "-F",
+        ["snakemake", "a.sliced.bam", "--use-conda", "-F",
          "-s", "Snakefile"])
 
 def test_sambamba_sort():
