@@ -1,0 +1,11 @@
+name: infernal cmscan
+description: "cmscan is used to search sequences against collections of covariance models that have been prepared with cmpress. The output format is designed to be human-            readable, but is often so voluminous that reading it is impractical, and parsing it is a pain. The --tblout option saves output in a simple tabular  format that is concise and easier to parse. The -o option allows redirecting the main output, including throwing it away in /dev/null. Infernal ('INFERence of RNA ALignment') is for searching DNA sequence databases for RNA structure and sequence similarities. It is an implementation of a special case of profile stochastic context-free grammars called covariance models (CMs). A CM is like a sequence profile, but it scores a combination of sequence consensus and RNA secondary structure consensus, so in many cases, it is more capable of identifying RNA homologs that conserve their secondary structure more than their primary sequence."
+authors: 
+  - N. Tessa Pierce
+input:
+  - sequence file
+  - RNA covariance models (CMs)
+output:
+  - rna alignments 
+citations:
+  - "`E. P. Nawrocki and S. R. Eddy, Infernal 1.1 100-fold faster RNA homology searches, Bioinformatics 29:2933-2935 (2013) <http://eddylab.org/publications.html#Nawrocki13c>`_"
