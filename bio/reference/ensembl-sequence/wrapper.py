@@ -44,7 +44,6 @@ for suffix in suffixes:
         continue
 
     shell("curl -L {url} | gzip -d > {snakemake.output[0]} 2> {log}")
-    shell("samtools faidx {snakemake.output[0]} 2> {log}")
     success = True
 
 if not success:
