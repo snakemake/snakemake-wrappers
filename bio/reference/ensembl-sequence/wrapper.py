@@ -3,11 +3,14 @@ __copyright__ = "Copyright 2019, Johannes Köster"
 __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
 
-from ftplib import FTP
+import subprocess as sp
+from snakemake.shell import shell
 
 species = snakemake.params.species.lower()
 release = snakemake.params.release
 build = snakemake.params.build
+
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 suffixes = ""
 datatype = snakemake.params.get("datatype", "")
@@ -25,28 +28,28 @@ else:
     raise ValueError("invalid datatype, must be one of dna, cdna, cds, ncrna, pep")
 
 success = False
-with FTP("ftp.ensembl.org") as ftp, open(snakemake.output[0], "wb") as out:
-    ftp.login()
-    for suffix in suffixes:
-        url = "pub/release-{release}/fasta/{species}/{datatype}/{species_cap}.{build}.{suffix}".format(
-            release=release,
-            species=species,
-            datatype=datatype,
-            build=build,
-            suffix=suffix,
-            species_cap=species.capitalize(),
-        )
-        try:
-            ftp.size(url)
-        except:
-            continue
+for suffix in suffixes:
+    url = "ftp://ftp.ensembl.org/pub/release-{release}/fasta/{species}/{datatype}/{species_cap}.{build}.{suffix}".format(
+        release=release,
+        species=species,
+        datatype=datatype,
+        build=build,
+        suffix=suffix,
+        species_cap=species.capitalize(),
+    )
 
-        ftp.retrbinary("RETR " + url, out.write)
-        success = True
+    try:
+        shell("curl -sSf {url} > /dev/null 2> /dev/null")
+    except sp.CalledProcessError:
+        continue
+
+    shell("curl -L {url} | gzip -d > {snakemake.output[0]} 2> {log}")
+    shell("samtools faidx {snakemake.output[0]} 2> {log}")
+    success = True
 
 if not success:
     raise ValueError(
-        "Requested sequence does not seem to exist on ensembl FTP servers (url {})".format(
+        "Requested sequence does not seem to exist on ensembl FTP servers or servers are unavailable (url {})".format(
             url
         )
     )
