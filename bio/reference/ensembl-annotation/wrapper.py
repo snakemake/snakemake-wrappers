@@ -10,23 +10,21 @@ release = snakemake.params.release
 fmt = snakemake.params.fmt
 build = snakemake.params.build
 
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+
 suffix = ""
 if fmt == "gtf":
     suffix = "gtf.gz"
 elif fmt == "gff3":
     suffix = "gff3.gz"
 
+url = "ftp://ftp.ensembl.org/pub/release-{release}/{fmt}/{species}/{species_cap}.{build}.{release}.{suffix}".format(
+    release=release,
+    build=build,
+    species=species,
+    fmt=fmt,
+    species_cap=species.capitalize(),
+    suffix=suffix,
+)
 
-with FTP("ftp.ensembl.org") as ftp, open(snakemake.output[0], "wb") as out:
-    ftp.login()
-    ftp.retrbinary(
-        "RETR pub/release-{release}/{fmt}/{species}/{species_cap}.{build}.{release}.{suffix}".format(
-            release=release,
-            build=build,
-            species=species,
-            fmt=fmt,
-            species_cap=species.capitalize(),
-            suffix=suffix,
-        ),
-        out.write,
-    )
+shell("curl -L {url} > {snakemake.output[0]} 2> {log}")
