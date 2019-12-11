@@ -1,7 +1,6 @@
 rule get_variation:
     output:
-        vcf="refs/variation.vcf.gz",
-        idx="refs/variation.vcf.gz.tbi"
+        vcf="refs/variation.vcf.gz"
     params:
         species="mus_musculus",
         release="98",
