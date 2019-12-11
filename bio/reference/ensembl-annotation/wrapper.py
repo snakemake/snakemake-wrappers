@@ -10,7 +10,7 @@ release = snakemake.params.release
 fmt = snakemake.params.fmt
 build = snakemake.params.build
 
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 suffix = ""
 if fmt == "gtf":
@@ -27,4 +27,4 @@ url = "ftp://ftp.ensembl.org/pub/release-{release}/{fmt}/{species}/{species_cap}
     suffix=suffix,
 )
 
-shell("curl -L {url} > {snakemake.output[0]} 2> {log}")
+shell("(curl -L {url} | gzip -d > {snakemake.output[0]}) {log}")

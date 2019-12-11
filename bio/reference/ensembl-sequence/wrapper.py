@@ -10,7 +10,7 @@ species = snakemake.params.species.lower()
 release = snakemake.params.release
 build = snakemake.params.build
 
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 suffixes = ""
 datatype = snakemake.params.get("datatype", "")
@@ -43,7 +43,7 @@ for suffix in suffixes:
     except sp.CalledProcessError:
         continue
 
-    shell("curl -L {url} | gzip -d > {snakemake.output[0]} 2> {log}")
+    shell("(curl -L {url} | gzip -d > {snakemake.output[0]}) {log}")
     success = True
 
 if not success:
