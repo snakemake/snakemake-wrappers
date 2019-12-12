@@ -6,5 +6,7 @@ rule get_annotation:
         release="98",
         build="GRCh38",
         fmt="gtf"
+    log:
+        "logs/get_annotation.log"
     wrapper:
         "master/bio/reference/ensembl-annotation"

@@ -1,4 +1,4 @@
-rule get_sequence:
+rule get_genome:
     output:
         "refs/genome.fasta"
     params:
@@ -6,5 +6,7 @@ rule get_sequence:
         datatype="dna",
         build="BDGP6.22",
         release="98"
+    log:
+        "logs/get_genome.log"
     wrapper:
         "master/bio/reference/ensembl-sequence"
