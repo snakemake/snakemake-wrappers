@@ -1,6 +1,6 @@
 rule get_annotation:
     output:
-        "refs/annotation.gtf"
+        "refs/annotation.gtf.gz"
     params:
         species="homo_sapiens",
         release="98",
