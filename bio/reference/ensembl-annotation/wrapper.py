@@ -3,7 +3,7 @@ __copyright__ = "Copyright 2019, Johannes Köster"
 __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
 
-from ftplib import FTP
+from snakemake.shell import shell
 
 species = snakemake.params.species.lower()
 release = snakemake.params.release
