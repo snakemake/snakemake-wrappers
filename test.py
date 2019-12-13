@@ -218,6 +218,19 @@ def test_fastp_pe():
     )
 
 
+def test_fastp_pe_wo_trimming():
+    run(
+        "bio/fastp",
+        [
+            "snakemake",
+            "report/pe_wo_trimming/a.html",
+            "report/pe_wo_trimming/a.json",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_fastp_se():
     run(
         "bio/fastp",
@@ -871,16 +884,6 @@ def test_umis_bamtag():
     run("bio/umis/bamtag", ["snakemake", "data/a.annotated.bam", "--use-conda", "-F"])
 
 
-def test_transdecoder_longorfs():
-    run("bio/transdecoder/longorfs",
-        ["snakemake", "test.fa.transdecoder_dir/longest_orfs.pep", "--use-conda", "-F"])
-
-
-def test_transdecoder_predict():
-    run("bio/transdecoder/predict",
-        ["snakemake", "test.fa.transdecoder.gff3", "--use-conda", "-F"])
-
-
 def test_lastdb_nucl():
     run("bio/last/lastdb", ["snakemake", "test-transcript.fa.prj", "--use-conda", "-F"])
 
@@ -910,34 +913,6 @@ def test_plass_paired():
 
 def test_plass_single():
     run("bio/plass", ["snakemake", "plass/prot_single.fasta", "--use-conda", "-F"])
-
-
-def test_hmmbuild():
-    run("bio/hmmer/hmmbuild", ["snakemake", "test-profile.hmm", "--use-conda", "-F"])
-
-    
-def test_hmmpress():
-    run("bio/hmmer/hmmpress", ["snakemake", "test-profile.hmm.h3f", "--use-conda", "-F"])
-
-    
-def test_hmmscan():
-    run("bio/hmmer/hmmscan", ["snakemake", "test-prot-tbl.txt", "--use-conda", "-F"])
-
-    
-def test_hmmsearch():
-    run("bio/hmmer/hmmsearch", ["snakemake", "test-prot-tbl.txt", "--use-conda", "-F"])
-
-
-def test_paladin_index():
-    run("bio/paladin/index", ["snakemake", "index/prot.fasta.bwt", "--use-conda", "-F"])
-
-    
-def test_paladin_prepare():
-    run("bio/paladin/prepare", ["snakemake", "uniprot_sprot.fasta.gz", "--use-conda", "-F"])
-    
-    
-def test_paladin_align():
-    run("bio/paladin/align", ["snakemake", "paladin_mapped/a.bam", "--use-conda", "-F"])
 
 
 def test_ucsc_bedgraphtobigwig():
@@ -970,14 +945,6 @@ def test_ensembl_annotation():
 
 def test_ensembl_variation():
     run("bio/reference/ensembl-variation", ["snakemake", "--use-conda", "-F"])
-
-    
-def test_infernal_cmpress():
-    run("bio/infernal/cmpress", ["snakemake", "test-covariance-model.cm.i1f", "--use-conda", "-F"])
-
-
-def test_infernal_cmscan():
-    run("bio/infernal/cmscan", ["snakemake", "tr-infernal-tblout.txt", "--use-conda", "-F"])
 
 
 def test_bismark_genome_preparation():
