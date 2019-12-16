@@ -1,4 +1,0 @@
-name: uncompress vcf
-description: Uncompress vcf file with bgzip.
-authors:
-  - Johannes Köster
