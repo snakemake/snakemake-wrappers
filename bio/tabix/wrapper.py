@@ -8,6 +8,4 @@ from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell(
-    "tabix {snakemake.params} {snakemake.input[0]} {log}"
-)
+shell("tabix {snakemake.params} {snakemake.input[0]} {log}")
