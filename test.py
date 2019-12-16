@@ -218,6 +218,19 @@ def test_fastp_pe():
     )
 
 
+def test_fastp_pe_wo_trimming():
+    run(
+        "bio/fastp",
+        [
+            "snakemake",
+            "report/pe_wo_trimming/a.html",
+            "report/pe_wo_trimming/a.json",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_fastp_se():
     run(
         "bio/fastp",
