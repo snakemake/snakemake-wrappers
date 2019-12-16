@@ -42,7 +42,7 @@ if snakemake.input.get("fai"):
     with tempfile.TemporaryDirectory() as tmpdir:
         shell(
             "(bcftools concat -Ob {urls} > {tmpdir}/out.bcf && "
-            " bcftools reheader --fai {snakemake.input.fai} {tmpdir}/out.bcf -o {snakemake.output[0]}) {log}"
+            " bcftools reheader --fai {snakemake.input.fai} {tmpdir}/out.bcf | bcftools view -Oz -o {snakemake.output[0]}) {log}"
         )
 else:
     # without .fai, just concatenate
