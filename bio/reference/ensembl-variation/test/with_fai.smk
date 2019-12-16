@@ -1,8 +1,8 @@
-rule get_variation:
+rule get_variation_with_contig_lengths:
+    input:
+        fai="refs/genome.fasta.fai"
     output:
         vcf="refs/variation.vcf.gz"
-        # optional: add fai to get VCF with annotated contig lengths (as required by GATK)
-        # fai="refs/genome.fasta.fai"
     params:
         species="saccharomyces_cerevisiae",
         release="98",
@@ -11,5 +11,3 @@ rule get_variation:
         "logs/get_variation.log"
     wrapper:
         "master/bio/reference/ensembl-variation"
-
-
