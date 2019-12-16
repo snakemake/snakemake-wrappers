@@ -1,4 +1,0 @@
-name: compress vcf
-description: Compress and index vcf file with bgzip and tabix.
-authors:
-  - Johannes Köster

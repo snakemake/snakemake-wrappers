@@ -6,5 +6,6 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell("bgzip --decompress --stdout {snakemake.input} > {snakemake.output}")
+shell("tabix {snakemake.params} {snakemake.input[0]} {log}")

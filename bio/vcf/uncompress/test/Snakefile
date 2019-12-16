@@ -1,7 +1,0 @@
-rule uncompress_vcf:
-    input:
-        "{prefix}.vcf.gz"
-    output:
-        "{prefix}.vcf"
-    wrapper:
-        "master/bio/vcf/uncompress"
