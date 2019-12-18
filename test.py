@@ -72,6 +72,13 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+def test_arriba():
+    run(
+        "bio/arriba",
+        ["snakemake", "fusions/A.tsv", "fusions/A.discarded.tsv", "--use-conda", "-F"],
+    )
+
+
 def test_art_profiler_illumina():
     run(
         "bio/art/profiler_illumina",
@@ -107,33 +114,30 @@ def test_bedtools_slop():
 
 
 def test_bcftools_index():
-    run("bio/bcftools/index",
-        ["snakemake", "a.bcf.csi", "--use-conda", "-F"])
+    run("bio/bcftools/index", ["snakemake", "a.bcf.csi", "--use-conda", "-F"])
 
 
 def test_bcftools_concat():
-    run("bio/bcftools/concat",
-        ["snakemake", "all.bcf", "--use-conda", "-F"])
+    run("bio/bcftools/concat", ["snakemake", "all.bcf", "--use-conda", "-F"])
 
 
 def test_bcftools_merge():
-    run("bio/bcftools/merge",
-        ["snakemake", "all.bcf", "--use-conda", "-F"])
+    run("bio/bcftools/merge", ["snakemake", "all.bcf", "--use-conda", "-F"])
 
 
 def test_bedtools_intersect():
-    run("bio/bedtools/intersect",
-        ["snakemake", "A_B.intersected.bed", "--use-conda", "-F"])
+    run(
+        "bio/bedtools/intersect",
+        ["snakemake", "A_B.intersected.bed", "--use-conda", "-F"],
+    )
 
 
 def test_bedtools_merge():
-    run("bio/bedtools/merge",
-        ["snakemake", "A.merged.bed", "--use-conda", "-F"])
+    run("bio/bedtools/merge", ["snakemake", "A.merged.bed", "--use-conda", "-F"])
 
 
 def test_bedtools_slop():
-    run("bio/bedtools/slop",
-        ["snakemake", "A.slop.bed", "--use-conda", "-F"])
+    run("bio/bedtools/slop", ["snakemake", "A.slop.bed", "--use-conda", "-F"])
 
 
 def test_bowtie2_align():
@@ -362,9 +366,13 @@ def test_happy_prepy():
         ["snakemake", "normalized/variants.vcf", "--use-conda", "-F"],
     )
 
+
 def test_happy_prepy():
-    run("bio/hap.py/pre.py",
-        ["snakemake", "normalized/variants.vcf", "--use-conda", "-F"])
+    run(
+        "bio/hap.py/pre.py",
+        ["snakemake", "normalized/variants.vcf", "--use-conda", "-F"],
+    )
+
 
 def test_hisat2_index():
     run("bio/hisat2/index", ["snakemake", "index_genome", "--use-conda", "-F"])
