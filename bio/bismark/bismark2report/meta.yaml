@@ -1,0 +1,19 @@
+name: bismark2report
+description: |
+  Generate graphical HTML report from Bismark reports (see https://github.com/FelixKrueger/Bismark/blob/master/bismark2report).
+authors:
+  - Roman Cherniatchik
+input:
+  - alignment_report: Alignment report (if not specified bismark will try to find it current directory)
+  - nucleotide_report: Optional Bismark nucleotide coverage report (if not specified bismark will try to find it current directory)
+  - dedup_report: Optional deduplication report (if not specified bismark will try to find it current directory)
+  - splitting_report: Optional Bismark methylation extractor report (if not specified bismark will try to find it current directory)
+  - mbias_report: Optional Bismark methylation extractor report (if not specified bismark will try to find it current directory)
+
+params:
+  - skip_optional_reports: Use 'true' of 'false' to not look for optional reports not mentioned in input section (passes 'none' to bismark2report)
+  - extra: Any additional args
+
+output:
+  - html: Output HTML file path, if batch mode isn't used.
+  - html_dir: Output dir path for HTML reports if batch mode is used

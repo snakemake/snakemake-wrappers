@@ -1,0 +1,10 @@
+name: primerclip
+description: |
+  Primer trimming on sam file, https://github.com/swiftbiosciences/primerclip
+authors:
+  - Patrik Smeds
+input:
+  - sam file
+  - master primer file
+output:
+  - sam file

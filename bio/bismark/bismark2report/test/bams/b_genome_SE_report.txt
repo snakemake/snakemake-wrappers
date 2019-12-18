@@ -1,0 +1,42 @@
+Bismark report for: b.fq.gz (version: v0.22.1)
+Option '--directional' specified (default mode): alignments to complementary strands (CTOT, CTOB) were ignored (i.e. not performed)
+Bismark was run with Bowtie 2 against the bisulfite genome of /Users/romeo/work/git_else/chukovskij-snakemake-wrappers/bio/bismark/bismark/test/genome/ with the specified options: -q --score-min L,0,-0.2 --ignore-quals
+
+Final Alignment report
+======================
+Sequences analysed in total:	10
+Number of alignments with a unique best hit from the different alignments:	7
+Mapping efficiency:	70.0%
+Sequences with no alignments under any condition:	3
+Sequences did not map uniquely:	0
+Sequences which were discarded because genomic sequence could not be extracted:	0
+
+Number of sequences with unique best (first) alignment came from the bowtie output:
+CT/CT:	4	((converted) top strand)
+CT/GA:	3	((converted) bottom strand)
+GA/CT:	0	(complementary to (converted) top strand)
+GA/GA:	0	(complementary to (converted) bottom strand)
+
+Number of alignments to (merely theoretical) complementary strands being rejected in total:	0
+
+Final Cytosine Methylation Report
+=================================
+Total number of C's analysed:	12
+
+Total methylated C's in CpG context:	2
+Total methylated C's in CHG context:	4
+Total methylated C's in CHH context:	4
+Total methylated C's in Unknown context:	0
+
+Total unmethylated C's in CpG context:	1
+Total unmethylated C's in CHG context:	1
+Total unmethylated C's in CHH context:	0
+Total unmethylated C's in Unknown context:	0
+
+C methylated in CpG context:	66.7%
+C methylated in CHG context:	80.0%
+C methylated in CHH context:	100.0%
+Can't determine percentage of methylated Cs in Unknown context (CN or CHN) if value was 0
+
+
+Bismark completed in 0d 0h 0m 5s

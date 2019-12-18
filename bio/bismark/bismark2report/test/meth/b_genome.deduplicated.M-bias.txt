@@ -1,0 +1,66 @@
+CpG context (R1)
+================
+position	count methylated	count unmethylated	% methylation	coverage
+1	0	0		0
+2	0	0		0
+3	0	0		0
+4	1	0	100.00	1
+5	0	0		0
+6	0	0		0
+7	0	0		0
+
+CHG context (R1)
+================
+position	count methylated	count unmethylated	% methylation	coverage
+1	0	0		0
+2	0	0		0
+3	2	0	100.00	2
+4	0	0		0
+5	0	0		0
+6	0	0		0
+7	0	0		0
+
+CHH context (R1)
+================
+position	count methylated	count unmethylated	% methylation	coverage
+1	0	0		0
+2	0	0		0
+3	0	0		0
+4	0	0		0
+5	0	0		0
+6	1	0	100.00	1
+7	1	0	100.00	1
+
+CpG context (R2)
+================
+position	count methylated	count unmethylated	% methylation	coverage
+1	0	0		0
+2	0	0		0
+3	0	0		0
+4	0	0		0
+5	1	0	100.00	1
+6	0	0		0
+7	0	0		0
+
+CHG context (R2)
+================
+position	count methylated	count unmethylated	% methylation	coverage
+1	0	0		0
+2	0	0		0
+3	0	0		0
+4	0	0		0
+5	0	0		0
+6	0	0		0
+7	0	0		0
+
+CHH context (R2)
+================
+position	count methylated	count unmethylated	% methylation	coverage
+1	0	0		0
+2	1	0	100.00	1
+3	2	0	100.00	2
+4	0	0		0
+5	0	0		0
+6	0	0		0
+7	1	0	100.00	1
+

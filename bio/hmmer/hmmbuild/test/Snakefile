@@ -1,0 +1,12 @@
+rule hmmbuild_profile:
+    input:
+        "test-profile.sto"
+    output:
+        "test-profile.hmm"
+    log:
+        "logs/test-profile-hmmbuild.log"
+    params:
+        extra="",
+    threads: 4
+    wrapper:
+        "master/bio/hmmer/hmmbuild"

@@ -1,0 +1,15 @@
+rule hmmpress_profile:
+    input:
+        "test-profile.hmm"
+    output:
+        "test-profile.hmm.h3f",
+        "test-profile.hmm.h3i",
+        "test-profile.hmm.h3m",
+        "test-profile.hmm.h3p"
+    log:
+        "logs/hmmpress.log"
+    params:
+        extra="",
+    threads: 4
+    wrapper:
+        "master/bio/hmmer/hmmpress"

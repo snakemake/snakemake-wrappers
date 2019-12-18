@@ -1,0 +1,18 @@
+rule transdecoder_predict:
+    input:
+        fasta="test.fa.gz", # required input; optionally gzipped
+        pfam_hits="pfam_hits.txt", # optionally retain ORFs with hits by inputting pfam results here (run separately)
+        blastp_hits="blastp_hits.txt", # optionally retain ORFs with hits by inputting blastp results here (run separately) 
+        # you may also want to add your transdecoder longorfs result here - predict will fail if you haven't first run longorfs
+        #longorfs="test.fa.transdecoder_dir/longest_orfs.pep"
+    output:
+        "test.fa.transdecoder.bed",
+        "test.fa.transdecoder.cds",
+        "test.fa.transdecoder.pep",
+        "test.fa.transdecoder.gff3"
+    log:
+        "logs/transdecoder/test-predict.log"
+    params:
+        extra=""
+    wrapper:
+        "master/bio/transdecoder/predict"
