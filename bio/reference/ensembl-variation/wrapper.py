@@ -15,7 +15,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 if type == "all":
     if species == "homo_sapiens":
         suffixes = [
-            "_chr{}".format(chrom) for chrom in list(range(1, 23)) + ["X", "Y", "MT"]
+            "-chr{}".format(chrom) for chrom in list(range(1, 23)) + ["X", "Y", "MT"]
         ]
     else:
         suffixes = [""]
