@@ -1,0 +1,11 @@
+rule genomepy:
+    output:
+        directory("{assembly}")
+    log:
+        "logs/genomepy_{assembly}.log"
+    params:
+        provider="NCBI",   # optional
+        plugins="sizes",   # optional
+        annotation=False,  # optional
+    wrapper:
+        "master/bio/genomepy"

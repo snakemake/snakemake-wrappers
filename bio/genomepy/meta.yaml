@@ -1,0 +1,13 @@
+name: genomepy
+authors:
+  - Maarten van der Sande
+description: |
+  Download genomes the easy way.
+  https://github.com/vanheeringen-lab/genomepy
+output: |
+  Directory with the name of the assembly, and at least [assembly].fa & [assembly].fa.fai.
+  Depending on which plugins are enabled more output might be provided.
+params:
+  - provider: which provider to download from, defaults to NCBI (choose from UCSC, Ensembl, NCBI).
+  - plugins: which plugins to enable.
+  - annotation: Boolean whether or not to download the annotation instead of the genomic assembly (default False).
