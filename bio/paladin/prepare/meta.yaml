@@ -1,0 +1,8 @@
+name: paladin prepare
+description: "Download and prepare uniprot refs for paladin mapping. PALADIN is a protein sequence alignment tool designed for the accurate functional characterization of metagenomes."
+authors:
+  - N. Tessa Pierce
+output:
+  - prepared uniprot file for mapping with paladin 
+citations:
+  - "`Westbrook, Anthony et al. 'PALADIN: protein alignment for functional profiling whole metagenome shotgun data' Bioinformatics (Oxford, England) vol. 33,10 (2017): 1473-1478 <https://doi.org/10.1093/bioinformatics/btx021>`_"

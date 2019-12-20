@@ -1,0 +1,11 @@
+rule deduplicate_bismark:
+    input: "bams/a_genome_pe.bam"
+    output:
+        bam="bams/{sample}.deduplicated.bam",
+        report="bams/{sample}.deduplication_report.txt",
+    log:
+        "logs/bams/{sample}.deduplicated.log",
+    params:
+        extra=""  # optional params string
+    wrapper:
+        "master/bio/bismark/deduplicate_bismark"

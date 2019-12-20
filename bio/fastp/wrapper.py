@@ -15,10 +15,17 @@ assert (
 
 if n == 1:
     reads = "--in1 {}".format(snakemake.input.sample)
-    trimmed = "--out1 {}".format(snakemake.output.trimmed)
 else:
     reads = "--in1 {} --in2 {}".format(*snakemake.input.sample)
-    trimmed = "--out1 {} --out2 {}".format(*snakemake.output.trimmed)
+
+trimmed_paths = snakemake.output.get("trimmed", None)
+if trimmed_paths is not None:
+    if n == 1:
+        trimmed = "--out1 {}".format(snakemake.output.trimmed)
+    else:
+        trimmed = "--out1 {} --out2 {}".format(*snakemake.output.trimmed)
+else:
+    trimmed = ""
 
 html = "--html {}".format(snakemake.output.html)
 json = "--json {}".format(snakemake.output.json)
