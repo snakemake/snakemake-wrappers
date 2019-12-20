@@ -17,7 +17,8 @@ samples_paths <- base::paste0(samples_paths, collapse = ', "');
 # Building function arguments
 extra <- base::paste0("files = c(\"", samples_paths, "\")");
 
-if ("tx_to_gene" %in% names(snakemake@input)) {    # Check if user provided optional transcript to gene table
+# Check if user provided optional transcript to gene table
+if ("tx_to_gene" %in% names(snakemake@input)) {
   extra <- base::paste(
     extra,                                         # Foreward existing arguments
     "tx2gene = ", snakemake@input[["tx_to_gene"]], # Add tx2gene to parameters
