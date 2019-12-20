@@ -6,7 +6,6 @@ rule tximport:
     output:
         txi = "txi.RDS"
     params:
-        type = "salmon",
-        txOut = True
+        extra = "type='salmon', txOut=TRUE"
     wrapper:
         "master/bio/tximport"

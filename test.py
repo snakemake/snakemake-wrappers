@@ -1110,5 +1110,6 @@ def test_bismark_bismark2bedgraph():
 def test_tabix():
     run("bio/tabix", ["snakemake", "--use-conda", "-F", "test.vcf.gz.tbi"])
 
+
 def test_tximport():
     run("bio/tximport", ["snakemake", "txi.RDS", "--use-conda", "-F"])

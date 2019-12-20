@@ -11,23 +11,35 @@ samples_paths <- sapply(               # Sequentially apply
   function(quant) as.character(quant)  # ... a cast as character
 );
 
-# Building extra parameters for tximport
-extra <- list();
-for (name in names(snakemake@params)) {
-  extra[[name]] = snakemake@params[[name]];
+# Collapse path into a character vector
+samples_paths <- base::paste0(samples_paths, collapse = ', "');
+
+# Building function arguments
+extra <- base::paste0("files = c(\"", samples_paths, "\")");
+
+if ("tx_to_gene" %in% names(snakemake@input)) {    # Check if user provided optional transcript to gene table
+  extra <- base::paste(
+    extra,                                         # Foreward existing arguments
+    "tx2gene = ", snakemake@input[["tx_to_gene"]], # Add tx2gene to parameters
+    sep = ", "                                     # Field separator
+  );
 }
 
-# Add paths to samples
-extra$files = samples_paths;
+# Add user defined arguments
+extra <- base::paste(
+  extra,                       # Foreward existing parameters
+  snakemake@params[["extra"]], # Add user parameters
+  sep = ", "                   # Field separator
+);
 
-if ("tx2gene" %in% names(snakemake@input)) {     # Check if user provided a tx2gene
-  extra$tx2gene <- snakemake@input[["tx2gene"]]; # Add tx2gene to parameters
-}
-
+print(extra);
 # Perform tximport work
-txi <- do.call(            # Call a function with a list of args
-  tximport::tximport,      # Call specifically tximport
-  extra                    # Extra parameters to pass
+txi <- base::eval(                        # Evaluate the following
+  base::parse(                            # ... parsed expression
+    text = base::paste0(
+      "tximport::tximport(", extra, ");"  # ... of tximport and its arguments
+    )
+  )
 );
 
 # Save results
