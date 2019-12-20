@@ -1,10 +1,15 @@
 rule get_variation:
     output:
-        vcf="refs/variation.vcf.gz",
-        idx="refs/variation.vcf.gz.tbi"
+        vcf="refs/variation.vcf.gz"
+        # optional: add fai to get VCF with annotated contig lengths (as required by GATK)
+        # fai="refs/genome.fasta.fai"
     params:
-        species="mus_musculus",
+        species="saccharomyces_cerevisiae",
         release="98",
-        type="structural_variations" # one of "all", "somatic", "structural_variation"
+        type="all" # one of "all", "somatic", "structural_variation"
+    log:
+        "logs/get_variation.log"
     wrapper:
         "master/bio/reference/ensembl-variation"
+
+

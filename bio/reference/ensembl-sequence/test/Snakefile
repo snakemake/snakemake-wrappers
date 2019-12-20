@@ -1,10 +1,12 @@
-rule get_sequence:
+rule get_genome:
     output:
         "refs/genome.fasta"
     params:
-        species="drosophila_melanogaster",
+        species="saccharomyces_cerevisiae",
         datatype="dna",
-        build="BDGP6.22",
+        build="R64-1-1",
         release="98"
+    log:
+        "logs/get_genome.log"
     wrapper:
         "master/bio/reference/ensembl-sequence"

@@ -1,0 +1,15 @@
+rule cmscan_profile:
+    input:
+        fasta="test-transcript.fa",
+        profile="test-covariance-model.cm.i1i"
+    output:
+        tblout="tr-infernal-tblout.txt",
+    log:
+        "logs/cmscan.log"
+    params:
+        evalue_threshold=10, # In the per-target output, report target sequences with an E-value of <= <x>. default=10.0 (on average, ~10 false positives reported per query)
+        extra= "",
+        #score_threshold=50, # Instead of thresholding per-CM output on E-value, report target sequences with a bit score of >= <x>. 
+    threads: 4
+    wrapper:
+        "master/bio/infernal/cmscan"
