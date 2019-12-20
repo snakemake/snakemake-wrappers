@@ -1111,6 +1111,10 @@ def test_tabix():
     run("bio/tabix", ["snakemake", "--use-conda", "-F", "test.vcf.gz.tbi"])
 
 
+def test_tximport():
+    run("bio/tximport", ["snakemake", "txi.RDS", "--use-conda", "-F"])
+
+
 def test_genomepy():
     # download fugu genome (relatively small, +/- 100 mb)
     run("bio/genomepy", ["snakemake", "--use-conda", "-F", "FUGU5"])
