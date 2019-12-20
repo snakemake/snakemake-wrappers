@@ -6,7 +6,6 @@ rule tximport:
     message:
         "Testing tximport"
     params:
-        type = "salmon",
-        txOut = True
+        extra = "type='salmon', txOut=TRUE"
     wrapper:
         "file:.."
