@@ -4,4 +4,3 @@ channels:
   - defaults
 dependencies:
   - arriba ==1.1.0
-  - star ==2.7.1a

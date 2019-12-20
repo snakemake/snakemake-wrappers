@@ -1,7 +1,11 @@
 rule arriba:
     input:
         # STAR bam containing chimeric alignments
-        bam="{sample}.bam"
+        bam="{sample}.bam",
+        # path to reference genome
+        genome="genome.fasta",
+        # path to annotation gtf
+        annotation="annotation.gtf",
     output:
         # approved gene fusions
         fusions="fusions/{sample}.tsv",
@@ -10,10 +14,6 @@ rule arriba:
     log:
         "logs/arriba/{sample}.log"
     params:
-        # path to reference genome
-        genome="genome.fasta",
-        # path to annotation gtf
-        annotation="annotation.gtf",
         # arriba blacklist file
         blacklist="blacklist.tsv", # strongly recommended, see https://arriba.readthedocs.io/en/latest/input-files/#blacklist
         # file containing known fusions
