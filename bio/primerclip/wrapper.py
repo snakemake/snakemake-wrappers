@@ -41,6 +41,6 @@ shell(
     " {master_file}"
     " /dev/stdin"
     " /dev/stdout"
-    " {samtools_input_command}"
+    " {samtools_output_command}"
     " {log}"
 )
