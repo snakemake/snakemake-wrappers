@@ -1,0 +1,27 @@
+rule arriba:
+    input:
+        # STAR bam containing chimeric alignments
+        bam="{sample}.bam",
+        # path to reference genome
+        genome="genome.fasta",
+        # path to annotation gtf
+        annotation="annotation.gtf",
+    output:
+        # approved gene fusions
+        fusions="fusions/{sample}.tsv",
+        # discarded gene fusions
+        discarded="fusions/{sample}.discarded.tsv" # optional
+    log:
+        "logs/arriba/{sample}.log"
+    params:
+        # arriba blacklist file
+        blacklist="blacklist.tsv", # strongly recommended, see https://arriba.readthedocs.io/en/latest/input-files/#blacklist
+        # file containing known fusions
+        known_fusions="", # optional
+        # file containing information from structural variant analysis
+        sv_file="", # optional
+        # optional parameters
+        extra="-T -P -i 1,2"
+    threads: 1
+    wrapper:
+        "master/bio/arriba"
