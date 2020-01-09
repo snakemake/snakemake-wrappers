@@ -1,0 +1,1 @@
+/Users/tessa/Dropbox/dib-lab/snakemake-wrappers/bio/transdecoder/predict/test/.snakemake/conda/3edba957/opt/transdecoder/util/compute_base_probs.pl test.fa 0 > /Users/tessa/Dropbox/dib-lab/snakemake-wrappers/bio/transdecoder/predict/test/test.fa.transdecoder_dir/base_freqs.dat

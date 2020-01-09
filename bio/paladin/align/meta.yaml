@@ -1,0 +1,11 @@
+name: paladin align
+description: "Align nucleotide reads to a protein fasta file (that has been indexed with paladin index). PALADIN is a protein sequence alignment tool designed for the accurate functional characterization of metagenomes."
+authors:
+  - N. Tessa Pierce
+input:
+  - nucleotide reads (fastq)
+  - indexed protein fasta file (output of paladin index or prepare)
+output:
+  - mapped reads (SAM or BAM format) 
+citations:
+  - "`Westbrook, Anthony et al. 'PALADIN: protein alignment for functional profiling whole metagenome shotgun data' Bioinformatics (Oxford, England) vol. 33,10 (2017): 1473-1478 <https://doi.org/10.1093/bioinformatics/btx021>`_"

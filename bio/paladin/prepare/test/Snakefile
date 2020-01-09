@@ -1,0 +1,10 @@
+rule paladin_prepare:
+    output:
+        "uniprot_sprot.fasta.gz",
+        "uniprot_sprot.fasta.gz.pro" 
+    log:
+        "logs/paladin/prepare_sprot.log"
+    params:
+        reference_type=1, # 1=swiss-prot, 2=uniref90 
+    wrapper:
+        "master/bio/paladin/prepare"

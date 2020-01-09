@@ -1,0 +1,11 @@
+name: hmmscan
+description: "search protein sequence(s) against a protein profile database"
+authors:
+  - N Tessa Pierce
+input:
+  - protein sequence file (fasta)
+  - database hmm files
+output:
+  - matches to hmm files 
+citations:
+  - "`Challenges in Homology Search: HMMER3 and Convergent Evolution of Coiled-Coil Regions. J. Mistry, R. D. Finn, S. R. Eddy, A. Bateman, M. Punta. Nucleic Acids Research, 41:e121, 2013 <https://doi.org/10.1093/nar/gkt263>`_"
