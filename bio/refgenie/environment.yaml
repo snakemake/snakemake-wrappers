@@ -2,5 +2,5 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
-  - refgenie =0.7.2
-  - refgenconf =0.5.4
+  - refgenie =0.8.2
+  - refgenconf =0.6.1
