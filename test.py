@@ -970,6 +970,16 @@ def test_plass_single():
     run("bio/plass", ["snakemake", "plass/prot_single.fasta", "--use-conda", "-F"])
 
 
+def test_refgenie():
+    try:
+        shutil.copytree("bio/refgenie/test/genome_folder", "/tmp/genome_folder")
+    except FileExistsError:
+        # no worries, the directory is already there
+        pass
+    os.environ["REFGENIE"] = "/tmp/genome_folder/genome_config.yaml"
+    run("bio/refgenie", ["snakemake", "--use-conda", "-F"])
+
+
 def test_hmmbuild():
     run("bio/hmmer/hmmbuild", ["snakemake", "test-profile.hmm", "--use-conda", "-F"])
 
