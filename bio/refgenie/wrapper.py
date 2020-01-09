@@ -16,7 +16,6 @@ rgc = refgenconf.RefGenConf(conf_path, writable=True)
 
 # pull asset if necessary
 gat, archive_data, server_url = rgc.pull_asset(genome, asset, tag, force=False)
-# TODO need a race-condition and simple way in the API to update config (maybe directly in pull_asset?)
 
 for seek_key, out in snakemake.output.items():
     path = rgc.get_asset(genome, asset, tag, seek_key=seek_key)
