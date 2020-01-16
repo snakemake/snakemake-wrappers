@@ -3,4 +3,4 @@ channels:
   - bioconda
   - defaults
 dependencies:
-  - star ==2.7.1a
+  - star ==2.7.3a
