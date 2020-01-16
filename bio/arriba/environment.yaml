@@ -1,6 +1,6 @@
 channels:
-  - bioconda
   - conda-forge
+  - bioconda
   - defaults
 dependencies:
-  - gatk4 ==4.1.4.1
+  - arriba ==1.1.0

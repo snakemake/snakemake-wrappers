@@ -1,0 +1,11 @@
+rule obtain_asset:
+    output:
+        # the name refers to the refgenie seek key (see attributes on http://refgenomes.databio.org)
+        fai="refs/genome.fasta"
+        # Multiple outputs/seek keys are possible here.
+    params:
+        genome="human_alu",
+        asset="fasta",
+        tag="default"
+    wrapper:
+        "master/bio/refgenie"

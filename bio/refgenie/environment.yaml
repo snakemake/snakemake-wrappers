@@ -1,6 +1,6 @@
 channels:
   - bioconda
   - conda-forge
-  - defaults
 dependencies:
-  - gatk4 ==4.1.4.1
+  - refgenie =0.8.2
+  - refgenconf =0.6.1
