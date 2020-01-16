@@ -13,9 +13,9 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
 shell(
-    "msisensor scan "             # Tool and its sub-command
-    "-d {snakemake.input} "       # Path to fasta file
-    "-o {snakemake.output} "      # Path to output file
-    "{extra} "                    # Optional extra parameters
-    "{log}"                       # Logging behavior
+    "msisensor scan "  # Tool and its sub-command
+    "-d {snakemake.input} "  # Path to fasta file
+    "-o {snakemake.output} "  # Path to output file
+    "{extra} "  # Optional extra parameters
+    "{log}"  # Logging behavior
 )
