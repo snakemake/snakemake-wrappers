@@ -1162,5 +1162,9 @@ def test_tabix():
     run("bio/tabix", ["snakemake", "--use-conda", "-F", "test.vcf.gz.tbi"])
 
 
+def test_msisensor_scan():
+    run("bio/msisensor/scan", ["snakemake", "--use-conda", "-F", "microsat.list"])
+
+
 def test_tximport():
     run("bio/tximport", ["snakemake", "txi.RDS", "--use-conda", "-F"])
