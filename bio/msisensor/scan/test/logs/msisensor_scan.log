@@ -1,6 +1,6 @@
-scan -d genome.fasta -o microsat.list Start at:  Thu Jan 16 11:48:58 2020
+scan -d genome.fasta -o microsat.list Start at:  Fri Jan 17 12:49:07 2020
 
-scanning chomosome Sheila done. 0 secs passed
+scanning chomosome Sheila done. 1 secs passed
 
-Total time consumed:  0 secs
+Total time consumed:  1 secs
 
