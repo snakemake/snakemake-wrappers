@@ -4,6 +4,7 @@ __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
 
 import os
+import tempfile
 from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -14,4 +15,5 @@ if outdir:
 
 extra = snakemake.params.get("extra", "")
 
-shell("fasterq-dump {extra} {outdir} {snakemake.wildcards.accession} {log}")
+with tempfile.TemporaryDirectory() as tmp:
+    shell("fasterq-dump --temp {tmp.name} {extra} {outdir} {snakemake.wildcards.accession} {log}")
