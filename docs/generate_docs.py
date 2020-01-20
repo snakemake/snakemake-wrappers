@@ -4,7 +4,7 @@ from jinja2 import Template
 import yaml
 import subprocess
 
-DISCIPLINES = ["bio"]
+DISCIPLINES = ["bio", "utils"]
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 WRAPPER_DIR = os.path.dirname(BASE_DIR)
