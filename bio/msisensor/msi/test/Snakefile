@@ -5,7 +5,7 @@ rule test_msisensor_msi:
         microsat = "example.microsate.sites"
     output:
         "example.msi",
-        "example.msi_dis_tab",
+        "example.msi_dis",
         "example.msi_germline",
         "example.msi_somatic"
     message:

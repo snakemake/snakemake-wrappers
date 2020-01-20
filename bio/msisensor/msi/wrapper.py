@@ -19,7 +19,7 @@ prefix = commonprefix(snakemake.output)
 
 shell(
     "msisensor msi"  # Tool and its sub-command
-    " -d {snakemake.input.index}"  # Path to indexed fasta file
+    " -d {snakemake.input.microsat}"  # Path to homopolymer/microsat file
     " -n {snakemake.input.normal}"  # Path to normal bam
     " -t {snakemake.input.tumor}"  # Path to tumor bam
     " -o {prefix}"  # Path to output distribution file
