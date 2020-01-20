@@ -1171,4 +1171,7 @@ def test_tximport():
 
 
 def test_fasterq_dump():
-    run("bio/sra-tools/fasterq-dump", ["snakemake", "data/ERR267986.fastq", "--use-conda", "-F"])
+    run(
+        "bio/sra-tools/fasterq-dump",
+        ["snakemake", "data/ERR267986.fastq", "--use-conda", "-F"],
+    )
