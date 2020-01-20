@@ -1,5 +1,5 @@
-name: "MSIsensor Scan"
-description: "Scan homopolymers and microsatelites with MSIsensor"
+name: "MSIsensor msi"
+description: "Score your MSI with MSIsensor"
 author:
   - Thibault Dayris
 input:
