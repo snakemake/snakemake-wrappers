@@ -1168,3 +1168,7 @@ def test_msisensor_scan():
 
 def test_tximport():
     run("bio/tximport", ["snakemake", "txi.RDS", "--use-conda", "-F"])
+
+
+def test_fasterq_dump():
+    run("bio/sra-tools/fasterq-dump", ["snakemake", "data/ERR267986.fastq", "--use-conda", "-F"])
