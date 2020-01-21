@@ -17,5 +17,5 @@ extra = snakemake.params.get("extra", "")
 
 with tempfile.TemporaryDirectory() as tmp:
     shell(
-        "fasterq-dump --temp {tmp.name} {extra} {outdir} {snakemake.wildcards.accession} {log}"
+        "fasterq-dump --temp {tmp} {extra} {outdir} {snakemake.wildcards.accession} {log}"
     )
