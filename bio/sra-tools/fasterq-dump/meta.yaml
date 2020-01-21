@@ -1,0 +1,4 @@
+name: sra-tools fasterq-dump
+description: Download FASTQ files from SRA.
+authors:
+  - Johannes Köster

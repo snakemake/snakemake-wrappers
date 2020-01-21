@@ -1,0 +1,19 @@
+rule get_fastq_pe:
+    output:
+        # the wildcard name must be accession, pointing to an SRA number
+        "data/{accession}_1.fastq",
+        "data/{accession}_2.fastq"
+    params:
+        # optional extra arguments
+        extra=""
+    wrapper:
+        "master/bio/sra-tools/fasterq-dump"
+
+
+rule get_fastq_se:
+    output:
+        "data/{accession}.fastq"
+    params:
+        extra=""
+    wrapper:
+        "master/bio/sra-tools/fasterq-dump"
