@@ -23,7 +23,7 @@ shell(
     " -n {snakemake.input.normal}"  # Path to normal bam
     " -t {snakemake.input.tumor}"  # Path to tumor bam
     " -o {prefix}"  # Path to output distribution file
-    " -b {snakemake.threads}"  # Maximum number of htreads used
+    " -b {snakemake.threads}"  # Maximum number of threads used
     " {extra}"  # Optional extra parameters
     " {log}"  # Logging behavior
 )
