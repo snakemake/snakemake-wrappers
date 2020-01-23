@@ -98,6 +98,10 @@ def test_bcftools_merge():
     run("bio/bcftools/merge", ["snakemake", "all.bcf", "--use-conda", "-F"])
 
 
+def test_bcftools_reheader():
+    run("bio/bcftools/reheader", ["snakemake", "a.reheader.bcf", "--use-conda", "-F"])
+
+
 def test_bedtools_intersect():
     run(
         "bio/bedtools/intersect",

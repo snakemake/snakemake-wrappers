@@ -1,0 +1,13 @@
+rule bcftools_reheader:
+    input:
+        vcf="a.bcf",
+        ## new header, can be omitted if "samples" is set
+        header="header.txt",
+        ## file containing new sample names, can be omitted if "header" is set
+        samples="samples.tsv"
+    output:
+        "a.reheader.bcf"
+    params:
+        extra=""  # optional parameters for bcftools reheader
+    wrapper:
+        "master/bio/bcftools/reheader"
