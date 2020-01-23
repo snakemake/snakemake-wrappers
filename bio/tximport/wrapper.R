@@ -12,7 +12,7 @@ samples_paths <- sapply(               # Sequentially apply
 );
 
 # Collapse path into a character vector
-samples_paths <- base::paste0(samples_paths, collapse = ', "');
+samples_paths <- base::paste0(samples_paths, collapse = '", "');
 
 # Building function arguments
 extra <- base::paste0("files = c(\"", samples_paths, "\")");
