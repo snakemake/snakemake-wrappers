@@ -1,0 +1,13 @@
+name: tximport
+description: |
+  Import and summarize transcript-level estimates for both transcript-level
+  and gene-level analysis.
+authors:
+  - Thibault Dayris
+input:
+  - A list of paths to count data
+output:
+  - A tximport RDS object
+notes: |
+  Add any tximport options in the params, they will be transmitted through the
+  R wrapper. Supplementary options will cause unknown parameters error.

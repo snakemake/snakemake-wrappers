@@ -1,0 +1,42 @@
+[2019-11-20 16:09:45.597] [jointLog] [info] Fragment incompatibility prior below threshold.  Incompatible fragments will be ignored.
+[2019-11-20 16:09:45.597] [jointLog] [warning] 
+
+NOTE: It appears you are running salmon without the `--validateMappings` option.
+Mapping validation can generally improve both the sensitivity and specificity of mapping,
+with only a moderate increase in use of computational resources. 
+Mapping validation is planned to become a default option (i.e. turned on by default) in
+the next release of salmon.
+Unless there is a specific reason to do this (e.g. testing on clean simulated data),
+`--validateMappings` is generally recommended.
+
+[2019-11-20 16:09:45.597] [jointLog] [info] parsing read library format
+[2019-11-20 16:09:45.598] [jointLog] [info] There is 1 library.
+[2019-11-20 16:09:45.674] [jointLog] [info] Loading Quasi index
+[2019-11-20 16:09:45.677] [jointLog] [info] Loading 32-bit quasi index
+[2019-11-20 16:09:45.717] [jointLog] [info] done
+[2019-11-20 16:09:45.717] [jointLog] [info] Index contained 2 targets
+[2019-11-20 16:09:46.077] [fileLog] [info] 
+At end of round 0
+==================
+Observed 30575 total fragments (30575 in most recent round)
+
+[2019-11-20 16:09:46.076] [jointLog] [info] Computed 2 rich equivalence classes for further processing
+[2019-11-20 16:09:46.076] [jointLog] [info] Counted 277 total reads in the equivalence classes 
+[2019-11-20 16:09:46.077] [jointLog] [info] Number of fragments discarded because they have only dovetail (discordant) mappings : 0
+[2019-11-20 16:09:46.078] [jointLog] [warning] Only 277 fragments were mapped, but the number of burn-in fragments was set to 5000000.
+The effective lengths have been computed using the observed mappings.
+
+[2019-11-20 16:09:46.078] [jointLog] [info] Mapping rate = 0.905969%
+
+[2019-11-20 16:09:46.078] [jointLog] [info] finished quantifyLibrary()
+[2019-11-20 16:09:46.078] [jointLog] [info] Starting optimizer
+[2019-11-20 16:09:46.079] [jointLog] [info] Marked 0 weighted equivalence classes as degenerate
+[2019-11-20 16:09:46.079] [jointLog] [info] iteration = 0 | max rel diff. = 1.19841
+[2019-11-20 16:09:46.079] [jointLog] [info] iteration = 100 | max rel diff. = 0
+[2019-11-20 16:09:46.079] [jointLog] [info] Finished optimizer
+[2019-11-20 16:09:46.079] [jointLog] [info] writing output 
+
+[2019-11-20 16:09:46.079] [jointLog] [warning] NOTE: Read Lib [[ reads/a_1.fq.gz, reads/a_2.fq.gz]] :
+
+Detected a *potential* strand bias > 1% in an unstranded protocol check the file: salmon/a/lib_format_counts.json for details
+

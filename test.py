@@ -970,6 +970,16 @@ def test_plass_single():
     run("bio/plass", ["snakemake", "plass/prot_single.fasta", "--use-conda", "-F"])
 
 
+def test_refgenie():
+    try:
+        shutil.copytree("bio/refgenie/test/genome_folder", "/tmp/genome_folder")
+    except FileExistsError:
+        # no worries, the directory is already there
+        pass
+    os.environ["REFGENIE"] = "/tmp/genome_folder/genome_config.yaml"
+    run("bio/refgenie", ["snakemake", "--use-conda", "-F"])
+
+
 def test_hmmbuild():
     run("bio/hmmer/hmmbuild", ["snakemake", "test-profile.hmm", "--use-conda", "-F"])
 
@@ -1150,3 +1160,18 @@ def test_bismark_bismark2bedgraph():
 
 def test_tabix():
     run("bio/tabix", ["snakemake", "--use-conda", "-F", "test.vcf.gz.tbi"])
+
+
+def test_msisensor_scan():
+    run("bio/msisensor/scan", ["snakemake", "--use-conda", "-F", "microsat.list"])
+
+
+def test_tximport():
+    run("bio/tximport", ["snakemake", "txi.RDS", "--use-conda", "-F"])
+
+
+def test_fasterq_dump():
+    run(
+        "bio/sra-tools/fasterq-dump",
+        ["snakemake", "data/ERR267986.fastq", "--use-conda", "-F"],
+    )

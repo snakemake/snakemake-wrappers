@@ -1,0 +1,4 @@
+config_version: 0.3
+genome_folder: /tmp/genome_folder
+genomes: null
+genome_servers: ['http://refgenomes.databio.org']

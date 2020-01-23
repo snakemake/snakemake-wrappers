@@ -37,8 +37,8 @@ else:
 shell(
     "arriba "
     "-x {snakemake.input.bam} "
-    "-a {snakemake.params.genome} "
-    "-g {snakemake.params.annotation} "
+    "-a {snakemake.input.genome} "
+    "-g {snakemake.input.annotation} "
     "{blacklist_cmd} "
     "{known_cmd} "
     "{sv_cmd} "
