@@ -11,7 +11,7 @@ from snakemake.shell import shell
 
 # Extract arguments.
 extra = snakemake.params.get("extra", "")
-#sort_order = snakemake.params.get("sort_order", "coordinate")
+# sort_order = snakemake.params.get("sort_order", "coordinate")
 sort_extra = snakemake.params.get("sort_extra", "")
 samblaster_extra = snakemake.params.get("samblaster_extra", "")
 
