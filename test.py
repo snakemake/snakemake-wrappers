@@ -1175,3 +1175,7 @@ def test_fasterq_dump():
         "bio/sra-tools/fasterq-dump",
         ["snakemake", "data/ERR267986.fastq", "--use-conda", "-F"],
     )
+
+
+def test_bwa_mem_samblaster():
+    run("bio/bwa/mem-samblaster", ["snakemake", "mapped/a.bam", "--use-conda", "-F"])

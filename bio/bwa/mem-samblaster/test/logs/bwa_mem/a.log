@@ -1,0 +1,26 @@
+[M::bwa_idx_load_from_disk] read 0 ALT contigs
+[M::process] read 2 sequences (14 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (0, 0, 0, 0)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] skip orientation FR as there are not enough pairs
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_process_seqs] Processed 2 reads in 0.001 CPU sec, 0.000 real sec
+samblaster: Version 0.1.24
+samblaster: Inputting from stdin
+samblaster: Outputting to stdout
+[main] Version: 0.7.17-r1188
+[main] CMD: bwa mem -t 8 -R @RG\tID:a\tSM:a genome reads/a.1.fastq reads/a.2.fastq
+[main] Real time: 0.001 sec; CPU: 0.003 sec
+samblaster: Loaded 1 header sequence entries.
+samblaster: Marked 0 of 1 (0.00%) read ids as duplicates using 1844k memory in 0.000S CPU seconds and 0S wall time.
+
+
+sambamba 0.7.1
+ by Artem Tarasov and Pjotr Prins (C) 2012-2019
+sambamba 0.7.1
+ by Artem Tarasov and Pjotr Prins (C) 2012-2019    LDC 1.13.0 / DMD v2.083.1 / LLVM7.0.1 / bootstrap LDC - the LLVM D compiler (0.17.6)
+
+
+    LDC 1.13.0 / DMD v2.083.1 / LLVM7.0.1 / bootstrap LDC - the LLVM D compiler (0.17.6)
+
