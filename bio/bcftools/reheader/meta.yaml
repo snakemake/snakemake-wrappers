@@ -1,0 +1,4 @@
+name: bcftools reheader
+description: Change header or sample names of vcf/bcf file.
+authors:
+  - Jan Forster
