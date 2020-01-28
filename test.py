@@ -1166,6 +1166,10 @@ def test_msisensor_scan():
     run("bio/msisensor/scan", ["snakemake", "--use-conda", "-F", "microsat.list"])
 
 
+def test_msisensor_msi():
+    run("bio/msisensor/msi", ["snakemake", "--use-conda", "-F", "example.msi"])
+
+
 def test_tximport():
     run("bio/tximport", ["snakemake", "txi.RDS", "--use-conda", "-F"])
 
