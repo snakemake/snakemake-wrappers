@@ -20,6 +20,7 @@ else:
     samples_cmd = ""
 
 extra = snakemake.params.get("extra", "")
+view_extra = snakemake.params.get("view_extra", "")
 
 shell(
     "bcftools reheader "
@@ -27,5 +28,7 @@ shell(
     "{header_cmd} "
     "{samples_cmd} "
     "{snakemake.input.vcf} "
+    "| bcftools view "
+    "{view_extra} "
     "> {snakemake.output}"
 )

@@ -8,6 +8,7 @@ rule bcftools_reheader:
     output:
         "a.reheader.bcf"
     params:
-        extra=""  # optional parameters for bcftools reheader
+        extra="",  # optional parameters for bcftools reheader
+        view_extra="-O b"  # add output format for internal bcftools view call
     wrapper:
         "master/bio/bcftools/reheader"
