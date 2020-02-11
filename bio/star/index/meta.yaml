@@ -2,6 +2,7 @@ name: "STAR Index"
 description: Index fasta sequences with STAR
 authors:
   - Thibault Dayris
+  - Tomás Di Domenico
 input:
   - A (multi)fasta formatted file
 output:

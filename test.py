@@ -98,31 +98,8 @@ def test_bcftools_merge():
     run("bio/bcftools/merge", ["snakemake", "all.bcf", "--use-conda", "-F"])
 
 
-def test_bedtools_intersect():
-    run(
-        "bio/bedtools/intersect",
-        ["snakemake", "A_B.intersected.bed", "--use-conda", "-F"],
-    )
-
-
-def test_bedtools_merge():
-    run("bio/bedtools/merge", ["snakemake", "A.merged.bed", "--use-conda", "-F"])
-
-
-def test_bedtools_slop():
-    run("bio/bedtools/slop", ["snakemake", "A.slop.bed", "--use-conda", "-F"])
-
-
-def test_bcftools_index():
-    run("bio/bcftools/index", ["snakemake", "a.bcf.csi", "--use-conda", "-F"])
-
-
-def test_bcftools_concat():
-    run("bio/bcftools/concat", ["snakemake", "all.bcf", "--use-conda", "-F"])
-
-
-def test_bcftools_merge():
-    run("bio/bcftools/merge", ["snakemake", "all.bcf", "--use-conda", "-F"])
+def test_bcftools_reheader():
+    run("bio/bcftools/reheader", ["snakemake", "a.reheader.bcf", "--use-conda", "-F"])
 
 
 def test_bedtools_intersect():
@@ -1172,3 +1149,14 @@ def test_msisensor_msi():
 
 def test_tximport():
     run("bio/tximport", ["snakemake", "txi.RDS", "--use-conda", "-F"])
+
+
+def test_fasterq_dump():
+    run(
+        "bio/sra-tools/fasterq-dump",
+        ["snakemake", "data/ERR267986.fastq", "--use-conda", "-F"],
+    )
+
+
+def test_bwa_mem_samblaster():
+    run("bio/bwa/mem-samblaster", ["snakemake", "mapped/a.bam", "--use-conda", "-F"])
