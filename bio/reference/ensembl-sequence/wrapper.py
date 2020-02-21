@@ -45,6 +45,7 @@ for suffix in suffixes:
 
     shell("(curl -L {url} | gzip -d > {snakemake.output[0]}) {log}")
     success = True
+    break
 
 if not success:
     raise ValueError(

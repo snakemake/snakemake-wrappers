@@ -1,0 +1,4 @@
+name: "bwa mem samblaster"
+description: Map reads using bwa mem, mark duplicates by samblaster and sort and index by sambamba.
+authors:
+  - Christopher Schröder

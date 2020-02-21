@@ -72,6 +72,13 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+def test_arriba():
+    run(
+        "bio/arriba",
+        ["snakemake", "fusions/A.tsv", "fusions/A.discarded.tsv", "--use-conda", "-F"],
+    )
+
+
 def test_art_profiler_illumina():
     run(
         "bio/art/profiler_illumina",
@@ -89,6 +96,10 @@ def test_bcftools_concat():
 
 def test_bcftools_merge():
     run("bio/bcftools/merge", ["snakemake", "all.bcf", "--use-conda", "-F"])
+
+
+def test_bcftools_reheader():
+    run("bio/bcftools/reheader", ["snakemake", "a.reheader.bcf", "--use-conda", "-F"])
 
 
 def test_bedtools_intersect():
@@ -218,6 +229,19 @@ def test_fastp_pe():
     )
 
 
+def test_fastp_pe_wo_trimming():
+    run(
+        "bio/fastp",
+        [
+            "snakemake",
+            "report/pe_wo_trimming/a.html",
+            "report/pe_wo_trimming/a.json",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_fastp_se():
     run(
         "bio/fastp",
@@ -311,6 +335,13 @@ def test_freebayes_bcf():
                 "Snakefile_bcf",
             ],
         )
+
+
+def test_happy_prepy():
+    run(
+        "bio/hap.py/pre.py",
+        ["snakemake", "normalized/variants.vcf", "--use-conda", "-F"],
+    )
 
 
 def test_happy_prepy():
@@ -872,13 +903,17 @@ def test_umis_bamtag():
 
 
 def test_transdecoder_longorfs():
-    run("bio/transdecoder/longorfs",
-        ["snakemake", "test.fa.transdecoder_dir/longest_orfs.pep", "--use-conda", "-F"])
+    run(
+        "bio/transdecoder/longorfs",
+        ["snakemake", "test.fa.transdecoder_dir/longest_orfs.pep", "--use-conda", "-F"],
+    )
 
 
 def test_transdecoder_predict():
-    run("bio/transdecoder/predict",
-        ["snakemake", "test.fa.transdecoder.gff3", "--use-conda", "-F"])
+    run(
+        "bio/transdecoder/predict",
+        ["snakemake", "test.fa.transdecoder.gff3", "--use-conda", "-F"],
+    )
 
 
 def test_lastdb_nucl():
@@ -912,18 +947,30 @@ def test_plass_single():
     run("bio/plass", ["snakemake", "plass/prot_single.fasta", "--use-conda", "-F"])
 
 
+def test_refgenie():
+    try:
+        shutil.copytree("bio/refgenie/test/genome_folder", "/tmp/genome_folder")
+    except FileExistsError:
+        # no worries, the directory is already there
+        pass
+    os.environ["REFGENIE"] = "/tmp/genome_folder/genome_config.yaml"
+    run("bio/refgenie", ["snakemake", "--use-conda", "-F"])
+
+
 def test_hmmbuild():
     run("bio/hmmer/hmmbuild", ["snakemake", "test-profile.hmm", "--use-conda", "-F"])
 
-    
-def test_hmmpress():
-    run("bio/hmmer/hmmpress", ["snakemake", "test-profile.hmm.h3f", "--use-conda", "-F"])
 
-    
+def test_hmmpress():
+    run(
+        "bio/hmmer/hmmpress", ["snakemake", "test-profile.hmm.h3f", "--use-conda", "-F"]
+    )
+
+
 def test_hmmscan():
     run("bio/hmmer/hmmscan", ["snakemake", "test-prot-tbl.txt", "--use-conda", "-F"])
 
-    
+
 def test_hmmsearch():
     run("bio/hmmer/hmmsearch", ["snakemake", "test-prot-tbl.txt", "--use-conda", "-F"])
 
@@ -931,33 +978,35 @@ def test_hmmsearch():
 def test_paladin_index():
     run("bio/paladin/index", ["snakemake", "index/prot.fasta.bwt", "--use-conda", "-F"])
 
-    
+
 def test_paladin_prepare():
-    run("bio/paladin/prepare", ["snakemake", "uniprot_sprot.fasta.gz", "--use-conda", "-F"])
-    
-    
+    run(
+        "bio/paladin/prepare",
+        ["snakemake", "uniprot_sprot.fasta.gz", "--use-conda", "-F"],
+    )
+
+
 def test_paladin_align():
     run("bio/paladin/align", ["snakemake", "paladin_mapped/a.bam", "--use-conda", "-F"])
 
 
 def test_ucsc_bedgraphtobigwig():
-    run("bio/ucsc/bedGraphToBigWig",
-        ["snakemake", "a.bw", "--use-conda", "-F"])
+    run("bio/ucsc/bedGraphToBigWig", ["snakemake", "a.bw", "--use-conda", "-F"])
 
 
 def test_ucsc_fatotwobit():
-    run("bio/ucsc/faToTwoBit",
-        ["snakemake", "genome.2bit", "genome_gz.2bit", "--use-conda", "-F"])
+    run(
+        "bio/ucsc/faToTwoBit",
+        ["snakemake", "genome.2bit", "genome_gz.2bit", "--use-conda", "-F"],
+    )
 
 
 def test_ucsc_twobitinfo():
-    run("bio/ucsc/twoBitInfo",
-        ["snakemake", "genome.chrom.sizes", "--use-conda", "-F"])
+    run("bio/ucsc/twoBitInfo", ["snakemake", "genome.chrom.sizes", "--use-conda", "-F"])
 
 
 def test_ucsc_twobittofa():
-    run("bio/ucsc/twoBitToFa",
-        ["snakemake", "genome.fa", "--use-conda", "-F"])
+    run("bio/ucsc/twoBitToFa", ["snakemake", "genome.fa", "--use-conda", "-F"])
 
 
 def test_ensembl_sequence():
@@ -971,61 +1020,143 @@ def test_ensembl_annotation():
 def test_ensembl_variation():
     run("bio/reference/ensembl-variation", ["snakemake", "--use-conda", "-F"])
 
-    
+
+def test_ensembl_variation_with_contig_lengths():
+    run(
+        "bio/reference/ensembl-variation",
+        ["snakemake", "--snakefile", "with_fai.smk", "--use-conda", "-F"],
+    )
+
+
 def test_infernal_cmpress():
-    run("bio/infernal/cmpress", ["snakemake", "test-covariance-model.cm.i1f", "--use-conda", "-F"])
+    run(
+        "bio/infernal/cmpress",
+        ["snakemake", "test-covariance-model.cm.i1f", "--use-conda", "-F"],
+    )
 
 
 def test_infernal_cmscan():
-    run("bio/infernal/cmscan", ["snakemake", "tr-infernal-tblout.txt", "--use-conda", "-F"])
+    run(
+        "bio/infernal/cmscan",
+        ["snakemake", "tr-infernal-tblout.txt", "--use-conda", "-F"],
+    )
 
 
 def test_bismark_genome_preparation():
-    run("bio/bismark/bismark_genome_preparation",
-        ["snakemake", "indexes/genome/Bisulfite_Genome", "indexes/genome_gz/Bisulfite_Genome", "--use-conda", "-F"])
+    run(
+        "bio/bismark/bismark_genome_preparation",
+        [
+            "snakemake",
+            "indexes/genome/Bisulfite_Genome",
+            "indexes/genome_gz/Bisulfite_Genome",
+            "--use-conda",
+            "-F",
+        ],
+    )
 
 
 def test_bismark_genome_bam2nuc():
-    run("bio/bismark/bam2nuc",
-        ["snakemake", "indexes/genome/genomic_nucleotide_frequencies.txt", "bams/b_genome.nucleotide_stats.txt", "--use-conda", "-F"])
+    run(
+        "bio/bismark/bam2nuc",
+        [
+            "snakemake",
+            "indexes/genome/genomic_nucleotide_frequencies.txt",
+            "bams/b_genome.nucleotide_stats.txt",
+            "--use-conda",
+            "-F",
+        ],
+    )
 
 
 def test_bismark_bismark():
-    run("bio/bismark/bismark",
-        ["snakemake", "bams/a_genome_pe.bam", "bams/b_genome.bam", "--use-conda", "-F"])
+    run(
+        "bio/bismark/bismark",
+        ["snakemake", "bams/a_genome_pe.bam", "bams/b_genome.bam", "--use-conda", "-F"],
+    )
 
 
 def test_bismark_deduplicate_bismark():
-    run("bio/bismark/deduplicate_bismark",
-        ["snakemake", "bams/a_genome_pe.deduplicated.bam", "bams/b_genome.deduplicated.bam", "--use-conda", "-F"])
+    run(
+        "bio/bismark/deduplicate_bismark",
+        [
+            "snakemake",
+            "bams/a_genome_pe.deduplicated.bam",
+            "bams/b_genome.deduplicated.bam",
+            "--use-conda",
+            "-F",
+        ],
+    )
 
 
 def test_bismark_bismark_methylation_extractor():
-    run("bio/bismark/bismark_methylation_extractor",
+    run(
+        "bio/bismark/bismark_methylation_extractor",
         [
             "snakemake",
             "meth_cpg/a_genome_pe.deduplicated.bismark.cov.gz",
             "meth_cpg/b_genome.deduplicated.bismark.cov.gz",
             "meth_cpg/b_genome.bismark.cov.gz",
-            "--use-conda", "-F"
-        ])
+            "--use-conda",
+            "-F",
+        ],
+    )
 
 
 def test_bismark_bismark2report():
-    run("bio/bismark/bismark2report",
-        ["snakemake", "qc/meth/a_genome.bismark2report.html", "qc/meth/b_genome.bismark2report.html", "--use-conda", "-F"])
+    run(
+        "bio/bismark/bismark2report",
+        [
+            "snakemake",
+            "qc/meth/a_genome.bismark2report.html",
+            "qc/meth/b_genome.bismark2report.html",
+            "--use-conda",
+            "-F",
+        ],
+    )
 
 
 def test_bismark_bismark2summary():
-    run("bio/bismark/bismark2summary",
-        ["snakemake", "qc/experiment.bismark2summary.html", "--use-conda", "-F"])
+    run(
+        "bio/bismark/bismark2summary",
+        ["snakemake", "qc/experiment.bismark2summary.html", "--use-conda", "-F"],
+    )
 
 
 def test_bismark_bismark2bedgraph():
-    run("bio/bismark/bismark2bedGraph",
+    run(
+        "bio/bismark/bismark2bedGraph",
         [
             "snakemake",
             "meth_cpg/a_genome_pe.deduplicated_CpG.bismark.cov.gz",
             "meth_non_cpg/a_genome_pe.deduplicated_non_cpg.bismark.cov.gz",
-            "--use-conda", "-F"
-        ])
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+def test_tabix():
+    run("bio/tabix", ["snakemake", "--use-conda", "-F", "test.vcf.gz.tbi"])
+
+
+def test_msisensor_scan():
+    run("bio/msisensor/scan", ["snakemake", "--use-conda", "-F", "microsat.list"])
+
+
+def test_msisensor_msi():
+    run("bio/msisensor/msi", ["snakemake", "--use-conda", "-F", "example.msi"])
+
+
+def test_tximport():
+    run("bio/tximport", ["snakemake", "txi.RDS", "--use-conda", "-F"])
+
+
+def test_fasterq_dump():
+    run(
+        "bio/sra-tools/fasterq-dump",
+        ["snakemake", "data/ERR267986.fastq", "--use-conda", "-F"],
+    )
+
+
+def test_bwa_mem_samblaster():
+    run("bio/bwa/mem-samblaster", ["snakemake", "mapped/a.bam", "--use-conda", "-F"])

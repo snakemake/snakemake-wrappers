@@ -1,0 +1,9 @@
+rule norm_vcf:
+    input:
+        "{prefix}.vcf"
+    output:
+        "{prefix}.vcf"
+    params:
+        ""  # optional parameters for bcftools norm (except -o)
+    wrapper:
+        "master/bio/bcftools/norm"

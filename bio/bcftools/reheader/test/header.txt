@@ -1,0 +1,14 @@
+##fileformat=VCFv4.0
+##FILTER=<ID=PASS,Description="All filters passed">
+##FILTER=<ID=Fail,Description="Test">
+##FILTER=<ID=q10,Description="Quality below 10">
+##INFO=<ID=XX,Number=1,Type=Integer,Description="Test">
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Total Depth">
+##FORMAT=<ID=GQ,Number=1,Type=Integer,Description="Genotype Quality">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Read Depth">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##contig=<ID=2,length=62435964>
+##contig=<ID=1,length=62435964>
+##contig=<ID=3,length=62435964>
+##ALT=<ID=X,Description="Represents allele(s) other than observed.">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	A

@@ -37,7 +37,8 @@ csvstats_opt = "" if not csvstats else "-csvStats {}".format(csvstats)
 stats_opt = "-noStats" if not stats else "-stats {}".format(stats)
 
 shell(
-    "(snpEff {data_dir} {stats_opt} {csvstats_opt} {extra} "
-    "{snakemake.params.reference} {incalls} "
+    "(bcftools view {incalls} | "
+    "snpEff {data_dir} {stats_opt} {csvstats_opt} {extra} "
+    "{snakemake.params.reference} "
     "{outprefix} > {outcalls}) {log}"
 )

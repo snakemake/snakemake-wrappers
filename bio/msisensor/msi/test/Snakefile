@@ -1,0 +1,20 @@
+rule test_msisensor_msi:
+    input:
+        normal = "example.normal.bam",
+        tumor = "example.tumor.bam",
+        microsat = "example.microsate.sites"
+    output:
+        "example.msi",
+        "example.msi_dis",
+        "example.msi_germline",
+        "example.msi_somatic"
+    message:
+        "Testing MSIsensor msi"
+    threads:
+        1
+    log:
+        "example.log"
+    params:
+        out_prefix = "example.msi"
+    wrapper:
+        "master/bio/msisensor/msi"
