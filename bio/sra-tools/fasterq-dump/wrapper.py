@@ -20,4 +20,3 @@ with tempfile.TemporaryDirectory(dir=tmpdir) as tmp:
     shell(
         "fasterq-dump --temp {tmp} {extra} {outdir} {snakemake.wildcards.accession} {log}"
     )
-
