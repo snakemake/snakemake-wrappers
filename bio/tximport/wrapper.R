@@ -21,8 +21,9 @@ extra <- base::paste0('files = c("', samples_paths, '")');
 if ("tx_to_gene" %in% names(snakemake@input)) {
   extra <- base::paste(
     extra,                                         # Foreward existing arguments
-    "tx2gene = ", snakemake@input[["tx_to_gene"]], # Add tx2gene to parameters
-    sep = ", "                                     # Field separator
+    ', tx2gene = "',
+    snakemake@input[["tx_to_gene"]],               # Add tx2gene to parameters
+    '"'                                   # Field separator
   );
 }
 
