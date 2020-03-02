@@ -13,9 +13,11 @@ outdir = os.path.dirname(snakemake.output[0])
 if outdir:
     outdir = "--outdir {}".format(outdir)
 
+tmpdir = snakemake.params.get("tmpdir", None)
 extra = snakemake.params.get("extra", "")
 
-with tempfile.TemporaryDirectory() as tmp:
+with tempfile.TemporaryDirectory(dir=tmpdir) as tmp:
     shell(
         "fasterq-dump --temp {tmp} {extra} {outdir} {snakemake.wildcards.accession} {log}"
     )
+
