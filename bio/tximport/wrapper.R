@@ -15,7 +15,7 @@ samples_paths <- sapply(               # Sequentially apply
 samples_paths <- base::paste0(samples_paths, collapse = '", "');
 
 # Building function arguments
-extra <- base::paste0("files = c(\"", samples_paths, "\")");
+extra <- base::paste0('files = c("', samples_paths, '")');
 
 # Check if user provided optional transcript to gene table
 if ("tx_to_gene" %in% names(snakemake@input)) {
