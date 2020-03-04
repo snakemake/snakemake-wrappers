@@ -28,11 +28,16 @@ if ("tx_to_gene" %in% names(snakemake@input)) {
 }
 
 # Add user defined arguments
-extra <- base::paste(
-  extra,                       # Foreward existing parameters
-  snakemake@params[["extra"]], # Add user parameters
-  sep = ", "                   # Field separator
-);
+if ("extra" %in% names(snakemake@params)) {
+  if (snakemake@params[["extra"]] != "") {
+    extra <- base::paste(
+      extra,                       # Foreward existing parameters
+      snakemake@params[["extra"]], # Add user parameters
+      sep = ", "                   # Field separator
+    );
+  }
+}
+
 
 print(extra);
 # Perform tximport work
