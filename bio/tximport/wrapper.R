@@ -23,7 +23,7 @@ if ("tx_to_gene" %in% names(snakemake@input)) {
   extra <- base::paste(
     extra,                 # Foreward existing arguments
     ", tx2gene = ",        # Argument name
-    tx2gene                # Add tx2gene to parameters
+    "tx2gene"              # Add tx2gene to parameters
   );
 }
 
