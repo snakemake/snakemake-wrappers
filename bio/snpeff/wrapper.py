@@ -39,5 +39,5 @@ stats_opt = "-noStats" if not stats else "-stats {}".format(stats)
 shell(
     "snpEff {data_dir} {stats_opt} {csvstats_opt} {extra} "
     "{snakemake.params.reference} {incalls} "
-    "{outprefix} > {outcalls}) {log}"
+    "{outprefix} > {outcalls} {log}"
 )
