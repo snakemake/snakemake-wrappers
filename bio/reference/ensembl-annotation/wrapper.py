@@ -9,6 +9,10 @@ species = snakemake.params.species.lower()
 release = snakemake.params.release
 fmt = snakemake.params.fmt
 build = snakemake.params.build
+flavor = snakemake.params.get("flavor", "")
+
+if flavor:
+    flavor += "."
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -18,13 +22,14 @@ if fmt == "gtf":
 elif fmt == "gff3":
     suffix = "gff3.gz"
 
-url = "ftp://ftp.ensembl.org/pub/release-{release}/{fmt}/{species}/{species_cap}.{build}.{release}.{suffix}".format(
+url = "ftp://ftp.ensembl.org/pub/release-{release}/{fmt}/{species}/{species_cap}.{build}.{release}.{flavor}{suffix}".format(
     release=release,
     build=build,
     species=species,
     fmt=fmt,
     species_cap=species.capitalize(),
     suffix=suffix,
+    flavor=flavor,
 )
 
 shell("(curl -L {url} | gzip -d > {snakemake.output[0]}) {log}")
