@@ -17,7 +17,7 @@ makedirs(dirname(snakemake.output.vcf))
 shell(
     "SnpSift annotate"  # Tool and its subcommand
     " {extra}"  # Extra parameters
-    " {snakemake.input.annotation}"  # Path to annotation vcf file
+    " {snakemake.input.database}"  # Path to annotation vcf file
     " {snakemake.input.vcf}"  # Path to input vcf file
     " > {snakemake.output.vcf}"  # Path to output vcf file
     " {log}"  # Logging behaviour
