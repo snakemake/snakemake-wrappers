@@ -3,10 +3,10 @@ rule test_snpsift_annotate:
         vcf = "in.vcf",
         database = "annotation.vcf"
     output:
-        out = "out.vcf"
+        vcf = "annotated/out.vcf"
     message:
         "Testing SnpSift Annotate"
     log:
         "annotate.log"
     wrapper:
-        "master/bio/snpfit/annotate"
+        "master/bio/snpsift/annotate"
