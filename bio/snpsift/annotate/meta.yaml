@@ -1,0 +1,12 @@
+---
+name: SnpSift annotate
+description:  Annotate using fields from another VCF file.
+authors:
+  - Thibault Dayris
+input:
+  - A VCF-formatted file that is to be annoated
+  - A VCF-formatted annotation file
+output:
+  - A VCF-formatted file
+note: |
+  Annotations shall come from dbSnp, 1000 Genomes projects, ClinVar, ExAC, etc.

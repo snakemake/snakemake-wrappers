@@ -1164,3 +1164,7 @@ def test_bwa_mem_samblaster():
 
 def test_snpsift_vartype():
     run("bio/snpsift/varType", ["snakemake", "out.vcf", "--use-conda", "-F"])
+
+
+def test_snpsift_annotate():
+    run("bio/snpsift/annotate", ["snakemake", "out.vcf", "--use-conda", "-F"])
