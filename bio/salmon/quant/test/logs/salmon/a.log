@@ -1,0 +1,91 @@
+Version Info:   This is the most recent version of salmon.
+### salmon (mapping-based) v1.1.0
+### [ program ] => salmon 
+### [ command ] => quant 
+### [ index ] => { salmon/transcriptome_index }
+### [ libType ] => { A }
+### [ mates1 ] => { reads/a_1.fq.gz }
+### [ mates2 ] => { reads/a_2.fq.gz }
+### [ output ] => { salmon/a }
+### [ threads ] => { 2 }
+Logs will be written to salmon/a/logs
+[2020-03-17 13:41:14.931] [jointLog] [info] Fragment incompatibility prior below threshold.  Incompatible fragments will be ignored.
+[2020-03-17 13:41:14.931] [jointLog] [info] Usage of --validateMappings implies use of minScoreFraction. Since not explicitly specified, it is being set to 0.65
+[2020-03-17 13:41:14.931] [jointLog] [info] Usage of --validateMappings implies a default consensus slack of 0.2. Setting consensusSlack to 0.35.
+[2020-03-17 13:41:14.931] [jointLog] [info] parsing read library format
+[2020-03-17 13:41:14.931] [jointLog] [info] There is 1 library.
+-----------------------------------------
+| Loading contig table | Time = 9.714 us
+-----------------------------------------
+size = 3
+-----------------------------------------
+| Loading contig offsets | Time = 17.492 us
+-----------------------------------------
+-----------------------------------------
+| Loading reference lengths | Time = 5.415 us
+-----------------------------------------
+-----------------------------------------
+| Loading mphf table | Time = 17.313 us
+-----------------------------------------
+size = 412
+Number of ones: 2
+Number of ones per inventory item: 512
+Inventory entries filled: 1
+-----------------------------------------
+| Loading contig boundaries | Time = 18.161 us
+-----------------------------------------
+size = 412
+-----------------------------------------
+| Loading sequence | Time = 9.507 us
+-----------------------------------------
+size = 352
+-----------------------------------------
+| Loading positions | Time = 12.865 us
+-----------------------------------------
+size = 412
+-----------------------------------------
+| Loading reference sequence | Time = 9.465 us
+-----------------------------------------
+-----------------------------------------
+| Loading reference accumulative lengths | Time = 4.928 us
+-----------------------------------------
+[2020-03-17 13:41:14.985] [jointLog] [info] Loading pufferfish index
+[2020-03-17 13:41:14.985] [jointLog] [info] Loading dense pufferfish index.
+[2020-03-17 13:41:14.985] [jointLog] [info] done
+[2020-03-17 13:41:14.985] [jointLog] [info] Index contained 2 targets
+[2020-03-17 13:41:14.985] [jointLog] [info] Number of decoys : 0
+
+
+
+
+
+
+
+
+
+
+
+
+[2020-03-17 13:41:15.183] [jointLog] [info] Computed 8 rich equivalence classes for further processing
+[2020-03-17 13:41:15.183] [jointLog] [info] Counted 353 total reads in the equivalence classes 
+[2020-03-17 13:41:15.184] [jointLog] [info] Number of mappings discarded because of alignment score : 136
+[2020-03-17 13:41:15.184] [jointLog] [info] Number of fragments entirely discarded because of alignment score : 106
+[2020-03-17 13:41:15.184] [jointLog] [info] Number of fragments discarded because they are best-mapped to decoys : 0
+[2020-03-17 13:41:15.184] [jointLog] [info] Number of fragments discarded because they have only dovetail (discordant) mappings to valid targets : 0
+[2020-03-17 13:41:15.184] [jointLog] [warning] Only 353 fragments were mapped, but the number of burn-in fragments was set to 5000000.
+The effective lengths have been computed using the observed mappings.
+
+[2020-03-17 13:41:15.184] [jointLog] [info] Mapping rate = 1.15454%
+
+[2020-03-17 13:41:15.184] [jointLog] [info] finished quantifyLibrary()
+[2020-03-17 13:41:15.184] [jointLog] [info] Starting optimizer
+[2020-03-17 13:41:15.184] [jointLog] [info] Marked 0 weighted equivalence classes as degenerate
+[2020-03-17 13:41:15.184] [jointLog] [info] iteration = 0 | max rel diff. = 0.474626
+[2020-03-17 13:41:15.185] [jointLog] [info] iteration = 100 | max rel diff. = 0
+[2020-03-17 13:41:15.185] [jointLog] [info] Finished optimizer
+[2020-03-17 13:41:15.185] [jointLog] [info] writing output 
+
+[2020-03-17 13:41:15.185] [jointLog] [warning] NOTE: Read Lib [[ reads/a_1.fq.gz, reads/a_2.fq.gz]] :
+
+Detected a *potential* strand bias > 1% in an unstranded protocol check the file: salmon/a/lib_format_counts.json for details
+

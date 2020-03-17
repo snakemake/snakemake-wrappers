@@ -1,0 +1,9 @@
+{
+    "salmon_version": "1.1.0",
+    "index": "salmon/transcriptome_index",
+    "libType": "A",
+    "unmatedReads": "reads/a_se.fq.gz",
+    "output": "salmon/a_se_x_transcriptome",
+    "threads": "2",
+    "auxDir": "aux_info"
+}

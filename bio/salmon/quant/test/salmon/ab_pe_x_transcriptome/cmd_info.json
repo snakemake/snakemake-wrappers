@@ -1,0 +1,16 @@
+{
+    "salmon_version": "1.1.0",
+    "index": "salmon/transcriptome_index",
+    "libType": "A",
+    "mates1": [
+        "reads/a_1.fq.gz",
+        "reads/b_1.fq.gz"
+    ],
+    "mates2": [
+        "reads/a_2.fq.gz",
+        "reads/b_2.fq.gz"
+    ],
+    "output": "salmon/ab_pe_x_transcriptome",
+    "threads": "2",
+    "auxDir": "aux_info"
+}
