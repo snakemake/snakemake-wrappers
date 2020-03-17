@@ -1,0 +1,11 @@
+rule test_snpsift_vartype:
+    input:
+        vcf = "in.vcf"
+    output:
+        out = "out.vcf"
+    message:
+        "Testing SnpSift varType"
+    log:
+        "varType.log"
+    wrapper:
+        "master/bio/snpfit/varType"
