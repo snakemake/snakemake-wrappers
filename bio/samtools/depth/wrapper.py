@@ -10,7 +10,9 @@ from snakemake.shell import shell
 params = snakemake.params.get("extra", "")
 
 # check for optional bed file
-bed = "" if snakemake.params.bed == "" else "-b {}".format(snakemake.params.bed)
+bed = snakemake.input.get("bed", "")
+if bed:
+    bed = "-b " + bed
 
 shell(
     "samtools depth {params} {bed} " "-o {snakemake.output[0]} {snakemake.input.bams}"
