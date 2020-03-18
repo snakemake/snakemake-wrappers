@@ -9,6 +9,9 @@ rule freebayes:
         "logs/freebayes/{sample}.log"
     params:
         extra="",         # optional parameters
+        targets="targets.bed",
+        cnvMap="cnv-map.txt",
+        populations="",
         chunksize=100000  # reference genome chunk size for parallelization (default: 100000)
     threads: 2
     wrapper:

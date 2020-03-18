@@ -4,11 +4,14 @@ rule freebayes:
         # you can have a list of samples here
         samples="mapped/{sample}.bam"
     output:
-        "calls/{sample}.bcf"
+        "calls/{sample}.bcf"  # either .vcf or .bcf
     log:
         "logs/freebayes/{sample}.log"
     params:
         extra="",         # optional parameters
+        targets="",
+        cnvMap="",
+        populations="",
         chunksize=100000  # reference genome chunk size for parallelization (default: 100000)
     threads: 2
     wrapper:

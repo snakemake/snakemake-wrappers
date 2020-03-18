@@ -16,6 +16,15 @@ pipe = ""
 if snakemake.output[0].endswith(".bcf"):
     pipe = "| bcftools view -Ob -"
 
+# check for optional bed file
+targets = "" if snakemake.params.targets == "" else "--targets {}".format(snakemake.params.targets)
+
+# check for optional cnvMap file
+cnv = "" if snakemake.params.cnvMap == "" else "--cnv-map {}".format(snakemake.params.cnvMap)
+
+# check for optional cnvMap file
+pop = "" if snakemake.params.populations == "" else "--populations {}".format(snakemake.params.populations)
+
 if snakemake.threads == 1:
     freebayes = "freebayes"
 else:
@@ -27,6 +36,6 @@ else:
     ).format(snakemake=snakemake, chunksize=chunksize)
 
 shell(
-    "({freebayes} {params} -f {snakemake.input.ref}"
+    "({freebayes} {targets} {cnv} {pop} {params} -f {snakemake.input.ref}"
     " {snakemake.input.samples} {pipe} > {snakemake.output[0]}) {log}"
 )
