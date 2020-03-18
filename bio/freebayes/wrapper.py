@@ -17,25 +17,19 @@ if snakemake.output[0].endswith(".bcf"):
     pipe = "| bcftools view -Ob -"
 
 # check for optional bed file
-targets = (
-    ""
-    if snakemake.params.targets == ""
-    else "--targets {}".format(snakemake.params.targets)
-)
+targets = snakemake.input.get("targets", "")
+if targets:
+    targets = "--targets " + target
 
 # check for optional cnvMap file
-cnv = (
-    ""
-    if snakemake.params.cnvMap == ""
-    else "--cnv-map {}".format(snakemake.params.cnvMap)
-)
+cnv = snakemake.input.get("cnvMap", "")
+if cnv:
+    cnv = "--cnv-map " + cnv
 
-# check for optional cnvMap file
-pop = (
-    ""
-    if snakemake.params.populations == ""
-    else "--populations {}".format(snakemake.params.populations)
-)
+# check for optional populations file
+pop = snakemake.input.get("populations", "")
+if pop:
+    known = "--populations " + populations
 
 if snakemake.threads == 1:
     freebayes = "freebayes"

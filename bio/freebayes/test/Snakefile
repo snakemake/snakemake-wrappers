@@ -1,18 +1,19 @@
 rule freebayes:
     input:
-        ref="genome.fasta",
+        ref = "genome.fasta",
         # you can have a list of samples here
-        samples="mapped/{sample}.bam"
+        samples = "mapped/{sample}.bam"
+        # targets = "",  # optional
+        # cnvMap = "",   # optional
+        # populations = "",       # optional
     output:
         "calls/{sample}.vcf"  # either .vcf or .bcf
     log:
         "logs/freebayes/{sample}.log"
     params:
-        extra="",         # optional parameters
-        targets="targets.bed",
-        cnvMap="cnv-map.txt",
-        populations="",
-        chunksize=100000  # reference genome chunk size for parallelization (default: 100000)
+        extra = "",         # optional parameters
+        # reference genome chunk size for parallelization (default: 100000)
+        chunksize = 100000
     threads: 2
     wrapper:
         "master/bio/freebayes"
