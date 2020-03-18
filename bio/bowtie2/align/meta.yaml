@@ -2,3 +2,5 @@ name: "bowtie2"
 description: Map reads with bowtie2.
 authors:
   - Johannes Köster
+note:
+  This wrapper uses an inner pipe. Make sure to use at least two threads in your Snakefile.
