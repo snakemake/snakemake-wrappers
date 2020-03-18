@@ -13,6 +13,5 @@ params = snakemake.params.get("extra", "")
 bed = "" if snakemake.params.bed == "" else "-b {}".format(snakemake.params.bed)
 
 shell(
-    "samtools depth {params} {bed} "
-    "-o {snakemake.output[0]} {snakemake.input.bams}"
+    "samtools depth {params} {bed} " "-o {snakemake.output[0]} {snakemake.input.bams}"
 )
