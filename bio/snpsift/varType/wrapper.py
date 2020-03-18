@@ -5,14 +5,11 @@ __copyright__ = "Copyright 2020, Dayris Thibault"
 __email__ = "thibault.dayris@gustaveroussy.fr"
 __license__ = "MIT"
 
-from os.path import dirname
 from snakemake.shell import shell
-from snakemake.utils import makedirs
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 extra = snakemake.params.get("extra", "")
-makedirs(dirname(snakemake.output.vcf))
 
 shell(
     "SnpSift varType"  # Tool and its subcommand
