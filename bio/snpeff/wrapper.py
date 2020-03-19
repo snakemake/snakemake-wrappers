@@ -21,7 +21,7 @@ else:
 
 incalls = snakemake.input[0]
 if incalls.endswith(".bcf"):
-    incalls = "<(bcftools view {})".format(incalls)
+    incalls = "< <(bcftools view {})".format(incalls)
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -38,6 +38,6 @@ stats_opt = "-noStats" if not stats else "-stats {}".format(stats)
 
 shell(
     "snpEff {data_dir} {stats_opt} {csvstats_opt} {extra} "
-    "{snakemake.params.reference} < {incalls} "
+    "{snakemake.params.reference} {incalls} "
     "{outprefix} > {outcalls} {log}"
 )
