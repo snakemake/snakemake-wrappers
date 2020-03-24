@@ -1,9 +1,9 @@
 rule test_snpsift_annotate:
     input:
-        vcf = "in.vcf",
-        database = "annotation.vcf"
+        vcf="in.vcf",
+        database="annotation.vcf"
     output:
-        vcf = "annotated/out.vcf"
+        vcf="annotated/out.vcf"
     message:
         "Testing SnpSift Annotate"
     log:
