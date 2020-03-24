@@ -1,8 +1,8 @@
 rule test_snpsift_vartype:
     input:
-        vcf = "in.vcf"
+        vcf="in.vcf"
     output:
-        vcf = "annotated/out.vcf"
+        vcf="annotated/out.vcf"
     message:
         "Testing SnpSift varType"
     log:
