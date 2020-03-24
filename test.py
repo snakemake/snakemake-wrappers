@@ -1655,3 +1655,10 @@ def test_bwa_mem_samblaster():
         "bio/bwa/mem-samblaster",
         ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
     )
+
+
+def test_snpsift_vartype():
+    run(
+        "bio/snpsift/varType",
+        ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"]
+    )
