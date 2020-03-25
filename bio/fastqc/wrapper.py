@@ -19,7 +19,7 @@ def basename_without_ext(file_path):
 
     base = path.basename(file_path)
 
-    split_ind = 2 if base.endswith(".gz") else 1
+    split_ind = 2 if base.endswith(".fastq.gz") else 1
     base = ".".join(base.split(".")[:-split_ind])
 
     return base

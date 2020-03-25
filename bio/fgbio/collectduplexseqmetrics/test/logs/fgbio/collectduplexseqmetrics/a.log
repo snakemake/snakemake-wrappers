@@ -1,0 +1,11 @@
+[2019/12/20 20:54:35 | FgBioMain | Info] Executing CollectDuplexSeqMetrics from fgbio version 0.6.1 as forster@dktk on JRE 11.0.1-internal+0-adhoc..src with snappy
+[2019/12/20 20:54:37 | Rscript | Info] Registered S3 methods overwritten by 'ggplot2':
+[2019/12/20 20:54:37 | Rscript | Info]   method         from 
+[2019/12/20 20:54:37 | Rscript | Info]   [.quosures     rlang
+[2019/12/20 20:54:37 | Rscript | Info]   c.quosures     rlang
+[2019/12/20 20:54:37 | Rscript | Info]   print.quosures rlang
+[2019/12/20 20:54:37 | Rscript | Info] Fehler in seq.default(0, max(familyData$family_size), by = 2) : 
+[2019/12/20 20:54:37 | Rscript | Info]   'to' must be a finite number
+[2019/12/20 20:54:37 | Rscript | Info] Ruft auf: scale_x_continuous -> continuous_scale -> ggproto -> seq -> seq.default
+[2019/12/20 20:54:37 | Rscript | Info] Ausführung angehalten
+[2019/12/20 20:54:37 | FgBioMain | Info] CollectDuplexSeqMetrics completed. Elapsed time: 0,09 minutes.

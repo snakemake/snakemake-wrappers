@@ -1,0 +1,6 @@
+[2019/12/20 20:55:02 | FgBioMain | Info] Executing FilterConsensusReads from fgbio version 0.6.1 as forster@dktk on JRE 11.0.1-internal+0-adhoc..src with snappy
+[2019/12/20 20:55:02 | FilterConsensusReads | Info] Filtering reads.
+[2019/12/20 20:55:02 | FilterConsensusReads | Info] Filtering complete; fixing tags and writing coordinate sorted reads.
+[2019/12/20 20:55:02 | FilterConsensusReads | Info] Output 0 of 0 primary consensus reads.
+[2019/12/20 20:55:02 | FilterConsensusReads | Info] Masked 0 of 0 bases in retained primary consensus reads.
+[2019/12/20 20:55:02 | FgBioMain | Info] FilterConsensusReads completed. Elapsed time: 0,05 minutes.

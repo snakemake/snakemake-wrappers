@@ -1,0 +1,15 @@
+
+[quant] fragment length distribution will be estimated from the data
+[index] k-mer length: 5
+[index] number of targets: 1
+[index] number of k-mers: 5
+[index] number of equivalence classes: 1
+[quant] running in paired-end mode
+[quant] will process pair 1: reads/A_R1.fastq
+                             reads/A_R2.fastq
+[quant] finding pseudoalignments for the reads ... done
+[quant] processed 1 reads, 1 reads pseudoaligned
+[quant] estimated average fragment length: 0
+[   em] quantifying the abundances ... done
+[   em] the Expectation-Maximization algorithm ran for 52 rounds
+

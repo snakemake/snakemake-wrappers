@@ -1,0 +1,15 @@
+rule bwa_mem:
+    input:
+        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"]
+    output:
+        bam="mapped/{sample}.bam",
+        index="mapped/{sample}.bam.bai"
+    log:
+        "logs/bwa_mem_sambamba/{sample}.log"
+    params:
+        index="genome",
+        extra=r"-R '@RG\tID:{sample}\tSM:{sample}'",
+        sort_extra="" # Extra args for sambamba.
+    threads: 8
+    wrapper:
+        "master/bio/bwa/mem-samblaster"

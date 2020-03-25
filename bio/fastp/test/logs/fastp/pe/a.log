@@ -1,0 +1,41 @@
+Read1 before filtering:
+total reads: 1
+total bases: 7
+Q20 bases: 0(0%)
+Q30 bases: 0(0%)
+
+Read2 before filtering:
+total reads: 1
+total bases: 7
+Q20 bases: 0(0%)
+Q30 bases: 0(0%)
+
+Read1 after filtering:
+total reads: 0
+total bases: 0
+Q20 bases: 0(-nan%)
+Q30 bases: 0(-nan%)
+
+Read2 aftering filtering:
+total reads: 0
+total bases: 0
+Q20 bases: 0(-nan%)
+Q30 bases: 0(-nan%)
+
+Filtering result:
+reads passed filter: 0
+reads failed due to low quality: 2
+reads failed due to too many N: 0
+reads failed due to too short: 0
+reads with adapter trimmed: 0
+bases trimmed due to adapters: 0
+
+Duplication rate: 0%
+
+Insert size peak (evaluated by paired-end reads): 0
+
+JSON report: report/pe/a.json
+HTML report: report/pe/a.html
+
+fastp --thread 1 --in1 reads/pe/a.1.fastq --in2 reads/pe/a.2.fastq --out1 trimmed/pe/a.1.fastq --out2 trimmed/pe/a.2.fastq --json report/pe/a.json --html report/pe/a.html 
+fastp v0.20.0, time used: 0 seconds

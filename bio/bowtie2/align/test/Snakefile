@@ -8,6 +8,6 @@ rule bowtie2:
     params:
         index="index/genome",  # prefix of reference genome index (built with bowtie2-build)
         extra=""  # optional parameters
-    threads: 8
+    threads: 8  # Use at least two threads
     wrapper:
         "master/bio/bowtie2/align"

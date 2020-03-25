@@ -1,0 +1,1 @@
+family_size	cs_count	cs_fraction	cs_fraction_gt_or_eq_size	ss_count	ss_fraction	ss_fraction_gt_or_eq_size	ds_count	ds_fraction	ds_fraction_gt_or_eq_size

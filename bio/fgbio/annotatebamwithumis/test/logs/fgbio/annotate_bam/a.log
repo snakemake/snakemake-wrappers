@@ -1,0 +1,5 @@
+[2019/12/20 20:53:12 | FgBioMain | Info] Executing AnnotateBamWithUmis from fgbio version 0.6.1 as forster@dktk on JRE 11.0.1-internal+0-adhoc..src with snappy
+[2019/12/20 20:53:13 | AnnotateBamWithUmis | Info] Reading in UMIs from FASTQ.
+[2019/12/20 20:53:13 | AnnotateBamWithUmis | Info] Reading input BAM and annotating output BAM.
+[2019/12/20 20:53:13 | AnnotateBamWithUmis | Info] Processed 0 records with 0 missing UMIs.
+[2019/12/20 20:53:13 | FgBioMain | Info] AnnotateBamWithUmis completed. Elapsed time: 0,05 minutes.

@@ -1,0 +1,38 @@
+This is cutadapt 2.5 with Python 3.7.3
+Command line parameters: -a AGAGCACACGTCTGAACTCCAGTCAC -g AGATCGGAAGAGCACACGT -A AGAGCACACGTCTGAACTCCAGTCAC -G AGATCGGAAGAGCACACGT --minimum-length 1 -q 20 -o trimmed/a.1.fastq -p trimmed/a.2.fastq -j 1 reads/a.1.fastq reads/a.2.fastq
+Processing reads on 1 core in paired-end mode ...
+Finished in 0.01 s (8558 us/read; 0.01 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:                  1
+  Read 1 with adapter:                       0 (0.0%)
+  Read 2 with adapter:                       0 (0.0%)
+Pairs that were too short:                   1 (100.0%)
+Pairs written (passing filters):             0 (0.0%)
+
+Total basepairs processed:            14 bp
+  Read 1:             7 bp
+  Read 2:             7 bp
+Quality-trimmed:                      14 bp (100.0%)
+  Read 1:             7 bp
+  Read 2:             7 bp
+Total written (filtered):              0 bp (0.0%)
+  Read 1:             0 bp
+  Read 2:             0 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: AGAGCACACGTCTGAACTCCAGTCAC; Type: regular 3'; Length: 26; Trimmed: 0 times.
+
+=== First read: Adapter 2 ===
+
+Sequence: AGATCGGAAGAGCACACGT; Type: regular 5'; Length: 19; Trimmed: 0 times.
+
+=== Second read: Adapter 3 ===
+
+Sequence: AGAGCACACGTCTGAACTCCAGTCAC; Type: regular 3'; Length: 26; Trimmed: 0 times.
+
+=== Second read: Adapter 4 ===
+
+Sequence: AGATCGGAAGAGCACACGT; Type: regular 5'; Length: 19; Trimmed: 0 times.

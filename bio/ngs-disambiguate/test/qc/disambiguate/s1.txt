@@ -1,0 +1,2 @@
+sample	unique species A pairs	unique species B pairs	ambiguous pairs
+s1	0	0	6

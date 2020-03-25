@@ -1,0 +1,18 @@
+This is cutadapt 2.5 with Python 3.7.3
+Command line parameters: -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC -q 20 -j 1 -o trimmed/a.fastq reads/a.fastq
+Processing reads on 1 core in single-end mode ...
+Finished in 0.01 s (5234 us/read; 0.01 M reads/minute).
+
+=== Summary ===
+
+Total reads processed:                       1
+Reads with adapters:                         0 (0.0%)
+Reads written (passing filters):             1 (100.0%)
+
+Total basepairs processed:             7 bp
+Quality-trimmed:                       7 bp (100.0%)
+Total written (filtered):              0 bp (0.0%)
+
+=== Adapter 1 ===
+
+Sequence: AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC; Type: regular 3'; Length: 34; Trimmed: 0 times.
