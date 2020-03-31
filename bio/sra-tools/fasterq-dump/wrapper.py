@@ -1,4 +1,4 @@
-__author__ = "Johannes Köster"
+__author__ = "Johannes Köster, Derek Croote"
 __copyright__ = "Copyright 2020, Johannes Köster"
 __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
@@ -17,5 +17,6 @@ extra = snakemake.params.get("extra", "")
 
 with tempfile.TemporaryDirectory() as tmp:
     shell(
-        "fasterq-dump --temp {tmp} {extra} {outdir} {snakemake.wildcards.accession} {log}"
+        "fasterq-dump --temp {tmp} --threads {snakemake.threads} "
+        "{extra} {outdir} {snakemake.wildcards.accession} {log}"
     )
