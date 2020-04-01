@@ -13,9 +13,4 @@ reference = "{}.{}".format(snakemake.params["build"], snakemake.params["release"
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 
-shell(
-    " snpEff download"
-    " -dataDir {db_dir}"
-    " {reference}"
-    " {log}"
-)
+shell(" snpEff download" " -dataDir {db_dir}" " {reference}" " {log}")
