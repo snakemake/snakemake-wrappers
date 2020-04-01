@@ -1,3 +1,0 @@
-Module	Section	Sample Name	Source
-Samtools	stats	b	/home/forster/snakemake-wrappers/bio/multiqc/test/samtools_stats/b.txt
-Samtools	stats	a	/home/forster/snakemake-wrappers/bio/multiqc/test/samtools_stats/a.txt

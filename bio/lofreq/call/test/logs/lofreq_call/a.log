@@ -1,8 +1,0 @@
-INFO [2019-12-20 21:02:30,352]: Using 1 threads with following basic args: lofreq call -f data/genome.fasta data/a.bam
-
-WARNING [2019-12-20 21:02:30,354]: Looks like the index for data/a.bam is a bit old (idxstats reports no reads mapped). Reindexing should solve this. Will continue by calling samtools, so no need to worry for now though.
-INFO [2019-12-20 21:02:30,360]: Adding 4 commands to mp-pool
-Number of substitution tests performed: 0
-Number of indel tests performed: 0
-INFO [2019-12-20 21:02:30,492]: Executing lofreq filter -i /tmp/lofreq2_call_parallelg2mz6pf1/concat.vcf.gz -o calls/a.vcf --snvqual-thresh 20 --indelqual-thresh 20
-

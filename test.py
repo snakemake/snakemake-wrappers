@@ -151,33 +151,6 @@ def test_bedtools_slop():
     )
 
 
-def test_bcftools_index():
-    run("bio/bcftools/index", ["snakemake", "a.bcf.csi", "--use-conda", "-F"])
-
-
-def test_bcftools_concat():
-    run("bio/bcftools/concat", ["snakemake", "all.bcf", "--use-conda", "-F"])
-
-
-def test_bcftools_merge():
-    run("bio/bcftools/merge", ["snakemake", "all.bcf", "--use-conda", "-F"])
-
-
-def test_bedtools_intersect():
-    run(
-        "bio/bedtools/intersect",
-        ["snakemake", "A_B.intersected.bed", "--use-conda", "-F"],
-    )
-
-
-def test_bedtools_merge():
-    run("bio/bedtools/merge", ["snakemake", "A.merged.bed", "--use-conda", "-F"])
-
-
-def test_bedtools_slop():
-    run("bio/bedtools/slop", ["snakemake", "A.slop.bed", "--use-conda", "-F"])
-
-
 def test_bowtie2_align():
     run(
         "bio/bowtie2/align",
@@ -512,13 +485,6 @@ def test_happy_prepy():
     run(
         "bio/hap.py/pre.py",
         ["snakemake", "--cores", "1", "normalized/variants.vcf", "--use-conda", "-F"],
-    )
-
-
-def test_happy_prepy():
-    run(
-        "bio/hap.py/pre.py",
-        ["snakemake", "normalized/variants.vcf", "--use-conda", "-F"],
     )
 
 

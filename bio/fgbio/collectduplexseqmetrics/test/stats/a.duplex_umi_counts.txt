@@ -1,1 +1,0 @@
-umi	raw_observations	raw_observations_with_errors	unique_observations	fraction_raw_observations	fraction_unique_observations	fraction_unique_observations_expected

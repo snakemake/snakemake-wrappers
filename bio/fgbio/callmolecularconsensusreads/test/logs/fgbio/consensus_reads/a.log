@@ -1,4 +1,0 @@
-[2019/12/20 20:56:09 | FgBioMain | Info] Executing CallMolecularConsensusReads from fgbio version 0.6.1 as forster@dktk on JRE 11.0.1-internal+0-adhoc..src with snappy
-[2019/12/20 20:56:10 | CallMolecularConsensusReads | Info] Total Raw Reads Considered: 0.
-[2019/12/20 20:56:10 | CallMolecularConsensusReads | Info] Consensus reads emitted: 0.
-[2019/12/20 20:56:10 | FgBioMain | Info] CallMolecularConsensusReads completed. Elapsed time: 0,08 minutes.

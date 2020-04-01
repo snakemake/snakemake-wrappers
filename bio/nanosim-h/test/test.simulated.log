@@ -1,8 +1,0 @@
-2019-12-20 21:09:21: /home/forster/snakemake-wrappers/bio/nanosim-h/test/.snakemake/conda/624c78b8/bin/nanosim-h --perfect --max-len 68 --min-len 10 --profile ecoli_R9_2D --number 10 --out-pref test.simulated test.fa
-2019-12-20 21:09:21: Read error profile
-2019-12-20 21:09:21: Read ECDF of unaligned reads
-2019-12-20 21:09:21: Read ECDF of aligned reads
-2019-12-20 21:09:21: Read in reference genome
-2019-12-20 21:09:21: Start simulation of random reads
-2019-12-20 21:09:21: Start simulation of aligned reads
-2019-12-20 21:09:31: Finished!

@@ -1,7 +1,0 @@
-[2019/12/20 20:55:23 | FgBioMain | Info] Executing GroupReadsByUmi from fgbio version 0.6.1 as forster@dktk on JRE 11.0.1-internal+0-adhoc..src with snappy
-[2019/12/20 20:55:24 | GroupReadsByUmi | Info] Filtering and sorting input.
-[2019/12/20 20:55:24 | GroupReadsByUmi | Info] Accepted 0 reads for grouping.
-[2019/12/20 20:55:24 | GroupReadsByUmi | Info] Filtered out 0 reads that were not part of a high confidence FR mapped read pair.
-[2019/12/20 20:55:24 | GroupReadsByUmi | Info] Filtered out 0 reads that contained one or more Ns in their UMIs.
-[2019/12/20 20:55:24 | GroupReadsByUmi | Info] Assigning reads to UMIs and outputting.
-[2019/12/20 20:55:24 | FgBioMain | Info] GroupReadsByUmi completed. Elapsed time: 0,05 minutes.

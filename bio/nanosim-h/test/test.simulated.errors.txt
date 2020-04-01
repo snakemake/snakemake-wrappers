@@ -1,1 +1,0 @@
-Seq_name	Seq_pos	error_type	error_length	ref_base	seq_base

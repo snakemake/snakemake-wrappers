@@ -1,8 +1,0 @@
-[M::mm_idx_gen::0.010*0.16] collected minimizers
-[M::mm_idx_gen::0.010*0.19] sorted minimizers
-[M::main::0.011*0.26] loaded/built the index for 1 target sequence(s)
-[M::mm_idx_stat] kmer size: 15; skip: 10; is_HPC: 0; #seq: 1
-[M::mm_idx_stat::0.011*0.27] distinct minimizers: 185 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.405
-[M::main] Version: 2.5-r572
-[M::main] CMD: minimap2 -t 1 -d genome.mmi target/genome.fasta
-[M::main] Real time: 0.012 sec; CPU: 0.003 sec
