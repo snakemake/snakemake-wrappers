@@ -813,6 +813,19 @@ def test_snpeff_nostats():
     )
 
 
+def test_snpeff_database():
+    run(
+        "bio/reference/snpEff-database",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_strelka_germline():
     run(
         "bio/strelka/germline",
