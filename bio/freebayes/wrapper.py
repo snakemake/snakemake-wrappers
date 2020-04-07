@@ -27,7 +27,7 @@ else:
             "<(fasta_generate_regions.py " "{snakemake.input.ref}.fai {chunksize})"
         ).format(snakemake=snakemake, chunksize=chunksize)
     freebayes = ("freebayes-parallel {regions} " "{snakemake.threads}").format(
-        snakemake=snakemake, region=regions
+        snakemake=snakemake, regions=regions
     )
 
 shell(
