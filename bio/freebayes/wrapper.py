@@ -24,13 +24,11 @@ else:
     else:
         chunksize = snakemake.params.get("chunksize", 100000)
         regions = (
-            "<(fasta_generate_regions.py "
-            "{snakemake.input.ref}.fai {chunksize})"
+            "<(fasta_generate_regions.py " "{snakemake.input.ref}.fai {chunksize})"
         ).format(snakemake=snakemake, chunksize=chunksize)
-    freebayes = (
-        "freebayes-parallel {regions} "
-        "{snakemake.threads}"
-    ).format(snakemake=snakemake, region=regions)
+    freebayes = ("freebayes-parallel {regions} " "{snakemake.threads}").format(
+        snakemake=snakemake, region=regions
+    )
 
 shell(
     "({freebayes} {params} -f {snakemake.input.ref}"
