@@ -11,9 +11,11 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 shell(
-    "( bedtools merge"
+    "(cat {snakemake.input} | "
+    "sort -k1,1 -k2,2n - | "
+    "bedtools merge"
     " {extra}"
-    " -i {snakemake.input}"
+    " -i -"
     " > {snakemake.output})"
     " {log}"
 )
