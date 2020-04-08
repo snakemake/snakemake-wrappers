@@ -3,6 +3,8 @@ rule freebayes:
         ref="genome.fasta",
         # you can have a list of samples here
         samples="mapped/{sample}.bam"
+        # optional bed-file defining chromosomal regions being mutual exclusive to chunksize defined in params
+        #region="/path/to/region-file.bed"
     output:
         "calls/{sample}.vcf"  # either .vcf or .bcf
     log:
