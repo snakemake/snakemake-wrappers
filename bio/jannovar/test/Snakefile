@@ -7,7 +7,7 @@ rule jannovar:
     log:
         "logs/jannovar/{sample}.log"
     params:
-        database="hg19_ucsc.ser", # path to jannovar reference dataset
+        database="hg19_small.ser", # path to jannovar reference dataset
         extra="--show-all"         # optional parameters
     wrapper:
         "master/bio/jannovar"

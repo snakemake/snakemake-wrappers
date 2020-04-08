@@ -383,6 +383,13 @@ def test_fastqc():
     )
 
 
+def test_fastq_screen():
+    run(
+        "bio/fastq_screen",
+        ["snakemake", "--cores", "1", "qc/a.fastq_screen.txt", "--use-conda", "-F"],
+    )
+
+
 def test_fgbio_annotate():
     run(
         "bio/fgbio/annotatebamwithumis",
@@ -813,6 +820,19 @@ def test_snpeff_nostats():
     )
 
 
+def test_snpeff_database():
+    run(
+        "bio/reference/snpEff-database",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_strelka_germline():
     run(
         "bio/strelka/germline",
@@ -988,17 +1008,17 @@ def test_delly():
 
 
 def test_jannovar():
-    env_file = "bio/jannovar/environment.yaml"
-    env = ".envs/jannovar"
-    subprocess.run(
-        f"conda env create -f {env_file} --prefix {env}", shell=True, executable="bash"
-    )
-    subprocess.run(
-        f"source activate {env}; jannovar download -d hg19/ucsc",
-        shell=True,
-        executable="bash",
-    )
-    shutil.move("data/hg19_ucsc.ser", "bio/jannovar/test")
+#    env_file = "bio/jannovar/environment.yaml"
+#    env = ".envs/jannovar"
+#    subprocess.run(
+#        f"conda env create -f {env_file} --prefix {env}", shell=True, executable="bash"
+#    )
+#    subprocess.run(
+#        f"source activate {env}; jannovar download -d hg19/ucsc",
+#        shell=True,
+#        executable="bash",
+#    )
+#    shutil.move("data/hg19_ucsc.ser", "bio/jannovar/test")
     run(
         "bio/jannovar",
         [
