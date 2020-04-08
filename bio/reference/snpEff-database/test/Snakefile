@@ -1,0 +1,11 @@
+rule download_snpeff_database:
+    output:
+        directory("resources/snpEff/GRCh38.86")
+    params:
+        build="GRCh38",
+        release="86",
+        extra=""
+    log:
+        "logs/snpEff_database.log"
+    wrapper:
+        "master/bio/reference/snpEff-database"
