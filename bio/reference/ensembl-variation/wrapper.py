@@ -37,13 +37,15 @@ urls = [
     for suffix in suffixes
 ]
 
+download = "concat" if len(urls) > 1 else "view"
+
 if snakemake.input.get("fai"):
     # in case of a given .fai, reheader the VCF such that contig lengths are defined
     with tempfile.TemporaryDirectory() as tmpdir:
         shell(
-            "(bcftools concat -Ob {urls} > {tmpdir}/out.bcf && "
+            "(bcftools {download} -Ob {urls} > {tmpdir}/out.bcf && "
             " bcftools reheader --fai {snakemake.input.fai} {tmpdir}/out.bcf | bcftools view -Oz -o {snakemake.output[0]}) {log}"
         )
 else:
     # without .fai, just concatenate
-    shell("bcftools concat -Oz {urls} > {snakemake.output[0]} {log}")
+    shell("bcftools {download} -Oz {urls} > {snakemake.output[0]} {log}")
