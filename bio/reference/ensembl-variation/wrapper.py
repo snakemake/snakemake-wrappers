@@ -37,7 +37,9 @@ urls = [
     for suffix in suffixes
 ]
 
-download = ("bcftools concat -Oz {urls}" if len(urls) > 1 else "curl -L {urls}").format(urls=" ".join(urls))
+download = ("bcftools concat -Oz {urls}" if len(urls) > 1 else "curl -L {urls}").format(
+    urls=" ".join(urls)
+)
 
 if snakemake.input.get("fai"):
     # in case of a given .fai, reheader the VCF such that contig lengths are defined
