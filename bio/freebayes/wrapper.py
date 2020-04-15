@@ -24,7 +24,7 @@ else:
         "<(fasta_generate_regions.py " "{snakemake.input.ref}.fai {chunksize})"
     ).format(snakemake=snakemake, chunksize=chunksize)
     if snakemake.input.get("regions", ""):
-        regions = "<(bedtools intersect -a {snakemake.input.regions} -b {regions})".format(
+        regions = "<(bedtools intersect -a {regions} -b {snakemake.input.regions})".format(
             regions=regions, snakemake=snakemake
         )
     freebayes = ("freebayes-parallel {regions} {snakemake.threads}").format(
