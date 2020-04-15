@@ -21,12 +21,14 @@ if snakemake.threads == 1:
 else:
     chunksize = snakemake.params.get("chunksize", 100000)
     regions = (
-        "<(fasta_generate_regions.py {snakemake.input.ref}.fai {chunksize})"
+        "fasta_generate_regions.py {snakemake.input.ref}.fai {chunksize}"
     ).format(snakemake=snakemake, chunksize=chunksize)
     if snakemake.input.get("regions", ""):
-        regions = "<(bedtools intersect -a {regions} -b {snakemake.input.regions})".format(
+        regions = "<(bedtools intersect -a =(sed ('s/:/\t/g; s/-/\t/g') <({regions})) -b {snakemake.input.regions})".format(
             regions=regions, snakemake=snakemake
         )
+    else:
+        regions = "<({regions})".format(regions=regions)
     freebayes = ("freebayes-parallel {regions} {snakemake.threads}").format(
         snakemake=snakemake, regions=regions
     )
