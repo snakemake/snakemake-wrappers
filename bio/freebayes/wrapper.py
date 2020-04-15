@@ -27,7 +27,7 @@ else:
         regions = "<(bedtools intersect -a {snakemake.input.regions} -b {regions})".format(
             regions=regions, snakemake=snakemake
         )
-    freebayes = ("freebayes-parallel {regions} " "{snakemake.threads}").format(
+    freebayes = ("freebayes-parallel {regions} {snakemake.threads}").format(
         snakemake=snakemake, regions=regions
     )
 
