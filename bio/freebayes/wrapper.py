@@ -26,9 +26,9 @@ else:
     if snakemake.input.get("regions", ""):
         regions = (
             "<(bedtools intersect -a "
-            "<(sed 's/:\([0-9]*\)-\([0-9]*\)$/\t\\1\t\\2/' "
+            "<(sed 's/:\([0-9]*\)-\([0-9]*\)$/\\t\\1\\t\\2/' "
             "{regions}) -b {snakemake.input.regions} | "
-            "sed 's/\t\([0-9]*\)\t\([0-9]*\)$/:\\1-\\2/')"
+            "sed 's/\\t\([0-9]*\)\\t\([0-9]*\)$/:\\1-\\2/')"
         ).format(regions=regions, snakemake=snakemake)
     freebayes = ("freebayes-parallel {regions} {snakemake.threads}").format(
         snakemake=snakemake, regions=regions
