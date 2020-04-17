@@ -6,7 +6,7 @@ rule freebayes:
         # optional bed-file defining chromosomal regions being mutual exclusive to chunksize defined in params
         region="regions.bed"
     output:
-        "calls/{sample}.vcf"  # either .vcf or .bcf
+        "calls/{sample}.bcf"  # either .vcf or .bcf
     log:
         "logs/freebayes/{sample}.log"
     params:
