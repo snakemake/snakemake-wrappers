@@ -5,7 +5,7 @@ rule freebayes:
         samples="mapped/{sample}.bam"
         # optional BED file specifying chromosomal regions on which freebayes 
         # should run, e.g. all regions that show coverage
-        #region="/path/to/region-file.bed"
+        #regions="/path/to/region-file.bed"
     output:
         "calls/{sample}.vcf"  # either .vcf or .bcf
     log:
