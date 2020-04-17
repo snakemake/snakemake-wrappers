@@ -2,7 +2,7 @@ rule freebayes:
     input:
         ref="genome.fasta",
         # you can have a list of samples here
-        samples="mapped/{sample}.bam"
+        samples="mapped/{sample}.bam",
         # optional bed-file defining chromosomal regions being mutual exclusive to chunksize defined in params
         region="regions.bed"
     output:
