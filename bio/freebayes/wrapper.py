@@ -23,7 +23,6 @@ else:
     regions = "<(fasta_generate_regions.py {snakemake.input.ref}.fai {chunksize})".format(
         snakemake=snakemake, chunksize=chunksize
     )
-    # sed command needs to be improved
     if snakemake.input.get("regions", ""):
         regions = (
             "<(bedtools intersect -a "
