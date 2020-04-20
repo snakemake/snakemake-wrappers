@@ -487,6 +487,23 @@ def test_freebayes_bcf():
         )
 
 
+def test_freebayes_bed():
+    for c in [1, 2]:
+        run(
+            "bio/freebayes",
+            [
+                "snakemake",
+                "--cores",
+                str(c),
+                "calls/a.bcf",
+                "--use-conda",
+                "-F",
+                "-s",
+                "Snakefile_bed",
+            ],
+        )
+
+
 def test_happy_prepy():
     run(
         "bio/hap.py/pre.py",
