@@ -15,4 +15,4 @@ rule freebayes:
         chunksize=100000  # reference genome chunk size for parallelization (default: 100000)
     threads: 2
     wrapper:
-        "master/bio/freebayes"
+        "file:../"
