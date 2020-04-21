@@ -1,0 +1,19 @@
+rule prosolo_calling:
+    input:
+        single_cell = "data/mapped/{sc}.bam",
+        single_cell_index = "data/mapped/{sc}.bam.bai",
+        bulk = "data/mapped/{bulk}.bam",
+        bulk_index = "data/mapped/{bulk}.bam.bai",
+        ref = "data/genome.fasta",
+        ref_idx = "data/genome.fasta.fai",
+        candidates = "data/{sc}.{bulk}.prosolo_candidates.vcf",
+    output:
+        "variant_calling/{sc}.{bulk}.prosolo.bcf"
+    message:
+        "Testing ProSolo"
+    threads:
+        1
+    log:
+        "logs/prosolo_{sc}_{bulk}.log"
+    wrapper:
+        "master/bio/prosolo/single-cell-bulk"

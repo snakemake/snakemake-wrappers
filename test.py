@@ -1699,3 +1699,15 @@ def test_snpsift_vartype():
         "bio/snpsift/varType",
         ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"],
     )
+
+def test_prosolo_calling():
+    run(
+        "bio/prosolo/single-cell-bulk",
+        ["snakemake", "--cores", "1", "variant_calling/a.a.prosolo.bcf", "--use-conda", "-F"],
+    )
+
+def test_prosolo_fdr():
+    run(
+        "bio/prosolo/control-fdr",
+        ["snakemake", "--cores", "1", "fdr_control/a.a.prosolo.fdr.bcf", "--use-conda", "-F"],
+    )

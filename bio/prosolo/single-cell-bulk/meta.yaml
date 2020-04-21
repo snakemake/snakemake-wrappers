@@ -1,0 +1,12 @@
+name: "ProSolo"
+description: |
+  ProSolo calls variants or other events (like allele dropout) in a single cell sample against a bulk background sample. The single cell should stem from the same population of cells as the bulk background sample. The single cell sample should be amplified using multiple displacement amplification to match ProSolo's statistical model.
+authors:
+  - David Lähnemann
+input:
+  - A position-sorted single cell bam file, with its index.
+  - A position-sorted bulk bam file, with its index.
+  - A reference genome sequence in fasta format, with its index.
+  - A vcf or bcf file specifying candidate sites to perform calling on.
+output:
+  - Variants called in bcf format, with fine-grained posterior probabilities for single cell events.
