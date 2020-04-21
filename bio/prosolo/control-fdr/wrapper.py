@@ -11,10 +11,10 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 shell(
     "( prosolo control-fdr"
-    "{input} "
-    "--events {params.events} "
+    "{snakemake.input} "
+    "--events {snakemake.params.events} "
     "--var SNV "
-    "--fdr {params.fdr} "
-    " --output {output} ) "
+    "--fdr {snakemake.params.fdr} "
+    " --output {snakemake.output} ) "
     "{log} "
 )
