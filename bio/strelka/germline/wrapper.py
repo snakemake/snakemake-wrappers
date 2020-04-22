@@ -23,7 +23,7 @@ else:
 shell(
     "configureStrelkaGermlineWorkflow.py "  # configure the strelka run
     "--bam {bam} "  # input bam
-    "--referenceFasta {snakemake.input.fasta} " # reference genome
+    "--referenceFasta {snakemake.input.fasta} "  # reference genome
     "--runDir {run_dir} "  # output directory
     "{config_extra} "  # additional parameters for the configuration
     "&& {run_dir}/runWorkflow.py "  # run the strelka workflow
