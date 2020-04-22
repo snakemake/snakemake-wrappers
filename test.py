@@ -1025,31 +1025,6 @@ def test_delly():
 
 
 def test_jannovar():
-<<<<<<< HEAD
-#    env_file = "bio/jannovar/environment.yaml"
-#    env = ".envs/jannovar"
-#    subprocess.run(
-#        f"conda env create -f {env_file} --prefix {env}", shell=True, executable="bash"
-#    )
-#    subprocess.run(
-#        f"source activate {env}; jannovar download -d hg19/ucsc",
-#        shell=True,
-#        executable="bash",
-#    )
-#    shutil.move("data/hg19_ucsc.ser", "bio/jannovar/test")
-=======
-    #    env_file = "bio/jannovar/environment.yaml"
-    #    env = ".envs/jannovar"
-    #    subprocess.run(
-    #        f"conda env create -f {env_file} --prefix {env}", shell=True, executable="bash"
-    #    )
-    #    subprocess.run(
-    #        f"source activate {env}; jannovar download -d hg19/ucsc",
-    #        shell=True,
-    #        executable="bash",
-    #    )
-    #    shutil.move("data/hg19_ucsc.ser", "bio/jannovar/test")
->>>>>>> 12557ff827b3eccff34c349ecb8fe2a7289264f4
     run(
         "bio/jannovar",
         [
