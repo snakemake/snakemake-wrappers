@@ -1,6 +1,6 @@
-__author__ = "Jan Forster"
+__author__ = "Jan Forster, Felix Mölder"
 __copyright__ = "Copyright 2019, Jan Forster"
-__email__ = "j.forster@dkfz.de"
+__email__ = "j.forster@dkfz.de, felix.moelder@uni-due.de"
 __license__ = "MIT"
 
 from snakemake.shell import shell
