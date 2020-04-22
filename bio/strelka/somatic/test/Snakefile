@@ -11,8 +11,6 @@ rule strelka:
     output:
         # Strelka output - can be directory or full file path
         directory("{tumor}_vcf")
-    message:
-        "Testing Strelka"
     threads:
         1
     params:
