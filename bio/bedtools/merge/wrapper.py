@@ -12,19 +12,11 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 if len(snakemake.input) > 1:
     cat = "zcat" if snakemake.input[0].endswith(".gz") else "cat"
     shell(
-        (
-            "({cat} {input} | "
-            "sort -k1,1 -k2,2n | "
-            "bedtools merge {extra} "
-            "-i stdin > {output}) "
-            " {log}"
-        ).format(
-            cat=cat,
-            input=snakemake.input,
-            extra=extra,
-            output=snakemake.output,
-            log=log,
-        )
+        "({cat} {input} | "
+        "sort -k1,1 -k2,2n | "
+        "bedtools merge {extra} "
+        "-i stdin > {output}) "
+        " {log}"
     )
 else:
     shell(
