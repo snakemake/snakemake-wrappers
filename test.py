@@ -146,7 +146,32 @@ def test_bedtools_intersect():
 def test_bedtools_merge():
     run(
         "bio/bedtools/merge",
-        ["snakemake", "--cores", "1", "A.merged.bed", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "A.merged.bed",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile",
+        ],
+    )
+
+
+def test_bedtools_mergem_multi():
+    run(
+        "bio/bedtools/merge",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "A.merged.bed",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_multi",
+        ],
     )
 
 
