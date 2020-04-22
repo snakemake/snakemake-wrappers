@@ -6,6 +6,7 @@ rule get_fastq_pe:
     params:
         # optional extra arguments
         extra=""
+    threads: 6  # defaults to 6
     wrapper:
         "master/bio/sra-tools/fasterq-dump"
 
@@ -15,5 +16,6 @@ rule get_fastq_se:
         "data/{accession}.fastq"
     params:
         extra=""
+    threads: 6
     wrapper:
         "master/bio/sra-tools/fasterq-dump"

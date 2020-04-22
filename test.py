@@ -43,7 +43,7 @@ def run(wrapper, cmd, check_log=None):
         os.chdir(testdir)
         if os.path.exists(".snakemake"):
             shutil.rmtree(".snakemake")
-        cmd = cmd + ["--wrapper-prefix", "file://{}/".format(d)]
+        cmd = cmd + ["--wrapper-prefix", "file://{}/".format(d), "--conda-cleanup-pkgs"]
         subprocess.check_call(["snakemake", "--version"])
 
         try:
@@ -68,6 +68,12 @@ def run(wrapper, cmd, check_log=None):
             else:
                 raise e
         finally:
+            # cleanup environments to save disk space
+            subprocess.check_call(
+                "for env in `conda env list | grep -P '\.snakemake/conda' | "
+                "cut -f1 | tr -d ' '`; do conda env remove --prefix $env; done",
+                shell=True,
+            )
             # go back to original directory
             os.chdir(origdir)
 
@@ -481,6 +487,23 @@ def test_freebayes_bcf():
         )
 
 
+def test_freebayes_bed():
+    for c in [1, 2]:
+        run(
+            "bio/freebayes",
+            [
+                "snakemake",
+                "--cores",
+                str(c),
+                "calls/a.bcf",
+                "--use-conda",
+                "-F",
+                "-s",
+                "Snakefile_bed",
+            ],
+        )
+
+
 def test_happy_prepy():
     run(
         "bio/hap.py/pre.py",
@@ -823,13 +846,7 @@ def test_snpeff_nostats():
 def test_snpeff_database():
     run(
         "bio/reference/snpEff-database",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "--use-conda",
-            "-F",
-        ],
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )
 
 
@@ -1008,6 +1025,7 @@ def test_delly():
 
 
 def test_jannovar():
+<<<<<<< HEAD
 #    env_file = "bio/jannovar/environment.yaml"
 #    env = ".envs/jannovar"
 #    subprocess.run(
@@ -1019,6 +1037,19 @@ def test_jannovar():
 #        executable="bash",
 #    )
 #    shutil.move("data/hg19_ucsc.ser", "bio/jannovar/test")
+=======
+    #    env_file = "bio/jannovar/environment.yaml"
+    #    env = ".envs/jannovar"
+    #    subprocess.run(
+    #        f"conda env create -f {env_file} --prefix {env}", shell=True, executable="bash"
+    #    )
+    #    subprocess.run(
+    #        f"source activate {env}; jannovar download -d hg19/ucsc",
+    #        shell=True,
+    #        executable="bash",
+    #    )
+    #    shutil.move("data/hg19_ucsc.ser", "bio/jannovar/test")
+>>>>>>> 12557ff827b3eccff34c349ecb8fe2a7289264f4
     run(
         "bio/jannovar",
         [
@@ -1680,5 +1711,5 @@ def test_bwa_mem_samblaster():
 def test_snpsift_vartype():
     run(
         "bio/snpsift/varType",
-        ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"],
     )
