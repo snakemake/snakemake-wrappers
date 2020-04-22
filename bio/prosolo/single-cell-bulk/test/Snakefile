@@ -6,7 +6,7 @@ rule prosolo_calling:
         bulk_index = "data/mapped/{bulk}.bam.bai",
         ref = "data/genome.fasta",
         ref_idx = "data/genome.fasta.fai",
-        candidates = "data/{sc}.{bulk}.prosolo_candidates.vcf",
+        candidates = "data/{sc}.{bulk}.prosolo_candidates.bcf",
     output:
         "variant_calling/{sc}.{bulk}.prosolo.bcf"
     message:
