@@ -159,14 +159,14 @@ def test_bedtools_merge():
     )
 
 
-def test_bedtools_mergem_multi():
+def test_bedtools_merge_multi():
     run(
         "bio/bedtools/merge",
         [
             "snakemake",
             "--cores",
             "1",
-            "A.merged.bed",
+            "AB.merged.bed",
             "--use-conda",
             "-F",
             "-s",
