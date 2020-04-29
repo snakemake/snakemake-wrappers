@@ -700,6 +700,11 @@ def test_pyfastaq_replace_bases():
         ["snakemake", "--cores", "1", "sample1.dna.fa", "--use-conda", "-F"],
     )
 
+def test_samtools_depth():
+    run(
+        "bio/samtools/depth",
+        ["snakemake", "--cores", "1", "depth.txt", "--use-conda", "-F"],
+    )
 
 def test_samtools_mpileup():
     run(
