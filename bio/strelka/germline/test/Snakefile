@@ -1,15 +1,16 @@
 rule strelka_germline:
     input:
         # the required bam file
-        bam = "mapped/{sample}.bam"
+        bam="mapped/{sample}.bam",
+        # path to reference genome fasta and index
+        fasta="genome.fasta",
+        fasta_index="genome.fasta.fai"
     output:
-        # Strelka results directory
+        # Strelka results - either use directory or complete file path
         directory("strelka/{sample}")
     log:
         "logs/strelka/germline/{sample}.log"
     params:
-        # path to reference genome fasta
-        ref="genome.fasta",
         # optional parameters
         config_extra="",
         run_extra=""
