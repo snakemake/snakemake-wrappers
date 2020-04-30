@@ -700,11 +700,13 @@ def test_pyfastaq_replace_bases():
         ["snakemake", "--cores", "1", "sample1.dna.fa", "--use-conda", "-F"],
     )
 
+
 def test_samtools_depth():
     run(
         "bio/samtools/depth",
         ["snakemake", "--cores", "1", "depth.txt", "--use-conda", "-F"],
     )
+
 
 def test_samtools_mpileup():
     run(
@@ -835,8 +837,16 @@ def test_snpeff_annotate():
 def test_snpeff_download():
     run(
         "bio/snpeff/download",
-        ["snakemake", "--cores", "1", "resources/snpeff/ebola_zaire", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/snpeff/ebola_zaire",
+            "--use-conda",
+            "-F",
+        ],
     )
+
 
 def test_snpeff_nostats():
     run(

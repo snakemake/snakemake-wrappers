@@ -13,4 +13,3 @@ outdir = path.dirname(snakemake.input[0])
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell("snpEff download -dataDir {outdir} {reference} {log}")
-
