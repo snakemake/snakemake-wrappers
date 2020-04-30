@@ -8,6 +8,7 @@ from snakemake.shell import shell
 from os import path
 import shutil
 import tempfile
+from pathlib import Path
 
 outcalls = snakemake.output.calls
 if outcalls.endswith(".vcf.gz"):
@@ -25,9 +26,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 extra = snakemake.params.get("extra", "")
 
-data_dir = snakemake.params.get("data_dir", "")
-if data_dir:
-    data_dir = '-dataDir "%s"' % data_dir
+data_dir = Path(snakemake.input.db).parent.resolve()
 
 stats = snakemake.output.get("stats", "")
 csvstats = snakemake.output.get("csvstats", "")
@@ -35,7 +34,7 @@ csvstats_opt = "" if not csvstats else "-csvStats {}".format(csvstats)
 stats_opt = "-noStats" if not stats else "-stats {}".format(stats)
 
 shell(
-    "snpEff {data_dir} {stats_opt} {csvstats_opt} {extra} "
+    "snpEff -dataDir {data_dir} {stats_opt} {csvstats_opt} {extra} "
     "{snakemake.params.reference} {incalls} "
     "{outprefix} > {outcalls} {log}"
 )
