@@ -700,11 +700,13 @@ def test_pyfastaq_replace_bases():
         ["snakemake", "--cores", "1", "sample1.dna.fa", "--use-conda", "-F"],
     )
 
+
 def test_samtools_depth():
     run(
         "bio/samtools/depth",
         ["snakemake", "--cores", "1", "depth.txt", "--use-conda", "-F"],
     )
+
 
 def test_samtools_mpileup():
     run(
@@ -825,16 +827,30 @@ def test_star_index():
     run("bio/star/index", ["snakemake", "--cores", "1", "genome", "--use-conda", "-F"])
 
 
-def test_snpeff():
+def test_snpeff_annotate():
     run(
-        "bio/snpeff",
+        "bio/snpeff/annotate",
         ["snakemake", "--cores", "1", "snpeff/fake_KJ660346.vcf", "--use-conda", "-F"],
+    )
+
+
+def test_snpeff_download():
+    run(
+        "bio/snpeff/download",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/snpeff/ebola_zaire",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
 def test_snpeff_nostats():
     run(
-        "bio/snpeff",
+        "bio/snpeff/annotate",
         [
             "snakemake",
             "--cores",
@@ -845,13 +861,6 @@ def test_snpeff_nostats():
             "-s",
             "Snakefile_nostats",
         ],
-    )
-
-
-def test_snpeff_database():
-    run(
-        "bio/reference/snpEff-database",
-        ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )
 
 
