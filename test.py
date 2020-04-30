@@ -850,7 +850,7 @@ def test_snpeff_download():
 
 def test_snpeff_nostats():
     run(
-        "bio/snpeff",
+        "bio/snpeff/annotate",
         [
             "snakemake",
             "--cores",
@@ -861,13 +861,6 @@ def test_snpeff_nostats():
             "-s",
             "Snakefile_nostats",
         ],
-    )
-
-
-def test_snpeff_database():
-    run(
-        "bio/reference/snpEff-database",
-        ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )
 
 

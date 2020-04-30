@@ -4,12 +4,10 @@ __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
 
 from snakemake.shell import shell
-from os import path
-import shutil
-import tempfile
+from pathlib import Path
 
 reference = snakemake.params.reference
-outdir = path.dirname(snakemake.output[0])
+outdir = Path(snakemake.output[0]).parent.resolve()
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell("snpEff download -dataDir {outdir} {reference} {log}")
