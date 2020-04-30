@@ -825,12 +825,18 @@ def test_star_index():
     run("bio/star/index", ["snakemake", "--cores", "1", "genome", "--use-conda", "-F"])
 
 
-def test_snpeff():
+def test_snpeff_annotate():
     run(
-        "bio/snpeff",
+        "bio/snpeff/annotate",
         ["snakemake", "--cores", "1", "snpeff/fake_KJ660346.vcf", "--use-conda", "-F"],
     )
 
+
+def test_snpeff_download():
+    run(
+        "bio/snpeff/download",
+        ["snakemake", "--cores", "1", "resources/snpeff/ebola_zaire", "--use-conda", "-F"],
+    )
 
 def test_snpeff_nostats():
     run(

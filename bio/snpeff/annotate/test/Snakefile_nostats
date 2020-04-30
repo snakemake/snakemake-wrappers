@@ -10,4 +10,4 @@ rule snpeff:
         reference="ebola_zaire", # reference name (from `snpeff databases`)
         extra=""                 # optional parameters
     wrapper:
-        "master/bio/snpeff"
+        "master/bio/snpeff/annotate"

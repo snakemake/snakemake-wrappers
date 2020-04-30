@@ -9,8 +9,6 @@ from os import path
 import shutil
 import tempfile
 
-shell.executable("bash")
-
 outcalls = snakemake.output.calls
 if outcalls.endswith(".vcf.gz"):
     outprefix = "| bcftools view -Oz"
