@@ -9,7 +9,7 @@ import shutil
 import tempfile
 
 reference = snakemake.params.reference
-outdir = path.dirname(snakemake.input[0])
+outdir = path.dirname(snakemake.output[0])
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell("snpEff download -dataDir {outdir} {reference} {log}")

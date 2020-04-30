@@ -9,7 +9,6 @@ rule snpeff:
     log:
         "logs/snpeff/{sample}.log"
     params:
-        reference="ebola_zaire", # reference name (from `snpeff databases`)
         extra="-Xmx4g"           # optional parameters (e.g., max memory 4g)
     wrapper:
         "master/bio/snpeff/annotate"
