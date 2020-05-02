@@ -14,7 +14,7 @@ build = snakemake.params.build
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 spec = ("{build}" if int(release) > 75 else "{build}.{release}").format(
-    build=build, relese=release
+    build=build, release=release
 )
 
 suffixes = ""
