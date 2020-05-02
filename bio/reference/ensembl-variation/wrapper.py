@@ -7,13 +7,13 @@ import tempfile
 from snakemake.shell import shell
 
 species = snakemake.params.species.lower()
-release = snakemake.params.release
+release = int(snakemake.params.release)
 type = snakemake.params.type
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 if type == "all":
-    if species == "homo_sapiens":
+    if species == "homo_sapiens" and release >= 93:
         suffixes = [
             "-chr{}".format(chrom) for chrom in list(range(1, 23)) + ["X", "Y", "MT"]
         ]
@@ -29,6 +29,8 @@ else:
             type
         )
     )
+
+species_filename = species if release >= 91 else species.capitalize()
 
 urls = [
     "ftp://ftp.ensembl.org/pub/release-{release}/variation/vcf/{species}/{species}{suffix}.vcf.gz".format(

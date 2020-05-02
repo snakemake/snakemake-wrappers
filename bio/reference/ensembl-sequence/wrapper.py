@@ -4,6 +4,7 @@ __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
 
 import subprocess as sp
+from itertools import product
 from snakemake.shell import shell
 
 species = snakemake.params.species.lower()
@@ -11,6 +12,10 @@ release = snakemake.params.release
 build = snakemake.params.build
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+
+spec = ("{build}" if int(release) > 75 else "{build}.{release}").format(
+    build=build, relese=release
+)
 
 suffixes = ""
 datatype = snakemake.params.get("datatype", "")
@@ -29,11 +34,11 @@ else:
 
 success = False
 for suffix in suffixes:
-    url = "ftp://ftp.ensembl.org/pub/release-{release}/fasta/{species}/{datatype}/{species_cap}.{build}.{suffix}".format(
+    url = "ftp://ftp.ensembl.org/pub/release-{release}/fasta/{species}/{datatype}/{species_cap}.{spec}.{suffix}".format(
         release=release,
         species=species,
         datatype=datatype,
-        build=build,
+        spec=spec.format(build=build, release=release),
         suffix=suffix,
         species_cap=species.capitalize(),
     )
