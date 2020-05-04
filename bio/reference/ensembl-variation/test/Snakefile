@@ -13,5 +13,3 @@ rule get_variation:
     cache: True  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-variation"
-
-
