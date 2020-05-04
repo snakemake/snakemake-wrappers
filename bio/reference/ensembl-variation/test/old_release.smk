@@ -6,6 +6,7 @@ rule get_variation:
     params:
         species="saccharomyces_cerevisiae",
         release="90",
+        build="R64-1-1",
         type="all" # one of "all", "somatic", "structural_variation"
     log:
         "logs/get_variation.log"
