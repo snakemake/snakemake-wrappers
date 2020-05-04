@@ -1716,3 +1716,10 @@ def test_snpsift_vartype():
         "bio/snpsift/varType",
         ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"],
     )
+
+
+def test_vep_download():
+    run(
+        "bio/vep/download",
+        ["snakemake", "--cores", "1", "resources/vep/test", "--use-conda", "-F"],
+    )

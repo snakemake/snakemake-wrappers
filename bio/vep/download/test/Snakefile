@@ -1,0 +1,12 @@
+rule download_vep_cache:
+    output:
+        # everything beneath resources/vep is mandatory
+        directory("resources/vep/{species}/{release}_{build}")
+    params:
+        species="{species}",
+        build="{release}",
+        release="{build}"
+    log:
+        "logs/vep/download.log"
+    wrapper:
+        "master/bio/vep/download"
