@@ -34,7 +34,10 @@ species_filename = species if release >= 91 else species.capitalize()
 
 urls = [
     "ftp://ftp.ensembl.org/pub/release-{release}/variation/vcf/{species}/{species_filename}{suffix}.vcf.gz".format(
-        release=release, species=species, suffix=suffix, species_filename=species_filename,
+        release=release,
+        species=species,
+        suffix=suffix,
+        species_filename=species_filename,
     )
     for suffix in suffixes
 ]

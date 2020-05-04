@@ -9,6 +9,7 @@ rule get_variation:
         type="all" # one of "all", "somatic", "structural_variation"
     log:
         "logs/get_variation.log"
+    cache: True  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-variation"
 
