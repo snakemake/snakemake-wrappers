@@ -1718,8 +1718,22 @@ def test_snpsift_vartype():
     )
 
 
-def test_vep_download():
+def test_vep_cache():
     run(
-        "bio/vep/download",
-        ["snakemake", "--cores", "1", "resources/vep/test", "--use-conda", "-F"],
+        "bio/vep/cache",
+        ["snakemake", "--cores", "1", "resources/vep/cache", "--use-conda", "-F"],
+    )
+
+
+def test_vep_plugins():
+    run(
+        "bio/vep/plugins",
+        ["snakemake", "--cores", "1", "resources/vep/plugins", "--use-conda", "-F"],
+    )
+
+
+def test_vep_annotate():
+    run(
+        "bio/vep/annotate",
+        ["snakemake", "--cores", "1", "variants.annotated.vcf", "--use-conda", "-F"],
     )

@@ -1,0 +1,9 @@
+rule download_vep_plugins:
+    output:
+        directory("resources/vep/plugins")
+    params:
+        # list desired plugins, see https://www.ensembl.org/info/docs/tools/vep/script/vep_plugins.html
+        plugins=["LoFtool", "Mastermind"]
+    wrapper:
+        "master/bio/vep/plugins"
+        
