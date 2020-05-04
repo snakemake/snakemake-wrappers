@@ -8,7 +8,13 @@ from snakemake.shell import shell
 
 species = snakemake.params.species.lower()
 release = int(snakemake.params.release)
+build = snakemake.params.build
 type = snakemake.params.type
+
+branch = ""
+if release >= 81 and build == "GRCh37":
+    # use the special grch37 branch for new releases
+    branch = "grch37/"
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -33,11 +39,12 @@ else:
 species_filename = species if release >= 91 else species.capitalize()
 
 urls = [
-    "ftp://ftp.ensembl.org/pub/release-{release}/variation/vcf/{species}/{species_filename}{suffix}.vcf.gz".format(
+    "ftp://ftp.ensembl.org/pub/{branch}release-{release}/variation/vcf/{species}/{species_filename}{suffix}.vcf.gz".format(
         release=release,
         species=species,
         suffix=suffix,
         species_filename=species_filename,
+        branch=branch,
     )
     for suffix in suffixes
 ]

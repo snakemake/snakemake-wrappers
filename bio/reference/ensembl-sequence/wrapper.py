@@ -8,8 +8,13 @@ from itertools import product
 from snakemake.shell import shell
 
 species = snakemake.params.species.lower()
-release = snakemake.params.release
+release = int(snakemake.params.release)
 build = snakemake.params.build
+
+branch = ""
+if release >= 81 and build == "GRCh37":
+    # use the special grch37 branch for new releases
+    branch = "grch37/"
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -34,13 +39,14 @@ else:
 
 success = False
 for suffix in suffixes:
-    url = "ftp://ftp.ensembl.org/pub/release-{release}/fasta/{species}/{datatype}/{species_cap}.{spec}.{suffix}".format(
+    url = "ftp://ftp.ensembl.org/pub/{branch}release-{release}/fasta/{species}/{datatype}/{species_cap}.{spec}.{suffix}".format(
         release=release,
         species=species,
         datatype=datatype,
         spec=spec.format(build=build, release=release),
         suffix=suffix,
         species_cap=species.capitalize(),
+        branch=branch,
     )
 
     try:
