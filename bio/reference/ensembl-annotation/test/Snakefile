@@ -4,7 +4,7 @@ rule get_annotation:
     params:
         species="homo_sapiens",
         release="98",
-        build="GRCh38",
+        build="GRCh37",
         fmt="gtf",
         flavor="" # optional, e.g. chr_patch_hapl_scaff, see Ensembl FTP.
     log:
