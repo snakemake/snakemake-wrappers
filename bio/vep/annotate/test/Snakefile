@@ -1,9 +1,10 @@
 rule annotate_variants:
     input:
-        calls="variants.bcf",  # vcf or bcf
-        cache="resources/vep/cache"
+        calls="variants.bcf",  # .vcf, .vcf.gz or .bcf
+        cache="resources/vep/cache",
+        plugins="resources/vep/plugins",
     output:
-        calls="variants.annotated.bcf"  # vcf or bcf
+        calls="variants.annotated.bcf"  # .vcf, .vcf.gz or .bcf
     params:
         extra=""  # optional: extra arguments
     log:
