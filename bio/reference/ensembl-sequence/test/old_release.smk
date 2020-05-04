@@ -5,9 +5,8 @@ rule get_genome:
         species="saccharomyces_cerevisiae",
         datatype="dna",
         build="R64-1-1",
-        release="98"
+        release="75"
     log:
         "logs/get_genome.log"
-    cache: True  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-sequence"

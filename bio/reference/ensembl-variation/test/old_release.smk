@@ -5,11 +5,12 @@ rule get_variation:
         # fai="refs/genome.fasta.fai"
     params:
         species="saccharomyces_cerevisiae",
-        release="98",
+        release="90",
         build="R64-1-1",
         type="all" # one of "all", "somatic", "structural_variation"
     log:
         "logs/get_variation.log"
-    cache: True  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-variation"
+
+

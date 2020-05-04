@@ -1488,6 +1488,13 @@ def test_ensembl_sequence():
     )
 
 
+def test_ensembl_sequence_old_release():
+    run(
+        "bio/reference/ensembl-sequence",
+        ["snakemake", "-s", "old_release.smk", "--cores", "1", "--use-conda", "-F"],
+    )
+
+
 def test_ensembl_annotation():
     run(
         "bio/reference/ensembl-annotation",
@@ -1499,6 +1506,13 @@ def test_ensembl_variation():
     run(
         "bio/reference/ensembl-variation",
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
+
+def test_ensembl_variation_old_release():
+    run(
+        "bio/reference/ensembl-variation",
+        ["snakemake", "-s", "old_release.smk", "--cores", "1", "--use-conda", "-F"],
     )
 
 

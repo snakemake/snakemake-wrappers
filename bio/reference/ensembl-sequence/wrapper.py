@@ -4,13 +4,24 @@ __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
 
 import subprocess as sp
+import sys
+from itertools import product
 from snakemake.shell import shell
 
 species = snakemake.params.species.lower()
-release = snakemake.params.release
+release = int(snakemake.params.release)
 build = snakemake.params.build
 
+branch = ""
+if release >= 81 and build == "GRCh37":
+    # use the special grch37 branch for new releases
+    branch = "grch37/"
+
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+
+spec = ("{build}" if int(release) > 75 else "{build}.{release}").format(
+    build=build, release=release
+)
 
 suffixes = ""
 datatype = snakemake.params.get("datatype", "")
@@ -29,13 +40,14 @@ else:
 
 success = False
 for suffix in suffixes:
-    url = "ftp://ftp.ensembl.org/pub/release-{release}/fasta/{species}/{datatype}/{species_cap}.{build}.{suffix}".format(
+    url = "ftp://ftp.ensembl.org/pub/{branch}release-{release}/fasta/{species}/{datatype}/{species_cap}.{spec}.{suffix}".format(
         release=release,
         species=species,
         datatype=datatype,
-        build=build,
+        spec=spec.format(build=build, release=release),
         suffix=suffix,
         species_cap=species.capitalize(),
+        branch=branch,
     )
 
     try:
@@ -48,8 +60,9 @@ for suffix in suffixes:
     break
 
 if not success:
-    raise ValueError(
-        "Requested sequence does not seem to exist on ensembl FTP servers or servers are unavailable (url {})".format(
-            url
-        )
+    print(
+        "Unable to download requested sequence data from Ensembl. "
+        "Did you check that this combination of species, build, and release is actually provided?",
+        file=sys.stderr,
     )
+    exit(1)
