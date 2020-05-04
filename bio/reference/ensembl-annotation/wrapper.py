@@ -3,6 +3,8 @@ __copyright__ = "Copyright 2019, Johannes Köster"
 __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
 
+import subprocess
+import sys
 from snakemake.shell import shell
 
 species = snakemake.params.species.lower()
@@ -38,4 +40,14 @@ url = "ftp://ftp.ensembl.org/pub/{branch}release-{release}/{fmt}/{species}/{spec
     branch=branch,
 )
 
-shell("(curl -L {url} | gzip -d > {snakemake.output[0]}) {log}")
+try:
+    shell("(curl -L {url} | gzip -d > {snakemake.output[0]}) {log}")
+except subprocess.CalledProcessError as e:
+    if snakemake.log:
+        sys.stderr = open(snakemake.log[0], "a")
+    print(
+        "Unable to download annotation data from Ensembl. "
+        "Did you check that this combination of species, build, and release is actually provided?",
+        file=sys.stderr,
+    )
+    exit(1)

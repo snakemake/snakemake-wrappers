@@ -4,6 +4,7 @@ __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
 
 import subprocess as sp
+import sys
 from itertools import product
 from snakemake.shell import shell
 
@@ -59,8 +60,9 @@ for suffix in suffixes:
     break
 
 if not success:
-    raise ValueError(
-        "Requested sequence does not seem to exist on ensembl FTP servers or servers are unavailable (url {})".format(
-            url
-        )
+    print(
+        "Unable to download requested sequence data from Ensembl. "
+        "Did you check that this combination of species, build, and release is actually provided?",
+        file=sys.stderr,
     )
+    exit(1)

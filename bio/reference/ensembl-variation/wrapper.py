@@ -4,7 +4,10 @@ __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
 
 import tempfile
+import subprocess
+import sys
 from snakemake.shell import shell
+from snakemake.exceptions import WorkflowError
 
 species = snakemake.params.species.lower()
 release = int(snakemake.params.release)
@@ -48,19 +51,28 @@ urls = [
     )
     for suffix in suffixes
 ]
-print(urls)
 
 download = ("bcftools concat -Oz {urls}" if len(urls) > 1 else "curl -L {urls}").format(
     urls=" ".join(urls)
 )
 
-if snakemake.input.get("fai"):
-    # in case of a given .fai, reheader the VCF such that contig lengths are defined
-    with tempfile.TemporaryDirectory() as tmpdir:
-        shell(
-            "({download} > {tmpdir}/out.vcf.gz && "
-            " bcftools reheader --fai {snakemake.input.fai} {tmpdir}/out.vcf.gz | bcftools view -Oz -o {snakemake.output[0]}) {log}"
-        )
-else:
-    # without .fai, just concatenate
-    shell("{download} > {snakemake.output[0]} {log}")
+try:
+    if snakemake.input.get("fai"):
+        # in case of a given .fai, reheader the VCF such that contig lengths are defined
+        with tempfile.TemporaryDirectory() as tmpdir:
+            shell(
+                "({download} > {tmpdir}/out.vcf.gz && "
+                " bcftools reheader --fai {snakemake.input.fai} {tmpdir}/out.vcf.gz | bcftools view -Oz -o {snakemake.output[0]}) {log}"
+            )
+    else:
+        # without .fai, just concatenate
+        shell("{download} > {snakemake.output[0]} {log}")
+except subprocess.CalledProcessError as e:
+    if snakemake.log:
+        sys.stderr = open(snakemake.log[0], "a")
+    print(
+        "Unable to download variation data from Ensembl. "
+        "Did you check that this combination of species, build, and release is actually provided?",
+        file=sys.stderr,
+    )
+    exit(1)
