@@ -3,18 +3,22 @@ __copyright__ = "Copyright 2020, Johannes Köster"
 __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
 
+from pathlib import Path
 from snakemake.shell import shell
+
+get_child = lambda path: next(path.iterdir())
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
+stats = snakemake.output.stats
 cache = snakemake.input.cache
 plugins = snakemake.input.plugins
-entrypath = next(next(Path(cache).iterdir()).iterdir())
+entrypath = get_child(get_child(Path(cache)))
 species = entrypath.parent.name
 release, build = entrypath.name.split("_")
 
-load_plugins = " ".join(map("--plugin {spec}".format, snakemake.params.plugins))
+load_plugins = " ".join(map("--plugin {}".format, snakemake.params.plugins))
 
 if snakemake.output.calls.endswith(".vcf.gz"):
     fmt = "z"
@@ -26,6 +30,7 @@ else:
 shell(
     "(bcftools view {snakemake.input.calls} | "
     "vep {extra} "
+    "--format vcf "
     "--cache "
     "--cache_version {release} "
     "--species {species} "
@@ -33,6 +38,7 @@ shell(
     "--dir_cache {cache} "
     "--dir_plugins {plugins} "
     "{load_plugins} "
-    "--output_file STDOUT | "
+    "--output_file STDOUT "
+    "--stats_file {stats} | "
     "bcftools view -O{fmt} > {snakemake.output.calls}) {log}"
 )
