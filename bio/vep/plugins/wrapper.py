@@ -16,8 +16,13 @@ outdir = Path(snakemake.output[0])
 outdir.mkdir()
 
 with NamedTemporaryFile() as tmp:
-    urlretrieve("https://github.com/Ensembl/VEP_plugins/archive/release/{release}.zip".format(release=snakemake.params.release), tmp.name)
-    
+    urlretrieve(
+        "https://github.com/Ensembl/VEP_plugins/archive/release/{release}.zip".format(
+            release=snakemake.params.release
+        ),
+        tmp.name,
+    )
+
     with ZipFile(tmp.name) as f:
         for member in f.infolist():
             memberpath = Path(member.filename)
@@ -30,4 +35,3 @@ with NamedTemporaryFile() as tmp:
             else:
                 with open(targetpath, "wb") as out:
                     out.write(f.read(member.filename))
-

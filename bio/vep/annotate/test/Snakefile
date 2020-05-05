@@ -10,7 +10,7 @@ rule annotate_variants:
         # Pass a list of plugins to use, see https://www.ensembl.org/info/docs/tools/vep/script/vep_plugins.html
         # Plugin args can be added as well, e.g. via an entry "MyPlugin,1,FOO", see docs.
         plugins=["LoFtool"],
-        extra=""  # optional: extra arguments
+        extra="--everything"  # optional: extra arguments
     log:
         "logs/vep/annotate.log"
     wrapper:
