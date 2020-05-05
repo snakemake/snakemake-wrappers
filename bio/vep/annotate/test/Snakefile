@@ -6,6 +6,9 @@ rule annotate_variants:
     output:
         calls="variants.annotated.bcf"  # .vcf, .vcf.gz or .bcf
     params:
+        # Pass a list of plugins to use, see https://www.ensembl.org/info/docs/tools/vep/script/vep_plugins.html
+        # Plugin args can be added as well, e.g. via an entry "MyPlugin,1,FOO", see docs.
+        plugins=["Mastermind", "LoFtool"]
         extra=""  # optional: extra arguments
     log:
         "logs/vep/annotate.log"

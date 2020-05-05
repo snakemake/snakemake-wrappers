@@ -9,9 +9,12 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 cache = snakemake.input.cache
+plugins = snakemake.input.plugins
 entrypath = next(next(Path(cache).iterdir()).iterdir())
 species = entrypath.parent.name
 release, build = entrypath.name.split("_")
+
+load_plugins = " ".join(map("--plugin {spec}".format, snakemake.params.plugins))
 
 if snakemake.output.calls.endswith(".vcf.gz"):
     fmt = "z"
@@ -28,6 +31,8 @@ shell(
     "--species {species} "
     "--assembly {build} "
     "--dir_cache {cache} "
+    "--dir_plugins {plugins} "
+    "{load_plugins} "
     "--output_file STDOUT | "
     "bcftools view -O{fmt} > {snakemake.output.calls}) {log}"
 )
