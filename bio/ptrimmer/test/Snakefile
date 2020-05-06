@@ -7,6 +7,8 @@ rule ptrimmer_pe:
         r2="results/a.lane1_R2.fq.gz"
     params:
         primers="resources/primers.txt"
+    log:
+        "logs/ptrimmer/a.lane.log"
     wrapper:
         "master/bio/ptrimmer"
 
@@ -17,5 +19,7 @@ rule ptrimmer_se:
         r1="results/a.lane1_R1.fq",
     params:
         primers="resources/primers.txt"
+    log:
+        "logs/ptrimmer/a.lane1.log"
     wrapper:
         "master/bio/ptrimmer"
