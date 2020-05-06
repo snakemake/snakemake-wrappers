@@ -52,9 +52,9 @@ urls = [
     for suffix in suffixes
 ]
 
-download = ("bcftools concat -Oz {urls}" if len(urls) > 1 else "bcftools view -Oz {urls}").format(
-    urls=" ".join(urls)
-)
+download = (
+    "bcftools concat -Oz {urls}" if len(urls) > 1 else "bcftools view -Oz {urls}"
+).format(urls=" ".join(urls))
 
 try:
     if snakemake.input.get("fai"):
