@@ -74,11 +74,13 @@ try:
         if snakemake.input.get("fai"):
             # reheader, adding sequence lenghts
             shell(
-                "bcftools reheader --fai {snakemake.input.fai} {tmpdir}/out.vcf.gz > {snakemake.output} 2>> {log}"
+                "(bcftools reheader --fai {snakemake.input.fai} {tmpdir}/out.vcf.gz | bcftools sort -Oz - > {snakemake.output}) 2>> {log}"
             )
         else:
             # just move to final place
-            shell("mv {tmpdir}/out.vcf.gz {snakemake.output}")
+            shell(
+                "bcftools sort -Oz {tmpdir}/out.vcf.gz > {snakemake.output} 2>> {log}"
+            )
 except subprocess.CalledProcessError as e:
     if snakemake.log:
         sys.stderr = open(snakemake.log[0], "a")
