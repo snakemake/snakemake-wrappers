@@ -72,12 +72,12 @@ try:
             shell("(cd {tmpdir} && bcftools view -Oz {names} > out.vcf.gz) 2>> {log}")
 
         if snakemake.input.get("fai"):
-            # reheader, adding sequence lenghts
+            # reheader, adding sequence lenghts and sort
             shell(
                 "(bcftools reheader --fai {snakemake.input.fai} {tmpdir}/out.vcf.gz | bcftools sort -Oz - > {snakemake.output}) 2>> {log}"
             )
         else:
-            # just move to final place
+            # just sort into final place
             shell(
                 "bcftools sort -Oz {tmpdir}/out.vcf.gz > {snakemake.output} 2>> {log}"
             )
