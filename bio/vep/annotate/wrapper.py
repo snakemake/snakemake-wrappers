@@ -31,6 +31,7 @@ shell(
     "(bcftools view {snakemake.input.calls} | "
     "vep {extra} "
     "--format vcf "
+    "--vcf "
     "--cache "
     "--cache_version {release} "
     "--species {species} "
