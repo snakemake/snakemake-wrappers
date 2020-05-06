@@ -69,10 +69,12 @@ try:
         else:
             # recompress with bgzip
             shell("(cd {tmpdir} && bcftools view -Oz {names} > out.vcf.gz) 2>> {log}")
-        
+
         if snakemake.input.get("fai"):
             # reheader, adding sequence lenghts
-            shell("bcftools reheader --fai {snakemake.input.fai} {tmpdir}/out.vcf.gz > {snakemake.output} 2>> {log}")
+            shell(
+                "bcftools reheader --fai {snakemake.input.fai} {tmpdir}/out.vcf.gz > {snakemake.output} 2>> {log}"
+            )
         else:
             # just move to final place
             shell("mv {tmpdir}/out.vcf.gz {snakemake.output}")
