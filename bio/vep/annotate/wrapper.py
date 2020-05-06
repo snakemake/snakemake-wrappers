@@ -11,6 +11,7 @@ get_child = lambda path: next(path.iterdir())
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
+fork = "--fork {}".format(snakemake.threads) if snakemake.threads > 1 else ""
 stats = snakemake.output.stats
 cache = snakemake.input.cache
 plugins = snakemake.input.plugins
@@ -29,7 +30,7 @@ else:
 
 shell(
     "(bcftools view {snakemake.input.calls} | "
-    "vep {extra} "
+    "vep {extra} {fork} "
     "--format vcf "
     "--vcf "
     "--cache "

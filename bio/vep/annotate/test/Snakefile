@@ -13,5 +13,6 @@ rule annotate_variants:
         extra="--everything"  # optional: extra arguments
     log:
         "logs/vep/annotate.log"
+    threads: 4
     wrapper:
         "master/bio/vep/annotate"
