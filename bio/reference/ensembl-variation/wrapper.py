@@ -77,10 +77,8 @@ try:
                 "(bcftools reheader --fai {snakemake.input.fai} {tmpdir}/out.vcf.gz | bcftools sort -Oz - > {snakemake.output}) 2>> {log}"
             )
         else:
-            # just sort into final place
-            shell(
-                "bcftools sort -Oz {tmpdir}/out.vcf.gz > {snakemake.output} 2>> {log}"
-            )
+            # just move into final place
+            shell("mv {tmpdir}/out.vcf.gz {snakemake.output}")
 except subprocess.CalledProcessError as e:
     if snakemake.log:
         sys.stderr = open(snakemake.log[0], "a")
