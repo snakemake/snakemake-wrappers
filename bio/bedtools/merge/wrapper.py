@@ -11,7 +11,7 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 if len(snakemake.input) > 1:
     if all(f.endswith(".gz") for f in snakemake.input):
-        cat="zcat"
+        cat = "zcat"
     elif all(not f.endswith(".gz") for f in snakemake.input):
         cat = "cat"
     else:
