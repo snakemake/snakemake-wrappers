@@ -19,7 +19,7 @@ if release >= 81 and build == "GRCh37":
     # use the special grch37 branch for new releases
     branch = "grch37/"
 
-log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+log = snakemake.log[0]
 
 if type == "all":
     if species == "homo_sapiens" and release >= 93:
@@ -52,21 +52,30 @@ urls = [
     for suffix in suffixes
 ]
 
+names = [os.path.basename(url) for url in urls]
+
 download = (
     "bcftools concat -Oz {urls}" if len(urls) > 1 else "bcftools view -Oz {urls}"
 ).format(urls=" ".join(urls))
 
 try:
-    if snakemake.input.get("fai"):
-        # in case of a given .fai, reheader the VCF such that contig lengths are defined
-        with tempfile.TemporaryDirectory() as tmpdir:
-            shell(
-                "({download} > {tmpdir}/out.vcf.gz && "
-                " bcftools reheader --fai {snakemake.input.fai} {tmpdir}/out.vcf.gz | bcftools view -Oz -o {snakemake.output[0]}) {log}"
-            )
-    else:
-        # without .fai, just concatenate
-        shell("{download} > {snakemake.output[0]} {log}")
+    # in case of a given .fai, reheader the VCF such that contig lengths are defined
+    with tempfile.TemporaryDirectory() as tmpdir:
+        # download all vcfs
+        shell("(cd {tmpdir} && curl -O {urls}) 2> {log}")
+        if len(names) > 1:
+            # concatenate and recompress with bgzip
+            shell("(cd {tmpdir} && bcftools concat -Oz {names} > out.vcf.gz) 2>> {log}")
+        else:
+            # recompress with bgzip
+            shell("(cd {tmpdir} && bcftools view -Oz {names} > out.vcf.gz) 2>> {log}")
+        
+        if snakemake.input.get("fai"):
+            # reheader, adding sequence lenghts
+            shell("bcftools reheader --fai {snakemake.input.fai} {tmpdir}/out.vcf.gz > {snakemake.output} 2>> {log}")
+        else:
+            # just move to final place
+            shell("mv {tmpdir}/out.vcf.gz {snakemake.output}")
 except subprocess.CalledProcessError as e:
     if snakemake.log:
         sys.stderr = open(snakemake.log[0], "a")
