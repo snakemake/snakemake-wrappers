@@ -7,5 +7,6 @@ rule get_vep_cache:
         release="98"
     log:
         "logs/vep/cache.log"
+    cache: True  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/vep/cache"
