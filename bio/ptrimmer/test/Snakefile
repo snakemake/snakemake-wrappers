@@ -1,0 +1,25 @@
+rule ptrimmer_pe:
+    input:
+        r1="resources/a.lane1_R1.fastq.gz",
+        r2="resources/a.lane1_R2.fastq.gz"
+    output:
+        r1="results/a.lane1_R1.fq.gz",
+        r2="results/a.lane1_R2.fq.gz"
+    params:
+        primers="resources/primers.txt"
+    log:
+        "logs/ptrimmer/a.lane.log"
+    wrapper:
+        "master/bio/ptrimmer"
+
+rule ptrimmer_se:
+    input:
+        r1="resources/a.lane1_R1.fastq.gz",
+    output:
+        r1="results/a.lane1_R1.fq",
+    params:
+        primers="resources/primers.txt"
+    log:
+        "logs/ptrimmer/a.lane1.log"
+    wrapper:
+        "master/bio/ptrimmer"
