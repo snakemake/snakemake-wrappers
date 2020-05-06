@@ -1,0 +1,1256 @@
+my $VEP_PLUGIN_CONFIG = {
+  "plugins" => [
+
+    ## PATHOGENICITY PREDICTIONS
+    ############################
+
+    # dbNSFP
+    # https://github.com/ensembl-variation/VEP_plugins/blob/master/dbNSFP.pm
+    # Requires tabix-indexed data file as first param
+    # Field names are listed below and rendered as a multi-selectable autocomplete text field
+    # Human, GRCh38 only (3.x), for GRCh37 use 2.9.x
+    {
+      "key" => "dbNSFP",
+      "label" => "dbNSFP",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Pathogenicity predictions",
+      "helptip" => "dbNSFP provides pathogenicity predictions for missense variants from various algorithms",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/dbNSFP.pm",
+      "requires_data" => 1,
+      "requires_install" => 1,
+      "params"  => [
+        #"/path/to/dbNSFP4.0a_grch38.gz",
+        "@*"
+      ],
+      "species" => [
+        "homo_sapiens"
+      ],
+      "form" => [
+        {
+          "name" => "dbNSFP_fields",
+          "label" => "Fields to include",
+          "helptip" => "Fields to fetch from dbNSFP; hold down the Ctrl (Windows) / Command (Mac) button to select multiple options",
+          "value" => "",
+          'type' => 'dropdown',
+          'multiple' => 1,
+          'style' => 'height:150px',
+          'required' => 1,
+          'notes' => 'Field descriptions in <a rel="external" href="https://usf.app.box.com/s/cdws8yx5occ603ccbknwyamz5reapdug">dbNSFP README</a>',
+          # "class" => "jquery-multiselect",
+          "values" => [
+#            "chr",
+#            "pos(1-based)",
+#            "ref",
+#            "alt",
+#            "aaref",
+#            "aaalt",
+#            "rs_dbSNP151",
+#            "hg19_chr",
+#            "hg19_pos(1-based)",
+#            "hg18_chr",
+#            "hg18_pos(1-based)",
+#            "aapos",
+            "genename",
+            "Ensembl_geneid",
+            "Ensembl_transcriptid",
+            "Ensembl_proteinid",
+            "Uniprot_acc",
+            "Uniprot_entry",
+#            "HGVSc_ANNOVAR",
+#            "HGVSp_ANNOVAR",
+#            "HGVSc_snpEff",
+#            "HGVSp_snpEff",
+#            "HGVSc_VEP",
+#            "HGVSp_VEP",
+#            "APPRIS",
+#            "GENCODE_basic",
+#            "TSL",
+#            "VEP_canonical",
+#            "cds_strand",
+#            "refcodon",
+#            "codonpos",
+            "codon_degeneracy",
+            "Ancestral_allele",
+            "AltaiNeandertal",
+            "Denisova",
+            "VindijiaNeandertal",
+#            "SIFT_score",
+#            "SIFT_converted_rankscore",
+#            "SIFT_pred",
+#            "SIFT4G_score",
+#            "SIFT4G_converted_rankscore",
+#            "SIFT4G_pred",
+#            "Polyphen2_HDIV_score",
+#            "Polyphen2_HDIV_rankscore",
+#            "Polyphen2_HDIV_pred",
+#            "Polyphen2_HVAR_score",
+#            "Polyphen2_HVAR_rankscore",
+#            "Polyphen2_HVAR_pred",
+            "LRT_score",
+            "LRT_converted_rankscore",
+            "LRT_pred",
+            "LRT_Omega",
+            "MutationTaster_score",
+            "MutationTaster_converted_rankscore",
+            "MutationTaster_pred",
+            "MutationTaster_model",
+            "MutationTaster_AAE",
+            "MutationAssessor_score",
+            "MutationAssessor_rankscore",
+            "MutationAssessor_pred",
+            "FATHMM_score",
+            "FATHMM_converted_rankscore",
+            "FATHMM_pred",
+            "PROVEAN_score",
+            "PROVEAN_converted_rankscore",
+            "PROVEAN_pred",
+            "VEST4_score",
+            "VEST4_rankscore",
+            "MetaSVM_score",
+            "MetaSVM_rankscore",
+            "MetaSVM_pred",
+            "MetaLR_score",
+            "MetaLR_rankscore",
+            "MetaLR_pred",
+            "Reliability_index",
+            "M-CAP_score",
+            "M-CAP_rankscore",
+            "M-CAP_pred",
+            "REVEL_score",
+            "REVEL_rankscore",
+            "MutPred_score",
+            "MutPred_rankscore",
+            "MutPred_protID",
+            "MutPred_AAchange",
+            "MutPred_Top5features",
+            "MVP_score",
+            "MVP_rankscore",
+            "MPC_score",
+            "MPC_rankscore",
+            "PrimateAI_score",
+            "PrimateAI_rankscore",
+            "PrimateAI_pred",
+            "DEOGEN2_score",
+            "DEOGEN2_rankscore",
+            "DEOGEN2_pred",
+            "Aloft_Fraction_transcripts_affected",
+            "Aloft_prob_Tolerant",
+            "Aloft_prob_Recessive",
+            "Aloft_prob_Dominant",
+            "Aloft_pred",
+            "Aloft_Confidence",
+            "CADD_raw",
+            "CADD_raw_rankscore",
+            "CADD_phred",
+            "DANN_score",
+            "DANN_rankscore",
+            "fathmm-MKL_coding_score",
+            "fathmm-MKL_coding_rankscore",
+            "fathmm-MKL_coding_pred",
+            "fathmm-MKL_coding_group",
+            "fathmm-XF_coding_score",
+            "fathmm-XF_coding_rankscore",
+            "fathmm-XF_coding_pred",
+            "Eigen-raw_coding",
+            "Eigen-raw_coding_rankscore",
+            "Eigen-pred_coding",
+            "Eigen-PC-raw_coding",
+            "Eigen-PC-raw_coding_rankscore",
+            "Eigen-PC-phred_coding",
+            "GenoCanyon_score",
+            "GenoCanyon_rankscore",
+            "integrated_fitCons_score",
+            "integrated_fitCons_rankscore",
+            "integrated_confidence_value",
+            "GM12878_fitCons_score",
+            "GM12878_fitCons_rankscore",
+            "GM12878_confidence_value",
+            "H1-hESC_fitCons_score",
+            "H1-hESC_fitCons_rankscore",
+            "H1-hESC_confidence_value",
+            "HUVEC_fitCons_score",
+            "HUVEC_fitCons_rankscore",
+            "HUVEC_confidence_value",
+            "LINSIGHT",
+            "LINSIGHT_rankscore",
+            "GERP++_NR",
+            "GERP++_RS",
+            "GERP++_RS_rankscore",
+            "phyloP100way_vertebrate",
+            "phyloP100way_vertebrate_rankscore",
+            "phyloP30way_mammalian",
+            "phyloP30way_mammalian_rankscore",
+            "phyloP17way_primate",
+            "phyloP17way_primate_rankscore",
+            "phastCons100way_vertebrate",
+            "phastCons100way_vertebrate_rankscore",
+            "phastCons30way_mammalian",
+            "phastCons30way_mammalian_rankscore",
+            "phastCons17way_primate",
+            "phastCons17way_primate_rankscore",
+            "SiPhy_29way_pi",
+            "SiPhy_29way_logOdds",
+            "SiPhy_29way_logOdds_rankscore",
+            "bStatistic",
+            "bStatistic_rankscore",
+            "1000Gp3_AC",
+            "1000Gp3_AF",
+            "1000Gp3_AFR_AC",
+            "1000Gp3_AFR_AF",
+            "1000Gp3_EUR_AC",
+            "1000Gp3_EUR_AF",
+            "1000Gp3_AMR_AC",
+            "1000Gp3_AMR_AF",
+            "1000Gp3_EAS_AC",
+            "1000Gp3_EAS_AF",
+            "1000Gp3_SAS_AC",
+            "1000Gp3_SAS_AF",
+            "TWINSUK_AC",
+            "TWINSUK_AF",
+            "ALSPAC_AC",
+            "ALSPAC_AF",
+            "UK10K_AC",
+            "UK10K_AF",
+            "ESP6500_AA_AC",
+            "ESP6500_AA_AF",
+            "ESP6500_EA_AC",
+            "ESP6500_EA_AF",
+            "ExAC_AC",
+            "ExAC_AF",
+            "ExAC_Adj_AC",
+            "ExAC_Adj_AF",
+            "ExAC_AFR_AC",
+            "ExAC_AFR_AF",
+            "ExAC_AMR_AC",
+            "ExAC_AMR_AF",
+            "ExAC_EAS_AC",
+            "ExAC_EAS_AF",
+            "ExAC_FIN_AC",
+            "ExAC_FIN_AF",
+            "ExAC_NFE_AC",
+            "ExAC_NFE_AF",
+            "ExAC_SAS_AC",
+            "ExAC_SAS_AF",
+            "ExAC_nonTCGA_AC",
+            "ExAC_nonTCGA_AF",
+            "ExAC_nonTCGA_Adj_AC",
+            "ExAC_nonTCGA_Adj_AF",
+            "ExAC_nonTCGA_AFR_AC",
+            "ExAC_nonTCGA_AFR_AF",
+            "ExAC_nonTCGA_AMR_AC",
+            "ExAC_nonTCGA_AMR_AF",
+            "ExAC_nonTCGA_EAS_AC",
+            "ExAC_nonTCGA_EAS_AF",
+            "ExAC_nonTCGA_FIN_AC",
+            "ExAC_nonTCGA_FIN_AF",
+            "ExAC_nonTCGA_NFE_AC",
+            "ExAC_nonTCGA_NFE_AF",
+            "ExAC_nonTCGA_SAS_AC",
+            "ExAC_nonTCGA_SAS_AF",
+            "ExAC_nonpsych_AC",
+            "ExAC_nonpsych_AF",
+            "ExAC_nonpsych_Adj_AC",
+            "ExAC_nonpsych_Adj_AF",
+            "ExAC_nonpsych_AFR_AC",
+            "ExAC_nonpsych_AFR_AF",
+            "ExAC_nonpsych_AMR_AC",
+            "ExAC_nonpsych_AMR_AF",
+            "ExAC_nonpsych_EAS_AC",
+            "ExAC_nonpsych_EAS_AF",
+            "ExAC_nonpsych_FIN_AC",
+            "ExAC_nonpsych_FIN_AF",
+            "ExAC_nonpsych_NFE_AC",
+            "ExAC_nonpsych_NFE_AF",
+            "ExAC_nonpsych_SAS_AC",
+            "ExAC_nonpsych_SAS_AF",
+            "gnomAD_exomes_flag",
+            "gnomAD_exomes_AC",
+            "gnomAD_exomes_AN",
+            "gnomAD_exomes_AF",
+            "gnomAD_exomes_nhomalt",
+            "gnomAD_exomes_AFR_AC",
+            "gnomAD_exomes_AFR_AN",
+            "gnomAD_exomes_AFR_AF",
+            "gnomAD_exomes_AFR_nhomalt",
+            "gnomAD_exomes_AMR_AC",
+            "gnomAD_exomes_AMR_AN",
+            "gnomAD_exomes_AMR_AF",
+            "gnomAD_exomes_AMR_nhomalt",
+            "gnomAD_exomes_ASJ_AC",
+            "gnomAD_exomes_ASJ_AN",
+            "gnomAD_exomes_ASJ_AF",
+            "gnomAD_exomes_ASJ_nhomalt",
+            "gnomAD_exomes_EAS_AC",
+            "gnomAD_exomes_EAS_AN",
+            "gnomAD_exomes_EAS_AF",
+            "gnomAD_exomes_EAS_nhomalt",
+            "gnomAD_exomes_FIN_AC",
+            "gnomAD_exomes_FIN_AN",
+            "gnomAD_exomes_FIN_AF",
+            "gnomAD_exomes_FIN_nhomalt",
+            "gnomAD_exomes_NFE_AC",
+            "gnomAD_exomes_NFE_AN",
+            "gnomAD_exomes_NFE_AF",
+            "gnomAD_exomes_NFE_nhomalt",
+            "gnomAD_exomes_SAS_AC",
+            "gnomAD_exomes_SAS_AN",
+            "gnomAD_exomes_SAS_AF",
+            "gnomAD_exomes_SAS_nhomalt",
+            "gnomAD_exomes_POPMAX_AC",
+            "gnomAD_exomes_POPMAX_AN",
+            "gnomAD_exomes_POPMAX_AF",
+            "gnomAD_exomes_POPMAX_nhomalt",
+            "gnomAD_exomes_controls_AC",
+            "gnomAD_exomes_controls_AN",
+            "gnomAD_exomes_controls_AF",
+            "gnomAD_exomes_controls_nhomalt",
+            "gnomAD_exomes_controls_AFR_AC",
+            "gnomAD_exomes_controls_AFR_AN",
+            "gnomAD_exomes_controls_AFR_AF",
+            "gnomAD_exomes_controls_AFR_nhomalt",
+            "gnomAD_exomes_controls_AMR_AC",
+            "gnomAD_exomes_controls_AMR_AN",
+            "gnomAD_exomes_controls_AMR_AF",
+            "gnomAD_exomes_controls_AMR_nhomalt",
+            "gnomAD_exomes_controls_ASJ_AC",
+            "gnomAD_exomes_controls_ASJ_AN",
+            "gnomAD_exomes_controls_ASJ_AF",
+            "gnomAD_exomes_controls_ASJ_nhomalt",
+            "gnomAD_exomes_controls_EAS_AC",
+            "gnomAD_exomes_controls_EAS_AN",
+            "gnomAD_exomes_controls_EAS_AF",
+            "gnomAD_exomes_controls_EAS_nhomalt",
+            "gnomAD_exomes_controls_FIN_AC",
+            "gnomAD_exomes_controls_FIN_AN",
+            "gnomAD_exomes_controls_FIN_AF",
+            "gnomAD_exomes_controls_FIN_nhomalt",
+            "gnomAD_exomes_controls_NFE_AC",
+            "gnomAD_exomes_controls_NFE_AN",
+            "gnomAD_exomes_controls_NFE_AF",
+            "gnomAD_exomes_controls_NFE_nhomalt",
+            "gnomAD_exomes_controls_SAS_AC",
+            "gnomAD_exomes_controls_SAS_AN",
+            "gnomAD_exomes_controls_SAS_AF",
+            "gnomAD_exomes_controls_SAS_nhomalt",
+            "gnomAD_exomes_controls_POPMAX_AC",
+            "gnomAD_exomes_controls_POPMAX_AN",
+            "gnomAD_exomes_controls_POPMAX_AF",
+            "gnomAD_exomes_controls_POPMAX_nhomalt",
+            "gnomAD_genomes_flag",
+            "gnomAD_genomes_AC",
+            "gnomAD_genomes_AN",
+            "gnomAD_genomes_AF",
+            "gnomAD_genomes_nhomalt",
+            "gnomAD_genomes_AFR_AC",
+            "gnomAD_genomes_AFR_AN",
+            "gnomAD_genomes_AFR_AF",
+            "gnomAD_genomes_AFR_nhomalt",
+            "gnomAD_genomes_AMR_AC",
+            "gnomAD_genomes_AMR_AN",
+            "gnomAD_genomes_AMR_AF",
+            "gnomAD_genomes_AMR_nhomalt",
+            "gnomAD_genomes_ASJ_AC",
+            "gnomAD_genomes_ASJ_AN",
+            "gnomAD_genomes_ASJ_AF",
+            "gnomAD_genomes_ASJ_nhomalt",
+            "gnomAD_genomes_EAS_AC",
+            "gnomAD_genomes_EAS_AN",
+            "gnomAD_genomes_EAS_AF",
+            "gnomAD_genomes_EAS_nhomalt",
+            "gnomAD_genomes_FIN_AC",
+            "gnomAD_genomes_FIN_AN",
+            "gnomAD_genomes_FIN_AF",
+            "gnomAD_genomes_FIN_nhomalt",
+            "gnomAD_genomes_NFE_AC",
+            "gnomAD_genomes_NFE_AN",
+            "gnomAD_genomes_NFE_AF",
+            "gnomAD_genomes_NFE_nhomalt",
+            "gnomAD_genomes_POPMAX_AC",
+            "gnomAD_genomes_POPMAX_AN",
+            "gnomAD_genomes_POPMAX_AF",
+            "gnomAD_genomes_POPMAX_nhomalt",
+            "gnomAD_genomes_controls_AC",
+            "gnomAD_genomes_controls_AN",
+            "gnomAD_genomes_controls_AF",
+            "gnomAD_genomes_controls_nhomalt",
+            "gnomAD_genomes_controls_AFR_AC",
+            "gnomAD_genomes_controls_AFR_AN",
+            "gnomAD_genomes_controls_AFR_AF",
+            "gnomAD_genomes_controls_AFR_nhomalt",
+            "gnomAD_genomes_controls_AMR_AC",
+            "gnomAD_genomes_controls_AMR_AN",
+            "gnomAD_genomes_controls_AMR_AF",
+            "gnomAD_genomes_controls_AMR_nhomalt",
+            "gnomAD_genomes_controls_ASJ_AC",
+            "gnomAD_genomes_controls_ASJ_AN",
+            "gnomAD_genomes_controls_ASJ_AF",
+            "gnomAD_genomes_controls_ASJ_nhomalt",
+            "gnomAD_genomes_controls_EAS_AC",
+            "gnomAD_genomes_controls_EAS_AN",
+            "gnomAD_genomes_controls_EAS_AF",
+            "gnomAD_genomes_controls_EAS_nhomalt",
+            "gnomAD_genomes_controls_FIN_AC",
+            "gnomAD_genomes_controls_FIN_AN",
+            "gnomAD_genomes_controls_FIN_AF",
+            "gnomAD_genomes_controls_FIN_nhomalt",
+            "gnomAD_genomes_controls_NFE_AC",
+            "gnomAD_genomes_controls_NFE_AN",
+            "gnomAD_genomes_controls_NFE_AF",
+            "gnomAD_genomes_controls_NFE_nhomalt",
+            "gnomAD_genomes_controls_POPMAX_AC",
+            "gnomAD_genomes_controls_POPMAX_AN",
+            "gnomAD_genomes_controls_POPMAX_AF",
+            "gnomAD_genomes_controls_POPMAX_nhomalt",
+            "clinvar_id",
+            "clinvar_clnsig",
+            "clinvar_trait",
+            "clinvar_review",
+            "clinvar_hgvs",
+            "clinvar_var_source",
+            "clinvar_MedGen_id",
+            "clinvar_OMIM_id",
+            "clinvar_Orphanet_id",
+            "Interpro_domain",
+            "GTEx_V7_gene",
+            "GTEx_V7_tissue",
+            "Geuvadis_eQTL_target_gene"
+          ],
+        },
+      ]
+    },
+    
+    # CADD
+    # https://github.com/ensembl-variation/VEP_plugins/blob/master/CADD.pm
+    # Requires tabix-indexed data file as first param
+    # No other parameters so no form required
+    # data file currently only available for GRCh37
+    {
+      "key" => "CADD",
+      "label" => "CADD",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Pathogenicity predictions",
+      "helptip" => "Combined Annotation Dependent Depletion (CADD) is a tool for scoring the deleteriousness of single nucleotide variants and insertion/deletion variants in the human genome. CADD integrates multiple annotations into one metric by contrasting variants that survived natural selection with simulated mutations.",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/CADD.pm",
+      "requires_data" => 1,
+      "species" => [
+        "homo_sapiens"
+      ],
+      "params" => [
+        #"/path/to/whole_genome_SNVs.tsv.gz"
+      ]
+    },
+    
+    # FATHMM
+    {
+      "key" => "FATHMM",
+      "label" => "FATHMM",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Pathogenicity predictions",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/FATHMM.pm"
+    },
+
+    # FATHMM-MKL
+    # https://github.com/ensembl-variation/VEP_plugins/blob/master/FATHMM_MKL.pm
+    # Requires tabix-indexed data file as first param
+    # No other parameters so no form required
+    # data file currently only available for GRCh37
+    {
+      "key" => "FATHMM_MKL",
+      "label" => "FATHMM-MKL",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Pathogenicity predictions",
+      "helptip" => "FATHMM-MKL predicts functional consequences of variants, both coding and non-coding.",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/FATHMM_MKL.pm",
+      "requires_data" => 1,
+      "species" => [
+        "homo_sapiens"
+      ],
+      "params" => [
+        #"/path/to/fathmm-MKL_Current.tab.gz"
+      ]
+    },
+
+    # GWAVA
+    # https://www.sanger.ac.uk/sanger/StatGen_Gwava
+    # Requires tabix-indexed BED data file from ftp://ftp.sanger.ac.uk/pub/resources/software/gwava/v1.0/VEP_plugin/
+    # data file currently only available for GRCh37
+    {
+      "key" => "Gwava",
+      "label" => "GWAVA",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Pathogenicity predictions",
+      "helptip" => "Retrieves precomputed Genome Wide Annotation of VAriants (GWAVA) scores for any  variant that overlaps a known variant from the Ensembl variation database",
+      "plugin_url" => "ftp://ftp.sanger.ac.uk/pub/resources/software/gwava/v1.0/VEP_plugin/Gwava.pm",
+      "requires_data" => 1,
+      "species" => [
+        "homo_sapiens"
+      ],
+      "params" => [
+        "@*",
+        # "/path/to/gwava_scores.bed.gz"
+      ],
+      "form" => [
+        {
+          "name" => "model",
+          "label" => "Model",
+          "type" => "dropdown",
+          "values" => [
+            { "value" => "region",    "caption" => "Region" },
+            { "value" => "tss",       "caption" => "TSS" },
+            { "value" => "unmatched", "caption" => "Unmatched" }
+          ],
+          "value" => "region",
+        },
+      ],
+    },
+
+    # Carol
+    # https://github.com/ensembl-variation/VEP_plugins/blob/master/Carol.pm
+    # Requires Math/CDF Perl module
+    {
+      "key" => "Carol",
+      "helptip" => "Calculates the Combined Annotation scoRing toOL (CAROL) score for a missense mutation based on the pre-calculated SIFT and PolyPhen scores",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Pathogenicity predictions",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/Carol.pm",
+      "requires_install" => 1,
+      "species" => [
+        "homo_sapiens"
+      ],
+    },
+
+    # Condel
+    # https://github.com/ensembl-variation/VEP_plugins/blob/master/Condel.pm
+    # Requires path to config directory as first param
+    # config directory is checked out as part of VEP_plugins repo, as /[path]/VEP_plugins/config/Condel/config
+    # Within that dir, edit condel_SP.conf so that condel.dir points to /[path]/VEP_plugins/config/Condel
+    {
+      "key" => "Condel",
+      "helptip" => "Calculates the Consensus Deleteriousness (Condel) score for a missense mutation based on the pre-calculated SIFT and PolyPhen scores",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Pathogenicity predictions",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/Condel.pm",
+      "requires_install" => 1,
+      "species" => [
+        "homo_sapiens"
+      ],
+      "params" => [
+        # "/path/to/config/Condel/config",
+        "@*"
+      ],
+      "form" => [
+        {
+          "name" => "score_pred",
+          "label" => "Score/prediction",
+          "type" => "dropdown",
+          "values" => [
+            { "value" => "b", "caption" => "Prediction and score" },
+            { "value" => "p", "caption" => "Prediction only" },
+            { "value" => "s", "caption" => "Score only" }
+          ],
+          "value" => "b",
+        },
+      ],
+    },
+
+    # LOFTEE
+    # See https://github.com/konradjk/loftee for details
+    {
+      "key" => "LoF",
+      "helptip" => "LOFTEE identifies LoF (loss-of-function) variation",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Pathogenicity predictions",
+      "plugin_url" => "https://raw.githubusercontent.com/konradjk/loftee/master/LoF.pm",
+      "requires_data" => 1,
+      "requires_install" => 1,
+      "params" => [
+        "@*"
+      ]
+    },
+
+    # LoFtool
+    # Requires LoFtool_scores.txt file as first param (available in VEP_plugins GitHub repo)
+    {
+      "key" => "LoFtool",
+      "helptip" => "Provides a per-gene rank of genic intolerance and consequent susceptibility to disease based on the ratio of Loss-of-function (LoF) to synonymous mutations in ExAC data",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Pathogenicity predictions",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/LoFtool.pm",
+      "requires_data" => 1,
+      "species" => [
+        "homo_sapiens"
+      ],
+      "params" => [
+        # "/path/to/LoFtool_scores.txt"
+      ]
+    },
+
+    # ExACpLI
+    # Requires ExACpLI_values.txt file as first param (available in VEP_plugins GitHub repo)
+    {
+      "key" => "ExACpLI",
+      "helptip" => "Provides a per-gene probability of being loss-of-function intolerant (pLI) from ExAC data",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Pathogenicity predictions",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/ExACpLI.pm",
+      "requires_data" => 1,
+      "species" => [
+        "homo_sapiens"
+      ],
+      "params" => [
+        # "/path/to/ExACpLI_values.txt"
+      ]
+    },
+
+    # MPC
+    # Requires fordist_constraint_official_mpc_values.txt.gz data file
+    {
+      "key" => "MPC",
+      "helptip" => "MPC is a missense deleteriousness metric based on the analysis of genic regions depleted of missense mutations in ExAC",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Pathogenicity predictions",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/MPC.pm",
+      "requires_data" => 1,
+      "species" => [
+        "homo_sapiens"
+      ],
+      "params" => [
+        # "/path/to/fordist_constraint_official_mpc_values.txt.gz"
+      ]
+    },
+
+    # MTR
+    # Requires mtrflatfile_1.0.txt.gz data file from ftp://mtr-viewer.mdhs.unimelb.edu.au/pub
+    {
+      "key" => "MTR",
+      "helptip" => "MTR scores quantify the amount of purifying selection acting specifically on missense variants in a given window of protein-coding sequence",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Pathogenicity predictions",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/MTR.pm",
+      "requires_data" => 1,
+      "species" => [
+        "homo_sapiens"
+      ],
+      "params" => [
+        # "/path/to/mtrflatfile_1.0.txt.gz"
+      ]
+    },
+
+    # REVEL
+    # Requires data file processed from revel_all_chromosomes.csv.zip
+    {
+      "key" => "REVEL",
+      "helptip" => "An ensemble method for predicting the pathogenicity of rare missense variants",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Pathogenicity predictions",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/REVEL.pm",
+      "requires_data" => 1,
+      "species" => [
+        "homo_sapiens"
+      ],
+      "params" => [
+        # "/path/to/revel_all_chromosomes.tsv.gz"
+      ]
+    },
+
+    # PON_P2
+    {
+      "key" => "PON_P2",
+      "label" => "PON_P2",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Pathogenicity predictions",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/PON_P2.pm"
+    },
+
+
+    
+    ## SPLICING PREDICTIONS
+    #######################
+
+    # dbscSNV
+    {
+      "key" => "dbscSNV",
+      "label" => "dbscSNV",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Splicing predictions",
+      "helptip" => "Retrieves data for splicing variants from a tabix-indexed dbscSNV file",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/dbscSNV.pm",
+      "requires_data" => 1,
+      "requires_install" => 1,
+      "params"  => [
+        #"/path/to/dbscSNV1.1.txt.gz"
+      ],
+      "species" => [
+        "homo_sapiens"
+      ],
+    },
+
+    # GeneSplicer
+    {
+      "key" => "GeneSplicer",
+      "label" => "GeneSplicer",
+      "helptip" => "Detects splice sites in genomic DNA",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Splicing predictions",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/GeneSplicer.pm",
+      "requires_install" => 1,
+      "species" => [
+        "homo_sapiens"
+      ],
+      "params" => [
+        #"/path/to/genesplicer/bin/linux/genesplicer",
+        #"/path/to/genesplicer/human",
+        "@*"
+      ]
+    },
+
+    # MaxEntScan
+    {
+      "key" => "MaxEntScan",
+      "label" => "MaxEntScan",
+      "helptip" => "Sequence motif and maximum entropy based splice site consensus predictions",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Splicing predictions",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/MaxEntScan.pm",
+      "requires_install" => 1,
+      "species" => [
+        "homo_sapiens"
+      ],
+      "params" => [
+        #"/path/to/maxentscan"
+      ]
+    },
+
+    # SpliceRegion
+    {
+      "key" => "SpliceRegion",
+      "label" => "SpliceRegion",
+      "helptip" => "More granular predictions of splicing effects",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Splicing predictions",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/SpliceRegion.pm",
+    },
+
+    # SpliceAI
+    {
+      "key" => "SpliceAI",
+      "label" => "SpliceAI",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Splicing predictions",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/SpliceAI.pm",
+    },
+
+
+
+    ## CONSERVATION
+    ###############
+
+    # Blosum62
+    {
+      "key" => "Blosum62",
+      "label" => "BLOSUM62",
+      "helptip" => "BLOSUM62 amino acid conservation score",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Conservation",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/Blosum62.pm",
+    },
+
+    # Conservation
+    # Use the following query to get valid species sets:
+    #
+    # SELECT group_concat(concat("_stt_", gd.name) SEPARATOR ' '), REPLACE(mlss.name, "Gerp Conservation Scores ", ""), sst.value
+    #   FROM method_link ml, 
+    #     method_link_species_set mlss, 
+    #     genome_db gd, species_set ss, species_set_tag sst
+    #   WHERE mlss.method_link_id = ml.method_link_id AND
+    #     mlss.species_set_id = ss.species_set_id AND 
+    #     ss.genome_db_id = gd.genome_db_id AND
+    #     ss.species_set_id = sst.species_set_id AND
+    #     (ml.class = "ConservationScore.conservation_score")
+    #   GROUP BY mlss.species_set_id
+    {
+      "key" => "Conservation",
+      "helptip" => "Retrieves a conservation score from the Ensembl Compara databases for variant positions",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Conservation",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/Conservation.pm",
+      "params" => [
+        "@*"
+      ],
+      "form" => [
+        {
+          "name" => "method_link_type",
+          "label" => "Method",
+          "type" => "dropdown",
+          "values" => [
+            { "value" => "GERP_CONSERVATION_SCORE", "caption" => "GERP"}
+          ]
+        },
+        {
+          "name" => "species_set",
+          "label" => "Species set",
+          "type" => "dropdown",
+          "values" => [
+            { "value" => "mammals",    "caption" => "39 eutherian mammals"   }, #"class" => "_stt_macaca_mulatta _stt_echinops_telfairi _stt_tupaia_belangeri _stt_erinaceus_europaeus _stt_sorex_araneus _stt_microcebus_murinus _stt_pongo_abelii _stt_equus_caballus _stt_ochotona_princeps _stt_cavia_porcellus _stt_choloepus_hoffmanni _stt_procavia_capensis _stt_tursiops_truncatus _stt_tarsius_syrichta _stt_dipodomys_ordii _stt_vicugna_pacos _stt_pteropus_vampyrus _stt_loxodonta_africana _stt_oryctolagus_cuniculus _stt_ailuropoda_melanoleuca _stt_nomascus_leucogenys _stt_callithrix_jacchus _stt_myotis_lucifugus _stt_bos_taurus _stt_gorilla_gorilla _stt_otolemur_garnettii _stt_pan_troglodytes _stt_ictidomys_tridecemlineatus _stt_sus_scrofa _stt_mus_musculus _stt_canis_familiaris _stt_mustela_putorius_furo _stt_felis_catus _stt_ovis_aries _stt_dasypus_novemcinctus _stt_homo_sapiens _stt_papio_anubis _stt_chlorocebus_sabaeus _stt_rattus_norvegicus" },
+            { "value" => "amniotes",   "caption" => "23 amniota vertebrates" }, #"class" => "_stt_macaca_mulatta _stt_ornithorhynchus_anatinus _stt_monodelphis_domestica _stt_pongo_abelii _stt_equus_caballus _stt_taeniopygia_guttata _stt_oryctolagus_cuniculus _stt_anolis_carolinensis _stt_meleagris_gallopavo _stt_callithrix_jacchus _stt_bos_taurus _stt_gorilla_gorilla _stt_pan_troglodytes _stt_sus_scrofa _stt_mus_musculus _stt_canis_familiaris _stt_felis_catus _stt_gallus_gallus _stt_ovis_aries _stt_homo_sapiens _stt_papio_anubis _stt_chlorocebus_sabaeus _stt_rattus_norvegicus" },
+            { "value" => "sauropsids", "caption" => "7 sauropsids"           }, #"class" => "_stt_taeniopygia_guttata _stt_anolis_carolinensis _stt_meleagris_gallopavo _stt_pelodiscus_sinensis _stt_gallus_gallus _stt_anas_platyrhynchos _stt_ficedula_albicollis" },
+            { "value" => "fish",       "caption" => "11 fish"                }, #"class" => "_stt_takifugu_rubripes _stt_gasterosteus_aculeatus _stt_oryzias_latipes _stt_tetraodon_nigroviridis _stt_gadus_morhua _stt_oreochromis_niloticus _stt_xiphophorus_maculatus _stt_astyanax_mexicanus _stt_lepisosteus_oculatus _stt_poecilia_formosa _stt_danio_rerio" },
+          ]
+        },
+      ]
+    },
+
+    # AncestralAllele
+    # Requires processed FASTA file from ftp://ftp.ensembl.org/pub/current_fasta/ancestral_alleles/
+    {
+      "key" => "AncestralAllele",
+      "label" => "Ancestral allele",
+      "helptip" => "Retrieves the ancestral allele for variants inferred from the Ensembl Compara Enredo-Pecan-Ortheus (EPO) pipeline",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Conservation",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/AncestralAllele.pm",
+      "requires_data" => 1,
+      "species" => [
+        "homo_sapiens"
+      ],
+      "params" => [
+        # "/path/to/homo_sapiens_ancestor_GRCh38_e93.fa.gz"
+      ]
+    },
+
+
+
+    ## FREQUENCY DATA
+    #################
+
+    # ExAC
+    {
+      "key" => "ExAC",
+      "label" => "ExAC frequencies",
+      "helptip" => "Reports allele frequencies from the Exome Aggregation Consortium",
+      "available" => 0,
+      "enabled" => 0,
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/ExAC.pm",
+      "section" => "Frequency data",
+      "requires_data" => 1,
+      "species" => [
+        "homo_sapiens"
+      ],
+      "params" => [
+        # "/path/to/ExAC.r0.3.sites.vep.vcf.gz"
+      ]
+    },
+
+    # gnomADc
+    {
+      "key" => "gnomADc",
+      "label" => "gnomADc",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Frequency data",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/gnomADc.pm"
+    },
+
+
+
+    ## PHENOTYPES DATA
+    ##################
+
+    # Phenotypes
+    {
+      "key" => "Phenotypes",
+      "label" => "Phenotypes",
+      "helptip" => "Retrieves overlapping phenotype annotations",
+      "section" => "Phenotype data",
+      "requires_data" => 1,
+      "available" => 0,
+      "enabled" => 0,
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/Phenotypes.pm",
+      "params" => [
+        #"/path/to/Phenotypes_data_files/phenotypes_dir_with_dumps_for_all_species.gvf.gz"
+      ]
+    },
+
+    # GO
+    {
+      "key" => "GO",
+      "label" => "Gene Ontology",
+      "helptip" => "Retrieves Gene Ontology terms associated with transcripts/translations via the Ensembl API",
+      "available" => 0,
+      "enabled" => 0,
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/GO.pm",
+      "section" => "Phenotype data",
+    },
+
+    # G2P
+    {
+      "key" => "G2P",
+      "label" => "G2P",
+      "helptip" => "Assesses variants using G2P allelic requirements for potential phenotype involvement.",
+      "available" => 0,
+      "enabled" => 0,
+      "requires_data" => 1,
+      "section" => "Phenotype data",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/G2P.pm",
+    },
+    
+    # PostGAP
+    {
+      "key" => "PostGAP",
+      "label" => "PostGAP",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Phenotype data",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/PostGAP.pm"
+    },
+
+    # satMutMPRA
+    {
+      "key" => "satMutMPRA",
+      "helptip" => "Reports saturation mutagenesis MPRA measures of variant effects on gene RNA expression for 21 enhancers/promoters",
+      "section" => "Phenotype data",
+      "available" => 0,
+      "enabled" => 0,
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/satMutMPRA.pm",
+    },
+
+    # DisGeNET
+    {
+      "key" => "DisGeNET",
+      "helptip" => "Variant-Disease-PMID associations from the DisGeNET database",
+      "section" => "Phenotype data",
+      "available" => 0,
+      "enabled" => 0,
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/DisGeNET.pm",
+    },
+
+    ## VARIANT DATA
+    ###############
+
+    # LD
+    {
+      "key" => "LD",
+      "label" => "Linkage disequilibrium",
+      "helptip" => "Finds variants in linkage disequilibrium with any overlapping existing variants from the Ensembl variation databases",
+      "available" => 0,
+      "enabled" => 0,
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/LD.pm",
+      "section" => "Variant data",
+      "params" => [
+        "@*"
+      ],
+      "form" => [
+        {
+          "name" => "population",
+          "label" => "Population",
+          "type" => "dropdown",
+          "values" => [
+            { "value" => "1000GENOMES:phase_3:ACB", "caption" => "African Caribbean in Barbados" },
+            { "value" => "1000GENOMES:phase_3:ASW", "caption" => "African Ancestry in Southwest US" },
+            { "value" => "1000GENOMES:phase_3:BEB", "caption" => "Bengali in Bangladesh" },
+            { "value" => "1000GENOMES:phase_3:CDX", "caption" => "Chinese Dai in Xishuangbanna, China" },
+            { "value" => "1000GENOMES:phase_3:CEU", "caption" => "Utah residents with Northern and Western European ancestry" },
+            { "value" => "1000GENOMES:phase_3:CHB", "caption" => "Han Chinese in Bejing, China" },
+            { "value" => "1000GENOMES:phase_3:CHS", "caption" => "Southern Han Chinese, China" },
+            { "value" => "1000GENOMES:phase_3:CLM", "caption" => "Colombian in Medellin, Colombia" },
+            { "value" => "1000GENOMES:phase_3:ESN", "caption" => "Esan in Nigeria" },
+            { "value" => "1000GENOMES:phase_3:FIN", "caption" => "Finnish in Finland" },
+            { "value" => "1000GENOMES:phase_3:GBR", "caption" => "British in England and Scotland" },
+            { "value" => "1000GENOMES:phase_3:GIH", "caption" => "Gujarati Indian in Houston, TX" },
+            { "value" => "1000GENOMES:phase_3:IBS", "caption" => "Iberian populations in Spain" },
+            { "value" => "1000GENOMES:phase_3:ITU", "caption" => "Indian Telugu in the UK" },
+            { "value" => "1000GENOMES:phase_3:JPT", "caption" => "Japanese in Tokyo, Japan" },
+            { "value" => "1000GENOMES:phase_3:KHV", "caption" => "Kinh in Ho Chi Minh City, Vietnam" },
+            { "value" => "1000GENOMES:phase_3:LWK", "caption" => "Luhya in Webuye, Kenya" },
+            { "value" => "1000GENOMES:phase_3:MAG", "caption" => "Mandinka in The Gambia" },
+            { "value" => "1000GENOMES:phase_3:MSL", "caption" => "Mende in Sierra Leone" },
+            { "value" => "1000GENOMES:phase_3:MXL", "caption" => "Mexican Ancestry in Los Angeles, California" },
+            { "value" => "1000GENOMES:phase_3:PEL", "caption" => "Peruvian in Lima, Peru" },
+            { "value" => "1000GENOMES:phase_3:PJL", "caption" => "Punjabi in Lahore, Pakistan" },
+            { "value" => "1000GENOMES:phase_3:PUR", "caption" => "Puerto Rican in Puerto Rico" },
+            { "value" => "1000GENOMES:phase_3:STU", "caption" => "Sri Lankan Tamil in the UK" },
+            { "value" => "1000GENOMES:phase_3:TSI", "caption" => "Toscani in Italy" },
+            { "value" => "1000GENOMES:phase_3:YRI", "caption" => "Yoruba in Ibadan, Nigeria" },
+          ],
+          "value" => "1000GENOMES:phase_3:CEU",
+        },
+        {
+          "name" => "threshold",
+          "label" => "r2 cutoff",
+          "type" => "string",
+          "value" => 0.8,
+        },
+      ]
+    },
+
+    # SameCodon
+    {
+      "key" => "SameCodon",
+      "label" => "Variants in same codon",
+      "helptip" => "Reports existing variants that fall in the same codon",
+      "available" => 0,
+      "enabled" => 0,
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/SameCodon.pm",
+      "section" => "Variant data",
+    },
+
+    # LOVD
+    {
+      "key" => "LOVD",
+      "label" => "LOVD",
+      "helptip" => "Retrieves LOVD variation data",
+      "available" => 0,
+      "enabled" => 0,
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/LOVD.pm",
+      "section" => "Variant data",
+    },
+
+    # SubsetVCF
+    {
+      "key" => "SubsetVCF",
+      "label" => "SubsetVCF",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Variant data",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/SubsetVCF.pm"
+    },
+
+
+
+    ## NEARBY FEATURES
+    ##################
+
+    # NearestGene
+    {
+      "key" => "NearestGene",
+      "label" => "Nearest gene",
+      "helptip" => "Finds the nearest gene to non-genic variants",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Nearby features",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/NearestGene.pm",
+    },
+
+    # NearestExonJB
+    {
+      "key" => "NearestExonJB",
+      "label" => "NearestExonJB",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Nearby features",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/NearestExonJB.pm"
+    },
+
+    # Downstream
+    {
+      "key" => "Downstream",
+      "label" => "Downstream",
+      "helptip" => "Predicts the downstream effects of a frameshift variant on the protein sequence of a transcript",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Nearby features",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/Downstream.pm",
+    },
+
+    # TSSDistance
+    {
+      "key" => "TSSDistance",
+      "label" => "TSS distance",
+      "helptip" => "Calculates the distance from the transcription start site for upstream variants   ",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Nearby features",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/TSSDistance.pm",
+    },
+
+
+
+    ## SEQUENCE
+    ###########
+
+    # ProteinSeqs
+    {
+      "key" => "ProteinSeqs",
+      "label" => "Protein sequences",
+      "helptip" => "Prints out the reference and mutated protein sequences of any proteins found with non-synonymous mutations",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Sequence",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/ProteinSeqs.pm",
+    },
+
+    # ReferenceQuality
+    {
+      "key" => "ReferenceQuality",
+      "label" => "ReferenceQuality",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Sequence",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/ReferenceQuality.pm"
+    },
+
+
+
+    ## VISUALISATION
+    ################
+
+    # Draw
+    {
+      "key" => "Draw",
+      "label" => "Draw",
+      "helptip" => "Creates images of the transcript model showing variant location",
+      "available" => 0,
+      "enabled" => 0,
+      "requires_install" => 1,
+      "section" => "Visualisation",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/Draw.pm",
+    },
+
+
+
+    ## LOCAL ID
+    ###########
+
+    # LocalID
+    {
+      "key" => "LocalID",
+      "label" => "LocalID",
+      "helptip" => "Allows you to use variant IDs as VEP input without making a database connection.",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Look up",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/LocalID.pm",
+    },
+
+
+
+    ## EXTERNAL ID
+    ##############
+
+    # FlagLRG
+    {
+      "key" => "FlagLRG",
+      "label" => "FlagLRG",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "External ID",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/FlagLRG.pm"
+    },
+
+
+
+    ## MOTIF
+    ########
+
+    # FunMotifs
+    {
+      "key" => "FunMotifs",
+      "label" => "FunMotifs",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Motif",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/FunMotifs.pm"
+    },
+
+
+
+    ## PUBLICATION
+    ##############
+
+    # Mastermind
+    {
+      "key" => "Mastermind",
+      "label" => "Mastermind",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Publication",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/Mastermind.pm"
+    },
+
+
+
+    ## HGVS
+    #######
+
+    # HGVSIntronOffset
+    {
+      "key" => "HGVSIntronOffset",
+      "label" => "HGVSIntronOffset",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "HGVS",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/HGVSIntronOffset.pm"
+    },
+
+    # SingleLetterAA
+    {
+      "key" => "SingleLetterAA",
+      "label" => "SingleLetterAA",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "HGVS",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/SingleLetterAA.pm"
+    },
+
+
+
+    ## STRUCTURAL VARIANT DATA
+    ##########################
+
+    # StructuralVariantOverlap
+    {
+      "key" => "StructuralVariantOverlap",
+      "label" => "StructuralVariantOverlap",
+      "available" => 0,
+      "enabled" => 0,
+      "section" => "Structural variant data",
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/StructuralVariantOverlap.pm"
+    },
+
+
+
+    ## OTHER
+    ########
+
+    # CSN
+    {
+      "key" => "CSN",
+      "helptip" => "Reports Clinical Sequencing Nomenclature (CSN) for variants",
+      "available" => 0,
+      "enabled" => 0,
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/CSN.pm",
+    },
+
+    # miRNA
+    {
+      "key" => "miRNA",
+      "label" => "miRNA structure",
+      "helptip" => "Determines where in the secondary structure of a miRNA a variant falls",
+      "available" => 0,
+      "enabled" => 0,
+      "plugin_url" => "https://raw.githubusercontent.com/Ensembl/VEP_plugins/release/100/miRNA.pm",
+    }
+  ]
+};
