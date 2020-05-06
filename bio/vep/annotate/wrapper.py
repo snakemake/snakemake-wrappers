@@ -6,7 +6,13 @@ __license__ = "MIT"
 from pathlib import Path
 from snakemake.shell import shell
 
-get_child = lambda path: next(path.iterdir())
+
+def get_first_child_dir(path):
+    for p in path.iterdir():
+        if not p.is_dir():
+            continue
+        return p
+
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
@@ -15,7 +21,8 @@ fork = "--fork {}".format(snakemake.threads) if snakemake.threads > 1 else ""
 stats = snakemake.output.stats
 cache = snakemake.input.cache
 plugins = snakemake.input.plugins
-entrypath = get_child(get_child(Path(cache)))
+
+entrypath = get_first_child_dir(get_first_child_dir(Path(cache)))
 species = entrypath.parent.name
 release, build = entrypath.name.split("_")
 
