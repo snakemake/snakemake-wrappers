@@ -35,4 +35,4 @@ if snakemake.input.get("r2", ""):
     if snakemake.output.r2.endswith(".gz"):
         process_r2 = "{process_r2} && gzip -9 {out}".format(process_r2=process_r2, out=intermediate_output_r2)
 
-shell("ptrimmer {ptrimmer_params} && {process_r1} {process_r2} {log}")
+shell("(ptrimmer {ptrimmer_params} && {process_r1} {process_r2}) {log}")
