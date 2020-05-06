@@ -10,7 +10,12 @@ extra = snakemake.params.get("extra", "")
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 if len(snakemake.input) > 1:
-    cat = "zcat" if snakemake.input[0].endswith(".gz") else "cat"
+    if all(f.endswith(".gz") for f in snakemake.input):
+        cat="zcat"
+    elif all(not f.endswith(".gz") for f in snakemake.input):
+        cat = "cat"
+    else:
+        raise ValueError("Input files must be all compressed or uncompressed.")
     shell(
         "({cat} {snakemake.input} | "
         "sort -k1,1 -k2,2n | "

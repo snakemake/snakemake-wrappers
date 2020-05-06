@@ -1,5 +1,6 @@
 rule bedtools_merge:
     input:
+        # Multiple bed-files can be added as list
         "A.bed"
     output:
         "A.merged.bed"
