@@ -6,6 +6,7 @@ __license__ = "MIT"
 import tempfile
 import subprocess
 import sys
+import os
 from snakemake.shell import shell
 from snakemake.exceptions import WorkflowError
 
