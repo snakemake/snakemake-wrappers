@@ -77,6 +77,17 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+def test_prosolo_calling():
+    run(
+        "bio/prosolo/single-cell-bulk",
+        ["snakemake", "--cores", "1", "variant_calling/single_cell.bulk.prosolo.bcf", "--use-conda", "-F"],
+    )
+
+def test_prosolo_fdr():
+    run(
+        "bio/prosolo/control-fdr",
+        ["snakemake", "--cores", "1", "fdr_control/single_cell.bulk.prosolo.fdr.bcf", "--use-conda", "-F"],
+    )
 
 def test_arriba():
     run(
@@ -1700,14 +1711,4 @@ def test_snpsift_vartype():
         ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"],
     )
 
-def test_prosolo_calling():
-    run(
-        "bio/prosolo/single-cell-bulk",
-        ["snakemake", "--cores", "1", "variant_calling/a.a.prosolo.bcf", "--use-conda", "-F"],
-    )
 
-def test_prosolo_fdr():
-    run(
-        "bio/prosolo/control-fdr",
-        ["snakemake", "--cores", "1", "fdr_control/a.a.prosolo.fdr.bcf", "--use-conda", "-F"],
-    )
