@@ -9,6 +9,8 @@ rule prosolo_calling:
         candidates = "data/{sc}.{bulk}.prosolo_candidates.bcf",
     output:
         "variant_calling/{sc}.{bulk}.prosolo.bcf"
+    params:
+        extra = ""
     threads:
         1
     log:
