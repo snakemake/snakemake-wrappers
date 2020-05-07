@@ -6,3 +6,4 @@ dependencies:
   - bcftools ==1.10
   - parallel ==20190522
   - bedtools >=2.29
+  - sed ==4.7

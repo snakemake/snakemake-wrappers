@@ -1,0 +1,18 @@
+rule annotate_variants:
+    input:
+        calls="variants.bcf",  # .vcf, .vcf.gz or .bcf
+        cache="resources/vep/cache",
+        plugins="resources/vep/plugins",
+    output:
+        calls="variants.annotated.bcf",  # .vcf, .vcf.gz or .bcf
+        stats="variants.html"
+    params:
+        # Pass a list of plugins to use, see https://www.ensembl.org/info/docs/tools/vep/script/vep_plugins.html
+        # Plugin args can be added as well, e.g. via an entry "MyPlugin,1,FOO", see docs.
+        plugins=["LoFtool"],
+        extra="--everything"  # optional: extra arguments
+    log:
+        "logs/vep/annotate.log"
+    threads: 4
+    wrapper:
+        "master/bio/vep/annotate"

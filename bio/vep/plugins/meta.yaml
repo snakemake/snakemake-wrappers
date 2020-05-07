@@ -1,0 +1,4 @@
+name: vep download plugins
+description: Download VEP plugins.
+authors:
+  - Johannes Köster
