@@ -833,14 +833,14 @@ def test_star_index():
 
 def test_snpeff():
     run(
-        "bio/snpeff",
+        "bio/snpeff/annotate",
         ["snakemake", "--cores", "1", "snpeff/fake_KJ660346.vcf", "--use-conda", "-F"],
     )
 
 
 def test_snpeff_nostats():
     run(
-        "bio/snpeff",
+        "bio/snpeff/annotate",
         [
             "snakemake",
             "--cores",
@@ -856,7 +856,7 @@ def test_snpeff_nostats():
 
 def test_snpeff_database():
     run(
-        "bio/reference/snpEff-database",
+        "bio/snpeff/download",
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )
 
