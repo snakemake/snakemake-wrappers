@@ -3,8 +3,6 @@ rule prosolo_fdr_control:
          "variant_calling/{sc}.{bulk}.prosolo.bcf"
     output:
          "fdr_control/{sc}.{bulk}.prosolo.fdr.bcf"
-    message:
-        "Testing ProSolo"
     threads:
         1
     params:
