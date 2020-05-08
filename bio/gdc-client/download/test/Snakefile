@@ -1,0 +1,16 @@
+rule gdc_download:
+    output:
+        # * {UUID} is the column `id` from a GDC manifest file
+        # * {filename} is the column `filename` from a GDC manifest file
+        # * the `gdc/` folder is used to avoid ambiguity as filename can
+        #   contain any file extension and theoretically generate any type
+        #   of file
+        "gdc/{UUID}/{filename}"
+    log:
+        "logs/gdc-client/download/{reference}.log"
+    params:
+        # a gdc_token is only required for controlled access samples,
+        # leave blank otherwise: `gdc_token=""`
+        gdc_token="gdc/gdc-user-token.2020-05-07T10_00_00.555Z.txt"
+    wrapper:
+        "master/bio/gdc-client"
