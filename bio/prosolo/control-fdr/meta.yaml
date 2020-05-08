@@ -1,0 +1,9 @@
+name: "ProSolo FDR control"
+description: |
+  ProSolo can control the false discovery rate of any combination of its defined single cell events (like the presence of an alternative allele or the dropout of an allele).
+authors:
+  - David Lähnemann
+input:
+  - Variants called with prosolo in vcf or bcf format, including the fine-grained posterior probabilities for single cell events.
+output:
+  - bcf file with all variants that satisfy the chosen false discovery rate threshold with regard to the specified events.

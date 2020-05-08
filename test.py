@@ -687,6 +687,20 @@ def test_pindel_pindel2vcf_multi_input():
     )
 
 
+def test_prosolo_calling():
+    run(
+        "bio/prosolo/single-cell-bulk",
+        ["snakemake", "--cores", "1", "variant_calling/single_cell.bulk.prosolo.bcf", "--use-conda", "-F"],
+    )
+
+
+def test_prosolo_fdr():
+    run(
+        "bio/prosolo/control-fdr",
+        ["snakemake", "--cores", "1", "fdr_control/single_cell.bulk.prosolo.fdr.bcf", "--use-conda", "-F"],
+    )
+
+
 def test_samtools_fixmate():
     run(
         "bio/samtools/fixmate",
@@ -1717,7 +1731,7 @@ def test_snpsift_vartype():
         ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"],
     )
 
-    
+
 def test_ptrimmer_se():
         run(
         "bio/ptrimmer",
@@ -1730,7 +1744,7 @@ def test_ptrimmer_pe():
         ["snakemake", "--cores", "1", "--use-conda", "-F", "ptrimmer_pe"],
     )
 
-    
+
 def test_vep_cache():
     run(
         "bio/vep/cache",
