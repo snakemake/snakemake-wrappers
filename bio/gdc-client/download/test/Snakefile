@@ -7,10 +7,14 @@ rule gdc_download:
         #   of file
         "gdc/{UUID}/{filename}"
     log:
-        "logs/gdc-client/download/{reference}.log"
+        "logs/gdc-client/download/{UUID}.{filename}.log"
     params:
         # a gdc_token is only required for controlled access samples,
-        # leave blank otherwise: `gdc_token=""`
-        gdc_token="gdc/gdc-user-token.2020-05-07T10_00_00.555Z.txt"
+        # leave blank otherwise (`gdc_token=""`) or skip entirely
+        gdc_token="gdc/gdc-user-token.2020-05-07T10_00_00.555Z.txt",
+        # for valid extra command line arguments, check command line help or:
+        # https://docs.gdc.cancer.gov/Data_Transfer_Tool/Users_Guide/Data_Download_and_Upload/
+        extra = ""
+    threads: 4
     wrapper:
-        "master/bio/gdc-client"
+        "master/bio/gdc-client/download"

@@ -504,6 +504,17 @@ def test_freebayes_bed():
         )
 
 
+def test_gdc_download():
+    run(
+        "bio/gdc-client/download",
+        ["snakemake",
+         "--cores", "1",
+         "gdc/34b80c89-c41e-47be-84fb-0c0ea493b5bb/f960461d-b6cb-4f02-81f3-caec0647b96e.wxs.aliquot_ensemble_masked.maf.gz",
+         "--use-conda",
+         "-F"],
+    )
+
+
 def test_happy_prepy():
     run(
         "bio/hap.py/pre.py",
