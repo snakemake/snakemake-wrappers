@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - minimap2 ==2.5
+  - minimap2 ==2.17
