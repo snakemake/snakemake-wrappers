@@ -12,10 +12,12 @@ token = snakemake.params.get("gdc_token", "")
 if token != "":
     token = "--token-file {}".format(token)
 
-shell("gdc-client download"
-      " {token}"
-      " {extra}"
-      " -n {snakemake.threads} "
-      " --log-file {snakemake.log} "
-      " --dir {outdir}"
-      " {snakemake.wildcards.UUID}")
+shell(
+    "gdc-client download"
+    " {token}"
+    " {extra}"
+    " -n {snakemake.threads} "
+    " --log-file {snakemake.log} "
+    " --dir {outdir}"
+    " {snakemake.wildcards.UUID}"
+)
