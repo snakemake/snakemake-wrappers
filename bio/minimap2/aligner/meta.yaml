@@ -2,3 +2,4 @@ name: minimap2
 description: A versatile pairwise aligner for genomic and spliced nucleotide sequences https://lh3.github.io/minimap2
 authors:
   - Tom Poorten
+  - Michael Hall
