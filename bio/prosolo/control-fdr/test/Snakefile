@@ -14,4 +14,4 @@ rule prosolo_fdr_control:
     log:
         "logs/prosolo_{sc}_{bulk}.fdr.log"
     wrapper:
-        "master/bio/prosolo/single-cell-bulk"
+        "master/bio/prosolo/control-fdr"
