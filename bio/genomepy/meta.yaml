@@ -5,9 +5,8 @@ description: |
   Download genomes the easy way.
   https://github.com/vanheeringen-lab/genomepy
 output: |
-  Directory with the name of the assembly, and at least [assembly].fa & [assembly].fa.fai.
-  Depending on which plugins are enabled more output might be provided.
+  Always outputs {assembly}/{assembly}.fa, {assembly}/{assembly}.fa.fai, {assembly}/{assembly}.gaps.bed and {assembly}/{assembly}.fa.sizes.
+  Can output annotation: {assembly}/{assembly}.annotation.gtf or blacklist: {assembly}/{assembly}.blacklist.bed, depending on the assembly,
+  and whether or not it is specified as output.
 params:
-  - provider: which provider to download from, defaults to NCBI (choose from UCSC, Ensembl, NCBI).
-  - plugins: which plugins to enable.
-  - annotation: Boolean whether or not to download the annotation instead of the genomic assembly (default False).
+  - provider: which provider to download from, defaults to UCSC (choose from UCSC, Ensembl, NCBI).

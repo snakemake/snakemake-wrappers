@@ -1,11 +1,13 @@
 rule genomepy:
     output:
-        directory("{assembly}")
+        "{assembly}/{assembly}.fa"
+        "{assembly}/{assembly}.fa.fai"
+        "{assembly}/{assembly}.fa.sizes"
+        "{assembly}/{assembly}.gaps.bed"
+        "{assembly}/{assembly}.annotation.gtf"
     log:
         "logs/genomepy_{assembly}.log"
     params:
-        provider="NCBI",   # optional
-        plugins="sizes",   # optional
-        annotation=False,  # optional
+        provider="UCSC"  # optional, choose from uccs, ensembl, and ncbi
     wrapper:
         "master/bio/genomepy"

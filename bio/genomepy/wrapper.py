@@ -1,27 +1,43 @@
 __author__ = "Maarten van der Sande"
-__copyright__ = "Copyright 2019, Maarten van der Sande"
-__email__ = "m.vandersande@science.ru.nl"
-__license__ = "BSD"
+__copyright__ = "Copyright 2020, Maarten van der Sande"
+__email__ = "M.vanderSande@science.ru.nl"
+__license__ = "MIT"
 
+
+import re
 
 from snakemake.shell import shell
 
 # Optional parameters
-provider = snakemake.params.get("provider", "NCBI")
-plugins = snakemake.params.get("plugins", "")
-if snakemake.params.get("annotation", False):
+provider = snakemake.params.get("provider", "UCSC")
+
+# set options for plugins
+all_plugins = "blacklist,bowtie2,bwa,gmap,hisat2,minimap2,star"
+req_plugins = ""
+if any(["blacklist" in out for out in output])
+    req_plugins = "blacklist"
+
+annotation = ""
+if any(["annotation" in out for out in output]):
     annotation = "--annotation"
-else:
-    annotation = ""
 
 # Run log
-log = snakemake.log_fmt_shell()
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 # Finally execute genomepy
 shell(
-    # Disable all plugins and then enable the provided ones
-    f"genomepy plugin disable blacklist bowtie2 bwa gmap hisat2 minimap2 sizes star {log}; "
-    f"genomepy plugin enable {plugins} {log}; "
-    # Install the genome
-    f"genomepy install {snakemake.wildcards.assembly} {provider} --genome_dir {snakemake.output} {annotation} {log}"
+    """
+    # set a trap so we can reset to original user's settings
+    active_plugins=$(genomepy config show | grep -Po '(?<=- ).*' | paste -s -d, -) || echo ""
+    trap "genomepy plugin disable {{{all_plugins}}} {log};\
+          genomepy plugin enable {{$active_plugins,}} {log}" EXIT
+
+    # disable all, then enable the ones we need
+    genomepy plugin disable {{{all_plugins}}} {log}
+    genomepy plugin enable  {{{req_plugins}}} {log}
+
+    # install the genome
+    genomepy install {snakemake.wildcards.assembly} \
+    {provider} {annotation} --genome_dir ./ {log}
+    """
 )
