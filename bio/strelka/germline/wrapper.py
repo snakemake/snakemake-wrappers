@@ -5,6 +5,7 @@ __license__ = "MIT"
 
 
 import os
+from pathlib import Path
 from snakemake.shell import shell
 
 config_extra = snakemake.params.get("config_extra", "")
@@ -14,13 +15,18 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 bam = snakemake.input.get("bam")  # input bam file, required
 assert bam is not None, "input-> bam is a required input parameter"
 
+if snakemake.output[0].endswith(".vcf.gz"):
+    run_dir = Path(snakemake.output[0]).parents[2]
+else:
+    run_dir = snakemake.output
+
 shell(
     "configureStrelkaGermlineWorkflow.py "  # configure the strelka run
     "--bam {bam} "  # input bam
-    "--referenceFasta {snakemake.params.ref} "  # reference genome
-    "--runDir {snakemake.output} "  # output directory
+    "--referenceFasta {snakemake.input.fasta} "  # reference genome
+    "--runDir {run_dir} "  # output directory
     "{config_extra} "  # additional parameters for the configuration
-    "&& {snakemake.output}/runWorkflow.py "  # run the strelka workflow
+    "&& {run_dir}/runWorkflow.py "  # run the strelka workflow
     "-m local "  # run in local mode
     "-j {snakemake.threads} "  # number of threads
     "{run_extra} "  # additional parameters for the run

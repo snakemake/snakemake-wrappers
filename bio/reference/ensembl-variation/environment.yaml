@@ -3,3 +3,4 @@ channels:
   - conda-forge
 dependencies:
   - bcftools >=1.10
+  - curl

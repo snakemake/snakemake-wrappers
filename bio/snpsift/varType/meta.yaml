@@ -1,0 +1,9 @@
+---
+name: SnpSift varType
+description:  Add an INFO field denoting variant type.
+authors:
+  - Thibault Dayris
+input:
+  - A VCF-formatted file
+output:
+  - A VCF-formatted file

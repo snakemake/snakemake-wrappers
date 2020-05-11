@@ -9,9 +9,8 @@ rule strelka:
         fasta = "data/genome.fasta",
         fasta_index = "data/genome.fasta.fai"
     output:
+        # Strelka output - can be directory or full file path
         directory("{tumor}_vcf")
-    message:
-        "Testing Strelka"
     threads:
         1
     params:
