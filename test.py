@@ -1708,7 +1708,7 @@ def test_msisensor_msi():
 
 
 def test_tximport():
-    run("bio/tximport", ["snakemake", "txi.RDS", "--use-conda", "-F"])
+    run("bio/tximport", ["snakemake", "--cores", "1", "txi.RDS", "--use-conda", "-F"])
 
 
 def test_fasterq_dump():
