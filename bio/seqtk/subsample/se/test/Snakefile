@@ -9,6 +9,6 @@ rule seqtk_subsample_se:
     log:
         "logs/seqtk_subsample/{sample}.log"
     threads:
-        4
+        1
     wrapper:
         "master/bio/seqtk/subsample/se"
