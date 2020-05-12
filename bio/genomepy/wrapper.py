@@ -21,23 +21,27 @@ annotation = ""
 if any(["annotation" in out for out in snakemake.output]):
     annotation = "--annotation"
 
-# Run log
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+# parse the genome dir
+genome_dir = "./"
+if snakemake.output[0].count("/") > 1:
+    genome_dir = "/".join(snakemake.output[0].split("/")[:-1])
+
+log = snakemake.log
 
 # Finally execute genomepy
 shell(
     """
     # set a trap so we can reset to original user's settings
     active_plugins=$(genomepy config show | grep -Po '(?<=- ).*' | paste -s -d, -) || echo ""
-    trap "genomepy plugin disable {{{all_plugins}}};\
-          genomepy plugin enable {{$active_plugins,}}" EXIT
+    trap "genomepy plugin disable {{{all_plugins}}} >> {log} 2>&1;\
+          genomepy plugin enable {{$active_plugins,}} >> {log} 2>&1" EXIT
 
     # disable all, then enable the ones we need
-    genomepy plugin disable {{{all_plugins}}}
-    genomepy plugin enable  {{{req_plugins}}}
+    genomepy plugin disable {{{all_plugins}}} >  {log} 2>&1
+    genomepy plugin enable  {{{req_plugins}}} >> {log} 2>&1
 
     # install the genome
     genomepy install {snakemake.wildcards.assembly} \
-    {provider} {annotation} -g ./
+    {provider} {annotation} -g {genome_dir} >> {log} 2>&1
     """
 )
