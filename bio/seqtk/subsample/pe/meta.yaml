@@ -1,6 +1,6 @@
 name: seqtk-subsample-pe
 description: |
-  Subsample paired reads from FASTQ files
+  Subsample reads from paired FASTQ files
 authors:
   - Fabian Kilpert
 input:
