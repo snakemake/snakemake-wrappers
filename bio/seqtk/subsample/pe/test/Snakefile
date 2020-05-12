@@ -1,7 +1,7 @@
 rule seqtk_subsample_pe:
     input:
-        f1 = "reads/{sample}.1.fastq.gz",
-        f2 = "reads/{sample}.2.fastq.gz"
+        f1 = "{sample}.1.fastq.gz",
+        f2 = "{sample}.2.fastq.gz"
     output:
         f1 = "{sample}.1.subsampled.fastq.gz",
         f2 = "{sample}.2.subsampled.fastq.gz"

@@ -1,6 +1,6 @@
 rule seqtk_subsample_se:
     input:
-        "reads/{sample}.fastq.gz"
+        "{sample}.fastq.gz"
     output:
         "{sample}.subsampled.fastq.gz"
     params:
