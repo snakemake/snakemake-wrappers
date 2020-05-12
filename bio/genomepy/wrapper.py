@@ -13,12 +13,12 @@ provider = snakemake.params.get("provider", "UCSC")
 
 # set options for plugins
 all_plugins = "blacklist,bowtie2,bwa,gmap,hisat2,minimap2,star"
-req_plugins = ""
-if any(["blacklist" in out for out in output])
+req_plugins = ","
+if any(["blacklist" in out for out in snakemake.output]):
     req_plugins = "blacklist"
 
 annotation = ""
-if any(["annotation" in out for out in output]):
+if any(["annotation" in out for out in snakemake.output]):
     annotation = "--annotation"
 
 # Run log
@@ -29,15 +29,15 @@ shell(
     """
     # set a trap so we can reset to original user's settings
     active_plugins=$(genomepy config show | grep -Po '(?<=- ).*' | paste -s -d, -) || echo ""
-    trap "genomepy plugin disable {{{all_plugins}}} {log};\
-          genomepy plugin enable {{$active_plugins,}} {log}" EXIT
+    trap "genomepy plugin disable {{{all_plugins}}};\
+          genomepy plugin enable {{$active_plugins,}}" EXIT
 
     # disable all, then enable the ones we need
-    genomepy plugin disable {{{all_plugins}}} {log}
-    genomepy plugin enable  {{{req_plugins}}} {log}
+    genomepy plugin disable {{{all_plugins}}}
+    genomepy plugin enable  {{{req_plugins}}}
 
     # install the genome
     genomepy install {snakemake.wildcards.assembly} \
-    {provider} {annotation} --genome_dir ./ {log}
+    {provider} {annotation} -g ./
     """
 )

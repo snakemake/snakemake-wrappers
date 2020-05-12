@@ -2,7 +2,7 @@ name: genomepy
 authors:
   - Maarten van der Sande
 description: |
-  Download genomes the easy way.
+  Download genomes the easy way:
   https://github.com/vanheeringen-lab/genomepy
 output: |
   Always outputs {assembly}/{assembly}.fa, {assembly}/{assembly}.fa.fai, {assembly}/{assembly}.gaps.bed and {assembly}/{assembly}.fa.sizes.
