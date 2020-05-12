@@ -1769,6 +1769,11 @@ def test_vep_annotate():
 def test_seqtk_subsample_se():
     run(
         "bio/seqtk/subsample/se",
-        ["snakemake", "--cores", "1", "a.subsampled.fastq.gz", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.subsampled.fastq.gz"],
     )
 
+def test_seqtk_subsample_pe():
+    run(
+        "bio/seqtk/subsample/pe",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.1.subsampled.fastq.gz", "a.2.subsampled.fastq.gz"],
+    )
