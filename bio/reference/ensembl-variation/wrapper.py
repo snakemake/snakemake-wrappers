@@ -25,8 +25,7 @@ log = snakemake.log[0]
 if type == "all":
     if species == "homo_sapiens" and release >= 93:
         suffixes = [
-            #"-chr{}".format(chrom) for chrom in list(range(1, 23)) + ["X", "Y", "MT"]
-            "-chr{}".format(chrom) for chrom in list(range(21, 23))
+            "-chr{}".format(chrom) for chrom in list(range(1, 23)) + ["X", "Y", "MT"]
         ]
     else:
         suffixes = [""]
