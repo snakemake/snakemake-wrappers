@@ -85,6 +85,7 @@ except subprocess.CalledProcessError as e:
     print(
         "Unable to download variation data from Ensembl. "
         "Did you check that this combination of species, build, and release is actually provided?",
+        e,
         file=sys.stderr,
     )
     exit(1)
