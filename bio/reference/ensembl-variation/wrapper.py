@@ -25,7 +25,8 @@ log = snakemake.log[0]
 if type == "all":
     if species == "homo_sapiens" and release >= 93:
         suffixes = [
-            "-chr{}".format(chrom) for chrom in list(range(1, 23)) + ["X", "Y", "MT"]
+            #"-chr{}".format(chrom) for chrom in list(range(1, 23)) + ["X", "Y", "MT"]
+            "-chr{}".format(chrom) for chrom in list(range(21, 23))
         ]
     else:
         suffixes = [""]
@@ -68,15 +69,18 @@ try:
         shell("(cd {tmpdir} && for f in $(echo {names}); do tabix -p vcf $f ; done) 2>> {log}")
         if len(names) > 1:
             # concatenate and recompress with bgzip
-            shell("(cd {tmpdir} && bcftools concat -Oz {names} > out.vcf.gz) 2>> {log}")
+            shell("(cd {tmpdir} && bcftools concat --threads {snakemake.threads} -Oz {names} > out.vcf.gz) 2>> {log}")
         else:
             # recompress with bgzip
-            shell("(cd {tmpdir} && bcftools view -Oz {names} > out.vcf.gz) 2>> {log}")
+            shell("(cd {tmpdir} && bcftools view --threads {snakemake.threads} -Oz {names} > out.vcf.gz) 2>> {log}")
 
         if snakemake.input.get("fai"):
             # reheader, adding sequence lenghts and sort
             shell(
-                "(bcftools reheader --fai {snakemake.input.fai} {tmpdir}/out.vcf.gz | bcftools sort -Oz - > {snakemake.output}) 2>> {log}"
+                "(bcftools reheader --fai {snakemake.input.fai} {tmpdir}/out.vcf.gz "
+                "| bcftools sort - "
+                "| bcftools view --threads {snakemake.threads} -Oz - "
+                "> {snakemake.output}) 2>> {log}"
             )
         else:
             # just move into final place
