@@ -12,5 +12,7 @@ rule get_variation:
     log:
         "logs/get_variation.log"
     cache: True  # save space and time with between workflow caching (see docs)
+    threads:
+        1
     wrapper:
         "master/bio/reference/ensembl-variation"
