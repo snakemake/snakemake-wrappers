@@ -63,7 +63,9 @@ try:
     # in case of a given .fai, reheader the VCF such that contig lengths are defined
     with tempfile.TemporaryDirectory() as tmpdir:
         # download all vcfs
-        shell("(cd {tmpdir} && curl -O {urls}) 2> {log}")
+        shell("(cd {tmpdir} && curl -O " + " -O ".join(urls) + ") 2> {log} ")
+        # create index for bcftools
+        shell("(cd {tmpdir} && for f in $(echo {names}); do tabix -p vcf $f ; done) 2>> {log}")
         if len(names) > 1:
             # concatenate and recompress with bgzip
             shell("(cd {tmpdir} && bcftools concat -Oz {names} > out.vcf.gz) 2>> {log}")
