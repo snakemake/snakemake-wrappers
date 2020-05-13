@@ -4,8 +4,8 @@ rule seqtk_subsample_se:
     output:
         "{sample}.subsampled.fastq.gz"
     params:
-        n = 3,
-        seed = 12345
+        n=3,
+        seed=12345
     log:
         "logs/seqtk_subsample/{sample}.log"
     threads:
