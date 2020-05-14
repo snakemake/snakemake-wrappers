@@ -507,11 +507,14 @@ def test_freebayes_bed():
 def test_gdc_download():
     run(
         "bio/gdc-client/download",
-        ["snakemake",
-         "--cores", "1",
-         "gdc/34b80c89-c41e-47be-84fb-0c0ea493b5bb/f960461d-b6cb-4f02-81f3-caec0647b96e.wxs.aliquot_ensemble_masked.maf.gz",
-         "--use-conda",
-         "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "gdc/34b80c89-c41e-47be-84fb-0c0ea493b5bb/f960461d-b6cb-4f02-81f3-caec0647b96e.wxs.aliquot_ensemble_masked.maf.gz",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -1728,20 +1731,21 @@ def test_snpsift_vartype():
         ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"],
     )
 
-    
+
 def test_ptrimmer_se():
-        run(
+    run(
         "bio/ptrimmer",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "ptrimmer_se"],
     )
 
+
 def test_ptrimmer_pe():
-        run(
+    run(
         "bio/ptrimmer",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "ptrimmer_pe"],
     )
 
-    
+
 def test_vep_cache():
     run(
         "bio/vep/cache",

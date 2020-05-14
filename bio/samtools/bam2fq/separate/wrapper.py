@@ -14,10 +14,7 @@ prefix = os.path.splitext(snakemake.output[0])[0]
 # One thread is used by Samtools bam2fq
 # So snakemake.threads has to take them into account
 # before allowing additional threads through samtools sort -@
-threads = (
-    "" if snakemake.threads <= 2
-    else " -@ {} ".format(snakemake.threads - 2)
-)
+threads = "" if snakemake.threads <= 2 else " -@ {} ".format(snakemake.threads - 2)
 
 shell(
     "samtools sort -n "
@@ -33,4 +30,4 @@ shell(
     " -s /dev/null "
     " -F 0x900 "
     " - "
-    )
+)
