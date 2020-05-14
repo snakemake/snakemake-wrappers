@@ -65,7 +65,8 @@ try:
         # download all vcfs
         shell("(cd {tmpdir} && curl -O " + " -O ".join(urls) + ") 2> {log} ")
         # create index for bcftools
-        shell("(cd {tmpdir} && for f in $(echo {names}); do bcftools index --threads {snakemake.threads} --tbi $f ; done) 2>> {log}")
+        shell("(cd {tmpdir} && for f in $(echo {names}); do bcftools index --threads {snakemake.threads} --tbi $f ; done) "
+              "2>> {log}")
         if len(names) > 1:
             # concatenate and recompress with bgzip
             shell("(cd {tmpdir} && bcftools concat --threads {snakemake.threads} -Oz {names} > out.vcf.gz) 2>> {log}")
