@@ -5,7 +5,9 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 import os.path as path
+from tempfile import TemporaryDirectory
 import glob
+import sys
 
 uuid = snakemake.params.get("uuid", "")
 if uuid == "":
@@ -24,31 +26,31 @@ with TemporaryDirectory() as tempdir:
         " -n {snakemake.threads} "
         " --log-file {snakemake.log} "
         " --dir {tempdir}"
-        " {snakemake.wildcards.UUID}"
+        " {uuid}"
     )
 
     for out_path in snakemake.output:
         tmp_path = path.join(tempdir, uuid, path.basename(out_path))
         if not path.exists(tmp_path):
-            (root, ext) = os.path.splitext(out_path)
-            paths = glob.glob(path.join(tempdir, uuid, ".".join("*", ext)))
+            (root, ext1) = path.splitext(out_path)
+            paths = glob.glob(path.join(tempdir, uuid, "*" + ext1))
             if len(paths) > 1:
-                (root, ext2) = os.path.splitext(root)
-                paths = glob.glob(path.join(tempdir), uuid, ".".join("*", ext2, ext1))
+                (root, ext2) = path.splitext(root)
+                paths = glob.glob(path.join(tempdir, uuid, "*" + ext2 + ext1))
             if len(paths) == 0:
-                ValueError(
+                raise ValueError(
                     "{} file extension {} does not match any downloaded file.\n"
                     "Are you sure that UUID {} provides a file of such format?\n".format(
                         out_path, ext1, uuid
                     )
                 )
             if len(paths) > 1:
-                ValueError(
-                    "Found more that one file with extension {}:\n"
+                raise ValueError(
+                    "Found more than one downloaded file with extension '{}':\n"
                     "{}\n"
-                    "Cannot match file {} unambiguously.\n".format(
-                        ".".join(ext2, ext1), paths, out_path
+                    "Cannot match requested output file {} unambiguously.\n".format(
+                        ext2 + ext1, paths, out_path
                     )
                 )
             tmp_path = paths[0]
-        shell("mv tmp_path out_path")
+        shell("mv {tmp_path} {out_path}")

@@ -10,7 +10,7 @@ rule gdc_download:
         # sample names of choice to the UUIDs they correspond to (they are
         # the column `id` in the GDC manifest files, which can be used to
         # systematically construct sample sheets)
-        uuid="34b80c89-c41e-47be-84fb-0c0ea493b5bb"
+        uuid="34b80c89-c41e-47be-84fb-0c0ea493b5bb",
         # a gdc_token is only required for controlled access samples,
         # leave blank otherwise (`gdc_token=""`) or skip this param entirely
         gdc_token="gdc/gdc-user-token.2020-05-07T10_00_00.555Z.txt",
@@ -37,7 +37,7 @@ rule gdc_download_bam:
         # sample names of choice to the UUIDs they correspond to (they are
         # the column `id` in the GDC manifest files, which can be used to
         # systematically construct sample sheets)
-        uuid="34b80c89-c41e-47be-84fb-0c0ea493b5bb"
+        uuid="34b80c89-c41e-47be-84fb-0c0ea493b5bb",
         # a gdc_token is only required for controlled access samples,
         # leave blank otherwise (`gdc_token=""`) or skip this param entirely
         gdc_token="gdc/gdc-user-token.2020-05-07T10_00_00.555Z.txt",

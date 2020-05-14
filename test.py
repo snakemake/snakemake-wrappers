@@ -511,7 +511,7 @@ def test_gdc_download():
             "snakemake",
             "--cores",
             "1",
-            "gdc/34b80c89-c41e-47be-84fb-0c0ea493b5bb/f960461d-b6cb-4f02-81f3-caec0647b96e.wxs.aliquot_ensemble_masked.maf.gz",
+            "raw/testing_sample.maf.gz",
             "--use-conda",
             "-F",
         ],
