@@ -518,6 +518,20 @@ def test_freebayes_bed():
         )
 
 
+def test_gdc_download():
+    run(
+        "bio/gdc-client/download",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "raw/testing_sample.maf.gz",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_happy_prepy():
     run(
         "bio/hap.py/pre.py",
@@ -1747,13 +1761,14 @@ def test_snpsift_vartype():
 
 
 def test_ptrimmer_se():
-        run(
+    run(
         "bio/ptrimmer",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "ptrimmer_se"],
     )
 
+
 def test_ptrimmer_pe():
-        run(
+    run(
         "bio/ptrimmer",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "ptrimmer_pe"],
     )
