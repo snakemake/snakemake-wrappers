@@ -1515,6 +1515,7 @@ def test_ensembl_variation_old_release():
         ["snakemake", "-s", "old_release.smk", "--cores", "1", "--use-conda", "-F"],
     )
 
+
 @pytest.mark.skip(reason="needs too much time")
 def test_ensembl_variation_grch37():
     run(
@@ -1724,20 +1725,21 @@ def test_snpsift_vartype():
         ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"],
     )
 
-    
+
 def test_ptrimmer_se():
-        run(
+    run(
         "bio/ptrimmer",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "ptrimmer_se"],
     )
 
+
 def test_ptrimmer_pe():
-        run(
+    run(
         "bio/ptrimmer",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "ptrimmer_pe"],
     )
 
-    
+
 def test_vep_cache():
     run(
         "bio/vep/cache",
