@@ -1,0 +1,12 @@
+rule samtools_idxstats:
+    input:
+        # bam input files should be indexed by samtools index
+        # the index files should be in the same directory as the bam files
+        # without index files reverting to slow method
+        bam = "mapped/{sample}.bam"
+    output:
+        "mapped/{sample}.bam.idxstats"
+    log:
+        "logs/samtools/idxstats/{sample}.log"
+    wrapper:
+        "master/bio/samtools/idxstats"

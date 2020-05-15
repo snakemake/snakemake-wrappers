@@ -1,0 +1,8 @@
+name: samtools idxstats
+description: Use samtools to retrieve and print stats form indexed bam, sam or cram files
+authors:
+  - Antonie Vietor
+input:
+  - indexed bam, sam or cram file (.bam, .sam, .cram)
+output:
+  - idxstat file (.idxstats)

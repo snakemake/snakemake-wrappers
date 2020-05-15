@@ -770,6 +770,13 @@ def test_samtools_flagstat():
     )
 
 
+def test_samtools_idxstats():
+    run(
+        "bio/samtools/idxstats",
+        ["snakemake", "--cores", "1", "mapped/a.sorted.bam.idxstats", "--use-conda", "-F"],
+    )
+
+
 def test_samtools_bam2fq_interleaved():
     run(
         "bio/samtools/bam2fq/interleaved",
