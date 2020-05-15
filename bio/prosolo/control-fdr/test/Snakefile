@@ -1,0 +1,17 @@
+rule prosolo_fdr_control:
+    input:
+         "variant_calling/{sc}.{bulk}.prosolo.bcf"
+    output:
+         "fdr_control/{sc}.{bulk}.prosolo.fdr.bcf"
+    threads:
+        1
+    params:
+        # comma-separated set of events for whose (joint)
+        # false discovery rate you want to control
+        events = "ADO_TO_REF,HET",
+        # false discovery rate to control for
+        fdr = 0.05
+    log:
+        "logs/prosolo_{sc}_{bulk}.fdr.log"
+    wrapper:
+        "master/bio/prosolo/control-fdr"

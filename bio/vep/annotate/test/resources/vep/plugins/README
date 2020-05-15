@@ -1,0 +1,29 @@
+This repository contains several perl plugin modules for the Ensembl
+Variant Effect Predictor (VEP). Please refer to the documentation at 
+the top of each file for details of what each plugin does and how to 
+run it, though for most you will just need to put the module in your
+~/.vep/Plugins directory (or elsewhere on your $PERL5LIB) and then
+run the VEP with the argument --plugin <module name>.
+
+More documentation on VEP plugins, and on the VEP itself, can be 
+found on the Ensembl website:
+
+http://www.ensembl.org/info/docs/tools/vep/script/index.html
+
+Copyright [1999-2015] Wellcome Trust Sanger Institute and the EMBL-European Bioinformatics Institute
+Copyright [2016-2020] EMBL-European Bioinformatics Institute
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+http://www.ensembl.org/info/about/code_licence.html
+

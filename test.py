@@ -687,6 +687,20 @@ def test_pindel_pindel2vcf_multi_input():
     )
 
 
+def test_prosolo_calling():
+    run(
+        "bio/prosolo/single-cell-bulk",
+        ["snakemake", "--cores", "1", "variant_calling/single_cell.bulk.prosolo.bcf", "--use-conda", "-F"],
+    )
+
+
+def test_prosolo_fdr():
+    run(
+        "bio/prosolo/control-fdr",
+        ["snakemake", "--cores", "1", "fdr_control/single_cell.bulk.prosolo.fdr.bcf", "--use-conda", "-F"],
+    )
+
+
 def test_samtools_fixmate():
     run(
         "bio/samtools/fixmate",
@@ -698,6 +712,13 @@ def test_pyfastaq_replace_bases():
     run(
         "bio/pyfastaq/replace_bases",
         ["snakemake", "--cores", "1", "sample1.dna.fa", "--use-conda", "-F"],
+    )
+
+
+def test_samtools_depth():
+    run(
+        "bio/samtools/depth",
+        ["snakemake", "--cores", "1", "depth.txt", "--use-conda", "-F"],
     )
 
 
@@ -820,16 +841,30 @@ def test_star_index():
     run("bio/star/index", ["snakemake", "--cores", "1", "genome", "--use-conda", "-F"])
 
 
-def test_snpeff():
+def test_snpeff_annotate():
     run(
-        "bio/snpeff",
+        "bio/snpeff/annotate",
         ["snakemake", "--cores", "1", "snpeff/fake_KJ660346.vcf", "--use-conda", "-F"],
+    )
+
+
+def test_snpeff_download():
+    run(
+        "bio/snpeff/download",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/snpeff/ebola_zaire",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
 def test_snpeff_nostats():
     run(
-        "bio/snpeff",
+        "bio/snpeff/annotate",
         [
             "snakemake",
             "--cores",
@@ -840,13 +875,6 @@ def test_snpeff_nostats():
             "-s",
             "Snakefile_nostats",
         ],
-    )
-
-
-def test_snpeff_database():
-    run(
-        "bio/reference/snpEff-database",
-        ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )
 
 
@@ -1474,6 +1502,13 @@ def test_ensembl_sequence():
     )
 
 
+def test_ensembl_sequence_old_release():
+    run(
+        "bio/reference/ensembl-sequence",
+        ["snakemake", "-s", "old_release.smk", "--cores", "1", "--use-conda", "-F"],
+    )
+
+
 def test_ensembl_annotation():
     run(
         "bio/reference/ensembl-annotation",
@@ -1485,6 +1520,13 @@ def test_ensembl_variation():
     run(
         "bio/reference/ensembl-variation",
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
+
+def test_ensembl_variation_old_release():
+    run(
+        "bio/reference/ensembl-variation",
+        ["snakemake", "-s", "old_release.smk", "--cores", "1", "--use-conda", "-F"],
     )
 
 
@@ -1687,4 +1729,38 @@ def test_snpsift_vartype():
     run(
         "bio/snpsift/varType",
         ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"],
+    )
+
+
+def test_ptrimmer_se():
+        run(
+        "bio/ptrimmer",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "ptrimmer_se"],
+    )
+
+def test_ptrimmer_pe():
+        run(
+        "bio/ptrimmer",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "ptrimmer_pe"],
+    )
+
+
+def test_vep_cache():
+    run(
+        "bio/vep/cache",
+        ["snakemake", "--cores", "1", "resources/vep/cache", "--use-conda", "-F"],
+    )
+
+
+def test_vep_plugins():
+    run(
+        "bio/vep/plugins",
+        ["snakemake", "--cores", "1", "resources/vep/plugins", "--use-conda", "-F"],
+    )
+
+
+def test_vep_annotate():
+    run(
+        "bio/vep/annotate",
+        ["snakemake", "--cores", "1", "variants.annotated.bcf", "--use-conda", "-F"],
     )

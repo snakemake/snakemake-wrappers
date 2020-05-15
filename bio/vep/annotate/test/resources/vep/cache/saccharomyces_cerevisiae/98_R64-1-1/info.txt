@@ -1,0 +1,9 @@
+species	saccharomyces_cerevisiae
+assembly	R64-1-1
+sift	b
+polyphen	
+source_sift	sift5.2.2
+source_genebuild	2018-08-SGD
+source_assembly	R64-1-1
+variation_cols	chr,variation_name,failed,somatic,start,end,allele_string,strand,minor_allele,minor_allele_freq,clin_sig,phenotype_or_disease,pubmed,clin_sig_allele
+var_type	tabix
