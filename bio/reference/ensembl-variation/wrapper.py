@@ -15,12 +15,16 @@ release = int(snakemake.params.release)
 build = snakemake.params.build
 type = snakemake.params.type
 
+if release < 91:
+    print("Ensembl releases <91 are unsupported.", file=open(snakemake.log[0], "w"))
+    exit(1)
+
 branch = ""
 if release >= 81 and build == "GRCh37":
     # use the special grch37 branch for new releases
     branch = "grch37/"
 
-log = snakemake.log[0]
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 if type == "all":
     if species == "homo_sapiens" and release >= 93:
@@ -52,39 +56,26 @@ urls = [
     )
     for suffix in suffixes
 ]
-
 names = [os.path.basename(url) for url in urls]
 
-download = (
-    "bcftools concat -Oz {urls}" if len(urls) > 1 else "bcftools view -Oz {urls}"
-).format(urls=" ".join(urls))
-
 try:
-    # in case of a given .fai, reheader the VCF such that contig lengths are defined
-    with tempfile.TemporaryDirectory() as tmpdir:
-        # download all vcfs
-        shell("(cd {tmpdir} && curl -O {urls}) 2> {log}")
-        if len(names) > 1:
-            # concatenate and recompress with bgzip
-            shell("(cd {tmpdir} && bcftools concat -Oz {names} > out.vcf.gz) 2>> {log}")
-        else:
-            # recompress with bgzip
-            shell("(cd {tmpdir} && bcftools view -Oz {names} > out.vcf.gz) 2>> {log}")
-
-        if snakemake.input.get("fai"):
-            # reheader, adding sequence lenghts and sort
+    #gather = "curl {urls}".format(urls=" ".join(map("-O ".format, urls)))
+    gather = "bcftools concat --naive {urls}".format(urls=" ".join(urls))
+    workdir = os.getcwd()
+    if snakemake.input.get("fai"):
+        with tempfile.TemporaryDirectory() as tmpdir:
             shell(
-                "(bcftools reheader --fai {snakemake.input.fai} {tmpdir}/out.vcf.gz | bcftools sort -Oz - > {snakemake.output}) 2>> {log}"
+                "({gather} > {tmpdir}/concat.vcf.gz && "
+                "bcftools reheader --fai {snakemake.input.fai} {tmpdir}/concat.vcf.gz > {snakemake.output}) {log}"
             )
-        else:
-            # just move into final place
-            shell("mv {tmpdir}/out.vcf.gz {snakemake.output}")
+    else:
+        shell("{gather} > {snakemake.output} {log}")
 except subprocess.CalledProcessError as e:
     if snakemake.log:
         sys.stderr = open(snakemake.log[0], "a")
     print(
         "Unable to download variation data from Ensembl. "
-        "Did you check that this combination of species, build, and release is actually provided?",
+        "Did you check that this combination of species, build, and release is actually provided? ",
         file=sys.stderr,
     )
     exit(1)

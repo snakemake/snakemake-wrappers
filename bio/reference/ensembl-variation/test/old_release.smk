@@ -5,7 +5,7 @@ rule get_variation:
         # fai="refs/genome.fasta.fai"
     params:
         species="saccharomyces_cerevisiae",
-        release="90",
+        release="91",
         build="R64-1-1",
         type="all" # one of "all", "somatic", "structural_variation"
     log:

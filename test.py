@@ -1516,6 +1516,13 @@ def test_ensembl_variation_old_release():
     )
 
 
+def test_ensembl_variation_grch37():
+    run(
+        "bio/reference/ensembl-variation",
+        ["snakemake", "-s", "grch37.smk", "--cores", "1", "--use-conda", "-F"],
+    )
+
+
 def test_ensembl_variation_with_contig_lengths():
     run(
         "bio/reference/ensembl-variation",
