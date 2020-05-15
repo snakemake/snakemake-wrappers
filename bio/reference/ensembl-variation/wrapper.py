@@ -15,8 +15,8 @@ release = int(snakemake.params.release)
 build = snakemake.params.build
 type = snakemake.params.type
 
-if release < 91:
-    print("Ensembl releases <91 are unsupported.", file=open(snakemake.log[0], "w"))
+if release < 98:
+    print("Ensembl releases <98 are unsupported.", file=open(snakemake.log[0], "w"))
     exit(1)
 
 branch = ""
@@ -47,29 +47,36 @@ else:
 species_filename = species if release >= 91 else species.capitalize()
 
 urls = [
-    "ftp://ftp.ensembl.org/pub/{branch}release-{release}/variation/vcf/{species}/{species_filename}{suffix}.vcf.gz".format(
+    "ftp://ftp.ensembl.org/pub/{branch}release-{release}/variation/vcf/{species}/{species_filename}{suffix}.{ext}".format(
         release=release,
         species=species,
         suffix=suffix,
         species_filename=species_filename,
         branch=branch,
+        ext=ext,
     )
     for suffix in suffixes
+    for ext in ["vcf.gz", "vcf.gz.csi"]
 ]
-names = [os.path.basename(url) for url in urls]
+names = [os.path.basename(url) for url in urls if url.endswith(".gz")]
 
 try:
-    #gather = "curl {urls}".format(urls=" ".join(map("-O ".format, urls)))
-    gather = "bcftools concat --naive {urls}".format(urls=" ".join(urls))
+    gather = "curl {urls}".format(urls=" ".join(map("-O {}".format, urls)))
     workdir = os.getcwd()
-    if snakemake.input.get("fai"):
-        with tempfile.TemporaryDirectory() as tmpdir:
+    with tempfile.TemporaryDirectory() as tmpdir:
+        if snakemake.input.get("fai"):
             shell(
-                "({gather} > {tmpdir}/concat.vcf.gz && "
-                "bcftools reheader --fai {snakemake.input.fai} {tmpdir}/concat.vcf.gz > {snakemake.output}) {log}"
+                "(cd {tmpdir}; {gather} && "
+                "bcftools concat -Oz --naive {names} > concat.vcf.gz && "
+                "bcftools reheader --fai {workdir}/{snakemake.input.fai} concat.vcf.gz "
+                "> {workdir}/{snakemake.output}) {log}"
             )
-    else:
-        shell("{gather} > {snakemake.output} {log}")
+        else:
+            shell(
+                "(cd {tmpdir}; {gather} && "
+                "bcftools concat -Oz --naive {names} "
+                "> {workdir}/{snakemake.output}) {log}"
+            )
 except subprocess.CalledProcessError as e:
     if snakemake.log:
         sys.stderr = open(snakemake.log[0], "a")

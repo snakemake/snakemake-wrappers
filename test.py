@@ -1515,7 +1515,7 @@ def test_ensembl_variation_old_release():
         ["snakemake", "-s", "old_release.smk", "--cores", "1", "--use-conda", "-F"],
     )
 
-
+@pytest.mark.skip(reason="needs too much time")
 def test_ensembl_variation_grch37():
     run(
         "bio/reference/ensembl-variation",
