@@ -15,4 +15,4 @@ shell(
     " -@ {snakemake.threads} "
     " {snakemake.input[0]}"
     " >{snakemake.output[0]} "
-    )
+)

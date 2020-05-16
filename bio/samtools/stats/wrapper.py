@@ -14,4 +14,4 @@ region = snakemake.params.get("region", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 
-shell("samtools stats {extra} {snakemake.input}" " {region} > {snakemake.output} {log}")
+shell("samtools stats {extra} {snakemake.input} {region} > {snakemake.output} {log}")

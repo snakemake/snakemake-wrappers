@@ -4,4 +4,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - samtools ==1.9
+  - samtools ==1.10

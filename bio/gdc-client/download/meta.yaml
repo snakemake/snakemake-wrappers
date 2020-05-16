@@ -1,0 +1,4 @@
+name: "GDC Data Transfer Tool data download"
+description: Download GDC data files with the gdc-client.
+authors:
+  - David Lähnemann

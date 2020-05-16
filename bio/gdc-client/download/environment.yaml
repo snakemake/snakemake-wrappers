@@ -2,4 +2,4 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
-  - bcftools =1.10
+  - gdc-client ==1.5.0

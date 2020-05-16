@@ -78,6 +78,20 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+def test_seqtk_subsample_se():
+    run(
+        "bio/seqtk/subsample/se",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.subsampled.fastq.gz"],
+    )
+
+
+def test_seqtk_subsample_pe():
+    run(
+        "bio/seqtk/subsample/pe",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.1.subsampled.fastq.gz", "a.2.subsampled.fastq.gz"],
+    )
+
+
 def test_arriba():
     run(
         "bio/arriba",
@@ -502,6 +516,20 @@ def test_freebayes_bed():
                 "Snakefile_bed",
             ],
         )
+
+
+def test_gdc_download():
+    run(
+        "bio/gdc-client/download",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "raw/testing_sample.maf.gz",
+            "--use-conda",
+            "-F",
+        ],
+    )
 
 
 def test_happy_prepy():
@@ -1530,6 +1558,14 @@ def test_ensembl_variation_old_release():
     )
 
 
+@pytest.mark.skip(reason="needs too much time")
+def test_ensembl_variation_grch37():
+    run(
+        "bio/reference/ensembl-variation",
+        ["snakemake", "-s", "grch37.smk", "--cores", "1", "--use-conda", "-F"],
+    )
+
+
 def test_ensembl_variation_with_contig_lengths():
     run(
         "bio/reference/ensembl-variation",
@@ -1733,13 +1769,14 @@ def test_snpsift_vartype():
 
 
 def test_ptrimmer_se():
-        run(
+    run(
         "bio/ptrimmer",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "ptrimmer_se"],
     )
 
+
 def test_ptrimmer_pe():
-        run(
+    run(
         "bio/ptrimmer",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "ptrimmer_pe"],
     )
@@ -1764,3 +1801,4 @@ def test_vep_annotate():
         "bio/vep/annotate",
         ["snakemake", "--cores", "1", "variants.annotated.bcf", "--use-conda", "-F"],
     )
+

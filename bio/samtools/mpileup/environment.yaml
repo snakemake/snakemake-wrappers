@@ -2,5 +2,5 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
-  - samtools ==1.9
+  - samtools ==1.10
   - pigz ==2.3.4
