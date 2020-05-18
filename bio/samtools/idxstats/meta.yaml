@@ -3,6 +3,7 @@ description: Use samtools to retrieve and print stats form indexed bam, sam or c
 authors:
   - Antonie Vietor
 input:
-  - indexed bam, sam or cram file (.bam, .sam, .cram)
+  - indexed sam, bam or cram file (.sam, .bam, .cram)
+  - corresponding index files
 output:
   - idxstat file (.idxstats)
