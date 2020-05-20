@@ -11,7 +11,7 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 shell(
-    "(findPeaks"
+    "(getDifferentialPeaks"
     " {snakemake.input.peaks}"
     " {snakemake.input.first}"
     " {snakemake.input.second}"
