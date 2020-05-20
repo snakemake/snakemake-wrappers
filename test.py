@@ -560,6 +560,27 @@ def test_hisat2_align():
     )
 
 
+def test_homer_getDifferentialPeaks():
+    run(
+        "bio/homer/getDifferentialPeaks",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a_diffPeaks.txt"],
+    )
+
+
+def test_homer_findPeaks():
+    run(
+        "bio/homer/findPeaks",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a_peaks.txt"],
+    )
+
+
+def test_homer_makeTagDirectory():
+    run(
+        "bio/homer/makeTagDirectory",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "tagDir/a"],
+    )
+
+
 def test_kallisto_index():
     run(
         "bio/kallisto/index",
