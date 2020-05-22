@@ -18,7 +18,7 @@ if snakemake.input.get("r2", ""):
 else:
     seqmode = "single"
 
-primers = snakemake.params.primers
+primers = snakemake.input.primers
 outdir = Path(snakemake.output[0]).parent.resolve()
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
