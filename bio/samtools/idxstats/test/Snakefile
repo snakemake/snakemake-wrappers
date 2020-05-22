@@ -1,7 +1,7 @@
 rule samtools_idxstats:
     input:
-        bam = "mapped/{sample}.bam",
-        idx = "mapped/{sample}.bam.bai"
+        bam="mapped/{sample}.bam",
+        idx="mapped/{sample}.bam.bai"
     output:
         "mapped/{sample}.bam.idxstats"
     log:
