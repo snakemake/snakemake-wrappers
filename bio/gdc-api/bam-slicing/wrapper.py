@@ -14,11 +14,15 @@ if uuid == "":
 
 token = snakemake.params.get("gdc_token", "")
 if token == "":
-    raise ValueError("You need to provide a GDC data access token via the 'token' in 'params'.")
+    raise ValueError(
+        "You need to provide a GDC data access token via the 'token' in 'params'."
+    )
 
 slices = snakemake.params.get("slices", "")
 if slices == "":
-    raise ValueError("You need to provide 'region=chr1:1000-2000' or 'gencode=BRCA2' slice(s)  via the 'slices' in 'params'.")
+    raise ValueError(
+        "You need to provide 'region=chr1:1000-2000' or 'gencode=BRCA2' slice(s)  via the 'slices' in 'params'."
+    )
 
 extra = snakemake.params.get("extra", "")
 
@@ -32,7 +36,8 @@ shell(
 
 if path.getsize(snakemake.output.bam) < 100000:
     with open(snakemake.output.bam) as f:
-        if 'error' in f.read():
+        if "error" in f.read():
             shell("cat {snakemake.output.bam} {log}")
-            raise RuntimeError("Your GDC API request returned an error, check your log file for the error message.")
-
+            raise RuntimeError(
+                "Your GDC API request returned an error, check your log file for the error message."
+            )
