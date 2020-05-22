@@ -1,6 +1,6 @@
 rule gdc_api_bam_slice_download:
     output:
-        bam = "raw/{sample}.bam",
+        bam="raw/{sample}.bam",
     log:
         "logs/gdc-api/bam-slicing/{sample}.log"
     params:
