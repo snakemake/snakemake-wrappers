@@ -517,6 +517,22 @@ def test_freebayes_bed():
             ],
         )
 
+def test_gdc_api_bam_slicing():
+    def check_log(log):
+        assert "error" in log and "token" in log
+
+    run(
+        "bio/gdc-api/bam-slicing",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "raw/testing_sample.bam",
+            "--use-conda",
+            "-F"
+        ],
+        check_log=check_log
+    )
 
 def test_gdc_download():
     run(
