@@ -1,4 +1,4 @@
-rule findPeaks:
+rule homer_getDifferentialPeaks:
     input:
         # peak/bed file to be tested
         peaks="{sample}.peaks.bed",

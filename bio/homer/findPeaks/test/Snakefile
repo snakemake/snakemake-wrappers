@@ -1,4 +1,4 @@
-rule findPeaks:
+rule homer_findPeaks:
     input:
         # tagDirectory of sample
         tag="tagDir/{sample}",
