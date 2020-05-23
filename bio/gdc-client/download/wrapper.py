@@ -7,7 +7,6 @@ from snakemake.shell import shell
 import os.path as path
 from tempfile import TemporaryDirectory
 import glob
-import sys
 
 uuid = snakemake.params.get("uuid", "")
 if uuid == "":

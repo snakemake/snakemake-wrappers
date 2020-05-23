@@ -88,7 +88,15 @@ def test_seqtk_subsample_se():
 def test_seqtk_subsample_pe():
     run(
         "bio/seqtk/subsample/pe",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.1.subsampled.fastq.gz", "a.2.subsampled.fastq.gz"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "a.1.subsampled.fastq.gz",
+            "a.2.subsampled.fastq.gz",
+        ],
     )
 
 
@@ -160,7 +168,32 @@ def test_bedtools_intersect():
 def test_bedtools_merge():
     run(
         "bio/bedtools/merge",
-        ["snakemake", "--cores", "1", "A.merged.bed", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "A.merged.bed",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile",
+        ],
+    )
+
+
+def test_bedtools_merge_multi():
+    run(
+        "bio/bedtools/merge",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "AB.merged.bed",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_multi",
+        ],
     )
 
 
@@ -518,6 +551,17 @@ def test_freebayes_bed():
         )
 
 
+def test_gdc_api_bam_slicing():
+    def check_log(log):
+        assert "error" in log and "token" in log
+
+    run(
+        "bio/gdc-api/bam-slicing",
+        ["snakemake", "--cores", "1", "raw/testing_sample.bam", "--use-conda", "-F"],
+        check_log=check_log,
+    )
+
+
 def test_gdc_download():
     run(
         "bio/gdc-client/download",
@@ -739,14 +783,28 @@ def test_pindel_pindel2vcf_multi_input():
 def test_prosolo_calling():
     run(
         "bio/prosolo/single-cell-bulk",
-        ["snakemake", "--cores", "1", "variant_calling/single_cell.bulk.prosolo.bcf", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "variant_calling/single_cell.bulk.prosolo.bcf",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
 def test_prosolo_fdr():
     run(
         "bio/prosolo/control-fdr",
-        ["snakemake", "--cores", "1", "fdr_control/single_cell.bulk.prosolo.fdr.bcf", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "fdr_control/single_cell.bulk.prosolo.fdr.bcf",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -1822,4 +1880,3 @@ def test_vep_annotate():
         "bio/vep/annotate",
         ["snakemake", "--cores", "1", "variants.annotated.bcf", "--use-conda", "-F"],
     )
-
