@@ -11,9 +11,5 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 shell(
-    "(makeTagDirectory"
-    " {snakemake.output}"
-    " {extra}"
-    " {snakemake.input})"
-    " {log}"
+    "(makeTagDirectory" " {snakemake.output}" " {extra}" " {snakemake.input})" " {log}"
 )
