@@ -12,11 +12,13 @@ uuid = snakemake.params.get("uuid", "")
 if uuid == "":
     raise ValueError("You need to provide a GDC UUID via the 'uuid' in 'params'.")
 
-token = snakemake.params.get("gdc_token", "")
-if token == "":
+token_file = snakemake.params.get("gdc_token", "")
+if token_file == "":
     raise ValueError(
-        "You need to provide a GDC data access token via the 'token' in 'params'."
+        "You need to provide a GDC data access token file via the 'token' in 'params'."
     )
+with open(token_file) as tf:
+    token=tf.read()
 
 slices = snakemake.params.get("slices", "")
 if slices == "":
