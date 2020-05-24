@@ -18,7 +18,7 @@ if token_file == "":
         "You need to provide a GDC data access token file via the 'token' in 'params'."
     )
 with open(token_file) as tf:
-    token=tf.read()
+    token = tf.read()
 
 slices = snakemake.params.get("slices", "")
 if slices == "":
