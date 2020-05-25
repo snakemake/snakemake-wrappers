@@ -1767,8 +1767,8 @@ def test_vep_annotate():
 
 
 def test_genomepy():
-    # download fugu genome (relatively small, +/- 100 mb)
+    # download dm3 genome (relatively small, +/- 250 mb)
     run(
         "bio/genomepy",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "FUGU5/FUGU5.fa"],
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "dm3/dm3.fa"],
     )

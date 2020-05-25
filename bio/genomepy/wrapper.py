@@ -15,7 +15,7 @@ provider = snakemake.params.get("provider", "UCSC")
 all_plugins = "blacklist,bowtie2,bwa,gmap,hisat2,minimap2,star"
 req_plugins = ","
 if any(["blacklist" in out for out in snakemake.output]):
-    req_plugins = "blacklist"
+    req_plugins = "blacklist,"
 
 annotation = ""
 if any(["annotation" in out for out in snakemake.output]):
