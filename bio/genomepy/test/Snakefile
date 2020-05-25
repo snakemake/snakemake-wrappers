@@ -1,15 +1,11 @@
 rule genomepy:
     output:
-        "{assembly}/{assembly}.fa",
-        "{assembly}/{assembly}.fa.fai",
-        "{assembly}/{assembly}.fa.sizes",
-        "{assembly}/{assembly}.gaps.bed",
-        "{assembly}/README.txt",
-        # "{assembly}/{assembly}.annotation.gtf",  # uncomment to download
-        # "{assembly}/{assembly}.blacklist.bed"    # uncomment to download
+        multiext("resources/genome", ".fa", ".fa.fai", ".fa.sizes", ".gaps.bed", ".annotation.gtf", ".blacklist.bed")
     log:
         "logs/genomepy_{assembly}.log"
     params:
+        assembly="FUGU5",
         provider="NCBI"  # optional, defaults to ucsc. Choose from uccs, ensembl, and ncbi
+    cache: True  # mark as eligible for between workflow caching
     wrapper:
         "master/bio/genomepy"
