@@ -1,7 +1,7 @@
 rule genomepy:
     output:
         multiext("{assembly}/{assembly}", ".fa", ".fa.fai", ".fa.sizes", ".gaps.bed", 
-                 ".annotation.gtf", ".blacklist.bed")
+                 ".annotation.gtf.gz", ".blacklist.bed")
     log:
         "logs/genomepy_{assembly}.log"
     params:
