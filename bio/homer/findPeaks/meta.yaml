@@ -1,4 +1,4 @@
-name: name: "Homer findPeaks"
+name: "Homer findPeaks"
 description: Find enriched peaks or regions with the Homer suite.
 authors:
   - Jan Forster

@@ -1,4 +1,4 @@
-name: name: "Homer makeTagDirectory"
+name: "Homer makeTagDirectory"
 description: Create a tag directory with the Homer suite.
 authors:
   - Jan Forster
