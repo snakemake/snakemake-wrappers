@@ -2,7 +2,9 @@ rule freebayes:
     input:
         ref="genome.fasta",
         # you can have a list of samples here
-        samples="mapped/{sample}.bam"
+        samples="mapped/{sample}.bam",
+        # the matching BAI indexes have to present for freebayes
+        indexes="mapped/{sample}.bam.bai"
         # optional BED file specifying chromosomal regions on which freebayes 
         # should run, e.g. all regions that show coverage
         #regions="/path/to/region-file.bed"
