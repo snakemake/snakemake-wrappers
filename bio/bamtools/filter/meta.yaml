@@ -1,0 +1,8 @@
+name: bamtools filter
+description: Filters BAM files. For more information about bamtools see `bamtools documentation <http://stab.st-andrews.ac.uk/wiki/index.php/Bamtools>`_ and `bamtools source code <https://github.com/pezmaster31/bamtools>`_.
+authors:
+  - Antonie Vietor
+input:
+  - bam files (.bam)
+output:
+  - bam file (.bam)
