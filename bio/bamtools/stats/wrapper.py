@@ -7,4 +7,6 @@ from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell("(bamtools stats {snakemake.params} -in {snakemake.input[0]} > {snakemake.output[0]}) {log}")
+shell(
+    "(bamtools stats {snakemake.params} -in {snakemake.input[0]} > {snakemake.output[0]}) {log}"
+)

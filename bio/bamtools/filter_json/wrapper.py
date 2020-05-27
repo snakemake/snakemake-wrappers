@@ -11,12 +11,12 @@ region = snakemake.params.get("region")
 region_param = ""
 
 if region and region is not None:
-    region_param = " -region \"" + region + "\""
+    region_param = ' -region "' + region + '"'
 
 shell(
     "(bamtools filter"
     " -in {snakemake.input[0]}"
     " -out {snakemake.output[0]}"
-    + region_param +
-    " -script {snakemake.params.json}) {log}"
+    + region_param
+    + " -script {snakemake.params.json}) {log}"
 )

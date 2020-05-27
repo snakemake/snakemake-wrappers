@@ -18,23 +18,23 @@ max_length = snakemake.params.get("max_length")
 additional_params = snakemake.params.get("additional_params")
 
 if tag and tag is not None:
-    params = params + " -tag \"" + tag + "\""
+    params = params + ' -tag "' + tag + '"'
 
 if min_size and min_size is not None:
-    params = params + " -insertSize \">=" + min_size + "\""
+    params = params + ' -insertSize ">=' + min_size + '"'
     if max_size and max_size is not None:
-        extra_limits = extra_limits + " -insertSize \"<=" + max_size + "\""
+        extra_limits = extra_limits + ' -insertSize "<=' + max_size + '"'
 else:
     if max_size and max_size is not None:
-        params = params + " -insertSize \"<=" + max_size + "\""
+        params = params + ' -insertSize "<=' + max_size + '"'
 
 if min_length and min_length is not None:
-    params = params + " -length \">=" + min_length + "\""
+    params = params + ' -length ">=' + min_length + '"'
     if max_length and max_length is not None:
-        extra_limits = extra_limits + " -length \"<=" + max_length + "\""
+        extra_limits = extra_limits + ' -length "<=' + max_length + '"'
 else:
     if max_length and max_length is not None:
-        params = params + " -length \"<=" + max_length + "\""
+        params = params + ' -length "<=' + max_length + '"'
 
 if additional_params and additional_params is not None:
     params = params + " " + additional_params
@@ -44,7 +44,5 @@ if extra_limits:
 
 shell(
     "(bamtools filter"
-    " -in {snakemake.input[0]}"
-    + params +
-    " -out {snakemake.output[0]}) {log}"
+    " -in {snakemake.input[0]}" + params + " -out {snakemake.output[0]}) {log}"
 )
