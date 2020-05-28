@@ -17,7 +17,7 @@ if token_file == "":
     raise ValueError(
         "You need to provide a GDC data access token file via the 'token' in 'params'."
     )
-token=""
+token = ""
 with open(token_file) as tf:
     token = tf.read()
 os.environ["CURL_HEADER_TOKEN"] = "'X-Auth-Token: {}'".format(token)
