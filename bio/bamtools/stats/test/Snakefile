@@ -2,7 +2,7 @@ rule bamtools_stats:
     input:
         "{sample}.bam"
     output:
-        "{sample}.bamstats.txt"
+        "{sample}.bamstats"
     params:
         "-insert" # optional summarize insert size data
     log:

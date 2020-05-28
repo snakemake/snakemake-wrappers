@@ -5,4 +5,4 @@ authors:
 input:
   - bam files (.bam)
 output:
-  - text file (.txt)
+  - bamstats file (.bamstats)

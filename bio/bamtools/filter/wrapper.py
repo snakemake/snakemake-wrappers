@@ -10,15 +10,15 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 # extract arguments
 params = ""
 extra_limits = ""
-tag = snakemake.params.get("tag")
+tags = snakemake.params.get("tags")
 min_size = snakemake.params.get("min_size")
 max_size = snakemake.params.get("max_size")
 min_length = snakemake.params.get("min_length")
 max_length = snakemake.params.get("max_length")
 additional_params = snakemake.params.get("additional_params")
 
-if tag and tag is not None:
-    params = params + ' -tag "' + tag + '"'
+if tags and tags is not None:
+    params = params + " " + " ".join(map('-tag "{}"'.format, tags))
 
 if min_size and min_size is not None:
     params = params + ' -insertSize ">=' + min_size + '"'

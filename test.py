@@ -805,7 +805,7 @@ def test_bamtools_filter_json():
 
 def test_bamtools_stats():
     run(
-        "bio/bamtools/stats", ["snakemake", "--cores", "1", "a.bamstats.txt", "--use-conda", "-F"],
+        "bio/bamtools/stats", ["snakemake", "--cores", "1", "a.bamstats", "--use-conda", "-F"],
     )
 
 
