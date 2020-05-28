@@ -7,7 +7,7 @@ from pathlib import Path
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
-log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 shell(
     "vep_install --AUTO cf "
@@ -15,5 +15,6 @@ shell(
     "--ASSEMBLY {snakemake.params.build} "
     "--CACHE_VERSION {snakemake.params.release} "
     "--CACHEDIR {snakemake.output} "
-    "--CONVERT {log}"
+    "--CONVERT "
+    "--NO_UPDATE {log}"
 )
