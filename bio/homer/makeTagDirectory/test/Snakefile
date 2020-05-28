@@ -1,0 +1,12 @@
+rule homer_makeTagDir:
+    input:
+        # input bam, can be one or a list of files
+        bam="{sample}.bam",
+    output:
+        directory("tagDir/{sample}")
+    params:
+        extra=""  # optional params, see homer manual
+    log:
+        "logs/makeTagDir/{sample}.log"
+    wrapper:
+        "master/bio/homer/makeTagDirectory"

@@ -1,0 +1,4 @@
+name: "Homer getDifferentialPeaks"
+description: Detect differentially bound peaks between samples
+authors:
+  - Jan Forster
