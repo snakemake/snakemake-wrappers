@@ -16,11 +16,11 @@ params = snakemake.params.get("extra", "")
 shell(
     "(shovill"
     " --assembler {snakemake.params.assembler}"
-    " --outdir assembly" 
+    " --outdir assembly"
     " --R1 {snakemake.input.r1}"
     " --R2 {snakemake.input.r2}"
     " --cpus {snakemake.threads}"
     " {snakemake.params.extra}) {log}"
 )
 
-os.rename('assembly/'+snakemake.params.assembler+'.fa','assembly/raw_assembly.fa')
+os.rename("assembly/" + snakemake.params.assembler + ".fa", "assembly/raw_assembly.fa")
