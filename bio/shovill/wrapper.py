@@ -23,4 +23,4 @@ shell(
     " {snakemake.params.extra}) {log}"
 )
 
-os.rename("assembly/" + snakemake.params.assembler + ".fa", "assembly/raw_assembly.fa")
+os.rename("assembly/" + snakemake.params.assembler + ".fasta", "assembly/raw_assembly.fa")
