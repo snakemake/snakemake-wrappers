@@ -1,7 +1,7 @@
 rule shovill:
   input:
-    r1="reads/input_R1.fq",
-    r2="reads/input_R2.fq",
+    r1="reads/input_R1.fq.gz",
+    r2="reads/input_R2.fq.gz",
   output:
     raw_assembly="assembly/raw_assembly.fa",
     contigs="assembly/contigs.fa"
