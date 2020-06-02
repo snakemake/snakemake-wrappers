@@ -1,0 +1,15 @@
+rule shovill:
+  input:
+    r1="reads/input_R1.fq",
+    r2="reads/input_R2.fq",
+  output:
+    raw_assembly="assembly/raw_assembly.fa",
+    contigs="assembly/contigs.fa"
+  params:
+    assember="spades",
+    extra=""
+  log:
+    "logs/shovill/job.log"
+  threads: 1
+  wrapper:
+    "master/bio/shovill"

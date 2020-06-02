@@ -78,6 +78,20 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+def test_shovill():
+    run(
+        "bio/shovill",
+        [
+            "snakemake",
+            "assembly/raw_assembly.fa",
+            "assembly/contigs.fa",
+            "--cores", "1", 
+            "--use-conda", 
+            "-F", 
+        ],
+    )
+
+
 def test_seqtk_subsample_se():
     run(
         "bio/seqtk/subsample/se",
