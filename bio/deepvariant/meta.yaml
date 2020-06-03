@@ -1,0 +1,14 @@
+name: deepvariant
+description: |
+  Call genetic variants using deep neural network. Copyright 2017 Google LLC. BSD 3-Clause "New" or "Revised" https://github.com/google/deepvariant
+authors:
+  - Tetsuro Hisayoshi
+input:
+  - fasta
+  - bam
+output:
+  - vcf
+  - visual report html 
+notes: |
+  * The `extra` param alllows for additional program arguments.
+  * This snakemake wrapper uses bioconda deepvariant package. Copyright 2018 Brad Chapman.
