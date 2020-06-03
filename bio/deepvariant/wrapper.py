@@ -19,7 +19,7 @@ basename = os.path.splitext(os.path.basename(str(snakemake.input.bam)))[0]
 shell(
     "(mkdir -p {output_dir}/{basename} \n"
     "dv_make_examples.py "
-    "--cores {snakemake.threads} " 
+    "--cores {snakemake.threads} "
     "--ref {snakemake.input.ref} "
     "--reads {snakemake.input.bam} "
     "--sample {basename} "
