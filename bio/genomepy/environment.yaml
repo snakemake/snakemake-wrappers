@@ -3,4 +3,4 @@ channels:
   - defaults
   - conda-forge
 dependencies:
-  - bioconda::genomepy==0.8.2
+  - bioconda::genomepy==0.8.3
