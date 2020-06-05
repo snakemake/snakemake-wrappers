@@ -1,0 +1,11 @@
+rule bamtools_stats:
+    input:
+        "{sample}.bam"
+    output:
+        "{sample}.bamstats"
+    params:
+        "-insert" # optional summarize insert size data
+    log:
+        "logs/bamtools/stats/{sample}.log"
+    wrapper:
+        "master/bio/bamtools/stats"
