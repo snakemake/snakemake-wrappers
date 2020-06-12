@@ -24,7 +24,7 @@ primers = snakemake.params.primers
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-ptrimmer_params = "-s {mode} {in_reads} -a {primers} {out_reads}".format(
+ptrimmer_params = "-s {mode} {in_reads} -t {primers} {out_reads}".format(
     mode=seqmode, in_reads=input_reads, primers=primers, out_reads=output_reads
 )
 
