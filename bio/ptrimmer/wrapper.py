@@ -26,7 +26,7 @@ outdir = Path(snakemake.output[0]).parent.resolve()
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 ptrimmer_params = "-s {mode} {in_reads} -a {primers} {out_reads}".format(
-    mode=seqmode, in_reads=input_reads, primers=primers, out_reads=output_reads 
+    mode=seqmode, in_reads=input_reads, primers=primers, out_reads=output_reads
 )
 
 process_r1 = "mv {out_read} {final_output_path}".format(
@@ -36,7 +36,7 @@ process_r1 = "mv {out_read} {final_output_path}".format(
 process_r2 = ""
 if snakemake.input.get("r2", ""):
     process_r2 = "&& mv {out_read} {final_output_path}".format(
-    out_read={out_r2}, final_output_path=snakemake.output.r2
-)
+        out_read={out_r2}, final_output_path=snakemake.output.r2
+    )
 
 shell("(ptrimmer {ptrimmer_params} && {process_r1} {process_r2}) {log}")
