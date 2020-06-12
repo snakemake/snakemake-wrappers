@@ -9,13 +9,13 @@ import ntpath
 
 input_reads = "-f {r1}".format(r1=snakemake.input.r1)
 
-out_r1 = ntpath.path.basename(snakemake.output.r1)
+out_r1 = ntpath.basename(snakemake.output.r1)
 output_reads = "-d {o1}".format(o1=out_r1)
 
 if snakemake.input.get("r2", ""):
     seqmode = "pair"
     input_reads = "{reads} -r {r2}".format(reads=input_reads, r2=snakemake.input.r2)
-    out_r2 = ntpath.path.basename(snakemake.output.r2)
+    out_r2 = ntpath.basename(snakemake.output.r2)
     output_reads = "{reads} -d {o2}".format(o2=out_r2)
 else:
     seqmode = "single"
