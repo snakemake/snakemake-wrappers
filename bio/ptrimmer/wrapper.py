@@ -22,7 +22,6 @@ else:
 
 primers = snakemake.params.primers
 
-outdir = Path(snakemake.output[0]).parent.resolve()
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 ptrimmer_params = "-s {mode} {in_reads} -a {primers} {out_reads}".format(
