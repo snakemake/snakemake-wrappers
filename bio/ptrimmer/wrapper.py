@@ -5,6 +5,7 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 from pathlib import Path
+import os
 import ntpath
 
 input_reads = "-f {r1}".format(r1=snakemake.input.r1)
