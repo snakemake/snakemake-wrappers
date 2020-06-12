@@ -16,7 +16,7 @@ if snakemake.input.get("r2", ""):
     seqmode = "pair"
     input_reads = "{reads} -r {r2}".format(reads=input_reads, r2=snakemake.input.r2)
     out_r2 = ntpath.basename(snakemake.output.r2)
-    output_reads = "{reads} -d {o2}".format(o2=out_r2)
+    output_reads = "{reads} -e {o2}".format(o2=out_r2)
 else:
     seqmode = "single"
 
