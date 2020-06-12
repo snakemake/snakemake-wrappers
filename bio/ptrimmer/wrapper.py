@@ -29,13 +29,13 @@ ptrimmer_params = "-t {mode} {in_reads} -a {primers} {out_reads}".format(
 )
 
 process_r1 = "mv {out_read} {final_output_path}".format(
-    out_read={out_r1}, final_output_path=snakemake.output.r1
+    out_read=out_r1, final_output_path=snakemake.output.r1
 )
 
 process_r2 = ""
 if snakemake.input.get("r2", ""):
     process_r2 = "&& mv {out_read} {final_output_path}".format(
-        out_read={out_r2}, final_output_path=snakemake.output.r2
+        out_read=out_r2, final_output_path=snakemake.output.r2
     )
 
 shell("(ptrimmer {ptrimmer_params} && {process_r1} {process_r2}) {log}")
