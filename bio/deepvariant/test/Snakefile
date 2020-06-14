@@ -3,7 +3,7 @@ rule deepvariant:
         bam="mapped/{sample}.bam",
         ref="genome/genome.fasta"
     output:
-        vcf="calls/{sample}.vcf"
+        vcf="calls/{sample}.vcf.gz"
     params:
         model="wgs",   # {wgs, wes}
         extra=""
