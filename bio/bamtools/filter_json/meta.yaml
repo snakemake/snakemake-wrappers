@@ -1,0 +1,9 @@
+name: bamtools filter with json
+description: Filters BAM files with JSON-script for filtering parameters and rules. For more information about bamtools see `bamtools documentation <http://stab.st-andrews.ac.uk/wiki/index.php/Bamtools>`_ and `bamtools source code <https://github.com/pezmaster31/bamtools>`_.
+authors:
+  - Antonie Vietor
+input:
+  - bam files (.bam)
+  - json file (.json)
+output:
+  - bam file (.bam)

@@ -877,6 +877,13 @@ def test_samtools_flagstat():
     )
 
 
+def test_samtools_idxstats():
+    run(
+        "bio/samtools/idxstats",
+        ["snakemake", "--cores", "1", "mapped/a.sorted.bam.idxstats", "--use-conda", "-F"],
+    )
+
+
 def test_samtools_bam2fq_interleaved():
     run(
         "bio/samtools/bam2fq/interleaved",
@@ -895,6 +902,24 @@ def test_samtools_faidx():
     run(
         "bio/samtools/faidx",
         ["snakemake", "--cores", "1", "genome.fa.fai", "--use-conda", "-F"],
+    )
+
+
+def test_bamtools_filter():
+    run(
+        "bio/bamtools/filter", ["snakemake", "--cores", "1", "filtered/a.bam", "--use-conda", "-F"],
+    )
+
+
+def test_bamtools_filter_json():
+    run(
+        "bio/bamtools/filter_json", ["snakemake", "--cores", "1", "filtered/a.bam", "--use-conda", "-F"],
+    )
+
+
+def test_bamtools_stats():
+    run(
+        "bio/bamtools/stats", ["snakemake", "--cores", "1", "a.bamstats", "--use-conda", "-F"],
     )
 
 

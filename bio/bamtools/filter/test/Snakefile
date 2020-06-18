@@ -1,0 +1,18 @@
+rule bamtools_filter:
+    input:
+        "{sample}.bam"
+    output:
+        "filtered/{sample}.bam"
+    params:
+        # optional parameters
+        tags = [ "NM:<4", "MQ:>=10" ],    # list of key:value pair strings
+        min_size = "-2000",
+        max_size = "2000",
+        min_length = "10",
+        max_length = "20",
+        # to add more optional parameters (see bamtools filter --help):
+        additional_params = "-mapQuality \">=0\" -isMapped \"true\""
+    log:
+        "logs/bamtools/filtered/{sample}.log"
+    wrapper:
+        "master/bio/bamtools/filter"

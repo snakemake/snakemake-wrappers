@@ -7,11 +7,9 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 
-try:
-    exclude = "-x " + snakemake.input.exclude
-except AttributeError:
-    exclude = ""
-
+exclude = (
+    "-x {}".format(snakemake.input.exlude) if snakemake.input.get("exlude", "") else ""
+)
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)

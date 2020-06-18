@@ -1,0 +1,12 @@
+rule bamtools_filter_json:
+    input:
+        "{sample}.bam"
+    output:
+        "filtered/{sample}.bam"
+    params:
+        json="filtering-rules.json",
+        region="" # optional parameter for defining a specific region, e.g. "chr1:500..chr3:750"
+    log:
+        "logs/bamtools/filtered/{sample}.log"
+    wrapper:
+        "master/bio/bamtools/filter_json"

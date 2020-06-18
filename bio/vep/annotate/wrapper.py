@@ -47,6 +47,7 @@ shell(
     "--assembly {build} "
     "--dir_cache {cache} "
     "--dir_plugins {plugins} "
+    "--offline "
     "{load_plugins} "
     "--output_file STDOUT "
     "--stats_file {stats} | "
