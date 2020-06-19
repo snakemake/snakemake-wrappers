@@ -20,7 +20,7 @@ if snakemake.input.get("r2", ""):
 else:
     seqmode = "single"
 
-primers = snakemake.params.primers
+primers = snakemake.input.primers
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
