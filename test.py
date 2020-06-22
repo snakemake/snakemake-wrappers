@@ -783,19 +783,14 @@ def test_pindel_pindel2vcf_multi_input():
 def test_preseq_lc_extrap():
     run(
         "bio/preseq/lc_extrap",
-        ["snakemake", "--cores", "1", "test_bam/a.lc_extrap", "--use-conda", "-F"],
-    )
-    run(
-        "bio/preseq/lc_extrap",
         [
             "snakemake",
             "--cores",
             "1",
+            "test_bam/a.lc_extrap",
             "test_bed/a.lc_extrap",
             "--use-conda",
             "-F",
-            "-s",
-            "Snakefile_bed",
         ],
     )
 

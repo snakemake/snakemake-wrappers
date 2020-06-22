@@ -1,9 +1,12 @@
 name: preseq lc_extrap
-description: Use preseq to predict the yield for future experiments. For more information about preseq see `preseq source code <https://github.com/smithlabcode/preseq>`_ and `preseq documentation <http://smithlabresearch.org/wp-content/uploads/manual.pdf>`_. Please note that the available options and flags of the current version (v. 2.0.3) of preseq are slightly different from those of the documentation (from 2014). Please also consult the help pages of preseq.
+description: >
+  ``preseq`` estimates the library complexity of existing sequencing data to then estimate the yield of future experiments based on their design.
+  For usage information, please see ``preseq``'s command line help (this seems more up to date than the available `documentation from 2014 <http://smithlabresearch.org/wp-content/uploads/manual.pdf>`_ ).
+  For more information about ``preseq``, also see the `source code <https://github.com/smithlabcode/preseq>`_.
 authors:
   - Antonie Vietor
 input:
   - bed files containing duplicates and sorted by chromosome, start position, strand position and finally strand OR
-  - bam files containing duplicates and sorted by using bamtools or samtools sort. For both, bed or bam files
+  - bam files containing duplicates and sorted by using bamtools or samtools sort.
 output:
   - lc_extrap (.lc_extrap)

@@ -1,4 +1,4 @@
-rule preseq_lc_extrap:
+rule preseq_lc_extrap_bam:
     input:
         "samples/{sample}.sorted.bam"
     output:
@@ -7,5 +7,17 @@ rule preseq_lc_extrap:
         "-v"   #optional parameters
     log:
         "logs/test_bam/{sample}.log"
+    wrapper:
+        "master/bio/preseq/lc_extrap"
+
+rule preseq_lc_extrap_bed:
+    input:
+        "samples/{sample}.sorted.bed"
+    output:
+        "test_bed/{sample}.lc_extrap"
+    params:
+        "-v"   #optional parameters
+    log:
+        "logs/test_bed/{sample}.log"
     wrapper:
         "master/bio/preseq/lc_extrap"

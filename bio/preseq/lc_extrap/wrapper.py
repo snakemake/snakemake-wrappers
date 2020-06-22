@@ -9,14 +9,10 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 params = ""
-sm_input = str(snakemake.input)
-print(sm_input)
-if (os.path.splitext(sm_input)[-1]) == ".bam":
-    if "-bam" not in str(snakemake.params):
+if (os.path.splitext(snakemake.input[0])[-1]) == ".bam":
+    if "-bam" not in (snakemake.input[0]):
         params = "-bam "
 
 shell(
-    "(preseq lc_extrap "
-    + params
-    + "{snakemake.params} {snakemake.input[0]} -output {snakemake.output[0]}) {log}"
+    "(preseq lc_extrap {params} {snakemake.params} {snakemake.input[0]} -output {snakemake.output[0]}) {log}"
 )
