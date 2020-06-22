@@ -1,6 +1,8 @@
 name: picard CollectMultipleMetrics
-description: |
-  A picard meta-metrics tool that collects multiple clesses of metrics. For more information about CollectMultipleMetrics see `picard documentation <https://gatk.broadinstitute.org/hc/en-us/articles/360036510492-CollectMultipleMetrics-Picard>`_ and `picard source code <https://github.com/broadinstitute/picard>`_.
+description: >
+  A ``picard`` meta-metrics tool that collects multiple classes of metrics.
+  For usage information about CollectMultipleMetrics, please see  ``picard``'s `documentation <https://gatk.broadinstitute.org/hc/en-us/articles/360036510492-CollectMultipleMetrics-Picard>`_.
+  For more information about ``picard``, also see the `source code <https://github.com/broadinstitute/picard>`_.
 authors:
   - Antonie Vietor
 input:
