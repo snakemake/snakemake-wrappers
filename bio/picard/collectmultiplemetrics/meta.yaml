@@ -1,0 +1,11 @@
+name: picard CollectMultipleMetrics
+description: |
+  A picard meta-metrics tool that collects multiple clesses of metrics. For more information about CollectMultipleMetrics see `picard documentation <https://gatk.broadinstitute.org/hc/en-us/articles/360036510492-CollectMultipleMetrics-Picard>`_ and `picard source code <https://github.com/broadinstitute/picard>`_.
+authors:
+  - Antonie Vietor
+input:
+  - BAM file (.bam)
+  - FASTA reference sequence file (.fasta or .fa)
+output:
+  - multiple metrics text files (_metrics) AND
+  - multiple metrics pdf files (.pdf)

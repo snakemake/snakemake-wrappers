@@ -716,6 +716,28 @@ def test_picard_collecthsmetrics():
     )
 
 
+def test_picard_collectmultiplemetrics():
+    run(
+        "bio/picard/collectmultiplemetrics",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "stats/a.alignment_summary_metrics",
+            "stats/a.base_distribution_by_cycle_metrics",
+            "stats/a.base_distribution_by_cycle.pdf",
+            "stats/a.insert_size_metrics",
+            "stats/a.insert_size_histogram.pdf",
+            "stats/a.quality_by_cycle_metrics",
+            "stats/a.quality_by_cycle.pdf",
+            "stats/a.quality_distribution_metrics",
+            "stats/a.quality_distribution.pdf",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_picard_mergesamfiles():
     run(
         "bio/picard/mergesamfiles",
@@ -880,7 +902,14 @@ def test_samtools_flagstat():
 def test_samtools_idxstats():
     run(
         "bio/samtools/idxstats",
-        ["snakemake", "--cores", "1", "mapped/a.sorted.bam.idxstats", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.sorted.bam.idxstats",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -907,19 +936,22 @@ def test_samtools_faidx():
 
 def test_bamtools_filter():
     run(
-        "bio/bamtools/filter", ["snakemake", "--cores", "1", "filtered/a.bam", "--use-conda", "-F"],
+        "bio/bamtools/filter",
+        ["snakemake", "--cores", "1", "filtered/a.bam", "--use-conda", "-F"],
     )
 
 
 def test_bamtools_filter_json():
     run(
-        "bio/bamtools/filter_json", ["snakemake", "--cores", "1", "filtered/a.bam", "--use-conda", "-F"],
+        "bio/bamtools/filter_json",
+        ["snakemake", "--cores", "1", "filtered/a.bam", "--use-conda", "-F"],
     )
 
 
 def test_bamtools_stats():
     run(
-        "bio/bamtools/stats", ["snakemake", "--cores", "1", "a.bamstats", "--use-conda", "-F"],
+        "bio/bamtools/stats",
+        ["snakemake", "--cores", "1", "a.bamstats", "--use-conda", "-F"],
     )
 
 
