@@ -4,4 +4,3 @@ channels:
   - defaults
 dependencies:
   - picard ==2.22.1
-  - r-base ==3.6.2
