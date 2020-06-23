@@ -1,6 +1,6 @@
 name: picard BedToIntervalList
 description: |
-  Converts a BED file to a Picard Interval List.
+  `picard BedToIntervalList <https://broadinstitute.github.io/picard/command-line-overview.html#BedToIntervalList>`_ converts a BED file to Picard Interval List format.
 authors:
   - Fabian Kilpert
 input:
