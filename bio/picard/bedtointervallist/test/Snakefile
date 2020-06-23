@@ -1,7 +1,7 @@
 rule bed_to_interval_list:
     input:
-        bed="rescources/a.bed",
-        dict="rescources/genome.dict"
+        bed="resources/a.bed",
+        dict="resources/genome.dict"
     output:
         "a.interval_list"
     log:
