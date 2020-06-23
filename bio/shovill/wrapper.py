@@ -5,7 +5,6 @@ __copyright__ = "Copyright 2020, Sangram Keshari Sahu"
 __email__ = "sangramsahu15@gmail.com"
 __license__ = "MIT"
 
-import os
 from os import path
 from snakemake.shell import shell
 
@@ -13,16 +12,18 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 params = snakemake.params.get("extra", "")
 
-shell(
-    "(shovill"
-    " --assembler {snakemake.params.assembler}"
-    " --outdir assembly"
-    " --R1 {snakemake.input.r1}"
-    " --R2 {snakemake.input.r2}"
-    " --cpus {snakemake.threads}"
-    " {snakemake.params.extra}) {log}"
-)
+with TemporaryDirectory() as tempdir:
+    shell(
+        "(shovill"
+        " --assembler {snakemake.params.assembler}"
+        " --outdir {tempdir}"
+        " --R1 {snakemake.input.r1}"
+        " --R2 {snakemake.input.r2}"
+        " --cpus {snakemake.threads}"
+        " {snakemake.params.extra}) {log}"
+    )
 
-os.rename(
-    "assembly/" + snakemake.params.assembler + ".fasta", "assembly/raw_assembly.fa"
-)
+    shell(
+        "mv {tempdir}/{snakemake.params.assembler}.fasta {snakemake.output.raw_assembly}"
+        " && mv {tempdir}/contigs.fa {snakemake.output.contigs}"
+    )
