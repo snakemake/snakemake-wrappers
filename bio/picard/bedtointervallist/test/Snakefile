@@ -1,11 +1,11 @@
 rule bed_to_interval_list:
     input:
-        bed="rescources/{region}.bed",
+        bed="rescources/a.bed",
         dict="rescources/genome.dict"
     output:
-        "{region}.interval_list"
+        "a.interval_list"
     log:
-        "logs/picard/bedtointervallist/{region}.log"
+        "logs/picard/bedtointervallist/a.log"
     params:
         # optional parameters
         "SORT=true " # sort output interval list before writing
