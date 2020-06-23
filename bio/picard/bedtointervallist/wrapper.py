@@ -18,4 +18,3 @@ shell(
     "OUTPUT={snakemake.output} "
     "{log} "
 )
-
