@@ -11,7 +11,9 @@ from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 spark_runner = snakemake.params.get("spark_runner", "LOCAL")
-spark_master = snakemake.params.get("spark_runner", "local[{}]".format(snakemake.threads))
+spark_master = snakemake.params.get(
+    "spark_runner", "local[{}]".format(snakemake.threads)
+)
 spark_extra = snakemake.params.get("spark_extra", "")
 java_opts = snakemake.params.get("java_opts", "")
 
@@ -21,7 +23,6 @@ with TemporaryDirectory() as tmpdir:
     known = snakemake.input.get("known", "")
     if known:
         known = "--known-sites {}".format(known)
-
 
     shell(
         "gatk --java-options '{java_opts}' BaseRecalibratorSpark {extra} "
