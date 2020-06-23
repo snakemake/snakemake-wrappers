@@ -709,6 +709,13 @@ def test_picard_collectinsertsizemetrics():
     )
 
 
+def test_picard_bedtointervallist():
+    run(
+        "bio/picard/bedtointervallist",
+        ["snakemake", "--cores", "1", "a.interval_list", "--use-conda", "-F"],
+    )
+
+
 def test_picard_collecthsmetrics():
     run(
         "bio/picard/collecthsmetrics",
