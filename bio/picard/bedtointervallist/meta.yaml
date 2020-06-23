@@ -5,7 +5,7 @@ authors:
   - Fabian Kilpert
 input:
   - bed: region file
-  - dict: genome dictionary file (from samtools dict or Picard CreateSequenceDictionaryTool)
+  - dict: genome dictionary file (from samtools dict or `picard CreateSequenceDictionary <https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/picard/createsequencedictionary.html>`_ )
 output:
   - interval_list Picard format
 
