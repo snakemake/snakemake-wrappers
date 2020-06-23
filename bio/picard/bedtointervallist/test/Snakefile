@@ -7,7 +7,8 @@ rule bed_to_interval_list:
     log:
         "logs/picard/bedtointervallist/{region}.log"
     params:
-        # optional parameters (e.g. relax checks as below)
+        # optional parameters
+        "SORT=true " # sort output interval list before writing
     wrapper:
         "master/bio/picard/bedtointervallist"
 

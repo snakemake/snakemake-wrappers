@@ -12,7 +12,7 @@ log = snakemake.log_fmt_shell()
 
 shell(
     "picard BedToIntervalList "
-    ##"{snakemake.params} "
+    "{snakemake.params} "
     "INPUT={snakemake.input.bed} "
     "SEQUENCE_DICTIONARY={snakemake.input.dict} "
     "OUTPUT={snakemake.output} "
