@@ -12,7 +12,7 @@ out = str(snakemake.wildcards.path) + str(snakemake.wildcards.sample)
 shell(
     "(picard -Xmx{snakemake.resources.mem_gb}g CollectMultipleMetrics "
     "I={snakemake.input.bam} "
-    "O=" + out + " "
+    "O={out} "
     "R={snakemake.input.ref} "
     "{snakemake.params}) {log}"
 )
