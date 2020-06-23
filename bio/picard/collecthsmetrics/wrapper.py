@@ -15,7 +15,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
     "picard CollectHsMetrics"
-    " {extra}"
+    " {snakemake.params}"
     " INPUT={snakemake.input.bam}"
     " OUTPUT={snakemake.output[0]}"
     " REFERENCE_SEQUENCE={snakemake.input.reference}"
