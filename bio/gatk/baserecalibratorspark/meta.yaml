@@ -1,4 +1,4 @@
-name: gatk BaseRecalibrator
+name: gatk BaseRecalibrator (Spark)
 description: |
   Run gatk BaseRecalibratorSpark and ApplyBQSR in one step.
 authors:
