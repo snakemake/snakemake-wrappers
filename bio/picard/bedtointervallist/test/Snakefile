@@ -1,0 +1,13 @@
+rule bed_to_interval_list:
+    input:
+        bed="rescources/{region}.bed",
+        dict="rescources/genome.dict"
+    output:
+        "{region}.interval_list"
+    log:
+        "logs/picard/bedtointervallist/{region}.log"
+    params:
+        # optional parameters (e.g. relax checks as below)
+    wrapper:
+        "master/bio/picard/bedtointervallist"
+

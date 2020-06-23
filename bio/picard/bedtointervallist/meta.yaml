@@ -1,0 +1,11 @@
+name: picard BedToIntervalList
+description: |
+  Converts a BED file to a Picard Interval List.
+authors:
+  - Fabian Kilpert
+input:
+  - bed: region file
+  - dict: genome dictionary file (from samtools dict or Picard CreateSequenceDictionaryTool)
+output:
+  - interval_list Picard format
+
