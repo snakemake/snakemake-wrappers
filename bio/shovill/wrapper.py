@@ -13,7 +13,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 params = snakemake.params.get("extra", "")
 
 # Determine the assembler from wildcard of output file name
-assembler = path.basename(snakemake.output.raw_assembly).split('.')[1]
+assembler = path.basename(snakemake.output.raw_assembly).split(".")[1]
 
 with TemporaryDirectory() as tempdir:
     shell(
