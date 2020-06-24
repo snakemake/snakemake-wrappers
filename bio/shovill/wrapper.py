@@ -20,7 +20,7 @@ with TemporaryDirectory() as tempdir:
     shell(
         "(shovill"
         " --assembler {assembler}"
-        " --outdir {tempdir}"
+        " --outdir {tempdir} --force"
         " --R1 {snakemake.input.r1}"
         " --R2 {snakemake.input.r2}"
         " --cpus {snakemake.threads}"
