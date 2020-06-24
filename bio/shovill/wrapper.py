@@ -10,7 +10,7 @@ from snakemake.shell import shell
 from tempfile import TemporaryDirectory
 
 # Placeholder for optional parameters
-log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 params = snakemake.params.get("extra", "")
 
 # Determine the assembler from wildcard of output file name
@@ -19,7 +19,7 @@ assembler = path.basename(snakemake.output.raw_assembly).split(".")[1]
 with TemporaryDirectory() as tempdir:
     shell(
         "(shovill"
-        " --assembler {assembler}"
+        " --assembler {snakemake.wildcards.assembler}"
         " --outdir {tempdir} --force"
         " --R1 {snakemake.input.r1}"
         " --R2 {snakemake.input.r2}"
