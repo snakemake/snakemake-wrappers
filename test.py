@@ -83,8 +83,8 @@ def test_shovill():
         "bio/shovill",
         [
             "snakemake",
-            "assembly/raw_assembly.fa",
-            "assembly/contigs.fa",
+            "assembly/input.spades.assembly.fa",
+            "assembly/input.spades.contigs.fa",
             "--cores", "1", 
             "--use-conda", 
             "-F", 

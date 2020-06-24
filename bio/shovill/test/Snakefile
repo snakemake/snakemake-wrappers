@@ -6,7 +6,6 @@ rule shovill:
     raw_assembly="assembly/{sample}.{assembler}.assembly.fa",
     contigs="assembly/{sample}.{assembler}.contigs.fa"
   params:
-    assembler="spades",
     extra=""
   log:
     "logs/shovill/{sample}.{assembler}.log"

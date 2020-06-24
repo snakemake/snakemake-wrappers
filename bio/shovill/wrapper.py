@@ -12,21 +12,24 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 params = snakemake.params.get("extra", "")
 
+# Determine the assembler from wildcard of output file name
+assembler = path.basename(snakemake.output.raw_assembly).split('.')[1]
+
 with TemporaryDirectory() as tempdir:
     shell(
         "(shovill"
-        " --assembler {snakemake.params.assembler}"
+        " --assembler {assembler}"
         " --outdir {tempdir}"
         " --R1 {snakemake.input.r1}"
         " --R2 {snakemake.input.r2}"
         " --cpus {snakemake.threads}"
-        " {snakemake.params.extra}) {log}"
+        " {params}) {log}"
     )
 
     outdir = path.dirname(snakemake.output.raw_assembly)
 
     shell(
         "mkdir {outdir}"
-        " && mv {tempdir}/{snakemake.params.assembler}.fasta {snakemake.output.raw_assembly}"
+        " && mv {tempdir}/{assembler}.fasta {snakemake.output.raw_assembly}"
         " && mv {tempdir}/contigs.fa {snakemake.output.contigs}"
     )
