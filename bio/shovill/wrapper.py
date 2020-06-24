@@ -7,6 +7,7 @@ __license__ = "MIT"
 
 from os import path
 from snakemake.shell import shell
+from tempfile import TemporaryDirectory
 
 # Placeholder for optional parameters
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
