@@ -1,0 +1,17 @@
+rule razers3:
+    input:
+        # list of input reads
+        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"]
+    output:
+        # output format is automatically inferred from file extension. Can be bam/sam or other formats.
+        "mapped/{sample}.bam"
+    log:
+        "logs/razers3/{sample}.log"
+    params:
+        # the reference genome
+        genome="genome.fasta",
+        # additional parameters
+        extra=""
+    threads: 8
+    wrapper:
+        "master/bio/razers3"
