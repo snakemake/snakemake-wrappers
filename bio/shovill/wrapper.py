@@ -30,7 +30,6 @@ with TemporaryDirectory() as tempdir:
     outdir = path.dirname(snakemake.output.raw_assembly)
 
     shell(
-        "mkdir {outdir}"
-        " && mv {tempdir}/{assembler}.fasta {snakemake.output.raw_assembly}"
+        "mv {tempdir}/{assembler}.fasta {snakemake.output.raw_assembly}"
         " && mv {tempdir}/contigs.fa {snakemake.output.contigs}"
     )
