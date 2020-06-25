@@ -90,6 +90,7 @@ def test_shovill():
         ],
     )
 
+
 def test_seqtk_subsample_se():
     run(
         "bio/seqtk/subsample/se",
@@ -704,6 +705,13 @@ def test_ngs_disambiguate():
             "--use-conda",
             "-F",
         ],
+    )
+
+
+def test_optitype():
+    run(
+        "bio/optitype",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "optitype/a_result.tsv"],
     )
 
 
