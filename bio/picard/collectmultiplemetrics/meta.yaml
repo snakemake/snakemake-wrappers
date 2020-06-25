@@ -1,9 +1,10 @@
 name: picard CollectMultipleMetrics
 description: >
   A ``picard`` meta-metrics tool that collects multiple classes of metrics.
-  For usage information about CollectMultipleMetrics, please see  ``picard``'s `documentation <https://gatk.broadinstitute.org/hc/en-us/articles/360036510492-CollectMultipleMetrics-Picard>`_.
+  For usage information about CollectMultipleMetrics, please see  ``picard``'s `documentation <https://broadinstitute.github.io/picard/command-line-overview.html#CollectMultipleMetrics>`_.
   For more information about ``picard``, also see the `source code <https://github.com/broadinstitute/picard>`_.
 authors:
+  - David Laehnemann
   - Antonie Vietor
 input:
   - BAM file (.bam)
@@ -11,3 +12,35 @@ input:
 output:
   - multiple metrics text files (_metrics) AND
   - multiple metrics pdf files (.pdf)
+  - the appropriate extensions for the output files must be used depending on the desired tools
+    +-----------------------------------+-----------------------------------------+
+    |               tools               |     extensions for the output files     |
+    +===================================+=========================================+
+    | CollectAlignmentSummaryMetrics    | ".alignment_summary_metrics"            |
+    +-----------------------------------+-----------------------------------------+
+    | CollectInsertSizeMetrics          | ".insert_size_metrics",                 |
+    |                                   | ".insert_size_histogram.pdf"            |
+    +-----------------------------------+-----------------------------------------+
+    | QualityScoreDistribution          | ".quality_distribution_metrics",        |
+    |                                   | ".quality_distribution.pdf"             |
+    +-----------------------------------+-----------------------------------------+
+    | MeanQualityByCycle                | ".quality_by_cycle_metrics",            |
+    |                                   | ".quality_by_cycle.pdf"                 |
+    +-----------------------------------+-----------------------------------------+
+    | CollectBaseDistributionByCycle    | ".base_distribution_by_cycle_metrics",  |
+    |                                   | ".base_distribution_by_cycle.pdf"       |
+    +-----------------------------------+-----------------------------------------+
+    |                                   | ".gc_bias.detail_metrics",              |
+    | CollectGcBiasMetrics              | ".gc_bias.summary_metrics"              |
+    |                                   | ".gc_bias.pdf"                          |
+    +-----------------------------------+-----------------------------------------+
+    | RnaSeqMetrics                     | ".rna_metrics"                          |
+    +-----------------------------------+-----------------------------------------+
+    |                                   | ".bait_bias_detail_metrics",            |
+    |                                   | ".bait_bias_summary_metrics",           |
+    | CollectSequencingArtifactMetrics  | ".error_summary_metrics",               |
+    |                                   | ".pre_adapter_detail_metrics",          |
+    |                                   | ".pre_adapter_summary_metrics"          |
+    +-----------------------------------+-----------------------------------------+
+    | CollectQualityYieldMetrics        | ".quality_yield_metrics"                |
+    +-----------------------------------+-----------------------------------------+

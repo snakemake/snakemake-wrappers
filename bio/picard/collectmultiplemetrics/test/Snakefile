@@ -3,7 +3,14 @@ rule collect_multiple_metrics:
          bam="mapped/{sample}.bam",
          ref="genome.fasta"
     output:
-        multiext("{path}{sample}",
+        # Through the output file extensions the different tools for the metrics can be selected
+        # so that it is not necessary to specify them under params with the "PROGRAM" option.
+        # The following tools are available for this: CollectAlignmentSummaryMetrics, CollectInsertSizeMetrics,
+        #         QualityScoreDistribution, MeanQualityByCycle, CollectBaseDistributionByCycle,
+        #         CollectGcBiasMetrics, RnaSeqMetrics, CollectSequencingArtifactMetrics, CollectQualityYieldMetrics
+        # To find out which extensions can be requested for these tools, see:
+        #         https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/picard/collectmultiplemetrics.html.
+        multiext("stats/{sample}",
                  ".alignment_summary_metrics",
                  ".base_distribution_by_cycle_metrics",
                  ".base_distribution_by_cycle.pdf",
@@ -15,16 +22,16 @@ rule collect_multiple_metrics:
                  ".quality_distribution.pdf"
                  )
     resources:
+        # this parameter restricts the total resources a pipeline is allowed to use
+        # this value is set to 3 GB by default
+        # For usage information about resources see https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#resources
         mem_gb=3
-    wildcard_constraints:
-        # the common path for all metrics must be defined here
-        path="stats/"
     log:
-        "logs/picard/{path}{sample}.log"
+        "logs/picard/multiple_metrics/{sample}.log"
     params:
         # optional parameters
         "VALIDATION_STRINGENCY=LENIENT "
         "METRIC_ACCUMULATION_LEVEL=null "
-        "METRIC_ACCUMULATION_LEVEL=SAMPLE"
+        "METRIC_ACCUMULATION_LEVEL=SAMPLE "
     wrapper:
         "master/bio/picard/collectmultiplemetrics"
