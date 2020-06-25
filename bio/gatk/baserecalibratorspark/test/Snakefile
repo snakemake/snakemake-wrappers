@@ -1,4 +1,5 @@
 rule gatk_baserecalibratorspark:
+    threads: 8
     input:
         bam="mapped/{sample}.bam",
         ref="genome.fasta",
