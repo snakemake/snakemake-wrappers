@@ -1,0 +1,42 @@
+Loading annotation from 'annotation.gtf'
+Loading assembly from 'genome.fasta'
+Reading chimeric alignments from 'A.bam' (total=1)
+Filtering multi-mappers and single mates (remaining=0)
+Detecting strandedness (no)
+Annotating alignments
+Filtering duplicates (remaining=0)
+Filtering mates which do not map to interesting contigs (1 2) (remaining=0)
+Estimating mate gap distributionWARNING: not enough chimeric reads to estimate mate gap distribution, using default values
+Filtering read-through fragments with a distance <=10000bp (remaining=0)
+Filtering inconsistently clipped mates (remaining=0)
+Filtering breakpoints adjacent to homopolymers >=6nt (remaining=0)
+Filtering fragments with small insert size (remaining=0)
+Filtering alignments with long gaps (remaining=0)
+Filtering fragments with both mates in the same gene (remaining=0)
+Filtering fusions arising from hairpin structures (remaining=0)
+Filtering reads with a mismatch p-value <=0.01 (remaining=0)
+Filtering reads with low entropy (k-mer content >=60%) (remaining=0)
+Finding fusions and counting supporting reads (total=0)
+Merging adjacent fusion breakpoints (remaining=0)
+Estimating expected number of fusions by random chance (e-value)
+Filtering fusions with both breakpoints in adjacent non-coding/intergenic regions (remaining=0)
+Filtering intragenic fusions with both breakpoints in exonic regions (remaining=0)
+Filtering fusions with <2 supporting reads (remaining=0)
+Filtering fusions with an e-value >=0.3 (remaining=0)
+Filtering fusions with both breakpoints in intronic/intergenic regions (remaining=0)
+Filtering PCR fusions between genes with an expression above the 99.8% quantile (remaining=0)
+Searching for fusions with spliced split reads (remaining=0)
+Selecting best breakpoints from genes with multiple breakpoints (remaining=0)
+Searching for fusions with >=4 spliced events (remaining=0)
+Filtering blacklisted fusions in 'blacklist.tsv' (remaining=0)
+Filtering fusions with anchors <=23nt (remaining=0)
+Filtering end-to-end fusions with low support (remaining=0)
+Filtering fusions with no coverage around the breakpoints (remaining=0)
+Indexing gene sequences
+Filtering genes with >=30% identity (remaining=0)
+Re-aligning chimeric reads to filter fusions with >=80% mis-mappers (remaining=0)
+Selecting best breakpoints from genes with multiple breakpoints (remaining=0)
+Searching for additional isoforms (remaining=0)
+Assigning confidence scores to events
+Writing fusions to file 'fusions/A.tsv'
+Writing discarded fusions to file 'fusions/A.discarded.tsv'
