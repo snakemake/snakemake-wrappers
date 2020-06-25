@@ -9,7 +9,7 @@ from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-outdir = "optitype"#os.path.dirname(snakemake.output[0])
+outdir = "optitype"  # os.path.dirname(snakemake.output[0])
 
 # get sequencing type
 seq_type = snakemake.params.get("sequencing_type", "dna")
