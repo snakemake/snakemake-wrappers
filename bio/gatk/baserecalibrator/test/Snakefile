@@ -2,6 +2,7 @@ rule gatk_baserecalibrator:
     input:
         bam="mapped/{sample}.bam",
         ref="genome.fasta",
+        dict="genome.dict",
         known="dbsnp.vcf.gz"  # optional known sites
     output:
         recal_table="recal/{sample}.grp"
