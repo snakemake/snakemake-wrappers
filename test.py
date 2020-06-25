@@ -743,6 +743,38 @@ def test_picard_collecthsmetrics():
     )
 
 
+def test_picard_collectmultiplemetrics():
+    run(
+        "bio/picard/collectmultiplemetrics",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "stats/a.alignment_summary_metrics",
+            "stats/a.insert_size_metrics",
+            "stats/a.insert_size_histogram.pdf",
+            "stats/a.quality_distribution_metrics",
+            "stats/a.quality_distribution.pdf",
+            "stats/a.quality_by_cycle_metrics",
+            "stats/a.quality_by_cycle.pdf",
+            "stats/a.base_distribution_by_cycle_metrics",
+            "stats/a.base_distribution_by_cycle.pdf",
+            "stats/a.gc_bias.detail_metrics",
+            "stats/a.gc_bias.summary_metrics",
+            "stats/a.gc_bias.pdf",
+            "stats/a.rna_metrics",
+            "stats/a.bait_bias_detail_metrics",
+            "stats/a.bait_bias_summary_metrics",
+            "stats/a.error_summary_metrics",
+            "stats/a.pre_adapter_detail_metrics",
+            "stats/a.pre_adapter_summary_metrics",
+            "stats/a.quality_yield_metrics",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_picard_mergesamfiles():
     run(
         "bio/picard/mergesamfiles",
