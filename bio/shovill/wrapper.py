@@ -13,9 +13,6 @@ from tempfile import TemporaryDirectory
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 params = snakemake.params.get("extra", "")
 
-# Determine the assembler from wildcard of output file name
-assembler = path.basename(snakemake.output.raw_assembly).split(".")[1]
-
 with TemporaryDirectory() as tempdir:
     shell(
         "(shovill"
@@ -28,6 +25,6 @@ with TemporaryDirectory() as tempdir:
     )
 
     shell(
-        "mv {tempdir}/{assembler}.fasta {snakemake.output.raw_assembly}"
+        "mv {tempdir}/{snakemake.wildcards.assembler}.fasta {snakemake.output.raw_assembly}"
         " && mv {tempdir}/contigs.fa {snakemake.output.contigs}"
     )
