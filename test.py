@@ -696,6 +696,13 @@ def test_ngs_disambiguate():
     )
 
 
+def test_optitype():
+    run(
+        "bio/optitype",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "optitype/a_result.tsv"],
+    )
+
+
 def test_picard_collectalignmentsummarymetrics():
     run(
         "bio/picard/collectalignmentsummarymetrics",
