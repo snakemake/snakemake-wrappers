@@ -816,13 +816,6 @@ def test_prosolo_fdr():
     )
 
 
-def test_razers3():
-    run(
-        "bio/razers3",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "mapped/a.bam"],
-    )
-
-
 def test_samtools_fixmate():
     run(
         "bio/samtools/fixmate",
