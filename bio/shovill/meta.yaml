@@ -1,0 +1,5 @@
+name: shovill
+description: Assemble bacterial isolate genomes from Illumina paired-end reads.
+homepage: https://github.com/tseemann/shovill
+authors:
+  - Sangram Keshari Sahu
