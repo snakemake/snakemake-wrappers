@@ -78,6 +78,7 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+
 def test_seqtk_subsample_se():
     run(
         "bio/seqtk/subsample/se",
@@ -805,6 +806,13 @@ def test_prosolo_fdr():
             "--use-conda",
             "-F",
         ],
+    )
+
+
+def test_razers3():
+    run(
+        "bio/razers3",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "mapped/a.bam"],
     )
 
 
