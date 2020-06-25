@@ -1334,14 +1334,14 @@ def test_gatk_baserecalibrator():
 
 def test_gatk_baserecalibratorspark():
     run(
-        "bio/gatk/baserecalibrator",
+        "bio/gatk/baserecalibratorspark",
         ["snakemake", "--cores", "1", "recal/a.grp", "--use-conda", "-F"],
     )
 
 
-def test_gatk_applybsqr():
+def test_gatk_applybqsr():
     run(
-        "bio/gatk/baserecalibrator",
+        "bio/gatk/applybqsr",
         ["snakemake", "--cores", "1", "recal/a.bam", "--use-conda", "-F"],
     )
 

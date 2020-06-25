@@ -1,4 +1,4 @@
-rule gatk_applybsqr:
+rule gatk_applybqsr:
     input:
         bam="mapped/{sample}.bam",
         ref="genome.fasta",
@@ -6,9 +6,9 @@ rule gatk_applybsqr:
     output:
         bam="recal/{sample}.bam"
     log:
-        "logs/gatk/gatk_applybsqr/{sample}.log"
+        "logs/gatk/gatk_applybqsr/{sample}.log"
     params:
         extra="",  # optional
         java_opts="", # optional
     wrapper:
-        "master/bio/gatk/applybsqr"
+        "master/bio/gatk/applybqsr"

@@ -1,6 +1,6 @@
-name: gatk ApplyBSQR
+name: gatk ApplyBQSR
 description: |
-  Run gatk ApplyBSQR.
+  Run gatk ApplyBQSR.
 authors:
   - Christopher Schröder
   - Johannes Köster
