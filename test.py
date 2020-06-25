@@ -1328,6 +1328,20 @@ def test_vcftoolsfilter():
 def test_gatk_baserecalibrator():
     run(
         "bio/gatk/baserecalibrator",
+        ["snakemake", "--cores", "1", "recal/a.grp", "--use-conda", "-F"],
+    )
+
+
+def test_gatk_baserecalibratorspark():
+    run(
+        "bio/gatk/baserecalibrator",
+        ["snakemake", "--cores", "1", "recal/a.grp", "--use-conda", "-F"],
+    )
+
+
+def test_gatk_applybsqr():
+    run(
+        "bio/gatk/baserecalibrator",
         ["snakemake", "--cores", "1", "recal/a.bam", "--use-conda", "-F"],
     )
 
