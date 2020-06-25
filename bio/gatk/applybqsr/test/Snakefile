@@ -1,15 +1,15 @@
-rule gatk_baserecalibrator:
+rule gatk_applybqsr:
     input:
         bam="mapped/{sample}.bam",
         ref="genome.fasta",
         dict="genome.dict",
-        known="dbsnp.vcf.gz"  # optional known sites
-    output:
         recal_table="recal/{sample}.grp"
+    output:
+        bam="recal/{sample}.bam"
     log:
-        "logs/gatk/baserecalibrator/{sample}.log"
+        "logs/gatk/gatk_applybqsr/{sample}.log"
     params:
         extra="",  # optional
         java_opts="", # optional
     wrapper:
-        "master/bio/gatk/baserecalibrator"
+        "master/bio/gatk/applybqsr"

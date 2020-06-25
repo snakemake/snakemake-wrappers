@@ -1,0 +1,20 @@
+name: gatk BaseRecalibratorSpark
+description: |
+  Run gatk BaseRecalibratorSpark.
+authors:
+  - Christopher Schröder
+  - Johannes Köster
+  - Jake VanCampen
+input:
+  - bam file
+  - fasta reference
+  - vcf.gz of known variants 
+output:
+  - recalibration table for the bam
+notes: |
+  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-Xmx4G" for one, and "-Xmx4G -XX:ParallelGCThreads=10" for two options.
+  * The `extra` param allows for additional program arguments for baserecalibratorspark.
+  * The `spark_runner` param = "LOCAL"|"SPARK"|"GCS" allows to set the spark_runner. Set the parameter to "LOCAL" or don't set it at all to run on local machine.
+  * The `spark_master` param allows to set the URL of the Spark Master to submit the job. Set to "local[number_of_cores]" for local execution. Don't set it at all for local execution with number of cores determined by snakemake.
+  * The 'spark_extra' param allows for additional spark arguments.
+  * For more information see, https://gatk.broadinstitute.org/hc/en-us/articles/360036897372-BaseRecalibratorSpark-BETA-
