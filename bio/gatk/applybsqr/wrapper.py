@@ -4,8 +4,6 @@ __email__ = "christopher.schroeder@tu-dortmund.de"
 __license__ = "MIT"
 
 
-import os
-
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
