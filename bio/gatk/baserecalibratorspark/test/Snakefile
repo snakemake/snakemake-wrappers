@@ -1,5 +1,4 @@
 rule gatk_baserecalibratorspark:
-    threads: 8
     input:
         bam="mapped/{sample}.bam",
         ref="genome.fasta",
@@ -12,8 +11,9 @@ rule gatk_baserecalibratorspark:
     params:
         extra="",  # optional
         java_opts="", # optional
-        #spark_runner="",  # optional
+        #spark_runner="",  # optional, local by default
         #spark_master="",  # optional
         #spark_extra="", # optional
+    threads: 8
     wrapper:
         "master/bio/gatk/baserecalibratorspark"
