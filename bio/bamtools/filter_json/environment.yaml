@@ -1,6 +1,5 @@
 channels:
   - bioconda
   - conda-forge
-  - defaults
 dependencies:
-  - cutadapt ==2.10
+  - bamtools ==2.5.1

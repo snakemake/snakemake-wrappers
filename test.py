@@ -77,7 +77,6 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
-
 def test_shovill():
     run(
         "bio/shovill",
@@ -90,7 +89,6 @@ def test_shovill():
             "-F", 
         ],
     )
-
 
 def test_seqtk_subsample_se():
     run(
@@ -723,6 +721,13 @@ def test_picard_collectinsertsizemetrics():
     )
 
 
+def test_picard_bedtointervallist():
+    run(
+        "bio/picard/bedtointervallist",
+        ["snakemake", "--cores", "1", "a.interval_list", "--use-conda", "-F"],
+    )
+
+
 def test_picard_collecthsmetrics():
     run(
         "bio/picard/collecthsmetrics",
@@ -794,6 +799,21 @@ def test_pindel_pindel2vcf_multi_input():
     )
 
 
+def test_preseq_lc_extrap():
+    run(
+        "bio/preseq/lc_extrap",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "test_bam/a.lc_extrap",
+            "test_bed/a.lc_extrap",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_prosolo_calling():
     run(
         "bio/prosolo/single-cell-bulk",
@@ -819,6 +839,13 @@ def test_prosolo_fdr():
             "--use-conda",
             "-F",
         ],
+    )
+
+
+def test_razers3():
+    run(
+        "bio/razers3",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "mapped/a.bam"],
     )
 
 
@@ -894,7 +921,14 @@ def test_samtools_flagstat():
 def test_samtools_idxstats():
     run(
         "bio/samtools/idxstats",
-        ["snakemake", "--cores", "1", "mapped/a.sorted.bam.idxstats", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.sorted.bam.idxstats",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -916,6 +950,27 @@ def test_samtools_faidx():
     run(
         "bio/samtools/faidx",
         ["snakemake", "--cores", "1", "genome.fa.fai", "--use-conda", "-F"],
+    )
+
+
+def test_bamtools_filter():
+    run(
+        "bio/bamtools/filter",
+        ["snakemake", "--cores", "1", "filtered/a.bam", "--use-conda", "-F"],
+    )
+
+
+def test_bamtools_filter_json():
+    run(
+        "bio/bamtools/filter_json",
+        ["snakemake", "--cores", "1", "filtered/a.bam", "--use-conda", "-F"],
+    )
+
+
+def test_bamtools_stats():
+    run(
+        "bio/bamtools/stats",
+        ["snakemake", "--cores", "1", "a.bamstats", "--use-conda", "-F"],
     )
 
 

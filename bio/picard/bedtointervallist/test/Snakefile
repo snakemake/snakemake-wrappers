@@ -1,0 +1,14 @@
+rule bed_to_interval_list:
+    input:
+        bed="resources/a.bed",
+        dict="resources/genome.dict"
+    output:
+        "a.interval_list"
+    log:
+        "logs/picard/bedtointervallist/a.log"
+    params:
+        # optional parameters
+        "SORT=true " # sort output interval list before writing
+    wrapper:
+        "master/bio/picard/bedtointervallist"
+

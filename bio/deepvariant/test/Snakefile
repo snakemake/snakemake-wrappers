@@ -1,0 +1,14 @@
+rule deepvariant:
+    input:
+        bam="mapped/{sample}.bam",
+        ref="genome/genome.fasta"
+    output:
+        vcf="calls/{sample}.vcf.gz"
+    params:
+        model="wgs",   # {wgs, wes}
+        extra=""
+    threads: 2
+    log:
+        "logs/deepvariant/{sample}/stdout.log"
+    wrapper:
+        "master/bio/deepvariant"

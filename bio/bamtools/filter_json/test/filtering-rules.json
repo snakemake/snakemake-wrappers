@@ -1,0 +1,43 @@
+{
+  "filters" : [
+    {
+      "id": "inAnyErrorReadGroup",
+      "tag": "RG:ERR*"
+    },
+
+    {
+      "id" : "min_size",
+      "insertSize" : ">=-2000"
+    },
+
+    {
+      "id" : "max_size",
+      "insertSize" : "<=2000"
+    },
+
+    {
+      "id" : "min_length",
+      "length" : ">=10"
+    },
+
+    {
+      "id" : "max_length",
+      "length" : "<=20"
+    },
+
+    {
+      "id": "goodMapQuality",
+      "mapQuality": ">=50"
+    },
+
+    {
+      "id" : "bothMatesMapped",
+      "isMapped" : "true",
+      "isMateMapped" : "true"
+    }
+
+  ],
+
+  "rule" : " !inAnyErrorReadGroup & min_size & max_size & min_length & max_length & (goodMapQuality | bothMatesMapped) "
+
+}

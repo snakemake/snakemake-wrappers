@@ -1,0 +1,4 @@
+name: razers3
+description: Mapping (short) reads against a reference sequence. Can have multiple output formats, please see https://github.com/seqan/seqan/tree/master/apps/razers3
+authors:
+  - Jan Forster
