@@ -4,8 +4,6 @@ __email__ = "M.vanderSande@science.ru.nl"
 __license__ = "MIT"
 
 
-import re
-
 from snakemake.shell import shell
 
 # Optional parameters
