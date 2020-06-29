@@ -3,4 +3,5 @@ channels:
   - bioconda
 dependencies:
   - deepvariant=0.10.0
-  - unzip
+  - tensorflow-estimator=2.0.0
+  - unzip=6.0

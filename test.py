@@ -393,6 +393,13 @@ def test_cutadapt_se():
     )
 
 
+def test_deepvariant():
+    run(
+        "bio/deepvariant",
+        ["snakemake", "--cores", "1", "calls/a.vcf.gz", "--use-conda", "-F"],
+    )
+
+
 def test_epic_peaks():
     run(
         "bio/epic/peaks",
