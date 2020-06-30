@@ -1,0 +1,26 @@
+rule genomecov_bam:
+    input:
+        "bam_input/{sample}.sorted.bam"
+    output:
+        "genomecov_bam/{sample}.genomecov"
+    log:
+        "logs/genomecov_bam/{sample}.log"
+    params:
+        "-bg"  # optional parameters
+    wrapper:
+        "master/bio/bedtools/genomecov"
+
+rule genomecov_bed:
+    input:
+        # for genome file format please see:
+        # https://bedtools.readthedocs.io/en/latest/content/general-usage.html#genome-file-format
+        bed="bed_input/{sample}.sorted.bed",
+        ref="bed_input/genome_file"
+    output:
+        "genomecov_bed/{sample}.genomecov"
+    log:
+        "logs/genomecov_bed/{sample}.log"
+    params:
+        "-bg"  # optional parameters
+    wrapper:
+        "master/bio/bedtools/genomecov"
