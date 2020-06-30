@@ -12,13 +12,13 @@ genome = ""
 input_file = ""
 
 if (os.path.splitext(snakemake.input[0])[-1]) == ".bam":
-    if "-ibam" not in (snakemake.input[0]):
+    if "-ibam" not in (snakemake.params):
         input_file = "-ibam " + snakemake.input[0]
 
 if len(snakemake.input) > 1:
     if (os.path.splitext(snakemake.input[0])[-1]) == ".bed":
         input_file = "-i " + snakemake.input.get("bed")
-        genome = " -g " + snakemake.input.get("ref")
+        genome = "-g " + snakemake.input.get("ref")
 
 shell(
     "(genomeCoverageBed"
