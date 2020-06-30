@@ -77,6 +77,7 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+
 def test_shovill():
     run(
         "bio/shovill",
@@ -283,6 +284,8 @@ def test_bwa_index():
         "bio/bwa/index",
         [
             "snakemake",
+            "--cores",
+            "1",
             "genome.amb",
             "genome.ann",
             "genome.bwt",
@@ -412,6 +415,8 @@ def test_fastp_pe():
         "bio/fastp",
         [
             "snakemake",
+            "--cores",
+            "1",
             "trimmed/pe/a.1.fastq",
             "trimmed/pe/a.2.fastq",
             "report/pe/a.html",
@@ -427,6 +432,8 @@ def test_fastp_pe_wo_trimming():
         "bio/fastp",
         [
             "snakemake",
+            "--cores",
+            "1",
             "report/pe_wo_trimming/a.html",
             "report/pe_wo_trimming/a.json",
             "--use-conda",
@@ -440,6 +447,8 @@ def test_fastp_se():
         "bio/fastp",
         [
             "snakemake",
+            "--cores",
+            "1",
             "trimmed/se/a.fastq",
             "report/se/a.html",
             "report/se/a.json",
@@ -475,6 +484,8 @@ def test_fgbio_collectduplexseqmetrics():
         "bio/fgbio/collectduplexseqmetrics",
         [
             "snakemake",
+            "--cores",
+            "1",
             "stats/a.family_sizes.txt",
             "stats/a.duplex_family_sizes.txt",
             "stats/a.duplex_yield_metrics.txt",
@@ -692,6 +703,8 @@ def test_nanosimh():
         "bio/nanosim-h",
         [
             "snakemake",
+            "--cores",
+            "1",
             "test.simulated.fa",
             "test.simulated.log",
             "test.simulated.errors.txt",
