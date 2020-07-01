@@ -85,9 +85,10 @@ def test_shovill():
             "snakemake",
             "assembly/input.spades.assembly.fa",
             "assembly/input.spades.contigs.fa",
-            "--cores", "1", 
-            "--use-conda", 
-            "-F", 
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
         ],
     )
 
@@ -169,6 +170,21 @@ def test_bcftools_reheader():
     run(
         "bio/bcftools/reheader",
         ["snakemake", "--cores", "1", "a.reheader.bcf", "--use-conda", "-F"],
+    )
+
+
+def test_bedtools_genomecoveragebed():
+    run(
+        "bio/bedtools/genomecov",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "genomecov_bam/a.genomecov",
+            "genomecov_bed/a.genomecov",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
