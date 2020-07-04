@@ -9,7 +9,6 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 bed_files = snakemake.input.get("bed")
 bigwig_files = snakemake.input.get("bigwig")
-out_gz = snakemake.output.get("matrix_gz")
 out_tab = snakemake.output.get("matrix_tab")
 out_bed = snakemake.output.get("matrix_bed")
 
@@ -21,16 +20,13 @@ input_files = input_files + "-S "
 for bigwig in bigwig_files:
     input_files = input_files + bigwig + " "
 
-output_files = ""
-
-if out_gz and out_gz is not None:
-    output_files = output_files + "-o " + out_gz + " "
+output_files = "-o " + snakemake.output.get("matrix_gz")
 
 if out_tab and out_tab is not None:
-    output_files = output_files + "--outFileNameMatrix " + out_tab + " "
+    output_files = output_files + " --outFileNameMatrix " + out_tab + " "
 
 if out_bed and out_bed is not None:
-    output_files = output_files + "--outFileSortedRegions " + out_bed + " "
+    output_files = output_files + " --outFileSortedRegions " + out_bed + " "
 
 shell(
     "(computeMatrix "
