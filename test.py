@@ -412,6 +412,22 @@ def test_cutadapt_se():
     )
 
 
+def test_deeptools_plotprofile():
+    run(
+        "bio/deeptools/plotprofile",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "plot_profile/plot.png",
+            "plot_profile/regions.bed",
+            "plot_profile/data.tab",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_deepvariant():
     run(
         "bio/deepvariant",
