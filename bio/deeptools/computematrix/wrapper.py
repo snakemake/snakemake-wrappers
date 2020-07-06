@@ -13,10 +13,10 @@ out_bed = snakemake.output.get("matrix_bed")
 optional_output = ""
 
 if out_tab:
-    optional_output = optional_output + " --outFileNameMatrix " + out_tab + " "
+    optional_output += " --outFileNameMatrix {out_tab} ".format(out_tab=out_tab)
 
 if out_bed:
-    optional_output = optional_output + " --outFileSortedRegions " + out_bed + " "
+    optional_output += " --outFileSortedRegions {out_bed} ".format(out_bed=out_bed)
 
 shell(
     "(computeMatrix "
