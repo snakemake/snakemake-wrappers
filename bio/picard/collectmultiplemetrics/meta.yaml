@@ -4,8 +4,11 @@ description: >
   For usage information about CollectMultipleMetrics, please see  ``picard``'s `documentation <https://broadinstitute.github.io/picard/command-line-overview.html#CollectMultipleMetrics>`_.
   For more information about ``picard``, also see the `source code <https://github.com/broadinstitute/picard>`_.
 
+
+  You can select which tool(s) to run by adding the respective extension(s) (see table below) to the requested output of the wrapper invocation (see example Snakemake rule below).
+
     +-----------------------------------+-----------------------------------------+
-    |               Tools               |     Extensions for the output files     |
+    |               Tool                |    Extension(s) for the output files    |
     +===================================+=========================================+
     | CollectAlignmentSummaryMetrics    | ".alignment_summary_metrics"            |
     +-----------------------------------+-----------------------------------------+

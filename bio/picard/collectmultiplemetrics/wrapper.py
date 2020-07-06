@@ -51,10 +51,9 @@ programs = " PROGRAM=" + " PROGRAM=".join(progs)
 out = str(snakemake.wildcards.sample)  # as default
 output_file = str(snakemake.output[0])
 for ext in exts_to_prog:
-    if ext in output_file:
-        if output_file.endswith(ext):
-            out = output_file[: -len(ext)]
-            break
+    if output_file.endswith(ext):
+        out = output_file[: -len(ext)]
+        break
 
 shell(
     "(picard -Xmx{res}g CollectMultipleMetrics "
