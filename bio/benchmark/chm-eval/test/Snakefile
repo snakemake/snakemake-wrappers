@@ -1,0 +1,11 @@
+rule chm_eval:
+    input:
+        kit="resources/chm-eval-kit",
+        vcf="{sample}.vcf"
+    output:
+        "chm-eval/{sample}.summary"
+    params:
+        extra="",
+        build="38"
+    wrapper:
+        "master/bio/benchmark/chm-eval"

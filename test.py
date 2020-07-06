@@ -1891,3 +1891,9 @@ def test_vep_annotate():
 
 def test_chm_eval_sample():
     run("bio/benchmark/chm-eval-sample", ["snakemake", "--cores", "1", "--use-conda", "-F"])
+
+def test_chm_eval_kit():
+    run("bio/benchmark/chm-eval-kit", ["snakemake", "--cores", "1", "--use-conda", "-F"])
+
+def test_chm_eval_eval():
+    run("bio/benchmark/chm-eval", ["snakemake", "--cores", "1", "--use-conda", "chm-eval/calls.summary"])
