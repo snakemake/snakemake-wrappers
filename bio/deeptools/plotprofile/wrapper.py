@@ -13,10 +13,12 @@ out_data = snakemake.output.get("data")
 optional_output = ""
 
 if out_region:
-    optional_output = optional_output + " --outFileSortedRegions " + out_region
+    optional_output += " --outFileSortedRegions {out_region} ".format(
+        out_region=out_region
+    )
 
 if out_data:
-    optional_output = optional_output + " --outFileNameData " + out_data
+    optional_output += " --outFileNameData {out_data} ".format(out_data=out_data)
 
 shell(
     "(plotProfile "
