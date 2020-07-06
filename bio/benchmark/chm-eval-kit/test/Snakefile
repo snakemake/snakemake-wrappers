@@ -2,7 +2,9 @@ rule chm_eval_kit:
     output:
         directory("resources/chm-eval-kit")
     params:
-        version="v0.5"
+        # Tag and version must match, see https://github.com/lh3/CHM-eval/releases.
+        tag="v0.5",
+        version="20180222"
     log:
         "logs/chm-eval-kit.log"
     cache: True

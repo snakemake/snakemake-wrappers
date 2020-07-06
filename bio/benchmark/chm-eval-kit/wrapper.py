@@ -9,8 +9,8 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 url = (
     "https://github.com/lh3/CHM-eval/releases/"
-    "download/{version}/CHM-evalkit-20180221.tar"
-).format(version=snakemake.params.version)
+    "download/{tag}/CHM-evalkit-{version}.tar"
+).format(version=snakemake.params.version, tag=snakemake.params.tag)
 
 os.makedirs(snakemake.output[0])
 shell("(curl -L {url} | tar --strip-components 1 -C {snakemake.output[0]} -xf -) {log}")
