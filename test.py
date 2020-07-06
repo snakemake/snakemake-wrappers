@@ -565,14 +565,7 @@ def test_gdc_api_bam_slicing():
 def test_gdc_download():
     run(
         "bio/gdc-client/download",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "raw/testing_sample.maf.gz",
-            "--use-conda",
-            "-F",
-        ],
+        ["snakemake", "--cores", "1", "raw/testing_sample.maf.gz", "--use-conda", "-F"],
     )
 
 
@@ -880,7 +873,14 @@ def test_samtools_flagstat():
 def test_samtools_idxstats():
     run(
         "bio/samtools/idxstats",
-        ["snakemake", "--cores", "1", "mapped/a.sorted.bam.idxstats", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.sorted.bam.idxstats",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -1890,10 +1890,20 @@ def test_vep_annotate():
 
 
 def test_chm_eval_sample():
-    run("bio/benchmark/chm-eval-sample", ["snakemake", "--cores", "1", "--use-conda", "-F"])
+    run(
+        "bio/benchmark/chm-eval-sample",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
 
 def test_chm_eval_kit():
-    run("bio/benchmark/chm-eval-kit", ["snakemake", "--cores", "1", "--use-conda", "-F"])
+    run(
+        "bio/benchmark/chm-eval-kit", ["snakemake", "--cores", "1", "--use-conda", "-F"]
+    )
+
 
 def test_chm_eval_eval():
-    run("bio/benchmark/chm-eval", ["snakemake", "--cores", "1", "--use-conda", "chm-eval/calls.summary"])
+    run(
+        "bio/benchmark/chm-eval",
+        ["snakemake", "--cores", "1", "--use-conda", "chm-eval/calls.summary"],
+    )
