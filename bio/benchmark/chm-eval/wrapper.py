@@ -5,8 +5,15 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+
 kit = snakemake.input.kit
 vcf = snakemake.input.vcf
 build = snakemake.params.build
+extra = snakemake.params.get("extra", "")
 
-shell("{kit}/run-eval -g {build} {extra} {vcf} | sh")
+if not snakemake.output[0].endswith(".summary"):
+    raise ValueError("Output file must end with .summary")
+out = snakemake.output[0][:-8]
+
+shell("({kit}/run-eval -g {build} -o {out} {extra} {vcf} | sh) {log}")
