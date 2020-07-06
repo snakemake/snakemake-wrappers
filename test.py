@@ -1887,3 +1887,7 @@ def test_vep_annotate():
         "bio/vep/annotate",
         ["snakemake", "--cores", "1", "variants.annotated.bcf", "--use-conda", "-F"],
     )
+
+
+def test_chm_eval_sample():
+    run("bio/benchmark/chm-eval-sample", ["snakemake", "--cores", "1", "--use-conda", "-F"])

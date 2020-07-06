@@ -1,0 +1,4 @@
+name: chm-eval-sample
+description: Download CHM-eval sample (https://github.com/lh3/CHM-eval) for benchmarking variant calling.
+authors:
+  - Johannes Köster
