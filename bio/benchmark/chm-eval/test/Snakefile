@@ -1,0 +1,14 @@
+rule chm_eval:
+    input:
+        kit="resources/chm-eval-kit",
+        vcf="{sample}.vcf"
+    output:
+        summary="chm-eval/{sample}.summary", # summary statistics
+        bed="chm-eval/{sample}.err.bed.gz" # bed file with errors
+    params:
+        extra="",
+        build="38"
+    log:
+        "logs/chm-eval/{sample}.log"
+    wrapper:
+        "master/bio/benchmark/chm-eval"
