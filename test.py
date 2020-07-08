@@ -412,6 +412,22 @@ def test_cutadapt_se():
     )
 
 
+def test_deeptools_plotheatmap():
+    run(
+        "bio/deeptools/plotheatmap",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "plot_heatmap/heatmap.png",
+            "plot_heatmap/heatmap_regions.bed",
+            "plot_heatmap/heatmap_matrix.tab",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_deepvariant():
     run(
         "bio/deepvariant",
