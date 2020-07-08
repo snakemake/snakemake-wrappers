@@ -12,9 +12,7 @@ out_counts = snakemake.output.get("counts")
 optional_output = ""
 
 if out_counts:
-    optional_output += optional_output + " --outRawCounts {out_counts} ".format(
-        out_counts=out_counts
-    )
+    optional_output += " --outRawCounts {out_counts} ".format(out_counts=out_counts)
 
 shell(
     "(plotFingerprint "
