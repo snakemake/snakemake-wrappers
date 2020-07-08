@@ -412,6 +412,21 @@ def test_cutadapt_se():
     )
 
 
+def test_deeptools_plotfingerprint():
+    run(
+        "bio/deeptools/plotfingerprint",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "plot_fingerprint/plot_fingerprint.png",
+            "plot_fingerprint/raw_counts.tab",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_deepvariant():
     run(
         "bio/deepvariant",
