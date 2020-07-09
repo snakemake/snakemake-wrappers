@@ -20,7 +20,7 @@ run_extra = snakemake.params.get("run_extra", "")
 # tests on file existance.
 normal = (
     "--normalBam {}".format(snakemake.input["normal"])
-    if "normalBam" in snakemake.input.keys()
+    if "normal" in snakemake.input.keys()
     else ""
 )
 
