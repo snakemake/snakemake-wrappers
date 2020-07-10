@@ -1,7 +1,8 @@
 name: deepTools computeMatrix
 description: >
-  ``DeepTools``'s computeMatrix calculates scores per genome region and can be used as input for other tools or for the generation of a ``deepTools`` plotHeatmap or ``deepTools`` plotProfiles.
-  For usage information about computeMatrix, please see  ``deepTools``'s `documentation <https://deeptools.readthedocs.io/en/develop/content/tools/computeMatrix.html>`_.
+  ``deepTools computeMatrix`` calculates scores per genomic region.
+  The matrix file can be used as input for other tools or for the generation of a ``deepTools plotHeatmap`` or ``deepTools plotProfiles``.
+  For usage information about ``deepTools computeMatrix``, please see the `documentation <https://deeptools.readthedocs.io/en/develop/content/tools/computeMatrix.html>`_.
   For more information about ``deepTools``, also see the `source code <https://github.com/deeptools/deepTools>`_.
 
     +----------------------------+-----------------------------+---------------------+-------------+
@@ -9,9 +10,9 @@ description: >
     |                            |                             |                     |             |
     |                            |                             | variable to be used | extension   |
     +============================+=============================+=====================+=============+
-    | -\-outFileName, -out, -o   | gzipped matrix file, this   | matrix_gz           | ".gz"       |
+    | -\-outFileName, -out, -o   | gzipped matrix file         | matrix_gz           | ".gz"       |
     |                            |                             |                     |             |
-    |                            | output file is required     |                     |             |
+    |                            |                             | (required)          |             |
     +----------------------------+-----------------------------+---------------------+-------------+
     | -\-outFileNameMatrix       | tab-separated table of      | matrix_tab          | ".tab"      |
     |                            |                             |                     |             |
