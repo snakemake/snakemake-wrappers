@@ -412,9 +412,6 @@ def test_cutadapt_se():
     )
 
 
-
-
-
 def test_deeptools_computematrix():
     run(
         "bio/deeptools/computematrix",
@@ -441,6 +438,21 @@ def test_deeptools_plotheatmap():
             "plot_heatmap/heatmap.png",
             "plot_heatmap/heatmap_regions.bed",
             "plot_heatmap/heatmap_matrix.tab",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+def test_deeptools_plotfingerprint():
+    run(
+        "bio/deeptools/plotfingerprint",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "plot_fingerprint/plot_fingerprint.png",
+            "plot_fingerprint/raw_counts.tab",
             "--use-conda",
             "-F",
         ],
