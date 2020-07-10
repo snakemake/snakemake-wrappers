@@ -412,6 +412,38 @@ def test_cutadapt_se():
     )
 
 
+def test_deeptools_computematrix():
+    run(
+        "bio/deeptools/computematrix",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "matrix_files/matrix.gz",
+            "matrix_files/matrix.tab",
+            "matrix_files/matrix.bed",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+def test_deeptools_plotheatmap():
+    run(
+        "bio/deeptools/plotheatmap",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "plot_heatmap/heatmap.png",
+            "plot_heatmap/heatmap_regions.bed",
+            "plot_heatmap/heatmap_matrix.tab",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_deeptools_plotfingerprint():
     run(
         "bio/deeptools/plotfingerprint",
@@ -421,6 +453,22 @@ def test_deeptools_plotfingerprint():
             "1",
             "plot_fingerprint/plot_fingerprint.png",
             "plot_fingerprint/raw_counts.tab",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+def test_deeptools_plotprofile():
+    run(
+        "bio/deeptools/plotprofile",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "plot_profile/plot.png",
+            "plot_profile/regions.bed",
+            "plot_profile/data.tab",
             "--use-conda",
             "-F",
         ],
@@ -627,14 +675,7 @@ def test_gdc_api_bam_slicing():
 def test_gdc_download():
     run(
         "bio/gdc-client/download",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "raw/testing_sample.maf.gz",
-            "--use-conda",
-            "-F",
-        ],
+        ["snakemake", "--cores", "1", "raw/testing_sample.maf.gz", "--use-conda", "-F"],
     )
 
 
@@ -2060,4 +2101,24 @@ def test_vep_annotate():
     run(
         "bio/vep/annotate",
         ["snakemake", "--cores", "1", "variants.annotated.bcf", "--use-conda", "-F"],
+    )
+
+
+def test_chm_eval_sample():
+    run(
+        "bio/benchmark/chm-eval-sample",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
+
+def test_chm_eval_kit():
+    run(
+        "bio/benchmark/chm-eval-kit", ["snakemake", "--cores", "1", "--use-conda", "-F"]
+    )
+
+
+def test_chm_eval_eval():
+    run(
+        "bio/benchmark/chm-eval",
+        ["snakemake", "--cores", "1", "--use-conda", "chm-eval/calls.summary"],
     )

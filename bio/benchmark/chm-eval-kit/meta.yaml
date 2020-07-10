@@ -1,0 +1,4 @@
+name: chm-eval-kit
+description: Download CHM-eval kit (https://github.com/lh3/CHM-eval) for benchmarking variant calling.
+authors:
+  - Johannes Köster
