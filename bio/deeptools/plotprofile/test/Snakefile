@@ -1,0 +1,23 @@
+rule plot_profile:
+    input:
+         # matrix file from deepTools computeMatrix tool
+         "matrix.gz"
+    output:
+        # Please note that --outFileSortedRegions and --outFileNameData are exclusively defined via output files.
+        # Usable output variables, their extensions and which option they implicitly call are listed here:
+        #         https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/deeptools/plotprofile.html.
+        # Through the output variables image file and more output options for plot profile can be selected.
+        plot_img="plot_profile/plot.png",  # required
+        # optional output files
+        regions="plot_profile/regions.bed",
+        data="plot_profile/data.tab"
+    log:
+        "logs/deeptools/plot_profile.log"
+    params:
+        # optional parameters
+        "--plotType=fill "
+        "--perGroup "
+        "--colors red yellow blue "
+        "--dpi 150 "
+    wrapper:
+        "master/bio/deeptools/plotprofile"
