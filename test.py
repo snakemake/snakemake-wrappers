@@ -412,6 +412,23 @@ def test_cutadapt_se():
     )
 
 
+
+def test_deeptools_computematrix():
+    run(
+        "bio/deeptools/computematrix",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "matrix_files/matrix.gz",
+            "matrix_files/matrix.tab",
+            "matrix_files/matrix.bed",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_deeptools_plotprofile():
     run(
         "bio/deeptools/plotprofile",
