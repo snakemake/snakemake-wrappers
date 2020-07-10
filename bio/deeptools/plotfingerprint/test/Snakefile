@@ -6,7 +6,6 @@ rule plot_fingerprint:
         # Please note that --plotFile and --outRawCounts exclusively defined via output files.
         # Usable output variables, their extensions and which option they implicitly call are listed here:
         #         https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/deeptools/plotfingerprint.html.
-        # Through the output variables image file and optional output of read counts per bin can be selected.
         fingerprint="plot_fingerprint/plot_fingerprint.png",  # required
         # optional output
         counts="plot_fingerprint/raw_counts.tab"

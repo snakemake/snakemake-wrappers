@@ -1,7 +1,7 @@
 name: deepTools plotFingerprint
 description: >
-  ``DeepTools``'s plotFingerprint plots a profile of cumulative read coverages from a list of indexed BAM files.
-  For usage information about plotFingerprint, please see ``deepTools``'s `documentation <https://deeptools.readthedocs.io/en/develop/content/tools/plotFingerprint.html>`_.
+  ``deepTools plotFingerprint`` plots a profile of cumulative read coverages from a list of indexed BAM files.
+  For usage information about ``deepTools plotFingerprint``, please see the `documentation <https://deeptools.readthedocs.io/en/develop/content/tools/plotFingerprint.html>`_.
   For more information about ``deepTools``, also see the `source code <https://github.com/deeptools/deepTools>`_.
 
 
@@ -12,11 +12,11 @@ description: >
     |                            |                       |                     |             |
     |                            |                       | variable to be used | extension(s)|
     +============================+=======================+=====================+=============+
-    | -\-plotFile, -plot, -o     | plot image, this      | fingerprint         | ".png" or   |
+    | -\-plotFile, -plot, -o     | plot image            | fingerprint         | ".png" or   |
     |                            |                       |                     |             |
-    |                            | output file is        |                     | ".eps" or   |
+    |                            |                       | (required)          | ".eps" or   |
     |                            |                       |                     |             |
-    |                            | required              |                     | ".pdf" or   |
+    |                            |                       |                     | ".pdf" or   |
     |                            |                       |                     |             |
     |                            |                       |                     | ".svg"      |
     +----------------------------+-----------------------+---------------------+-------------+
