@@ -1,0 +1,36 @@
+name: deepTools computeMatrix
+description: >
+  ``deepTools computeMatrix`` calculates scores per genomic region.
+  The matrix file can be used as input for other tools or for the generation of a ``deepTools plotHeatmap`` or ``deepTools plotProfiles``.
+  For usage information about ``deepTools computeMatrix``, please see the `documentation <https://deeptools.readthedocs.io/en/develop/content/tools/computeMatrix.html>`_.
+  For more information about ``deepTools``, also see the `source code <https://github.com/deeptools/deepTools>`_.
+
+    +----------------------------+-----------------------------+---------------------+-------------+
+    | computeMatrix option       | Output format               | Name of output      | Recommended |
+    |                            |                             |                     |             |
+    |                            |                             | variable to be used | extension   |
+    +============================+=============================+=====================+=============+
+    | -\-outFileName, -out, -o   | gzipped matrix file         | matrix_gz           | ".gz"       |
+    |                            |                             |                     |             |
+    |                            |                             | (required)          |             |
+    +----------------------------+-----------------------------+---------------------+-------------+
+    | -\-outFileNameMatrix       | tab-separated table of      | matrix_tab          | ".tab"      |
+    |                            |                             |                     |             |
+    |                            | matrix file                 |                     |             |
+    +----------------------------+-----------------------------+---------------------+-------------+
+    | -\-outFileSortedRegions    | BED matrix file with sorted | matrix_bed          | ".bed"      |
+    |                            |                             |                     |             |
+    |                            | regions after skipping zeros|                     |             |
+    |                            |                             |                     |             |
+    |                            | or min/max threshold values |                     |             |
+    +----------------------------+-----------------------------+---------------------+-------------+
+
+authors:
+  - Antonie Vietor
+input:
+  - BED or GTF files (.bed or .gtf) AND
+  - bigWig files (.bw)
+output:
+  - gzipped matrix file (.gz) AND/OR
+  - tab-separated table of matrix file (.tab) AND/OR
+  - BED matrix file with sorted regions after skiping zeros or min/max threshold values (.bed)
