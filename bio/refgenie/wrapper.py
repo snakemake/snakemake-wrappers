@@ -18,5 +18,5 @@ rgc = refgenconf.RefGenConf(conf_path, writable=True)
 gat, archive_data, server_url = rgc.pull(genome, asset, tag, force=False)
 
 for seek_key, out in snakemake.output.items():
-    path = rgc.get_asset(genome, asset, tag, seek_key=seek_key)
+    path = rgc.seek(genome, asset, tag_name=tag, seek_key=seek_key, strict_exists=True)
     os.symlink(path, out)
