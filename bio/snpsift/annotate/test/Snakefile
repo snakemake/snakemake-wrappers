@@ -1,11 +1,9 @@
 rule test_snpsift_annotate:
     input:
-        vcf="in.vcf",
+        call="in.vcf",
         database="annotation.vcf"
     output:
-        vcf="annotated/out.vcf"
-    message:
-        "Testing SnpSift Annotate"
+        call="annotated/out.vcf"
     log:
         "annotate.log"
     wrapper:

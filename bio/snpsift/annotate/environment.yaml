@@ -2,4 +2,6 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
-  -  snpsift ==4.3.1t 
+  - snpsift ==4.3.1t
+  - bcftools ==1.10.2
+  - pbgzip ==2016.08.04
