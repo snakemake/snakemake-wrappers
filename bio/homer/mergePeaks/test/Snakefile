@@ -1,0 +1,16 @@
+rule homer_mergePeaks:
+    input:
+        # input peak files
+        "peaks/{sample1}.peaks",
+        "peaks/{sample2}.peaks"
+    output:
+        "merged/{sample1}_{sample2}.peaks"
+    params:
+        # Prefix. If given, the output will be splited in overlapping and unique peak files
+        # Please check the documentation.
+        prefix = "",
+        extra="-d given"  # optional params, see homer manual
+    log:
+        "logs/mergePeaks/{sample1}_{sample2}.log"
+    wrapper:
+        "master/bio/homer/mergePeaks"
