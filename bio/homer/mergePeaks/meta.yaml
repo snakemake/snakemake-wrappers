@@ -1,5 +1,5 @@
 name: "Homer mergePeaks"
-description: Merge peaks from multiple peak files. When using `-prefix`, be aware that the output
-file names will follow a specific format (please check the `documentation <http://homer.ucsd.edu/homer/ngs/mergePeaks.html>`_. 
+description: >
+  Merge peaks from multiple peak files. When using ``-prefix``, be aware that the output file names will follow a specific format (please check the `documentation <http://homer.ucsd.edu/homer/ngs/mergePeaks.html>`_.
 authors:
   - Jan Forster
