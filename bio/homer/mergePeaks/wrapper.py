@@ -17,10 +17,4 @@ if prefix:
 else:
     output_command = "> {}".format(snakemake.output)
 
-shell(
-    "(mergePeaks"
-    " {snakemake.input}"
-    " {extra}"
-    " {output_command})"
-    " {log}"
-)
+shell("(mergePeaks" " {snakemake.input}" " {extra}" " {output_command})" " {log}")
