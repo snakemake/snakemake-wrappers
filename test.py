@@ -707,6 +707,13 @@ def test_hisat2_align():
     )
 
 
+def test_homer_mergePeaks():
+    run(
+        "bio/homer/mergePeaks",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "merged/a_b.peaks"],
+    )
+
+
 def test_homer_getDifferentialPeaks():
     run(
         "bio/homer/getDifferentialPeaks",
