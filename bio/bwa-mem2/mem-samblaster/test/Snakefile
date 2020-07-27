@@ -7,9 +7,10 @@ rule bwa_mem:
     log:
         "logs/bwa_mem2_sambamba/{sample}.log"
     params:
-        index="genome",
+        index="genome.fasta",
         extra=r"-R '@RG\tID:{sample}\tSM:{sample}'",
         sort_extra="" # Extra args for sambamba.
     threads: 8
     wrapper:
-        "master/bio/bwa-mem2/mem-samblaster"
+        #"master/bio/bwa-mem2/mem-samblaster"
+        "file:/vol/huge/christo/snakemake-wrappers/bio/bwa-mem2/mem-samblaster"
