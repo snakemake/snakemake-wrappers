@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - default
 dependencies:
-  - vembrane =0.3.2
+  - vembrane =0.4.0
