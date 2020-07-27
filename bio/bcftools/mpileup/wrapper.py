@@ -23,9 +23,8 @@ if "--no-reference" not in options:
         )
     options += " --fasta-ref {}".format(ref)
 
-options += " --threads {}".format(snakemake.threads)
-
 shell(
-    "bcftools mpileup {options} --output {snakemake.output.pileup} "
+    "bcftools mpileup {options} --threads {snakemake.threads} "
+    "--output {snakemake.output.pileup} "
     "{snakemake.input.alignments} 2> {snakemake.log}"
 )
