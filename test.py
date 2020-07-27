@@ -78,6 +78,13 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+def test_vembrane():
+    run(
+        "bio/vembrane",
+        ["snakemake", "--cores", "1", "--use-conda", "filtered/out.vcf"],
+    )
+
+
 def test_shovill():
     run(
         "bio/shovill",
