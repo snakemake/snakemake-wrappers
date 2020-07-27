@@ -1,4 +1,4 @@
-rule bwa_mem:
+rule bwa_mem2_mem:
     input:
         reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"]
     output:
@@ -13,5 +13,4 @@ rule bwa_mem:
         sort_extra=""            # Extra args for samtools/picard.
     threads: 8
     wrapper:
-        "file:/vol/huge/christo/snakemake-wrappers/bio/bwa/mem2"
-        #"master/bio/bwa/mem2"
+        "master/bio/bwa-mem2/mem"
