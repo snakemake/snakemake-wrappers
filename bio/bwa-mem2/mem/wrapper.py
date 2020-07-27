@@ -25,7 +25,7 @@ if not isinstance(snakemake.input.reads, str) and len(snakemake.input.reads) not
     1,
     2,
 }:
-    raise ValueError("input must have 1 (single-end) or " "2 (paired-end) elements")
+    raise ValueError("input must have 1 (single-end) or 2 (paired-end) elements")
 
 if sort_order not in {"coordinate", "queryname"}:
     raise ValueError("Unexpected value for sort_order ({})".format(sort_order))
