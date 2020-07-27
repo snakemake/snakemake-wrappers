@@ -12,5 +12,4 @@ rule bwa_mem:
         sort_extra="" # Extra args for sambamba.
     threads: 8
     wrapper:
-        #"master/bio/bwa-mem2/mem-samblaster"
-        "file:/vol/huge/christo/snakemake-wrappers/bio/bwa-mem2/mem-samblaster"
+        "master/bio/bwa-mem2/mem-samblaster"
