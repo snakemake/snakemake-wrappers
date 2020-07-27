@@ -391,6 +391,32 @@ def test_bwa_samse_sort_picard():
     )
 
 
+def test_bwa_mem2_mem():
+    run(
+        "bio/bwa-mem2/mem",
+        ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
+    )
+
+
+def test_bwa_mem2_mem():
+    run(
+        "bio/bwa_mem2/mem",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "genome.fasta.amb",
+            "genome.fasta.ann",
+            "genome.fasta.0123",
+            "genome.fasta.bwt.2bit.64",
+            "genome.fasta.bwt.8bit.32",
+            "genome.fasta.pac",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_clustalo():
     run(
         "bio/clustalo",
