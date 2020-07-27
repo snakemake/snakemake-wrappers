@@ -1,5 +1,7 @@
 __author__ = "Christopher Schröder, Johannes Köster, Julian de Ruiter"
-__copyright__ = "Copyright 2020, Christopher Schröder, Johannes Köster and Julian de Ruiter"
+__copyright__ = (
+    "Copyright 2020, Christopher Schröder, Johannes Köster and Julian de Ruiter"
+)
 __email__ = "christopher.schroeder@tu-dortmund.de koester@jimmy.harvard.edu, julianderuiter@gmail.com"
 __license__ = "MIT"
 
