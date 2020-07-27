@@ -391,6 +391,64 @@ def test_bwa_samse_sort_picard():
     )
 
 
+def test_bwa_mem2_mem():
+    run(
+        "bio/bwa-mem2/mem",
+        ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
+    )
+
+
+def test_bwa_mem2_sort_samtools():
+    run(
+        "bio/bwa-mem2/mem",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.bam",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_samtools",
+        ],
+    )
+
+
+def test_bwa_mem2_sort_picard():
+    run(
+        "bio/bwa-mem2/mem",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.bam",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_picard",
+        ],
+    )
+
+
+def test_bwa_mem2_index():
+    run(
+        "bio/bwa-mem2/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "genome.fasta.amb",
+            "genome.fasta.ann",
+            "genome.fasta.0123",
+            "genome.fasta.bwt.2bit.64",
+            "genome.fasta.bwt.8bit.32",
+            "genome.fasta.pac",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_clustalo():
     run(
         "bio/clustalo",
@@ -2065,6 +2123,13 @@ def test_fasterq_dump():
 def test_bwa_mem_samblaster():
     run(
         "bio/bwa/mem-samblaster",
+        ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
+    )
+
+
+def test_bwa_mem2_samblaster():
+    run(
+        "bio/bwa-mem2/mem-samblaster",
         ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
     )
 
