@@ -398,9 +398,9 @@ def test_bwa_mem2_mem():
     )
 
 
-def test_bwa_mem2_mem():
+def test_bwa_mem2_index():
     run(
-        "bio/bwa_mem2/mem",
+        "bio/bwa-mem2/index",
         [
             "snakemake",
             "--cores",
