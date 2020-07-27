@@ -28,5 +28,9 @@ if len(construction_algorithm) != 0:
     construction_algorithm = "-a " + construction_algorithm
 
 shell(
-    "bwa-mem2 index" " {prefix}" " {construction_algorithm}" " {snakemake.input[0]}" " {log}"
+    "bwa-mem2 index"
+    " {prefix}"
+    " {construction_algorithm}"
+    " {snakemake.input[0]}"
+    " {log}"
 )
