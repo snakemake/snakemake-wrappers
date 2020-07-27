@@ -1,0 +1,26 @@
+##fileformat=VCFv4.2
+##FILTER=<ID=PASS,Description="All filters passed">
+##bcftoolsVersion=1.10.2+htslib-1.10.1
+##contig=<ID=NC_000962.3,length=4411532>
+##ALT=<ID=*,Description="Represents allele(s) other than observed.">
+##INFO=<ID=INDEL,Number=0,Type=Flag,Description="Indicates that the variant is an INDEL.">
+##INFO=<ID=IDV,Number=1,Type=Integer,Description="Maximum number of raw reads supporting an indel">
+##INFO=<ID=IMF,Number=1,Type=Float,Description="Maximum fraction of raw reads supporting an indel">
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Raw read depth">
+##INFO=<ID=VDB,Number=1,Type=Float,Description="Variant Distance Bias for filtering splice-site artefacts in RNA-seq data (bigger is better)",Version="3">
+##INFO=<ID=RPB,Number=1,Type=Float,Description="Mann-Whitney U test of Read Position Bias (bigger is better)">
+##INFO=<ID=MQB,Number=1,Type=Float,Description="Mann-Whitney U test of Mapping Quality Bias (bigger is better)">
+##INFO=<ID=BQB,Number=1,Type=Float,Description="Mann-Whitney U test of Base Quality Bias (bigger is better)">
+##INFO=<ID=MQSB,Number=1,Type=Float,Description="Mann-Whitney U test of Mapping Quality vs Strand Bias (bigger is better)">
+##INFO=<ID=SGB,Number=1,Type=Float,Description="Segregation based metric.">
+##INFO=<ID=MQ0F,Number=1,Type=Float,Description="Fraction of MQ0 reads (smaller is better)">
+##INFO=<ID=I16,Number=16,Type=Float,Description="Auxiliary tag used for calling, see description of bcf_callret1_t in bam2bcf.h">
+##INFO=<ID=QS,Number=R,Type=Float,Description="Auxiliary tag used for calling">
+##FORMAT=<ID=PL,Number=G,Type=Integer,Description="List of Phred-scaled genotype likelihoods">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	nanopore/mapped/birmingham/17_616026.sorted.sam
+NC_000962.3	1	.	T	<*>	0	.	DP=56;I16=10,3,0,0,348,9920,0,0,736,42506,0,0,0,0,0,0;QS=1,0;MQSB=0.879351;MQ0F=0	PL	0,39,198
+NC_000962.3	2	.	T	<*>	0	.	DP=59;I16=11,4,0,0,383,10201,0,0,856,49706,0,0,15,15,0,0;QS=1,0;MQSB=0.872525;MQ0F=0	PL	0,45,210
+NC_000962.3	3	.	G	<*>	0	.	DP=62;I16=15,5,0,0,554,16026,0,0,1111,64331,0,0,38,76,0,0;QS=1,0;MQSB=0.807118;MQ0F=0	PL	0,60,253
+NC_000962.3	4	.	A	<*>	0	.	DP=62;I16=15,3,0,0,491,13857,0,0,991,57131,0,0,52,154,0,0;QS=1,0;MQSB=0.86753;MQ0F=0	PL	0,54,216
+NC_000962.3	5	.	C	<*>	0	.	DP=63;I16=15,5,0,0,452,10514,0,0,1111,64331,0,0,78,308,0,0;QS=1,0;MQSB=0.807118;MQ0F=0	PL	0,60,200
+NC_000962.3	6	.	C	<*>	0	.	DP=64;I16=16,6,0,0,525,13117,0,0,1231,71531,0,0,127,1125,0,0;QS=1,0;MQSB=0.802432;MQ0F=0	PL	0,66,228
