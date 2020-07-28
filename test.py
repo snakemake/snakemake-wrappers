@@ -143,6 +143,12 @@ def test_art_profiler_illumina():
         ],
     )
 
+def test_bcftools_call():
+    run(
+        "bio/bcftools/call",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.calls.bcf"],
+    )
+
 
 def test_bcftools_index():
     run(
