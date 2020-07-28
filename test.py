@@ -2205,3 +2205,9 @@ def test_chm_eval_eval():
         "bio/benchmark/chm-eval",
         ["snakemake", "--cores", "1", "--use-conda", "chm-eval/calls.summary"],
     )
+
+def test_snpsift_annotate():
+    run(
+        "bio/snpsift/annotate",
+        ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"]
+    )

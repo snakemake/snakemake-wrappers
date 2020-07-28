@@ -1,0 +1,10 @@
+rule test_snpsift_annotate:
+    input:
+        call="in.vcf",
+        database="annotation.vcf"
+    output:
+        call="annotated/out.vcf"
+    log:
+        "annotate.log"
+    wrapper:
+        "master/bio/snpsift/annotate"
