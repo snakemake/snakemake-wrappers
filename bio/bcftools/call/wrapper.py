@@ -17,7 +17,7 @@ caller_opt = snakemake.params.get("caller", "")
 if caller_opt.strip() not in valid_caller_opts:
     raise CallerOptionError(
         "bcftools call expects either -m/--multiallelic-caller or "
-        "-c/--consensus-caller as caller options."
+        "-c/--consensus-caller as caller option."
     )
 
 options = snakemake.params.get("options", "")
