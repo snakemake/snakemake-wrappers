@@ -77,7 +77,6 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
-
 def test_shovill():
     run(
         "bio/shovill",
@@ -163,6 +162,12 @@ def test_bcftools_merge():
     run(
         "bio/bcftools/merge",
         ["snakemake", "--cores", "1", "all.bcf", "--use-conda", "-F"],
+    )
+
+def test_bcftools_mpileup():
+    run(
+        "bio/bcftools/mpileup",
+        ["snakemake", "--cores", "1", "pileups/a.pileup.bcf", "--use-conda", "-F"],
     )
 
 
