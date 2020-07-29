@@ -17,12 +17,21 @@ if prefix:
     fmt = "-h"
     pipefail = "set +o pipefail"
 
-shell(
-    """
-    {pipefail}
-    {{
-        samtools view {fmt} {url} {prefix} > {snakemake.output.bam}
-        samtools index {snakemake.output.bam}
-    }} {log}
-    """
-)
+    shell(
+        """
+        {pipefail}
+        {{
+            samtools view {fmt} {url} {prefix} > {snakemake.output.bam}
+            samtools index {snakemake.output.bam}
+        }} {log}
+        """
+    )
+else:
+    shell(
+        """
+        {{
+            curl -L {url} > {snakemake.output.bam}
+            samtools index {snakemake.output.bam}
+        }} {log}
+        """
+    )

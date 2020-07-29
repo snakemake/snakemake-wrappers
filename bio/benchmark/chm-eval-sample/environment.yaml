@@ -3,3 +3,4 @@ channels:
   - conda-forge
 dependencies:
   - samtools =1.10
+  - curl
