@@ -19,6 +19,7 @@ else:
 shell(
     "(findPeaks"
     " {snakemake.input.tag}"
+    " -style {snakemake.params.style}"
     " {extra}"
     " {control_command}"
     " -o {snakemake.output})"
