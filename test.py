@@ -78,6 +78,13 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+def test_vembrane():
+    run(
+        "bio/vembrane",
+        ["snakemake", "--cores", "1", "--use-conda", "filtered/out.vcf"],
+    )
+
+    
 def test_shovill():
     run(
         "bio/shovill",
@@ -144,6 +151,12 @@ def test_art_profiler_illumina():
         ],
     )
 
+def test_bcftools_call():
+    run(
+        "bio/bcftools/call",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.calls.bcf"],
+    )
+
 
 def test_bcftools_index():
     run(
@@ -163,6 +176,12 @@ def test_bcftools_merge():
     run(
         "bio/bcftools/merge",
         ["snakemake", "--cores", "1", "all.bcf", "--use-conda", "-F"],
+    )
+
+def test_bcftools_mpileup():
+    run(
+        "bio/bcftools/mpileup",
+        ["snakemake", "--cores", "1", "pileups/a.pileup.bcf", "--use-conda", "-F"],
     )
 
 
@@ -387,6 +406,64 @@ def test_bwa_samse_sort_picard():
             "-F",
             "-s",
             "Snakefile_picard",
+        ],
+    )
+
+
+def test_bwa_mem2_mem():
+    run(
+        "bio/bwa-mem2/mem",
+        ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
+    )
+
+
+def test_bwa_mem2_sort_samtools():
+    run(
+        "bio/bwa-mem2/mem",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.bam",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_samtools",
+        ],
+    )
+
+
+def test_bwa_mem2_sort_picard():
+    run(
+        "bio/bwa-mem2/mem",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.bam",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_picard",
+        ],
+    )
+
+
+def test_bwa_mem2_index():
+    run(
+        "bio/bwa-mem2/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "genome.fasta.amb",
+            "genome.fasta.ann",
+            "genome.fasta.0123",
+            "genome.fasta.bwt.2bit.64",
+            "genome.fasta.bwt.8bit.32",
+            "genome.fasta.pac",
+            "--use-conda",
+            "-F",
         ],
     )
 
@@ -2069,6 +2146,13 @@ def test_bwa_mem_samblaster():
     )
 
 
+def test_bwa_mem2_samblaster():
+    run(
+        "bio/bwa-mem2/mem-samblaster",
+        ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
+    )
+
+
 def test_snpsift_vartype():
     run(
         "bio/snpsift/varType",
@@ -2128,4 +2212,10 @@ def test_chm_eval_eval():
     run(
         "bio/benchmark/chm-eval",
         ["snakemake", "--cores", "1", "--use-conda", "chm-eval/calls.summary"],
+    )
+
+def test_snpsift_annotate():
+    run(
+        "bio/snpsift/annotate",
+        ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"]
     )

@@ -1,0 +1,16 @@
+rule bwa_mem2_mem:
+    input:
+        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"]
+    output:
+        "mapped/{sample}.bam"
+    log:
+        "logs/bwa_mem2/{sample}.log"
+    params:
+        index="genome.fasta",
+        extra=r"-R '@RG\tID:{sample}\tSM:{sample}'",
+        sort="none",             # Can be 'none', 'samtools' or 'picard'.
+        sort_order="coordinate", # Can be 'coordinate' (default) or 'queryname'.
+        sort_extra=""            # Extra args for samtools/picard.
+    threads: 8
+    wrapper:
+        "master/bio/bwa-mem2/mem"
