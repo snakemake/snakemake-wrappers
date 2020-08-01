@@ -1,6 +1,7 @@
 name: "bwa mem"
 description: Map reads using bwa mem, with optional sorting using
   samtools or picard.
+container: "docker-daemon://snakemake-wrappers/bwa/mem"
 authors:
   - Johannes Köster
   - Julian de Ruiter
