@@ -1,11 +1,24 @@
+"""
+
+test.py will test the wrapper, along with the build for pull requests and 
+changed files. Wrappers are required to have a Dockerfile and have changes
+to the wrapper to have a build during testing.
+
+"""
+
 import subprocess
 import os
+import hashlib
 import tempfile
 import shutil
 import pytest
+import re
 import sys
+import yaml
 
 DIFF_ONLY = os.environ.get("DIFF_ONLY", "false") == "true"
+DEPLOY = os.environ.get("DEPLOY", "false") == "true"
+CONTAINER_PREFIX = os.environ.get("CONTAINER_PREFIX", "quay.io/snakemake-wrappers")
 
 if DIFF_ONLY:
     # check if wrapper is modified compared to master
@@ -16,8 +29,9 @@ if DIFF_ONLY:
     )
 
 
-def run(wrapper, cmd, check_log=None):
-    origdir = os.getcwd()
+def run_wrapper(wrapper, cmd, origdir, check_log=None):
+    """Run the test for the wrapper
+    """
     with tempfile.TemporaryDirectory() as d:
         dst = os.path.join(d, "master", wrapper)
         os.makedirs(dst, exist_ok=True)
@@ -31,6 +45,7 @@ def run(wrapper, cmd, check_log=None):
                 break
         assert success, "No wrapper.{py,R,Rmd} found"
 
+        # Cut out early if not modified, and we are only checking diff
         if DIFF_ONLY and not any(f.startswith(wrapper) for f in DIFF_FILES):
             print(
                 "Skipping wrapper {} (not modified).".format(wrapper), file=sys.stderr
@@ -39,6 +54,7 @@ def run(wrapper, cmd, check_log=None):
 
         copy("environment.yaml")
         testdir = os.path.join(wrapper, "test")
+
         # switch to test directory
         os.chdir(testdir)
         if os.path.exists(".snakemake"):
@@ -78,13 +94,79 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+def run_build(wrapper, origdir):
+    """If both a Dockerfile and an environment.yaml is present, we can 
+       test building a Docker image
+    """
+    # Test Docker build given a Dockerfile and environment.yaml are present
+    dockerfile = os.path.join(wrapper, "Dockerfile")
+    env_file = os.path.join(wrapper, "environment.yaml")
+    build_dir = os.path.dirname(dockerfile)
+    if os.path.exists(dockerfile) and os.path.exists(env_file):
+        with open(env_file, "r") as fd:
+            packages = yaml.load(fd.read(), Loader=yaml.SafeLoader)
+
+        # Generate hashes for the package names (container name) and tag (versions)
+        # {'bwa': '0.7.17', 'samtools': '1.9', 'picard': '2.20.1'}
+        sets = {
+            d[0].strip(): d[1].strip()
+            for d in [re.split("==|<=|>=", x) for x in packages.get("dependencies", [])]
+        }
+        container_name = generate_container_name(sets)
+
+        # Execute the build from the build context
+        os.chdir(build_dir)
+        print("Building container for %s" % wrapper)
+        print(container_name)
+        result = subprocess.check_call(["docker", "build", "-t", container_name, "."])
+        assert result == 0
+
+    os.chdir(origdir)
+
+
+def run(wrapper, cmd, check_log=None):
+    """run will first test running the wrapper, and then a container build,
+       if a Dockerfile is present
+    """
+    origdir = os.getcwd()
+
+    # Cut out early if not modified, and we are only checking diff
+    if DIFF_ONLY and not any(f.startswith(wrapper) for f in DIFF_FILES):
+        print("Skipping wrapper {} (not modified).".format(wrapper), file=sys.stderr)
+        return
+
+    # Test running the wrapper
+    run_wrapper(wrapper=wrapper, cmd=cmd, origdir=origdir, check_log=check_log)
+    run_build(wrapper, origdir)
+
+
+def generate_container_name(sets):
+    """Given a list of packages, generate a container hash, meaning an md5
+       sum of the sorted list, along with a version hash. This will be the 
+       container name and tag, to accurately reflect the packages inside.
+    """
+    # Sort by name to be consistent
+    ordered = sorted(sets.items())
+    names = [x[0] for x in ordered]
+    versions = [x[1] for x in ordered]
+    return "%s/%s:%s" % (CONTAINER_PREFIX, get_md5(names), get_md5(versions))
+
+
+def get_md5(listing):
+    """Generate an md5 from an already sorted listing
+    """
+    hasher = hashlib.md5()
+    hasher.update("".join(listing).encode("utf-8"))
+    return hasher.hexdigest()
+
+
 def test_vembrane():
     run(
         "bio/vembrane",
         ["snakemake", "--cores", "1", "--use-conda", "filtered/out.vcf"],
     )
 
-    
+
 def test_shovill():
     run(
         "bio/shovill",
@@ -151,6 +233,7 @@ def test_art_profiler_illumina():
         ],
     )
 
+
 def test_bcftools_call():
     run(
         "bio/bcftools/call",
@@ -177,6 +260,7 @@ def test_bcftools_merge():
         "bio/bcftools/merge",
         ["snakemake", "--cores", "1", "all.bcf", "--use-conda", "-F"],
     )
+
 
 def test_bcftools_mpileup():
     run(
@@ -2214,8 +2298,9 @@ def test_chm_eval_eval():
         ["snakemake", "--cores", "1", "--use-conda", "chm-eval/calls.summary"],
     )
 
+
 def test_snpsift_annotate():
     run(
         "bio/snpsift/annotate",
-        ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"],
     )

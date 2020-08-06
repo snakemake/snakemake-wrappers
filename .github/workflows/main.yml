@@ -51,7 +51,7 @@ jobs:
         uses: textbook/git-checkout-submodule-action@2.0.0
 
       - name: Setup Snakemake environment
-        run: conda create -c bioconda -c conda-forge --quiet --name snakemake snakemake-minimal pytest
+        run: conda create -c bioconda -c conda-forge --quiet --name snakemake snakemake-minimal pytest pyaml
 
       - name: Fetch master
         if: github.ref != 'master'
