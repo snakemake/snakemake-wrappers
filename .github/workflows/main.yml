@@ -65,6 +65,7 @@ jobs:
           # activate conda env
           export PATH="/usr/share/miniconda/bin:$PATH"
           source activate snakemake
-          
           # run tests
           pytest test.py -v
+          # show docker images that were built
+          docker images
