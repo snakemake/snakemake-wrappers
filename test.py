@@ -78,47 +78,10 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
-def test_vembrane():
-    run(
-        "bio/vembrane",
-        ["snakemake", "--cores", "1", "--use-conda", "filtered/out.vcf"],
-    )
-
-    
-def test_shovill():
-    run(
-        "bio/shovill",
-        [
-            "snakemake",
-            "assembly/input.spades.assembly.fa",
-            "assembly/input.spades.contigs.fa",
-            "--cores",
-            "1",
-            "--use-conda",
-            "-F",
-        ],
-    )
-
-
 def test_seqtk_subsample_se():
     run(
         "bio/seqtk/subsample/se",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "a.subsampled.fastq.gz"],
-    )
-
-
-def test_seqtk_subsample_pe():
-    run(
-        "bio/seqtk/subsample/pe",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "--use-conda",
-            "-F",
-            "a.1.subsampled.fastq.gz",
-            "a.2.subsampled.fastq.gz",
-        ],
     )
 
 
@@ -151,6 +114,7 @@ def test_art_profiler_illumina():
         ],
     )
 
+
 def test_bcftools_call():
     run(
         "bio/bcftools/call",
@@ -177,6 +141,7 @@ def test_bcftools_merge():
         "bio/bcftools/merge",
         ["snakemake", "--cores", "1", "all.bcf", "--use-conda", "-F"],
     )
+
 
 def test_bcftools_mpileup():
     run(
@@ -1058,6 +1023,13 @@ def test_prosolo_fdr():
     )
 
 
+def test_rasusa():
+    run(
+        "bio/rasusa",
+        ["snakemake", "--cores", "1", "--use-conda", "a.subsampled.r1.fq"],
+    )
+
+
 def test_razers3():
     run(
         "bio/razers3",
@@ -1187,6 +1159,36 @@ def test_bamtools_stats():
     run(
         "bio/bamtools/stats",
         ["snakemake", "--cores", "1", "a.bamstats", "--use-conda", "-F"],
+    )
+
+
+def test_seqtk_subsample_pe():
+    run(
+        "bio/seqtk/subsample/pe",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "a.1.subsampled.fastq.gz",
+            "a.2.subsampled.fastq.gz",
+        ],
+    )
+
+
+def test_shovill():
+    run(
+        "bio/shovill",
+        [
+            "snakemake",
+            "assembly/input.spades.assembly.fa",
+            "assembly/input.spades.contigs.fa",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -2174,6 +2176,13 @@ def test_ptrimmer_pe():
     )
 
 
+def test_vembrane():
+    run(
+        "bio/vembrane",
+        ["snakemake", "--cores", "1", "--use-conda", "filtered/out.vcf"],
+    )
+
+
 def test_vep_cache():
     run(
         "bio/vep/cache",
@@ -2214,8 +2223,9 @@ def test_chm_eval_eval():
         ["snakemake", "--cores", "1", "--use-conda", "chm-eval/calls.summary"],
     )
 
+
 def test_snpsift_annotate():
     run(
         "bio/snpsift/annotate",
-        ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"],
     )
