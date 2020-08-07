@@ -1,0 +1,4 @@
+name: chm-eval
+description: Evaluate given VCF file with chm-eval (https://github.com/lh3/CHM-eval) for benchmarking variant calling.
+authors:
+  - Johannes Köster

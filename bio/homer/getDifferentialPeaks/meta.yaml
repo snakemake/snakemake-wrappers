@@ -1,0 +1,5 @@
+name: "Homer getDifferentialPeaks"
+description: >
+  Detect differentially bound ChIP peaks between samples. For more information, please see the `documentation <http://homer.ucsd.edu/homer/ngs/mergePeaks.html>`_.
+authors:
+  - Jan Forster

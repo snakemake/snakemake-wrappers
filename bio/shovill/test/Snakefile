@@ -1,0 +1,14 @@
+rule shovill:
+  input:
+    r1="reads/{sample}_R1.fq.gz",
+    r2="reads/{sample}_R2.fq.gz"
+  output:
+    raw_assembly="assembly/{sample}.{assembler}.assembly.fa",
+    contigs="assembly/{sample}.{assembler}.contigs.fa"
+  params:
+    extra=""
+  log:
+    "logs/shovill/{sample}.{assembler}.log"
+  threads: 1
+  wrapper:
+    "master/bio/shovill"

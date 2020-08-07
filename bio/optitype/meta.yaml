@@ -1,0 +1,4 @@
+name: Optitype
+description: Precision 4-digit HLA-I-typing from NGS data based on integer linear programming. Use razers3 beforehand to generate input fastq files only mapping to HLA-regions. Please see https://github.com/FRED-2/OptiType
+authors:
+  - Jan Forster

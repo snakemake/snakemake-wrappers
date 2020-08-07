@@ -2,5 +2,5 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
-  - bcftools >=1.10
+  - bcftools =1.10
   - curl

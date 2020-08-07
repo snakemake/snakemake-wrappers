@@ -29,9 +29,9 @@ def basename_without_ext(file_path):
 # use the same fastqc dir, we create a temp dir.
 with TemporaryDirectory() as tempdir:
     shell(
-        "fastqc {snakemake.params} --quiet "
-        "--outdir {tempdir} {snakemake.input[0]}"
-        " {log}"
+        "fastqc {snakemake.params} --quiet -t {snakemake.threads} "
+        "--outdir {tempdir:q} {snakemake.input[0]:q}"
+        " {log:q}"
     )
 
     # Move outputs into proper position.
@@ -40,7 +40,7 @@ with TemporaryDirectory() as tempdir:
     zip_path = path.join(tempdir, output_base + "_fastqc.zip")
 
     if snakemake.output.html != html_path:
-        shell("mv {html_path} {snakemake.output.html}")
+        shell("mv {html_path:q} {snakemake.output.html:q}")
 
     if snakemake.output.zip != zip_path:
-        shell("mv {zip_path} {snakemake.output.zip}")
+        shell("mv {zip_path:q} {snakemake.output.zip:q}")

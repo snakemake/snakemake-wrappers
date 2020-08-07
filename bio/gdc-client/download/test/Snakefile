@@ -1,0 +1,49 @@
+rule gdc_download:
+    output:
+        # the file extension (up to two components, here .maf.gz), has
+        # to uniquely map to one of the files downloaded for that UUID
+        "raw/{sample}.maf.gz"
+    log:
+        "logs/gdc-client/download/{sample}.log"
+    params:
+        # to use this rule flexibly, make uuid a function that maps your
+        # sample names of choice to the UUIDs they correspond to (they are
+        # the column `id` in the GDC manifest files, which can be used to
+        # systematically construct sample sheets)
+        uuid="34b80c89-c41e-47be-84fb-0c0ea493b5bb",
+        # a gdc_token is only required for controlled access samples,
+        # leave blank otherwise (`gdc_token=""`) or skip this param entirely
+        gdc_token="gdc/gdc-user-token.2020-05-07T10_00_00.555Z.txt",
+        # for valid extra command line arguments, check command line help or:
+        # https://docs.gdc.cancer.gov/Data_Transfer_Tool/Users_Guide/Data_Download_and_Upload/
+        extra = ""
+    threads: 4
+    wrapper:
+        "master/bio/gdc-client/download"
+
+rule gdc_download_bam:
+    output:
+        # specify all the downloaded files you want to keep, as all other
+        # downloaded files will be removed automatically e.g. for
+        # BAM data this could be
+        "raw/{sample}.bam",
+        "raw/{sample}.bam.bai",
+        "raw/{sample}.annotations.txt",
+        directory("raw/{sample}/logs")
+    log:
+        "logs/gdc-client/download/{sample}.log"
+    params:
+        # to use this rule flexibly, make uuid a function that maps your
+        # sample names of choice to the UUIDs they correspond to (they are
+        # the column `id` in the GDC manifest files, which can be used to
+        # systematically construct sample sheets)
+        uuid="34b80c89-c41e-47be-84fb-0c0ea493b5bb",
+        # a gdc_token is only required for controlled access samples,
+        # leave blank otherwise (`gdc_token=""`) or skip this param entirely
+        gdc_token="gdc/gdc-user-token.2020-05-07T10_00_00.555Z.txt",
+        # for valid extra command line arguments, check command line help or:
+        # https://docs.gdc.cancer.gov/Data_Transfer_Tool/Users_Guide/Data_Download_and_Upload/
+        extra = ""
+    threads: 4
+    wrapper:
+        "master/bio/gdc-client/download"

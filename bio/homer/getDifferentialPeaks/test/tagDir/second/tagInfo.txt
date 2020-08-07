@@ -1,0 +1,12 @@
+name	Unique Positions	Total Tags
+genome	89	1100.0
+fragmentLengthEstimate=160		
+peakSizeEstimate=160		
+tagsPerBP=6.586826		
+averageTagsPerPosition=12.360		
+medianTagsPerPosition=3		
+averageTagLength=99.656		
+gsizeEstimate=167		
+averageFragmentGCcontent=-1.000		
+Sheila	89	1100.0
+cmd=makeTagDirectory tagDir/a a.bam		

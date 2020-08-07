@@ -11,7 +11,7 @@ rule picard_collect_hs_metrics:
     params:
         # Optional extra arguments. Here we reduce sample size
         # to reduce the runtime in our unit test.
-        "SAMPLE_SIZE=1000"
+        extra="SAMPLE_SIZE=1000"
     log:
         "logs/picard_collect_hs_metrics/{sample}.log"
     wrapper:

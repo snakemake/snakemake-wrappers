@@ -1,0 +1,20 @@
+rule gdc_api_bam_slice_download:
+    output:
+        bam="raw/{sample}.bam",
+    log:
+        "logs/gdc-api/bam-slicing/{sample}.log"
+    params:
+        # to use this rule flexibly, make uuid a function that maps your
+        # sample names of choice to the UUIDs they correspond to (they are
+        # the column `id` in the GDC manifest files, which can be used to
+        # systematically construct sample sheets)
+        uuid="092c8a6d-aad5-41bf-b186-e68e613c0e89",
+        # a gdc_token is required for controlled access and all BAM files
+        # on GDC seem to be controlled access (adjust if this changes)
+        gdc_token="gdc/gdc-user-token.2020-05-07T10_00_00.555Z.txt",
+        # provide wanted `region=` or `gencode=` slices joined with `&`
+        slices="region=chr22&region=chr5:1000-2000&region=unmapped&gencode=BRCA2",
+        # extra command line arguments passed to curl
+        extra=""
+    wrapper:
+        "master/bio/gdc-api/bam-slicing"
