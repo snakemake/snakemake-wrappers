@@ -2200,6 +2200,7 @@ def test_genomepy():
     run(
         "bio/genomepy",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "dm3/dm3.fa"],
+    )
 
       
 def test_chm_eval_sample():
