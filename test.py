@@ -84,7 +84,7 @@ def test_vembrane():
         ["snakemake", "--cores", "1", "--use-conda", "filtered/out.vcf"],
     )
 
-    
+
 def test_shovill():
     run(
         "bio/shovill",
@@ -151,6 +151,7 @@ def test_art_profiler_illumina():
         ],
     )
 
+
 def test_bcftools_call():
     run(
         "bio/bcftools/call",
@@ -177,6 +178,7 @@ def test_bcftools_merge():
         "bio/bcftools/merge",
         ["snakemake", "--cores", "1", "all.bcf", "--use-conda", "-F"],
     )
+
 
 def test_bcftools_mpileup():
     run(
@@ -830,6 +832,24 @@ def test_lofreq_call():
     run(
         "bio/lofreq/call",
         ["snakemake", "--cores", "1", "calls/a.vcf", "--use-conda", "-F"],
+    )
+
+
+def test_macs2_callpeak():
+    run(
+        "bio/macs2/callpeak",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/basename_peaks.xls",
+            "results/basename_peaks.broadPeak",
+            "results/basename_peaks.gappedPeak",
+            "results/basename_treat_pileup.bdg",
+            "results/basename_control_lambda.bdg",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -2214,8 +2234,9 @@ def test_chm_eval_eval():
         ["snakemake", "--cores", "1", "--use-conda", "chm-eval/calls.summary"],
     )
 
+
 def test_snpsift_annotate():
     run(
         "bio/snpsift/annotate",
-        ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"],
     )

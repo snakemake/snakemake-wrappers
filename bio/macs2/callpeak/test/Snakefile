@@ -1,0 +1,27 @@
+rule callpeak:
+    input:
+        treatment="samples/a.bam",   # required: treatment sample(s)
+        control="samples/b.bam"      # optional: control sample(s)
+    output:
+        # all output-files must share the same basename and only differ by it's extension
+        # Usable extensions (and which tools they implicitly call) are listed here:
+        #         https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/macs2/callpeak.html.
+        multiext("results/basename",
+                 "_peaks.xls",   ### required
+                 ### optional output files
+                 # if --bdg or -B is set in params:
+                 "_treat_pileup.bdg",
+                 "_control_lambda.bdg",
+                 # if --broad is set in params:
+                 "_peaks.broadPeak",
+                 "_peaks.gappedPeak",
+                 # if --broad is not set in params:
+                 # "_peaks.narrowPeak",
+                 # "_summits.bed"
+                 )
+    log:
+        "logs/macs2/callpeak.log"
+    params:
+        "-f BAM -g hs --nomodel --bdg --broad"
+    wrapper:
+        "master/bio/macs2/callpeak"

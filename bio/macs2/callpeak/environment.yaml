@@ -1,0 +1,5 @@
+channels:
+  - bioconda
+  - defaults
+dependencies:
+  - macs2 ==2.2.7.1
