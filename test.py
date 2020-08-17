@@ -78,10 +78,39 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+def gridss_preprocess():
+    run(
+        "bio/gridss/preprocess",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "A.bam.cigar_metrics",
+            "A.bam.coverage.blacklist.bed",
+            "A.bam.idsv_metrics",
+            "A.bam.insert_size_histogram.pdf",
+            "A.bam.insert_size_metrics",
+            "A.bam.mapq_metrics",
+            "A.bam.sv.bam",
+            "A.bam.sv.bam.bai",
+            "A.bam.sv_metrics",
+            "A.bam.tag_metrics",
+        ],
+    )
+
+
 def gridss_setupreference():
     run(
-        "bio/gridss/",
-        ["snakemake", "--cores", "1", "--use-conda", "reference/genome.fasta.gridsscache", "reference/genome.fasta.img"],
+        "bio/gridss/setupreference",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "reference/genome.fasta.gridsscache",
+            "reference/genome.fasta.img",
+        ],
     )
 
 
@@ -91,7 +120,7 @@ def test_vembrane():
         ["snakemake", "--cores", "1", "--use-conda", "filtered/out.vcf"],
     )
 
-    
+
 def test_shovill():
     run(
         "bio/shovill",
@@ -158,6 +187,7 @@ def test_art_profiler_illumina():
         ],
     )
 
+
 def test_bcftools_call():
     run(
         "bio/bcftools/call",
@@ -184,6 +214,7 @@ def test_bcftools_merge():
         "bio/bcftools/merge",
         ["snakemake", "--cores", "1", "all.bcf", "--use-conda", "-F"],
     )
+
 
 def test_bcftools_mpileup():
     run(
@@ -2221,8 +2252,9 @@ def test_chm_eval_eval():
         ["snakemake", "--cores", "1", "--use-conda", "chm-eval/calls.summary"],
     )
 
+
 def test_snpsift_annotate():
     run(
         "bio/snpsift/annotate",
-        ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"],
     )
