@@ -1,0 +1,4 @@
+name: "gridss call"
+description: Perform variant calling.
+authors:
+  - Christopher Schröder

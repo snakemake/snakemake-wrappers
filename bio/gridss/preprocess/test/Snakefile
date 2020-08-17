@@ -1,0 +1,13 @@
+rule bowtie2:
+    input:
+        sample=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"]
+    output:
+        "mapped/{sample}.bam"
+    log:
+        "logs/bowtie2/{sample}.log"
+    params:
+        index="index/genome",  # prefix of reference genome index (built with bowtie2-build)
+        extra=""  # optional parameters
+    threads: 8  # Use at least two threads
+    wrapper:
+        "file:/vol/huge/christo/snakemake-wrappers/bio/gridss/preprocess"

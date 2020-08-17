@@ -1,0 +1,4 @@
+name: "gridss preprocess"
+description: Pre-process input BAM files. Can be run per input file.
+authors:
+  - Christopher Schröder

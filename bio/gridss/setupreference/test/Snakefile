@@ -1,0 +1,11 @@
+rule gridss_setupreference:
+    input:
+        reference="reference/genome.fasta",
+        dictionary="reference/genome.dict",
+        indices=multiext("reference/genome.fasta", ".amb", ".ann", ".bwt", ".pac", ".sa")
+    output:
+        multiext("reference/genome.fasta", ".gridsscache", ".img")
+    log:
+        "log/gridss/setupreference.log"
+    wrapper:
+        "file:/vol/huge/christo/snakemake-wrappers/bio/gridss/setupreference"

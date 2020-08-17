@@ -1,0 +1,4 @@
+name: "gridss assemble"
+description: Perform GRIDSS breakend assembly.
+authors:
+  - Christopher Schröder
