@@ -11,62 +11,56 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 in_contr = snakemake.input.get("control")
 params = "{}".format(snakemake.params)
-out_file = snakemake.output[0]
-out_name = ""
 opt_input = ""
+out_dir = ""
 
-exts = {
-    "_peaks.xls",
-    "_peaks.narrowPeak",
-    "_summits.bed",
-    "_peaks.broadPeak",
-    "_peaks.gappedPeak",
-    "_treat_pileup.bdg",
-    "_control_lambda.bdg",
-}
-
-for ext in exts:
-    if out_file.endswith(ext):
-        out_name = out_file[: -len(ext)]
-        out_dir = os.path.dirname(out_file)
-        list(
-            map(os.unlink, (os.path.join(out_dir, i) for i in os.listdir(out_dir)))
-        )  # removes old result files
-        os.makedirs(out_dir, exist_ok=True)
-        break
+ext = "_peaks.xls"
+out_file = [o for o in snakemake.output if o.endswith(ext)][0]
+out_name = os.path.basename(out_file[: -len(ext)])
+out_dir = os.path.dirname(out_file)
+list(
+    map(os.unlink, (os.path.join(out_dir, i) for i in os.listdir(out_dir)))
+)  # removes old result files
 
 if in_contr:
-    opt_input = " -c {contr}".format(contr=in_contr)
+    opt_input = "-c {contr}".format(contr=in_contr)
 
-if " --broad" in params:
-    for out in snakemake.output:
-        if out.endswith("_peaks.narrowPeak") or out.endswith("_summits.bed"):
-            sys.exit(
-                "If --broad option in params is given, the _peaks.narrowPeak and _summits.bed files will not be created. \n"
-                "Remove --broad option from params if these files are needed.\n"
-            )
+if out_dir:
+    out_dir = "--outdir {dir}".format(dir=out_dir)
+
+if any(out.endswith(("_peaks.narrowPeak", "_summits.bed")) for out in snakemake.output):
+    if any(
+        out.endswith(("_peaks.broadPeak", "_peaks.gappedPeak"))
+        for out in snakemake.output
+    ):
+        sys.exit(
+            "Output files with _peaks.narrowPeak and/or _summits.bed extensions cannot be created together with _peaks.broadPeak and/or _peaks.gappedPeak extended output files.\n"
+            "For usable extensions please see https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/macs2/callpeak.html.\n"
+        )
+    else:
+        params = params.replace("--broad", "")
+
+if any(
+    out.endswith(("_peaks.broadPeak", "_peaks.gappedPeak")) for out in snakemake.output
+):
+    if "--broad" not in params:
+        params += " {} ".format("--broad")
+
+if any(
+    out.endswith(("_treat_pileup.bdg", "_control_lambda.bdg"))
+    for out in snakemake.output
+):
+    if all(p not in params for p in ["--bdg", "-B"]):
+        params += " {} ".format("--bdg")
 else:
-    for out in snakemake.output:
-        if out.endswith("_peaks.broadPeak") or out.endswith("_peaks.gappedPeak"):
-            sys.exit(
-                "If --broad option in params is not given, the _peaks.broadPeak and _peaks.gappedPeak files will not be created. \n"
-                "Add --broad option to params if these files are needed.\n"
-            )
-
-for out in snakemake.output:
-    if out.endswith("_treat_pileup.bdg") or out.endswith("_control_lambda.bdg"):
-        if (
-            "--bdg" not in params
-            and " -B " not in params
-            and not params.endswith(" -B")
-        ):
-            params = "{params} {bdg}".format(params=params, bdg="--bdg")
-            break
+    for i in ["--bdg", "-B"]:
+        params = params.replace(i, "")
 
 shell(
     "(macs2 callpeak "
     "-t {snakemake.input.treatment} "
     "{opt_input} "
+    "{out_dir} "
     "-n {out_name} "
     "{params}) {log}"
 )

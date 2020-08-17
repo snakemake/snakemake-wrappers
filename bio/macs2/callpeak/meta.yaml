@@ -46,5 +46,3 @@ input:
 output:
   - tabular file in excel format (.xls) AND
   - different optional metrics in bedGraph or BED formats
-
-
