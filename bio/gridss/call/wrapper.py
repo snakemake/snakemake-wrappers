@@ -17,7 +17,7 @@ extra = snakemake.params.get("extra", "")
 # Check inputs/arguments.
 reference = snakemake.input.get("reference")
 dictionary = snakemake.input.get("dictionary")
-if not snakemake.params.workingdir: 
+if not snakemake.params.workingdir:
     raise ValueError("Please set params.workingdir to provide a working directory.")
 
 if not snakemake.input.reference:
@@ -25,19 +25,23 @@ if not snakemake.input.reference:
 
 for ending in (".amb", ".ann", ".bwt", ".pac", ".sa"):
     if not path.exists(f"{reference}{ending}"):
-        raise ValueError(f"{reference}{ending} missing. Please make sure the reference was properly indexed by bwa.")
+        raise ValueError(
+            f"{reference}{ending} missing. Please make sure the reference was properly indexed by bwa."
+        )
 
 if not path.exists(f"{dictionary}"):
-    raise ValueError(f"{reference}{ending} missing. Please make sure the reference dictionary was properly created. This can be accomplished for example by CreateSequenceDictionary.jar from Picard")
+    raise ValueError(
+        f"{reference}{ending} missing. Please make sure the reference dictionary was properly created. This can be accomplished for example by CreateSequenceDictionary.jar from Picard"
+    )
 
 shell(
     "export JAVA_OPTS='-XX:ActiveProcessorCount=8' & "
-    "gridss -s call " # Tool
-    "--reference {reference} " # Reference
-    "--threads {snakemake.threads} " # Threads
-    "--workingdir {snakemake.params.workingdir} " # Working directory
-    "--assembly {snakemake.input.assembly} " # Assembly input from gridss assemble
-    "--output {snakemake.output} " # Assembly vcf
+    "gridss -s call "  # Tool
+    "--reference {reference} "  # Reference
+    "--threads {snakemake.threads} "  # Threads
+    "--workingdir {snakemake.params.workingdir} "  # Working directory
+    "--assembly {snakemake.input.assembly} "  # Assembly input from gridss assemble
+    "--output {snakemake.output} "  # Assembly vcf
     "{snakemake.input.bams} "
     "{extra}"
 )

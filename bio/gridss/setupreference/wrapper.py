@@ -22,13 +22,17 @@ if not snakemake.input.reference:
 
 for ending in (".amb", ".ann", ".bwt", ".pac", ".sa"):
     if not path.exists(f"{reference}{ending}"):
-        raise ValueError(f"{reference}{ending} missing. Please make sure the reference was properly indexed by bwa.")
+        raise ValueError(
+            f"{reference}{ending} missing. Please make sure the reference was properly indexed by bwa."
+        )
 
 if not path.exists(f"{dictionary}"):
-    raise ValueError(f"{reference}{ending} missing. Please make sure the reference dictionary was properly created. This can be accomplished for example by CreateSequenceDictionary.jar from Picard")
+    raise ValueError(
+        f"{reference}{ending} missing. Please make sure the reference dictionary was properly created. This can be accomplished for example by CreateSequenceDictionary.jar from Picard"
+    )
 
 shell(
-    "(gridss -s setupreference " # Tool
-    "--reference {reference} " # Reference
+    "(gridss -s setupreference "  # Tool
+    "--reference {reference} "  # Reference
     "{extra}) {log}"
 )
