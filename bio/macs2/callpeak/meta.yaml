@@ -1,7 +1,7 @@
 
 name: macs2 callpeak
 description: >
-  ``MACS2 callpeak`` model-based analysis tool for ChIP-sequencing that call peaks from alignment results.
+  ``MACS2 callpeak`` model-based analysis tool for ChIP-sequencing that calls peaks from alignment results.
   For usage information about ``MACS2 callpeak``, please see the `documentation <https://github.com/macs3-project/MACS/blob/master/README.md>`_ and the command line help.
   For more information about ``MACS2``, also see the `source code <https://github.com/macs3-project/MACS>`_ and `published article <https://genomebiology.biomedcentral.com/articles/10.1186/gb-2008-9-9-r137>`_.
   Please note that the number of output files and their extension depends on the selected options (please see table below).

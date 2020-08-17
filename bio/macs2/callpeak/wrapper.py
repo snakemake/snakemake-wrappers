@@ -7,12 +7,13 @@ import os
 import sys
 from snakemake.shell import shell
 
-log = snakemake.log_fmt_shell(stdout=True, stderr=False)
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 in_contr = snakemake.input.get("control")
 params = "{}".format(snakemake.params)
 out_file = snakemake.output[0]
 out_name = ""
+opt_input = ""
 
 exts = {
     "_peaks.xls",
@@ -30,13 +31,12 @@ for ext in exts:
         out_dir = os.path.dirname(out_file)
         list(
             map(os.unlink, (os.path.join(out_dir, i) for i in os.listdir(out_dir)))
-        )  # remove old result files
+        )  # removes old result files
         os.makedirs(out_dir, exist_ok=True)
         break
 
-opt_input = ""
 if in_contr:
-    opt_input += " -c {contr}".format(contr=in_contr)
+    opt_input = " -c {contr}".format(contr=in_contr)
 
 if " --broad" in params:
     for out in snakemake.output:
