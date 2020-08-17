@@ -78,6 +78,13 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+def gridss_setupreference():
+    run(
+        "bio/gridss/",
+        ["snakemake", "--cores", "1", "--use-conda", "reference/genome.fasta.gridsscache", "reference/genome.fasta.img"],
+    )
+
+
 def test_vembrane():
     run(
         "bio/vembrane",
