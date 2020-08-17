@@ -4,7 +4,7 @@ rule twoBitInfo:
     output:
         "{sample}.chrom.sizes"
     log:
-        "{sample}.chrom.sizes.log"
+        "logs/{sample}.chrom.sizes.log"
     params:
         "" # optional params string
     wrapper:

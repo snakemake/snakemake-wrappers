@@ -4,7 +4,7 @@ rule twoBitToFa:
     output:
         "{sample}.fa"
     log:
-        "{sample}.2bit_to_fa.log"
+        "logs/{sample}.2bit_to_fa.log"
     params:
         "" # optional params string
     wrapper:

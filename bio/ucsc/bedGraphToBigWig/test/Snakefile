@@ -5,7 +5,7 @@ rule bedGraphToBigWig:
     output:
         "{sample}.bw"
     log:
-        "{sample}.bed-graph_to_big-wig.log"
+        "logs/{sample}.bed-graph_to_big-wig.log"
     params:
         "" # optional params string
     wrapper:
