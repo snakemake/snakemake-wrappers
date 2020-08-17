@@ -16,4 +16,4 @@ rule gridss_preprocess:
     threads:
         8
     wrapper:
-        "file:/vol/huge/christo/snakemake-wrappers/bio/gridss/preprocess"
+        "master/bio/gridss/preprocess"
