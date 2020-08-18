@@ -1,6 +1,7 @@
 channels:
-  - bioconda
   - conda-forge
+  - bioconda
   - defaults
 dependencies:
   - multiqc ==1.9
+  - matplotlib ==3.3.1
