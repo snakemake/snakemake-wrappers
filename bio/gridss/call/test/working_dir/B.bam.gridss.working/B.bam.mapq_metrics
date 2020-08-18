@@ -1,0 +1,30 @@
+## htsjdk.samtools.metrics.StringHeader
+# CollectGridssMetricsAndExtractSVReads MIN_CLIP_LENGTH=5 INSERT_SIZE_METRICS=working_dir/B.bam.gridss.working/tmp.B.bam.insert_size_metrics UNMAPPED_READS=false INCLUDE_DUPLICATES=true METRICS_OUTPUT=working_dir/B.bam.gridss.working/B.bam.sv_metrics SV_OUTPUT=/dev/stdout GRIDSS_PROGRAM=[CollectCigarMetrics, CollectMapqMetrics, CollectTagMetrics, CollectIdsvMetrics, ReportThresholdCoverage] THRESHOLD_COVERAGE=50000 INPUT=mapped/B.bam ASSUME_SORTED=true OUTPUT=working_dir/B.bam.gridss.working/B.bam FILE_EXTENSION=null PROGRAM=[CollectInsertSizeMetrics] TMP_DIR=[working_dir/B.bam.gridss.working] COMPRESSION_LEVEL=0    MIN_INDEL_SIZE=1 CLIPPED=true INDELS=true SPLIT=true SINGLE_MAPPED_PAIRED=true DISCORDANT_READ_PAIRS=true STOP_AFTER=0 METRIC_ACCUMULATION_LEVEL=[ALL_READS] INCLUDE_UNPAIRED=false VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json USE_JDK_DEFLATER=false USE_JDK_INFLATER=false
+## htsjdk.samtools.metrics.StringHeader
+# Started on: Mon Aug 17 17:15:44 UTC 2020
+
+## METRICS CLASS	gridss.analysis.MapqMetrics
+MAX_MAPQ	MIN_MAPQ	MAPPED_READS	UNKNOWN_MAPQ	ZERO_MAPQ	SAMPLE	LIBRARY	READ_GROUP
+60	20	39941	0	0			
+
+## HISTOGRAM	java.lang.Integer
+mapq	All_Reads.
+20	1
+30	2
+40	1
+42	1
+44	1
+45	1
+46	5
+49	1
+50	3
+51	4
+52	1
+54	5
+55	4
+56	5
+57	3
+58	2
+59	12
+60	39889
+

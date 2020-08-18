@@ -39,7 +39,7 @@ shell(
     "--reference {reference} "  # Reference
     "--threads {snakemake.threads} "  # Threads
     "--workingdir {snakemake.params.workingdir} "  # Working directory
-    "--assembly {snakemake.output} "  # Assembly output
+    "--assembly {snakemake.output.assembly} "  # Assembly output
     "{snakemake.input.bams} "
     "{extra}) {log}"
 )

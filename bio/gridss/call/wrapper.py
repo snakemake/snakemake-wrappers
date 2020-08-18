@@ -35,13 +35,13 @@ if not path.exists(f"{dictionary}"):
     )
 
 shell(
-    "export JAVA_OPTS='-XX:ActiveProcessorCount=8' & "
+    "(export JAVA_OPTS='-XX:ActiveProcessorCount=8' & "
     "gridss -s call "  # Tool
     "--reference {reference} "  # Reference
     "--threads {snakemake.threads} "  # Threads
     "--workingdir {snakemake.params.workingdir} "  # Working directory
     "--assembly {snakemake.input.assembly} "  # Assembly input from gridss assemble
-    "--output {snakemake.output} "  # Assembly vcf
+    "--output {snakemake.output.vcf} "  # Assembly vcf
     "{snakemake.input.bams} "
-    "{extra}"
+    "{extra}) {log}"
 )
