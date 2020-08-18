@@ -41,7 +41,6 @@ if any(out.endswith(("_peaks.narrowPeak", "_summits.bed")) for out in snakemake.
                 "Remove --broad option from params if these files are needed.\n"
             )
 
-
 if any(
     out.endswith(("_peaks.broadPeak", "_peaks.gappedPeak")) for out in snakemake.output
 ):
@@ -59,12 +58,7 @@ else:
         sys.exit(
             "If --bdg or -B option in params is given, the _control_lambda.bdg and _treat_pileup.bdg extended files must be specified in output. \n"
         )
-######## DEBUG ########
-with open(
-    "/home/tarja/Schreibtisch/workspace_bioinformatik/Debugging/python/debugg.txt", "a+"
-) as f:
-    print(params, file=f)
-#######################
+
 shell(
     "(macs2 callpeak "
     "-t {snakemake.input.treatment} "
