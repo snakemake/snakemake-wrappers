@@ -4,6 +4,8 @@ rule faToTwoBit_fa:
         "{sample}.fa"
     output:
         "{sample}.2bit"
+    log:
+        "logs/{sample}.fa_to_2bit.log"
     params:
         "" # optional params string
     wrapper:
@@ -15,6 +17,8 @@ rule faToTwoBit_fa_gz:
         "{sample}.fa.gz"
     output:
         "{sample}.2bit"
+    log:
+        "logs/{sample}.fa-gz_to_2bit.log"
     params:
         "" # optional params string
     wrapper:
