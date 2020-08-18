@@ -18,9 +18,6 @@ ext = "_peaks.xls"
 out_file = [o for o in snakemake.output if o.endswith(ext)][0]
 out_name = os.path.basename(out_file[: -len(ext)])
 out_dir = os.path.dirname(out_file)
-list(
-    map(os.unlink, (os.path.join(out_dir, i) for i in os.listdir(out_dir)))
-)  # removes old result files
 
 if in_contr:
     opt_input = "-c {contr}".format(contr=in_contr)
@@ -38,24 +35,36 @@ if any(out.endswith(("_peaks.narrowPeak", "_summits.bed")) for out in snakemake.
             "For usable extensions please see https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/macs2/callpeak.html.\n"
         )
     else:
-        params = params.replace("--broad", "")
+        if " --broad" in params:
+            sys.exit(
+                "If --broad option in params is given, the _peaks.narrowPeak and _summits.bed files will not be created. \n"
+                "Remove --broad option from params if these files are needed.\n"
+            )
+
 
 if any(
     out.endswith(("_peaks.broadPeak", "_peaks.gappedPeak")) for out in snakemake.output
 ):
     if "--broad" not in params:
-        params += " {} ".format("--broad")
+        params += " --broad "
 
 if any(
     out.endswith(("_treat_pileup.bdg", "_control_lambda.bdg"))
     for out in snakemake.output
 ):
     if all(p not in params for p in ["--bdg", "-B"]):
-        params += " {} ".format("--bdg")
+        params += " --bdg "
 else:
-    for i in ["--bdg", "-B"]:
-        params = params.replace(i, "")
-
+    if any(p in params for p in ["--bdg", "-B"]):
+        sys.exit(
+            "If --bdg or -B option in params is given, the _control_lambda.bdg and _treat_pileup.bdg extended files must be specified in output. \n"
+        )
+######## DEBUG ########
+with open(
+    "/home/tarja/Schreibtisch/workspace_bioinformatik/Debugging/python/debugg.txt", "a+"
+) as f:
+    print(params, file=f)
+#######################
 shell(
     "(macs2 callpeak "
     "-t {snakemake.input.treatment} "
