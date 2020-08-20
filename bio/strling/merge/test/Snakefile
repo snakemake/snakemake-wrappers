@@ -4,9 +4,8 @@ rule strling_merge:
         reference="reference/genome.fasta",
         fai="reference/genome.fasta.fai",
     output:
-        "merged/group-bounds.txt"
+        "merged/group-bounds.txt" # must end with "-bounds.txt"
     params:
-        prefix="merged/group",
         extra="" # optionally add further command line arguments
     log:
         "log/strling/merge/group.log"

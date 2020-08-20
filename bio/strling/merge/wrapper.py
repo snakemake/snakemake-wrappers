@@ -18,7 +18,6 @@ extra = snakemake.params.get("extra", "")
 bins = snakemake.input.get("bins")
 reference = snakemake.input.get("reference")
 fai = snakemake.input.get("fai")
-prefix = snakemake.params.get("prefix")
 
 if not bins or len(bins) < 2:
     raise ValueError("Please provide at least two 'bins' as input.")
@@ -33,5 +32,10 @@ if not path.exists(reference + ".fai"):
 
 if len(snakemake.output) != 1:
     raise ValueError("Please provide exactly one output file (.bin).")
+
+if not snakemake.output[0].endswith("-bounds.txt"):
+    raise ValueError("Output file must end with '-bounds.txt'. Please change the output file name.")
+
+prefix = snakemake.output[0][:-len("-bounds.txt")]
 
 shell("(strling merge " "{bins} " "-o {prefix} " "{extra}) {log}")
