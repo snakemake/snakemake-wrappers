@@ -19,7 +19,6 @@ bam = snakemake.input.get("bam")
 bin = snakemake.input.get("bin")
 reference = snakemake.input.get("reference")
 bounds = snakemake.input.get("bounds")
-prefix = snakemake.params.get("prefix")
 
 if not bam or len(bam) > 1:
     raise ValueError("Please provide exactly one 'bam' as input.")
@@ -40,6 +39,26 @@ else:
 if not path.exists(reference + ".fai"):
     raise ValueError(
         "Please index the reference. The index file must have same file name as the reference file, with '.fai' appended."
+    )
+
+if not any(o.endswith("-bounds.txt") for o in snakemake.output):
+    raise ValueError(
+        "Please provide a file that ends with -bounds.txt in the output."
+    )
+
+for filename in snakemake.output:
+    if filename.endswith("-bounds.txt"):
+        prefix = filename[:-len("-bounds.txt")]
+        break
+
+if not any(o == f"{prefix}-genotype.txt" for o in snakemake.output):
+    raise ValueError(
+        "Please provide an output file that ends with -genotype.txt and has the same prefix as -bounds.txt"
+    )
+
+if not any(o == f"{prefix}-unplaced.txt") for o in snakemake.output):
+    raise ValueError(
+        "Please provide an output file that ends with -unplaced.txt and has the same prefix as -bounds.txt"
     )
 
 shell(
