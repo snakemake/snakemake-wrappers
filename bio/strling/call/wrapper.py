@@ -21,11 +21,11 @@ reference = snakemake.input.get("reference", None)
 bounds = snakemake.input.get("bounds", None)
 prefix = snakemake.params.get("prefix", None)
 
-if not bam:
+if not bam or len(bam) > 1:
     raise ValueError("Please provide exactly one 'bam' as input.")
 
 if not path.exists(bam + ".bai"):
-    raise ValueError("Please index the bam and generate the .bam.bai file")
+    raise ValueError("Please index the bam file. The index file must have same file name as the bam file, with '.bai' appended.")
 
 if not reference:
     raise ValueError("Please provide a fasta 'reference' input.")

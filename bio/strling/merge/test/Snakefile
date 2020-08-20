@@ -6,7 +6,8 @@ rule strling_merge:
     output:
         "merged/group-bounds.txt"
     params:
-        prefix="merged/group"
+        prefix="merged/group",
+        extra="" # optionally add further command line arguments
     log:
         "log/strling/merge/group.log"
     wrapper:

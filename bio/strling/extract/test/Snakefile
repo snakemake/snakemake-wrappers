@@ -9,5 +9,7 @@ rule strling_extract:
         "extract/{sample}.bin"
     log:
         "log/strling/extract/{sample}.log"
+    params:
+       extra="" # optionally add further command line arguments
     wrapper:
         "file:/vol/huge/christo/snakemake-wrappers/bio/strling/extract"

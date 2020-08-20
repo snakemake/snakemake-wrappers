@@ -4,6 +4,8 @@ rule strling_index:
     output:
         index="reference/genome.fasta.str",
         fai="reference/genome.fasta.fai"
+    params:
+        extra="" # optionally add further command line arguments
     log:
         "log/strling/index.log"
     wrapper:
