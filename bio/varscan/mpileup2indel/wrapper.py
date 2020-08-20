@@ -5,9 +5,8 @@ __copyright__ = "Copyright 2019, Dayris Thibault"
 __email__ = "thibault.dayris@gustaveroussy.fr"
 __license__ = "MIT"
 
+import os
 import os.path as op
-from snakemake.shell import shell
-from snakemake.utils import makedirs
 
 # Gathering extra parameters and logging behaviour
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
@@ -25,10 +24,10 @@ pileup = (
 )
 
 # Building output directories
-makedirs(op.dirname(snakemake.output[0]))
+os.makedirs(op.dirname(snakemake.output[0]))
 
-shell(
-    "varscan mpileup2indel "  # Tool and its subprocess
+os.system(
+    f"varscan mpileup2indel "  # Tool and its subprocess
     "{extra} "  # Extra parameters
     "<( {pileup} ) "
     "> {snakemake.output[0]} "  # Path to vcf file

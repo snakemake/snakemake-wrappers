@@ -6,7 +6,7 @@ __email__ = "mendlerke@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 import os.path
 
 
@@ -38,8 +38,8 @@ for file_path in snakemake.output[1:]:
         " Please indicate only one directory for the output files."
     )
 
-shell(
-    "(trim_galore"
+os.system(
+    f"(trim_galore"
     " {snakemake.params.extra}"
     " --paired"
     " -o {out_dir}"

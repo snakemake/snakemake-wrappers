@@ -1,6 +1,5 @@
 import os
 import re
-from snakemake.shell import shell
 import tempfile
 
 __author__ = "Ryan Dale"
@@ -38,8 +37,8 @@ prefix = re.split(".fastq|.fq|.txt|.seq", os.path.basename(snakemake.input[0]))[
 
 tempdir = tempfile.mkdtemp()
 
-shell(
-    "fastq_screen --outdir {tempdir} "
+os.system(
+    f"fastq_screen --outdir {tempdir} "
     "--force "
     "--aligner {aligner} "
     "--conf {config_file} "
@@ -51,10 +50,10 @@ shell(
 )
 
 # Move output to the filenames specified by the rule
-shell("mv {tempdir}/{prefix}_screen.txt {snakemake.output.txt}")
-shell("mv {tempdir}/{prefix}_screen.png {snakemake.output.png}")
+os.system(f"mv {tempdir}/{prefix}_screen.txt {snakemake.output.txt}")
+os.system(f"mv {tempdir}/{prefix}_screen.png {snakemake.output.png}")
 
 # Clean up temp
-shell("rm -r {tempdir}")
+os.system(f"rm -r {tempdir}")
 if isinstance(_config, dict):
-    shell("rm {tmp}")
+    os.system(f"rm {tmp}")

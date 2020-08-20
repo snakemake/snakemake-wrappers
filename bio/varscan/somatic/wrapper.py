@@ -6,18 +6,16 @@ __email__ = "thibault.dayris@gustaveroussy.fr"
 __license__ = "MIT"
 
 
+import os
 import os.path as op
-
-from snakemake.shell import shell
-from snakemake.utils import makedirs
 
 # Defining logging and gathering extra parameters
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
 # Building output dirs
-makedirs(op.dirname(snakemake.output.snp))
-makedirs(op.dirname(snakemake.output.indel))
+os.makedirs(op.dirname(snakemake.output.snp))
+os.makedirs(op.dirname(snakemake.output.indel))
 
 # Output prefix
 prefix = op.splitext(snakemake.output.snp)[0]
@@ -37,8 +35,8 @@ elif all(pileup in snakemake.input.keys() for pileup in pileup_pair):
 else:
     raise KeyError("Could not find either a mpileup, or a pair of pileup files")
 
-shell(
-    "varscan somatic"  # Tool and its subcommand
+os.system(
+    f"varscan somatic"  # Tool and its subcommand
     " {in_pileup}"  # Path to input file(s)
     " {prefix}"  # Path to output
     " {extra}"  # Extra parameters

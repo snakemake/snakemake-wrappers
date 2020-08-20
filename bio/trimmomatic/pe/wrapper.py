@@ -15,7 +15,7 @@ __email__ = "koester@jimmy.harvard.edu"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 
 # Distribute available threads between trimmomatic itself and any potential pigz instances
@@ -92,8 +92,8 @@ output_r1, output_r1_unp, output_r2, output_r2_unp = [
     for filename in output_files
 ]
 
-shell(
-    "trimmomatic PE -threads {trimmomatic_threads} {extra} "
+os.system(
+    f"trimmomatic PE -threads {trimmomatic_threads} {extra} "
     "{input_r1} {input_r2} "
     "{output_r1} {output_r1_unp} "
     "{output_r2} {output_r2_unp} "

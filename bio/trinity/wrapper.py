@@ -5,8 +5,8 @@ __copyright__ = "Copyright 2018, Tessa Pierce"
 __email__ = "ntpierce@gmail.com"
 __license__ = "MIT"
 
+import os
 from os import path
-from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 max_memory = snakemake.params.get("max_memory", "10G")
@@ -54,8 +54,8 @@ assert "trinity" in outdir, "output directory name must contain 'trinity'"
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell(
-    "Trinity {input_cmd} --CPU {snakemake.threads} "
+os.system(
+    f"Trinity {input_cmd} --CPU {snakemake.threads} "
     " --max_memory {max_memory} --seqType {seqtype} "
     " --output {outdir} {snakemake.params.extra} "
     " {log}"

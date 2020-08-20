@@ -4,7 +4,7 @@ __email__ = "endrebak85@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 # Placeholder for optional parameters
 extra = snakemake.params.get("extra", "")
@@ -24,15 +24,15 @@ if len(snakemake.log) > 0:
 
 genome = snakemake.params.get("genome")
 
-cmd = "epic -cpu {threads} -t {treatment} -c {background} -o {enriched_regions} -gn {genome}"
+cmd = f"epic -cpu {threads} -t {treatment} -c {background} -o {enriched_regions} -gn {genome}"
 
 if bed:
-    cmd += " -b {bed}"
+    cmd += f" -b {bed}"
 if matrix:
-    cmd += " -sm {matrix}"
+    cmd += f" -sm {matrix}"
 if log:
-    cmd += " -l {log}"
+    cmd += f" -l {log}"
 
-cmd += " {extra}"
+cmd += f" {extra}"
 
-shell(cmd)
+os.system(cmd)

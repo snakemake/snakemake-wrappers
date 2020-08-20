@@ -8,7 +8,6 @@ __license__ = "MIT"
 
 
 import os
-from snakemake.shell import shell
 
 params_extra = snakemake.params.get("extra", "")
 cmdline_args = ["bismark_methylation_extractor {params_extra}"]
@@ -38,7 +37,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 cmdline_args.append("{log}")
 
 # run
-shell(" ".join(cmdline_args))
+os.system(f" ".join(cmdline_args))
 
 key2prefix_suffix = [
     ("mbias_report", ("", ".M-bias.txt")),
@@ -67,4 +66,4 @@ for (key, (prefix, suffix)) in key2prefix_suffix:
 
         actual_path = os.path.join(output_dir, prefix + bam_wo_ext + suffix)
         if exp_path != actual_path:
-            shell("mv {actual_path:q} {exp_path:q} {log_append}")
+            os.system(f"mv {actual_path:q} {exp_path:q} {log_append}")

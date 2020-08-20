@@ -4,7 +4,7 @@ __email__ = "johannes.koester@protonmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 extra = snakemake.params.get("extra", "")
 java_opts = snakemake.params.get("java_opts", "")
@@ -14,7 +14,7 @@ filters = [
 ]
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-shell(
-    "gatk --java-options '{java_opts}' VariantFiltration -R {snakemake.input.ref} -V {snakemake.input.vcf} "
+os.system(
+    f"gatk --java-options '{java_opts}' VariantFiltration -R {snakemake.input.ref} -V {snakemake.input.vcf} "
     "{extra} {filters} -O {snakemake.output.vcf} {log}"
 )

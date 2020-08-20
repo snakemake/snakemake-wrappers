@@ -5,7 +5,6 @@ __license__ = "MIT"
 
 import os
 import tempfile
-from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
@@ -18,8 +17,8 @@ basename = os.path.splitext(os.path.basename(snakemake.input.bam[0]))[0]
 
 
 with tempfile.TemporaryDirectory() as tmp_dir:
-    shell(
-        "(dv_make_examples.py "
+    os.system(
+        f"(dv_make_examples.py "
         "--cores {snakemake.threads} "
         "--ref {snakemake.input.ref} "
         "--reads {snakemake.input.bam} "

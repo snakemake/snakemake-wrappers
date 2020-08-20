@@ -5,7 +5,7 @@ __copyright__ = "Copyright 2019, Joël Simoneau"
 __email__ = "simoneaujoel@gmail.com"
 __license__ = "MIT"
 
-from snakemake.shell import shell
+import os
 
 # Creating log
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -18,8 +18,8 @@ fasta = snakemake.input.get("fasta")
 assert fasta is not None, "input-> a FASTA-file is required"
 fasta = " ".join(fasta) if isinstance(fasta, list) else fasta
 
-shell(
-    "kallisto index "  # Tool
+os.system(
+    f"kallisto index "  # Tool
     "{extra} "  # Optional parameters
     "--index={snakemake.output.index} "  # Output file
     "{fasta} "  # Input FASTA files

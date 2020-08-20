@@ -6,8 +6,6 @@ __license__ = "MIT"
 
 import os
 
-from snakemake.shell import shell
-
 known = snakemake.input.get("known", "")
 if known:
     known = "--dbsnp " + known
@@ -20,8 +18,8 @@ if isinstance(bams, str):
 bams = list(map("-I {}".format, bams))
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-shell(
-    "gatk --java-options '{java_opts}' HaplotypeCaller {extra} "
+os.system(
+    f"gatk --java-options '{java_opts}' HaplotypeCaller {extra} "
     "-R {snakemake.input.ref} {bams} "
     "-ERC GVCF "
     "-O {snakemake.output.gvcf} {known} {log}"

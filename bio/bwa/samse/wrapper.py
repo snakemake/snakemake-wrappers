@@ -8,8 +8,6 @@ __license__ = "MIT"
 
 from os import path
 
-from snakemake.shell import shell
-
 
 # Extract arguments.
 extra = snakemake.params.get("extra", "")
@@ -51,8 +49,8 @@ else:
     raise ValueError("Unexpected value for params.sort ({})".format(sort))
 
 # Run command.
-shell(
-    "(bwa samse"
+os.system(
+    f"(bwa samse"
     " {extra}"
     " {snakemake.params.index}"
     " {snakemake.input.sai}"

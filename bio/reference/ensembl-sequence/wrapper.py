@@ -3,10 +3,10 @@ __copyright__ = "Copyright 2019, Johannes Köster"
 __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
 
+import os
 import subprocess as sp
 import sys
 from itertools import product
-from snakemake.shell import shell
 
 species = snakemake.params.species.lower()
 release = int(snakemake.params.release)
@@ -51,11 +51,11 @@ for suffix in suffixes:
     )
 
     try:
-        shell("curl -sSf {url} > /dev/null 2> /dev/null")
+        os.system(f"curl -sSf {url} > /dev/null 2> /dev/null")
     except sp.CalledProcessError:
         continue
 
-    shell("(curl -L {url} | gzip -d > {snakemake.output[0]}) {log}")
+    os.system(f"(curl -L {url} | gzip -d > {snakemake.output[0]}) {log}")
     success = True
     break
 

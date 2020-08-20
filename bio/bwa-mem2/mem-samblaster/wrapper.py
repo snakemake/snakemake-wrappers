@@ -4,9 +4,8 @@ __email__ = "christopher.schroeder@tu-dortmund.de"
 __license__ = "MIT"
 
 
+import os
 from os import path
-
-from snakemake.shell import shell
 
 
 # Extract arguments.
@@ -23,8 +22,8 @@ if not isinstance(snakemake.input.reads, str) and len(snakemake.input.reads) not
 }:
     raise ValueError("input must have 1 (single-end) or 2 (paired-end) elements")
 
-shell(
-    "(bwa-mem2 mem"
+os.system(
+    f"(bwa-mem2 mem"
     " -t {snakemake.threads}"
     " {extra}"
     " {snakemake.params.index}"

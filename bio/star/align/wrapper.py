@@ -5,7 +5,6 @@ __license__ = "MIT"
 
 
 import os
-from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -38,8 +37,8 @@ else:
 
 outprefix = os.path.dirname(snakemake.output[0]) + "/"
 
-shell(
-    "STAR "
+os.system(
+    f"STAR "
     "{extra} "
     "--runThreadN {snakemake.threads} "
     "--genomeDir {snakemake.params.index} "

@@ -5,12 +5,12 @@ __copyright__ = "Copyright 2020, David Lähnemann"
 __email__ = "david.laehnemann@uni-due.de"
 __license__ = "MIT"
 
-from snakemake.shell import shell
+import os
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-shell(
-    "( prosolo single-cell-bulk "
+os.system(
+    f"( prosolo single-cell-bulk "
     "--omit-indels "
     " {snakemake.params.extra} "
     "--candidates {snakemake.input.candidates} "

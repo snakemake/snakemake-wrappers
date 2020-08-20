@@ -4,9 +4,7 @@ __email__ = "bpow@unc.edu"
 __license__ = "BSD"
 
 
-from snakemake.shell import shell
-
-shell.executable("bash")
+import os
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -16,8 +14,8 @@ pedigree = snakemake.input.get("pedigree", "")
 if pedigree:
     pedigree = '--pedigree-file "%s"' % pedigree
 
-shell(
-    "jannovar annotate-vcf --database {snakemake.params.database}"
+os.system(
+    f"jannovar annotate-vcf --database {snakemake.params.database}"
     " --input-vcf {snakemake.input.vcf} --output-vcf {snakemake.output}"
     " {pedigree} {extra} {log}"
 )

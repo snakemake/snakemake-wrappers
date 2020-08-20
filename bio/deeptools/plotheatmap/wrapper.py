@@ -3,7 +3,7 @@ __copyright__ = "Copyright 2020, Antonie Vietor"
 __email__ = "antonie.v@gmx.de"
 __license__ = "MIT"
 
-from snakemake.shell import shell
+import os
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
@@ -22,8 +22,8 @@ if out_matrix:
         out_matrix=out_matrix
     )
 
-shell(
-    "(plotHeatmap "
+os.system(
+    f"(plotHeatmap "
     "-m {snakemake.input[0]} "
     "-o {snakemake.output.heatmap_img} "
     "{optional_output} "

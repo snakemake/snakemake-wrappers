@@ -4,7 +4,7 @@ __email__ = "patrik.smeds@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 input_flag = "--vcf"
 if snakemake.input[0].endswith(".gz"):
@@ -18,8 +18,8 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 extra = snakemake.params.get("extra", "")
 
-shell(
-    "vcftools "
+os.system(
+    f"vcftools "
     "{input_flag} "
     "{snakemake.input} "
     "{extra} "

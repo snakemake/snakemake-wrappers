@@ -5,7 +5,7 @@ __copyright__ = "Copyright 2020, Dayne L Filer"
 __email__ = "dayne.filer@gmail.com"
 __license__ = "MIT"
 
-from snakemake.shell import shell
+import os
 
 params = snakemake.params.get("extra", "")
 
@@ -14,6 +14,6 @@ bed = snakemake.input.get("bed", "")
 if bed:
     bed = "-b " + bed
 
-shell(
-    "samtools depth {params} {bed} " "-o {snakemake.output[0]} {snakemake.input.bams}"
+os.system(
+    f"samtools depth {params} {bed} " "-o {snakemake.output[0]} {snakemake.input.bams}"
 )

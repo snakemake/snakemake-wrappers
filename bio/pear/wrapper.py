@@ -3,8 +3,8 @@ __copyright__ = "Copyright 2019, N. Tessa Pierce"
 __email__ = "ntpierce@gmail.com"
 __license__ = "MIT"
 
+import os
 from os import path
-from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -42,21 +42,21 @@ def move_files(in_list, out_list, gzip):
     for f, o in zip(in_list, out_list):
         if f != o:
             if gzip:
-                shell("gzip -9 -c {f} > {o}")
-                shell("rm -f {f}")
+                os.system(f"gzip -9 -c {f} > {o}")
+                os.system(f"rm -f {f}")
             else:
-                shell("cp {f} {o}")
-                shell("rm -f {f}")
+                os.system(f"cp {f} {o}")
+                os.system(f"rm -f {f}")
         elif gzip:
-            shell("gzip -9 {f}")
+            os.system(f"gzip -9 {f}")
 
 
 pval = float(snakemake.params.get("pval", ".01"))
 max_mem = snakemake.resources.get("mem_mb", "4000")
 extra = snakemake.params.get("extra", "")
 
-shell(
-    "pear -f {r1} -r {r2} -p {pval} -j {snakemake.threads} -y {max_mem} {extra} -o {out_base} {log}"
+os.system(
+    f"pear -f {r1} -r {r2} -p {pval} -j {snakemake.threads} -y {max_mem} {extra} -o {out_base} {log}"
 )
 
 move_files(df_outputs, final_outputs, gzip)

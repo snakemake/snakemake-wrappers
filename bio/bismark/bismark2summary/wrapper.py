@@ -7,7 +7,6 @@ __email__ = "roman.chernyatchik@jetbrains.com"
 __license__ = "MIT"
 
 import os
-from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 cmds = ["bismark2summary {extra}"]
@@ -56,4 +55,4 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 cmds.append("{log}")
 
 # run shell command:
-shell(" ".join(cmds))
+os.system(f" ".join(cmds))

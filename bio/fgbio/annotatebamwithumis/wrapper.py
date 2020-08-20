@@ -4,9 +4,7 @@ __email__ = "patrik.smeds@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
-
-shell.executable("bash")
+import os
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -36,8 +34,8 @@ if output_file is None:
 elif not isinstance(output_file, str):
     raise ValueError("Output bam-file should be a string: " + str(output_file) + "!")
 
-shell(
-    "fgbio AnnotateBamWithUmis"
+os.system(
+    f"fgbio AnnotateBamWithUmis"
     " -i {bam_input}"
     " -f {umi_input}"
     " -o {output_file}"

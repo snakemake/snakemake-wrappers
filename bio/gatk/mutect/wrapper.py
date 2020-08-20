@@ -5,15 +5,15 @@ __copyright__ = "Copyright 2019, Dayris Thibault"
 __email__ = "thibault.dayris@gustaveroussy.fr"
 __license__ = "MIT"
 
-from snakemake.shell import shell
-from snakemake.utils import makedirs
+
+import os
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 extra = snakemake.params.get("extra", "")
 
-shell(
-    "gatk Mutect2 "  # Tool and its subprocess
+os.system(
+    f"gatk Mutect2 "  # Tool and its subprocess
     "--input {snakemake.input.map} "  # Path to input mapping file
     "--output {snakemake.output.vcf} "  # Path to output vcf file
     "--reference {snakemake.input.fasta} "  # Path to reference fasta file

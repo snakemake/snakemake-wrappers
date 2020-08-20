@@ -4,7 +4,7 @@ __email__ = "j.forster@dkfz.de"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 ## Extract arguments
 header = snakemake.input.get("header", "")
@@ -22,8 +22,8 @@ else:
 extra = snakemake.params.get("extra", "")
 view_extra = snakemake.params.get("view_extra", "")
 
-shell(
-    "bcftools reheader "
+os.system(
+    f"bcftools reheader "
     "{extra} "
     "{header_cmd} "
     "{samples_cmd} "

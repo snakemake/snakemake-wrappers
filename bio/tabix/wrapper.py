@@ -4,8 +4,8 @@ __email__ = "koester@jimmy.harvard.edu"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell("tabix {snakemake.params} {snakemake.input[0]} {log}")
+os.system(f"tabix {snakemake.params} {snakemake.input[0]} {log}")

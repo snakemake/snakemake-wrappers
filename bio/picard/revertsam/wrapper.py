@@ -6,13 +6,13 @@ __email__ = "patrik.smeds@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell(
-    "picard"
+os.system(
+    f"picard"
     " RevertSam"
     " {extra}"
     " INPUT={snakemake.input[0]}"

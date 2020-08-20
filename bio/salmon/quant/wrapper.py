@@ -5,8 +5,8 @@ __copyright__ = "Copyright 2018, Tessa Pierce"
 __email__ = "ntpierce@gmail.com"
 __license__ = "MIT"
 
+import os
 from os import path
-from snakemake.shell import shell
 
 
 def manual_decompression(reads, zip_ext):
@@ -57,8 +57,8 @@ if r:
 
 outdir = path.dirname(snakemake.output.get("quant"))
 
-shell(
-    "salmon quant -i {snakemake.input.index} "
+os.system(
+    f"salmon quant -i {snakemake.input.index} "
     " -l {libtype} {read_cmd} -o {outdir} "
     " -p {snakemake.threads} {extra} {log} "
 )

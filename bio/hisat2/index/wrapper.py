@@ -6,7 +6,6 @@ __email__ = "simoneaujoel@gmail.com"
 __license__ = "MIT"
 
 import os
-from snakemake.shell import shell
 
 # Creating log
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -26,8 +25,8 @@ hisat_dir = snakemake.params.get("prefix", "")
 if hisat_dir:
     os.makedirs(hisat_dir)
 
-shell(
-    "hisat2-build {extra} "
+os.system(
+    f"hisat2-build {extra} "
     "-p {snakemake.threads} "
     "{input_seq} "
     "{snakemake.params.prefix} "

@@ -4,9 +4,8 @@ __email__ = "koester@jimmy.harvard.edu, julianderuiter@gmail.com"
 __license__ = "MIT"
 
 
+import os
 from os import path
-
-from snakemake.shell import shell
 
 
 # Extract arguments.
@@ -57,8 +56,8 @@ elif sort == "picard":
 else:
     raise ValueError("Unexpected value for params.sort ({})".format(sort))
 
-shell(
-    "(bwa mem"
+os.system(
+    f"(bwa mem"
     " -t {snakemake.threads}"
     " {extra}"
     " {snakemake.params.index}"

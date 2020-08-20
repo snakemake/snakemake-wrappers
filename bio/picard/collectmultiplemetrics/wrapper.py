@@ -4,7 +4,7 @@ __email__ = "antonie.v@gmx.de"
 __license__ = "MIT"
 
 import sys
-from snakemake.shell import shell
+import os
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -55,8 +55,8 @@ for ext in exts_to_prog:
         out = output_file[: -len(ext)]
         break
 
-shell(
-    "(picard -Xmx{res}g CollectMultipleMetrics "
+os.system(
+    f"(picard -Xmx{res}g CollectMultipleMetrics "
     "I={snakemake.input.bam} "
     "O={out} "
     "R={snakemake.input.ref} "

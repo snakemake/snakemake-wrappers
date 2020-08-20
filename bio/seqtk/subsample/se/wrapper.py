@@ -6,14 +6,14 @@ __email__ = "fkilpert@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 
 log = snakemake.log_fmt_shell()
 
 
-shell(
-    "( "
+os.system(
+    f"( "
     "seqtk sample "
     "-s {snakemake.params.seed} "
     "{snakemake.input} "

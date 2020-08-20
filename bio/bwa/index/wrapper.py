@@ -3,9 +3,9 @@ __copyright__ = "Copyright 2016, Patrik Smeds"
 __email__ = "patrik.smeds@gmail.com"
 __license__ = "MIT"
 
+import os
 from os import path
 
-from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -27,6 +27,10 @@ construction_algorithm = snakemake.params.get("algorithm", "")
 if len(construction_algorithm) != 0:
     construction_algorithm = "-a " + construction_algorithm
 
-shell(
-    "bwa index" " {prefix}" " {construction_algorithm}" " {snakemake.input[0]}" " {log}"
+os.system(
+    f"bwa index"
+    " {prefix}"
+    " {construction_algorithm}"
+    " {snakemake.input[0]}"
+    " {log}"
 )

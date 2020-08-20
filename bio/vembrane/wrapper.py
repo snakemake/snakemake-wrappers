@@ -5,14 +5,14 @@ __copyright__ = "Copyright 2020, Christopher Schröder"
 __email__ = "christopher.schroeder@tu-dortmund.de"
 __license__ = "MIT"
 
-from snakemake.shell import shell
+import os
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 extra = snakemake.params.get("extra", "")
 
-shell(
-    "vembrane"  # Tool and its subcommand
+os.system(
+    f"vembrane"  # Tool and its subcommand
     " {extra}"  # Extra parameters
     ' "{snakemake.params.expression}"'
     " {snakemake.input.vcf}"  # Path to input vcf file

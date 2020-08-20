@@ -3,10 +3,8 @@ __copyright__ = "Copyright 2019, Patrik Smeds"
 __email__ = "patrik.smeds@gmail.com"
 __license__ = "MIT"
 
+import os
 
-from snakemake.shell import shell
-
-shell.executable("bash")
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -20,8 +18,8 @@ output_file = snakemake.output[0]
 if not isinstance(output_file, str) and len(snakemake.output) != 1:
     raise ValueError("Output should be one file: " + str(output_file) + "!")
 
-shell(
-    "coverageBed"
+os.system(
+    f"coverageBed"
     " -a {input_a}"
     " -b {input_b}"
     " {extra_params}"

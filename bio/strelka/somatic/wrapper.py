@@ -5,9 +5,8 @@ __copyright__ = "Copyright 2019, Dayris Thibault"
 __email__ = "thibault.dayris@gustaveroussy.fr"
 __license__ = "MIT"
 
+import os
 from pathlib import Path
-from snakemake.shell import shell
-from snakemake.utils import makedirs
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
@@ -29,8 +28,8 @@ if snakemake.output[0].endswith("vcf.gz"):
 else:
     run_dir = snakemake.output
 
-shell(
-    "(configureStrelkaSomaticWorkflow.py "  # Configuration script
+os.system(
+    f"(configureStrelkaSomaticWorkflow.py "  # Configuration script
     "{normal} "  # Path to normal bam (if any)
     "--tumorBam {snakemake.input.tumor} "  # Path to tumor bam
     "--referenceFasta {snakemake.input.fasta} "  # Path to fasta file

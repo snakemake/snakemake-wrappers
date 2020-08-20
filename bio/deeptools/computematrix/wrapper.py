@@ -3,7 +3,7 @@ __copyright__ = "Copyright 2020, Antonie Vietor"
 __email__ = "antonie.v@gmx.de"
 __license__ = "MIT"
 
-from snakemake.shell import shell
+import os
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
@@ -18,8 +18,8 @@ if out_tab:
 if out_bed:
     optional_output += " --outFileSortedRegions {out_bed} ".format(out_bed=out_bed)
 
-shell(
-    "(computeMatrix "
+os.system(
+    f"(computeMatrix "
     "{snakemake.params.command} "
     "{snakemake.params.extra} "
     "-R {snakemake.input.bed} "

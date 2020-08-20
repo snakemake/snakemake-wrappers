@@ -5,7 +5,7 @@ __copyright__ = "Copyright 2018, Tessa Pierce"
 __email__ = "ntpierce@gmail.com"
 __license__ = "MIT"
 
-from snakemake.shell import shell
+import os
 from os import path
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -24,8 +24,8 @@ else:
 
 # note: --force allows snakemake to handle rewriting files as necessary
 # without needing to specify *all* busco outputs as snakemake outputs
-shell(
-    "run_busco --in {snakemake.input} --out {out_name} --force "
+os.system(
+    f"run_busco --in {snakemake.input} --out {out_name} --force "
     " --cpu {snakemake.threads} --mode {mode} --lineage {lineage} "
     " {extra} {log}"
 )
@@ -33,5 +33,5 @@ shell(
 busco_outname = "run_" + out_name
 
 # move to intended location
-shell("cp -r {busco_outname}/* {outdir}")
-shell("rm -rf {busco_outname}")
+os.system(f"cp -r {busco_outname}/* {outdir}")
+os.system(f"rm -rf {busco_outname}")

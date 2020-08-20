@@ -3,7 +3,6 @@ __copyright__ = "Copyright 2020, David Lähnemann"
 __email__ = "david.laehnemann@uni-due.de"
 __license__ = "MIT"
 
-from snakemake.shell import shell
 import os
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -30,8 +29,8 @@ if slices == "":
 
 extra = snakemake.params.get("extra", "")
 
-shell(
-    "curl --silent"
+os.system(
+    f"curl --silent"
     " --header $CURL_HEADER_TOKEN"
     " 'https://api.gdc.cancer.gov/slicing/view/{uuid}?{slices}'"
     " {extra}"
@@ -41,7 +40,7 @@ shell(
 if os.path.getsize(snakemake.output.bam) < 100000:
     with open(snakemake.output.bam) as f:
         if "error" in f.read():
-            shell("cat {snakemake.output.bam} {log}")
+            os.system(f"cat {snakemake.output.bam} {log}")
             raise RuntimeError(
                 "Your GDC API request returned an error, check your log file for the error message."
             )

@@ -5,8 +5,8 @@ __copyright__ = "Copyright 2020, Dayris Thibault"
 __email__ = "thibault.dayris@gustaveroussy.fr"
 __license__ = "MIT"
 
+import os
 from os.path import commonprefix
-from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
@@ -17,8 +17,8 @@ extra = snakemake.params.get("extra", "")
 # to fill the requested parameter '-o'
 prefix = commonprefix(snakemake.output)
 
-shell(
-    "msisensor msi"  # Tool and its sub-command
+os.system(
+    f"msisensor msi"  # Tool and its sub-command
     " -d {snakemake.input.microsat}"  # Path to homopolymer/microsat file
     " -n {snakemake.input.normal}"  # Path to normal bam
     " -t {snakemake.input.tumor}"  # Path to tumor bam

@@ -6,7 +6,7 @@ __email__ = "mbhall88@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 
 def is_header(query):
@@ -47,8 +47,8 @@ perfect_reads_flag = "--perfect " if perfect_reads else ""
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 # Executed shell command
-shell(
-    "nanosim-h {extra} "
+os.system(
+    f"nanosim-h {extra} "
     "{perfect_reads_flag} "
     "--max-len {max_read_len} "
     "--min-len {min_read_len} "

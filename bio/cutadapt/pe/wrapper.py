@@ -6,16 +6,15 @@ __email__ = "julianderuiter@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
-
+import os
 
 n = len(snakemake.input)
 assert n == 2, "Input must contain 2 (paired-end) elements."
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell(
-    "cutadapt"
+os.system(
+    f"cutadapt"
     " {snakemake.params.adapters}"
     " {snakemake.params.others}"
     " -o {snakemake.output.fastq1}"

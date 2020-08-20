@@ -4,7 +4,7 @@ __email__ = "christopher.schroeder@tu-dortmund.de"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 extra = snakemake.params.get("extra", "")
 java_opts = snakemake.params.get("java_opts", "")
@@ -14,8 +14,8 @@ known = snakemake.input.get("known", "")
 if known:
     known = "--known-sites {}".format(known)
 
-shell(
-    "gatk --java-options '{java_opts}' BaseRecalibrator {extra} "
+os.system(
+    f"gatk --java-options '{java_opts}' BaseRecalibrator {extra} "
     "-R {snakemake.input.ref} -I {snakemake.input.bam} "
     "-O {snakemake.output.recal_table} {known} {log}"
 )

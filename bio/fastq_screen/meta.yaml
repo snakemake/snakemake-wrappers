@@ -57,5 +57,5 @@ notes: |
     directory, make sure the `$TMPDIR` environmental variable is set (see the `tempfile
     docs <https://docs.python.org/3/library/tempfile.html#tempfile.mkstemp>`_) for
     details). One way of doing this is by adding  something like
-    ``shell.prefix("export TMPDIR=/scratch; ")`` to the snakefile calling this
+    ``os.system("export TMPDIR=/scratch; ")`` to the snakefile calling this
     wrapper.

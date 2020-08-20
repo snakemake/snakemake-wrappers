@@ -4,7 +4,6 @@ __email__ = "antonie.v@gmx.de"
 __license__ = "MIT"
 
 import os
-from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -19,8 +18,8 @@ if len(snakemake.input) > 1:
         input_file = "-i " + snakemake.input.get("bed")
         genome = "-g " + snakemake.input.get("ref")
 
-shell(
-    "(genomeCoverageBed"
+os.system(
+    f"(genomeCoverageBed"
     " {snakemake.params}"
     " {input_file}"
     " {genome}"

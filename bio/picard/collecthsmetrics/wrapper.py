@@ -6,15 +6,15 @@ __email__ = "julianderuiter@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 
 inputs = " ".join("INPUT={}".format(in_) for in_ in snakemake.input)
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell(
-    "picard CollectHsMetrics"
+os.system(
+    f"picard CollectHsMetrics"
     " {extra}"
     " INPUT={snakemake.input.bam}"
     " OUTPUT={snakemake.output[0]}"

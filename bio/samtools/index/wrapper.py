@@ -4,7 +4,9 @@ __email__ = "koester@jimmy.harvard.edu"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 
-shell("samtools index {snakemake.params} {snakemake.input[0]} {snakemake.output[0]}")
+os.system(
+    f"samtools index {snakemake.params} {snakemake.input[0]} {snakemake.output[0]}"
+)

@@ -3,7 +3,7 @@ __copyright__ = "Copyright 2020, David Lähnemann"
 __email__ = "david.laehnemann@uni-due.de"
 __license__ = "MIT"
 
-from snakemake.shell import shell
+import os
 import os.path as path
 from tempfile import TemporaryDirectory
 import glob
@@ -18,8 +18,8 @@ if token != "":
     token = "--token-file {}".format(token)
 
 with TemporaryDirectory() as tempdir:
-    shell(
-        "gdc-client download"
+    os.system(
+        f"gdc-client download"
         " {token}"
         " {extra}"
         " -n {snakemake.threads} "
@@ -52,4 +52,4 @@ with TemporaryDirectory() as tempdir:
                     )
                 )
             tmp_path = paths[0]
-        shell("mv {tmp_path} {out_path}")
+        os.system(f"mv {tmp_path} {out_path}")

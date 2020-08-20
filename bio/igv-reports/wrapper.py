@@ -5,7 +5,7 @@ __copyright__ = "Copyright 2019, Johannes Köster"
 __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
 
-from snakemake.shell import shell
+import os
 
 extra = snakemake.params.get("extra", "")
 
@@ -17,6 +17,6 @@ if tracks:
         tracks = [tracks]
     tracks = "--tracks {}".format(" ".join(tracks))
 
-shell(
-    "create_report {extra} --standalone --output {snakemake.output[0]} {snakemake.input.vcf} {snakemake.input.fasta} {tracks} {log}"
+os.system(
+    f"create_report {extra} --standalone --output {snakemake.output[0]} {snakemake.input.vcf} {snakemake.input.fasta} {tracks} {log}"
 )

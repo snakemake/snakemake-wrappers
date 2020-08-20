@@ -5,8 +5,8 @@ __copyright__ = "Copyright 2019, N. Tessa Pierce"
 __email__ = "ntpierce@gmail.com"
 __license__ = "MIT"
 
+import os
 from os import path
-from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
@@ -29,6 +29,6 @@ output_cmd = "  | samtools view -Sb - > " if str(outfile).endswith(".bam") else 
 
 min_orf_len = snakemake.params.get("f", "250")
 
-shell(
-    "paladin align -f {min_orf_len} -t {snakemake.threads} {extra} {index_base} {r} {output_cmd} {outfile}"
+os.system(
+    f"paladin align -f {min_orf_len} -t {snakemake.threads} {extra} {index_base} {r} {output_cmd} {outfile}"
 )

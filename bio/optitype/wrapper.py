@@ -5,7 +5,6 @@ __license__ = "MIT"
 
 
 import os
-from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -20,8 +19,8 @@ config = snakemake.params.get("config", "")
 if any(config):
     config = "--config {}".format(config)
 
-shell(
-    "(OptiTypePipeline.py"
+os.system(
+    f"(OptiTypePipeline.py"
     " --input {snakemake.input.reads}"
     " --outdir {outdir}"
     " --prefix {snakemake.wildcards.sample}"

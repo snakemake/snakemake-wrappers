@@ -5,7 +5,6 @@ __license__ = "MIT"
 
 import os
 import sys
-from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
@@ -59,8 +58,8 @@ else:
             "If --bdg or -B option in params is given, the _control_lambda.bdg and _treat_pileup.bdg extended files must be specified in output. \n"
         )
 
-shell(
-    "(macs2 callpeak "
+os.system(
+    f"(macs2 callpeak "
     "-t {snakemake.input.treatment} "
     "{opt_input} "
     "{out_dir} "

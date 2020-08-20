@@ -3,7 +3,7 @@ __copyright__ = "Copyright 2020, Felix Mölder"
 __email__ = "felix.moelder@uni-due.de"
 __license__ = "MIT"
 
-from snakemake.shell import shell
+import os
 from pathlib import Path
 import ntpath
 
@@ -38,4 +38,4 @@ if snakemake.input.get("r2", ""):
         out_read=out_r2, final_output_path=snakemake.output.r2
     )
 
-shell("(ptrimmer {ptrimmer_params} && {process_r1} {process_r2}) {log}")
+os.system(f"(ptrimmer {ptrimmer_params} && {process_r1} {process_r2}) {log}")

@@ -4,10 +4,10 @@ __email__ = "koester@jimmy.harvard.edu"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 
-shell(
-    "bcftools concat {snakemake.params} -o {snakemake.output[0]} "
+os.system(
+    f"bcftools concat {snakemake.params} -o {snakemake.output[0]} "
     "{snakemake.input.calls}"
 )

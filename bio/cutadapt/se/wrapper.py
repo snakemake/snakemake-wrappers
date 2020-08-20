@@ -6,13 +6,13 @@ __email__ = "julianderuiter@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell(
-    "cutadapt"
+os.system(
+    f"cutadapt"
     " {snakemake.params}"
     " -j {snakemake.threads}"
     " -o {snakemake.output.fastq}"

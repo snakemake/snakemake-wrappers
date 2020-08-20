@@ -4,9 +4,8 @@ __email__ = "patrik.smeds@gmail.com"
 __license__ = "MIT"
 
 
+import os
 from os import path
-
-from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
@@ -35,8 +34,8 @@ elif out_alignment_file.endswith(".sam"):
 else:
     samtools_output_command += "b -o " + out_alignment_file
 
-shell(
-    "{samtools_input_command} |"
+os.system(
+    f"{samtools_input_command} |"
     " primerclip"
     " {master_file}"
     " /dev/stdin"

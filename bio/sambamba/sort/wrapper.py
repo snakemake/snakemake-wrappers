@@ -5,9 +5,8 @@ __license__ = "MIT"
 
 
 import os
-from snakemake.shell import shell
 
-shell(
-    "sambamba sort {snakemake.params} -t {snakemake.threads} "
+os.system(
+    f"sambamba sort {snakemake.params} -t {snakemake.threads} "
     "-o {snakemake.output[0]} {snakemake.input[0]}"
 )

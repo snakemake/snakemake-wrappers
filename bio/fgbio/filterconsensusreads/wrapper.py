@@ -4,9 +4,7 @@ __email__ = "patrik.smeds@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
-
-shell.executable("bash")
+import os
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -36,8 +34,8 @@ bam_output = snakemake.output[0]
 if not isinstance(bam_output, str) and len(snakemake.output) != 1:
     raise ValueError("Output should be one bam file: " + str(bam_output) + "!")
 
-shell(
-    "fgbio FilterConsensusReads"
+os.system(
+    f"fgbio FilterConsensusReads"
     " -i {bam_input}"
     " -o {bam_output}"
     " -r {ref}"

@@ -4,7 +4,7 @@ __email__ = "koester@jimmy.harvard.edu"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 
 class CallerOptionError(Exception):
@@ -22,7 +22,7 @@ if caller_opt.strip() not in valid_caller_opts:
 
 options = snakemake.params.get("options", "")
 
-shell(
-    "bcftools call {options} {caller_opt} --threads {snakemake.threads} "
+os.system(
+    f"bcftools call {options} {caller_opt} --threads {snakemake.threads} "
     "-o {snakemake.output.calls} {snakemake.input.pileup} 2> {snakemake.log}"
 )

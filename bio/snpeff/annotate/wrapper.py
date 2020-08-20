@@ -4,7 +4,7 @@ __email__ = "bpow@unc.edu"
 __license__ = "BSD"
 
 
-from snakemake.shell import shell
+import os
 from os import path
 import shutil
 import tempfile
@@ -35,8 +35,8 @@ stats_opt = "-noStats" if not stats else "-stats {}".format(stats)
 
 reference = path.basename(snakemake.input.db)
 
-shell(
-    "snpEff -dataDir {data_dir} {stats_opt} {csvstats_opt} {extra} "
+os.system(
+    f"snpEff -dataDir {data_dir} {stats_opt} {csvstats_opt} {extra} "
     "{reference} {incalls} "
     "{outprefix} > {outcalls} {log}"
 )

@@ -5,7 +5,6 @@ __license__ = "MIT"
 
 
 import os
-from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
@@ -30,8 +29,8 @@ if output_file is None:
 elif not len(snakemake.output) == 1:
     raise ValueError("Only expecting one output file: " + str(output_file) + "!")
 
-shell(
-    "lofreq call-parallel "
+os.system(
+    f"lofreq call-parallel "
     " --pp-threads {snakemake.threads}"
     " -f {ref}"
     " {bam_input}"

@@ -4,15 +4,15 @@ __email__ = "patrik.smeds@mail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 
 log = snakemake.log_fmt_shell()
 
 extra = snakemake.params.get("extra", "")
 
-shell(
-    "picard CollectTargetedPcrMetrics "
+os.system(
+    f"picard CollectTargetedPcrMetrics "
     "{extra} "
     "INPUT={snakemake.input.bam} "
     "OUTPUT={snakemake.output[0]} "

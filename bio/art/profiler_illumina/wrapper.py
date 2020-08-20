@@ -4,7 +4,6 @@ __email__ = "david.laehnemann@hhu.de"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
 import os
 import tempfile
 import re
@@ -53,7 +52,7 @@ with tempfile.TemporaryDirectory() as temp_input:
         os.path.dirname(snakemake.output[0]), filename.replace("." + fq_extension, "")
     )
 
-    shell(
-        "( art_profiler_illumina {snakemake.params} {profile_name}"
+    os.system(
+        f"( art_profiler_illumina {snakemake.params} {profile_name}"
         " {temp_input} {fq_extension} {snakemake.threads} ) 2> {snakemake.log}"
     )

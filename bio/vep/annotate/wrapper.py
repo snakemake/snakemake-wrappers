@@ -3,8 +3,8 @@ __copyright__ = "Copyright 2020, Johannes Köster"
 __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
 
+import os
 from pathlib import Path
-from snakemake.shell import shell
 
 
 def get_only_child_dir(path):
@@ -36,8 +36,8 @@ elif snakemake.output.calls.endswith(".bcf"):
 else:
     fmt = "v"
 
-shell(
-    "(bcftools view {snakemake.input.calls} | "
+os.system(
+    f"(bcftools view {snakemake.input.calls} | "
     "vep {extra} {fork} "
     "--format vcf "
     "--vcf "

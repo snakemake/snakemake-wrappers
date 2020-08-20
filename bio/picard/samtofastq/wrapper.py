@@ -6,7 +6,7 @@ __email__ = "julianderuiter@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 
 extra = snakemake.params.get("extra", "")
@@ -30,6 +30,11 @@ if isinstance(fastq_unpaired, str):
     else:
         output += " UNPAIRED_FASTQ=" + fastq_unpaired
 
-shell(
-    "picard" " SamToFastq" " {extra}" " INPUT={snakemake.input[0]}" " {output}" " {log}"
+os.system(
+    f"picard"
+    " SamToFastq"
+    " {extra}"
+    " INPUT={snakemake.input[0]}"
+    " {output}"
+    " {log}"
 )

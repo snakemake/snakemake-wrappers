@@ -3,7 +3,7 @@ __copyright__ = "Copyright 2020, Jan Forster"
 __email__ = "j.forster@dkfz.de"
 __license__ = "MIT"
 
-from snakemake.shell import shell
+import os
 import os.path as path
 import sys
 
@@ -16,8 +16,8 @@ if control == "":
 else:
     control_command = "-i " + control
 
-shell(
-    "(findPeaks"
+os.system(
+    f"(findPeaks"
     " {snakemake.input.tag}"
     " -style {snakemake.params.style}"
     " {extra}"

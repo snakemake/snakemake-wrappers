@@ -8,7 +8,6 @@ __license__ = "MIT"
 
 import os
 
-from snakemake.shell import shell
 from tempfile import TemporaryDirectory
 
 
@@ -69,7 +68,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 cmdline_args.append("{log}")
 
 # run
-shell(" ".join(cmdline_args))
+os.system(f" ".join(cmdline_args))
 
 # Move outputs into proper position.
 expected_2_actual_paths = [
@@ -99,4 +98,4 @@ expected_2_actual_paths = [
 log_append = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 for (exp_path, actual_path) in expected_2_actual_paths:
     if exp_path and (exp_path != actual_path):
-        shell("mv {actual_path:q} {exp_path:q} {log_append}")
+        os.system(f"mv {actual_path:q} {exp_path:q} {log_append}")

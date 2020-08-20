@@ -5,7 +5,6 @@ __license__ = "MIT"
 
 
 import os
-from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
@@ -34,6 +33,6 @@ out_pipe = ""
 if not output_file.endswith(".sam"):
     out_pipe = " | samtools view -S -b - "
 
-shell(
-    " {in_pipe} {bam_input} | " " umis bamtag -" " {out_pipe} > {output_file}" " {log}"
+os.system(
+    f" {in_pipe} {bam_input} | " " umis bamtag -" " {out_pipe} > {output_file}" " {log}"
 )

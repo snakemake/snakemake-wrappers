@@ -3,7 +3,7 @@ __copyright__ = "Copyright 2020, Johannes Köster"
 __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
 
-from snakemake.shell import shell
+import os
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -17,8 +17,8 @@ if prefix:
     fmt = "-h"
     pipefail = "set +o pipefail"
 
-    shell(
-        """
+    os.system(
+        f"""
         {pipefail}
         {{
             samtools view {fmt} {url} {prefix} > {snakemake.output.bam}
@@ -27,8 +27,8 @@ if prefix:
         """
     )
 else:
-    shell(
-        """
+    os.system(
+        f"""
         {{
             curl -L {url} > {snakemake.output.bam}
             samtools index {snakemake.output.bam}

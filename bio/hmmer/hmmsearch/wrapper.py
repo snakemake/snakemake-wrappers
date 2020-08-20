@@ -5,8 +5,8 @@ __copyright__ = "Copyright 2019, N. Tessa Pierce"
 __email__ = "ntpierce@gmail.com"
 __license__ = "MIT"
 
+import os
 from os import path
-from snakemake.shell import shell
 
 profile = snakemake.input.get("profile")
 
@@ -49,8 +49,8 @@ extra = snakemake.params.get("extra", "")
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell(
-    " hmmsearch --cpu {snakemake.threads} "
+os.system(
+    f" hmmsearch --cpu {snakemake.threads} "
     " {out_cmd} {thresh_cmd} {extra} {profile} "
     " {snakemake.input.fasta} {log}"
 )

@@ -5,8 +5,8 @@ __copyright__ = "Copyright 2019, Dayris Thibault"
 __email__ = "thibault.dayris@gustaveroussy.fr"
 __license__ = "MIT"
 
-from snakemake.shell import shell
-from snakemake.utils import makedirs
+
+import os
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
@@ -20,10 +20,10 @@ if gtf is not None:
 else:
     gtf = sjdb_overhang = ""
 
-makedirs(snakemake.output)
+os.makedirs(snakemake.output)
 
-shell(
-    "STAR "  # Tool
+os.systeml(
+    f"STAR "  # Tool
     "--runMode genomeGenerate "  # Indexation mode
     "{extra} "  # Optional parameters
     "--runThreadN {snakemake.threads} "  # Number of threads

@@ -4,7 +4,7 @@ __email__ = "christopher.schroeder@tu-dortmund.de"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 extra = snakemake.params.get("extra", "")
 spark_runner = snakemake.params.get("spark_runner", "LOCAL")
@@ -19,8 +19,8 @@ known = snakemake.input.get("known", "")
 if known:
     known = "--known-sites {}".format(known)
 
-shell(
-    "gatk --java-options '{java_opts}' BaseRecalibratorSpark {extra} "
+os.system(
+    f"gatk --java-options '{java_opts}' BaseRecalibratorSpark {extra} "
     "-R {snakemake.input.ref} -I {snakemake.input.bam} "
     "-O {snakemake.output.recal_table} {known} "
     "-- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra} "

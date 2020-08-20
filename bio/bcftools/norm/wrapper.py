@@ -4,9 +4,9 @@ __email__ = "dayne.filer@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 
-shell(
-    "bcftools norm {snakemake.params} {snakemake.input[0]} " "-o {snakemake.output[0]}"
+os.system(
+    f"bcftools norm {snakemake.params} {snakemake.input[0]} " "-o {snakemake.output[0]}"
 )

@@ -5,7 +5,7 @@ __copyright__ = "Copyright 2020, Dayris Thibault"
 __email__ = "thibault.dayris@gustaveroussy.fr"
 __license__ = "MIT"
 
-from snakemake.shell import shell
+import os
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
@@ -36,8 +36,8 @@ if snakemake.threads < min_threads:
         )
     )
 
-shell(
-    "SnpSift annotate"  # Tool and its subcommand
+os.system(
+    f"SnpSift annotate"  # Tool and its subcommand
     " {extra}"  # Extra parameters
     " {snakemake.input.database}"  # Path to annotation vcf file
     " {incall} "  # Path to input vcf file

@@ -4,14 +4,14 @@ __email__ = "fkilpert@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 
 log = snakemake.log_fmt_shell()
 
 
-shell(
-    "picard BedToIntervalList "
+os.system(
+    f"picard BedToIntervalList "
     "{snakemake.params} "
     "INPUT={snakemake.input.bed} "
     "SEQUENCE_DICTIONARY={snakemake.input.dict} "

@@ -4,9 +4,7 @@ __email__ = "patrik.smeds@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
-
-shell.executable("bash")
+import os
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -31,8 +29,8 @@ if not isinstance(output_histo_file, str) and len(output_histo_file) != 1:
         + "!"
     )
 
-shell(
-    "fgbio GroupReadsByUmi"
+os.system(
+    f"fgbio GroupReadsByUmi"
     " -i {bam_input}"
     " -o {output_bam_file}"
     " -f {output_histo_file}"

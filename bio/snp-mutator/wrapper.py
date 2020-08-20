@@ -6,7 +6,7 @@ __email__ = "mbhall88@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 from pathlib import Path
 
 # Placeholder for optional parameters
@@ -17,8 +17,8 @@ fasta_outdir = Path(snakemake.output.sequences[0]).absolute().parent
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 # Executed shell command
-shell(
-    "snpmutator {extra} "
+os.system(
+    f"snpmutator {extra} "
     "--num-simulations {num_simulations} "
     "--vcf {snakemake.output.vcf} "
     "-F {fasta_outdir} "

@@ -6,14 +6,14 @@ __email__ = "julianderuiter@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell(
-    "picard"
+os.system(
+    f"picard"
     " SortSam"
     " {extra}"
     " INPUT={snakemake.input[0]}"

@@ -6,7 +6,6 @@ __license__ = "MIT"
 
 import os
 from pathlib import Path
-from snakemake.shell import shell
 
 config_extra = snakemake.params.get("config_extra", "")
 run_extra = snakemake.params.get("run_extra", "")
@@ -20,8 +19,8 @@ if snakemake.output[0].endswith(".vcf.gz"):
 else:
     run_dir = snakemake.output
 
-shell(
-    "configureStrelkaGermlineWorkflow.py "  # configure the strelka run
+os.system(
+    f"configureStrelkaGermlineWorkflow.py "  # configure the strelka run
     "--bam {bam} "  # input bam
     "--referenceFasta {snakemake.input.fasta} "  # reference genome
     "--runDir {run_dir} "  # output directory

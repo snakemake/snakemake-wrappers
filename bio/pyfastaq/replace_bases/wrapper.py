@@ -4,13 +4,13 @@ __email__ = "michael@mbh.sh"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell(
-    "fastaq replace_bases"
+os.system(
+    f"fastaq replace_bases"
     " {snakemake.input[0]}"
     " {snakemake.output[0]}"
     " {snakemake.params.old_base}"

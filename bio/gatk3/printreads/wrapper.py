@@ -5,8 +5,6 @@ __license__ = "MIT"
 
 import os
 
-from snakemake.shell import shell
-
 extra = snakemake.params.get("extra", "")
 java_opts = snakemake.params.get("java_opts", "")
 
@@ -16,8 +14,8 @@ input_ref = snakemake.input.ref
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-shell(
-    "gatk3 {java_opts} -T PrintReads"
+os.system(
+    f"gatk3 {java_opts} -T PrintReads"
     " {extra}"
     " -I {input_bam}"
     " -R {input_ref}"

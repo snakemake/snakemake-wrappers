@@ -9,7 +9,6 @@ __license__ = "MIT"
 
 import os
 
-from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 cmdline_args = ["bam2nuc {extra}"]
@@ -54,7 +53,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 cmdline_args.append("{log}")
 
 # run
-shell(" ".join(cmdline_args))
+os.system(f" ".join(cmdline_args))
 
 
 # Move outputs into proper position.
@@ -76,4 +75,4 @@ if bam:
 
     for (exp_path, actual_path) in expected_2_actual_paths:
         if exp_path and (exp_path != actual_path):
-            shell("mv {actual_path:q} {exp_path:q} {log_append}")
+            os.system(f"mv {actual_path:q} {exp_path:q} {log_append}")

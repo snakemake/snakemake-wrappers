@@ -5,14 +5,13 @@ __license__ = "MIT"
 
 
 import os
-from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
-shell(
-    "(razers3"
+os.system(
+    f"(razers3"
     " -tc {snakemake.threads}"
     " {extra}"
     " -o {snakemake.output[0]}"

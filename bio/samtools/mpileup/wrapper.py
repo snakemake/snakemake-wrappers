@@ -6,7 +6,7 @@ __email__ = "julianderuiter@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
@@ -22,8 +22,8 @@ if not snakemake.output[0].endswith(".gz"):
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell(
-    "samtools mpileup "
+os.system(
+    f"samtools mpileup "
     "{extra} "
     "-f {reference_genome} "
     "{bam_input}  "

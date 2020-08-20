@@ -6,15 +6,15 @@ __email__ = "johannes.koester@protonmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 
 inputs = " ".join("INPUT={}".format(f) for f in snakemake.input.vcfs)
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
 
-shell(
-    "picard"
+os.system(
+    f"picard"
     " MergeVcfs"
     " {extra}"
     " {inputs}"

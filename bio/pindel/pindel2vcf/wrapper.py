@@ -5,7 +5,6 @@ __license__ = "MIT"
 
 import os
 import tempfile
-from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -67,6 +66,6 @@ with tempfile.TemporaryDirectory() as tmpdirname:
                 os.path.join(tmpdirname, os.path.basename(variant_input)),
             )
         input_file = os.path.join(tmpdirname, input_name)
-    shell(
-        "pindel2vcf {snakemake.params.extra} {input_flag} {input_file} -r {snakemake.input.ref} -R {snakemake.params.refname} -d {snakemake.params.refdate} -v {snakemake.output[0]} {log}"
+    os.system(
+        f"pindel2vcf {snakemake.params.extra} {input_flag} {input_file} -r {snakemake.input.ref} -R {snakemake.params.refname} -d {snakemake.params.refdate} -v {snakemake.output[0]} {log}"
     )

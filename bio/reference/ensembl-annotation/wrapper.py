@@ -3,9 +3,9 @@ __copyright__ = "Copyright 2019, Johannes Köster"
 __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
 
+import os
 import subprocess
 import sys
-from snakemake.shell import shell
 
 species = snakemake.params.species.lower()
 release = int(snakemake.params.release)
@@ -41,7 +41,7 @@ url = "ftp://ftp.ensembl.org/pub/{branch}release-{release}/{fmt}/{species}/{spec
 )
 
 try:
-    shell("(curl -L {url} | gzip -d > {snakemake.output[0]}) {log}")
+    os.system(f"(curl -L {url} | gzip -d > {snakemake.output[0]}) {log}")
 except subprocess.CalledProcessError as e:
     if snakemake.log:
         sys.stderr = open(snakemake.log[0], "a")

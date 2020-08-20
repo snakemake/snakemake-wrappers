@@ -7,7 +7,7 @@ __email__ = "roman.chernyatchik@jetbrains.com"
 __license__ = "MIT"
 
 import os
-from snakemake.shell import shell
+
 
 bam_path = snakemake.output.get("bam", None)
 report_path = snakemake.output.get("report", None)
@@ -29,8 +29,8 @@ arg_multiple = "--multiple" if len(snakemake.input) > 1 else ""
 params_extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 log_append = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
-shell(
-    "deduplicate_bismark {params_extra} --bam {arg_multiple}"
+os.system(
+    f"deduplicate_bismark {params_extra} --bam {arg_multiple}"
     " {arg_output_dir} {snakemake.input} {log}"
 )
 
@@ -55,4 +55,4 @@ expected_2_actual_paths = [
 ]
 for (exp_path, actual_path) in expected_2_actual_paths:
     if exp_path and (exp_path != actual_path):
-        shell("mv {actual_path:q} {exp_path:q} {log_append}")
+        os.system(f"mv {actual_path:q} {exp_path:q} {log_append}")

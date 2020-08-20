@@ -4,9 +4,7 @@ __email__ = "patrik.smeds@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
-
-shell.executable("bash")
+import os
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -22,8 +20,8 @@ output_file = snakemake.output[0]
 if not isinstance(output_file, str) and len(snakemake.output) != 1:
     raise ValueError("Output should be one bam file: " + str(output_file) + "!")
 
-shell(
-    "fgbio SetMateInformation"
+os.system(
+    f"fgbio SetMateInformation"
     " -i {bam_input}"
     " -o {output_file}"
     " {extra_params}"

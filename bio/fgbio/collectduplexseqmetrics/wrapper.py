@@ -4,10 +4,9 @@ __email__ = "patrik.smeds@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 from os import path
 
-shell.executable("bash")
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -73,8 +72,8 @@ if duplex_umi_counts is not None:
 if not isinstance(bam_input, str) and len(snakemake.input) != 1:
     raise ValueError("Input bam should be one bam file: " + str(bam_input) + "!")
 
-shell(
-    "fgbio CollectDuplexSeqMetrics"
+os.system(
+    f"fgbio CollectDuplexSeqMetrics"
     " -i {bam_input}"
     " -o {path_name_prefix}"
     " {duplex_umi_counts_flag}"

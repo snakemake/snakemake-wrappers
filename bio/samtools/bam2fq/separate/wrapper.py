@@ -5,7 +5,6 @@ __license__ = "MIT"
 
 
 import os
-from snakemake.shell import shell
 
 prefix = os.path.splitext(snakemake.output[0])[0]
 
@@ -16,8 +15,8 @@ prefix = os.path.splitext(snakemake.output[0])[0]
 # before allowing additional threads through samtools sort -@
 threads = "" if snakemake.threads <= 2 else " -@ {} ".format(snakemake.threads - 2)
 
-shell(
-    "samtools sort -n "
+os.system(
+    f"samtools sort -n "
     " {threads} "
     " -T {prefix} "
     " {snakemake.params.sort} "

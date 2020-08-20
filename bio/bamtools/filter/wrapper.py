@@ -3,7 +3,7 @@ __copyright__ = "Copyright 2020, Antonie Vietor"
 __email__ = "antonie.v@gmx.de"
 __license__ = "MIT"
 
-from snakemake.shell import shell
+import os
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -42,7 +42,7 @@ if additional_params and additional_params is not None:
 if extra_limits:
     params = params + " | bamtools filter" + extra_limits
 
-shell(
-    "(bamtools filter"
+os.system(
+    f"(bamtools filter"
     " -in {snakemake.input[0]}" + params + " -out {snakemake.output[0]}) {log}"
 )

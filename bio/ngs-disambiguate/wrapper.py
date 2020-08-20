@@ -6,9 +6,8 @@ __email__ = "julianderuiter@gmail.com"
 __license__ = "MIT"
 
 
+import os
 from os import path
-
-from snakemake.shell import shell
 
 
 # Extract arguments.
@@ -26,8 +25,8 @@ if prefix is None:
     prefix = path.splitext(path.basename(snakemake.output.summary))[0]
 
 # Run command.
-shell(
-    "ngs_disambiguate"
+os.system(
+    f"ngs_disambiguate"
     " {extra}"
     " -o {output_dir}"
     " -s {prefix}"
@@ -49,4 +48,4 @@ output_map = {
 
 for src, dest in output_map.items():
     if src != dest:
-        shell("mv {src} {dest}")
+        os.system(f"mv {src} {dest}")

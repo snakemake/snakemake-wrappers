@@ -5,7 +5,6 @@ __license__ = "MIT"
 
 
 import os
-from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -34,8 +33,8 @@ if sv_file:
 else:
     sv_cmd = ""
 
-shell(
-    "arriba "
+os.system(
+    f"arriba "
     "-x {snakemake.input.bam} "
     "-a {snakemake.input.genome} "
     "-g {snakemake.input.annotation} "

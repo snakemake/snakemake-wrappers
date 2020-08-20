@@ -6,9 +6,8 @@ __email__ = "julianderuiter@gmail.com"
 __license__ = "MIT"
 
 
+import os
 from os import path
-
-from snakemake.shell import shell
 
 
 # Check inputs.
@@ -58,8 +57,8 @@ else:
     raise ValueError("Unexpected value for params.sort ({})".format(sort))
 
 # Run command.
-shell(
-    "(bwa sampe"
+os.system(
+    f"(bwa sampe"
     " {extra}"
     " {snakemake.params.index}"
     " {snakemake.input.sai}"

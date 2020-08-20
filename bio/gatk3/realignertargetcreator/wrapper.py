@@ -5,8 +5,6 @@ __license__ = "MIT"
 
 import os
 
-from snakemake.shell import shell
-
 extra = snakemake.params.get("extra", "")
 java_opts = snakemake.params.get("java_opts", "")
 
@@ -26,8 +24,8 @@ for known in input_known:
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
-shell(
-    "gatk3 {java_opts} -T RealignerTargetCreator"
+os.system(
+    f"gatk3 {java_opts} -T RealignerTargetCreator"
     " -nt {snakemake.threads}"
     " {extra}"
     " -I {input_bam}"

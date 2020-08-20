@@ -4,14 +4,14 @@ __email__ = "johannes.koester@protonmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell(
-    "picard "
+os.system(
+    f"picard "
     "CreateSequenceDictionary "
     "{extra} "
     "R={snakemake.input[0]} "

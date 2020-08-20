@@ -4,7 +4,7 @@ __email__ = "michael@mbh.sh"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 
 class MissingReferenceError(Exception):
@@ -23,8 +23,8 @@ if "--no-reference" not in options:
         )
     options += " --fasta-ref {}".format(ref)
 
-shell(
-    "bcftools mpileup {options} --threads {snakemake.threads} "
+os.system(
+    f"bcftools mpileup {options} --threads {snakemake.threads} "
     "--output {snakemake.output.pileup} "
     "{snakemake.input.alignments} 2> {snakemake.log}"
 )

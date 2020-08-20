@@ -4,9 +4,7 @@ __email__ = "johannes.koester@protonmail.com, felix.moelder@uni-due.de"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
-
-shell.executable("bash")
+import os
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -34,7 +32,7 @@ else:
         snakemake=snakemake, regions=regions
     )
 
-shell(
-    "({freebayes} {params} -f {snakemake.input.ref}"
+os.system(
+    f"({freebayes} {params} -f {snakemake.input.ref}"
     " {snakemake.input.samples} {pipe} > {snakemake.output[0]}) {log}"
 )

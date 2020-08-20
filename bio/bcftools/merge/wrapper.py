@@ -4,9 +4,9 @@ __email__ = "patrik.smeds@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
-shell(
-    "bcftools merge {snakemake.params} -o {snakemake.output[0]} "
+os.system(
+    f"bcftools merge {snakemake.params} -o {snakemake.output[0]} "
     "{snakemake.input.calls}"
 )

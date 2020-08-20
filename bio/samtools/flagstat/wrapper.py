@@ -4,7 +4,7 @@ __email__ = "cpreusch[at]ust.hk"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 
-shell("samtools flagstat {snakemake.input[0]} > {snakemake.output[0]}")
+os.system(f"samtools flagstat {snakemake.input[0]} > {snakemake.output[0]}")

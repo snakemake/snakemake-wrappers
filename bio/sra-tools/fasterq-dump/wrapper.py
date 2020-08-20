@@ -5,7 +5,6 @@ __license__ = "MIT"
 
 import os
 import tempfile
-from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
@@ -16,7 +15,7 @@ if outdir:
 extra = snakemake.params.get("extra", "")
 
 with tempfile.TemporaryDirectory() as tmp:
-    shell(
-        "fasterq-dump --temp {tmp} --threads {snakemake.threads} "
+    os.system(
+        f"fasterq-dump --temp {tmp} --threads {snakemake.threads} "
         "{extra} {outdir} {snakemake.wildcards.accession} {log}"
     )

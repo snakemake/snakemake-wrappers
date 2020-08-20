@@ -5,13 +5,12 @@ __license__ = "MIT"
 
 
 import os
-from snakemake.shell import shell
 
 
 prefix = os.path.splitext(snakemake.output[0])[0]
 
-shell(
-    "samtools bam2fq {snakemake.params} "
+os.system(
+    f"samtools bam2fq {snakemake.params} "
     " -@ {snakemake.threads} "
     " {snakemake.input[0]}"
     " >{snakemake.output[0]} "

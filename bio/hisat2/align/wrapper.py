@@ -4,7 +4,7 @@ __email__ = "bow@bow.web.id"
 __license__ = "BSD"
 
 
-from snakemake.shell import shell
+import os
 
 # Placeholder for optional parameters
 extra = snakemake.params.get("extra", "")
@@ -25,8 +25,8 @@ else:
     )
 
 # Executed shell command
-shell(
-    "(hisat2 {extra} "
+os.system(
+    f"(hisat2 {extra} "
     "--threads {snakemake.threads} "
     " -x {snakemake.input.idx} {input_flags} "
     " | samtools view -Sbh -o {snakemake.output[0]} -) "

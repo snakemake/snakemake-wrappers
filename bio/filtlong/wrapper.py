@@ -6,7 +6,7 @@ __email__ = "michael@mbh.sh"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 # Placeholder for optional parameters
 extra = snakemake.params.get("extra", "")
@@ -18,4 +18,4 @@ if target_bases > 0:
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 # Executed shell command
-shell("filtlong {extra}" " {snakemake.input.reads} > {snakemake.output} {log}")
+os.system(f"filtlong {extra}" " {snakemake.input.reads} > {snakemake.output} {log}")

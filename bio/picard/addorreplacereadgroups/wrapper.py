@@ -4,10 +4,10 @@ __email__ = "koester@jimmy.harvard.edu"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 
-shell(
-    "picard AddOrReplaceReadGroups {snakemake.params} I={snakemake.input} "
+os.system(
+    f"picard AddOrReplaceReadGroups {snakemake.params} I={snakemake.input} "
     "O={snakemake.output} &> {snakemake.log}"
 )

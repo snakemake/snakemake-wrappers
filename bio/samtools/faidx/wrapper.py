@@ -4,7 +4,9 @@ __email__ = "greenkidneybean@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
+import os
 
 
-shell("samtools faidx {snakemake.params} {snakemake.input[0]} > {snakemake.output[0]}")
+os.system(
+    f"samtools faidx {snakemake.params} {snakemake.input[0]} > {snakemake.output[0]}"
+)

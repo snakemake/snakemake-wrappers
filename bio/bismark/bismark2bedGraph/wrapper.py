@@ -8,7 +8,6 @@ __license__ = "MIT"
 
 
 import os
-from snakemake.shell import shell
 
 bedGraph = snakemake.output.get("bedGraph", "")
 if not bedGraph:
@@ -30,4 +29,4 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 cmdline_args.append("{log}")
 
 # run
-shell(" ".join(cmdline_args))
+os.system(f" ".join(cmdline_args))

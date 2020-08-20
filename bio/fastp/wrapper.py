@@ -3,7 +3,7 @@ __copyright__ = "Copyright 2019, Sebastian Kurscheid"
 __email__ = "sebastian.kurscheid@anu.edu.au"
 __license__ = "MIT"
 
-from snakemake.shell import shell
+import os
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -30,8 +30,8 @@ else:
 html = "--html {}".format(snakemake.output.html)
 json = "--json {}".format(snakemake.output.json)
 
-shell(
-    "(fastp --thread {snakemake.threads} {snakemake.params.extra} "
+os.system(
+    f"(fastp --thread {snakemake.threads} {snakemake.params.extra} "
     "{reads} "
     "{trimmed} "
     "{json} "

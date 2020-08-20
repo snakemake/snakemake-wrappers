@@ -7,7 +7,6 @@ import tempfile
 import subprocess
 import sys
 import os
-from snakemake.shell import shell
 from snakemake.exceptions import WorkflowError
 
 species = snakemake.params.species.lower()
@@ -65,15 +64,15 @@ try:
     workdir = os.getcwd()
     with tempfile.TemporaryDirectory() as tmpdir:
         if snakemake.input.get("fai"):
-            shell(
-                "(cd {tmpdir}; {gather} && "
+            os.system(
+                f"(cd {tmpdir}; {gather} && "
                 "bcftools concat -Oz --naive {names} > concat.vcf.gz && "
                 "bcftools reheader --fai {workdir}/{snakemake.input.fai} concat.vcf.gz "
                 "> {workdir}/{snakemake.output}) {log}"
             )
         else:
-            shell(
-                "(cd {tmpdir}; {gather} && "
+            os.system(
+                f"(cd {tmpdir}; {gather} && "
                 "bcftools concat -Oz --naive {names} "
                 "> {workdir}/{snakemake.output}) {log}"
             )
