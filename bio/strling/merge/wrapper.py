@@ -32,9 +32,4 @@ if not path.exists(reference + ".fai"):
 if len(snakemake.output) != 1:
     raise ValueError("Please provide exactly one output file (.bin).")
 
-shell(
-    "(strling merge "
-    "{bins} "
-    "-o {prefix} "
-    "{extra}) {log}"
-)
+shell("(strling merge " "{bins} " "-o {prefix} " "{extra}) {log}")

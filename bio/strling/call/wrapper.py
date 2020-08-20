@@ -30,7 +30,7 @@ if not path.exists(bam + ".bai"):
 if not reference:
     raise ValueError("Please provide a fasta 'reference' input.")
 
-if not bounds: # optional
+if not bounds:  # optional
     bounds_string = ""
 else:
     bounds_string = f"-b {bounds}"

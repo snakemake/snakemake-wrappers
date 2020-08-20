@@ -28,7 +28,7 @@ if not reference:
 if not path.exists(reference + ".fai"):
     raise ValueError("Please index the reference and generate the *.fai file")
 
-if not index: # optional
+if not index:  # optional
     index_string = ""
 else:
     index_string = f"-g {index}"
