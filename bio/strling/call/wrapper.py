@@ -38,7 +38,9 @@ else:
     bounds_string = f"-b {bounds}"
 
 if not path.exists(reference + ".fai"):
-    raise ValueError("Please index the reference and generate the *.bai file")
+    raise ValueError(
+        "Please index the reference. The index file must have same file name as the reference, with '.fai' appended."
+    )
 
 shell(
     "(strling call "
