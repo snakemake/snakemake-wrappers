@@ -15,11 +15,11 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
 # Check inputs/arguments.
-bam = snakemake.input.get("bam", None)
-bin = snakemake.input.get("bin", None)
-reference = snakemake.input.get("reference", None)
-bounds = snakemake.input.get("bounds", None)
-prefix = snakemake.params.get("prefix", None)
+bam = snakemake.input.get("bam")
+bin = snakemake.input.get("bin")
+reference = snakemake.input.get("reference")
+bounds = snakemake.input.get("bounds")
+prefix = snakemake.params.get("prefix")
 
 if not bam or len(bam) > 1:
     raise ValueError("Please provide exactly one 'bam' as input.")
@@ -39,7 +39,7 @@ else:
 
 if not path.exists(reference + ".fai"):
     raise ValueError(
-        "Please index the reference. The index file must have same file name as the reference, with '.fai' appended."
+        "Please index the reference. The index file must have same file name as the reference file, with '.fai' appended."
     )
 
 shell(

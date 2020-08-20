@@ -15,18 +15,25 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
 # Check inputs/arguments.
-bam = snakemake.input.get("bam", None)
-reference = snakemake.input.get("reference", None)
-index = snakemake.input.get("index", None)
+bam = snakemake.input.get("bam")
+reference = snakemake.input.get("reference")
+index = snakemake.input.get("index")
 
-if not bam:
-    raise ValueError("Please provide a 'bam' input.")
+if not bam or len(bam) != 1:
+    raise ValueError("Please provide exactly one 'bam' input.")
+
+if not path.exists(bam + ".bai"):
+    raise ValueError(
+        "Please index the bam file. The index file must have same file name as the bam file, with '.bai' appended."
+    )
 
 if not reference:
     raise ValueError("Please provide a fasta 'reference' input.")
 
 if not path.exists(reference + ".fai"):
-    raise ValueError("Please index the reference and generate the *.fai file")
+    raise ValueError(
+        "Please index the reference. The index file must have same file name as the reference file, with '.fai' appended."
+    )
 
 if not index:  # optional
     index_string = ""
