@@ -1,0 +1,4 @@
+name: "strling index"
+description: Creates a bed file of large STR regions in the reference genome. This step is peformed automatically as part of strling extract. However, when running multiple samples, it is more efficient to do it once, then pass the file to strling extract using the -g option.
+authors:
+  - Christopher Schröder
