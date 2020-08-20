@@ -27,7 +27,9 @@ if not reference:
     raise ValueError("Please provide a fasta 'reference' input.")
 
 if not path.exists(reference + ".fai"):
-    raise ValueError("Please index the reference. The index file must have same file name as the reference file, with '.fai' appended.")
+    raise ValueError(
+        "Please index the reference. The index file must have same file name as the reference file, with '.fai' appended."
+    )
 
 if len(snakemake.output) != 1:
     raise ValueError("Please provide exactly one output file (.bin).")
