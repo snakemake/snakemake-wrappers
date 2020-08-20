@@ -57,8 +57,8 @@ for ext in exts_to_prog:
 
 os.system(
     f"(picard -Xmx{res}g CollectMultipleMetrics "
-    "I={snakemake.input.bam} "
-    "O={out} "
-    "R={snakemake.input.ref} "
-    "{snakemake.params}{programs}) {log}"
+    f"I={snakemake.input.bam} "
+    f"O={out} "
+    f"R={snakemake.input.ref} "
+    f"{snakemake.params}{programs}) {log}"
 )

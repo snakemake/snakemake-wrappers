@@ -14,9 +14,9 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 os.system(
     f"bwa aln"
-    " {extra}"
-    " -t {snakemake.threads}"
-    " {snakemake.params.index}"
-    " {snakemake.input[0]}"
-    " > {snakemake.output[0]} {log}"
+    f" {extra}"
+    f" -t {snakemake.threads}"
+    f" {snakemake.params.index}"
+    f" {snakemake.input[0]}"
+    f" > {snakemake.output[0]} {log}"
 )

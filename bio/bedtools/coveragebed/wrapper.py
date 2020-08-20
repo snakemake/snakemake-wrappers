@@ -20,9 +20,9 @@ if not isinstance(output_file, str) and len(snakemake.output) != 1:
 
 os.system(
     f"coverageBed"
-    " -a {input_a}"
-    " -b {input_b}"
-    " {extra_params}"
-    " > {output_file}"
-    " {log}"
+    f" -a {input_a}"
+    f" -b {input_b}"
+    f" {extra_params}"
+    f" > {output_file}"
+    f" {log}"
 )

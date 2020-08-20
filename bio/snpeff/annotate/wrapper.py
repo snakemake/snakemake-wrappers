@@ -37,6 +37,6 @@ reference = path.basename(snakemake.input.db)
 
 os.system(
     f"snpEff -dataDir {data_dir} {stats_opt} {csvstats_opt} {extra} "
-    "{reference} {incalls} "
-    "{outprefix} > {outcalls} {log}"
+    f"{reference} {incalls} "
+    f"{outprefix} > {outcalls} {log}"
 )

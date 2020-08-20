@@ -46,6 +46,8 @@ def run(wrapper, cmd, check_log=None):
         cmd = cmd + ["--wrapper-prefix", "file://{}/".format(d), "--conda-cleanup-pkgs"]
         subprocess.check_call(["snakemake", "--version"])
 
+        import IPython
+        IPython.embed()
         try:
             subprocess.check_call(cmd)
         except Exception as e:

@@ -12,10 +12,10 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 os.system(
     f"(getDifferentialPeaks"
-    " {snakemake.input.peaks}"
-    " {snakemake.input.first}"
-    " {snakemake.input.second}"
-    " {extra}"
-    " > {snakemake.output})"
-    " {log}"
+    f" {snakemake.input.peaks}"
+    f" {snakemake.input.first}"
+    f" {snakemake.input.second}"
+    f" {extra}"
+    f" > {snakemake.output})"
+    f" {log}"
 )

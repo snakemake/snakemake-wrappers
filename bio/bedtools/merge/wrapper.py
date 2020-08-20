@@ -18,16 +18,16 @@ if len(snakemake.input) > 1:
         raise ValueError("Input files must be all compressed or uncompressed.")
     os.system(
         f"({cat} {snakemake.input} | "
-        "sort -k1,1 -k2,2n | "
-        "bedtools merge {extra} "
-        "-i stdin > {snakemake.output}) "
-        " {log}"
+        f"sort -k1,1 -k2,2n | "
+        f"bedtools merge {extra} "
+        f"-i stdin > {snakemake.output}) "
+        f" {log}"
     )
 else:
     os.system(
         f"( bedtools merge"
-        " {extra}"
-        " -i {snakemake.input}"
-        " > {snakemake.output})"
-        " {log}"
+        f" {extra}"
+        f" -i {snakemake.input}"
+        f" > {snakemake.output})"
+        f" {log}"
     )

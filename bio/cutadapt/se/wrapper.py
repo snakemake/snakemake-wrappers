@@ -13,9 +13,9 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 os.system(
     f"cutadapt"
-    " {snakemake.params}"
-    " -j {snakemake.threads}"
-    " -o {snakemake.output.fastq}"
-    " {snakemake.input[0]}"
-    " > {snakemake.output.qc} {log}"
+    f" {snakemake.params}"
+    f" -j {snakemake.threads}"
+    f" -o {snakemake.output.fastq}"
+    f" {snakemake.input[0]}"
+    f" > {snakemake.output.qc} {log}"
 )

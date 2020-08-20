@@ -13,9 +13,9 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 os.system(
     f"picard"
-    " RevertSam"
-    " {extra}"
-    " INPUT={snakemake.input[0]}"
-    " OUTPUT={snakemake.output[0]}"
-    " {log}"
+    f" RevertSam"
+    f" {extra}"
+    f" INPUT={snakemake.input[0]}"
+    f" OUTPUT={snakemake.output[0]}"
+    f" {log}"
 )

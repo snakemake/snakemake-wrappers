@@ -14,9 +14,9 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 os.system(
     f"picard"
-    " MergeSamFiles"
-    " {snakemake.params}"
-    " {inputs}"
-    " OUTPUT={snakemake.output[0]}"
-    " {log}"
+    f" MergeSamFiles"
+    f" {snakemake.params}"
+    f" {inputs}"
+    f" OUTPUT={snakemake.output[0]}"
+    f" {log}"
 )

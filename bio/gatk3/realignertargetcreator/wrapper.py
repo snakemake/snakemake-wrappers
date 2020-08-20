@@ -26,12 +26,12 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 os.system(
     f"gatk3 {java_opts} -T RealignerTargetCreator"
-    " -nt {snakemake.threads}"
-    " {extra}"
-    " -I {input_bam}"
-    " -R {input_ref}"
-    " {input_known_string}"
-    " {bed}"
-    " -o {snakemake.output}"
-    " {log}"
+    f" -nt {snakemake.threads}"
+    f" {extra}"
+    f" -I {input_bam}"
+    f" -R {input_ref}"
+    f" {input_known_string}"
+    f" {bed}"
+    f" -o {snakemake.output}"
+    f" {log}"
 )

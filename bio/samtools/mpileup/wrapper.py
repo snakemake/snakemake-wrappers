@@ -24,9 +24,9 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 os.system(
     f"samtools mpileup "
-    "{extra} "
-    "-f {reference_genome} "
-    "{bam_input}  "
-    " | pigz > {snakemake.output} "
-    "{log}"
+    f"{extra} "
+    f"-f {reference_genome} "
+    f"{bam_input}  "
+    f" | pigz > {snakemake.output} "
+    f"{log}"
 )

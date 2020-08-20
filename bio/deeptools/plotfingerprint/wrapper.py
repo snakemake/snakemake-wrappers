@@ -16,8 +16,8 @@ if out_counts:
 
 os.system(
     f"(plotFingerprint "
-    "-b {snakemake.input.bam_files} "
-    "-o {snakemake.output.fingerprint} "
-    "{optional_output} "
-    "{snakemake.params}) {log}"
+    f"-b {snakemake.input.bam_files} "
+    f"-o {snakemake.output.fingerprint} "
+    f"{optional_output} "
+    f"{snakemake.params}) {log}"
 )

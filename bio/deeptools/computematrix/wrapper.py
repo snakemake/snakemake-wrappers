@@ -20,10 +20,10 @@ if out_bed:
 
 os.system(
     f"(computeMatrix "
-    "{snakemake.params.command} "
-    "{snakemake.params.extra} "
-    "-R {snakemake.input.bed} "
-    "-S {snakemake.input.bigwig} "
-    "-o {snakemake.output.matrix_gz} "
-    "{optional_output}) {log}"
+    f"{snakemake.params.command} "
+    f"{snakemake.params.extra} "
+    f"-R {snakemake.input.bed} "
+    f"-S {snakemake.input.bigwig} "
+    f"-o {snakemake.output.matrix_gz} "
+    f"{optional_output}) {log}"
 )

@@ -31,10 +31,10 @@ elif not len(snakemake.output) == 1:
 
 os.system(
     f"lofreq call-parallel "
-    " --pp-threads {snakemake.threads}"
-    " -f {ref}"
-    " {bam_input}"
-    " -o {output_file}"
-    " {extra}"
-    " {log}"
+    f" --pp-threads {snakemake.threads}"
+    f" -f {ref}"
+    f" {bam_input}"
+    f" -o {output_file}"
+    f" {extra}"
+    f" {log}"
 )

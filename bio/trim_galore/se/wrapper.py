@@ -36,8 +36,8 @@ for file_path in snakemake.output[1:]:
 
 os.system(
     f"(trim_galore"
-    " {snakemake.params.extra}"
-    " -o {out_dir}"
-    " {snakemake.input})"
-    " {log}"
+    f" {snakemake.params.extra}"
+    f" -o {out_dir}"
+    f" {snakemake.input})"
+    f" {log}"
 )

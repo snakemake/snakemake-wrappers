@@ -12,5 +12,5 @@ extra = snakemake.params.get("extra", "")
 
 os.system(
     f"salmon index -t {snakemake.input} -i {snakemake.output} "
-    " --threads {snakemake.threads} {extra} {log}"
+    f" --threads {snakemake.threads} {extra} {log}"
 )

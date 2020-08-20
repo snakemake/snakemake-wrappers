@@ -59,9 +59,9 @@ else:
 # Run command.
 os.system(
     f"(bwa sampe"
-    " {extra}"
-    " {snakemake.params.index}"
-    " {snakemake.input.sai}"
-    " {snakemake.input.fastq}"
-    " | " + pipe_cmd + ") {log}"
+    f" {extra}"
+    f" {snakemake.params.index}"
+    f" {snakemake.input.sai}"
+    f" {snakemake.input.fastq}"
+    f" | " + pipe_cmd + f") {log}"
 )

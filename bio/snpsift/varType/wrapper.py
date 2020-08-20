@@ -13,8 +13,8 @@ extra = snakemake.params.get("extra", "")
 
 os.system(
     f"SnpSift varType"  # Tool and its subcommand
-    " {extra}"  # Extra parameters
-    " {snakemake.input.vcf}"  # Path to input vcf file
-    " > {snakemake.output.vcf}"  # Path to output vcf file
-    " {log}"  # Logging behaviour
+    f" {extra}"  # Extra parameters
+    f" {snakemake.input.vcf}"  # Path to input vcf file
+    f" > {snakemake.output.vcf}"  # Path to output vcf file
+    f" {log}"  # Logging behaviour
 )

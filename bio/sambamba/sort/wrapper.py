@@ -8,5 +8,5 @@ import os
 
 os.system(
     f"sambamba sort {snakemake.params} -t {snakemake.threads} "
-    "-o {snakemake.output[0]} {snakemake.input[0]}"
+    f"-o {snakemake.output[0]} {snakemake.input[0]}"
 )

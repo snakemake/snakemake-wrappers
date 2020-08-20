@@ -43,8 +43,8 @@ if snakemake.output.tranches:
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 os.system(
     f"gatk --java-options '{java_opts}' VariantRecalibrator {extra} {resources} "
-    "-R {snakemake.input.ref} -V {snakemake.input.vcf} "
-    "-mode {snakemake.params.mode} "
-    "--output {snakemake.output.vcf} "
-    "{tranches} {annotation} {log}"
+    f"-R {snakemake.input.ref} -V {snakemake.input.vcf} "
+    f"-mode {snakemake.params.mode} "
+    f"--output {snakemake.output.vcf} "
+    f"{tranches} {annotation} {log}"
 )

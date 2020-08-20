@@ -29,8 +29,8 @@ if len(construction_algorithm) != 0:
 
 os.system(
     f"bwa index"
-    " {prefix}"
-    " {construction_algorithm}"
-    " {snakemake.input[0]}"
-    " {log}"
+    f" {prefix}"
+    f" {construction_algorithm}"
+    f" {snakemake.input[0]}"
+    f" {log}"
 )

@@ -36,9 +36,9 @@ elif not isinstance(output_file, str):
 
 os.system(
     f"fgbio AnnotateBamWithUmis"
-    " -i {bam_input}"
-    " -f {umi_input}"
-    " -o {output_file}"
-    " {extra_params}"
-    " {log}"
+    f" -i {bam_input}"
+    f" -f {umi_input}"
+    f" -o {output_file}"
+    f" {extra_params}"
+    f" {log}"
 )

@@ -31,9 +31,9 @@ if not isinstance(output_histo_file, str) and len(output_histo_file) != 1:
 
 os.system(
     f"fgbio GroupReadsByUmi"
-    " -i {bam_input}"
-    " -o {output_bam_file}"
-    " -f {output_histo_file}"
-    " {extra_params}"
-    " {log}"
+    f" -i {bam_input}"
+    f" -o {output_bam_file}"
+    f" -f {output_histo_file}"
+    f" {extra_params}"
+    f" {log}"
 )

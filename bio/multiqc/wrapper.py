@@ -17,10 +17,10 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 os.system(
     f"multiqc"
-    " {snakemake.params}"
-    " --force"
-    " -o {output_dir}"
-    " -n {output_name}"
-    " {input_dirs}"
-    " {log}"
+    f" {snakemake.params}"
+    f" --force"
+    f" -o {output_dir}"
+    f" -n {output_name}"
+    f" {input_dirs}"
+    f" {log}"
 )

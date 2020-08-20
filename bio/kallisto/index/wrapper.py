@@ -20,8 +20,8 @@ fasta = " ".join(fasta) if isinstance(fasta, list) else fasta
 
 os.system(
     f"kallisto index "  # Tool
-    "{extra} "  # Optional parameters
-    "--index={snakemake.output.index} "  # Output file
-    "{fasta} "  # Input FASTA files
-    "{log}"  # Logging
+    f"{extra} "  # Optional parameters
+    f"--index={snakemake.output.index} "  # Output file
+    f"{fasta} "  # Input FASTA files
+    f"{log}"  # Logging
 )

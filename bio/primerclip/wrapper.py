@@ -36,10 +36,10 @@ else:
 
 os.system(
     f"{samtools_input_command} |"
-    " primerclip"
-    " {master_file}"
-    " /dev/stdin"
-    " /dev/stdout"
-    " {samtools_output_command}"
-    " {log}"
+    f" primerclip"
+    f" {master_file}"
+    f" /dev/stdin"
+    f" /dev/stdout"
+    f" {samtools_output_command}"
+    f" {log}"
 )

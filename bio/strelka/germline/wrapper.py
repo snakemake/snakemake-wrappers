@@ -21,13 +21,13 @@ else:
 
 os.system(
     f"configureStrelkaGermlineWorkflow.py "  # configure the strelka run
-    "--bam {bam} "  # input bam
-    "--referenceFasta {snakemake.input.fasta} "  # reference genome
-    "--runDir {run_dir} "  # output directory
-    "{config_extra} "  # additional parameters for the configuration
-    "&& {run_dir}/runWorkflow.py "  # run the strelka workflow
-    "-m local "  # run in local mode
-    "-j {snakemake.threads} "  # number of threads
-    "{run_extra} "  # additional parameters for the run
-    "{log}"
+    f"--bam {bam} "  # input bam
+    f"--referenceFasta {snakemake.input.fasta} "  # reference genome
+    f"--runDir {run_dir} "  # output directory
+    f"{config_extra} "  # additional parameters for the configuration
+    f"&& {run_dir}/runWorkflow.py "  # run the strelka workflow
+    f"-m local "  # run in local mode
+    f"-j {snakemake.threads} "  # number of threads
+    f"{run_extra} "  # additional parameters for the run
+    f"{log}"
 )  # logging

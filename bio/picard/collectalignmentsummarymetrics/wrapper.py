@@ -12,6 +12,6 @@ log = snakemake.log_fmt_shell()
 
 os.system(
     f"picard CollectAlignmentSummaryMetrics {snakemake.params} "
-    "INPUT={snakemake.input.bam} OUTPUT={snakemake.output[0]} "
-    "REFERENCE_SEQUENCE={snakemake.input.ref} {log}"
+    f"INPUT={snakemake.input.bam} OUTPUT={snakemake.output[0]} "
+    f"REFERENCE_SEQUENCE={snakemake.input.ref} {log}"
 )

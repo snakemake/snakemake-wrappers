@@ -24,11 +24,11 @@ view_extra = snakemake.params.get("view_extra", "")
 
 os.system(
     f"bcftools reheader "
-    "{extra} "
-    "{header_cmd} "
-    "{samples_cmd} "
-    "{snakemake.input.vcf} "
-    "| bcftools view "
-    "{view_extra} "
-    "> {snakemake.output}"
+    f"{extra} "
+    f"{header_cmd} "
+    f"{samples_cmd} "
+    f"{snakemake.input.vcf} "
+    f"| bcftools view "
+    f"{view_extra} "
+    f"> {snakemake.output}"
 )

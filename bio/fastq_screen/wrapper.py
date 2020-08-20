@@ -39,14 +39,14 @@ tempdir = tempfile.mkdtemp()
 
 os.system(
     f"fastq_screen --outdir {tempdir} "
-    "--force "
-    "--aligner {aligner} "
-    "--conf {config_file} "
-    "--subset {subset} "
-    "--threads {snakemake.threads} "
-    "{extra} "
-    "{snakemake.input[0]} "
-    "{log}"
+    f"--force "
+    f"--aligner {aligner} "
+    f"--conf {config_file} "
+    f"--subset {subset} "
+    f"--threads {snakemake.threads} "
+    f"{extra} "
+    f"{snakemake.input[0]} "
+    f"{log}"
 )
 
 # Move output to the filenames specified by the rule

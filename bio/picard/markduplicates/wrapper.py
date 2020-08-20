@@ -10,6 +10,6 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 os.system(
     f"picard MarkDuplicates {snakemake.params} INPUT={snakemake.input} "
-    "OUTPUT={snakemake.output.bam} METRICS_FILE={snakemake.output.metrics} "
-    "{log}"
+    f"OUTPUT={snakemake.output.bam} METRICS_FILE={snakemake.output.metrics} "
+    f"{log}"
 )

@@ -9,5 +9,5 @@ import os
 
 os.system(
     f"picard AddOrReplaceReadGroups {snakemake.params} I={snakemake.input} "
-    "O={snakemake.output} &> {snakemake.log}"
+    f"O={snakemake.output} &> {snakemake.log}"
 )

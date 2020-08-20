@@ -14,7 +14,7 @@ gvcfs = list(map("-V {}".format, snakemake.input.gvcfs))
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 os.system(
     f"gatk --java-options '{java_opts}' CombineGVCFs {extra} "
-    "{gvcfs} "
-    "-R {snakemake.input.ref} "
-    "-O {snakemake.output.gvcf} {log}"
+    f"{gvcfs} "
+    f"-R {snakemake.input.ref} "
+    f"-O {snakemake.output.gvcf} {log}"
 )

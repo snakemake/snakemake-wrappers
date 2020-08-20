@@ -60,9 +60,9 @@ else:
 
 os.system(
     f"(macs2 callpeak "
-    "-t {snakemake.input.treatment} "
-    "{opt_input} "
-    "{out_dir} "
-    "-n {out_name} "
-    "{params}) {log}"
+    f"-t {snakemake.input.treatment} "
+    f"{opt_input} "
+    f"{out_dir} "
+    f"-n {out_name} "
+    f"{params}) {log}"
 )

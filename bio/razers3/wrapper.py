@@ -12,10 +12,10 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 os.system(
     f"(razers3"
-    " -tc {snakemake.threads}"
-    " {extra}"
-    " -o {snakemake.output[0]}"
-    " {snakemake.params.genome}"
-    " {snakemake.input.reads})"
-    " {log}"
+    f" -tc {snakemake.threads}"
+    f" {extra}"
+    f" -o {snakemake.output[0]}"
+    f" {snakemake.params.genome}"
+    f" {snakemake.input.reads})"
+    f" {log}"
 )

@@ -16,5 +16,5 @@ threads = "" if snakemake.threads <= 1 else " -@ {} ".format(snakemake.threads -
 
 os.system(
     f"samtools sort {snakemake.params} {threads} -o {snakemake.output[0]} "
-    "-T {prefix} {snakemake.input[0]}"
+    f"-T {prefix} {snakemake.input[0]}"
 )

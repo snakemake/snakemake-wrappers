@@ -20,12 +20,12 @@ if token != "":
 with TemporaryDirectory() as tempdir:
     os.system(
         f"gdc-client download"
-        " {token}"
-        " {extra}"
-        " -n {snakemake.threads} "
-        " --log-file {snakemake.log} "
-        " --dir {tempdir}"
-        " {uuid}"
+        f" {token}"
+        f" {extra}"
+        f" -n {snakemake.threads} "
+        f" --log-file {snakemake.log} "
+        f" --dir {tempdir}"
+        f" {uuid}"
     )
 
     for out_path in snakemake.output:

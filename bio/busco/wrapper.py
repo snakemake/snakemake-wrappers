@@ -26,8 +26,8 @@ else:
 # without needing to specify *all* busco outputs as snakemake outputs
 os.system(
     f"run_busco --in {snakemake.input} --out {out_name} --force "
-    " --cpu {snakemake.threads} --mode {mode} --lineage {lineage} "
-    " {extra} {log}"
+    f" --cpu {snakemake.threads} --mode {mode} --lineage {lineage} "
+    f" {extra} {log}"
 )
 
 busco_outname = "run_" + out_name

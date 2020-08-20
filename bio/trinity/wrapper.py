@@ -56,7 +56,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 os.system(
     f"Trinity {input_cmd} --CPU {snakemake.threads} "
-    " --max_memory {max_memory} --seqType {seqtype} "
-    " --output {outdir} {snakemake.params.extra} "
-    " {log}"
+    f" --max_memory {max_memory} --seqType {seqtype} "
+    f" --output {outdir} {snakemake.params.extra} "
+    f" {log}"
 )

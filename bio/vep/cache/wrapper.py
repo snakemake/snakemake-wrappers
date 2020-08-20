@@ -11,10 +11,10 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 os.system(
     f"vep_install --AUTO cf "
-    "--SPECIES {snakemake.params.species} "
-    "--ASSEMBLY {snakemake.params.build} "
-    "--CACHE_VERSION {snakemake.params.release} "
-    "--CACHEDIR {snakemake.output} "
-    "--CONVERT "
-    "--NO_UPDATE {log}"
+    f"--SPECIES {snakemake.params.species} "
+    f"--ASSEMBLY {snakemake.params.build} "
+    f"--CACHE_VERSION {snakemake.params.release} "
+    f"--CACHEDIR {snakemake.output} "
+    f"--CONVERT "
+    f"--NO_UPDATE {log}"
 )

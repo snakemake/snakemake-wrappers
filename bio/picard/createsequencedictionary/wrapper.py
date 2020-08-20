@@ -12,9 +12,9 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 os.system(
     f"picard "
-    "CreateSequenceDictionary "
-    "{extra} "
-    "R={snakemake.input[0]} "
-    "O={snakemake.output[0]} "
-    "{log}"
+    f"CreateSequenceDictionary "
+    f"{extra} "
+    f"R={snakemake.input[0]} "
+    f"O={snakemake.output[0]} "
+    f"{log}"
 )

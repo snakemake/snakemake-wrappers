@@ -60,9 +60,9 @@ else:
 
 os.system(
     f"(bwa-mem2 mem"
-    " -t {snakemake.threads}"
-    " {extra}"
-    " {snakemake.params.index}"
-    " {snakemake.input.reads}"
-    " | " + pipe_cmd + ") {log}"
+    f" -t {snakemake.threads}"
+    f" {extra}"
+    f" {snakemake.params.index}"
+    f" {snakemake.input.reads}"
+    f" | " + pipe_cmd + f") {log}"
 )

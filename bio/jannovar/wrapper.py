@@ -16,6 +16,6 @@ if pedigree:
 
 os.system(
     f"jannovar annotate-vcf --database {snakemake.params.database}"
-    " --input-vcf {snakemake.input.vcf} --output-vcf {snakemake.output}"
-    " {pedigree} {extra} {log}"
+    f" --input-vcf {snakemake.input.vcf} --output-vcf {snakemake.output}"
+    f" {pedigree} {extra} {log}"
 )

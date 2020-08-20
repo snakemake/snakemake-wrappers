@@ -36,11 +36,11 @@ if not isinstance(bam_output, str) and len(snakemake.output) != 1:
 
 os.system(
     f"fgbio FilterConsensusReads"
-    " -i {bam_input}"
-    " -o {bam_output}"
-    " -r {ref}"
-    " --min-reads {min_reads}"
-    " --min-base-quality {min_base_quality}"
-    " {extra_params}"
-    " {log}"
+    f" -i {bam_input}"
+    f" -o {bam_output}"
+    f" -r {ref}"
+    f" --min-reads {min_reads}"
+    f" --min-base-quality {min_base_quality}"
+    f" {extra_params}"
+    f" {log}"
 )

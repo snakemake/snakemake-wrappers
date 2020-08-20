@@ -14,9 +14,9 @@ extra = snakemake.params.get("extra", "")
 
 os.system(
     f"gatk Mutect2 "  # Tool and its subprocess
-    "--input {snakemake.input.map} "  # Path to input mapping file
-    "--output {snakemake.output.vcf} "  # Path to output vcf file
-    "--reference {snakemake.input.fasta} "  # Path to reference fasta file
-    "{extra} "  # Extra parameters
-    "{log}"  # Logging behaviour
+    f"--input {snakemake.input.map} "  # Path to input mapping file
+    f"--output {snakemake.output.vcf} "  # Path to output vcf file
+    f"--reference {snakemake.input.fasta} "  # Path to reference fasta file
+    f"{extra} "  # Extra parameters
+    f"{log}"  # Logging behaviour
 )

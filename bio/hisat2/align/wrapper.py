@@ -27,8 +27,8 @@ else:
 # Executed shell command
 os.system(
     f"(hisat2 {extra} "
-    "--threads {snakemake.threads} "
-    " -x {snakemake.input.idx} {input_flags} "
-    " | samtools view -Sbh -o {snakemake.output[0]} -) "
-    " {log}"
+    f"--threads {snakemake.threads} "
+    f" -x {snakemake.input.idx} {input_flags} "
+    f" | samtools view -Sbh -o {snakemake.output[0]} -) "
+    f" {log}"
 )

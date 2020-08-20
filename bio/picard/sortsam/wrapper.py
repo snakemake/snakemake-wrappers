@@ -14,10 +14,10 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 os.system(
     f"picard"
-    " SortSam"
-    " {extra}"
-    " INPUT={snakemake.input[0]}"
-    " OUTPUT={snakemake.output[0]}"
-    " SORT_ORDER={snakemake.params.sort_order}"
-    " {log}"
+    f" SortSam"
+    f" {extra}"
+    f" INPUT={snakemake.input[0]}"
+    f" OUTPUT={snakemake.output[0]}"
+    f" SORT_ORDER={snakemake.params.sort_order}"
+    f" {log}"
 )

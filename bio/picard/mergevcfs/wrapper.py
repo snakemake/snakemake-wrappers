@@ -15,9 +15,9 @@ extra = snakemake.params.get("extra", "")
 
 os.system(
     f"picard"
-    " MergeVcfs"
-    " {extra}"
-    " {inputs}"
-    " OUTPUT={snakemake.output[0]}"
-    " {log}"
+    f" MergeVcfs"
+    f" {extra}"
+    f" {inputs}"
+    f" OUTPUT={snakemake.output[0]}"
+    f" {log}"
 )

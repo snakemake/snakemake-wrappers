@@ -11,7 +11,7 @@ prefix = os.path.splitext(snakemake.output[0])[0]
 
 os.system(
     f"samtools bam2fq {snakemake.params} "
-    " -@ {snakemake.threads} "
-    " {snakemake.input[0]}"
-    " >{snakemake.output[0]} "
+    f" -@ {snakemake.threads} "
+    f" {snakemake.input[0]}"
+    f" >{snakemake.output[0]} "
 )

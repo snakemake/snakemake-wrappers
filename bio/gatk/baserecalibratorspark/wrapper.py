@@ -21,8 +21,8 @@ if known:
 
 os.system(
     f"gatk --java-options '{java_opts}' BaseRecalibratorSpark {extra} "
-    "-R {snakemake.input.ref} -I {snakemake.input.bam} "
-    "-O {snakemake.output.recal_table} {known} "
-    "-- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra} "
-    "{log}"
+    f"-R {snakemake.input.ref} -I {snakemake.input.bam} "
+    f"-O {snakemake.output.recal_table} {known} "
+    f"-- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra} "
+    f"{log}"
 )

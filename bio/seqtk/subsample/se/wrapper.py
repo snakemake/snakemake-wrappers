@@ -14,11 +14,11 @@ log = snakemake.log_fmt_shell()
 
 os.system(
     f"( "
-    "seqtk sample "
-    "-s {snakemake.params.seed} "
-    "{snakemake.input} "
-    "{snakemake.params.n} "
-    "| pigz -9 -p {snakemake.threads} "
-    "> {snakemake.output} "
-    ") {log} "
+    f"seqtk sample "
+    f"-s {snakemake.params.seed} "
+    f"{snakemake.input} "
+    f"{snakemake.params.n} "
+    f"| pigz -9 -p {snakemake.threads} "
+    f"> {snakemake.output} "
+    f") {log} "
 )

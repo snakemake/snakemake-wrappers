@@ -27,8 +27,8 @@ if hisat_dir:
 
 os.system(
     f"hisat2-build {extra} "
-    "-p {snakemake.threads} "
-    "{input_seq} "
-    "{snakemake.params.prefix} "
-    "{log}"
+    f"-p {snakemake.threads} "
+    f"{input_seq} "
+    f"{snakemake.params.prefix} "
+    f"{log}"
 )

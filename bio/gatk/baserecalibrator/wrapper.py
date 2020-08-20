@@ -16,6 +16,6 @@ if known:
 
 os.system(
     f"gatk --java-options '{java_opts}' BaseRecalibrator {extra} "
-    "-R {snakemake.input.ref} -I {snakemake.input.bam} "
-    "-O {snakemake.output.recal_table} {known} {log}"
+    f"-R {snakemake.input.ref} -I {snakemake.input.bam} "
+    f"-O {snakemake.output.recal_table} {known} {log}"
 )

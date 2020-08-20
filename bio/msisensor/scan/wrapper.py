@@ -14,8 +14,8 @@ extra = snakemake.params.get("extra", "")
 
 os.system(
     f"msisensor scan "  # Tool and its sub-command
-    "-d {snakemake.input} "  # Path to fasta file
-    "-o {snakemake.output} "  # Path to output file
-    "{extra} "  # Optional extra parameters
-    "{log}"  # Logging behavior
+    f"-d {snakemake.input} "  # Path to fasta file
+    f"-o {snakemake.output} "  # Path to output file
+    f"{extra} "  # Optional extra parameters
+    f"{log}"  # Logging behavior
 )

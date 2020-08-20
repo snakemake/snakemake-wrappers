@@ -16,5 +16,5 @@ filters = [
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 os.system(
     f"gatk --java-options '{java_opts}' VariantFiltration -R {snakemake.input.ref} -V {snakemake.input.vcf} "
-    "{extra} {filters} -O {snakemake.output.vcf} {log}"
+    f"{extra} {filters} -O {snakemake.output.vcf} {log}"
 )

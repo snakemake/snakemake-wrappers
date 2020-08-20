@@ -15,11 +15,11 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 os.system(
     f"cutadapt"
-    " {snakemake.params.adapters}"
-    " {snakemake.params.others}"
-    " -o {snakemake.output.fastq1}"
-    " -p {snakemake.output.fastq2}"
-    " -j {snakemake.threads}"
-    " {snakemake.input}"
-    " > {snakemake.output.qc} {log}"
+    f" {snakemake.params.adapters}"
+    f" {snakemake.params.others}"
+    f" -o {snakemake.output.fastq1}"
+    f" -p {snakemake.output.fastq2}"
+    f" -j {snakemake.threads}"
+    f" {snakemake.input}"
+    f" > {snakemake.output.qc} {log}"
 )

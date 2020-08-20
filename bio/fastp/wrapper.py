@@ -32,8 +32,8 @@ json = "--json {}".format(snakemake.output.json)
 
 os.system(
     f"(fastp --thread {snakemake.threads} {snakemake.params.extra} "
-    "{reads} "
-    "{trimmed} "
-    "{json} "
-    "{html} ) {log}"
+    f"{reads} "
+    f"{trimmed} "
+    f"{json} "
+    f"{html} ) {log}"
 )

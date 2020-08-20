@@ -19,11 +19,11 @@ prefix = commonprefix(snakemake.output)
 
 os.system(
     f"msisensor msi"  # Tool and its sub-command
-    " -d {snakemake.input.microsat}"  # Path to homopolymer/microsat file
-    " -n {snakemake.input.normal}"  # Path to normal bam
-    " -t {snakemake.input.tumor}"  # Path to tumor bam
-    " -o {prefix}"  # Path to output distribution file
-    " -b {snakemake.threads}"  # Maximum number of threads used
-    " {extra}"  # Optional extra parameters
-    " {log}"  # Logging behavior
+    f" -d {snakemake.input.microsat}"  # Path to homopolymer/microsat file
+    f" -n {snakemake.input.normal}"  # Path to normal bam
+    f" -t {snakemake.input.tumor}"  # Path to tumor bam
+    f" -o {prefix}"  # Path to output distribution file
+    f" -b {snakemake.threads}"  # Maximum number of threads used
+    f" {extra}"  # Optional extra parameters
+    f" {log}"  # Logging behavior
 )

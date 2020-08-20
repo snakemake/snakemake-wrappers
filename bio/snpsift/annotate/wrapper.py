@@ -38,9 +38,9 @@ if snakemake.threads < min_threads:
 
 os.system(
     f"SnpSift annotate"  # Tool and its subcommand
-    " {extra}"  # Extra parameters
-    " {snakemake.input.database}"  # Path to annotation vcf file
-    " {incall} "  # Path to input vcf file
-    " {outcall} "  # Path to output vcf file
-    " {log}"  # Logging behaviour
+    f" {extra}"  # Extra parameters
+    f" {snakemake.input.database}"  # Path to annotation vcf file
+    f" {incall} "  # Path to input vcf file
+    f" {outcall} "  # Path to output vcf file
+    f" {log}"  # Logging behaviour
 )

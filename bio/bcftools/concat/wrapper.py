@@ -9,5 +9,5 @@ import os
 
 os.system(
     f"bcftools concat {snakemake.params} -o {snakemake.output[0]} "
-    "{snakemake.input.calls}"
+    f"{snakemake.input.calls}"
 )

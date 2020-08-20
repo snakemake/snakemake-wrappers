@@ -31,7 +31,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 log_append = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 os.system(
     f"deduplicate_bismark {params_extra} --bam {arg_multiple}"
-    " {arg_output_dir} {snakemake.input} {log}"
+    f" {arg_output_dir} {snakemake.input} {log}"
 )
 
 # Move outputs into proper position.

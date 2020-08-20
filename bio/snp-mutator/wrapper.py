@@ -19,8 +19,8 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 # Executed shell command
 os.system(
     f"snpmutator {extra} "
-    "--num-simulations {num_simulations} "
-    "--vcf {snakemake.output.vcf} "
-    "-F {fasta_outdir} "
-    "{snakemake.input} {log} "
+    f"--num-simulations {num_simulations} "
+    f"--vcf {snakemake.output.vcf} "
+    f"-F {fasta_outdir} "
+    f"{snakemake.input} {log} "
 )

@@ -15,8 +15,8 @@ if region and region is not None:
 
 os.system(
     f"(bamtools filter"
-    " -in {snakemake.input[0]}"
-    " -out {snakemake.output[0]}"
+    f" -in {snakemake.input[0]}"
+    f" -out {snakemake.output[0]}"
     + region_param
-    + " -script {snakemake.params.json}) {log}"
+    + f" -script {snakemake.params.json}) {log}"
 )

@@ -37,10 +37,10 @@ else:
 
 os.system(
     f"varscan somatic"  # Tool and its subcommand
-    " {in_pileup}"  # Path to input file(s)
-    " {prefix}"  # Path to output
-    " {extra}"  # Extra parameters
-    " {mpileup}"
-    " --output-snp {snakemake.output.snp}"  # Path to snp output file
-    " --output-indel {snakemake.output.indel}"  # Path to indel output file
+    f" {in_pileup}"  # Path to input file(s)
+    f" {prefix}"  # Path to output
+    f" {extra}"  # Extra parameters
+    f" {mpileup}"
+    f" --output-snp {snakemake.output.snp}"  # Path to snp output file
+    f" --output-indel {snakemake.output.indel}"  # Path to indel output file
 )

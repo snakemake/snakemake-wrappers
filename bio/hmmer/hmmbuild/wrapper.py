@@ -14,5 +14,5 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 os.system(
     f" hmmbuild {extra} --cpu {snakemake.threads} "
-    " {snakemake.output} {snakemake.input} {log} "
+    f" {snakemake.output} {snakemake.input} {log} "
 )

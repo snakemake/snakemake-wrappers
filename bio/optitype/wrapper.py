@@ -21,11 +21,11 @@ if any(config):
 
 os.system(
     f"(OptiTypePipeline.py"
-    " --input {snakemake.input.reads}"
-    " --outdir {outdir}"
-    " --prefix {snakemake.wildcards.sample}"
-    " {seq_type}"
-    " {config}"
-    " {extra})"
-    " {log}"
+    f" --input {snakemake.input.reads}"
+    f" --outdir {outdir}"
+    f" --prefix {snakemake.wildcards.sample}"
+    f" {seq_type}"
+    f" {config}"
+    f" {extra})"
+    f" {log}"
 )

@@ -20,8 +20,8 @@ if len(snakemake.input) > 1:
 
 os.system(
     f"(genomeCoverageBed"
-    " {snakemake.params}"
-    " {input_file}"
-    " {genome}"
-    " > {snakemake.output[0]}) {log}"
+    f" {snakemake.params}"
+    f" {input_file}"
+    f" {genome}"
+    f" > {snakemake.output[0]}) {log}"
 )

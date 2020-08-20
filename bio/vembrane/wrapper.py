@@ -13,9 +13,9 @@ extra = snakemake.params.get("extra", "")
 
 os.system(
     f"vembrane"  # Tool and its subcommand
-    " {extra}"  # Extra parameters
-    ' "{snakemake.params.expression}"'
-    " {snakemake.input.vcf}"  # Path to input vcf file
-    " > {snakemake.output.vcf}"  # Path to output vcf file
-    " {log}"  # Logging behaviour
+    f" {extra}"  # Extra parameters
+    f' "{snakemake.params.expression}"'
+    f" {snakemake.input.vcf}"  # Path to input vcf file
+    f" > {snakemake.output.vcf}"  # Path to output vcf file
+    f" {log}"  # Logging behaviour
 )

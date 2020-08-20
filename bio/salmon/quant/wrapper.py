@@ -59,6 +59,6 @@ outdir = path.dirname(snakemake.output.get("quant"))
 
 os.system(
     f"salmon quant -i {snakemake.input.index} "
-    " -l {libtype} {read_cmd} -o {outdir} "
-    " -p {snakemake.threads} {extra} {log} "
+    f" -l {libtype} {read_cmd} -o {outdir} "
+    f" -p {snakemake.threads} {extra} {log} "
 )

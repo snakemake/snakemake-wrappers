@@ -12,5 +12,5 @@ inputQuery = " ".join(snakemake.input.query)
 
 os.system(
     f"(minimap2 -t {snakemake.threads} {extra} -o {snakemake.output[0]} "
-    "{snakemake.input.target} {inputQuery}) {log}"
+    f"{snakemake.input.target} {inputQuery}) {log}"
 )

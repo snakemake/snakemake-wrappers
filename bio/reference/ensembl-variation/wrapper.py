@@ -66,15 +66,15 @@ try:
         if snakemake.input.get("fai"):
             os.system(
                 f"(cd {tmpdir}; {gather} && "
-                "bcftools concat -Oz --naive {names} > concat.vcf.gz && "
-                "bcftools reheader --fai {workdir}/{snakemake.input.fai} concat.vcf.gz "
-                "> {workdir}/{snakemake.output}) {log}"
+                f"bcftools concat -Oz --naive {names} > concat.vcf.gz && "
+                f"bcftools reheader --fai {workdir}/{snakemake.input.fai} concat.vcf.gz "
+                f"> {workdir}/{snakemake.output}) {log}"
             )
         else:
             os.system(
                 f"(cd {tmpdir}; {gather} && "
-                "bcftools concat -Oz --naive {names} "
-                "> {workdir}/{snakemake.output}) {log}"
+                f"bcftools concat -Oz --naive {names} "
+                f"> {workdir}/{snakemake.output}) {log}"
             )
 except subprocess.CalledProcessError as e:
     if snakemake.log:

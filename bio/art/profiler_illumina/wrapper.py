@@ -54,5 +54,5 @@ with tempfile.TemporaryDirectory() as temp_input:
 
     os.system(
         f"( art_profiler_illumina {snakemake.params} {profile_name}"
-        " {temp_input} {fq_extension} {snakemake.threads} ) 2> {snakemake.log}"
+        f" {temp_input} {fq_extension} {snakemake.threads} ) 2> {snakemake.log}"
     )

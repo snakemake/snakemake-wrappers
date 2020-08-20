@@ -31,10 +31,10 @@ extra = snakemake.params.get("extra", "")
 
 os.system(
     f"curl --silent"
-    " --header $CURL_HEADER_TOKEN"
-    " 'https://api.gdc.cancer.gov/slicing/view/{uuid}?{slices}'"
-    " {extra}"
-    " --output {snakemake.output.bam} {log}"
+    f" --header $CURL_HEADER_TOKEN"
+    f" 'https://api.gdc.cancer.gov/slicing/view/{uuid}?{slices}'"
+    f" {extra}"
+    f" --output {snakemake.output.bam} {log}"
 )
 
 if os.path.getsize(snakemake.output.bam) < 100000:

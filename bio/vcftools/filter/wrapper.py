@@ -20,11 +20,11 @@ extra = snakemake.params.get("extra", "")
 
 os.system(
     f"vcftools "
-    "{input_flag} "
-    "{snakemake.input} "
-    "{extra} "
-    "--recode "
-    "--stdout "
-    "{output} "
-    "{log}"
+    f"{input_flag} "
+    f"{snakemake.input} "
+    f"{extra} "
+    f"--recode "
+    f"--stdout "
+    f"{output} "
+    f"{log}"
 )

@@ -49,11 +49,11 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 # Executed shell command
 os.system(
     f"nanosim-h {extra} "
-    "{perfect_reads_flag} "
-    "--max-len {max_read_len} "
-    "--min-len {min_read_len} "
-    "--profile {profile} "
-    "--number {num_reads} "
-    "--out-pref {prefix} "
-    "{snakemake.input} {log}"
+    f"{perfect_reads_flag} "
+    f"--max-len {max_read_len} "
+    f"--min-len {min_read_len} "
+    f"--profile {profile} "
+    f"--number {num_reads} "
+    f"--out-pref {prefix} "
+    f"{snakemake.input} {log}"
 )

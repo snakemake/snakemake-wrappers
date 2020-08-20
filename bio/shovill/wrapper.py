@@ -16,15 +16,15 @@ params = snakemake.params.get("extra", "")
 with TemporaryDirectory() as tempdir:
     os.system(
         f"(shovill"
-        " --assembler {snakemake.wildcards.assembler}"
-        " --outdir {tempdir} --force"
-        " --R1 {snakemake.input.r1}"
-        " --R2 {snakemake.input.r2}"
-        " --cpus {snakemake.threads}"
-        " {params}) {log}"
+        f" --assembler {snakemake.wildcards.assembler}"
+        f" --outdir {tempdir} --force"
+        f" --R1 {snakemake.input.r1}"
+        f" --R2 {snakemake.input.r2}"
+        f" --cpus {snakemake.threads}"
+        f" {params}) {log}"
     )
 
     os.system(
         f"mv {tempdir}/{snakemake.wildcards.assembler}.fasta {snakemake.output.raw_assembly}"
-        " && mv {tempdir}/contigs.fa {snakemake.output.contigs}"
+        f" && mv {tempdir}/contigs.fa {snakemake.output.contigs}"
     )

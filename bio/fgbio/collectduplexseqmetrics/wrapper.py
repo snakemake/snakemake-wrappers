@@ -74,9 +74,9 @@ if not isinstance(bam_input, str) and len(snakemake.input) != 1:
 
 os.system(
     f"fgbio CollectDuplexSeqMetrics"
-    " -i {bam_input}"
-    " -o {path_name_prefix}"
-    " {duplex_umi_counts_flag}"
-    " {extra_params}"
-    " {log}"
+    f" -i {bam_input}"
+    f" -o {path_name_prefix}"
+    f" {duplex_umi_counts_flag}"
+    f" {extra_params}"
+    f" {log}"
 )

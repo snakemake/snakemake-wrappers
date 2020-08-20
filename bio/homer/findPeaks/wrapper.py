@@ -18,10 +18,10 @@ else:
 
 os.system(
     f"(findPeaks"
-    " {snakemake.input.tag}"
-    " -style {snakemake.params.style}"
-    " {extra}"
-    " {control_command}"
-    " -o {snakemake.output})"
-    " {log}"
+    f" {snakemake.input.tag}"
+    f" -style {snakemake.params.style}"
+    f" {extra}"
+    f" {control_command}"
+    f" -o {snakemake.output})"
+    f" {log}"
 )

@@ -13,10 +13,10 @@ extra = snakemake.params.get("extra", "")
 
 os.system(
     f"picard CollectTargetedPcrMetrics "
-    "{extra} "
-    "INPUT={snakemake.input.bam} "
-    "OUTPUT={snakemake.output[0]} "
-    "AMPLICON_INTERVALS={snakemake.input.amplicon_intervals} "
-    "TARGET_INTERVALS={snakemake.input.target_intervals} "
-    "{log}"
+    f"{extra} "
+    f"INPUT={snakemake.input.bam} "
+    f"OUTPUT={snakemake.output[0]} "
+    f"AMPLICON_INTERVALS={snakemake.input.amplicon_intervals} "
+    f"TARGET_INTERVALS={snakemake.input.target_intervals} "
+    f"{log}"
 )

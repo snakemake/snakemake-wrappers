@@ -10,5 +10,5 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 os.system(
     f"pindel -T {snakemake.threads} {snakemake.params.extra} -i {snakemake.input.config} "
-    "-f {snakemake.input.ref} -o {snakemake.params.prefix} {log}"
+    f"-f {snakemake.input.ref} -o {snakemake.params.prefix} {log}"
 )

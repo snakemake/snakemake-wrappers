@@ -22,8 +22,8 @@ if out_data:
 
 os.system(
     f"(plotProfile "
-    "-m {snakemake.input[0]} "
-    "-o {snakemake.output.plot_img} "
-    "{optional_output} "
-    "{snakemake.params}) {log}"
+    f"-m {snakemake.input[0]} "
+    f"-o {snakemake.output.plot_img} "
+    f"{optional_output} "
+    f"{snakemake.params}) {log}"
 )

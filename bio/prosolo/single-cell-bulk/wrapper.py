@@ -11,12 +11,12 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 os.system(
     f"( prosolo single-cell-bulk "
-    "--omit-indels "
-    " {snakemake.params.extra} "
-    "--candidates {snakemake.input.candidates} "
-    "--output {snakemake.output} "
-    "{snakemake.input.single_cell} "
-    "{snakemake.input.bulk} "
-    "{snakemake.input.ref} ) "
-    "{log} "
+    f"--omit-indels "
+    f" {snakemake.params.extra} "
+    f"--candidates {snakemake.input.candidates} "
+    f"--output {snakemake.output} "
+    f"{snakemake.input.single_cell} "
+    f"{snakemake.input.bulk} "
+    f"{snakemake.input.ref} ) "
+    f"{log} "
 )

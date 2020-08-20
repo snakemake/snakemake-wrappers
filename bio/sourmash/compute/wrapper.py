@@ -15,5 +15,5 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 os.system(
     f"sourmash compute --scaled {scaled} -k {k} {snakemake.input} -o {snakemake.output}"
-    " {extra} {log}"
+    f" {extra} {log}"
 )

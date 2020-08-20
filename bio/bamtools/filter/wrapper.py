@@ -44,5 +44,5 @@ if extra_limits:
 
 os.system(
     f"(bamtools filter"
-    " -in {snakemake.input[0]}" + params + " -out {snakemake.output[0]}) {log}"
+    f" -in {snakemake.input[0]}" + params + " -out {snakemake.output[0]}) {log}"
 )

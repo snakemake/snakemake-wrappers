@@ -51,6 +51,6 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 os.system(
     f" hmmsearch --cpu {snakemake.threads} "
-    " {out_cmd} {thresh_cmd} {extra} {profile} "
-    " {snakemake.input.fasta} {log}"
+    f" {out_cmd} {thresh_cmd} {extra} {profile} "
+    f" {snakemake.input.fasta} {log}"
 )

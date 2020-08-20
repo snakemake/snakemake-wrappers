@@ -30,8 +30,8 @@ def basename_without_ext(file_path):
 with TemporaryDirectory() as tempdir:
     os.system(
         f"fastqc {snakemake.params} --quiet -t {snakemake.threads} "
-        "--outdir {tempdir:q} {snakemake.input[0]:q}"
-        " {log:q}"
+        f"--outdir {tempdir:q} {snakemake.input[0]:q}"
+        f" {log:q}"
     )
 
     # Move outputs into proper position.

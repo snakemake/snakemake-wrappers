@@ -27,12 +27,12 @@ if prefix is None:
 # Run command.
 os.system(
     f"ngs_disambiguate"
-    " {extra}"
-    " -o {output_dir}"
-    " -s {prefix}"
-    " -a {snakemake.params.algorithm}"
-    " {snakemake.input.a}"
-    " {snakemake.input.b}"
+    f" {extra}"
+    f" -o {output_dir}"
+    f" -s {prefix}"
+    f" -a {snakemake.params.algorithm}"
+    f" {snakemake.input.a}"
+    f" {snakemake.input.b}"
 )
 
 # Move outputs into expected positions.

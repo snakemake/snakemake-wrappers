@@ -22,8 +22,8 @@ if not isinstance(output_file, str) and len(snakemake.output) != 1:
 
 os.system(
     f"fgbio SetMateInformation"
-    " -i {bam_input}"
-    " -o {output_file}"
-    " {extra_params}"
-    " {log}"
+    f" -i {bam_input}"
+    f" -o {output_file}"
+    f" {extra_params}"
+    f" {log}"
 )

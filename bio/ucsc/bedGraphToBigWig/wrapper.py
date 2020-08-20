@@ -13,6 +13,6 @@ extra = snakemake.params.get("extra", "")
 
 os.system(
     f"bedGraphToBigWig {extra}"
-    " {snakemake.input.bedGraph} {snakemake.input.chromsizes}"
-    " {snakemake.output} {log}"
+    f" {snakemake.input.bedGraph} {snakemake.input.chromsizes}"
+    f" {snakemake.output} {log}"
 )

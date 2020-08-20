@@ -20,7 +20,7 @@ bams = list(map("-I {}".format, bams))
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 os.system(
     f"gatk --java-options '{java_opts}' HaplotypeCaller {extra} "
-    "-R {snakemake.input.ref} {bams} "
-    "-ERC GVCF "
-    "-O {snakemake.output.gvcf} {known} {log}"
+    f"-R {snakemake.input.ref} {bams} "
+    f"-ERC GVCF "
+    f"-O {snakemake.output.gvcf} {known} {log}"
 )

@@ -13,10 +13,10 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 os.system(
     f"(pre.py"
-    " --threads {snakemake.threads}"
-    " -r {snakemake.params.genome}"
-    " {extra}"
-    " {snakemake.input.variants}"
-    " {snakemake.output})"
-    " {log}"
+    f" --threads {snakemake.threads}"
+    f" -r {snakemake.params.genome}"
+    f" {extra}"
+    f" {snakemake.input.variants}"
+    f" {snakemake.output})"
+    f" {log}"
 )

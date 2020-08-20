@@ -11,5 +11,5 @@ log = snakemake.log_fmt_shell()
 
 os.system(
     f"(sickle se -f {snakemake.input[0]} -o {snakemake.output[0]} "
-    "-t {snakemake.params.qual_type} {extra}) {log}"
+    f"-t {snakemake.params.qual_type} {extra}) {log}"
 )

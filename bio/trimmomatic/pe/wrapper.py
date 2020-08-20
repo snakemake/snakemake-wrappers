@@ -94,9 +94,9 @@ output_r1, output_r1_unp, output_r2, output_r2_unp = [
 
 os.system(
     f"trimmomatic PE -threads {trimmomatic_threads} {extra} "
-    "{input_r1} {input_r2} "
-    "{output_r1} {output_r1_unp} "
-    "{output_r2} {output_r2_unp} "
-    "{trimmer} "
-    "{log}"
+    f"{input_r1} {input_r2} "
+    f"{output_r1} {output_r1_unp} "
+    f"{output_r2} {output_r2_unp} "
+    f"{trimmer} "
+    f"{log}"
 )

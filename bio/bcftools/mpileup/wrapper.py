@@ -25,6 +25,6 @@ if "--no-reference" not in options:
 
 os.system(
     f"bcftools mpileup {options} --threads {snakemake.threads} "
-    "--output {snakemake.output.pileup} "
-    "{snakemake.input.alignments} 2> {snakemake.log}"
+    f"--output {snakemake.output.pileup} "
+    f"{snakemake.input.alignments} 2> {snakemake.log}"
 )

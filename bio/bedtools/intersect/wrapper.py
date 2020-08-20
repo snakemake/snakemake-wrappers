@@ -11,9 +11,9 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 os.system(
     f"(bedtools intersect"
-    " {extra}"
-    " -a {snakemake.input.left}"
-    " -b {snakemake.input.right}"
-    " > {snakemake.output})"
-    " {log}"
+    f" {extra}"
+    f" -a {snakemake.input.left}"
+    f" -b {snakemake.input.right}"
+    f" > {snakemake.output})"
+    f" {log}"
 )

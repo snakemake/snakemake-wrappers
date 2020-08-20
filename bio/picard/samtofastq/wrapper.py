@@ -32,9 +32,9 @@ if isinstance(fastq_unpaired, str):
 
 os.system(
     f"picard"
-    " SamToFastq"
-    " {extra}"
-    " INPUT={snakemake.input[0]}"
-    " {output}"
-    " {log}"
+    f" SamToFastq"
+    f" {extra}"
+    f" INPUT={snakemake.input[0]}"
+    f" {output}"
+    f" {log}"
 )

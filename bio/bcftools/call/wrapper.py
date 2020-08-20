@@ -24,5 +24,5 @@ options = snakemake.params.get("options", "")
 
 os.system(
     f"bcftools call {options} {caller_opt} --threads {snakemake.threads} "
-    "-o {snakemake.output.calls} {snakemake.input.pileup} 2> {snakemake.log}"
+    f"-o {snakemake.output.calls} {snakemake.input.pileup} 2> {snakemake.log}"
 )
