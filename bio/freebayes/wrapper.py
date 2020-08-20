@@ -32,7 +32,9 @@ else:
         snakemake=snakemake, regions=regions
     )
 
-os.system(
-    f"({freebayes} {params} -f {snakemake.input.ref}"
-    f" {snakemake.input.samples} {pipe} > {snakemake.output[0]}) {log}"
+command = (
+    f"{freebayes} {params} -f {snakemake.input.ref}"
+    f" {snakemake.input.samples} {pipe} > {snakemake.output[0]} {log}"
 )
+print(command)
+os.system(command)

@@ -49,8 +49,8 @@ elif sort == "picard":
 
     # Sort alignments using picard SortSam.
     pipe_cmd = (
-        "picard SortSam {sort_extra} INPUT=/dev/stdin"
-        " OUTPUT={snakemake.output[0]} SORT_ORDER={sort_order}"
+        f"picard SortSam {sort_extra} INPUT=/dev/stdin"
+        f" OUTPUT={snakemake.output[0]} SORT_ORDER={sort_order}"
     )
 
 else:

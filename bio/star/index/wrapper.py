@@ -22,7 +22,7 @@ else:
 
 os.makedirs(snakemake.output)
 
-os.systeml(
+command = (
     f"STAR "  # Tool
     f"--runMode genomeGenerate "  # Indexation mode
     f"{extra} "  # Optional parameters
@@ -33,3 +33,5 @@ os.systeml(
     f"{gtf} "  # Highly recommended GTF
     f"{log}"  # Logging
 )
+print(command)
+os.system(command)

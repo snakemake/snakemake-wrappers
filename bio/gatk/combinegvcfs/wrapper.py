@@ -9,7 +9,7 @@ import os
 
 extra = snakemake.params.get("extra", "")
 java_opts = snakemake.params.get("java_opts", "")
-gvcfs = list(map("-V {}".format, snakemake.input.gvcfs))
+gvcfs = " ".join(list(map("-V {}".format, snakemake.input.gvcfs)))
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 os.system(

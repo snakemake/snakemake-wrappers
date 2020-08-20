@@ -17,7 +17,7 @@ genome_fa = snakemake.input.get("genome_fa", None)
 if not genome_fa:
     raise ValueError("bismark/bam2nuc: Error 'genome_fa' input not specified.")
 genome_folder = os.path.dirname(genome_fa)
-cmdline_args.append("--genome_folder {genome_folder:q}")
+cmdline_args.append("--genome_folder {genome_folder}")
 
 
 bam = snakemake.input.get("bam", None)
@@ -44,7 +44,7 @@ if bam:
             " {}".format(output_dir)
         )
     if output_dir:
-        cmdline_args.append("--dir {output_dir:q}")
+        cmdline_args.append("--dir {output_dir}")
 else:
     cmdline_args.append("--genomic_composition_only")
 
@@ -75,4 +75,4 @@ if bam:
 
     for (exp_path, actual_path) in expected_2_actual_paths:
         if exp_path and (exp_path != actual_path):
-            os.system(f"mv {actual_path:q} {exp_path:q} {log_append}")
+            os.system(f"mv {actual_path} {exp_path} {log_append}")

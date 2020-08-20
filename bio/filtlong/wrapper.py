@@ -18,4 +18,4 @@ if target_bases > 0:
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 # Executed shell command
-os.system(f"filtlong {extra}" " {snakemake.input.reads} > {snakemake.output} {log}")
+os.system(f"filtlong {extra} {snakemake.input.reads} > {snakemake.output} {log}")

@@ -20,4 +20,4 @@ prefix = snakemake.params.get("prefix", "")
 if len(prefix) > 0:
     prefix = "-p " + prefix
 
-os.system(f"bwa-mem2 index" " {prefix}" " {snakemake.input[0]}" " {log}")
+os.system(f"bwa-mem2 index {prefix} {snakemake.input[0]} {log}")

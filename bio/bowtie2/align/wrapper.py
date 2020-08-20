@@ -22,6 +22,6 @@ else:
 
 os.system(
     f"(bowtie2 --threads {snakemake.threads} {snakemake.params.extra} "
-    "-x {snakemake.params.index} {reads} "
-    "| samtools view -Sbh -o {snakemake.output[0]} -) {log}"
+    f"-x {snakemake.params.index} {reads} "
+    f"| samtools view -Sbh -o {snakemake.output[0]} -) {log}"
 )

@@ -55,4 +55,4 @@ expected_2_actual_paths = [
 ]
 for (exp_path, actual_path) in expected_2_actual_paths:
     if exp_path and (exp_path != actual_path):
-        os.system(f"mv {actual_path:q} {exp_path:q} {log_append}")
+        os.system(f"mv {actual_path} {exp_path} {log_append}")

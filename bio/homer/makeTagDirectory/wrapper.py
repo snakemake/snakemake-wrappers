@@ -10,6 +10,4 @@ import sys
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-os.system(
-    f"(makeTagDirectory" " {snakemake.output}" " {extra}" " {snakemake.input})" " {log}"
-)
+os.system(f"(makeTagDirectory {snakemake.output} {extra} {snakemake.input}) {log}")

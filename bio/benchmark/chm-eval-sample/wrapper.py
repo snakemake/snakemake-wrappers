@@ -20,18 +20,16 @@ if prefix:
     os.system(
         f"""
         {pipefail}
-        {{
             samtools view {fmt} {url} {prefix} > {snakemake.output.bam}
             samtools index {snakemake.output.bam}
-        }} {log}
+        {log}
         """
     )
 else:
     os.system(
         f"""
-        {{
             curl -L {url} > {snakemake.output.bam}
             samtools index {snakemake.output.bam}
-        }} {log}
+         {log}
         """
     )

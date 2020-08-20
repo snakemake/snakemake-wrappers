@@ -29,4 +29,6 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 cmdline_args.append("{log}")
 
 # run
-os.system(f" ".join(cmdline_args))
+command = f" ".join(cmdline_args)
+print(command)
+os.system(command)

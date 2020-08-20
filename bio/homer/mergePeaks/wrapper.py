@@ -21,6 +21,4 @@ if "-prefix" in extra:
         "The use of the -prefix parameter is not yet supported in this wrapper"
     )
 
-os.system(
-    f"(mergePeaks" " {snakemake.input}" " {extra}" " > {snakemake.output})" " {log}"
-)
+os.system(f"(mergePeaks {snakemake.input} {extra} > {snakemake.output}) {log}")

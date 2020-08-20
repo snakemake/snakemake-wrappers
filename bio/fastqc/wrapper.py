@@ -30,8 +30,8 @@ def basename_without_ext(file_path):
 with TemporaryDirectory() as tempdir:
     os.system(
         f"fastqc {snakemake.params} --quiet -t {snakemake.threads} "
-        f"--outdir {tempdir:q} {snakemake.input[0]:q}"
-        f" {log:q}"
+        f"--outdir {tempdir} {snakemake.input[0]}"
+        f" {log}"
     )
 
     # Move outputs into proper position.
@@ -40,7 +40,7 @@ with TemporaryDirectory() as tempdir:
     zip_path = path.join(tempdir, output_base + "_fastqc.zip")
 
     if snakemake.output.html != html_path:
-        os.system(f"mv {html_path:q} {snakemake.output.html:q}")
+        os.system(f"mv {html_path} {snakemake.output.html}")
 
     if snakemake.output.zip != zip_path:
-        os.system(f"mv {zip_path:q} {snakemake.output.zip:q}")
+        os.system(f"mv {zip_path} {snakemake.output.zip}")

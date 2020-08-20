@@ -26,10 +26,12 @@ pileup = (
 # Building output directories
 os.makedirs(op.dirname(snakemake.output[0]))
 
-os.system(
+command = (
     f"varscan mpileup2indel "  # Tool and its subprocess
     f"{extra} "  # Extra parameters
     f"<( {pileup} ) "
     f"> {snakemake.output[0]} "  # Path to vcf file
     f"{log}"  # Logging behaviour
 )
+print(command)
+os.system(command)

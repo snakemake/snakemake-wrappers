@@ -9,4 +9,4 @@ import os
 ## Extract arguments
 extra = snakemake.params.get("extra", "")
 
-os.system(f"bcftools index" " {extra}" " {snakemake.input[0]}")
+os.system(f"bcftools index {extra} {snakemake.input[0]}")

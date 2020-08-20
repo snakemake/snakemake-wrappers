@@ -35,7 +35,7 @@ resources = [
     "--resource {}".format(fmt_res(resname, resparams))
     for resname, resparams in snakemake.params["resources"].items()
 ]
-annotation = list(map("-an {}".format, snakemake.params.annotation))
+annotation = " ".join(list(map("-an {}".format, snakemake.params.annotation)))
 tranches = ""
 if snakemake.output.tranches:
     tranches = "--tranches-file " + snakemake.output.tranches

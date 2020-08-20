@@ -36,11 +36,11 @@ if output_dir is None:
     )
 
 if output_dir:
-    cmds.append("--dir {output_dir:q}")
+    cmds.append("--dir {output_dir}")
 
 if html_file:
     html_file_name = os.path.basename(html_file)
-    cmds.append("--output {html_file_name:q}")
+    cmds.append("--output {html_file_name}")
 
 # reports
 reports = [
@@ -57,7 +57,7 @@ for report_name in reports:
     path = snakemake.input.get(report_name, "")
     if path:
         locals()[report_name] = path
-        cmds.append("--{0} {{{1}:q}}".format(report_name, report_name))
+        cmds.append("--{0} {{{1}}}".format(report_name, report_name))
     elif skip_optional_reports:
         cmds.append("--{0} 'none'".format(report_name))
 

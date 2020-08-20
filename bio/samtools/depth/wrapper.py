@@ -15,5 +15,5 @@ if bed:
     bed = "-b " + bed
 
 os.system(
-    f"samtools depth {params} {bed} " "-o {snakemake.output[0]} {snakemake.input.bams}"
+    f"samtools depth {params} {bed} -o {snakemake.output[0]} {snakemake.input.bams}"
 )

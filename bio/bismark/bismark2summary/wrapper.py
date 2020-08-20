@@ -41,12 +41,12 @@ if suggested_txt != txt:
         "but was: '{}'".format(suggested_txt, txt)
     )
 
-cmds.append("--basename {basename:q}")
+cmds.append("--basename {basename}")
 
 # title
 title = snakemake.params.get("title", None)
 if title:
-    cmds.append("--title {title:q}")
+    cmds.append("--title {title}")
 
 cmds.append("{bam}")
 

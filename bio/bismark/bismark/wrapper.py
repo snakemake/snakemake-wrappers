@@ -39,7 +39,7 @@ if not snakemake.output.get("report", None):
 
 # basename
 if snakemake.params.get("basename", None):
-    cmdline_args.append("--basename {snakemake.params.basename:q}")
+    cmdline_args.append("--basename {snakemake.params.basename}")
     basename = snakemake.params.basename
 else:
     basename = None
@@ -49,14 +49,14 @@ single_end_mode = snakemake.input.get("fq", None)
 if single_end_mode:
     # for SE data, you only have to specify read1 input by -i or --in1, and
     # specify read1 output by -o or --out1.
-    cmdline_args.append("--se {snakemake.input.fq:q}")
+    cmdline_args.append("--se {snakemake.input.fq}")
     mode_prefix = "se"
     if basename is None:
         basename = basename_without_ext(snakemake.input.fq)
 else:
     # for PE data, you should also specify read2 input by -I or --in2, and
     # specify read2 output by -O or --out2.
-    cmdline_args.append("-1 {snakemake.input.fq_1:q} -2 {snakemake.input.fq_2:q}")
+    cmdline_args.append("-1 {snakemake.input.fq_1} -2 {snakemake.input.fq_2}")
     mode_prefix = "pe"
 
     if basename is None:
@@ -98,4 +98,4 @@ expected_2_actual_paths = [
 log_append = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 for (exp_path, actual_path) in expected_2_actual_paths:
     if exp_path and (exp_path != actual_path):
-        os.system(f"mv {actual_path:q} {exp_path:q} {log_append}")
+        os.system(f"mv {actual_path} {exp_path} {log_append}")

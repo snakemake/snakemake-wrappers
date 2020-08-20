@@ -31,7 +31,7 @@ if "mpileup" in snakemake.input.keys():
     mpileup = "--mpileup 1"
 elif all(pileup in snakemake.input.keys() for pileup in pileup_pair):
     # Case there are two separate pileup files
-    in_pileup = " {snakemake.input.normal_pileup}" " {snakemakeinput.tumor_pileup} "
+    in_pileup = " {snakemake.input.normal_pileup} {snakemake.input.tumor_pileup} "
 else:
     raise KeyError("Could not find either a mpileup, or a pair of pileup files")
 

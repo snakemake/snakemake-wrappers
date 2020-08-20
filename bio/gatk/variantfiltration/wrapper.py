@@ -8,10 +8,14 @@ import os
 
 extra = snakemake.params.get("extra", "")
 java_opts = snakemake.params.get("java_opts", "")
-filters = [
-    "--filter-name {} --filter-expression '{}'".format(name, expr.replace("'", "\\'"))
-    for name, expr in snakemake.params.filters.items()
-]
+filters = " ".join(
+    [
+        "--filter-name {} --filter-expression '{}'".format(
+            name, expr.replace("'", "\\'")
+        )
+        for name, expr in snakemake.params.filters.items()
+    ]
+)
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 os.system(
