@@ -1,4 +1,4 @@
 name: "strling call"
-description: Call genotypes/estimate allele sizes for all loci in each sample.
+description: STRling (pronounced like “sterling”) is a method to detect large STR expansions from short-read sequencing data. "Call" calls genotypes/estimate allele sizes for all loci in each sample. (https://strling.readthedocs.io/en/latest/run.html)
 authors:
   - Christopher Schröder

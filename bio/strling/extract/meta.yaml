@@ -1,4 +1,4 @@
 name: "strling extract"
-description: Extract informative read pairs to a binary format for a single sample (same as above, you can use the same bin files).
+description: STRling (pronounced like “sterling”) is a method to detect large STR expansions from short-read sequencing data. "Extract" retrieves informative read pairs to a binary format for a single sample (same as above, you can use the same bin files). (https://strling.readthedocs.io/en/latest/run.html)
 authors:
   - Christopher Schröder

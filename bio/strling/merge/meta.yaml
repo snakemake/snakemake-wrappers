@@ -1,4 +1,4 @@
 name: "strling merge"
-description: Prepare joint call str loci across all samples. Requires minimum read evidence from at least one sample.
+description: STRling (pronounced like “sterling”) is a method to detect large STR expansions from short-read sequencing data. "Merge" prepares joint call str loci across all given samples. Requires minimum read evidence from at least one sample. (https://strling.readthedocs.io/en/latest/run.html)
 authors:
   - Christopher Schröder
