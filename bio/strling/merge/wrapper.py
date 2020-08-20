@@ -34,8 +34,10 @@ if len(snakemake.output) != 1:
     raise ValueError("Please provide exactly one output file (.bin).")
 
 if not snakemake.output[0].endswith("-bounds.txt"):
-    raise ValueError("Output file must end with '-bounds.txt'. Please change the output file name.")
+    raise ValueError(
+        "Output file must end with '-bounds.txt'. Please change the output file name."
+    )
 
-prefix = snakemake.output[0][:-len("-bounds.txt")]
+prefix = snakemake.output[0][: -len("-bounds.txt")]
 
 shell("(strling merge " "{bins} " "-o {prefix} " "{extra}) {log}")

@@ -42,13 +42,11 @@ if not path.exists(reference + ".fai"):
     )
 
 if not any(o.endswith("-bounds.txt") for o in snakemake.output):
-    raise ValueError(
-        "Please provide a file that ends with -bounds.txt in the output."
-    )
+    raise ValueError("Please provide a file that ends with -bounds.txt in the output.")
 
 for filename in snakemake.output:
     if filename.endswith("-bounds.txt"):
-        prefix = filename[:-len("-bounds.txt")]
+        prefix = filename[: -len("-bounds.txt")]
         break
 
 if not any(o == f"{prefix}-genotype.txt" for o in snakemake.output):
@@ -56,7 +54,7 @@ if not any(o == f"{prefix}-genotype.txt" for o in snakemake.output):
         "Please provide an output file that ends with -genotype.txt and has the same prefix as -bounds.txt"
     )
 
-if not any(o == f"{prefix}-unplaced.txt") for o in snakemake.output):
+if not any(o == f"{prefix}-unplaced.txt" for o in snakemake.output):
     raise ValueError(
         "Please provide an output file that ends with -unplaced.txt and has the same prefix as -bounds.txt"
     )
