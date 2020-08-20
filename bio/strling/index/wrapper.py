@@ -15,10 +15,8 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
 # Check inputs/arguments.
-if len(snakemake.input) == 0:
-    raise ValueError("A reference genome has to be provided!")
-elif len(snakemake.input) > 1:
-    raise ValueError("Only one reference genome can be inputed!")
+if len(snakemake.input) != 0:
+    raise ValueError("Please provide exactly one reference genome.")
 
 shell(
     "(strling index {snakemake.input[0]} "

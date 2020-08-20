@@ -1,0 +1,4 @@
+name: "strling call"
+description: Call genotypes/estimate allele sizes for all loci in each sample.
+authors:
+  - Christopher Schröder

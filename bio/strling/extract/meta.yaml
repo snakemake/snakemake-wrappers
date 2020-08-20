@@ -1,0 +1,4 @@
+name: "strling extract"
+description: Extract informative read pairs to a binary format for a single sample (same as above, you can use the same bin files).
+authors:
+  - Christopher Schröder

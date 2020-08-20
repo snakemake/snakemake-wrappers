@@ -1,0 +1,4 @@
+name: "strling merge"
+description: Prepare joint call str loci across all samples. Requires minimum read evidence from at least one sample.
+authors:
+  - Christopher Schröder
