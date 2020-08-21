@@ -81,14 +81,14 @@ def run(wrapper, cmd, check_log=None):
 def test_gridss_call():
     run(
         "bio/gridss/call",
-        ["snakemake", "--cores", "1", "--use-conda", "vcf/group.vcf"],
+        ["snakemake", "--show-failed-logs", "--cores", "1", "--use-conda", "vcf/group.vcf"],
     )
 
 
 def test_gridss_assemble():
     run(
         "bio/gridss/assemble",
-        ["snakemake", "--cores", "1", "--use-conda", "assembly/group.bam"],
+        ["snakemake", "--show-failed-logs", "--cores", "1", "--use-conda", "assembly/group.bam"],
     )
 
 
@@ -100,6 +100,7 @@ def test_gridss_preprocess():
             "--cores",
             "1",
             "--use-conda",
+            "--show-failed-logs",
             "working_dir/A.bam.gridss.working/A.bam.cigar_metrics",
             "working_dir/A.bam.gridss.working/A.bam.coverage.blacklist.bed",
             "working_dir/A.bam.gridss.working/A.bam.idsv_metrics",
@@ -122,6 +123,7 @@ def test_gridss_setupreference():
             "--cores",
             "1",
             "--use-conda",
+            "--show-failed-logs",
             "reference/genome.fasta.gridsscache",
             "reference/genome.fasta.img",
         ],
