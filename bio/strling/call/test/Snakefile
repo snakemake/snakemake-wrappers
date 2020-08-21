@@ -15,4 +15,4 @@ rule strling_call:
     log:
         "log/strling/call/{sample}.log"
     wrapper:
-        "master/bio/strling/call" 
+        "file:/vol/huge/christo/snakemake-wrappers/bio/strling/call" 
