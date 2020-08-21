@@ -9,4 +9,4 @@ rule strling_index:
     log:
         "log/strling/index.log"
     wrapper:
-        "file:/vol/huge/christo/snakemake-wrappers/bio/strling/index"
+        "master/bio/strling/index"
