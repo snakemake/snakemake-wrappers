@@ -44,7 +44,7 @@ rule gridss_call:
     output:
         vcf="vcf/group.vcf",
         idx="vcf/group.vcf.idx",
-        tmpidx=temp(WORKING_DIR}" + /group.vcf.gridss.working/g.vcf.allocated.vcf.idx")
+        tmpidx=temp(WORKING_DIR + "/group.vcf.gridss.working/group.vcf.allocated.vcf.idx") # be aware the group occurs two times here
     params:
         workingdir=WORKING_DIR
     log:
