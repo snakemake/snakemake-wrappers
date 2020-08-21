@@ -23,12 +23,16 @@ if not snakemake.input.reference:
 for ending in (".amb", ".ann", ".bwt", ".pac", ".sa"):
     if not path.exists(f"{reference}{ending}"):
         raise ValueError(
-            "{reference}{ending} missing. Please make sure the reference was properly indexed by bwa.".format(reference=reference, ending=ending)
+            "{reference}{ending} missing. Please make sure the reference was properly indexed by bwa.".format(
+                reference=reference, ending=ending
+            )
         )
 
 if not path.exists(reference + ".dict"):
     raise ValueError(
-        "{reference}.dict missing. Please make sure the reference dictionary was properly created. This can be accomplished for example by CreateSequenceDictionary.jar from Picard".format(reference=reference)
+        "{reference}.dict missing. Please make sure the reference dictionary was properly created. This can be accomplished for example by CreateSequenceDictionary.jar from Picard".format(
+            reference=reference
+        )
     )
 
 shell(
