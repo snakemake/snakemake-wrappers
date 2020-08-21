@@ -1,0 +1,18 @@
+rule strling_call:
+    input:
+        bam="mapped/{sample}.bam",
+        bai="mapped/{sample}.bam.bai",
+        bin="extract/{sample}.bin",
+        reference="reference/genome.fasta",
+        fai="reference/genome.fasta.fai",
+        bounds="merged/group-bounds.txt" # optional, produced by strling merge
+    output:
+        "call/{sample}-bounds.txt", # must end with -bounds.txt
+        "call/{sample}-genotype.txt", # must end with -genotype.txt
+        "call/{sample}-unplaced.txt" # must end with -unplaced.txt
+    params:
+        extra="" # optional extra command line arguments
+    log:
+        "log/strling/call/{sample}.log"
+    wrapper:
+        "master/bio/strling/call" 

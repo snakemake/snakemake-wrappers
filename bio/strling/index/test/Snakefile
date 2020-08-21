@@ -1,0 +1,12 @@
+rule strling_index:
+    input:
+        "reference/genome.fasta"
+    output:
+        index="reference/genome.fasta.str",
+        fai="reference/genome.fasta.fai"
+    params:
+        extra="" # optionally add further command line arguments
+    log:
+        "log/strling/index.log"
+    wrapper:
+        "master/bio/strling/index"
