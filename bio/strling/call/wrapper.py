@@ -34,7 +34,7 @@ if not reference:
 if not bounds:  # optional
     bounds_string = ""
 else:
-    bounds_string = f"-b {bounds}"
+    bounds_string = "-b {}".format(bounds)
 
 if not path.exists(reference + ".fai"):
     raise ValueError(
