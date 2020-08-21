@@ -44,6 +44,6 @@ shell(
     "--reference {reference} "  # Reference
     "--threads {snakemake.threads} "
     "--workingdir {snakemake.params.workingdir} "
-    "{snakemake.input.bam}"
+    "{snakemake.input.bam} "
     "{extra}) {log}"
 )
