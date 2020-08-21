@@ -78,6 +78,34 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+def test_strling_call():
+    run(
+        "bio/strling/call",
+        ["snakemake", "--cores", "1", "--use-conda", "call/A-bounds.txt", "call/A-genotype.txt", "call/A-unplaced.txt"]
+    )
+
+
+def test_strling_merge():
+    run(
+        "bio/strling/merge",
+        ["snakemake", "--cores", "1", "--use-conda", "merged/group-bounds.txt"]
+    )
+
+
+def test_strling_extract():
+    run(
+        "bio/strling/extract",
+        ["snakemake", "--cores", "1", "--use-conda", "extract/A.bin"]
+    )
+
+
+def test_strling_index():
+    run(
+        "bio/strling/index",
+        ["snakemake", "--cores", "1", "--use-conda", "reference/genome.fasta.str", "reference/genome.fasta.fai"]
+    )
+
+
 def test_vembrane():
     run(
         "bio/vembrane",

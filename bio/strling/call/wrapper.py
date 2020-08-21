@@ -15,10 +15,10 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
 # Check inputs/arguments.
-bam = snakemake.input.get("bam")
-bin = snakemake.input.get("bin")
-reference = snakemake.input.get("reference")
-bounds = snakemake.input.get("bounds")
+bam = snakemake.input.get("bam", None)
+bin = snakemake.input.get("bin", None)
+reference = snakemake.input.get("reference", None)
+bounds = snakemake.input.get("bounds", None)
 
 if not bam or len(bam) > 1:
     raise ValueError("Please provide exactly one 'bam' as input.")

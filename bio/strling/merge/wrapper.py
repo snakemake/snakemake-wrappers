@@ -15,9 +15,9 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
 # Check inputs/arguments.
-bins = snakemake.input.get("bins")
-reference = snakemake.input.get("reference")
-fai = snakemake.input.get("fai")
+bins = snakemake.input.get("bins", None)
+reference = snakemake.input.get("reference", None)
+fai = snakemake.input.get("fai", None)
 
 if not bins or len(bins) < 2:
     raise ValueError("Please provide at least two 'bins' as input.")
