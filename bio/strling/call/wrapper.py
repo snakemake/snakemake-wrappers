@@ -49,7 +49,7 @@ for filename in snakemake.output:
         prefix = filename[: -len("-bounds.txt")]
         break
 
-if not any(o == f"{prefix}-genotype.txt" for o in snakemake.output):
+if not any(o == "{}-genotype.txt".format(prefix) for o in snakemake.output):
     raise ValueError(
         "Please provide an output file that ends with -genotype.txt and has the same prefix as -bounds.txt"
     )
