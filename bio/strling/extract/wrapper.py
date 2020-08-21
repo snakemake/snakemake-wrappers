@@ -38,7 +38,7 @@ if not path.exists(reference + ".fai"):
 if not index:  # optional
     index_string = ""
 else:
-    index_string = f"-g {index}"
+    index_string = "-g {}".format(index)
 
 if len(snakemake.output) != 1:
     raise ValueError("Please provide exactly one output file (.bin).")
