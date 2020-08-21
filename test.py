@@ -81,14 +81,14 @@ def run(wrapper, cmd, check_log=None):
 def test_gridss_call():
     run(
         "bio/gridss/call",
-        ["snakemake", "--cores", "1", "--use-conda", "vcf/group.vcf",],
+        ["snakemake", "--cores", "1", "--use-conda", "vcf/group.vcf"],
     )
 
 
 def test_gridss_assemble():
     run(
         "bio/gridss/assemble",
-        ["snakemake", "--cores", "1", "--use-conda", "assembly/group.bam",],
+        ["snakemake", "--cores", "1", "--use-conda", "assembly/group.bam"],
     )
 
 
@@ -100,16 +100,16 @@ def test_gridss_preprocess():
             "--cores",
             "1",
             "--use-conda",
-            "A.bam.cigar_metrics",
-            "A.bam.coverage.blacklist.bed",
-            "A.bam.idsv_metrics",
-            "A.bam.insert_size_histogram.pdf",
-            "A.bam.insert_size_metrics",
-            "A.bam.mapq_metrics",
-            "A.bam.sv.bam",
-            "A.bam.sv.bam.bai",
-            "A.bam.sv_metrics",
-            "A.bam.tag_metrics",
+            "working_dir/A.bam.gridss.working/A.bam.cigar_metrics",
+            "working_dir/A.bam.gridss.working/A.bam.coverage.blacklist.bed",
+            "working_dir/A.bam.gridss.working/A.bam.idsv_metrics",
+            "working_dir/A.bam.gridss.working/A.bam.insert_size_histogram.pdf",
+            "working_dir/A.bam.gridss.working/A.bam.insert_size_metrics",
+            "working_dir/A.bam.gridss.working/A.bam.mapq_metrics",
+            "working_dir/A.bam.gridss.working/A.bam.sv.bam",
+            "working_dir/A.bam.gridss.working/A.bam.sv.bam.bai",
+            "working_dir/A.bam.gridss.working/A.bam.sv_metrics",
+            "working_dir/A.bam.gridss.working/A.bam.tag_metrics",
         ],
     )
 
