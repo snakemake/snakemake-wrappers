@@ -54,7 +54,7 @@ if not any(o == "{}-genotype.txt".format(prefix) for o in snakemake.output):
         "Please provide an output file that ends with -genotype.txt and has the same prefix as -bounds.txt"
     )
 
-if not any(o == f"{prefix}-unplaced.txt" for o in snakemake.output):
+if not any(o == "{}-unplaced.txt".format(prefix) for o in snakemake.output):
     raise ValueError(
         "Please provide an output file that ends with -unplaced.txt and has the same prefix as -bounds.txt"
     )
