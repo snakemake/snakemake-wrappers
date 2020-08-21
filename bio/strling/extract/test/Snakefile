@@ -12,4 +12,4 @@ rule strling_extract:
     params:
        extra="" # optionally add further command line arguments
     wrapper:
-        "file:/vol/huge/christo/snakemake-wrappers/bio/strling/extract"
+        "master/bio/strling/extract"

@@ -20,7 +20,7 @@ bin = snakemake.input.get("bin", None)
 reference = snakemake.input.get("reference", None)
 bounds = snakemake.input.get("bounds", None)
 
-if not bam or len(bam) > 1:
+if not bam or (isinstance(bam, list) and len(bam) != 1):
     raise ValueError("Please provide exactly one 'bam' as input.")
 
 if not path.exists(bam + ".bai"):
