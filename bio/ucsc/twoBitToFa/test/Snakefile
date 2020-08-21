@@ -3,6 +3,8 @@ rule twoBitToFa:
         "{sample}.2bit"
     output:
         "{sample}.fa"
+    log:
+        "logs/{sample}.2bit_to_fa.log"
     params:
         "" # optional params string
     wrapper:

@@ -1,0 +1,15 @@
+rule strling_extract:
+    input:
+        bam="mapped/{sample}.bam",
+        bai="mapped/{sample}.bam.bai",
+        reference="reference/genome.fasta",
+        fai="reference/genome.fasta.fai",
+        index="reference/genome.fasta.str" # optional
+    output:
+        "extract/{sample}.bin"
+    log:
+        "log/strling/extract/{sample}.log"
+    params:
+       extra="" # optionally add further command line arguments
+    wrapper:
+        "master/bio/strling/extract"

@@ -81,26 +81,14 @@ def run(wrapper, cmd, check_log=None):
 def test_gridss_call():
     run(
         "bio/gridss/call",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "--use-conda",
-            "vcf/group.vcf",
-        ],
+        ["snakemake", "--cores", "1", "--use-conda", "vcf/group.vcf",],
     )
 
 
 def test_gridss_assemble():
     run(
         "bio/gridss/assemble",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "--use-conda",
-            "assembly/group.bam",
-        ],
+        ["snakemake", "--cores", "1", "--use-conda", "assembly/group.bam",],
     )
 
 
@@ -136,6 +124,49 @@ def test_gridss_setupreference():
             "--use-conda",
             "reference/genome.fasta.gridsscache",
             "reference/genome.fasta.img",
+        ],
+    )
+
+
+def test_strling_call():
+    run(
+        "bio/strling/call",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "call/A-bounds.txt",
+            "call/A-genotype.txt",
+            "call/A-unplaced.txt",
+        ],
+    )
+
+
+def test_strling_merge():
+    run(
+        "bio/strling/merge",
+        ["snakemake", "--cores", "1", "--use-conda", "merged/group-bounds.txt"],
+    )
+
+
+def test_strling_extract():
+    run(
+        "bio/strling/extract",
+        ["snakemake", "--cores", "1", "--use-conda", "extract/A.bin"],
+    )
+
+
+def test_strling_index():
+    run(
+        "bio/strling/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "reference/genome.fasta.str",
+            "reference/genome.fasta.fai",
         ],
     )
 
@@ -894,6 +925,27 @@ def test_lofreq_call():
     run(
         "bio/lofreq/call",
         ["snakemake", "--cores", "1", "calls/a.vcf", "--use-conda", "-F"],
+    )
+
+
+def test_macs2_callpeak():
+    run(
+        "bio/macs2/callpeak",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "callpeak/basename_peaks.xls",
+            "callpeak/basename_peaks.narrowPeak",
+            "callpeak/basename_summits.bed",
+            "callpeak_options/basename_peaks.xls",
+            "callpeak_options/basename_peaks.broadPeak",
+            "callpeak_options/basename_peaks.gappedPeak",
+            "callpeak_options/basename_treat_pileup.bdg",
+            "callpeak_options/basename_control_lambda.bdg",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
