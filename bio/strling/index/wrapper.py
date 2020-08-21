@@ -15,7 +15,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
 # Check inputs/arguments.
-if len(snakemake.input) != 0:
+if len(snakemake.input) != 1:
     raise ValueError("Please provide exactly one reference genome.")
 
 shell(
