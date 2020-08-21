@@ -8,4 +8,4 @@ rule gridss_setupreference:
     log:
         "log/gridss/setupreference.log"
     wrapper:
-        "file:/vol/huge/christo/snakemake-wrappers/bio/gridss/setupreference"
+        "master/bio/gridss/setupreference"

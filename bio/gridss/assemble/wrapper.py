@@ -16,7 +16,7 @@ extra = snakemake.params.get("extra", "")
 
 # Check inputs/arguments.
 reference = snakemake.input.get("reference")
-dictionary = snakemake.input.get("dictionary")
+
 if not snakemake.params.workingdir:
     raise ValueError("Please set params.workingdir to provide a working directory.")
 
@@ -26,12 +26,12 @@ if not snakemake.input.reference:
 for ending in (".amb", ".ann", ".bwt", ".pac", ".sa"):
     if not path.exists(f"{reference}{ending}"):
         raise ValueError(
-            f"{reference}{ending} missing. Please make sure the reference was properly indexed by bwa."
+            "{reference}{ending} missing. Please make sure the reference was properly indexed by bwa.".format(reference=reference, ending=ending)
         )
 
-if not path.exists(f"{dictionary}"):
+if not path.exists(reference + ".dict"):
     raise ValueError(
-        f"{reference}{ending} missing. Please make sure the reference dictionary was properly created. This can be accomplished for example by CreateSequenceDictionary.jar from Picard"
+        "{reference}.dict missing. Please make sure the reference dictionary was properly created. This can be accomplished for example by CreateSequenceDictionary.jar from Picard".format(reference=reference)
     )
 
 shell(

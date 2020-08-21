@@ -78,7 +78,33 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
-def gridss_preprocess():
+def test_gridss_call():
+    run(
+        "bio/gridss/call",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "vcf/group.vcf",
+        ],
+    )
+
+
+def test_gridss_assemble():
+    run(
+        "bio/gridss/assemble",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "assembly/group.bam",
+        ],
+    )
+
+
+def test_gridss_preprocess():
     run(
         "bio/gridss/preprocess",
         [
@@ -100,7 +126,7 @@ def gridss_preprocess():
     )
 
 
-def gridss_setupreference():
+def test_gridss_setupreference():
     run(
         "bio/gridss/setupreference",
         [
