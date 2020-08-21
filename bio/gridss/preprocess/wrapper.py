@@ -31,10 +31,11 @@ for ending in (".amb", ".ann", ".bwt", ".pac", ".sa"):
             )
         )
 
-if not path.exists(reference + ".dict"):
+dictionary = path.splitext(reference)[0] + ".dict"
+if not path.exists(dictionary):
     raise ValueError(
-        "{reference}.dict missing. Please make sure the reference dictionary was properly created. This can be accomplished for example by CreateSequenceDictionary.jar from Picard".format(
-            reference=reference
+        "{dictionary}.dict missing. Please make sure the reference dictionary was properly created. This can be accomplished for example by CreateSequenceDictionary.jar from Picard".format(
+            dictionary=dictionary
         )
     )
 
