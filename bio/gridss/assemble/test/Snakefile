@@ -43,6 +43,7 @@ rule gridss_assemble:
         assembly="assembly/group.bam",
         assembly_others=expand("{working_dir}/group.bam.gridss.working/group.bam{ending}", working_dir=[WORKING_DIR], ending=assembly_endings)
     params:
+        extra="--jvmheap 1g",
         workingdir=WORKING_DIR
     log:
         "log/gridss/assemble/group.log"

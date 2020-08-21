@@ -46,6 +46,7 @@ rule gridss_call:
         idx="vcf/group.vcf.idx",
         tmpidx=temp(WORKING_DIR + "/group.vcf.gridss.working/group.vcf.allocated.vcf.idx") # be aware the group occurs two times here
     params:
+        extra="--jvmheap 1g",
         workingdir=WORKING_DIR
     log:
         "log/gridss/call/group.log"

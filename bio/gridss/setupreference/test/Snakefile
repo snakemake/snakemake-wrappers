@@ -5,6 +5,8 @@ rule gridss_setupreference:
         indices=multiext("reference/genome.fasta", ".amb", ".ann", ".bwt", ".pac", ".sa")
     output:
         multiext("reference/genome.fasta", ".gridsscache", ".img")
+    params:
+        extra="--jvmheap 1g"
     log:
         "log/gridss/setupreference.log"
     wrapper:
