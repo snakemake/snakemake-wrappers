@@ -11,7 +11,7 @@ rule strling_call:
         "call/{sample}-genotype.txt", # must end with -genotype.txt
         "call/{sample}-unplaced.txt" # must end with -unplaced.txt
     params:
-        prefix="call/{sample}"
+        extra="" # optional extra command line arguments
     log:
         "log/strling/call/{sample}.log"
     wrapper:
