@@ -24,7 +24,7 @@ if not snakemake.input.reference:
     raise ValueError("Please set input.reference to provide reference genome.")
 
 for ending in (".amb", ".ann", ".bwt", ".pac", ".sa"):
-    if not path.exists(f"{reference}{ending}"):
+    if not path.exists("{}{}".format(reference, ending)):
         raise ValueError(
             "{reference}{ending} missing. Please make sure the reference was properly indexed by bwa.".format(
                 reference=reference, ending=ending
