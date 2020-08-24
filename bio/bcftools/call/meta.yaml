@@ -1,4 +1,5 @@
 name: bcftools call
-description: Call variants with bcftools.
+description: Call variants with `bcftools call <https://samtools.github.io/bcftools/bcftools.html#call>`_.
 authors:
   - Johannes Köster
+  - Michael Hall

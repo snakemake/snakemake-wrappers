@@ -1,0 +1,6 @@
+name: "bwa-mem2"
+description: Bwa-mem2 is the next version of the bwa-mem algorithm in bwa. It produces alignment identical to bwa and is ~1.3-3.1x faster depending on the use-case, dataset and the running machine. Optional sorting using samtools or picard.
+authors:
+  - Christopher Schröder
+  - Johannes Köster
+  - Julian de Ruiter

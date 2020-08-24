@@ -1,0 +1,10 @@
+rule snpeff_download:
+    output:
+        # wildcard {reference} may be anything listed in `snpeff databases`
+        directory("resources/snpeff/{reference}")
+    log:
+        "logs/snpeff/download/{reference}.log"
+    params:
+        reference="{reference}"
+    wrapper:
+        "master/bio/snpeff/download"

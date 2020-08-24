@@ -1,0 +1,5 @@
+name: "Homer mergePeaks"
+description: >
+  Merge ChIP-Seq peaks from multiple peak files. For more information, please see the `documentation <http://homer.ucsd.edu/homer/ngs/mergePeaks.html>`_. Please be aware that this wrapper does not yet support use of the ``-prefix`` parameter.
+authors:
+  - Jan Forster

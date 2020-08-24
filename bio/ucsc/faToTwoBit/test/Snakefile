@@ -1,0 +1,25 @@
+# Example: from *.fa file
+rule faToTwoBit_fa:
+    input:
+        "{sample}.fa"
+    output:
+        "{sample}.2bit"
+    log:
+        "logs/{sample}.fa_to_2bit.log"
+    params:
+        "" # optional params string
+    wrapper:
+        "master/bio/ucsc/faToTwoBit"
+
+# Example: from *.fa.gz file
+rule faToTwoBit_fa_gz:
+    input:
+        "{sample}.fa.gz"
+    output:
+        "{sample}.2bit"
+    log:
+        "logs/{sample}.fa-gz_to_2bit.log"
+    params:
+        "" # optional params string
+    wrapper:
+        "master/bio/ucsc/faToTwoBit"

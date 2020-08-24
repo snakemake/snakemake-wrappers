@@ -1,0 +1,5 @@
+colname from to
+default ; ,
+default | &
+Interpro_domain ; ?
+Interpro_domain | +

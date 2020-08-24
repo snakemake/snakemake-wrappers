@@ -1,0 +1,4 @@
+channels:
+  - bioconda
+dependencies:
+  - preseq ==2.0.3

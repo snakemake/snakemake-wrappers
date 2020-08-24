@@ -1,0 +1,4 @@
+name: "bedtools merge"
+description: Merge entries in one or multiple BED/BAM/VCF/GFF files with bedtools.
+authors:
+  - Jan Forster

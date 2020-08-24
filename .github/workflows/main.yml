@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches_ignore: []
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  formatting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Setup black environment
+        run: conda create --quiet --name black black
+
+      - name: Check formatting
+        run: |
+          export PATH="/usr/share/miniconda/bin:$PATH"
+          source activate black
+          black --check bio/*/*/wrapper.py bio/*/wrapper.py
+  
+  docs:
+    runs-on: ubuntu-latest
+    needs: formatting
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Setup Sphinx environment
+        run: conda create --quiet --file docs/requirements.txt --name sphinx python=3
+      
+      - name: Test doc generation
+        run: |
+          export PATH="/usr/share/miniconda/bin:$PATH"
+          
+          source activate sphinx
+          cd docs
+          make html
+
+  testing:
+    runs-on: ubuntu-latest
+    needs: docs
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Checkout submodules
+        uses: textbook/git-checkout-submodule-action@2.0.0
+
+      - name: Setup Snakemake environment
+        run: conda create -c bioconda -c conda-forge --quiet --name snakemake snakemake-minimal pytest
+
+      - name: Fetch master
+        if: github.ref != 'master'
+        run: |
+          git fetch origin master
+
+      - name: Run tests
+        env:
+          DIFF_ONLY: ${{ github.event_name == 'pull_request' }}
+        run: |
+          # activate conda env
+          export PATH="/usr/share/miniconda/bin:$PATH"
+          source activate snakemake
+          
+          # run tests
+          pytest test.py -v

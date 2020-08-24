@@ -1,0 +1,7 @@
+name: "strling extract"
+description: >
+    STRling (pronounced “sterling”) is a method to detect large short tandem repeat (STR) expansions from short-read sequencing data.
+    ``extract`` retrieves informative read pairs to a binary format for a single sample (same as above, you can use the same bin files).
+    Documentation at: https://strling.readthedocs.io/en/latest/run.html
+authors:
+  - Christopher Schröder

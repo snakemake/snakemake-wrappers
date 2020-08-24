@@ -1,0 +1,16 @@
+rule homer_getDifferentialPeaks:
+    input:
+        # peak/bed file to be tested
+        peaks="{sample}.peaks.bed",
+        # tagDirectory of first sample
+        first="tagDir/{sample}",
+        # tagDirectory of sample to compare
+        second="tagDir/second"
+    output:
+        "{sample}_diffPeaks.txt"
+    params:
+        extra=""  # optional params, see homer manual
+    log:
+        "logs/diffPeaks/{sample}.log"
+    wrapper:
+        "master/bio/homer/getDifferentialPeaks"

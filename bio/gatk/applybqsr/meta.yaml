@@ -1,0 +1,16 @@
+name: gatk ApplyBQSR
+description: |
+  Run gatk ApplyBQSR.
+authors:
+  - Christopher Schröder
+  - Johannes Köster
+  - Jake VanCampen
+output:
+  - bam file
+  - recalibration table for the bam
+output:
+  - recalibrated bam
+notes: |
+  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-Xmx4G" for one, and "-Xmx4G -XX:ParallelGCThreads=10" for two options.
+  * The `extra` param allows for additional program arguments for ApplyBSQR.
+  * For more information see, https://gatk.broadinstitute.org/hc/en-us/articles/360037055712-ApplyBQSR

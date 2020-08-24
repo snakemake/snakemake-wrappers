@@ -7,5 +7,6 @@ rule fastqc:
     params: ""
     log:
         "logs/fastqc/{sample}.log"
+    threads: 1
     wrapper:
         "master/bio/fastqc"

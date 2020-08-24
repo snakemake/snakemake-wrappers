@@ -1,0 +1,14 @@
+rule snpeff:
+    input:
+        calls="{sample}.vcf", # (vcf, bcf, or vcf.gz)
+        db="resources/snpeff/ebola_zaire" # path to reference db downloaded with the snpeff download wrapper
+    output:
+        calls="snpeff/{sample}.vcf",   # annotated calls (vcf, bcf, or vcf.gz)
+        stats="snpeff/{sample}.html",  # summary statistics (in HTML), optional
+        csvstats="snpeff/{sample}.csv" # summary statistics in CSV, optional
+    log:
+        "logs/snpeff/{sample}.log"
+    params:
+        extra="-Xmx4g"           # optional parameters (e.g., max memory 4g)
+    wrapper:
+        "master/bio/snpeff/annotate"

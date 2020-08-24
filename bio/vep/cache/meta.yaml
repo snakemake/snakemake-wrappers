@@ -1,0 +1,4 @@
+name: vep download cache
+description: Download VEP cache for given species, build and release.
+authors:
+  - Johannes Köster

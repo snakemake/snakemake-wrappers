@@ -1,0 +1,5 @@
+name: "Homer findPeaks"
+description: >
+     Find ChIP- or ATAC-Seq peaks with the HOMER suite. For more information, please see the `documentation <http://homer.ucsd.edu/homer/ngs/peaks.html>`_.
+authors:
+  - Jan Forster

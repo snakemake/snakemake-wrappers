@@ -1,0 +1,16 @@
+rule homer_findPeaks:
+    input:
+        # tagDirectory of sample
+        tag="tagDir/{sample}",
+        # tagDirectory of control background sample - optional
+        control="tagDir/control"
+    output:
+        "{sample}_peaks.txt"
+    params:
+        # one of 7 basic modes of operation, see homer manual
+        style="histone",
+        extra=""  # optional params, see homer manual
+    log:
+        "logs/findPeaks/{sample}.log"
+    wrapper:
+        "master/bio/homer/findPeaks"

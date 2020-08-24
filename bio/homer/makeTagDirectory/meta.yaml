@@ -1,0 +1,5 @@
+name: "Homer makeTagDirectory"
+description: >
+  Create a tag directory with the HOMER suite. For more information, please see the `documentation <http://homer.ucsd.edu/homer/ngs/tagDir.html>`_.
+authors:
+  - Jan Forster

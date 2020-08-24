@@ -1,0 +1,12 @@
+rule bedGraphToBigWig:
+    input:
+        bedGraph="{sample}.bedGraph",
+        chromsizes="genome.chrom.sizes"
+    output:
+        "{sample}.bw"
+    log:
+        "logs/{sample}.bed-graph_to_big-wig.log"
+    params:
+        "" # optional params string
+    wrapper:
+        "master/bio/ucsc/bedGraphToBigWig"

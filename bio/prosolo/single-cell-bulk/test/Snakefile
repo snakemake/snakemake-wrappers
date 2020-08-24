@@ -1,0 +1,19 @@
+rule prosolo_calling:
+    input:
+        single_cell = "data/mapped/{sc}.sorted.bam",
+        single_cell_index = "data/mapped/{sc}.sorted.bam.bai",
+        bulk = "data/mapped/{bulk}.sorted.bam",
+        bulk_index = "data/mapped/{bulk}.sorted.bam.bai",
+        ref = "data/genome.fa",
+        ref_idx = "data/genome.fa.fai",
+        candidates = "data/{sc}.{bulk}.prosolo_candidates.bcf",
+    output:
+        "variant_calling/{sc}.{bulk}.prosolo.bcf"
+    params:
+        extra = ""
+    threads:
+        1
+    log:
+        "logs/prosolo_{sc}_{bulk}.log"
+    wrapper:
+        "master/bio/prosolo/single-cell-bulk"

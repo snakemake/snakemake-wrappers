@@ -1,0 +1,4 @@
+name: "arriba"
+description: Detect gene fusions from chimeric STAR output
+authors:
+  - Jan Forster

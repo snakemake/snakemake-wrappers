@@ -1,0 +1,9 @@
+name: "strling index"
+description: >
+    STRling (pronounced like “sterling”) is a method to detect large short tandem repeat (STR) expansions from short-read sequencing data.
+    ``index`` creates a bed file of large STR regions in the reference genome.
+    This step is performed automatically as part of ``strling extract``.
+    However, when running multiple samples, it is more efficient to do it once, then pass the file to strling extract using the ``-g`` option.
+    Documentation at: https://strling.readthedocs.io/en/latest/run.html
+authors:
+  - Christopher Schröder

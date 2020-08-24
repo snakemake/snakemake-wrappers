@@ -1,0 +1,14 @@
+rule get_annotation:
+    output:
+        "refs/annotation.gtf"
+    params:
+        species="homo_sapiens",
+        release="87",
+        build="GRCh37",
+        fmt="gtf",
+        flavor="" # optional, e.g. chr_patch_hapl_scaff, see Ensembl FTP.
+    log:
+        "logs/get_annotation.log"
+    cache: True  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/reference/ensembl-annotation"

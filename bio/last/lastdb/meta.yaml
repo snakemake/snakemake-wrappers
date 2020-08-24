@@ -1,0 +1,10 @@
+name: lastdb
+description: "LAST finds similar regions between sequences, and aligns them. It is designed for comparing large datasets to each other (e.g. vertebrate genomes and/or large numbers of DNA reads)"
+authors:
+  - N. Tessa Pierce
+inputs:
+  - fasta reference
+outputs:
+  - indexed db for mapping with last
+citations:
+  - "`Adaptive seeds tame genomic sequence comparison. Kiełbasa SM, Wan R, Sato K, Horton P, Frith MC. Genome Res. 2011 21(3):487-93. <https://genome.cshlp.org/content/21/3/487.long>`_" 

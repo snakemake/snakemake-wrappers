@@ -1,0 +1,27 @@
+rule bismark_methylation_extractor:
+    input: "bams/{sample}.bam"
+    output:
+        mbias_r1="qc/meth/{sample}.M-bias_R1.png",
+        # Only for PE BAMS:
+        # mbias_r2="qc/meth/{sample}.M-bias_R2.png",
+
+        mbias_report="meth/{sample}.M-bias.txt",
+        splitting_report="meth/{sample}_splitting_report.txt",
+
+        # 1-based start, 1-based end ('inclusive') methylation info: % and counts
+        methylome_CpG_cov="meth_cpg/{sample}.bismark.cov.gz",
+        # BedGraph with methylation percentage: 0-based start, end exclusive
+        methylome_CpG_mlevel_bedGraph="meth_cpg/{sample}.bedGraph.gz",
+
+        # Primary output files: methylation status at each read cytosine position: (extremely large)
+        read_base_meth_state_cpg="meth/CpG_context_{sample}.txt.gz",
+        # * You could merge CHG, CHH using: --merge_non_CpG
+        read_base_meth_state_chg="meth/CHG_context_{sample}.txt.gz",
+        read_base_meth_state_chh="meth/CHH_context_{sample}.txt.gz"
+    log:
+        "logs/meth/{sample}.log"
+    params:
+        output_dir="meth",  # optional output dir
+        extra="--gzip --comprehensive --bedGraph"  # optional params string
+    wrapper:
+        "master/bio/bismark/bismark_methylation_extractor"

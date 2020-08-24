@@ -1,0 +1,3 @@
+chromosome	location	repeat_unit_length	repeat_unit_binary	repeat_times	left_flank_binary	right_flank_binary	repeat_unit_bases	left_flank_bases	right_flank_bases
+Sheila	10	1	0	10	466	569	A	CTCAG	GATGC
+Sheila	40	4	99	3	398	460	CGAT	CGATG	CTATA
