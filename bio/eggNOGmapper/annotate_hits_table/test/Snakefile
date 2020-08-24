@@ -1,0 +1,14 @@
+rule bwa_aln:
+    input:
+        eggnog_db='databases/eggNOG/eggnog.db',
+        seed="{prefix}.emapper.seed_orthologs"
+    output:
+        "{prefix}.emapper.annotations"
+    params:
+        use_virtual_disk=True,
+        extra="--no_file_comments --override"
+    log:
+        "log/{prefix}/eggNOG_annotate_hits_table.log"
+    threads: 8
+    wrapper:
+        "master/bio/eggNOGmapper/annotate"

@@ -1,0 +1,4 @@
+name: "eggNOGmapper annotate hits table"
+description: Second step of eggNOGmapper. Can be made faster by allowing to copy database to virtual disk.
+authors:
+  - Silas Kieser (@silask)
