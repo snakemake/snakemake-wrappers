@@ -41,10 +41,13 @@ if snakemake.output.tranches:
     tranches = "--tranches-file " + snakemake.output.tranches
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-os.system(
+command = (
     f"gatk --java-options '{java_opts}' VariantRecalibrator {extra} {resources} "
     f"-R {snakemake.input.ref} -V {snakemake.input.vcf} "
     f"-mode {snakemake.params.mode} "
     f"--output {snakemake.output.vcf} "
     f"{tranches} {annotation} {log}"
 )
+print("COMMAND")
+print(command)
+os.system(command)

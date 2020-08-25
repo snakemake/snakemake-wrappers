@@ -23,14 +23,14 @@ def basename_without_ext(file_path):
 
 
 extra = snakemake.params.get("extra", "")
-cmdline_args = ["bismark {extra} --bowtie2"]
+cmdline_args = [f"bismark {extra} --bowtie2"]
 
 outdir = os.path.dirname(snakemake.output.bam)
 if outdir:
-    cmdline_args.append("--output_dir {outdir}")
+    cmdline_args.append(f"--output_dir {outdir}")
 
 genome_indexes_dir = os.path.dirname(snakemake.input.bismark_indexes_dir)
-cmdline_args.append("{genome_indexes_dir}")
+cmdline_args.append(f"{genome_indexes_dir}")
 
 if not snakemake.output.get("bam", None):
     raise ValueError("bismark/bismark: Error 'bam' output file isn't specified.")
@@ -39,7 +39,7 @@ if not snakemake.output.get("report", None):
 
 # basename
 if snakemake.params.get("basename", None):
-    cmdline_args.append("--basename {snakemake.params.basename}")
+    cmdline_args.append(f"--basename {snakemake.params.basename}")
     basename = snakemake.params.basename
 else:
     basename = None
@@ -49,14 +49,14 @@ single_end_mode = snakemake.input.get("fq", None)
 if single_end_mode:
     # for SE data, you only have to specify read1 input by -i or --in1, and
     # specify read1 output by -o or --out1.
-    cmdline_args.append("--se {snakemake.input.fq}")
+    cmdline_args.append(f"--se {snakemake.input.fq}")
     mode_prefix = "se"
     if basename is None:
         basename = basename_without_ext(snakemake.input.fq)
 else:
     # for PE data, you should also specify read2 input by -I or --in2, and
     # specify read2 output by -O or --out2.
-    cmdline_args.append("-1 {snakemake.input.fq_1} -2 {snakemake.input.fq_2}")
+    cmdline_args.append(f"-1 {snakemake.input.fq_1} -2 {snakemake.input.fq_2}")
     mode_prefix = "pe"
 
     if basename is None:
@@ -65,10 +65,10 @@ else:
 
 # log
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-cmdline_args.append("{log}")
+cmdline_args.append(f"{log}")
 
 # run
-os.system(f" ".join(cmdline_args))
+os.system(" ".join(cmdline_args))
 
 # Move outputs into proper position.
 expected_2_actual_paths = [

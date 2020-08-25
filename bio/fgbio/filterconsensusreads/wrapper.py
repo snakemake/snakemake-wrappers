@@ -20,6 +20,9 @@ if not isinstance(min_reads, list) or not (1 <= len(min_reads) <= 3):
         "min_reads needs to be provided as list of Ints, min length 1, max length 3!"
     )
 
+# Dump the list into three integers
+min_reads = " ".join(min_reads)
+
 ref = snakemake.params.get("ref", None)
 if ref is None:
     raise ValueError("A reference needs to be provided!")

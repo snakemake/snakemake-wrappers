@@ -9,7 +9,7 @@ __license__ = "MIT"
 import os
 
 extra = snakemake.params.get("extra", "")
-cmds = ["bismark2summary {extra}"]
+cmds = [f"bismark2summary {extra}"]
 
 # basename
 bam = snakemake.input.get("bam", None)
@@ -41,18 +41,18 @@ if suggested_txt != txt:
         "but was: '{}'".format(suggested_txt, txt)
     )
 
-cmds.append("--basename {basename}")
+cmds.append(f"--basename {basename}")
 
 # title
 title = snakemake.params.get("title", None)
 if title:
-    cmds.append("--title {title}")
+    cmds.append(f"--title {title}")
 
-cmds.append("{bam}")
+cmds.append(f"{bam}")
 
 # log
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-cmds.append("{log}")
+cmds.append(f"{log}")
 
 # run shell command:
-os.system(f" ".join(cmds))
+os.system(" ".join(cmds))

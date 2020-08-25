@@ -27,9 +27,9 @@ pileup = (
 os.makedirs(op.dirname(snakemake.output[0]))
 
 os.system(
-    f"varscan mpileup2snp "  # Tool and its subprocess
+    f'/bin/bash -c "varscan mpileup2snp '  # Tool and its subprocess
     f"{extra} "  # Extra parameters
     f"<( {pileup} ) "
     f"> {snakemake.output[0]} "  # Path to vcf file
-    f"{log}"  # Logging behaviour
+    f'{log}"'  # Logging behaviour
 )

@@ -16,7 +16,10 @@ extra = snakemake.params.get("extra", "")
 # that is why threads - 1 has to be given to the -@ parameter
 threads = "" if snakemake.threads <= 1 else " -@ {} ".format(snakemake.threads - 1)
 
-os.makedirs(op.dirname(snakemake.output[0]))
+# Only create the output directory if it doesn't exist
+output_dir = op.dirname(snakemake.output[0])
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
 
 os.system(
     f"samtools fixmate {extra} {threads} {snakemake.input[0]} {snakemake.output[0]}"

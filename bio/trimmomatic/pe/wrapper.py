@@ -100,5 +100,10 @@ command = (
     f"{trimmer} "
     f"{log}"
 )
+
+# If we need a subshell, must use /bin/bash
+if "pigz" in command:
+    command = f'/bin/bash -c "{command}"'
+
 print(command)
 os.system(command)

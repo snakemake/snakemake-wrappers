@@ -80,5 +80,10 @@ input = compose_input_gz(snakemake.input[0], input_threads)
 output = compose_output_gz(snakemake.output[0], output_threads, compression_level)
 
 command = f"trimmomatic SE -threads {trimmomatic_threads} {extra} {input} {output} {trimmer} {log}"
+
+# If we need a subshell, must use /bin/bash
+if "pigz" in command:
+    command = f'/bin/bash -c "{command}"'
+
 print(command)
 os.system(command)

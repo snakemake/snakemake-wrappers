@@ -10,12 +10,12 @@ __license__ = "MIT"
 import os
 
 params_extra = snakemake.params.get("extra", "")
-cmdline_args = ["bismark_methylation_extractor {params_extra}"]
+cmdline_args = [f"bismark_methylation_extractor {params_extra}"]
 
 # output dir
 output_dir = snakemake.params.get("output_dir", "")
 if output_dir:
-    cmdline_args.append("-o {output_dir:q}")
+    cmdline_args.append(f"-o {output_dir}")
 
 # trimming options
 trimming_options = [
@@ -30,14 +30,14 @@ for key in trimming_options:
         cmdline_args.append("--{} {}".format(key, value))
 
 # Input
-cmdline_args.append("{snakemake.input}")
+cmdline_args.append(f"{snakemake.input}")
 
 # log
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-cmdline_args.append("{log}")
+cmdline_args.append(f"{log}")
 
 # run
-os.system(f" ".join(cmdline_args))
+os.system(" ".join(cmdline_args))
 
 key2prefix_suffix = [
     ("mbias_report", ("", ".M-bias.txt")),
@@ -66,4 +66,4 @@ for (key, (prefix, suffix)) in key2prefix_suffix:
 
         actual_path = os.path.join(output_dir, prefix + bam_wo_ext + suffix)
         if exp_path != actual_path:
-            os.system(f"mv {actual_path:q} {exp_path:q} {log_append}")
+            os.system(f"mv {actual_path} {exp_path} {log_append}")

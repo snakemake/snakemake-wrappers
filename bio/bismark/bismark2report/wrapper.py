@@ -14,7 +14,7 @@ def answer2bool(v):
 
 
 extra = snakemake.params.get("extra", "")
-cmds = ["bismark2report {extra}"]
+cmds = [f"bismark2report {extra}"]
 
 # output
 html_file = snakemake.output.get("html", "")
@@ -36,11 +36,11 @@ if output_dir is None:
     )
 
 if output_dir:
-    cmds.append("--dir {output_dir}")
+    cmds.append(f"--dir {output_dir}")
 
 if html_file:
     html_file_name = os.path.basename(html_file)
-    cmds.append("--output {html_file_name}")
+    cmds.append(f"--output {html_file_name}")
 
 # reports
 reports = [
@@ -63,7 +63,7 @@ for report_name in reports:
 
 # log
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-cmds.append("{log}")
+cmds.append(f"{log}")
 
 # run shell command:
-os.system(f" ".join(cmds))
+os.system(" ".join(cmds))

@@ -20,7 +20,9 @@ if gtf is not None:
 else:
     gtf = sjdb_overhang = ""
 
-os.makedirs(snakemake.output)
+output_dir = str(snakemake.output)
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
 
 command = (
     f"STAR "  # Tool

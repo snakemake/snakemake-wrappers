@@ -33,12 +33,12 @@ if sort_order not in {"coordinate", "queryname"}:
 if sort == "none":
 
     # Simply convert to bam using samtools view.
-    pipe_cmd = "samtools view -Sbh -o {snakemake.output[0]} -"
+    pipe_cmd = f"samtools view -Sbh -o {snakemake.output[0]} -"
 
 elif sort == "samtools":
 
     # Sort alignments using samtools sort.
-    pipe_cmd = "samtools sort {sort_extra} -o {snakemake.output[0]} -"
+    pipe_cmd = f"samtools sort {sort_extra} -o {snakemake.output[0]} -"
 
     # Add name flag if needed.
     if sort_order == "queryname":

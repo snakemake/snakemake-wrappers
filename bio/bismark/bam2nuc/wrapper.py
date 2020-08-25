@@ -11,18 +11,18 @@ import os
 
 
 extra = snakemake.params.get("extra", "")
-cmdline_args = ["bam2nuc {extra}"]
+cmdline_args = [f"bam2nuc {extra}"]
 
 genome_fa = snakemake.input.get("genome_fa", None)
 if not genome_fa:
     raise ValueError("bismark/bam2nuc: Error 'genome_fa' input not specified.")
 genome_folder = os.path.dirname(genome_fa)
-cmdline_args.append("--genome_folder {genome_folder}")
+cmdline_args.append(f"--genome_folder {genome_folder}")
 
 
 bam = snakemake.input.get("bam", None)
 if bam:
-    cmdline_args.append("{bam}")
+    cmdline_args.append(f"{bam}")
     bams = bam if isinstance(bam, list) else [bam]
 
     report = snakemake.output.get("report", None)
@@ -44,16 +44,16 @@ if bam:
             " {}".format(output_dir)
         )
     if output_dir:
-        cmdline_args.append("--dir {output_dir}")
+        cmdline_args.append(f"--dir {output_dir}")
 else:
-    cmdline_args.append("--genomic_composition_only")
+    cmdline_args.append(f"--genomic_composition_only")
 
 # log
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-cmdline_args.append("{log}")
+cmdline_args.append(f"{log}")
 
 # run
-os.system(f" ".join(cmdline_args))
+os.system(" ".join(cmdline_args))
 
 
 # Move outputs into proper position.

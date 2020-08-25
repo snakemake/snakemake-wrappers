@@ -57,7 +57,10 @@ urls = [
     for suffix in suffixes
     for ext in ["vcf.gz", "vcf.gz.csi"]
 ]
+
+# This needs to be a space separated list (not actual list)
 names = [os.path.basename(url) for url in urls if url.endswith(".gz")]
+names = " ".join(names)
 
 try:
     gather = "curl {urls}".format(urls=" ".join(map("-O {}".format, urls)))
