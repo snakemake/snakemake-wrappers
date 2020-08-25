@@ -18,10 +18,10 @@ if prefix:
     pipefail = "set +o pipefail"
 
     os.system(
-        f'/bin/bash -c "{pipefail} '
+        f"{pipefail} "
         f"samtools view {fmt} {url} {prefix} > {snakemake.output.bam} "
         f"samtools index {snakemake.output.bam} "
-        f'{log}"'
+        f"{log}"
     )
 else:
     os.system(

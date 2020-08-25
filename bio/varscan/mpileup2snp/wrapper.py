@@ -24,7 +24,9 @@ pileup = (
 )
 
 # Building output directories
-os.makedirs(op.dirname(snakemake.output[0]))
+output_dir = op.dirname(snakemake.output[0])
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
 
 os.system(
     f'/bin/bash -c "varscan mpileup2snp '  # Tool and its subprocess

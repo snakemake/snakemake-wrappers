@@ -21,7 +21,7 @@ if not isinstance(min_reads, list) or not (1 <= len(min_reads) <= 3):
     )
 
 # Dump the list into three integers
-min_reads = " ".join(min_reads)
+min_reads = " ".join([str(x) for x in min_reads])
 
 ref = snakemake.params.get("ref", None)
 if ref is None:

@@ -10,7 +10,8 @@ import os
 from os import path
 
 
-input_dirs = set(path.dirname(fp) for fp in snakemake.input)
+input_dirs = list(set(path.dirname(fp) for fp in snakemake.input))
+input_dirs = " ".join(input_dirs)
 output_dir = path.dirname(snakemake.output[0])
 output_name = path.basename(snakemake.output[0])
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)

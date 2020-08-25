@@ -6,6 +6,7 @@ __email__ = "julianderuiter@gmail.com"
 __license__ = "MIT"
 
 
+import os
 from os import path
 
 
@@ -50,10 +51,10 @@ else:
 
 # Run command.
 os.system(
-    f"(bwa samse"
+    f'/bin/bash -c "(bwa samse'
     f" {extra}"
     f" {snakemake.params.index}"
     f" {snakemake.input.sai}"
     f" {snakemake.input.fastq}"
-    f" | " + pipe_cmd + f") {log}"
+    f" | " + pipe_cmd + f') {log}"'
 )

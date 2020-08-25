@@ -24,15 +24,14 @@ pileup = (
 )
 
 # Building output directories
-os.makedirs(op.dirname(snakemake.output[0]))
+output_dir = op.dirname(snakemake.output[0])
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
 
-command = (
+os.system(
     f'/bin/bash -c "varscan mpileup2indel '  # Tool and its subprocess
     f"{extra} "  # Extra parameters
     f"<( {pileup} ) "
     f"> {snakemake.output[0]} "  # Path to vcf file
     f'{log}"'  # Logging behaviour
 )
-
-print(command)
-os.system(command)

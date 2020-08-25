@@ -35,19 +35,17 @@ resources = [
     "--resource {}".format(fmt_res(resname, resparams))
     for resname, resparams in snakemake.params["resources"].items()
 ]
+resources = " ".join(resources)
 annotation = " ".join(list(map("-an {}".format, snakemake.params.annotation)))
 tranches = ""
 if snakemake.output.tranches:
     tranches = "--tranches-file " + snakemake.output.tranches
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-command = (
+os.system(
     f"gatk --java-options '{java_opts}' VariantRecalibrator {extra} {resources} "
     f"-R {snakemake.input.ref} -V {snakemake.input.vcf} "
     f"-mode {snakemake.params.mode} "
     f"--output {snakemake.output.vcf} "
     f"{tranches} {annotation} {log}"
 )
-print("COMMAND")
-print(command)
-os.system(command)

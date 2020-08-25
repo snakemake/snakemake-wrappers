@@ -53,13 +53,13 @@ reports = [
 skip_optional_reports = answer2bool(
     snakemake.params.get("skip_optional_reports", False)
 )
+
 for report_name in reports:
     path = snakemake.input.get(report_name, "")
     if path:
-        locals()[report_name] = path
-        cmds.append("--{0} {{{1}}}".format(report_name, report_name))
+        cmds.append("--%s %s" % (report_name, path))
     elif skip_optional_reports:
-        cmds.append("--{0} 'none'".format(report_name))
+        cmds.append("--%s 'none'" % report_name)
 
 # log
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
