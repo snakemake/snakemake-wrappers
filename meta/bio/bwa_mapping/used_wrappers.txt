@@ -1,0 +1,2 @@
+bio/bwa/mem
+bio/samtools/index

@@ -21,4 +21,3 @@ if "-prefix" in extra:
     )
 
 shell("(mergePeaks" " {snakemake.input}" " {extra}" " > {snakemake.output})" " {log}")
-
