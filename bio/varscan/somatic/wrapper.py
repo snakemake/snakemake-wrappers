@@ -14,8 +14,11 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
 # Building output dirs
-os.makedirs(op.dirname(snakemake.output.snp))
-os.makedirs(op.dirname(snakemake.output.indel))
+output_dir = op.dirname(snakemake.output.snp)
+indel_dir = op.dirname(snakemake.output.indel)
+for outdir in [output_dir, indel_dir]:
+    if not os.path.exists(outdir):
+        os.makedirs(outdir)
 
 # Output prefix
 prefix = op.splitext(snakemake.output.snp)[0]
