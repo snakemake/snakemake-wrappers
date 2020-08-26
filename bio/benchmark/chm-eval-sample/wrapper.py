@@ -15,11 +15,9 @@ if prefix:
     prefix = "| head -n {} | samtools view -h -b".format(prefix)
     fmt = "-h"
 
-    os.system(
-        f"samtools view {fmt} {url} {prefix} > {snakemake.output.bam} "
-        f"samtools index {snakemake.output.bam} "
-        f"{log}"
-    )
+    # Separate into two commands
+    os.system(f"samtools view {fmt} {url} {prefix} > {snakemake.output.bam} {log}")
+    os.system(f"samtools index {snakemake.output.bam} {log}")
 else:
     os.system(
         f"curl -L {url} > {snakemake.output.bam} samtools index {snakemake.output.bam} {log}"

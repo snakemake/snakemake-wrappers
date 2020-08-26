@@ -16,7 +16,7 @@ output_dir = path.dirname(snakemake.output[0])
 output_name = path.basename(snakemake.output[0])
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-command = (
+os.system(
     f"multiqc"
     f" {snakemake.params}"
     f" --force"
@@ -25,5 +25,3 @@ command = (
     f" {input_dirs}"
     f" {log}"
 )
-print(command)
-os.system(command)

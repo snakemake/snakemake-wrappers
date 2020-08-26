@@ -30,5 +30,4 @@ cmdline_args.append(f"{log}")
 
 # run
 command = " ".join(cmdline_args)
-print(command)
 os.system(command)

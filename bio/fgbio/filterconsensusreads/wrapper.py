@@ -37,7 +37,7 @@ bam_output = snakemake.output[0]
 if not isinstance(bam_output, str) and len(snakemake.output) != 1:
     raise ValueError("Output should be one bam file: " + str(bam_output) + "!")
 
-command = (
+os.system(
     f"fgbio FilterConsensusReads"
     f" -i {bam_input}"
     f" -o {bam_output}"
@@ -47,5 +47,3 @@ command = (
     f" {extra_params}"
     f" {log}"
 )
-print(command)
-os.system(command)

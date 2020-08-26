@@ -24,7 +24,7 @@ output_dir = str(snakemake.output)
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
-command = (
+os.system(
     f"STAR "  # Tool
     f"--runMode genomeGenerate "  # Indexation mode
     f"{extra} "  # Optional parameters
@@ -35,5 +35,3 @@ command = (
     f"{gtf} "  # Highly recommended GTF
     f"{log}"  # Logging
 )
-print(command)
-os.system(command)

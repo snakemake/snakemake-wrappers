@@ -105,5 +105,4 @@ command = (
 if "pigz" in command:
     command = f'/bin/bash -c "{command}"'
 
-print(command)
 os.system(command)
