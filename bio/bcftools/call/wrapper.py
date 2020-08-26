@@ -7,8 +7,22 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 
+class CallerOptionError(Exception):
+    pass
+
+
+valid_caller_opts = {"-c", "--consensus-caller", "-m", "--multiallelic-caller"}
+
+caller_opt = snakemake.params.get("caller", "")
+if caller_opt.strip() not in valid_caller_opts:
+    raise CallerOptionError(
+        "bcftools call expects either -m/--multiallelic-caller or "
+        "-c/--consensus-caller as caller option."
+    )
+
+options = snakemake.params.get("options", "")
+
 shell(
-    "(samtools mpileup {snakemake.params.mpileup} {snakemake.input.samples} "
-    "--fasta-ref {snakemake.input.ref} --BCF --uncompressed | "
-    "bcftools call -m {snakemake.params.call} -o {snakemake.output[0]} -v -) 2> {snakemake.log}"
+    "bcftools call {options} {caller_opt} --threads {snakemake.threads} "
+    "-o {snakemake.output.calls} {snakemake.input.pileup} 2> {snakemake.log}"
 )

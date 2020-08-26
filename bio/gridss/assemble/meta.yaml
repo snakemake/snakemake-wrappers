@@ -1,0 +1,8 @@
+name: "gridss assemble"
+description: >
+    GRIDSS is a module software suite containing tools useful for the detection of genomic rearrangements.
+    It includes a genome-wide break-end assembler, as well as a structural variation caller for Illumina sequencing data.
+    ``assemble`` performs GRIDSS breakend assembly.
+    Documentation at: https://github.com/PapenfussLab/gridss
+authors:
+  - Christopher Schröder

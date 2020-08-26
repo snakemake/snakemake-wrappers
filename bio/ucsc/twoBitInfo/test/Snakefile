@@ -3,6 +3,8 @@ rule twoBitInfo:
         "{sample}.2bit"
     output:
         "{sample}.chrom.sizes"
+    log:
+        "logs/{sample}.chrom.sizes.log"
     params:
         "" # optional params string
     wrapper:

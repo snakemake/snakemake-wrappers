@@ -10,17 +10,15 @@ import sys
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-prefix = snakemake.params.get("prefix", "")
 
-if prefix:
-    output_command = "-prefix {}".format(prefix)
-else:
-    output_command = "> {}".format(snakemake.output)
+class PrefixNotSupportedError(Exception):
+    pass
 
-shell(
-    "(mergePeaks"
-    " {snakemake.input}"
-    " {extra}"
-    " {output_command})"
-    " {log}"
-)
+
+if "-prefix" in extra:
+    raise PrefixNotSupportedError(
+        "The use of the -prefix parameter is not yet supported in this wrapper"
+    )
+
+shell("(mergePeaks" " {snakemake.input}" " {extra}" " > {snakemake.output})" " {log}")
+

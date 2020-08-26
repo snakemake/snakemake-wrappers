@@ -1,0 +1,8 @@
+name: "strling merge"
+description: >
+    STRling (pronounced “sterling”) is a method to detect large short tandem repeat (STR) expansions from short-read sequencing data.
+    ``merge`` prepares joint calling of STR loci across all given samples.
+    Requires minimum read evidence from at least one sample.
+    Documentation at: https://strling.readthedocs.io/en/latest/run.html
+authors:
+  - Christopher Schröder

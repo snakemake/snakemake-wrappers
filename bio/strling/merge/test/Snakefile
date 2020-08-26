@@ -1,0 +1,13 @@
+rule strling_merge:
+    input:
+        bins=["extract/A.bin", "extract/B.bin"],
+        reference="reference/genome.fasta",
+        fai="reference/genome.fasta.fai",
+    output:
+        "merged/group-bounds.txt" # must end with "-bounds.txt"
+    params:
+        extra="" # optionally add further command line arguments
+    log:
+        "log/strling/merge/group.log"
+    wrapper:
+        "master/bio/strling/merge"

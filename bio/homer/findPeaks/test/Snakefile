@@ -8,7 +8,7 @@ rule homer_findPeaks:
         "{sample}_peaks.txt"
     params:
         # one of 7 basic modes of operation, see homer manual
-        style="histon",
+        style="histone",
         extra=""  # optional params, see homer manual
     log:
         "logs/findPeaks/{sample}.log"

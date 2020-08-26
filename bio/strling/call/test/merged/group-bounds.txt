@@ -1,0 +1,2 @@
+#chrom	left	right	repeat	name	left_most	right_most	center_mass	n_left	n_right	n_total
+Chromosome	87665	87666	AAAT		87154	87876	87665	0	0	107
