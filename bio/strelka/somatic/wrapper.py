@@ -29,16 +29,27 @@ else:
     run_dir = snakemake.output
 
 os.system(
-    f"(configureStrelkaSomaticWorkflow.py "  # Configuration script
-    f"{normal} "  # Path to normal bam (if any)
-    f"--tumorBam {snakemake.input.tumor} "  # Path to tumor bam
-    f"--referenceFasta {snakemake.input.fasta} "  # Path to fasta file
-    f"--runDir {run_dir} "  # Path to output directory
-    f"{config_extra} "  # Extra parametersfor configuration
-    f" && "
-    f"{run_dir}/runWorkflow.py "  # Run the pipeline
-    f"--mode local "  # Stop internal job submission
-    f"--jobs {snakemake.threads} "  # Nomber of threads
-    f"{run_extra}) "  # Extra parameters for runWorkflow
-    f"{log}"  # Logging behaviour
+    "(configureStrelkaSomaticWorkflow.py "  # Configuration script
+    "%s "  # Path to normal bam (if any)
+    "--tumorBam %s "  # Path to tumor bam
+    "--referenceFasta %s "  # Path to fasta file
+    "--runDir %s "  # Path to output directory
+    "%s "  # Extra parametersfor configuration
+    " && "
+    "%s/runWorkflow.py "  # Run the pipeline
+    "--mode local "  # Stop internal job submission
+    "--jobs %s "  # Nomber of threads
+    "%s) "  # Extra parameters for runWorkflow
+    "%s"
+    % (
+        normal,
+        snakemake.input.tumor,
+        snakemake.input.fasta,
+        run_dir,
+        config_extra,
+        run_dir,
+        snakemake.threads,
+        run_extra,
+        log,
+    )
 )

@@ -3,5 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python >=3.6
   - strelka ==2.9.10

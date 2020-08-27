@@ -12,11 +12,19 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 os.system(
-    f"(pre.py"
-    f" --threads {snakemake.threads}"
-    f" -r {snakemake.params.genome}"
-    f" {extra}"
-    f" {snakemake.input.variants}"
-    f" {snakemake.output})"
-    f" {log}"
+    "(pre.py"
+    " --threads %s"
+    " -r %s"
+    " %s"
+    " %s"
+    " %s)"
+    " %s"
+    % (
+        snakemake.threads,
+        snakemake.params.genome,
+        extra,
+        snakemake.input.variants,
+        snakemake.output,
+        log,
+    )
 )

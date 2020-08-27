@@ -38,22 +38,33 @@ prefix = re.split(".fastq|.fq|.txt|.seq", os.path.basename(snakemake.input[0]))[
 tempdir = tempfile.mkdtemp()
 
 os.system(
-    f"fastq_screen --outdir {tempdir} "
-    f"--force "
-    f"--aligner {aligner} "
-    f"--conf {config_file} "
-    f"--subset {subset} "
-    f"--threads {snakemake.threads} "
-    f"{extra} "
-    f"{snakemake.input[0]} "
-    f"{log}"
+    "fastq_screen --outdir %s "
+    "--force "
+    "--aligner %s "
+    "--conf %s "
+    "--subset %s "
+    "--threads %s "
+    "%s "
+    "%s "
+    "%s"
+    % (
+        tempdir,
+        aligner,
+        config_file,
+        subset,
+        snakemake.threads,
+        extra,
+        snakemake.input[0],
+        log,
+    )
 )
 
+
 # Move output to the filenames specified by the rule
-os.system(f"mv {tempdir}/{prefix}_screen.txt {snakemake.output.txt}")
-os.system(f"mv {tempdir}/{prefix}_screen.png {snakemake.output.png}")
+os.system("mv %s/%s_screen.txt %s" % (tempdir, prefix, snakemake.output.txt))
+os.system("mv %s/%s_screen.png %s" % (tempdir, prefix, snakemake.output.png))
 
 # Clean up temp
-os.system(f"rm -r {tempdir}")
+os.system("rm -r %s" % tempdir)
 if isinstance(_config, dict):
-    os.system(f"rm {tmp}")
+    os.system("rm %s" % tmp)

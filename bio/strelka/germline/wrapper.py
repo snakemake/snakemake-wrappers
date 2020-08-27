@@ -20,14 +20,24 @@ else:
     run_dir = snakemake.output
 
 os.system(
-    f"configureStrelkaGermlineWorkflow.py "  # configure the strelka run
-    f"--bam {bam} "  # input bam
-    f"--referenceFasta {snakemake.input.fasta} "  # reference genome
-    f"--runDir {run_dir} "  # output directory
-    f"{config_extra} "  # additional parameters for the configuration
-    f"&& {run_dir}/runWorkflow.py "  # run the strelka workflow
-    f"-m local "  # run in local mode
-    f"-j {snakemake.threads} "  # number of threads
-    f"{run_extra} "  # additional parameters for the run
-    f"{log}"
-)  # logging
+    "configureStrelkaGermlineWorkflow.py "  # configure the strelka run
+    "--bam %s "  # input bam
+    "--referenceFasta %s "  # reference genome
+    "--runDir %s "  # output directory
+    " %s "  # additional parameters for the configuration
+    "&& %s/runWorkflow.py "  # run the strelka workflow
+    "-m local "  # run in local mode
+    "-j %s "  # number of threads
+    "%s "  # additional parameters for the run
+    "%s"
+    % (
+        bam,
+        snakemake.input.fasta,
+        run_dir,
+        config_extra,
+        run_dir,
+        snakemake.threads,
+        run_extra,
+        log,
+    )
+)

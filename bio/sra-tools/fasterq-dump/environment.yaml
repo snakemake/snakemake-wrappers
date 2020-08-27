@@ -2,5 +2,4 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
-  - python >=3.6
   - sra-tools >2.9.1
