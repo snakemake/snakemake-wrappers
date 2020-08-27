@@ -3,4 +3,5 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - python >=3.6
   - gatk4 ==4.1.4.1

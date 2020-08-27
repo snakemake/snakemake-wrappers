@@ -3,4 +3,5 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - python >=3.6
   - kallisto ==0.45.0

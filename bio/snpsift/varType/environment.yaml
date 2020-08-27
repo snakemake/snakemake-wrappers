@@ -2,4 +2,5 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
+  - python >=3.6
   -  snpsift =4.3.1t

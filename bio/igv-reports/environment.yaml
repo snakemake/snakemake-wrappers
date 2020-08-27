@@ -2,4 +2,5 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
+  - python >=3.6
   - igv-reports =0.9.1

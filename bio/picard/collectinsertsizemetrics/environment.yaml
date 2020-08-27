@@ -3,5 +3,6 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - python >=3.6
   - picard ==2.22.1
   - r-base ==3.6.2

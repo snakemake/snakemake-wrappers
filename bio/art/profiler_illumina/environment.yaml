@@ -2,4 +2,5 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
+  - python >=3.6
   - art ==2016.06.05

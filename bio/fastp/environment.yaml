@@ -3,4 +3,5 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - python >=3.6
   - fastp ==0.20.0

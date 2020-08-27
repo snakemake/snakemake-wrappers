@@ -3,4 +3,5 @@ channels:
   - bioconda
   - defaults
 dependencies:
+  - python >=3.6
   - arriba ==1.1.0

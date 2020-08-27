@@ -3,6 +3,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - python >=3.6
   - bowtie2 == 2.3.4.3
   - bismark == 0.22.1
   - samtools == 1.9

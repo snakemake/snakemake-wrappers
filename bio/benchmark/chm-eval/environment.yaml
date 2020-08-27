@@ -1,4 +1,5 @@
 channels:
   - conda-forge
 dependencies:
+  - python >=3.6
   - perl =5.26

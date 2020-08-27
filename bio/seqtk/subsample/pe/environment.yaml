@@ -2,4 +2,5 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
+  - python >=3.6
   - seqtk ==1.3

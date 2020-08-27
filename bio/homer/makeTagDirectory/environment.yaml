@@ -2,5 +2,6 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
+  - python >=3.6
   - homer ==4.11
   - samtools ==1.10

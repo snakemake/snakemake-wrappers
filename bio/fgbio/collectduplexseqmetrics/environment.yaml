@@ -4,5 +4,6 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - python >=3.6
   - fgbio ==0.6.1
   - r-ggplot2

@@ -3,4 +3,5 @@ channels:
   - bioconda
   - defaults
 dependencies:
+  - python >=3.6
   - optitype ==1.3.4

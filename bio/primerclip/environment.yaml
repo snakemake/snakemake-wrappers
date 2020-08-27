@@ -1,5 +1,6 @@
 channels:
   - bioconda
 dependencies:
+  - python >=3.6
   - samtools ==1.9
   - primerclip ==0.3.8

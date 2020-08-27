@@ -2,6 +2,7 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
+  - python >=3.6
   - deepvariant=0.10.0
   - tensorflow-estimator=2.0.0
   - unzip=6.0

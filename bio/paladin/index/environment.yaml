@@ -3,5 +3,6 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - python >=3.6
   - paladin=1.4.4
   - samtools=1.5

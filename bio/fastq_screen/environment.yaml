@@ -3,6 +3,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - python >=3.6
   - fastq-screen ==0.5.2
   - bowtie2 ==2.2.6
   - bowtie ==1.1.2

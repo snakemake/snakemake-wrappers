@@ -4,4 +4,5 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - python >=3.6
   - varscan ==2.4.3

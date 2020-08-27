@@ -2,5 +2,6 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
+  - python >=3.6
   - snpeff ==4.3.1t
   - bcftools =1.10
