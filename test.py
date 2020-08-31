@@ -2313,6 +2313,14 @@ def test_vep_annotate():
     )
 
 
+def test_genomepy():
+    # download dm3 genome (relatively small, +/- 250 mb)
+    run(
+        "bio/genomepy",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "dm3/dm3.fa"],
+    )
+
+      
 def test_chm_eval_sample():
     run(
         "bio/benchmark/chm-eval-sample",
