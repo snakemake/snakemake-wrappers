@@ -15,7 +15,7 @@ if DIFF_ONLY:
         .decode()
         .split("\n")
     )
-
+print(DIFF_FILES)
 
 def run(wrapper, cmd, check_log=None):
     origdir = os.getcwd()
@@ -104,7 +104,7 @@ def run_meta(wrapper, cmd, check_log=None):
             assert success, "No wrapper script found for {}".format(w)
             copy(w, "environment.yaml")
 
-        if DIFF_ONLY and not any(any(f.startswith(w) for f in DIFF_FILES) for w in wrappers):
+        if DIFF_ONLY and not any(any(f.startswith(w) for f in DIFF_FILES) for w in used_wrappers):
             print(
                 "Skipping wrapper {} (not modified).".format(wrapper), file=sys.stderr
             )
