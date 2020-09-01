@@ -15,5 +15,5 @@ url = (
 os.makedirs(snakemake.output[0])
 shell(
     "(curl -L {url} | tar --strip-components 1 -C {snakemake.output[0]} -xf - &&"
-    "chmod +x htsbox run-eval k8) {log}"
+    "(cd {snakemake.output[0]}; chmod +x htsbox run-eval k8)) {log}"
 )
