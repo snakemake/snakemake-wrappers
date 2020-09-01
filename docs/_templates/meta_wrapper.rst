@@ -51,8 +51,16 @@ Authors
 {% endfor %}
 
 
+Code
+----
+{% for wrapper in wrappers %}
 
+* {{ wrapper[2] }}
 
+.. code-block:: {{ wrapper[1] }}
 
+{{ wrapper[0] }}
+
+{% endfor %}
 
 
