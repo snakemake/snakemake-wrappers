@@ -4,6 +4,7 @@ import tempfile
 import shutil
 import pytest
 import sys
+import yaml
 
 DIFF_ONLY = os.environ.get("DIFF_ONLY", "false") == "true"
 
@@ -86,10 +87,10 @@ def run_meta(wrapper, cmd, check_log=None):
         copy = lambda pth, src: shutil.copy(os.path.join(pth, src), os.path.join(dst, pth))
 
         used_wrappers = []
-        wrapper_file = "used_wrappers.txt"
+        wrapper_file = "used_wrappers.yaml"
         with open(os.path.join(wrapper, wrapper_file), "r") as wf:
-            for line in wf:
-                used_wrappers.append(line.rstrip())
+            wf = yaml.load(wf)
+            used_wrappers = wf["wrappers"]
 
         for w in used_wrappers:
             success = False
