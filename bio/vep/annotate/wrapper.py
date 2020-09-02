@@ -36,6 +36,10 @@ elif snakemake.output.calls.endswith(".bcf"):
 else:
     fmt = "v"
 
+fasta = snakemake.input.get("fasta", "")
+if fasta:
+    fasta = "--fasta {}".format(fasta)
+
 shell(
     "(bcftools view {snakemake.input.calls} | "
     "vep {extra} {fork} "
@@ -47,6 +51,7 @@ shell(
     "--assembly {build} "
     "--dir_cache {cache} "
     "--dir_plugins {plugins} "
+    "{fasta} "
     "--offline "
     "{load_plugins} "
     "--output_file STDOUT "
