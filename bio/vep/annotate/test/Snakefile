@@ -3,6 +3,8 @@ rule annotate_variants:
         calls="variants.bcf",  # .vcf, .vcf.gz or .bcf
         cache="resources/vep/cache",
         plugins="resources/vep/plugins",
+        # optionally add reference genome fasta to speed up annotation
+        # fasta="genome.fasta",
     output:
         calls="variants.annotated.bcf",  # .vcf, .vcf.gz or .bcf
         stats="variants.html"
