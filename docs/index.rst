@@ -106,3 +106,11 @@ with ``make clean``.
    :caption: Wrappers
 
    wrappers/*
+   
+.. toctree::
+   :maxdepth: 3
+   :glob:
+   :hidden:
+   :caption: Meta-Wrappers
+      
+   meta-wrappers/*

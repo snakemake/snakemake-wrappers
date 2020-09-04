@@ -5,10 +5,12 @@ import yaml
 import subprocess
 
 DISCIPLINES = ["bio", "utils"]
+META_DISCIPLINES = ["bio"]
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 WRAPPER_DIR = os.path.dirname(BASE_DIR)
 OUTPUT_DIR = os.path.join(BASE_DIR, "wrappers")
+META_OUTPUT_DIR = os.path.join(BASE_DIR, "meta-wrappers")
 SCRIPTS = {"wrapper.py", "wrapper.R"}
 BLACKLIST = {
     ".snakemake",
@@ -32,6 +34,9 @@ with open(os.path.join(BASE_DIR, "_templates", "tool.rst")) as f:
     TOOL_TEMPLATE = Template(f.read())
 
 with open(os.path.join(BASE_DIR, "_templates", "wrapper.rst")) as f:
+    TEMPLATE = Template(f.read())
+
+with open(os.path.join(BASE_DIR, "_templates", "meta_wrapper.rst")) as f:
     TEMPLATE = Template(f.read())
 
 
@@ -94,6 +99,44 @@ def render_wrapper(path, target):
     return name
 
 
+def render_meta(path, target):
+    print("rendering", path)
+    with open(os.path.join(path, "meta.yaml")) as meta:
+        meta = yaml.load(meta)
+    wrapperpath = os.path.join(path, "used_wrappers.yaml")
+    if os.path.exists(wrapperpath):
+        with open(wrapperpath) as env:
+            env = yaml.load(env)
+            used_wrappers = env["wrappers"]
+    else:
+        used_wrappers = []
+
+    with open(os.path.join(path, "test", "Snakefile")) as snakefile:
+        snakefile = textwrap.indent(snakefile.read(), "    ").replace("master", TAG)
+        
+    wrappers = []
+    for uw in used_wrappers:
+        wrapper = os.path.join(WRAPPER_DIR, uw, "wrapper.py")
+        wrapper_lang = "python"
+        if not os.path.exists(wrapper):
+            wrapper = os.path.join(WRAPPER_DIR, uw, "wrapper.R")
+            wrapper_lang = "R"
+        with open(wrapper) as wrapper:
+            wrapper = textwrap.indent(wrapper.read(), "    ")
+            wrappers.append((wrapper, wrapper_lang, uw))
+            
+    name = meta["name"].replace(" ", "_") + ".rst"
+    os.makedirs(os.path.dirname(target), exist_ok=True)
+    with open(target, "w") as readme:
+        rst = TEMPLATE.render(
+            snakefile=snakefile,
+            wrappers=wrappers,
+            usedwrappers=used_wrappers,
+            **meta
+        )
+        readme.write(rst)
+    return name
+
 def setup(*args):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     for discipline in DISCIPLINES:
@@ -127,6 +170,14 @@ def setup(*args):
             else:
                 # subcommands found (and rendered above), render the tool's table of content
                 render_tool(tool, subcmds)
+
+    os.makedirs(META_OUTPUT_DIR, exist_ok=True)
+    for discipline in META_DISCIPLINES:
+        for subwf in os.listdir(os.path.join(WRAPPER_DIR, "meta", discipline)):
+            if subwf in BLACKLIST:
+                continue
+            path = os.path.join(WRAPPER_DIR, "meta", discipline, subwf)
+            render_meta(path, os.path.join(META_OUTPUT_DIR, subwf + ".rst"))
 
 
 if __name__ == "__main__":

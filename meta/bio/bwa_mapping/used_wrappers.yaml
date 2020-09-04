@@ -1,0 +1,3 @@
+wrappers:
+ - bio/bwa/mem
+ - bio/samtools/index

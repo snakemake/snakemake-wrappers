@@ -1,0 +1,4 @@
+name: "bwa_mapping"
+description: Map reads with bwa-mem and index with samtools index - this is just a test for subworkflows
+authors:
+  - Jan Forster
