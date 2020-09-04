@@ -15,71 +15,9 @@ if DIFF_ONLY:
         .decode()
         .split("\n")
     )
-print(DIFF_FILES)
+
 
 def run(wrapper, cmd, check_log=None):
-    origdir = os.getcwd()
-    with tempfile.TemporaryDirectory() as d:
-        dst = os.path.join(d, "master", wrapper)
-        os.makedirs(dst, exist_ok=True)
-        copy = lambda src: shutil.copy(os.path.join(wrapper, src), dst)
-        success = False
-        for ext in ("py", "R", "Rmd"):
-            script = "wrapper." + ext
-            if os.path.exists(os.path.join(wrapper, script)):
-                copy(script)
-                success = True
-                break
-        assert success, "No wrapper.{py,R,Rmd} found"
-
-        if DIFF_ONLY and not any(f.startswith(wrapper) for f in DIFF_FILES):
-            print(
-                "Skipping wrapper {} (not modified).".format(wrapper), file=sys.stderr
-            )
-            return
-
-        copy("environment.yaml")
-        testdir = os.path.join(wrapper, "test")
-        # switch to test directory
-        os.chdir(testdir)
-        if os.path.exists(".snakemake"):
-            shutil.rmtree(".snakemake")
-        cmd = cmd + ["--wrapper-prefix", "file://{}/".format(d), "--conda-cleanup-pkgs"]
-        subprocess.check_call(["snakemake", "--version"])
-
-        try:
-            subprocess.check_call(cmd)
-        except Exception as e:
-            # go back to original directory
-            os.chdir(origdir)
-            logfiles = [
-                os.path.join(d, f)
-                for d, _, files in os.walk(os.path.join(testdir, "logs"))
-                for f in files
-            ]
-            for path in logfiles:
-                with open(path) as f:
-                    msg = "###### Logfile: " + path + " ######"
-                    print(msg, "\n")
-                    print(f.read())
-                    print("#" * len(msg))
-            if check_log is not None:
-                for f in logfiles:
-                    check_log(open(f).read())
-            else:
-                raise e
-        finally:
-            # cleanup environments to save disk space
-            subprocess.check_call(
-                "for env in `conda env list | grep -P '\.snakemake/conda' | "
-                "cut -f1 | tr -d ' '`; do conda env remove --prefix $env; done",
-                shell=True,
-            )
-            # go back to original directory
-            os.chdir(origdir)
-
-
-def run_meta(wrapper, cmd, check_log=None):
     origdir = os.getcwd()
     with tempfile.TemporaryDirectory() as d:
         dst = os.path.join(d, "master")
@@ -88,9 +26,14 @@ def run_meta(wrapper, cmd, check_log=None):
 
         used_wrappers = []
         wrapper_file = "used_wrappers.yaml"
-        with open(os.path.join(wrapper, wrapper_file), "r") as wf:
-            wf = yaml.load(wf)
-            used_wrappers = wf["wrappers"]
+        if os.path.exists(os.path.join(wrapper, wrapper_file)):
+            # is meta wrapper
+            with open(os.path.join(wrapper, wrapper_file), "r") as wf:
+                wf = yaml.load(wf)
+                used_wrappers = wf["wrappers"]
+        else:
+            used_wrappers.append(wrapper)
+
 
         for w in used_wrappers:
             success = False
@@ -110,7 +53,6 @@ def run_meta(wrapper, cmd, check_log=None):
             )
             return
 
-        #copy("environment.yaml")
         testdir = os.path.join(wrapper, "test")
         # switch to test directory
         os.chdir(testdir)
@@ -150,11 +92,13 @@ def run_meta(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+
 def test_bwa_mapping_meta():
-    run_meta(
+    run(
         "meta/bio/bwa_mapping",
-        ["snakemake", "--cores", "1", "--use-conda", "mapped/a.bam.bai"],
+        ["snakemake", "--cores", "1", "--use-conda", "results/recal/sampleA.sorted.bam"],
     )
+
 
 def test_gridss_call():
     run(
