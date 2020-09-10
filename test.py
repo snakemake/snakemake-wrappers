@@ -96,7 +96,7 @@ def run(wrapper, cmd, check_log=None):
 def test_bwa_mapping_meta():
     run(
         "meta/bio/bwa_mapping",
-        ["snakemake", "--cores", "1", "--use-conda", "results/recal/sampleA.sorted.bam"],
+        ["snakemake", "--cores", "1", "--use-conda", "mapped/a.bam.bai"],
     )
 
 
