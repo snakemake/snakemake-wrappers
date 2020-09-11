@@ -1,0 +1,6 @@
+name: star-arriba
+description: >
+  A subworkflow for fusion detection from RNA-seq data with ``arriba``. The fusion calling is based on splice-aware, chimeric alignments done with ``STAR``.
+  ``STAR`` is used with specific parameters to ensure optimal functionality of the ``arriba`` fusion detection, for details, see the `documentation <https://arriba.readthedocs.io/en/latest/workflow/>`_.
+authors:
+  - Jan Forster

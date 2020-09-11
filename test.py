@@ -93,6 +93,14 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+def test_arriba_star_meta():
+    run(
+        "meta/bio/star_arriba",
+        ["snakemake", "--cores", "1", "--use-conda", "results/arriba/a.fusions.tsv"],
+    )
+
+
+
 def test_bwa_mapping_meta():
     run(
         "meta/bio/bwa_mapping",

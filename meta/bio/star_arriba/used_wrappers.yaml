@@ -1,0 +1,4 @@
+wrappers:
+ - bio/star/index
+ - bio/star/align
+ - bio/arriba
