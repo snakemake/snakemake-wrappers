@@ -13,7 +13,4 @@ extra = snakemake.params.get("extra", "")
 # Other threads are *additional* threads passed to the '-@' argument
 threads = "" if snakemake.threads <= 1 else " -@ {} ".format(snakemake.threads - 1)
 
-shell(
-    "samtools merge {threads} {extra} "
-    "{snakemake.output[0]} {snakemake.input}"
-)
+shell("samtools merge {threads} {extra} " "{snakemake.output[0]} {snakemake.input}")

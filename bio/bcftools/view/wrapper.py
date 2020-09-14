@@ -8,6 +8,4 @@ from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 
-shell(
-    "bcftools view {extra} {snakemake.input[0]} " "-o {snakemake.output[0]}"
-)
+shell("bcftools view {extra} {snakemake.input[0]} " "-o {snakemake.output[0]}")

@@ -8,7 +8,4 @@ from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 
-shell(
-    "bcftools concat {extra} -o {snakemake.output[0]} "
-    "{snakemake.input.calls}"
-)
+shell("bcftools concat {extra} -o {snakemake.output[0]} " "{snakemake.input.calls}")
