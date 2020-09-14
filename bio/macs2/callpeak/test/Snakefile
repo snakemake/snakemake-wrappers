@@ -38,8 +38,8 @@ rule callpeak_options:
                  "_peaks.gappedPeak"
                  )
     log:
-        extra="logs/macs2/callpeak.log"
+        "logs/macs2/callpeak.log"
     params:
-        "-f BAM -g hs --nomodel"
+        extra="-f BAM -g hs --nomodel"
     wrapper:
         "master/bio/macs2/callpeak"
