@@ -1,0 +1,257 @@
+Thu Sep 10 19:23:49 CEST 2020: Full log file is: working_dir/gridss.full.20200910_192349.dktk.29069.log
+Thu Sep 10 19:23:49 CEST 2020: Found /usr/bin/time
+Thu Sep 10 19:23:49 CEST 2020: Using reference genome "reference/genome.fasta"
+Thu Sep 10 19:23:49 CEST 2020: Using output VCF vcf/group.vcf
+Thu Sep 10 19:23:49 CEST 2020: Using 1 worker threads.
+Thu Sep 10 19:23:49 CEST 2020: Using no blacklist bed. The encode DAC blacklist is recommended for hg19.
+Thu Sep 10 19:23:49 CEST 2020: Using JVM maximum heap size of 1g for assembly and variant calling.
+Thu Sep 10 19:23:49 CEST 2020: Using input file mapped/A.bam
+Thu Sep 10 19:23:49 CEST 2020: Using input file mapped/B.bam
+Thu Sep 10 19:23:49 CEST 2020: Found /home/forster/smw/snakemake-wrappers/bio/gridss/call/test/.snakemake/conda/b958c945/bin/Rscript
+Thu Sep 10 19:23:49 CEST 2020: Found /home/forster/smw/snakemake-wrappers/bio/gridss/call/test/.snakemake/conda/b958c945/bin/samtools
+Thu Sep 10 19:23:49 CEST 2020: Found /home/forster/smw/snakemake-wrappers/bio/gridss/call/test/.snakemake/conda/b958c945/bin/java
+Thu Sep 10 19:23:49 CEST 2020: Found /home/forster/smw/snakemake-wrappers/bio/gridss/call/test/.snakemake/conda/b958c945/bin/bwa
+Thu Sep 10 19:23:49 CEST 2020: samtools version: 1.10+htslib-1.10.2
+Thu Sep 10 19:23:49 CEST 2020: R version: R scripting front-end version 4.0.2 (2020-06-22)
+Thu Sep 10 19:23:49 CEST 2020: bwa Version: 0.7.17-r1188
+Thu Sep 10 19:23:49 CEST 2020: time version: GNU time 1.7
+Thu Sep 10 19:23:49 CEST 2020: bash version: GNU bash, version 4.4.20(1)-release (x86_64-pc-linux-gnu)
+Thu Sep 10 19:23:49 CEST 2020: java version: openjdk version "11.0.8-internal" 2020-07-14
+OpenJDK Runtime Environment (build 11.0.8-internal+0-adhoc..src)
+OpenJDK 64-Bit Server VM (build 11.0.8-internal+0-adhoc..src, mixed mode)
+Thu Sep 10 19:23:49 CEST 2020: Max file handles: 4096
+Thu Sep 10 19:23:49 CEST 2020: Running GRIDSS steps: call,
+Thu Sep 10 19:23:49 CEST 2020: Skipping pre-processing.
+Thu Sep 10 19:23:49 CEST 2020: Skipping assembly	assembly/group.bam
+Thu Sep 10 19:23:49 CEST 2020: Start calling	vcf/group.vcf
+Thu Sep 10 19:23:49 CEST 2020: Running	IdentifyVariants	vcf/group.vcf
+INFO	2020-09-10 19:23:49	IdentifyVariants	
+
+********** NOTE: Picard's command line syntax is changing.
+**********
+********** For more information, please see:
+********** https://github.com/broadinstitute/picard/wiki/Command-Line-Syntax-Transition-For-Users-(Pre-Transition)
+**********
+********** The command line looks like this in the new syntax:
+**********
+**********    IdentifyVariants -TMP_DIR working_dir -WORKING_DIR working_dir -REFERENCE_SEQUENCE reference/genome.fasta -WORKER_THREADS 1 -INPUT mapped/A.bam -INPUT mapped/B.bam -ASSEMBLY assembly/group.bam -OUTPUT_VCF working_dir/group.vcf.gridss.working/group.vcf.unallocated.vcf
+**********
+
+
+19:23:50.366 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/home/forster/smw/snakemake-wrappers/bio/gridss/call/test/.snakemake/conda/b958c945/share/gridss-2.9.4-0/gridss.jar!/com/intel/gkl/native/libgkl_compression.so
+[Thu Sep 10 19:23:50 CEST 2020] IdentifyVariants OUTPUT_VCF=working_dir/group.vcf.gridss.working/group.vcf.unallocated.vcf ASSEMBLY=assembly/group.bam INPUT=[mapped/A.bam, mapped/B.bam] WORKER_THREADS=1 WORKING_DIR=working_dir TMP_DIR=[working_dir] REFERENCE_SEQUENCE=reference/genome.fasta    READ_PAIR_CONCORDANT_PERCENT=0.995 IGNORE_DUPLICATES=true VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json USE_JDK_DEFLATER=false USE_JDK_INFLATER=false
+[Thu Sep 10 19:23:50 CEST 2020] Executing as forster@dktk on Linux 4.15.0-115-generic amd64; OpenJDK 64-Bit Server VM 11.0.8-internal+0-adhoc..src; Deflater: Intel; Inflater: Intel; Provider GCS is not available; Picard version: 2.9.4-gridss
+INFO	2020-09-10 19:23:50	GridssConfiguration	maxCoverage=25000
+INFO	2020-09-10 19:23:50	GridssConfiguration	minMapq=20
+INFO	2020-09-10 19:23:50	GridssConfiguration	fallbackMapq=20
+INFO	2020-09-10 19:23:50	GridssConfiguration	fallbackBaseq=20
+INFO	2020-09-10 19:23:50	GridssConfiguration	minAnchorShannonEntropy=0.5
+INFO	2020-09-10 19:23:50	GridssConfiguration	dovetailMargin=4
+INFO	2020-09-10 19:23:50	GridssConfiguration	softclip.minAverageQual=5.0
+INFO	2020-09-10 19:23:50	GridssConfiguration	softclip.minLength=5
+INFO	2020-09-10 19:23:50	GridssConfiguration	softclip.minAnchorIdentity=0.95
+INFO	2020-09-10 19:23:50	GridssConfiguration	softclip.realignSplitReads=false
+INFO	2020-09-10 19:23:50	GridssConfiguration	useReadGroupSampleNameCategoryLabel=true
+INFO	2020-09-10 19:23:50	GridssConfiguration	chunkSize=10000000
+INFO	2020-09-10 19:23:50	GridssConfiguration	chunkSequenceChangePenalty=250000
+INFO	2020-09-10 19:23:50	GridssConfiguration	hashEvidenceID=true
+INFO	2020-09-10 19:23:50	GridssConfiguration	adapter=AGATCGGAAGAG
+INFO	2020-09-10 19:23:50	GridssConfiguration	adapter=ATGGAATTCTCG
+INFO	2020-09-10 19:23:50	GridssConfiguration	adapter=CTGTCTCTTATA
+INFO	2020-09-10 19:23:50	GridssConfiguration	scoring.model=FastEmpiricalReferenceLikelihood
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.k=25
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.minReads=3
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.includePairAnchors=true
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.pairAnchorMismatchIgnoreEndBases=5
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.writeFiltered=false
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.anchorLength=300
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.removeMisassembledPartialContigsDuringAssembly=true
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.maxExpectedBreakendLengthMultiple=1.5
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.errorCorrection.collapseBubblesOnly=true
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.errorCorrection.maxBaseMismatchForCollapse=2
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.errorCorrection.maxPathCollapseLengthMultiple=2.0
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.realignContigs=true
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.recoverAfterError=true
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.downsample.acceptDensityPortion=0.1
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.downsample.targetEvidenceDensity=1
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.downsample.minimumDensityWindowSize=1000
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.positional.maxPathLengthMultiple=1.1
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.positional.retainWidthMultiple=2.0
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.positional.flushWidthMultiple=1.0
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.positional.maximumNodeDensity=2.0
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.positional.trimSelfIntersectingReads=true
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.positional.forceFullMemoizationRecalculationAt=0.8
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.positional.safetyModePathCountThreshold=50000
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.positional.safetyModeContigsToCall=3
+INFO	2020-09-10 19:23:50	GridssConfiguration	assembly.contigNamePrefix=asm%d-
+INFO	2020-09-10 19:23:50	GridssConfiguration	variantcalling.minReads=2
+INFO	2020-09-10 19:23:50	GridssConfiguration	variantcalling.minScore=50.0
+INFO	2020-09-10 19:23:50	GridssConfiguration	variantcalling.minSize=10
+INFO	2020-09-10 19:23:50	GridssConfiguration	variantcalling.callUnassembledBreakpoints=true
+INFO	2020-09-10 19:23:50	GridssConfiguration	variantcalling.callUnassembledBreakends=false
+INFO	2020-09-10 19:23:50	GridssConfiguration	variantcalling.callFullyAnchoredAssemblyVariants=false
+INFO	2020-09-10 19:23:50	GridssConfiguration	variantcalling.breakendMargin=10
+INFO	2020-09-10 19:23:50	GridssConfiguration	variantcalling.writeFiltered=false
+INFO	2020-09-10 19:23:50	GridssConfiguration	variantcalling.simplecalls=false
+INFO	2020-09-10 19:23:50	GridssConfiguration	variantcalling.maxBreakendHomologyLength=300
+INFO	2020-09-10 19:23:50	GridssConfiguration	variantcalling.breakendHomologyAlignmentMargin=10
+INFO	2020-09-10 19:23:50	GridssConfiguration	variantcalling.requireAssemblyCategorySupport=true
+INFO	2020-09-10 19:23:50	GridssConfiguration	variantcalling.callBreakends=true
+INFO	2020-09-10 19:23:50	GridssConfiguration	variantcalling.includeSupportingReadNames=false
+INFO	2020-09-10 19:23:50	GridssConfiguration	variantcalling.breakpointLowQuality=500.0
+INFO	2020-09-10 19:23:50	GridssConfiguration	variantcalling.breakendLowQuality=1500.0
+INFO	2020-09-10 19:23:50	GridssConfiguration	variantcalling.breakendMaxAssemblySupportBias=0.5
+INFO	2020-09-10 19:23:50	GridssConfiguration	terminateOnFirstError=true
+INFO	2020-09-10 19:23:50	GridssConfiguration	visualisation.directory=visualisation
+INFO	2020-09-10 19:23:50	GridssConfiguration	visualisation.buffers=false
+INFO	2020-09-10 19:23:50	GridssConfiguration	visualisation.bufferTrackingItervalInSeconds=60
+INFO	2020-09-10 19:23:50	GridssConfiguration	visualisation.timeouts=false
+INFO	2020-09-10 19:23:50	GridssConfiguration	visualisation.evidenceAllocation=false
+INFO	2020-09-10 19:23:50	GridssConfiguration	visualisation.assemblyProgress=false
+INFO	2020-09-10 19:23:50	GridssConfiguration	visualisation.assemblyTelemetry=false
+INFO	2020-09-10 19:23:50	GridssConfiguration	visualisation.maxCliqueTelemetry=false
+INFO	2020-09-10 19:23:50	GridssConfiguration	visualisation.assemblyGraph=false
+INFO	2020-09-10 19:23:50	GridssConfiguration	visualisation.assemblyGraphFullSize=false
+INFO	2020-09-10 19:23:50	GridssConfiguration	visualisation.assemblyContigMemoization=false
+INFO	2020-09-10 19:23:50	TwoBitBufferedReferenceSequenceFile	Loading reference genome from cache /home/forster/smw/snakemake-wrappers/bio/gridss/call/test/reference/genome.fasta.gridsscache
+INFO	2020-09-10 19:23:50	MultipleSamFileCommandLineProgram	Loading aligner
+WARNING	2020-09-10 19:23:50	AlignerFactory	Unable to use Intel GKL library for accelerated Smith-Waterman alignment
+INFO	2020-09-10 19:23:50	TwoBitBufferedReferenceSequenceFile	Loading reference genome complete
+INFO	2020-09-10 19:23:50	AlignerFactory	sswjni library loading successful.
+INFO	2020-09-10 19:23:50	MultipleSamFileCommandLineProgram	Using 1 worker threads
+INFO	2020-09-10 19:23:50	VariantCaller	Identifying Breakpoints
+INFO	2020-09-10 19:23:51	VariantCaller	Start calling maximal cliques in chunk 0 (Chromosome:1-Chromosome:159662)
+INFO	2020-09-10 19:23:52	VariantCaller	Complete calling maximal cliques in chunk 0 (Chromosome:1-Chromosome:159662)
+INFO	2020-09-10 19:23:52	VariantCaller	Merging identified breakpoints
+WARNING	2020-09-10 19:23:52	AsyncBufferedIterator	Thread interrupt received whilst closing underlying iterator
+INFO	2020-09-10 19:23:52	VariantCaller	Sorting identified breakpoints
+INFO	2020-09-10 19:23:52	VcfFileUtil	Sorting to working_dir/group.vcf.gridss.working/group.vcf.unallocated.vcf
+INFO	2020-09-10 19:23:52	IdentifyVariants	Raw variant calls written to working_dir/group.vcf.gridss.working/group.vcf.unallocated.vcf
+[Thu Sep 10 19:23:52 CEST 2020] gridss.IdentifyVariants done. Elapsed time: 0.04 minutes.
+Runtime.totalMemory()=230686720
+Thu Sep 10 19:23:52 CEST 2020: Running	AnnotateVariants	vcf/group.vcf
+INFO	2020-09-10 19:23:53	AnnotateVariants	
+
+********** NOTE: Picard's command line syntax is changing.
+**********
+********** For more information, please see:
+********** https://github.com/broadinstitute/picard/wiki/Command-Line-Syntax-Transition-For-Users-(Pre-Transition)
+**********
+********** The command line looks like this in the new syntax:
+**********
+**********    AnnotateVariants -TMP_DIR working_dir -WORKING_DIR working_dir -REFERENCE_SEQUENCE reference/genome.fasta -WORKER_THREADS 1 -INPUT mapped/A.bam -INPUT mapped/B.bam -ASSEMBLY assembly/group.bam -INPUT_VCF working_dir/group.vcf.gridss.working/group.vcf.unallocated.vcf -OUTPUT_VCF working_dir/group.vcf.gridss.working/group.vcf.allocated.vcf
+**********
+
+
+19:23:53.671 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/home/forster/smw/snakemake-wrappers/bio/gridss/call/test/.snakemake/conda/b958c945/share/gridss-2.9.4-0/gridss.jar!/com/intel/gkl/native/libgkl_compression.so
+[Thu Sep 10 19:23:53 CEST 2020] AnnotateVariants INPUT_VCF=working_dir/group.vcf.gridss.working/group.vcf.unallocated.vcf OUTPUT_VCF=working_dir/group.vcf.gridss.working/group.vcf.allocated.vcf ASSEMBLY=assembly/group.bam INPUT=[mapped/A.bam, mapped/B.bam] WORKER_THREADS=1 WORKING_DIR=working_dir TMP_DIR=[working_dir] REFERENCE_SEQUENCE=reference/genome.fasta    READ_PAIR_CONCORDANT_PERCENT=0.995 IGNORE_DUPLICATES=true VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json USE_JDK_DEFLATER=false USE_JDK_INFLATER=false
+[Thu Sep 10 19:23:53 CEST 2020] Executing as forster@dktk on Linux 4.15.0-115-generic amd64; OpenJDK 64-Bit Server VM 11.0.8-internal+0-adhoc..src; Deflater: Intel; Inflater: Intel; Provider GCS is not available; Picard version: 2.9.4-gridss
+INFO	2020-09-10 19:23:53	GridssConfiguration	maxCoverage=25000
+INFO	2020-09-10 19:23:53	GridssConfiguration	minMapq=20
+INFO	2020-09-10 19:23:53	GridssConfiguration	fallbackMapq=20
+INFO	2020-09-10 19:23:53	GridssConfiguration	fallbackBaseq=20
+INFO	2020-09-10 19:23:53	GridssConfiguration	minAnchorShannonEntropy=0.5
+INFO	2020-09-10 19:23:53	GridssConfiguration	dovetailMargin=4
+INFO	2020-09-10 19:23:53	GridssConfiguration	softclip.minAverageQual=5.0
+INFO	2020-09-10 19:23:53	GridssConfiguration	softclip.minLength=5
+INFO	2020-09-10 19:23:53	GridssConfiguration	softclip.minAnchorIdentity=0.95
+INFO	2020-09-10 19:23:53	GridssConfiguration	softclip.realignSplitReads=false
+INFO	2020-09-10 19:23:53	GridssConfiguration	useReadGroupSampleNameCategoryLabel=true
+INFO	2020-09-10 19:23:53	GridssConfiguration	chunkSize=10000000
+INFO	2020-09-10 19:23:53	GridssConfiguration	chunkSequenceChangePenalty=250000
+INFO	2020-09-10 19:23:53	GridssConfiguration	hashEvidenceID=true
+INFO	2020-09-10 19:23:53	GridssConfiguration	adapter=AGATCGGAAGAG
+INFO	2020-09-10 19:23:53	GridssConfiguration	adapter=ATGGAATTCTCG
+INFO	2020-09-10 19:23:53	GridssConfiguration	adapter=CTGTCTCTTATA
+INFO	2020-09-10 19:23:53	GridssConfiguration	scoring.model=FastEmpiricalReferenceLikelihood
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.k=25
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.minReads=3
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.includePairAnchors=true
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.pairAnchorMismatchIgnoreEndBases=5
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.writeFiltered=false
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.anchorLength=300
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.removeMisassembledPartialContigsDuringAssembly=true
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.maxExpectedBreakendLengthMultiple=1.5
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.errorCorrection.collapseBubblesOnly=true
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.errorCorrection.maxBaseMismatchForCollapse=2
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.errorCorrection.maxPathCollapseLengthMultiple=2.0
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.realignContigs=true
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.recoverAfterError=true
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.downsample.acceptDensityPortion=0.1
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.downsample.targetEvidenceDensity=1
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.downsample.minimumDensityWindowSize=1000
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.positional.maxPathLengthMultiple=1.1
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.positional.retainWidthMultiple=2.0
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.positional.flushWidthMultiple=1.0
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.positional.maximumNodeDensity=2.0
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.positional.trimSelfIntersectingReads=true
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.positional.forceFullMemoizationRecalculationAt=0.8
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.positional.safetyModePathCountThreshold=50000
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.positional.safetyModeContigsToCall=3
+INFO	2020-09-10 19:23:53	GridssConfiguration	assembly.contigNamePrefix=asm%d-
+INFO	2020-09-10 19:23:53	GridssConfiguration	variantcalling.minReads=2
+INFO	2020-09-10 19:23:53	GridssConfiguration	variantcalling.minScore=50.0
+INFO	2020-09-10 19:23:53	GridssConfiguration	variantcalling.minSize=10
+INFO	2020-09-10 19:23:53	GridssConfiguration	variantcalling.callUnassembledBreakpoints=true
+INFO	2020-09-10 19:23:53	GridssConfiguration	variantcalling.callUnassembledBreakends=false
+INFO	2020-09-10 19:23:53	GridssConfiguration	variantcalling.callFullyAnchoredAssemblyVariants=false
+INFO	2020-09-10 19:23:53	GridssConfiguration	variantcalling.breakendMargin=10
+INFO	2020-09-10 19:23:53	GridssConfiguration	variantcalling.writeFiltered=false
+INFO	2020-09-10 19:23:53	GridssConfiguration	variantcalling.simplecalls=false
+INFO	2020-09-10 19:23:53	GridssConfiguration	variantcalling.maxBreakendHomologyLength=300
+INFO	2020-09-10 19:23:53	GridssConfiguration	variantcalling.breakendHomologyAlignmentMargin=10
+INFO	2020-09-10 19:23:53	GridssConfiguration	variantcalling.requireAssemblyCategorySupport=true
+INFO	2020-09-10 19:23:53	GridssConfiguration	variantcalling.callBreakends=true
+INFO	2020-09-10 19:23:53	GridssConfiguration	variantcalling.includeSupportingReadNames=false
+INFO	2020-09-10 19:23:53	GridssConfiguration	variantcalling.breakpointLowQuality=500.0
+INFO	2020-09-10 19:23:53	GridssConfiguration	variantcalling.breakendLowQuality=1500.0
+INFO	2020-09-10 19:23:53	GridssConfiguration	variantcalling.breakendMaxAssemblySupportBias=0.5
+INFO	2020-09-10 19:23:53	GridssConfiguration	terminateOnFirstError=true
+INFO	2020-09-10 19:23:53	GridssConfiguration	visualisation.directory=visualisation
+INFO	2020-09-10 19:23:53	GridssConfiguration	visualisation.buffers=false
+INFO	2020-09-10 19:23:53	GridssConfiguration	visualisation.bufferTrackingItervalInSeconds=60
+INFO	2020-09-10 19:23:53	GridssConfiguration	visualisation.timeouts=false
+INFO	2020-09-10 19:23:53	GridssConfiguration	visualisation.evidenceAllocation=false
+INFO	2020-09-10 19:23:53	GridssConfiguration	visualisation.assemblyProgress=false
+INFO	2020-09-10 19:23:53	GridssConfiguration	visualisation.assemblyTelemetry=false
+INFO	2020-09-10 19:23:53	GridssConfiguration	visualisation.maxCliqueTelemetry=false
+INFO	2020-09-10 19:23:53	GridssConfiguration	visualisation.assemblyGraph=false
+INFO	2020-09-10 19:23:53	GridssConfiguration	visualisation.assemblyGraphFullSize=false
+INFO	2020-09-10 19:23:53	GridssConfiguration	visualisation.assemblyContigMemoization=false
+INFO	2020-09-10 19:23:53	TwoBitBufferedReferenceSequenceFile	Loading reference genome from cache /home/forster/smw/snakemake-wrappers/bio/gridss/call/test/reference/genome.fasta.gridsscache
+INFO	2020-09-10 19:23:53	MultipleSamFileCommandLineProgram	Loading aligner
+WARNING	2020-09-10 19:23:53	AlignerFactory	Unable to use Intel GKL library for accelerated Smith-Waterman alignment
+INFO	2020-09-10 19:23:53	TwoBitBufferedReferenceSequenceFile	Loading reference genome complete
+INFO	2020-09-10 19:23:53	AlignerFactory	sswjni library loading successful.
+INFO	2020-09-10 19:23:53	MultipleSamFileCommandLineProgram	Using 1 worker threads
+INFO	2020-09-10 19:23:53	VcfTransformCommandLineProgram	Annotating variants in working_dir/group.vcf.gridss.working/group.vcf.unallocated.vcf
+INFO	2020-09-10 19:23:54	AllocateEvidence	Allocating evidence
+INFO	2020-09-10 19:23:56	SequentialEvidenceAllocator	Seen many non-increasing record positions. Printing Read-names as well.
+INFO	2020-09-10 19:23:58	VcfTransformCommandLineProgram	Annotated variants written to working_dir/group.vcf.gridss.working/group.vcf.allocated.vcf
+[Thu Sep 10 19:23:58 CEST 2020] gridss.AnnotateVariants done. Elapsed time: 0.08 minutes.
+Runtime.totalMemory()=541065216
+Thu Sep 10 19:23:58 CEST 2020: Running	AnnotateInsertedSequence	vcf/group.vcf
+INFO	2020-09-10 19:23:58	AnnotateInsertedSequence	
+
+********** NOTE: Picard's command line syntax is changing.
+**********
+********** For more information, please see:
+********** https://github.com/broadinstitute/picard/wiki/Command-Line-Syntax-Transition-For-Users-(Pre-Transition)
+**********
+********** The command line looks like this in the new syntax:
+**********
+**********    AnnotateInsertedSequence -TMP_DIR working_dir -WORKING_DIR working_dir -REFERENCE_SEQUENCE reference/genome.fasta -WORKER_THREADS 1 -INPUT working_dir/group.vcf.gridss.working/group.vcf.allocated.vcf -OUTPUT vcf/group.vcf
+**********
+
+
+19:23:59.422 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/home/forster/smw/snakemake-wrappers/bio/gridss/call/test/.snakemake/conda/b958c945/share/gridss-2.9.4-0/gridss.jar!/com/intel/gkl/native/libgkl_compression.so
+[Thu Sep 10 19:23:59 CEST 2020] AnnotateInsertedSequence WORKER_THREADS=1 INPUT=working_dir/group.vcf.gridss.working/group.vcf.allocated.vcf OUTPUT=vcf/group.vcf WORKING_DIR=working_dir TMP_DIR=[working_dir] REFERENCE_SEQUENCE=reference/genome.fasta    MIN_SEQUENCE_LENGTH=20 ALIGNER_BATCH_SIZE=500000 ALIGNMENT=REPLACE IGNORE_DUPLICATES=true VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json USE_JDK_DEFLATER=false USE_JDK_INFLATER=false
+[Thu Sep 10 19:23:59 CEST 2020] Executing as forster@dktk on Linux 4.15.0-115-generic amd64; OpenJDK 64-Bit Server VM 11.0.8-internal+0-adhoc..src; Deflater: Intel; Inflater: Intel; Provider GCS is not available; Picard version: 2.9.4-gridss
+INFO	2020-09-10 19:23:59	AnnotateInsertedSequence	Annotating inserted sequences in working_dir/group.vcf.gridss.working/group.vcf.allocated.vcf
+INFO	2020-09-10 19:23:59	AnnotateInsertedSequence	Using in-process bwa alignment
+INFO	2020-09-10 19:23:59	BwaAligner	Loading bwa mem index image from /home/forster/smw/snakemake-wrappers/bio/gridss/call/test/reference/genome.fasta.img
+INFO	2020-09-10 19:24:00	AnnotateInsertedSequence	Annotated variants written to vcf/group.vcf
+[Thu Sep 10 19:24:00 CEST 2020] gridss.AnnotateInsertedSequence done. Elapsed time: 0.01 minutes.
+Runtime.totalMemory()=121634816
+Thu Sep 10 19:24:00 CEST 2020: Complete calling	vcf/group.vcf
+Thu Sep 10 19:24:00 CEST 2020: Run complete with 3 warnings and 0 errors.

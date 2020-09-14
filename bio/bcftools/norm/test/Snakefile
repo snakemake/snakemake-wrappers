@@ -4,6 +4,6 @@ rule norm_vcf:
     output:
         "{prefix}.vcf"
     params:
-        ""  # optional parameters for bcftools norm (except -o)
+        extra=""  # optional parameters for bcftools norm (except -o)
     wrapper:
         "master/bio/bcftools/norm"

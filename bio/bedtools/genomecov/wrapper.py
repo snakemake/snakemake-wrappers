@@ -7,6 +7,7 @@ import os
 from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+extra = snakemake.params.get("extra", "")
 
 genome = ""
 input_file = ""
@@ -21,7 +22,7 @@ if len(snakemake.input) > 1:
 
 shell(
     "(genomeCoverageBed"
-    " {snakemake.params}"
+    " {extra}"
     " {input_file}"
     " {genome}"
     " > {snakemake.output[0]}) {log}"

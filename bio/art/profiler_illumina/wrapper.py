@@ -53,7 +53,10 @@ with tempfile.TemporaryDirectory() as temp_input:
         os.path.dirname(snakemake.output[0]), filename.replace("." + fq_extension, "")
     )
 
+    # get snakemake params
+    extra = snakemake.params.get("extra", "")
+
     shell(
-        "( art_profiler_illumina {snakemake.params} {profile_name}"
+        "( art_profiler_illumina {extra} {profile_name}"
         " {temp_input} {fq_extension} {snakemake.threads} ) 2> {snakemake.log}"
     )

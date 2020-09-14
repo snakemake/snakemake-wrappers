@@ -10,7 +10,7 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 in_contr = snakemake.input.get("control")
-params = "{}".format(snakemake.params)
+params = snakemake.params.get("extra", "")
 opt_input = ""
 out_dir = ""
 

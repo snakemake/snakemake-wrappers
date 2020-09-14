@@ -4,6 +4,6 @@ rule samtools_index:
     output:
         "mapped/{sample}.sorted.bam.bai"
     params:
-        "" # optional params string
+        extra="" # optional params string
     wrapper:
         "master/bio/samtools/index"

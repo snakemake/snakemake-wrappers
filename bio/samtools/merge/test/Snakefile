@@ -4,7 +4,7 @@ rule samtools_merge:
     output:
         "merged.bam"
     params:
-        "" # optional additional parameters as string
+        extra="" # optional additional parameters as string
     threads:  # Samtools takes additional threads through its option -@
         8     # This value - 1 will be sent to -@
     wrapper:

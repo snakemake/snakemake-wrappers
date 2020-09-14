@@ -4,7 +4,7 @@ rule samtools_bam2fq_interleaved:
     output:
         "reads/{sample}.fq"
     params:
-        " "
+        extra=""
     threads: 3
     wrapper:
         "master/bio/samtools/bam2fq/interleaved"

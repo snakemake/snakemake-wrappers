@@ -4,6 +4,6 @@ rule bcf_to_vcf:
     output:
         "{prefix}.vcf"
     params:
-        ""  # optional parameters for bcftools view (except -o)
+        extra=""  # optional parameters for bcftools view (except -o)
     wrapper:
         "master/bio/bcftools/view"

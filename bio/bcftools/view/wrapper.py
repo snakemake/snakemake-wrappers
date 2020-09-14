@@ -6,7 +6,8 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
+extra = snakemake.params.get("extra", "")
 
 shell(
-    "bcftools view {snakemake.params} {snakemake.input[0]} " "-o {snakemake.output[0]}"
+    "bcftools view {extra} {snakemake.input[0]} " "-o {snakemake.output[0]}"
 )

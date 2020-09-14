@@ -5,7 +5,8 @@ rule art_profiler_illumina:
         "profiles/{sample}.txt"
     log:
         "logs/art_profiler_illumina/{sample}.log"
-    params: ""
+    params: 
+        extra=""
     threads: 2
     wrapper:
         "master/bio/art/profiler_illumina"

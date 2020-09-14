@@ -4,6 +4,6 @@ rule bcftools_merge:
     output:
         "all.bcf"
     params:
-        ""  # optional parameters for bcftools concat (except -o)
+        extra=""  # optional parameters for bcftools concat (except -o)
     wrapper:
         "master/bio/bcftools/merge"

@@ -7,6 +7,7 @@ __license__ = "MIT"
 import os
 from snakemake.shell import shell
 
+extra = snakemake.params.get("extra", "")
 
 prefix = os.path.splitext(snakemake.output[0])[0]
 
@@ -16,6 +17,6 @@ prefix = os.path.splitext(snakemake.output[0])[0]
 threads = "" if snakemake.threads <= 1 else " -@ {} ".format(snakemake.threads - 1)
 
 shell(
-    "samtools sort {snakemake.params} {threads} -o {snakemake.output[0]} "
+    "samtools sort {extra} {threads} -o {snakemake.output[0]} "
     "-T {prefix} {snakemake.input[0]}"
 )

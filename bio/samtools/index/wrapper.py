@@ -6,5 +6,6 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
+extra = snakemake.params.get("extra", "")
 
-shell("samtools index {snakemake.params} {snakemake.input[0]} {snakemake.output[0]}")
+shell("samtools index {extra} {snakemake.input[0]} {snakemake.output[0]}")

@@ -4,7 +4,7 @@ rule bamtools_stats:
     output:
         "{sample}.bamstats"
     params:
-        "-insert" # optional summarize insert size data
+        extra="-insert" # optional summarize insert size data
     log:
         "logs/bamtools/stats/{sample}.log"
     wrapper:

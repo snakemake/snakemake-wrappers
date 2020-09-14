@@ -6,7 +6,7 @@ rule genomecov_bam:
     log:
         "logs/genomecov_bam/{sample}.log"
     params:
-        "-bg"  # optional parameters
+        extra="-bg"  # optional parameters
     wrapper:
         "master/bio/bedtools/genomecov"
 
@@ -21,6 +21,6 @@ rule genomecov_bed:
     log:
         "logs/genomecov_bed/{sample}.log"
     params:
-        "-bg"  # optional parameters
+        extra="-bg"  # optional parameters
     wrapper:
         "master/bio/bedtools/genomecov"
