@@ -16,5 +16,6 @@ shell(
     "--CACHE_VERSION {snakemake.params.release} "
     "--CACHEDIR {snakemake.output} "
     "--CONVERT "
-    "--NO_UPDATE {log}"
+    "--NO_UPDATE "
+    "{extra} {log}"
 )

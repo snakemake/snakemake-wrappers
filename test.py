@@ -4,6 +4,7 @@ import tempfile
 import shutil
 import pytest
 import sys
+import yaml
 
 DIFF_ONLY = os.environ.get("DIFF_ONLY", "false") == "true"
 
@@ -19,25 +20,39 @@ if DIFF_ONLY:
 def run(wrapper, cmd, check_log=None):
     origdir = os.getcwd()
     with tempfile.TemporaryDirectory() as d:
-        dst = os.path.join(d, "master", wrapper)
+        dst = os.path.join(d, "master")
         os.makedirs(dst, exist_ok=True)
-        copy = lambda src: shutil.copy(os.path.join(wrapper, src), dst)
-        success = False
-        for ext in ("py", "R", "Rmd"):
-            script = "wrapper." + ext
-            if os.path.exists(os.path.join(wrapper, script)):
-                copy(script)
-                success = True
-                break
-        assert success, "No wrapper.{py,R,Rmd} found"
+        copy = lambda pth, src: shutil.copy(os.path.join(pth, src), os.path.join(dst, pth))
 
-        if DIFF_ONLY and not any(f.startswith(wrapper) for f in DIFF_FILES):
+        used_wrappers = []
+        wrapper_file = "used_wrappers.yaml"
+        if os.path.exists(os.path.join(wrapper, wrapper_file)):
+            # is meta wrapper
+            with open(os.path.join(wrapper, wrapper_file), "r") as wf:
+                wf = yaml.load(wf)
+                used_wrappers = wf["wrappers"]
+        else:
+            used_wrappers.append(wrapper)
+
+
+        for w in used_wrappers:
+            success = False
+            for ext in ("py", "R", "Rmd"):
+                script = "wrapper." + ext
+                if os.path.exists(os.path.join(w, script)):
+                    os.makedirs(os.path.join(dst, w), exist_ok=True)
+                    copy(w, script)
+                    success=True
+                    break
+            assert success, "No wrapper script found for {}".format(w)
+            copy(w, "environment.yaml")
+
+        if DIFF_ONLY and not any(any(f.startswith(w) for f in DIFF_FILES) for w in used_wrappers):
             print(
                 "Skipping wrapper {} (not modified).".format(wrapper), file=sys.stderr
             )
             return
 
-        copy("environment.yaml")
         testdir = os.path.join(wrapper, "test")
         # switch to test directory
         os.chdir(testdir)
@@ -76,6 +91,13 @@ def run(wrapper, cmd, check_log=None):
             )
             # go back to original directory
             os.chdir(origdir)
+
+
+def test_bwa_mapping_meta():
+    run(
+        "meta/bio/bwa_mapping",
+        ["snakemake", "--cores", "1", "--use-conda", "mapped/a.bam.bai"],
+    )
 
 
 def test_gridss_call():
@@ -2313,6 +2335,14 @@ def test_vep_annotate():
     )
 
 
+def test_genomepy():
+    # download dm3 genome (relatively small, +/- 250 mb)
+    run(
+        "bio/genomepy",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "dm3/dm3.fa"],
+    )
+
+      
 def test_chm_eval_sample():
     run(
         "bio/benchmark/chm-eval-sample",

@@ -30,7 +30,7 @@ The general strategy is to include a wrapper into your workflow via the `wrapper
             "0.2.0/bio/samtools/sort"
 
 
-Here, Snakemake will automatically download the corresponding wrapper from https://bitbucket.org/snakemake/snakemake-wrappers/src/0.2.0/bio/samtools/sort/wrapper.py. Thereby, 0.2.0 can be replaced with the `version tag <https://github.com/snakemake/snakemake-wrappers/releases>`_ you want to use, or a `commit id <https://github.com/snakemake/snakemake-wrappers/commits/master>`_. This ensures reproducibility since changes in the wrapper implementation won't be propagated automatically to your workflow. Alternatively, e.g., for development, the wrapper directive can also point to full URLs, including the local ``file://``.
+Here, Snakemake will automatically download the corresponding wrapper from https://github.com/snakemake/snakemake-wrappers/tree/0.2.0/bio/samtools/sort. Thereby, 0.2.0 can be replaced with the `version tag <https://github.com/snakemake/snakemake-wrappers/releases>`_ you want to use, or a `commit id <https://github.com/snakemake/snakemake-wrappers/commits/master>`_. This ensures reproducibility since changes in the wrapper implementation won't be propagated automatically to your workflow. Alternatively, e.g., for development, the wrapper directive can also point to full URLs, including the local ``file://``.
 
 Each wrapper defines required software packages and versions. In combination with the ``--use-conda`` flag of Snakemake, these will be deployed automatically.
 
@@ -106,3 +106,11 @@ with ``make clean``.
    :caption: Wrappers
 
    wrappers/*
+   
+.. toctree::
+   :maxdepth: 3
+   :glob:
+   :hidden:
+   :caption: Meta-Wrappers
+      
+   meta-wrappers/*
