@@ -52,7 +52,7 @@ jobs:
 
       - name: Setup Snakemake environment
         run: |
-           conda install mamba --quiet
+           conda install -c conda-forge mamba --quiet
            mamba create -c bioconda -c conda-forge --quiet --name snakemake snakemake-minimal pytest
 
       - name: Fetch master
