@@ -2342,7 +2342,7 @@ def test_genomepy():
         ["snakemake", "--cores", "1", "--use-conda", "-F", "dm3/dm3.fa"],
     )
 
-      
+
 def test_chm_eval_sample():
     run(
         "bio/benchmark/chm-eval-sample",
@@ -2360,6 +2360,13 @@ def test_chm_eval_eval():
     run(
         "bio/benchmark/chm-eval",
         ["snakemake", "--cores", "1", "--use-conda", "chm-eval/calls.summary"],
+    )
+
+
+def test_snpsift_dbnsfp():
+    run(
+        "bio/snpsift/dbnsfp",
+        ["snakemake", "--cores", "1", "out.vcf", "--use-conda", "-F"],
     )
 
 
