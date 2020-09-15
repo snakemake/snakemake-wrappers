@@ -46,6 +46,7 @@ rule arriba:
         fusions="results/arriba/{sample}.fusions.tsv",
         discarded="results/arriba/{sample}.fusions.discarded.tsv"
     params:
+        # A tsv containing identified artifacts, such as read-through fusions of neighbouring genes, see https://arriba.readthedocs.io/en/latest/input-files/#blacklist
         blacklist="arriba_blacklist.tsv",
         extra="-T -P -i 1,2" # -i describes the wanted contigs, remove if you want to use all hg38 chromosomes
     log:
