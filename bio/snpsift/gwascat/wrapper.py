@@ -45,7 +45,7 @@ if snakemake.threads < min_threads:
 shell(
     "SnpSift gwasCat "  # Tool and its subcommand
     " {extra} "  # Extra parameters
-    " -db {snakemake.input.gwascat} "  # Path to annotation vcf file
+    " -db {snakemake.input.gwascat} "  # Path to gwasCat file
     " {incall} "  # Path to input vcf file
     " {outcall} "  # Path to output vcf file
     " {log} "  # Logging behaviour
