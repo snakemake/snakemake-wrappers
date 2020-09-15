@@ -44,7 +44,7 @@ shell(
     "SnpSift geneSets"  # Tool and its subcommand
     " {extra}"  # Extra parameters
     " {snakemake.input.gmt}"  # Path to annotation vcf file
-    " -v {incall}"  # Path to input vcf file
+    " {incall}"  # Path to input vcf file
     " {outcall}"  # Path to output vcf file
     " {log}"  # Logging behaviour
 )
