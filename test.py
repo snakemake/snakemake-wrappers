@@ -2300,6 +2300,13 @@ def test_snpsift_vartype():
     )
 
 
+def test_snpsift_gwascat():
+    run(
+        "bio/snpsift/gwasCat",
+        ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"],
+    )
+
+
 def test_ptrimmer_se():
     run(
         "bio/ptrimmer",
@@ -2342,7 +2349,7 @@ def test_genomepy():
         ["snakemake", "--cores", "1", "--use-conda", "-F", "dm3/dm3.fa"],
     )
 
-      
+
 def test_chm_eval_sample():
     run(
         "bio/benchmark/chm-eval-sample",

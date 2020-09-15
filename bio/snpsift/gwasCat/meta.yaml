@@ -1,0 +1,11 @@
+name: SnpSift GWAS Catalog
+description:  Annotate using GWAS catalog.
+authors:
+  - Thibault Dayris
+input:
+  - A VCF-formatted file that is to be annoated
+  - A GWAS Catalog TSV-formatted file
+output:
+  - A VCF-formatted file
+note: |
+  Find gwas catalog here: https://www.ebi.ac.uk/gwas/docs/file-downloads
