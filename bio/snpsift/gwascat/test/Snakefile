@@ -5,4 +5,4 @@ rule test_snpsift_gwascat:
     output:
         call = "annotated/out.vcf"
     wrapper:
-        "master/bio/snpsift/gwasCat"
+        "master/bio/snpsift/gwascat"
