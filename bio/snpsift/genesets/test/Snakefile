@@ -1,0 +1,8 @@
+rule test_snpsift_gmt:
+    input:
+        call = "in.vcf",
+        gmt = "fake_set.gmt"
+    output:
+        call = "annotated/out.vcf"
+    wrapper:
+        "master/bio/snpsift/genesets"
