@@ -36,10 +36,10 @@ shell(
 # https://github.com/deeptools/deepTools/pull/999
 regex_passes = 2
 
-with open(out_metrics, 'rt') as f:
+with open(out_metrics, "rt") as f:
     metrics = f.read()
     for i in range(regex_passes):
         metrics = re.sub("\tNA(\t|\n)", "\tnan\\1", metrics)
 
-with open(out_metrics, 'wt') as f:
+with open(out_metrics, "wt") as f:
     f.write(metrics)

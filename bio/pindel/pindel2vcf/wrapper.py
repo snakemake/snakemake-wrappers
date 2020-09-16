@@ -32,8 +32,8 @@ def split_file_name(file_parts, file_ending_index):
 
 def process_input_path(input_file):
     """
-        :params input_file: Input file from rule, ex /path/to/file/all_D or /path/to/file/all_INV_final
-        :return: ""/path/to/file", "all"
+    :params input_file: Input file from rule, ex /path/to/file/all_D or /path/to/file/all_INV_final
+    :return: ""/path/to/file", "all"
 
     """
     file_path, file_name = os.path.split(input_file)

@@ -10,7 +10,7 @@ from snakemake.shell import shell
 
 
 def manual_decompression(reads, zip_ext):
-    """ Allow *.bz2 input into salmon. Also provide same
+    """Allow *.bz2 input into salmon. Also provide same
     decompression for *gz files, as salmon devs mention
     it may be faster in some cases."""
     if zip_ext and reads:
