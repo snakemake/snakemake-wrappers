@@ -4,14 +4,13 @@ __email__ = "antonie.v@gmx.de"
 __license__ = "MIT"
 
 from snakemake.shell import shell
+import re
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 jsd_sample = snakemake.input.get("jsd_sample")
 out_counts = snakemake.output.get("counts")
 out_metrics = snakemake.output.get("qc_metrics")
-param_thr = snakemake.threads
-
 optional_output = ""
 threads = ""
 jsd = ""
@@ -25,15 +24,22 @@ if out_counts:
 if out_metrics:
     optional_output += " --outQualityMetrics {metrics} ".format(metrics=out_metrics)
 
-if param_thr:
-    threads += " --numberOfProcessors {thr} ".format(thr=param_thr)
-
 shell(
     "(plotFingerprint "
     "-b {snakemake.input.bam_files} "
     "-o {snakemake.output.fingerprint} "
     "{optional_output} "
-    "{threads} "
+    "--numberOfProcessors {snakemake.threads} "
     "{jsd} "
     "{snakemake.params}) {log}"
 )
+# ToDo: remove the 'NA' string replacement when fixed in deepTools, see:
+# https://github.com/deeptools/deepTools/pull/999
+file_metrics = open(out_metrics, "rt")
+metrics = file_metrics.read()
+for i in range(2):
+    metrics = re.sub("\tNA(\t|\n)", "\tnan\\1", metrics)
+file_metrics.close()
+file_metrics = open(out_metrics, "wt")
+file_metrics.write(metrics)
+file_metrics.close()
