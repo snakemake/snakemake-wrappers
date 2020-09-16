@@ -12,7 +12,6 @@ jsd_sample = snakemake.input.get("jsd_sample")
 out_counts = snakemake.output.get("counts")
 out_metrics = snakemake.output.get("qc_metrics")
 optional_output = ""
-threads = ""
 jsd = ""
 
 if jsd_sample:
