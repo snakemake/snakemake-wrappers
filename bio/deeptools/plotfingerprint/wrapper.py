@@ -34,11 +34,12 @@ shell(
 )
 # ToDo: remove the 'NA' string replacement when fixed in deepTools, see:
 # https://github.com/deeptools/deepTools/pull/999
-file_metrics = open(out_metrics, "rt")
-metrics = file_metrics.read()
-for i in range(2):
-    metrics = re.sub("\tNA(\t|\n)", "\tnan\\1", metrics)
-file_metrics.close()
-file_metrics = open(out_metrics, "wt")
-file_metrics.write(metrics)
-file_metrics.close()
+regex_passes = 2
+
+with open(out_metrics, 'rt') as f:
+    metrics = f.read()
+    for i in range(regex_passes):
+        metrics = re.sub("\tNA(\t|\n)", "\tnan\\1", metrics)
+
+with open(out_metrics, 'wt') as f:
+    f.write(metrics)
