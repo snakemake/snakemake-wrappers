@@ -2409,6 +2409,13 @@ def test_chm_eval_eval():
     )
 
 
+def test_snpsift_dbnsfp():
+    run(
+        "bio/snpsift/dbnsfp",
+        ["snakemake", "--cores", "1", "out.vcf", "--use-conda", "-F"],
+    )
+
+
 def test_snpsift_annotate():
     run(
         "bio/snpsift/annotate",
