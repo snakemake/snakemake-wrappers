@@ -31,13 +31,14 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Setup Sphinx environment
-        run: conda create --quiet --file docs/requirements.txt --name sphinx python=3
+        run: |
+          export PATH="/usr/share/miniconda/bin:$PATH"
+          pip install --file docs/requirements.txt
       
       - name: Test doc generation
         run: |
           export PATH="/usr/share/miniconda/bin:$PATH"
-          
-          source activate sphinx
+
           cd docs
           make html
 
