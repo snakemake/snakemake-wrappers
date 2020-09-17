@@ -2325,6 +2325,13 @@ def test_bwa_mem2_samblaster():
     )
 
 
+def test_snpsift_genesets():
+    run(
+        "bio/snpsift/genesets",
+        ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"],
+    )
+
+
 def test_snpsift_vartype():
     run(
         "bio/snpsift/varType",

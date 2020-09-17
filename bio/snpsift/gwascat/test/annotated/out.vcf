@@ -1,0 +1,27 @@
+##fileformat=VCFv4.1
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##contig=<ID="KJ660346.1",length=18957>
+##reference=http://www.ncbi.nlm.nih.gov/nuccore/KJ660346.1
+##SnpSiftVersion="SnpSift 4.3t (build 2017-11-24 10:18), by Pablo Cingolani"
+##SnpSiftCmd="SnpSift GwasCatalog in.vcf"
+##INFO=<ID=GWASCAT_TRAIT,Number=.,Type=String,Description="GWAS catalog: Associated trait">
+##INFO=<ID=GWASCAT_P_VALUE,Number=.,Type=Float,Description="GWAS catalog: p-value">
+##INFO=<ID=GWASCAT_OR_BETA,Number=.,Type=Float,Description="GWAS catalog: OR or Beta">
+##INFO=<ID=GWASCAT_REPORTED_GENE,Number=.,Type=String,Description="GWAS catalog: Reported gene">
+##INFO=<ID=GWASCAT_PUBMED_ID,Number=.,Type=String,Description="GWAS catalog: Original paper's Pubmed ID">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	fake_KJ660346
+KJ660346	3116	.	C	T	.	.	GWASCAT_TRAIT=Healthy;GWASCAT_P_VALUE=1.0E-10;GWASCAT_OR_BETA=1.17;GWASCAT_REPORTED_GENE=Reported_gene;GWASCAT_PUBMED_ID=0	GT	1
+KJ660346	10743	.	T	G	.	.	.	GT	1
+KJ660346	15660	.	C	A	.	.	.	GT	1
+##fileformat=VCFv4.1
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##contig=<ID="KJ660346.1",length=18957>
+##reference=http://www.ncbi.nlm.nih.gov/nuccore/KJ660346.1
+##SnpSiftVersion="SnpSift 4.3t (build 2017-11-24 10:18), by Pablo Cingolani"
+##SnpSiftCmd="SnpSift GwasCatalog in.vcf"
+##INFO=<ID=GWASCAT_TRAIT,Number=.,Type=String,Description="GWAS catalog: Associated trait">
+##INFO=<ID=GWASCAT_P_VALUE,Number=.,Type=Float,Description="GWAS catalog: p-value">
+##INFO=<ID=GWASCAT_OR_BETA,Number=.,Type=Float,Description="GWAS catalog: OR or Beta">
+##INFO=<ID=GWASCAT_REPORTED_GENE,Number=.,Type=String,Description="GWAS catalog: Reported gene">
+##INFO=<ID=GWASCAT_PUBMED_ID,Number=.,Type=String,Description="GWAS catalog: Original paper's Pubmed ID">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	fake_KJ660346
