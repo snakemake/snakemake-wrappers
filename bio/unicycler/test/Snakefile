@@ -1,0 +1,8 @@
+rule test_unicycler:
+    input:
+        short1 = "reads/reads.R1.fq.gz",
+        short2 = "reads/reads.R2.fq.gz"
+    output:
+        "result/assembly.fasta"
+    wrapper:
+        "master/bio/unicycler"

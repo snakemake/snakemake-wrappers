@@ -22,7 +22,9 @@ def run(wrapper, cmd, check_log=None):
     with tempfile.TemporaryDirectory() as d:
         dst = os.path.join(d, "master")
         os.makedirs(dst, exist_ok=True)
-        copy = lambda pth, src: shutil.copy(os.path.join(pth, src), os.path.join(dst, pth))
+        copy = lambda pth, src: shutil.copy(
+            os.path.join(pth, src), os.path.join(dst, pth)
+        )
 
         used_wrappers = []
         wrapper_file = "used_wrappers.yaml"
@@ -34,7 +36,6 @@ def run(wrapper, cmd, check_log=None):
         else:
             used_wrappers.append(wrapper)
 
-
         for w in used_wrappers:
             success = False
             for ext in ("py", "R", "Rmd"):
@@ -42,12 +43,14 @@ def run(wrapper, cmd, check_log=None):
                 if os.path.exists(os.path.join(w, script)):
                     os.makedirs(os.path.join(dst, w), exist_ok=True)
                     copy(w, script)
-                    success=True
+                    success = True
                     break
             assert success, "No wrapper script found for {}".format(w)
             copy(w, "environment.yaml")
 
-        if DIFF_ONLY and not any(any(f.startswith(w) for f in DIFF_FILES) for w in used_wrappers):
+        if DIFF_ONLY and not any(
+            any(f.startswith(w) for f in DIFF_FILES) for w in used_wrappers
+        ):
             print(
                 "Skipping wrapper {} (not modified).".format(wrapper), file=sys.stderr
             )
@@ -103,14 +106,28 @@ def test_bwa_mapping_meta():
 def test_gridss_call():
     run(
         "bio/gridss/call",
-        ["snakemake", "--show-failed-logs", "--cores", "1", "--use-conda", "vcf/group.vcf"],
+        [
+            "snakemake",
+            "--show-failed-logs",
+            "--cores",
+            "1",
+            "--use-conda",
+            "vcf/group.vcf",
+        ],
     )
 
 
 def test_gridss_assemble():
     run(
         "bio/gridss/assemble",
-        ["snakemake", "--show-failed-logs", "--cores", "1", "--use-conda", "assembly/group.bam"],
+        [
+            "snakemake",
+            "--show-failed-logs",
+            "--cores",
+            "1",
+            "--use-conda",
+            "assembly/group.bam",
+        ],
     )
 
 
@@ -2342,7 +2359,7 @@ def test_genomepy():
         ["snakemake", "--cores", "1", "--use-conda", "-F", "dm3/dm3.fa"],
     )
 
-      
+
 def test_chm_eval_sample():
     run(
         "bio/benchmark/chm-eval-sample",
@@ -2367,4 +2384,11 @@ def test_snpsift_annotate():
     run(
         "bio/snpsift/annotate",
         ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"],
+    )
+
+
+def test_unicycler():
+    run(
+        "bio/unicycler",
+        ["snakemake", "--cores", "1", "result/assembly.fasta", "--use-conda", "-F"],
     )
