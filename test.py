@@ -2332,6 +2332,13 @@ def test_snpsift_vartype():
     )
 
 
+def test_snpsift_gwascat():
+    run(
+        "bio/snpsift/gwascat",
+        ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"],
+    )
+
+
 def test_ptrimmer_se():
     run(
         "bio/ptrimmer",
