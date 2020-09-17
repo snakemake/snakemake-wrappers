@@ -112,7 +112,7 @@ def test_bwa_mapping_meta():
             "--cores",
             "1",
             "--use-conda",
-            "results/recal/sampleA.sorted.bam",
+            "mapped/a.bam.bai",
         ],
     )
 
