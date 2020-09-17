@@ -35,6 +35,9 @@ sys.path.insert(0, os.path.abspath("."))
 # ones.
 extensions = ["sphinx.ext.intersphinx", "sphinx.ext.todo", "generate_docs", "sphinx_copybutton"]
 
+# Snakemake theme (made by SciAni).
+html_css_files = ["theme.css"]
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
 
