@@ -2,7 +2,7 @@ __author__ = "Filipe G. Vieira"
 __copyright__ = "Copyright 2020, Filipe G. Vieira"
 __license__ = "MIT"
 
-import os
+import os.path
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
