@@ -96,6 +96,19 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+def test_mapdamage2():
+    run(
+        "bio/mapdamage2",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "results/a/Runtime_log.txt",
+        ],
+    )
+
+
 def test_arriba_star_meta():
     run(
         "meta/bio/star_arriba",
