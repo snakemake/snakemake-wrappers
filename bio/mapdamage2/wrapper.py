@@ -19,7 +19,6 @@ else:
     rescaled_bam = ""
 
 
-
 print(
     "mapDamage "
     "--input {snakemake.input.bam} "
