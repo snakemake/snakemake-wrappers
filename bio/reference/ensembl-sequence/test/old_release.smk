@@ -18,7 +18,7 @@ rule get_chromosome:
         species="saccharomyces_cerevisiae",
         datatype="dna",
         build="R64-1-1",
-        release="101",
+        release="75",
         chromosome="I"
     log:
         "logs/get_genome.log"
