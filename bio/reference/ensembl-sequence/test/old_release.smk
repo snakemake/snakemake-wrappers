@@ -8,6 +8,7 @@ rule get_genome:
         release="75"
     log:
         "logs/get_genome.log"
+    cache: True  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-sequence"
 
@@ -22,5 +23,6 @@ rule get_chromosome:
         chromosome="I"
     log:
         "logs/get_genome.log"
+    cache: True  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-sequence"
