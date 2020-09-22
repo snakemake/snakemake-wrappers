@@ -10,4 +10,4 @@ rule gcsa:
     threads:
         4
     wrapper:
-        "file://.."
+        "master/bio/vg/index/gcsa"

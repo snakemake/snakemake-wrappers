@@ -6,4 +6,4 @@ rule ids:
     log:
         "logs/vg/ids/c.log"
     wrapper:
-        "file://.."
+        "master/bio/vg/ids"

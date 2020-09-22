@@ -2449,8 +2449,8 @@ def test_vg_ids():
         ["snakemake", "--cores", "1", "graph/c_mod.vg", "--use-conda", "-F"])
 
 
-def test_vg_index_gsca():
-    run("bio/vg/index/gsca",
+def test_vg_index_gcsa():
+    run("bio/vg/index/gcsa",
         ["snakemake", "--cores", "1", "index/wg.gcsa", "--use-conda", "-F"])
 
 

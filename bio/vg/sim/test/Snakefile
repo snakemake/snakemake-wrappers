@@ -10,4 +10,4 @@ rule sim:
     threads:
         4
     wrapper:
-        "file://.."
+        "master/bio/vg/sim"

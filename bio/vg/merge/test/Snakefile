@@ -6,4 +6,4 @@ rule merge:
     log:
         "logs/vg/merge/wg.log"
     wrapper:
-        "file://.."
+        "master/bio/vg/merge"
