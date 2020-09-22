@@ -9,6 +9,8 @@ from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
+if "mem_mb" in snakemake.resources.keys() and "-Xmx" not in extra:
+    extra += " -Xmx{}M".format(snakemake.resources["mem_mb"])
 
 min_threads = 1
 
