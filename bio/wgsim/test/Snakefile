@@ -9,4 +9,4 @@ rule wgsim:
     params:
         "-X 0 -R 0 -r 0.1 -h"
     wrapper:
-        "file://.."
+        "master/bio/wgsim"
