@@ -2447,3 +2447,8 @@ def test_vg_merge():
 def test_vg_ids():
     run("bio/vg/ids",
         ["snakemake", "--cores", "1", "graph/c_mod.vg", "--use-conda", "-F"])
+
+
+def test_vg_index_gsca():
+    run("bio/vg/index/gsca",
+        ["snakemake", "--cores", "1", "index/wg.gcsa", "--use-conda", "-F"])
