@@ -10,6 +10,10 @@ from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 max_memory = snakemake.params.get("max_memory", "10G")
+if "mem_mb" in snakemake.resources.keys():
+    if snakemake.resources["mem_mb"] > 10240:
+        rounded_mb_to_gb = int(snakemake.resources["mem_mb"] / 1024)
+        max_memory = "{}G".format(rounded_mb_to_gb)
 
 # allow multiple input files for single assembly
 left = snakemake.input.get("left")
