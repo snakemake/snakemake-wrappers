@@ -11,4 +11,5 @@ log = snakemake.log_fmt_shell(stdout=False)
 shell(
     "(vg construct {snakemake.params} --reference {snakemake.input.ref}"
     " --vcf {snakemake.input.vcfgz} --threads {snakemake.threads}"
-    " > {snakemake.output.vg}) {log}")
+    " > {snakemake.output.vg}) {log}"
+)

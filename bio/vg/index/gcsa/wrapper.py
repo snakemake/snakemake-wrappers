@@ -10,4 +10,5 @@ log = snakemake.log_fmt_shell()
 
 shell(
     "(vg index -g {snakemake.output.gcsa} --threads {snakemake.threads}"
-    " {snakemake.params} {snakemake.input.vgs}) {log}")
+    " {snakemake.params} {snakemake.input.vgs}) {log}"
+)

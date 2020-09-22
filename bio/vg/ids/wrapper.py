@@ -8,5 +8,7 @@ from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=False)
 
-shell("(vg ids {snakemake.params} {snakemake.input.vgs}"
-      " > {snakemake.output.mod}) {log}")
+shell(
+    "(vg ids {snakemake.params} {snakemake.input.vgs}"
+    " > {snakemake.output.mod}) {log}"
+)

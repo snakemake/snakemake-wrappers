@@ -12,4 +12,5 @@ shell(
     "(vg ids --join {snakemake.input.vgs} &&"
     " for VGFILE in {snakemake.input.vgs};"
     " do cat $VGFILE >> {snakemake.output.merged};"
-    " done) {log}")
+    " done) {log}"
+)

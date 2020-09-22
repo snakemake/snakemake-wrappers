@@ -10,4 +10,5 @@ log = snakemake.log_fmt_shell(stdout=False)
 
 shell(
     "(vg prune --threads {snakemake.threads} {snakemake.params}"
-    " {snakemake.input.vg} > {snakemake.output.pruned}) {log}")
+    " {snakemake.input.vg} > {snakemake.output.pruned}) {log}"
+)

@@ -10,4 +10,5 @@ log = snakemake.log_fmt_shell(stdout=False)
 
 shell(
     "(vg kmers {snakemake.params} --threads {snakemake.threads}"
-    " {snakemake.input.vgs} > {snakemake.output.kmers}) {log}")
+    " {snakemake.input.vgs} > {snakemake.output.kmers}) {log}"
+)

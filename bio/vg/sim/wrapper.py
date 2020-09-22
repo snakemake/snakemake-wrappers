@@ -10,4 +10,5 @@ log = snakemake.log_fmt_shell(stdout=False)
 
 shell(
     "(vg sim {snakemake.params} --xg-name {snakemake.input.xg}"
-    " --threads {snakemake.threads} > {snakemake.output.reads}) {log}")
+    " --threads {snakemake.threads} > {snakemake.output.reads}) {log}"
+)
