@@ -2437,3 +2437,8 @@ def test_snpsift_annotate():
 def test_vg_construct():
     run("bio/vg/construct",
         ["snakemake", "--cores", "1", "graph/c.vg", "--use-conda", "-F"])
+
+
+def test_vg_merge():
+    run("bio/vg/merge",
+        ["snakemake", "--cores", "1", "graph/wg.vg", "--use-conda", "-F"])
