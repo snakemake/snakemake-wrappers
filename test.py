@@ -2467,3 +2467,8 @@ def test_vg_kmers():
 def test_vg_prune():
     run("bio/vg/prune",
         ["snakemake", "--cores", "1", "graph/c.pruned.vg", "--use-conda", "-F"])
+
+
+def test_vg_sim():
+    run("bio/vg/sim",
+        ["snakemake", "--cores", "1", "reads/x.seq", "--use-conda", "-F"])
