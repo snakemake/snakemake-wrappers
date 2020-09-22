@@ -2472,3 +2472,9 @@ def test_vg_prune():
 def test_vg_sim():
     run("bio/vg/sim",
         ["snakemake", "--cores", "1", "reads/x.seq", "--use-conda", "-F"])
+
+
+def test_wgsim():
+    run("bio/wgsim",
+        ["snakemake", "--cores", "1", "reads/1.fq", "reads/2.fq",
+         "--use-conda", "-F"])
