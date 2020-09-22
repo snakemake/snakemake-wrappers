@@ -14,6 +14,9 @@ if known:
 
 extra = snakemake.params.get("extra", "")
 java_opts = snakemake.params.get("java_opts", "")
+if "mem_mb" in snakemake.resources.keys() and not "-Xmx" in java_opts:
+    java_opts += " -Xmx{}M".format(snakemake.resources["mem_mb"])
+
 bams = snakemake.input.bam
 if isinstance(bams, str):
     bams = [bams]
