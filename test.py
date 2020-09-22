@@ -2462,3 +2462,8 @@ def test_vg_index_xg():
 def test_vg_kmers():
     run("bio/vg/kmers",
         ["snakemake", "--cores", "1", "kmers/c.kmers", "--use-conda", "-F"])
+
+
+def test_vg_prune():
+    run("bio/vg/prune",
+        ["snakemake", "--cores", "1", "graph/c.pruned.vg", "--use-conda", "-F"])
