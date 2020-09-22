@@ -11,6 +11,8 @@ from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 java_opts = snakemake.params.get("java_opts", "")
+if "mem_mb" in snakemake.resource.keys() and not "-Xmx" in java_opts:
+    java_opts += " -Xmx{}M".format(snakemake.resource["mem_mb"])
 
 
 def fmt_res(resname, resparams):
