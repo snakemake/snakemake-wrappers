@@ -2457,3 +2457,8 @@ def test_vg_index_gsca():
 def test_vg_index_xg():
     run("bio/vg/index/xg",
         ["snakemake", "--cores", "1", "index/x.xg", "--use-conda", "-F"])
+
+
+def test_vg_kmers():
+    run("bio/vg/kmers",
+        ["snakemake", "--cores", "1", "kmers/c.kmers", "--use-conda", "-F"])
