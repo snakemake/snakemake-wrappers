@@ -10,4 +10,5 @@ log = snakemake.log_fmt_shell()
 
 shell(
     "(wgsim {snakemake.params} {snakemake.input.ref}"
-    " {snakemake.output.read1} {snakemake.output.read2}) {log}")
+    " {snakemake.output.read1} {snakemake.output.read2}) {log}"
+)
