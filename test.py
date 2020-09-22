@@ -2442,3 +2442,8 @@ def test_vg_construct():
 def test_vg_merge():
     run("bio/vg/merge",
         ["snakemake", "--cores", "1", "graph/wg.vg", "--use-conda", "-F"])
+
+
+def test_vg_ids():
+    run("bio/vg/ids",
+        ["snakemake", "--cores", "1", "graph/c_mod.vg", "--use-conda", "-F"])
