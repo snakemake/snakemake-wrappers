@@ -13,6 +13,8 @@ spark_master = snakemake.params.get(
 )
 spark_extra = snakemake.params.get("spark_extra", "")
 java_opts = snakemake.params.get("java_opts", "")
+if "mem_mb" in snakemake.resources.keys() and not "-Xmx" in java_opts:
+    java_opts += " -Xmx{}M".format(snakemake.resources["mem_mb"])
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 known = snakemake.input.get("known", "")
