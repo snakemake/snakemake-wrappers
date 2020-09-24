@@ -1,0 +1,4 @@
+name: bcftools sort
+description: Sort vcf/bcf file.
+authors:
+  - Filipe G. Vieira

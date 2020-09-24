@@ -1,0 +1,14 @@
+rule bcftools_sort:
+    input:
+        "{sample}.bcf"
+    output:
+        "{sample}.sorted.bcf"
+    log:
+        "logs/bcftools/sort/{sample}.log"
+    params:
+        tmp_dir = "`mktemp -d`",
+	extras = "-Ob"
+    resources:
+        mem_mb = 8000
+    wrapper:
+        "master/bio/bcftools/sort"
