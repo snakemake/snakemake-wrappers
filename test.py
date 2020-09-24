@@ -96,13 +96,36 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+def test_picard_markduplicates():
+    run(
+        "bio/picard/markduplicates",
+        [
+            "snakemake",
+            "--cores 1",
+            "--use-conda",
+            "dedup/a.bam",
+        ],
+    )
+
+
+def test_picard_markduplicateswithmatecigar():
+    run(
+        "bio/picard/markduplicateswithmatecigar",
+        [
+            "snakemake",
+            "--cores 1",
+            "--use-conda",
+            "dedup/a.bam",
+        ],
+    )
+
+
 def test_mapdamage2():
     run(
         "bio/mapdamage2",
         [
             "snakemake",
-            "--cores",
-            "1",
+            "--cores 1",
             "--use-conda",
             "results/a/Runtime_log.txt",
         ],
