@@ -21,4 +21,6 @@ else:
     tmp_dir = ""
 
 
-shell("bcftools sort {mem_mb} {tmp_dir} {extra} -o {snakemake.output[0]} {snakemake.input[0]} {log}")
+shell(
+    "bcftools sort {mem_mb} {tmp_dir} {extra} -o {snakemake.output[0]} {snakemake.input[0]} {log}"
+)
