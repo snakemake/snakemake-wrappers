@@ -1,0 +1,11 @@
+rule tabix:
+    input:
+        "{prefix}.vcf.gz"
+    output:
+        "{prefix}.vcf.gz.tbi"
+    params:
+        ""
+    log:
+        "logs/tabix/query/{prefix}.log"
+    wrapper:
+        "master/bio/tabix/query"

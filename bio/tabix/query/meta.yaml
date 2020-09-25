@@ -1,0 +1,4 @@
+name: tabix
+description: Query given file with tabix.
+authors:
+  - William Rowell
