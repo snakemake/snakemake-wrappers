@@ -1,0 +1,4 @@
+name: mosdepth
+description: fast BAM/CRAM depth calculation https://github.com/brentp/mosdepth
+authors:
+  - William Rowell

@@ -1,0 +1,10 @@
+ecoliK12_pbi_March2013	4	0.00
+ecoliK12_pbi_March2013	3	0.00
+ecoliK12_pbi_March2013	2	0.00
+ecoliK12_pbi_March2013	1	0.00
+ecoliK12_pbi_March2013	0	1.00
+total	4	0.00
+total	3	0.00
+total	2	0.00
+total	1	0.00
+total	0	1.00

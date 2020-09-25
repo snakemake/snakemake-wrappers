@@ -1,0 +1,5 @@
+chrom	length	bases	mean	min	max
+ecoliK12_pbi_March2013	4642522	13978	0.00	0	5
+ecoliK12_pbi_March2013_region	4642522	13978	0.00	0	5
+total	4642522	13978	0.00	0	5
+total_region	4642522	13978	0.00	0	5

@@ -1,0 +1,19 @@
+rule mosdepth:
+    input:
+        bam = aligned/"{dataset}.bam",
+        bai = aligned/"{dataset}.bam.bai"
+    output:
+        "mosdepth/{dataset}.mosdepth.global.dist.txt",
+        "mosdepth/{dataset}.mosdepth.region.dist.txt",
+        "mosdepth/{dataset}.mosdepth.summary.txt",
+        "mosdepth/{dataset}.regions.bed.gz"
+    log:
+        "logs/mosdepth/{dataset}.log"
+    params:
+        by = "500",  # window size or BED file
+        prefix = "{dataset}",
+        extra = "--no-per-base --use-median"  # optional
+    threads:  # additional decompression threads through `--threads`
+        4     # This value - 1 will be sent to `--threads`
+    wrapper:
+        "master/bio/mosdepth"
