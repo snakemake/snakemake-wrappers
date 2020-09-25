@@ -1,0 +1,8 @@
+name: samtools fastq
+description: Converts a SAM, BAM or CRAM into FASTQ or FASTA format.
+authors:
+  - William Rowell
+input:
+  - bam or sam file (.bam,.sam)
+output:
+  - fastq file (.fastq) or fasta file (.fasta)
