@@ -1,0 +1,10 @@
+rule jellyfish_count:
+    input: "sample.fasta"
+    output: "sample.jf"
+    params:
+        kmer_length = 21,
+        size = 1000000000,
+        extra = "--canonical"
+    threads: 24
+    wrapper:
+        "master/bio/jellyfish/count"

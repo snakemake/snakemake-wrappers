@@ -1,0 +1,5 @@
+rule jellyfish_merge:
+    input: ["movie1.jf", "movie2.jf"]
+    output: "sample.jf"
+    wrapper:
+        "master/bio/jellyfish/merge"

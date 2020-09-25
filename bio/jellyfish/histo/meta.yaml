@@ -1,0 +1,4 @@
+name: jellyfish_histo
+description: Export histogram of kmer counts. https://github.com/gmarcais/Jellyfish
+authors:
+  - William Rowell

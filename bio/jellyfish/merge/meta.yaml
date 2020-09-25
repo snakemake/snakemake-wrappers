@@ -1,0 +1,4 @@
+name: jellyfish_merge
+description: Merge jellyfish databases. https://github.com/gmarcais/Jellyfish
+authors:
+  - William Rowell

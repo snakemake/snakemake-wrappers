@@ -1,0 +1,4 @@
+name: jellyfish_dump
+description: Dump kmers from jellyfish database https://github.com/gmarcais/Jellyfish
+authors:
+  - William Rowell

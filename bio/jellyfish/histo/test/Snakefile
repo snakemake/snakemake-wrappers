@@ -1,0 +1,6 @@
+rule jellyfish_histo:
+    input: "sample.jf"
+    output: "sample.histo"
+    threads: 10
+    wrapper:
+        "master/bio/jellyfish/histo"
