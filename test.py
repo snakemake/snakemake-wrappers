@@ -99,7 +99,12 @@ def run(wrapper, cmd, check_log=None):
 def test_mapdamage2():
     run(
         "bio/mapdamage2",
-        ["snakemake", "--cores", "1", "--use-conda", "results/a/Runtime_log.txt",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "results/a/Runtime_log.txt",
         ],
     )
 
@@ -109,7 +114,6 @@ def test_arriba_star_meta():
         "meta/bio/star_arriba",
         ["snakemake", "--cores", "1", "--use-conda", "results/arriba/a.fusions.tsv"],
     )
-
 
 
 def test_bwa_mapping_meta():
@@ -313,6 +317,7 @@ def test_bcftools_sort():
         "bio/bcftools/sort",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "a.sorted.bcf"],
     )
+
 
 def test_bcftools_call():
     run(
@@ -1268,7 +1273,7 @@ def test_razers3():
 def test_samtools_calmd():
     run(
         "bio/samtools/calmd",
-        ["snakemake", "--cores", "1", "a.calmd.bam", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "a.calmd.bam", "--use-conda", "-F"],
     )
 
 
