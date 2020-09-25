@@ -1,0 +1,17 @@
+rule whatshap_stats:
+    input:
+        vcf = "query/{sample}.{reference}.vcf.gz",
+        chr_lengths = "reference/reference.chr_lengths.txt"
+        # `cut -f1,2 reference.fasta.fai > reference.chr_lengths.txt`
+    output:
+        gtf = "whatshap/{sample}.{reference}.chr20.phased.gtf",
+        tsv = "whatshap/{sample}.{reference}.chr20.phased.tsv",
+        blocklist = "whatshap/{sample}.{reference}.chr20.phased.blocklist"
+    log:
+        "logs/whatshap_stats/{sample}.{reference}.log"
+    params:
+        sample = "sample"
+    threads:
+        1
+    wrapper:
+        "master/bio/whatshap/stats"

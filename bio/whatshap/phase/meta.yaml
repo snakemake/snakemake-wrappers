@@ -1,0 +1,4 @@
+name: whatshap phase
+description: Phase variants in a VCF with the WhatsHap algorithm https://github.com/whatshap/whatshap
+authors:
+  - William Rowell

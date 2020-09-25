@@ -1,0 +1,14 @@
+rule whatshap_phase:
+    input:
+        reference = "reference/{reference}.fasta",
+        vcf = "query/{sample}.{reference}.vcf.gz",
+        phaseinput = "query/{sample}.{reference}.bam"  # BAM, CRAM, VCF
+    output:
+        "whatshap/{sample}.{reference}.chr20.phased.vcf"
+    log:
+        "logs/whatshap_phase/{sample}.{reference}.log"
+    params:
+        chromosome = "chr20",
+        extra = "--indels"  # optional
+    wrapper:
+        "master/bio/whatshap/phase"
