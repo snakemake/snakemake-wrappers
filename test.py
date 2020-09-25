@@ -1265,6 +1265,13 @@ def test_razers3():
     )
 
 
+def test_samtools_calmd():
+    run(
+        "bio/samtools/calmd",
+        ["snakemake", "--cores", "1", "a.calmd.bam", "--use-conda", "-F"]
+    )
+
+
 def test_samtools_fixmate():
     run(
         "bio/samtools/fixmate",

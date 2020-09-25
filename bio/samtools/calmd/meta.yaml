@@ -1,0 +1,4 @@
+name: samtools calmd
+description: Calculates MD and NM tags
+authors:
+  - Filipe G. Vieira
