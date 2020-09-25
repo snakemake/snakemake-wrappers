@@ -9,7 +9,7 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 memory = ""
-if "mem_mb" in snakemake.resources.keys():
+if "mem_mb" in snakemake.resources.keys() and "-Xmx" not in snakemake.params:
     memory = "-Xmx{}M".format(str(snakemake.resources["mem_mb"]))
 
 shell(
