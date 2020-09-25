@@ -1,0 +1,4 @@
+name: bgzip
+description: Compress given file with bgzip.
+authors:
+  - William Rowell
