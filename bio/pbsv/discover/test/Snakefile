@@ -1,0 +1,11 @@
+rule pbsv_discover:
+    input:
+        bam = "aligned/{dataset}.bam",
+        tr_bed = "target/genome.trf.bed"  # should match alignment reference
+    params:
+        region = "chr20",
+        loglevel = "INFO"
+    output:
+        "pbsv/{dataset}.svsig.gz"
+    wrapper:
+        "master/bio/pbsv/discover"

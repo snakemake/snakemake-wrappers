@@ -1,0 +1,13 @@
+rule pbsv_call:
+    input:
+        svsigs = "pbsv/{datset}.svsig.gz",  # can be a single file or a list of files
+        reference = "target/genome.fasta"
+    output:
+        "pbsv/pbsv.chr20.vcf"
+    params:
+        region = "chr20",
+        loglevel = "INFO"
+        extra = "--ccs -m 20 -A 3 -O 3 -P 20"  # optional
+    threads: 8
+    wrapper:
+        "master/bio/pbsv/call"
