@@ -1,0 +1,9 @@
+rule bcf_stats:
+    input:
+        "{prefix}.vcf.gz"
+    output:
+        "{prefix}.vcf.stats"
+    params:
+        ""
+    wrapper:
+        "master/bio/bcftools/stats"

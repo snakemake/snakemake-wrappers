@@ -1,0 +1,4 @@
+name: bcftools stats
+description: Generate VCF stats using bcftools stats.
+authors:
+  - William Rowell
