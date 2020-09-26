@@ -1,0 +1,4 @@
+channels:
+    - bioconda
+dependencies:
+    - open-cravat =>2.1.1

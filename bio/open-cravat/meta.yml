@@ -1,0 +1,4 @@
+name: OpenCRAVAT annotate
+description: Annotate variant calls with OpenCRAVAT.
+authors:
+    - Rick Kim

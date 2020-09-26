@@ -95,6 +95,11 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+def test_open_cravat():
+    run(
+        "bio/open-cravat",
+        ["snakemake", "--cores", "1"]
+    )
 
 def test_arriba_star_meta():
     run(
@@ -2421,3 +2426,4 @@ def test_snpsift_annotate():
         "bio/snpsift/annotate",
         ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"],
     )
+

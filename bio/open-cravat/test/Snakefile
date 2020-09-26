@@ -1,0 +1,13 @@
+rule run:
+    input:
+        'example_input'
+    output:
+        ['example_input.variant.tsv', 'example_input.tsv']
+    params:
+        genome='hg38',
+        annotators=['biogrid=3.5.171'],
+        reports=['tsv', 'text'],
+        output_dir='.',
+        args='--clean -a target',
+    wrapper:
+        'file:///mnt/d/Git/snakemake-wrappers/bio/open-cravat/wrapper.py'
