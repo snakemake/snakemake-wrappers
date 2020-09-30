@@ -5,7 +5,7 @@ rule homer_annotatepeaks:
         # optional input files
         # gtf="", # replaces the -gtf flag
         # gene="", # replaces the -gene flag for gene data file to add gene expression or other data types
-        motif_files="peaks_refs/b.peaks", # replaces the -m flag
+        motif_files="peaks_refs/motives.txt", # replaces the -m flag
         # filter_motiv="", # replaces the -fm flag
         # center="",  # replaces the -center flag
         nearest_peak="peaks_refs/b.peaks", # replaces the -p flag
@@ -31,15 +31,12 @@ rule homer_annotatepeaks:
         # # optional output, replaces the -mbed flag, requires motif_files as input
         mbed="{sample}_motif.bed",
         # # optional output, replaces the -mlogic flag, requires motif_files as input
-        mlogic="{sample}_motif.logic",
-        # # other optional outputs
-        # gene_ontology_dir= "gene_onto/{sample}", # optional, replaces the -go flag
-        # genome_ontology_dir= directory("genome_onto/{sample}"), # optional, replaces the -genomeOntology flag
+        mlogic="{sample}_motif.logic"
     threads:
         2
     params:
         mode="", # add tss, tts or rna mode and options here, i.e. "tss mm8"
-        extra=""  # optional params, see homer manual
+        extra=""  # optional params, see http://homer.ucsd.edu/homer/ngs/annotation.html
     log:
         "logs/annotatePeaks/{sample}.log"
     wrapper:

@@ -38,7 +38,7 @@ genome_ontology_dir = snakemake.output.get("genome_ontology_dir", "")
 if genome == "":
     genome = "none"
 
-# optional input files
+# optional files
 opt_files = {
     gtf: "-gtf",
     gene: "-gene",
@@ -57,16 +57,27 @@ opt_files = {
     mfasta: "-mfasta",
     mbed: "-mbed",
     mlogic: "-mlogic",
-    gene_ontology_dir: "-go",
-    genome_ontology_dir: "-genomeOntology",
 }
 
+requires_motives = False
 for i in opt_files:
     if i and not i == "":
         extra += "{flag} {file} ".format(flag=opt_files[i], file=i)
+        if not requires_motives:
+            if i == mfasta or i == mbed or i == mlogic:
+                requires_motives = True
+
+if requires_motives and motif_files == "":
+    sys.exit(
+        "The optional output files require motif_file(s) as input. For more information please see http://homer.ucsd.edu/homer/ngs/annotation.html."
+    )
 
 # optional matrix output files:
 if matrix:
+    if motif_files == "":
+        sys.exit(
+            "The matrix output files require motif_file(s) as input. For more information please see http://homer.ucsd.edu/homer/ngs/annotation.html."
+        )
     ext = ".count.matrix.txt"
     matrix_out = [i for i in snakemake.output if i.endswith(ext)][0]
     matrix_name = os.path.basename(matrix_out[: -len(ext)])
