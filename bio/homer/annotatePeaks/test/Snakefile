@@ -1,0 +1,46 @@
+rule homer_annotatepeaks:
+    input:
+        peaks="peaks_refs/{sample}.peaks",
+        genome="peaks_refs/gene.fasta",
+        # optional input files
+        # gtf="", # replaces the -gtf flag
+        # gene="", # replaces the -gene flag for gene data file to add gene expression or other data types
+        motif_files="peaks_refs/b.peaks", # replaces the -m flag
+        # filter_motiv="", # replaces the -fm flag
+        # center="",  # replaces the -center flag
+        nearest_peak="peaks_refs/b.peaks", # replaces the -p flag
+        # tag="",  # replaces the -d flag for tagDirectories
+        # vcf="", # replaces the -vcf flag
+        # bed_graph="", # replaces the -bedGraph flag
+        # wig="", # replaces the -wig flag
+        # map="", # replaces the -map flag
+        # cmp_genome="", # replaces the -cmpGenome flag
+        # cmp_Liftover="", # replaces the -cmpLiftover flag
+        # advanced_annotation=""  # optional, replaces the -ann flag, see http://homer.ucsd.edu/homer/ngs/advancedAnnotation.html
+    output:
+        annotations="{sample}_annot.txt",
+        # optional output, replaces the -matrix flag, requires motif_files as input
+        matrix=multiext("{sample}",
+                        ".count.matrix.txt",
+                        ".ratio.matrix.txt",
+                        ".logPvalue.matrix.txt",
+                        ".stats.txt"
+                        ),
+        # optional output, replaces the -mfasta flag, requires motif_files as input
+        mfasta="{sample}_motif.fasta",
+        # # optional output, replaces the -mbed flag, requires motif_files as input
+        mbed="{sample}_motif.bed",
+        # # optional output, replaces the -mlogic flag, requires motif_files as input
+        mlogic="{sample}_motif.logic",
+        # # other optional outputs
+        # gene_ontology_dir= "gene_onto/{sample}", # optional, replaces the -go flag
+        # genome_ontology_dir= directory("genome_onto/{sample}"), # optional, replaces the -genomeOntology flag
+    threads:
+        2
+    params:
+        mode="", # add tss, tts or rna mode and options here, i.e. "tss mm8"
+        extra=""  # optional params, see homer manual
+    log:
+        "logs/annotatePeaks/{sample}.log"
+    wrapper:
+        "master/bio/homer/annotatePeaks"
