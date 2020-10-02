@@ -1,0 +1,14 @@
+name: dada2_filter_trim_se
+description: |
+  `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
+  Quality filtering of single-end reads using dada2 filterAndTrim function.
+authors:
+  - Charlie Pauvert
+input:
+    fwd: a forward FASTQ file (potentially compressed) without primers sequences
+output:
+    filt: a compressed filtered forward FASTQ file
+    stats: a .tsv file with the number of processed and filtered reads per sample
+params:
+  - A Python dictionary holding extra parameters for the R function
+
