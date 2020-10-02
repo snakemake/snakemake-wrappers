@@ -12,6 +12,5 @@ rule dada2_filter_trim:
         minLen = 1 # Set to 1 for the toy example but default is 20
     threads: 1 # set desired number of threads here
     wrapper:
-        #"master/bio/dada2/filter-trim"
-        "file:///home/pauvecha/repositories/snakemake-wrappers/bio/dada2/filter-trim"
+        "https://github.com/cpauvert/snakemake-wrappers/tree/dada2-filter-trim/bio/dada2/filter-trim"
 
