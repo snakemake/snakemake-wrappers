@@ -1,0 +1,18 @@
+name: dada2_filter_trim
+description: |
+  `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
+  Quality filtering of paired-end reads using dada2 filterAndTrim function.
+authors:
+  - Charlie Pauvert
+input:
+    fwd: a list of forward FASTQ files (potentially compressed)
+    rev: a list of reverse FASTQ files (potentially compressed)
+output:
+    filt: a list of compressed filtered forward FASTQ files
+    filt_rev: a list of compressed filtered reverse FASTQ files
+    stats: a .tsv file with the number of processed and filtered reads per sample
+params:
+    maxEE: the maximal expected errors tolerated in the filtered sequences
+    truncLen: a two element list giving the number of kept bases (set to 0 for no truncation)
+    minLen: the mininum length of the sequences
+

@@ -95,11 +95,15 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+def test_dada2_filter_trim():
+    run(
+        "bio/dada2/filter-trim",
+        ["snakemake", "--cores", "1", "reports/dada2/filter-trim.tsv", "--use-conda", "-F"]
+    )
 def test_dada2_quality_profile_pe():
     run("bio/dada2/quality-profile",
         ["snakemake", "--cores", "1", "reports/dada2/quality-profile/a.1-quality-profile.png", "--use-conda", "-F"]
     )
-
 def test_dada2_quality_profile_se():
     run("bio/dada2/quality-profile",
         ["snakemake", "--cores", "1", "reports/dada2/quality-profile/a-quality-profile.png", "--use-conda", "-F"]
