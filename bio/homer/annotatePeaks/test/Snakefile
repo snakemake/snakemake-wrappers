@@ -36,7 +36,7 @@ rule homer_annotatepeaks:
         2
     params:
         mode="", # add tss, tts or rna mode and options here, i.e. "tss mm8"
-        extra=""  # optional params, see http://homer.ucsd.edu/homer/ngs/annotation.html
+        extra="-gid"  # optional params, see http://homer.ucsd.edu/homer/ngs/annotation.html
     log:
         "logs/annotatePeaks/{sample}.log"
     wrapper:

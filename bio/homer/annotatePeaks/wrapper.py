@@ -81,7 +81,7 @@ if matrix:
     ext = ".count.matrix.txt"
     matrix_out = [i for i in snakemake.output if i.endswith(ext)][0]
     matrix_name = os.path.basename(matrix_out[: -len(ext)])
-    extra += "-matrix {} ".format(matrix_name)
+    extra += " -matrix {}".format(matrix_name)
 
 shell(
     "(annotatePeaks.pl"
