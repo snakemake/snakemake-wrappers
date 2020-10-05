@@ -1,0 +1,14 @@
+name: dada2_learn_errors
+description: |
+  `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
+  Learning error rates separately on paired-end data using dada2 learnErrors function.
+authors:
+  - Charlie Pauvert
+input:
+    fwd: a list of quality filtered and trimmed forward FASTQ files (potentially compressed)
+    rev: a list of quality filtered and trimmed reverse FASTQ files (potentially compressed)
+output:
+    mfwd: RDS file with the stored error model for forward reads
+    mrev: RDS file with the stored error model for reverse reads
+    pfwd: plot observed vs estimated errors rates for forward reads
+    prev: plot observed vs estimated errors rates for reverse reads
