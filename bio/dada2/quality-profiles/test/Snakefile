@@ -1,0 +1,12 @@
+rule dada2_quality_profiles:
+    input:
+        fwd=expand("reads/{sample}.1.fastq", sample=["a","b","c","d"]),
+	rev=expand("reads/{sample}.2.fastq", sample=["a","b","c","d"])
+    output:
+        fwd="reports/dada2/fwd-quality-profiles.png",
+        rev="reports/dada2/rev-quality-profiles.png"
+    threads: 1 # set desired number of threads here
+    params: n = 3 # set the number of random samples to examine
+    wrapper:
+        #"master/bio/dada2/quality-profiles"
+        "file:///home/pauvecha/repositories/snakemake-wrappers/bio/dada2/quality-profiles"
