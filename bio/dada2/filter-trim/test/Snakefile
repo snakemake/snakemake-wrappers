@@ -2,15 +2,15 @@ rule dada2_filter_trim:
     input:
         # Paired-end files without primers sequences
         fwd=expand("trimmed/{sample}.1.fastq", sample=["a","b"]),
-	rev=expand("trimmed/{sample}.2.fastq", sample=["a","b"])
+        rev=expand("trimmed/{sample}.2.fastq", sample=["a","b"])
     output:
         filt=expand("filtered/{sample}.1.fastq", sample=["a","b"]),
         filt_rev=expand("filtered/{sample}.2.fastq", sample=["a","b"]),
         stats="reports/dada2/filter-trim.tsv"
     params:
-        maxEE = 1,
-        truncLen = 0,
-        minLen = 1 # Set to 1 for the toy example but default is 20
+        maxEE=1,
+        truncLen=0,
+        minLen=1 # Set to 1 for the toy example but default is 20
     threads: 1 # set desired number of threads here
     wrapper:
         "master/bio/dada2/filter-trim"
