@@ -1,7 +1,8 @@
 rule dada2_filter_trim:
     input:
-        fwd=expand("reads/{sample}.1.fastq", sample=["a","b"]),
-	rev=expand("reads/{sample}.2.fastq", sample=["a","b"])
+        # Paired-end files without primers sequences
+        fwd=expand("trimmed/{sample}.1.fastq", sample=["a","b"]),
+	rev=expand("trimmed/{sample}.2.fastq", sample=["a","b"])
     output:
         filt=expand("filtered/{sample}.1.fastq", sample=["a","b"]),
         filt_rev=expand("filtered/{sample}.2.fastq", sample=["a","b"]),
