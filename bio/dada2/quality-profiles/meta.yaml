@@ -5,8 +5,8 @@ description: |
 authors:
   - Charlie Pauvert
 input:
-    fwd: a list of forward FASTQ files (potentially compressed)
-    rev: a list of reverse FASTQ files (potentially compressed)
+    fwd: a list of forward FASTQ files (potentially compressed) without primers sequences
+    rev: a list of reverse FASTQ files (potentially compressed) without primers sequences
 output:
     fwd: Plot of the random set of forward samples examined
     rev: Plot of the random set of reverse samples examined

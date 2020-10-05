@@ -1,7 +1,8 @@
 rule dada2_quality_profiles:
     input:
-        fwd=expand("reads/{sample}.1.fastq", sample=["a","b","c","d"]),
-	rev=expand("reads/{sample}.2.fastq", sample=["a","b","c","d"])
+        # Paired-end files without primers sequences
+        fwd=expand("trimmed/{sample}.1.fastq", sample=["a","b","c","d"]),
+	rev=expand("trimmed/{sample}.2.fastq", sample=["a","b","c","d"])
     output:
         fwd="reports/dada2/fwd-quality-profiles.png",
         rev="reports/dada2/rev-quality-profiles.png"
