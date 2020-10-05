@@ -8,5 +8,4 @@ rule dada2_quality_profiles:
     threads: 1 # set desired number of threads here
     params: n = 3 # set the number of random samples to examine
     wrapper:
-        #"master/bio/dada2/quality-profiles"
-        "file:///home/pauvecha/repositories/snakemake-wrappers/bio/dada2/quality-profiles"
+        "master/bio/dada2/quality-profiles"
