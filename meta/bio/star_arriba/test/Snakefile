@@ -1,0 +1,57 @@
+rule star_index:
+    input:
+        fasta="resources/genome.fasta",
+        annotation="resources/genome.gtf"
+    output:
+        directory("resources/star_genome")
+    threads: 4
+    params:
+        extra="--sjdbGTFfile resources/genome.gtf --sjdbOverhang 100"
+    log:
+        "logs/star_index_genome.log"
+    cache: True
+    wrapper:
+        "master/bio/star/index"
+
+rule star_align:
+    input:
+        # use a list for multiple fastq files for one sample
+        # usually technical replicates across lanes/flowcells
+        fq1="reads/{sample}_R1.1.fastq",
+        fq2="reads/{sample}_R2.1.fastq", #optional
+        index="resources/star_genome"
+    output:
+        # see STAR manual for additional output files
+        "star/{sample}/Aligned.out.bam",
+        "star/{sample}/ReadsPerGene.out.tab"
+    log:
+        "logs/star/{sample}.log"
+    params:
+        # path to STAR reference genome index
+        index="resources/star_genome",
+        # specific parameters to work well with arriba
+        extra="--quantMode GeneCounts --sjdbGTFfile resources/genome.gtf"
+            " --outSAMtype BAM Unsorted --chimSegmentMin 10 --chimOutType WithinBAM SoftClip"
+            " --chimJunctionOverhangMin 10 --chimScoreMin 1 --chimScoreDropMax 30 --chimScoreJunctionNonGTAG 0"
+            " --chimScoreSeparation 1 --alignSJstitchMismatchNmax 5 -1 5 5 --chimSegmentReadGapMax 3"
+    threads: 12
+    wrapper:
+        "master/bio/star/align"
+
+rule arriba:
+    input:
+        bam="star/{sample}/Aligned.out.bam",
+        genome="resources/genome.fasta",
+        annotation="resources/genome.gtf"
+    output:
+        fusions="results/arriba/{sample}.fusions.tsv",
+        discarded="results/arriba/{sample}.fusions.discarded.tsv"
+    params:
+        # A tsv containing identified artifacts, such as read-through fusions of neighbouring genes, see https://arriba.readthedocs.io/en/latest/input-files/#blacklist
+        blacklist="arriba_blacklist.tsv",
+        extra="-T -P -i 1,2" # -i describes the wanted contigs, remove if you want to use all hg38 chromosomes
+    log:
+        "logs/arriba/{sample}.log"
+    threads: 1
+    wrapper:
+        "master/bio/arriba"

@@ -1,0 +1,8 @@
+rule test_snpsift_gwascat:
+    input:
+        call = "in.vcf",
+        gwascat = "gwascatalog.txt"
+    output:
+        call = "annotated/out.vcf"
+    wrapper:
+        "master/bio/snpsift/gwascat"
