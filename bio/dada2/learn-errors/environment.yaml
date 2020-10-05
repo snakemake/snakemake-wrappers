@@ -3,5 +3,5 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - bioconductor-dada2 = 1.16.0
+  - bioconductor-dada2 == 1.16.0
 
