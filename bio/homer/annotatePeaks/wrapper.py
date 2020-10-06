@@ -61,7 +61,7 @@ opt_files = {
 
 requires_motives = False
 for i in opt_files:
-    if i and not i == "":
+    if i:
         extra += " {flag} {file}".format(flag=opt_files[i], file=i)
         if not requires_motives:
             if i == mfasta or i == mbed or i == mlogic:
