@@ -97,7 +97,7 @@ def run(wrapper, cmd, check_log=None):
 
 def test_dada2_quality_profiles():
     run("bio/dada2/quality-profiles",
-        ["snakemake", "--cores", "1", "reports/dada2/fwd-quality-profiles.png", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "reports/dada2/quality-profiles/a-quality-profiles.png", "--use-conda", "-F"]
     )
 
 def test_arriba_star_meta():

@@ -7,14 +7,13 @@
 
 library(dada2, quietly=TRUE)
 
-# Choose n sample(s) at random
-sample_to_check<-sample(seq_len(length(snakemake@input[["fwd"]])),snakemake@params[["n"]])
-
 # Plot the quality profiles for both forward and reverse reads
-pqF<-plotQualityProfile(snakemake@input[["fwd"]][sample_to_check])
-pqR<-plotQualityProfile(snakemake@input[["rev"]][sample_to_check])
+pquality<-plotQualityProfile(
+                        c(snakemake@input[["fwd"]],
+                        snakemake@input[["rev"]]
+                        )
+                    )
 
 # Write the plots to files
 library(ggplot2,quietly=TRUE)
-ggsave(snakemake@output[["fwd"]], pqF, width = 8, height = 6, dpi = 300)
-ggsave(snakemake@output[["rev"]], pqR, width = 8, height = 6, dpi = 300)
+ggsave(snakemake@output[["plot"]], pquality, width = 4, height = 3, dpi = 300)
