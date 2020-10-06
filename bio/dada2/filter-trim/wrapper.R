@@ -7,6 +7,10 @@
 
 library(dada2, quietly=TRUE)
 
+# Sink the stderr and stdout to the snakemake log file
+log.file<-file(snakemake@log[[1]],open="wt")
+sink(log.file)
+sink(log.file,type="message")
 filt.stats<-filterAndTrim(snakemake@input[["fwd"]], 
 		 snakemake@output[["filt"]], 
 		 snakemake@input[["rev"]], 
@@ -19,3 +23,6 @@ filt.stats<-filterAndTrim(snakemake@input[["fwd"]],
 
 # Write processed reads report
 write.table(filt.stats, snakemake@output[["stats"]], sep="\t", quote=F)
+# Close the connection for the log file
+sink(type="message")
+sink()
