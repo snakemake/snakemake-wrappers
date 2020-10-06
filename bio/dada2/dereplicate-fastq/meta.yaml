@@ -1,0 +1,9 @@
+name: dada2_dereplicate_fastq
+description: |
+  `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
+  Dereplication of FASTQ files using dada2 derepFastq function.
+authors:
+  - Charlie Pauvert
+input: a FASTQ file
+output: a RDS file containing a `derep-class` object
+
