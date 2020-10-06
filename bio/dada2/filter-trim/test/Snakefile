@@ -10,8 +10,8 @@ rule dada2_filter_trim:
     log:
         "logs/dada2/filter-trim/{sample}.log"
     params:
-        maxEE=1,
-        truncLen=0,
+        maxEE=1,# Max expected errors tolerated in the filtered sequences
+        truncLen=0,# Two-element list giving the number of kept bases (0 for no truncation)
         minLen=1 # Set to 1 for the toy example but default is 20
     threads: 1 # set desired number of threads here
     wrapper:

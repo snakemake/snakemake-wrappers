@@ -98,7 +98,7 @@ def run(wrapper, cmd, check_log=None):
 def test_dada2_filter_trim():
     run(
         "bio/dada2/filter-trim",
-        ["snakemake", "--cores", "1", "reports/dada2/filter-trim.tsv", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "filtered/a.1.fastq", "--use-conda", "-F"]
     )
 def test_dada2_quality_profile_pe():
     run("bio/dada2/quality-profile",
