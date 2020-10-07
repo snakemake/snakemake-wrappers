@@ -10,62 +10,43 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 genome = snakemake.input.get("genome", "")
 extra = snakemake.params.get("extra", "")
-
-# optional input files
-gtf = snakemake.input.get("gtf", "")
-gene = snakemake.input.get("gene", "")
 motif_files = snakemake.input.get("motif_files", "")
-filter_motiv = snakemake.input.get("filter_motiv", "")
-center = snakemake.input.get("center", "")
-nearest_peak = snakemake.input.get("nearest_peak", "")
-tag = snakemake.input.get("tag", "")
-vcf = snakemake.input.get("vcf", "")
-bed_graph = snakemake.input.get("bed_graph", "")
-wig = snakemake.input.get("wig", "")
-map = snakemake.input.get("map", "")
-cmp_genome = snakemake.input.get("cmp_genome", "")
-cmp_Liftover = snakemake.input.get("cmp_Liftover", "")
-adv_ann = snakemake.input.get("advanced_annotation", "")
-
-# optional output files
 matrix = snakemake.output.get("matrix", "")
-mfasta = snakemake.output.get("mfasta", "")
-mbed = snakemake.output.get("mbed", "")
-mlogic = snakemake.output.get("mlogic", "")
-gene_ontology_dir = snakemake.output.get("gene_ontology_dir", "")
-genome_ontology_dir = snakemake.output.get("genome_ontology_dir", "")
 
 if genome == "":
     genome = "none"
 
 # optional files
 opt_files = {
-    gtf: "-gtf",
-    gene: "-gene",
-    motif_files: "-m",
-    filter_motiv: "-fm",
-    center: "-center",
-    nearest_peak: "-p",
-    tag: "-d",
-    vcf: "-vcf",
-    bed_graph: "-bedGraph",
-    wig: "-wig",
-    map: "-map",
-    cmp_genome: "-cmpGenome",
-    cmp_Liftover: "-cmpLiftover",
-    adv_ann: "-ann",
-    mfasta: "-mfasta",
-    mbed: "-mbed",
-    mlogic: "-mlogic",
+    "gtf": "-gtf",
+    "gene": "-gene",
+    "motif_files": "-m",
+    "filter_motiv": "-fm",
+    "center": "-center",
+    "nearest_peak": "-p",
+    "tag": "-d",
+    "vcf": "-vcf",
+    "bed_graph": "-bedGraph",
+    "wig": "-wig",
+    "map": "-map",
+    "cmp_genome": "-cmpGenome",
+    "cmp_Liftover": "-cmpLiftover",
+    "advanced_annotation": "-ann",
+    "mfasta": "-mfasta",
+    "mbed": "-mbed",
+    "mlogic": "-mlogic",
 }
 
 requires_motives = False
 for i in opt_files:
-    if i:
-        extra += " {flag} {file}".format(flag=opt_files[i], file=i)
-        if not requires_motives:
-            if i == mfasta or i == mbed or i == mlogic:
-                requires_motives = True
+    file = None
+    if i == "mfasta" or i == "mbed" or i == "mlogic":
+        requires_motives = True
+        file = snakemake.output.get(i, "")
+    else:
+        file = snakemake.input.get(i, "")
+    if file:
+        extra += " {flag} {file}".format(flag=opt_files[i], file=file)
 
 if requires_motives and motif_files == "":
     sys.exit(
