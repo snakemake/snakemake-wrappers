@@ -1,0 +1,4 @@
+name: "bwa sam(se/pe)"
+description: Map paired-end reads with either bwa samse or sampe.
+authors:
+  - Filipe G. Vieira
