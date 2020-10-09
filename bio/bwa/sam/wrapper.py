@@ -12,8 +12,16 @@ from snakemake.shell import shell
 
 
 # Check inputs.
-fastq = snakemake.input.fastq if isinstance(snakemake.input.fastq, list) else [snakemake.input.fastq]
-sai = snakemake.input.sai if isinstance(snakemake.input.sai, list) else [snakemake.input.sai]
+fastq = (
+    snakemake.input.fastq
+    if isinstance(snakemake.input.fastq, list)
+    else [snakemake.input.fastq]
+)
+sai = (
+    snakemake.input.sai
+    if isinstance(snakemake.input.sai, list)
+    else [snakemake.input.sai]
+)
 if len(fastq) == 1 and len(sai) == 1:
     alg = "samse"
 elif len(fastq) == 2 and len(sai) == 2:
