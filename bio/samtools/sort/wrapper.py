@@ -8,7 +8,9 @@ import os
 from snakemake.shell import shell
 
 
-prefix = os.path.splitext(snakemake.output[0])[0]
+prefix = snakemake.params.get("prefix", "")
+if not prefix:
+    prefix = os.path.splitext(snakemake.output[0])[0]
 
 # Samtools takes additional threads through its option -@
 # One thread for samtools
@@ -16,6 +18,6 @@ prefix = os.path.splitext(snakemake.output[0])[0]
 threads = "" if snakemake.threads <= 1 else " -@ {} ".format(snakemake.threads - 1)
 
 shell(
-    "samtools sort {snakemake.params} {threads} -o {snakemake.output[0]} "
+    "samtools sort {snakemake.params.extra} {threads} -o {snakemake.output[0]} "
     "-T {prefix} {snakemake.input[0]}"
 )
