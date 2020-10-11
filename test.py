@@ -96,48 +96,6 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
-def test_bwa_sam_se():
-    run(
-        "bio/bwa/sam",
-        ["snakemake", "--cores", "1", "mapped/a.se.bam", "--use-conda", "-F"],
-    )
-
-
-def test_bwa_sam_se_sort_samtools():
-    run(
-        "bio/bwa/sam",
-        ["snakemake", "--cores", "1", "mapped/a.se.bam", "--use-conda", "-F", "-s", "Snakefile_samtools"],
-    )
-
-
-def test_bwa_sam_se_sort_picard():
-    run(
-        "bio/bwa/sam",
-        ["snakemake", "--cores", "1", "mapped/a.se.bam", "--use-conda", "-F", "-s", "Snakefile_picard"],
-    )
-
-
-def test_bwa_sam_pe():
-    run(
-        "bio/bwa/sam",
-        ["snakemake", "--cores", "1", "mapped/a.pe.bam", "--use-conda", "-F"],
-    )
-
-
-def test_bwa_sam_pe_sort_samtools():
-    run(
-        "bio/bwa/sam",
-        ["snakemake", "--cores", "1", "mapped/a.pe.bam", "--use-conda", "-F", "-s", "Snakefile_samtools"],
-    )
-
-
-def test_bwa_sam_pe_sort_picard():
-    run(
-        "bio/bwa/sam",
-        ["snakemake", "--cores", "1", "mapped/a.pe.bam", "--use-conda", "-F", "-s", "Snakefile_picard"],
-    )
-
-
 def test_mapdamage2():
     run(
         "bio/mapdamage2",
@@ -540,6 +498,20 @@ def test_bwa_index():
             "--use-conda",
             "-F",
         ],
+    )
+
+
+def test_bwa_sam_se():
+    run(
+        "bio/bwa/sam",
+        ["snakemake", "--cores", "1", "mapped/a.se.sam", "--use-conda", "-F"],
+    )
+
+
+def test_bwa_sam_pe():
+    run(
+        "bio/bwa/sam",
+        ["snakemake", "--cores", "1", "mapped/a.pe.sam", "--use-conda", "-F"],
     )
 
 
