@@ -1,0 +1,8 @@
+rule dada2_quality_profile:
+    input:
+        # FASTQ file without primers sequences
+        "trimmed/{sample}.{orientation}.fastq"
+    output:
+        "reports/dada2/quality-profile/{sample}.{orientation}-quality-profile.png"
+    wrapper:
+        "master/bio/dada2/quality-profile"

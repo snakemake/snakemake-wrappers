@@ -1,9 +1,0 @@
-rule dada2_quality_profiles:
-    input:
-        # Paired-end files without primers sequences
-        fwd="trimmed/{sample}.1.fastq",
-        rev="trimmed/{sample}.2.fastq"
-    output:
-        plot="reports/dada2/quality-profiles/{sample}-quality-profiles.png"
-    wrapper:
-        "master/bio/dada2/quality-profiles"
