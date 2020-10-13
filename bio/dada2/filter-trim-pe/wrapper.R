@@ -22,9 +22,11 @@ args<-list(
 )
 
 # Check if extra params are passed
-if(length(snakemake@params[[1]]) > 1){
-# Add them to the list of arguments
-   args<-c(args,snakemake@params[[1]])
+if(length(snakemake@params) > 0){
+    if(length(snakemake@params[[1]]) > 1){
+    # Add them to the list of arguments
+       args<-c(args,snakemake@params[[1]])
+    }
 }
 
 # Call the function with arguments
