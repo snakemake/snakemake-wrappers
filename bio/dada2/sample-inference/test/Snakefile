@@ -1,0 +1,13 @@
+rule dada2_sample_inference:
+    input:
+    # Dereplicated (aka unique) sequences of the sample
+        derep="uniques/{fastq}.RDS",
+        model="results/dada2/model_1.RDS" # Error model
+    params: {}
+    output:
+        "denoised/{fastq}.RDS" # Inferred sample composition
+    log:
+        "logs/dada2/sample-inference/{fastq}.log"
+    threads: 1 # set desired number of threads here
+    wrapper:
+        "master/bio/dada2/sample-inference"
