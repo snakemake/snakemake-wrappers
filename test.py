@@ -106,7 +106,7 @@ def test_dada2_quality_profile_se():
 def test_dada2_learn_errors():
     run(
         "bio/dada2/learn-errors",
-        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/model_fwd.RDS"],
+        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/model_1.RDS"],
     )
 def test_arriba_star_meta():
     run(

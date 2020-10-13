@@ -1,14 +1,12 @@
 rule dada2_learn_errors:
     input:
     # Quality filtered and trimmed forward FASTQ files (potentially compressed) 
-        fwd=expand("filtered/{sample}.1.fastq", sample=["a","b"]), 
-        rev=expand("filtered/{sample}.2.fastq", sample=["a","b"])
+        expand("filtered/{sample}.1.fastq", sample=["a","b"])
     output:
-        mfwd="results/dada2/model_fwd.RDS",# save the error model
-        mrev="results/dada2/model_rev.RDS",# "
-        pfwd="reports/dada2/errors_fwd.png",# plot observed and estimated rates
-        prev="reports/dada2/errors_rev.png" # "
+        model="results/dada2/model_1.RDS",# save the error model
+        plot="reports/dada2/errors_1.png",# plot observed and estimated rates
+    log:
+        "logs/dada2/learn-errors/learn-errors_1.log"
     threads: 1 # set desired number of threads here
     wrapper:
         "master/bio/dada2/learn-errors"
-
