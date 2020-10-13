@@ -3,7 +3,7 @@ rule dada2_sample_inference:
     # Dereplicated (aka unique) sequences of the sample
         derep="uniques/{fastq}.RDS",
         model="results/dada2/model_1.RDS" # Error model
-    params: {}
+    params: {} # Arguments to dada() R function can be passed with a Python dictionary
     output:
         "denoised/{fastq}.RDS" # Inferred sample composition
     log:
