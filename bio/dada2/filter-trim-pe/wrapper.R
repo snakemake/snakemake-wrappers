@@ -11,15 +11,24 @@ library(dada2, quietly=TRUE)
 log.file<-file(snakemake@log[[1]],open="wt")
 sink(log.file)
 sink(log.file,type="message")
-filt.stats<-filterAndTrim(snakemake@input[["fwd"]], 
-		 snakemake@output[["filt"]], 
-		 snakemake@input[["rev"]], 
-		 snakemake@output[["filt_rev"]], 
-		 maxEE=snakemake@params[["maxEE"]], 
-		 truncLen=snakemake@params[["truncLen"]],
-		 minLen=snakemake@params[["minLen"]],
-		 multithread=snakemake@threads
-		 )
+
+# Prepare arguments (no matter the order)
+args<-list(
+        fwd = snakemake@input[["fwd"]],
+        rev = snakemake@input[["rev"]],
+        filt = snakemake@output[["filt"]],
+        filt.rev = snakemake@output[["filt_rev"]],
+        multithread=snakemake@threads
+)
+
+# Check if extra params are passed
+if(length(snakemake@params[[1]]) > 1){
+# Add them to the list of arguments
+   args<-c(args,snakemake@params[[1]])
+}
+
+# Call the function with arguments
+filt.stats<-do.call(filterAndTrim, args)
 
 # Write processed reads report
 write.table(filt.stats, snakemake@output[["stats"]], sep="\t", quote=F)
