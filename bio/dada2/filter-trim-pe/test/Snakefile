@@ -16,4 +16,4 @@ rule dada2_filter_trim_pe:
         }
     threads: 1 # set desired number of threads here
     wrapper:
-        "master/bio/dada2/filter-trim"
+        "master/bio/dada2/filter-trim-pe"

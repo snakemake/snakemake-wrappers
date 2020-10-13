@@ -95,9 +95,9 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
-def test_dada2_filter_trim():
+def test_dada2_filter_trim_pe():
     run(
-        "bio/dada2/filter-trim",
+        "bio/dada2/filter-trim-pe",
         ["snakemake", "--cores", "1", "filtered/a.1.fastq", "--use-conda", "-F"]
     )
 def test_dada2_quality_profile_pe():
