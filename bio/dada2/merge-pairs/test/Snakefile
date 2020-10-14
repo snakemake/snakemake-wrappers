@@ -10,5 +10,4 @@ rule dada2_merge_pairs:
         "logs/dada2/merge-pairs/{sample}.log"
     threads: 1 # set desired number of threads here
     wrapper:
-        #"master/bio/dada2/merge-pairs"
-        "file:///home/pauvecha/repositories/snakemake-wrappers/bio/dada2/merge-pairs"
+        "master/bio/dada2/merge-pairs"
