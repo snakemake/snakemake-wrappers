@@ -1,6 +1,6 @@
 rule bowtie2_build:
     input:
-        reference="genome"
+        reference="genome.fasta"
     output:
         index=expand(
             "genome.{ext}",
