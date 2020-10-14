@@ -9,6 +9,6 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 shell(
-    "(bowtie2-build --threads {snakemake.threads} {snakemake.params.extra} "
+    "bowtie2-build --threads {snakemake.threads} {snakemake.params.extra} "
     "{snakemake.input[0]} {snakemake.params.base}"
 )
