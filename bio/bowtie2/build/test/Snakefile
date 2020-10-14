@@ -1,0 +1,16 @@
+rule bowtie2_build:
+    input:
+        reference="genome"
+    output:
+        index=expand(
+            "genome.{ext}",
+            ext=("1.bt2", "2.bt2", "3.bt2", "4.bt2", "rev.1.bt2", "rev.2.bt2"),
+        ),
+    log:
+        "logs/bowtie2/{sample}.log"
+    params:
+        base="genome",  # prefix for index files
+        extra=""  # optional parameters
+    threads: 8
+    wrapper:
+        "master/bio/bowtie2/build"

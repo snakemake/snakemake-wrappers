@@ -1,0 +1,5 @@
+@HD	VN:1.0	SO:unsorted
+@SQ	SN:Sheila	LN:20
+@PG	ID:bowtie2	PN:bowtie2	VN:2.3.0	CL:"/home/johannes/scms/snakemake-wrappers/bio/bowtie2/align/test/.snakemake/conda/e8610ca0/bin/bowtie2-align-s --wrapper basic-0 --threads 1 index/genome -x index/genome -1 reads/a.1.fastq -2 reads/a.2.fastq"
+1	77	*	0	0	*	*	0	0	ACGGCAT	!!!!!!!	YT:Z:UP
+1	141	*	0	0	*	*	0	0	ACGGCAT	!!!!!!!	YT:Z:UP

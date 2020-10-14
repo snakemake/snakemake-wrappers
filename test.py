@@ -410,6 +410,13 @@ def test_bowtie2_align():
     )
 
 
+def test_bowtie2_build():
+    run(
+        "bio/bowtie2/build",
+        ["snakemake", "--cores", "1", "genome.1.bt2", "--use-conda", "-F"],
+    )
+
+
 def test_bwa_mem():
     run(
         "bio/bwa/mem",
