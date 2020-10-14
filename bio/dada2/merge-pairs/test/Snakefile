@@ -1,0 +1,14 @@
+rule dada2_merge_pairs:
+    input:
+      dadaF="denoised/{sample}.1.RDS",# Inferred composition
+      dadaR="denoised/{sample}.2.RDS",
+      derepF="uniques/{sample}.1.RDS",# Dereplicated sequences
+      derepR="uniques/{sample}.2.RDS"
+    output:
+        "merged/{sample}.RDS"
+    log:
+        "logs/dada2/merge-pairs/{sample}.log"
+    threads: 1 # set desired number of threads here
+    wrapper:
+        #"master/bio/dada2/merge-pairs"
+        "file:///home/pauvecha/repositories/snakemake-wrappers/bio/dada2/merge-pairs"
