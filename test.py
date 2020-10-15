@@ -96,6 +96,11 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+def test_dada2_assign_taxonomy():
+    run(
+        "bio/dada2/assign-taxonomy",
+        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/taxa.RDS"],
+    )
 def test_arriba_star_meta():
     run(
         "meta/bio/star_arriba",
