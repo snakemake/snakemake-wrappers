@@ -15,7 +15,8 @@ sink(log.file,type="message")
 # Prepare arguments (no matter the order)
 args<-list(
            unqs = readRDS(snakemake@input[[1]]),
-           multithread=snakemake@threads
+           multithread=snakemake@threads,
+           verbose=TRUE
            )
 # Check if extra params are passed
 if(length(snakemake@params) > 0 ){
