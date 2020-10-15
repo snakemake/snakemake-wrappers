@@ -96,6 +96,11 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+def test_dada2_add_species():
+    run(
+        "bio/dada2/add-species",
+        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/taxa-sp.RDS"],
+    )
 def test_arriba_star_meta():
     run(
         "meta/bio/star_arriba",

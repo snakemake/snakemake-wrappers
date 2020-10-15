@@ -1,0 +1,12 @@
+rule dada2_add_species:
+    input:
+        taxtab="results/dada2/taxa.RDS", # Taxonomic assignments
+        refFasta="resources/example_species_assignment.fa.gz" # Reference FASTA 
+    params: {}
+    output:
+        "results/dada2/taxa-sp.RDS", # Taxonomic + Species assignments
+    log:
+        "logs/dada2/add-species/add-species.log"
+    threads: 1 # set desired number of threads here
+    wrapper:
+        "master/bio/dada2/add-species"
