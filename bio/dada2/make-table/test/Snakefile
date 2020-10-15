@@ -1,0 +1,14 @@
+rule dada2_make_table:
+    input:
+    # Inferred composition (se) or merged composition (pe)
+        expand("denoised/{sample}.1.RDS", sample=['a','b']) # se version
+      # expand("merged/{sample}.RDS", sample=['a','b'])     # pe version
+    params:
+        names=['a','b'] # Sample names instead of paths
+    output:
+        "results/dada2/seqTab.RDS"
+    log:
+        "logs/dada2/make-table/make-table.log"
+    threads: 1 # set desired number of threads here
+    wrapper:
+        "master/bio/dada2/make-table"

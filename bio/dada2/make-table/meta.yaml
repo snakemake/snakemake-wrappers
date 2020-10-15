@@ -1,0 +1,12 @@
+name: dada2_make_table
+description: |
+  `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
+  Build a sequence - sample table from denoised samples using dada2 makeSequenceTable function.
+authors:
+  - Charlie Pauvert
+input:
+  - A list of RDS file with denoised samples (se) or merged samples (pe)
+params: 
+  names: A list of sample names instead of paths
+output:
+  - A RDS file with the table
