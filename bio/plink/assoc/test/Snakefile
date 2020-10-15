@@ -1,0 +1,13 @@
+rule assoc:
+    threads: 1
+    input:
+        expand("plinkdata.{ext}", ext = ["fam", "map", "ped"])
+    params:
+        output_prefix="plinkdata",
+        extra_assoc="fisher-midp mperm=5000 --hwe 1e-8 midp --seed 9034"
+    output:
+        expand("plinkdata.{ext}", ext = ["assoc.fisher", "assoc.fisher.mperm"])
+    log:
+        "logs/plink/assoc.log"
+    wrapper:
+        "master/bio/plink/assoc"

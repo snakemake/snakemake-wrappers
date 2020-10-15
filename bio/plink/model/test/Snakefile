@@ -1,0 +1,13 @@
+rule model:
+    threads: 1
+    input:
+        expand("plinkdata.{ext}", ext = ["fam", "map", "ped"])
+    params:
+        output_prefix="plinkdata",
+        extra_model="fisher-midp mperm=5000 --hwe 1e-8 midp --seed 9034"
+    output:
+        expand("plinkdata.{ext}", ext = ["model", "model.best.fisher.mperm"])
+    log:
+        "logs/plink/model.log"
+    wrapper:
+        "master/bio/plink/model"

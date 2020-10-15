@@ -1,0 +1,16 @@
+rule logistic:
+    threads: 1
+    input:
+        expand("plinkdata.{ext}", ext = ["fam", "map", "ped", "cov"])
+    params:
+        covar=True,
+        output_prefix="plinkdata",
+        extra_logistic="--parameters 1-5, 7",
+        extra_covar="",
+        covariables=["quantitative_column", "case_control_with_missingness"]
+    output:
+        "plinkdata.assoc.logistic"
+    log:
+        "logs/plink/logistic.log"
+    wrapper:
+        "master/bio/plink/logistic"

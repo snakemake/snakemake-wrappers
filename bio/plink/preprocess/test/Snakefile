@@ -1,0 +1,20 @@
+rule preprocess:
+    input:
+        vcf="min.vcf",
+        csv="min.csv"
+    params:
+        output_prefix="plinkdata",
+        extra_recode="",
+        extra_file="--make-just-fam",
+        missing_code="0",
+        phenotype_column_name="binary_column",
+        sex_column_name="sex_column",
+        sex_male_code="male",
+        sex_female_code="female",
+        covariables=["quantitative_column", "case_control_with_missingness"]
+    output:
+        expand("plinkdata.{ext}", ext = ["fam", "map", "ped", "cov"])
+    log:
+        "logs/plink/preprocess.log"
+    wrapper:
+        "master/bio/plink/preprocess"
