@@ -96,6 +96,11 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+def test_dada2_remove_chimeras():
+    run(
+        "bio/dada2/remove-chimeras",
+        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/seqTab.nochim.RDS"],
+    )
 def test_arriba_star_meta():
     run(
         "meta/bio/star_arriba",
