@@ -1,5 +1,5 @@
 __author__ = "Filipe G. Vieira"
-__copyright__ = "Copyright 2020, Filipe G. Vieira"
+__copyright__ = "Copyright 2021, Filipe G. Vieira"
 __license__ = "MIT"
 
 import os.path
