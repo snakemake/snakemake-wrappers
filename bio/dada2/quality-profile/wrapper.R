@@ -7,8 +7,8 @@
 
 library(dada2, quietly=TRUE)
 
-# Plot the quality profile for a given FASTQ file
-pquality<-plotQualityProfile(snakemake@input[[1]])
+# Plot the quality profile for a given FASTQ file or a list of files
+pquality<-plotQualityProfile(unlist(snakemake@input))
 
 # Write the plots to files
 library(ggplot2,quietly=TRUE)

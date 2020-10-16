@@ -1,8 +1,10 @@
 rule dada2_quality_profile:
     input:
         # FASTQ file without primers sequences
-        "trimmed/{sample}.{orientation}.fastq"
+        "trimmed/{sample}.{orientation}.fastq"                               # se version
+        # expand("trimmed/{{sample}}.{orientation}.fastq",orientation=[1,2]) # pe version
     output:
-        "reports/dada2/quality-profile/{sample}.{orientation}-quality-profile.png"
+        "reports/dada2/quality-profile/{sample}.{orientation}-quality-profile.png" # se version
+        #"reports/dada2/quality-profile/{sample}-quality-profile.png"              # pe version
     wrapper:
         "master/bio/dada2/quality-profile"
