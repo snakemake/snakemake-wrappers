@@ -515,6 +515,148 @@ def test_bwa_sam_pe():
     )
 
 
+def test_bwa_bam_se():
+    run(
+        "bio/bwa/sam",
+        ["snakemake", "--cores", "1", "mapped/a.se.bam", "--use-conda", "-F"],
+    )
+
+
+def test_bwa_bam_pe():
+    run(
+        "bio/bwa/sam",
+        ["snakemake", "--cores", "1", "mapped/a.pe.bam", "--use-conda", "-F"],
+    )
+
+
+def test_bwa_sam_se_sort_samtools():
+    run(
+        "bio/bwa/sam",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.se.samtools_sort.sam",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_samtools",
+        ],
+    )
+
+
+def test_bwa_sam_pe_sort_samtools():
+    run(
+        "bio/bwa/sam",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.pe.samtools_sort.sam",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_samtools",
+        ],
+    )
+
+
+def test_bwa_bam_se_sort_samtools():
+    run(
+        "bio/bwa/sam",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.se.samtools_sort.bam",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_samtools",
+        ],
+    )
+
+
+def test_bwa_bam_pe_sort_samtools():
+    run(
+        "bio/bwa/sam",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.pe.samtools_sort.bam",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_samtools",
+        ],
+    )
+
+
+def test_bwa_sam_se_sort_picard():
+    run(
+        "bio/bwa/sam",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.se.picard_sort.sam",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_picard",
+        ],
+    )
+
+
+def test_bwa_sam_pe_sort_picard():
+    run(
+        "bio/bwa/sam",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.pe.picard_sort.sam",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_picard",
+        ],
+    )
+
+
+def test_bwa_bam_se_sort_picard():
+    run(
+        "bio/bwa/sam",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.se.picard_sort.bam",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_picard",
+        ],
+    )
+
+
+def test_bwa_bam_pe_sort_picard():
+    run(
+        "bio/bwa/sam",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.pe.picard_sort.bam",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_picard",
+        ],
+    )
+
+
 def test_bwa_sampe():
     run(
         "bio/bwa/sampe",
