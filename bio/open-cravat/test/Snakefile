@@ -2,12 +2,11 @@ rule run:
     input:
         ['example_input']
     output:
-        ['example_input.tsv']
+        ['example_input.xlsx']
     params:
         genome='hg38',
         annotators=['biogrid=3.5.171'],
-        reports=['text'],
+        reports=['excel'],
         output_dir='.',
-        #args = '-a clinvar -t text'
     wrapper:
-        'file:///mnt/d/Git/snakemake-wrappers/bio/open-cravat/wrapper.py'
+        'master/bio/open-cravat'
