@@ -16,6 +16,14 @@ sort = snakemake.params.get("sort", "none")
 sort_order = snakemake.params.get("sort_order", "coordinate")
 sort_extra = snakemake.params.get("sort_extra", "")
 
+index = None
+if "index" in snakemake.params.keys():
+    index = snakemake.params["index"]
+elif "index" in snakemake.input.keys():
+    index = path.splitext(snakemake.input["index"])[0]
+else:
+    raise ValueError("Could not find BWA index prefix")
+
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 # Check inputs/arguments.
@@ -61,7 +69,7 @@ shell(
     "(bwa mem"
     " -t {snakemake.threads}"
     " {extra}"
-    " {snakemake.params.index}"
+    " {index}"
     " {snakemake.input.reads}"
     " | " + pipe_cmd + ") {log}"
 )

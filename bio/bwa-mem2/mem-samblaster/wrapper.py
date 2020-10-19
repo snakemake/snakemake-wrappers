@@ -14,6 +14,14 @@ extra = snakemake.params.get("extra", "")
 sort_extra = snakemake.params.get("sort_extra", "")
 samblaster_extra = snakemake.params.get("samblaster_extra", "")
 
+index = None
+if "index" in snakemake.params.keys():
+    index = snakemake.params["index"]
+elif "index" in snakemake.input.keys():
+    index = path.splitext(snakemake.input["index"])[0]
+else:
+    raise ValueError("Could not find BWA index prefix")
+
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 # Check inputs/arguments.
@@ -27,7 +35,7 @@ shell(
     "(bwa-mem2 mem"
     " -t {snakemake.threads}"
     " {extra}"
-    " {snakemake.params.index}"
+    " {index}"
     " {snakemake.input.reads}"
     " | samblaster"
     " {samblaster_extra}"
