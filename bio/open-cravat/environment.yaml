@@ -1,4 +1,5 @@
 channels:
     - bioconda
+    - conda-forge
 dependencies:
-    - open-cravat =>2.1.1
+    - open-cravat=>2.1.1

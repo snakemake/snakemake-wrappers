@@ -14,30 +14,75 @@ default_ns = SimpleNamespace(
     skip_data=False
 )
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-args = snakemake.params.get('options', [])
+kwargs = {}
+args = snakemake.params.get('args', '')
+if args != '':
+    parsed_args = cravat.util.get_args(cravat.cravat_class.cravat_cmd_parser, [args.split()], {})
+    kwargs.update(parsed_args.__dict__)
 sysconf = cravat.admin_util.get_system_conf()
 modules_dir = sysconf.get('modules_dir')
-kwargs = {}
 for k, v in snakemake.params.items():
     if k == 'args':
         continue
-    if k == 'annotators' or k == 'reports':
-        kwargs[k] = []
-        for mv in v:
-            if '=' in mv:
-                module, version = mv.split('=')
-            else:
-                module = mv
-                version = None
-            if k == 'reports':
-                install_module = module + 'reporter'
-            else:
-                install_module = module
-            ns = SimpleNamespace(modules=[install_module], version=version)
-            ns.__dict__.update(default_ns.__dict__)
-            cravat_admin.install_modules(ns)
-            kwargs[k].append(module)
     else:
         kwargs[k] = v
 kwargs['inputs'] = snakemake.input
-cravat.run(*args, **kwargs)
+local_module_names = cravat.admin_util.list_local()
+if 'annotators' not in kwargs:
+    print('No annotator was given. Exiting.')
+elif 'reports' not in kwargs:
+    print('No report type was given. Exiting.')
+else:
+    if kwargs['annotators'] is not None and len(kwargs['annotators']) > 0:
+        for i in range(len(kwargs['annotators'])):
+            mv = kwargs['annotators'][i]
+            if '=' in mv:
+                module_name, version = mv.split('=')
+                install_module_name = module_name
+            else:
+                module_name = mv
+                install_module_name = module_name
+                version = None
+            if install_module_name not in local_module_names:
+                install_flag = True
+            else:
+                if version is None:
+                    install_flag = False
+                else:
+                    local_ver = cravat.admin_util.get_local_module_info(install_module_name).version
+                    if local_ver != version:
+                        install_flag = True
+                    else:
+                        install_flag = False
+            if install_flag:
+                ns = SimpleNamespace(modules=[install_module_name], version=version)
+                ns.__dict__.update(default_ns.__dict__)
+                cravat_admin.install_modules(ns)
+            kwargs['annotators'][i] = module_name
+    if kwargs['reports'] is not None and len(kwargs['reports']) > 0:
+        for i in range(len(kwargs['reports'])):
+            mv = kwargs['reports'][i]
+            if '=' in mv:
+                module_name, version = mv.split('=')
+                install_module_name = module_name + 'reporter'
+            else:
+                module_name = mv
+                install_module_name = module_name + 'reporter'
+                version = None
+            if install_module_name not in local_module_names:
+                install_flag = True
+            else:
+                if version is None:
+                    install_flag = False
+                else:
+                    local_ver = cravat.admin_util.get_local_module_info(install_module_name).version
+                    if local_ver != version:
+                        install_flag = True
+                    else:
+                        install_flag = False
+            if install_flag:
+                ns = SimpleNamespace(modules=[install_module_name], version=version)
+                ns.__dict__.update(default_ns.__dict__)
+                cravat_admin.install_modules(ns)
+            kwargs['reports'][i] = module_name
+    ret = cravat.run(**kwargs)
