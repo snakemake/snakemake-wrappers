@@ -963,6 +963,28 @@ def test_homer_makeTagDirectory():
     )
 
 
+def test_homer_annotatePeaks():
+    run(
+        "bio/homer/annotatePeaks",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "a_annot.txt",
+            "a.count.matrix.txt",
+            "a.ratio.matrix.txt",
+            "a.logPvalue.matrix.txt",
+            "a.stats.txt",
+            "a_motif.fasta",
+            "a_motif.bed",
+            "a_motif.logic",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
 def test_kallisto_index():
     run(
         "bio/kallisto/index",
@@ -2093,6 +2115,17 @@ def test_ensembl_sequence_old_release():
         ["snakemake", "-s", "old_release.smk", "--cores", "1", "--use-conda", "-F"],
     )
 
+def test_ensembl_sequence_chromosome():
+    run(
+        "bio/reference/ensembl-sequence",
+        ["snakemake", "--cores", "1", "refs/chr1.fasta", "--use-conda", "-F"],
+    )
+
+def test_ensembl_sequence_chromosome_old_release():
+    run(
+        "bio/reference/ensembl-sequence",
+        ["snakemake", "-s", "old_release.smk", "--cores", "1", "refs/old_release.chr1.fasta", "--use-conda", "-F"],
+    )
 
 def test_ensembl_annotation():
     run(
