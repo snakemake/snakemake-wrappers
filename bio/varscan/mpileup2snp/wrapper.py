@@ -12,6 +12,8 @@ from snakemake.utils import makedirs
 # Gathering extra parameters and logging behaviour
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
+if "mem_mb" in snakemake.resources.keys() and "-Xmx" not in extra:
+    extra += " -Xmx{}M".format(snakemake.resources["mem_mb"])
 
 # In case input files are gzipped mpileup files,
 # they are being unzipped and piped

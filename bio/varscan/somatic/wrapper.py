@@ -14,6 +14,8 @@ from snakemake.utils import makedirs
 # Defining logging and gathering extra parameters
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
+if "mem_mb" in snakemake.resources.keys() and "-Xmx" not in extra:
+    extra += " -Xmx{}M".format(snakemake.resources["mem_mb"])
 
 # Building output dirs
 makedirs(op.dirname(snakemake.output.snp))
