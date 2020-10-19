@@ -66,6 +66,8 @@ def compose_output_gz(filename, threads, compression_level):
 
 
 extra = snakemake.params.get("extra", "")
+if "mem_mb" in snakemake.resources.keys() and "-Xmx" not in extra:
+    extra += " -Xmx{}M".format(snakemake.resources["mem_mb"])
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 compression_level = snakemake.params.get("compression_level", "-5")
 trimmer = " ".join(snakemake.params.trimmer)
