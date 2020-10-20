@@ -5,6 +5,7 @@ __license__ = "MIT"
 
 
 from snakemake.shell import shell
+
 log = snakemake.log_fmt_shell()
 
 extra = snakemake.params
@@ -24,7 +25,6 @@ elif "mem_gb" in snakemake.resources.keys() and "-Xmx" not in extra:
 # not broken.
 if "java_temp" in snakemake.output.keys() and "-Djava.io.tmpdir" not in extra:
     java_opts += " -Djava.io.tmpdir={}".format(snakemake.output["java_temp"])
-
 
 
 shell(
