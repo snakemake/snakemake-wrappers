@@ -1929,7 +1929,7 @@ def test_varscan_mpileup2snp():
     )
 
 
-def test_varscan_mpileup2snp():
+def test_varscan_somatic():
     run(
         "bio/varscan/somatic",
         ["snakemake", "--cores", "1", "vcf/a.snp.vcf", "--use-conda", "-F"],
