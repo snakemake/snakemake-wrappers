@@ -1158,6 +1158,13 @@ def test_picard_mergesamfiles():
     )
 
 
+def test_picard_collecttargettedpcemetrics():
+    run(
+        "bio/picard/collecttargetedpcrmetrics/",
+        ["snakemake", "--cores", "1", "stats/a.pcr.txt", "--use-conda", "-F"],
+    )
+
+
 def test_picard_bam_to_fastq():
     run(
         "bio/picard/samtofastq",
