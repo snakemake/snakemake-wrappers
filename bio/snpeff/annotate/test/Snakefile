@@ -8,7 +8,7 @@ rule snpeff:
         csvstats="snpeff/{sample}.csv" # summary statistics in CSV, optional
     log:
         "logs/snpeff/{sample}.log"
-    params:
-        extra="-Xmx4g"           # optional parameters (e.g., max memory 4g)
+    resources:
+        mem_gb = 4  # Original tests was run with -Xmx4G
     wrapper:
         "master/bio/snpeff/annotate"
