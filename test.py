@@ -98,7 +98,7 @@ def run(wrapper, cmd, check_log=None):
 def test_open_cravat():
     run(
         "bio/open-cravat",
-        ["snakemake", "--cores", "1"]
+        ["snakemake", "--cores", "1", "--use-conda"],
     )
 
 def test_arriba_star_meta():

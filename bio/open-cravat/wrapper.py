@@ -6,7 +6,7 @@ from snakemake.shell import shell
 import os
 from types import SimpleNamespace
 import argparse
-
+import sys
 
 def get_argument_parser_defaults(parser):
     return {
@@ -248,10 +248,10 @@ for k, v in snakemake.params.items():
         kwargs[k] = v
 if "annotators" not in kwargs:
     print("No annotator was given. Exiting.")
-    exit()
+    sys.exit()
 if "reports" not in kwargs:
     print("No report type was given. Exiting.")
-    exit()
+    sys.exit()
 
 # Install modules
 if kwargs["annotators"] is not None and len(kwargs["annotators"]) > 0:
