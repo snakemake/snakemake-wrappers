@@ -26,6 +26,6 @@ if "java_temp" in snakemake.output.keys() and "-Djava.io.tmpdir" not in extra:
 
 
 shell(
-    "picard AddOrReplaceReadGroups {java_opts} {snakemake.params} "
+    "picard AddOrReplaceReadGroups {java_opts} {extra} "
     "I={snakemake.input} O={snakemake.output} &> {snakemake.log}"
 )
