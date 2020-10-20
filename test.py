@@ -1084,6 +1084,12 @@ def test_optitype():
         ["snakemake", "--cores", "1", "--use-conda", "-F", "optitype/a_result.tsv"],
     )
 
+def test_picard_addorreplacegroups():
+    run(
+        "bio/picard/addorreplacereadgroups",
+        ["snakemake", "--cores", "1", "fixed-rg/a.bam", "--use-conda", "-F"],
+    )
+
 
 def test_picard_collectalignmentsummarymetrics():
     run(
