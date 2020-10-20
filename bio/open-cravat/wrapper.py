@@ -44,7 +44,7 @@ def install_module(module_name, version):
         cmd.extend(["-v", version])
     cmd.append(module_name)
     cmd = " ".join(cmd)
-    shell(cmd)
+    shell("{cmd} {log}")
 
 
 cravat_cmd_parser = argparse.ArgumentParser(
@@ -298,4 +298,4 @@ for i in range(len(action_dests)):
         else:
             cmd.append(option_value)
 cmd = " ".join(cmd)
-shell(cmd)
+shell("{cmd} {log}")
