@@ -8,6 +8,7 @@ from types import SimpleNamespace
 import argparse
 import sys
 
+
 def get_argument_parser_defaults(parser):
     return {
         action.dest: action.default
