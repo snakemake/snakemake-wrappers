@@ -2,14 +2,13 @@ rule bowtie2_build:
     input:
         reference="genome.fasta"
     output:
-        expand(
-            "genome.{ext}",
-            ext=("1.bt2", "2.bt2", "3.bt2", "4.bt2", "rev.1.bt2", "rev.2.bt2"),
+        multiext(
+            "genome",
+            ".1.bt2", ".2.bt2", ".3.bt2", ".4.bt2", ".rev.1.bt2", ".rev.2.bt2",
         ),
     log:
         "logs/bowtie2_build/build.log"
     params:
-        base="genome",  # prefix for index files
         extra=""  # optional parameters
     threads: 8
     wrapper:
