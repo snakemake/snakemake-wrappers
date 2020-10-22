@@ -1,4 +1,4 @@
 name: "bwa index"
-description: "Creates a BWA index."
+description: Creates a BWA index. For more information about BWA see `BWA documentation <http://bio-bwa.sourceforge.net/bwa.shtml>`_.
 authors:
   - Patrik Smeds

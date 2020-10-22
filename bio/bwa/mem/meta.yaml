@@ -1,6 +1,6 @@
 name: "bwa mem"
 description: Map reads using bwa mem, with optional sorting using
-  samtools or picard.
+  samtools or picard. For more information about BWA see `BWA documentation <http://bio-bwa.sourceforge.net/bwa.shtml>`_.
 authors:
   - Johannes Köster
   - Julian de Ruiter
