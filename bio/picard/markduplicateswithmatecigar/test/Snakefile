@@ -8,5 +8,7 @@ rule mark_duplicates:
         "logs/picard/dedup/{sample}.log"
     params:
         "REMOVE_DUPLICATES=true"
+    resources:
+        mem_mb=1024
     wrapper:
         "master/bio/picard/markduplicateswithmatecigar"
