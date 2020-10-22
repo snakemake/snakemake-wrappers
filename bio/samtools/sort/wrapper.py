@@ -12,7 +12,7 @@ out_name, out_ext = p.splitext(snakemake.output[0])
 
 tmp_dir = snakemake.params.get("tmp_dir", "")
 if tmp_dir:
-    prefix = p.join(tmp_dir, p.basename(out_name)) 
+    prefix = p.join(tmp_dir, p.basename(out_name))
 else:
     prefix = out_name
 
