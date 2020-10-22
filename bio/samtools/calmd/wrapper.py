@@ -3,24 +3,12 @@ __copyright__ = "Copyright 2021, Filipe G. Vieira"
 __license__ = "MIT"
 
 
+from os import path
 from snakemake.shell import shell
 
-input = list(
-    filter(
-        None,
-        [
-            snakemake.input.get("sam", None),
-            snakemake.input.get("bam", None),
-            snakemake.input.get("cram", None),
-        ],
-    )
-)
-
-if len(input) < 1:
-    raise ValueError("no valid input file provided")
-elif len(input) < 1:
-    raise ValueError("too many valid input files provided")
+out_name, out_ext = path.splitext(snakemake.output[0])
+out_ext = out_ext[1:].upper()
 
 shell(
-    "samtools calmd --threads {snakemake.threads} {snakemake.params} {input[0]} {snakemake.input.ref} > {snakemake.output[0]}"
+    "samtools calmd --threads {snakemake.threads} {snakemake.params} --output-fmt {out_ext} {snakemake.input.aln} {snakemake.input.ref} > {snakemake.output[0]}"
 )

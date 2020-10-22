@@ -1,6 +1,6 @@
 rule samtools_calmd:
     input:
-        bam = "{sample}.bam", # Can be 'sam', 'bam', or 'cram'
+        aln = "{sample}.bam", # Can be 'sam', 'bam', or 'cram'
         ref = "genome.fasta"
     output:
         "{sample}.calmd.bam"
