@@ -4,13 +4,17 @@ __email__ = "koester@jimmy.harvard.edu"
 __license__ = "MIT"
 
 
-import os
+import os.path as p
 from snakemake.shell import shell
 
 
-prefix = snakemake.params.get("prefix", "")
-if not prefix:
-    prefix = os.path.splitext(snakemake.output[0])[0]
+out_name, out_ext = p.splitext(snakemake.output[0])
+
+tmp_dir = snakemake.params.get("tmp_dir", "")
+if tmp_dir:
+    prefix = p.join(tmp_dir, p.basename(out_name)) 
+else:
+    prefix = out_name
 
 # Samtools takes additional threads through its option -@
 # One thread for samtools
