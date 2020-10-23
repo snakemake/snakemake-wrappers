@@ -4,15 +4,15 @@ __email__ = "koester@jimmy.harvard.edu"
 __license__ = "MIT"
 
 
-import os.path as p
+import os
 from snakemake.shell import shell
 
 
-out_name, out_ext = p.splitext(snakemake.output[0])
+out_name, out_ext = os.path.splitext(snakemake.output[0])
 
 tmp_dir = snakemake.params.get("tmp_dir", "")
 if tmp_dir:
-    prefix = p.join(tmp_dir, p.basename(out_name))
+    prefix = os.path.join(tmp_dir, os.path.basename(out_name))
 else:
     prefix = out_name
 
