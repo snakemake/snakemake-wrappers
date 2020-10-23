@@ -14,7 +14,7 @@ library(dada2)
 
 # Prepare arguments (no matter the order)
 args<-list(
-           fls = snakemake@input[[1]],
+           fls = snakemake@input,
            multithread=snakemake@threads
            )
 # Check if extra params are passed
