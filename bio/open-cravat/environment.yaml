@@ -3,4 +3,5 @@ channels:
     - conda-forge
     - conda
 dependencies:
-    - open-cravat =>2.1.2
+
+    - open-cravat =2.1
