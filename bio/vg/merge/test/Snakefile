@@ -1,0 +1,9 @@
+rule merge:
+    input:
+        vgs=["c.vg", "x.vg"]
+    output:
+        merged="graph/wg.vg"
+    log:
+        "logs/vg/merge/wg.log"
+    wrapper:
+        "master/bio/vg/merge"
