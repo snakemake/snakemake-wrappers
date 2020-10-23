@@ -13,7 +13,7 @@ rule bwa_sam_pe:
     log:
         "logs/bwa_sam_pe/{sample}.picard_sort.log"
     wrapper:
-        "master/bio/bwa/sam"
+        "master/bio/bwa/samxe"
 
 rule bwa_sam_se:
     input:
@@ -30,7 +30,7 @@ rule bwa_sam_se:
     log:
         "logs/bwa_sam_se/{sample}.picard_sort.log"
     wrapper:
-        "master/bio/bwa/sam"
+        "master/bio/bwa/samxe"
 
 rule bwa_bam_pe:
     input:
@@ -47,7 +47,7 @@ rule bwa_bam_pe:
     log:
         "logs/bwa_bam_pe/{sample}.picard_sort.log"
     wrapper:
-        "master/bio/bwa/sam"
+        "master/bio/bwa/samxe"
 
 rule bwa_bam_se:
     input:
@@ -64,4 +64,4 @@ rule bwa_bam_se:
     log:
         "logs/bwa_bam_se/{sample}.picard_sort.log"
     wrapper:
-        "master/bio/bwa/sam"
+        "master/bio/bwa/samxe"

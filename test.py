@@ -501,35 +501,35 @@ def test_bwa_index():
     )
 
 
-def test_bwa_sam_se():
+def test_bwa_samxe_sam_se():
     run(
         "bio/bwa/samxe",
         ["snakemake", "--cores", "1", "mapped/a.se.sam", "--use-conda", "-F"],
     )
 
 
-def test_bwa_sam_pe():
+def test_bwa_samxe_sam_pe():
     run(
         "bio/bwa/samxe",
         ["snakemake", "--cores", "1", "mapped/a.pe.sam", "--use-conda", "-F"],
     )
 
 
-def test_bwa_bam_se():
+def test_bwa_samxe_bam_se():
     run(
         "bio/bwa/samxe",
         ["snakemake", "--cores", "1", "mapped/a.se.bam", "--use-conda", "-F"],
     )
 
 
-def test_bwa_bam_pe():
+def test_bwa_samxe_bam_pe():
     run(
         "bio/bwa/samxe",
         ["snakemake", "--cores", "1", "mapped/a.pe.bam", "--use-conda", "-F"],
     )
 
 
-def test_bwa_sam_se_sort_samtools():
+def test_bwa_samxe_sam_se_sort_samtools():
     run(
         "bio/bwa/samxe",
         [
@@ -545,7 +545,7 @@ def test_bwa_sam_se_sort_samtools():
     )
 
 
-def test_bwa_sam_pe_sort_samtools():
+def test_bwa_samxe_sam_pe_sort_samtools():
     run(
         "bio/bwa/samxe",
         [
@@ -561,7 +561,7 @@ def test_bwa_sam_pe_sort_samtools():
     )
 
 
-def test_bwa_bam_se_sort_samtools():
+def test_bwa_samxe_bam_se_sort_samtools():
     run(
         "bio/bwa/samxe",
         [
@@ -577,7 +577,7 @@ def test_bwa_bam_se_sort_samtools():
     )
 
 
-def test_bwa_bam_pe_sort_samtools():
+def test_bwa_samxe_bam_pe_sort_samtools():
     run(
         "bio/bwa/samxe",
         [
@@ -593,7 +593,7 @@ def test_bwa_bam_pe_sort_samtools():
     )
 
 
-def test_bwa_sam_se_sort_picard():
+def test_bwa_samxe_sam_se_sort_picard():
     run(
         "bio/bwa/samxe",
         [
@@ -609,7 +609,7 @@ def test_bwa_sam_se_sort_picard():
     )
 
 
-def test_bwa_sam_pe_sort_picard():
+def test_bwa_samxe_sam_pe_sort_picard():
     run(
         "bio/bwa/samxe",
         [
@@ -625,7 +625,7 @@ def test_bwa_sam_pe_sort_picard():
     )
 
 
-def test_bwa_bam_se_sort_picard():
+def test_bwa_samxe_bam_se_sort_picard():
     run(
         "bio/bwa/samxe",
         [
@@ -641,7 +641,7 @@ def test_bwa_bam_se_sort_picard():
     )
 
 
-def test_bwa_bam_pe_sort_picard():
+def test_bwa_samxe_bam_pe_sort_picard():
     run(
         "bio/bwa/samxe",
         [
