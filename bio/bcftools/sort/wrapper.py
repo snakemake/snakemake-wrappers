@@ -32,17 +32,17 @@ uncompressed_bcf = snakemake.params.get("uncompressed_bcf", False)
 
 
 out_name, out_ext = path.splitext(snakemake.output[0])
-if out_ext == '.vcf':
-    out_format = 'v'
-elif out_ext == '.bcf':
+if out_ext == ".vcf":
+    out_format = "v"
+elif out_ext == ".bcf":
     if uncompressed_bcf:
-        out_format = 'u'
+        out_format = "u"
     else:
-        out_format = 'b'
-elif out_ext == '.gz':
+        out_format = "b"
+elif out_ext == ".gz":
     out_name, out_ext = path.splitext(out_name)
-    if out_ext == '.vcf':
-        out_format = 'z'
+    if out_ext == ".vcf":
+        out_format = "z"
     else:
         raise ValueError("output file with invalid extension (.vcf, .vcf.gz, .bcf).")
 else:
