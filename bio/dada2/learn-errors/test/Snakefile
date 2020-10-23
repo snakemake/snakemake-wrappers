@@ -1,12 +1,18 @@
+rule learn_pe:
+    # Run twice dada2_learn_errors: on forward and on reverse reads
+    input: expand("results/dada2/model_{orientation}.RDS", orientation=[1,2])
+
 rule dada2_learn_errors:
     input:
     # Quality filtered and trimmed forward FASTQ files (potentially compressed) 
-        expand("filtered/{sample}.1.fastq", sample=["a","b"])
+        expand("filtered/{sample}.{{orientation}}.fastq", sample=["a","b"])
+    params:
+        { 'randomize': True } # Optional parameters
     output:
-        model="results/dada2/model_1.RDS",# save the error model
-        plot="reports/dada2/errors_1.png",# plot observed and estimated rates
+        model="results/dada2/model_{orientation}.RDS",# save the error model
+        plot="reports/dada2/errors_{orientation}.png",# plot observed and estimated rates
     log:
-        "logs/dada2/learn-errors/learn-errors_1.log"
+        "logs/dada2/learn-errors/learn-errors_{orientation}.log"
     threads: 1 # set desired number of threads here
     wrapper:
         "master/bio/dada2/learn-errors"
