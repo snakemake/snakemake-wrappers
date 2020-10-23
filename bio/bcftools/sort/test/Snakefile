@@ -7,7 +7,7 @@ rule bcftools_sort:
         "logs/bcftools/sort/{sample}.log"
     params:
         tmp_dir = "`mktemp -d`",
-        extras = "-Ob"
+        extras = ""
     resources:
         mem_mb = 8000
     wrapper:
