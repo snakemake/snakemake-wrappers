@@ -5,12 +5,12 @@
 
 # Snakemake wrapper for learning error rates on sequence data using dada2 learnErrors function.
 
-library(dada2, quietly=TRUE)
-
 # Sink the stderr and stdout to the snakemake log file
 log.file<-file(snakemake@log[[1]],open="wt")
 sink(log.file)
 sink(log.file,type="message")
+
+library(dada2)
 
 # Prepare arguments (no matter the order)
 args<-list(
@@ -32,7 +32,7 @@ err<-do.call(learnErrors, args)
 perr<-plotErrors(err, nominalQ = TRUE)
 
 # Save the plots
-library(ggplot2, quietly=TRUE)
+library(ggplot2)
 ggsave(snakemake@output[["plot"]], perr, width = 8, height = 8, dpi = 300)
 
 # Store the estimated errors as RDS files
