@@ -1,6 +1,6 @@
 rule run:
     input:
-        ['example_input']
+        'example_input'
     output:
         ['example_input.xlsx']
     params:
