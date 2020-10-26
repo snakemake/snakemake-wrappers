@@ -410,6 +410,13 @@ def test_bowtie2_align():
     )
 
 
+def test_bowtie2_build():
+    run(
+        "bio/bowtie2/build",
+        ["snakemake", "--cores", "1", "genome.1.bt2", "--use-conda", "-F"],
+    )
+
+
 def test_bwa_mem():
     run(
         "bio/bwa/mem",
@@ -962,6 +969,28 @@ def test_homer_makeTagDirectory():
         ["snakemake", "--cores", "1", "--use-conda", "-F", "tagDir/a"],
     )
 
+
+def test_homer_annotatePeaks():
+    run(
+        "bio/homer/annotatePeaks",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "a_annot.txt",
+            "a.count.matrix.txt",
+            "a.ratio.matrix.txt",
+            "a.logPvalue.matrix.txt",
+            "a.stats.txt",
+            "a_motif.fasta",
+            "a_motif.bed",
+            "a_motif.logic",
+            "--use-conda",
+            "-F",
+        ],
+    )
 
 def test_kallisto_index():
     run(
@@ -2432,3 +2461,49 @@ def test_snpsift_annotate():
         "bio/snpsift/annotate",
         ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"],
     )
+
+
+def test_vg_construct():
+    run("bio/vg/construct",
+        ["snakemake", "--cores", "1", "graph/c.vg", "--use-conda", "-F"])
+
+
+def test_vg_merge():
+    run("bio/vg/merge",
+        ["snakemake", "--cores", "1", "graph/wg.vg", "--use-conda", "-F"])
+
+
+def test_vg_ids():
+    run("bio/vg/ids",
+        ["snakemake", "--cores", "1", "graph/c_mod.vg", "--use-conda", "-F"])
+
+
+def test_vg_index_gcsa():
+    run("bio/vg/index/gcsa",
+        ["snakemake", "--cores", "1", "index/wg.gcsa", "--use-conda", "-F"])
+
+
+def test_vg_index_xg():
+    run("bio/vg/index/xg",
+        ["snakemake", "--cores", "1", "index/x.xg", "--use-conda", "-F"])
+
+
+def test_vg_kmers():
+    run("bio/vg/kmers",
+        ["snakemake", "--cores", "1", "kmers/c.kmers", "--use-conda", "-F"])
+
+
+def test_vg_prune():
+    run("bio/vg/prune",
+        ["snakemake", "--cores", "1", "graph/c.pruned.vg", "--use-conda", "-F"])
+
+
+def test_vg_sim():
+    run("bio/vg/sim",
+        ["snakemake", "--cores", "1", "reads/x.seq", "--use-conda", "-F"])
+
+
+def test_wgsim():
+    run("bio/wgsim",
+        ["snakemake", "--cores", "1", "reads/1.fq", "reads/2.fq",
+         "--use-conda", "-F"])
