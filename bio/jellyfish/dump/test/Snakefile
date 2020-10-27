@@ -1,7 +1,9 @@
 rule jellyfish_merge:
-    input: "test.jf"
-    output: "test.dump"
+    input:
+        "test.jf",
+    output:
+        "test.dump",
     params:
-        extra = "-c -t"
+        extra="-c -t",
     wrapper:
         "master/bio/jellyfish/merge"
