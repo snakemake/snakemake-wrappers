@@ -2,7 +2,7 @@ name: dada2_learn_errors
 description: |
   `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
   Learning error rates separately on paired-end data using dada2 learnErrors function.
-  Optional parameters are documented in the `manual <https://www.bioconductor.org/packages/release/bioc/manuals/dada2/man/dada2.pdf>`.
+  Optional parameters are documented in the `manual <https://www.bioconductor.org/packages/release/bioc/manuals/dada2/man/dada2.pdf>`_.
 authors:
   - Charlie Pauvert
 input:
