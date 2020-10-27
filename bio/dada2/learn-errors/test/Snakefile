@@ -5,7 +5,7 @@ rule learn_pe:
 rule dada2_learn_errors:
     input:
     # Quality filtered and trimmed forward FASTQ files (potentially compressed) 
-        expand("filtered/{sample}.{{orientation}}.fastq", sample=["a","b"])
+        expand("filtered/{sample}.{{orientation}}.fastq.gz", sample=["a","b"])
     params:
         { 'randomize': True } # Optional parameters
     output:
