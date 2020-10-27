@@ -4,7 +4,7 @@ rule bgzip:
     output:
         "{prefix}.vcf.gz",
     params:
-        extra="", # optional
+        extra="-c", # optional
     threads: 1
     log:
         "logs/bgzip/{prefix}.log",

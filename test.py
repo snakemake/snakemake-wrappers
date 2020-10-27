@@ -406,7 +406,7 @@ def test_bedtools_slop():
 def test_bgzip():
     run(
         "bio/bgzip",
-        ["snakemake", "--cores", "1", "test.vcf", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "test.vcf.gz", "--use-conda", "-F"]
     )
 
 
