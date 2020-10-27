@@ -403,6 +403,13 @@ def test_bedtools_slop():
     )
 
 
+def test_bgzip():
+    run(
+        "bio/bgzip",
+        ["snakemake", "--cores", "1", "test.vcf", "--use-conda", "-F"]
+    )
+
+
 def test_bowtie2_align():
     run(
         "bio/bowtie2/align",
