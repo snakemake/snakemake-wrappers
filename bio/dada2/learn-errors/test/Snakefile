@@ -7,7 +7,7 @@ rule dada2_learn_errors:
     # Quality filtered and trimmed forward FASTQ files (potentially compressed) 
         expand("filtered/{sample}.{{orientation}}.fastq.gz", sample=["a","b"])
     params:
-        { 'randomize': True } # Optional parameters
+        extra='list(randomize=TRUE)' # Optional parameters
     output:
         model="results/dada2/model_{orientation}.RDS",# save the error model
         plot="reports/dada2/errors_{orientation}.png",# plot observed and estimated rates

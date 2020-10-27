@@ -6,6 +6,7 @@
 # Snakemake wrapper for learning error rates on sequence data using dada2 learnErrors function.
 
 # Sink the stderr and stdout to the snakemake log file
+# https://stackoverflow.com/a/48173272
 log.file<-file(snakemake@log[[1]],open="wt")
 sink(log.file)
 sink(log.file,type="message")
@@ -19,13 +20,14 @@ args<-list(
            )
 # Check if extra params are passed
 if(length(snakemake@params) > 0 ){
-       if(is.list(snakemake@params[[1]])){
+       extra<-eval(parse(text=snakemake@params[["extra"]]))
+       if(is.list(extra)){
            # Add them to the list of arguments
-           args<-c(args,snakemake@params[[1]])
+           args<-c(args, extra)
        } else{
-           message("Optional R parameters should be passed as Python dictionary")
+           message("Optional R parameters should be passed as a string list")
            message("in the Snakefile. Check the example below:")
-           message("\tparams: { 'verbose': True, 'foo': [1,42] }")
+           message("params:\n\textra='list(verbose=TRUE, foo=c(1,42) )'")
            message("Using defaults parameters from dada2::learnErrors()")
        }
 } else{
@@ -45,6 +47,7 @@ ggsave(snakemake@output[["plot"]], perr, width = 8, height = 8, dpi = 300)
 # Store the estimated errors as RDS files
 saveRDS(err, snakemake@output[["model"]],compress = T)
 
-# Close the connection for the log file
+# Proper syntax to close the connection for the log file
+# but could be optional for Snakemake wrapper
 sink(type="message")
 sink()

@@ -7,6 +7,8 @@ authors:
   - Charlie Pauvert
 input:
   - A list of quality filtered and trimmed forward FASTQ files (potentially compressed)
+params:
+  extra: A string containing a list of R optional arguments passed to the wrapped function
 output:
     model: RDS file with the stored error model
     plot: plot observed vs estimated errors rates
