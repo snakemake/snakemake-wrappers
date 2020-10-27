@@ -5,11 +5,20 @@
 
 # Snakemake wrapper for plotting the quality profile of reads using dada2 plotQualityProfile function.
 
-library(dada2, quietly=TRUE)
+# Sink the stderr and stdout to the snakemake log file
+log.file<-file(snakemake@log[[1]],open="wt")
+sink(log.file)
+sink(log.file,type="message")
+
+library(dada2)
 
 # Plot the quality profile for a given FASTQ file or a list of files
 pquality<-plotQualityProfile(unlist(snakemake@input))
 
 # Write the plots to files
-library(ggplot2,quietly=TRUE)
+library(ggplot2)
 ggsave(snakemake@output[[1]], pquality, width = 4, height = 3, dpi = 300)
+
+# Close the connection for the log file
+sink(type="message")
+sink()
