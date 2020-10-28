@@ -28,14 +28,15 @@ if(!is.null(snakemake@input[["rev"]]) & !is.null(snakemake@output[["filt_rev"]])
 }
 # Check if extra params are passed
 if(length(snakemake@params) > 0 ){
-    extra<-eval(parse(text=snakemake@params[["extra"]]))
+    # Keeping only the named elements of the list for do.call()
+    extra<-snakemake@params[ names(snakemake@params) != "" ]
     if(is.list(extra)){
         # Add them to the list of arguments
         args<-c(args, extra)
     } else{
-        message("Optional R parameters should be passed as a string list")
+        message("Optional R parameters should be passed as named Python arguments")
         message("in the Snakefile. Check the example below:")
-        message("params:\n\textra='list(verbose=TRUE, foo=c(1,42) )'")
+        message("params:\n\tverbose=True, foo=[1,42]")
         message("Using defaults parameters from dada2::filterAndTrim()")
     }
 } else{
