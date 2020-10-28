@@ -1,0 +1,17 @@
+rule bcftools_sort:
+    input:
+        "{sample}.bcf"
+    output:
+        "{sample}.sorted.bcf"
+    log:
+        "logs/bcftools/sort/{sample}.log"
+    params:
+        tmp_dir = "`mktemp -d`",
+        # Set to True, in case you want uncompressed BCF output
+        uncompressed_bcf = False,
+        # Extra arguments
+        extras = ""
+    resources:
+        mem_mb = 8000
+    wrapper:
+        "master/bio/bcftools/sort"

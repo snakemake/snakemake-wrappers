@@ -1,5 +1,5 @@
 name: samtools index
-description: Index bam file with samtools.
+description: Index bam file with samtools. For more information see `SAMtools documentation <http://www.htslib.org/doc/samtools-index.html>`_.
 authors:
   - Johannes Köster
 input:
