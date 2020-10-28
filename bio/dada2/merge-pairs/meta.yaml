@@ -1,7 +1,7 @@
 name: dada2_learn_errors
 description: |
   `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
-  Merging denoised forward and reverse reads using dada2 mergePairs function.
+  Merging denoised forward and reverse reads using dada2 mergePairs function. Optional parameters are documented in the `manual <https://www.bioconductor.org/packages/release/bioc/manuals/dada2/man/dada2.pdf>`_.
 authors:
   - Charlie Pauvert
 input:
@@ -9,5 +9,7 @@ input:
     dadaR:                                                      reverse       
     derepF: A RDS file with the dereplicated forward reads
     derepR:                                  reverse      
+params:
+  - R optional arguments passed to the wrapped function as named Python arguments
 output:
   - A RDS file with the merged pairs 
