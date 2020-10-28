@@ -113,16 +113,19 @@ def test_dada2_learn_errors():
         "bio/dada2/learn-errors",
         ["snakemake", "--cores", "1", "--use-conda", "results/dada2/model_1.RDS"],
     )
+
 def test_dada2_filter_trim_se():
     run(
         "bio/dada2/filter-trim",
         ["snakemake", "--cores", "1", "filtered-se/a.1.fastq", "--use-conda", "-F"]
     )
+
 def test_dada2_filter_trim_pe():
     run(
         "bio/dada2/filter-trim",
         ["snakemake", "--cores", "1", "filtered-pe/a.1.fastq", "--use-conda", "-F"]
     )
+
 def test_dada2_quality_profile_pe():
     run("bio/dada2/quality-profile",
         ["snakemake", "--cores", "1", "reports/dada2/quality-profile/a.1-quality-profile.png", "--use-conda", "-F"]

@@ -40,7 +40,7 @@ if(length(snakemake@params) > 0 ){
         message("Using defaults parameters from dada2::filterAndTrim()")
     }
 } else{
-    message("No optional parameters. Using defaults parameters from dada2::filterAndTrim()")
+    message("No optional parameters. Using default parameters from dada2::filterAndTrim()")
 }
 
 # Call the function with arguments
