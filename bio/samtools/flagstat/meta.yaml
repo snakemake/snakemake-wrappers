@@ -1,5 +1,5 @@
 name: samtools flagstat
-description: Use samtools to create a flagstat file from a bam or sam file.
+description: Use samtools to create a flagstat file from a bam or sam file. For more information see `SAMtools documentation <http://www.htslib.org/doc/samtools-flagstat.html>`_.
 authors:
   - Christopher Preusch
 input:

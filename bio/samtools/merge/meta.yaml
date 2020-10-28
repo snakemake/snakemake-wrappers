@@ -1,5 +1,5 @@
 name: samtools merge
-description: Merge two bam files with samtools.
+description: Merge two bam files with samtools. For more information see `SAMtools documentation <http://www.htslib.org/doc/samtools-merge.html>`_.
 authors:
   - Johannes Köster
 input:
