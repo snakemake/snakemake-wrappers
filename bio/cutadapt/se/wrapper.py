@@ -9,11 +9,15 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 
+n = len(snakemake.input)
+assert n == 1, "Input must contain 1 (single-end) elements."
+
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
     "cutadapt"
-    " {snakemake.params}"
+    " {snakemake.params.adapters}"
+    " {snakemake.params.extra}"
     " -j {snakemake.threads}"
     " -o {snakemake.output.fastq}"
     " {snakemake.input[0]}"
