@@ -1,4 +1,4 @@
 name: samtools mpileup
-description: Generate pileup using samtools.
+description: Generate pileup using samtools. For more information see `SAMtools documentation <http://www.htslib.org/doc/samtools-mpileup.html>`_.
 authors:
   - Patrik Smeds

@@ -1,4 +1,4 @@
 name: bcftools reheader
-description: Change header or sample names of vcf/bcf file.
+description: Change header or sample names of vcf/bcf file. For more information see `BCFtools documentation <https://www.htslib.org/doc/bcftools.html#reheader>`_.
 authors:
   - Jan Forster

@@ -1,0 +1,4 @@
+name: "vg merge"
+description: Generate a joint id space across each graph and merge them all.
+authors:
+  - Ali Ghaffaari

@@ -1,0 +1,9 @@
+rule ids:
+    input:
+        vgs="c.vg"
+    output:
+        mod="graph/c_mod.vg"
+    log:
+        "logs/vg/ids/c.log"
+    wrapper:
+        "master/bio/vg/ids"

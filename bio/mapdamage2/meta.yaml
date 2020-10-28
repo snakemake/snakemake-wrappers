@@ -1,0 +1,4 @@
+name: mapDamage2
+description: tracking and quantifying damage patterns in ancient DNA sequences. For more information about MapDamage2 see `MapDamage2 documentation <https://ginolhac.github.io/mapDamage/>`_.
+authors:
+  - Filipe G. Vieira

@@ -1,0 +1,59 @@
+rule bwa_sam_pe:
+    input:
+        fastq=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        sai=["sai/{sample}.1.sai", "sai/{sample}.2.sai"]
+    output:
+        "mapped/{sample}.pe.sam"
+    params:
+        index="genome",
+        extra=r"-r '@RG\tID:{sample}\tSM:{sample}'", # optional: Extra parameters for bwa.
+        sort="none",
+    log:
+        "logs/bwa_sam_pe/{sample}.log"
+    wrapper:
+        "master/bio/bwa/samxe"
+
+rule bwa_sam_se:
+    input:
+        fastq="reads/{sample}.1.fastq",
+        sai="sai/{sample}.1.sai"
+    output:
+        "mapped/{sample}.se.sam"
+    params:
+        index="genome",
+        extra=r"-r '@RG\tID:{sample}\tSM:{sample}'", # optional: Extra parameters for bwa.
+        sort="none",
+    log:
+        "logs/bwa_sam_se/{sample}.log"
+    wrapper:
+        "master/bio/bwa/samxe"
+
+rule bwa_bam_pe:
+    input:
+        fastq=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        sai=["sai/{sample}.1.sai", "sai/{sample}.2.sai"]
+    output:
+        "mapped/{sample}.pe.bam"
+    params:
+        index="genome",
+        extra=r"-r '@RG\tID:{sample}\tSM:{sample}'", # optional: Extra parameters for bwa.
+        sort="none",
+    log:
+        "logs/bwa_bam_pe/{sample}.log"
+    wrapper:
+        "master/bio/bwa/samxe"
+
+rule bwa_bam_se:
+    input:
+        fastq="reads/{sample}.1.fastq",
+        sai="sai/{sample}.1.sai"
+    output:
+        "mapped/{sample}.se.bam"
+    params:
+        index="genome",
+        extra=r"-r '@RG\tID:{sample}\tSM:{sample}'", # optional: Extra parameters for bwa.
+        sort="none",
+    log:
+        "logs/bwa_bam_se/{sample}.log"
+    wrapper:
+        "master/bio/bwa/samxe"
