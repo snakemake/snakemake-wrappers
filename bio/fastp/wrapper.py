@@ -31,7 +31,7 @@ html = "--html {}".format(snakemake.output.html)
 json = "--json {}".format(snakemake.output.json)
 
 shell(
-    "(fastp --thread {snakemake.threads} {snakemake.params.extra} {snakemake.params.adapters}"
+    "(fastp --thread {snakemake.threads} {snakemake.params.extra} {snakemake.params.adapters} "
     "{reads} "
     "{trimmed} "
     "{json} "
