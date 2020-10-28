@@ -41,8 +41,9 @@ requires_motives = False
 for i in opt_files:
     file = None
     if i == "mfasta" or i == "mbed" or i == "mlogic":
-        requires_motives = True
         file = snakemake.output.get(i, "")
+        if file:
+            requires_motives = True
     else:
         file = snakemake.input.get(i, "")
     if file:
