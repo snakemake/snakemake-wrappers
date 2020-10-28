@@ -1,7 +1,7 @@
 name: dada2_filter_trim_pe
 description: |
   `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
-  Quality filtering of paired-end reads using dada2 filterAndTrim function.
+  Quality filtering of paired-end reads using dada2 filterAndTrim function. Optional parameters are documented in the `manual <https://www.bioconductor.org/packages/release/bioc/manuals/dada2/man/dada2.pdf>`_.
 authors:
   - Charlie Pauvert
 input:
@@ -12,5 +12,4 @@ output:
     filt_rev: a compressed filtered reverse FASTQ file
     stats: a .tsv file with the number of processed and filtered reads per sample
 params:
-  - A Python dictionary holding extra parameters for the R function
-
+  extra: A string containing a list of R optional arguments passed to the wrapped function
