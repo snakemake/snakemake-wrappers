@@ -9,7 +9,8 @@ from snakemake.shell import shell
 out_parts = Path(snakemake.output[0]).parts
 # Check if output folder follows Ensembl path structure
 assert (
-    str(Path(*out_parts[-2:])) == f"{snakemake.wildcards.species}/{snakemake.wildcards.release}_{snakemake.wildcards.build}"
+    str(Path(*out_parts[-2:]))
+    == f"{snakemake.wildcards.species}/{snakemake.wildcards.release}_{snakemake.wildcards.build}"
 ), "output folder must end in '{species}/{release}_{build}'"
 # Extract CACHE_DIR
 cache_dir = str(Path(*out_parts[:-2]))
