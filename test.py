@@ -108,13 +108,15 @@ def test_mapdamage2():
         ],
     )
 
-
+def test_dada2_learn_errors():
+    run(
+        "bio/dada2/learn-errors",
+        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/model_1.RDS"],
+    )
 def test_dada2_quality_profile_pe():
     run("bio/dada2/quality-profile",
         ["snakemake", "--cores", "1", "reports/dada2/quality-profile/a.1-quality-profile.png", "--use-conda", "-F"]
     )
-
-
 def test_dada2_quality_profile_se():
     run("bio/dada2/quality-profile",
         ["snakemake", "--cores", "1", "reports/dada2/quality-profile/a-quality-profile.png", "--use-conda", "-F"]
