@@ -30,10 +30,10 @@ if(length(snakemake@params) > 0 ){
            message("Optional R parameters should be passed as named Python arguments")
            message("in the Snakefile. Check the example below:")
            message("params:\n\tverbose=True, foo=[1,42]")
-           message("Using defaults parameters from dada2::dada()")
+           message("Using default parameters from dada2::dada()")
        }
 } else{
-    message("No optional parameters. Using defaults parameters from dada2::dada()")
+    message("No optional parameters. Using default parameters from dada2::dada()")
 }
 
 # Learn errors rates for both read types
