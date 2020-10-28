@@ -2611,7 +2611,7 @@ def test_ptrimmer_pe():
 def test_vep_cache():
     run(
         "bio/vep/cache",
-        ["snakemake", "--cores", "1", "resources/vep/cache", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "resources/vep/cache/saccharomyces_cerevisiae/98_R64-1-1", "--use-conda", "-F"],
     )
 
 

@@ -1,12 +1,8 @@
 rule get_vep_cache:
     output:
-        directory("resources/vep/cache")
-    params:
-        species="saccharomyces_cerevisiae",
-        build="R64-1-1",
-        release="98"
+        directory("resources/vep/cache/{species}/{release}_{build}")
     log:
-        "logs/vep/cache.log"
+        "logs/vep/cache/{species}/{release}_{build}.log"
     cache: True  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/vep/cache"
