@@ -1,0 +1,10 @@
+name: picard MarkDuplicatesWithMateCigar
+description: |
+  Mark PCR and optical duplicates with picard tools, taking into account the CIGAR of the mate. For more information about MarkDuplicatesWithMateCigar see `picard documentation <https://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicatesWithMateCigar>`_.
+authors:
+  - Johannes Köster
+  - Filipe G. Vieira
+input:
+  - bam file
+output:
+  - bam file with marked or removed duplicates

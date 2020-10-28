@@ -1,0 +1,4 @@
+name: "vg prune"
+description: Prunes the complex regions of the graph for GCSA2 indexing.
+authors:
+  - Ali Ghaffaari
