@@ -5,20 +5,40 @@
 
 # Snakemake wrapper for dereplicating FASTQ files using dada2 derepFastq function.
 
-library(dada2, quietly=TRUE)
-
 # Sink the stderr and stdout to the snakemake log file
+# https://stackoverflow.com/a/48173272
 log.file<-file(snakemake@log[[1]],open="wt")
 sink(log.file)
 sink(log.file,type="message")
 
+library(dada2)
+
+# Prepare arguments (no matter the order)
+args<-list( fls = snakemake@input)
+# Check if extra params are passed
+if(length(snakemake@params) > 0 ){
+       # Keeping only the named elements of the list for do.call()
+       extra<-snakemake@params[ names(snakemake@params) != "" ]
+       if(is.list(extra)){
+           # Add them to the list of arguments
+           args<-c(args, extra)
+       } else{
+           message("Optional R parameters should be passed as named Python arguments")
+           message("in the Snakefile. Check the example below:")
+           message("params:\n\tverbose=True, foo=[1,42]")
+           message("Using defaults parameters from dada2::derepFastq()")
+       }
+} else{
+    message("No optional parameters. Using defaults parameters from dada2::derepFastq()")
+}
 # Dereplicate
-uniques<-derepFastq(snakemake@input[[1]])
+uniques<-do.call(derepFastq, args)
 
 # Store as RDS file
 saveRDS(uniques,snakemake@output[[1]])
 
-# Close the connection for the log file
+# Proper syntax to close the connection for the log file
+# but could be optional for Snakemake wrapper
 sink(type="message")
 sink()
 
