@@ -1,5 +1,5 @@
 name: samtools sort
-description: Sort bam file with samtools.
+description: Sort bam file with samtools. For more information see `SAMtools documentation <http://www.htslib.org/doc/samtools-sort.html>`_.
 authors:
   - Johannes Köster
 notes: |
