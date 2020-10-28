@@ -36,6 +36,7 @@ rule dada2_filter_trim_pe:
     # and lists (`list_arg=[]`) are automatically converted to R.
     # For a named list as an extra named arguments, use a python dict
     #   (`named_list={name1=arg1}`).
+    params:
         maxEE=1, truncLen=[7,6], minLen=1
         # Set the number of kept bases to 7 for the toy example
         # Set minLen to 1 for the toy example but default is 20
