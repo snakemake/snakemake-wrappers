@@ -1,4 +1,4 @@
 name: bcftools norm
-description: Left-align and normalize indels, check if REF alleles match the reference, split multiallelic sites into multiple rows; recover multiallelics from multiple rows.
+description: Left-align and normalize indels, check if REF alleles match the reference, split multiallelic sites into multiple rows; recover multiallelics from multiple rows. For more information see `BCFtools documentation <https://www.htslib.org/doc/bcftools.html#norm>`_.
 authors:
   - Dayne Filer

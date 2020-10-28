@@ -1,4 +1,4 @@
 name: "bwa aln"
-description: Map reads with bwa aln.
+description: Map reads with bwa aln. For more information about BWA see `BWA documentation <http://bio-bwa.sourceforge.net/bwa.shtml>`_.
 authors:
   - Julian de Ruiter
