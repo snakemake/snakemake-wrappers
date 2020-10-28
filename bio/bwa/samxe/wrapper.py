@@ -1,7 +1,7 @@
 """Snakemake wrapper for both bwa samse and sampe."""
 
 __author__ = "Filipe G. Vieira"
-__copyright__ = "Copyright 2021, Filipe G. Vieira"
+__copyright__ = "Copyright 2020, Filipe G. Vieira"
 __license__ = "MIT"
 
 
