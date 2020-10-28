@@ -13,6 +13,7 @@ rule dada2_filter_trim_se:
     # For a named list as an extra named arguments, use a python dict
     #   (`named_list={name1=arg1}`).
     params:
+	# Set the maximum expected errors tolerated in filtered reads
         maxEE=1,
         # Set the number of kept bases to 7 for the toy example
         truncLen=7,
@@ -39,9 +40,13 @@ rule dada2_filter_trim_pe:
     # For a named list as an extra named arguments, use a python dict
     #   (`named_list={name1=arg1}`).
     params:
-        maxEE=1, truncLen=[7,6], minLen=1
-        # Set the number of kept bases to 7 for the toy example
+	# Set the maximum expected errors tolerated in filtered reads
+        maxEE=1,
+        # Set the number of kept bases in forward and reverse reads
+	# respectively to 7 for the toy example
+        truncLen=[7,6]
         # Set minLen to 1 for the toy example but default is 20
+        minLen=1
     threads: 1 # set desired number of threads here
     wrapper:
         "master/bio/dada2/filter-trim"
