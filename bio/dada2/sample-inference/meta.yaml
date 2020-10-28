@@ -1,7 +1,7 @@
 name: dada2_learn_errors
 description: |
   `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
-  Inferring sample composition using dada2 dada function.
+  Inferring sample composition using dada2 dada function. Optional parameters are documented in the `manual <https://www.bioconductor.org/packages/release/bioc/manuals/dada2/man/dada2.pdf>`_.
 authors:
   - Charlie Pauvert
 input:
@@ -10,4 +10,4 @@ input:
 output:
   -  RDS file with the stored inferred sample composition
 params:
-  - A Python dictionary passing arguments to dada() R function
+  - R optional arguments passed to the wrapped function as named Python arguments
