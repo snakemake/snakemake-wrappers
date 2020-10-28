@@ -1,4 +1,4 @@
 name: bcftools view
-description: View vcf/bcf file in a different format.
+description: View vcf/bcf file in a different format. For more information see `BCFtools documentation <https://www.htslib.org/doc/bcftools.html#view>`_.
 authors:
   - Johannes Köster
