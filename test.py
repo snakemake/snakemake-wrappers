@@ -109,6 +109,18 @@ def test_mapdamage2():
     )
 
 
+def test_dada2_quality_profile_pe():
+    run("bio/dada2/quality-profile",
+        ["snakemake", "--cores", "1", "reports/dada2/quality-profile/a.1-quality-profile.png", "--use-conda", "-F"]
+    )
+
+
+def test_dada2_quality_profile_se():
+    run("bio/dada2/quality-profile",
+        ["snakemake", "--cores", "1", "reports/dada2/quality-profile/a-quality-profile.png", "--use-conda", "-F"]
+    )
+
+
 def test_arriba_star_meta():
     run(
         "meta/bio/star_arriba",
@@ -426,6 +438,13 @@ def test_bowtie2_align():
     run(
         "bio/bowtie2/align",
         ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
+    )
+
+
+def test_bowtie2_build():
+    run(
+        "bio/bowtie2/build",
+        ["snakemake", "--cores", "1", "genome.1.bt2", "--use-conda", "-F"],
     )
 
 
@@ -1137,6 +1156,28 @@ def test_homer_makeTagDirectory():
         ["snakemake", "--cores", "1", "--use-conda", "-F", "tagDir/a"],
     )
 
+
+def test_homer_annotatePeaks():
+    run(
+        "bio/homer/annotatePeaks",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "a_annot.txt",
+            "a.count.matrix.txt",
+            "a.ratio.matrix.txt",
+            "a.logPvalue.matrix.txt",
+            "a.stats.txt",
+            "a_motif.fasta",
+            "a_motif.bed",
+            "a_motif.logic",
+            "--use-conda",
+            "-F",
+        ],
+    )
 
 def test_kallisto_index():
     run(
@@ -2289,6 +2330,17 @@ def test_ensembl_sequence_old_release():
         ["snakemake", "-s", "old_release.smk", "--cores", "1", "--use-conda", "-F"],
     )
 
+def test_ensembl_sequence_chromosome():
+    run(
+        "bio/reference/ensembl-sequence",
+        ["snakemake", "--cores", "1", "refs/chr1.fasta", "--use-conda", "-F"],
+    )
+
+def test_ensembl_sequence_chromosome_old_release():
+    run(
+        "bio/reference/ensembl-sequence",
+        ["snakemake", "-s", "old_release.smk", "--cores", "1", "refs/old_release.chr1.fasta", "--use-conda", "-F"],
+    )
 
 def test_ensembl_annotation():
     run(
@@ -2617,3 +2669,49 @@ def test_snpsift_annotate():
         "bio/snpsift/annotate",
         ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"],
     )
+
+
+def test_vg_construct():
+    run("bio/vg/construct",
+        ["snakemake", "--cores", "1", "graph/c.vg", "--use-conda", "-F"])
+
+
+def test_vg_merge():
+    run("bio/vg/merge",
+        ["snakemake", "--cores", "1", "graph/wg.vg", "--use-conda", "-F"])
+
+
+def test_vg_ids():
+    run("bio/vg/ids",
+        ["snakemake", "--cores", "1", "graph/c_mod.vg", "--use-conda", "-F"])
+
+
+def test_vg_index_gcsa():
+    run("bio/vg/index/gcsa",
+        ["snakemake", "--cores", "1", "index/wg.gcsa", "--use-conda", "-F"])
+
+
+def test_vg_index_xg():
+    run("bio/vg/index/xg",
+        ["snakemake", "--cores", "1", "index/x.xg", "--use-conda", "-F"])
+
+
+def test_vg_kmers():
+    run("bio/vg/kmers",
+        ["snakemake", "--cores", "1", "kmers/c.kmers", "--use-conda", "-F"])
+
+
+def test_vg_prune():
+    run("bio/vg/prune",
+        ["snakemake", "--cores", "1", "graph/c.pruned.vg", "--use-conda", "-F"])
+
+
+def test_vg_sim():
+    run("bio/vg/sim",
+        ["snakemake", "--cores", "1", "reads/x.seq", "--use-conda", "-F"])
+
+
+def test_wgsim():
+    run("bio/wgsim",
+        ["snakemake", "--cores", "1", "reads/1.fq", "reads/2.fq",
+         "--use-conda", "-F"])

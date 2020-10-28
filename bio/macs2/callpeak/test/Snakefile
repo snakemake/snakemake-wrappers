@@ -40,6 +40,6 @@ rule callpeak_options:
     log:
         "logs/macs2/callpeak.log"
     params:
-        "-f BAM -g hs --nomodel"
+        "-f BAM -g hs --broad-cutoff 0.1 --nomodel"
     wrapper:
         "master/bio/macs2/callpeak"
