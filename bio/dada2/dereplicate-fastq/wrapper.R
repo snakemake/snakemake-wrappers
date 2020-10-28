@@ -14,7 +14,7 @@ sink(log.file,type="message")
 library(dada2)
 
 # Prepare arguments (no matter the order)
-args<-list( fls = snakemake@input)
+args<-list( fls = unlist(snakemake@input))
 # Check if extra params are passed
 if(length(snakemake@params) > 0 ){
        # Keeping only the named elements of the list for do.call()
