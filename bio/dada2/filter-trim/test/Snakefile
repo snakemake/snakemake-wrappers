@@ -1,0 +1,35 @@
+rule dada2_filter_trim_se:
+    input:
+        # Single-end files without primers sequences
+        fwd="trimmed/{sample}.1.fastq"
+    output:
+        filt="filtered-se/{sample}.1.fastq",
+        stats="reports/dada2/filter-trim-se/{sample}.tsv"
+    log:
+        "logs/dada2/filter-trim-se/{sample}.log"
+    params:
+        extra='list(maxEE=1, truncLen=7, minLen=1)'
+        # Set the number of kept bases to 7 for the toy example
+        # Set minLen to 1 for the toy example but default is 20
+    threads: 1 # set desired number of threads here
+    wrapper:
+        "master/bio/dada2/filter-trim"
+
+rule dada2_filter_trim_pe:
+    input:
+        # Paired-end files without primers sequences
+        fwd="trimmed/{sample}.1.fastq",
+        rev="trimmed/{sample}.2.fastq"
+    output:
+        filt="filtered-pe/{sample}.1.fastq",
+        filt_rev="filtered-pe{sample}.2.fastq",
+        stats="reports/dada2/filter-trim-pe/{sample}.tsv"
+    log:
+        "logs/dada2/filter-trim-pe/{sample}.log"
+    params:
+        extra='list(maxEE=1, truncLen=c(7,6), minLen=1)'
+        # Set the number of kept bases to 7 for the toy example
+        # Set minLen to 1 for the toy example but default is 20
+    threads: 1 # set desired number of threads here
+    wrapper:
+        "master/bio/dada2/filter-trim"

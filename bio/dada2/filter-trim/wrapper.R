@@ -3,7 +3,7 @@
 # __email__ = "cpauvert@protonmail.com"
 # __license__ = "MIT"
 
-# Snakemake wrapper for filtering paired-end reads using dada2 filterAndTrim function."
+# Snakemake wrapper for filtering single or paired-end reads using dada2 filterAndTrim function.
 
 # Sink the stderr and stdout to the snakemake log file
 # https://stackoverflow.com/a/48173272
@@ -16,12 +16,16 @@ library(dada2)
 # Prepare arguments (no matter the order)
 args<-list(
         fwd = snakemake@input[["fwd"]],
-        rev = snakemake@input[["rev"]],
         filt = snakemake@output[["filt"]],
-        filt.rev = snakemake@output[["filt_rev"]],
         multithread=snakemake@threads
 )
-
+# Test if paired end input is passed
+if(!is.null(snakemake@input[["rev"]]) & !is.null(snakemake@output[["filt_rev"]])){
+        args<-c(args,
+            rev = snakemake@input[["rev"]],
+            filt.rev = snakemake@output[["filt_rev"]]
+            )
+}
 # Check if extra params are passed
 if(length(snakemake@params) > 0 ){
     extra<-eval(parse(text=snakemake@params[["extra"]]))
