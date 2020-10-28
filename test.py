@@ -96,10 +96,15 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
-def test_dada2_make_table():
+def test_dada2_make_table_se():
     run(
         "bio/dada2/make-table",
-        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/seqTab.RDS"],
+        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/seqTab-se.RDS"],
+    )
+def test_dada2_make_table_pe():
+    run(
+        "bio/dada2/make-table",
+        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/seqTab-pe.RDS"],
     )
 def test_arriba_star_meta():
     run(
