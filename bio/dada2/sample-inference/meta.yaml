@@ -5,9 +5,9 @@ description: |
 authors:
   - Charlie Pauvert
 input:
-    derep: a RDS file withe the dereplicated sequences
-    model: a RDS file with the error model
+    derep: RDS file withe the dereplicated sequences
+    model: RDS file with the error model
 output:
   -  RDS file with the stored inferred sample composition
 params:
-  - R optional arguments passed to the wrapped function as named Python arguments
+  - optional arguments for dada(), please provide them as python key=value pairs
