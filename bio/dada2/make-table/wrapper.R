@@ -31,15 +31,8 @@ args<-list( samples = smps)
 if(length(snakemake@params) > 1 ){
        # Keeping only the named elements of the list for do.call() (apart from [["names"]])
        extra<-snakemake@params[ names(snakemake@params) != "" & names(snakemake@params) != "names" ]
-       if(is.list(extra)){
-           # Add them to the list of arguments
-           args<-c(args, extra)
-       } else{
-           message("Optional R parameters should be passed as named Python arguments")
-           message("in the Snakefile. Check the example below:")
-           message("params:\n\tverbose=True, foo=[1,42]")
-           message("Using default parameters from dada2::makeSequenceTable()")
-       }
+       # Add them to the list of arguments
+       args<-c(args, extra)
 } else{
     message("No optional parameters. Using default parameters from dada2::makeSequenceTable()")
 }
