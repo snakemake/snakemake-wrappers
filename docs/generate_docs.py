@@ -64,12 +64,12 @@ def render_tool(tool, subcmds):
 def render_wrapper(path, target):
     print("rendering", path)
     with open(os.path.join(path, "meta.yaml")) as meta:
-        meta = yaml.load(meta)
+        meta = yaml.load(meta, Loader=yaml.BaseLoader)
 
     envpath = os.path.join(path, "environment.yaml")
     if os.path.exists(envpath):
         with open(envpath) as env:
-            env = yaml.load(env)
+            env = yaml.load(env, Loader=yaml.BaseLoader)
             pkgs = env["dependencies"]
     else:
         pkgs = []
@@ -102,11 +102,11 @@ def render_wrapper(path, target):
 def render_meta(path, target):
     print("rendering", path)
     with open(os.path.join(path, "meta.yaml")) as meta:
-        meta = yaml.load(meta)
+        meta = yaml.load(meta, Loader=yaml.BaseLoader)
     wrapperpath = os.path.join(path, "used_wrappers.yaml")
     if os.path.exists(wrapperpath):
         with open(wrapperpath) as env:
-            env = yaml.load(env)
+            env = yaml.load(env, Loader=yaml.BaseLoader)
             used_wrappers = env["wrappers"]
     else:
         used_wrappers = []
