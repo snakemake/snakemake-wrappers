@@ -10,7 +10,7 @@ from snakemake.shell import shell
 
 
 n = len(snakemake.input)
-assert n == 1, "Input must contain 1 (single-end) elements."
+assert n == 1, "Input must contain 1 (single-end) element."
 
 extra = snakemake.params.get("extra", "")
 adapters = snakemake.params.get("adapters", "")
