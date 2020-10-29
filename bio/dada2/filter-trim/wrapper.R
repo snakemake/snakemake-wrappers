@@ -13,23 +13,6 @@ sink(log.file,type="message")
 
 library(dada2)
 
-# Custom function to check if homogeneous compression suffixes are given
-all_compressed<-function(f){
-	if(!is.null(f)){
-		compressed<-grepl(".gz$|.bz2$", f)
-		if(all(compressed)){
-			return(TRUE)
-		} else if(all(!compressed)){
-			return(FALSE)
-		} else {
-			stop("Non-homogeneous suffixes (.gz or .bz2) for some files.")
-		}
-
-	} else {
-		return(NULL)
-	}
-}
-
 # Prepare arguments (no matter the order)
 args<-list(
         fwd = snakemake@input[["fwd"]],
@@ -54,10 +37,10 @@ if(!is.null(extra[["compress"]])){
     } else {
     # Check if output files are given as compressed files
     # ex: in se version, all(TRUE, NULL) gives TRUE
-    extra[["compress"]]<-all(
-    			all_compressed(args[["filt"]]),
-    			all_compressed(args[["filt.rev"]])
-    			)
+    extra[["compress"]]<-c(
+	   endsWith(args[["filt"]], '.gz'),
+	   if(is.null(args[["filt.rev"]])) NULL else {endsWith(args[["filt.rev"]], 'gz')}
+       )
     }
     # Add them to the list of arguments
     args<-c(args, extra)
