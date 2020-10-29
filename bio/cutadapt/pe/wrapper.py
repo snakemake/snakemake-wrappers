@@ -16,7 +16,9 @@ extra = snakemake.params.get("extra", "")
 adapters = snakemake.params.get("adapters", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-assert extra != "" or adapters != "", "No options provided to cutadapt. Please use 'params: adapters=' or 'params: extra='."
+assert (
+    extra != "" or adapters != ""
+), "No options provided to cutadapt. Please use 'params: adapters=' or 'params: extra='."
 
 shell(
     "cutadapt"
