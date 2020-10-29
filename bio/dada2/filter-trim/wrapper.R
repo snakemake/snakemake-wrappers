@@ -37,7 +37,7 @@ if(length(snakemake@params) > 0 ){
     } else {
         # Check if output files are given as compressed files
         # ex: in se version, all(TRUE, NULL) gives TRUE
-        extra[["compress"]]<-c(
+        extra[["compress"]]<-all(
 	      endsWith(args[["filt"]], '.gz'),
 	      if(is.null(args[["filt.rev"]])) NULL else {endsWith(args[["filt.rev"]], 'gz')}
         )
