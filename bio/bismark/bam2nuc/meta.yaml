@@ -5,7 +5,7 @@ description: |
 authors:
   - Roman Cherniatchik
 input:
-  - genome_fa: Path to genome in FastA format (e.g. *.fa, *.fasta, *.fa.gz, *.fasta.gz). All genomes FastA from it's parent folder will be taken
+  - genome_fa: Path to genome in FastA format (e.g. \*.fa, \*.fasta, \*.fa.gz, \*.fasta.gz). All genomes FastA from it's parent folder will be taken
   - bam: Optional BAM or CRAM file (or multiple space separated files). If bam arg isn't provided, option `--genomic_composition_only` will be used to generate genomic composition table `genomic_nucleotide_frequencies.txt`.
 output:
   - Genome nucleotide frequencies `genomic_nucleotide_frequencies.txt` will be generated in 'genome_fa' directory, optional output.
