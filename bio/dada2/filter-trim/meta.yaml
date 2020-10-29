@@ -5,11 +5,11 @@ description: |
 authors:
   - Charlie Pauvert
 input:
-    fwd: a forward FASTQ file (potentially compressed) without primers sequences
-    rev: an (optional) reverse FASTQ file (potentially compressed) without primers sequences
+    fwd: a forward FASTQ file (potentially compressed) without primer sequences
+    rev: an (optional) reverse FASTQ file (potentially compressed) without primer sequences
 output:
     filt: a compressed filtered forward FASTQ file
     filt_rev: an (optional) compressed filtered reverse FASTQ file
     stats: a .tsv file with the number of processed and filtered reads per sample
 params:
-  - R optional arguments passed to the wrapped function as named Python arguments
+  - optional arguments for filterAndTrim(), please provide them as python key=value pairs
