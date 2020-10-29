@@ -1,7 +1,7 @@
 rule dada2_filter_trim_se:
     input:
         # Single-end files without primers sequences
-        fwd="trimmed/{sample}.1.fastq"
+        fwd="trimmed/{sample}.1.fastq.gz"
     output:
         filt="filtered-se/{sample}.1.fastq.gz",
         stats="reports/dada2/filter-trim-se/{sample}.tsv"
