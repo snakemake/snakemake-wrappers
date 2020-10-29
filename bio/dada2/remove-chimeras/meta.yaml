@@ -5,8 +5,8 @@ description: |
 authors:
   - Charlie Pauvert
 input:
-  - A RDS file with the sequence table
+  - RDS file with the sequence table
 params:
-  - R optional arguments passed to the wrapped function as named Python arguments
+  - optional arguments for removeBimeraDenovo(), please provide them as python key=value pairs
 output:
-  - A RDS file with the chimera-free sequence table
+  - RDS file with the chimera-free sequence table
