@@ -6,6 +6,6 @@ authors:
   - Charlie Pauvert
 input: a FASTQ file
 params:
-  - R optional arguments passed to the wrapped function as named Python arguments
-output: a RDS file containing a `derep-class` object
+  - optional arguments for derepFastq(), please provide them as python key=value pairs
+output: RDS file containing a `derep-class` object
 

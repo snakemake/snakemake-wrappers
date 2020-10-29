@@ -19,15 +19,8 @@ args<-list( fls = unlist(snakemake@input))
 if(length(snakemake@params) > 0 ){
        # Keeping only the named elements of the list for do.call()
        extra<-snakemake@params[ names(snakemake@params) != "" ]
-       if(is.list(extra)){
-           # Add them to the list of arguments
-           args<-c(args, extra)
-       } else{
-           message("Optional R parameters should be passed as named Python arguments")
-           message("in the Snakefile. Check the example below:")
-           message("params:\n\tverbose=True, foo=[1,42]")
-           message("Using default parameters from dada2::derepFastq()")
-       }
+       # Add them to the list of arguments
+       args<-c(args, extra)
 } else{
     message("No optional parameters. Using default parameters from dada2::derepFastq()")
 }
