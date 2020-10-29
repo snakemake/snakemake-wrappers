@@ -32,7 +32,7 @@ if(length(snakemake@params) > 0 ){
     extra<-snakemake@params[ names(snakemake@params) != "" ]
 # Check if 'compress=' option is passed
 if(!is.null(extra[["compress"]])){
-    stop("Remove the `compress` option from the Snakefile.\n",
+    stop("Remove the `compress=` option from `params`.\n",
     "The `compress` option is implicitly set here from the file extension.")
     } else {
     # Check if output files are given as compressed files
