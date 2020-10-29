@@ -37,10 +37,15 @@ if(length(snakemake@params) > 0 ){
     } else {
         # Check if output files are given as compressed files
         # ex: in se version, all(TRUE, NULL) gives TRUE
-        extra[["compress"]]<-all(
-	      endsWith(args[["filt"]], '.gz'),
-	      if(is.null(args[["filt.rev"]])) NULL else {endsWith(args[["filt.rev"]], 'gz')}
+        compressed <- c(
+            endsWith(args[["filt"]], '.gz'),
+            if(is.null(args[["filt.rev"]])) NULL else {endsWith(args[["filt.rev"]], 'gz')}
         )
+        if ( all(compressed) ) {
+            extra[["compress"]] <- TRUE
+        } else if ( any(compressed) ) {
+            stop("Either all or no fastq output should be compressed. Please check `output.filt` and `output.filt_rev` for consistency.")
+        }
     }
     # Add them to the list of arguments
     args<-c(args, extra)
