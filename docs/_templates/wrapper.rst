@@ -11,10 +11,19 @@ Software dependencies
 ---------------------
 
 {% for pkg in pkgs %}
-* {{ pkg }}
+* ``{{ pkg |replace(' ','')}}``
 {% endfor %}
 {% endif %}
 
+{% if input and output %}
+Input/Output
+------------
+{# Parse the input and output section of .yaml #}
+{% for iotitle, io in ({"Input":input,"Output": output}).items() %}
+**{{ iotitle }}:**
+{% for foo in io %} {% if foo is string %}* {{ foo }} {% else %}
+{% for key, value in foo.items() %}* ``{{ key }}``: {{ value }}{% endfor %} {% endif %} {% endfor %} {% endfor %}
+{% endif %}
 
 Example
 -------

@@ -11,7 +11,7 @@ Used wrappers
 ---------------------
 
 {% for uw in usedwrappers %}
-* {{ uw }}
+* ``{{ uw }}``
 {% endfor %}
 {% endif %}
 
@@ -55,7 +55,7 @@ Code
 ----
 {% for wrapper in wrappers %}
 
-* {{ wrapper[2] }}
+* ``{{ wrapper[2] }}``
 
 .. code-block:: {{ wrapper[1] }}
 
