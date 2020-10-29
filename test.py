@@ -117,13 +117,13 @@ def test_dada2_learn_errors():
 def test_dada2_filter_trim_se():
     run(
         "bio/dada2/filter-trim",
-        ["snakemake", "--cores", "1", "filtered-se/a.1.fastq", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "filtered-se/a.1.fastq.gz", "--use-conda", "-F"]
     )
 
 def test_dada2_filter_trim_pe():
     run(
         "bio/dada2/filter-trim",
-        ["snakemake", "--cores", "1", "filtered-pe/a.1.fastq", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "filtered-pe/a.1.fastq.gz", "--use-conda", "-F"]
     )
 
 def test_dada2_quality_profile_pe():

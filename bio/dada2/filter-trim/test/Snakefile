@@ -3,7 +3,7 @@ rule dada2_filter_trim_se:
         # Single-end files without primers sequences
         fwd="trimmed/{sample}.1.fastq"
     output:
-        filt="filtered-se/{sample}.1.fastq",
+        filt="filtered-se/{sample}.1.fastq.gz",
         stats="reports/dada2/filter-trim-se/{sample}.tsv"
     log:
         "logs/dada2/filter-trim-se/{sample}.log"
@@ -29,8 +29,8 @@ rule dada2_filter_trim_pe:
         fwd="trimmed/{sample}.1.fastq",
         rev="trimmed/{sample}.2.fastq"
     output:
-        filt="filtered-pe/{sample}.1.fastq",
-        filt_rev="filtered-pe/{sample}.2.fastq",
+        filt="filtered-pe/{sample}.1.fastq.gz",
+        filt_rev="filtered-pe/{sample}.2.fastq.gz",
         stats="reports/dada2/filter-trim-pe/{sample}.tsv"
     log:
         "logs/dada2/filter-trim-pe/{sample}.log"
