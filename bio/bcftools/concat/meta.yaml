@@ -1,4 +1,4 @@
 name: bcftools concat
-description: Concatenate vcf/bcf files with bcftools.
+description: Concatenate vcf/bcf files with bcftools. For more information see `BCFtools documentation <https://www.htslib.org/doc/bcftools.html#concat>`_.
 authors:
   - Johannes Köster

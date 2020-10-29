@@ -1,0 +1,13 @@
+rule sim:
+    input:
+        xg="x.xg"
+    output:
+        reads="reads/x.seq"
+    params:
+        "--read-length 100 --num-reads 100 -f"
+    log:
+        "logs/vg/sim/x.log"
+    threads:
+        4
+    wrapper:
+        "master/bio/vg/sim"

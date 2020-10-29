@@ -1,4 +1,4 @@
 name: "bwa sampe"
-description: Map paired-end reads with bwa sampe.
+description: Map paired-end reads with bwa sampe. For more information about BWA see `BWA documentation <http://bio-bwa.sourceforge.net/bwa.shtml>`_.
 authors:
   - Julian de Ruiter
