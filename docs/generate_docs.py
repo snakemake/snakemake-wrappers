@@ -34,7 +34,7 @@ with open(os.path.join(BASE_DIR, "_templates", "tool.rst")) as f:
     TOOL_TEMPLATE = Template(f.read())
 
 with open(os.path.join(BASE_DIR, "_templates", "wrapper.rst")) as f:
-    TEMPLATE_WRAPPER = Template(f.read())
+    TEMPLATE_WRAPPER = Template(f.read(), trim_blocks=True, lstrip_blocks=True)
 
 with open(os.path.join(BASE_DIR, "_templates", "meta_wrapper.rst")) as f:
     TEMPLATE_META = Template(f.read())
