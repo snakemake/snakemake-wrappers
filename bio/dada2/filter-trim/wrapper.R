@@ -45,6 +45,8 @@ if(length(snakemake@params) > 0 ){
             extra[["compress"]] <- TRUE
         } else if ( any(compressed) ) {
             stop("Either all or no fastq output should be compressed. Please check `output.filt` and `output.filt_rev` for consistency.")
+        } else {
+            extra[["compress"]] <- FALSE
         }
     }
     # Add them to the list of arguments
