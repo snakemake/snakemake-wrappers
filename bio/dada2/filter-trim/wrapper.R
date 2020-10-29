@@ -30,21 +30,21 @@ if(!is.null(snakemake@input[["rev"]]) & !is.null(snakemake@output[["filt_rev"]])
 if(length(snakemake@params) > 0 ){
     # Keeping only the named elements of the list for do.call()
     extra<-snakemake@params[ names(snakemake@params) != "" ]
-# Check if 'compress=' option is passed
-if(!is.null(extra[["compress"]])){
-    stop("Remove the `compress=` option from `params`.\n",
-    "The `compress` option is implicitly set here from the file extension.")
+    # Check if 'compress=' option is passed
+    if(!is.null(extra[["compress"]])){
+        stop("Remove the `compress=` option from `params`.\n",
+            "The `compress` option is implicitly set here from the file extension.")
     } else {
-    # Check if output files are given as compressed files
-    # ex: in se version, all(TRUE, NULL) gives TRUE
-    extra[["compress"]]<-c(
-	   endsWith(args[["filt"]], '.gz'),
-	   if(is.null(args[["filt.rev"]])) NULL else {endsWith(args[["filt.rev"]], 'gz')}
-       )
+        # Check if output files are given as compressed files
+        # ex: in se version, all(TRUE, NULL) gives TRUE
+        extra[["compress"]]<-c(
+	      endsWith(args[["filt"]], '.gz'),
+	      if(is.null(args[["filt.rev"]])) NULL else {endsWith(args[["filt.rev"]], 'gz')}
+        )
     }
     # Add them to the list of arguments
     args<-c(args, extra)
-} else{
+} else {
     message("No optional parameters. Using default parameters from dada2::filterAndTrim()")
 }
 
