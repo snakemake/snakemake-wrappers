@@ -6,16 +6,6 @@
 {{ description }}
 
 
-{% if usedwrappers|length %}
-Used wrappers
----------------------
-
-{% for uw in usedwrappers %}
-* ``{{ uw }}``
-{% endfor %}
-{% endif %}
-
-
 Example
 -------
 
@@ -33,6 +23,17 @@ When running with
     snakemake --use-conda
 
 the software dependencies will be automatically deployed into an isolated environment before execution.
+{% if usedwrappers|length %}
+
+
+Used wrappers
+---------------------
+
+{% for uw in usedwrappers %}
+* ``{{ uw }}``
+{% endfor %}
+{% endif %}
+
 
 {% if notes %}
 

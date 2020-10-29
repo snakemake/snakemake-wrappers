@@ -6,6 +6,24 @@
 {{ description }}
 
 
+Example
+-------
+
+This wrapper can be used in the following way:
+
+.. code-block:: python
+
+{{ snakefile }}
+
+Note that input, output and log file paths can be chosen freely.
+When running with
+
+.. code-block:: bash
+
+    snakemake --use-conda
+
+the software dependencies will be automatically deployed into an isolated environment before execution.
+
 {% if pkgs|length %}
 Software dependencies
 ---------------------
@@ -24,24 +42,6 @@ Input/Output
 {% for foo in io %} {% if foo is string %}* {{ foo }} {% else %}
 {% for key, value in foo.items() %}* ``{{ key }}``: {{ value }}{% endfor %} {% endif %} {% endfor %} {% endfor %}
 {% endif %}
-
-Example
--------
-
-This wrapper can be used in the following way:
-
-.. code-block:: python
-
-{{ snakefile }}
-
-Note that input, output and log file paths can be chosen freely.
-When running with
-
-.. code-block:: bash
-
-    snakemake --use-conda
-
-the software dependencies will be automatically deployed into an isolated environment before execution.
 
 {% if notes %}
 
