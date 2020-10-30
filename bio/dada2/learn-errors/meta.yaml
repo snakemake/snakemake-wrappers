@@ -10,5 +10,5 @@ input:
 params:
   - optional arguments for learnErrors(), please provide them as python key=value pairs
 output:
-    model: RDS file with the stored error model
-    plot: plot observed vs estimated errors rates
+  - model: RDS file with the stored error model
+  - plot: plot observed vs estimated errors rates
