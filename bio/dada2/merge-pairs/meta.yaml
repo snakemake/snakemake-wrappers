@@ -5,10 +5,10 @@ description: |
 authors:
   - Charlie Pauvert
 input:
-  dadaF: RDS file with the inferred sample composition from forward reads 
-  dadaR:                                                    reverse       
-  derepF: RDS file with the dereplicated forward reads
-  derepR:                                reverse      
+  - dadaF: RDS file with the inferred sample composition from forward reads 
+  - dadaR:                                                    reverse       
+  - derepF: RDS file with the dereplicated forward reads
+  - derepR:                                reverse      
 params:
   - optional arguments for mergePairs(), please provide them as python key=value pairs
 output:
