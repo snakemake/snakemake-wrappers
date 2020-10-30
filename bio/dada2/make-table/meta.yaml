@@ -7,7 +7,7 @@ authors:
 input:
   - A list of RDS file with denoised samples (se) or merged samples (pe)
 params: 
-  names: A list of sample names instead of paths
-  params: Any other optional arguments for makeSequenceTable(), please provide them as python key=value pairs
+  - names: A list of sample names instead of paths
+  - params: Any other optional arguments for makeSequenceTable(), please provide them as python key=value pairs
 output:
   - RDS file with the table
