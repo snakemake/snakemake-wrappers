@@ -5,8 +5,8 @@ description: |
 authors:
   - Charlie Pauvert
 input:
-  seqs: RDS file with the chimera-free sequence table
-  refFasta: A string with the path to the FASTA reference database
+  - seqs: RDS file with the chimera-free sequence table
+  - refFasta: A string with the path to the FASTA reference database
 params:
   - optional arguments for assignTaxonomy(), please provide them as python key=value pairs 
 output:
