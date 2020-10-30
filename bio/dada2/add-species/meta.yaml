@@ -5,8 +5,8 @@ description: |
 authors:
   - Charlie Pauvert
 input:
-  taxa: RDS file containing the taxonomic assignments
-  refFasta: A string with the path to the FASTA reference database
+  - taxa: RDS file containing the taxonomic assignments
+  - refFasta: A string with the path to the FASTA reference database
 params:
   - optional arguments for addSpecies(), please provide them as python key=value pairs
 output:
