@@ -31,7 +31,7 @@ def run(wrapper, cmd, check_log=None):
         if os.path.exists(os.path.join(wrapper, wrapper_file)):
             # is meta wrapper
             with open(os.path.join(wrapper, wrapper_file), "r") as wf:
-                wf = yaml.load(wf)
+                wf = yaml.load(wf, Loader=yaml.BaseLoader)
                 used_wrappers = wf["wrappers"]
         else:
             used_wrappers.append(wrapper)
