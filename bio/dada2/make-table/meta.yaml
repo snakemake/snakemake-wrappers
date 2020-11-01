@@ -5,7 +5,7 @@ description: |
 authors:
   - Charlie Pauvert
 input:
-  - A list of RDS file with denoised samples (se) or merged samples (pe)
+  - A list of RDS files with denoised samples (se), or denoised and merged samples (pe)
 params: 
   - names: A list of sample names instead of paths
   - params: Any other optional arguments for makeSequenceTable(), please provide them as python key=value pairs
