@@ -95,6 +95,11 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+def test_dada2_merge_pairs():
+    run(
+        "bio/dada2/merge-pairs",
+        ["snakemake", "--cores", "1", "--use-conda", "merged/a.RDS", "-F"],
+    )
 
 def test_mapdamage2():
     run(
