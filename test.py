@@ -107,7 +107,11 @@ def test_mapdamage2():
             "results/a/Runtime_log.txt",
         ],
     )
-
+def test_dada2_dereplicate_fastq():
+    run(
+        "bio/dada2/dereplicate-fastq",
+        ["snakemake", "--cores", "1", "--use-conda", "uniques/a.1.RDS"],
+    )
 def test_dada2_learn_errors():
     run(
         "bio/dada2/learn-errors",
