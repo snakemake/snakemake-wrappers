@@ -1,4 +1,4 @@
-name: dada2_learn_errors
+name: dada2_sample_inference
 description: |
   `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
   Inferring sample composition using dada2 dada function. Optional parameters are documented in the `manual <https://www.bioconductor.org/packages/release/bioc/manuals/dada2/man/dada2.pdf>`_.
