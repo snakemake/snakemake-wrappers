@@ -95,6 +95,7 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+
 def test_dada2_merge_pairs():
     run(
         "bio/dada2/merge-pairs",
@@ -113,6 +114,12 @@ def test_mapdamage2():
         ],
     )
     
+def test_dada2_assign_taxonomy():
+    run(
+        "bio/dada2/assign-taxonomy",
+        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/taxa.RDS"],
+    )
+
 def test_dada2_make_table_se():
     run(
         "bio/dada2/make-table",
@@ -146,19 +153,18 @@ def test_dada2_filter_trim_se():
 def test_dada2_filter_trim_pe():
     run(
         "bio/dada2/filter-trim",
-        ["snakemake", "--cores", "1", "filtered-pe/a.1.fastq.gz", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "filtered-pe/a.1.fastq.gz", "--use-conda", "-F"],
     )
 
 def test_dada2_quality_profile_pe():
     run("bio/dada2/quality-profile",
-        ["snakemake", "--cores", "1", "reports/dada2/quality-profile/a.1-quality-profile.png", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "reports/dada2/quality-profile/a.1-quality-profile.png", "--use-conda", "-F"],
     )
     
 def test_dada2_quality_profile_se():
     run("bio/dada2/quality-profile",
-        ["snakemake", "--cores", "1", "reports/dada2/quality-profile/a-quality-profile.png", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "reports/dada2/quality-profile/a-quality-profile.png", "--use-conda", "-F"],
     )
-
 
 def test_arriba_star_meta():
     run(
