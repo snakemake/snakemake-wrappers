@@ -120,6 +120,12 @@ def test_mapdamage2():
         ],
     )
     
+def test_dada2_add_species():
+    run(
+        "bio/dada2/add-species",
+        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/taxa-sp.RDS"],
+    )
+
 def test_dada2_remove_chimeras():
     run(
         "bio/dada2/remove-chimeras",
