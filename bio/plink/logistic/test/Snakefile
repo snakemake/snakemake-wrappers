@@ -1,15 +1,14 @@
 rule logistic:
-    threads: 1
     input:
-        expand("plinkdata.{ext}", ext = ["fam", "map", "ped", "cov"])
+        multiext("plinkdata.", "fam", "map", "ped", "cov")
+    output:
+        "plinkdata.assoc.logistic"
     params:
         covar=True,
-        output_prefix="plinkdata",
         extra_logistic="--parameters 1-5, 7",
         extra_covar="",
         covariables=["quantitative_column", "case_control_with_missingness"]
-    output:
-        "plinkdata.assoc.logistic"
+    threads: 1
     log:
         "logs/plink/logistic.log"
     wrapper:

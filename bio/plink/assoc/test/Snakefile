@@ -1,12 +1,11 @@
 rule assoc:
-    threads: 1
     input:
-        expand("plinkdata.{ext}", ext = ["fam", "map", "ped"])
-    params:
-        output_prefix="plinkdata",
-        extra_assoc="fisher-midp mperm=5000 --hwe 1e-8 midp --seed 9034"
+        multiext("plinkdata.", "fam", "map", "ped")
     output:
-        expand("plinkdata.{ext}", ext = ["assoc.fisher", "assoc.fisher.mperm"])
+        multiext("plinkdata.", "assoc.fisher", "assoc.fisher.mperm")
+    params:
+        extra_assoc="fisher-midp mperm=5000 --hwe 1e-8 midp --seed 9034"
+    threads: 1
     log:
         "logs/plink/assoc.log"
     wrapper:

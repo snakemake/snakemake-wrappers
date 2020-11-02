@@ -6,10 +6,15 @@ __email__ = "elsalatino@gmail.com"
 __license__ = "MIT"
 
 from snakemake.shell import shell
+import os
+
+
+def getPlinkName(path):
+    return [x[::-1] for x in os.path.splitext(os.path.basename(path)[::-1])][-1][:-1]
+
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
-
-prefix = snakemake.params.get("output_prefix", "")
+prefix = getPlinkName(snakemake.output[0])
 extra_recode = snakemake.params.get("extra_recode", "")
 extra_file = snakemake.params.get("extra_file", "")
 miss = snakemake.params.get("missing_code", "-9")
@@ -28,7 +33,7 @@ if "tab" in extra_recode:
 shell(
     "(plink --vcf {snakemake.input.vcf}"
     " --recode {extra_recode} --out {prefix} \n"
-    "plink --file {prefix} {extra_file} --out {prefix} \n"
+    "plink --file {prefix} {extra_file} --make-just-fam --out {prefix} \n"
     "rm {prefix}.nosex)"
     " {log}"
 )

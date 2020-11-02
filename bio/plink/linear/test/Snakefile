@@ -1,15 +1,13 @@
 rule linear:
-    threads: 1
     input:
-        expand("plinkdata.{ext}", ext = ["fam", "map", "ped", "cov"])
+        multiext("plinkdata.", "fam", "map", "ped", "cov")
+    output:
+        "plinkdata.assoc.linear"
     params:
-        covar=True,
-        output_prefix="plinkdata",
         extra_linear="standard-beta genotypic interaction --parameters 1-5, 7",
         extra_covar="keep-pheno-on-missing-cov",
         covariables=["binary_column", "case_control_with_missingness"]
-    output:
-        "plinkdata.assoc.linear"
+    threads: 1
     log:
         "logs/plink/linear.log"
     wrapper:
