@@ -86,7 +86,7 @@ the relevant stdout and stderr messages printed.
 If you also want to test the docs generation locally, create another environment
 and activate it::
 
-  conda create -n test-snakemake-wrapper-docs sphinx sphinx_rtd_theme pyyaml
+  conda create -n test-snakemake-wrapper-docs sphinx sphinx_rtd_theme pyyaml sphinx-copybutton
   conda activate test-snakemake-wrapper-docs
 
 Then, enter the respective directory and build the docs::

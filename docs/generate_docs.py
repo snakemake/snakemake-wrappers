@@ -34,10 +34,10 @@ with open(os.path.join(BASE_DIR, "_templates", "tool.rst")) as f:
     TOOL_TEMPLATE = Template(f.read())
 
 with open(os.path.join(BASE_DIR, "_templates", "wrapper.rst")) as f:
-    TEMPLATE = Template(f.read())
+    TEMPLATE_WRAPPER = Template(f.read(), trim_blocks=True, lstrip_blocks=True)
 
 with open(os.path.join(BASE_DIR, "_templates", "meta_wrapper.rst")) as f:
-    TEMPLATE = Template(f.read())
+    TEMPLATE_META = Template(f.read())
 
 
 def get_tool_dir(tool):
@@ -64,12 +64,12 @@ def render_tool(tool, subcmds):
 def render_wrapper(path, target):
     print("rendering", path)
     with open(os.path.join(path, "meta.yaml")) as meta:
-        meta = yaml.load(meta)
+        meta = yaml.load(meta, Loader=yaml.BaseLoader)
 
     envpath = os.path.join(path, "environment.yaml")
     if os.path.exists(envpath):
         with open(envpath) as env:
-            env = yaml.load(env)
+            env = yaml.load(env, Loader=yaml.BaseLoader)
             pkgs = env["dependencies"]
     else:
         pkgs = []
@@ -88,7 +88,7 @@ def render_wrapper(path, target):
     name = meta["name"].replace(" ", "_") + ".rst"
     os.makedirs(os.path.dirname(target), exist_ok=True)
     with open(target, "w") as readme:
-        rst = TEMPLATE.render(
+        rst = TEMPLATE_WRAPPER.render(
             snakefile=snakefile,
             wrapper=wrapper,
             wrapper_lang=wrapper_lang,
@@ -102,18 +102,18 @@ def render_wrapper(path, target):
 def render_meta(path, target):
     print("rendering", path)
     with open(os.path.join(path, "meta.yaml")) as meta:
-        meta = yaml.load(meta)
+        meta = yaml.load(meta, Loader=yaml.BaseLoader)
     wrapperpath = os.path.join(path, "used_wrappers.yaml")
     if os.path.exists(wrapperpath):
         with open(wrapperpath) as env:
-            env = yaml.load(env)
+            env = yaml.load(env, Loader=yaml.BaseLoader)
             used_wrappers = env["wrappers"]
     else:
         used_wrappers = []
 
     with open(os.path.join(path, "test", "Snakefile")) as snakefile:
         snakefile = textwrap.indent(snakefile.read(), "    ").replace("master", TAG)
-        
+
     wrappers = []
     for uw in used_wrappers:
         wrapper = os.path.join(WRAPPER_DIR, uw, "wrapper.py")
@@ -124,11 +124,11 @@ def render_meta(path, target):
         with open(wrapper) as wrapper:
             wrapper = textwrap.indent(wrapper.read(), "    ")
             wrappers.append((wrapper, wrapper_lang, uw))
-            
+
     name = meta["name"].replace(" ", "_") + ".rst"
     os.makedirs(os.path.dirname(target), exist_ok=True)
     with open(target, "w") as readme:
-        rst = TEMPLATE.render(
+        rst = TEMPLATE_META.render(
             snakefile=snakefile,
             wrappers=wrappers,
             usedwrappers=used_wrappers,

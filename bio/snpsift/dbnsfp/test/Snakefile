@@ -1,0 +1,8 @@
+rule test_snpsift_dbnsfp:
+    input:
+        call = "in.vcf",
+        dbNSFP = "dbNSFP.txt.gz"
+    output:
+        call = "out.vcf"
+    wrapper:
+        "master/bio/snpsift/dbnsfp"

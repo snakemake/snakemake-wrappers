@@ -1,5 +1,5 @@
 name: samtools faidx
-description: index reference sequence in FASTA format from reference sequence
+description: index reference sequence in FASTA format from reference sequence. For more information see `SAMtools documentation <http://www.htslib.org/doc/samtools-faidx.html>`_.
 authors:
   - Michael Chambers
 input:

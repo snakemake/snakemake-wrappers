@@ -8,6 +8,7 @@ rule fastp_se:
     log:
         "logs/fastp/se/{sample}.log"
     params:
+        adapters="--adapter_sequence ACGGCTAGCTA",
         extra=""
     threads: 1
     wrapper:
@@ -24,6 +25,7 @@ rule fastp_pe:
     log:
         "logs/fastp/pe/{sample}.log"
     params:
+        adapters="--adapter_sequence ACGGCTAGCTA --adapter_sequence_r2 AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC",
         extra=""
     threads: 2
     wrapper:

@@ -1,4 +1,4 @@
 name: bcftools index
-description: Index vcf/bcf file.
+description: Index vcf/bcf file. For more information see `BCFtools documentation <https://www.htslib.org/doc/bcftools.html#index>`_.
 authors:
   - Jan Forster
