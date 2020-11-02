@@ -12,9 +12,8 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
 
 input_reads = ""
-if "short1" in snakemake.input.keys() and "short2" in snakemake.input.keys():
-    input_reads += " --short1 {} ".format(snakemake.input["short1"])
-    input_reads += " --short2 {} ".format(snakemake.input["short2"])
+if "paired" in snakemake.input.keys():
+    input_reads += " --short1 {} --short2 {}".format(*snakemake.input.paired)
 if "unpaired" in snakemake.input.keys():
     input_reads += " --unpaired {} ".format(snakemake.input["unpaired"])
 if "long" in snakemake.input.keys():
