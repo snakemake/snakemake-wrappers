@@ -2716,6 +2716,13 @@ def test_snpsift_annotate():
     )
 
 
+def test_unicycler():
+    run(
+        "bio/unicycler",
+        ["snakemake", "--cores", "1", "result/reads/assembly.fasta", "--use-conda", "-F"],
+    )
+
+
 def test_vg_construct():
     run("bio/vg/construct",
         ["snakemake", "--cores", "1", "graph/c.vg", "--use-conda", "-F"])

@@ -1,0 +1,12 @@
+---
+name: unicycler
+description: |
+  Assemble bacterial genomes with Unicycler.
+
+  You may find additional information on `Unicycler's <https://github.com/rrwick/Unicycler>`_ github page.
+authors:
+  - Thibault Dayris
+input:
+  - Fastq-formatted reads
+output:
+  - Assembled reads
