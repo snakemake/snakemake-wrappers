@@ -2390,5 +2390,5 @@ def test_snpsift_annotate():
 def test_unicycler():
     run(
         "bio/unicycler",
-        ["snakemake", "--cores", "1", "result/assembly.fasta", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "result/reads/assembly.fasta", "--use-conda", "-F"],
     )

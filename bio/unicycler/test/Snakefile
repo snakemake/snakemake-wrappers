@@ -1,10 +1,14 @@
 rule test_unicycler:
     input:
-        paired = [
-            "reads/reads.R1.fq.gz",
-            "reads/reads.R2.fq.gz"
-        ]
+        paired = expand(
+            "reads/{sample}.{read}.fq.gz",
+            read=["R1", "R2"],
+            allow_missing=True)
     output:
-        "result/assembly.fasta"
+        "result/{sample}/assembly.fasta"
+    log:
+        "logs/{sample}.log"
+    params:
+        extra=""
     wrapper:
         "master/bio/unicycler"
