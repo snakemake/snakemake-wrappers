@@ -112,11 +112,25 @@ def test_mapdamage2():
             "results/a/Runtime_log.txt",
         ],
     )
+    
+def test_dada2_make_table_se():
+    run(
+        "bio/dada2/make-table",
+        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/seqTab-se.RDS"],
+    )
+    
+def test_dada2_make_table_pe():
+    run(
+        "bio/dada2/make-table",
+        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/seqTab-pe.RDS"],
+    )
+  
 def test_dada2_dereplicate_fastq():
     run(
         "bio/dada2/dereplicate-fastq",
         ["snakemake", "--cores", "1", "--use-conda", "uniques/a.1.RDS"],
     )
+
 def test_dada2_learn_errors():
     run(
         "bio/dada2/learn-errors",
@@ -139,6 +153,7 @@ def test_dada2_quality_profile_pe():
     run("bio/dada2/quality-profile",
         ["snakemake", "--cores", "1", "reports/dada2/quality-profile/a.1-quality-profile.png", "--use-conda", "-F"]
     )
+    
 def test_dada2_quality_profile_se():
     run("bio/dada2/quality-profile",
         ["snakemake", "--cores", "1", "reports/dada2/quality-profile/a-quality-profile.png", "--use-conda", "-F"]
