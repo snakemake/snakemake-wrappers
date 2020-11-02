@@ -30,10 +30,10 @@ if(length(snakemake@params) > 0 ){
 }
 
 # Remove chimeras
-seqTab.nochim<-do.call(removeBimeraDenovo, args)
+seqTab_nochimeras<-do.call(removeBimeraDenovo, args)
 
 # Store the estimated errors as RDS files
-saveRDS(seqTab.nochim, snakemake@output[[1]],compress = T)
+saveRDS(seqTab_nochimeras, snakemake@output[[1]],compress = T)
 
 # Proper syntax to close the connection for the log file
 # but could be optional for Snakemake wrapper
