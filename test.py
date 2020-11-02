@@ -107,6 +107,7 @@ def test_dada2_merge_pairs():
         ["snakemake", "--cores", "1", "--use-conda", "merged/a.RDS", "-F"],
     )
 
+
 def test_mapdamage2():
     run(
         "bio/mapdamage2",
@@ -117,6 +118,12 @@ def test_mapdamage2():
             "--use-conda",
             "results/a/Runtime_log.txt",
         ],
+    )
+    
+def test_dada2_remove_chimeras():
+    run(
+        "bio/dada2/remove-chimeras",
+        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/seqTab.nochim.RDS"],
     )
     
 def test_dada2_assign_taxonomy():
