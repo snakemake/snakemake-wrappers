@@ -3,7 +3,7 @@
 # __email__ = "cpauvert@protonmail.com"
 # __license__ = "MIT"
 
-# Snakemake wrapper for learning error rates on sequence data using dada2 learnErrors function.
+# Snakemake wrapper for merging denoised forward and reverse reads using dada2 mergePairs function.
 
 # Sink the stderr and stdout to the snakemake log file
 # https://stackoverflow.com/a/48173272
@@ -15,9 +15,14 @@ library(dada2)
 
 # Prepare arguments (no matter the order)
 args<-list(
-           fls = snakemake@input,
-           multithread=snakemake@threads
+           dadaF = snakemake@input[["dadaF"]],
+           derepF = snakemake@input[["derepF"]],
+           dadaR = snakemake@input[["dadaR"]],
+           derepR = snakemake@input[["derepR"]]
            )
+# Read RDS from the list
+args<-sapply(args,readRDS)
+
 # Check if extra params are passed
 if(length(snakemake@params) > 0 ){
        # Keeping only the named elements of the list for do.call()
@@ -25,23 +30,15 @@ if(length(snakemake@params) > 0 ){
        # Add them to the list of arguments
        args<-c(args, extra)
 } else{
-    message("No optional parameters. Using defaults parameters from dada2::learnErrors()")
+    message("No optional parameters. Using default parameters from dada2::mergePairs()")
 }
 
-# Learn errors rates for both read types
-err<-do.call(learnErrors, args)
-
-# Plot estimated versus observed error rates to validate models
-perr<-plotErrors(err, nominalQ = TRUE)
-
-# Save the plots
-library(ggplot2)
-ggsave(snakemake@output[["plot"]], perr, width = 8, height = 8, dpi = 300)
+# Merge pairs
+merger<-do.call(mergePairs, args)
 
 # Store the estimated errors as RDS files
-saveRDS(err, snakemake@output[["model"]],compress = T)
+saveRDS(merger, snakemake@output[[1]],compress = T)
 
-# Proper syntax to close the connection for the log file
-# but could be optional for Snakemake wrapper
+# Close the connection for the log file
 sink(type="message")
 sink()

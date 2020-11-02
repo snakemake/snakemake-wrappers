@@ -3,7 +3,7 @@
 # __email__ = "cpauvert@protonmail.com"
 # __license__ = "MIT"
 
-# Snakemake wrapper for learning error rates on sequence data using dada2 learnErrors function.
+# Snakemake wrapper for dereplicating FASTQ files using dada2 derepFastq function.
 
 # Sink the stderr and stdout to the snakemake log file
 # https://stackoverflow.com/a/48173272
@@ -14,10 +14,7 @@ sink(log.file,type="message")
 library(dada2)
 
 # Prepare arguments (no matter the order)
-args<-list(
-           fls = snakemake@input,
-           multithread=snakemake@threads
-           )
+args<-list( fls = unlist(snakemake@input))
 # Check if extra params are passed
 if(length(snakemake@params) > 0 ){
        # Keeping only the named elements of the list for do.call()
@@ -25,23 +22,16 @@ if(length(snakemake@params) > 0 ){
        # Add them to the list of arguments
        args<-c(args, extra)
 } else{
-    message("No optional parameters. Using defaults parameters from dada2::learnErrors()")
+    message("No optional parameters. Using default parameters from dada2::derepFastq()")
 }
+# Dereplicate
+uniques<-do.call(derepFastq, args)
 
-# Learn errors rates for both read types
-err<-do.call(learnErrors, args)
-
-# Plot estimated versus observed error rates to validate models
-perr<-plotErrors(err, nominalQ = TRUE)
-
-# Save the plots
-library(ggplot2)
-ggsave(snakemake@output[["plot"]], perr, width = 8, height = 8, dpi = 300)
-
-# Store the estimated errors as RDS files
-saveRDS(err, snakemake@output[["model"]],compress = T)
+# Store as RDS file
+saveRDS(uniques,snakemake@output[[1]])
 
 # Proper syntax to close the connection for the log file
 # but could be optional for Snakemake wrapper
 sink(type="message")
 sink()
+
