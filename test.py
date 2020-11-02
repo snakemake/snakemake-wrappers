@@ -95,6 +95,11 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+def test_dada2_sample_inference():
+    run(
+        "bio/dada2/sample-inference",
+        ["snakemake", "--cores", "1", "--use-conda", "denoised/a.1.RDS"],
+    )
 
 def test_dada2_merge_pairs():
     run(
