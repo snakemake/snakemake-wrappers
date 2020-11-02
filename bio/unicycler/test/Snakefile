@@ -1,0 +1,20 @@
+rule test_unicycler:
+    input:
+        # R1 and R2 short reads:
+        paired = expand(
+            "reads/{sample}.{read}.fq.gz",
+            read=["R1", "R2"],
+            allow_missing=True
+        )
+        # Long reads:
+        # long = long_reads/{sample}.fq.gz
+        # Unpaired reads:
+        # unpaired = reads/{sample}.fq.gz
+    output:
+        "result/{sample}/assembly.fasta"
+    log:
+        "logs/{sample}.log"
+    params:
+        extra=""
+    wrapper:
+        "master/bio/unicycler"

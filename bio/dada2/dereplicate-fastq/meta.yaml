@@ -1,0 +1,11 @@
+name: dada2_dereplicate_fastq
+description: |
+  `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
+  Dereplication of FASTQ files using dada2 derepFastq function. Optional parameters are documented in the `manual <https://www.bioconductor.org/packages/release/bioc/manuals/dada2/man/dada2.pdf>`_.
+authors:
+  - Charlie Pauvert
+input: a FASTQ file
+params:
+  - optional arguments for derepFastq(), please provide them as python key=value pairs
+output: RDS file containing a `derep-class` object
+
