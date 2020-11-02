@@ -6,6 +6,8 @@ rule jannovar:
         "jannovar/{sample}.vcf.gz"
     log:
         "logs/jannovar/{sample}.log"
+    resources:
+        mem_gb = 1
     params:
         database="hg19_small.ser", # path to jannovar reference dataset
         extra="--show-all"         # optional parameters
