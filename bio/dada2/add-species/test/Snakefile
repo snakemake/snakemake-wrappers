@@ -7,8 +7,8 @@ rule dada2_add_species:
     # and lists (`list_arg=[]`) are automatically converted to R.
     # For a named list as an extra named argument, use a python dict
     #   (`named_list={name1=arg1}`).
-    params:
-        verbose=True
+    #params:
+    #    verbose=True
     output:
         "results/dada2/taxa-sp.RDS", # Taxonomic + Species assignments
     log:
