@@ -95,6 +95,12 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+def test_dada2_merge_pairs():
+    run(
+        "bio/dada2/merge-pairs",
+        ["snakemake", "--cores", "1", "--use-conda", "merged/a.RDS", "-F"],
+    )
+
 def test_mapdamage2():
     run(
         "bio/mapdamage2",
@@ -119,12 +125,30 @@ def test_dada2_make_table_pe():
         ["snakemake", "--cores", "1", "--use-conda", "results/dada2/seqTab-pe.RDS"],
     )
   
+def test_dada2_dereplicate_fastq():
+    run(
+        "bio/dada2/dereplicate-fastq",
+        ["snakemake", "--cores", "1", "--use-conda", "uniques/a.1.RDS"],
+    )
+
 def test_dada2_learn_errors():
     run(
         "bio/dada2/learn-errors",
         ["snakemake", "--cores", "1", "--use-conda", "results/dada2/model_1.RDS"],
     )
-    
+
+def test_dada2_filter_trim_se():
+    run(
+        "bio/dada2/filter-trim",
+        ["snakemake", "--cores", "1", "filtered-se/a.1.fastq.gz", "--use-conda", "-F"]
+    )
+
+def test_dada2_filter_trim_pe():
+    run(
+        "bio/dada2/filter-trim",
+        ["snakemake", "--cores", "1", "filtered-pe/a.1.fastq.gz", "--use-conda", "-F"]
+    )
+
 def test_dada2_quality_profile_pe():
     run("bio/dada2/quality-profile",
         ["snakemake", "--cores", "1", "reports/dada2/quality-profile/a.1-quality-profile.png", "--use-conda", "-F"]
