@@ -2,7 +2,7 @@ rule dada2_sample_inference:
     input:
     # Dereplicated (aka unique) sequences of the sample
         derep="uniques/{fastq}.RDS",
-        model="results/dada2/model_1.RDS" # Error model
+        err="results/dada2/model_1.RDS" # Error model
     # Even though this is an R wrapper, use named arguments in Python syntax
     # here, to specify extra parameters. Python booleans (`arg1=True`, `arg2=False`)
     # and lists (`list_arg=[]`) are automatically converted to R.

@@ -16,7 +16,7 @@ library(dada2)
 # Prepare arguments (no matter the order)
 args<-list(
            derep = readRDS(snakemake@input[["derep"]]),
-           err = readRDS(snakemake@input[["model"]]),
+           err = readRDS(snakemake@input[["err"]]),
            multithread = snakemake@threads
            )
 # Check if extra params are passed

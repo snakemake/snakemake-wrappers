@@ -5,8 +5,8 @@ description: |
 authors:
   - Charlie Pauvert
 input:
-  - derep: RDS file withe the dereplicated sequences
-  - model: RDS file with the error model
+  - derep: RDS file with the dereplicated sequences
+  - err: RDS file with the error model
 output:
   -  RDS file with the stored inferred sample composition
 params:
