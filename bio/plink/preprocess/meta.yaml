@@ -1,8 +1,9 @@
-name: plink 
-description: PLINK is a variant association analysis toolset, designed to perform a range of basic, large-scale analyses in a computationally efficient manner. https://www.cog-genomics.org/plink
+name: plink_preprocess
+description: Convert between common formats (VCF for genotypes and CSV for phenotypes) and the file formats used by PLINK.
 authors:
   - Adrián E. Salatino
 input:
   - A VCF-formatted file
+  - A CSV-formatted file
 output:
-  - Plink format file(s) with genotype information.
+  - Plink format files (fam/ map/ ped) with genotype and phenotype information ready for association testing.
