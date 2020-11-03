@@ -11,10 +11,10 @@ rule dada2_learn_errors:
     # and lists (`list_arg=[]`) are automatically converted to R.
     # For a named list as an extra named argument, use a python dict
     #   (`named_list={name1=arg1}`).
-    params:
-        randomize=True
+    #params:
+    #    randomize=True
     output:
-        model="results/dada2/model_{orientation}.RDS",# save the error model
+        err="results/dada2/model_{orientation}.RDS",# save the error model
         plot="reports/dada2/errors_{orientation}.png",# plot observed and estimated rates
     log:
         "logs/dada2/learn-errors/learn-errors_{orientation}.log"

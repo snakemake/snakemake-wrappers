@@ -6,8 +6,8 @@ rule dada2_remove_chimeras:
     # and lists (`list_arg=[]`) are automatically converted to R.
     # For a named list as an extra named argument, use a python dict
     #   (`named_list={name1=arg1}`).
-    params:
-        verbose=True
+    #params:
+    #    verbose=True
     output:
         "results/dada2/seqTab.nochim.RDS" # Chimera-free sequence table
     log:

@@ -39,7 +39,7 @@ library(ggplot2)
 ggsave(snakemake@output[["plot"]], perr, width = 8, height = 8, dpi = 300)
 
 # Store the estimated errors as RDS files
-saveRDS(err, snakemake@output[["model"]],compress = T)
+saveRDS(err, snakemake@output[["err"]],compress = T)
 
 # Proper syntax to close the connection for the log file
 # but could be optional for Snakemake wrapper
