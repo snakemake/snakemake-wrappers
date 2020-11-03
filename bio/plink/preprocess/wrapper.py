@@ -6,6 +6,7 @@ __email__ = "elsalatino@gmail.com"
 __license__ = "MIT"
 
 from snakemake.shell import shell
+import pandas as pd
 
 
 def get_prefix_4(pathList):
@@ -42,7 +43,6 @@ shell(
     " {log}"
 )
 
-import pandas as pd
 
 csv = pd.read_csv(snakemake.input.csv)
 ped = pd.read_table(f"{prefix}.ped", sep=" ", header=None)

@@ -108,6 +108,9 @@ def test_plink_assoc():
         "bio/plink/assoc",
         ["snakemake", "--cores", "1", "--use-conda", "plinkdata.assoc.fisher"],
     )
+    run(
+        "bio/plink/assoc", ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
 
 
 def test_plink_model():

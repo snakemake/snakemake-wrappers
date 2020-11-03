@@ -9,12 +9,16 @@ from snakemake.shell import shell
 
 
 def get_prefix_str(pathList, ext):
-    basenames = [x.split("." + ext)[0] for x in pathList]
-    if not all(x == basenames[0] for x in basenames):
-        raise Exception(
-            "Something went wrong between output basenames. Keep multiext() please!"
-        )
-    return basenames[0]
+    if len(pathList) == 0:
+        prefix == "plink"
+    else:
+        basenames = [x.split("." + ext)[0] for x in pathList]
+        if not all(x == basenames[0] for x in basenames):
+            raise Exception(
+                "Something went wrong between output basenames. Keep multiext() please!"
+            )
+        prefix = basenames[0]
+    return prefix
 
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)

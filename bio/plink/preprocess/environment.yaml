@@ -3,3 +3,4 @@ channels:
   - conda-forge
 dependencies:
   - plink =1.90
+  - pandas =1.1
