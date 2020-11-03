@@ -120,6 +120,19 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+def test_dada2_pe_meta():
+    run(
+        "meta/bio/dada2_pe",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "reports/dada2/quality-profile/quality_check.done",
+            "results/dada2/taxa.RDS"
+        ]
+    )
+
 
 skip_if_not_modified = pytest.mark.xfail(raises=Skipped)
 
