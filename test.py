@@ -95,18 +95,6 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
-def test_dada2_sample_inference():
-    run(
-        "bio/dada2/sample-inference",
-        ["snakemake", "--cores", "1", "--use-conda", "denoised/a.1.RDS"],
-    )
-
-def test_dada2_merge_pairs():
-    run(
-        "bio/dada2/merge-pairs",
-        ["snakemake", "--cores", "1", "--use-conda", "merged/a.RDS", "-F"],
-    )
-
 
 def test_mapdamage2():
     run(
@@ -119,75 +107,192 @@ def test_mapdamage2():
             "results/a/Runtime_log.txt",
         ],
     )
-    
-def test_dada2_add_species():
+
+
+def test_dada2_quality_profile_se():
     run(
-        "bio/dada2/add-species",
-        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/taxa-sp.RDS"],
+        "bio/dada2/quality-profile",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "reports/dada2/quality-profile/a-quality-profile.png",
+            "--use-conda",
+            "-F"
+            ]
     )
 
-def test_dada2_remove_chimeras():
+
+def test_dada2_quality_profile_pe():
     run(
-        "bio/dada2/remove-chimeras",
-        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/seqTab.nochim.RDS"],
-    )
-    
-def test_dada2_assign_taxonomy():
-    run(
-        "bio/dada2/assign-taxonomy",
-        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/taxa.RDS"],
+        "bio/dada2/quality-profile",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "reports/dada2/quality-profile/a.1-quality-profile.png",
+            "--use-conda",
+            "-F"
+        ]
     )
 
-def test_dada2_make_table_se():
-    run(
-        "bio/dada2/make-table",
-        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/seqTab-se.RDS"],
-    )
-    
-def test_dada2_make_table_pe():
-    run(
-        "bio/dada2/make-table",
-        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/seqTab-pe.RDS"],
-    )
-  
-def test_dada2_dereplicate_fastq():
-    run(
-        "bio/dada2/dereplicate-fastq",
-        ["snakemake", "--cores", "1", "--use-conda", "uniques/a.1.RDS"],
-    )
-
-def test_dada2_learn_errors():
-    run(
-        "bio/dada2/learn-errors",
-        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/model_1.RDS"],
-    )
 
 def test_dada2_filter_trim_se():
     run(
         "bio/dada2/filter-trim",
-        ["snakemake", "--cores", "1", "filtered-se/a.1.fastq.gz", "--use-conda", "-F"]
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "filtered-se/a.1.fastq.gz",
+            "--use-conda",
+            "-F"
+        ]
     )
+
 
 def test_dada2_filter_trim_pe():
     run(
         "bio/dada2/filter-trim",
-        ["snakemake", "--cores", "1", "filtered-pe/a.1.fastq.gz", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "filtered-pe/a.1.fastq.gz",
+            "--use-conda",
+            "-F"
+         ]
+        )
+
+
+def test_dada2_dereplicate_fastq():
+    run(
+        "bio/dada2/dereplicate-fastq",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "uniques/a.1.RDS"
+        ]
     )
 
-def test_dada2_quality_profile_pe():
-    run("bio/dada2/quality-profile",
-        ["snakemake", "--cores", "1", "reports/dada2/quality-profile/a.1-quality-profile.png", "--use-conda", "-F"],
+
+def test_dada2_learn_errors():
+    run(
+        "bio/dada2/learn-errors",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "results/dada2/model_1.RDS"
+         ]
+        )
+
+
+def test_dada2_sample_inference():
+    run(
+        "bio/dada2/sample-inference",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "denoised/a.1.RDS"
+        ]
     )
-    
-def test_dada2_quality_profile_se():
-    run("bio/dada2/quality-profile",
-        ["snakemake", "--cores", "1", "reports/dada2/quality-profile/a-quality-profile.png", "--use-conda", "-F"],
+
+
+def test_dada2_merge_pairs():
+    run(
+        "bio/dada2/merge-pairs",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "merged/a.RDS",
+            "-F"
+        ]
     )
+
+
+def test_dada2_make_table_se():
+    run(
+        "bio/dada2/make-table",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "results/dada2/seqTab-se.RDS"
+         ]
+    )
+
+
+def test_dada2_make_table_pe():
+    run(
+            "bio/dada2/make-table",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "results/dada2/seqTab-pe.RDS"
+        ]
+    )
+
+
+def test_dada2_remove_chimeras():
+    run(
+        "bio/dada2/remove-chimeras",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "results/dada2/seqTab.nochim.RDS"
+        ]
+    )
+
+
+def test_dada2_assign_taxonomy():
+    run(
+        "bio/dada2/assign-taxonomy",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "results/dada2/taxa.RDS"
+        ]
+    )
+
+
+def test_dada2_add_species():
+    run(
+        "bio/dada2/add-species",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "results/dada2/taxa-sp.RDS"
+        ]
+    )
+
 
 def test_arriba_star_meta():
     run(
         "meta/bio/star_arriba",
-        ["snakemake", "--cores", "1", "--use-conda", "results/arriba/a.fusions.tsv"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "results/arriba/a.fusions.tsv"
+        ]
     )
 
 

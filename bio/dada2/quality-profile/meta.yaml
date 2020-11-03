@@ -1,7 +1,7 @@
 name: dada2_quality_profiles
 description: |
   `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
-  Plotting the quality profile of reads using dada2 plotQualityProfile function.
+  Plotting the quality profile of reads using dada2 ``plotQualityProfile`` function. The function is introduced in the dedicated tutorial `section <https://benjjneb.github.io/dada2/tutorial.html#inspect-read-quality-profiles>`_.
 authors:
   - Charlie Pauvert
 input:
