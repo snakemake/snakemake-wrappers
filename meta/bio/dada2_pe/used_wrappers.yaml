@@ -7,4 +7,5 @@ wrappers:
  - bio/dada2/merge-pairs
  - bio/dada2/make-table
  - bio/dada2/remove-chimeras
+ - bio/dada2/collapse-nomismatch
  - bio/dada2/assign-taxonomy
