@@ -95,6 +95,19 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+def test_dada2_se_meta():
+    run(
+        "meta/bio/dada2_se",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "reports/dada2/quality-profile/quality_check.done",
+            "results/dada2/taxa.RDS"
+        ]
+    )
+
 
 def test_mapdamage2():
     run(
