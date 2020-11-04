@@ -1,4 +1,4 @@
-rule vembrane:
+rule vembrane_filter:
     input:
         vcf="in.vcf",
     output:
@@ -9,4 +9,4 @@ rule vembrane:
     log:
         "logs/vembrane.log"
     wrapper:
-        "master/bio/vembrane"
+        "master/bio/vembrane/filter"
