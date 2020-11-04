@@ -256,6 +256,17 @@ def test_dada2_remove_chimeras():
         ]
     )
 
+def test_dada2_collapse_nomismatch():
+    run(
+        "bio/dada2/collapse-nomismatch",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "results/dada2/seqTab.collapsed.RDS"
+        ]
+    )
 
 def test_dada2_assign_taxonomy():
     run(
