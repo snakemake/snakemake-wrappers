@@ -65,7 +65,7 @@ jobs:
 
       - name: Run tests
         env:
-          DIFF_ONLY: ${{ github.event_name == 'pull_request' }}
+          DIFF_ONLY: False
         run: |
           # activate conda env
           export PATH="/usr/share/miniconda/bin:$PATH"
