@@ -14,9 +14,8 @@ sink(log.file,type="message")
 library(dada2)
 
 # If names are provided use them
-nm<-ifelse(is.null(snakemake@params[["names"]]),
-           NULL,
-           snakemake@params[["names"]])
+nm<-if(is.null(snakemake@params[["names"]])) NULL else snakemake@params[["names"]]
+
 # From a list of n lists to one named list of n elements 
 smps<-setNames(
                object=unlist(snakemake@input),
