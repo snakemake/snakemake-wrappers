@@ -56,6 +56,7 @@ jobs:
            conda install -c conda-forge mamba --quiet
            export PATH="/usr/share/miniconda/bin:$PATH"
            mamba create -c bioconda -c conda-forge --quiet -y --name snakemake snakemake-minimal pytest
+           conda clean --yes --quiet --index-cache --packages --tarballs
 
       - name: Fetch master
         if: github.ref != 'master'
