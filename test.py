@@ -88,8 +88,8 @@ def run(wrapper, cmd, check_log=None):
         finally:
             # cleanup environments to save disk space
             subprocess.check_call(
-                "for env in `conda env list | grep -P '\.snakemake/conda' | "
-                "cut -f1 | tr -d ' '`; do conda env remove --prefix $env; done",
+                "for env in `conda env list | grep '{}' | grep -P '\.snakemake/conda' | "
+                "cut -f1 | tr -d ' '`; do conda env remove --prefix $env; done".format(dst),
                 shell=True,
             )
             # go back to original directory
