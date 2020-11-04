@@ -16,13 +16,11 @@ sort = snakemake.params.get("sort", "none")
 sort_order = snakemake.params.get("sort_order", "coordinate")
 sort_extra = snakemake.params.get("sort_extra", "")
 
-index = None
-if "index" in snakemake.params.keys():
-    index = snakemake.params["index"]
-elif "index" in snakemake.input.keys():
+index = snakemake.input["index"]
+if isinstance(index, str):
     index = path.splitext(snakemake.input["index"])[0]
 else:
-    raise ValueError("Could not find BWA index prefix")
+    index = path.splitext(snakemake.input["index"][0])[0]
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 

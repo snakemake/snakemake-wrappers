@@ -10,6 +10,11 @@ from os import path
 
 from snakemake.shell import shell
 
+index = snakemake.input.get("index", "")
+if isinstance(index, str):
+    index = path.splitext(snakemake.input["index"])[0]
+else:
+    index = path.splitext(snakemake.input["index"][0])[0]
 
 # Extract arguments.
 extra = snakemake.params.get("extra", "")
@@ -54,7 +59,7 @@ else:
 shell(
     "(bwa samse"
     " {extra}"
-    " {snakemake.params.index}"
+    " {index}"
     " {snakemake.input.sai}"
     " {snakemake.input.fastq}"
     " | " + pipe_cmd + ") {log}"
