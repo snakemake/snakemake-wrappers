@@ -57,6 +57,7 @@ jobs:
            export PATH="/usr/share/miniconda/bin:$PATH"
            mamba create -c bioconda -c conda-forge --quiet -y --name snakemake snakemake-minimal pytest mamba
            conda clean --yes --quiet --index-cache --packages --tarballs
+           df -h
 
       - name: Fetch master
         if: github.ref != 'master'
@@ -70,6 +71,7 @@ jobs:
           # activate conda env
           export PATH="/usr/share/miniconda/bin:$PATH"
           source activate snakemake
+          df -h
           
           # run tests
           pytest test.py -v
