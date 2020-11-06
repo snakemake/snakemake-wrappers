@@ -12,7 +12,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
 
 shell(
-    "vembrane"  # Tool and its subcommand
+    "vembrane filter"  # Tool and its subcommand
     " {extra}"  # Extra parameters
     " {snakemake.params.expression:q}"
     " {snakemake.input}"  # Path to input file

@@ -429,10 +429,17 @@ def test_strling_index():
     )
 
 
-def test_vembrane():
+def test_vembrane_filter():
     run(
-        "bio/vembrane",
+        "bio/vembrane/filter",
         ["snakemake", "--cores", "1", "--use-conda", "filtered/out.vcf"],
+    )
+
+
+def test_vembrane_table():
+    run(
+        "bio/vembrane/table",
+        ["snakemake", "--cores", "1", "--use-conda", "table/out.tsv"],
     )
 
 
