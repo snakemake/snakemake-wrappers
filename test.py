@@ -61,7 +61,7 @@ def run(wrapper, cmd, check_log=None):
         os.chdir(testdir)
         if os.path.exists(".snakemake"):
             shutil.rmtree(".snakemake")
-        cmd = cmd + ["--wrapper-prefix", "file://{}/".format(d), "--conda-cleanup-pkgs", "cache" ]
+        cmd = cmd + ["--wrapper-prefix", "file://{}/".format(d), "--conda-cleanup-pkgs", "cache", "--conda-frontend", "mamba"]
         subprocess.check_call(["snakemake", "--version"])
 
         try:
