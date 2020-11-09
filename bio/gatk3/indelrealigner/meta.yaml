@@ -5,14 +5,14 @@ authors:
   - Patrik Smeds
   - Filipe G. Vieira
 input:
-  - `bam`: input bam file (indexed)
-  - `known`: vcf files of known variation (indexed)
-  - `ref`: reference genome
-  - `target_intervals`: target intervals to realign
+  - input bam file (indexed)
+  - vcf files of known variation (indexed)
+  - reference genome
+  - target intervals to realign
 output:
-  - `bam`: indel realigned bam file
-  - `bai`: indel realigned bai file (optional)
-  - `java_temp`: temp dir (optional)
+  - indel realigned bam file
+  - indel realigned bai file (optional)
+  - temp dir (optional)
 notes: |
   * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (memory is automatically inferred from `resources` and temp dir from `output.java_temp`.
   * The `extra` param alllows for additional program arguments.
