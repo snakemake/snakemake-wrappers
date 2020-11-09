@@ -45,7 +45,7 @@ for known in input_known:
 
 output_bai = snakemake.output.get("bai", None)
 if output_bai is None:
-    extra += "--disable_bam_indexing"
+    extra += " --disable_bam_indexing"
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
