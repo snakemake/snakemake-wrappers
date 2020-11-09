@@ -15,6 +15,23 @@ input_bam = snakemake.input.bam
 input_known = snakemake.input.known
 input_ref = snakemake.input.ref
 input_target_intervals = snakemake.input.target_intervals
+output_bam = snakemake.output.bam
+
+# Getting memory in megabytes, if java opts is not filled with -Xmx parameter
+# By doing so, backward compatibility is preserved
+if "mem_mb" in snakemake.resources.keys() and not "-Xmx" in java_opts:
+    java_opts += " -Xmx{}M".format(snakemake.resources["mem_mb"])
+
+# Getting memory in gigabytes, for user convenience. Please prefer the use
+# of mem_mb over mem_gb as advised in documentation.
+elif "mem_gb" in snakemake.resources.keys() and not "-Xmx" in java_opts:
+    java_opts += " -Xmx{}G".format(snakemake.resources["mem_gb"])
+
+# Getting java temp directory from output files list, if -Djava.io.tmpdir
+# is not provided in java parameters. By doing so, backward compatibility is
+# not broken.
+if "java_temp" in snakemake.output.keys() and not "-Djava.io.tmpdir" in java_opts:
+    java_opts += " -Djava.io.tmpdir={}".format(snakemake.output["java_temp"])
 
 bed = snakemake.params.get("bed", None)
 if bed is not None:
@@ -26,6 +43,10 @@ input_known_string = ""
 for known in input_known:
     input_known_string = input_known_string + " -known {}".format(known)
 
+output_bai = snakemake.output.get("bai", None)
+if output_bai is None:
+    extra += "--disable_bam_indexing"
+
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 shell(
@@ -36,6 +57,6 @@ shell(
     " {input_known_string}"
     " {bed}"
     " --targetIntervals {input_target_intervals}"
-    " -o {snakemake.output}"
+    " -o {output_bam}"
     " {log}"
 )
