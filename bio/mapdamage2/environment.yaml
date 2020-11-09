@@ -7,6 +7,6 @@ dependencies:
   - mapdamage2 =2.2.1
   - r-inline
   - r-ggplot2
-  - gam
-  - Rcpp
-  - RcppGSL
+  - r-gam
+  - r-rcpp
+  - r-rcppgsl
