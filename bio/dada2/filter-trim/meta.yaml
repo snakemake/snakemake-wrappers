@@ -1,0 +1,15 @@
+name: dada2_filter_trim
+description: |
+  `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
+  Quality filtering of single or paired-end reads using dada2 ``filterAndTrim`` function. Optional parameters are documented in the `manual <https://www.bioconductor.org/packages/release/bioc/manuals/dada2/man/dada2.pdf#filterAndTrim>`_ and the function is introduced in the dedicated tutorial `section <https://benjjneb.github.io/dada2/tutorial.html#filter-and-trim>`_.
+authors:
+  - Charlie Pauvert
+input:
+  - fwd: a forward FASTQ file (potentially compressed) without primer sequences
+  - rev: an (optional) reverse FASTQ file (potentially compressed) without primer sequences
+output:
+  - filt: a compressed filtered forward FASTQ file
+  - filt_rev: an (optional) compressed filtered reverse FASTQ file
+  - stats: a .tsv file with the number of processed and filtered reads per sample
+params:
+  - optional arguments for ``filterAndTrim()``, please provide them as python ``key=value`` pairs

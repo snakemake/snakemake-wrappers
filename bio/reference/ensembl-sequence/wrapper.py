@@ -25,8 +25,12 @@ spec = ("{build}" if int(release) > 75 else "{build}.{release}").format(
 
 suffixes = ""
 datatype = snakemake.params.get("datatype", "")
+chromosome = snakemake.params.get("chromosome", "")
 if datatype == "dna":
-    suffixes = ["dna.primary_assembly.fa.gz", "dna.toplevel.fa.gz"]
+    if chromosome:
+        suffixes = ["dna.chromosome.{}.fa.gz".format(chromosome)]
+    else:
+        suffixes = ["dna.primary_assembly.fa.gz", "dna.toplevel.fa.gz"]
 elif datatype == "cdna":
     suffixes = ["cdna.all.fa.gz"]
 elif datatype == "cds":
@@ -37,6 +41,12 @@ elif datatype == "pep":
     suffixes = ["pep.all.fa.gz"]
 else:
     raise ValueError("invalid datatype, must be one of dna, cdna, cds, ncrna, pep")
+
+if chromosome:
+    if not datatype == "dna":
+        raise ValueError(
+            "invalid datatype, to select a single chromosome the datatype must be dna"
+        )
 
 success = False
 for suffix in suffixes:

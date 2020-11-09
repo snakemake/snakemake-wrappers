@@ -1,0 +1,11 @@
+name: "Homer annotatePeaks"
+description: >
+  Performing peak annotation to associate peaks with nearby genes. For more information, please see the `documentation <http://homer.ucsd.edu/homer/ngs/annotation.html>`_.
+authors:
+  - Antonie Vietor
+input:
+  - peak or BED file
+  - various optional input files, i.e. gtf, bedGraph, wiggle
+output:
+  - annotation file (.txt)
+  - various optional output files

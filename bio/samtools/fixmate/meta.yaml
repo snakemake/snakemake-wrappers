@@ -1,5 +1,5 @@
 name: samtools fixmate
-description: Use samtools to correct mate information after BWA mapping.
+description: Use samtools to correct mate information after BWA mapping. For more information see `SAMtools documentation <http://www.htslib.org/doc/samtools-fixmate.html>`_.
 authors:
   - Thibault Dayris
 input:
