@@ -41,7 +41,7 @@ else:
 
 input_known_string = ""
 for known in input_known:
-    input_known_string = input_known_string + " --known {}".format(known)
+    input_known_string = input_known_string + " -known {}".format(known)
 
 output_bai = snakemake.output.get("bai", None)
 if output_bai is None:

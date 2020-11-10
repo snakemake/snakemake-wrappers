@@ -39,7 +39,7 @@ else:
 
 input_known_string = ""
 for known in input_known:
-    input_known_string = input_known_string + " --known {}".format(known)
+    input_known_string = input_known_string + " -known {}".format(known)
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
