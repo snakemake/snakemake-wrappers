@@ -15,10 +15,12 @@ rule qassoc:
     input:
         multiext("plinkdata.", "map", "ped"),
         "plinkQdata.fam"
+    output:
+        "plinkdata.qassoc"
     params:
-        extra_assoc="fisher-midp mperm=5000 --hwe 1e-8 midp --seed 9034"
+        extra_assoc="mperm=5000 --hwe 1e-8 midp --seed 9034"
     threads: 1
     log:
-        "logs/plink/assoc.log"
+        "logs/plink/qassoc.log"
     wrapper:
         "master/bio/plink/assoc"

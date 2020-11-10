@@ -25,20 +25,16 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 prefix = get_prefix_str(snakemake.output, "assoc.logistic")
 extra_logistic = snakemake.params.get("extra_logistic", "")
 extra_covar = snakemake.params.get("extra_covar", "")
-covar = snakemake.params.get("covar", "")
 covar_names = snakemake.params.get("covariables", "")
 
-if covar:
-    covar = " --covar {extra_covar} {prefix}.cov "
-    if len(covar_names) > 0:
-        covar += " --covar-name "
-        for c in covar_names:
-            covar += c + ", "
-        covar = covar[:-2] + " "
+if len(covar_names) > 0:
+    covar_names = str(covar_names)[1:-1]
+    covar = f" --covar {prefix}.cov {extra_covar} --covar-name {covar_names} "
+else:
+    covar = ""
 
 shell(
-    "(plink --logistic {extra_logistic}" + covar + " --threads {snakemake.threads}"
-    " --ped {prefix}.ped --map {prefix}.map"
-    " --out {prefix} )"
+    "(plink --logistic {extra_logistic} {covar} --threads {snakemake.threads}"
+    " --ped {prefix}.ped --map {prefix}.map --out {prefix} )"
     " {log}"
 )

@@ -4,7 +4,6 @@ rule logistic:
     output:
         "plinkdata.assoc.logistic"
     params:
-        covar=True,
         extra_logistic="--parameters 1-5, 7",
         extra_covar="",
         covariables=["quantitative_column", "case_control_with_missingness"]

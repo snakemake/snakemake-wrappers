@@ -28,11 +28,13 @@ extra_covar = snakemake.params.get("extra_covar", "")
 covar_names = snakemake.params.get("covariables", "")
 
 if len(covar_names) > 0:
-    covar = " --covar {prefix}.cov {extra_covar} --covar-name {covar_names} "
+    covar_names = str(covar_names)[1:-1]
+    covar = f" --covar {prefix}.cov {extra_covar} --covar-name {covar_names} "
+else:
+    covar = ""
 
 shell(
-    "(plink --linear {extra_linear}" + covar + " --threads {snakemake.threads}"
-    " --ped {prefix}.ped --map {prefix}.map"
-    " --out {prefix} )"
+    "(plink --linear {extra_linear} {covar} --threads {snakemake.threads}"
+    " --ped {prefix}.ped --map {prefix}.map --out {prefix} )"
     " {log}"
 )
