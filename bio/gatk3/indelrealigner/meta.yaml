@@ -5,10 +5,11 @@ authors:
   - Patrik Smeds
   - Filipe G. Vieira
 input:
-  - input bam file (indexed)
-  - vcf files of known variation (indexed)
+  - bam file
+  - vcf files
   - reference genome
   - target intervals to realign
+  - bed file (optional)
 output:
   - indel realigned bam file
   - indel realigned bai file (optional)

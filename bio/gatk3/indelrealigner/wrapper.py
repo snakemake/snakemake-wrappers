@@ -33,7 +33,7 @@ elif "mem_gb" in snakemake.resources.keys() and not "-Xmx" in java_opts:
 if "java_temp" in snakemake.output.keys() and not "-Djava.io.tmpdir" in java_opts:
     java_opts += " -Djava.io.tmpdir={}".format(snakemake.output["java_temp"])
 
-bed = snakemake.params.get("bed", None)
+bed = snakemake.input.get("bed", None)
 if bed is not None:
     bed = "-L " + bed
 else:
@@ -41,7 +41,7 @@ else:
 
 input_known_string = ""
 for known in input_known:
-    input_known_string = input_known_string + " -known {}".format(known)
+    input_known_string = input_known_string + " --known {}".format(known)
 
 output_bai = snakemake.output.get("bai", None)
 if output_bai is None:
