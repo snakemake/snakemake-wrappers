@@ -1,5 +1,5 @@
 name: plink_preprocess
-description: Convert between common formats (VCF for genotypes and CSV for phenotypes) and the file formats used by PLINK.
+description: Convert from standard formats (VCF for genotypes and CSV for phenotypes) and the file formats (fam/ map/ ped) used by PLINK. See https://www.cog-genomics.org/plink/1.9/formats and https://www.cog-genomics.org/plink/1.9/input for further details about the file formats used by PLINK. Also consider reading https://www.cog-genomics.org/plink/1.9/data for all the available extra params (file and recode).
 authors:
   - Adrián E. Salatino
 input:
