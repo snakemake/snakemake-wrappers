@@ -13,10 +13,9 @@ rule assoc:
 
 rule qassoc:
     input:
-        multiext("plinkdata.", "map", "ped"),
-        "plinkQdata.fam"
+        multiext("plinkQdata.", "fam", "map", "ped")
     output:
-        "plinkdata.qassoc"
+        multiext("plinkQdata.", "assoc", "assoc.mperm")
     params:
         extra_assoc="mperm=5000 --hwe 1e-8 midp --seed 9034"
     threads: 1
