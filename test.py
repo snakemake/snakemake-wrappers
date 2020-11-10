@@ -574,6 +574,21 @@ def test_bedtools_genomecoveragebed():
     )
 
 
+def test_bedtools_complement():
+    run(
+        "bio/bedtools/complement",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/bed-complement/a.bed.complement",
+            "results/vcf-complement/a.vcf.complement",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_bedtools_intersect():
     run(
         "bio/bedtools/intersect",

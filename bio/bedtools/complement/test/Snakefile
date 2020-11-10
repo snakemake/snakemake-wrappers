@@ -1,0 +1,27 @@
+rule bedtools_complement_bed:
+    input:
+        in_file="a.bed",
+        genome="genome_file"
+    output:
+        "results/bed-complement/a.bed.complement"
+    params:
+        ## Add optional parameters
+        extra="-L"
+    log:
+        "logs/a.bed.complement.log"
+    wrapper:
+        "master/bio/bedtools/complement"
+
+rule bedtools_complement_vcf:
+    input:
+        in_file="a.bed",
+        genome="genome_file"
+    output:
+        "results/vcf-complement/a.vcf.complement"
+    params:
+        ## Add optional parameters
+        extra="-L"
+    log:
+        "logs/a.vcf.complement.log"
+    wrapper:
+        "master/bio/bedtools/complement"
