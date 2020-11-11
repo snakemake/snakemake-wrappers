@@ -108,6 +108,7 @@ def test_adapterremoval_pe_collapse_singletons():
             "trimmed/pe_collapse/a_R2.fastq.gz",
             "trimmed/pe_collapse/a.fastq.gz",
             "trimmed/pe_collapse/a.discarded.fastq.gz",
+            "stats/pe_collapse/a.settings",
         ],
     )
 
@@ -126,6 +127,7 @@ def test_adapterremoval_pe():
             "trimmed/pe/a.collapsed.fastq.gz",
             "trimmed/pe/a.collapsed_trunc.fastq.gz",
             "trimmed/pe/a.discarded.fastq.gz",
+            "stats/pe/a.settings",
         ],
     )
 
@@ -138,7 +140,9 @@ def test_adapterremoval_se():
             "--cores",
             "1",
             "--use-conda",
-            "trimmed/pe/a.fastq.gz",
+            "trimmed/se/a.fastq.gz",
+            "trimmed/se/a.discarded.fastq.gz",
+            "stats/se/a.settings",
         ],
     )
 
