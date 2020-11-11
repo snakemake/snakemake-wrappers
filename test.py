@@ -96,6 +96,53 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+def test_adapterremoval_pe_collapse_singletons():
+    run(
+        "bio/adapterremoval",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "trimmed/pe_collapse/a_R1.fastq.gz",
+            "trimmed/pe_collapse/a_R2.fastq.gz",
+            "trimmed/pe_collapse/a.fastq.gz",
+            "trimmed/pe_collapse/a.discarded.fastq.gz",
+        ],
+    )
+
+
+def test_adapterremoval_pe():
+    run(
+        "bio/adapterremoval",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "trimmed/pe/a_R1.fastq.gz",
+            "trimmed/pe/a_R2.fastq.gz",
+            "trimmed/pe/a.singleton.fastq.gz",
+            "trimmed/pe/a.collapsed.fastq.gz",
+            "trimmed/pe/a.collapsed_trunc.fastq.gz",
+            "trimmed/pe/a.discarded.fastq.gz",
+        ],
+    )
+
+
+def test_adapterremoval_se():
+    run(
+        "bio/adapterremoval",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "trimmed/pe/a.fastq.gz",
+        ],
+    )
+
+
 def test_mapdamage2():
     run(
         "bio/mapdamage2",
