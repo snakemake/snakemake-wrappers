@@ -8,7 +8,9 @@ import tempfile
 
 extra = snakemake.params.get("extra", "") + " "
 adapters = snakemake.params.get("adapters", "")
-collapse_pe = True if "--collapse " in extra or "--collapse-deterministic " in extra else False
+collapse_pe = (
+    True if "--collapse " in extra or "--collapse-deterministic " in extra else False
+)
 merge_singletons = snakemake.params.get("merge_singletons", False)
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
