@@ -21,8 +21,7 @@ def run(wrapper, cmd, check_log=None):
     origdir = os.getcwd()
     subprocess.check_call(
         "echo 'disk space at START of wrapper {}' >> /tmp/df.log;"
-        "df -h >>/tmp/df.log;"
-        "du -sh /tmp/ >>/tmp/df.log".format(wrapper),
+        "df -h >>/tmp/df.log".format(wrapper),
         shell=True,
     )
     with tempfile.TemporaryDirectory() as d:
