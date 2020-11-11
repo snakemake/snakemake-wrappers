@@ -14,4 +14,4 @@ output:
   - fastq file with discarded reads
   - settings and stats file
 notes:
-  * If `merge_singletons` is set (only for PE and if collapsing of reads is enabled), then `collapsed` and `collapsed truncated` files are not created and reads are appended to the `singleton` file.
+  * If "merge_singletons" is set (only for PE and if collapsing of reads is enabled), then "collapsed" and "collapsed truncated" files are not created and reads are appended to the "singleton" file.
