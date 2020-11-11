@@ -19,6 +19,11 @@ if DIFF_ONLY:
 
 def run(wrapper, cmd, check_log=None):
     origdir = os.getcwd()
+    subprocess.check_call(
+        "echo 'disk space at START of wrapper {}' >> /tmp/df.log;"
+        "df -h >>/tmp/df.log".format(wrapper),
+        shell=True,
+    )
     with tempfile.TemporaryDirectory() as d:
         dst = os.path.join(d, "master")
         os.makedirs(dst, exist_ok=True)
@@ -88,9 +93,10 @@ def run(wrapper, cmd, check_log=None):
         finally:
             # cleanup environments to save disk space
             subprocess.check_call(
-                "for env in `conda env list | grep '{}' | grep -P '\.snakemake/conda' | "
+                "for env in `conda env list | grep '{dst}' | grep -P '\.snakemake/conda' | "
                 "cut -f1 | tr -d ' '`; do conda env remove --prefix $env; done; "
-                "df -h".format(dst),
+                "echo 'disk space at END of wrapper {wrapper}' >> /tmp/df.log;"
+                "df -h >> /tmp/df.log ".format(dst=dst, wrapper=wrapper),
                 shell=True,
             )
             # go back to original directory

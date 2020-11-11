@@ -74,4 +74,5 @@ jobs:
           df -h
           
           # run tests
-          pytest test.py -v
+          touch /tmp/df.log
+          tail -f /tmp/df.log & pytest test.py -v
