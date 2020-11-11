@@ -96,8 +96,7 @@ def run(wrapper, cmd, check_log=None):
             subprocess.check_call(
                 "for env in `conda env list | grep '{dst}' | grep -P '\.snakemake/conda' | "
                 "cut -f1 | tr -d ' '`; do conda env remove --prefix $env; done; "
-                "echo 'disk space at END of wrapper {wrapper}' >> /tmp/df.log;"
-                "df -h >> /tmp/df.log ".format(dst=dst, wrapper=wrapper),
+                "conda clean --all --yes ".format(dst=dst),
                 shell=True,
             )
             # go back to original directory
