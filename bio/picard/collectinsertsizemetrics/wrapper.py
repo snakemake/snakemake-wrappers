@@ -13,7 +13,6 @@ extra = snakemake.params
 java_opts = get_java_opts(snakemake)
 
 
-
 shell(
     "picard CollectInsertSizeMetrics {java_opts} {extra} "
     "INPUT={snakemake.input} OUTPUT={snakemake.output.txt} "
