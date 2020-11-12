@@ -13,5 +13,5 @@ output:
   - fastq file with collapsed truncated reads, i.e. that were trimmed due the presence of low-quality or ambiguous nucleotides (only for PE and if collapsing of reads is enabled)
   - fastq file with discarded reads
   - settings and stats file
-notes:
-  * If "merge_singletons" is set (only for PE and if collapsing of reads is enabled), then "collapsed" and "collapsed truncated" files are not created and reads are appended to the "singleton" file.
+notes: |
+  * If `merge_singletons` is set (only for PE and if collapsing of reads is enabled), then `collapsed` and `collapsed truncated` files are not created and reads are appended to the `singleton` file.
