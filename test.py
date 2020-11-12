@@ -589,6 +589,22 @@ def test_bedtools_complement():
     )
 
 
+def test_bedtools_sort():
+    run(
+        "bio/bedtools/sort",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/bed-sorted/a.sorted.bed",
+            "results/bed-sorted/a.sorted_by_file.bed",
+            "results/vcf-sorted/a.sorted_by_file.vcf",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_bedtools_intersect():
     run(
         "bio/bedtools/intersect",

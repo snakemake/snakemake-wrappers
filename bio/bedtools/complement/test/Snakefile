@@ -1,6 +1,6 @@
 rule bedtools_complement_bed:
     input:
-        in_file="a.bed",
+        in_file="a.vcf",
         genome="genome_file"
     output:
         "results/bed-complement/a.bed.complement"
