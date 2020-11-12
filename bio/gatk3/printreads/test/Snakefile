@@ -8,7 +8,7 @@ rule printreads:
     log:
         "logs/gatk/bqsr/{sample}..log"
     params:
-        extra="",  # optional
+        extra=""  # optional
     resources:
         mem_mb = 1024
     threads: 16
