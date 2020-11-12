@@ -9,7 +9,8 @@ rule baserecalibrator:
         "logs/gatk3/bqsr/{sample}.log"
     params:
         extra="",  # optional
-        java_opts="", # optional
+    resources:
+        mem_mb = 1024
     threads: 16
     wrapper:
         "bio/gatk/baserecalibrator"

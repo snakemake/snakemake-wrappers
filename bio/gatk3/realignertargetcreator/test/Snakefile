@@ -9,7 +9,8 @@ rule realignertargetcreator:
         "logs/gatk/realignertargetcreator/{sample}.log"
     params:
         extra="",  # optional
-        java_opts="",
+    resources:
+        mem_mb = 1024
     threads: 16
     wrapper:
         "bio/gatk3/realignertargetcreator"
