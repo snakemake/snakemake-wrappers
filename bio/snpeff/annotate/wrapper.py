@@ -9,6 +9,11 @@ from os import path
 import shutil
 import tempfile
 from pathlib import Path
+from snakemake_wrapper_utils.java import get_java_opts
+
+
+extra = snakemake.params.get("extra", "")
+java_opts = get_java_opts(snakemake)
 
 outcalls = snakemake.output.calls
 if outcalls.endswith(".vcf.gz"):
@@ -24,8 +29,6 @@ if incalls.endswith(".bcf"):
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-extra = snakemake.params.get("extra", "")
-
 data_dir = Path(snakemake.input.db).parent.resolve()
 
 stats = snakemake.output.get("stats", "")
@@ -36,7 +39,8 @@ stats_opt = "-noStats" if not stats else "-stats {}".format(stats)
 reference = path.basename(snakemake.input.db)
 
 shell(
-    "snpEff -dataDir {data_dir} {stats_opt} {csvstats_opt} {extra} "
+    "snpEff {java_opts} -dataDir {data_dir} "
+    "{stats_opt} {csvstats_opt} {extra} "
     "{reference} {incalls} "
     "{outprefix} > {outcalls} {log}"
 )

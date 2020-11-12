@@ -5,3 +5,4 @@ channels:
   - defaults
 dependencies:
   - varscan ==2.4.3
+  - snakemake-wrapper-utils ==0.1.3

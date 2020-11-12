@@ -4,3 +4,4 @@ channels:
   - defaults
 dependencies:
   - picard ==2.22.1
+  - snakemake-wrapper-utils ==0.1.3

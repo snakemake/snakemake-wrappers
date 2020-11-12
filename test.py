@@ -1464,6 +1464,12 @@ def test_optitype():
         ["snakemake", "--cores", "1", "--use-conda", "-F", "optitype/a_result.tsv"],
     )
 
+def test_picard_addorreplacegroups():
+    run(
+        "bio/picard/addorreplacereadgroups",
+        ["snakemake", "--cores", "1", "fixed-rg/a.bam", "--use-conda", "-F"],
+    )
+
 
 def test_picard_markduplicates():
     run(
@@ -1543,6 +1549,13 @@ def test_picard_mergesamfiles():
     run(
         "bio/picard/mergesamfiles",
         ["snakemake", "--cores", "1", "merged.bam", "--use-conda", "-F"],
+    )
+
+
+def test_picard_collecttargettedpcemetrics():
+    run(
+        "bio/picard/collecttargetedpcrmetrics/",
+        ["snakemake", "--cores", "1", "stats/a.pcr.txt", "--use-conda", "-F"],
     )
 
 
@@ -2317,7 +2330,7 @@ def test_varscan_mpileup2snp():
     )
 
 
-def test_varscan_mpileup2snp():
+def test_varscan_somatic():
     run(
         "bio/varscan/somatic",
         ["snakemake", "--cores", "1", "vcf/a.snp.vcf", "--use-conda", "-F"],
