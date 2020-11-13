@@ -1,0 +1,45 @@
+rule callpeak:
+    input:
+        treatment="samples/a.bam",   # required: treatment sample(s)
+        control="samples/b.bam"      # optional: control sample(s)
+    output:
+        # all output-files must share the same basename and only differ by it's extension
+        # Usable extensions (and which tools they implicitly call) are listed here:
+        #         https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/macs2/callpeak.html.
+        multiext("callpeak/basename",
+                 "_peaks.xls",   ### required
+                 ### optional output files
+                 "_peaks.narrowPeak",
+                 "_summits.bed"
+                 )
+    log:
+        "logs/macs2/callpeak.log"
+    params:
+        "-f BAM -g hs --nomodel"
+    wrapper:
+        "master/bio/macs2/callpeak"
+
+rule callpeak_options:
+    input:
+        treatment="samples/a.bam",   # required: treatment sample(s)
+        control="samples/b.bam"      # optional: control sample(s)
+    output:
+        # all output-files must share the same basename and only differ by it's extension
+        # Usable extensions (and which tools they implicitly call) are listed here:
+        #         https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/macs2/callpeak.html.
+        multiext("callpeak_options/basename",
+                 "_peaks.xls",   ### required
+                 ### optional output files
+                 # these output extensions internally set the --bdg or -B option:
+                 "_treat_pileup.bdg",
+                 "_control_lambda.bdg",
+                 # these output extensions internally set the --broad option:
+                 "_peaks.broadPeak",
+                 "_peaks.gappedPeak"
+                 )
+    log:
+        "logs/macs2/callpeak.log"
+    params:
+        "-f BAM -g hs --broad-cutoff 0.1 --nomodel"
+    wrapper:
+        "master/bio/macs2/callpeak"

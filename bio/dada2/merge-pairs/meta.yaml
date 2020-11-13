@@ -1,0 +1,15 @@
+name: dada2_merge_pairs
+description: |
+  `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
+  Merging denoised forward and reverse reads using dada2 ``mergePairs`` function. Optional parameters are documented in the `manual <https://www.bioconductor.org/packages/release/bioc/manuals/dada2/man/dada2.pdf#mergePairs>`_  and the function is introduced in the dedicated tutorial `section <https://benjjneb.github.io/dada2/tutorial.html#merge-paired-reads>`_.
+authors:
+  - Charlie Pauvert
+input:
+  - dadaF: RDS file with the inferred sample composition from forward reads 
+  - dadaR:                                                    reverse       
+  - derepF: RDS file with the dereplicated forward reads
+  - derepR:                                reverse      
+params:
+  - optional arguments for ``mergePairs()``, please provide them as python ``key=value`` pairs
+output:
+  - RDS file with the merged pairs 

@@ -1,0 +1,12 @@
+name: genomepy
+authors:
+  - Maarten van der Sande
+description: |
+  Download genomes the easy way:
+  https://github.com/vanheeringen-lab/genomepy
+output: |
+  Always outputs {assembly}/{assembly}.fa, {assembly}/{assembly}.fa.fai, {assembly}/{assembly}.gaps.bed and {assembly}/{assembly}.fa.sizes.
+  Can output annotation: {assembly}/{assembly}.annotation.gtf or blacklist: {assembly}/{assembly}.blacklist.bed, depending on the assembly,
+  and whether or not it is specified as output.
+params:
+  - provider: which provider to download from, defaults to UCSC (choose from UCSC, Ensembl, NCBI).

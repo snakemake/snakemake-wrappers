@@ -1,0 +1,49 @@
+
+name: macs2 callpeak
+description: >
+  ``MACS2 callpeak`` model-based analysis tool for ChIP-sequencing that calls peaks from alignment results.
+  For usage information about ``MACS2 callpeak``, please see the `documentation <https://github.com/macs3-project/MACS/blob/master/README.md>`_ and the command line help.
+  For more information about ``MACS2``, also see the `source code <https://github.com/macs3-project/MACS>`_ and `published article <https://genomebiology.biomedcentral.com/articles/10.1186/gb-2008-9-9-r137>`_.
+  Depending on the selected extension(s), the option(s) will be set automatically (please see table below).
+  Please note that there are extensions, that are incompatible with each other, because they require the --broad option either to be enabled or disabled.
+
+
+    +--------------------------------+----------------------------------------+----------+--------------------+
+    | Extension for the output files | Description                            | Format   | Option             |
+    |                                |                                        |          |                    |
+    |                                |                                        |          |                    |
+    +================================+========================================+==========+====================+
+    | NAME_peaks.xls                 | a table with information about called  | excel    |                    |
+    |                                |                                        |          |                    |
+    |                                | peaks                                  |          |                    |
+    +--------------------------------+----------------------------------------+----------+--------------------+
+    | NAME_control_lambda.bdg        | local biases estimated for each genomic| bedGraph | -\-bdg or -B       |
+    |                                |                                        |          |                    |
+    |                                | location from the control sample       |          |                    |
+    +--------------------------------+----------------------------------------+----------+--------------------+
+    | NAME_treat_pileup.bdg          | pileup signals from treatment sample   | bedGraph | -\-bdg or -B       |
+    +--------------------------------+----------------------------------------+----------+--------------------+
+    | NAME_peaks.broadPeak           | similar to _peaks.narrowPeak file,     | BED 6+3  | -\-broad           |
+    |                                |                                        |          |                    |
+    |                                | except for missing the annotating peak |          |                    |
+    |                                |                                        |          |                    |
+    |                                | summits                                |          |                    |
+    +--------------------------------+----------------------------------------+----------+--------------------+
+    | NAME_peaks.gappedPeak          | contains the broad region and narrow   | BED 12+3 | -\-broad           |
+    |                                |                                        |          |                    |
+    |                                | peaks                                  |          |                    |
+    +--------------------------------+----------------------------------------+----------+--------------------+
+    | NAME_peaks.narrowPeak          | contains the peak locations, peak      | BED 6+4  | if not set -\-broad|
+    |                                |                                        |          |                    |
+    |                                | summit, p-value and q-value            |          |                    |
+    +--------------------------------+----------------------------------------+----------+--------------------+
+    | NAME_summits.bed               | peak summits locations for every peak  | BED      | if not set -\-broad|
+    +--------------------------------+----------------------------------------+----------+--------------------+
+
+authors:
+  - Antonie Vietor
+input:
+  -  SAM, BAM, BED, ELAND, ELANDMULTI, ELANDEXPORT, BOWTIE, BAMPE or BEDPE files
+output:
+  - tabular file in excel format (.xls) AND
+  - different optional metrics in bedGraph or BED formats

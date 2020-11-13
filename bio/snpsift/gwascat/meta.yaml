@@ -1,0 +1,11 @@
+name: SnpSift GWAS Catalog
+description:  Annotate using GWAS catalog with `SnpSift <https://pcingola.github.io/SnpEff/ss_gwascatalog/>`_
+authors:
+  - Thibault Dayris
+input:
+  - Calls that are to be annotated (vcf, bcf, vcf.gz)
+  - A GWAS Catalog TSV-formatted file
+output:
+  - Annotated calls (vcf, bcf, vcf.gz)
+note: |
+  Find gwas catalog here: https://www.ebi.ac.uk/gwas/docs/file-downloads

@@ -4,3 +4,4 @@ channels:
 dependencies:
   - snpeff ==4.3.1t
   - bcftools =1.10
+  - snakemake-wrapper-utils ==0.1.3

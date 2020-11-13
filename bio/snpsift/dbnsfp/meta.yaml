@@ -1,0 +1,15 @@
+---
+name: SnpSift dbNSFP
+description:  Annotate using integrated annotation from dbNSFP with `SnpSift <https://pcingola.github.io/SnpEff/ss_dbnsfp/>`_
+authors:
+  - Thibault Dayris
+input:
+  - Calls that are to be annoated
+  - A dnNSFP text file
+output:
+  - Annotated calls
+note: |
+  The dbNSFP is an integrated database of functional predictions from multiple
+  algorithms (SIFT, Polyphen2, LRT and MutationTaster, PhyloP and GERP++, etc.)
+  Use the -f argument to select columns in your dbnsfp file through the "extra"
+  parameter.

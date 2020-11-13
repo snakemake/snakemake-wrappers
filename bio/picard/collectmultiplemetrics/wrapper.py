@@ -5,12 +5,12 @@ __license__ = "MIT"
 
 import sys
 from snakemake.shell import shell
+from snakemake_wrapper_utils.java import get_java_opts
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-res = snakemake.resources.get("mem_gb", "3")
-if not res or res is None:
-    res = 3
+extra = snakemake.params
+java_opts = get_java_opts(snakemake)
 
 exts_to_prog = {
     ".alignment_summary_metrics": "CollectAlignmentSummaryMetrics",
@@ -56,9 +56,9 @@ for ext in exts_to_prog:
         break
 
 shell(
-    "(picard -Xmx{res}g CollectMultipleMetrics "
+    "(picard CollectMultipleMetrics "
     "I={snakemake.input.bam} "
     "O={out} "
     "R={snakemake.input.ref} "
-    "{snakemake.params}{programs}) {log}"
+    "{extra} {programs} {java_opts}) {log}"
 )

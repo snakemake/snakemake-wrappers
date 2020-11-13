@@ -1,0 +1,22 @@
+## htsjdk.samtools.metrics.StringHeader
+# CollectGridssMetrics GRIDSS_PROGRAM=[CollectCigarMetrics, CollectMapqMetrics, CollectTagMetrics, CollectIdsvMetrics, ReportThresholdCoverage] THRESHOLD_COVERAGE=50000 INPUT=assembly/g.bam OUTPUT=working_dir/g.bam.gridss.working//g.bam FILE_EXTENSION=null PROGRAM=[QualityScoreDistribution] TMP_DIR=[working_dir] REFERENCE_SEQUENCE=reference/genome.fasta    ASSUME_SORTED=true STOP_AFTER=0 METRIC_ACCUMULATION_LEVEL=[ALL_READS] INCLUDE_UNPAIRED=false VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json USE_JDK_DEFLATER=false USE_JDK_INFLATER=false
+## htsjdk.samtools.metrics.StringHeader
+# Started on: Tue Aug 18 12:36:25 UTC 2020
+
+## METRICS CLASS	gridss.analysis.TagSummaryMetrics
+TAG	COUNT
+aa	325
+ad	325
+at	325
+dl	325
+ec	325
+ef	325
+eq	325
+et	325
+ez	325
+oe	325
+os	325
+sb	325
+ua	8
+
+

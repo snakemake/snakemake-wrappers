@@ -1,0 +1,11 @@
+name: SnpSift Genes Sets
+description:  Annotate using GMT genes sets with `SnpSift <https://pcingola.github.io/SnpEff/ss_genesets/>`_
+authors:
+  - Thibault Dayris
+input:
+  - Calls that are to be annotated
+  - A GMT-formatted annotation file
+output:
+  - Annotated calls
+note: |
+  You may look for GMT files here: https://www.gsea-msigdb.org/gsea/msigdb

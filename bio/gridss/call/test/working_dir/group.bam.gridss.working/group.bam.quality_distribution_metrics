@@ -1,0 +1,60 @@
+## htsjdk.samtools.metrics.StringHeader
+# CollectGridssMetrics GRIDSS_PROGRAM=[CollectCigarMetrics, CollectMapqMetrics, CollectTagMetrics, CollectIdsvMetrics, ReportThresholdCoverage] THRESHOLD_COVERAGE=50000 INPUT=assembly/g.bam OUTPUT=working_dir/g.bam.gridss.working//g.bam FILE_EXTENSION=null PROGRAM=[QualityScoreDistribution] TMP_DIR=[working_dir] REFERENCE_SEQUENCE=reference/genome.fasta    ASSUME_SORTED=true STOP_AFTER=0 METRIC_ACCUMULATION_LEVEL=[ALL_READS] INCLUDE_UNPAIRED=false VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json USE_JDK_DEFLATER=false USE_JDK_INFLATER=false
+## htsjdk.samtools.metrics.StringHeader
+# Started on: Tue Aug 18 12:36:25 UTC 2020
+
+
+## HISTOGRAM	java.lang.Byte
+QUALITY	COUNT_OF_Q
+10	5
+13	1
+14	7
+15	10
+16	9
+17	24
+18	13
+19	16
+20	32
+21	2689
+22	140
+23	161
+24	144
+25	167
+26	194
+27	118
+28	193
+29	172
+30	159
+31	244
+32	175
+33	270
+34	415
+35	604
+36	689
+37	646
+38	514
+39	264
+40	222
+41	129
+42	463
+43	188
+44	198
+45	195
+46	190
+47	280
+48	184
+49	208
+50	200
+51	178
+52	253
+53	188
+54	156
+55	190
+56	214
+57	247
+58	198
+59	221
+60	210
+61	213
+62	99137
+

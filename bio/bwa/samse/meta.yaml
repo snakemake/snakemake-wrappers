@@ -1,4 +1,4 @@
 name: "bwa samse"
-description: Map single-end reads with bwa samse.
+description: Map single-end reads with bwa samse. For more information about BWA see `BWA documentation <http://bio-bwa.sourceforge.net/bwa.shtml>`_.
 authors:
   - Julian de Ruiter

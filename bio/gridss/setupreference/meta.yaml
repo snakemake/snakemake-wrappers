@@ -1,0 +1,10 @@
+name: "gridss setupreference"
+description: >
+    GRIDSS is a module software suite containing tools useful for the detection of genomic rearrangements.
+    It includes a genome-wide break-end assembler, as well as a structural variation caller for Illumina sequencing data.
+    ``setupreference`` is a once-off setup generating additional files in the same directory as the reference.
+    WARNING multiple instances of GRIDSS attempting to perform setupreference at the same time will result in file corruption.
+    Make sure these files are generated before running parallel GRIDSS jobs.
+    Documentation at: https://github.com/PapenfussLab/gridss
+authors:
+  - Christopher Schröder
