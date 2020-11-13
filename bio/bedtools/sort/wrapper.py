@@ -12,9 +12,9 @@ faidx = snakemake.input.get("faidx", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 if genome:
-    extra = "-g {}".format(genome)
+    extra += " -g {}".format(genome)
 elif faidx:
-    extra = "-faidx {}".format(faidx)
+    extra += " -faidx {}".format(faidx)
 
 shell(
     "(bedtools sort"
