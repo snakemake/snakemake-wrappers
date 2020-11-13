@@ -1,7 +1,6 @@
 channels:
   - bioconda
   - conda-forge
-  - r
   - defaults
 dependencies:
   - mapdamage2 =2.2.1
