@@ -86,6 +86,7 @@ def run(wrapper, cmd, check_log=None):
         # env["CONDA_PKGS_DIRS"] = pkgdir
         try:
             subprocess.check_call(cmd)
+            import pdb; pdb.set_trace()
         except Exception as e:
             # go back to original directory
             os.chdir(origdir)
