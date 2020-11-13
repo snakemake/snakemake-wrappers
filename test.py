@@ -59,10 +59,10 @@ def run(wrapper, cmd, check_log=None):
             return
 
         testdir = os.path.join(d, "test")
-        pkgdir = os.path.join(d, "pkgs")
+        #pkgdir = os.path.join(d, "pkgs")
         shutil.copytree(os.path.join(wrapper, "test"), testdir)
         # prepare conda package dir
-        os.makedirs(pkgdir)
+        #os.makedirs(pkgdir)
         # switch to test directory
         os.chdir(testdir)
         if os.path.exists(".snakemake"):
@@ -82,10 +82,10 @@ def run(wrapper, cmd, check_log=None):
                 " ".join(cmd),
             ]
 
-        env = dict(os.environ)
-        env["CONDA_PKGS_DIRS"] = pkgdir
+        #env = dict(os.environ)
+        #env["CONDA_PKGS_DIRS"] = pkgdir
         try:
-            subprocess.check_call(cmd, env=env)
+            subprocess.check_call(cmd)
         except Exception as e:
             # go back to original directory
             os.chdir(origdir)
