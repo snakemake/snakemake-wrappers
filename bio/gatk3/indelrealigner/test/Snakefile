@@ -1,15 +1,15 @@
 rule indelrealigner:
     input:
         bam="mapped/{sample}.bam",
-	bai="mapped/{sample}.bai",
+        bai="mapped/{sample}.bai",
         ref="genome.fasta",
         known="dbsnp.vcf.gz",
-	known_idx="dbsnp.vcf.gz.tbi",
+        known_idx="dbsnp.vcf.gz.tbi",
         target_intervals="{sample}.intervals"
     output:
         bam="realigned/{sample}.bam",
         bai="realigned/{sample}.bai",
-	java_temp=temp(directory("/tmp/gatk3_indelrealigner/{sample}")),
+        java_temp=temp(directory("/tmp/gatk3_indelrealigner/{sample}")),
     log:
         "logs/gatk3/indelrealigner/{sample}.log"
     params:
