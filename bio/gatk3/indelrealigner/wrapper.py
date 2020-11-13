@@ -57,6 +57,6 @@ shell(
     " {input_known_string}"
     " {bed}"
     " --targetIntervals {input_target_intervals}"
-    " -o {output_bam}"
+    " -o {snakemake.output.bam}"
     " {log}"
 )
