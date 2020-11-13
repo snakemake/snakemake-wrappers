@@ -6,22 +6,19 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
-sort_file = snakemake.input.get("sort_file", "")
+genome = snakemake.input.get("genome", "")
+faidx = snakemake.input.get("faidx", "")
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-if sort_file:
-    if not "-g" in extra and not "-faidx" in extra:
-        extra = "-g"
-else:
-    if "-g" in extra or "-faidx" in extra:
-        sys.exit(
-            "The -g or -faidx option requires as input a sort_file that determines the sorting order and contains the chromosome names."
-        )
+if genome:
+    extra = "-g {}".format(genome)
+elif faidx:
+    extra = "-faidx {}".format(faidx)
 
 shell(
     "(bedtools sort"
-    " {extra} {sort_file}"
+    " {extra}"
     " -i {snakemake.input.in_file}"
     " > {snakemake.output[0]})"
     " {log}"
