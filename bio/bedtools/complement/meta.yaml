@@ -1,0 +1,10 @@
+name: bedtools complement
+description: >
+  `Bedtools complement <https://bedtools.readthedocs.io/en/latest/content/tools/complement.html>`_ maps all regions of the genome which are not covered by the input.
+authors:
+  - Antonie Vietor
+input:
+  - BED/GFF/VCF files
+  - genome file (`genome file format <https://bedtools.readthedocs.io/en/latest/content/general-usage.html#genome-file-format>`_)
+output:
+  - complemented BED/GFF/VCF file
