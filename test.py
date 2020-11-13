@@ -82,8 +82,10 @@ def run(wrapper, cmd, check_log=None):
                 " ".join(cmd),
             ]
 
+        env = dict(os.environ)
+        env["CONDA_PKGS_DIRS"] = pkgdir
         try:
-            subprocess.check_call(cmd, env={"CONDA_PKGS_DIRS": pkgdir})
+            subprocess.check_call(cmd, env=env)
         except Exception as e:
             # go back to original directory
             os.chdir(origdir)
