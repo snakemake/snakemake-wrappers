@@ -37,9 +37,8 @@ rule bedtools_sort_vcf:
         "results/vcf-sorted/a.sorted_by_file.vcf"
     params:
         ## Add optional parameters
-        extra="-faidx"
+        extra=""
     log:
         "logs/a.sorted.vcf.log"
     wrapper:
         "master/bio/bedtools/sort"
-
