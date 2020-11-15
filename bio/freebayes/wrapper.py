@@ -12,7 +12,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 params = snakemake.params.get("extra", "")
 norm = snakemake.params.get("normalize", "False")
-assert(norm in ["True", "False"]
+assert norm in ["True", "False"]
 norm = norm == "True"
 
 pipe = ""
@@ -28,8 +28,10 @@ if snakemake.threads == 1:
     freebayes = "freebayes"
 else:
     chunksize = snakemake.params.get("chunksize", 100000)
-    regions = "<(fasta_generate_regions.py {snakemake.input.ref}.fai {chunksize})".format(
-        snakemake=snakemake, chunksize=chunksize
+    regions = (
+        "<(fasta_generate_regions.py {snakemake.input.ref}.fai {chunksize})".format(
+            snakemake=snakemake, chunksize=chunksize
+        )
     )
     if snakemake.input.get("regions", ""):
         regions = (
