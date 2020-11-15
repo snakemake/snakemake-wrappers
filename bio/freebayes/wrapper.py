@@ -11,10 +11,18 @@ shell.executable("bash")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 params = snakemake.params.get("extra", "")
+norm = snakemake.params.get("normalize", "False")
+assert(norm in ["True", "False"]
+norm = norm == "True"
 
 pipe = ""
 if snakemake.output[0].endswith(".bcf"):
-    pipe = "| bcftools view -Ob -"
+    if norm:
+        pipe = "| bcftools norm -Ob -"
+    else:
+        pipe = "| bcftools view -Ob -"
+elif norm:
+    pipe = "| bcftools norm -"
 
 if snakemake.threads == 1:
     freebayes = "freebayes"
