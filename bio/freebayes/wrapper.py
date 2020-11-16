@@ -11,9 +11,8 @@ shell.executable("bash")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 params = snakemake.params.get("extra", "")
-norm = snakemake.params.get("normalize", "False")
-assert norm in ["True", "False"]
-norm = norm == "True"
+norm = snakemake.params.get("normalize", False)
+assert norm in [True, False]
 
 pipe = ""
 if snakemake.output[0].endswith(".bcf"):
