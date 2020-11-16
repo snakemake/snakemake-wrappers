@@ -2028,6 +2028,13 @@ def test_trimmomatic_se():
     )
 
 
+def test_rasusa():
+    run(
+        "bio/rasusa",
+        ["snakemake", "--cores", "1", "--use-conda", "a.subsampled.r1.fq"],
+    )
+
+
 def test_rubic():
     run(
         "bio/rubic",
