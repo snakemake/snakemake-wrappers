@@ -16,7 +16,6 @@ assert norm in [True, False]
 
 pipe = ""
 if snakemake.output[0].endswith(".bcf"):
-    pipe = "| bcftools view -Ob -"
     if norm:
         pipe = "| bcftools norm -Ob -"
     else:
