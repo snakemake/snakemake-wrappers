@@ -8,7 +8,7 @@ rule chm_eval_kit:                           # [hide]
         "logs/chm-eval-kit.log"              # [hide]
     cache: True                              # [hide]
     wrapper:                                 # [hide]
-        "0.67.0/bio/benchmark/chm-eval-kit"  # [hide]
+        "master/bio/benchmark/chm-eval-kit"  # [hide]
                                              # [hide]
 
 

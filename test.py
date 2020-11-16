@@ -39,6 +39,7 @@ def run(wrapper, cmd, check_log=None):
             used_wrappers.append(wrapper)
 
         for w in used_wrappers:
+            print(w)
             success = False
             for ext in ("py", "R", "Rmd"):
                 script = "wrapper." + ext
