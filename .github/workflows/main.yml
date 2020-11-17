@@ -21,10 +21,7 @@ jobs:
           pip install -r docs/requirements.txt
       
       - name: Test doc generation
-        env: 
-          REF: ${{ github.ref }}
         run: |
-          echo $REF
           export PATH="/usr/share/miniconda/bin:$PATH"
 
           cd docs
@@ -45,14 +42,14 @@ jobs:
            mamba create -c bioconda -c conda-forge --quiet -y --name snakemake snakemake-minimal pytest
 
       - name: Fetch master
-        if: github.ref != 'master'
+        if: github.ref != 'refs/heads/master'
         run: |
           git fetch origin master
 
       - name: Run tests
         env:
           DIFF_MASTER: ${{ github.event_name == 'pull_request' }}
-          DIFF_LAST_COMMIT: ${{ github.ref == 'master' }}
+          DIFF_LAST_COMMIT: ${{ github.ref == 'refs/heads/master' }}
         run: |
           # activate conda env
           export PATH="/usr/share/miniconda/bin:$PATH"

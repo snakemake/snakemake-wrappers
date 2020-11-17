@@ -37,7 +37,6 @@ jobs:
            mamba create -c bioconda -c conda-forge --quiet -y --name snakemake snakemake-minimal
       
       - name: Fetch master
-        if: github.ref != 'master'
         run: |
           git fetch origin master
 
