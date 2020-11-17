@@ -1,4 +1,4 @@
-name: CI
+name: Testing
 
 on:
   push:
@@ -10,20 +10,6 @@ on:
     - cron: '0 0 * * 0'
 
 jobs:
-  formatting:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: Setup black environment
-        run: conda create --quiet --name black black
-
-      - name: Check formatting
-        run: |
-          export PATH="/usr/share/miniconda/bin:$PATH"
-          source activate black
-          black --check bio/*/*/wrapper.py bio/*/wrapper.py
-  
   docs:
     runs-on: ubuntu-latest
     needs: formatting
@@ -64,7 +50,8 @@ jobs:
 
       - name: Run tests
         env:
-          DIFF_ONLY: ${{ github.event_name == 'pull_request' }}
+          DIFF_MASTER: ${{ github.event_name == 'pull_request' }}
+          DIFF_LAST_COMMIT: ${{ github.ref == 'master' }}
         run: |
           # activate conda env
           export PATH="/usr/share/miniconda/bin:$PATH"

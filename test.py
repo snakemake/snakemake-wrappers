@@ -6,12 +6,15 @@ import pytest
 import sys
 import yaml
 
-DIFF_ONLY = os.environ.get("DIFF_ONLY", "false") == "true"
+DIFF_MASTER = os.environ.get("DIFF_MASTER", "false") == "true"
+DIFF_LAST_COMMIT = os.environ.get("DIFF_LAST_COMMIT", "false") == "true"
 
-if DIFF_ONLY:
+if DIFF_MASTER or DIFF_LAST_COMMIT:
+    compare = "HEAD^" if DIFF_LAST_COMMIT else "origin/master"
+
     # check if wrapper is modified compared to master
     DIFF_FILES = set(
-        subprocess.check_output(["git", "diff", "origin/master", "--name-only"])
+        subprocess.check_output(["git", "diff", compare, "--name-only"])
         .decode()
         .split("\n")
     )
@@ -51,7 +54,7 @@ def run(wrapper, cmd, check_log=None):
             assert success, "No wrapper script found for {}".format(w)
             copy(w, "environment.yaml")
 
-        if DIFF_ONLY and not any(
+        if (DIFF_MASTER or DIFF_LAST_COMMIT) and not any(
             any(f.startswith(w) for f in DIFF_FILES) for w in used_wrappers
         ):
             print(
