@@ -1650,6 +1650,10 @@ def test_razers3():
     )
 
 
+def test_rebaler():
+    run("bio/rebaler", ["snakemake", "--cores", "1", "--use-conda", "sample1.asm.fa"])
+
+
 def test_samtools_calmd():
     run(
         "bio/samtools/calmd",
