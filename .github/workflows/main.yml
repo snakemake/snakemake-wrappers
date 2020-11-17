@@ -21,7 +21,10 @@ jobs:
           pip install -r docs/requirements.txt
       
       - name: Test doc generation
+        env: 
+          REF: ${{ github.ref }}
         run: |
+          echo $REF
           export PATH="/usr/share/miniconda/bin:$PATH"
 
           cd docs
