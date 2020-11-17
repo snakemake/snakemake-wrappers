@@ -3,9 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - mapdamage2 =2.2.1
-  - r-inline
-  - r-ggplot2
-  - r-gam
-  - r-rcpp
-  - r-rcppgsl
+  - mapdamage2 =2.2
