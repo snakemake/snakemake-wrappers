@@ -1,6 +1,5 @@
 channels:
   - bioconda
   - conda-forge
-  - defaults
 dependencies:
-  - mapdamage2 =2.2
+  - rasusa ==0.3.0

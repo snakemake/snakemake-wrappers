@@ -6,12 +6,15 @@ import pytest
 import sys
 import yaml
 
-DIFF_ONLY = os.environ.get("DIFF_ONLY", "false") == "true"
+DIFF_MASTER = os.environ.get("DIFF_MASTER", "false") == "true"
+DIFF_LAST_COMMIT = os.environ.get("DIFF_LAST_COMMIT", "false") == "true"
 
-if DIFF_ONLY:
+if DIFF_MASTER or DIFF_LAST_COMMIT:
+    compare = "HEAD^" if DIFF_LAST_COMMIT else "origin/master"
+
     # check if wrapper is modified compared to master
     DIFF_FILES = set(
-        subprocess.check_output(["git", "diff", "origin/master", "--name-only"])
+        subprocess.check_output(["git", "diff", compare, "--name-only"])
         .decode()
         .split("\n")
     )
@@ -39,6 +42,7 @@ def run(wrapper, cmd, check_log=None):
             used_wrappers.append(wrapper)
 
         for w in used_wrappers:
+            print(w)
             success = False
             for ext in ("py", "R", "Rmd"):
                 script = "wrapper." + ext
@@ -50,7 +54,7 @@ def run(wrapper, cmd, check_log=None):
             assert success, "No wrapper script found for {}".format(w)
             copy(w, "environment.yaml")
 
-        if DIFF_ONLY and not any(
+        if (DIFF_MASTER or DIFF_LAST_COMMIT) and not any(
             any(f.startswith(w) for f in DIFF_FILES) for w in used_wrappers
         ):
             print(
@@ -86,7 +90,6 @@ def run(wrapper, cmd, check_log=None):
         # env["CONDA_PKGS_DIRS"] = pkgdir
         try:
             subprocess.check_call(cmd)
-            import pdb; pdb.set_trace()
         except Exception as e:
             # go back to original directory
             os.chdir(origdir)
@@ -1647,6 +1650,10 @@ def test_razers3():
     )
 
 
+def test_rebaler():
+    run("bio/rebaler", ["snakemake", "--cores", "1", "--use-conda", "sample1.asm.fa"])
+
+
 def test_samtools_calmd():
     run(
         "bio/samtools/calmd",
@@ -2042,6 +2049,13 @@ def test_trimmomatic_se():
             "-s",
             "Snakefile_gz_gz",
         ],
+    )
+
+
+def test_rasusa():
+    run(
+        "bio/rasusa",
+        ["snakemake", "--cores", "1", "--use-conda", "a.subsampled.r1.fq"],
     )
 
 

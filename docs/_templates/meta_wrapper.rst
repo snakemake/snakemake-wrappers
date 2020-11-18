@@ -30,7 +30,7 @@ Used wrappers
 ---------------------
 
 {% for uw in usedwrappers %}
-* ``{{ uw }}``
+* :ref:`{{ uw }}`
 {% endfor %}
 {% endif %}
 
@@ -50,18 +50,4 @@ Authors
 {% for author in authors %}
 * {{ author }}
 {% endfor %}
-
-
-Code
-----
-{% for wrapper in wrappers %}
-
-* ``{{ wrapper[2] }}``
-
-.. code-block:: {{ wrapper[1] }}
-
-{{ wrapper[0] }}
-
-{% endfor %}
-
 

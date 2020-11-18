@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - mapdamage2 =2.2
+  - rebaler ==0.2.0
