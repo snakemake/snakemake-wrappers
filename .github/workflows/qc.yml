@@ -1,4 +1,4 @@
-name: Formatting and linting
+name: Code quality
 
 on:
   pull_request:
