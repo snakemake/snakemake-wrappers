@@ -45,6 +45,7 @@ jobs:
         run: |
           export PATH="/usr/share/miniconda/bin:$PATH"
           source activate snakemake
+          set +e # run the linting for each file before reporting an error
           declare -i ERRORS=0
           for f in $(git diff origin/master --name-only | grep Snakefile)
           do 
