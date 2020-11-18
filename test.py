@@ -1873,6 +1873,22 @@ def test_strelka_germline():
     )
 
 
+def test_subread_featurecounts():
+    run(
+        "bio/subread/featurecounts",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/a.featureCounts",
+            "results/a.featureCounts.summary",
+            "results/a.featureCounts.jcounts",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_trim_galore_pe():
     run(
         "bio/trim_galore/pe",
