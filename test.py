@@ -128,13 +128,7 @@ skip_if_not_modified = pytest.mark.xfail(raises=Skipped)
 def test_mapdamage2():
     run(
         "bio/mapdamage2",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "--use-conda",
-            "results/a/Runtime_log.txt",
-        ],
+        ["snakemake", "--cores", "1", "--use-conda", "results/a/Runtime_log.txt",],
     )
 
 
@@ -282,13 +276,7 @@ def test_arriba_star_meta():
 def test_bwa_mapping_meta():
     run(
         "meta/bio/bwa_mapping",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "--use-conda",
-            "mapped/a.bam.bai",
-        ],
+        ["snakemake", "--cores", "1", "--use-conda", "mapped/a.bam.bai",],
     )
 
 
@@ -2458,10 +2446,15 @@ def test_gatk_genotypegvcfs():
     )
 
 
-# this GATK tool does not work with our test data so far... Error is unclear.
-# @skip_if_not_modified
+@skip_if_not_modified
+@skip(
+    reason="this GATK tool does not work with our test data so far... Error is unclear."
+)
 def test_gatk_genomicsdbimport():
-#    run("bio/gatk/genomicsdbimport", ["snakemake", "--cores", "1", "genomicsdb/ref", "--use-conda", "-F"])
+    run(
+        "bio/gatk/genomicsdbimport",
+        ["snakemake", "--cores", "1", "genomicsdb/ref", "--use-conda", "-F"],
+    )
 
 
 @skip_if_not_modified
