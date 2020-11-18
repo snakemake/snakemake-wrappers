@@ -1,13 +1,13 @@
 rule rubic:
     input:
         seg="{samples}/segments.txt",
-        markers="{samples}/markers.txt"
+        markers="{samples}/markers.txt",
     output:
         out_gains="{samples}/gains.txt",
         out_losses="{samples}/losses.txt",
-        out_plots=directory("{samples}/plots") #only possible to provide output directory for plots
+        out_plots=directory("{samples}/plots"), #only possible to provide output directory for plots
     params:
         fdr="",
-        genefile=""
+        genefile="",
     wrapper:
         "master/bio/rubic"

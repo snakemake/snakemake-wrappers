@@ -1,11 +1,11 @@
 rule twoBitInfo:
     input:
-        "{sample}.2bit"
+        "{sample}.2bit",
     output:
-        "{sample}.chrom.sizes"
+        "{sample}.chrom.sizes",
     log:
-        "logs/{sample}.chrom.sizes.log"
+        "logs/{sample}.chrom.sizes.log",
     params:
-        "" # optional params string
+        "", # optional params string
     wrapper:
         "master/bio/ucsc/twoBitInfo"

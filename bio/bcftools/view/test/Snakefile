@@ -1,9 +1,9 @@
 rule bcf_to_vcf:
     input:
-        "{prefix}.bcf"
+        "{prefix}.bcf",
     output:
-        "{prefix}.vcf"
+        "{prefix}.vcf",
     params:
-        ""  # optional parameters for bcftools view (except -o)
+        "", # optional parameters for bcftools view (except -o)
     wrapper:
         "master/bio/bcftools/view"
