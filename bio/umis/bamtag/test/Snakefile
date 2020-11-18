@@ -1,12 +1,12 @@
 rule umis_bamtag:
     input:
-        "data/{sample}.bam"
+        "data/{sample}.bam",
     output:
-        "data/{sample}.annotated.bam"
+        "data/{sample}.annotated.bam",
     log:
-        "logs/umis/bamtag/{sample}.log"
+        "logs/umis/bamtag/{sample}.log",
     params:
-        extra=""
+        extra="",
     threads: 1
     wrapper:
         "master/bio/umis/bamtag"
