@@ -1,9 +1,9 @@
 rule samtools_index:
     input:
-        "mapped/{sample}.sorted.bam"
+        "mapped/{sample}.sorted.bam",
     output:
-        "mapped/{sample}.sorted.bam.bai"
+        "mapped/{sample}.sorted.bam.bai",
     params:
-        "" # optional params string
+        "", # optional params string
     wrapper:
         "master/bio/samtools/index"

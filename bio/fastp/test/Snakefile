@@ -1,15 +1,15 @@
 rule fastp_se:
     input:
-        sample=["reads/se/{sample}.fastq"]
+        sample=["reads/se/{sample}.fastq"],
     output:
         trimmed="trimmed/se/{sample}.fastq",
         html="report/se/{sample}.html",
-        json="report/se/{sample}.json"
+        json="report/se/{sample}.json",
     log:
-        "logs/fastp/se/{sample}.log"
+        "logs/fastp/se/{sample}.log",
     params:
         adapters="--adapter_sequence ACGGCTAGCTA",
-        extra=""
+        extra="",
     threads: 1
     wrapper:
         "master/bio/fastp"
@@ -17,30 +17,31 @@ rule fastp_se:
 
 rule fastp_pe:
     input:
-        sample=["reads/pe/{sample}.1.fastq", "reads/pe/{sample}.2.fastq"] 
+        sample=["reads/pe/{sample}.1.fastq", "reads/pe/{sample}.2.fastq"],
     output:
         trimmed=["trimmed/pe/{sample}.1.fastq", "trimmed/pe/{sample}.2.fastq"],
         html="report/pe/{sample}.html",
-        json="report/pe/{sample}.json"
+        json="report/pe/{sample}.json",
     log:
-        "logs/fastp/pe/{sample}.log"
+        "logs/fastp/pe/{sample}.log",
     params:
         adapters="--adapter_sequence ACGGCTAGCTA --adapter_sequence_r2 AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC",
-        extra=""
+        extra="",
     threads: 2
     wrapper:
         "master/bio/fastp"
 
+
 rule fastp_pe_wo_trimming:
     input:
-        sample=["reads/pe/{sample}.1.fastq", "reads/pe/{sample}.2.fastq"]
+        sample=["reads/pe/{sample}.1.fastq", "reads/pe/{sample}.2.fastq"],
     output:
         html="report/pe_wo_trimming/{sample}.html",
-        json="report/pe_wo_trimming/{sample}.json"
+        json="report/pe_wo_trimming/{sample}.json",
     log:
-        "logs/fastp/pe_wo_trimming/{sample}.log"
+        "logs/fastp/pe_wo_trimming/{sample}.log",
     params:
-        extra=""
+        extra="",
     threads: 2
     wrapper:
         "master/bio/fastp"

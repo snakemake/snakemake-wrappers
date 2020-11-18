@@ -1,11 +1,10 @@
 rule xg:
     input:
-        vgs="x.vg"
+        vgs="x.vg",
     output:
-        xg="index/x.xg"
+        xg="index/x.xg",
     log:
-        "logs/vg/index/xg/x.log"
-    threads:
-        4
+        "logs/vg/index/xg/x.log",
+    threads: 4
     wrapper:
         "master/bio/vg/index/xg"
