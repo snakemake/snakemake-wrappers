@@ -1,13 +1,12 @@
 rule gcsa:
     input:
-        vgs=["x.vg", "c.vg"]
+        vgs=["x.vg", "c.vg"],
     output:
-        gcsa="index/wg.gcsa"
+        gcsa="index/wg.gcsa",
     params:
-        "-Z 3000 -X 3"
+        "-Z 3000 -X 3",
     log:
-        "logs/vg/index/gcsa/wg.log"
-    threads:
-        4
+        "logs/vg/index/gcsa/wg.log",
+    threads: 4
     wrapper:
         "master/bio/vg/index/gcsa"

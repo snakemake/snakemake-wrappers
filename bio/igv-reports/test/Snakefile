@@ -1,14 +1,13 @@
 rule igv_report:
     input:
         fasta="minigenome.fa",
-        vcf="variants.vcf",
-        # any number of additional optional tracks, see igv-reports manual
-        tracks=["alignments.bam"]
+        vcf="variants.vcf", # any number of additional optional tracks, see igv-reports manual
+        tracks=["alignments.bam"],
     output:
-        "igv-report.html"
+        "igv-report.html",
     params:
-        extra=""  # optional params, see igv-reports manual
+        extra="", # optional params, see igv-reports manual
     log:
-        "logs/igv-report.log"
+        "logs/igv-report.log",
     wrapper:
         "master/bio/igv-reports"

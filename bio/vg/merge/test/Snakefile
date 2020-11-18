@@ -1,9 +1,9 @@
 rule merge:
     input:
-        vgs=["c.vg", "x.vg"]
+        vgs=["c.vg", "x.vg"],
     output:
-        merged="graph/wg.vg"
+        merged="graph/wg.vg",
     log:
-        "logs/vg/merge/wg.log"
+        "logs/vg/merge/wg.log",
     wrapper:
         "master/bio/vg/merge"

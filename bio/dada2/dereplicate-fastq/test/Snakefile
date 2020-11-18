@@ -1,12 +1,9 @@
 rule dada2_dereplicate_fastq:
     input:
-    # Quality filtered FASTQ file
-        "filtered/{fastq}.fastq"
+        "filtered/{fastq}.fastq", # Quality filtered FASTQ file
     output:
-    # Dereplicated sequences stored as `derep-class` object in a RDS file 
-        "uniques/{fastq}.RDS"
+        "uniques/{fastq}.RDS", # Dereplicated sequences stored as `derep-class` object in a RDS file 
     log:
-        "logs/dada2/dereplicate-fastq/{fastq}.log"
+        "logs/dada2/dereplicate-fastq/{fastq}.log",
     wrapper:
         "master/bio/dada2/dereplicate-fastq"
-

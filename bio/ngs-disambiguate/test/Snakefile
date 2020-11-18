@@ -1,20 +1,19 @@
 rule disambiguate:
     input:
         a="mapped/{sample}.a.bam",
-        b="mapped/{sample}.b.bam"
+        b="mapped/{sample}.b.bam",
     output:
-        a_ambiguous='disambiguate/{sample}.graft.ambiguous.bam',
-        b_ambiguous='disambiguate/{sample}.host.ambiguous.bam',
-        a_disambiguated='disambiguate/{sample}.graft.bam',
-        b_disambiguated='disambiguate/{sample}.host.bam',
-        summary='qc/disambiguate/{sample}.txt'
+        a_ambiguous="disambiguate/{sample}.graft.ambiguous.bam",
+        b_ambiguous="disambiguate/{sample}.host.ambiguous.bam",
+        a_disambiguated="disambiguate/{sample}.graft.bam",
+        b_disambiguated="disambiguate/{sample}.host.bam",
+        summary="qc/disambiguate/{sample}.txt",
     params:
-        algorithm="bwa",
-        # optional: Prefix to use for output. If omitted, a
-        # suitable value is guessed from the output paths. Prefix
-        # is used for the intermediate output paths, as well as
-        # sample name in summary file.
+        algorithm="bwa", # optional: Prefix to use for output. If omitted, a
+         # suitable value is guessed from the output paths. Prefix
+         # is used for the intermediate output paths, as well as
+         # sample name in summary file.
         prefix="{sample}",
-        extra=""
+        extra="",
     wrapper:
         "master/bio/ngs-disambiguate"

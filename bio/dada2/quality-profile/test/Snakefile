@@ -1,21 +1,20 @@
 rule dada2_quality_profile_se:
     input:
-        # FASTQ file without primers sequences
-        "trimmed/{sample}.{orientation}.fastq"
+        "trimmed/{sample}.{orientation}.fastq", # FASTQ file without primers sequences
     output:
-        "reports/dada2/quality-profile/{sample}.{orientation}-quality-profile.png"
+        "reports/dada2/quality-profile/{sample}.{orientation}-quality-profile.png",
     log:
-        "logs/dada2/quality-profile/{sample}.{orientation}-quality-profile-se.log"
+        "logs/dada2/quality-profile/{sample}.{orientation}-quality-profile-se.log",
     wrapper:
         "master/bio/dada2/quality-profile"
 
+
 rule dada2_quality_profile_pe:
     input:
-        # FASTQ file without primers sequences
-        expand("trimmed/{{sample}}.{orientation}.fastq",orientation=[1,2])
+        expand("trimmed/{{sample}}.{orientation}.fastq", orientation=[1, 2]), # FASTQ file without primers sequences
     output:
-        "reports/dada2/quality-profile/{sample}-quality-profile.png"
+        "reports/dada2/quality-profile/{sample}-quality-profile.png",
     log:
-        "logs/dada2/quality-profile/{sample}-quality-profile-pe.log"
+        "logs/dada2/quality-profile/{sample}-quality-profile-pe.log",
     wrapper:
         "master/bio/dada2/quality-profile"

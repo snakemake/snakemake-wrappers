@@ -12,7 +12,7 @@ preprocess_endings = (
     ".sv.bam.bai",
     ".sv_metrics",
     ".tag_metrics",
-    )
+)
 
 assembly_endings = (
     ".cigar_metrics",
@@ -27,9 +27,18 @@ assembly_endings = (
     ".sv.bam",
     ".sv.bam.bai",
     ".tag_metrics",
-    )
+)
 
-reference_index_endings = (".amb",".ann", ".bwt", ".pac", ".sa", ".gridsscache", ".img")
+reference_index_endings = (
+    ".amb",
+    ".ann",
+    ".bwt",
+    ".pac",
+    ".sa",
+    ".gridsscache",
+    ".img",
+)
+
 
 rule gridss_call:
     input:
@@ -38,19 +47,29 @@ rule gridss_call:
         reference="reference/genome.fasta",
         dictionary="reference/genome.dict",
         indices=multiext("reference/genome.fasta", *reference_index_endings),
-        preprocess=expand("{working_dir}/{sample}.bam.gridss.working/{sample}.bam{ending}", working_dir=[WORKING_DIR], sample=samples, ending=preprocess_endings),
+        preprocess=expand(
+            "{working_dir}/{sample}.bam.gridss.working/{sample}.bam{ending}",
+            working_dir=[WORKING_DIR],
+            sample=samples,
+            ending=preprocess_endings,
+        ),
         assembly="assembly/group.bam",
-        assembly_others=expand("{working_dir}/group.bam.gridss.working/group.bam{ending}", working_dir=[WORKING_DIR], ending=assembly_endings)
+        assembly_others=expand(
+            "{working_dir}/group.bam.gridss.working/group.bam{ending}",
+            working_dir=[WORKING_DIR],
+            ending=assembly_endings,
+        ),
     output:
         vcf="vcf/group.vcf",
         idx="vcf/group.vcf.idx",
-        tmpidx=temp(WORKING_DIR + "/group.vcf.gridss.working/group.vcf.allocated.vcf.idx") # be aware the group occurs two times here
+        tmpidx=temp(
+            WORKING_DIR + "/group.vcf.gridss.working/group.vcf.allocated.vcf.idx"
+        ), # be aware the group occurs two times here
     params:
         extra="--jvmheap 1g",
-        workingdir=WORKING_DIR
+        workingdir=WORKING_DIR,
     log:
-        "log/gridss/call/group.log"
-    threads:
-        100
+        "log/gridss/call/group.log",
+    threads: 100
     wrapper:
         "master/bio/gridss/call"

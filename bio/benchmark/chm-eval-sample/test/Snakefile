@@ -1,12 +1,11 @@
 rule chm_eval_sample:
     output:
         bam="resources/chm-eval-sample.bam",
-        bai="resources/chm-eval-sample.bam.bai"
+        bai="resources/chm-eval-sample.bam.bai",
     params:
-        # Optionally only grab the first 100 records.
-        # This is for testing, remove next line to grab all records.
-        first_n=100
+        first_n=100, # Optionally only grab the first 100 records.
+         # This is for testing, remove next line to grab all records.
     log:
-        "logs/chm-eval-sample.log"
+        "logs/chm-eval-sample.log",
     wrapper:
         "master/bio/benchmark/chm-eval-sample"

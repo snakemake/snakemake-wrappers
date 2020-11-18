@@ -12,7 +12,7 @@ preprocess_endings = (
     ".sv.bam.bai",
     ".sv_metrics",
     ".tag_metrics",
-    )
+)
 
 assembly_endings = (
     ".cigar_metrics",
@@ -27,9 +27,18 @@ assembly_endings = (
     ".sv.bam",
     ".sv.bam.bai",
     ".tag_metrics",
-    )
+)
 
-reference_index_endings = (".amb",".ann", ".bwt", ".pac", ".sa", ".gridsscache", ".img")
+reference_index_endings = (
+    ".amb",
+    ".ann",
+    ".bwt",
+    ".pac",
+    ".sa",
+    ".gridsscache",
+    ".img",
+)
+
 
 rule gridss_assemble:
     input:
@@ -38,17 +47,24 @@ rule gridss_assemble:
         reference="reference/genome.fasta",
         dictionary="reference/genome.dict",
         indices=multiext("reference/genome.fasta", *reference_index_endings),
-        preprocess=expand("{working_dir}/{sample}.bam.gridss.working/{sample}.bam{ending}", working_dir=[WORKING_DIR], sample=samples, ending=preprocess_endings)
+        preprocess=expand(
+            "{working_dir}/{sample}.bam.gridss.working/{sample}.bam{ending}",
+            working_dir=[WORKING_DIR],
+            sample=samples,
+            ending=preprocess_endings,
+        ),
     output:
         assembly="assembly/group.bam",
-        assembly_others=expand("{working_dir}/group.bam.gridss.working/group.bam{ending}", working_dir=[WORKING_DIR], ending=assembly_endings)
+        assembly_others=expand(
+            "{working_dir}/group.bam.gridss.working/group.bam{ending}",
+            working_dir=[WORKING_DIR],
+            ending=assembly_endings,
+        ),
     params:
         extra="--jvmheap 1g",
-        workingdir=WORKING_DIR
+        workingdir=WORKING_DIR,
     log:
-        "log/gridss/assemble/group.log"
-    threads:
-        100
+        "log/gridss/assemble/group.log",
+    threads: 100
     wrapper:
         "master/bio/gridss/assemble"
-

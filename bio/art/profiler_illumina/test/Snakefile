@@ -2,10 +2,11 @@ rule art_profiler_illumina:
     input:
         "data/{sample}.fq",
     output:
-        "profiles/{sample}.txt"
+        "profiles/{sample}.txt",
     log:
-        "logs/art_profiler_illumina/{sample}.log"
-    params: ""
+        "logs/art_profiler_illumina/{sample}.log",
+    params:
+        "",
     threads: 2
     wrapper:
         "master/bio/art/profiler_illumina"

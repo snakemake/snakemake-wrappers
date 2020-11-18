@@ -1,9 +1,9 @@
 rule samtools_view:
     input:
-        "{sample}.sam"
+        "{sample}.sam",
     output:
-        "{sample}.bam"
+        "{sample}.bam",
     params:
-        "-b" # optional params string
+        "-b", # optional params string
     wrapper:
         "master/bio/samtools/view"

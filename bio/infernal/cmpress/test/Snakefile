@@ -1,13 +1,13 @@
 rule infernal_cmpress:
     input:
-        "test-covariance-model.cm"
+        "test-covariance-model.cm",
     output:
         "test-covariance-model.cm.i1i",
         "test-covariance-model.cm.i1f",
         "test-covariance-model.cm.i1m",
-        "test-covariance-model.cm.i1p"
+        "test-covariance-model.cm.i1p",
     log:
-        "logs/cmpress.log"
+        "logs/cmpress.log",
     params:
         extra="",
     wrapper:
