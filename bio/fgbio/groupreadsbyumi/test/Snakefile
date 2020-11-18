@@ -1,12 +1,12 @@
 rule GroupReads:
     input:
-        "mapped/a.bam"
+        "mapped/a.bam",
     output:
         bam="mapped/{sample}.gu.bam",
         hist="mapped/{sample}.gu.histo.tsv",
     params:
-        extra="-s adjacency --edits 1"
+        extra="-s adjacency --edits 1",
     log:
-        "logs/fgbio/group_reads/{sample}.log"
+        "logs/fgbio/group_reads/{sample}.log",
     wrapper:
         "master/bio/fgbio/groupreadsbyumi"

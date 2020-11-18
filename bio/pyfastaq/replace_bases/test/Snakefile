@@ -1,12 +1,12 @@
 rule replace_bases:
     input:
-        "{sample}.rna.fa"
+        "{sample}.rna.fa",
     output:
         "{sample}.dna.fa",
     params:
-        old_base = "U",
-        new_base = "T",
+        old_base="U",
+        new_base="T",
     log:
-        "logs/fastaq/replace_bases/test/{sample}.log"
+        "logs/fastaq/replace_bases/test/{sample}.log",
     wrapper:
         "master/bio/pyfastaq/replace_bases"
