@@ -2446,10 +2446,10 @@ def test_gatk_genotypegvcfs():
     )
 
 
-@skip_if_not_modified
-@skip(
+@pytest.mark.skip(
     reason="this GATK tool does not work with our test data so far... Error is unclear."
 )
+@skip_if_not_modified
 def test_gatk_genomicsdbimport():
     run(
         "bio/gatk/genomicsdbimport",
