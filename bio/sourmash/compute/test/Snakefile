@@ -1,32 +1,30 @@
 rule sourmash_reads:
     input:
-        "reads/a.fastq"
+        "reads/a.fastq",
     output:
-        "reads.sig"
+        "reads.sig",
     log:
-        "logs/sourmash/sourmash_compute_reads.log"
+        "logs/sourmash/sourmash_compute_reads.log",
     threads: 2
     params:
-        # optional parameters
-        k = "31",
-        scaled = "1000",
-        extra = ""
+        k="31", # optional parameters
+        scaled="1000",
+        extra="",
     wrapper:
         "master/bio/sourmash/compute"
 
 
 rule sourmash_transcriptome:
     input:
-        "assembly/transcriptome.fasta"
+        "assembly/transcriptome.fasta",
     output:
-        "transcriptome.sig"
+        "transcriptome.sig",
     log:
-        "logs/sourmash/sourmash_compute_transcriptome.log"
+        "logs/sourmash/sourmash_compute_transcriptome.log",
     threads: 2
     params:
-        # optional parameters
-        k = "31",
-        scaled = "1000",
-        extra = ""
+        k="31", # optional parameters
+        scaled="1000",
+        extra="",
     wrapper:
         "master/bio/sourmash/compute"
