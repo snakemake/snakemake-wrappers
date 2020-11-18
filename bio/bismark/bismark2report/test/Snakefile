@@ -5,15 +5,16 @@ rule bismark2report_pe:
         nucleotide_report="bams/{sample}_{genome}_pe.nucleotide_stats.txt",
         dedup_report="bams/{sample}_{genome}_pe.deduplication_report.txt",
         mbias_report="meth/{sample}_{genome}_pe.deduplicated.M-bias.txt",
-        splitting_report="meth/{sample}_{genome}_pe.deduplicated_splitting_report.txt"
+        splitting_report="meth/{sample}_{genome}_pe.deduplicated_splitting_report.txt",
     output:
         html="qc/meth/{sample}_{genome}.bismark2report.html",
     log:
         "logs/qc/meth/{sample}_{genome}.bismark2report.html.log",
     params:
-        skip_optional_reports=True
+        skip_optional_reports=True,
     wrapper:
         "master/bio/bismark/bismark2report"
+
 
 # Example: Single-ended reads
 rule bismark2report_se:
@@ -22,12 +23,12 @@ rule bismark2report_se:
         nucleotide_report="bams/{sample}_{genome}.nucleotide_stats.txt",
         dedup_report="bams/{sample}_{genome}.deduplication_report.txt",
         mbias_report="meth/{sample}_{genome}.deduplicated.M-bias.txt",
-        splitting_report="meth/{sample}_{genome}.deduplicated_splitting_report.txt"
+        splitting_report="meth/{sample}_{genome}.deduplicated_splitting_report.txt",
     output:
         html="qc/meth/{sample}_{genome}.bismark2report.html",
     log:
         "logs/qc/meth/{sample}_{genome}.bismark2report.html.log",
     params:
-        skip_optional_reports=True
+        skip_optional_reports=True,
     wrapper:
         "master/bio/bismark/bismark2report"

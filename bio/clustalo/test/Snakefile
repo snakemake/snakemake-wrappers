@@ -1,12 +1,12 @@
 rule clustalo:
     input:
-        "{sample}.fa"
+        "{sample}.fa",
     output:
-        "{sample}.msa.fa"
+        "{sample}.msa.fa",
     params:
-        extra=""
+        extra="",
     log:
-        "logs/clustalo/test/{sample}.log"
+        "logs/clustalo/test/{sample}.log",
     threads: 8
     wrapper:
         "master/bio/clustalo"

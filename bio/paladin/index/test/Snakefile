@@ -1,11 +1,11 @@
 rule paladin_index:
     input:
-        "prot.fasta", 
+        "prot.fasta",
     output:
-        "index/prot.fasta.bwt" 
+        "index/prot.fasta.bwt",
     log:
-        "logs/paladin/prot_index.log"
+        "logs/paladin/prot_index.log",
     params:
-      reference_type=3
+        reference_type=3,
     wrapper:
         "master/bio/paladin/index"

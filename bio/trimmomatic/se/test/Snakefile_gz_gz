@@ -1,24 +1,20 @@
 rule trimmomatic:
     input:
-        "reads/{sample}.fastq.gz"  # input and output can be uncompressed or compressed
+        "reads/{sample}.fastq.gz", # input and output can be uncompressed or compressed
     output:
-        "trimmed/{sample}.fastq.gz"
+        "trimmed/{sample}.fastq.gz",
     log:
-        "logs/trimmomatic/{sample}.log"
+        "logs/trimmomatic/{sample}.log",
     params:
-        # list of trimmers (see manual)
-        trimmer=["TRAILING:3"],
-        # optional parameters
-        extra="",
-        # optional compression levels from -0 to -9 and -11
-        compression_level="-9"
-    threads:
-        32
-    # optional specification of memory usage of the JVM that snakemake will respect with global
-    # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
-    # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
-    # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
+        trimmer=["TRAILING:3"], # list of trimmers (see manual)
+         # optional parameters
+        extra="", # optional compression levels from -0 to -9 and -11
+        compression_level="-9",
+    threads: 32 # optional specification of memory usage of the JVM that snakemake will respect with global
+ # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
+ # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
+ # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     wrapper:
         "master/bio/trimmomatic/se"

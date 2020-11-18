@@ -2,11 +2,11 @@ rule vembrane_table:
     input:
         vcf="in.vcf",
     output:
-        vcf="table/out.tsv"
+        vcf="table/out.tsv",
     params:
         expression="CHROM, POS, ALT, REF",
-        extra=""
+        extra="",
     log:
-        "logs/vembrane.log"
+        "logs/vembrane.log",
     wrapper:
         "master/bio/vembrane/table"

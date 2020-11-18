@@ -1,8 +1,7 @@
 rule download_vep_plugins:
     output:
-        directory("resources/vep/plugins")
+        directory("resources/vep/plugins"),
     params:
-        release=100
+        release=100,
     wrapper:
         "master/bio/vep/plugins"
-        
