@@ -1,6 +1,6 @@
 rule realignertargetcreator:
     input:
-        bam="mapped/{sample}.bam"
+        bam="mapped/{sample}.bam",
         ref="genome.fasta",
         known="dbsnp.vcf.gz"
     output:
