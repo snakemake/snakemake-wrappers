@@ -1,10 +1,10 @@
 rule sambamba_sort:
     input:
-        "mapped/{sample}.bam"
+        "mapped/{sample}.bam",
     output:
-        "mapped/{sample}.sorted.bam"
+        "mapped/{sample}.sorted.bam",
     params:
-        ""  # optional parameters
+        "", # optional parameters
     threads: 8
     wrapper:
         "master/bio/sambamba/sort"
