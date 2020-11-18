@@ -5,5 +5,7 @@ rule bcftools_concat:
         "all.bcf",
     params:
         "", # optional parameters for bcftools concat (except -o)
+    log:
+        "logs/bcftools-concat.log"
     wrapper:
         "master/bio/bcftools/concat"
