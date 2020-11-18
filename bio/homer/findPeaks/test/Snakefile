@@ -1,7 +1,8 @@
 rule homer_findPeaks:
     input:
-        tag="tagDir/{sample}", # tagDirectory of sample
-         # tagDirectory of control background sample - optional
+        # tagDirectory of sample
+        tag="tagDir/{sample}",
+        # tagDirectory of control background sample - optional
         control="tagDir/control",
     output:
         "{sample}_peaks.txt",

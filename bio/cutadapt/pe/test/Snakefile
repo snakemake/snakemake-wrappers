@@ -6,8 +6,9 @@ rule cutadapt:
         fastq2="trimmed/{sample}.2.fastq",
         qc="trimmed/{sample}.qc.txt",
     params:
-        adapters="-a AGAGCACACGTCTGAACTCCAGTCAC -g AGATCGGAAGAGCACACGT -A AGAGCACACGTCTGAACTCCAGTCAC -G AGATCGGAAGAGCACACGT", # https://cutadapt.readthedocs.io/en/stable/guide.html#adapter-types
-         # https://cutadapt.readthedocs.io/en/stable/guide.html#
+        # https://cutadapt.readthedocs.io/en/stable/guide.html#adapter-types
+        adapters="-a AGAGCACACGTCTGAACTCCAGTCAC -g AGATCGGAAGAGCACACGT -A AGAGCACACGTCTGAACTCCAGTCAC -G AGATCGGAAGAGCACACGT",
+        # https://cutadapt.readthedocs.io/en/stable/guide.html
         extra="--minimum-length 1 -q 20",
     log:
         "logs/cutadapt/{sample}.log",

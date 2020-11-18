@@ -1,7 +1,8 @@
 rule strelka_germline:
     input:
-        bam="mapped/{sample}.bam", # the required bam file
-         # path to reference genome fasta and index
+        # the required bam file
+        bam="mapped/{sample}.bam",
+        # path to reference genome fasta and index
         fasta="genome.fasta",
         fasta_index="genome.fasta.fai",
     output:

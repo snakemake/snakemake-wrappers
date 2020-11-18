@@ -1,7 +1,8 @@
 rule homer_annotatepeaks:
     input:
         peaks="peaks_refs/{sample}.peaks",
-        genome="peaks_refs/gene.fasta", # optional input files
+        genome="peaks_refs/gene.fasta",
+        # optional input files
          # gtf="", # implicitly sets the -gtf flag
          # gene="", # implicitly sets the -gene flag for gene data file to add gene expression or other data types
         motif_files="peaks_refs/motives.txt", # implicitly sets the -m flag
@@ -17,16 +18,20 @@ rule homer_annotatepeaks:
          # cmp_Liftover="", # implicitly sets the -cmpLiftover flag
          # advanced_annotation=""  # optional, implicitly sets the -ann flag, see http://homer.ucsd.edu/homer/ngs/advancedAnnotation.html
     output:
-        annotations="{sample}_annot.txt", # optional output, implicitly sets the -matrix flag, requires motif_files as input
+        annotations="{sample}_annot.txt",
+        # optional output, implicitly sets the -matrix flag, requires motif_files as input
         matrix=multiext(
             "{sample}",
             ".count.matrix.txt",
             ".ratio.matrix.txt",
             ".logPvalue.matrix.txt",
             ".stats.txt",
-        ), # optional output, implicitly sets the -mfasta flag, requires motif_files as input
-        mfasta="{sample}_motif.fasta", # # optional output, implicitly sets the -mbed flag, requires motif_files as input
-        mbed="{sample}_motif.bed", # # optional output, implicitly sets the -mlogic flag, requires motif_files as input
+        ),
+        # optional output, implicitly sets the -mfasta flag, requires motif_files as input
+        mfasta="{sample}_motif.fasta",
+        # # optional output, implicitly sets the -mbed flag, requires motif_files as input
+        mbed="{sample}_motif.bed",
+        # # optional output, implicitly sets the -mlogic flag, requires motif_files as input
         mlogic="{sample}_motif.logic",
     threads: 2
     params:

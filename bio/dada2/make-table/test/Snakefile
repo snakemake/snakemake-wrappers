@@ -2,11 +2,12 @@ rule dada2_make_table_se:
     input:
         expand("denoised/{sample}.1.RDS", sample=["a", "b"]), # Inferred composition 
     output:
-        "results/dada2/seqTab-se.RDS", # Even though this is an R wrapper, use named arguments in Python syntax
-         # here, to specify extra parameters. Python booleans (`arg1=True`, `arg2=False`)
-         # and lists (`list_arg=[]`) are automatically converted to R.
-         # For a named list as an extra named argument, use a python dict
-         #   (`named_list={name1=arg1}`).
+        "results/dada2/seqTab-se.RDS",
+    # Even though this is an R wrapper, use named arguments in Python syntax
+    # here, to specify extra parameters. Python booleans (`arg1=True`, `arg2=False`)
+    # and lists (`list_arg=[]`) are automatically converted to R.
+    # For a named list as an extra named argument, use a python dict
+    #   (`named_list={name1=arg1}`).
     params:
         names=["a", "b"], # Sample names instead of paths
     log:
@@ -20,11 +21,12 @@ rule dada2_make_table_pe:
     input:
         expand("merged/{sample}.RDS", sample=["a", "b"]), # Merged composition
     output:
-        "results/dada2/seqTab-pe.RDS", # Even though this is an R wrapper, use named arguments in Python syntax
-         # here, to specify extra parameters. Python booleans (`arg1=True`, `arg2=False`)
-         # and lists (`list_arg=[]`) are automatically converted to R.
-         # For a named list as an extra named argument, use a python dict
-         #   (`named_list={name1=arg1}`).
+        "results/dada2/seqTab-pe.RDS",
+    # Even though this is an R wrapper, use named arguments in Python syntax
+    # here, to specify extra parameters. Python booleans (`arg1=True`, `arg2=False`)
+    # and lists (`list_arg=[]`) are automatically converted to R.
+    # For a named list as an extra named argument, use a python dict
+    #   (`named_list={name1=arg1}`).
     params:
         names=["a", "b"], # Sample names instead of paths
         orderBy="nsamples", # Change the ordering of samples

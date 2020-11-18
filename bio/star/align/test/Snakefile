@@ -1,8 +1,9 @@
 rule star_pe_multi:
     input:
-        fq1=["reads/{sample}_R1.1.fastq", "reads/{sample}_R1.2.fastq"], # use a list for multiple fastq files for one sample
-         # usually technical replicates across lanes/flowcells
-         # paired end reads needs to be ordered so each item in the two lists match
+        # use a list for multiple fastq files for one sample
+        # usually technical replicates across lanes/flowcells
+        fq1 = ["reads/{sample}_R1.1.fastq", "reads/{sample}_R1.2.fastq"],
+        # paired end reads needs to be ordered so each item in the two lists match
         fq2=["reads/{sample}_R2.1.fastq", "reads/{sample}_R2.2.fastq"], #optional
     output:
         "star/pe/{sample}/Aligned.out.sam", # see STAR manual for additional output files

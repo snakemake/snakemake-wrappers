@@ -3,18 +3,18 @@ rule compute_matrix:
         bed=expand("{sample}.bed", sample=["a", "b"]), # Please note that the -R and -S options are defined via input files
         bigwig=expand("{sample}.bw", sample=["a", "b"]),
     output:
-        matrix_gz="matrix_files/matrix.gz", # Please note that --outFileName, --outFileNameMatrix and --outFileSortedRegions are exclusively defined via output files.
-         # Usable output variables, their extensions and which option they implicitly call are listed here:
-         #         https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/deeptools/computematrix.html.
-         # required
-         # optional output files
+        # Please note that --outFileName, --outFileNameMatrix and --outFileSortedRegions are exclusively defined via output files.
+        # Please note that --outFileName, --outFileNameMatrix and --outFileSortedRegions are exclusively defined via output files.
+        # Usable output variables, their extensions and which option they implicitly call are listed here:
+        #         https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/deeptools/computematrix.html.
+        matrix_gz="matrix_files/matrix.gz",   # required
+        # optional output files
         matrix_tab="matrix_files/matrix.tab",
         matrix_bed="matrix_files/matrix.bed",
     log:
         "logs/deeptools/compute_matrix.log",
     params:
         command="scale-regions", # required argument, choose "scale-regions" or "reference-point"
-         # optional parameters
-        extra="--regionBodyLength 200 --verbose",
+        extra="--regionBodyLength 200 --verbose", # optional parameters
     wrapper:
         "master/bio/deeptools/computematrix"

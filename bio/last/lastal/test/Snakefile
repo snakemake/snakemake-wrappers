@@ -22,7 +22,8 @@ rule lastal_nucl_x_prot:
         data="test-transcript.fa",
         lastdb="test-protein.fa.prj",
     output:
-        maf="test-tr-x-prot.maf", # only one of these outputs is allowed
+        # only one of these outputs is allowed
+        maf="test-tr-x-prot.maf",
          #tab="test-tr-x-prot.tab",
          #blasttab="test-tr-x-prot.blasttab",
          #blasttabplus="test-tr-x-prot.blasttabplus",

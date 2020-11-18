@@ -3,8 +3,10 @@ pindel_types = ["D", "BP", "INV", "TD", "LI", "SI", "RP"]
 
 rule pindel:
     input:
-        ref="genome.fasta", # samples to call
-        samples=["mapped/a.bam"], # bam configuration file, see http://gmt.genome.wustl.edu/packages/pindel/quick-start.html
+        ref="genome.fasta",
+        # samples to call
+        samples=["mapped/a.bam"],
+        # bam configuration file, see http://gmt.genome.wustl.edu/packages/pindel/quick-start.html
         config="pindel_config.txt",
     output:
         expand("pindel/all_{type}", type=pindel_types),

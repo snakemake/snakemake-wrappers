@@ -4,8 +4,9 @@ rule preprocess_variants:
     output:
         "normalized/variants.vcf",
     params:
-        genome="genome.fasta", ## path to reference genome
-         ## parameters such as -L to left-align variants
+        ## path to reference genome
+        genome="genome.fasta",
+        ## parameters such as -L to left-align variants
         extra="-L",
     threads: 2
     wrapper:

@@ -1,6 +1,7 @@
 rule get_fastq_pe:
     output:
-        "data/{accession}_1.fastq", # the wildcard name must be accession, pointing to an SRA number
+        # the wildcard name must be an accession, pointing to an SRA number
+        "data/{accession}_1.fastq",
         "data/{accession}_2.fastq",
     params:
         extra="", # optional extra arguments

@@ -5,14 +5,16 @@ rule gdc_download:
     log:
         "logs/gdc-client/download/{sample}.log",
     params:
-        uuid="34b80c89-c41e-47be-84fb-0c0ea493b5bb", # to use this rule flexibly, make uuid a function that maps your
-         # sample names of choice to the UUIDs they correspond to (they are
-         # the column `id` in the GDC manifest files, which can be used to
-         # systematically construct sample sheets)
-         # a gdc_token is only required for controlled access samples,
-         # leave blank otherwise (`gdc_token=""`) or skip this param entirely
-        gdc_token="gdc/gdc-user-token.2020-05-07T10_00_00.555Z.txt", # for valid extra command line arguments, check command line help or:
-         # https://docs.gdc.cancer.gov/Data_Transfer_Tool/Users_Guide/Data_Download_and_Upload/
+        # to use this rule flexibly, make uuid a function that maps your
+        # sample names of choice to the UUIDs they correspond to (they are
+        # the column `id` in the GDC manifest files, which can be used to
+        # systematically construct sample sheets)
+        uuid="34b80c89-c41e-47be-84fb-0c0ea493b5bb",
+        # a gdc_token is only required for controlled access samples,
+        # leave blank otherwise (`gdc_token=""`) or skip this param entirely
+        gdc_token="gdc/gdc-user-token.2020-05-07T10_00_00.555Z.
+        # for valid extra command line arguments, check command line help or:
+        # https://docs.gdc.cancer.gov/Data_Transfer_Tool/Users_Guide/Data_Download_and_Upload/
         extra="",
     threads: 4
     wrapper:
@@ -30,14 +32,16 @@ rule gdc_download_bam:
     log:
         "logs/gdc-client/download/{sample}.log",
     params:
-        uuid="34b80c89-c41e-47be-84fb-0c0ea493b5bb", # to use this rule flexibly, make uuid a function that maps your
-         # sample names of choice to the UUIDs they correspond to (they are
-         # the column `id` in the GDC manifest files, which can be used to
-         # systematically construct sample sheets)
-         # a gdc_token is only required for controlled access samples,
-         # leave blank otherwise (`gdc_token=""`) or skip this param entirely
-        gdc_token="gdc/gdc-user-token.2020-05-07T10_00_00.555Z.txt", # for valid extra command line arguments, check command line help or:
-         # https://docs.gdc.cancer.gov/Data_Transfer_Tool/Users_Guide/Data_Download_and_Upload/
+        # to use this rule flexibly, make uuid a function that maps your
+        # sample names of choice to the UUIDs they correspond to (they are
+        # the column `id` in the GDC manifest files, which can be used to
+        # systematically construct sample sheets)
+        uuid="34b80c89-c41e-47be-84fb-0c0ea493b5bb",
+        # a gdc_token is only required for controlled access samples,
+        # leave blank otherwise (`gdc_token=""`) or skip this param entirely
+        gdc_token="gdc/gdc-user-token.2020-05-07T10_00_00.555Z.txt",
+        # for valid extra command line arguments, check command line help or:
+        # https://docs.gdc.cancer.gov/Data_Transfer_Tool/Users_Guide/Data_Download_and_Upload/
         extra="",
     threads: 4
     wrapper:

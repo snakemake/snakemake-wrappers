@@ -1,9 +1,10 @@
 rule strelka:
     input:
-        tumor="data/{tumor}.bam", # The normal bam and its index
-         # are optional input
-         # normal = "data/b.bam",
-         # normal_index = "data/b.bam.bai"
+        # The normal bam and its index
+        # are optional input
+        # normal = "data/b.bam",
+        # normal_index = "data/b.bam.bai",
+        tumor="data/{tumor}.bam",
         tumor_index="data/{tumor}.bam.bai",
         fasta="data/genome.fasta",
         fasta_index="data/genome.fasta.fai",

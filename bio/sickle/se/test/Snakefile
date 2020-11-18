@@ -4,8 +4,8 @@ rule sickle_pe:
     output:
         "output_R1.fq",
     params:
-        qual_type="sanger", # optional extra parameters
-        extra="",
+        qual_type="sanger",
+        extra="", # optional extra parameters
     log:
         "logs/sickle/job.log",
     wrapper:

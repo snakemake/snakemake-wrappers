@@ -8,8 +8,9 @@ rule salmon_quant_reads:
     log:
         "logs/salmon/{sample}_x_transcriptome.log",
     params:
-        libtype="A", # optional parameters
-         #zip_ext = bz2 # req'd for bz2 files ('bz2'); optional for gz files('gz')
+        # optional parameters
+        libtype ="A",
+        #zip_ext = bz2 # req'd for bz2 files ('bz2'); optional for gz files('gz')
         extra="",
     threads: 2
     wrapper:

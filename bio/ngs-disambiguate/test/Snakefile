@@ -9,10 +9,11 @@ rule disambiguate:
         b_disambiguated="disambiguate/{sample}.host.bam",
         summary="qc/disambiguate/{sample}.txt",
     params:
-        algorithm="bwa", # optional: Prefix to use for output. If omitted, a
-         # suitable value is guessed from the output paths. Prefix
-         # is used for the intermediate output paths, as well as
-         # sample name in summary file.
+        algorithm="bwa",
+        # optional: Prefix to use for output. If omitted, a
+        # suitable value is guessed from the output paths. Prefix
+        # is used for the intermediate output paths, as well as
+        # sample name in summary file.
         prefix="{sample}",
         extra="",
     wrapper:

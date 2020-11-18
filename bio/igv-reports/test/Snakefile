@@ -1,7 +1,8 @@
 rule igv_report:
     input:
         fasta="minigenome.fa",
-        vcf="variants.vcf", # any number of additional optional tracks, see igv-reports manual
+        vcf="variants.vcf",
+        # any number of additional optional tracks, see igv-reports manual
         tracks=["alignments.bam"],
     output:
         "igv-report.html",

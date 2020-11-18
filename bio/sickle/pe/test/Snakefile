@@ -7,8 +7,8 @@ rule sickle_pe:
         r2="output_R2.fq",
         rs="output_single.fq",
     params:
-        qual_type="sanger", # optional extra parameters
-        extra="",
+        qual_type="sanger",
+        extra="", # optional extra parameters
     log:
         "logs/sickle/job.log", # optional log file
     wrapper:

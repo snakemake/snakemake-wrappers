@@ -23,7 +23,8 @@ rule sourmash_transcriptome:
         "logs/sourmash/sourmash_compute_transcriptome.log",
     threads: 2
     params:
-        k="31", # optional parameters
+        # optional parameters
+        k="31",
         scaled="1000",
         extra="",
     wrapper:

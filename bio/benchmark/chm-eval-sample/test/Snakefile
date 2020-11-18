@@ -4,7 +4,7 @@ rule chm_eval_sample:
         bai="resources/chm-eval-sample.bam.bai",
     params:
         first_n=100, # Optionally only grab the first 100 records.
-         # This is for testing, remove next line to grab all records.
+         # This is for testing, remove previous line to grab all records!
     log:
         "logs/chm-eval-sample.log",
     wrapper:

@@ -2,11 +2,11 @@ rule plot_heatmap:
     input:
         "matrix.gz", # matrix file from deepTools computeMatrix tool
     output:
-        heatmap_img="plot_heatmap/heatmap.png", # Please note that --outFileSortedRegions and --outFileNameMatrix are exclusively defined via output files.
-         # Usable output variables, their extensions and which option they implicitly call are listed here:
-         #         https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/deeptools/plotheatmap.html.
-         # required
-         # optional output files
+        # Please note that --outFileSortedRegions and --outFileNameMatrix are exclusively defined via output files.
+        # Usable output variables, their extensions and which option they implicitly call are listed here:
+        #         https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/deeptools/plotheatmap.html.
+        heatmap_img="plot_heatmap/heatmap.png",  # required
+        # optional output files
         regions="plot_heatmap/heatmap_regions.bed",
         heatmap_matrix="plot_heatmap/heatmap_matrix.tab",
     log:

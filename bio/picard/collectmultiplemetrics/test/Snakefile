@@ -3,8 +3,11 @@ rule collect_multiple_metrics:
         bam="mapped/{sample}.bam",
         ref="genome.fasta",
     output:
-        multiext(
-            "stats/{sample}",
+        # Through the output file extensions the different tools for the metrics can be selected
+        # so that it is not necessary to specify them under params with the "PROGRAM" option.
+        # Usable extensions (and which tools they implicitly call) are listed here:
+        #         https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/picard/collectmultiplemetrics.html.
+        multiext("stats/{sample}",
             ".alignment_summary_metrics",
             ".insert_size_metrics",
             ".insert_size_histogram.pdf",
@@ -24,10 +27,7 @@ rule collect_multiple_metrics:
             ".pre_adapter_detail_metrics",
             ".pre_adapter_summary_metrics",
             ".quality_yield_metrics",
-        ), # Through the output file extensions the different tools for the metrics can be selected
-         # so that it is not necessary to specify them under params with the "PROGRAM" option.
-         # Usable extensions (and which tools they implicitly call) are listed here:
-         #         https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/picard/collectmultiplemetrics.html.
+        ),
     resources:
         mem_gb=3, # This parameter (default 3 GB) can be used to limit the total resources a pipeline is allowed to use, see:
          #     https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#resources

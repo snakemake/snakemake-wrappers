@@ -1,9 +1,8 @@
 rule freebayes:
     input:
-        ref="genome.fasta", # you can have a list of samples here
-        samples="mapped/{sample}.bam", # optional BED file specifying chromosomal regions on which freebayes 
-         # should run, e.g. all regions that show coverage
-        regions="regions.bed",
+        ref="genome.fasta",
+        samples="mapped/{sample}.bam", # you can have a list of samples here
+        regions="regions.bed", # optional BED file specifying chromosomal regions on which freebayes should run, e.g. all regions that show coverage
     output:
         "calls/{sample}.bcf", # either .vcf or .bcf
     log:
