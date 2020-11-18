@@ -10,8 +10,7 @@ rule mapdamage2:
         frag_misincorp="results/{sample}/Fragmisincorporation_plot.pdf",
         len="results/{sample}/Length_plot.pdf",
         lg_dist="results/{sample}/lgdistribution.txt",
-        misincorp="results/{sample}/misincorporation.txt",
-    #        rescaled_bam="results/{sample}.rescaled.bam", # uncomment if you want the rescaled BAM file
+        misincorp="results/{sample}/misincorporation.txt", #        rescaled_bam="results/{sample}.rescaled.bam", # uncomment if you want the rescaled BAM file
     params:
         extra="--no-stats", # optional parameters for mapdamage2 (except -i, -r, -d, --rescale)
     log:
