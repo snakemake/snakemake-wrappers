@@ -1,0 +1,13 @@
+rule whatshap_haplotag:
+    input:
+        reference = "reference/{reference}.fasta",
+        vcf = "phased/{sample}.{reference}.phased.vcf.gz",
+        bam = "aligned/{sample}.{reference}.bam"
+    output:
+        bam = "phased/{sample}.{reference}.haplotagged.bam"
+    log:
+        "logs/whatshap_haplotag/{sample}.{reference}.log"
+    threads:
+        1
+    wrapper:
+        "master/bio/whatshap/haplotag"
