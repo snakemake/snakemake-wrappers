@@ -1,20 +1,18 @@
 onstart:
-    print("Make sure to set **yourself** the `truncLen=` option in the rule `dada2_filter_and_trim_pe`.")
-    print("Do it after the quality profile checks.")
+    print("Make sure that you set the `truncLen=` option in the rule `dada2_filter_and_trim_pe` according")
+    print("to the results of the quality profile checks (after rule `dada2_quality_profile_pe` has finished on all samples).")
     print("If in doubt, check https://benjjneb.github.io/dada2/tutorial.html#inspect-read-quality-profiles")
 
 rule all:
     input:
-        "reports/dada2/quality-profile/quality_check.done",
-        "results/dada2/taxa.RDS"
-
-rule quality_check:
-    input:
+        # In a first run of this meta-wrapper, comment out all other inputs and only keep this one.
+        # Looking at the resulting plot, adjust the `truncLen` in rule `dada2_filter_trim_pe` and then
+        # rerun with all inputs uncommented.
         expand(
             "reports/dada2/quality-profile/{sample}-quality-profile.png",
-            sample=["a","b"])
-    output:
-        touch("reports/dada2/quality-profile/quality_check.done")
+            sample=["a","b"]
+        ),
+        "results/dada2/taxa.RDS"
 
 rule dada2_quality_profile_pe:
     input:
@@ -51,10 +49,6 @@ rule dada2_filter_trim_pe:
     threads: 1 # set desired number of threads here
     wrapper:
         "master/bio/dada2/filter-trim"
-
-rule learn_pe:
-    # Run twice dada2_learn_errors: on forward and on reverse reads
-    input: expand("results/dada2/model_{orientation}.RDS", orientation=[1,2])
 
 rule dada2_learn_errors:
     input:
