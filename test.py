@@ -127,9 +127,7 @@ def test_dada2_pe_meta():
             "snakemake",
             "--cores",
             "1",
-            "--use-conda",
-            "reports/dada2/quality-profile/quality_check.done",
-            "results/dada2/taxa.RDS"
+            "--use-conda"
         ]
     )
 
