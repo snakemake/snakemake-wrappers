@@ -16,7 +16,7 @@ rule all:
 
 rule dada2_quality_profile_pe:
     input:
-        # FASTQ file without primers sequences
+        # FASTQ file without primer sequences
         expand("trimmed/{{sample}}.{orientation}.fastq.gz",orientation=[1,2])
     output:
         "reports/dada2/quality-profile/{sample}-quality-profile.png"
@@ -27,7 +27,7 @@ rule dada2_quality_profile_pe:
 
 rule dada2_filter_trim_pe:
     input:
-        # Paired-end files without primers sequences
+        # Paired-end files without primer sequences
         fwd="trimmed/{sample}.1.fastq.gz",
         rev="trimmed/{sample}.2.fastq.gz"
     output:
