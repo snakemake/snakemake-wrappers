@@ -124,7 +124,6 @@ def run(wrapper, cmd, check_log=None):
 skip_if_not_modified = pytest.mark.xfail(raises=Skipped)
 
 
-@skip_if_not_modified
 def test_dada2_pe_meta():
     run(
         "meta/bio/dada2_pe",
