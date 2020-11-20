@@ -120,6 +120,11 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+
+skip_if_not_modified = pytest.mark.xfail(raises=Skipped)
+
+
+@skip_if_not_modified
 def test_dada2_pe_meta():
     run(
         "meta/bio/dada2_pe",
@@ -133,9 +138,6 @@ def test_dada2_pe_meta():
             "reports/dada2/quality-profile/b-quality-profile.png"
         ]
     )
-
-
-skip_if_not_modified = pytest.mark.xfail(raises=Skipped)
 
 
 @skip_if_not_modified
