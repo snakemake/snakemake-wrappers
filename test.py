@@ -542,6 +542,14 @@ def test_bcftools_reheader():
 
 
 @skip_if_not_modified
+def test_bcftools_view():
+    run(
+        "bio/bcftools/view",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.vcf"],
+    )
+
+
+@skip_if_not_modified
 def test_bedtools_genomecoveragebed():
     run(
         "bio/bedtools/genomecov",
