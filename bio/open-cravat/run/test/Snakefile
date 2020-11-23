@@ -22,7 +22,6 @@ rule run:
         "logs/open-cravat/run.log"
     wrapper:
         'master/bio/open-cravat/run'
-        #'file://../wrapper.py'
 
 rule installmodules:
     output:
@@ -40,4 +39,4 @@ rule installmodules:
     log:
         "logs/open-cravat/module.log"
     wrapper:
-        'file://module/wrapper.py'
+        'file:module/wrapper.py'
