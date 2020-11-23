@@ -22,6 +22,8 @@ rule run:
         'example_input.variant.csv'
     params:
         cores=1,
+    log:
+        "logs/open-cravat/run.log"
     wrapper:
         'master/bio/open-cravat/report'
 
@@ -38,5 +40,7 @@ rule installmodules:
         directory(modules_dir + '/reporters/excelreporter'),
         directory(modules_dir + '/reporters/tsvreporter'),
         directory(modules_dir + '/reporters/csvreporter'),
+    log:
+        "logs/open-cravat/module.log"
     wrapper:
         'master/bio/open-cravat/module'
