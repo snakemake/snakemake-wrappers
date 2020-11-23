@@ -1,7 +1,3 @@
-import os
-
-modules_dir = 'modules/'
-
 rule run:
     input:
         'example_input',
@@ -21,7 +17,7 @@ rule run:
         'example_input.variant.tsv', 
         'example_input.variant.csv'
     params:
-        cores=1,
+        cores=1
     log:
         "logs/open-cravat/run.log"
     wrapper:
@@ -43,4 +39,4 @@ rule installmodules:
     log:
         "logs/open-cravat/module.log"
     wrapper:
-        'master/bio/open-cravat/module'
+        'file://module_wrapper.py'
