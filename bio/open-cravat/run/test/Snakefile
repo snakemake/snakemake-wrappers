@@ -1,21 +1,21 @@
 import os
 
-modules_dir = 'modules'
+modules_dir = 'modules/'
 
 rule run:
     input:
         'example_input',
-        modules_dir + '/commons/hg38wgs',
-        modules_dir + '/converters/cravat-converter',
-        modules_dir + '/mappers/hg38',
-        modules_dir + '/annotators/biogrid', 
-        modules_dir + '/annotators/clinvar',
-        modules_dir + '/postaggregators/tagsampler',
-        modules_dir + '/postaggregators/varmeta',
-        modules_dir + '/postaggregators/vcfinfo',
-        modules_dir + '/reporters/excelreporter',
-        modules_dir + '/reporters/tsvreporter',
-        modules_dir + '/reporters/csvreporter',
+        'modules/commons/hg38wgs',
+        'modules/converters/cravat-converter',
+        'modules/mappers/hg38',
+        'modules/annotators/biogrid', 
+        'modules/annotators/clinvar',
+        'modules/postaggregators/tagsampler',
+        'modules/postaggregators/varmeta',
+        'modules/postaggregators/vcfinfo',
+        'modules/reporters/excelreporter',
+        'modules/reporters/tsvreporter',
+        'modules/reporters/csvreporter',
     output:
         'example_input.xlsx',
         'example_input.variant.tsv', 
@@ -29,17 +29,17 @@ rule run:
 
 rule installmodules:
     output:
-        directory(modules_dir + '/commons/hg38wgs'), 
-        directory(modules_dir + '/converters/cravat-converter'), 
-        directory(modules_dir + '/mappers/hg38'), 
-        directory(modules_dir + '/annotators/biogrid'), 
-        directory(modules_dir + '/annotators/clinvar'),
-        directory(modules_dir + '/postaggregators/tagsampler'),
-        directory(modules_dir + '/postaggregators/varmeta'),
-        directory(modules_dir + '/postaggregators/vcfinfo'),
-        directory(modules_dir + '/reporters/excelreporter'),
-        directory(modules_dir + '/reporters/tsvreporter'),
-        directory(modules_dir + '/reporters/csvreporter'),
+        directory('modules/commons/hg38wgs'), 
+        directory('modules/converters/cravat-converter'), 
+        directory('modules/mappers/hg38'), 
+        directory('modules/annotators/biogrid'), 
+        directory('modules/annotators/clinvar'),
+        directory('modules/postaggregators/tagsampler'),
+        directory('modules/postaggregators/varmeta'),
+        directory('modules/postaggregators/vcfinfo'),
+        directory('modules/reporters/excelreporter'),
+        directory('modules/reporters/tsvreporter'),
+        directory('modules/reporters/csvreporter'),
     log:
         "logs/open-cravat/module.log"
     wrapper:
