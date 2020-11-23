@@ -27,6 +27,6 @@ for oname in onames:
     modules_dir_cur = cravat.admin_util.get_modules_dir()
     if modules_dir_cur != modules_dir:
         cravat.admin_util.set_modules_dir(modules_dir)
-    cmd = ['oc', 'module', 'install', module_name, '-y']
-    cmd = ' '.join(cmd)
-    shell('{cmd} {log}')
+    cmd = ["oc", "module", "install", module_name, "-y"]
+    cmd = " ".join(cmd)
+    shell("{cmd} {log}")

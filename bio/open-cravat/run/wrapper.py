@@ -17,9 +17,9 @@ for v in snakemake.input:
         (module_group_dir, module_name) = os.path.split(v)
         (in_modules_dir, module_group) = os.path.split(module_group_dir)
         modules_dir.add(in_modules_dir)
-        if module_group == 'annotators':
+        if module_group == "annotators":
             annotators.append(module_name)
-        elif module_group == 'reporters' and module_name.endswith('reporter'):
+        elif module_group == "reporters" and module_name.endswith("reporter"):
             reporters.append(module_name[:-8])
 if len(modules_dir) > 1:
     print(f'Multiple modules directory detected: {",".join(list(modules_dir))}')
