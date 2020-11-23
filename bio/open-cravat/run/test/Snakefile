@@ -25,7 +25,7 @@ rule run:
     log:
         "logs/open-cravat/run.log"
     wrapper:
-        'master/bio/open-cravat/report'
+        'master/bio/open-cravat/run'
 
 rule installmodules:
     output:
