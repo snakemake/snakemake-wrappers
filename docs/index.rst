@@ -86,7 +86,7 @@ the relevant stdout and stderr messages printed.
 If you also want to test the docs generation locally, create another environment
 and activate it::
 
-  conda create -n test-snakemake-wrapper-docs sphinx sphinx_rtd_theme pyyaml
+  conda create -n test-snakemake-wrapper-docs sphinx sphinx_rtd_theme pyyaml sphinx-copybutton
   conda activate test-snakemake-wrapper-docs
 
 Then, enter the respective directory and build the docs::
@@ -98,19 +98,11 @@ If it runs through, you can open the main page at ``docs/_build/html/index.html`
 in a web browser. If you want to start fresh, you can clean up the build
 with ``make clean``.
 
-
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 4
    :glob:
    :hidden:
-   :caption: Wrappers
-
-   wrappers/*
-   
-.. toctree::
-   :maxdepth: 3
-   :glob:
-   :hidden:
-   :caption: Meta-Wrappers
+   :caption: Wrappers and Meta-Wrappers
       
-   meta-wrappers/*
+   wrappers
+   meta-wrappers

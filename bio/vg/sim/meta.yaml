@@ -1,0 +1,4 @@
+name: "vg sim"
+description: Samples sequences from the xg-indexed graph.
+authors:
+  - Ali Ghaffaari

@@ -1,4 +1,4 @@
-__author__ = "Johannes Köster, Felix Mölder"
+__author__ = "Johannes Köster, Felix Mölder, Christopher Schröder"
 __copyright__ = "Copyright 2017, Johannes Köster"
 __email__ = "johannes.koester@protonmail.com, felix.moelder@uni-due.de"
 __license__ = "MIT"
@@ -11,10 +11,17 @@ shell.executable("bash")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 params = snakemake.params.get("extra", "")
+norm = snakemake.params.get("normalize", False)
+assert norm in [True, False]
 
 pipe = ""
 if snakemake.output[0].endswith(".bcf"):
-    pipe = "| bcftools view -Ob -"
+    if norm:
+        pipe = "| bcftools norm -Ob -"
+    else:
+        pipe = "| bcftools view -Ob -"
+elif norm:
+    pipe = "| bcftools norm -"
 
 if snakemake.threads == 1:
     freebayes = "freebayes"

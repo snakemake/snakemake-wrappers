@@ -1,0 +1,44 @@
+rule bedtools_sort:
+    input:
+        in_file="a.bed"
+    output:
+        "results/bed-sorted/a.sorted.bed"
+    params:
+        ## Add optional parameters for sorting order
+        extra="-sizeA"
+    log:
+        "logs/a.sorted.bed.log"
+    wrapper:
+        "master/bio/bedtools/sort"
+
+rule bedtools_sort_bed:
+    input:
+        in_file="a.bed",
+        # an optional sort file can be set as genomefile by the variable genome or
+        # as fasta index file by the variable faidx
+        genome="dummy.genome"
+    output:
+        "results/bed-sorted/a.sorted_by_file.bed"
+    params:
+        ## Add optional parameters
+        extra=""
+    log:
+        "logs/a.sorted.bed.log"
+    wrapper:
+        "master/bio/bedtools/sort"
+
+rule bedtools_sort_vcf:
+    input:
+        in_file="a.vcf",
+        # an optional sort file can be set either as genomefile by the variable genome or
+        # as fasta index file by the variable faidx
+        faidx="genome.fasta.fai"
+    output:
+        "results/vcf-sorted/a.sorted_by_file.vcf"
+    params:
+        ## Add optional parameters
+        extra=""
+    log:
+        "logs/a.sorted.vcf.log"
+    wrapper:
+        "master/bio/bedtools/sort"

@@ -1,4 +1,4 @@
 name: "snpeff"
-description: Annotate predicted effect of nucleotide changes with SnpEff
+description: Annotate predicted effect of nucleotide changes with `SnpEff <https://pcingola.github.io/SnpEff/se_introduction/>`_
 authors:
   - Bradford Powell

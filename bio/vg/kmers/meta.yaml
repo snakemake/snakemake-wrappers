@@ -1,0 +1,4 @@
+name: "vg kmers"
+description: Generates kmers from both strands of variation graphs.
+authors:
+  - Ali Ghaffaari

@@ -1,0 +1,13 @@
+name: dada2_add_species
+description: |
+  `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
+  Adding species-level annotation using dada2 ``addSpecies`` function. Optional parameters are documented in the `manual <https://www.bioconductor.org/packages/release/bioc/manuals/dada2/man/dada2.pdf#addSpecies>`_ and the function is introduced in the dedicated tutorial `section <https://benjjneb.github.io/dada2/assign.html#species-assignment>`_.
+authors:
+  - Charlie Pauvert
+input:
+  - taxa: RDS file containing the taxonomic assignments
+  - refFasta: A string with the path to the FASTA reference database
+params:
+  - optional arguments for ``addSpecies()``, please provide them as python ``key=value`` pairs
+output:
+  - The input RDS file augmented by the species-level annotation

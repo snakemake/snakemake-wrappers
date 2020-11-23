@@ -1,5 +1,5 @@
 name: SnpSift annotate
-description:  Annotate using fields from another VCF file.
+description:  Annotate using fields from another VCF file with `SnpSift <https://pcingola.github.io/SnpEff/ss_annotate/>`_
 authors:
   - Thibault Dayris
 input:

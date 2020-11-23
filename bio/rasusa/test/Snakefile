@@ -1,0 +1,15 @@
+rule subsample:
+    input:
+        r1="{sample}.r1.fq",
+        r2="{sample}.r2.fq",
+    output:
+        r1="{sample}.subsampled.r1.fq",
+        r2="{sample}.subsampled.r2.fq",
+    params:
+        options="--seed 15",
+        genome_size="3mb", # required
+        coverage=20, # required
+    log:
+        "logs/subsample/{sample}.log",
+    wrapper:
+        "master/bio/rasusa"

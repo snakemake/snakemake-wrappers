@@ -1,4 +1,4 @@
 name: samtools view
-description: Convert or filter SAM/BAM.
+description: Convert or filter SAM/BAM. For more information see `SAMtools documentation <http://www.htslib.org/doc/samtools-view.html>`_.
 authors:
   - Johannes Köster
