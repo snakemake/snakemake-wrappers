@@ -120,15 +120,15 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
-def test_open_cravat_module():
-    run(
-        "bio/open-cravat/module",
-        ["snakemake", "--cores", "1", "--use-conda"],
-    )
-
 def test_open_cravat_run():
     run(
         "bio/open-cravat/run",
+        ["snakemake", "--cores", "1", "--use-conda"],
+    )
+
+def test_open_cravat_module():
+    run(
+        "bio/open-cravat/module",
         ["snakemake", "--cores", "1", "--use-conda"],
     )
 

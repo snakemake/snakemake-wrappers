@@ -39,4 +39,4 @@ rule installmodules:
     log:
         "logs/open-cravat/module.log"
     wrapper:
-        'file://module_wrapper.py'
+        'file://module/wrapper.py'
