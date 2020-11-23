@@ -1,0 +1,42 @@
+import os
+
+modules_dir = 'modules'
+
+rule run:
+    input:
+        'example_input',
+        modules_dir + '/commons/hg38wgs',
+        modules_dir + '/converters/cravat-converter',
+        modules_dir + '/mappers/hg38',
+        modules_dir + '/annotators/biogrid', 
+        modules_dir + '/annotators/clinvar',
+        modules_dir + '/postaggregators/tagsampler',
+        modules_dir + '/postaggregators/varmeta',
+        modules_dir + '/postaggregators/vcfinfo',
+        modules_dir + '/reporters/excelreporter',
+        modules_dir + '/reporters/tsvreporter',
+        modules_dir + '/reporters/csvreporter',
+    output:
+        'example_input.xlsx',
+        'example_input.variant.tsv', 
+        'example_input.variant.csv'
+    params:
+        cores=1,
+    wrapper:
+        'master/bio/open-cravat/report'
+
+rule installmodules:
+    output:
+        directory(modules_dir + '/commons/hg38wgs'), 
+        directory(modules_dir + '/converters/cravat-converter'), 
+        directory(modules_dir + '/mappers/hg38'), 
+        directory(modules_dir + '/annotators/biogrid'), 
+        directory(modules_dir + '/annotators/clinvar'),
+        directory(modules_dir + '/postaggregators/tagsampler'),
+        directory(modules_dir + '/postaggregators/varmeta'),
+        directory(modules_dir + '/postaggregators/vcfinfo'),
+        directory(modules_dir + '/reporters/excelreporter'),
+        directory(modules_dir + '/reporters/tsvreporter'),
+        directory(modules_dir + '/reporters/csvreporter'),
+    wrapper:
+        'master/bio/open-cravat/module'
