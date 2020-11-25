@@ -6,7 +6,10 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
+extra = snakemake.params.get("extra", "")
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 shell(
-    "bcftools view {snakemake.params} {snakemake.input[0]} " "-o {snakemake.output[0]}"
+    "bcftools view {extra} --threads {snakemake.threads} {snakemake.input} "
+    "-o {snakemake.output} {log}"
 )
