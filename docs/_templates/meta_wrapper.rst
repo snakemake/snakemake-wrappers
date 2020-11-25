@@ -16,6 +16,8 @@ This meta-wrapper can be used in the following way:
 {{ snakefile }}
 
 Note that input, output and log file paths can be chosen freely.
+For additional parameters in each individual wrapper, please refer to their corresponding documentation (see links below).
+
 When running with
 
 .. code-block:: bash
@@ -32,6 +34,9 @@ Used wrappers
 {% for uw in usedwrappers %}
 * :ref:`{{ uw }}`
 {% endfor %}
+
+Please refer to each wrapper in above list for additional configuration parameters and information about the executed code.
+
 {% endif %}
 
 
