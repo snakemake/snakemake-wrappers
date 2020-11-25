@@ -5,6 +5,7 @@ import shutil
 import pytest
 import sys
 import yaml
+from itertools import chain
 
 DIFF_MASTER = os.environ.get("DIFF_MASTER", "false") == "true"
 DIFF_LAST_COMMIT = os.environ.get("DIFF_LAST_COMMIT", "false") == "true"
@@ -46,7 +47,6 @@ def run(wrapper, cmd, check_log=None):
             used_wrappers.append(wrapper)
 
         for w in used_wrappers:
-            print(w)
             success = False
             for ext in ("py", "R", "Rmd"):
                 script = "wrapper." + ext
@@ -59,9 +59,9 @@ def run(wrapper, cmd, check_log=None):
             copy(w, "environment.yaml")
 
         if (DIFF_MASTER or DIFF_LAST_COMMIT) and not any(
-            any(f.startswith(w) for f in DIFF_FILES) for w in used_wrappers
+            any(f.startswith(w) for f in DIFF_FILES) for w in chain(used_wrappers, [wrapper])
         ):
-            raise Skipped("wrapper not modified")
+            raise Skipped("wrappers not modified")
 
         testdir = os.path.join(d, "test")
         # pkgdir = os.path.join(d, "pkgs")
@@ -553,6 +553,14 @@ def test_bcftools_reheader():
     run(
         "bio/bcftools/reheader",
         ["snakemake", "--cores", "1", "a.reheader.bcf", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_bcftools_view():
+    run(
+        "bio/bcftools/view",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.vcf"],
     )
 
 
