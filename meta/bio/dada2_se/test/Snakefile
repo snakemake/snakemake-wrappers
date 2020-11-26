@@ -9,7 +9,7 @@ rule all:
         # rerun with all inputs uncommented.
         expand(
             "reports/dada2/quality-profile/{sample}.{orientation}-quality-profile.png",
-            sample=["a","b"], orientation=1)
+            sample=["a","b"], orientation=1
         ),
         "results/dada2/taxa.RDS"
 
