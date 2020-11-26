@@ -103,8 +103,6 @@ def test_dada2_se_meta():
             "--cores",
             "1",
             "--use-conda",
-            "reports/dada2/quality-profile/quality_check.done",
-            "results/dada2/taxa.RDS"
         ]
     )
 
