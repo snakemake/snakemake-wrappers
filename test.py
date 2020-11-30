@@ -282,6 +282,13 @@ def test_dada2_assign_taxonomy():
     )
 
 
+def test_dada2_assign_species():
+    run(
+        "bio/dada2/assign-species",
+        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/genus-species-taxa.RDS"],
+    )
+
+
 @skip_if_not_modified
 def test_dada2_add_species():
     run(
