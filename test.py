@@ -27,6 +27,9 @@ class Skipped(Exception):
     pass
 
 
+skip_if_not_modified = pytest.mark.xfail(raises=Skipped)
+
+
 def run(wrapper, cmd, check_log=None):
     origdir = os.getcwd()
     with tempfile.TemporaryDirectory() as d:
@@ -120,6 +123,8 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+
+@skip_if_not_modified
 def test_dada2_se_meta():
     run(
         "meta/bio/dada2_se",
@@ -132,9 +137,61 @@ def test_dada2_se_meta():
     )
 
 
-skip_if_not_modified = pytest.mark.xfail(raises=Skipped)
+@skip_if_not_modified
+def test_adapterremoval_pe_collapse_singletons():
+    run(
+        "bio/adapterremoval",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "trimmed/pe_collapse/a_R1.fastq.gz",
+            "trimmed/pe_collapse/a_R2.fastq.gz",
+            "trimmed/pe_collapse/a.fastq.gz",
+            "trimmed/pe_collapse/a.discarded.fastq.gz",
+            "stats/pe_collapse/a.settings",
+        ],
+    )
 
 
+@skip_if_not_modified
+def test_adapterremoval_pe():
+    run(
+        "bio/adapterremoval",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "trimmed/pe/a_R1.fastq.gz",
+            "trimmed/pe/a_R2.fastq.gz",
+            "trimmed/pe/a.singleton.fastq.gz",
+            "trimmed/pe/a.collapsed.fastq.gz",
+            "trimmed/pe/a.collapsed_trunc.fastq.gz",
+            "trimmed/pe/a.discarded.fastq.gz",
+            "stats/pe/a.settings",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_adapterremoval_se():
+    run(
+        "bio/adapterremoval",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "trimmed/se/a.fastq.gz",
+            "trimmed/se/a.discarded.fastq.gz",
+            "stats/se/a.settings",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_dada2_pe_meta():
     run(
         "meta/bio/dada2_pe",
