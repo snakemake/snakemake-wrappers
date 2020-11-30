@@ -2,4 +2,6 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
-  - ensembl-vep
+  # This version should not be changed unless the vep_install command needs an
+  # update or suddenly stops working.
+  - ensembl-vep =101
