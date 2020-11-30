@@ -62,7 +62,8 @@ def run(wrapper, cmd, check_log=None):
             copy(w, "environment.yaml")
 
         if (DIFF_MASTER or DIFF_LAST_COMMIT) and not any(
-            any(f.startswith(w) for f in DIFF_FILES) for w in chain(used_wrappers, [wrapper])
+            any(f.startswith(w) for f in DIFF_FILES)
+            for w in chain(used_wrappers, [wrapper])
         ):
             raise Skipped("wrappers not modified")
 
@@ -133,7 +134,7 @@ def test_dada2_se_meta():
             "--cores",
             "1",
             "--use-conda",
-        ]
+        ],
     )
 
 
@@ -202,8 +203,8 @@ def test_dada2_pe_meta():
             "--use-conda",
             "results/dada2/taxa.RDS",
             "reports/dada2/quality-profile/a-quality-profile.png",
-            "reports/dada2/quality-profile/b-quality-profile.png"
-        ]
+            "reports/dada2/quality-profile/b-quality-profile.png",
+        ],
     )
 
 
@@ -211,7 +212,13 @@ def test_dada2_pe_meta():
 def test_mapdamage2():
     run(
         "bio/mapdamage2",
-        ["snakemake", "--cores", "1", "--use-conda", "results/a/Runtime_log.txt",],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "results/a/Runtime_log.txt",
+        ],
     )
 
 
@@ -339,10 +346,17 @@ def test_dada2_assign_taxonomy():
     )
 
 
+@skip_if_not_modified
 def test_dada2_assign_species():
     run(
         "bio/dada2/assign-species",
-        ["snakemake", "--cores", "1", "--use-conda", "results/dada2/genus-species-taxa.RDS"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "results/dada2/genus-species-taxa.RDS",
+        ],
     )
 
 
@@ -366,7 +380,13 @@ def test_arriba_star_meta():
 def test_bwa_mapping_meta():
     run(
         "meta/bio/bwa_mapping",
-        ["snakemake", "--cores", "1", "--use-conda", "mapped/a.bam.bai",],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "mapped/a.bam.bai",
+        ],
     )
 
 
