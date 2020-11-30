@@ -1,5 +1,5 @@
 name: SnpSift Genes Sets
-description:  Annotate using GMT genes sets.
+description:  Annotate using GMT genes sets with `SnpSift <https://pcingola.github.io/SnpEff/ss_genesets/>`_
 authors:
   - Thibault Dayris
 input:

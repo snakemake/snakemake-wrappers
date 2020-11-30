@@ -61,7 +61,16 @@ def render_tool(tool, subcmds):
         f.write(TOOL_TEMPLATE.render(name=tool))
 
 
-def render_wrapper(path, target):
+def render_snakefile(path):
+    with open(os.path.join(path, "test", "Snakefile")) as snakefile:
+        lines = filter(lambda line: "# [hide]" not in line, snakefile)
+        snakefile = textwrap.indent(
+            "\n".join(l.rstrip() for l in lines), "    "
+        ).replace("master", TAG)
+        return snakefile
+
+
+def render_wrapper(path, target, wrapper_id):
     print("rendering", path)
     with open(os.path.join(path, "meta.yaml")) as meta:
         meta = yaml.load(meta, Loader=yaml.BaseLoader)
@@ -74,8 +83,7 @@ def render_wrapper(path, target):
     else:
         pkgs = []
 
-    with open(os.path.join(path, "test", "Snakefile")) as snakefile:
-        snakefile = textwrap.indent(snakefile.read(), "    ").replace("master", TAG)
+    snakefile = render_snakefile(path)
 
     wrapper = os.path.join(path, "wrapper.py")
     wrapper_lang = "python"
@@ -93,7 +101,8 @@ def render_wrapper(path, target):
             wrapper=wrapper,
             wrapper_lang=wrapper_lang,
             pkgs=pkgs,
-            **meta
+            id=wrapper_id,
+            **meta,
         )
         readme.write(rst)
     return name
@@ -111,31 +120,19 @@ def render_meta(path, target):
     else:
         used_wrappers = []
 
-    with open(os.path.join(path, "test", "Snakefile")) as snakefile:
-        snakefile = textwrap.indent(snakefile.read(), "    ").replace("master", TAG)
-
-    wrappers = []
-    for uw in used_wrappers:
-        wrapper = os.path.join(WRAPPER_DIR, uw, "wrapper.py")
-        wrapper_lang = "python"
-        if not os.path.exists(wrapper):
-            wrapper = os.path.join(WRAPPER_DIR, uw, "wrapper.R")
-            wrapper_lang = "R"
-        with open(wrapper) as wrapper:
-            wrapper = textwrap.indent(wrapper.read(), "    ")
-            wrappers.append((wrapper, wrapper_lang, uw))
+    snakefile = render_snakefile(path)
 
     name = meta["name"].replace(" ", "_") + ".rst"
     os.makedirs(os.path.dirname(target), exist_ok=True)
     with open(target, "w") as readme:
         rst = TEMPLATE_META.render(
             snakefile=snakefile,
-            wrappers=wrappers,
             usedwrappers=used_wrappers,
-            **meta
+            **meta,
         )
         readme.write(rst)
     return name
+
 
 def setup(*args):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -152,6 +149,7 @@ def setup(*args):
                     tool_levels = dirpath.rpartition(os.sep.join(["", discipline, ""]))[
                         2
                     ].split(sep=os.sep)
+                    wrapper_id = os.path.join(discipline, *tool_levels)
                     tool_levels.remove(tool)
                     if len(tool_levels) == 0:
                         continue
@@ -162,11 +160,17 @@ def setup(*args):
                     # watermark max_depth for current tool
                     max_depth = max(max_depth, len(tool_levels))
                     render_wrapper(
-                        dirpath, os.path.join(get_tool_dir(tool), subcommand + ".rst")
+                        dirpath,
+                        os.path.join(get_tool_dir(tool), subcommand + ".rst"),
+                        wrapper_id,
                     )
             if len(subcmds) == 0:
                 # no subcommands, render a wrapper for the main tool command
-                render_wrapper(path, os.path.join(OUTPUT_DIR, tool + ".rst"))
+                render_wrapper(
+                    path,
+                    os.path.join(OUTPUT_DIR, tool + ".rst"),
+                    os.path.join(discipline, tool),
+                )
             else:
                 # subcommands found (and rendered above), render the tool's table of content
                 render_tool(tool, subcmds)

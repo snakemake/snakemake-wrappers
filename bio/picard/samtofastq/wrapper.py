@@ -7,9 +7,12 @@ __license__ = "MIT"
 
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.java import get_java_opts
 
 
 extra = snakemake.params.get("extra", "")
+java_opts = get_java_opts(snakemake)
+
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 fastq1 = snakemake.output.fastq1
@@ -27,9 +30,15 @@ if isinstance(fastq2, str):
 if isinstance(fastq_unpaired, str):
     if not isinstance(fastq2, str):
         raise ValueError("f2 is required if fastq_unpaired is set")
-    else:
-        output += " UNPAIRED_FASTQ=" + fastq_unpaired
+
+    output += " UNPAIRED_FASTQ=" + fastq_unpaired
 
 shell(
-    "picard" " SamToFastq" " {extra}" " INPUT={snakemake.input[0]}" " {output}" " {log}"
+    "picard"
+    " SamToFastq"
+    " {java_opts}"
+    " {extra}"
+    " INPUT={snakemake.input[0]}"
+    " {output}"
+    " {log}"
 )

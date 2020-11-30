@@ -1,4 +1,4 @@
-.. _`{{name}}`:
+.. _`{{id}}`:
 
 {{ name|upper }}
 {{ name | length * '=' }}

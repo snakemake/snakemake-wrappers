@@ -1,5 +1,5 @@
 name: varscan mpileup2snp
-description: Detect variants in NGS data from Samtools mpileup
+description: Detect variants in NGS data from Samtools mpileup with `VarScan <http://varscan.sourceforge.net/germline-calling.html>`_
 authors:
   - Thibault Dayris
 input:

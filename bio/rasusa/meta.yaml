@@ -1,0 +1,4 @@
+name: rasusa
+description: Randomly subsample sequencing reads to a specified coverage using `rasusa <https://github.com/mbhall88/rasusa>`_.
+authors:
+  - Michael Hall
