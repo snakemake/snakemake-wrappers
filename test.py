@@ -124,6 +124,21 @@ def run(wrapper, cmd, check_log=None):
 skip_if_not_modified = pytest.mark.xfail(raises=Skipped)
 
 
+def test_dada2_pe_meta():
+    run(
+        "meta/bio/dada2_pe",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "results/dada2/taxa.RDS",
+            "reports/dada2/quality-profile/a-quality-profile.png",
+            "reports/dada2/quality-profile/b-quality-profile.png"
+        ]
+    )
+
+
 @skip_if_not_modified
 def test_mapdamage2():
     run(
