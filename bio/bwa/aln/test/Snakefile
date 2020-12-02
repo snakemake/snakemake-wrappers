@@ -1,10 +1,11 @@
 rule bwa_aln:
     input:
-        "reads/{sample}.{pair}.fastq"
+        fastq="reads/{sample}.{pair}.fastq",
+        # Index can be a list of (all) files created by bwa, or one of them
+        index=multiext("genome", ".amb", ".ann", ".bwt", ".pac", ".sa")
     output:
         "sai/{sample}.{pair}.sai"
     params:
-        index="genome",
         extra=""
     log:
         "logs/bwa_aln/{sample}.{pair}.log"
