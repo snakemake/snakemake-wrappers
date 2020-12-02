@@ -8,10 +8,12 @@ __license__ = "MIT"
 import os.path as op
 from snakemake.shell import shell
 from snakemake.utils import makedirs
+from snakemake_wrapper_utils.java import get_java_opts
 
 # Gathering extra parameters and logging behaviour
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
+java_opts = get_java_opts(snakemake)
 
 # In case input files are gzipped mpileup files,
 # they are being unzipped and piped
@@ -29,8 +31,8 @@ makedirs(op.dirname(snakemake.output[0]))
 
 shell(
     "varscan mpileup2snp "  # Tool and its subprocess
-    "{extra} "  # Extra parameters
     "<( {pileup} ) "
+    "{java_opts} {extra} "  # Extra parameters
     "> {snakemake.output[0]} "  # Path to vcf file
     "{log}"  # Logging behaviour
 )

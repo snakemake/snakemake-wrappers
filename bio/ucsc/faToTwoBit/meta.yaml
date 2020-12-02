@@ -1,9 +1,9 @@
 name: faToTwoBit
 description: |
-  Convert *.fa file to *.2bit file (see http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/FOOTER.txt)
+  Convert \*.fa file to \*.2bit file (see http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/FOOTER.txt)
 authors:
   - Roman Cherniatchik
 input:
-  - Path(s) to genome *.fa or *.fa.gz files
+  - Path(s) to genome \*.fa or \*.fa.gz files
 output:
-  - Path to output '*.2bit' file
+  - Path to output '\*.2bit' file

@@ -1,0 +1,4 @@
+name: "bowtie2_build"
+description: Map reads with bowtie2.
+authors:
+  - Daniel Standage

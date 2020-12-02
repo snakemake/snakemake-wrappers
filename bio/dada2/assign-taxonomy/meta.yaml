@@ -1,0 +1,13 @@
+name: dada2_assign_taxonomy
+description: |
+  `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
+  Classifying sequences against a reference database using dada2 ``assignTaxonomy`` function. Optional parameters are documented in the `manual <https://www.bioconductor.org/packages/release/bioc/manuals/dada2/man/dada2.pdf#assignTaxonomy>`_ and the function is introduced in the dedicated tutorial `section <https://benjjneb.github.io/dada2/tutorial.html#assign-taxonomy>`_.
+authors:
+  - Charlie Pauvert
+input:
+  - seqs: RDS file with the chimera-free sequence table
+  - refFasta: A string with the path to the FASTA reference database
+params:
+  - optional arguments for ``assignTaxonomy()``, please provide them as python ``key=value`` pairs 
+output:
+  - RDS file containing the taxonomic assignments

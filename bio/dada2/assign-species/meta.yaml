@@ -1,0 +1,13 @@
+name: dada2_assign_species
+description: |
+  `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
+  Classifying sequences against a reference database using dada2 ``assignSpecies`` function. Optional parameters are documented in the `manual <https://www.bioconductor.org/packages/release/bioc/manuals/dada2/man/dada2.pdf#assignSpecies>`_ and an example of the function can be found in the dedicated `section <https://benjjneb.github.io/dada2/assign.html#species-assignment>`_ of the DADA2 website.
+authors:
+  - Charlie Pauvert
+input:
+  - seqs: RDS file with the chimera-free sequence table
+  - refFasta: A string with the path to the genus-species FASTA reference database
+params:
+  - optional arguments for ``assignTaxonomy()``, please provide them as python ``key=value`` pairs 
+output:
+  - RDS file containing the genus and species taxonomic assignments

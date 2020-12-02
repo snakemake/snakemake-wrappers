@@ -1,0 +1,12 @@
+rule vembrane_filter:
+    input:
+        vcf="in.vcf",
+    output:
+        vcf="filtered/out.vcf"
+    params:
+        expression="POS > 4000",
+        extra=""
+    log:
+        "logs/vembrane.log"
+    wrapper:
+        "master/bio/vembrane/filter"
