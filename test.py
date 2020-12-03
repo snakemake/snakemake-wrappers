@@ -2157,6 +2157,7 @@ def test_strelka_germline():
     )
 
 
+@skip_if_not_modified
 def test_subread_featurecounts():
     run(
         "bio/subread/featurecounts",
