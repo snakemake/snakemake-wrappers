@@ -1,0 +1,13 @@
+rule pbmm2_index:
+    input:
+        reference="target/{reference}.fasta",
+    output:
+        "target/{reference}.mmi",
+    log:
+        "logs/pbmm2_index/{reference}.log",
+    params:
+        preset="CCS", # SUBREAD, CCS, HIFI, ISOSEQ, UNROLLED
+        extra="", # optional additional args
+    threads: 8
+    wrapper:
+        "master/bio/pbmm2/index"
