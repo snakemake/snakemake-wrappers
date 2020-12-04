@@ -5,3 +5,4 @@ channels:
 dependencies:
   - gatk4 ==4.1.4.1
   - openjdk =8
+  - snakemake-wrapper-utils ==0.1.3

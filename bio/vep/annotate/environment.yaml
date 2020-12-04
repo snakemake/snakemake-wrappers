@@ -2,5 +2,5 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
-  - ensembl-vep =100
+  - ensembl-vep =101
   - bcftools =1.9

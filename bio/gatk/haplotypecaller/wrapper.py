@@ -7,13 +7,15 @@ __license__ = "MIT"
 import os
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.java import get_java_opts
 
 known = snakemake.input.get("known", "")
 if known:
     known = "--dbsnp " + known
 
 extra = snakemake.params.get("extra", "")
-java_opts = snakemake.params.get("java_opts", "")
+java_opts = get_java_opts(snakemake)
+
 bams = snakemake.input.bam
 if isinstance(bams, str):
     bams = [bams]

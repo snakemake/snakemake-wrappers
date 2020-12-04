@@ -1,0 +1,13 @@
+rule kmers:
+    input:
+        vgs="c.vg"
+    output:
+        kmers="kmers/c.kmers"
+    params:
+       "-gBk 16 -H 1000000000 -T 1000000001"
+    log:
+        "logs/vg/kmers/c.log"
+    threads:
+        4
+    wrapper:
+        "master/bio/vg/kmers"

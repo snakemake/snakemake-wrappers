@@ -1,0 +1,5 @@
+name: dada2-pe
+description: >
+  A subworkflow for processing paired-end sequences from metabarcoding projects in order to construct ASV tables using ``DADA2``.  The example is based on the data provided by the ``R`` package. For more details, see the `official website <https://benjjneb.github.io/dada2/index.html>`_ and the `tutorial <https://benjjneb.github.io/dada2/tutorial.html>`_.
+authors:
+  - Charlie Pauvert

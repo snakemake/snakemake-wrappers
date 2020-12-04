@@ -6,6 +6,12 @@ rule jannovar:
         "jannovar/{sample}.vcf.gz"
     log:
         "logs/jannovar/{sample}.log"
+    # optional specification of memory usage of the JVM that snakemake will respect with global
+    # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
+    # and which can be used to request RAM during cluster job submission as `{resources.mem_mg}`:
+    # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
+    resources:
+        mem_gb = 1
     params:
         database="hg19_small.ser", # path to jannovar reference dataset
         extra="--show-all"         # optional parameters

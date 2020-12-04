@@ -1,4 +1,4 @@
 name: bcftools merge
-description: Merge vcf/bcf files with bcftools.
+description: Merge vcf/bcf files with bcftools. For more information see `BCFtools documentation <https://www.htslib.org/doc/bcftools.html#merge>`_.
 authors:
   - Patrik Smeds
