@@ -642,6 +642,13 @@ def test_bcftools_mpileup():
         ["snakemake", "--cores", "1", "pileups/a.pileup.bcf", "--use-conda", "-F"],
     )
 
+@skip_if_not_modified
+def test_bcftools_mpileup():
+    run(
+        "bio/bcftools/mpileup",
+        ["snakemake", "--cores", "1", "pileups/a.pileup.regions.bcf", "--use-conda", "-F"],
+    )
+
 
 @skip_if_not_modified
 def test_bcftools_reheader():
@@ -3336,3 +3343,4 @@ def test_wgsim():
         "bio/wgsim",
         ["snakemake", "--cores", "1", "reads/1.fq", "reads/2.fq", "--use-conda", "-F"],
     )
+
