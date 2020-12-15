@@ -643,7 +643,7 @@ def test_bcftools_mpileup():
     )
 
 @skip_if_not_modified
-def test_bcftools_mpileup():
+def test_bcftools_mpileup_regions():
     run(
         "bio/bcftools/mpileup",
         ["snakemake", "--cores", "1", "pileups/a.pileup.regions.bcf", "--use-conda", "-F"],
