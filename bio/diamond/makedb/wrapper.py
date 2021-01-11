@@ -9,7 +9,7 @@ shell(
     "diamond makedb"
     " --threads {snakemake.threads}"
     " --in {snakemake.input.fname}"
-    " --db {snakemake.output.fname}}"
+    " --db {snakemake.output.fname}"
     " {extra}"
     " {log}"
 )

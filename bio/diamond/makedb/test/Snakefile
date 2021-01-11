@@ -2,7 +2,7 @@ rule diamond_blastx:
     input:
         fname = "{reference}.fasta",
     output:
-        fname_db = "{reference}.dmnd"
+        fname = "{reference}.dmnd"
     log:
         "logs/diamond_makedb/{reference}.log"
     params:
