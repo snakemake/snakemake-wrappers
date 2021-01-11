@@ -3358,6 +3358,14 @@ def test_wgsim():
 @skip_if_not_modified
 def test_diamond_blastx():
     run(
+        "bio/diamond/makedb",
+        ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_diamond_blastx():
+    run(
         "bio/diamond/blastx",
         ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
     )

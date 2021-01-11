@@ -5,7 +5,7 @@ rule diamond_blastx:
     output:
         fname = "results.tsv.gz"
     log:
-        "logs/bwa_mem/{sample}.log"
+        "logs/diamond_blastx.log"
     params:
         extra="--header --compress 1"
     threads: 8

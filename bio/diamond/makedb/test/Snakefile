@@ -1,0 +1,12 @@
+rule diamond_blastx:
+    input:
+        fname = "database.fasta",
+    output:
+        fname_db = "database.dmnd"
+    log:
+        "logs/diamond_makedb.log"
+    params:
+        extra=""
+    threads: 8
+    wrapper:
+        "master/bio/diamond/makedb"
