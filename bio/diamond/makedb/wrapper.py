@@ -7,7 +7,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
     "diamond makedb"
-    " --threads {threads}"
+    " --threads {snakemake.threads}"
     " --in {snakemake.input.fname}"
     " --db {snakemake.output.fname}}"
     " {extra}"

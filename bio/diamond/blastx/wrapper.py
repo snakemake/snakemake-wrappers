@@ -7,10 +7,10 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
     "diamond blastx"
-    " --threads {threads}"
+    " --threads {snakemake.threads}"
     " --db {snakemake.input.fname_db}"
     " --query {snakemake.input.fname_fastq}"
-    " --out {output.fname}"
+    " --out {snakemake.output.fname}"
     " {extra}"
     " {log}"
 )
