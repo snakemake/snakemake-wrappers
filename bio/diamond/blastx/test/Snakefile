@@ -1,11 +1,11 @@
 rule diamond_blastx:
     input:
-        fname_fastq = "reads.fastq",
-        fname_db = "database.dmnd"
+        fname_fastq = "{sample}.fastq",
+        fname_db = "db.dmnd"
     output:
-        fname = "results.tsv.gz"
+        fname = "{sample}.tsv.gz"
     log:
-        "logs/diamond_blastx.log"
+        "logs/diamond_blastx/{sample}.log"
     params:
         extra="--header --compress 1"
     threads: 8

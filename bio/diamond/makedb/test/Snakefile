@@ -1,10 +1,10 @@
 rule diamond_blastx:
     input:
-        fname = "database.fasta",
+        fname = "{reference}.fasta",
     output:
-        fname_db = "database.dmnd"
+        fname_db = "{reference}.dmnd"
     log:
-        "logs/diamond_makedb.log"
+        "logs/diamond_makedb/{reference}.log"
     params:
         extra=""
     threads: 8

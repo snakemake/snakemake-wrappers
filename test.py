@@ -3359,7 +3359,7 @@ def test_wgsim():
 def test_diamond_blastx():
     run(
         "bio/diamond/makedb",
-        ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "foo.dmnd", "--use-conda", "-F"],
     )
 
 
@@ -3367,5 +3367,5 @@ def test_diamond_blastx():
 def test_diamond_blastx():
     run(
         "bio/diamond/blastx",
-        ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "foo.tsv.gz", "--use-conda", "-F"],
     )
