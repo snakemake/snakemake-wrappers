@@ -1,3 +1,9 @@
+__author__ = "Kim Philipp Jablonski"
+__copyright__ = "Copyright 2020, Kim Philipp Jablonski"
+__email__ = "kim.philipp.jablonski@gmail.com"
+__license__ = "MIT"
+
+
 from snakemake.shell import shell
 
 
