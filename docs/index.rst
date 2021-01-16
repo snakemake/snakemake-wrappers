@@ -5,8 +5,8 @@ The Snakemake Wrappers repository
 .. image:: https://img.shields.io/badge/snakemake-≥5.7.0-brightgreen.svg?style=flat-square
       :target: http://snakemake.readthedocs.io
 
-.. image:: https://github.com/snakemake/snakemake-wrappers/workflows/CI/badge.svg?branch=master
-      :target: https://github.com/snakemake/snakemake-wrappers/actions?query=branch%3Amaster+workflow%3ACI
+.. image:: https://github.com/snakemake/snakemake-wrappers/workflows/Tests/badge.svg?branch=master
+      :target: https://github.com/snakemake/snakemake-wrappers/actions?query=branch%3Amaster+workflow%3ATests
 
 The Snakemake Wrapper Repository is a collection of reusable wrappers that allow to quickly use popular tools
 from `Snakemake <https://snakemake.readthedocs.io>`_ rules and workflows.

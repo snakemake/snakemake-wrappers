@@ -5,6 +5,7 @@ import shutil
 import pytest
 import sys
 import yaml
+from itertools import chain
 
 DIFF_MASTER = os.environ.get("DIFF_MASTER", "false") == "true"
 DIFF_LAST_COMMIT = os.environ.get("DIFF_LAST_COMMIT", "false") == "true"
@@ -24,6 +25,9 @@ CONTAINERIZED = os.environ.get("CONTAINERIZED", "false") == "true"
 
 class Skipped(Exception):
     pass
+
+
+skip_if_not_modified = pytest.mark.xfail(raises=Skipped)
 
 
 def run(wrapper, cmd, check_log=None):
@@ -46,7 +50,6 @@ def run(wrapper, cmd, check_log=None):
             used_wrappers.append(wrapper)
 
         for w in used_wrappers:
-            print(w)
             success = False
             for ext in ("py", "R", "Rmd"):
                 script = "wrapper." + ext
@@ -59,9 +62,10 @@ def run(wrapper, cmd, check_log=None):
             copy(w, "environment.yaml")
 
         if (DIFF_MASTER or DIFF_LAST_COMMIT) and not any(
-            any(f.startswith(w) for f in DIFF_FILES) for w in used_wrappers
+            any(f.startswith(w) for f in DIFF_FILES)
+            for w in chain(used_wrappers, [wrapper])
         ):
-            raise Skipped("wrapper not modified")
+            raise Skipped("wrappers not modified")
 
         testdir = os.path.join(d, "test")
         # pkgdir = os.path.join(d, "pkgs")
@@ -132,14 +136,100 @@ def test_open_cravat_module():
         ["snakemake", "--cores", "1", "--use-conda"],
     )
 
-skip_if_not_modified = pytest.mark.xfail(raises=Skipped)
+@skip_if_not_modified
+def test_dada2_se_meta():
+    run(
+        "meta/bio/dada2_se",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_adapterremoval_pe_collapse_singletons():
+    run(
+        "bio/adapterremoval",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "trimmed/pe_collapse/a_R1.fastq.gz",
+            "trimmed/pe_collapse/a_R2.fastq.gz",
+            "trimmed/pe_collapse/a.fastq.gz",
+            "trimmed/pe_collapse/a.discarded.fastq.gz",
+            "stats/pe_collapse/a.settings",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_adapterremoval_pe():
+    run(
+        "bio/adapterremoval",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "trimmed/pe/a_R1.fastq.gz",
+            "trimmed/pe/a_R2.fastq.gz",
+            "trimmed/pe/a.singleton.fastq.gz",
+            "trimmed/pe/a.collapsed.fastq.gz",
+            "trimmed/pe/a.collapsed_trunc.fastq.gz",
+            "trimmed/pe/a.discarded.fastq.gz",
+            "stats/pe/a.settings",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_adapterremoval_se():
+    run(
+        "bio/adapterremoval",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "trimmed/se/a.fastq.gz",
+            "trimmed/se/a.discarded.fastq.gz",
+            "stats/se/a.settings",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_dada2_pe_meta():
+    run(
+        "meta/bio/dada2_pe",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "results/dada2/taxa.RDS",
+            "reports/dada2/quality-profile/a-quality-profile.png",
+            "reports/dada2/quality-profile/b-quality-profile.png",
+        ],
+    )
 
 
 @skip_if_not_modified
 def test_mapdamage2():
     run(
         "bio/mapdamage2",
-        ["snakemake", "--cores", "1", "--use-conda", "results/a/Runtime_log.txt",],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "results/a/Runtime_log.txt",
+        ],
     )
 
 
@@ -268,6 +358,20 @@ def test_dada2_assign_taxonomy():
 
 
 @skip_if_not_modified
+def test_dada2_assign_species():
+    run(
+        "bio/dada2/assign-species",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "results/dada2/genus-species-taxa.RDS",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_dada2_add_species():
     run(
         "bio/dada2/add-species",
@@ -287,7 +391,13 @@ def test_arriba_star_meta():
 def test_bwa_mapping_meta():
     run(
         "meta/bio/bwa_mapping",
-        ["snakemake", "--cores", "1", "--use-conda", "mapped/a.bam.bai",],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "mapped/a.bam.bai",
+        ],
     )
 
 
@@ -2055,6 +2165,23 @@ def test_strelka_germline():
     run(
         "bio/strelka/germline",
         ["snakemake", "--cores", "1", "strelka/a", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_subread_featurecounts():
+    run(
+        "bio/subread/featurecounts",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/a.featureCounts",
+            "results/a.featureCounts.summary",
+            "results/a.featureCounts.jcounts",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 

@@ -1,6 +1,5 @@
 channels:
   - bioconda
-  - conda-forge
   - defaults
 dependencies:
-  - fastp =0.20
+  - adapterremoval ==2.3.1

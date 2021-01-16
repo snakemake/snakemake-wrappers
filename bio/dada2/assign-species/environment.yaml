@@ -3,4 +3,5 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - fastp =0.20
+  - bioconductor-dada2 == 1.16
+
