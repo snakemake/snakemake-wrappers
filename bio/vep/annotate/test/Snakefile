@@ -5,7 +5,9 @@ rule annotate_variants:
         plugins="resources/vep/plugins",
         # optionally add reference genome fasta
         # fasta="genome.fasta",
+        # fai="genome.fasta.fai", # fasta index
         # gff="annotation.gff",
+        # csi="annotation.gff.csi", # tabix index
     output:
         calls="variants.annotated.bcf",  # .vcf, .vcf.gz or .bcf
         stats="variants.html"

@@ -45,7 +45,7 @@ if cache:
     species = entrypath.parent.name
     release, build = entrypath.name.split("_")
     cache = (
-        "--cache --dir_cache {cache} --cache_version {release} --species {species} --assembly {build}"
+        "--offline --cache --dir_cache {cache} --cache_version {release} --species {species} --assembly {build}"
     ).format(cache=cache, release=release, build=build, species=species)
 
 shell(
@@ -57,7 +57,6 @@ shell(
     "{gff} "
     "{fasta} "
     "--dir_plugins {plugins} "
-    "--offline "
     "{load_plugins} "
     "--output_file STDOUT "
     "--stats_file {stats} | "
