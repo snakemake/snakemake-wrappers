@@ -1,0 +1,9 @@
+rule bamtools_split:
+    input:
+        "mapped/{sample}.bam"
+    output:
+        "mapped/{sample}.sorted.bam.bai"
+    params:
+        #split_type="-reference" #  -reference is the default value, could also be '-paired' and '-tag <tag_name>'
+    wrapper:
+        "master/bio/bamtools/split"
