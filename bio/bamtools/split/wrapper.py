@@ -8,7 +8,7 @@ from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-split_type = snakemake.params.get("split_type",'-reference')
+split_type = snakemake.params.get("split_type", "-reference")
 
 if len(snakemake.input) != 1:
     raise ValueError("One bam input file expected, got: " + str(len(snakemake.input)))
