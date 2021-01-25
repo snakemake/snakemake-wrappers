@@ -1,4 +1,0 @@
-name: OpenCRAVAT Run
-description: Install OpenCRAVAT modules. Annotate variant calls with OpenCRAVAT. For more details, see https://github.com/KarchinLab/open-cravat/wiki.
-authors:
-    - Rick Kim

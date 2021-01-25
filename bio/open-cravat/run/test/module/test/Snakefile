@@ -1,7 +1,0 @@
-rule module:
-    output:
-        directory("modules/annotators/biogrid"), 
-    log:
-        "logs/open-cravat/module.log"
-    wrapper:
-        'master/bio/open-cravat/module'
