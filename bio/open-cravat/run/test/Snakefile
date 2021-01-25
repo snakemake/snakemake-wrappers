@@ -1,6 +1,6 @@
 rule run:
     input:
-        'example_input.txt',
+        'example_input.tsv',
         'modules/commons/hg38wgs',
         'modules/converters/cravat-converter',
         'modules/mappers/hg38',
