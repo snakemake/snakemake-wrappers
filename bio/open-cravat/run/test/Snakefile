@@ -13,9 +13,9 @@ rule run:
         'modules/reporters/tsvreporter',
         'modules/reporters/csvreporter',
     output:
-        'example_input.txt.xlsx',
-        'example_input.txt.variant.tsv', 
-        'example_input.txt.variant.csv'
+        'example_input.tsv.xlsx',
+        'example_input.tsv.variant.tsv', 
+        'example_input.tsv.variant.csv'
     params:
         cores=1
     log:
@@ -39,4 +39,4 @@ rule installmodules:
     log:
         "logs/open-cravat/module.log"
     wrapper:
-        'master/bio/open-cravat/module'
+        'file:module_wrapper/module_wrapper.py'
