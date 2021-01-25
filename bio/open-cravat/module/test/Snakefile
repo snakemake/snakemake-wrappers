@@ -5,3 +5,4 @@ rule module:
         "logs/open-cravat/module.log"
     wrapper:
         'master/bio/open-cravat/module'
+
