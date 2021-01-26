@@ -2,7 +2,7 @@ rule bamtools_split:
     input:
         "mapped/{sample}.bam",
     output:
-        "mapped/{sample}.sorted.bam.bai",
+        ["mapped/{sample}.REF_chr1.bam", "mapped/{sample}.REF_chr2.bam"],
     params:
         #  -reference is the default value and can be left out, could also be '-paired' and '-tag <tag_name>'
         split_type="-reference",

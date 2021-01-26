@@ -2049,6 +2049,14 @@ def test_bamtools_filter_json():
 
 
 @skip_if_not_modified
+def test_bamtools_filter_json():
+    run(
+        "bio/bamtools/split",
+        ["snakemake", "--cores", "1", "mapped/a.REF_chr1.bam", "mapped/a.REF_chr2.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_bamtools_stats():
     run(
         "bio/bamtools/stats",
