@@ -2052,7 +2052,7 @@ def test_bamtools_filter_json():
 def test_bamtools_split():
     run(
         "bio/bamtools/split",
-        ["snakemake", "--cores", "1", "mapped/a.REF_chr1.bam", "mapped/a.REF_chr2.bam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "mapped/a.REF_xx.bam", "--use-conda", "-F"],
     )
 
 
