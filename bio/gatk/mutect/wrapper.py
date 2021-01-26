@@ -23,7 +23,7 @@ java_opts = get_java_opts(snakemake)
 shell(
     "gatk --java-options '{java_opts}' Mutect2 "  # Tool and its subprocess
     "--input {snakemake.input.map} "  # Path to input mapping file
-    "{bam_output} " # Path to output bam file, optional
+    "{bam_output} "  # Path to output bam file, optional
     "--output {snakemake.output.vcf} "  # Path to output vcf file
     "--reference {snakemake.input.fasta} "  # Path to reference fasta file
     "{extra} "  # Extra parameters

@@ -24,8 +24,8 @@ rule mutect2_bam:
         fasta = "genome/genome.fasta",
         map = "mapped/{sample}.bam"
     output:
-        vcf = "variant/{sample}.vcf",
-        bam = "variant/{sample}.bam"
+        vcf = "variant_bam/{sample}.vcf",
+        bam = "variant_bam/{sample}.bam"
     message:
         "Testing Mutect2 with {wildcards.sample}"
     threads:

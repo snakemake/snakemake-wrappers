@@ -2644,7 +2644,7 @@ def test_gatk_mutect():
 def test_gatk_mutect_bam():
     run(
         "bio/gatk/mutect",
-        ["snakemake", "--cores", "1", "variant/a.vcf", "variant/a.bam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "variant_bam/a.vcf", "variant_bam/a.bam", "--use-conda", "-F"],
     )
 
 @skip_if_not_modified
