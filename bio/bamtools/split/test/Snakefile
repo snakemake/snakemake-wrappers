@@ -4,8 +4,7 @@ rule bamtools_split:
     output:
         "mapped/{sample}.REF_xx.bam",
     params:
-        #  -reference is the default value and can be left out, could also be '-paired' and '-tag <tag_name>'
-        split_type="-reference",
+        extra="-reference",
     log:
         "logs/bamtoos_split/{sample}.log",
     wrapper:
