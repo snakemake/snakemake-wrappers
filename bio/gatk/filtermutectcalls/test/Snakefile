@@ -16,4 +16,4 @@ rule gatk_filtermutectcalls:
     resources:
         mem_mb=1024,
     wrapper:
-        "bio/gatk/filtermutectcalls"
+        "master/bio/gatk/filtermutectcalls"
