@@ -2649,6 +2649,13 @@ def test_gatk_mutect():
 
 
 @skip_if_not_modified
+def test_gatk_mutect_bam():
+    run(
+        "bio/gatk/mutect",
+        ["snakemake", "--cores", "1", "variant_bam/a.vcf", "variant_bam/a.bam", "--use-conda", "-F"],
+    )
+
+@skip_if_not_modified
 def test_varscan_mpileup2indel():
     run(
         "bio/varscan/mpileup2indel",
