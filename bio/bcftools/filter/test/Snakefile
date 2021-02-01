@@ -1,0 +1,46 @@
+rule bcf_filter_o_vcf:
+    input:
+        "{prefix}.bcf",
+    output:
+        "{prefix}.filter.vcf",
+    params:
+        filter="-i 'QUAL > 5'",
+        extra="",
+    wrapper:
+        "master/bio/bcftools/filter"
+
+
+rule bcf_filter_o_vcf_gz:
+    input:
+        "{prefix}.bcf",
+    output:
+        "{prefix}.filter.vcf.gz",
+    params:
+        filter="-i 'QUAL > 5'",
+        extra="",
+    wrapper:
+        "master/bio/bcftools/filter"
+
+
+rule bcf_filter_o_bcf:
+    input:
+        "{prefix}.bcf",
+    output:
+        "{prefix}.filter.bcf",
+    params:
+        filter="-i 'QUAL > 5'",
+        extra="",
+    wrapper:
+        "master/bio/bcftools/filter"
+
+
+rule bcf_filter_o_bcf_gz:
+    input:
+        "{prefix}.bcf",
+    output:
+        "{prefix}.filter.bcf.gz",
+    params:
+        filter="-i 'QUAL > 5'",
+        extra="",
+    wrapper:
+        "master/bio/bcftools/filter"

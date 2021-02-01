@@ -596,6 +596,30 @@ def test_art_profiler_illumina():
 
 
 @skip_if_not_modified
+def test_bcftools_filter_vcf():
+    run("bio/bcftools/filter",
+        ["snakemake", "--cores", "1", "a.filter.vcf", "--use-conda", "-F"])
+
+
+@skip_if_not_modified
+def test_bcftools_filter_vcf_gz():
+    run("bio/bcftools/filter",
+        ["snakemake", "--cores", "1", "a.filter.vcf.gz", "--use-conda", "-F"])
+
+
+@skip_if_not_modified
+def test_bcftools_filter_bcf():
+    run("bio/bcftools/filter",
+        ["snakemake", "--cores", "1", "a.filter.bcf", "--use-conda", "-F"])
+
+
+@skip_if_not_modified
+def test_bcftools_filter_bcf_gz():
+    run("bio/bcftools/filter",
+        ["snakemake", "--cores", "1", "a.filter.bcf.gz", "--use-conda", "-F"])
+
+
+@skip_if_not_modified
 def test_bcftools_sort():
     run(
         "bio/bcftools/sort",
