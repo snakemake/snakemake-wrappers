@@ -6,6 +6,7 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 if snakemake.output[0].endswith("bcf"):
     output_format = "-Ou"
@@ -29,5 +30,6 @@ extra = snakemake.params.get("extra", "")
 shell(
     "bcftools filter {filter} {extra} {snakemake.input[0]} "
     "{output_format} "
-    "-o {snakemake.output[0]}"
+    "-o {snakemake.output[0]} "
+    "{log}"
 )

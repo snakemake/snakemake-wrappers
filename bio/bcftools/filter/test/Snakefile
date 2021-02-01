@@ -3,6 +3,8 @@ rule bcf_filter_o_vcf:
         "{prefix}.bcf",
     output:
         "{prefix}.filter.vcf",
+    log:
+        "log/{prefix}.filter.vcf.log",
     params:
         filter="-i 'QUAL > 5'",
         extra="",
@@ -15,6 +17,8 @@ rule bcf_filter_o_vcf_gz:
         "{prefix}.bcf",
     output:
         "{prefix}.filter.vcf.gz",
+    log:
+        "log/{prefix}.filter.vcf.gz.log",
     params:
         filter="-i 'QUAL > 5'",
         extra="",
@@ -27,6 +31,8 @@ rule bcf_filter_o_bcf:
         "{prefix}.bcf",
     output:
         "{prefix}.filter.bcf",
+    log:
+        "log/{prefix}.filter.bcf.log",
     params:
         filter="-i 'QUAL > 5'",
         extra="",
@@ -39,6 +45,8 @@ rule bcf_filter_o_bcf_gz:
         "{prefix}.bcf",
     output:
         "{prefix}.filter.bcf.gz",
+    log:
+        "log/{prefix}.filter.bcf.gz.log",
     params:
         filter="-i 'QUAL > 5'",
         extra="",
