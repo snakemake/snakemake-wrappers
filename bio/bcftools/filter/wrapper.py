@@ -8,13 +8,13 @@ from snakemake.shell import shell
 
 
 if snakemake.output[0].endswith("bcf"):
-    output_format="-Ou"
+    output_format = "-Ou"
 elif snakemake.output[0].endswith("bcf.gz"):
-    output_format="-Ob"
+    output_format = "-Ob"
 elif snakemake.output[0].endswith("vcf"):
-    output_format="-Ov"
+    output_format = "-Ov"
 elif snakemake.output[0].endswith("vcf.gz"):
-    output_format="-Oz"
+    output_format = "-Oz"
 
 
 if len(snakemake.input) > 1:
@@ -23,8 +23,8 @@ if len(snakemake.input) > 1:
 if len(snakemake.output) > 1:
     raise Exception("Only one output file expected, got: " + str(len(snakemake.output)))
 
-filter = snakemake.params.get("filter","")
-extra = snakemake.params.get("extra","")
+filter = snakemake.params.get("filter", "")
+extra = snakemake.params.get("extra", "")
 
 shell(
     "bcftools filter {filter} {extra} {snakemake.input[0]} "
