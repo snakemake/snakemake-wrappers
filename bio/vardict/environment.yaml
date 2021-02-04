@@ -1,0 +1,5 @@
+name: vardict-single-mode
+channels:
+  - bioconda
+dependencies:
+  - vardict-java ==1.8.2
