@@ -1,4 +1,4 @@
-name: vardict-single-mode
+name: vardict-java
 channels:
   - bioconda
 dependencies:
