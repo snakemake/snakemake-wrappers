@@ -1,4 +1,4 @@
-rule run:
+rule opencravat:
     input:
         'example_input.tsv',
         'modules/commons/hg38wgs',
@@ -21,22 +21,22 @@ rule run:
     log:
         "logs/open-cravat/run.log"
     wrapper:
-        'master/bio/open-cravat/run'
+        "master/bio/open-cravat/run"
 
-rule installmodules:
-    output:
-        directory('modules/commons/hg38wgs'), 
-        directory('modules/converters/cravat-converter'), 
-        directory('modules/mappers/hg38'), 
-        directory('modules/annotators/biogrid'), 
-        directory('modules/annotators/clinvar'),
-        directory('modules/postaggregators/tagsampler'),
-        directory('modules/postaggregators/varmeta'),
-        directory('modules/postaggregators/vcfinfo'),
-        directory('modules/reporters/excelreporter'),
-        directory('modules/reporters/tsvreporter'),
-        directory('modules/reporters/csvreporter'),
-    log:
-        "logs/open-cravat/module.log"
-    wrapper:
-        'file:module_wrapper/module_wrapper.py'
+rule installmodules:  # [hide]
+    output:  # [hide]
+        directory('modules/commons/hg38wgs'),  # [hide]
+        directory('modules/converters/cravat-converter'),  # [hide]
+        directory('modules/mappers/hg38'),  # [hide]
+        directory('modules/annotators/biogrid'),   # [hide]
+        directory('modules/annotators/clinvar'),  # [hide]
+        directory('modules/postaggregators/tagsampler'),  # [hide]
+        directory('modules/postaggregators/varmeta'),  # [hide]
+        directory('modules/postaggregators/vcfinfo'),  # [hide]
+        directory('modules/reporters/excelreporter'),  # [hide]
+        directory('modules/reporters/tsvreporter'),  # [hide]
+        directory('modules/reporters/csvreporter'),  # [hide]
+    log:  # [hide]
+        "logs/open-cravat/module.log"  # [hide]
+    wrapper:  # [hide]
+        "file:module_wrapper/module_wrapper.py"  # [hide]
