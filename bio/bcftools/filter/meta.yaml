@@ -1,0 +1,4 @@
+name: bcftools filter
+description: filter vcf/bcf file.
+authors:
+  - Patrik Smeds
