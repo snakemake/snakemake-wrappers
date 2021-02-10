@@ -1,5 +1,5 @@
-name: Vardict Singel sample mode and tumor normal mode
-description: Run Vardict in single sample mode
+name: Vardict
+description: Run Vardict to call genomic variants
 authors:
   - Patrik Smeds
 input:
