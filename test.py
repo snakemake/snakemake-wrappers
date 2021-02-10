@@ -124,17 +124,22 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+
+@skip_if_not_modified
 def test_open_cravat_run():
     run(
         "bio/open-cravat/run",
         ["snakemake", "--cores", "1", "--use-conda"],
     )
 
+
+@skip_if_not_modified
 def test_open_cravat_module():
     run(
         "bio/open-cravat/module",
         ["snakemake", "--cores", "1", "--use-conda"],
     )
+
 
 @skip_if_not_modified
 def test_dada2_se_meta():
