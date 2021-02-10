@@ -126,6 +126,22 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_open_cravat_run():
+    run(
+        "bio/open-cravat/run",
+        ["snakemake", "--cores", "1", "--use-conda"],
+    )
+
+
+@skip_if_not_modified
+def test_open_cravat_module():
+    run(
+        "bio/open-cravat/module",
+        ["snakemake", "--cores", "1", "--use-conda"],
+    )
+
+
+@skip_if_not_modified
 def test_dada2_se_meta():
     run(
         "meta/bio/dada2_se",
@@ -3333,7 +3349,6 @@ def test_snpsift_annotate():
         "bio/snpsift/annotate",
         ["snakemake", "--cores", "1", "annotated/out.vcf", "--use-conda", "-F"],
     )
-
 
 @skip_if_not_modified
 def test_unicycler():
