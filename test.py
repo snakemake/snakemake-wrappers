@@ -2687,6 +2687,23 @@ def test_gatk_mutect_bam():
         ["snakemake", "--cores", "1", "variant_bam/a.vcf", "variant_bam/a.bam", "--use-conda", "-F"],
     )
 
+
+@skip_if_not_modified
+def test_vardict_single_mode():
+    run(
+        "bio/vardict",
+        ["snakemake", "--cores", "1", "vcf/a.s.vcf", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_vardict_paired_mode():
+    run(
+        "bio/vardict",
+        ["snakemake", "--cores", "1", "vcf/a.tn.vcf", "--use-conda", "-F"],
+    )
+
+
 @skip_if_not_modified
 def test_varscan_mpileup2indel():
     run(
