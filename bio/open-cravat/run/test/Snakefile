@@ -16,10 +16,9 @@ rule opencravat:
         'example_input.tsv.xlsx',
         'example_input.tsv.variant.tsv', 
         'example_input.tsv.variant.csv'
-    params:
-        cores=1
     log:
         "logs/open-cravat/run.log"
+    threads: 1 # set number of threads for parallel processing
     wrapper:
         "master/bio/open-cravat/run"
 

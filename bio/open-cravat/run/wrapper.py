@@ -27,7 +27,7 @@ if len(modules_dir) > 1:
 cmd = ["oc", "run"]
 cmd.extend(inputfiles)
 genome = snakemake.params.get("genome", "hg38")
-mp = snakemake.params.get("cores", 1)
+mp = snakemake.threads
 cmd.extend(["-l", genome])
 cmd.extend(["--mp", str(mp)])
 if len(annotators) > 0:
