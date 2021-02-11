@@ -62,7 +62,6 @@ cmd = (
     "--stats_file {stats} | "
     "bcftools view -O{fmt} > {snakemake.output.calls}) {log}"
 ).format(**locals())
-print(cmd)
 
 shell(
     "(bcftools view {snakemake.input.calls} | "
