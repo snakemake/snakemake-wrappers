@@ -38,7 +38,7 @@ if fasta:
 
 gff = snakemake.input.get("gff", "")
 if gff:
-    gff = "--offline --gff {}".format(gff)
+    gff = "--gff {}".format(gff)
 
 if cache:
     entrypath = get_only_child_dir(get_only_child_dir(Path(cache)))
