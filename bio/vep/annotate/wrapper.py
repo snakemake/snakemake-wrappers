@@ -48,21 +48,6 @@ if cache:
         "--offline --cache --dir_cache {cache} --cache_version {release} --species {species} --assembly {build}"
     ).format(cache=cache, release=release, build=build, species=species)
 
-cmd = (
-    "(bcftools view {snakemake.input.calls} | "
-    "vep {extra} {fork} "
-    "--format vcf "
-    "--vcf "
-    "{cache} "
-    "{gff} "
-    "{fasta} "
-    "--dir_plugins {plugins} "
-    "{load_plugins} "
-    "--output_file STDOUT "
-    "--stats_file {stats} | "
-    "bcftools view -O{fmt} > {snakemake.output.calls}) {log}"
-).format(**locals())
-
 shell(
     "(bcftools view {snakemake.input.calls} | "
     "vep {extra} {fork} "
