@@ -1,5 +1,5 @@
 name: plink_preprocess
-description: Convert from standard formats (VCF for genotypes and CSV for phenotypes) and the file formats (fam/ map/ ped) used by PLINK. See https://www.cog-genomics.org/plink/1.9/formats and https://www.cog-genomics.org/plink/1.9/input for further details about the file formats used by PLINK. Also consider reading https://www.cog-genomics.org/plink/1.9/data for all the available extra params (file and recode).
+description: Convert from standard formats (VCF for genotypes and CSV for phenotypes) and the file formats (fam/ map/ ped) used by PLINK. See https://www.cog-genomics.org/plink/1.9/formats and https://www.cog-genomics.org/plink/1.9/input for further details about the file formats used by PLINK. Also consider reading https://www.cog-genomics.org/plink/1.9/data for all the available extra params (file and recode). Parameter 'phenotype_column_name' is mandatory. Sex colum name and male/ female encoding should be provided but they're optional. Covariables (a list of column names) will be optionally used in Linear/ Logistic regression testing only.
 authors:
   - Adrián E. Salatino
 input:
