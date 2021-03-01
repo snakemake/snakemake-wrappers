@@ -13,9 +13,9 @@ known = snakemake.input.get("known", "")
 if known:
     known = "--dbsnp " + str(known)
 
-bam_out = snakemake.output.get("bam", "")
-if bam_out:
-    bam_out = "--bam_out " + str(bam_out)
+bam_output = snakemake.output.get("bam", "")
+if bam_output:
+    bam_output = "--bam-output " + str(bam_out)
 
 extra = snakemake.params.get("extra", "")
 java_opts = get_java_opts(snakemake)
@@ -29,6 +29,6 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 shell(
     "gatk --java-options '{java_opts}' HaplotypeCaller {extra} "
     "-R {snakemake.input.ref} {bams} "
-    "-ERC GVCF {bam_out} "
+    "-ERC GVCF {bam_output} "
     "-O {snakemake.output.gvcf} {known} {log}"
 )
