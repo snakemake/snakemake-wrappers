@@ -15,7 +15,7 @@ if known:
 
 bam_output = snakemake.output.get("bam", "")
 if bam_output:
-    bam_output = "--bam-output " + str(bam_out)
+    bam_output = "--bam-output " + str(bam_output)
 
 extra = snakemake.params.get("extra", "")
 java_opts = get_java_opts(snakemake)
