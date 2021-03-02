@@ -7,6 +7,7 @@ __license__ = "MIT"
 
 
 from os import path
+import re
 from tempfile import TemporaryDirectory
 
 from snakemake.shell import shell
@@ -18,9 +19,14 @@ def basename_without_ext(file_path):
     """Returns basename of file path, without the file extension."""
 
     base = path.basename(file_path)
-
-    split_ind = 2 if base.endswith(".fastq.gz") else 1
-    base = ".".join(base.split(".")[:-split_ind])
+    # Remove file extension(s) (similar to the internal fastqc approach)
+    base = re.sub("\\.gz$", "", base)
+    base = re.sub("\\.bz2$", "", base)
+    base = re.sub("\\.txt$", "", base)
+    base = re.sub("\\.fastq$", "", base)
+    base = re.sub("\\.fq$", "", base)
+    base = re.sub("\\.sam$", "", base)
+    base = re.sub("\\.bam$", "", base)
 
     return base
 
