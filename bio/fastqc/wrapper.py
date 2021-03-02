@@ -20,13 +20,13 @@ def basename_without_ext(file_path):
 
     base = path.basename(file_path)
     # Remove file extension(s) (similar to the internal fastqc approach)
-    base = re.sub('\\.gz$', '', base)
-    base = re.sub('\\.bz2$', '', base)
-    base = re.sub('\\.txt$', '', base)
-    base = re.sub('\\.fastq$', '', base)
-    base = re.sub('\\.fq$', '', base)
-    base = re.sub('\\.sam$', '', base)
-    base = re.sub('\\.bam$', '', base)
+    base = re.sub("\\.gz$", "", base)
+    base = re.sub("\\.bz2$", "", base)
+    base = re.sub("\\.txt$", "", base)
+    base = re.sub("\\.fastq$", "", base)
+    base = re.sub("\\.fq$", "", base)
+    base = re.sub("\\.sam$", "", base)
+    base = re.sub("\\.bam$", "", base)
 
     return base
 
