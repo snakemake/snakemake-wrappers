@@ -1,0 +1,16 @@
+rule genotype_gvcfs:
+    input:
+        gvcfs=["calls/a.g.vcf", "calls/b.g.vcf"],
+    output:
+        db=directory("db"),
+    log:
+        "logs/gatk/genomicsdbimport.log"
+    params:
+	intervals="ref,ref2",
+        db_action="create", # optional
+        extra="",  # optional
+        java_opts="",  # optional
+    resources:
+        mem_mb=1024
+    wrapper:
+        "master/bio/gatk/genomicsdbimport"
