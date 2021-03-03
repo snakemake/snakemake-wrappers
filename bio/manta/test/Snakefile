@@ -1,0 +1,15 @@
+rule delly:
+    input:
+        ref="genome.fasta",
+        samples=["mapped/a.bam"],
+        # optional exclude template (see https://github.com/dellytools/delly)
+        exclude="human.hg19.excl.tsv"
+    output:
+        "sv/calls.bcf"
+    params:
+        extra=""  # optional parameters for delly (except -g, -x)
+    log:
+        "logs/delly.log"
+    threads: 2  # It is best to use as many threads as samples
+    wrapper:
+        "master/bio/delly"
