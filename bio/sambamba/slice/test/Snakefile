@@ -1,0 +1,10 @@
+rule sambamba_slice:
+    input:
+        bam="mapped/{sample}.bam",
+        bai="mapped/{sample}.bam.bai"
+    output:
+        "mapped/{sample}.region.bam"
+    params:
+        region="xx:1-10"  # region to catch (contig:start-end)
+    wrapper:
+        "master/bio/sambamba/slice"

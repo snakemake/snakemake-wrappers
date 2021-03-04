@@ -1947,6 +1947,59 @@ def test_rebaler():
 
 
 @skip_if_not_modified
+def test_sambamba_flagstats():
+    run(
+        "bio/sambamba/flagstat",
+        ["snakemake", "--cores", "1", "mapped/A.stats.txt", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_sambamba_sort():
+    run(
+        "bio/sambamba/sort",
+        ["snakemake", "--cores", "1", "mapped/A.sorted.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_sambamba_index():
+    run(
+        "bio/sambamba/index",
+        ["snakemake", "--cores", "1", "mapped/A.sorted.bam.bai", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_sambamba_merge():
+    run(
+        "bio/sambamba/merge",
+        ["snakemake", "--cores", "1", "mapped/A.merged.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_sambamba_view():
+    run(
+        "bio/sambamba/view", ["snakemake", "--cores", "1", "mapped/A.filtered.bam", "--use-conda", "-F"]
+    )
+
+
+@skip_if_not_modified
+def test_sambamba_slice():
+    run(
+        "bio/sambamba/slice", ["snakemake", "--cores", "1", "mapped/A.region.bam", "--use-conda", "-F"]
+    )
+
+
+@skip_if_not_modified
+def test_sambamba_markdup():
+    run(
+        "bio/sambamba/markdup", ["snakemake", "--cores", "1", "mapped/A.rmdup.bam", "--use-conda", "-F"]
+    )
+
+
+@skip_if_not_modified
 def test_samtools_calmd():
     run(
         "bio/samtools/calmd",

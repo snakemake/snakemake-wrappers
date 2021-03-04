@@ -1,0 +1,10 @@
+rule sambamba_view:
+    input:
+        "mapped/{sample}.bam"
+    output:
+        "mapped/{sample}.filtered.bam"
+    params:
+        extra="-f bam -F 'mapping_quality >= 50'"  # optional parameters
+    threads: 8
+    wrapper:
+        "master/bio/sambamba/view"

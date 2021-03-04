@@ -1,0 +1,10 @@
+rule sambamba_index:
+    input:
+        "mapped/{sample}.bam"
+    output:
+        "mapped/{sample}.bam.bai"
+    params:
+        extra=""  # optional parameters
+    threads: 8
+    wrapper:
+        "master/bio/sambamba/index"
