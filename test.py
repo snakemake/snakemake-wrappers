@@ -2637,14 +2637,11 @@ def test_gatk_genotypegvcfs():
     )
 
 
-@pytest.mark.skip(
-    reason="this GATK tool does not work with our test data so far... Error is unclear."
-)
 @skip_if_not_modified
 def test_gatk_genomicsdbimport():
     run(
         "bio/gatk/genomicsdbimport",
-        ["snakemake", "--cores", "1", "genomicsdb/ref", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "db", "--use-conda", "-F"],
     )
 
 
