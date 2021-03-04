@@ -10,7 +10,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 in_bam = snakemake.input.get("bam", "")
 if in_bam:
-    in_bam = "--input {snakemake.input.bam} "
+    in_bam = "--input " + in_bam
 
 output_folder = os.path.dirname(snakemake.output.get("log", ""))
 if not output_folder:
