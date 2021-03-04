@@ -13,4 +13,4 @@ rule genotype_gvcfs:
     resources:
         mem_mb=1024
     wrapper:
-        "bio/gatk/genomicsdbimport"
+        "master/bio/gatk/genomicsdbimport"
