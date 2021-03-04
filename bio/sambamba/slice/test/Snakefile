@@ -6,5 +6,7 @@ rule sambamba_slice:
         "mapped/{sample}.region.bam"
     params:
         region="xx:1-10"  # region to catch (contig:start-end)
+    log:
+        "logs/sambamba-slice/{sample}.log"
     wrapper:
         "master/bio/sambamba/slice"

@@ -5,6 +5,8 @@ rule sambamba_merge:
         "mapped/{sample}.merged.bam"
     params:
         extra=""  # optional parameters
+    log:
+        "logs/sambamba-merge/{sample}.log"
     threads: 1
     wrapper:
         "master/bio/sambamba/merge"

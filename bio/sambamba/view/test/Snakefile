@@ -5,6 +5,8 @@ rule sambamba_view:
         "mapped/{sample}.filtered.bam"
     params:
         extra="-f bam -F 'mapping_quality >= 50'"  # optional parameters
+    log:
+        "logs/sambamba-view/{sample}.log"
     threads: 8
     wrapper:
         "master/bio/sambamba/view"

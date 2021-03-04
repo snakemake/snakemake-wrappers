@@ -5,6 +5,8 @@ rule sambamba_flagstat:
         "mapped/{sample}.stats.txt"
     params:
         extra=""  # optional parameters
+    log:
+        "logs/sambamba-flagstat/{sample}.log"
     threads: 1
     wrapper:
         "master/bio/sambamba/flagstat"

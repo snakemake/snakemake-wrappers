@@ -8,12 +8,14 @@ import os
 from snakemake.shell import shell
 
 in_file = snakemake.input[0]
-extra = snakemake.params.extra
+extra = snakemake.params.get("extra", "")
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 if in_file.endswith(".sam") and ("-S" not in extra or "--sam-input" not in extra):
     extra += " --sam-input"
 
 shell(
     "sambamba view {extra} -t {snakemake.threads} "
-    "{snakemake.input[0]} > {snakemake.output[0]}"
+    "{snakemake.input[0]} > {snakemake.output[0]} "
+    "{log}"
 )
