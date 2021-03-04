@@ -20,7 +20,9 @@ if db_action == "create":
 elif db_action == "update":
     db_action = "--genomicsdb-update-workspace-path"
 else:
-    raise ValueError("invalid option provided to 'params.db_action'; please choose either 'create' or 'update'.")
+    raise ValueError(
+        "invalid option provided to 'params.db_action'; please choose either 'create' or 'update'."
+    )
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
