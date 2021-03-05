@@ -1,0 +1,18 @@
+rule preprocess_variants:
+    input:
+        ##vcf/bcf
+        truth="truth.vcf",
+        query="query.vcf",
+        truth_regions="truth.bed"
+        strat="stratifications.tsv"
+    output:
+        "benchmarking"
+    params:
+        ## path to reference genome
+        genome="genome.fasta",
+        engine="vcfeval",
+        ## parameters such as -L to left-align variants
+        extra=""
+    threads: 2
+    wrapper:
+        "master/bio/hap.py/hap.py"
