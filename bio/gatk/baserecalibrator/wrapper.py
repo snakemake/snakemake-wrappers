@@ -13,7 +13,9 @@ java_opts = get_java_opts(snakemake)
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 known = snakemake.input.get("known", "")
 if known:
-    known = "--known-sites {}".format(known)
+    if isinstance(known, str):
+        known = [known]
+    known = list(map("--known-sites {}".format, known))
 
 shell(
     "gatk --java-options '{java_opts}' BaseRecalibrator {extra} "
