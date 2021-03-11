@@ -24,7 +24,7 @@ def fmt_res(resname, resparams):
                 resname
             )
         )
-    return "{},known={},training={},truth={},prior={}:{}".format(
+    return "{},known={},training={},truth={},prior={} {}".format(
         resname,
         fmt_bool(resparams["known"]),
         fmt_bool(resparams["training"]),
@@ -35,7 +35,7 @@ def fmt_res(resname, resparams):
 
 
 resources = [
-    "--resource {}".format(fmt_res(resname, resparams))
+    "--resource:{}".format(fmt_res(resname, resparams))
     for resname, resparams in snakemake.params["resources"].items()
 ]
 annotation = list(map("-an {}".format, snakemake.params.annotation))
