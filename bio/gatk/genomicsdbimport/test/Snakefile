@@ -1,0 +1,21 @@
+rule genomicsdbimport:
+    input:
+        gvcfs=["calls/a.g.vcf.gz", "calls/b.g.vcf.gz"],
+        ref="genome.fasta",
+	interval_file="test.intervals"
+    output:
+        genomicsdb_dir=directory("genomicsdb")
+    log:
+        "logs/gatk/genomicsdbimport.log"
+    params:
+        extra="",  # optional
+        java_opts="",  # optional
+	tmp_dir="", # optional - specify a temporary directory for GenomicsDBImport to utilize
+    # optional specification of memory usage of the JVM that snakemake will respect with global
+    # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
+    # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
+    # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
+    resources:
+        mem_mb=100
+    wrapper:
+	    "https://raw.githubusercontent.com/brcopeland/snakemake-wrappers/genomicsdbimport/bio/gatk/genomicsdbimport"
