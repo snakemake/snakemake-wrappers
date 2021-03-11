@@ -11,12 +11,16 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 extra = snakemake.params
 java_opts = get_java_opts(snakemake)
+bams = snakemake.input
+if isinstance(bams, str):
+    bams = [bams]
+bams = list(map("-I {}".format, bams))
 
 shell(
     "picard MarkDuplicates "  # Tool and its subcommand
     "{java_opts} "  # Automatic java option
     "{extra} "  # User defined parmeters
-    "INPUT={snakemake.input} "  # Input file
+    "{bams} "  # Input bam(s)
     "OUTPUT={snakemake.output.bam} "  # Output bam
     "METRICS_FILE={snakemake.output.metrics} "  # Output metrics
     "{log}"  # Logging
