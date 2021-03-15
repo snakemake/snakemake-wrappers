@@ -7,6 +7,8 @@ __license__ = "MIT"
 import os
 from snakemake.shell import shell
 
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+
 prefix = os.path.splitext(snakemake.output[0])[0]
 
 # Samtools takes additional threads through its option -@
@@ -30,4 +32,5 @@ shell(
     " -s /dev/null "
     " -F 0x900 "
     " - "
+    "{log}"
 )

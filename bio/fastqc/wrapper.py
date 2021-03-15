@@ -12,7 +12,7 @@ from tempfile import TemporaryDirectory
 
 from snakemake.shell import shell
 
-log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
 def basename_without_ext(file_path):

@@ -21,5 +21,6 @@ threads = "" if snakemake.threads <= 1 else " -@ {} ".format(snakemake.threads -
 makedirs(op.dirname(snakemake.output[0]))
 
 shell(
-    "samtools fixmate {extra} {threads}" " {snakemake.input[0]} {snakemake.output[0]}"
+    "samtools fixmate {extra} {threads}"
+    " {snakemake.input[0]} {snakemake.output[0]} {log}"
 )

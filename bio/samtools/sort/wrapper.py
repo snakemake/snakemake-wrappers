@@ -7,6 +7,7 @@ __license__ = "MIT"
 import os
 from snakemake.shell import shell
 
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 out_name, out_ext = os.path.splitext(snakemake.output[0])
 
@@ -23,5 +24,6 @@ threads = "" if snakemake.threads <= 1 else " -@ {} ".format(snakemake.threads -
 
 shell(
     "samtools sort {snakemake.params.extra} {threads} -o {snakemake.output[0]} "
-    "-T {prefix} {snakemake.input[0]}"
+    "-T {prefix} {snakemake.input[0]} "
+    "{log}"
 )
