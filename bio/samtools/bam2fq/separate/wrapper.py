@@ -7,6 +7,8 @@ __license__ = "MIT"
 import os
 from snakemake.shell import shell
 
+params_sort = snakemake.params.get("sort", "")
+params_bam2fq = snakemake.params.get("bam2fq", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 prefix = os.path.splitext(snakemake.output[0])[0]
@@ -22,10 +24,10 @@ shell(
     "samtools sort -n "
     " {threads} "
     " -T {prefix} "
-    " {snakemake.params.sort} "
+    " {params_sort} "
     " {snakemake.input[0]} | "
     "samtools bam2fq "
-    " {snakemake.params.bam2fq} "
+    " {params_bam2fq} "
     " -1 {snakemake.output[0]} "
     " -2 {snakemake.output[1]} "
     " -0 /dev/null "
