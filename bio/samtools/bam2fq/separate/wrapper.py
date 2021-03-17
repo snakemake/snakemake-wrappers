@@ -21,7 +21,7 @@ prefix = os.path.splitext(snakemake.output[0])[0]
 threads = "" if snakemake.threads <= 2 else " -@ {} ".format(snakemake.threads - 2)
 
 shell(
-    "samtools sort -n "
+    "(samtools sort -n "
     " {threads} "
     " -T {prefix} "
     " {params_sort} "
@@ -34,5 +34,5 @@ shell(
     " -s /dev/null "
     " -F 0x900 "
     " - "
-    "{log}"
+    ") {log}"
 )
