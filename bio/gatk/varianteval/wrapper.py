@@ -35,6 +35,13 @@ known = snakemake.input.get("known", "")
 if known:
     known = "--dbsnp " + known
 
+comp = snakemake.input.get("comp", "")
+if comp:
+    if isinstance(comp, str):
+        comp = "--comparison  {}".format(comp)
+    else:
+        comp = list(map("--comparison {}".format, comp))
+
 ped = snakemake.input.get("ped", "")
 if ped:
     ped = "--pedigree " + ped
@@ -51,5 +58,6 @@ shell(
     "{ref_dict} "
     "{known} "
     "{ped} "
+    "{comp} "
     "{extra} --output {snakemake.output[0]} {log}"
 )

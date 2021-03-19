@@ -1,8 +1,9 @@
 rule gatk_varianteval:
     input:
-        vcf=["calls/snvs.vcf"],
+        vcf="calls/snvs.vcf",
         ref="genome.fasta",
         dict="genome.dict",
+#	comp="calls/comp.vcf",
     output:
         vcf="snvs.varianteval.grp"
     log:
