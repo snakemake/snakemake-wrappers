@@ -21,7 +21,7 @@ if dbsnp:
 
 # Allow for either an input gvcf or GenomicsDB
 gvcf = snakemake.input.get("gvcf", "")
-genomicsdb = snakemake.input.get("genomicsdb")
+genomicsdb = snakemake.input.get("genomicsdb", "")
 if gvcf:
     if genomicsdb:
         raise Exception("Only input.gvcf or input.genomicsdb expected, got both.")
