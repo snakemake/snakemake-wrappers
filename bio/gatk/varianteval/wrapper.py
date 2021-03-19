@@ -10,11 +10,18 @@ extra = snakemake.params.get("extra", "")
 java_opts = get_java_opts(snakemake)
 
 
-vcf = list(map("--eval {}".format, snakemake.input.vcf))
+vcf = snakemake.input.vcf
+if isinstance(vcf, str):
+    vcf = "--eval  {}".format(vcf)
+else:
+    vcf = list(map("--eval {}".format, vcf))
 
 bam = snakemake.input.get("bam", "")
 if bam:
-    bam = list(map("--input {}".format, bam))
+    if isinstance(bam, str):
+        bam = "--input  {}".format(bam)
+    else:
+        bam = list(map("--input {}".format, bam))
 
 ref = snakemake.input.get("ref", "")
 if ref:
