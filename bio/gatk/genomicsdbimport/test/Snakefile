@@ -1,4 +1,4 @@
-rule genotype_gvcfs:
+rule genomics_db_import:
     input:
         gvcfs=["calls/a.g.vcf.gz", "calls/b.g.vcf.gz"],
     output:
