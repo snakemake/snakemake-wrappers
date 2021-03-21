@@ -25,7 +25,7 @@ else:
 # note: --force allows snakemake to handle rewriting files as necessary
 # without needing to specify *all* busco outputs as snakemake outputs
 shell(
-    "run_busco --in {snakemake.input} --out {out_name} --force "
+    "busco --in {snakemake.input} --out {out_name} --force "
     " --cpu {snakemake.threads} --mode {mode} --lineage {lineage} "
     " {extra} {log}"
 )
