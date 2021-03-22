@@ -2606,6 +2606,14 @@ def test_vcftoolsfilter():
 
 
 @skip_if_not_modified
+def test_gatk_markduplicatesspark():
+    run(
+        "bio/gatk/markduplicatesspark",
+        ["snakemake", "--cores", "1", "dedup/a.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_gatk_baserecalibrator():
     run(
         "bio/gatk/baserecalibrator",
