@@ -6,8 +6,7 @@ rule blast_makedatabase_nucleotide:
     log:
         "logs/{genome}{ext}.log"
     params:
-        db_type="nucl",  # required
-        extra="-input_type fasta -parse_seqids"
+        "-input_type fasta -parse_seqids"
     wrapper:
         "master/bio/blast/makeblastdb"
 
@@ -19,7 +18,6 @@ rule blast_makedatabase_protein:
     log:
         "logs/{protein}{ext}.log"
     params:
-        db_type="prot",  # required
-        extra="-input_type fasta"
+        "-input_type fasta"
     wrapper:
         "master/bio/blast/makeblastdb"

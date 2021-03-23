@@ -10,12 +10,19 @@ from pathlib import Path
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 out = snakemake.output[0]
+db_type = ""
 out_name = "{}/{}".format(path.dirname(out), Path(path.basename(out)).stem)
+ext = Path(out).suffix
+
+if ext.startswith(".n"):
+    db_type = "nucl"
+elif ext.startswith(".p"):
+    db_type = "prot"
 
 shell(
     "(makeblastdb"
     " -in {snakemake.input.fasta}"
-    " -dbtype {snakemake.params.db_type}"
-    " {snakemake.params.extra}"
+    " -dbtype {db_type}"
+    " {snakemake.params}"
     " -out {out_name}) {log}"
 )
