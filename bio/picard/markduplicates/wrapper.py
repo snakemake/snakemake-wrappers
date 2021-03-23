@@ -14,7 +14,7 @@ java_opts = get_java_opts(snakemake)
 bams = snakemake.input
 if isinstance(bams, str):
     bams = [bams]
-bams = list(map("-I {}".format, bams))
+bams = list(map("--INPUT {}".format, bams))
 
 shell(
     "picard MarkDuplicates "  # Tool and its subcommand
