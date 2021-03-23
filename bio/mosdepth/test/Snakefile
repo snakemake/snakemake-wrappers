@@ -11,7 +11,7 @@ rule mosdepth:
         "logs/mosdepth/{dataset}.log"
     params:
         by = "500",  # window size or BED file
-        prefix = "{dataset}",
+        prefix = "mosdepth/{dataset}",
         extra = "--no-per-base --use-median"  # optional
     threads:  # additional decompression threads through `--threads`
         4     # This value - 1 will be sent to `--threads`
