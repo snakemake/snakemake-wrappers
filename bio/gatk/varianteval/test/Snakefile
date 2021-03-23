@@ -3,7 +3,7 @@ rule gatk_varianteval:
         vcf="calls/snvs.vcf",
         ref="genome.fasta",
         dict="genome.dict",
-#	comp="calls/comp.vcf",
+        # comp="calls/comp.vcf", # optional comparison VCF
     output:
         vcf="snvs.varianteval.grp"
     log:
