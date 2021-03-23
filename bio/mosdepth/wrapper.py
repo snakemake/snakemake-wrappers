@@ -11,14 +11,12 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 # mosdepth takes additional threads through its option --threads
 # One thread for mosdepth
 # Other threads are *additional* decompression threads passed to the '--threads' argument
-threads = "" if snakemake.threads <= 1 else "{}".format(snakemake.threads - 1)
+threads = "" if snakemake.threads <= 1 else "--threads {}".format(snakemake.threads - 1)
 
 shell(
     """
-    (mosdepth \
-        --threads {threads} \
-        --by {snakemake.params.by} \
-        {extra} \
+    (mosdepth {threads} \
+        --by {snakemake.params.by} {extra} \
         {snakemake.params.prefix} \
         {snakemake.input.bam}) {log}
     """
