@@ -2691,6 +2691,14 @@ def test_gatk_variantfiltration():
 
 
 @skip_if_not_modified
+def test_gatk_varianteval():
+    run(
+        "bio/gatk/varianteval",
+        ["snakemake", "--cores", "1", "snvs.varianteval.grp", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_gatk_genotypegvcfs():
     run(
         "bio/gatk/genotypegvcfs",
