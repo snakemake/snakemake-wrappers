@@ -1,6 +1,9 @@
 rule mark_duplicates:
     input:
         "mapped/{sample}.bam"
+	# multiple BAMs may be entered as a list; this has the effect of merging
+	# multiple read groups from one sample into a single BAM while retaining
+	# the read group information
     output:
         bam="dedup/{sample}.bam",
         metrics="dedup/{sample}.metrics.txt"

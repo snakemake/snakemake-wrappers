@@ -4,6 +4,6 @@ description: |
 authors:
   - Johannes Köster
 input:
-  - bam file
+  - bam file(s)
 output:
   - bam file with marked or removed duplicates
