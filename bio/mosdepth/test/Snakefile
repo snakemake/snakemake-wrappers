@@ -1,7 +1,7 @@
 rule mosdepth:
     input:
-        bam = aligned/"{dataset}.bam",
-        bai = aligned/"{dataset}.bam.bai"
+        bam = "aligned/{dataset}.bam",
+        bai = "aligned/{dataset}.bam.bai"
     output:
         "mosdepth/{dataset}.mosdepth.global.dist.txt",
         "mosdepth/{dataset}.mosdepth.region.dist.txt",
