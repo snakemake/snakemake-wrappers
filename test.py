@@ -799,6 +799,22 @@ def test_bedtools_slop():
 
 
 @skip_if_not_modified
+def test_blast_makeblastdb_nucleotide():
+    run(
+        "bio/blast/makeblastdb",
+        ["snakemake", "--cores", "1", "results/genome.fasta.nhr", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_blast_makeblastdb_protein():
+    run(
+        "bio/blast/makeblastdb",
+        ["snakemake", "--cores", "1", "results/protein.fasta.phr", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_bowtie2_align():
     run(
         "bio/bowtie2/align",

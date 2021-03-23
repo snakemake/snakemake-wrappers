@@ -1,0 +1,25 @@
+rule blast_makedatabase_nucleotide:
+    input:
+        fasta="genome/{genome}.fasta"
+    output:
+        "results/{genome}.fasta.{ext,(n[a-z]{2})}"
+    log:
+        "logs/{genome}{ext}.log"
+    params:
+        db_type="nucl",  # required
+        extra="-input_type fasta -parse_seqids"
+    wrapper:
+        "master/bio/blast/makeblastdb"
+
+rule blast_makedatabase_protein:
+    input:
+        fasta="protein/{protein}.fasta"
+    output:
+        "results/{protein}.fasta.{ext,(p[a-z]{2})}"
+    log:
+        "logs/{protein}{ext}.log"
+    params:
+        db_type="prot",  # required
+        extra="-input_type fasta"
+    wrapper:
+        "master/bio/blast/makeblastdb"
