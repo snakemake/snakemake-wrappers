@@ -1019,16 +1019,9 @@ def test_minimap2_index():
     )
 
 
-def test_bedtools_slop():
+def test_mosdepth():
     run(
         "bio/mosdepth",
-        ["snakemake", "--cores", "1", "A.slop.bed", "--use-conda", "-F"],
-    )
-
-
-def test_multiqc():
-    run(
-        "bio/multiqc",
         [
             "snakemake",
             "--cores",
@@ -1039,7 +1032,14 @@ def test_multiqc():
             "mosdepth/m54075_180905_225130.ccs.ecoliK12_pbi_March2013.regions.bed.gz",
             "--use-conda",
             "-F"
-        ],
+        ]
+    )
+
+
+def test_multiqc():
+    run(
+        "bio/multiqc",
+        ["snakemake", "--cores", "1", "qc/multiqc.html", "--use-conda", "-F"],
     )
 
 
