@@ -1677,7 +1677,7 @@ def test_mosdepth():
         [
             "snakemake",
             "--cores",
-            "1",
+            "4",
             "mosdepth/m54075_180905_225130.ccs.ecoliK12_pbi_March2013.mosdepth.global.dist.txt",
             "mosdepth/m54075_180905_225130.ccs.ecoliK12_pbi_March2013.mosdepth.region.dist.txt",
             "mosdepth/m54075_180905_225130.ccs.ecoliK12_pbi_March2013.mosdepth.summary.txt",
