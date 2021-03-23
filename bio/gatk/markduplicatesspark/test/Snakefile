@@ -1,0 +1,19 @@
+rule mark_duplicates_spark:
+    input:
+        "mapped/{sample}.bam"
+    output:
+        bam="dedup/{sample}.bam",
+        metrics="dedup/{sample}.metrics.txt"
+    log:
+        "logs/dedup/{sample}.log"
+    params:
+        extra="--remove-sequencing-duplicates",  # optional
+        java_opts="", # optional
+        #spark_runner="",  # optional, local by default
+        #spark_master="",  # optional
+        #spark_extra="", # optional
+    resources:
+        mem_mb=1024
+    threads: 8
+    wrapper:
+        "master/bio/gatk/markduplicatesspark"

@@ -1,4 +1,4 @@
 name: "jannovar"
-description: Annotate predicted effect of nucleotide changes with Jannovar
+description: Annotate predicted effect of nucleotide changes with `Jannovar<https://doc-openbio.readthedocs.io/projects/jannovar/en/master/>`_
 authors:
   - Bradford Powell

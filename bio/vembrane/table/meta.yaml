@@ -1,0 +1,8 @@
+name: "vembrane table"
+description: Vembrane table allows to generate table-like textfiles from vcfs based on any INFO field, CHROM, POS, REF, ALT, QUAL, and the annotation field ANN. When filtering based on ANN, annotation entries are filtered first. https://github.com/vembrane/vembrane
+authors:
+  - Christopher Schröder
+input:
+  - A VCF-formatted file
+output:
+  - A table-like textfile

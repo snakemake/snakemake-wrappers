@@ -1,0 +1,8 @@
+name: "vembrane filter"
+description: "Vembrane filter allows to simultaneously filter variants based on any INFO field, CHROM, POS, REF, ALT, QUAL, and the annotation field ANN. When filtering based on ANN, annotation entries are filtered first. If no annotation entry remains, the entire variant is deleted. https://github.com/vembrane/vembrane"
+authors:
+  - Christopher Schröder
+input:
+  - A VCF-formatted file
+output:
+  - A VCF-formatted file

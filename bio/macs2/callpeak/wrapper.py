@@ -44,7 +44,7 @@ if any(out.endswith(("_peaks.narrowPeak", "_summits.bed")) for out in snakemake.
 if any(
     out.endswith(("_peaks.broadPeak", "_peaks.gappedPeak")) for out in snakemake.output
 ):
-    if "--broad" not in params:
+    if "--broad " not in params and not params.endswith("--broad"):
         params += " --broad "
 
 if any(

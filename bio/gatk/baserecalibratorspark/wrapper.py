@@ -5,6 +5,7 @@ __license__ = "MIT"
 
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.java import get_java_opts
 
 extra = snakemake.params.get("extra", "")
 spark_runner = snakemake.params.get("spark_runner", "LOCAL")
@@ -12,7 +13,7 @@ spark_master = snakemake.params.get(
     "spark_master", "local[{}]".format(snakemake.threads)
 )
 spark_extra = snakemake.params.get("spark_extra", "")
-java_opts = snakemake.params.get("java_opts", "")
+java_opts = get_java_opts(snakemake)
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 known = snakemake.input.get("known", "")

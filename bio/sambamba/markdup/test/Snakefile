@@ -1,0 +1,12 @@
+rule sambamba_markdup:
+    input:
+        "mapped/{sample}.bam"
+    output:
+        "mapped/{sample}.rmdup.bam"
+    params:
+        extra="-r"  # optional parameters
+    log:
+        "logs/sambamba-markdup/{sample}.log"
+    threads: 8
+    wrapper:
+        "master/bio/sambamba/markdup"

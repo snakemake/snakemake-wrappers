@@ -6,6 +6,9 @@ __email__ = "thibault.dayris@gustaveroussy.fr"
 __license__ = "MIT"
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.java import get_java_opts
+
+java_opts = get_java_opts(snakemake)
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
@@ -38,7 +41,7 @@ if snakemake.threads < min_threads:
 
 shell(
     "SnpSift annotate"  # Tool and its subcommand
-    " {extra}"  # Extra parameters
+    " {java_opts} {extra}"  # Extra parameters
     " {snakemake.input.database}"  # Path to annotation vcf file
     " {incall} "  # Path to input vcf file
     " {outcall} "  # Path to output vcf file

@@ -5,8 +5,8 @@ The Snakemake Wrappers repository
 .. image:: https://img.shields.io/badge/snakemake-≥5.7.0-brightgreen.svg?style=flat-square
       :target: http://snakemake.readthedocs.io
 
-.. image:: https://github.com/snakemake/snakemake-wrappers/workflows/CI/badge.svg?branch=master
-      :target: https://github.com/snakemake/snakemake-wrappers/actions?query=branch%3Amaster+workflow%3ACI
+.. image:: https://github.com/snakemake/snakemake-wrappers/workflows/Tests/badge.svg?branch=master
+      :target: https://github.com/snakemake/snakemake-wrappers/actions?query=branch%3Amaster+workflow%3ATests
 
 The Snakemake Wrapper Repository is a collection of reusable wrappers that allow to quickly use popular tools
 from `Snakemake <https://snakemake.readthedocs.io>`_ rules and workflows.
@@ -86,7 +86,7 @@ the relevant stdout and stderr messages printed.
 If you also want to test the docs generation locally, create another environment
 and activate it::
 
-  conda create -n test-snakemake-wrapper-docs sphinx sphinx_rtd_theme pyyaml
+  conda create -n test-snakemake-wrapper-docs sphinx sphinx_rtd_theme pyyaml sphinx-copybutton
   conda activate test-snakemake-wrapper-docs
 
 Then, enter the respective directory and build the docs::
@@ -98,19 +98,11 @@ If it runs through, you can open the main page at ``docs/_build/html/index.html`
 in a web browser. If you want to start fresh, you can clean up the build
 with ``make clean``.
 
-
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 4
    :glob:
    :hidden:
-   :caption: Wrappers
-
-   wrappers/*
-   
-.. toctree::
-   :maxdepth: 3
-   :glob:
-   :hidden:
-   :caption: Meta-Wrappers
+   :caption: Wrappers and Meta-Wrappers
       
-   meta-wrappers/*
+   wrappers
+   meta-wrappers

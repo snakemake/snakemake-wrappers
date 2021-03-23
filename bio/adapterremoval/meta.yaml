@@ -1,0 +1,17 @@
+name: "AdapterRemoval"
+description: rapid adapter trimming, identification, and read merging. For more information see `AdapterRemoval documentation <https://adapterremoval.readthedocs.io/en/latest/>`_.
+authors:
+  - Filipe G. Vieira
+input:
+  - raw fastq file with R1 reads
+  - raw fastq file with R2 reads
+output:
+  - trimmed fastq file with R1 reads
+  - trimmed fastq file with R2 reads
+  - fastq file with singleton reads (those where mate was filtered out)
+  - fastq file with collapsed reads (only for PE and if collapsing of reads is enabled)
+  - fastq file with collapsed truncated reads, i.e. that were trimmed due the presence of low-quality or ambiguous nucleotides (only for PE and if collapsing of reads is enabled)
+  - fastq file with discarded reads
+  - settings and stats file
+notes: |
+  * If `merge_singletons` is set (only for PE and if collapsing of reads is enabled), then `collapsed` and `collapsed truncated` files are not created and reads are appended to the `singleton` file.

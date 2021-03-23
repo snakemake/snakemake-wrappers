@@ -19,7 +19,7 @@ rule haplotype_caller:
         g1k=gatk_bundle("1000G_phase1.snps.high_confidence.hg38.vcf.gz"),
         dbsnp=gatk_bundle("Homo_sapiens_assembly38.dbsnp138.vcf.gz"),
         # use aux to e.g. download other necessary file
-        aux=[gatk_bundle("hapmap_3.3.hg38.sites.vcf.gz.tbi"), 
+        aux=[gatk_bundle("hapmap_3.3.hg38.sites.vcf.gz.tbi"),
              gatk_bundle("1000G_omni2.5.hg38.sites.vcf.gz.tbi"),
              gatk_bundle("1000G_phase1.snps.high_confidence.hg38.vcf.gz.tbi"),
              gatk_bundle("Homo_sapiens_assembly38.dbsnp138.vcf.gz.tbi")]
@@ -38,5 +38,11 @@ rule haplotype_caller:
         annotation=["QD", "FisherStrand"],  # which fields to use with -an (see VariantRecalibrator docs)
         extra="",  # optional
         java_opts="", # optional
+    # optional specification of memory usage of the JVM that snakemake will respect with global
+    # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
+    # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
+    # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
+    resources:
+        mem_mb=1024
     wrapper:
         "master/bio/gatk/haplotypecaller"
