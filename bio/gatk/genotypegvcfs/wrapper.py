@@ -36,6 +36,7 @@ if tmp_dir:
     tmp_dir = "--tmp-dir={}".format(tmp_dir)
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+
 shell(
     "gatk --java-options '{java_opts}' GenotypeGVCFs {extra} "
     "-V {input_string} "

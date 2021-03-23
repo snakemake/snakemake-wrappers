@@ -3,6 +3,6 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python ==3.6
-  - busco
+  - python==3.6
+  - busco==5.0.0
 

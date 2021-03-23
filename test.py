@@ -2606,6 +2606,14 @@ def test_vcftoolsfilter():
 
 
 @skip_if_not_modified
+def test_gatk_markduplicatesspark():
+    run(
+        "bio/gatk/markduplicatesspark",
+        ["snakemake", "--cores", "1", "dedup/a.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_gatk_baserecalibrator():
     run(
         "bio/gatk/baserecalibrator",
@@ -2683,6 +2691,14 @@ def test_gatk_variantfiltration():
 
 
 @skip_if_not_modified
+def test_gatk_varianteval():
+    run(
+        "bio/gatk/varianteval",
+        ["snakemake", "--cores", "1", "snvs.varianteval.grp", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_gatk_genotypegvcfs():
     run(
         "bio/gatk/genotypegvcfs",
@@ -2690,14 +2706,11 @@ def test_gatk_genotypegvcfs():
     )
 
 
-@pytest.mark.skip(
-    reason="this GATK tool does not work with our test data so far... Error is unclear."
-)
 @skip_if_not_modified
 def test_gatk_genomicsdbimport():
     run(
         "bio/gatk/genomicsdbimport",
-        ["snakemake", "--cores", "1", "genomicsdb/ref", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "db", "--use-conda", "-F"],
     )
 
 
