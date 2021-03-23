@@ -3,14 +3,26 @@ rule preprocess_variants:
         ##vcf/bcf
         truth="truth.vcf",
         query="query.vcf",
-        truth_regions="truth.bed"
-        strat="stratifications.tsv"
+        truth_regions="truth.bed",
+        strat="stratifications.tsv",
+        strat_dir = "stratification_directory",
+        genome = "genome.fasta",
+        genome_index = "genome.fasta.fai"
     output:
-        "benchmarking"
+        runinfo="results.runinfo.json",
+        comparison_vcf="results.vcf.gz",
+        metrics_summary="results.summary.csv",
+        metrics_csv="results.csv",
+        metrics_json="results.json.gz",
+        roc_all_csv="results.roc.all.csv.gz",
+        roc_indel = "results.roc.Locations.INDEL.csv.gz",
+        roc_indel_pass = "results.roc.Locations.INDEL.PASS.csv.gz",
+        roc_snp = "results.roc.Locations.SNP.csv.gz",
+        roc_tsv="results.roc.tsv"
     params:
         ## path to reference genome
-        genome="genome.fasta",
         engine="vcfeval",
+        prefix="results",
         ## parameters such as -L to left-align variants
         extra=""
     threads: 2

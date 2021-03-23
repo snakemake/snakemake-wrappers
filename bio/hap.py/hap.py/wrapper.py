@@ -16,7 +16,7 @@ shell(
     "(hap.py"
     " --threads {snakemake.threads}"
     " --engine={snakemake.params.engine}"
-    " -r {snakemake.params.genome}"
+    " -r {snakemake.input.genome}"
     " {extra}"
     " {snakemake.input.truth}"
     " {snakemake.input.query}"
@@ -25,9 +25,3 @@ shell(
     " -o {snakemake.output})"
     " {log}"
 )
-
-## Questions
-# - using a default value for engine
-# - best practices for using output directories in wrappers
-# - best practices for using input directories (specficially for stratifications)
-# - file size recommendations for testing
