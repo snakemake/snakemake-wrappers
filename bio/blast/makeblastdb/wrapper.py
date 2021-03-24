@@ -7,9 +7,9 @@ from snakemake.shell import shell
 from os import path
 from pathlib import Path
 
-log = snakemake.log_fmt_shell(stdout=False, stderr=True)
-
+log = snakemake.log[0]
 out = snakemake.output[0]
+
 db_type = ""
 out_name = "{}/{}".format(path.dirname(out), Path(path.basename(out)).stem)
 ext = Path(out).suffix
@@ -20,9 +20,10 @@ elif ext.startswith(".p"):
     db_type = "prot"
 
 shell(
-    "(makeblastdb"
+    "makeblastdb"
     " -in {snakemake.input.fasta}"
     " -dbtype {db_type}"
     " {snakemake.params}"
-    " -out {out_name}) {log}"
+    " -logfile {log}"
+    " -out {out_name}"
 )

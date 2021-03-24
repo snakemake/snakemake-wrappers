@@ -1,4 +1,4 @@
-name: blast makeblastdb
+name: blast makeblastdb for FASTA files
 description: >
   Makeblastdb produces local `BLAST <https://blast.ncbi.nlm.nih.gov/Blast.cgi>`_ databases from nucleotide or protein FASTA files.
   For more information please see `BLAST documentation <https://www.ncbi.nlm.nih.gov/books/NBK279690/>`_.

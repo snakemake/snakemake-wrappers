@@ -802,7 +802,19 @@ def test_bedtools_slop():
 def test_blast_makeblastdb_nucleotide():
     run(
         "bio/blast/makeblastdb",
-        ["snakemake", "--cores", "1", "results/genome.fasta.nhr", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/genome.fasta.ndb",
+            "results/genome.fasta.nhr",
+            "results/genome.fasta.nin",
+            "results/genome.fasta.not",
+            "results/genome.fasta.nsq",
+            "results/genome.fasta.ntf",
+            "results/genome.fasta.nto",
+            "--use-conda",
+            "-F"],
     )
 
 
@@ -810,7 +822,19 @@ def test_blast_makeblastdb_nucleotide():
 def test_blast_makeblastdb_protein():
     run(
         "bio/blast/makeblastdb",
-        ["snakemake", "--cores", "1", "results/protein.fasta.phr", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/protein.fasta.pdb",
+            "results/protein.fasta.phr",
+            "results/protein.fasta.pin",
+            "results/protein.fasta.pot",
+            "results/protein.fasta.psq",
+            "results/protein.fasta.ptf",
+            "results/protein.fasta.pto",
+            "--use-conda",
+            "-F"],
     )
 
 
