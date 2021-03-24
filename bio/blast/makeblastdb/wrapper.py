@@ -7,7 +7,7 @@ from snakemake.shell import shell
 from os import path
 from pathlib import Path
 
-log = snakemake.log[0]
+log = snakemake.log
 out = snakemake.output[0]
 
 db_type = ""
