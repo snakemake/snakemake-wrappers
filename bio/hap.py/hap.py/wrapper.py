@@ -15,7 +15,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 shell(
     "(hap.py"
     " --threads {snakemake.threads}"
-    " --engine={snakemake.params.engine}"
+    " --engine {snakemake.params.engine}"
     " -r {snakemake.input.genome}"
     " {extra}"
     " -f {snakemake.input.truth_regions}"
