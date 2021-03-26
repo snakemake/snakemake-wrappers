@@ -18,10 +18,11 @@ shell(
     " --engine={snakemake.params.engine}"
     " -r {snakemake.input.genome}"
     " {extra}"
-    " {snakemake.input.truth}"
-    " {snakemake.input.query}"
     " -f {snakemake.input.truth_regions}"
     " --stratification {snakemake.input.strats}"
-    " -o {snakemake.output})"
-    " {log}"
+    " -o {snakemake.params.prefix})"
+    " --logfile {log}"
+    " {snakemake.input.truth}"
+    " {snakemake.input.query}"
+
 )
