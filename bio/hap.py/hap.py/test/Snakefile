@@ -4,7 +4,7 @@ rule preprocess_variants:
         query="query.vcf",
         truth_regions="truth.bed",
         strat="stratifications.tsv",
-        strat_dir = "strats_directory",
+        strat_dir = "strats_dir",
         genome = "genome.fasta",
         genome_index = "genome.fasta.fai"
     output:
