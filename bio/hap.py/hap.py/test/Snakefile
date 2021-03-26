@@ -3,7 +3,7 @@ rule preprocess_variants:
         truth="truth.vcf",
         query="query.vcf",
         truth_regions="truth.bed",
-        strat="stratifications.tsv",
+        strats="stratifications.tsv",
         strat_dir = "strats_dir",
         genome = "genome.fasta",
         genome_index = "genome.fasta.fai"
