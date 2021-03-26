@@ -23,5 +23,6 @@ rule preprocess_variants:
         prefix="results",
         ## parameters such as -L to left-align variants
         extra=""
+    log: "happy.log"
     threads: 2
     wrapper: "master/bio/hap.py/hap.py"

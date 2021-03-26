@@ -20,9 +20,9 @@ shell(
     " {extra}"
     " -f {snakemake.input.truth_regions}"
     " --stratification {snakemake.input.strats}"
-    " -o {snakemake.params.prefix})"
-    " --logfile {log}"
+    " -o {snakemake.params.prefix}"
     " {snakemake.input.truth}"
-    " {snakemake.input.query}"
+    " {snakemake.input.query})"
+    " {log}"
 
 )
