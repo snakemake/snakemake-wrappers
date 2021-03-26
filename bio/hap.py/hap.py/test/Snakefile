@@ -11,8 +11,8 @@ rule benchmark_variants:
         runinfo="results.runinfo.json",
         comparison_vcf="results.vcf.gz",
         metrics_summary="results.summary.csv",
-        metrics_csv="results.csv",
-        metrics_json="results.json.gz",
+        metrics_csv="results.extended.csv",
+        metrics_json="results.metrics.json.gz",
         roc_all_csv="results.roc.all.csv.gz",
         roc_indel = "results.roc.Locations.INDEL.csv.gz",
         roc_indel_pass = "results.roc.Locations.INDEL.PASS.csv.gz",
@@ -22,7 +22,7 @@ rule benchmark_variants:
         engine="vcfeval",
         prefix="results",
         ## parameters such as -L to left-align variants
-        extra=""
+        extra="--verbose"
     log: "happy.log"
     threads: 2
     wrapper: "master/bio/hap.py/hap.py"
