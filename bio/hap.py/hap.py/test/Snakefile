@@ -1,11 +1,10 @@
 rule preprocess_variants:
     input:
-        ##vcf/bcf
         truth="truth.vcf",
         query="query.vcf",
         truth_regions="truth.bed",
         strat="stratifications.tsv",
-        strat_dir = "stratification_directory",
+        strat_dir = "strats_directory",
         genome = "genome.fasta",
         genome_index = "genome.fasta.fai"
     output:
@@ -20,11 +19,9 @@ rule preprocess_variants:
         roc_snp = "results.roc.Locations.SNP.csv.gz",
         roc_tsv="results.roc.tsv"
     params:
-        ## path to reference genome
         engine="vcfeval",
         prefix="results",
         ## parameters such as -L to left-align variants
         extra=""
     threads: 2
-    wrapper:
-        "master/bio/hap.py/hap.py"
+    wrapper: "master/bio/hap.py/hap.py"
