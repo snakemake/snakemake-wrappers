@@ -1,4 +1,4 @@
-rule preprocess_variants:
+rule benchmark_variants:
     input:
         truth="truth.vcf",
         query="query.vcf",
