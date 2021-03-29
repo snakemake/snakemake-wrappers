@@ -14,6 +14,12 @@ spark_master = snakemake.params.get(
 spark_extra = snakemake.params.get("spark_extra", "")
 java_opts = get_java_opts(snakemake)
 
+if snakemake.output.get("bai"):
+    extra = extra + " --create-output-bam-index true"
+
+if snakemake.output.get("sbi"):
+    extra = extra + " --create-output-bam-splitting-index true"
+
 metrics = snakemake.output.get("metrics", "")
 if metrics:
     metrics = f"--metrics-file {metrics}"
