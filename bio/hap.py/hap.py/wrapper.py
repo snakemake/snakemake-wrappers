@@ -30,14 +30,28 @@ extra = snakemake.params.get("extra", "")
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
+# Optional parameters
+engine = snakemake.params.get("engine", "")
+if engine:
+    engine = "--engine {}".format(engine)
+
+truth_regions = snakemake.input.get("truth_regions")
+if truth_regions:
+    truth_regions = "-f {}".format(truth_regions)
+
+strats = snakemake.input.get("strats")
+if strats:
+    strats = "--stratification {}".format(strats)
+
+
 shell(
     "(hap.py"
     " --threads {snakemake.threads}"
-    " --engine {snakemake.params.engine}"
+    " {engine}"
     " -r {snakemake.input.genome}"
     " {extra}"
-    " -f {snakemake.input.truth_regions}"
-    " --stratification {snakemake.input.strats}"
+    " {truth_regions}"
+    " {strats}"
     " -o {snakemake.params.prefix}"
     " {snakemake.input.truth}"
     " {snakemake.input.query})"
