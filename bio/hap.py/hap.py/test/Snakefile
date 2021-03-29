@@ -4,9 +4,9 @@ rule benchmark_variants:
         query="query.vcf",
         truth_regions="truth.bed",
         strats="stratifications.tsv",
-        strat_dir = "strats_dir",
-        genome = "genome.fasta",
-        genome_index = "genome.fasta.fai"
+        strat_dir="strats_dir",
+        genome="genome.fasta",
+        genome_index="genome.fasta.fai"
     output:
         runinfo="results.runinfo.json",
         comparison_vcf="results.vcf.gz",
