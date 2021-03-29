@@ -14,9 +14,9 @@ rule benchmark_variants:
         metrics_csv="results.extended.csv",
         metrics_json="results.metrics.json.gz",
         roc_all_csv="results.roc.all.csv.gz",
-        roc_indel = "results.roc.Locations.INDEL.csv.gz",
-        roc_indel_pass = "results.roc.Locations.INDEL.PASS.csv.gz",
-        roc_snp = "results.roc.Locations.SNP.csv.gz",
+        roc_indel="results.roc.Locations.INDEL.csv.gz",
+        roc_indel_pass="results.roc.Locations.INDEL.PASS.csv.gz",
+        roc_snp="results.roc.Locations.SNP.csv.gz",
         roc_tsv="results.roc.tsv"
     params:
         engine="vcfeval",
