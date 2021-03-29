@@ -25,7 +25,7 @@ from os import path
 
 from snakemake.shell import shell
 
-## Extract arguments
+# Extract arguments
 extra = snakemake.params.get("extra", "")
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
@@ -42,5 +42,4 @@ shell(
     " {snakemake.input.truth}"
     " {snakemake.input.query})"
     " {log}"
-
 )
