@@ -14,11 +14,16 @@ spark_master = snakemake.params.get(
 spark_extra = snakemake.params.get("spark_extra", "")
 java_opts = get_java_opts(snakemake)
 
+
 if snakemake.output.get("bai"):
-    extra = extra + " --create-output-bam-index true"
+    bai = "true"
+else:
+    bai = "false"
 
 if snakemake.output.get("sbi"):
-    extra = extra + " --create-output-bam-splitting-index true"
+    sbi = "true"
+else:
+    sbi = "false"
 
 metrics = snakemake.output.get("metrics", "")
 if metrics:
@@ -31,6 +36,8 @@ shell(
     "{extra} "
     "--input {snakemake.input} "
     "--output {snakemake.output.bam} "
+    "--create-output-bam-index {bai} "
+    "--create-output-bam-splitting-index {sbi} "
     "{metrics} "
     "-- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra} "
     "{log}"
