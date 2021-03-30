@@ -20,8 +20,8 @@ shell(
     "blastn"
     " -query {snakemake.input.query}"
     " {out_format}"
-    " {snakemake.params.extra}"   
-    " -db {db_name}"        
+    " {snakemake.params.extra}"
+    " -db {db_name}"
     " -num_threads {snakemake.threads}"
     " -out {snakemake.output[0]}"
 )
