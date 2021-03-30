@@ -2646,6 +2646,14 @@ def test_vcftoolsfilter():
 
 
 @skip_if_not_modified
+def test_gatk_scatterintervalsbyns():
+    run(
+        "bio/gatk/scatterintervalsbyns",
+        ["snakemake", "--cores", "1", "genome.intervals", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_gatk_markduplicatesspark():
     run(
         "bio/gatk/markduplicatesspark",
