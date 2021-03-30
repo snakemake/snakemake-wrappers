@@ -2654,6 +2654,14 @@ def test_gatk_markduplicatesspark():
 
 
 @skip_if_not_modified
+def test_gatk_intervallisttobed():
+    run(
+        "bio/gatk/intervallisttobed",
+        ["snakemake", "--cores", "1", "genome.bed", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_gatk_baserecalibrator():
     run(
         "bio/gatk/baserecalibrator",
