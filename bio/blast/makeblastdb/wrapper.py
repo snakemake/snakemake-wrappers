@@ -5,13 +5,12 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 from os import path
-from pathlib import Path
 
 log = snakemake.log
 out = snakemake.output[0]
 
 db_type = ""
-out_name = "{}/{}".format(path.dirname(out), Path(path.basename(out)).stem)
+out_name = path.splitext(out)[0]
 ext = Path(out).suffix
 
 if ext.startswith(".n"):
