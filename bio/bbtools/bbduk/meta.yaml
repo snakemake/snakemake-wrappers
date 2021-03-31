@@ -5,15 +5,13 @@ authors:
   - Filipe G. Vieira
 input:
   - raw fastq file with R1 reads
-  - raw fastq file with R2 reads
+  - raw fastq file with R2 reads (optional)
 output:
   - trimmed fastq file with R1 reads
-  - trimmed fastq file with R2 reads
-  - fastq file with singleton reads (those where mate was filtered out)
-  - fastq file with collapsed reads (only for PE and if collapsing of reads is enabled)
-  - fastq file with collapsed truncated reads, i.e. that were trimmed due the presence of low-quality or ambiguous nucleotides (only for
-  - fastq file with discarded reads
-  - settings and stats file
+  - trimmed fastq file with R2 reads (optional)
+  - fastq file with singleton reads (optional)
+  - fastq file with discarded reads (optional) 
+  - stats file (optonal)
 notes: |
   * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
   * The `extra` param alllows for additional program arguments.
