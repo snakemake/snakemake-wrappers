@@ -3,7 +3,7 @@ rule mosdepth:
         bam = "aligned/{dataset}.bam",
         bai = "aligned/{dataset}.bam.bai"
     output:
-	summary = "mosdepth/{dataset}.mosdepth.summary.txt"
+	"mosdepth/{dataset}.mosdepth.summary.txt"
     log:
         "logs/mosdepth/{dataset}.log"
     params:

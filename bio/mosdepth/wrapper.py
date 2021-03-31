@@ -18,7 +18,10 @@ threads = "" if snakemake.threads <= 1 else "--threads {}".format(snakemake.thre
 if by:
     by = f"--by {by}"
 
-prefix = re.sub("\.mosdepth\.summary\.txt", "", snakemake.output.summary)
+# first output must be *.mosdepth.summary.txt
+prefix = re.sub("\.mosdepth\.summary\.txt", "", snakemake.output[0])
+
+
 
 shell(
     """
