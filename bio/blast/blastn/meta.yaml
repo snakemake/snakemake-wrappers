@@ -164,6 +164,6 @@ author:
 input:
   - FASTA file OR
   - bare sequence file (`more information <https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=BlastHelp>`_) OR
-  - idenifiers (`more information <https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=BlastHelp>`_)
+  - identifiers (`more information <https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=BlastHelp>`_)
 output:
   - depending on the formatting option different output files can be generated (see tables above)
