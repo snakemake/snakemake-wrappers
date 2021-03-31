@@ -19,8 +19,7 @@ if by:
     by = f"--by {by}"
 
 # first output must be *.mosdepth.summary.txt
-prefix = re.sub("\.mosdepth\.summary\.txt", "", snakemake.output[0])
-
+prefix = re.sub(".mosdepth.summary.txt", "", snakemake.output[0])
 
 
 shell(
