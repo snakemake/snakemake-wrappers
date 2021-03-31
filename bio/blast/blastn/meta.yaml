@@ -1,6 +1,6 @@
 name: blast blastn
 description: >
-  ``Blastn`` performs a sequence similarity searching of nucleotide query sequences against a nucleotide database.
+  ``Blastn`` performs a sequence similarity search of nucleotide query sequences against a nucleotide database.
   For more information please see `BLAST documentation <https://www.ncbi.nlm.nih.gov/books/NBK279690/>`_.
 
 
