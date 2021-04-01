@@ -22,11 +22,4 @@ if by:
 prefix = re.sub(".mosdepth.summary.txt", "", snakemake.output[0])
 
 
-shell(
-    """
-    (mosdepth {threads} \
-        {by} {extra} \
-        {prefix} \
-        {snakemake.input.bam}) {log}
-    """
-)
+shell("(mosdepth {threads} {by} {extra} {prefix} {snakemake.input.bam}) {log}")
