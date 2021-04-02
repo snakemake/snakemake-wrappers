@@ -26,12 +26,12 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 if sort == "none" and out_ext != "SAM":
 
     # Simply convert to output format using samtools view.
-    pipe_cmd = "| samtools view -h --output-fmt " + out_ext + " -"
+    pipe_cmd = "| samtools view -h --output-fmt {} -".format(out_ext)
 
 elif sort == "samtools":
 
     # Sort alignments using samtools sort.
-    pipe_cmd = "| samtools sort {sort_extra} -"
+    pipe_cmd = "| samtools sort {} -".format(sort_extra)
 
     # Add name flag if needed.
     if sort_order == "queryname":
@@ -39,7 +39,7 @@ elif sort == "samtools":
 
     # Use prefix for temp.
     prefix = path.splitext(snakemake.output[0])[0]
-    sort_extra += " -T " + prefix + ".tmp"
+    sort_extra += " -T {}.tmp".format(prefix)
 
     # Define output format
     sort_extra += " --output-fmt {}".format(out_ext)
@@ -48,8 +48,9 @@ elif sort == "picard":
 
     # Sort alignments using picard SortSam.
     pipe_cmd = (
-        "| picard SortSam {sort_extra} INPUT=/dev/stdin"
-        " OUTPUT=/dev/stdout SORT_ORDER={sort_order}"
+        "| picard SortSam {} INPUT=/dev/stdin OUTPUT=/dev/stdout SORT_ORDER={}".format(
+            sort_extra, sort_order
+        )
     )
 
 else:
