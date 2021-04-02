@@ -26,9 +26,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 if sort == "none" and out_ext != "SAM":
 
     # Simply convert to output format using samtools view.
-    pipe_cmd = (
-        "| samtools view -h --output-fmt " + out_ext + " -"
-    )
+    pipe_cmd = "| samtools view -h --output-fmt " + out_ext + " -"
 
 elif sort == "samtools":
 

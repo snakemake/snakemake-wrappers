@@ -7,10 +7,10 @@ rule minimap2:
     log:
         "logs/minimap2/{input1}.log"
     params:
-        extra="-x map-pb"  # optional
-        sort="picard",                               # optional: Enable sorting. Possible values: 'none', 'samtools' or 'picard'`
-        sort_order="coordinate",                     # optional: Sort by 'queryname' or 'coordinate'
-        sort_extra=""                                # optional: extra arguments for samtools/picard
+        extra="-x map-pb",           # optional
+        sort="picard",               # optional: Enable sorting. Possible values: 'none', 'samtools' or 'picard'`
+        sort_order="coordinate",     # optional: Sort by 'queryname' or 'coordinate'
+        sort_extra=""                # optional: extra arguments for samtools/picard
     threads: 3
     wrapper:
         "master/bio/minimap2/aligner"
