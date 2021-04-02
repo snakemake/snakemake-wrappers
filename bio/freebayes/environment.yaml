@@ -7,5 +7,3 @@ dependencies:
   - parallel =20190522
   - bedtools >=2.29
   - sed =4.7
-  - samtools ==1.12
-  - picard ==2.25
