@@ -3,6 +3,7 @@ __copyright__ = "Copyright 2017, Tom Poorten"
 __email__ = "tom.poorten@gmail.com"
 __license__ = "MIT"
 
+from os import path
 from snakemake.shell import shell
 
 
