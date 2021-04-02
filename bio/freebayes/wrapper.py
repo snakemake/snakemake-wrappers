@@ -17,6 +17,7 @@ assert norm in [True, False]
 
 
 # Infer output format
+uncompressed_bcf = snakemake.params.get("uncompressed_bcf", False)
 out_name, out_ext = path.splitext(snakemake.output[0])
 if out_ext == ".vcf":
     out_format = "v"

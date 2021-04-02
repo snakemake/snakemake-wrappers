@@ -10,7 +10,8 @@ input:
 output:
   - VCF/VCF.gz/BCF file
 notes: |
-  * The `extra` param allows for additional arguments for minimap2.
-  * The `normalize` param allows to use `bcftools norm` to normalize indels
+  * The `extra` param allows for additional arguments for freebayes.
+  * The `uncompressed_bcf`param allows for uncompressed BCF output.
+  * The `normalize` param allows to use `bcftools norm` to normalize indels.
   * The `chunkzise` param allows setting reference genome chunk size for parallelization (default: 100000)
   * For more inforamtion see, https://github.com/freebayes/freebayes
