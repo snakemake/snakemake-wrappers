@@ -3,6 +3,7 @@ description: A versatile pairwise aligner for genomic and spliced nucleotide seq
 authors:
   - Tom Poorten
   - Michael Hall
+  - Filipe G. Vieira
 input:
   - FASTQ file(s)
   - reference genome
