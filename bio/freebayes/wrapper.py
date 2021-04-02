@@ -37,9 +37,9 @@ else:
 
 pipe = ""
 if norm:
-    pipe = "| bcftools norm --output-type {out_format} -"
+    pipe = f"| bcftools norm --output-type {out_format} -"
 else:
-    pipe = "| bcftools view --output-type {out_format} -"
+    pipe = f"| bcftools view --output-type {out_format} -"
 
 
 if snakemake.threads == 1:
