@@ -11,7 +11,6 @@ output:
   - SAM/BAM/CRAM file
 notes: |
   * The `extra` param allows for additional arguments for minimap2.
-  * The `sort` param allows to enable sorting, and can be either 'none', 'samtools' or 'picard'
-  * The `sort_order` determines sort order, either 'queryname' or 'coordinate'
+  * The `sort` param allows to enable sorting (if output not PAF), and can be either 'none', 'queryname' or 'coordinate'.
   * The `sort_extra` allows for extra arguments for samtools/picard
   * For more inforamtion see, https://lh3.github.io/minimap2
