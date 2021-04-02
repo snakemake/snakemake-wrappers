@@ -4,3 +4,5 @@ channels:
   - defaults
 dependencies:
   - minimap2 ==2.17
+  - samtools ==1.12
+  - picard ==2.25
