@@ -36,15 +36,12 @@ if sort == "none":
 
 elif sort == "samtools":
 
-    # Sort alignments using samtools sort.
-    pipe_cmd = "samtools sort {sort_extra} -o {snakemake.output[0]} -"
-
     # Add name flag if needed.
     if sort_order == "queryname":
         sort_extra += " -n"
 
-    prefix = path.splitext(snakemake.output[0])[0]
-    sort_extra += " -T " + prefix + ".tmp"
+    # Sort alignments using samtools sort.
+    pipe_cmd = "samtools sort {sort_extra} -o {snakemake.output[0]} -"
 
 elif sort == "picard":
 
