@@ -39,15 +39,8 @@ if out_ext != "PAF":
         if sort == "queryname":
             sort_extra += " -n"
 
-        # Use prefix for temp.
-        prefix = path.splitext(snakemake.output[0])[0]
-        sort_extra += " -T {}.tmp".format(prefix)
-
-        # Define output format
-        sort_extra += " --output-fmt {}".format(out_ext)
-
-        # Sort alignments using samtools sort.
-        pipe_cmd = "| samtools sort {} -".format(sort_extra)
+        # Sort alignments.
+        pipe_cmd = "| samtools sort {} --output-fmt {} -".format(sort_extra, out_ext)
 
     else:
         raise ValueError("Unexpected value for params.sort ({})".format(sort))
