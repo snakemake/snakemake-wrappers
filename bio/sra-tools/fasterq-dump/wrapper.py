@@ -15,8 +15,20 @@ if outdir:
 
 extra = snakemake.params.get("extra", "")
 
+
+compress = ""
+for output in snakemake.output:
+    out_name, out_ext = os.path.splitext(output[0])
+    if out_ext == ".gz":
+        compress += "gzip {}; ".format(out_name)
+    elif out_ext == ".bz2":
+        compress += "bzip2 {}; ".format(out_name)
+
+
 with tempfile.TemporaryDirectory() as tmp:
     shell(
-        "fasterq-dump --temp {tmp} --threads {snakemake.threads} "
-        "{extra} {outdir} {snakemake.wildcards.accession} {log}"
+        "(fasterq-dump --temp {tmp} --threads {snakemake.threads} "
+        "{extra} {outdir} {snakemake.wildcards.accession}; "
+        "{compress}"
+        ") {log}"
     )
