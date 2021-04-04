@@ -8,6 +8,6 @@ output:
   - fastq file with R1 reads
   - trimmed fastq file with R2 reads (optional)
 notes: |
-  * The output format is automatically detected, and files compressed with wither `gzip` or `bzip2`.
+  * The output format is automatically detected, and files compressed with either `gzip` or `bzip2`.
   * The `extra` param alllows for additional program arguments.
   * More information in, https://github.com/ncbi/sra-tools

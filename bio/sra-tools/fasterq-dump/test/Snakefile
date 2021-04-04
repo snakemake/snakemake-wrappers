@@ -4,10 +4,9 @@ rule get_fastq_pe:
         "data/{accession}_1.fastq",
         "data/{accession}_2.fastq"
     log:
-        "data/{accession}_PE.fastq.gz"
+        "logs/{accession}_PE.log"
     params:
-        # optional extra arguments
-        extra=""
+        extra="-v -v"
     threads: 6  # defaults to 6
     wrapper:
         "master/bio/sra-tools/fasterq-dump"
@@ -19,7 +18,7 @@ rule get_fastq_se:
     log:
         "logs/{accession}.SE.log"
     params:
-        extra=""
+        extra="-v -v"
     threads: 6
     wrapper:
         "master/bio/sra-tools/fasterq-dump"

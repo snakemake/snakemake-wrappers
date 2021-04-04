@@ -3322,10 +3322,18 @@ def test_tximport():
 
 
 @skip_if_not_modified
-def test_fasterq_dump():
+def test_fasterq_dump_se():
     run(
         "bio/sra-tools/fasterq-dump",
-        ["snakemake", "--cores", "1", "data/ERR267986.fastq", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "data/SRR14133989.fastq.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_fasterq_dump_pe():
+    run(
+        "bio/sra-tools/fasterq-dump",
+        ["snakemake", "--cores", "1", "data/SRR14133829_1.fastq", "--use-conda", "-F"],
     )
 
 
