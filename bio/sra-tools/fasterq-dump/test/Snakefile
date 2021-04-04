@@ -3,6 +3,8 @@ rule get_fastq_pe:
         # the wildcard name must be accession, pointing to an SRA number
         "data/{accession}_1.fastq",
         "data/{accession}_2.fastq"
+    log:
+        "data/{accession}_PE.fastq.gz"
     params:
         # optional extra arguments
         extra=""
@@ -13,7 +15,9 @@ rule get_fastq_pe:
 
 rule get_fastq_se:
     output:
-        "data/{accession}.fastq"
+        "data/{accession}.fastq.gz"
+    log:
+        "logs/{accession}.SE.log"
     params:
         extra=""
     threads: 6

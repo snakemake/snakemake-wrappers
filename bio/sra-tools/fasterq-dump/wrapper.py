@@ -18,11 +18,11 @@ extra = snakemake.params.get("extra", "")
 
 compress = ""
 for output in snakemake.output:
-    out_name, out_ext = os.path.splitext(output[0])
+    out_name, out_ext = os.path.splitext(output)
     if out_ext == ".gz":
-        compress += "pigz -p {snakemake.threads} {}; ".format(out_name)
+        compress += f"pigz -p {snakemake.threads} {out_name}; "
     elif out_ext == ".bz2":
-        compress += "pbzip2 -p {snakemake.threads} {}; ".format(out_name)
+        compress += f"pbzip2 -p {snakemake.threads} {out_name}; "
 
 
 with tempfile.TemporaryDirectory() as tmp:
