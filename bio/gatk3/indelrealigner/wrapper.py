@@ -8,7 +8,7 @@ import os
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
-input_known = snakemake.input.known
+
 extra = snakemake.params.get("extra", "")
 java_opts = get_java_opts(snakemake)
 
@@ -20,9 +20,9 @@ else:
     bed = ""
 
 
-input_known_string = ""
-for known in input_known:
-    input_known_string = input_known_string + " -known {}".format(known)
+known = snakemake.input.get("known", "")
+if known:
+    known = list(map("-known {}".format, known))
 
 
 output_bai = snakemake.output.get("bai", None)
