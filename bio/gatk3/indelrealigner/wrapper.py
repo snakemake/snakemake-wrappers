@@ -13,11 +13,9 @@ extra = snakemake.params.get("extra", "")
 java_opts = get_java_opts(snakemake)
 
 
-bed = snakemake.input.get("bed", None)
-if bed is not None:
+bed = snakemake.input.get("bed", "")
+if bed:
     bed = "-L " + bed
-else:
-    bed = ""
 
 
 known = snakemake.input.get("known", "")
@@ -38,7 +36,7 @@ shell(
     " {extra}"
     " -I {snakemake.input.bam}"
     " -R {snakemake.input.ref}"
-    " {input_known_string}"
+    " {known}"
     " {bed}"
     " --targetIntervals {snakemake.input.target_intervals}"
     " -o {snakemake.output.bam}"
