@@ -20,7 +20,10 @@ if bed:
 
 known = snakemake.input.get("known", "")
 if known:
-    known = list(map("-known {}".format, known))
+    if isinstance(known, str):
+        known = "-known {}".format(known)
+    else:
+        known = list(map("-known {}".format, known))
 
 
 output_bai = snakemake.output.get("bai", None)

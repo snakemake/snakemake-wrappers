@@ -19,6 +19,9 @@ if bed:
 
 known = snakemake.input.get("known", "")
 if known:
+    if isinstance(known, str):
+        known = "-known {}".format(known)
+    else:
         known = list(map("-known {}".format, known))
 
 
