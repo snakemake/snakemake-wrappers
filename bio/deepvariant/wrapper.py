@@ -14,7 +14,7 @@ log_dir = os.path.dirname(snakemake.log[0])
 output_dir = os.path.dirname(snakemake.output[0])
 
 # sample basename
-basename = os.path.splitext(os.path.basename(snakemake.input.bam[0]))[0]
+basename = os.path.splitext(os.path.basename(snakemake.input.bam))[0]
 
 gvcf = snakemake.output.get("gvcf", None)
 make_examples_gvcf = "--gvcf {tmp_dir} " if gvcf else ""
