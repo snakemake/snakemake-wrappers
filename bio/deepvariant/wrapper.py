@@ -16,22 +16,25 @@ output_dir = os.path.dirname(snakemake.output[0])
 # sample basename
 basename = os.path.splitext(os.path.basename(snakemake.input.bam))[0]
 
+make_examples_gvcf = postprocess_gvcf = ""
 gvcf = snakemake.output.get("gvcf", None)
-make_examples_gvcf = "--gvcf {tmp_dir} " if gvcf else ""
-postprocess_gvcf = (
-    "--gvcf_infile {tmp_dir}/{basename}.gvcf.tfrecord@{snakemake.threads}.gz "
-    "--gvcf_outfile {snakemake.output.gvcf} "
-    ) if gvcf else ""
+if gvcf:
+    make_examples_gvcf = "--gvcf {tmp_dir} "
+    postprocess_gvcf = (
+        "--gvcf_infile {tmp_dir}/{basename}.gvcf.tfrecord@{snakemake.threads}.gz "
+        "--gvcf_outfile {snakemake.output.gvcf} "
+    )
 
 cmd = (
-    "(dv_make_examples.py "
+    "( "
+    "dv_make_examples.py "
     "--cores {snakemake.threads} "
     "--ref {snakemake.input.ref} "
     "--reads {snakemake.input.bam} "
     "--sample {basename} "
     "--examples {tmp_dir} "
     "--logdir {log_dir} "
-    )
+)
 cmd += make_examples_gvcf
 cmd += (
     "{extra} \n"
@@ -43,13 +46,14 @@ cmd += (
     "--model {snakemake.params.model} \n"
     "dv_postprocess_variants.py "
     "--ref {snakemake.input.ref} "
-    )
+)
 cmd += postprocess_gvcf
 cmd += (
     "--infile {tmp_dir}/{basename}.tmp "
-    "--outfile {snakemake.output.vcf} ) {log}"
-    )
-
+    "--outfile {snakemake.output.vcf} "
+    ") "
+    "{log} "
+)
 
 with tempfile.TemporaryDirectory() as tmp_dir:
     shell(cmd)
