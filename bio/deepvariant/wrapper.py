@@ -18,8 +18,10 @@ basename = os.path.splitext(os.path.basename(snakemake.input.bam))[0]
 
 gvcf = snakemake.output.get("gvcf", None)
 make_examples_gvcf = "--gvcf {tmp_dir} " if gvcf else ""
-postprocess_gvcf = ("--gvcf_infile {tmp_dir}/{basename}.gvcf.tfrecord@{snakemake.threads}.gz "
-        "--gvcf_outfile {snakemake.output.gvcf} ") if gvcf else ""
+postprocess_gvcf = (
+    "--gvcf_infile {tmp_dir}/{basename}.gvcf.tfrecord@{snakemake.threads}.gz "
+    "--gvcf_outfile {snakemake.output.gvcf} "
+    ) if gvcf else ""
 
 cmd = (
     "(dv_make_examples.py "
