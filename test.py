@@ -880,6 +880,24 @@ def test_bwa_mem_sort_samtools():
 
 
 @skip_if_not_modified
+def test_bwa_mem_sort_samtools_write_index():
+    run(
+        "bio/bwa/mem",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped_with_index/a.bam",
+            "mapped_with_index/a.bam.csi",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_samtools",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_bwa_mem_sort_picard():
     run(
         "bio/bwa/mem",

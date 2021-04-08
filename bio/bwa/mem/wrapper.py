@@ -15,6 +15,7 @@ extra = snakemake.params.get("extra", "")
 sort = snakemake.params.get("sort", "none")
 sort_order = snakemake.params.get("sort_order", "coordinate")
 sort_extra = snakemake.params.get("sort_extra", "")
+write_index = snakemake.params.get("write_index", False)
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -42,6 +43,10 @@ elif sort == "samtools":
     # Add name flag if needed.
     if sort_order == "queryname":
         sort_extra += " -n"
+
+    # Add write-index flag
+    if write_index is True:
+        sort_extra += " --write-index"
 
     prefix = path.splitext(snakemake.output[0])[0]
     sort_extra += " -T " + prefix + ".tmp"
