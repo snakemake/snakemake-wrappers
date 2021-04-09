@@ -1354,6 +1354,14 @@ def test_deepvariant():
 
 
 @skip_if_not_modified
+def test_deepvariant_gvcf():
+    run(
+        "bio/deepvariant",
+        ["snakemake", "--cores", "1", "gvcf_calls/a.vcf.gz", "gvcf_calls/a.g.vcf.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_epic_peaks():
     run(
         "bio/epic/peaks",
