@@ -7,13 +7,19 @@ import os
 import tempfile
 from snakemake.shell import shell
 
+
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+extra = snakemake.params.get("extra", "")
+
 
 outdir = os.path.dirname(snakemake.output[0])
 if outdir:
     outdir = "--outdir {}".format(outdir)
 
-extra = snakemake.params.get("extra", "")
+
+tmpdir = snakemake.output.get("temp", "")
+if tmpdir:
+    tempfile.tempdir = tmpdir
 
 
 compress = ""
