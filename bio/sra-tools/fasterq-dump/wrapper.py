@@ -20,6 +20,8 @@ if outdir:
 tmpdir = snakemake.output.get("temp", "")
 if tmpdir:
     tempfile.tempdir = tmpdir
+    # Make sure tmp dir exists
+    os.makedirs(tempfile.tempdir, exist_ok=True)
 
 
 compress = ""
