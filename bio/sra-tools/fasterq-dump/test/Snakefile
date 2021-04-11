@@ -3,7 +3,7 @@ rule get_fastq_pe:
         # the wildcard name must be accession, pointing to an SRA number
         "data/{accession}_1.fastq",
         "data/{accession}_2.fastq",
-	temp = "/tmp/fasterq-dump"
+	temp = temp(directory("/tmp/{accession}_tmp")),
     log:
         "logs/{accession}_PE.log"
     params:
