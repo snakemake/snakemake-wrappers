@@ -3,10 +3,10 @@ rule get_fastq_pe:
         # the wildcard name must be accession, pointing to an SRA number
         "data/{accession}_1.fastq",
         "data/{accession}_2.fastq",
-	temp = temp(directory("temp/{accession}_tmp")),
     log:
         "logs/{accession}_PE.log"
     params:
+        tmp_dir="/tmp/",
         extra="-v -v"
     threads: 6  # defaults to 6
     wrapper:

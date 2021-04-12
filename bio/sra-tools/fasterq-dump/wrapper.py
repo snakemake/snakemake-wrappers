@@ -17,7 +17,7 @@ if outdir:
     outdir = "--outdir {}".format(outdir)
 
 
-tmpdir = snakemake.output.get("temp", "")
+tmpdir = snakemake.params.get("tmp_dir", "")
 if tmpdir:
     tempfile.tempdir = tmpdir
     # Make sure tmp dir exists
