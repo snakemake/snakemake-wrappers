@@ -4,7 +4,6 @@ __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
 
 import os
-import tempfile
 from snakemake.shell import shell
 
 
@@ -14,14 +13,12 @@ extra = snakemake.params.get("extra", "")
 
 outdir = os.path.dirname(snakemake.output[0])
 if outdir:
-    outdir = "--outdir {}".format(outdir)
+    outdir = f"--outdir {outdir}"
 
 
-tmpdir = snakemake.params.get("tmp_dir", "")
-if tmpdir:
-    tempfile.tempdir = tmpdir
-    # Make sure tmp dir exists
-    os.makedirs(tempfile.tempdir, exist_ok=True)
+tmp_dir = snakemake.params.get("tmp_dir", "")
+if tmp_dir:
+    tmp_dir = f"--temp {tmp_dir}"
 
 
 compress = ""
@@ -33,10 +30,9 @@ for output in snakemake.output:
         compress += f"pbzip2 -p {snakemake.threads} {out_name}; "
 
 
-with tempfile.TemporaryDirectory() as tmp:
-    shell(
-        "(fasterq-dump --temp {tmp} --threads {snakemake.threads} "
-        "{extra} {outdir} {snakemake.wildcards.accession}; "
-        "{compress}"
-        ") {log}"
-    )
+shell(
+    "(fasterq-dump {tmp_dir} --threads {snakemake.threads} "
+    "{extra} {outdir} {snakemake.wildcards.accession}; "
+    "{compress}"
+    ") {log}"
+)
