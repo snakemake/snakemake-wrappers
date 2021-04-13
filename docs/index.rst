@@ -38,8 +38,8 @@ Each wrapper defines required software packages and versions in an ``environment
 In combination with the ``--use-conda`` flag of Snakemake, this will be deployed automatically.
 
 Alternatively, for example for development, the wrapper directive can also point to full URLs, including the local ``file://``.
-For this to work, you need to provide the (remote) path to the directory containing the ``wrapper.``-file.
-For the above example, the explicit GitHub URL to specify would need to be to the ``/raw/`` version of the directory:
+For this to work, you need to provide the (remote) path to the directory containing the ``wrapper.*`` and ``environment.yaml`` files.
+For the above example, the explicit GitHub URL to specify would need to be the ``/raw/`` version of the directory:
 
 .. code-block:: python
 
