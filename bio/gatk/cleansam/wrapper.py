@@ -13,5 +13,5 @@ java_opts = get_java_opts(snakemake)
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 shell(
     "gatk --java-options '{java_opts}' CleanSam --INPUT {snakemake.input} "
-    "{extra} --OUTPUT {snakemake.output} {log}"
+    "{extra} --OUTPUT {snakemake.output.clean} {log}"
 )
