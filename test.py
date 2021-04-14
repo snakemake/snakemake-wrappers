@@ -839,6 +839,14 @@ def test_blast_makeblastdb_protein():
 
 
 @skip_if_not_modified
+def test_blast_blastn():
+    run(
+        "bio/blast/blastn",
+        ["snakemake", "--cores", "1", "a.blast.txt", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_bowtie2_align():
     run(
         "bio/bowtie2/align",
