@@ -29,8 +29,7 @@ rule bwa_mem_write_index:
         extra=r"-R '@RG\tID:{sample}\tSM:{sample}'",
         sort="samtools",             # Can be 'none', 'samtools' or 'picard'.
         sort_order="coordinate",  # Can be 'queryname' or 'coordinate'.
-        sort_extra="",            # Extra args for samtools/picard.
-        write_index=True            # True to write, may be left out
+        sort_extra="--write-index",            # Extra args for samtools/picard.
     threads: 8
     wrapper:
         "master/bio/bwa/mem"
