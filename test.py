@@ -2787,6 +2787,14 @@ def test_gatk_splitncigarreads():
 
 
 @skip_if_not_modified
+def test_gatk_cleansam():
+    run(
+        "bio/gatk/cleansam",
+        ["snakemake", "--cores", "1", "a.clean.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_picard_mergevcfs():
     run(
         "bio/picard/mergevcfs",
