@@ -3596,3 +3596,11 @@ def test_diamond_blastx():
         "bio/diamond/blastx",
         ["snakemake", "--cores", "1", "foo.tsv.gz", "--use-conda", "-F"],
     )
+
+@skip_if_not_modified
+def test_applyvqsr():
+    run(
+        "bio/gatk/applyvqsr",
+        ["snakemake", "--cores", "1", "test.snp_recal.vcf", "--use-conda",
+         "-F"],
+    )
