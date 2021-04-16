@@ -13,7 +13,7 @@ extra = snakemake.params.get("extra", "")
 log_dir = os.path.dirname(snakemake.log[0])
 output_dir = os.path.dirname(snakemake.output[0])
 
-# sample basename
+# sample name defaults to basename
 sample_name = snakemake.params.get(
     "sample_name", os.path.splitext(os.path.basename(snakemake.input.bam))[0]
 )
