@@ -7,6 +7,7 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 from os import path
+import tempfile
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
@@ -16,22 +17,19 @@ lineage = snakemake.params.get("lineage_path")
 assert lineage is not None, "please input the path to a lineage for busco assessment"
 
 # busco does not allow you to direct output location: handle this by moving output
-outdir = path.dirname(snakemake.output[0])
-if "/" in outdir:
-    out_name = path.basename(outdir)
-else:
-    out_name = outdir
+outdir = snakemake.output[0]
+download_path_dir = snakemake.params.get('download_path', '')
+download_path = ' --download_path {download_path_dir} ' if download_path_dir else ''
 
 # note: --force allows snakemake to handle rewriting files as necessary
 # without needing to specify *all* busco outputs as snakemake outputs
-shell(
-    "busco --in {snakemake.input} --out {out_name} --force "
-    " --cpu {snakemake.threads} --mode {mode} --lineage {lineage} "
-    " {extra} {log}"
-)
+with tempfile.TemporaryDirectory(prefix='busco_', dir='') as tmp_dir:
+    shell(
+        "busco --in {snakemake.input} --out {tmp_dir} --force "
+        " --cpu {snakemake.threads} --mode {mode} --lineage {lineage} "
+        + download_path +
+        " {extra} {log}"
+    )
 
-busco_outname = "run_" + out_name
-
-# move to intended location
-shell("cp -r {busco_outname}/* {outdir}")
-shell("rm -rf {busco_outname}")
+    # move to intended location
+    shell("cp -r {tmp_dir} {outdir}")
