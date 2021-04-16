@@ -18,17 +18,17 @@ assert lineage is not None, "please input the path to a lineage for busco assess
 
 # busco does not allow you to direct output location: handle this by moving output
 outdir = snakemake.output[0]
-download_path_dir = snakemake.params.get('download_path', '')
-download_path = ' --download_path {download_path_dir} ' if download_path_dir else ''
+download_path_dir = snakemake.params.get("download_path", "")
+download_path = " --download_path {download_path_dir} " if download_path_dir else ""
 
 # note: --force allows snakemake to handle rewriting files as necessary
 # without needing to specify *all* busco outputs as snakemake outputs
-with tempfile.TemporaryDirectory(prefix='busco_', dir='') as tmp_dir:
+with tempfile.TemporaryDirectory(prefix="busco_", dir="") as tmp_dir:
     shell(
         "busco --in {snakemake.input} --out {tmp_dir} --force "
         " --cpu {snakemake.threads} --mode {mode} --lineage {lineage} "
-        + download_path +
-        " {extra} {log}"
+        + download_path
+        + " {extra} {log}"
     )
 
     # move to intended location
