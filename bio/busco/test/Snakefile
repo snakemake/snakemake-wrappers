@@ -1,6 +1,6 @@
 rule run_busco:
     input:
-        "transcriptome.fasta"
+        "transcripts.fasta"
     output:
         directory("txome_busco")
     log:
