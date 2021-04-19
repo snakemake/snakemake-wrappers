@@ -8,21 +8,21 @@ import os
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
-input_known = snakemake.input.known
 extra = snakemake.params.get("extra", "")
 java_opts = get_java_opts(snakemake)
 
 
-bed = snakemake.input.get("bed", None)
-if bed is not None:
+bed = snakemake.input.get("bed", "")
+if bed:
     bed = "-L " + bed
-else:
-    bed = ""
 
 
-input_known_string = ""
-for known in input_known:
-    input_known_string = input_known_string + " -known {}".format(known)
+known = snakemake.input.get("known", "")
+if known:
+    if isinstance(known, str):
+        known = "-known {}".format(known)
+    else:
+        known = list(map("-known {}".format, known))
 
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -34,7 +34,7 @@ shell(
     " {extra}"
     " -I {snakemake.input.bam}"
     " -R {snakemake.input.ref}"
-    " {input_known_string}"
+    " {known}"
     " {bed}"
     " -o {snakemake.output.intervals}"
     " {log}"
