@@ -6,6 +6,7 @@ rule deepvariant:
         vcf="calls/{sample}.vcf.gz"
     params:
         model="wgs",   # {wgs, wes, pacbio, hybrid}
+        sample_name=lambda w: w.sample, # optional
         extra=""
     threads: 2
     log:
