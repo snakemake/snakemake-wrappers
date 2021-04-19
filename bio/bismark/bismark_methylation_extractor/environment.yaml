@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - bowtie2 == 2.3.4.3
-  - bismark == 0.22.1
-  - samtools == 1.9
-  - perl-gdgraph == 1.54  # for bismark plots module
+  - bowtie2 ==2.4.2
+  - bismark ==0.23.0
+  - samtools ==1.9
+  - perl-gdgraph ==1.54  # for bismark plots module
