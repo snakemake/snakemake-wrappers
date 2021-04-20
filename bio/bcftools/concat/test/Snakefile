@@ -1,4 +1,4 @@
-B65;6003;1crule bcftools_concat:
+rule bcftools_concat:
     input:
         calls=["a.bcf", "b.bcf"]
     output:
