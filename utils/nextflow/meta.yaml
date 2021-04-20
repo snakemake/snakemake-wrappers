@@ -1,0 +1,4 @@
+name: nextflow
+description: Run pipeline with nextflow
+authors:
+  - Johannes Köster

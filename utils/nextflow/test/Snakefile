@@ -1,0 +1,40 @@
+
+rule all:
+    input:
+        "multiqc/multiqc_report.html"
+
+
+rule get_genome:
+    output:
+        "data/genome.fasta"
+    shell:
+        "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genome.fa > {output}"
+
+
+rule get_annotation:
+    output:
+        "data/genome.gtf"
+    shell:
+        "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genes.gtf > {output}"
+
+
+rule get_design:
+    output:
+        "design.csv"
+    shell:
+        "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/design.csv > {output}"
+
+
+rule chipseq_pipeline:
+    input:
+        input="design.csv",
+        fasta="data/genome.fasta",
+        gtf="data/genome.gtf",
+    output:
+        "multiqc/multiqc_report.html"
+    params:
+        pipeline="nf-core/chipseq",
+        revision="1.2.1",
+        profile=["test", "conda"],
+    wrapper:
+        "master/utils/nextflow"
