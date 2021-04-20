@@ -26,9 +26,9 @@ download_path = " --download_path {download_path_dir} " if download_path_dir els
 with tempfile.TemporaryDirectory(prefix="busco_", dir="") as tmp_dir:
     shell(
         "busco --in {snakemake.input} --out {tmp_dir} --force "
-        " --cpu {snakemake.threads} --mode {mode} --lineage {lineage} "
-        + download_path
-        + " {extra} {log}"
+        "--cpu {snakemake.threads} --mode {mode} --lineage {lineage} "
+        "{download_path} "
+        "{extra} {log}"
     )
 
     # move to intended location
