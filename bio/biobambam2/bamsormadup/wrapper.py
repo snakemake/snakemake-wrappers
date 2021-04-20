@@ -27,5 +27,5 @@ if metrics:
 
 
 shell(
-    "bamsormadup threads={snakemake.threads} inputformat={in_format} outputformat={out_format} {index} {metrics} {extra} < {snakemake.input[0]} > {snakemake.output[0]} {log}"
+    "bamsormadup threads={snakemake.threads} inputformat={in_format[1:]} outputformat={out_format[1:]} {index} {metrics} {extra} < {snakemake.input[0]} > {snakemake.output[0]} {log}"
 )
