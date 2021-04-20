@@ -23,7 +23,9 @@ out_dirname = path.dirname(stripped_output)
 out_path = " --out_path {} ".format(out_dirname) if out_dirname else ""
 
 download_path_dir = snakemake.params.get("download_path", "")
-download_path = " --download_path {} ".format(download_path_dir) if download_path_dir else ""
+download_path = (
+    " --download_path {} ".format(download_path_dir) if download_path_dir else ""
+)
 
 # note: --force allows snakemake to handle rewriting files as necessary
 # without needing to specify *all* busco outputs as snakemake outputs
