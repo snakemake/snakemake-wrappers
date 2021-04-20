@@ -7,22 +7,34 @@ rule all:  # [hide]
 rule get_genome:  # [hide]
     output:  # [hide]
         "data/genome.fasta",  # [hide]
+    conda:
+        "envs/curl.yaml"
+    log:
+        "logs/get-genome.log"
     shell:  # [hide]
-        "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genome.fa > {output}"  # [hide]
+        "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genome.fa > {output} 2> {log}"  # [hide]
 
 
 rule get_annotation:  # [hide]
     output:  # [hide]
         "data/genome.gtf",  # [hide]
+    conda:
+        "envs/curl.yaml"
+    log:
+        "logs/get-annotation.log"
     shell:  # [hide]
-        "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genes.gtf > {output}"  # [hide]
+        "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genes.gtf > {output} 2> {log}"  # [hide]
 
 
 rule get_design:  # [hide]
     output:  # [hide]
         "design.csv",  # [hide]
+    conda:
+        "envs/curl.yaml"
+    log:
+        "logs/get-design.log"
     shell:  # [hide]
-        "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/design.csv > {output}"  # [hide]
+        "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/design.csv > {output} 2> {log}"  # [hide]
 
 
 rule chipseq_pipeline:
@@ -36,5 +48,7 @@ rule chipseq_pipeline:
         pipeline="nf-core/chipseq",
         revision="1.2.1",
         profile=["test", "conda"],
+    log:
+        "logs/nextflow.log"
     wrapper:
         "master/utils/nextflow"
