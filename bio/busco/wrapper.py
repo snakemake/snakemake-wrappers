@@ -16,7 +16,6 @@ assert mode is not None, "please input a run mode: genome, transcriptome or prot
 lineage = snakemake.params.get("lineage")
 assert lineage is not None, "please input the path to a lineage for busco assessment"
 
-# busco does not allow you to direct output location: handle this by moving output
 stripped_output = snakemake.output[0].rstrip("/")
 out = path.basename(stripped_output)
 out_dirname = path.dirname(stripped_output)
