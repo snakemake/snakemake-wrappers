@@ -13,7 +13,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 mode = snakemake.params.get("mode")
 assert mode is not None, "please input a run mode: genome, transcriptome or proteins"
-lineage = snakemake.params.get("lineage_path")
+lineage = snakemake.params.get("lineage")
 assert lineage is not None, "please input the path to a lineage for busco assessment"
 
 # busco does not allow you to direct output location: handle this by moving output

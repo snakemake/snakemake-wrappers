@@ -8,7 +8,7 @@ rule run_busco:
     threads: 8
     params:
         mode="transcriptome",
-        lineage_path="stramenopiles_odb10",
+        lineage="stramenopiles_odb10",
         downloads_path="resources/busco_downloads",
         # optional parameters
         extra="" 
