@@ -126,6 +126,14 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_biobambam2_bamsormadup():
+    run(
+        "bio/biobambam2/bamsormadup",
+        ["snakemake", "--cores", "1", "dedup/a.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_open_cravat_run():
     run(
         "bio/open-cravat/run",
