@@ -1,28 +1,28 @@
 
-rule all: # [hide]
-    input: # [hide]
-        "multiqc/multiqc_report.html" # [hide]
+rule all:  # [hide]
+    input:  # [hide]
+        "multiqc/multiqc_report.html",  # [hide]
 
 
-rule get_genome: # [hide]
-    output: # [hide]
-        "data/genome.fasta" # [hide]
-    shell: # [hide]
-        "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genome.fa > {output}" # [hide]
+rule get_genome:  # [hide]
+    output:  # [hide]
+        "data/genome.fasta",  # [hide]
+    shell:  # [hide]
+        "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genome.fa > {output}"  # [hide]
 
 
-rule get_annotation: # [hide]
-    output: # [hide]
-        "data/genome.gtf" # [hide]
-    shell: # [hide]
-        "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genes.gtf > {output}" # [hide]
+rule get_annotation:  # [hide]
+    output:  # [hide]
+        "data/genome.gtf",  # [hide]
+    shell:  # [hide]
+        "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genes.gtf > {output}"  # [hide]
 
 
-rule get_design: # [hide]
-    output: # [hide]
-        "design.csv" # [hide]
-    shell: # [hide]
-        "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/design.csv > {output}" # [hide]
+rule get_design:  # [hide]
+    output:  # [hide]
+        "design.csv",  # [hide]
+    shell:  # [hide]
+        "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/design.csv > {output}"  # [hide]
 
 
 rule chipseq_pipeline:
@@ -31,7 +31,7 @@ rule chipseq_pipeline:
         fasta="data/genome.fasta",
         gtf="data/genome.gtf",
     output:
-        "multiqc/multiqc_report.html"
+        "multiqc/multiqc_report.html",
     params:
         pipeline="nf-core/chipseq",
         revision="1.2.1",
