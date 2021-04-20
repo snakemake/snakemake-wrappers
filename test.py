@@ -1388,6 +1388,22 @@ def test_epic_peaks():
 
 
 @skip_if_not_modified
+def test_bbduk_pe():
+    run(
+        "bio/bbtools/bbduk",
+        ["snakemake", "--cores", "1", "trimmed/pe/a.stats.txt", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_bbduk_se():
+    run(
+        "bio/bbtools/bbduk",
+        ["snakemake", "--cores", "1", "trimmed/se/a.stats.txt", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_fastp_pe():
     run(
         "bio/fastp",
