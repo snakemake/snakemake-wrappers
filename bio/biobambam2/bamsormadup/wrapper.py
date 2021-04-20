@@ -13,7 +13,9 @@ extra = snakemake.params.get("extra", "")
 
 # File formats
 in_name, in_format = os.path.splitext(snakemake.input[0])
+in_format = in_format.lstrip(".")
 out_name, out_format = os.path.splitext(snakemake.output[0])
+out_format = out_format.lstrip(".")
 
 
 index = snakemake.output.get("index", "")
@@ -27,5 +29,5 @@ if metrics:
 
 
 shell(
-    "bamsormadup threads={snakemake.threads} inputformat={in_format[1:]} outputformat={out_format[1:]} {index} {metrics} {extra} < {snakemake.input[0]} > {snakemake.output[0]} {log}"
+    "bamsormadup threads={snakemake.threads} inputformat={in_format} outputformat={out_format} {index} {metrics} {extra} < {snakemake.input[0]} > {snakemake.output[0]} {log}"
 )
