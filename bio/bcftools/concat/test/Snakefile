@@ -3,6 +3,8 @@ rule bcftools_concat:
         calls=["a.bcf", "b.bcf"]
     output:
         "all.bcf"
+    log:
+        "logs/all.log"
     params:
         uncompressed_bcf = False,
         bcftools_use_mem = False,
