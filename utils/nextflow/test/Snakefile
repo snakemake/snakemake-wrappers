@@ -47,7 +47,7 @@ rule chipseq_pipeline:
     params:
         pipeline="nf-core/chipseq",
         revision="1.2.1",
-        profile=["test", "conda"],
+        profile=["test", "docker"],
     log:
         "logs/nextflow.log"
     wrapper:
