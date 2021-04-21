@@ -1,7 +1,7 @@
 
 rule all:  # [hide]
     input:  # [hide]
-        "multiqc/multiqc_report.html",  # [hide]
+        "results/multiqc/multiqc_report.html",  # [hide]
 
 
 rule get_genome:  # [hide]
