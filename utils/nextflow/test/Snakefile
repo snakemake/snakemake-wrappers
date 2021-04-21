@@ -43,7 +43,7 @@ rule chipseq_pipeline:
         fasta="data/genome.fasta",
         gtf="data/genome.gtf",
     output:
-        "multiqc/multiqc_report.html",
+        "results/multiqc/multiqc_report.html",
     params:
         pipeline="nf-core/chipseq",
         revision="1.2.1",
