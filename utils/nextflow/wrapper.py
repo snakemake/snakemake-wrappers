@@ -39,7 +39,3 @@ args = " ".join(args)
 pipeline = snakemake.params.pipeline
 
 shell("nextflow run {pipeline} {args} {log}")
-import os
-
-print(os.listdir("results/multiqc"))
-print(os.listdir("."))
