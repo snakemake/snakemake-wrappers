@@ -60,8 +60,10 @@ assert version in versions, f"{version} is not available. Choose one of: {versio
 files = available_files(build, dataset, version)
 assert file in files, f"{file} is not available. Choose one of: {files}."
 
-download_url = requests.get(
-    download_path(build, dataset, version, file), auth=(email, password)
-).json()["url"].strip()
+download_url = (
+    requests.get(download_path(build, dataset, version, file), auth=(email, password))
+    .json()["url"]
+    .strip()
+)
 
 shell('curl "{download_url}" -o {snakemake.output[0]} {log}')
