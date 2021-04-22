@@ -7,7 +7,7 @@ rule get_fastq_pe:
         "logs/{accession}_PE.log"
     params:
         tmp_dir="/tmp/",
-        extra="-v -v"
+        extra="--skip-technical"
     threads: 6  # defaults to 6
     wrapper:
         "master/bio/sra-tools/fasterq-dump"
@@ -19,7 +19,7 @@ rule get_fastq_se:
     log:
         "logs/{accession}.SE.log"
     params:
-        extra="-v -v"
+        extra="--skip-technical"
     threads: 6
     wrapper:
         "master/bio/sra-tools/fasterq-dump"
