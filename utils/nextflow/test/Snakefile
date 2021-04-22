@@ -42,12 +42,14 @@ rule chipseq_pipeline:
         input="design.csv",
         fasta="data/genome.fasta",
         gtf="data/genome.gtf",
+        # any --<argname> pipeline file arguments can be given here as <argname>=<path>
     output:
         "results/multiqc/broadPeak/multiqc_report.html",
     params:
         pipeline="nf-core/chipseq",
         revision="1.2.1",
         profile=["test", "docker"],
+        # any --<argname> pipeline arguments can be given here as <argname>=<value>
     log:
         "logs/nextflow.log"
     wrapper:
