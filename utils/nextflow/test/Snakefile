@@ -50,7 +50,6 @@ rule chipseq_pipeline:
         revision="1.2.1",
         profile=["test", "docker"],
         # any --<argname> pipeline arguments can be given here as <argname>=<value>
-    log:
-        "logs/nextflow.log"
+    handover: True
     wrapper:
         "master/utils/nextflow"
