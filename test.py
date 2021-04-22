@@ -3628,3 +3628,11 @@ def test_applyvqsr():
         ["snakemake", "--cores", "1", "test.snp_recal.vcf", "--use-conda",
          "-F"],
     )
+
+
+@skip_if_not_modified
+def test_nextflow():
+    run(
+        "utils/nextflow",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "--show-failed-logs"]
+    )
