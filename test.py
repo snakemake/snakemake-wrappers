@@ -126,6 +126,14 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_download_cosmic_db():
+    run(
+        "bio/cosmic-db",
+        ["snakemake", "--cores", "1", "--use-conda", "resources/CosmicHGNC.tsv.gz"],
+    )
+
+
+@skip_if_not_modified
 def test_open_cravat_run():
     run(
         "bio/open-cravat/run",
