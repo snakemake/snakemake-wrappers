@@ -3,6 +3,8 @@ rule samtools_view:
         "{sample}.sam"
     output:
         "{sample}.bam"
+    log:
+        "{sample}.log"
     params:
         extra="" # optional params string
     wrapper:
