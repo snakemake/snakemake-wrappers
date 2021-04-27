@@ -4,7 +4,7 @@ rule mark_duplicates:
     output:
         bam="dedup/{sample}.bam",
         index="dedup/{sample}.bai",
-        metrics="dedup/{sample}.metrics.txt"
+        metrics="dedup/{sample}.metrics.txt",
     log:
         "logs/{sample}.log"
     params:
