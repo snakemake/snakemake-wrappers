@@ -636,6 +636,12 @@ def test_bcftools_filter_bcf_gz():
 
 
 @skip_if_not_modified
+def test_bcftools_filter_param_bcf():
+    run("bio/bcftools/filter",
+        ["snakemake", "--cores", "1", "a.filter.param.bcf", "--use-conda", "-F"])
+
+
+@skip_if_not_modified
 def test_bcftools_sort():
     run(
         "bio/bcftools/sort",

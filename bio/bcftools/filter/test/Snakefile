@@ -52,3 +52,18 @@ rule bcf_filter_o_bcf_gz:
         extra="",
     wrapper:
         "master/bio/bcftools/filter"
+
+
+rule bcf_filter_o_param:
+    input:
+        "{prefix}.bcf",
+    output:
+        "{prefix}.filter.param.bcf",
+    log:
+        "log/{prefix}.filter.param.bcf.log",
+    params:
+        output_format="b",
+        filter="-i 'QUAL > 5'",
+        extra="",
+    wrapper:
+        "master/bio/bcftools/filter"
