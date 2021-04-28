@@ -12,10 +12,9 @@ output_format_param = snakemake.params.get("output_format", "")
 
 if output_format_param:
     valid_formats = ["b", "u", "z", "v"]
-    assert output_format_param in valid_formats, (
-            "Output format must be one of {}"
-            .format(', '.join(valid_formats))
-            )
+    assert (
+        output_format_param in valid_formats
+    ), "Output format must be one of {}".format(", ".join(valid_formats))
     output_format = "-O{}".format(output_format_param)
 elif snakemake.output[0].endswith("bcf"):
     output_format = "-Ou"
