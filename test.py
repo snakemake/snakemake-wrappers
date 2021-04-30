@@ -1387,6 +1387,22 @@ def test_epic_peaks():
 
 
 @skip_if_not_modified
+def test_bbduk_pe():
+    run(
+        "bio/bbtools/bbduk",
+        ["snakemake", "--cores", "1", "trimmed/pe/a.stats.txt", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_bbduk_se():
+    run(
+        "bio/bbtools/bbduk",
+        ["snakemake", "--cores", "1", "trimmed/se/a.stats.txt", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_fastp_pe():
     run(
         "bio/fastp",
@@ -3610,4 +3626,12 @@ def test_applyvqsr():
         "bio/gatk/applyvqsr",
         ["snakemake", "--cores", "1", "test.snp_recal.vcf", "--use-conda",
          "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_nextflow():
+    run(
+        "utils/nextflow",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "--show-failed-logs"]
     )
