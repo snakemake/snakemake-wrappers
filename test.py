@@ -630,15 +630,9 @@ def test_bcftools_filter_bcf():
 
 
 @skip_if_not_modified
-def test_bcftools_filter_bcf_gz():
+def test_bcftools_filter_uncompressed_bcf():
     run("bio/bcftools/filter",
-        ["snakemake", "--cores", "1", "a.filter.bcf.gz", "--use-conda", "-F"])
-
-
-@skip_if_not_modified
-def test_bcftools_filter_param_bcf():
-    run("bio/bcftools/filter",
-        ["snakemake", "--cores", "1", "a.filter.param.bcf", "--use-conda", "-F"])
+        ["snakemake", "--cores", "1", "a.filter.uncompressed.bcf", "--use-conda", "-F"])
 
 
 @skip_if_not_modified
