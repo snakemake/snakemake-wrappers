@@ -2679,7 +2679,6 @@ def test_sourmash_compute():
     )
 
 
-@pytest.mark.skip(reason="test hangs, skipping so we can see gatk test results")
 @skip_if_not_modified
 def test_busco():
     run(
@@ -2688,7 +2687,7 @@ def test_busco():
             "snakemake",
             "--cores",
             "1",
-            "txome_busco/full_table_txome_busco.tsv",
+            "txome_busco",
             "--use-conda",
             "-F",
         ],
