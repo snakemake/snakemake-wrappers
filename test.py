@@ -1263,7 +1263,6 @@ def test_bwa_mem2_index():
             "genome.fasta.ann",
             "genome.fasta.0123",
             "genome.fasta.bwt.2bit.64",
-            "genome.fasta.bwt.8bit.32",
             "genome.fasta.pac",
             "--use-conda",
             "-F",
