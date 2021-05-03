@@ -48,7 +48,7 @@ rule bcf_filter_o_uncompressed_bcf:
     log:
         "log/{prefix}.filter.uncompressed.bcf.log",
     params:
-        uncompressed_bcf = True,
+        uncompressed_bcf=True,
         filter="-i 'QUAL > 5'",
         extra="",
     wrapper:
