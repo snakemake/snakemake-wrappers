@@ -2727,6 +2727,14 @@ def test_gatk_intervallisttobed():
 
 
 @skip_if_not_modified
+def test_gatk_estimatelibrarycomplexity():
+    run(
+        "bio/gatk/estimatelibrarycomplexity",
+        ["snakemake", "--cores", "1", "a.metrics", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_gatk_baserecalibrator():
     run(
         "bio/gatk/baserecalibrator",
