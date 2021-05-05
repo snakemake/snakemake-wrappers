@@ -6,6 +6,7 @@ authors:
 input:
   - bam file
   - fasta reference
+  - recalibration table for the bam
 output:
   - recalibrated bam file
 notes: |
