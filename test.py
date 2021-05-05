@@ -2759,6 +2759,14 @@ def test_gatk_applybqsr():
 
 
 @skip_if_not_modified
+def test_gatk_applybqsrspark():
+    run(
+        "bio/gatk/applybqsrspark",
+        ["snakemake", "--cores", "1", "recal/a.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_gatk_haplotypecaller():
     run(
         "bio/gatk/haplotypecaller",
