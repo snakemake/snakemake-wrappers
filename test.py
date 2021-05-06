@@ -2710,6 +2710,14 @@ def test_gatk_scatterintervalsbyns():
 
 
 @skip_if_not_modified
+def test_gatk_printreadsspark():
+    run(
+        "bio/gatk/printredasspark",
+        ["snakemake", "--cores", "1", "a.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_gatk_markduplicatesspark():
     run(
         "bio/gatk/markduplicatesspark",
