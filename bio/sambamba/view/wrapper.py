@@ -5,11 +5,12 @@ __license__ = "MIT"
 
 
 import os
+
 from snakemake.shell import shell
 
 in_file = snakemake.input[0]
 extra = snakemake.params.get("extra", "")
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 if in_file.endswith(".sam") and ("-S" not in extra or "--sam-input" not in extra):
     extra += " --sam-input"
