@@ -9,6 +9,7 @@ output:
   - trimmed fastq file(s)
   - unpaired reads (optional)
   - merged reads (optional)
+  - failed reads (optional)
   - json file containing trimming statistics
   - html file containing trimming statistics
 notes: |

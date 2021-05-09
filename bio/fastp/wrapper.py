@@ -54,6 +54,12 @@ else:
     trimmed = ""
 
 
+# Output failed reads
+failed = snakemake.output.get("failed", None)
+if failed:
+    trimmed += f" --failed_out {failed}"
+
+
 # Stats
 html = "--html {}".format(snakemake.output.html)
 json = "--json {}".format(snakemake.output.json)
