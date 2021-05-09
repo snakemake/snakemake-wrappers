@@ -9,27 +9,56 @@ extra = snakemake.params.get("extra", "")
 adapters = snakemake.params.get("adapters", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
+
+# Assert input
 n = len(snakemake.input.sample)
 assert (
     n == 1 or n == 2
 ), "input->sample must have 1 (single-end) or 2 (paired-end) elements."
 
+
+# Input files
 if n == 1:
     reads = "--in1 {}".format(snakemake.input.sample)
 else:
     reads = "--in1 {} --in2 {}".format(*snakemake.input.sample)
 
+
+# Output files
+tmp = dict()
 trimmed_paths = snakemake.output.get("trimmed", None)
 if trimmed_paths is not None:
     if n == 1:
         trimmed = "--out1 {}".format(snakemake.output.trimmed)
     else:
         trimmed = "--out1 {} --out2 {}".format(*snakemake.output.trimmed)
+
+        # Output unpaired files
+        unpaired = snakemake.output.get("unpaired", None)
+        if unpaired:
+            trimmed += f" --unpaired1 {unpaired} --unpaired2 {unpaired}"
+        else:
+            unpaired1 = snakemake.output.get("unpaired1", None)
+            if unpaired1:
+                trimmed += f" --unpaired1 {unpaired1}"
+            unpaired2 = snakemake.output.get("unpaired2", None)
+            if unpaired2:
+                trimmed += f" --unpaired2 {unpaired2}"
+
+        # Output merged PE reads
+        merged = snakemake.output.get("merged", None)
+        if merged:
+            if "--merge " not in extra:
+                raise ValueError("output.merged specified but merge option missing")
+            trimmed += f" --merged_out {merged}"
 else:
     trimmed = ""
 
+
+# Stats
 html = "--html {}".format(snakemake.output.html)
 json = "--json {}".format(snakemake.output.json)
+
 
 shell(
     "(fastp --thread {snakemake.threads} "
