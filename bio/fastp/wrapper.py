@@ -25,7 +25,6 @@ else:
 
 
 # Output files
-tmp = dict()
 trimmed_paths = snakemake.output.get("trimmed", None)
 if trimmed_paths is not None:
     if n == 1:
