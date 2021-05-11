@@ -3658,3 +3658,10 @@ def test_nextflow():
         "utils/nextflow",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "--show-failed-logs"]
     )
+
+@skip_if_not_modified
+def test_qualimaprnaseq():
+    run(
+        "bio/qualimap/rnaseq",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
