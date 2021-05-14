@@ -11,10 +11,10 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 tmp_dir = tempfile.mkdtemp()
 sample_name = "-s {params.sample_report}" if params.get("sample_report", None) else ""
 extra = snakemake.params.get("extra", "")
-
-shell("cp -r {snakemake.wildcards.Sample} {tmp_dir}")
+result_dir = snakemake.output[0].rsplit("/", 2)[0]
+shell("cp -r {result_dir} {tmp_dir}")
 
 shell("debarcer plot -d {tmp_dir} {sample_name} {extra}")
 
-shell("mv {os.path.join(tmp_dir, 'Figures/')} {snakemake.output.figures}")
-shell("mv {tmp_dir}/Report/debarcer_report.html {snakemake.output.report}")
+shell("mv {os.path.join(tmp_dir, 'Figures/')} {os.path.join(result_dir, 'Figures/')}")
+shell("mv {tmp_dir}/Report/debarcer_report.html {snakemake.output[0]}")

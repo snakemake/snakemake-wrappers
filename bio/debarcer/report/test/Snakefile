@@ -1,11 +1,15 @@
 rule debarcer_report:
     input:
-        vcf="{Sample}/Consfiles/{region}.cons",
-        umis="{Sample}/Umifiles/{region}.json",
+        cons="{Sample}/Consfiles/{Region}.cons",
+        umis="{Sample}/Umifiles/{Region}.json",
         stats="{Sample}/Stats/",
-        data="{Sample}/Datafiles/datafile_{region}.csv"
+        data="{Sample}/Datafiles/datafile_{Region}.csv"
     output:
-        figs=directory("{Sample}/Report/Figures/"),
+        #figs=directory("{Sample}/Report/Figures/"),
         report="{Sample}/Report/{Region}_debarcer_report.html"
+    params:
+        sample_report = ""
+    log:
+        "logs/report/{Sample}_{Region}.log"
     wrapper:
-        "master/bio/debarcer/report"
+        "debarcer/bio/debarcer/report"
