@@ -3,6 +3,3 @@ channels:
   - conda-forge
 dependencies:
   - debarcer =2.1
-  - pandas
-  - bwa
-  - samtools
