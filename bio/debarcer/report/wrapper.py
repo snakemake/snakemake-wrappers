@@ -9,7 +9,7 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 tmp_dir = tempfile.mkdtemp()
-sample_name = "-s {params.sample_report}" if params.get("sample_report", None) else ""
+sample_name = "-s {snakemake.params.sample_report}" if snakemake.params.get("sample_report", None) else ""
 extra = snakemake.params.get("extra", "")
 result_dir = snakemake.output[0].rsplit("/", 2)[0]
 shell("cp -r {result_dir} {tmp_dir}")
