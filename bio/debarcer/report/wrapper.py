@@ -12,7 +12,7 @@ tmp_dir = tempfile.mkdtemp()
 sample_name = "-s {}".format(snakemake.params.sample_report) if snakemake.params.get("sample_report", None) else ""
 extra = snakemake.params.get("extra", "")
 result_dir = snakemake.output[0].rsplit("/", 2)[0]
-shell("cp -r {result_dir} {tmp_dir}")
+shell("cp -r {result_dir}/ {tmp_dir}")
 
 shell("debarcer plot -d {tmp_dir} {sample_name} {extra}")
 
