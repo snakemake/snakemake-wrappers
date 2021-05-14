@@ -1,0 +1,11 @@
+rule debarcer_report:
+    input:
+        vcf="{Sample}/Consfiles/{region}.cons",
+        umis="{Sample}/Umifiles/{region}.json",
+        stats="{Sample}/Stats/",
+        data="{Sample}/Datafiles/datafile_{region}.csv"
+    output:
+        figs=directory("{Sample}/Report/Figures/"),
+        report="{Sample}/Report/{Region}_debarcer_report.html"
+    wrapper:
+        "master/bio/debarcer/report"
