@@ -15,4 +15,4 @@ output:
 notes: |
   * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
   * The `extra` param alllows for additional program arguments.
-  * For more inforamtion see, https://gatk.broadinstitute.org/hc/en-us/articles/360056967892-VariantEval-BETA-
+  * For more information see, https://gatk.broadinstitute.org/hc/en-us/articles/360056967892-VariantEval-BETA-
