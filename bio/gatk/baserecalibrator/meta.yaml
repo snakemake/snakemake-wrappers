@@ -1,4 +1,4 @@
-B0;136;0cname: gatk BaseRecalibrator
+name: gatk BaseRecalibrator
 description: |
   Run gatk BaseRecalibrator.
 authors:
