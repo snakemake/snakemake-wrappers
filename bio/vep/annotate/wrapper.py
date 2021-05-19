@@ -49,7 +49,7 @@ if cache:
     ).format(cache=cache, release=release, build=build, species=species)
 
 shell(
-    "(bcftools view {snakemake.input.calls} | "
+    "(bcftools view \"{snakemake.input.calls}\" | "
     "vep {extra} {fork} "
     "--format vcf "
     "--vcf "
@@ -59,6 +59,6 @@ shell(
     "--dir_plugins {plugins} "
     "{load_plugins} "
     "--output_file STDOUT "
-    "--stats_file {stats} | "
-    "bcftools view -O{fmt} > {snakemake.output.calls}) {log}"
+    "--stats_file \"{stats}\" | "
+    "bcftools view -O{fmt} > \"{snakemake.output.calls}\") {log}"
 )
