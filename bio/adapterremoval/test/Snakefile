@@ -11,7 +11,6 @@ rule adapterremoval_se:
     params:
         adapters="--adapter1 ACGGCTAGCTA",
         extra="",
-        merge_singletons=True,  # Irrelevant for SE; just for testing purposes
     threads: 1
     wrapper:
         "master/bio/adapterremoval"
@@ -33,26 +32,6 @@ rule adapterremoval_pe:
     params:
         adapters="--adapter1 ACGGCTAGCTA --adapter2 AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC",
         extra="--collapse --collapse-deterministic",
-    threads: 2
-    wrapper:
-        "master/bio/adapterremoval"
-
-
-rule adapterremoval_pe_collapse_single:
-    input:
-        sample=["reads/pe/{sample}.1.fastq", "reads/pe/{sample}.2.fastq"] 
-    output:
-        fq1="trimmed/pe_collapse/{sample}_R1.fastq.gz",
-        fq2="trimmed/pe_collapse/{sample}_R2.fastq.gz",
-        singleton="trimmed/pe_collapse/{sample}.fastq.gz",
-        discarded="trimmed/pe_collapse/{sample}.discarded.fastq.gz",
-        settings="stats/pe_collapse/{sample}.settings"
-    log:
-        "logs/adapterremoval/pe_collapse/{sample}.log"
-    params:
-        adapters="--adapter1 ACGGCTAGCTA --adapter2 AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC",
-        extra="--collapse --collapse-deterministic",
-        merge_singletons=True,
     threads: 2
     wrapper:
         "master/bio/adapterremoval"
