@@ -40,14 +40,15 @@ rule bcf_filter_o_bcf:
         "master/bio/bcftools/filter"
 
 
-rule bcf_filter_o_bcf_gz:
+rule bcf_filter_o_uncompressed_bcf:
     input:
         "{prefix}.bcf",
     output:
-        "{prefix}.filter.bcf.gz",
+        "{prefix}.filter.uncompressed.bcf",
     log:
-        "log/{prefix}.filter.bcf.gz.log",
+        "log/{prefix}.filter.uncompressed.bcf.log",
     params:
+        uncompressed_bcf=True,
         filter="-i 'QUAL > 5'",
         extra="",
     wrapper:

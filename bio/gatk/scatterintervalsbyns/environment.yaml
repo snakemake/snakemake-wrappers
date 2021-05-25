@@ -3,4 +3,5 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - bwa-mem2 ==2.2.1
+  - gatk4 ==4.2.0.0
+  - snakemake-wrapper-utils ==0.1.3

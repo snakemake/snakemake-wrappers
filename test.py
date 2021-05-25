@@ -126,6 +126,14 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_biobambam2_bamsormadup():
+    run(
+        "bio/biobambam2/bamsormadup",
+        ["snakemake", "--cores", "1", "dedup/a.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_open_cravat_run():
     run(
         "bio/open-cravat/run",
@@ -630,9 +638,9 @@ def test_bcftools_filter_bcf():
 
 
 @skip_if_not_modified
-def test_bcftools_filter_bcf_gz():
+def test_bcftools_filter_uncompressed_bcf():
     run("bio/bcftools/filter",
-        ["snakemake", "--cores", "1", "a.filter.bcf.gz", "--use-conda", "-F"])
+        ["snakemake", "--cores", "1", "a.filter.uncompressed.bcf", "--use-conda", "-F"])
 
 
 @skip_if_not_modified
@@ -1263,7 +1271,6 @@ def test_bwa_mem2_index():
             "genome.fasta.ann",
             "genome.fasta.0123",
             "genome.fasta.bwt.2bit.64",
-            "genome.fasta.bwt.8bit.32",
             "genome.fasta.pac",
             "--use-conda",
             "-F",
@@ -2671,7 +2678,6 @@ def test_sourmash_compute():
     )
 
 
-@pytest.mark.skip(reason="test hangs, skipping so we can see gatk test results")
 @skip_if_not_modified
 def test_busco():
     run(
@@ -2680,7 +2686,7 @@ def test_busco():
             "snakemake",
             "--cores",
             "1",
-            "txome_busco/full_table_txome_busco.tsv",
+            "txome_busco",
             "--use-conda",
             "-F",
         ],
@@ -2692,6 +2698,14 @@ def test_vcftoolsfilter():
     run(
         "bio/vcftools/filter",
         ["snakemake", "--cores", "1", "sample.filtered.vcf", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk_scatterintervalsbyns():
+    run(
+        "bio/gatk/scatterintervalsbyns",
+        ["snakemake", "--cores", "1", "genome.intervals", "--use-conda", "-F"],
     )
 
 
@@ -2708,6 +2722,14 @@ def test_gatk_intervallisttobed():
     run(
         "bio/gatk/intervallisttobed",
         ["snakemake", "--cores", "1", "genome.bed", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk_estimatelibrarycomplexity():
+    run(
+        "bio/gatk/estimatelibrarycomplexity",
+        ["snakemake", "--cores", "1", "a.metrics", "--use-conda", "-F"],
     )
 
 

@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - bwa-mem2 ==2.2.1
+  - biobambam =2.0

@@ -3,7 +3,9 @@ rule samtools_view:
         "{sample}.sam"
     output:
         "{sample}.bam"
+    log:
+        "{sample}.log"
     params:
-        "-b" # optional params string
+        extra="" # optional params string
     wrapper:
         "master/bio/samtools/view"
