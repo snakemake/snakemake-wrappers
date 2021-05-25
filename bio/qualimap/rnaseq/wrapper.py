@@ -8,15 +8,15 @@ import os
 
 from snakemake.shell import shell
 
-java_memory_size = snakemake.params.get("java_mem_size", "")
-if java_memory_size:
-    memory_size = "--java-mem-size={}".format(java_memory_size)
+java_opts = snakemake.params.get("java_opts", "")
+if java_opts:
+    java_opts_str = f"JAVA_OPTS='{java_opts}'"
 else:
-    memory_size = ""
+    java_opts_str = ""
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 shell(
-    "qualimap {memory_size} rnaseq {extra} "
+    "{java_opts_str} qualimap {memory_size} rnaseq {extra} "
     "-bam {snakemake.input.bam} -gtf {snakemake.input.gtf} "
     "-outdir {snakemake.output} "
     "{log}"
