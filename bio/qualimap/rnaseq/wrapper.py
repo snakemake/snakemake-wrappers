@@ -16,7 +16,7 @@ else:
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 shell(
-    "{java_opts_str} qualimap {memory_size} rnaseq {extra} "
+    "{java_opts_str} qualimap rnaseq {extra} "
     "-bam {snakemake.input.bam} -gtf {snakemake.input.gtf} "
     "-outdir {snakemake.output} "
     "{log}"
