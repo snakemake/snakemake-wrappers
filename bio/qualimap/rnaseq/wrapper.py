@@ -10,7 +10,7 @@ from snakemake.shell import shell
 
 java_opts = snakemake.params.get("java_opts", "")
 if java_opts:
-    java_opts_str = f"JAVA_OPTS='{java_opts}'"
+    java_opts_str = f'JAVA_OPTS="{java_opts}"'
 else:
     java_opts_str = ""
 extra = snakemake.params.get("extra", "")
