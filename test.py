@@ -3700,3 +3700,10 @@ def test_nextflow():
         "utils/nextflow",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "--show-failed-logs"]
     )
+
+@skip_if_not_modified
+def test_collectgcbiasmetrics():
+    run(
+        "bio/picard/collectgcbiasmetrics",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )

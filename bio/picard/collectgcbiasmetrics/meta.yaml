@@ -1,0 +1,14 @@
+name: picard CollectGcBiasMetrics
+description: |
+        Run picard CollectGcBiasMetrics to generate QC metrics pertaining to GC bias.
+authors:
+  - Brett Copeland
+input:
+  - BAM file of RNA-seq data aligned to genome
+  - REF_FLAT formatted file of transcriptome annotations
+output:
+  - GC metrics text file
+  - GC metrics PDF figure
+  - GC summary metrics text file
+notes: |
+        * For more information, see https://broadinstitute.github.io/picard/command-line-overview.html#CollectGcBiasMetrics.
