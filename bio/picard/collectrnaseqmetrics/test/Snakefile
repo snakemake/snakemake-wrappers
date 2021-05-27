@@ -11,7 +11,7 @@ rule alignment_summary:
         # options are FIRST_READ_TRANSCRIPTION_STRAND, SECOND_READ_TRANSCRIPTION_STRAND, and NONE
         strand="NONE",
         # optional additional parameters, for example,
-        extra="--VALIDATION_STRINGENCY STRICT"
+        extra="VALIDATION_STRINGENCY=STRICT"
     log:
         "logs/picard/rnaseq-metrics/a.log"
     # optional specification of memory usage of the JVM that snakemake will respect with global
@@ -21,4 +21,5 @@ rule alignment_summary:
     resources:
         mem_mb=1024
     wrapper:
-        "master/bio/picard/collectrnaseqmetrics"
+	    "https://raw.githubusercontent.com/brcopeland/snakemake-wrappers/picard_collectrnaseqmetrics/bio/picard/collectrnaseqmetrics"
+	    #"master/bio/picard/collectrnaseqmetrics"
