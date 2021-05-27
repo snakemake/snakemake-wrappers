@@ -1,9 +1,10 @@
-__author__ = "Johannes Köster, Felix Mölder"
+__author__ = "Johannes Köster, Felix Mölder, Christopher Schröder"
 __copyright__ = "Copyright 2017, Johannes Köster"
 __email__ = "johannes.koester@protonmail.com, felix.moelder@uni-due.de"
 __license__ = "MIT"
 
 
+from os import path
 from snakemake.shell import shell
 
 shell.executable("bash")
@@ -11,17 +12,45 @@ shell.executable("bash")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 params = snakemake.params.get("extra", "")
+norm = snakemake.params.get("normalize", False)
+assert norm in [True, False]
+
+
+# Infer output format
+uncompressed_bcf = snakemake.params.get("uncompressed_bcf", False)
+out_name, out_ext = path.splitext(snakemake.output[0])
+if out_ext == ".vcf":
+    out_format = "v"
+elif out_ext == ".bcf":
+    if uncompressed_bcf:
+        out_format = "u"
+    else:
+        out_format = "b"
+elif out_ext == ".gz":
+    out_name, out_ext = path.splitext(out_name)
+    if out_ext == ".vcf":
+        out_format = "z"
+    else:
+        raise ValueError("output file with invalid extension (.vcf, .vcf.gz, .bcf).")
+else:
+    raise ValueError("output file with invalid extension (.vcf, .vcf.gz, .bcf).")
+
 
 pipe = ""
-if snakemake.output[0].endswith(".bcf"):
-    pipe = "| bcftools view -Ob -"
+if norm:
+    pipe = f"| bcftools norm --output-type {out_format} -"
+else:
+    pipe = f"| bcftools view --output-type {out_format} -"
+
 
 if snakemake.threads == 1:
     freebayes = "freebayes"
 else:
     chunksize = snakemake.params.get("chunksize", 100000)
-    regions = "<(fasta_generate_regions.py {snakemake.input.ref}.fai {chunksize})".format(
-        snakemake=snakemake, chunksize=chunksize
+    regions = (
+        "<(fasta_generate_regions.py {snakemake.input.ref}.fai {chunksize})".format(
+            snakemake=snakemake, chunksize=chunksize
+        )
     )
     if snakemake.input.get("regions", ""):
         regions = (

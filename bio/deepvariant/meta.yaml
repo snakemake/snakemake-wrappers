@@ -3,6 +3,7 @@ description: |
   Call genetic variants using deep neural network. Copyright 2017 Google LLC. BSD 3-Clause "New" or "Revised" https://github.com/google/deepvariant
 authors:
   - Tetsuro Hisayoshi
+  - Nikos Tsardakas Renhuldt
 input:
   - fasta
   - bam

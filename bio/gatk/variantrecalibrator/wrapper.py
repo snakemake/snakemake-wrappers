@@ -7,10 +7,11 @@ __license__ = "MIT"
 import os
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.java import get_java_opts
 
 
 extra = snakemake.params.get("extra", "")
-java_opts = snakemake.params.get("java_opts", "")
+java_opts = get_java_opts(snakemake)
 
 
 def fmt_res(resname, resparams):
@@ -23,7 +24,7 @@ def fmt_res(resname, resparams):
                 resname
             )
         )
-    return "{},known={},training={},truth={},prior={}:{}".format(
+    return "{},known={},training={},truth={},prior={} {}".format(
         resname,
         fmt_bool(resparams["known"]),
         fmt_bool(resparams["training"]),
@@ -34,7 +35,7 @@ def fmt_res(resname, resparams):
 
 
 resources = [
-    "--resource {}".format(fmt_res(resname, resparams))
+    "--resource:{}".format(fmt_res(resname, resparams))
     for resname, resparams in snakemake.params["resources"].items()
 ]
 annotation = list(map("-an {}".format, snakemake.params.annotation))

@@ -1,0 +1,17 @@
+rule gatk_varianteval:
+    input:
+        vcf="calls/snvs.vcf",
+        ref="genome.fasta",
+        dict="genome.dict",
+        # comp="calls/comp.vcf", # optional comparison VCF
+    output:
+        vcf="snvs.varianteval.grp"
+    log:
+        "logs/gatk/varianteval/snvs.log"
+    params:
+        extra="",  # optional arguments, see GATK docs
+        java_opts="", # optional
+    resources:
+        mem_mb=1024
+    wrapper:
+        "master/bio/gatk/varianteval"

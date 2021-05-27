@@ -1,0 +1,4 @@
+name: samtools calmd
+description: Calculates MD and NM tags. For more information see `SAMtools documentation <http://www.htslib.org/doc/samtools-calmd.html>`_.
+authors:
+  - Filipe G. Vieira

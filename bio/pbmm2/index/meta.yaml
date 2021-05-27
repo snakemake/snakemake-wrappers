@@ -1,0 +1,4 @@
+name: pbmm2 index
+description: Indexes a reference using pbmm2, a minimap2 SMRT wrapper for PacBio data https://github.com/PacificBiosciences/pbmm2/
+authors:
+  - William Rowell

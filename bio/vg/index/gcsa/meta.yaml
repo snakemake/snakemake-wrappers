@@ -1,0 +1,4 @@
+name: "vg index GCSA"
+description: Build GCSA index for variation graphs.
+authors:
+  - Ali Ghaffaari

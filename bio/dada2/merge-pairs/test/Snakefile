@@ -1,0 +1,20 @@
+rule dada2_merge_pairs:
+    input:
+      dadaF="denoised/{sample}.1.RDS",# Inferred composition
+      dadaR="denoised/{sample}.2.RDS",
+      derepF="uniques/{sample}.1.RDS",# Dereplicated sequences
+      derepR="uniques/{sample}.2.RDS"
+    output:
+        "merged/{sample}.RDS"
+    # Even though this is an R wrapper, use named arguments in Python syntax
+    # here, to specify extra parameters. Python booleans (`arg1=True`, `arg2=False`)
+    # and lists (`list_arg=[]`) are automatically converted to R.
+    # For a named list as an extra named argument, use a python dict
+    #   (`named_list={name1=arg1}`).
+    #params:
+    #    verbose=True
+    log:
+        "logs/dada2/merge-pairs/{sample}.log"
+    threads: 1 # set desired number of threads here
+    wrapper:
+        "master/bio/dada2/merge-pairs"

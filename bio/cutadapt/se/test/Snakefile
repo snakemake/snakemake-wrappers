@@ -5,7 +5,8 @@ rule cutadapt:
         fastq="trimmed/{sample}.fastq",
         qc="trimmed/{sample}.qc.txt"
     params:
-        "-a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC -q 20"
+        adapters="-a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC",
+        extra="-q 20"
     log:
         "logs/cutadapt/{sample}.log"
     threads: 4 # set desired number of threads here
