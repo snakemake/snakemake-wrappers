@@ -34,7 +34,7 @@ rule fastp_pe:
         "logs/fastp/pe/{sample}.log"
     params:
         adapters="--adapter_sequence ACGGCTAGCTA --adapter_sequence_r2 AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC",
-        extra=""
+        extra="--merge"
     threads: 2
     wrapper:
         "master/bio/fastp"
