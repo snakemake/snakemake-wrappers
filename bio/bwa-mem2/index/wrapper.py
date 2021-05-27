@@ -25,4 +25,6 @@ else:
 if len(prefix) > 0:
     prefix = "-p " + prefix
 
-shell("bwa-mem2 index" " {prefix}" " {snakemake.input[0]}" " {log}")
+shell(
+    "bwa-mem2 index" " {prefix}" " {snakemake.input[0]}" " {log}"
+)
