@@ -1,5 +1,6 @@
 rule gtfToGenePred:
     input:
+        # annotations containing gene, transcript, exon, etc. data in GTF format
         "annotation.gtf"
     output:
         "annotation.genePred"
