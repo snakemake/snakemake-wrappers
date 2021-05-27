@@ -10,7 +10,7 @@ rule alignment_summary:
         summary="results/a.summary.txt"
     params:
         # optional additional parameters, for example,
-        extra="--MINIMUM_GENOME_FRACTION 1E-5"
+        extra="MINIMUM_GENOME_FRACTION=1E-5"
     log:
         "logs/picard/a.gcmetrics.log"
     # optional specification of memory usage of the JVM that snakemake will respect with global
