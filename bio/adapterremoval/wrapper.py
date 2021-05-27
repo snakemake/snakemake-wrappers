@@ -4,14 +4,10 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 from pathlib import Path
-import tempfile
+import re
 
 extra = snakemake.params.get("extra", "") + " "
 adapters = snakemake.params.get("adapters", "")
-collapse_pe = (
-    True if "--collapse " in extra or "--collapse-deterministic " in extra else False
-)
-merge_singletons = snakemake.params.get("merge_singletons", False)
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
@@ -59,17 +55,28 @@ if n == 1 or "--interleaved " in extra or "--interleaved-output " in extra:
 else:
     trimmed = f"--output1 {snakemake.output.fq1} --output2 {snakemake.output.fq2}"
 
+    # Output singleton files
+    singleton = snakemake.output.get("singleton", None)
+    if singleton:
+        trimmed += f" --singleton {singleton}"
 
-# Collapsed reads output
-if n == 2:
-    trimmed += f" --singleton {snakemake.output.singleton}"
-    if collapse_pe:
-        if merge_singletons:
-            out_collapsed = tempfile.NamedTemporaryFile()
-            out_collapsed_trunc = tempfile.NamedTemporaryFile()
-            trimmed += f" --outputcollapsed {out_collapsed.name} --outputcollapsedtruncated {out_collapsed_trunc.name}"
-        else:
-            trimmed += f" --outputcollapsed {snakemake.output.collapsed} --outputcollapsedtruncated {snakemake.output.collapsed_trunc}"
+    # Output collapsed PE reads
+    collapsed = snakemake.output.get("collapsed", None)
+    if collapsed:
+        if not re.search(r"--collapse\b", extra):
+            raise ValueError(
+                "output.collapsed specified but '--collapse' option missing from params.extra"
+            )
+        trimmed += f" --outputcollapsed {collapsed}"
+
+    # Output collapsed and truncated PE reads
+    collapsed_trunc = snakemake.output.get("collapsed_trunc", None)
+    if collapsed_trunc:
+        if not re.search(r"--collapse\b", extra):
+            raise ValueError(
+                "output.collapsed_trunc specified but '--collapse' option missing from params.extra"
+            )
+        trimmed += f" --outputcollapsedtruncated {collapsed_trunc}"
 
 
 shell(
@@ -83,10 +90,3 @@ shell(
     "--settings {snakemake.output.settings}"
     ") {log}"
 )
-
-
-if collapse_pe and merge_singletons:
-    shell("cat {out_collapsed.name} >> {snakemake.output.singleton}")
-    out_collapsed.close()
-    shell("cat {out_collapsed_trunc.name} >> {snakemake.output.singleton}")
-    out_collapsed_trunc.close()
