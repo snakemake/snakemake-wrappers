@@ -4,6 +4,7 @@ __email__ = "sebastian.kurscheid@anu.edu.au"
 __license__ = "MIT"
 
 from snakemake.shell import shell
+import re
 
 extra = snakemake.params.get("extra", "")
 adapters = snakemake.params.get("adapters", "")
@@ -47,8 +48,10 @@ if trimmed_paths:
         # Output merged PE reads
         merged = snakemake.output.get("merged", None)
         if merged:
-            if "--merge " not in extra:
-                raise ValueError("output.merged specified but merge option missing")
+            if not re.search(r"--merge\b", extra):
+                raise ValueError(
+                    "output.merged specified but '--merge' option missing from params.extra"
+                )
             trimmed += f" --merged_out {merged}"
 else:
     trimmed = ""
