@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - ucsc-gtftogenepred == 377
+  - ucsc-gtftogenepred ==377

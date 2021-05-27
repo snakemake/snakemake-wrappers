@@ -6,6 +6,6 @@ rule gtfToGenePred:
     log:
         "logs/gtfToGenePred.log"
     params:
-        extra = "-genePredExt" # optional parameters to pass to gtfToGenePred
+        extra="-genePredExt" # optional parameters to pass to gtfToGenePred
     wrapper:
         "master/bio/ucsc/gtfToGenePred"
