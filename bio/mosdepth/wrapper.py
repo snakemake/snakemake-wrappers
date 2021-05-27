@@ -56,10 +56,12 @@ if (region_dist_out or regions_bed_out) and not by:
     )
 
 quantize = snakemake.params.get("quantize", "")
-if quantize and not quantize_out:
-    sys.exit(
-        "You ask for quantized output via params.quantize. Please also specify *.quantized.bed.gz as a rule output."
-    )
+if quantize:
+    if not quantize_out:
+        sys.exit(
+            "You ask for quantized output via params.quantize. Please also specify *.quantized.bed.gz as a rule output."
+        )
+    quantize = f"--quantize {quantize}"
 
 if not quantize and quantize_out:
     sys.exit(
@@ -68,10 +70,12 @@ if not quantize and quantize_out:
 
 
 thresholds = snakemake.params.get("thresholds", "")
-if thresholds and not thresholds_out:
-    sys.exit(
-        "You ask for --thresholds output via params.thresholds. Please also specify *.thresholds.bed.gz as a rule output."
-    )
+if thresholds:
+    if not thresholds_out:
+        sys.exit(
+            "You ask for --thresholds output via params.thresholds. Please also specify *.thresholds.bed.gz as a rule output."
+        )
+    thresholds = f"--thresholds {thresholds}"
 
 if not thresholds and thresholds_out:
     sys.exit(
