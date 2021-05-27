@@ -13,6 +13,6 @@ For all wrappers added by this PR, I made sure that
 * [ ] all fields of the example rules in the `Snakefile`s and their entries are explained via comments (`input:`/`output:`/`params:` etc.),
 * [ ] `stderr` and/or `stdout` are logged correctly (`log:`), depending on the wrapped tool,
 * [ ] the `meta.yaml` contains a link to the documentation of the respective tool or command,
-* [ ] snakefiles pass the linting (`snakemake --lint`),
-* [ ] snakefiles are formatted with [snakefmt](https://github.com/snakemake/snakefmt),
+* [ ] `Snakefile`s pass the linting (`snakemake --lint`),
+* [ ] `Snakefile`s are formatted with [snakefmt](https://github.com/snakemake/snakefmt),
 * [ ] Python wrapper scripts are formatted with [black](https://black.readthedocs.io).
