@@ -1,7 +1,9 @@
 rule qualimap:
     input:
-        bam = "mapped/a.bam",
-        gtf = "annotation.gtf"
+        # BAM aligned, splicing-aware, to reference genome
+        bam="mapped/a.bam",
+        # GTF containing transcript, gene, and exon data
+        gtf="annotation.gtf" 
     output:
         directory("qc/a")
     log:
