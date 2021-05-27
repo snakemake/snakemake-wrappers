@@ -64,14 +64,18 @@ else:
     collapsed = snakemake.output.get("collapsed", None)
     if collapsed:
         if not re.search(r"--collapse\b", extra):
-            raise ValueError("output.collapsed specified but '--collapse' option missing from params.extra")
+            raise ValueError(
+                "output.collapsed specified but '--collapse' option missing from params.extra"
+            )
         trimmed += f" --outputcollapsed {collapsed}"
 
     # Output collapsed and truncated PE reads
     collapsed_trunc = snakemake.output.get("collapsed_trunc", None)
     if collapsed_trunc:
         if not re.search(r"--collapse\b", extra):
-            raise ValueError("output.collapsed_trunc specified but '--collapse' option missing from params.extra")
+            raise ValueError(
+                "output.collapsed_trunc specified but '--collapse' option missing from params.extra"
+            )
         trimmed += f" --outputcollapsedtruncated {collapsed_trunc}"
 
 
