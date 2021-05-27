@@ -87,7 +87,7 @@ precision = snakemake.params.get("precision", "")
 if precision:
     precision = f"MOSDEPTH_PRECISION={precision}"
 
-    
+
 # mosdepth takes additional threads through its option --threads
 # One thread for mosdepth
 # Other threads are *additional* decompression threads passed to the '--threads' argument
