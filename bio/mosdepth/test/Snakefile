@@ -21,10 +21,10 @@ rule mosdepth_bed:
         bai = "aligned/{dataset}.bam.bai",
         bed = "test.bed",
     output:
-        summary = "mosdepth/{dataset}.mosdepth.summary.txt", # this named output is required for prefix parsing
-        "mosdepth/{dataset}.mosdepth.global.dist.txt",
-        "mosdepth/{dataset}.mosdepth.region.dist.txt",
-        "mosdepth/{dataset}.regions.bed.gz",
+        summary = "mosdepth_bed/{dataset}.mosdepth.summary.txt", # this named output is required for prefix parsing
+        "mosdepth_bed/{dataset}.mosdepth.global.dist.txt",
+        "mosdepth_bed/{dataset}.mosdepth.region.dist.txt",
+        "mosdepth_bed/{dataset}.regions.bed.gz",
     log:
         "logs/mosdepth_bed/{dataset}.log"
     params:
@@ -39,11 +39,11 @@ rule mosdepth_by_threshold:
         bam = "aligned/{dataset}.bam",
         bai = "aligned/{dataset}.bam.bai",
     output:
-        summary = "mosdepth/{dataset}.mosdepth.summary.txt", # this named output is required for prefix parsing
-        "mosdepth/{dataset}.mosdepth.global.dist.txt",
-        "mosdepth/{dataset}.mosdepth.region.dist.txt",
-        "mosdepth/{dataset}.regions.bed.gz",
-        "mosdepth/{dataset}.thresholds.bed.gz", # needs to go with params.thresholds spec
+        summary = "mosdepth_by_threshold/{dataset}.mosdepth.summary.txt", # this named output is required for prefix parsing
+        "mosdepth_by_threshold/{dataset}.mosdepth.global.dist.txt",
+        "mosdepth_by_threshold/{dataset}.mosdepth.region.dist.txt",
+        "mosdepth_by_threshold/{dataset}.regions.bed.gz",
+        "mosdepth_by_threshold/{dataset}.thresholds.bed.gz", # needs to go with params.thresholds spec
     log:
         "logs/mosdepth_by/{dataset}.log"
     params:
@@ -59,9 +59,9 @@ rule mosdepth_quantize_precision:
         bam = "aligned/{dataset}.bam",
         bai = "aligned/{dataset}.bam.bai",
     output:
-        summary = "mosdepth/{dataset}.mosdepth.summary.txt", # this named output is required for prefix parsing
-        "mosdepth/{dataset}.mosdepth.global.dist.txt",
-        "mosdepth/{dataset}.quantized.bed.gz", # optional, needs to go with params.quantize spec
+        summary = "mosdepth_quantize_precision/{dataset}.mosdepth.summary.txt", # this named output is required for prefix parsing
+        "mosdepth_quantize_precision/{dataset}.mosdepth.global.dist.txt",
+        "mosdepth_quantize_precision/{dataset}.quantized.bed.gz", # optional, needs to go with params.quantize spec
     log:
         "logs/mosdepth_quantize_precision/{dataset}.log"
     params:
