@@ -4,10 +4,14 @@ __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
 __contributor__= "Johannes Köster, Fritjof Lammers"
 
+import sys
+sys.stderr = open(snakemake.log[0], "w")
+
 from ftplib import FTP
 from io import StringIO
 from subprocess import run
 from os.path import basename
+import csv
 
 species = snakemake.params.species.lower()
 release = snakemake.params.release
@@ -15,10 +19,8 @@ fmt = snakemake.params.fmt
 build = snakemake.params.build
 
 
-def checksum():
-    lines = r.getvalue().strip().split("\n")
-    for line in lines:
-        fields = line.strip().split()
+def verify_checksum(reader):
+    for fields in csv.reader(reader, sep="\t"):
         cksum = int(fields[0])
         filename = fields[2]
         if filename == basename(snakemake.output[0]):
@@ -30,7 +32,7 @@ def checksum():
                 print("CHECKSUM FAILED: %s" % snakemake.output[0])
                 exit(1)
         else:
-            # print("No matching file for CHECKSUM test found")
+            print("No matching file for CHECKSUM test found", file=sys.stderr)
             continue
 
 suffix = ""
@@ -38,8 +40,6 @@ if fmt == "gtf":
     suffix = "gtf.gz"
 elif fmt == "gff3":
     suffix = "gff3.gz"
-
-r = StringIO()
 
 with FTP("ftp.ensembl.org") as ftp, open(snakemake.output[0], "wb") as out:
     ftp.login()
@@ -54,6 +54,8 @@ with FTP("ftp.ensembl.org") as ftp, open(snakemake.output[0], "wb") as out:
         ),
         out.write,
     )
+    
+    checksum_reader = StringIO()
     ftp.retrlines(
         "RETR pub/release-{release}/{fmt}/{species}/CHECKSUMS".format(
             release=release,
@@ -61,10 +63,9 @@ with FTP("ftp.ensembl.org") as ftp, open(snakemake.output[0], "wb") as out:
             species=species,
             fmt=fmt,
             species_cap=species.capitalize(),
-            suffix=suffix,
         ),
-        lambda s, w=r.write: w(s + '\n'),
+        lambda s, w=checksum_reader.write: w(s + '\n'),
         # use StringIO instance for callback, add "\n" because ftplib.retrlines omits newlines
     )
 
-    checksum()
+    verify_checksum(checksum_reader)
