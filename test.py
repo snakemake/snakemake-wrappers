@@ -163,24 +163,6 @@ def test_dada2_se_meta():
 
 
 @skip_if_not_modified
-def test_adapterremoval_pe_collapse_singletons():
-    run(
-        "bio/adapterremoval",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "--use-conda",
-            "trimmed/pe_collapse/a_R1.fastq.gz",
-            "trimmed/pe_collapse/a_R2.fastq.gz",
-            "trimmed/pe_collapse/a.fastq.gz",
-            "trimmed/pe_collapse/a.discarded.fastq.gz",
-            "stats/pe_collapse/a.settings",
-        ],
-    )
-
-
-@skip_if_not_modified
 def test_adapterremoval_pe():
     run(
         "bio/adapterremoval",
