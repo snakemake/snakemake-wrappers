@@ -163,24 +163,6 @@ def test_dada2_se_meta():
 
 
 @skip_if_not_modified
-def test_adapterremoval_pe_collapse_singletons():
-    run(
-        "bio/adapterremoval",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "--use-conda",
-            "trimmed/pe_collapse/a_R1.fastq.gz",
-            "trimmed/pe_collapse/a_R2.fastq.gz",
-            "trimmed/pe_collapse/a.fastq.gz",
-            "trimmed/pe_collapse/a.discarded.fastq.gz",
-            "stats/pe_collapse/a.settings",
-        ],
-    )
-
-
-@skip_if_not_modified
 def test_adapterremoval_pe():
     run(
         "bio/adapterremoval",
@@ -1764,6 +1746,66 @@ def test_minimap2_index():
     run(
         "bio/minimap2/index",
         ["snakemake", "--cores", "1", "genome.mmi", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_mosdepth():
+    run(
+        "bio/mosdepth",
+        [
+            "snakemake",
+            "--cores",
+            "4",
+            "mosdepth/m54075_180905_225130.ccs.ecoliK12_pbi_March2013.mosdepth.summary.txt",
+            "--use-conda",
+            "-F"
+        ]
+    )
+
+
+@skip_if_not_modified
+def test_mosdepth_bed():
+    run(
+        "bio/mosdepth",
+        [
+            "snakemake",
+            "--cores",
+            "4",
+            "mosdepth_bed/m54075_180905_225130.ccs.ecoliK12_pbi_March2013.mosdepth.summary.txt",
+            "--use-conda",
+            "-F"
+        ]
+    )
+
+
+@skip_if_not_modified
+def test_mosdepth_by_threshold():
+    run(
+        "bio/mosdepth",
+        [
+            "snakemake",
+            "--cores",
+            "4",
+            "mosdepth_by_threshold/m54075_180905_225130.ccs.ecoliK12_pbi_March2013.mosdepth.summary.txt",
+            "--use-conda",
+            "-F"
+        ]
+    )
+
+
+@skip_if_not_modified
+def test_mosdepth_quantize_precision():
+    run(
+        "bio/mosdepth",
+        [
+            "snakemake",
+            "--cores",
+            "4",
+            "mosdepth_quantize_precision/m54075_180905_225130.ccs.ecoliK12_pbi_March2013.mosdepth.summary.txt",
+            "--use-conda",
+            "-F"
+        ]
     )
 
 
@@ -3663,5 +3705,12 @@ def test_nextflow():
 def test_gtftogenepred():
     run(
         "bio/ucsc/gtfToGenePred",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
+@skip_if_not_modified
+def test_collectgcbiasmetrics():
+    run(
+        "bio/picard/collectgcbiasmetrics",
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )

@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - cutadapt ==3.4
+  - mosdepth ==0.3.1
