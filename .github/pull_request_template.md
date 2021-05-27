@@ -11,4 +11,5 @@ For all wrappers added by this PR, it holds that
 * [ ] input/output/params etc. of the example rules in the snakefiles are properly explained via comments,
 * [ ] input and output file paths in the resulting rule can be freely chosen,
 * [ ] snakefiles pass the linting (`snakemake --lint`),
-* [ ] snakefiles are formatted with [snakefmt](https://github.com/snakemake/snakefmt).
+* [ ] snakefiles are formatted with [snakefmt](https://github.com/snakemake/snakefmt),
+* [ ] wrapper scripts are formatted with [black](https://black.readthedocs.io).
