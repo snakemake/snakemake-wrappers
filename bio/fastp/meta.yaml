@@ -7,7 +7,7 @@ input:
   - fastq file(s)
 output:
   - trimmed fastq file(s)
-  - unpaired reads (optional)
+  - unpaired reads (optional; eihter in a single file or separate)
   - merged reads (optional)
   - failed reads (optional)
   - json file containing trimming statistics
