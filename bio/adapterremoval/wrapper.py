@@ -4,7 +4,7 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 from pathlib import Path
-import tempfile
+import re
 
 extra = snakemake.params.get("extra", "") + " "
 adapters = snakemake.params.get("adapters", "")
@@ -63,11 +63,15 @@ else:
     # Output collapsed PE reads
     collapsed = snakemake.output.get("collapsed", None)
     if collapsed:
+        if not re.search(r"--collapse\b", extra):
+            raise ValueError("output.collapsed specified but '--collapse' option missing from params.extra")
         trimmed += f" --outputcollapsed {collapsed}"
 
     # Output collapsed and truncated PE reads
     collapsed_trunc = snakemake.output.get("collapsed_trunc", None)
     if collapsed_trunc:
+        if not re.search(r"--collapse\b", extra):
+            raise ValueError("output.collapsed_trunc specified but '--collapse' option missing from params.extra")
         trimmed += f" --outputcollapsedtruncated {collapsed_trunc}"
 
 
