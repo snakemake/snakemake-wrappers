@@ -12,7 +12,7 @@ For all wrappers added by this PR, I made sure that
 * [ ] wherever possible, command line arguments are inferred and set automatically (e.g. based on file extensions in `input:` or `output:`),
 * [ ] all fields of the example rules in the `Snakefile`s and their entries are explained via comments (`input:`/`output:`/`params:` etc.),
 * [ ] `stderr` and/or `stdout` are logged correctly (`log:`), depending on the wrapped tool,
-* [ ] the `description:` field in each `meta.yaml` contains a link to the documentation of the respective tool or command,
+* [ ] the `meta.yaml` contains a link to the documentation of the respective tool or command,
 * [ ] snakefiles pass the linting (`snakemake --lint`),
 * [ ] snakefiles are formatted with [snakefmt](https://github.com/snakemake/snakefmt),
 * [ ] Python wrapper scripts are formatted with [black](https://black.readthedocs.io).
