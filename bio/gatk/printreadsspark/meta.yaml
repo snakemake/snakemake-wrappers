@@ -1,6 +1,6 @@
 name: gatk PrintReadsSpark
 description: |
-  Run gatk PrintReadsSpark.
+  Write reads from SAM format file (SAM/BAM/CRAM) that pass specified criteria to a new file. This is the version that can be run on Spark.
 authors:
   - Filipe G. Vieira
 input:
