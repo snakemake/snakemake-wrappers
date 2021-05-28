@@ -3711,6 +3711,13 @@ def test_collectrnaseqmetrics():
 
 
 @skip_if_not_modified
+def test_gtftogenepred():
+    run(
+        "bio/ucsc/gtfToGenePred",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
+@skip_if_not_modified
 def test_collectgcbiasmetrics():
     run(
         "bio/picard/collectgcbiasmetrics",
