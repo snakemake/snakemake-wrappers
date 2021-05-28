@@ -22,8 +22,8 @@ assert (
 
 shell(
     "cutadapt"
-    " {snakemake.params.adapters}"
-    " {snakemake.params.extra}"
+    " {adapters}"
+    " {extra}"
     " -o {snakemake.output.fastq1}"
     " -p {snakemake.output.fastq2}"
     " -j {snakemake.threads}"
