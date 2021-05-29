@@ -1,6 +1,6 @@
 name: gatk ApplyBQSRSpark
 description: |
-  Run gatk ApplyBQSRSpark.
+  ApplyBQSRSpark: Apply base quality score recalibration on Spark; uses output of the BaseRecalibrator tool.
 authors:
   - Filipe G. Vieira
 input:
