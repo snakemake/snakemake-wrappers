@@ -8,5 +8,5 @@ input:
 output:
   - SAM/BAM/CRAM file
 notes: |
-  * The `extra` param alllows for additional program arguments (not `-@/--threads` or `-O/--output-fmt`).
+  * The `extra` param allows for additional program arguments (not `-@/--threads` or `-O/--output-fmt`).
   * For more information see, http://www.htslib.org/doc/samtools-view.html
