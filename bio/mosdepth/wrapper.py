@@ -90,7 +90,7 @@ if precision:
 
 fasta = snakemake.input.get("fasta", "")
 if fasta:
-    fasta = f"--fasta {precision}"
+    fasta = f"--fasta {fasta}"
 
 
 # mosdepth takes additional threads through its option --threads
