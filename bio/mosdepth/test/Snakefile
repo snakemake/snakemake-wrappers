@@ -71,3 +71,23 @@ rule mosdepth_quantize_precision:
     threads:  # additional decompression threads through `--threads`
         4     # This value - 1 will be sent to `--threads`
     wrapper: "master/bio/mosdepth"
+
+
+rule mosdepth_cram:
+    input:
+        bam = "aligned/{dataset}.cram",
+        bai = "aligned/{dataset}.cram.crai",
+        bed = "test.bed",
+        fasta = "genome.fasta",
+    output:
+        "mosdepth_cram/{dataset}.mosdepth.global.dist.txt",
+        "mosdepth_cram/{dataset}.mosdepth.region.dist.txt",
+        "mosdepth_cram/{dataset}.regions.bed.gz",
+        summary = "mosdepth_cram/{dataset}.mosdepth.summary.txt", # this named output is required for prefix parsing
+    log:
+        "logs/mosdepth_cram/{dataset}.log"
+    params:
+        extra = "--no-per-base --use-median",  # optional
+    threads:  # additional decompression threads through `--threads`
+        4     # This value - 1 will be sent to `--threads`
+    wrapper: "master/bio/mosdepth"

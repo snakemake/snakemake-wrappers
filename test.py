@@ -1810,6 +1810,21 @@ def test_mosdepth_quantize_precision():
 
 
 @skip_if_not_modified
+def test_mosdepth_cram():
+    run(
+        "bio/mosdepth",
+        [
+            "snakemake",
+            "--cores",
+            "4",
+            "a.mosdepth.summary.txt",
+            "--use-conda",
+            "-F"
+        ]
+    )
+
+
+@skip_if_not_modified
 def test_multiqc():
     run(
         "bio/multiqc",
