@@ -24,7 +24,7 @@ rule minimap2_sam:
         "logs/minimap2/{input1}.log"
     params:
         extra="-x map-pb",           # optional
-        sort="none",                 # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
+        sorting="none",                 # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
         sort_extra=""                # optional: extra arguments for samtools/picard
     threads: 3
     wrapper:
