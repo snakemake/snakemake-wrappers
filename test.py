@@ -1734,10 +1734,26 @@ def test_macs2_callpeak():
 
 
 @skip_if_not_modified
-def test_minimap2_aligner():
+def test_minimap2_aligner_paf():
     run(
         "bio/minimap2/aligner",
         ["snakemake", "--cores", "1", "aligned/genome_aln.paf", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_minimap2_aligner_sam():
+    run(
+        "bio/minimap2/aligner",
+        ["snakemake", "--cores", "1", "aligned/genome_aln.sam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_minimap2_aligner_bam():
+    run(
+        "bio/minimap2/aligner",
+        ["snakemake", "--cores", "1", "aligned/genome_aln.bam", "--use-conda", "-F"],
     )
 
 
