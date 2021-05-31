@@ -11,5 +11,5 @@ output:
   - BAM index file (optional)
   - metrics file (optional)
 notes: |
-  * The `extra` param alllows for additional program arguments (not `inputformat` or `outputformat`).
+  * The `extra` param allows for additional program arguments (not `inputformat` or `outputformat`).
   * For more information see, https://gitlab.com/german.tischler/biobambam2

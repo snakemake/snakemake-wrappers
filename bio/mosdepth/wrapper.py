@@ -88,6 +88,11 @@ if precision:
     precision = f"MOSDEPTH_PRECISION={precision}"
 
 
+fasta = snakemake.input.get("fasta", "")
+if fasta:
+    fasta = f"--fasta {fasta}"
+
+
 # mosdepth takes additional threads through its option --threads
 # One thread for mosdepth
 # Other threads are *additional* decompression threads passed to the '--threads' argument
@@ -99,5 +104,5 @@ prefix = snakemake.output.summary.replace(".mosdepth.summary.txt", "")
 
 
 shell(
-    "({precision} mosdepth {threads} {by} {quantize} {thresholds} {extra} {prefix} {snakemake.input.bam}) {log}"
+    "({precision} mosdepth {threads} {fasta} {by} {quantize} {thresholds} {extra} {prefix} {snakemake.input.bam}) {log}"
 )
