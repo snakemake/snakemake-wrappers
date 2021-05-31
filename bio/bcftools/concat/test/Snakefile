@@ -7,7 +7,6 @@ rule bcftools_concat:
         "logs/all.log"
     params:
         uncompressed_bcf = False,
-        bcftools_use_mem = False,
         extra = ""  # optional parameters for bcftools concat (except -o)
     threads: 4
     resources:
