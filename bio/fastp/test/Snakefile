@@ -3,6 +3,7 @@ rule fastp_se:
         sample=["reads/se/{sample}.fastq"]
     output:
         trimmed="trimmed/se/{sample}.fastq",
+        failed="trimmed/se/{sample}.failed.fastq",
         html="report/se/{sample}.html",
         json="report/se/{sample}.json"
     log:
@@ -20,13 +21,20 @@ rule fastp_pe:
         sample=["reads/pe/{sample}.1.fastq", "reads/pe/{sample}.2.fastq"] 
     output:
         trimmed=["trimmed/pe/{sample}.1.fastq", "trimmed/pe/{sample}.2.fastq"],
+        # Unpaired reads separately
+        unpaired1="trimmed/pe/{sample}.u1.fastq",
+        unpaired2="trimmed/pe/{sample}.u2.fastq",
+        # or in a single file
+#        unpaired="trimmed/pe/{sample}.singletons.fastq",
+        merged="trimmed/pe/{sample}.merged.fastq",
+        failed="trimmed/pe/{sample}.failed.fastq",
         html="report/pe/{sample}.html",
         json="report/pe/{sample}.json"
     log:
         "logs/fastp/pe/{sample}.log"
     params:
         adapters="--adapter_sequence ACGGCTAGCTA --adapter_sequence_r2 AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC",
-        extra=""
+        extra="--merge"
     threads: 2
     wrapper:
         "master/bio/fastp"

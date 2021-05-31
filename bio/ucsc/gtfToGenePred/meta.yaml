@@ -1,0 +1,9 @@
+name: gtfToGenePred
+description: |
+        Convert a GTF file to genePred format (see https://genome.ucsc.edu/FAQ/FAQformat.html#format9)
+authors:
+  - Brett Copeland
+input:
+  - GTF file
+output:
+  - genePred table
