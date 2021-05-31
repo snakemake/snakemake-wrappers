@@ -16,7 +16,7 @@ out_ext = out_ext[1:].upper()
 # Extract arguments.
 extra = snakemake.params.get("extra", "")
 
-sort = snakemake.params.get("sort", "none")
+sort = snakemake.params.get("sorting", "none")
 sort_extra = snakemake.params.get("sort_extra", "")
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
