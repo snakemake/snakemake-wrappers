@@ -1817,7 +1817,7 @@ def test_mosdepth_cram():
             "snakemake",
             "--cores",
             "4",
-            "a.mosdepth.summary.txt",
+            "mosdepth_cram/a.mosdepth.summary.txt",
             "--use-conda",
             "-F"
         ]
