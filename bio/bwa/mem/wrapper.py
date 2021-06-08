@@ -24,7 +24,6 @@ if re.search(r"-T\b", sort_extra) or re.search(r"--TMP_DIR\b", sort_extra):
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-tmp_prefix = path.splitext(snakemake.output[0])[0]
 tmp_dir = snakemake.params.get("tmp_dir")
 if tmp_dir:
     tempfile.tempdir = tmp_dir
