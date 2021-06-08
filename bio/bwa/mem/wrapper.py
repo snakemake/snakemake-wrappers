@@ -5,6 +5,7 @@ __license__ = "MIT"
 
 
 from os import path
+import re
 import tempfile
 from snakemake.shell import shell
 
@@ -15,6 +16,11 @@ extra = snakemake.params.get("extra", "")
 sort = snakemake.params.get("sorting", "none")
 sort_order = snakemake.params.get("sort_order", "coordinate")
 sort_extra = snakemake.params.get("sort_extra", "")
+
+if re.search(r"-T\b", sort_extra) or re.search(r"--TMP_DIR\b", sort_extra):
+    sys.exit(
+        "You have specified temp dir (`-T` or `--TMP_DIR`) in params.sort_extra; this is automatically set from params.tmp_dir."
+    )
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -53,8 +59,8 @@ elif sort == "picard":
 
     # Sort alignments using picard SortSam.
     pipe_cmd = (
-        "picard SortSam {sort_extra} INPUT=/dev/stdin"
-        " OUTPUT={snakemake.output[0]} SORT_ORDER={sort_order} TMP_DIR={tmp}"
+        "picard SortSam {sort_extra} --INPUT /dev/stdin"
+        " --OUTPUT {snakemake.output[0]} --SORT_ORDER {sort_order} --TMP_DIR {tmp}"
     )
 
 else:
