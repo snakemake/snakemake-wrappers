@@ -3779,3 +3779,10 @@ def test_collectgcbiasmetrics():
         "bio/picard/collectgcbiasmetrics",
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )
+
+@skip_if_not_modified
+def test_calculate_expression():
+    run(
+        "bio/rsem/calculate-expression",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
