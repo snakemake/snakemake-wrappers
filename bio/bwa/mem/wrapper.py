@@ -5,18 +5,24 @@ __license__ = "MIT"
 
 
 from os import path
-
+import tempfile
 from snakemake.shell import shell
 
 
 # Extract arguments.
 extra = snakemake.params.get("extra", "")
 
-sort = snakemake.params.get("sort", "none")
+sort = snakemake.params.get("sorting", "none")
 sort_order = snakemake.params.get("sort_order", "coordinate")
 sort_extra = snakemake.params.get("sort_extra", "")
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+
+tmp_prefix = path.splitext(snakemake.output[0])[0]
+tmp_dir = snakemake.params.get("tmp_dir")
+if tmp_dir:
+    tempfile.tempdir = tmp_dir
+
 
 # Check inputs/arguments.
 if not isinstance(snakemake.input.reads, str) and len(snakemake.input.reads) not in {
@@ -41,24 +47,25 @@ elif sort == "samtools":
         sort_extra += " -n"
 
     # Sort alignments using samtools sort.
-    pipe_cmd = "samtools sort {sort_extra} -o {snakemake.output[0]} -"
+    pipe_cmd = "samtools sort -T {tmp}/{tmp_prefix}.tmp {sort_extra} -o {snakemake.output[0]} -"
 
 elif sort == "picard":
 
     # Sort alignments using picard SortSam.
     pipe_cmd = (
         "picard SortSam {sort_extra} INPUT=/dev/stdin"
-        " OUTPUT={snakemake.output[0]} SORT_ORDER={sort_order}"
+        " OUTPUT={snakemake.output[0]} SORT_ORDER={sort_order} TMP_DIR={tmp}"
     )
 
 else:
     raise ValueError("Unexpected value for params.sort ({})".format(sort))
 
-shell(
-    "(bwa mem"
-    " -t {snakemake.threads}"
-    " {extra}"
-    " {snakemake.params.index}"
-    " {snakemake.input.reads}"
-    " | " + pipe_cmd + ") {log}"
-)
+with tempfile.TemporaryDirectory() as tmp:
+    shell(
+        "(bwa mem"
+        " -t {snakemake.threads}"
+        " {extra}"
+        " {snakemake.params.index}"
+        " {snakemake.input.reads}"
+        " | " + pipe_cmd + ") {log}"
+    )
