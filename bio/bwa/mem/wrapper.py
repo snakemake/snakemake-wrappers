@@ -52,7 +52,7 @@ elif sort == "samtools":
         sort_extra += " -n"
 
     # Sort alignments using samtools sort.
-    pipe_cmd = "samtools sort -T {tmp}/{tmp_prefix}.tmp {sort_extra} -o {snakemake.output[0]} -"
+    pipe_cmd = "samtools sort -T {tmp} {sort_extra} -o {snakemake.output[0]} -"
 
 elif sort == "picard":
 
