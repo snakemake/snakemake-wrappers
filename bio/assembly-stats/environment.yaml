@@ -1,7 +1,5 @@
 channels:
   - bioconda
-  - r
-  - defaults
   - conda-forge
 dependencies:
   - _libgcc_mutex=0.1=main
