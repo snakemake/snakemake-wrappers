@@ -1,11 +1,9 @@
-sample = "test/AVC96"
-
 rule run_assembly_stats:
     input:
-        assembly="{sample}.fasta"
+        assembly="test/{sample}.fasta"
     output:
         assembly_stats="{sample}_stats.txt"
+    params:
+        extra=""
     wrapper:
-        "https://github.com/maxlcummins/snakemake-wrappers/raw/0.2.0/bio/assembly-stats/sort"
-    shell:
-        "assembly-stats -t {input} > {output}"
+        "https://raw.githubusercontent.com/maxlcummins/snakemake-wrappers/assembly-stats/bio/assembly-stats/wrapper.py"

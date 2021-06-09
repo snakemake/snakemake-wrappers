@@ -13,5 +13,5 @@ shell(
     " {snakemake.params.extra}"
     " -query {snakemake.input.assembly}"
     " >"
-    " -out {snakemake.output[0]}"
+    " {snakemake.output.assembly_stats}"
 )
