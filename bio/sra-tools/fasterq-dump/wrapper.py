@@ -17,11 +17,6 @@ if outdir:
     outdir = f"--outdir {outdir}"
 
 
-tmp_dir = snakemake.params.get("tmp_dir", "")
-if tmp_dir:
-    tempfile.tempdir = tmp_dir
-
-
 compress = ""
 for output in snakemake.output:
     out_name, out_ext = os.path.splitext(output)
