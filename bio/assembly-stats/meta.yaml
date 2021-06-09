@@ -15,12 +15,11 @@ description: Generates report of summary statistics for a genome assembly, inclu
   - "N90N"
 authors:
   - Pathogen Informatics, Wellcome Sanger Institute (assembly-stats tool) - https://github.com/sanger-pathogens
-  - Max Cummins (Snakemake wrapper [unaffiliated with Sanger])
+  - Max Cummins (Snakemake wrapper [unaffiliated with Wellcome Sanger Institute])
 input:
-  - fasta
-  - fastq
+  - Genomic assembly (fasta format)
 output:
-  - Assembly statistics in the format of your choosing
+  - Assembly statistics (format of your choosing, default = tab-delimited)
 notes: |
   * The `extra` param allows for additional program arguments.
   * For more inforamtion see https://github.com/sanger-pathogens/assembly-stats
