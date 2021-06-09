@@ -1,9 +1,0 @@
-rule run_assembly_stats:
-    input:
-        assembly="test/{sample}.fasta"
-    output:
-        assembly_stats="{sample}_stats.txt"
-    params:
-        extra=""
-    wrapper:
-        "https://raw.githubusercontent.com/maxlcummins/snakemake-wrappers/assembly-stats/bio/assembly-stats/wrapper.py"
