@@ -1,0 +1,9 @@
+    rule run_assembly_stats:
+        input:
+            assembly="{sample}.fasta"
+        output:
+            assembly_stats="{sample}_stats.txt"
+        wrapper:
+            "https://github.com/maxlcummins/snakemake-wrappers/raw/0.2.0/bio/assembly-stats/sort"
+        shell:
+            "assembly-stats -t {input} > {output}"
