@@ -18,5 +18,7 @@ rule run_assembly_stats:
         # Note that you can only pick one output format
         # Check https://github.com/sanger-pathogens/assembly-stats for more details
         extra="-t"
+    threads:
+        1
     wrapper:
         "0.2.0/bio/assembly-stats"
