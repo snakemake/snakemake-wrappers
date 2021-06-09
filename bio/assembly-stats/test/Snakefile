@@ -1,8 +1,10 @@
 rule run_assembly_stats:
     input:
-        assembly="{sample}.fasta"
+        #Input assembly
+        assembly="{sample}.fasta",
     output:
-        assembly_stats="{sample}_stats.txt"
+        #Assembly statistics
+        assembly_stats="{sample}_stats.txt",
     params:
         # Tab delimited output, with a header, is set as the default. Other options are available:
         #   -l <int>
@@ -17,8 +19,10 @@ rule run_assembly_stats:
         # If you want to add multiple options just delimit them with a space.
         # Note that you can only pick one output format
         # Check https://github.com/sanger-pathogens/assembly-stats for more details
-        extra="-t"
-    threads:
-        1
+        extra="-t",
+    log:
+        "logs/{sample}.assembly-stats.log",
+    threads: 1
     wrapper:
-        "0.2.0/bio/assembly-stats"
+        #"0.2.0/bio/assembly-stats"
+        "https://raw.githubusercontent.com/maxlcummins/snakemake-wrappers/assembly-stats/bio/assembly-stats/wrapper.py"
