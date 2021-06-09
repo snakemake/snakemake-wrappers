@@ -11,7 +11,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 shell(
     "assembly-stats"
     " {snakemake.params.extra}"
-    " -query {snakemake.input.assembly}"
+    " {snakemake.input.assembly}"
     " >"
     " {snakemake.output.assembly_stats}"
 )
