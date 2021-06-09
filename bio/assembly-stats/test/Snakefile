@@ -19,4 +19,4 @@ rule run_assembly_stats:
         # Check https://github.com/sanger-pathogens/assembly-stats for more details
         extra="-t"
     wrapper:
-        "https://raw.githubusercontent.com/maxlcummins/snakemake-wrappers/assembly-stats/bio/assembly-stats/wrapper.py"
+        "0.2.0/bio/assembly-stats"
