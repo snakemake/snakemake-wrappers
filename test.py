@@ -3338,6 +3338,21 @@ def test_fasterq_dump_pe():
 
 
 @skip_if_not_modified
+def test_fasterq_dump_pe_gz():
+    run(
+        "bio/sra-tools/fasterq-dump",
+        ["snakemake", "--cores", "1", "data/SRR14133829_1.fastq.gz", "--use-conda", "-F"],
+    )
+
+@skip_if_not_modified
+def test_fasterq_dump_pe_bz2():
+    run(
+        "bio/sra-tools/fasterq-dump",
+        ["snakemake", "--cores", "1", "data/SRR14133829_1.fastq.bz2", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_bwa_mem_samblaster():
     run(
         "bio/bwa/mem-samblaster",

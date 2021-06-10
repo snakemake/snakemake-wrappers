@@ -6,7 +6,34 @@ rule get_fastq_pe:
     log:
         "logs/{accession}_PE.log"
     params:
-        tmp_dir="/tmp/",
+        extra="--skip-technical"
+    threads: 6  # defaults to 6
+    wrapper:
+        "master/bio/sra-tools/fasterq-dump"
+
+
+rule get_fastq_pe_gz:
+    output:
+        # the wildcard name must be accession, pointing to an SRA number
+        "data/{accession}_1.fastq.gz",
+        "data/{accession}_2.fastq.gz",
+    log:
+        "logs/{accession}_PE.log"
+    params:
+        extra="--skip-technical"
+    threads: 6  # defaults to 6
+    wrapper:
+        "master/bio/sra-tools/fasterq-dump"
+
+
+rule get_fastq_pe_bz2:
+    output:
+        # the wildcard name must be accession, pointing to an SRA number
+        "data/{accession}_1.fastq.bz2",
+        "data/{accession}_2.fastq.bz2",
+    log:
+        "logs/{accession}_PE.log"
+    params:
         extra="--skip-technical"
     threads: 6  # defaults to 6
     wrapper:
