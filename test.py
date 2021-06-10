@@ -3325,7 +3325,22 @@ def test_tximport():
 def test_fasterq_dump_se():
     run(
         "bio/sra-tools/fasterq-dump",
-        ["snakemake", "--cores", "1", "data/SRR14133989.fastq.gz", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "data/se/SRR14133989.fastq", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_fasterq_dump_se_gz():
+    run(
+        "bio/sra-tools/fasterq-dump",
+        ["snakemake", "--cores", "1", "data/se/SRR14133989.fastq.gz", "--use-conda", "-F"],
+    )
+
+@skip_if_not_modified
+def test_fasterq_dump_se_bz2():
+    run(
+        "bio/sra-tools/fasterq-dump",
+        ["snakemake", "--cores", "1", "data/se/SRR14133989.fastq.bz2", "--use-conda", "-F"],
     )
 
 
@@ -3333,7 +3348,7 @@ def test_fasterq_dump_se():
 def test_fasterq_dump_pe():
     run(
         "bio/sra-tools/fasterq-dump",
-        ["snakemake", "--cores", "1", "data/SRR14133829_1.fastq", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "data/pe/SRR14133829_1.fastq", "--use-conda", "-F"],
     )
 
 
@@ -3341,14 +3356,14 @@ def test_fasterq_dump_pe():
 def test_fasterq_dump_pe_gz():
     run(
         "bio/sra-tools/fasterq-dump",
-        ["snakemake", "--cores", "1", "data/SRR14133829_1.fastq.gz", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "data/pe/SRR14133829_1.fastq.gz", "--use-conda", "-F"],
     )
 
 @skip_if_not_modified
 def test_fasterq_dump_pe_bz2():
     run(
         "bio/sra-tools/fasterq-dump",
-        ["snakemake", "--cores", "1", "data/SRR14133829_1.fastq.bz2", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "data/pe/SRR14133829_1.fastq.bz2", "--use-conda", "-F"],
     )
 
 
