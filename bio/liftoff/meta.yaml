@@ -1,5 +1,5 @@
 name: "liftoff"
-description: Lift features from one genome assembly to another
+description: Lift features from one genome assembly to another (https://github.com/agshumate/Liftoff)
 authors:
   - Tomás Di Domenico
 input:
