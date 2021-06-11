@@ -1,0 +1,18 @@
+rule liftoff:
+    input:
+        ref = "{ref}.fasta.gz",
+        tgt = "{ref}.fasta.gz",
+        ann = "{ann}.gff.gz"
+    output:
+        main = "{ref}_{ann}_{ref}.gff3",
+        unmapped = "{ref}_{ann}_{ref}.unmapped.txt"
+    message:
+        "Testing liftoff"
+    threads:
+        1
+    params:
+        extra = ""
+    log:
+        "logs/liftoff_{ref}_{ann}_{ref}.log"
+    wrapper:
+        "master/bio/liftoff"

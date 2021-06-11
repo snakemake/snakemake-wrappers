@@ -124,6 +124,9 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+@skip_if_not_modified
+def test_liftoff():
+    run("bio/liftoff", ["snakemake", "--cores", "1", "genome_annotation_genome.gff3", "--use-conda", "-F"])
 
 @skip_if_not_modified
 def test_biobambam2_bamsormadup():
