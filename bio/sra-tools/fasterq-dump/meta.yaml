@@ -3,3 +3,10 @@ description: Download FASTQ files from SRA.
 authors:
   - Johannes Köster
   - Derek Croote
+  - Filipe G. Vieira
+output:
+  - fastq file with R1 reads
+notes: |
+  * The output format is automatically detected, and files compressed with either `gzip` or `bzip2`.
+  * The `extra` param alllows for additional program arguments.
+  * More information in, https://github.com/ncbi/sra-tools
