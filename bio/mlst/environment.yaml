@@ -1,6 +1,5 @@
 channels:
   - bioconda
-  - r
   - conda-forge
 dependencies:
   - _libgcc_mutex=0.1=conda_forge
