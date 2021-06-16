@@ -6,7 +6,7 @@ __license__ = "MIT"
 from snakemake.shell import shell
 from os import path
 
-log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
     "mlst"
