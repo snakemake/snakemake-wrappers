@@ -6,7 +6,7 @@ authors:
 input:
   - Genomic assembly (fasta format)
 output:
-  - It returns a tab-separated line containing the filename, matching PubMLST scheme name, ST (sequence type) and the allele IDs
+  - Returns a tab-separated line containing the filename, matching PubMLST scheme name, ST (sequence type) and the allele IDs. Other output formats are also available (eg. CSV, JSON)
 notes: |
   * The `extra` param allows for additional program arguments.
   * For more inforamtion see https://github.com/tseemann/mlst
