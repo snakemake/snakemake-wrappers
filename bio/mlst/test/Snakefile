@@ -36,13 +36,13 @@ rule run_mlst:
         #   --mincov [n.n]    DNA %cov to report partial allele at all [?] (default '10')
         #   --minscore [n.n]  Minumum score out of 100 to match a scheme (when auto --scheme) (default '50')
         # PATHS
-        #   --blastdb [X]     BLAST database (default '/data/malcummi/miniconda3/envs/mlst/db/blast/mlst.fa')
-        #   --datadir [X]     PubMLST data (default '/data/malcummi/miniconda3/envs/mlst/db/pubmlst')
+        #   --blastdb [X]     BLAST database
+        #   --datadir [X]     PubMLST data
         # HOMEPAGE
         #   https://github.com/tseemann/mlst - Torsten Seemann
-        extra="--nopath",
+        extra="--nopath --quiet",
     log:
-        "logs/{sample}.assembly-stats.log",
+        "logs/{sample}.mlst.log",
     threads: 1
     wrapper:
         #"0.2.0/bio/mlst"
