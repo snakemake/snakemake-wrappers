@@ -46,5 +46,5 @@ rule run_mlst:
         "logs/{sample}.mlst.log",
     threads: 1
     wrapper:
-        #"0.2.0/bio/mlst"
-        "https://raw.githubusercontent.com/maxlcummins/snakemake-wrappers/mlst/bio/mlst/wrapper.py"
+        "0.2.0/bio/mlst"
+        #"https://raw.githubusercontent.com/maxlcummins/snakemake-wrappers/mlst/bio/mlst/wrapper.py"
