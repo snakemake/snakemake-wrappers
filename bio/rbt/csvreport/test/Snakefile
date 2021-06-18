@@ -6,7 +6,7 @@ rule vembrane_filter:
         # path to the resulting report directory
         directory("qc_data"),
     params:
-        extra="--sort-column 'p-value'",
+        extra="--sort-column 'contig length'",
     log:
         "logs/rbt-csv-report",
     wrapper:
