@@ -16,6 +16,7 @@ This wrapper can be used in the following way:
 {{ snakefile }}
 
 Note that input, output and log file paths can be chosen freely.
+
 When running with
 
 .. code-block:: bash
@@ -51,6 +52,25 @@ Input/Output
  {% endfor %}
 
 {% endfor %}
+{% endif %}
+
+{% if params %}
+
+Params
+------
+
+{# Parse the params section of .yaml #}
+{% for key in params %}
+  {% if key is mapping %}
+   {% for k, value in key.items() %}
+* ``{{ k }}``: {{ value }}
+   {% endfor %}
+  {% else %}
+* ``{{ key }}``: {{ params[key] }}
+  {% endif %}
+
+{% endfor %}
+
 {% endif %}
 
 {% if notes %}
