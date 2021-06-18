@@ -5,6 +5,7 @@
 
 {{ description }}
 
+**URL**: {{ url }}
 
 Example
 -------

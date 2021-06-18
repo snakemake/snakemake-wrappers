@@ -1,5 +1,6 @@
 name: seqtk mergepe
 description: Interleave two paired-end FASTA/Q files
+url: https://github.com/lh3/seqtk
 authors:
   - Michael Hall
 input:

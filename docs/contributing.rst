@@ -37,6 +37,7 @@ The following fields are available to use in the wrapper ``meta.yaml`` file:
 
 * **name**: The name of the wrapper.
 * **description**: a description of what the wrapper does.
+* **url**: URL to the wrapper tool webpage.
 * **authors**: A `sequence`_ of names of the people who have contributed to the wrapper.
 * **input**: A `mapping`_ or `sequence`_ of required inputs for the wrapper.
 * **output**: A `mapping`_ or `sequence`_ of output(s) from the wrapper.
@@ -50,6 +51,7 @@ Example
 
     name: seqtk mergepe
     description: Interleave two paired-end FASTA/Q files
+    url: https://github.com/lh3/seqtk
     authors:
       - Michael Hall
     input:
