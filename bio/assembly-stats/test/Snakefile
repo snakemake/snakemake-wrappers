@@ -24,5 +24,4 @@ rule run_assembly_stats:
         "logs/{sample}.assembly-stats.log",
     threads: 1
     wrapper:
-        #"0.2.0/bio/assembly-stats"
-        "https://raw.githubusercontent.com/maxlcummins/snakemake-wrappers/assembly-stats/bio/assembly-stats/wrapper.py"
+        "master/bio/assembly-stats"
