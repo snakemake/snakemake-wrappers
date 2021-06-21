@@ -12,6 +12,6 @@ shell(
     "assembly-stats"
     " {snakemake.params.extra}"
     " {snakemake.input.assembly}"
-    " >"
-    " {snakemake.output.assembly_stats}"
+    " > {snakemake.output.assembly_stats}"
+    " {log}"
 )
