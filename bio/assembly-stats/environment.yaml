@@ -2,7 +2,4 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
-  - _libgcc_mutex=0.1=main
-  - assembly-stats=1.0.1=hc9558a2_3
-  - libgcc-ng=9.1.0=hdf63c60_0
-  - libstdcxx-ng=9.1.0=hdf63c60_0
+  - assembly-stats=1.0
