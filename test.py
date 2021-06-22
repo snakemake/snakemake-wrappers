@@ -130,6 +130,15 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+
+@skip_if_not_modified
+def test_rbt_csvreport():
+    run(
+        "bio/rbt/csvreport",
+        ["snakemake", "--cores", "1", "qc_data", "--use-conda", "-F"],
+    )
+
+    
 @skip_if_not_modified
 def test_liftoff():
     run(
