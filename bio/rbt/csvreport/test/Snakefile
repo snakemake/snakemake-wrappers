@@ -1,4 +1,4 @@
-rule vembrane_filter:
+rule csv_report:
     input:
         # a csv formatted file containing the data for the report
         "report.csv",
