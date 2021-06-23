@@ -3935,3 +3935,11 @@ def test_rsem_prepare_reference():
         "bio/rsem/prepare-reference",
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )
+
+
+@skip_if_not_modified
+def test_generate_data_matrix():
+    run(
+        "bio/rsem/generate-data-matrix",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )

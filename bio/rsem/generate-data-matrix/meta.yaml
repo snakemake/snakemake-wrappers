@@ -1,0 +1,11 @@
+name: rsem generate data matrix
+description: |
+        Run rsem-generate-data-matrix to combine a set of single-sample rsem results into a single matrix.
+authors:
+  - Brett Copeland
+input:
+  - a list of rsem results files
+output:
+  - Quantification results summarized by allele/gene/isoform per sample
+notes: |
+  * For more information, see https://github.com/deweylab/RSEM.
