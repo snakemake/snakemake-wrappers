@@ -13,5 +13,5 @@ shell(
     " {snakemake.params.extra}"
     " {snakemake.input.assembly}"
     " > {snakemake.output.mlst}"
-    "{log}"
+    " {log}"
 )
