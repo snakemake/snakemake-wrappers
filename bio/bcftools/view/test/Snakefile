@@ -1,13 +1,14 @@
 rule bcf_view_sample_file:
     input:
-        "{prefix}.bcf",
-        index="{prefix}.bcf.csi",
+        "{prefix}.bcf",  # input bcf/vcf needs to be first input
+        index="{prefix}.bcf.csi",  # other inputs are optional
         samples="samples.txt",
     output:
         "{prefix}.view_sample.vcf",
     log:
         "log/{prefix}.view_sample.vcf.log",
     params:
+        # optional extra parameters
         extra=lambda w, input: f"-S {input.samples}",
     wrapper:
         "master/bio/bcftools/view"
