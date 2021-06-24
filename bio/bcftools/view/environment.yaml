@@ -3,4 +3,4 @@ channels:
   - conda-forge
 dependencies:
   - bcftools ==1.12
-  - snakemake-wrapper-utils ==0.2.0
+  - snakemake-wrapper-utils ==0.2
