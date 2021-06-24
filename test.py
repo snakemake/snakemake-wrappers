@@ -718,10 +718,42 @@ def test_bcftools_reheader():
 
 
 @skip_if_not_modified
-def test_bcftools_view():
+def test_bcftools_view_sample_vcf():
     run(
         "bio/bcftools/view",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.vcf"],
+        ["snakemake", "--cores", "1", "a.view_sample.vcf", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_bcftools_view_vcf():
+    run(
+        "bio/bcftools/view",
+        ["snakemake", "--cores", "1", "a.view.vcf", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_bcftools_view_vcf_gz():
+    run(
+        "bio/bcftools/view",
+        ["snakemake", "--cores", "1", "a.view.vcf.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_bcftools_view_bcf():
+    run(
+        "bio/bcftools/view",
+        ["snakemake", "--cores", "1", "a.view.bcf", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_bcftools_view_uncompressed_bcf():
+    run(
+        "bio/bcftools/view",
+        ["snakemake", "--cores", "1", "a.view.uncompressed.bcf", "--use-conda", "-F"],
     )
 
 
