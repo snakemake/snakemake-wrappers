@@ -4,7 +4,7 @@ rule bcf_to_vcf:
     output:
         vcf="{prefix}.vcf"
     params:
-        ""  # optional parameters for bcftools view (except -o)
+        extra=""
     log:
         "logs/{prefix}.log"
     wrapper:
