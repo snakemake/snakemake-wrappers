@@ -1,11 +1,11 @@
 rule bcf_to_vcf:
     input:
-        bcf="{prefix}.bcf"
+        bcf="{prefix}.bcf",
     output:
-        vcf="{prefix}.vcf"
+        vcf="{prefix}.vcf",
     params:
-        extra=""
+        extra="",
     log:
-        "logs/{prefix}.log"
+        "logs/{prefix}.log",
     wrapper:
         "master/bio/bcftools/view"
