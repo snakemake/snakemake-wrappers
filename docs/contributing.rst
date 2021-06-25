@@ -15,7 +15,7 @@ If you want to contribute we suggest the following procedure:
 The pull request will be reviewed and included as fast as possible.
 Contributions should follow the coding style of the already present examples, i.e.:
 
-* provide a ``meta.yaml`` with name, description and author(s) of the wrapper
+* provide a ``meta.yaml`` that describes the wrapper (see the `meta.yaml documentation below <meta>`_)
 * provide an ``environment.yaml`` which lists all required software packages (the
   packages should be available for installation via the
   `default anaconda channels <https://anaconda.org/anaconda>`_ or via the
