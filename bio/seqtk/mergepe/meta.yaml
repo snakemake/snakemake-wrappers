@@ -4,7 +4,7 @@ url: https://github.com/lh3/seqtk
 authors:
   - Michael Hall
 input:
-  - paired fastq files - can be compressed.
+  - paired fastq files - can be compressed in gzip format (``*.gz``).
 output:
   - >
     a single, interleaved FASTA/Q file. By default, the output will be compressed,
