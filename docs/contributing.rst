@@ -30,6 +30,8 @@ Contributions should follow the coding style of the already present examples, i.
 * follow the python `style guide <http://legacy.python.org/dev/peps/pep-0008>`_,
   using 4 spaces for indentation.
 
+.. _meta:
+
 ``meta.yaml`` file
 -------------------
 
