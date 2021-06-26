@@ -16,26 +16,28 @@ The pull request will be reviewed and included as fast as possible.
 Contributions should follow the coding style of the already present examples, i.e.:
 
 * provide a ``meta.yaml`` that describes the wrapper (see the `meta.yaml documentation below <meta>`_)
-* provide an ``environment.yaml`` which lists all required software packages (the
+* provide an ``environment.yaml`` which lists all required software packages and follows
+  `the respective best practices <https://stackoverflow.com/a/64594513/2352071>`_. The
   packages should be available for installation via the
   `default anaconda channels <https://anaconda.org/anaconda>`_ or via the
   `conda`_ channels
   `bioconda <https://bioconda.github.io/recipes.html>`_ or
   `conda-forge <https://conda-forge.org/feedstocks/>`_.
-  Other sustainable community maintained channels are possible as well.)
+  Other sustainable community maintained channels are possible as well.
+* add a ``wrapper.py`` or ``wrapper.R`` file that can deal with arbitrary ``input:`` and ``output:`` paths.
 * provide a minimal test case in a subfolder called ``test``, with an example
-  ``Snakefile`` that shows how to use the wrapper, some minimal testing data
+  ``Snakefile`` that shows how to use the wrapper (rule names should be descriptive and written in `snake_case <https://en.wikipedia.org/wiki/Snake_case>`_), some minimal testing data
   (also check existing wrappers for suitable data) and add an invocation of the
   test in ``test.py``
-* follow the python `style guide <http://legacy.python.org/dev/peps/pep-0008>`_,
-  using 4 spaces for indentation.
+* ensure consistent `formatting`_ of Python files and `linting`_ of Snakefiles.
 
 .. _meta:
 
 ``meta.yaml`` file
 -------------------
 
-The following fields are available to use in the wrapper ``meta.yaml`` file:
+The following fields are available to use in the wrapper ``meta.yaml`` file. All, except
+those marked optional, should be provided.
 
 * **name**: The name of the wrapper.
 * **description**: a description of what the wrapper does.
@@ -43,8 +45,8 @@ The following fields are available to use in the wrapper ``meta.yaml`` file:
 * **authors**: A `sequence`_ of names of the people who have contributed to the wrapper.
 * **input**: A `mapping`_ or `sequence`_ of required inputs for the wrapper.
 * **output**: A `mapping`_ or `sequence`_ of output(s) from the wrapper.
-* **params**: A `mapping`_ of parameters that can be used in the wrapper's ``params`` directive.
-* **notes**: Anything of note that does not fit into the scope of the other fields.
+* **params** (optional): A `mapping`_ of parameters that can be used in the wrapper's ``params`` directive. If no parameters are used for the wrapper, this field can be omitted.
+* **notes** (optional): Anything of note that does not fit into the scope of the other fields.
 
 Example
 ^^^^^^^
@@ -76,6 +78,8 @@ Example
 .. _sequence: https://yaml.org/spec/1.2/spec.html#id2759963
 .. _mapping: https://yaml.org/spec/1.2/spec.html#id2759963
 
+.. _formatting:
+
 Formatting
 ----------
 
@@ -86,6 +90,8 @@ Please ensure Python files such as ``test.py`` and ``wrapper.py`` are formatted 
 .. _black: https://github.com/psf/black
 .. |snakefmt| replace:: ``snakefmt``
 .. _snakefmt: https://github.com/snakemake/snakefmt
+
+.. _linting:
 
 Linting
 -------
