@@ -2,5 +2,5 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
-  - seqtk =1
-  - pigz =2
+  - seqtk =1.3
+  - pigz =2.3
