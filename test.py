@@ -630,6 +630,14 @@ def test_art_profiler_illumina():
 
 
 @skip_if_not_modified
+def test_bcftools_filter_sample():
+    run(
+        "bio/bcftools/filter",
+        ["snakemake", "--cores", "1", "a.filter_sample.vcf", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_bcftools_filter_vcf():
     run(
         "bio/bcftools/filter",
