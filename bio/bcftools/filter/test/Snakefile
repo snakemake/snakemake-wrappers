@@ -1,6 +1,7 @@
 rule bcf_filter_o_vcf:
     input:
-        "{prefix}.bcf",
+        "{prefix}.bcf", # input bcf/vcf needs to be first input
+        # other inputs, e.g. sample files, are optional
     output:
         "{prefix}.filter.vcf",
     log:
