@@ -130,6 +130,7 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+
 @skip_if_not_modified
 def test_rbt_csvreport():
     run(
@@ -137,7 +138,7 @@ def test_rbt_csvreport():
         ["snakemake", "--cores", "1", "qc_data", "--use-conda", "-F"],
     )
 
-
+    
 @skip_if_not_modified
 def test_liftoff():
     run(
@@ -569,6 +570,21 @@ def test_shovill():
             "1",
             "--use-conda",
             "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_seqtk_mergepe():
+    run(
+        "bio/seqtk/mergepe",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "a.merged.fastq.gz",
         ],
     )
 
