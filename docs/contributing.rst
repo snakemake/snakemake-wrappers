@@ -13,6 +13,7 @@ If you want to contribute we suggest the following procedure:
 #. Create a pull request.
 
 The pull request will be reviewed and included as fast as possible.
+If your pull request does not get a review quickly, you can `@mention <https://github.blog/2011-03-23-mention-somebody-they-re-notified/>` previous contributors to a particular wrapper (``git blame``) or regular contributors that you think might be able to give a review.
 Contributions should follow the coding style of the already present examples, i.e.:
 
 * provide a ``meta.yaml`` that describes the wrapper (see the `meta.yaml documentation below <meta>`_)
