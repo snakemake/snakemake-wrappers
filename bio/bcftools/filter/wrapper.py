@@ -10,9 +10,6 @@ from snakemake_wrapper_utils.bcftools import get_bcftools_opts
 bcftools_opts = get_bcftools_opts(snakemake)
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-if len(snakemake.input) > 1:
-    raise Exception("Only one input file expected, got: " + str(len(snakemake.input)))
-
 if len(snakemake.output) > 1:
     raise Exception("Only one output file expected, got: " + str(len(snakemake.output)))
 

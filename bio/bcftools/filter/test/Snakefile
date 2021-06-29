@@ -1,3 +1,18 @@
+rule bcf_filter_sample:
+    input:
+        "{prefix}.bcf",  # input bcf/vcf needs to be first input
+        samples="samples.txt",  # other inputs, e.g. sample files, are optional
+    output:
+        "{prefix}.filter_sample.vcf",
+    log:
+        "log/{prefix}.filter_sample.vcf.log",
+    params:
+        filter=lambda w, input: f"--exclude 'GT[@{input.samples}]=\"0/1\"'",
+        extra="",
+    wrapper:
+        "master/bio/bcftools/filter"
+
+
 rule bcf_filter_o_vcf:
     input:
         "{prefix}.bcf",
