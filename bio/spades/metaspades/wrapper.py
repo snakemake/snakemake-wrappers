@@ -11,9 +11,9 @@ from snakemake.shell import shell
 output_contigs = snakemake.output[0]
 
 output_dir, output_file = os.path.split(output_contigs)
-if not ((output_file == "contigs.fasta") or (output_file == "scaffolds.fasta")):
+if not os.path.splitext(output_file)[1] == ".fasta"):
     raise Exception(
-        "First output file should be folder/contigs.fasta or folder/scaffolds.fasta"
+        "First output file should be {folder}/{file}.fasta"
     )
 
     # parse params
