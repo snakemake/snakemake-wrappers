@@ -2,23 +2,22 @@
 
 rule run_spades:
     input:
-        reads= [] 
+        reads=[],
     output:
         # Don't put output in shadow directory, other output, necessary for restart are created
         "assembly/contigs.fasta",
-        "assembly/scaffolds.fasta"
+        "assembly/scaffolds.fasta",
     benchmark:
         "logs/benchmarks/assembly/spades.txt"
     params:
-        p= lambda wc,input: spades_parameters(wc,input),
-        k = config.get("spades_k", SPADES_K),
+        p=lambda wc, input: spades_parameters(wc, input),
+        k=config.get("spades_k", SPADES_K),
     log:
-        "log/spades.log", #stdout/stderr is written in first log file
-        "assembly/spades.log" #spades creates anyway a this log file
-    threads:
-        8
+        "log/spades.log",  #stdout/stderr is written in first log file
+        "assembly/spades.log",  #spades creates anyway a this log file
+    threads: 8
     resources:
-        mem_mem = 250e3,
-        time= 60*24
+        mem_mem=250e3,
+        time=60 * 24,
     wrapper:
         "master/bio/bwa/aln"
