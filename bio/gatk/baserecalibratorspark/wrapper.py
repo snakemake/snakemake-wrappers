@@ -26,7 +26,7 @@ if known:
 shell(
     "gatk --java-options '{java_opts}' BaseRecalibratorSpark {extra} "
     "-R {snakemake.input.ref} -I {snakemake.input.bam} "
-    "--tmp-dir={tmpdir} "
+    "--tmp-dir:{tmpdir} "
     "-O {snakemake.output.recal_table} {known} "
     "-- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra} "
     "{log}"
