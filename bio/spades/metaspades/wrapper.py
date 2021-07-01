@@ -5,25 +5,41 @@ __copyright__ = "Copyright 2021, Silas Kieser"
 __email__ = "silas.kieser@gmail.com"
 __license__ = "MIT"
 
-import os
+import os,shutil
 from snakemake.shell import shell
 
-output_contigs = snakemake.output[0]
 
-output_dir, output_file = os.path.split(output_contigs)
-if not os.path.splitext(output_file)[1] == ".fasta"):
-    raise Exception(
-        "First output file should be {folder}/{file}.fasta"
-    )
 
-    # parse params
-    extra = snakemake.params.get("extra", "")
-    kmers = snakemake.params.get("k", "'auto'")
 
-    log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+
+# infer output directory
+
+if hasattr(snakemake.params,'output_dir'):
+    output_dir= snakemake.params.output_dir
+    os.makedirs(output_dir,exists_ok=True)
+
+    need_copy_output_files= True
+else:
+    # get output_dir file from output
+    need_copy_output_files= False
+    if hasattr(snakemake.output,'contigs'):
+        output_file = snakemake.output.contigs
+    elif hasattr(snakemake.output,'scaffolds'):
+        output_file = snakemake.output.scaffolds
+    else:
+        output_file= snakemake.output[0]
+
+    output_dir = os.path.split(output_file)[0]
+
+
+# parse params
+extra = snakemake.params.get("extra", "")
+kmers = snakemake.params.get("k", "'auto'")
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+
+if not os.path.exists(os.path.join(output_dir, "params.txt")):
 
     # parse short reads
-
     if hasattr(snakemake.input, "reads"):
         reads = snakemake.input.reads
     else:
@@ -50,7 +66,7 @@ if not os.path.splitext(output_file)[1] == ".fasta"):
             input += " --{name} {}".format(name=longread_name, **snakemake.input)
 
 
-if not os.path.exists(os.path.join(output_folder, "params.txt")):
+
 
     shell(
         "spades.py --meta "
@@ -77,3 +93,16 @@ else:
         " -o {output_dir} "
         " >> {log[0]} 2>&1 "
     )
+
+
+
+if need_copy_output_files:
+
+    if hasattr(snakemake.output,'scaffolds'):
+        shutil.copy(os.path.join(output_dir,'scaffolds.fasta'), snakemake.output.scaffolds)
+    if hasattr(snakemake.output,'contigs'):
+        output_contigs= snakemake.output.contigs
+    else:
+        output_contigs= snakemake.output[0]
+
+    shutil.copy(os.path.join(output_dir,'contigs.fasta'), output_contigs)
