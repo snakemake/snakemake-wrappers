@@ -2,7 +2,7 @@ __author__ = "Fillipe G. Vieira"
 __copyright__ = "Copyright 2021, Filipe G. Vieira"
 __license__ = "MIT"
 
-from tempfile import gettempdir
+import tempfile
 
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
@@ -15,7 +15,7 @@ spark_master = snakemake.params.get(
 spark_extra = snakemake.params.get("spark_extra", "")
 java_opts = get_java_opts(snakemake)
 
-tmpdir = "--tmp-dir {}".format(gettempdir())
+tmpdir = "--tmp-dir {}".format(tempfile.gettempdir())
 
 metrics = snakemake.output.get("metrics", "")
 if metrics:

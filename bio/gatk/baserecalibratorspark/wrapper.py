@@ -16,7 +16,7 @@ spark_master = snakemake.params.get(
 spark_extra = snakemake.params.get("spark_extra", "")
 java_opts = get_java_opts(snakemake)
 
-tmpdir = "--TMP_DIR {}".format(tempfile.gettempdir())
+tmpdir = "--tmp-dir {}".format(tempfile.gettempdir())
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 known = snakemake.input.get("known", "")
