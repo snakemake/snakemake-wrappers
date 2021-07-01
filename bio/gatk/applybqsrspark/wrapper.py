@@ -23,8 +23,8 @@ shell(
     "gatk --java-options '{java_opts}' ApplyBQSRSpark {extra} "
     "--reference {snakemake.input.ref} --input {snakemake.input.bam} "
     "--bqsr-recal-file {snakemake.input.recal_table} "
-    "--output {snakemake.output.bam} "
     "{tmpdir} "
+    "--output {snakemake.output.bam} "
     "-- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra} "
     "{log}"
 )
