@@ -15,7 +15,7 @@ spark_master = snakemake.params.get(
 spark_extra = snakemake.params.get("spark_extra", "")
 java_opts = get_java_opts(snakemake)
 
-tmpdir = "--tmp-dir {}".format(tempfile.gettempdir())
+tmpdir = tempfile.gettempdir()
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
@@ -23,7 +23,7 @@ shell(
     "gatk --java-options '{java_opts}' ApplyBQSRSpark {extra} "
     "--reference {snakemake.input.ref} --input {snakemake.input.bam} "
     "--bqsr-recal-file {snakemake.input.recal_table} "
-    "{tmpdir} "
+    "--tmp-dir {tmpdir} "
     "--output {snakemake.output.bam} "
     "-- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra} "
     "{log}"

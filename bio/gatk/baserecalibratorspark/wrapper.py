@@ -16,7 +16,7 @@ spark_master = snakemake.params.get(
 spark_extra = snakemake.params.get("spark_extra", "")
 java_opts = get_java_opts(snakemake)
 
-tmpdir = "--tmp-dir {}".format(tempfile.gettempdir())
+tmpdir = tempfile.gettempdir()
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 known = snakemake.input.get("known", "")
@@ -26,7 +26,7 @@ if known:
 shell(
     "gatk --java-options '{java_opts}' BaseRecalibratorSpark {extra} "
     "-R {snakemake.input.ref} -I {snakemake.input.bam} "
-    "{tmpdir} "
+    "--tmp-dir {tmpdir} "
     "-O {snakemake.output.recal_table} {known} "
     "-- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra} "
     "{log}"

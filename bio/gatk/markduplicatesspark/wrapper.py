@@ -15,7 +15,7 @@ spark_master = snakemake.params.get(
 spark_extra = snakemake.params.get("spark_extra", "")
 java_opts = get_java_opts(snakemake)
 
-tmpdir = "--tmp-dir {}".format(tempfile.gettempdir())
+tmpdir = tempfile.gettempdir()
 
 metrics = snakemake.output.get("metrics", "")
 if metrics:
@@ -27,7 +27,7 @@ shell(
     "gatk --java-options '{java_opts}' MarkDuplicatesSpark "
     "{extra} "
     "--input {snakemake.input} "
-    "{tmpdir} "
+    "--tmp-dir {tmpdir} "
     "--output {snakemake.output.bam} "
     "{metrics} "
     "-- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra} "
