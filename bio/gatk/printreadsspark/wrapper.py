@@ -22,7 +22,7 @@ tmpdir = tempfile.gettempdir()
 shell(
     "gatk --java-options '{java_opts}' PrintReadsSpark {extra} "
     "--reference {snakemake.input.ref} --input {snakemake.input.bam} "
-    "--tmp-dir:{tmpdir} "
+    "--tmp-dir {tmpdir} "
     "--output {snakemake.output.bam} "
     "-- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra} "
     "{log}"
