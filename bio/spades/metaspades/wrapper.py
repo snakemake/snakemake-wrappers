@@ -68,6 +68,7 @@ else:
 
     shell(
         "spades.py --meta "
+        " --restart-from last "
         " --threads {threads} "
         " --memory {resources.mem_mb}000 "
         " -o {output_dir} "
