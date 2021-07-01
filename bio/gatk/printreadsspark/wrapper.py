@@ -2,6 +2,7 @@ __author__ = "Filipe G. Vieira"
 __copyright__ = "Copyright 2021, Filipe G. Vieira"
 __license__ = "MIT"
 
+from tempfile import gettempdir
 
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
@@ -17,11 +18,14 @@ spark_master = snakemake.params.get(
 spark_extra = snakemake.params.get("spark_extra", "")
 java_opts = get_java_opts(snakemake)
 
+tmpdir = "--tmp-dir {}".format(gettempdir())
+
 
 shell(
     "gatk --java-options '{java_opts}' PrintReadsSpark {extra} "
     "--reference {snakemake.input.ref} --input {snakemake.input.bam} "
     "--output {snakemake.output.bam} "
+    "{tmpdir} "
     "-- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra} "
     "{log}"
 )
