@@ -22,16 +22,19 @@ if not os.path.splitext(output_file)[1] == ".fasta"):
 
     log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-    # parse reads
+    # parse short reads
 
     if hasattr(snakemake.input, "reads"):
         reads = snakemake.input.reads
     else:
         reads = snakemake.input
 
+
     assert (
         len(reads) > 1
     ), "Metaspades needs a paired end library. This means you should supply at least 2 fastq files in the rule input."
+
+    assert type(reads[0]) == str , f"Metaspades allows only 1 library. Therefore reads need to be strings got {reads}"
 
     input += " --pe1-1 {0} --pe1-2 {1} ".format(*reads)
 
