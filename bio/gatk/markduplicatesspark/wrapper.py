@@ -27,7 +27,7 @@ shell(
     "gatk --java-options '{java_opts}' MarkDuplicatesSpark "
     "{extra} "
     "--input {snakemake.input} "
-    "--tmp-dir {tmpdir} "
+    "--tmp-dir={tmpdir} "
     "--output {snakemake.output.bam} "
     "{metrics} "
     "-- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra} "
