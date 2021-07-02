@@ -21,13 +21,13 @@ tmpdir = tempfile.gettempdir()
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 known = snakemake.input.get("known", "")
 if known:
-    known = "--known-sites {}".format(known)
+    known = "--known-sites={}".format(known)
 
 shell(
     "gatk --java-options '{java_opts}' BaseRecalibratorSpark {extra} "
     "-R {snakemake.input.ref} -I {snakemake.input.bam} "
-    "--tmp-dir:{tmpdir} "
-    "--output {snakemake.output.recal_table} {known} "
+    "--output={snakemake.output.recal_table} {known} "
+    "--tmp-dir={tmpdir} "
     "-- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra} "
     "{log}"
 )
