@@ -1,0 +1,12 @@
+rule gtfToGenePred:
+    input:
+        # annotations containing gene, transcript, exon, etc. data in GTF format
+        "annotation.gtf"
+    output:
+        "annotation.genePred"
+    log:
+        "logs/gtfToGenePred.log"
+    params:
+        extra="-genePredExt" # optional parameters to pass to gtfToGenePred
+    wrapper:
+        "master/bio/ucsc/gtfToGenePred"

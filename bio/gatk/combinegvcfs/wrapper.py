@@ -7,10 +7,12 @@ __license__ = "MIT"
 import os
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.java import get_java_opts
 
 
 extra = snakemake.params.get("extra", "")
-java_opts = snakemake.params.get("java_opts", "")
+java_opts = get_java_opts(snakemake)
+
 gvcfs = list(map("-V {}".format, snakemake.input.gvcfs))
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)

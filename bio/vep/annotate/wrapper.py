@@ -20,12 +20,8 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 fork = "--fork {}".format(snakemake.threads) if snakemake.threads > 1 else ""
 stats = snakemake.output.stats
-cache = snakemake.input.cache
+cache = snakemake.input.get("cache", "")
 plugins = snakemake.input.plugins
-
-entrypath = get_only_child_dir(get_only_child_dir(Path(cache)))
-species = entrypath.parent.name
-release, build = entrypath.name.split("_")
 
 load_plugins = " ".join(map("--plugin {}".format, snakemake.params.plugins))
 
@@ -40,19 +36,27 @@ fasta = snakemake.input.get("fasta", "")
 if fasta:
     fasta = "--fasta {}".format(fasta)
 
+gff = snakemake.input.get("gff", "")
+if gff:
+    gff = "--gff {}".format(gff)
+
+if cache:
+    entrypath = get_only_child_dir(get_only_child_dir(Path(cache)))
+    species = entrypath.parent.name
+    release, build = entrypath.name.split("_")
+    cache = (
+        "--offline --cache --dir_cache {cache} --cache_version {release} --species {species} --assembly {build}"
+    ).format(cache=cache, release=release, build=build, species=species)
+
 shell(
     "(bcftools view {snakemake.input.calls} | "
     "vep {extra} {fork} "
     "--format vcf "
     "--vcf "
-    "--cache "
-    "--cache_version {release} "
-    "--species {species} "
-    "--assembly {build} "
-    "--dir_cache {cache} "
-    "--dir_plugins {plugins} "
+    "{cache} "
+    "{gff} "
     "{fasta} "
-    "--offline "
+    "--dir_plugins {plugins} "
     "{load_plugins} "
     "--output_file STDOUT "
     "--stats_file {stats} | "

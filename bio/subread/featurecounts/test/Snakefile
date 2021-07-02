@@ -1,0 +1,22 @@
+rule feature_counts:
+    input:
+        sam="{sample}.bam", # list of sam or bam files
+        annotation="annotation.gtf",
+        # optional input
+        # chr_names="",           # implicitly sets the -A flag
+        # fasta="genome.fasta"      # implicitly sets the -G flag
+    output:
+        multiext("results/{sample}",
+                 ".featureCounts",
+                 ".featureCounts.summary",
+                 ".featureCounts.jcounts")
+    threads:
+        2
+    params:
+        tmp_dir="",   # implicitly sets the --tmpDir flag
+        r_path="",    # implicitly sets the --Rpath flag
+        extra="-O --fracOverlap 0.2"
+    log:
+        "logs/{sample}.log"
+    wrapper:
+        "master/bio/subread/featurecounts"
