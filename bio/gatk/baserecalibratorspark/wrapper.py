@@ -21,7 +21,7 @@ tmpdir = tempfile.gettempdir()
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 known = snakemake.input.get("known", "")
 if known:
-    known = "--known-sites={}".format(known)
+    known = "--known-sites {}".format(known)
 
 shell(
     "gatk --java-options '{java_opts}' BaseRecalibratorSpark {extra} "
