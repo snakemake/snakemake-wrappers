@@ -5,29 +5,26 @@ __copyright__ = "Copyright 2021, Silas Kieser"
 __email__ = "silas.kieser@gmail.com"
 __license__ = "MIT"
 
-import os,shutil
+import os, shutil
 from snakemake.shell import shell
-
-
-
 
 
 # infer output directory
 
-if hasattr(snakemake.params,'output_dir'):
-    output_dir= snakemake.params.output_dir
-    os.makedirs(output_dir,exists_ok=True)
+if hasattr(snakemake.params, "output_dir"):
+    output_dir = snakemake.params.output_dir
+    os.makedirs(output_dir, exists_ok=True)
 
-    need_copy_output_files= True
+    need_copy_output_files = True
 else:
     # get output_dir file from output
-    need_copy_output_files= False
-    if hasattr(snakemake.output,'contigs'):
+    need_copy_output_files = False
+    if hasattr(snakemake.output, "contigs"):
         output_file = snakemake.output.contigs
-    elif hasattr(snakemake.output,'scaffolds'):
+    elif hasattr(snakemake.output, "scaffolds"):
         output_file = snakemake.output.scaffolds
     else:
-        output_file= snakemake.output[0]
+        output_file = snakemake.output[0]
 
     output_dir = os.path.split(output_file)[0]
 
@@ -45,12 +42,13 @@ if not os.path.exists(os.path.join(output_dir, "params.txt")):
     else:
         reads = snakemake.input
 
-
     assert (
         len(reads) > 1
     ), "Metaspades needs a paired end library. This means you should supply at least 2 fastq files in the rule input."
 
-    assert type(reads[0]) == str , f"Metaspades allows only 1 library. Therefore reads need to be strings got {reads}"
+    assert (
+        type(reads[0]) == str
+    ), f"Metaspades allows only 1 library. Therefore reads need to be strings got {reads}"
 
     input += " --pe1-1 {0} --pe1-2 {1} ".format(*reads)
 
@@ -64,9 +62,6 @@ if not os.path.exists(os.path.join(output_dir, "params.txt")):
     for longread_name in ["pacbio", "nanopore"]:
         if hasattr(snakemake.input, longread_name):
             input += " --{name} {}".format(name=longread_name, **snakemake.input)
-
-
-
 
     shell(
         "spades.py --meta "
@@ -95,14 +90,15 @@ else:
     )
 
 
-
 if need_copy_output_files:
 
-    if hasattr(snakemake.output,'scaffolds'):
-        shutil.copy(os.path.join(output_dir,'scaffolds.fasta'), snakemake.output.scaffolds)
-    if hasattr(snakemake.output,'contigs'):
-        output_contigs= snakemake.output.contigs
+    if hasattr(snakemake.output, "scaffolds"):
+        shutil.copy(
+            os.path.join(output_dir, "scaffolds.fasta"), snakemake.output.scaffolds
+        )
+    if hasattr(snakemake.output, "contigs"):
+        output_contigs = snakemake.output.contigs
     else:
-        output_contigs= snakemake.output[0]
+        output_contigs = snakemake.output[0]
 
-    shutil.copy(os.path.join(output_dir,'contigs.fasta'), output_contigs)
+    shutil.copy(os.path.join(output_dir, "contigs.fasta"), output_contigs)
