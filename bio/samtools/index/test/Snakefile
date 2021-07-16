@@ -3,7 +3,11 @@ rule samtools_index:
         "mapped/{sample}.sorted.bam"
     output:
         "mapped/{sample}.sorted.bam.bai"
+    log:
+        "logs/samtools_index/{sample}.log"
     params:
         "" # optional params string
+    threads:  # Samtools takes additional threads through its option -@
+        4     # This value - 1 will be sent to -@
     wrapper:
         "master/bio/samtools/index"

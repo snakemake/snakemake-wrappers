@@ -1,0 +1,17 @@
+rule pbmm2_align:
+    input:
+        reference="target/{reference}.fasta", # can be either genome index or genome fasta
+        query="{query}.bam", # can be either unaligned bam, fastq, or fasta
+    output:
+        bam="aligned/{query}.{reference}.bam",
+        index="aligned/{query}.{reference}.bam.bai",
+    log:
+        "logs/pbmm2_align/{query}.{reference}.log",
+    params:
+        preset="CCS", # SUBREAD, CCS, HIFI, ISOSEQ, UNROLLED
+        sample="", # sample name for @RG header
+        extra="--sort", # optional additional args
+        loglevel="INFO",
+    threads: 12
+    wrapper:
+        "master/bio/pbmm2/align"

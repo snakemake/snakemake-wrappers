@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - mapdamage2 =2.2.1
+  - mapdamage2 =2.2

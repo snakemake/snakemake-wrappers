@@ -1,4 +1,4 @@
-name: CI
+name: Tests
 
 on:
   push:
@@ -10,23 +10,8 @@ on:
     - cron: '0 0 * * 0'
 
 jobs:
-  formatting:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: Setup black environment
-        run: conda create --quiet --name black black
-
-      - name: Check formatting
-        run: |
-          export PATH="/usr/share/miniconda/bin:$PATH"
-          source activate black
-          black --check bio/*/*/wrapper.py bio/*/wrapper.py
-  
   docs:
     runs-on: ubuntu-latest
-    needs: formatting
     steps:
       - uses: actions/checkout@v1
 
@@ -44,7 +29,6 @@ jobs:
 
   testing:
     runs-on: ubuntu-latest
-    needs: docs
     steps:
       - uses: actions/checkout@v1
 
@@ -58,13 +42,14 @@ jobs:
            mamba create -c bioconda -c conda-forge --quiet -y --name snakemake snakemake-minimal pytest
 
       - name: Fetch master
-        if: github.ref != 'master'
+        if: github.ref != 'refs/heads/master'
         run: |
           git fetch origin master
 
       - name: Run tests
         env:
-          DIFF_ONLY: ${{ github.event_name == 'pull_request' }}
+          DIFF_MASTER: ${{ github.event_name == 'pull_request' }}
+          DIFF_LAST_COMMIT: ${{ github.ref == 'refs/heads/master' }}
         run: |
           # activate conda env
           export PATH="/usr/share/miniconda/bin:$PATH"

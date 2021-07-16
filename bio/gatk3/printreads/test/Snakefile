@@ -8,8 +8,9 @@ rule printreads:
     log:
         "logs/gatk/bqsr/{sample}..log"
     params:
-        extra="",  # optional
-        java_opts="",
+        extra=""  # optional
+    resources:
+        mem_mb = 1024
     threads: 16
     wrapper:
         "bio/gatk3/printreads"

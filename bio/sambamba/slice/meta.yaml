@@ -1,0 +1,8 @@
+name: sambamba slice
+description: Fast tool for copying a slice of a BAM file. See details `here https://lomereiter.github.io/sambamba/docs/sambamba-slice.html`_
+authors:
+  - Jan Forster
+input:
+  - coordinate-sorted and indexed bam file
+output:
+  - new bam file with specific region

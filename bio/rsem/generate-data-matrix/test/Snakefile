@@ -1,0 +1,14 @@
+rule rsem_generate_data_matrix:
+    input:
+        # one or more expression files created by rsem-calculate-expression
+        ["a.genes.results", "b.genes.results"],
+    output:
+        # a tsv containing each sample in the input as a column
+        "genes.results",
+    params:
+        # optional additional parameters
+        extra="",
+    log:
+        "logs/rsem/generate_data_matrix.log",
+    wrapper:
+        "master/bio/rsem/generate-data-matrix"

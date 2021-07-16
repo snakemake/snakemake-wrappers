@@ -1,0 +1,20 @@
+rule gatk_applybqsr_spark:
+    input:
+        bam="mapped/{sample}.bam",
+        ref="genome.fasta",
+        dict="genome.dict",
+        recal_table="recal/{sample}.grp"
+    output:
+        bam="recal/{sample}.bam"
+    log:
+        "logs/gatk/gatk_applybqsr_spark/{sample}.log"
+    params:
+        extra="",  # optional
+        java_opts="", # optional
+        #spark_runner="",  # optional, local by default
+        #spark_master="",  # optional
+        #spark_extra="", # optional
+    resources:
+        mem_mb=1024
+    wrapper:
+        "master/bio/gatk/applybqsrspark"

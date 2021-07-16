@@ -1,0 +1,14 @@
+rule gatk_interval_list_to_bed:
+    input:
+        intervals="genome.intervals"
+    output:
+        bed="genome.bed"
+    log:
+        "logs/genome.log"
+    params:
+        extra="",
+	java_opts="", # optional
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/gatk/intervallisttobed"

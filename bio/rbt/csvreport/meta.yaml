@@ -1,0 +1,8 @@
+name: "rbt csv-report"
+description: "Creates an html report of qc data stored in a csv file. For more details, visit https://github.com/rust-bio/rust-bio-tools"
+authors:
+  - Jan Forster
+input:
+  - A csv file containing the qc report
+output:
+  - QC report folder including html document and .xlsx file

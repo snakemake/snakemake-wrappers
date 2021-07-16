@@ -1,5 +1,5 @@
 name: SnpSift varType
-description:  Add an INFO field denoting variant type.
+description:  Add an INFO field denoting variant type with `SnpSift <https://pcingola.github.io/SnpEff/ss_varianttype/>`_
 authors:
   - Thibault Dayris
 input:

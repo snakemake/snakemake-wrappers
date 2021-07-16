@@ -1,0 +1,27 @@
+rule run_assembly_stats:
+    input:
+        #Input assembly
+        assembly="{sample}.fasta",
+    output:
+        #Assembly statistics
+        assembly_stats="{sample}_stats.txt",
+    params:
+        # Tab delimited output, with a header, is set as the default. Other options are available:
+        #   -l <int>
+        #       Minimum length cutoff for each sequence.
+        #       Sequences shorter than the cutoff will be ignored [1]
+        #   -s
+        #       Print 'grep friendly' output
+        #   -t
+        #       Print tab-delimited output
+        #   -u
+        #       Print tab-delimited output with no header line
+        # If you want to add multiple options just delimit them with a space.
+        # Note that you can only pick one output format
+        # Check https://github.com/sanger-pathogens/assembly-stats for more details
+        extra="-t",
+    log:
+        "logs/{sample}.assembly-stats.log",
+    threads: 1
+    wrapper:
+        "master/bio/assembly-stats"

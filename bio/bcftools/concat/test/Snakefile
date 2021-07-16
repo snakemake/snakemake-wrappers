@@ -1,9 +1,15 @@
 rule bcftools_concat:
     input:
-        calls=["a.bcf", "b.bcf"]
+        calls=["a.bcf", "b.bcf"],
     output:
-        "all.bcf"
+        "all.bcf",
+    log:
+        "logs/all.log",
     params:
-        ""  # optional parameters for bcftools concat (except -o)
+        uncompressed_bcf=False,
+        extra="",  # optional parameters for bcftools concat (except -o)
+    threads: 4
+    resources:
+        mem_mb=10,
     wrapper:
         "master/bio/bcftools/concat"
