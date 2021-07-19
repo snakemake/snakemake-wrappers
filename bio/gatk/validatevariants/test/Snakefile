@@ -1,0 +1,13 @@
+rule VCF_SPEC_VALIDATION:
+    input:
+        vcf: "sample.vcf"
+    output:
+        "results/sample_VALID.vcf"
+    log:
+        "results/sample_VALID.log"
+    params:
+        R=genome.fasta
+    resources:
+        mem_mb=1024
+    wrapper:
+        "master/bio/gatk/validatevariants"
