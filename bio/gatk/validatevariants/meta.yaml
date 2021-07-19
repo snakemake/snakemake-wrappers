@@ -8,34 +8,5 @@ input:
 output:
   - VCF output file
 params:
-  reference: {
-    R: Reference Genome (.fa) with accompanying index and dictionary
-  }
-  dbSNP: A vcf copy of dbSNP to validate against
-  preloader: A preloader for systems which require module loading E.g. PBS/Torque
-  ValidateFilteredRecords: (bool) skip validation on filtered records
-  GVCF: (bool) handle input as GVCF
-  XType: (array) which validation type to exclude from a full strict validation
-  PGTag: (bool) If true, adds a PG tag to created SAM/BAM/CRAM files.
-  VCFHeader: (bool) If true, adds a command line header line to created VCF files.
-  OBI: (bool) If true, create a BAM/CRAM index when writing a coordinate-sorted BAM/CRAM file.
-  OBM: (bool) If true, create a MD5 digest for any BAM/SAM/CRAM file created
-  OVI: (bool) If true, create a VCF index when writing a coordinate-sorted VCF file.
-  OVM: (bool) If true, create a a MD5 digest any VCF file created.
-  DF: (array) Read filters to be disabled before analysis
-  ValidateSequenceDict: (bool) If specified, do not check the sequence dictionaries from our inputs for compatibility. Use at your own risk!
-  DefaultReadFilters: (bool) Disable all tool default read filters
-  XL: (array) One or more genomic intervals to exclude from processing
-  config-file: (file) A configuration file to use with the GATK.
-  I: (file) BAM/SAM/CRAM file containing reads
-  ixp: (int) Amount of padding (in bp) to add to each interval you are excluding.
-  ip: (int) Amount of padding (in bp) to add to each interval you are including.
-  isr: (enum) Set merging approach to use for combining interval inputs
-  LE: (bool) Lenient processing of VCF files
-  RF: (array) Read filters to be applied before analysis
-  read-index: (array) Indices to use for the read inputs. If specified, an index must be provided for every read input and in the same order as the read inputs. If this argument is not specified, the path to the index for each input will be inferred automatically.
-  VS: (enum) Validation stringency for all SAM/BAM/CRAM/SRA files read by this program. The default stringency value SILENT can improve performance when processing a BAM file in which variable-length data (read, qualities, tags) do not otherwise need to be decoded.
-  sequence-dictionary: (file) Use the given sequence dictionary as the master/canonical sequence dictionary. Must be a .dict file.
-  jdk-deflater: (bool) Whether to use the JdkDeflater (as opposed to IntelDeflater)
-  jdk-inflater: (bool) Whether to use the JdkInflater (as opposed to IntelInflater)
+  extra: any extra commands as a string
 notes: Multiple threads can be used during compression of the output file with ``pigz``.

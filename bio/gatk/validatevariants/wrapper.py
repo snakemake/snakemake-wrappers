@@ -14,18 +14,14 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 preloader = snakemake.params.get("preloader", "")
 
-command = [
-    "-{key} {value}".format(key=key, value=value)
-    for key, value in snakemake.params.iteritems()
-    if value is not None
-].join(" ")
-
 
 shell(
     "{preloader} "
     "gatk "
     "--java-options '{java_opts}' "
     "ValidateVariants "
-    "{command} "
-    "{log}"
+    "-V {snakemake.input.vcf} "
+    "{extra} "
+    "{log} "
+    "> {output}"
 )
