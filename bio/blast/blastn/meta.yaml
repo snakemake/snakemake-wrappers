@@ -1,9 +1,8 @@
 name: blast blastn
+url: https://www.ncbi.nlm.nih.gov/books/NBK279690/
 description: >
   ``Blastn`` performs a sequence similarity search of nucleotide query sequences against a nucleotide database.
-  For more information please see `BLAST documentation <https://www.ncbi.nlm.nih.gov/books/NBK279690/>`_.
-
-
+notes: |
   Different `formatting output options <https://www.ncbi.nlm.nih.gov/books/NBK279676/>`_ and `formatting specifiers <http://www.metagenomics.wiki/tools/blast/blastn-output-format-6>`_ (see tables below) can be selected via the 'format' parameter as shown in example Snakemake rule below.
 
     +----------------------------------------+---------------+------------+
@@ -162,8 +161,12 @@ description: >
 author:
   - Antonie Vietor
 input:
-  - FASTA file OR
-  - bare sequence file (`more information <https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=BlastHelp>`_) OR
-  - identifiers (`more information <https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=BlastHelp>`_)
+  - query: FASTA file OR
+  - query: bare sequence file (`more information <https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=BlastHelp>`_) OR
+  - query: identifiers (`more information <https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=BlastHelp>`_)
+  - blastdb: Path to local blast database
 output:
   - depending on the formatting option, different output files can be generated (see tables above)
+params:
+  - extra: Optional parameters
+  - format: Optional output format, see notes below
