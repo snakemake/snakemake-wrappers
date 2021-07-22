@@ -1,8 +1,13 @@
-name: igv-reports 
+name: igv-reports
+url: https://github.com/igvteam/igv-reports
 description: Create self-contained igv.js HTML pages.
 authors:
   - Johannes Köster
 input:
-  - BAM, VCF, ...
+  - tracks: Path to BAM/BED/... files to be displayed in IGV-report
+  - vcf: Path to VCF files to be displayed in IGV-report
+  - fasta: Path to reference genome
 output:
-  - HTML
+  - Path to HTML. This must be the first element of the output file list
+params:
+  - extra: Optional parameters
