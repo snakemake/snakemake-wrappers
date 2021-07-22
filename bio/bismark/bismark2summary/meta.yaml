@@ -1,6 +1,7 @@
 name: bismark2summary
+url: https://github.com/FelixKrueger/Bismark/blob/master/bismark2summary
 description: |
-  Generate summary graphical HTML report from several Bismark text report files reports (see https://github.com/FelixKrueger/Bismark/blob/master/bismark2summary).
+  Generate summary graphical HTML report from several Bismark text report files reports.
 authors:
   - Roman Cherniatchik
 input:
@@ -8,7 +9,6 @@ input:
 params:
   - extra: Any additional args
   - title: Optional report custom title.
-
 output:
   - html: Output HTML report path (e.g. 'bismark_summary_report.html').
   - txt: Output txt table path (e.g. 'bismark_summary_report.txt'). Should have same as 'html' report but with suffix '.txt'.
