@@ -1,4 +1,11 @@
 name: "GDC Data Transfer Tool data download"
+url: https://docs.gdc.cancer.gov/Data_Transfer_Tool/Users_Guide/Data_Download_and_Upload/
 description: Download GDC data files with the gdc-client.
 authors:
   - David Lähnemann
+output:
+  - Downloaded file
+params:
+  - extra: Optional parameters
+  - gdc_token: GDC data access token
+  - uuid: GDC UUID
