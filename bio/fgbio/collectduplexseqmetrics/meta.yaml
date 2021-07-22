@@ -1,4 +1,18 @@
 name: "fgbio CollectDuplexSeqMetrics"
+url: https://fulcrumgenomics.github.io/fgbio/
 description: Collects a suite of metrics to QC duplex sequencing data.g.
 authors:
   - Patrik Smeds
+input:
+  - Path to input bam file
+output:
+  - family_sizes: metrics on the frequency of different types of families of different sizes
+  - duplex_family_sizes: metrics on the frequency of duplex tag families by the number of observations from each strand
+  - duplex_yield_metrics: summary QC metrics produced using 5%, 10%, 15%...100% of the data
+  - umi_counts: metrics on the frequency of observations of UMIs within reads and tag families
+  - duplex_qc: a series of plots generated from the preceding metrics files for visualization
+  - duplex_umi_counts: (optional) metrics on the frequency of observations of duplex UMIs within reads and tag families
+params:
+  - extra: Optional parameters
+notes: |
+  See source on `github <https://github.com/fulcrumgenomics/fgbio>`_.
