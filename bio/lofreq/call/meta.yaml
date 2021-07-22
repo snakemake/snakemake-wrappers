@@ -1,4 +1,13 @@
 name: lofreq call
-description: simply call variants 
+url: https://csb5.github.io/lofreq/
+description: simply call variants
 authors:
   - Patrik Smeds
+input:
+  - bam: Path to bam file
+  - bai: Path to bam index file
+output:
+  - Path to lofreq calls. This must be the only element in the output file list.
+params:
+  - extra: Optional parameters
+  - ref: Path to reference genome sequence (fasta)
