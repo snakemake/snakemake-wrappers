@@ -1,17 +1,26 @@
 name: "freebayes"
+url: https://github.com/freebayes/freebayes
 description: Call small genomic variants with freebayes.
 authors:
   - Johannes Köster
   - Felix Mölder
   - Filipe G. Vieira
 input:
-  - SAM/BAM/CRAM file(s)
-  - reference genome
+  - samples: SAM/BAM/CRAM file(s)
+  - ref: reference genome
+  - regions: Optional BED regions
 output:
-  - VCF/VCF.gz/BCF file
+  - VCF/VCF.gz/BCF file, this must be the first file in the output file list
+params:
+  - extra: Optional parameters
+  - chunkzise: The `chunkzise` param allows setting reference genome chunk size for parallelization (default 100000)
+  - uncompressed_bcf: The `uncompressed_bcf` param allows for uncompressed BCF output.
+  - normalize: The `normalize` param allows to use `bcftools norm` to normalize indels.
 notes: |
-  * The `extra` param allows for additional arguments for freebayes.
-  * The `uncompressed_bcf`param allows for uncompressed BCF output.
-  * The `normalize` param allows to use `bcftools norm` to normalize indels.
-  * The `chunkzise` param allows setting reference genome chunk size for parallelization (default: 100000)
-  * For more inforamtion see, https://github.com/freebayes/freebayes
+  If a region bed is provided in input, this wrapper uses more threads than the number of threads declared in the snakefile.
+
+  For X threads expected:
+
+  * X is used in freebayes
+  * 1 in bedtools intersect
+  * 2 in piped sed commands
