@@ -1,16 +1,17 @@
 name: gatk3 BaseRecalibrator
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360035890531-Base-Quality-Score-Recalibration-BQSR-
 description: |
   Run gatk3 BaseRecalibrator.
 authors:
   - Patrik Smeds
 input:
-  - bam file
-  - vcf files
-  - reference genome
+  - bam: Path to bam file
+  - known: Path to vcf.gz known variants
+  - ref: Path to reference genome
 output:
-  - recalibration table
+  - Recalibration table. This must be the only output.
+params:
+  - java_opts: The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-Xmx4G" for one, and "-Xmx4G -XX:ParallelGCThreads=10" for two options.
+  - extra: The `extra` param allows for additional program arguments.
 notes: |
-  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-Xmx4G" for one, and "-Xmx4G -XX:ParallelGCThreads=10" for two options.
-  * The `extra` param allows for additional program arguments.
-  * For more information see, https://software.broadinstitute.org/gatk/documentation/article?id=11050
   * Gatk3.jar is not included in the bioconda package, i.e it need to be added to the conda environment manually.
