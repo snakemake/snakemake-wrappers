@@ -1,9 +1,12 @@
 name: multiqc
+url: https://multiqc.info/
 description: |
   Generate qc report using multiqc.
 authors:
   - Julian de Ruiter
 input:
-  - input directory containing qc files
+  - input directories containing qc files
 output:
-  - qc report (html)
+  - qc report (html) This must be the first output in the output file list
+params:
+  - Optional parameters
