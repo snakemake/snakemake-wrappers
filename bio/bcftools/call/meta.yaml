@@ -1,5 +1,13 @@
 name: bcftools call
+url: https://samtools.github.io/bcftools/bcftools.html#call
 description: Call variants with `bcftools call <https://samtools.github.io/bcftools/bcftools.html#call>`_.
 authors:
   - Johannes Köster
   - Michael Hall
+input:
+  - pileup: Path to input pileup file.
+output:
+  - calls: Path to calling results.
+params:
+  - caller: Either `--multiallelic-caller` or `--consensus-caller`
+  - options: Optional parameters
