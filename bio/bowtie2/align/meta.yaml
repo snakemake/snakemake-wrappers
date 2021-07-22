@@ -1,6 +1,14 @@
 name: "bowtie2"
+url: http://bowtie-bio.sourceforge.net/bowtie2/index.shtml
 description: Map reads with bowtie2.
 authors:
   - Johannes Köster
-note:
+input:
+  - sample: List of input fastq files. R1 for Single End, R1 and R2 for Paired end.
+output:
+  - BAM formatted aligned reads, this must be the first element of the output file list
+params:
+  - index: Index prefix
+  - extra: Optional parameters, more information on the `bowtie2-build documentation <http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#command-line>`_
+notes:
   This wrapper uses an inner pipe. Make sure to use at least two threads in your Snakefile.
