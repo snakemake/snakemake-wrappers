@@ -1,12 +1,15 @@
 name: bedtools genomeCoverageBed
+url: https://bedtools.readthedocs.io/en/latest/content/tools/genomecov.html
 description: >
   ``bedtools``'s genomeCoverageBed computes the coverage of a feature file as histograms, per-base reports or BEDGRAPH summaries among a given genome.
-  For usage information about genomeCoverageBed, please see ``bedtools``'s `documentation <https://bedtools.readthedocs.io/en/latest/content/tools/genomecov.html>`_.
-  For more information about ``bedtools``, also see the `source code <https://github.com/arq5x/bedtools2>`_.
 authors:
   - Antonie Vietor
 input:
   - BED/GFF/VCF files grouped by chromosome and genome file (`genome file format <https://bedtools.readthedocs.io/en/latest/content/general-usage.html#genome-file-format>`_) OR
-  - BAM files sorted by position.
+  - BAM files sorted by position, must be in first position in the input file list
 output:
-  - genomecov (.genomecov)
+  - genomecov (.genomecov), must be in first position in the output file list
+params:
+  - Optional parameters, must be the only value in snakemake's params
+notes: |
+  For more information about ``bedtools``, also see the `source code <https://github.com/arq5x/bedtools2>`_.
