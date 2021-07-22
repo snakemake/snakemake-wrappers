@@ -1,4 +1,11 @@
 name: minimap2 index
+url: https://github.com/lh3/minimap2
 description: creates a minimap2 index
 authors:
   - Tom Poorten
+input:
+  - target: Path to reference genome (fasta)
+output:
+  - Path to index. This must be the first input in the input file list
+params:
+  - extra: optional parameters
