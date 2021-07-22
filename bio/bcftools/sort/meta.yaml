@@ -1,4 +1,12 @@
 name: bcftools sort
+url: https://www.htslib.org/doc/bcftools.html#sort
 description: Sort vcf/bcf file. For more information see `BCFtools documentation <https://www.htslib.org/doc/bcftools.html#sort>`_.
 authors:
   - Filipe G. Vieira
+input:
+  - VCF/BCF file, must be the first element of the input list
+output:
+  - VCF/BCF file, must be the first element of the output list
+params:
+  - extra: Optional parameters
+  - uncompressed_bcf: Boolean. Return uncompressed BCF file.
