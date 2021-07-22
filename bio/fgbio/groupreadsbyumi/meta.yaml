@@ -1,4 +1,14 @@
 name: "fgbio GroupReadsByUmi"
+url: https://fulcrumgenomics.github.io/fgbio/tools/latest/GroupReadsByUmi.html
 description: Groups reads together that appear to have come from the same original molecule.
 authors:
   - Patrik Smeds
+input:
+  - Bam file. This must be the first input file in the input file list.
+output:
+  - bam: path to grouped bam
+  - hist: Path to histogram
+params:
+  - extra: Optional extra parameters
+notes: |
+  See source on `github <https://github.com/fulcrumgenomics/fgbio>`_.
