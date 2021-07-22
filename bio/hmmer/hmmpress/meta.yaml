@@ -1,10 +1,15 @@
 name: hmmpress
+url: http://hmmer.org/
 description: "Format an HMM database into a binary format for hmmscan."
 authors:
   - N Tessa Pierce
 input:
-  - hmm database
+  - hmm database. This must be the only element of the input file list.
 output:
   - binary format hmm database (for hmmscan)
-citations:
-  - "`Challenges in Homology Search: HMMER3 and Convergent Evolution of Coiled-Coil Regions. J. Mistry, R. D. Finn, S. R. Eddy, A. Bateman, M. Punta. Nucleic Acids Research, 41:e121, 2013   <https://doi.org/10.1093/nar/gkt263>`_"
+notes: |
+  "`Challenges in Homology Search: HMMER3 and Convergent Evolution of Coiled-Coil Regions. J. Mistry, R. D. Finn, S. R. Eddy, A. Bateman, M. Punta. Nucleic Acids Research, 41:e121, 2013   <https://doi.org/10.1093/nar/gkt263>`_"
+
+  This wrapper does not accept parameters.
+
+  This tool/wrapper does not handle multi-threading.
