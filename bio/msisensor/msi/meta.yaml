@@ -3,10 +3,15 @@ description: "Score your MSI with MSIsensor"
 author:
   - Thibault Dayris
 input:
-  - A microsatellite and homopolymer list from MSIsensor Scan
-  - A pair of normal/tumoral bams
+  - microsat: A microsatellite and homopolymer list from MSIsensor Scan
+  - normal: Path to normal bam
+  - tumor: Path to tumor bam
 output:
   - A text file containing MSI scores
   - A TSV formatted file containing read count distribution
   - A TSV formatted file containing somatic sites
   - A TSV formatted file containing germline sites
+params:
+  - extra: Optional parameters
+notes: |
+  Warning, the official repository has been archived by its owner. See msisensor-pro.
