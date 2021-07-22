@@ -1,19 +1,19 @@
 name: gatk3 RealignerTargetCreator
+url: https://github.com/broadinstitute/gatk-docs/blob/master/gatk3-tutorials/(howto)_Perform_local_realignment_around_indels.md
 description: |
   Run gatk3 RealignerTargetCreator
 authors:
   - Patrik Smeds
   - Filipe G. Vieira
 input:
-  - bam file
-  - reference genome
-  - bed file (optional)
-  - vcf files known variation (optional)
+  - bam: Path to bam file
+  - ref: Path to reference genome
+  - bed: Path to bed intervals (optional)
+  - known: Path to vcf.gz files known variation (optional)
 output:
-  - target intervals
-  - temp dir (optional)
+  - intervals: Path to output target intervals
+params:
+  - extra: The `extra` param allows for additional program arguments.
+  - java_opts: The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (memory is automatically inferred from `resources` and temp dir from `output.java_temp`.
 notes: |
-  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (memory is automatically inferred from `resources` and temp dir from `output.java_temp`.
-  * The `extra` param allows for additional program arguments.
-  * For more information see, https://github.com/broadinstitute/gatk-docs/blob/master/gatk3-tutorials/(howto)_Perform_local_realignment_around_indels.md
   * Gatk3.jar is not included in the bioconda package, i.e it need to be added to the conda environment manually.
