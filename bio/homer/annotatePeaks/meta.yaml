@@ -1,11 +1,30 @@
 name: "Homer annotatePeaks"
+url: http://homer.ucsd.edu/homer/ngs/annotation.html
 description: >
-  Performing peak annotation to associate peaks with nearby genes. For more information, please see the `documentation <http://homer.ucsd.edu/homer/ngs/annotation.html>`_.
+  Performing peak annotation to associate peaks with nearby genes.
 authors:
   - Antonie Vietor
 input:
-  - peak or BED file
-  - various optional input files, i.e. gtf, bedGraph, wiggle
+  - peaks: peak or BED file
+  - genome: Path to a reference genome (fasta)
+  - gtf: Optional path to a GTF file
+  - gene: Optional path to a gene expression file
+  - motif_files: Optional path to motives file
+  - filter_motiv: Optional path to filter motives
+  - center: Optional path to motives file
+  - nearest_peak: Optional path to a set of peaks
+  - tag: Optional list of experiment directories to show tag counts for
+  - vcf: Optional path to a vcf file to annotate peaks with genetic variation infomation
+  - bed_graph: (Optional) read coverage counts from bedGraph files
+  - wig: (Optional) read coverage counts from wiggle files
+  - map: (Optional) mapping between peak IDs and promoter IDs, overrides closest assignment
+  - advanced_annotation: see `advanced annotation <http://homer.ucsd.edu/homer/ngs/advancedAnnotation.html>`_
 output:
-  - annotation file (.txt)
-  - various optional output files
+  - annotations: annotation file (.txt)
+  - matrix: requires motif_files as input
+  - mfasta: requires motif_files as input
+  - mbed: requires motif_files as input
+  - mlogic: requires motif_files as input
+params:
+  - mode: One of ``tss``, ``tts`` or ``rna``
+  - extra: Optional parameters
