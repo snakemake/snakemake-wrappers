@@ -1,15 +1,19 @@
 name: gatk VariantRecalibrator
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360036351392-VariantRecalibrator
 description: |
   Run gatk VariantRecalibrator.
 authors:
   - Johannes Köster
-  - Jake VanCampen 
+  - Jake VanCampen
 input:
-  - VCF file
+  - vcf: Path to VCF file
+  - ref: Path to reference genome
 output:
-  - .recal file
-  - .tranches file
-notes: |
-  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-Xmx4G" for one, and "-Xmx4G -XX:ParallelGCThreads=10" for two options.
-  * The `extra` param allows for additional program arguments.
-  * For more information see, https://software.broadinstitute.org/gatk/documentation/article?id=11050
+  - vcf: Path to .recal file
+  - tranches: Path to .tranches file
+params:
+  - annotation: The names of the annotations in INFO fields which should used for calculations
+  - mode: Recalibration mode to employ. One of ``SNP``, ``INDEL``, or ``BOTH``.
+  - resources: A list of sites for which to apply a prior probability of being correct
+  - extra: The `extra` param allows for additional program arguments.
+  - java_opts: The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-Xmx4G" for one, and "-Xmx4G -XX:ParallelGCThreads=10" for two options.
