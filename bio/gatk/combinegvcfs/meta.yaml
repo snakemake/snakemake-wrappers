@@ -1,14 +1,15 @@
 name: gatk CombineGVCFs
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360037593911-CombineGVCFs
 description: |
   Run gatk CombineGVCFs.
 authors:
   - Johannes Köster
   - Jake VanCampen
 input:
-  - GVCF files of multiple samples
+  - gvcfs: GVCF files of multiple samples
+  - ref: Path to fasta formatted reference genome
 output:
-  - Combined GVCF
-notes: |
-  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-Xmx4G" for one, and "-Xmx4G -XX:ParallelGCThreads=10" for two options.
-  * The `extra` param allows for additional program arguments.
-  * For more information see, https://software.broadinstitute.org/gatk/documentation/article?id=11050
+  - gvcf: Combined GVCF
+params:
+  - extra: The `extra` param allows for additional program arguments.
+  - java_opts: The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-Xmx4G" for one, and "-Xmx4G -XX:ParallelGCThreads=10" for two options.
