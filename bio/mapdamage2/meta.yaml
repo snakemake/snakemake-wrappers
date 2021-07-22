@@ -1,4 +1,13 @@
 name: mapDamage2
-description: tracking and quantifying damage patterns in ancient DNA sequences. For more information about MapDamage2 see `MapDamage2 documentation <https://ginolhac.github.io/mapDamage/>`_.
+url: https://ginolhac.github.io/mapDamage/
+description: tracking and quantifying damage patterns in ancient DNA sequences.
 authors:
   - Filipe G. Vieira
+input:
+  - ref: Path to fasta genome sequence
+  - bam: Path to mapped dna sequences
+output:
+  - rescaled_bam: Path to rescaled bam (Optional)
+  - log: Path to output directory
+params:
+  - extra: Optional parameters
