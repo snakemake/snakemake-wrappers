@@ -1,14 +1,19 @@
 name: ngs-disambiguate
+url: https://github.com/AstraZeneca-NGS/disambiguate
 description: |
   Disambiguation algorithm for reads aligned to two species (e.g. human
   and mouse genomes) from Tophat, Hisat2, STAR or BWA mem.
 authors:
   - Julian de Ruiter
 input:
-  - species a bam file (name sorted)
-  - species b bam file (name sorted)
+  - a: species a bam file (name sorted)
+  - b: species b bam file (name sorted)
 output:
-  - bam file with ambiguous alignments for species a
-  - bam file with ambiguous alignments for species b
-  - bam file with unambiguous alignments for species a
-  - bam file with unambiguous alignments for species b
+  - a_ambiguous: bam file with ambiguous alignments for species a
+  - b_ambiguous: bam file with ambiguous alignments for species b
+  - a_disambiguated: bam file with unambiguous alignments for species a
+  - b_disambiguated: bam file with unambiguous alignments for species b
+  - summary: Result summary
+params:
+  - prefix: the prefix is used as the sample name in the summary file.
+  - extra: Optional parameters
