@@ -1,6 +1,7 @@
 name: bismark2bedGraph
+url: https://github.com/FelixKrueger/Bismark/blob/master/bismark2bedGraph
 description: |
-  Generate bedGraph and coverage files from positional methylation files created by bismark_methylation_extractor (see https://github.com/FelixKrueger/Bismark/blob/master/bismark2bedGraph).
+  Generate bedGraph and coverage files from positional methylation files created by bismark_methylation_extractor.
 authors:
   - Roman Cherniatchik
 input:
