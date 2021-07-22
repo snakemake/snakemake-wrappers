@@ -1,13 +1,13 @@
 name: gatk EstimateLibraryComplexity
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360057438451-EstimateLibraryComplexity-Picard-
 description: |
   Run gatk EstimateLibraryComplexity
 authors:
   - Filipe G. Vieira
 input:
-  - SAM/BAM/CRAM file
+  - SAM/BAM/CRAM file. This must be the only input file provided.
 output:
-  - metrics file
-notes: |
-  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
-  * The `extra` param allows for additional program arguments.
-  * For more information see, https://gatk.broadinstitute.org/hc/en-us/articles/360057438451-EstimateLibraryComplexity-Picard-
+  - metrics: Path to metrics file
+params:
+  - java_opts: The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  - extra: The `extra` param allows for additional program arguments.
