@@ -1,4 +1,11 @@
 name: "kallisto index"
+url: https://bioinformatics.readthedocs.io/en/latest/kallisto/
 description: Index a transcriptome using kallisto.
 authors:
   - Joël Simoneau
+input:
+  - fasta: Path to transcriptome fasta file
+output:
+  - index: Path to index directory
+params:
+  - extra: Optional parameters
