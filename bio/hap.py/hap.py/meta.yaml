@@ -1,4 +1,20 @@
 name: "hap.py"
-description: Comparison of vcf files and calculating performance metrics following GA4GH defined best practices for benchmarking small variant call sets (Krusche, P. et al. 2019, https://doi.org/10.1038/s41587-019-0054-x). Part of the hap.py suite by Illumina (see https://github.com/Illumina/hap.py/blob/master/doc/normalisation.md).
+url: https://github.com/Illumina/hap.py/
+description: Comparison of vcf files and calculating performance metrics following GA4GH defined best practices for benchmarking small variant call sets
 authors:
   - Nathan D. Olson
+params:
+  - extra: Optional parameters
+  - engine: One of ``xcmp`` (default), ``Rtgtools vcfeval``, ``scmp-distancebased``, or ``scmp-somatic``.
+  - prefix: Output prefix
+input:
+  - truth_regions: Path to VCF containing high confidence variants
+  - strats: Path to BED stratification file, see `official documentation on stratification <https://github.com/Illumina/hap.py/blob/master/doc/happy.md#stratification-via-bed-regions>`_ for more information.
+  - genome: Path to reference genome
+  - query: Path to the VCF that is to be compared and annotated.
+output:
+  - Multiple filtered files. See `the output file list <https://github.com/Illumina/hap.py/blob/master/doc/happy.md#full-list-of-output-columns>`_ on the official documentation.
+notes: |
+  Krusche, P. et al. 2019, https://doi.org/10.1038/s41587-019-0054-x.
+
+  Part of the `hap.py suite by Illumina <https://github.com/Illumina/hap.py/blob/master/doc/normalisation.md>`_.
