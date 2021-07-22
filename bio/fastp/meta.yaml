@@ -1,18 +1,19 @@
 name: "fastp"
+url: https://github.com/OpenGene/fastp
 description: trim and QC fastq reads with fastp
 authors:
   - Sebastian Kurscheid (sebastian.kurscheid@unibas.ch)
   - Filipe G. Vieira
 input:
-  - fastq file(s)
+  - sample: List of fastq file(s)
 output:
-  - trimmed fastq file(s)
-  - unpaired reads (optional; eihter in a single file or separate)
-  - merged reads (optional)
-  - failed reads (optional)
-  - json file containing trimming statistics
-  - html file containing trimming statistics
-notes: |
-  * The `adapters` param allows to specify adapter sequences
-  * The `extra` param allows for additional program arguments.
-  * For more inforamtion see, https://github.com/OpenGene/fastp
+  - trimmed: trimmed fastq file(s)
+  - unpaired1: unpaired reads (optional; eihter in a single file or separate)
+  - unpaired2: unpaired R2 reads in case of separate pairs
+  - merged: merged reads (optional)
+  - failed: failed reads (optional)
+  - json: json file containing trimming statistics
+  - html: html file containing trimming statistics
+params:
+  - extra: The `extra` param allows for additional program arguments.
+  - adapters: The `adapters` param allows to specify adapter sequences
