@@ -1,4 +1,16 @@
 name: nanosim-h
+url: https://github.com/karel-brinda/NanoSim-H
 description: NanoSim-H is a simulator of Oxford Nanopore reads that captures the technology-specific features of ONT data, and allows for adjustments upon improvement of Nanopore sequencing technology.
 authors:
   - Michael Hall
+input:
+  - Genome sequence (fasta). This must be the first input element in the input file list
+output:
+  - simulated reads, logs and errors with a common prefix
+params:
+  - extra: Optional parameters
+  - num_reads: number of generated reads
+  - profile: error profile, see `precomputed profiles <https://github.com/karel-brinda/NanoSim-H#read-simulation>`_
+  - perfect_reads: output perfect reads, no mutations
+  - min_read_len: minimum read length
+  - max_read_len: maximum read length
