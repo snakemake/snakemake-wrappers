@@ -1,4 +1,13 @@
 name: bcftools mpileup
+url: https://samtools.github.io/bcftools/bcftools.html#mpileup
 description: Generate VCF or BCF containing genotype likelihoods for one or multiple alignment (BAM or CRAM) files with `bcftools mpileup <https://samtools.github.io/bcftools/bcftools.html#mpileup>`_.
 authors:
   - Michael Hall
+input:
+  - alignments: List of paths to bam-formatted almignments
+output:
+  - pileup: Path to pileup result file
+params:
+  - options: Optional parameters
+notes: |
+  Add --regions and --samples-files through params.options
