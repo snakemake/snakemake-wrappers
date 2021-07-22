@@ -1,4 +1,12 @@
 name: "bedtools intersect"
+url: https://bedtools.readthedocs.io/en/latest/content/tools/intersect.html
 description: Intersect BED/BAM/VCF files with bedtools.
 authors:
   - Jan Forster
+params:
+  - extra: Optional parameters, see `bedtools intersect official documentation <https://bedtools.readthedocs.io/en/latest/content/tools/intersect.html#usage-and-option-summary>`_ for more information.
+input:
+  - left: BAM/BED/GFF/VCF file
+  - right: One or more BAM/BED/GFF/VCF file(s)
+output:
+  - Path to output intersection. Must be the only element in the output file list
