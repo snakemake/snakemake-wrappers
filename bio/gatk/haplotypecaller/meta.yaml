@@ -1,15 +1,17 @@
 name: gatk HaplotypeCaller
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller
 description: |
   Run gatk HaplotypeCaller.
 authors:
   - Johannes Köster
   - Jake VanCampen
 input:
-  - bam file
+  - bam: Path to bam file(s)
+  - ref: Path to fasta-formatted reference genome
+  - known: Path to known variants
 output:
-  - GVCF file
-notes: |
-  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-Xmx4G" for one, and "-Xmx4G -XX:ParallelGCThreads=10" for two options.
-  * The `extra` param allows for additional program arguments.
-  * For more information see, https://software.broadinstitute.org/gatk/documentation/article?id=11050
-
+  - gvcf: Path to GVCF file
+  - bam: Path to output bam(s)
+params:
+  - java_opts: The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-Xmx4G" for one, and "-Xmx4G -XX:ParallelGCThreads=10" for two options.
+  - extra: The `extra` param allows for additional program arguments.
