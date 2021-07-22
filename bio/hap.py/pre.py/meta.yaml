@@ -1,4 +1,14 @@
 name: "pre.py"
-description: Preprocessing/normalisation of vcf/bcf files. Part of the hap.py suite by Illumina (see https://github.com/Illumina/hap.py/blob/master/doc/normalisation.md).
+url: https://github.com/Illumina/hap.py/
+description: Preprocessing/normalisation of vcf/bcf files.
 authors:
   - Jan Forster
+input:
+  - variants: Path to VCF file
+output:
+  - Path to normalized VCF file, this must be the only output file in the output file list
+params:
+  - genome: path to reference genome (fasta)
+  - extra: Optional parameters
+notes: |
+  Part of the `hap.py suite by Illumina <https://github.com/Illumina/hap.py/blob/master/doc/normalisation.md>`_.
