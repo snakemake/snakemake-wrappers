@@ -1,6 +1,7 @@
 name: bismark
+url: https://github.com/FelixKrueger/Bismark/blob/master/bismark
 description: |
-  Align BS-Seq reads using Bismark (see https://github.com/FelixKrueger/Bismark/blob/master/bismark).
+  Align BS-Seq reads using Bismark.
 authors:
   - Roman Cherniatchik
 input:
