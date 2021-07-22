@@ -1,7 +1,15 @@
 name: "GDC API-based data download of BAM slices"
+url: https://docs.gdc.cancer.gov/API/Users_Guide/BAM_Slicing/
 description: Download slices of GDC BAM files using `curl <https://curl.haxx.se/>`_ and the `GDC API for BAM Slicing <https://docs.gdc.cancer.gov/API/Users_Guide/BAM_Slicing/>`_.
 authors:
   - David Lähnemann
+output:
+  - bam: Path to output bam file
+params:
+  - uuid: provide a GDC UUID
+  - gdc_token: GDC data access token
+  - slices: Region slice, see notes below for more information
+  - extra: Optional parameters
 notes: |
   - BAM file UUIDs can be found via the `GDC repository query <https://portal.gdc.cancer.gov/repository?filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22files.data_format%22%2C%22value%22%3A%5B%22bam%22%5D%7D%7D%5D%7D>`_, either by clicking on individual files or systematically by creating a cart and downloading a manifest file.
   - Slicing can be performed using `region syntax like 'region=chr20:3000-4000' <https://docs.gdc.cancer.gov/API/Users_Guide/BAM_Slicing/#examples-specifying-a-region>`_, `gene name syntax like 'gencode=BRCA2' <https://docs.gdc.cancer.gov/API/Users_Guide/BAM_Slicing/#examples-specifying-a-gene>`_ (this uses `Gene symbols of GENCODE v22 <https://www.gencodegenes.org/human/release_22.html>`_) or `'region=unmapped' to get unmapped reads <https://docs.gdc.cancer.gov/API/Users_Guide/BAM_Slicing/#examples-specifying-unmapped-reads>`_. Multiple such entries can be joined with ampersands (e.g. ``region=chr5:200-300&region=unmapped&gencode=BRCA1``).
