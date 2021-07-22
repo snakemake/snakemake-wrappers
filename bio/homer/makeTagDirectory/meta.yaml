@@ -1,5 +1,12 @@
 name: "Homer makeTagDirectory"
+url: http://homer.ucsd.edu/homer/ngs/tagDir.html
 description: >
   Create a tag directory with the HOMER suite. For more information, please see the `documentation <http://homer.ucsd.edu/homer/ngs/tagDir.html>`_.
 authors:
   - Jan Forster
+input:
+  - Paths to tag directories. This must be the only elements in the input file list
+output:
+  - Path to merged tag directories. This must be the only element in the output file list.
+params:
+  - extra: Optional parameters
