@@ -1,11 +1,22 @@
 name: lastal
+url: http://last.cbrc.jp/doc/last-evalues.html
 description: "LAST finds similar regions between sequences, and aligns them. It is designed for comparing large datasets to each other (e.g. vertebrate genomes and/or large numbers of DNA reads)"
 authors:
   - N. Tessa Pierce
 inputs:
-  - indexed db for mapping with last 
-  - sequences to align
+  - lastdb: indexed db for mapping with last
+  - data: sequences to align
 outputs:
+  - maf: Path to mad alignments result (default)
+  - tab: Path to TSV alignments result
+  - blasttab: Path to blasttab alignments result
+  - blasttabplus: Path to blasttabplus alignments result
   - sequence alignments
-citations:
-  - "`Adaptive seeds tame genomic sequence comparison. Kiełbasa SM, Wan R, Sato K, Horton P, Frith MC. Genome Res. 2011 21(3):487-93. <https://genome.cshlp.org/content/21/3/487.long>`_" 
+params:
+  - extra: Optional parameters
+  - D_length: Evaluated D length (default 1000000)
+  - frameshift_cost: Frameshift penality for alignment
+notes: |
+  Only one of ``maf``, ``tab``, ``blasttab``, or ``blasttabplus`` result should be set in the output file list.
+
+  "`Adaptive seeds tame genomic sequence comparison. Kiełbasa SM, Wan R, Sato K, Horton P, Frith MC. Genome Res. 2011 21(3):487-93. <https://genome.cshlp.org/content/21/3/487.long>`_"
