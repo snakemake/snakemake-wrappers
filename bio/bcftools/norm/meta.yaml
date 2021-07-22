@@ -1,4 +1,11 @@
 name: bcftools norm
+url: https://samtools.github.io/bcftools/bcftools.html#mpileup
 description: Left-align and normalize indels, check if REF alleles match the reference, split multiallelic sites into multiple rows; recover multiallelics from multiple rows. For more information see `BCFtools documentation <https://www.htslib.org/doc/bcftools.html#norm>`_.
 authors:
   - Dayne Filer
+input:
+  - Path to gzipped VCF or BCF, must be the first in the input file list
+output:
+  - normalized VCF/BCF
+params:
+  - Optional parameters, ust be the first and only value in snakemake's params.
