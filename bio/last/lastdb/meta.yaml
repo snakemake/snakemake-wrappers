@@ -3,8 +3,11 @@ description: "LAST finds similar regions between sequences, and aligns them. It 
 authors:
   - N. Tessa Pierce
 inputs:
-  - fasta reference
+  - Path to fasta reference. This must be the only element in the input file list
 outputs:
   - indexed db for mapping with last
+params:
+  - extra: Optional parameters
+  - protein_input: Boolean, set the ``-p`` parameters.
 citations:
-  - "`Adaptive seeds tame genomic sequence comparison. Kiełbasa SM, Wan R, Sato K, Horton P, Frith MC. Genome Res. 2011 21(3):487-93. <https://genome.cshlp.org/content/21/3/487.long>`_" 
+  - "`Adaptive seeds tame genomic sequence comparison. Kiełbasa SM, Wan R, Sato K, Horton P, Frith MC. Genome Res. 2011 21(3):487-93. <https://genome.cshlp.org/content/21/3/487.long>`_"
