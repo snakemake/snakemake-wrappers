@@ -1,8 +1,17 @@
 name: "gridss call"
+url: https://github.com/PapenfussLab/gridss
 description: >
     GRIDSS is a module software suite containing tools useful for the detection of genomic rearrangements.
     It includes a genome-wide break-end assembler, as well as a structural variation caller for Illumina sequencing data.
     ``call`` performs variant calling.
-    Documentation at: https://github.com/PapenfussLab/gridss
 authors:
   - Christopher Schröder
+input:
+  - assembly: Path to output assembly
+  - reference: Path to indexed reference genome all "``.amb``", "``.ann``", "``.bwt``", "``.pac``", "``.sa``" files are expected
+  - dictionary: Path to sequence disctionnary
+output:
+  - vcf: Assembly VCF
+params:
+  - workingdir: Path to working directory
+  - extra: Optional parameters
