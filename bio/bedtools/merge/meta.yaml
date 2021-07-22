@@ -1,4 +1,13 @@
 name: "bedtools merge"
+url: https://bedtools.readthedocs.io/en/latest/content/tools/merge.html
 description: Merge entries in one or multiple BED/BAM/VCF/GFF files with bedtools.
 authors:
   - Jan Forster
+params:
+  - extra: Optional parameters, see `bedtools intersect official documentation <https://bedtools.readthedocs.io/en/latest/content/tools/merge.html#usage-and-option-summary>`_ for more information.
+input:
+  - One or more BED file. Input files must be all compressed or uncompressed.
+output:
+  - One BED-formatted output file, this must be the only output.
+notes: |
+  When more than one BED is provided, the three threads are used (cat/zcat + sort + bcftools merge).
