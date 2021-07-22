@@ -1,4 +1,12 @@
 name: "bedtools slop"
+url: https://bedtools.readthedocs.io/en/latest/content/tools/slop.html
 description: Increase the size of each feature in a BED/BAM/VCF by a specified factor.
 authors:
   - Jan Forster
+input:
+  - BED/GFF/VCF file, must be the first in the list
+  - genome: Path to genome intervals
+output:
+  - Path to output BED/GFF/VCF file, must be the only output element
+params:
+  - extra: Optional parameters, see `bedtools slope official documentation <https://bedtools.readthedocs.io/en/latest/content/tools/slope.html#usage-and-option-summary>`_ for more information.
