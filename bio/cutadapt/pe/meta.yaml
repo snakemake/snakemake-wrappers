@@ -5,7 +5,13 @@ authors:
   - Julian de Ruiter
   - David Laehnemann
 input:
-  - two (paired-end) fastq files
+  - Two (paired-end) fastq files. They must be the only elements in the input file list.
 output:
-  - two trimmed (paired-end) fastq files
-  - text file containing trimming statistics
+  - fastq1: trimmed R1 fastq file
+  - fastq2: trimmed R2 fastq file
+  - qc: text file containing trimming statistics
+params:
+  - adapters: Adapters to remove
+  - extra: Optional parameters
+note: |
+  This wrapper requires either `params.adapters` or `params.extra` to be non null and non empty.
