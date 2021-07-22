@@ -1,4 +1,5 @@
 name: gatk ApplyBQSR
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360046222011-ApplyBQSR
 description: |
   Run gatk ApplyBQSR.
 authors:
@@ -6,12 +7,11 @@ authors:
   - Johannes Köster
   - Jake VanCampen
 input:
-  - bam file
-  - fasta reference
-  - recalibration table for the bam
+  - bam: Path to bam file
+  - ref: Path to fasta-formatted reference genome
+  - recal_table: Path to recalibration table for the bam
 output:
-  - recalibrated bam file
-notes: |
-  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
-  * The `extra` param allows for additional program arguments for ApplyBSQR.
-  * For more information see, https://gatk.broadinstitute.org/hc/en-us/articles/360037055712-ApplyBQSR
+  - bam: recalibrated bam file
+params:
+  - extra: The `extra` param allows for additional program arguments for ApplyBSQR.
+  - java_opts: The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
