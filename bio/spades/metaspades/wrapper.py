@@ -34,6 +34,12 @@ extra = snakemake.params.get("extra", "")
 kmers = snakemake.params.get("k", "'auto'")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
+if hasattr(snakemake.resources,'mem_mb'):
+    mem_gb= snakemake.resources.mem_mb // 1000
+    memory_requirements = f" --memory {mem_gb}"
+else:
+    memory_requirements = ""
+
 if not os.path.exists(os.path.join(output_dir, "params.txt")):
 
     # parse short reads
@@ -66,7 +72,7 @@ if not os.path.exists(os.path.join(output_dir, "params.txt")):
     shell(
         "spades.py --meta "
         " --threads {threads} "
-        " --memory {resources.mem_mb}000 "
+        " {memory_requirements} "
         " -o {output_dir} "
         " -k {kmers} "
         " {input} "
@@ -84,7 +90,7 @@ else:
         "spades.py --meta "
         " --restart-from last "
         " --threads {threads} "
-        " --memory {resources.mem_mb}000 "
+        " {memory_requirements} "
         " -o {output_dir} "
         " >> {log[0]} 2>&1 "
     )
