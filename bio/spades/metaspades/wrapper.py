@@ -34,8 +34,8 @@ extra = snakemake.params.get("extra", "")
 kmers = snakemake.params.get("k", "'auto'")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-if hasattr(snakemake.resources,'mem_mb'):
-    mem_gb= snakemake.resources.mem_mb // 1000
+if hasattr(snakemake.resources, "mem_mb"):
+    mem_gb = snakemake.resources.mem_mb // 1000
     memory_requirements = f" --memory {mem_gb}"
 else:
     memory_requirements = ""

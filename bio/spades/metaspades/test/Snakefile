@@ -3,7 +3,7 @@ container: "docker://continuumio/miniconda3:4.4.10"
 
 rule run_metaspades:
     input:
-        reads=["test_reads/sample1_R1.fastq.gz","test_reads/ample1_R2.fastq.gz"]
+        reads=["test_reads/sample1_R1.fastq.gz", "test_reads/ample1_R2.fastq.gz"],
     output:
         "assembly/contigs.fasta",
         "assembly/scaffolds.fasta",
@@ -11,9 +11,9 @@ rule run_metaspades:
         "logs/benchmarks/assembly/spades.txt"
     params:
         # all parameters are optional
-        output_dir = "assembly/intermediate_files",
-        k= 'auto',
-        extra = "--only-assembler"
+        output_dir="assembly/intermediate_files",
+        k="auto",
+        extra="--only-assembler",
     log:
         "log/spades.log",  #stdout/stderr is written in first log file
         "assembly/intermediate_files/spades.log",  #spades creates anyway a this log file
@@ -27,9 +27,9 @@ rule run_metaspades:
 
 rule download_reads:
     output:
-        ["test_reads/sample1_R1.fastq.gz","test_reads/ample1_R2.fastq.gz"]
+        ["test_reads/sample1_R1.fastq.gz", "test_reads/ample1_R2.fastq.gz"],
     log:
-        "log/download.log"
+        "log/download.log",
     shell:
         " wget https://zenodo.org/record/3992790/files/test_reads.tar.gz >> {log} 2>&1"
         " tar -xzf test_reads.tar.gz >> {log} 2>&1"
