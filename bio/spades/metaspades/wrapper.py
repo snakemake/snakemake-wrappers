@@ -11,14 +11,11 @@ from snakemake.shell import shell
 
 # infer output directory
 
-if hasattr(snakemake.params, "output_dir"):
-    output_dir = snakemake.params.output_dir
-    os.makedirs(output_dir, exists_ok=True)
+if hasattr(snakemake.output, "dir"):
+    output_dir = snakemake.output.dir
 
-    need_copy_output_files = True
 else:
     # get output_dir file from output
-    need_copy_output_files = False
     if hasattr(snakemake.output, "contigs"):
         output_file = snakemake.output.contigs
     elif hasattr(snakemake.output, "scaffolds"):
@@ -96,15 +93,30 @@ else:
     )
 
 
-if need_copy_output_files:
+# Rename/ move output files
 
-    if hasattr(snakemake.output, "scaffolds"):
-        shutil.copy(
-            os.path.join(output_dir, "scaffolds.fasta"), snakemake.output.scaffolds
-        )
-    if hasattr(snakemake.output, "contigs"):
-        output_contigs = snakemake.output.contigs
-    else:
-        output_contigs = snakemake.output[0]
+Output_key_mapping = {
+    "contigs": "contigs.fasta",
+    "scaffolds": "scaffolds.fasta",
+    "graph": "assembly_graph_with_scaffolds.gfa",
+}
 
-    shutil.copy(os.path.join(output_dir, "contigs.fasta"), output_contigs)
+has_named_output = False
+for key in Output_key_mapping:
+    if hasattr(snakemake.output, key):
+
+        has_named_output = True
+        file_produced = os.path.join(output_dir, Output_key_mapping[key])
+        file_renamed = getattr(snakemake.output, key)
+
+        if file_produced != file_renamed:
+            shutil.move(file_produced, file_renamed)
+
+
+if not has_named_output:
+
+    file_produced = os.path.join(output_dir, "contigs.fasta")
+    file_renamed = snakemake.output[0]
+
+    if file_produced != file_renamed:
+        shutil.move(file_produced, file_renamed)

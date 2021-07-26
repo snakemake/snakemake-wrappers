@@ -5,18 +5,17 @@ rule run_metaspades:
     input:
         reads=["test_reads/sample1_R1.fastq.gz", "test_reads/ample1_R2.fastq.gz"],
     output:
-        "assembly/contigs.fasta",
-        "assembly/scaffolds.fasta",
+        contigs="assembly/contigs.fasta",
+        scaffolds="assembly/scaffolds.fasta",
+        dir=directory("assembly/intermediate_files"),
     benchmark:
         "logs/benchmarks/assembly/spades.txt"
     params:
         # all parameters are optional
-        output_dir="assembly/intermediate_files",
         k="auto",
         extra="--only-assembler",
     log:
         "log/spades.log",  #stdout/stderr is written in first log file
-        "assembly/intermediate_files/spades.log",  #spades creates anyway a this log file
     threads: 8
     resources:
         mem_mem=250000,
