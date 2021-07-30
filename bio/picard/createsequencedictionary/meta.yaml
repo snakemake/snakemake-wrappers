@@ -1,9 +1,14 @@
 name: picard CreateSequenceDictionary
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360036712531-CreateSequenceDictionary-Picard-
 description: |
   Create a .dict file for a given FASTA file
 authors:
   - Johannes Köster
 input:
-  - FASTA file
+  - FASTA file. This must be the first element of the input file list
 output:
-  - .dict file
+  - Path to ``.dict`` file. This must be the first element of the output file list
+params:
+  - extra: Optional arguments
+notes: |
+  This tool/wrapper does not handle multithreading
