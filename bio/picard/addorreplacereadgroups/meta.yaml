@@ -1,8 +1,13 @@
 name: picard AddOrReplaceReadGroups
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360046223331-AddOrReplaceReadGroups-Picard-
 description: Add or replace read groups with picard tools.
 authors:
   - Johannes Köster
 input:
-  - bam file
+  - bam file. This is the only element in the input file list
 output:
-  - bam file with added or replaced read groups
+  - bam file with added or replaced read groups. This must be the only element in the output file list
+params:
+  - Optional parameters.
+notes: |
+  This tool/wrapper does not handle multithreading
