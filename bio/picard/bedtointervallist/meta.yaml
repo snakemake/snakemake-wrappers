@@ -1,4 +1,5 @@
 name: picard BedToIntervalList
+url: https://broadinstitute.github.io/picard/command-line-overview.html#BedToIntervalList
 description: |
   `picard BedToIntervalList <https://broadinstitute.github.io/picard/command-line-overview.html#BedToIntervalList>`_ converts a BED file to Picard Interval List format.
 authors:
@@ -7,5 +8,8 @@ input:
   - bed: region file
   - dict: genome dictionary file (from samtools dict or `picard CreateSequenceDictionary <https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/picard/createsequencedictionary.html>`_ )
 output:
-  - interval_list Picard format
-
+  - interval_list Picard format. This must be th only element in the output file list.
+params:
+  - Optional arguments
+notes: |
+  This tool/wrapper does not handle multithreading
