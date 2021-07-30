@@ -1,4 +1,16 @@
 name: pbmm2 align
-description: Align reads using pbmm2, a minimap2 SMRT wrapper for PacBio data https://github.com/PacificBiosciences/pbmm2/
+url: https://github.com/PacificBiosciences/pbmm2/
+description: Align reads using pbmm2, a minimap2 SMRT wrapper for PacBio data
 authors:
   - William Rowell
+input:
+  - reference: Genome index or genome fasta sequence
+  - query: Path to unaligned bam (ubam), or sequences (fasta, fastq)
+- output:
+  - bam: Aligned bam
+  - index: Bam index
+params:
+  - sample: Sample name for @RG
+  - extra: Optional parameters
+  - loglevel: Logging level
+  - preset: One of ``SUBREAD``, ``CCS``, ``HIFI``, ``ISOSEQ``, ``UNROLLED``
