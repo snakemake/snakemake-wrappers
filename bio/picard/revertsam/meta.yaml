@@ -1,9 +1,14 @@
 name: picard RevertSam
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360036734291-RevertSam-Picard-
 description: |
   Reverts SAM or BAM files to a previous state. .
 authors:
   - Patrik Smeds
 input:
-  - sam/bam file
+  - sam/bam file. This must be the first element of the input file list
 output:
-  - sam/bam file.
+  - sam/bam file. This must be the first element of the output file list
+params:
+  - extra: Optional parameters
+notes: |
+  This tool/wrapper does not handle multithreading
