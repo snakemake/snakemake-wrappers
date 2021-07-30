@@ -1,5 +1,15 @@
 name: picard CollectAlignmentSummaryMetrics
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360042476752-CollectAlignmentSummaryMetrics-Picard-
 description: |
   Collect metrics on aligned reads with picard tools.
 authors:
   - Johannes Köster
+input:
+  - bam: Path to bam in which to collect metrics
+  - ref: Path to genome sequence (fasta).
+output:
+  - Metrics. This must be the first element of the output file list
+params:
+  - Optional arguments
+notes: |
+  This tool/wrapper does not handle multithreading
