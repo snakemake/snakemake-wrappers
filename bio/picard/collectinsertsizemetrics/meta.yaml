@@ -1,10 +1,15 @@
 name: picard CollectInsertSizeMetrics
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360037225252-CollectInsertSizeMetrics-Picard-
 description: |
   Collect metrics on insert size of paired end reads with picard tools.
 authors:
   - Johannes Köster
 input:
-  - bam file
+  - bam file. This must be the only element of the input file list
 output:
   - txt: textual representation of metrics
   - pdf: insert size histogram
+params:
+  - Optional arguments
+notes: |
+  This tool/wrapper does not handle multithreading
