@@ -1,9 +1,14 @@
 name: picard SortSam
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360037594291-SortSam-Picard-
 description: |
   Sort sam/bam files using picard tools.
 authors:
   - Julian de Ruiter
 input:
-  - sam/bam file
+  - sam/bam file. This must be the first element of the input file list
 output:
-  - sorted sam/bam file.
+  - sorted sam/bam file. This must be the first element of the output file list
+params:
+  - extra: Optional parameters
+notes: |
+  This tool/wrapper does not handle multithreading
