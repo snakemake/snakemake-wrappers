@@ -9,4 +9,4 @@ output:
   - index: A pandora index file
   - kmer_prgs: A directory of the index kmer PRGs in GFA format
 params:
-  options: Any options other than threads (see docs)
+  - options: Any options other than threads (see docs)
