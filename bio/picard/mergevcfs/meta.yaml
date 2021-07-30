@@ -4,6 +4,10 @@ description: |
 authors:
   - Johannes Köster
 input:
-  - vcf files
+  - vcfs: vcf files. These must be the only input elements
 output:
-  - merged vcf file
+  - merged vcf file. This must be the first element of the output file list
+params:
+  - extra: Optional elements
+notes: |
+  This tool/wrapper does not handle multithreading
