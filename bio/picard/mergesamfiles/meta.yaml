@@ -1,9 +1,14 @@
 name: picard MergeSamFiles
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360036884711-MergeSamFiles-Picard-
 description: |
   Merge sam/bam files using picard tools.
 authors:
   - Julian de Ruiter
 input:
-  - sam/bam files
+  - sam/bam files. These must be the only input elements
 output:
-  - merged sam/bam file
+  - merged sam/bam file. This must be the first element of the output file list
+params:
+  - Optional parameters
+notes: |
+  This tool/wrapper does not handle multithreading
