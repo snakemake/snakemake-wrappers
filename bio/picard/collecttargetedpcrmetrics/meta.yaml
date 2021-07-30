@@ -1,5 +1,16 @@
 name: picard CollectTargetedPcrMetrics
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360037225812-CollectTargetedPcrMetrics-Picard-
 description: |
   Collect metric information for target pcr metrics runs, with picard tools.
 authors:
   - Patrik Smeds
+input:
+  - bam: Path to input bam file
+  - amplicon_intervals: Path to amplicon interval file
+  - target_intervals: Path to target interval file
+output:
+  - Path to metrics file. This must be the first element of the output file list
+params:
+  - extra: Optional parameters
+notes: |
+  This tool/wrapper does not handle multithreading
