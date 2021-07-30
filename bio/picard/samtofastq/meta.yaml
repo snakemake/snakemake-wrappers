@@ -1,9 +1,16 @@
 name: picard SomToFastq
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360036485372-SamToFastq-Picard-
 description: |
   Converts a SAM or BAM file to FASTQ.
 authors:
   - Patrik Smeds
 input:
-  - sam/bam file
+  - sam/bam file. This must be the first element of the input file list
 output:
-  - fastq files.
+  - fastq1: Path to R1 fastq
+  - fastq2: Path to R2 fastq (Optional)
+  - unpaired_fastq: Path to unpaired fastq (Optional, required if ``fastq2`` is provided)
+params:
+  - extra: Optional parameters
+notes: |
+  This tool/wrapper does not handle multithreading
