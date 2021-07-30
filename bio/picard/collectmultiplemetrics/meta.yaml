@@ -1,6 +1,20 @@
 name: picard CollectMultipleMetrics
+url: https://broadinstitute.github.io/picard/command-line-overview.html#CollectMultipleMetrics
 description: >
   A ``picard`` meta-metrics tool that collects multiple classes of metrics.
+authors:
+  - David Laehnemann
+  - Antonie Vietor
+input:
+  - bam: BAM file (.bam)
+  - ref: FASTA reference sequence file (.fasta or .fa)
+output:
+  - multiple metrics text files (_metrics) AND
+  - multiple metrics pdf files (.pdf)
+  - the appropriate extensions for the output files must be used depending on the desired tools
+notes: |
+  This wrapper/tool does not handle multithreading
+
   For usage information about CollectMultipleMetrics, please see  ``picard``'s `documentation <https://broadinstitute.github.io/picard/command-line-overview.html#CollectMultipleMetrics>`_.
   For more information about ``picard``, also see the `source code <https://github.com/broadinstitute/picard>`_.
 
@@ -48,14 +62,3 @@ description: >
     +-----------------------------------+-----------------------------------------+
     | CollectQualityYieldMetrics        | ".quality_yield_metrics"                |
     +-----------------------------------+-----------------------------------------+
-
-authors:
-  - David Laehnemann
-  - Antonie Vietor
-input:
-  - BAM file (.bam)
-  - FASTA reference sequence file (.fasta or .fa)
-output:
-  - multiple metrics text files (_metrics) AND
-  - multiple metrics pdf files (.pdf)
-  - the appropriate extensions for the output files must be used depending on the desired tools
