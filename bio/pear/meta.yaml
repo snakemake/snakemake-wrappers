@@ -1,10 +1,18 @@
 name: pear
+url: https://cme.h-its.org/exelixis/web/software/pear/doc.html
 description: PEAR is an ultrafast, memory-efficient and highly accurate pair-end read merger
 authors:
   - N. Tessa Pierce
 input:
-  - paired fastq files
+  - read1: Path to fastq R1 file (both fastq required)
+  - read2: Path to fastq R2 file (both fastq required)
 output:
-  - merged fastq
-citations:
-  - "`Jiajie Zhang, Kassian Kobert, Tomáš Flouri, Alexandros Stamatakis; PEAR: a fast and accurate Illumina Paired-End reAd mergeR, Bioinformatics, Volume 30, Issue 5, 1 March 2014, Pages 614–620 <https://doi.org/10.1093/bioinformatics/btt593>`_"
+  - assembled: Assembled reads
+  - discarded: Discarded reads
+  - unassembled_r1: Reads from R1 which were not assembled
+  - unassembled_r2: Reads from R1 which were not assembled
+params:
+  - pval: P-Value threshold
+  - extra: Optional parameters
+notes: |
+  "`Jiajie Zhang, Kassian Kobert, Tomáš Flouri, Alexandros Stamatakis; PEAR: a fast and accurate Illumina Paired-End reAd mergeR, Bioinformatics, Volume 30, Issue 5, 1 March 2014, Pages 614–620 <https://doi.org/10.1093/bioinformatics/btt593>`_"
