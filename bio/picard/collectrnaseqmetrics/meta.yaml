@@ -1,12 +1,16 @@
 name: picard CollectRnaSeqMetrics
+url: https://broadinstitute.github.io/picard/command-line-overview.html#CollectRnaSeqMetrics
 description: |
         Run picard CollectRnaSeqMetrics to generate QC metrics for RNA-seq data.
 authors:
   - Brett Copeland
 input:
-  - BAM file of RNA-seq data aligned to genome
-  - REF_FLAT formatted file of transcriptome annotations
+  - bam: BAM file of RNA-seq data aligned to genome
+  - ref: REF_FLAT formatted file of transcriptome annotations
 output:
-  - RNA-Seq metrics text file
+  - RNA-Seq metrics text file. This must be the first element in the output file list
+params:
+  - extra: Optional parameters
+  - strand: Strand specificity (default "NONE")
 notes: |
-  * For more information, see https://broadinstitute.github.io/picard/command-line-overview.html#CollectRnaSeqMetrics.
+  This tool/wrapper does not handle multithreading.
