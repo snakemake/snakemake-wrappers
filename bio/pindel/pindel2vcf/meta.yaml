@@ -1,4 +1,16 @@
 name: pindel2vcf
+url: http://gmt.genome.wustl.edu/packages/pindel/
 description: Convert pindel output to vcf.
 authors:
   - Johannes Köster
+input:
+  - ref: Reference genome sequence (fasta)
+  - pindel: Pindel call(s)
+output:
+  - VCF formatted calls
+params:
+  - refname: Reference genome
+  - refdate: Reference genome release date
+  - extra: Optional parameters
+notes: |
+  This tool/wrapper does not handle multithreading
