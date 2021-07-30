@@ -1,4 +1,12 @@
 name: pbmm2 index
-description: Indexes a reference using pbmm2, a minimap2 SMRT wrapper for PacBio data https://github.com/PacificBiosciences/pbmm2/
+url: https://github.com/PacificBiosciences/pbmm2/
+description: Indexes a reference using pbmm2, a minimap2 SMRT wrapper for PacBio data
 authors:
   - William Rowell
+params:
+  - preset: One of ``SUBREAD``, ``CCS``, ``HIFI``, ``ISOSEQ``, ``UNROLLED``
+  - extra: Optional parameters
+input:
+  - reference: Path to input reference genome (fasta)
+output:
+  - Path to output index. This must be the only element in the output file list.
