@@ -130,7 +130,6 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
-
 @skip_if_not_modified
 def test_rbt_csvreport():
     run(
@@ -4001,10 +4000,17 @@ def test_generate_data_matrix():
     )
 
 
-
 @skip_if_not_modified
 def test_metaspades():
     run(
         "bio/spades/metaspades",
-        ["snakemake", "--cores", "2", "--use-conda", "--resources mem_mem=1000 time=15" ,"--show-failed-logs" ,"-F"],
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "--resources mem_mem=1000 time=15",
+            "--show-failed-logs",
+            "-F",
+        ],
     )
