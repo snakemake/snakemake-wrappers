@@ -24,7 +24,7 @@ rule run_metaspades:
         "master/bio/spades/metaspades"
 
 
-rule download_reads:
+rule download_test_reads:
     output:
         ["test_reads/sample1_R1.fastq.gz", "test_reads/sample1_R2.fastq.gz"],
     log:
