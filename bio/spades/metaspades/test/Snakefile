@@ -26,9 +26,9 @@ rule run_metaspades:
 
 rule download_reads:
     output:
-        ["test_reads/sample1_R1.fastq.gz", "test_reads/ample1_R2.fastq.gz"],
+        ["test_reads/sample1_R1.fastq.gz", "test_reads/sample1_R2.fastq.gz"],
     log:
         "log/download.log",
     shell:
-        " wget https://zenodo.org/record/3992790/files/test_reads.tar.gz >> {log} 2>&1"
+        " wget https://zenodo.org/record/3992790/files/test_reads.tar.gz >> {log} 2>&1 ; "
         " tar -xzf test_reads.tar.gz >> {log} 2>&1"
