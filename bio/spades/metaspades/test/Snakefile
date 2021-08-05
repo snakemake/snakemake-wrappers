@@ -15,7 +15,7 @@ rule run_metaspades:
         k="auto",
         extra="--only-assembler",
     log:
-        "log/spades.log",  #stdout/stderr is written in first log file
+        "log/spades.log",  
     threads: 8
     resources:
         mem_mem=250000,

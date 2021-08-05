@@ -53,28 +53,28 @@ if not os.path.exists(os.path.join(output_dir, "params.txt")):
         type(reads[0]) == str
     ), f"Metaspades allows only 1 library. Therefore reads need to be strings got {reads}"
 
-    input += " --pe1-1 {0} --pe1-2 {1} ".format(*reads)
+    input_arg = " --pe1-1 {0} --pe1-2 {1} ".format(*reads)
 
     if len(reads) >= 3:
-        input += " --pe1-m {2}".format(*reads)
+        input_arg += " --pe1-m {2}".format(*reads)
 
         if len(reads) >= 4:
-            input += " --pe1-s {3}".format(*reads)
+            input_arg += " --pe1-s {3}".format(*reads)
 
     # parse long reads
     for longread_name in ["pacbio", "nanopore"]:
         if hasattr(snakemake.input, longread_name):
-            input += " --{name} {}".format(name=longread_name, **snakemake.input)
+            input_arg += " --{name} {}".format(name=longread_name, **snakemake.input)
 
     shell(
         "spades.py --meta "
-        " --threads {threads} "
+        " --threads {snakemake.threads} "
         " {memory_requirements} "
         " -o {output_dir} "
         " -k {kmers} "
-        " {input} "
+        " {input_arg} "
         " {extra} "
-        " > {log[0]} 2>&1 "
+        " > {snakemake.log[0]} 2>&1 "
     )
 
 
@@ -89,7 +89,7 @@ else:
         " --threads {threads} "
         " {memory_requirements} "
         " -o {output_dir} "
-        " >> {log[0]} 2>&1 "
+        " >> {snakemake.log[0]} 2>&1 "
     )
 
 
