@@ -1,0 +1,16 @@
+rule microphaser_filter:
+    input:
+        tsv="somatic/info.tsv",
+        ref_peptides="germline/peptides.bin",
+    output:
+        tumor="out/peptides.mt.fasta",
+        normal="out/peptides.wt.fasta",
+        tsv="out/peptides.info.tsv",
+        removed_tsv="out/peptides.removed.tsv",
+        removed_fasta="out/peptides.removed.fasta",
+    log:
+        "logs/microphaser/filter.log"
+    params:
+        extra="--peptide-length 9",  # optional, desired peptide length in amino acids.
+    wrapper:
+        "master/bio/microphaser/filter"
