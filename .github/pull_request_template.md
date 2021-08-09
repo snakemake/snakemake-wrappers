@@ -14,6 +14,7 @@ For all wrappers added by this PR, I made sure that
 * [ ] wherever possible, command line arguments are inferred and set automatically (e.g. based on file extensions in `input:` or `output:`),
 * [ ] all fields of the example rules in the `Snakefile`s and their entries are explained via comments (`input:`/`output:`/`params:` etc.),
 * [ ] `stderr` and/or `stdout` are logged correctly (`log:`), depending on the wrapped tool,
+* [ ] temporary files are either written to a unique hidden folder in the working directory, or (better) stored where the Python function `tempfile.gettempdir()` points to (see [here](https://docs.python.org/3/library/tempfile.html#tempfile.gettempdir); this also means that using any Python `tempfile` default behavior works),
 * [ ] the `meta.yaml` contains a link to the documentation of the respective tool or command,
 * [ ] `Snakefile`s pass the linting (`snakemake --lint`),
 * [ ] `Snakefile`s are formatted with [snakefmt](https://github.com/snakemake/snakefmt),
