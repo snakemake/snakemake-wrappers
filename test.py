@@ -257,6 +257,38 @@ def test_mapdamage2():
 
 
 @skip_if_not_modified
+def test_microphaser_normal():
+    run(
+        "bio/microphaser/normal",
+        ["snakemake", "--cores", "1", "out/a.fasta", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_microphaser_somatic():
+    run(
+        "bio/microphaser/somatic",
+        ["snakemake", "--cores", "1", "out/a.info.tsv", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_microphaser_build_reference():
+    run(
+        "bio/microphaser/build_reference",
+        ["snakemake", "--cores", "1", "out/peptides.bin", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_microphaser_filter():
+    run(
+        "bio/microphaser/filter",
+        ["snakemake", "--cores", "1", "out/peptides.wt.fasta", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_dada2_quality_profile_se():
     run(
         "bio/dada2/quality-profile",
