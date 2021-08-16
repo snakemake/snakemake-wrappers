@@ -1,4 +1,14 @@
 name: pyfastaq replace_bases
+url: https://github.com/Jverma/fastAQ
 description: Replaces all occurrences of one letter with another.
 authors:
   - Michael Hall
+input:
+  - Path to fastq/fasta file. This must be the first element of the input file list.
+output:
+  - Path to replaced fasta/fastq file. This must be the first element of the output file list.
+params:
+  - old_base: The base that is to be replaced
+  - new_base: Tha base to replace with
+note: |
+  This wrapper/tool does not handle multi-threading
