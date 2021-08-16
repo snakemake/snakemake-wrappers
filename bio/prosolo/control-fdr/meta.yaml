@@ -1,9 +1,15 @@
 name: "ProSolo FDR control"
+url: https://github.com/ProSolo/prosolo
 description: |
   ProSolo can control the false discovery rate of any combination of its defined single cell events (like the presence of an alternative allele or the dropout of an allele).
 authors:
   - David Lähnemann
 input:
-  - Variants called with prosolo in vcf or bcf format, including the fine-grained posterior probabilities for single cell events.
+  - Variants called with prosolo in vcf or bcf format, including the fine-grained posterior probabilities for single cell events. This must be the only element of the input file list
 output:
-  - bcf file with all variants that satisfy the chosen false discovery rate threshold with regard to the specified events.
+  - bcf file with all variants that satisfy the chosen false discovery rate threshold with regard to the specified events. This must be the only element of the output file list
+params:
+  - events: comma-separated set of events for whose (joint) false discovery rate you want to control false discovery rate to control for
+  - fdr: fdr threshold
+notes: |
+  This tool/wrapper does not handle multithreading
