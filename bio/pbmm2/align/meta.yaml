@@ -6,7 +6,7 @@ authors:
 input:
   - reference: Genome index or genome fasta sequence
   - query: Path to unaligned bam (ubam), or sequences (fasta, fastq)
-- output:
+output:
   - bam: Aligned bam
   - index: Bam index
 params:
