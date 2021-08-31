@@ -3460,6 +3460,7 @@ def test_ensembl_variation_grch37():
         ["snakemake", "-s", "grch37.smk", "--cores", "1", "--use-conda", "-F"],
     )
 
+
 @skip_if_not_modified
 def test_ensembl_variation_chromosome():
     run(
@@ -4063,4 +4064,12 @@ def test_metaspades():
             "--show-failed-logs",
             "-F",
         ],
+    )
+
+
+@skip_if_not_modified
+def test_verifybamid2():
+    run(
+        "bio/verifybamid/verifybamid2",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )
