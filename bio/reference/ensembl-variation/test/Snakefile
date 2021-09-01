@@ -1,9 +1,10 @@
 rule get_variation:
+    # Optional: add fai as input to get VCF with annotated contig lengths (as required by GATK)
+    # and properly sorted VCFs.
+    # input:
+    #     fai="refs/genome.fasta.fai"
     output:
         vcf="refs/variation.vcf.gz",
-        # Optional: add fai to get VCF with annotated contig lengths (as required by GATK)
-        # and properly sorted VCFs.
-        # fai="refs/genome.fasta.fai"
     params:
         species="saccharomyces_cerevisiae",
         release="98",  # releases <98 are unsupported

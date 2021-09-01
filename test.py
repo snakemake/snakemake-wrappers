@@ -3460,6 +3460,13 @@ def test_ensembl_variation_grch37():
         ["snakemake", "-s", "grch37.smk", "--cores", "1", "--use-conda", "-F"],
     )
 
+@skip_if_not_modified
+def test_ensembl_variation_chromosome():
+    run(
+        "bio/reference/ensembl-variation",
+        ["snakemake", "-s", "chrom_wise.smk", "--cores", "1", "--use-conda", "-F"],
+    )
+
 
 @skip_if_not_modified
 def test_ensembl_variation_with_contig_lengths():
