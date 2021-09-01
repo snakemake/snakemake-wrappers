@@ -35,10 +35,10 @@ if chromosome and type != "all":
 
 if type == "all":
     if species == "homo_sapiens" and release >= 93:
-        chroms = list(range(1, 23)) + ["X", "Y", "MT"] if not chromosome else [chromosome]
-        suffixes = [
-            "-chr{}".format(chrom) for chrom in chroms
-        ]
+        chroms = (
+            list(range(1, 23)) + ["X", "Y", "MT"] if not chromosome else [chromosome]
+        )
+        suffixes = ["-chr{}".format(chrom) for chrom in chroms]
     else:
         if chromosome:
             raise ValueError(
