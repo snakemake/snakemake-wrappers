@@ -49,6 +49,8 @@ those marked optional, should be provided.
 * **params** (optional): A `mapping`_ of parameters that can be used in the wrapper's ``params`` directive. If no parameters are used for the wrapper, this field can be omitted.
 * **notes** (optional): Anything of note that does not fit into the scope of the other fields.
 
+You can add a newline to the rendered text in these fields with the addition of ``|nl|``
+
 Example
 ^^^^^^^
 

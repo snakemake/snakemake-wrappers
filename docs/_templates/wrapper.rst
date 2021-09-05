@@ -97,3 +97,7 @@ Code
 .. code-block:: {{ wrapper_lang }}
 
 {{ wrapper }}
+
+.. |nl| raw:: html
+
+   <br>
