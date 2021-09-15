@@ -10,6 +10,7 @@ from shutil import move
 
 from snakemake.shell import shell
 
+extra = snakemake.params.get("extra", "")
 svd_prefix = snakemake.params.get("svd_prefix", "")
 if not svd_prefix:
     genome_build = snakemake.params.get("genome_build", "38")
@@ -46,8 +47,8 @@ with TemporaryDirectory() as tmp_dir:
     os.chdir(tmp_dir)
     shell(
         "verifybamid2 --SVDPrefix {svd_prefix} "
-        "--Reference {ref_path} "
-        "--BamFile {bam_path} {log}"
+        "--Reference {ref_path} --BamFile {bam_path} {extra} "
+        "--NumThread {snakemake.threads} {log}"
     )
     move("result.selfSM", selfsm_path)
     move("result.Ancestry", ancestry_path)
