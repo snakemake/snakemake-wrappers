@@ -130,7 +130,6 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
-
 @skip_if_not_modified
 def test_rbt_csvreport():
     run(
@@ -138,7 +137,7 @@ def test_rbt_csvreport():
         ["snakemake", "--cores", "1", "qc_data", "--use-conda", "-F"],
     )
 
-    
+
 @skip_if_not_modified
 def test_liftoff():
     run(
@@ -3914,7 +3913,7 @@ def test_wgsim():
 
 
 @skip_if_not_modified
-def test_diamond_blastx():
+def test_diamond_makedb():
     run(
         "bio/diamond/makedb",
         ["snakemake", "--cores", "1", "foo.dmnd", "--use-conda", "-F"],
@@ -3926,6 +3925,14 @@ def test_diamond_blastx():
     run(
         "bio/diamond/blastx",
         ["snakemake", "--cores", "1", "foo.tsv.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_diamond_blastp():
+    run(
+        "bio/diamond/blastp",
+        ["snakemake", "--cores", "1", "test-protein.tsv.gz", "--use-conda", "-F"],
     )
 
 

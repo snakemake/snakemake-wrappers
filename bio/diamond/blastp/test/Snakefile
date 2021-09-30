@@ -1,0 +1,13 @@
+rule diamond_blastp:
+    input:
+        fname_fasta = "{sample}.fasta",
+        fname_db = "db.dmnd"
+    output:
+        fname = "{sample}.tsv.gz"
+    log:
+        "logs/diamond_blastp/{sample}.log"
+    params:
+        extra="--header --compress 1"
+    threads: 8
+    wrapper:
+        "master/bio/diamond/blastp"
