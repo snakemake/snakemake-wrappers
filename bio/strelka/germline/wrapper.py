@@ -21,7 +21,7 @@ else:
     run_dir = snakemake.output
 
 shell(
-    "configureStrelkaGermlineWorkflow.py "  # configure the strelka run
+    "(configureStrelkaGermlineWorkflow.py "  # configure the strelka run
     "--bam {bam} "  # input bam
     "--referenceFasta {snakemake.input.fasta} "  # reference genome
     "--runDir {run_dir} "  # output directory
@@ -29,6 +29,6 @@ shell(
     "&& {run_dir}/runWorkflow.py "  # run the strelka workflow
     "-m local "  # run in local mode
     "-j {snakemake.threads} "  # number of threads
-    "{run_extra} "  # additional parameters for the run
+    "{run_extra}) "  # additional parameters for the run
     "{log}"
 )  # logging
