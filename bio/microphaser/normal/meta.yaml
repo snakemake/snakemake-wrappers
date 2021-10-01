@@ -1,0 +1,14 @@
+name: microphaser normal
+description: |
+  Predict sample-specific normal peptides with integrated germline variants from NGS (whole exome/genome) data
+authors:
+  - Jan Forster
+input:
+  - bam file
+  - bcf file
+  - fasta reference
+  - gtf annotation file
+output:
+  - sample-specific peptide fasta (nucleotide sequences)
+notes: |
+  * For more information see, https://github.com/koesterlab/microphaser.

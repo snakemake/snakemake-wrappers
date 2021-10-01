@@ -1,0 +1,13 @@
+rule pandora_index:
+    input:
+        "{gene}/prg.fa",
+    output:
+        index="{gene}/prg.fa.k15.w14.idx",
+        kmer_prgs=directory("{gene}/kmer_prgs"),
+    log:
+        "pandora_index/{gene}.log",
+    params:
+        options="-v -k 15 -w 14",
+    threads: 1
+    wrapper:
+        "master/bio/pandora/index"

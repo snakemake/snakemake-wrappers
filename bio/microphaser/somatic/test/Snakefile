@@ -1,0 +1,20 @@
+rule microphaser_somatic:
+    input:
+        bam="mapped/{sample}.sorted.bam",
+        index="mapped/{sample}.sorted.bam.bai",
+        ref="genome.fasta",
+        annotation="genome.gtf",
+        variants="calls/{sample}.bcf",
+    output:
+        # sequences neopeptides arisen from somatic variants
+        tumor="out/{sample}.mt.fasta",
+        # sequences of the normal, unmutated counterpart to every neopeptide
+        normal="out/{sample}.wt.fasta",
+        # info data of the somatic neopeptides
+        tsv="out/{sample}.info.tsv",
+    log:
+        "logs/microphaser/somatic/{sample}.log",
+    params:
+        extra="--window-len 9",  # optional, desired peptide length in nucleotide bases, e.g. 27 (9 AA) for MHC-I ligands.
+    wrapper:
+        "master/bio/microphaser/somatic"

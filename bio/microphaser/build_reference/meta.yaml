@@ -1,0 +1,12 @@
+name: microphaser build_reference
+description: |
+  Create a reference of all normal peptides in a sample
+authors:
+  - Jan Forster
+input:
+  - peptide reference (nucleotide sequences from microphaser germline)
+output:
+  - peptide reference in amino acid FASTA format
+  - binary peptide reference for filtering
+notes: |
+  * For more information see, https://github.com/koesterlab/microphaser.
