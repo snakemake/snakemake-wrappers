@@ -1,5 +1,5 @@
 name: muscle
-description: build multiple sequence alignments using MUSCLE. Documentation: https://www.drive5.com/muscle/manual/index.html
+description: build multiple sequence alignments using MUSCLE. Documentation found at https://www.drive5.com/muscle/manual/index.html
 authors:
   - Nikos Tsardakas Renhuldt
 input:
