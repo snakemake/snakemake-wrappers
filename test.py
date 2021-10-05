@@ -1593,6 +1593,14 @@ def test_fastq_screen():
 
 
 @skip_if_not_modified
+def test_fasttree():
+    run(
+        "bio/fasttree",
+        ["snakemake", "--cores", "1", "test-proteins.nwk", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_fgbio_annotate():
     run(
         "bio/fgbio/annotatebamwithumis",
