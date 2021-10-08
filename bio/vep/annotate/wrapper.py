@@ -42,7 +42,7 @@ if gff:
 
 if cache:
     entrypath = get_only_child_dir(get_only_child_dir(Path(cache)))
-    species = entrypath.parent.name
+    species = entrypath.parent.name.strip("_refseq")
     release, build = entrypath.name.split("_")
     cache = (
         "--offline --cache --dir_cache {cache} --cache_version {release} --species {species} --assembly {build}"
