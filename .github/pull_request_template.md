@@ -9,6 +9,7 @@ For all wrappers added by this PR, I made sure that
 
 * [ ] there is a test case which covers any introduced changes,
 * [ ] `input:` and `output:` file paths in the resulting rule can be changed arbitrarily,
+* [ ] either the wrapper can only use a single core, or the example rule contains a `threads: x` statement with `x` being a reasonable default,
 * [ ] rule names in the test case are in [snake_case](https://en.wikipedia.org/wiki/Snake_case) and somehow tell what the rule is about or match the tools purpose or name (e.g., `map_reads` for a step that maps reads),
 * [ ] all `environment.yaml` specifications follow [the respective best practices](https://stackoverflow.com/a/64594513/2352071),
 * [ ] wherever possible, command line arguments are inferred and set automatically (e.g. based on file extensions in `input:` or `output:`),
