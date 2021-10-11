@@ -53,7 +53,7 @@ if cache:
     ).format(cache=cache, release=release, build=build, species=species)
 
 shell(
-    "(bcftools view {snakemake.input.calls} | "
+    "(bcftools view '{snakemake.input.calls}' | "
     "vep {extra} {fork} "
     "--format vcf "
     "--vcf "
