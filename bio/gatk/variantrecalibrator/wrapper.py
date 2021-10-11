@@ -34,7 +34,7 @@ def fmt_res(resname, resparams):
     )
 
 
-resources = [
+annotation_resources = [
     "--resource:{}".format(fmt_res(resname, resparams))
     for resname, resparams in snakemake.params["resources"].items()
 ]
@@ -45,7 +45,7 @@ if snakemake.output.tranches:
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 shell(
-    "gatk --java-options '{java_opts}' VariantRecalibrator {extra} {resources} "
+    "gatk --java-options '{java_opts}' VariantRecalibrator {extra} {annotation_resources} "
     "-R {snakemake.input.ref} -V {snakemake.input.vcf} "
     "-mode {snakemake.params.mode} "
     "--output {snakemake.output.vcf} "
