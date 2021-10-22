@@ -32,16 +32,17 @@ else:
     else:
         raise Exception("Expected input.gvcf or input.genomicsdb.")
 
+tmpdir = tempfile.gettempdir()
+
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
-with tempfile.TemporaryDirectory() as tmp:
-    shell(
-        "gatk --java-options '{java_opts}' GenotypeGVCFs {extra} "
-        "-V {input_string} "
-        "-R {snakemake.input.ref} "
-        "{dbsnp} "
-        "{interval_file} "
-        "--tmp-dir {tmp} "
-        "-O {snakemake.output.vcf} {log}"
-    )
+shell(
+    "gatk --java-options '{java_opts}' GenotypeGVCFs {extra} "
+    "-V {input_string} "
+    "-R {snakemake.input.ref} "
+    "{dbsnp} "
+    "{interval_file} "
+    "--tmp-dir {tmpdir} "
+    "-O {snakemake.output.vcf} {log}"
+)

@@ -13,6 +13,6 @@ rule genotype_gvcfs:
         java_opts="", # optional
     resources:
         mem_mb=1024,
-        tmpdir="/tmp"
+        tmpdir="tmp/"
     wrapper:
         "master/bio/gatk/genotypegvcfs"
