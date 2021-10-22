@@ -6,7 +6,7 @@ __license__ = "MIT"
 
 import os
 from tempfile import TemporaryDirectory
-from shutil import move
+from shutil import copyfile
 
 from snakemake.shell import shell
 
@@ -34,6 +34,11 @@ if not svd_prefix:
     if not verifybamid2_found:
         raise Exception("Failed to find verifybamid2 location.")
 
+def move_file(src, dst):
+    "this function will move `fn` while respecting ACLs in the target directory"
+    copyfile(src, dst)
+    os.remove(src)
+
 # verifybamid2 outputs results to result.selfSM and result.Ancestry in the working directory, so to avoid collisions we have to run it from a temporary directory and fix the paths to inputs, outputs, and the log file
 ref_path = os.path.abspath(snakemake.input.ref)
 svd_prefix = os.path.abspath(svd_prefix)
@@ -50,5 +55,5 @@ with TemporaryDirectory() as tmp_dir:
         "--Reference {ref_path} --BamFile {bam_path} {extra} "
         "--NumThread {snakemake.threads} {log}"
     )
-    move("result.selfSM", selfsm_path)
-    move("result.Ancestry", ancestry_path)
+    move_file("result.selfSM", selfsm_path)
+    move_file("result.Ancestry", ancestry_path)
