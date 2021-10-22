@@ -5,7 +5,7 @@ __license__ = "MIT"
 
 
 import os
-
+import tempfile
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
@@ -31,18 +31,17 @@ else:
         input_string = "gendb://{}".format(genomicsdb)
     else:
         raise Exception("Expected input.gvcf or input.genomicsdb.")
-tmp_dir = snakemake.params.get("tmp_dir", "")
-if tmp_dir:
-    tmp_dir = "--tmp-dir={}".format(tmp_dir)
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-shell(
-    "gatk --java-options '{java_opts}' GenotypeGVCFs {extra} "
-    "-V {input_string} "
-    "-R {snakemake.input.ref} "
-    "{dbsnp} "
-    "{interval_file} "
-    "{tmp_dir} "
-    "-O {snakemake.output.vcf} {log}"
-)
+
+with tempfile.TemporaryDirectory() as tmp:
+    shell(
+        "gatk --java-options '{java_opts}' GenotypeGVCFs {extra} "
+        "-V {input_string} "
+        "-R {snakemake.input.ref} "
+        "{dbsnp} "
+        "{interval_file} "
+        "--tmp-dir {tmp} "
+        "-O {snakemake.output.vcf} {log}"
+    )
