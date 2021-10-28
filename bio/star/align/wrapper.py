@@ -38,6 +38,8 @@ else:
 
 outprefix = os.path.dirname(snakemake.output[0]) + "/"
 
+shell("ulimit -n 10000")
+
 shell(
     "STAR "
     "{extra} "
