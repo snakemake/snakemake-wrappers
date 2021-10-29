@@ -257,6 +257,38 @@ def test_mapdamage2():
 
 
 @skip_if_not_modified
+def test_microphaser_normal():
+    run(
+        "bio/microphaser/normal",
+        ["snakemake", "--cores", "1", "out/a.fasta", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_microphaser_somatic():
+    run(
+        "bio/microphaser/somatic",
+        ["snakemake", "--cores", "1", "out/a.info.tsv", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_microphaser_build_reference():
+    run(
+        "bio/microphaser/build_reference",
+        ["snakemake", "--cores", "1", "out/peptides.bin", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_microphaser_filter():
+    run(
+        "bio/microphaser/filter",
+        ["snakemake", "--cores", "1", "out/peptides.wt.fasta", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_dada2_quality_profile_se():
     run(
         "bio/dada2/quality-profile",
@@ -3428,6 +3460,13 @@ def test_ensembl_variation_grch37():
         ["snakemake", "-s", "grch37.smk", "--cores", "1", "--use-conda", "-F"],
     )
 
+@skip_if_not_modified
+def test_ensembl_variation_chromosome():
+    run(
+        "bio/reference/ensembl-variation",
+        ["snakemake", "-s", "chrom_wise.smk", "--cores", "1", "--use-conda", "-F"],
+    )
+
 
 @skip_if_not_modified
 def test_ensembl_variation_with_contig_lengths():
@@ -3921,7 +3960,7 @@ def test_wgsim():
 
 
 @skip_if_not_modified
-def test_diamond_blastx():
+def test_diamond_makedb():
     run(
         "bio/diamond/makedb",
         ["snakemake", "--cores", "1", "foo.dmnd", "--use-conda", "-F"],
@@ -3933,6 +3972,14 @@ def test_diamond_blastx():
     run(
         "bio/diamond/blastx",
         ["snakemake", "--cores", "1", "foo.tsv.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_diamond_blastp():
+    run(
+        "bio/diamond/blastp",
+        ["snakemake", "--cores", "1", "test-protein.tsv.gz", "--use-conda", "-F"],
     )
 
 
@@ -4005,4 +4052,23 @@ def test_generate_data_matrix():
     run(
         "bio/rsem/generate-data-matrix",
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_metaspades():
+    run(
+        "bio/spades/metaspades",
+        [
+            "snakemake",
+            "run_metaspades",
+            "--cores",
+            "2",
+            "--use-conda",
+            "--resources",
+            "mem_mem=1000",
+            "time=15",
+            "--show-failed-logs",
+            "-F",
+        ],
     )

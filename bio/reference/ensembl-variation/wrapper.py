@@ -14,6 +14,7 @@ species = snakemake.params.species.lower()
 release = int(snakemake.params.release)
 build = snakemake.params.build
 type = snakemake.params.type
+chromosome = snakemake.params.get("chromosome", "")
 
 if release < 98:
     print("Ensembl releases <98 are unsupported.", file=open(snakemake.log[0], "w"))
@@ -26,12 +27,24 @@ if release >= 81 and build == "GRCh37":
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
+if chromosome and type != "all":
+    raise ValueError(
+        "Parameter chromosome given but chromosome-wise download"
+        "is only implemented for type='all'."
+    )
+
 if type == "all":
     if species == "homo_sapiens" and release >= 93:
-        suffixes = [
-            "-chr{}".format(chrom) for chrom in list(range(1, 23)) + ["X", "Y", "MT"]
-        ]
+        chroms = (
+            list(range(1, 23)) + ["X", "Y", "MT"] if not chromosome else [chromosome]
+        )
+        suffixes = ["-chr{}".format(chrom) for chrom in chroms]
     else:
+        if chromosome:
+            raise ValueError(
+                "Parameter chromosome given but chromosome-wise download"
+                "is only implemented for homo_sapiens in releases >=93."
+            )
         suffixes = [""]
 elif type == "somatic":
     suffixes = ["_somatic"]
