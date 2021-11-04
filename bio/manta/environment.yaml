@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - manta == 1.6.1
+  - manta=1.6

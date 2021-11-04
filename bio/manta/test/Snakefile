@@ -1,15 +1,23 @@
-rule delly:
+rule manta:
     input:
-        ref="genome.fasta",
+        ref="human_g1k_v37_decoy.small.fasta",
         samples=["mapped/a.bam"],
-        # optional exclude template (see https://github.com/dellytools/delly)
-        exclude="human.hg19.excl.tsv"
     output:
-        "sv/calls.bcf"
+        run="sv/runWorkflow.py",
+        outdir=directory("sv/"),
+        vcf="sv/results/variants/diploidSV.vcf.gz",
+        tbi="sv/results/variants/diploidSV.vcf.gz.tbi",
+        cand_indel_vcf="sv/results/variants/candidateSmallIndels.vcf.gz",
+        cand_indel_tbi="sv/results/variants/candidateSmallIndels.vcf.gz.tbi",
+        cand_sv_vcf="sv/results/variants/candidateSV.vcf.gz",
+        cand_sv_tbi="sv/results/variants/candidateSV.vcf.gz.tbi",
     params:
-        extra=""  # optional parameters for delly (except -g, -x)
+        extra_cfg="",  # optional
+        extra_run="",  # optional
     log:
-        "logs/delly.log"
-    threads: 2  # It is best to use as many threads as samples
+        "logs/manta.log",
+    threads: 2
+    resources:
+        mem_mb=4096,
     wrapper:
-        "master/bio/delly"
+        "master/bio/manta"
