@@ -3,8 +3,10 @@ __copyright__ = "Copyright 2021, Filipe G. Vieira"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
 import math
+from snakemake.shell import shell
+from pathlib import Path
+
 
 extra_cfg = snakemake.params.get("extra_cfg", "")
 extra_run = snakemake.params.get("extra_run", "")
@@ -29,3 +31,37 @@ shell(
     # Run Manta
     "python2 {snakemake.output.outdir}/runWorkflow.py {extra_run} --jobs {snakemake.threads} {mem_gb} {log}; "
 )
+
+
+# Copy outputs into proper position.
+results_base = Path(snakemake.output.outdir) / "results" / "variants"
+
+vcf = snakemake.output.get("vcf", "")
+vcf_path = results_base / "diploidSV.vcf.gz"
+if vcf and vcf != vcf_path:
+    shell("cp {vcf_path:q} {vcf:q}")
+
+tbi = snakemake.output.get("tbi", "")
+tbi_path = results_base / "diploidSV.vcf.gz.tbi"
+if tbi and tbi != tbi_path:
+    shell("cp {tbi_path:q} {tbi:q}")
+
+cand_indel_vcf = snakemake.output.get("cand_indel_vcf", "")
+cand_indel_vcf_path = results_base / "candidateSmallIndels.vcf.gz"
+if cand_indel_vcf and cand_indel_vcf != cand_indel_vcf_path:
+    shell("cp {cand_indel_vcf_path:q} {cand_indel_vcf:q}")
+
+cand_indel_tbi = snakemake.output.get("cand_indel_tbi", "")
+cand_indel_tbi_path = results_base / "candidateSmallIndels.vcf.gz.tbi"
+if cand_indel_tbi and cand_indel_tbi != cand_indel_tbi_path:
+    shell("cp {cand_indel_tbi_path:q} {cand_indel_tbi:q}")
+
+cand_sv_vcf = snakemake.output.get("cand_sv_vcf", "")
+cand_sv_vcf_path = results_base / "candidateSV.vcf.gz"
+if cand_sv_vcf and cand_sv_vcf != cand_sv_vcf_path:
+    shell("cp {cand_sv_vcf_path:q} {cand_sv_vcf:q}")
+
+cand_sv_tbi = snakemake.output.get("cand_sv_tbi", "")
+cand_sv_tbi_path = results_base / "candidateSV.vcf.gz.tbi"
+if cand_sv_tbi and cand_sv_tbi != cand_sv_tbi_path:
+    shell("cp {cand_sv_tbi_path:q} {cand_sv_tbi:q}")

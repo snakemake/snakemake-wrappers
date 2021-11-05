@@ -3,14 +3,13 @@ rule manta:
         ref="human_g1k_v37_decoy.small.fasta",
         samples=["mapped/a.bam"],
     output:
-        run="sv/runWorkflow.py",
-        outdir=directory("sv/"),
-        vcf="sv/results/variants/diploidSV.vcf.gz",
-        tbi="sv/results/variants/diploidSV.vcf.gz.tbi",
-        cand_indel_vcf="sv/results/variants/candidateSmallIndels.vcf.gz",
-        cand_indel_tbi="sv/results/variants/candidateSmallIndels.vcf.gz.tbi",
-        cand_sv_vcf="sv/results/variants/candidateSV.vcf.gz",
-        cand_sv_tbi="sv/results/variants/candidateSV.vcf.gz.tbi",
+        outdir=temp(directory("temp/")),
+        vcf="results/diploidSV.vcf.gz",
+        tbi="results/diploidSV.vcf.gz.tbi",
+        cand_indel_vcf="results/candidateSmallIndels.vcf.gz",
+        cand_indel_tbi="results/candidateSmallIndels.vcf.gz.tbi",
+        cand_sv_vcf="results/candidateSV.vcf.gz",
+        cand_sv_tbi="results/candidateSV.vcf.gz.tbi",
     params:
         extra_cfg="",  # optional
         extra_run="",  # optional
