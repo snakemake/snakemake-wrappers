@@ -4,12 +4,12 @@ rule manta:
         samples=["mapped/a.bam"],
     output:
         outdir=temp(directory("temp/")),
-        vcf="results/diploidSV.vcf.gz",
-        tbi="results/diploidSV.vcf.gz.tbi",
-        cand_indel_vcf="results/candidateSmallIndels.vcf.gz",
-        cand_indel_tbi="results/candidateSmallIndels.vcf.gz.tbi",
-        cand_sv_vcf="results/candidateSV.vcf.gz",
-        cand_sv_tbi="results/candidateSV.vcf.gz.tbi",
+        vcf="results/out.bcf",
+        idx="results/out.bcf.csi",
+        cand_indel_vcf="results/small_indels.vcf.gz",
+        cand_indel_idx="results/small_indels.vcf.gz.tbi",
+        cand_sv_vcf="results/cand_sv.vcf.gz",
+        cand_sv_idx="results/cand_sv.vcf.gz.tbi",
     params:
         extra_cfg="",  # optional
         extra_run="",  # optional
