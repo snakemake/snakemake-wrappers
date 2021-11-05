@@ -13,7 +13,7 @@ extra_run = snakemake.params.get("extra_run", "")
 
 bams = list(map("--normalBam {}".format, snakemake.input.samples))
 
-bed = snakemake.output.get("bed", "")
+bed = snakemake.input.get("bed", "")
 if bed:
     bed = f"--callRegions {bed}"
 
