@@ -64,5 +64,5 @@ else:
 
 shell(
     "({freebayes} {params} -f {snakemake.input.ref}"
-    " {snakemake.input.samples} {pipe} > {snakemake.output[0]}) {log}"
+    " {snakemake.input.samples} | bcftools sort - {pipe} > {snakemake.output[0]}) {log}"
 )
