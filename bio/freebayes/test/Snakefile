@@ -15,7 +15,7 @@ rule freebayes:
     params:
         extra="",         # optional parameters
         chunksize=100000, # reference genome chunk size for parallelization (default: 100000)
-        normalize=False,  # optinal flag to use bcftools norm to normalize indels (Valid flags are -a, -f, -m, -D or -d)
+        normalize=False,  # optional flag to use bcftools norm to normalize indels (Valid params are -a, -f, -m, -D or -d)
     threads: 2
     wrapper:
         "master/bio/freebayes"
