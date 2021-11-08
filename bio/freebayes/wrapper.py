@@ -6,6 +6,7 @@ __license__ = "MIT"
 
 from os import path
 from snakemake.shell import shell
+from tempfile import TemporaryDirectory
 
 shell.executable("bash")
 
@@ -62,7 +63,8 @@ else:
         snakemake=snakemake, regions=regions
     )
 
-shell(
-    "({freebayes} {params} -f {snakemake.input.ref}"
-    " {snakemake.input.samples} | bcftools sort - {pipe} > {snakemake.output[0]}) {log}"
-)
+with TemporaryDirectory() as tempdir:
+    shell(
+        "({freebayes} {params} -f {snakemake.input.ref}"
+        " {snakemake.input.samples} | bcftools sort -T {tempdir} - {pipe} > {snakemake.output[0]}) {log}"
+    )
