@@ -13,9 +13,7 @@ jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: recursive
+      - uses: actions/checkout@v1
 
       - name: Setup Sphinx environment
         run: |
