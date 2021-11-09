@@ -8,7 +8,7 @@ rule vardict_single_mode:
     params:
         extra="",
         bed_columns="-c 1 -S 2 -E 3 -g 4",  # Optional, default is -c 1 -S 2 -E 3 -g 4
-        af_th="0.01",  # Optional, default is 0.01
+        allele_frequency_threshold="0.01",  # Optional, default is 0.01
     threads: 1
     log:
         "logs/varscan_{sample}_s_.log",
