@@ -10,4 +10,3 @@ output:
 notes: |
   * The `extra` param allows for additional program arguments.
   * For more information see, https://github.com/Griffan/VerifyBamID
-

@@ -11,8 +11,14 @@ from shutil import copyfile
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
-svd_prefix = snakemake.params.get("svd_prefix", "")
-if not svd_prefix:
+svd_mu = snakemake.input.get("svd_mu", "")
+if svd_mu:
+    svd_prefix = os.path.splitext(svd_mu)[0]
+    for suffix in ("bed", "UD", "V"):
+        fn = f"{svd_prefix}.{suffix}"
+        if not os.path.isfile(fn):
+            raise Exception(f"Failed to find required input {fn}.")
+else:
     genome_build = snakemake.params.get("genome_build", "38")
     if genome_build not in ("37", "38"):
         raise Exception(
@@ -41,7 +47,9 @@ def move_file(src, dst):
     os.remove(src)
 
 
-# verifybamid2 outputs results to result.selfSM and result.Ancestry in the working directory, so to avoid collisions we have to run it from a temporary directory and fix the paths to inputs, outputs, and the log file
+# verifybamid2 outputs results to result.selfSM and result.Ancestry in the working directory,
+# so to avoid collisions we have to run it from a temporary directory and fix the paths
+# to inputs, outputs, and the log file
 ref_path = os.path.abspath(snakemake.input.ref)
 svd_prefix = os.path.abspath(svd_prefix)
 bam_path = os.path.abspath(snakemake.input.bam)
