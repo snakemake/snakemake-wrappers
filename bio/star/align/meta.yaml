@@ -3,3 +3,6 @@ description: Map reads with STAR.
 authors:
   - Johannes Köster
   - Tomás Di Domenico
+note:
+  It is recommended to update the limits setting before running the STAR,
+  such as executing `ulimit -n 10000`, to avoid similar issue: https://github.com/alexdobin/STAR/issues/1344 
