@@ -1,0 +1,34 @@
+rule star_genomeload:
+    ## Load Genome Index
+    input:
+        index = {genome}
+    output:
+        temp(touch("STARload.done"))
+    message:
+        "Testing STAR genome load"
+    threads:
+        1
+    params:
+        loadmode = "LoadAndExit"
+    log:
+        "logs/star_genomeload_{genome}.log"
+    wrapper:
+        "master/bio/star/genome"
+
+rule star_genomeunload:
+    ## Unload Genome Index
+    input:
+        index = {genome}
+        dummy = "STARload.done"
+    output:
+        temp(touch("STARunload.done"))
+    message:
+        "Testing STAR genome unload"
+    threads:
+        1
+    params:
+        loadmode = "Remove"
+    log:
+        "logs/star_genomeunload_{genome}.log"
+    wrapper:
+        "master/bio/star/genome"
