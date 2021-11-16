@@ -3,7 +3,7 @@ rule star_genomeload:
     input:
         index = {genome}
     output:
-        temp(touch("STARload.done"))
+        temp(touch("tmp/STARload.done"))
     message:
         "Testing STAR genome load"
     threads:
@@ -19,9 +19,9 @@ rule star_genomeunload:
     ## Unload Genome Index
     input:
         index = {genome}
-        dummy = "STARload.done"
+        dummy = "tmp/STARload.done"
     output:
-        temp(touch("STARunload.done"))
+        temp(touch("tmp/STARunload.done"))
     message:
         "Testing STAR genome unload"
     threads:
