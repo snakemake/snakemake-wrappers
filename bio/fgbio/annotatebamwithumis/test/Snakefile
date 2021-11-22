@@ -6,7 +6,7 @@ rule AnnotateBam:
         "mapped/{sample}.annotated.bam",
     params: ""
     resources:
-        mem_gb="4" # memory to be propagated to fgbio
+        mem_gb="4" # memory to be given to fgbio
     log:
         "logs/fgbio/annotate_bam/{sample}.log",
     wrapper:
