@@ -1,11 +1,13 @@
 rule AnnotateBam:
     input:
         bam="mapped/{sample}.bam",
-        umi="umi/{sample}.fastq"
+        umi="umi/{sample}.fastq",
     output:
-        "mapped/{sample}.annotated.bam"
-    params: ""
+        "mapped/{sample}.annotated.bam",
+    params:
+        extra="",  #optional
+        java_opts="",  #optional
     log:
-        "logs/fgbio/annotate_bam/{sample}.log"
+        "logs/fgbio/annotate_bam/{sample}.log",
     wrapper:
         "master/bio/fgbio/annotatebamwithumis"
