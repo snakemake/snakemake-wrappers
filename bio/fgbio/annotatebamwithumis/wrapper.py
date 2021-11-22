@@ -36,8 +36,10 @@ if output_file is None:
 elif not isinstance(output_file, str):
     raise ValueError("Output bam-file should be a string: " + str(output_file) + "!")
 
+java_opts = snakemake.params.get("java_opts", "")
+
 shell(
-    "fgbio AnnotateBamWithUmis"
+    "fgbio {java_opts} AnnotateBamWithUmis"
     " -i {bam_input}"
     " -f {umi_input}"
     " -o {output_file}"
