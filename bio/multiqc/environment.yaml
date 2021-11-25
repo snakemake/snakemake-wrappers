@@ -4,3 +4,4 @@ channels:
   - defaults
 dependencies:
   - multiqc ==1.10.1
+  - python >=3.7
