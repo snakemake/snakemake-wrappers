@@ -342,6 +342,13 @@ def test_bcftools_reheader():
     )
 
 
+def test_bcftools_stats():
+    run(
+        "bio/bcftools/stats",
+        ["snakemake", "--cores", "1", "a.bcf", "--use-conda", "-F"],
+    )
+
+
 def test_bedtools_genomecoveragebed():
     run(
         "bio/bedtools/genomecov",
