@@ -345,7 +345,7 @@ def test_bcftools_reheader():
 def test_bcftools_stats():
     run(
         "bio/bcftools/stats",
-        ["snakemake", "--cores", "1", "a.bcf", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "a.stats.txt", "--use-conda", "-F"],
     )
 
 

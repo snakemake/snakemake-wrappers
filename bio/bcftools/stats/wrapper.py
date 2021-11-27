@@ -11,7 +11,8 @@ from snakemake.shell import shell
 threads = (
     "" if snakemake.threads <= 1 else " --threads {} ".format(snakemake.threads - 1)
 )
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
-    "bcftools stats {threads} {snakemake.params} {snakemake.input} > {snakemake.output}"
+    "bcftools stats {threads} {snakemake.params} {snakemake.input} > {snakemake.output} {log}"
 )

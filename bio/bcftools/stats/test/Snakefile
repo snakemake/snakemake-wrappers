@@ -3,6 +3,8 @@ rule bcf_stats:
         "{prefix}"
     output:
         "{prefix}.stats.txt"
+    log:
+        "{prefix}.bcftools.stats.log"
     params:
         ""
     wrapper:
