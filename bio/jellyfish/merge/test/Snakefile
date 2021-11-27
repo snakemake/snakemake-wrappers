@@ -1,7 +1,7 @@
 rule jellyfish_merge:
     input:
-        ["movie1.jf", "movie2.jf"],
+        ["a.jf", "b.jf"],
     output:
-        "sample.jf",
+        "ab.jf",
     wrapper:
         "master/bio/jellyfish/merge"

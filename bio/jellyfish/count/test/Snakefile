@@ -1,12 +1,12 @@
 rule jellyfish_count:
     input:
-        "sample.fasta",
+        "{prefix}.fasta",
     output:
-        "sample.jf",
+        "{prefix}.jf",
     params:
         kmer_length=21,
-        size=1000000000,
+        size="1G",
         extra="--canonical",
-    threads: 24
+    threads: 2
     wrapper:
         "master/bio/jellyfish/count"

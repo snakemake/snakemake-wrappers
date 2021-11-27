@@ -1,8 +1,8 @@
 rule jellyfish_merge:
     input:
-        "test.jf",
+        "{prefix}}.jf",
     output:
-        "test.dump",
+        "{prefix}.dump",
     params:
         extra="-c -t",
     wrapper:
