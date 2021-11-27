@@ -2297,6 +2297,13 @@ def test_tabix():
     )
 
 
+def test_tabix_query():
+    run(
+        "bio/tabix/query",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "A.output.bed"],
+    )
+
+
 def test_msisensor_scan():
     run(
         "bio/msisensor/scan",

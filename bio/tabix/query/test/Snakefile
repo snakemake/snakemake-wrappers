@@ -1,10 +1,13 @@
 rule tabix:
     input:
-        "{prefix}.vcf.gz"
+        "{prefix}.bed.gz",
+        "{prefix}.bed.gz.tbi"
+        ## list the VCF/BCF as the first input
+        ## and the index as the second input
     output:
-        "{prefix}.vcf.gz.tbi"
+        "{prefix}.output.bed"
     params:
-        ""
+        region = "1"
     log:
         "logs/tabix/query/{prefix}.log"
     wrapper:

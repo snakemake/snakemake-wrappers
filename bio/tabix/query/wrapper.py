@@ -8,5 +8,6 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell("tabix {extra} {snakemake.input} {snakemake.params.region} > {snakemake.output} {log}")
-
+shell(
+    "tabix {extra} {snakemake.input[0]} {snakemake.params.region} > {snakemake.output} {log}"
+)
