@@ -248,6 +248,13 @@ def test_shovill():
     )
 
 
+def test_seqtk_seq():
+    run(
+        "bio/seqtk/seq",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.fasta"],
+    )
+
+
 def test_seqtk_subsample_se():
     run(
         "bio/seqtk/subsample/se",

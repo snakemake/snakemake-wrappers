@@ -1,6 +1,7 @@
 name: seqtk-seq
 description: |
   Common transformations of FASTA/Q using seqtk
+url: https://github.com/lh3/seqtk
 authors:
   - William Rowell
 input:
