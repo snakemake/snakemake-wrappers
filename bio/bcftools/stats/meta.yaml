@@ -1,4 +1,9 @@
 name: bcftools stats
 description: Generate VCF stats using bcftools stats.
+url: https://github.com/samtools/bcftools
 authors:
   - William Rowell
+input:
+  - BCF, VCF, or VCF.gz input
+output:
+  - stats text file

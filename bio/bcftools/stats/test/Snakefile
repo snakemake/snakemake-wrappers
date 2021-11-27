@@ -1,8 +1,8 @@
 rule bcf_stats:
     input:
-        "{prefix}.vcf.gz"
+        "{prefix}"
     output:
-        "{prefix}.vcf.stats"
+        "{prefix}.stats.txt"
     params:
         ""
     wrapper:

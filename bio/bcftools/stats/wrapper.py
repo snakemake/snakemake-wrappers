@@ -13,4 +13,3 @@ threads = "" if snakemake.threads <= 1 else " --threads {} ".format(snakemake.th
 shell(
     "bcftools stats {threads} {snakemake.params} {snakemake.input} > {snakemake.output}"
 )
-
