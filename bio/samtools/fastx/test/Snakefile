@@ -1,14 +1,16 @@
 rule samtools_fastq:
     input:
-        "{prefix}.sam"
+        "{prefix}.sam",
     output:
-        "{prefix}.fasta"
+        "{prefix}.fasta",
+    log:
+        "{prefix}.log",
     message:
         ""
     threads:  # Samtools takes additional threads through its option -@
         2     # This value - 1 will be sent to -@
     params:
-        outputtype = "fasta"
+        outputtype = "fasta",
         extra = ""
     wrapper:
-        "master/bio/samtools/fastn/"
+        "master/bio/samtools/fastx/"

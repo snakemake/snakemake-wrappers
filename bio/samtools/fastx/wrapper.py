@@ -4,8 +4,8 @@ __email__ = "wrowell@pacb.com"
 __license__ = "MIT"
 
 
-import os
 from snakemake.shell import shell
+
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 extra = snakemake.params.get("extra", "")
@@ -21,4 +21,3 @@ shell(
         {snakemake.input} > {snakemake.output}) {log}
     """
 )
-
