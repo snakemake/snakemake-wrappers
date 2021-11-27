@@ -8,7 +8,9 @@ from snakemake.shell import shell
 
 # bcftools takes additional decompression threads through --threads
 # Other threads are *additional* threads passed to the '--threads' argument
-threads = "" if snakemake.threads <= 1 else " --threads {} ".format(snakemake.threads - 1)
+threads = (
+    "" if snakemake.threads <= 1 else " --threads {} ".format(snakemake.threads - 1)
+)
 
 shell(
     "bcftools stats {threads} {snakemake.params} {snakemake.input} > {snakemake.output}"
