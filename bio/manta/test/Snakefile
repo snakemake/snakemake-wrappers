@@ -2,8 +2,8 @@ rule manta:
     input:
         ref="human_g1k_v37_decoy.small.fasta",
         samples=["mapped/a.bam"],
+        idx=["mapped/a.bam.bai"],
     output:
-        outdir=temp(directory("temp/")),
         vcf="results/out.bcf",
         idx="results/out.bcf.csi",
         cand_indel_vcf="results/small_indels.vcf.gz",
