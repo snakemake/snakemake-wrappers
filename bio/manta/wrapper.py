@@ -31,7 +31,7 @@ with TemporaryDirectory() as tempdir:
     bams = []
 
     # Symlink BAM/CRAM files to avoid problems with filenames
-    for aln, idx in zip(snakemake.input.samples, snakemake.input.idx):
+    for aln, idx in zip(snakemake.input.samples, snakemake.input.index):
         Path(tempdir / Path(aln).name).symlink_to(Path(aln).resolve())
         bams.append(tempdir / Path(aln).name)
 

@@ -2,7 +2,7 @@ rule manta:
     input:
         ref="human_g1k_v37_decoy.small.fasta",
         samples=["mapped/a.bam"],
-        idx=["mapped/a.bam.bai"],
+        index=["mapped/a.bam.bai"],
     output:
         vcf="results/out.bcf",
         idx="results/out.bcf.csi",
