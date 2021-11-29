@@ -3,5 +3,5 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - gatk4 ==4.2.0.0
+  - gatk4 =4.2
   - snakemake-wrapper-utils ==0.1.3
