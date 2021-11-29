@@ -32,17 +32,17 @@ with TemporaryDirectory() as tempdir:
 
     # Symlink BAM/CRAM files to avoid problems with filenames
     for aln, idx in zip(snakemake.input.samples, snakemake.input.index):
-        Path(tempdir / Path(aln).name).symlink_to(Path(aln).resolve())
-        bams.append(tempdir / Path(aln).name)
+        aln = Path(aln)
+        idx = Path(idx)
+        (tempdir / aln.name).symlink_to(aln.resolve())
+        bams.append(tempdir / aln.name)
 
-        if idx.endswith(".bam.bai") or idx.endswith(".cram.crai"):
-            Path(tempdir / Path(idx).name).symlink_to(Path(idx).resolve())
-        elif idx.endswith(".bai"):
-            Path(tempdir / Path(idx).stem + ".bam.bai").symlink_to(Path(idx).resolve())
-        elif idx.endswith(".crai"):
-            Path(tempdir / Path(idx).stem + ".cram.crai").symlink_to(
-                Path(idx).resolve()
-            )
+        if idx.name.endswith(".bam.bai") or idx.name.endswith(".cram.crai"):
+            (tempdir / idx.name).symlink_to(idx.resolve())
+        if idx.name.endswith(".bai"):
+            (tempdir / idx.name).with_suffix(".bam.bai").symlink_to(idx.resolve())
+        elif idx.name.endswith(".crai"):
+            (tempdir / idx.name).with_suffix(".cram.crai").symlink_to(idx.resolve())
         else:
             raise ValueError(f"invalid index file name provided: {idx}")
 
