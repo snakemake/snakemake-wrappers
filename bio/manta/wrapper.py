@@ -44,6 +44,8 @@ with TemporaryDirectory() as tempdir:
         else:
             raise ValueError(f"invalid index file name provided: {idx}")
 
+    bams = list(map("--normalBam {}".format, bams))
+
     shell(
         # Configure Manta
         "configManta.py {extra_cfg} {bams} --referenceFasta {snakemake.input.ref} --runDir {run_dir} {log}; "
