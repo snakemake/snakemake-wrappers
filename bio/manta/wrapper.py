@@ -32,15 +32,17 @@ with TemporaryDirectory() as tempdir:
 
     # Symlink BAM/CRAM files to avoid problems with filenames
     for aln, idx in zip(snakemake.input.samples, snakemake.input.idx):
-        Path(tempdir / Path(aln).name).symlink_to(aln)
+        Path(tempdir / Path(aln).name).symlink_to(Path(aln).resolve())
         bams.append(tempdir / Path(aln).name)
 
         if idx.endswith(".bam.bai") or idx.endswith(".cram.crai"):
-            Path(tempdir / Path(idx).name).symlink_to(idx)
+            Path(tempdir / Path(idx).name).symlink_to(Path(idx).resolve())
         elif idx.endswith(".bai"):
-            Path(tempdir / Path(idx).stem + ".bam.bai").symlink_to(idx)
+            Path(tempdir / Path(idx).stem + ".bam.bai").symlink_to(Path(idx).resolve())
         elif idx.endswith(".crai"):
-            Path(tempdir / Path(idx).stem + ".cram.crai").symlink_to(idx)
+            Path(tempdir / Path(idx).stem + ".cram.crai").symlink_to(
+                Path(idx).resolve()
+            )
         else:
             raise ValueError(f"invalid index file name provided: {idx}")
 
@@ -72,14 +74,14 @@ with TemporaryDirectory() as tempdir:
     if vcf and vcf != vcf_path:
         vcf_format = infer_vcf_ext(vcf)
         shell(
-            "bcftools view --threads {snakemake.threads} {bed} --output-file {vcf:q} --output-type {vcf_format} {vcf_path:q}"
+            "bcftools view --threads {snakemake.threads} {bed} --output-file {vcf:q} --output-type {vcf_format} {vcf_path:q} {log}"
         )
 
         idx = snakemake.output.get("idx", "")
         idx_path = results_base / "diploidSV.vcf.gz.tbi"
         if idx and idx != idx_path:
             shell(
-                "bcftools index --threads {snakemake.threads} --output-file {idx:q} {vcf:q}"
+                "bcftools index --threads {snakemake.threads} --output-file {idx:q} {vcf:q} {log}"
             )
 
     # Copy candidate small indels VCF
@@ -88,14 +90,14 @@ with TemporaryDirectory() as tempdir:
     if cand_indel_vcf and cand_indel_vcf != cand_indel_vcf_path:
         cand_indel_vcf_format = infer_vcf_ext(cand_indel_vcf)
         shell(
-            "bcftools view --threads {snakemake.threads} {bed} --output-file {cand_indel_vcf:q} --output-type {cand_indel_vcf_format} {cand_indel_vcf_path:q}"
+            "bcftools view --threads {snakemake.threads} {bed} --output-file {cand_indel_vcf:q} --output-type {cand_indel_vcf_format} {cand_indel_vcf_path:q} {log}"
         )
 
         cand_indel_idx = snakemake.output.get("cand_indel_idx", "")
         cand_indel_idx_path = results_base / "candidateSmallIndels.vcf.gz.tbi"
         if cand_indel_idx and cand_indel_idx != cand_indel_idx_path:
             shell(
-                "bcftools index --threads {snakemake.threads} --output-file {cand_indel_idx:q} {cand_indel_vcf:q}"
+                "bcftools index --threads {snakemake.threads} --output-file {cand_indel_idx:q} {cand_indel_vcf:q} {log}"
             )
 
     # Copy candidates structural variants VCF
@@ -104,12 +106,12 @@ with TemporaryDirectory() as tempdir:
     if cand_sv_vcf and cand_sv_vcf != cand_sv_vcf_path:
         cand_sv_vcf_format = infer_vcf_ext(cand_sv_vcf)
         shell(
-            "bcftools view --threads {snakemake.threads} {bed} --output-file {cand_sv_vcf:q} --output-type {cand_sv_vcf_format} {cand_sv_vcf_path:q}"
+            "bcftools view --threads {snakemake.threads} {bed} --output-file {cand_sv_vcf:q} --output-type {cand_sv_vcf_format} {cand_sv_vcf_path:q} {log}"
         )
 
         cand_sv_idx = snakemake.output.get("cand_sv_idx", "")
         cand_sv_idx_path = results_base / "candidateSV.vcf.gz.tbi"
         if cand_sv_idx and cand_sv_idx != cand_sv_idx_path:
             shell(
-                "bcftools index --threads {snakemake.threads} --output-file {cand_sv_idx:q} {cand_sv_vcf:q}"
+                "bcftools index --threads {snakemake.threads} --output-file {cand_sv_idx:q} {cand_sv_vcf:q} {log}"
             )
