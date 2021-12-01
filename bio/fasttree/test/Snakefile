@@ -7,6 +7,5 @@ rule fasttree:
         "logs/muscle/{sample}.log",
     params:
         extra="",  # Additional arguments
-    threads: 1
     wrapper:
         "master/bio/fasttree"
