@@ -7,7 +7,6 @@ rule muscle_fasta:
         "logs/muscle/{sample}.log",
     params:
         extra="",  # Additional arguments
-    threads: 1  # MUSCLE only runs in a single thread
     wrapper:
         "master/bio/muscle"
 
@@ -21,6 +20,5 @@ rule muscle_clw:
         "logs/muscle/{sample}.log",
     params:
         extra="-clw",
-    threads: 1
     wrapper:
         "master/bio/muscle"
