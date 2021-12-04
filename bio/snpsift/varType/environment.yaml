@@ -3,3 +3,4 @@ channels:
   - conda-forge
 dependencies:
   -  snpsift =4.3.1t
+  - snakemake-wrapper-utils ==0.1.3

@@ -1,10 +1,13 @@
 rule annotate_variants:
     input:
         calls="variants.bcf",  # .vcf, .vcf.gz or .bcf
-        cache="resources/vep/cache",
+        cache="resources/vep/cache", # can be omitted if fasta and gff are specified
         plugins="resources/vep/plugins",
-        # optionally add reference genome fasta to speed up annotation
+        # optionally add reference genome fasta
         # fasta="genome.fasta",
+        # fai="genome.fasta.fai", # fasta index
+        # gff="annotation.gff",
+        # csi="annotation.gff.csi", # tabix index
     output:
         calls="variants.annotated.bcf",  # .vcf, .vcf.gz or .bcf
         stats="variants.html"

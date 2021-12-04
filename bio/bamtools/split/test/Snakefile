@@ -1,0 +1,11 @@
+rule bamtools_split:
+    input:
+        "mapped/{sample}.bam",
+    output:
+        "mapped/{sample}.REF_xx.bam",
+    params:
+        extra="-reference",
+    log:
+        "logs/bamtoos_split/{sample}.log",
+    wrapper:
+        "master/bio/bamtools/split"

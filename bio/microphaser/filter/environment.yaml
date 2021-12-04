@@ -1,0 +1,5 @@
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - microphaser =0.4

@@ -1,0 +1,12 @@
+rule vembrane_table:
+    input:
+        vcf="in.vcf",
+    output:
+        vcf="table/out.tsv"
+    params:
+        expression="CHROM, POS, ALT, REF",
+        extra=""
+    log:
+        "logs/vembrane.log"
+    wrapper:
+        "master/bio/vembrane/table"

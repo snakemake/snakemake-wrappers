@@ -1,5 +1,6 @@
 name: varscan somatic
-description: Varscan Somatic calls variants and identifies their somatic status (Germline/LOH/Somatic) using pileup files from a matched tumor-normal pair.
+description: |
+  `Varscan Somatic <http://varscan.sourceforge.net/somatic-calling.html>`_ calls variants and identifies their somatic status (Germline/LOH/Somatic) using pileup files from a matched tumor-normal pair.
 authors:
   - Thibault Dayris
 input:

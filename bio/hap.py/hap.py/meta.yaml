@@ -1,0 +1,4 @@
+name: "hap.py"
+description: Comparison of vcf files and calculating performance metrics following GA4GH defined best practices for benchmarking small variant call sets (Krusche, P. et al. 2019, https://doi.org/10.1038/s41587-019-0054-x). Part of the hap.py suite by Illumina (see https://github.com/Illumina/hap.py/blob/master/doc/normalisation.md).
+authors:
+  - Nathan D. Olson

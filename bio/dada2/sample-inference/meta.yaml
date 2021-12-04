@@ -1,0 +1,13 @@
+name: dada2_sample_inference
+description: |
+  `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
+  Inferring sample composition using dada2 ``dada`` function. Optional parameters are documented in the `manual <https://www.bioconductor.org/packages/release/bioc/manuals/dada2/man/dada2.pdf#dada>`_  and the function is introduced in the dedicated tutorial `section <https://benjjneb.github.io/dada2/tutorial.html#sample-inference>`_.
+authors:
+  - Charlie Pauvert
+input:
+  - derep: RDS file with the dereplicated sequences
+  - err: RDS file with the error model
+output:
+  -  RDS file with the stored inferred sample composition
+params:
+  - optional arguments for ``dada()``, please provide them as python ``key=value`` pairs

@@ -1,4 +1,4 @@
-rule minimap2:
+rule minimap2_paf:
     input:
         target="target/{input1}.mmi", # can be either genome index or genome fasta
         query=["query/reads1.fasta", "query/reads2.fasta"]
@@ -7,7 +7,41 @@ rule minimap2:
     log:
         "logs/minimap2/{input1}.log"
     params:
-        extra="-x map-pb"  # optional
+        extra="-x map-pb",           # optional
+        sorting="coordinate",           # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
+        sort_extra=""                # optional: extra arguments for samtools/picard
+    threads: 3
+    wrapper:
+        "master/bio/minimap2/aligner"
+
+rule minimap2_sam:
+    input:
+        target="target/{input1}.mmi", # can be either genome index or genome fasta
+        query=["query/reads1.fasta", "query/reads2.fasta"]
+    output:
+        "aligned/{input1}_aln.sam"
+    log:
+        "logs/minimap2/{input1}.log"
+    params:
+        extra="-x map-pb",           # optional
+        sorting="none",                 # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
+        sort_extra=""                # optional: extra arguments for samtools/picard
+    threads: 3
+    wrapper:
+        "master/bio/minimap2/aligner"
+
+rule minimap2_bam:
+    input:
+        target="target/{input1}.mmi", # can be either genome index or genome fasta
+        query=["query/reads1.fasta", "query/reads2.fasta"]
+    output:
+        "aligned/{input1}_aln.bam"
+    log:
+        "logs/minimap2/{input1}.log"
+    params:
+        extra="-x map-pb",           # optional
+        sorting="coordinate",           # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
+        sort_extra=""                # optional: extra arguments for samtools/picard
     threads: 3
     wrapper:
         "master/bio/minimap2/aligner"

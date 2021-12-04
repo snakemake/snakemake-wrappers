@@ -1,0 +1,8 @@
+name: bamtools split
+description: Split bam file into sub files, default by reference
+authors:
+  - Patrik Smeds
+input:
+  - bam file
+output:
+  - multiple bam file
