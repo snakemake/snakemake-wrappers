@@ -1,6 +1,7 @@
 rule jellyfish_merge:
     input:
-        ["a.jf", "b.jf"],
+        "a.jf",
+        "b.jf",
     output:
         "ab.jf",
     log:
