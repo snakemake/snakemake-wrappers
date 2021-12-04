@@ -1,0 +1,18 @@
+name: BBDuk
+description: |
+  Run BBDuk.
+authors:
+  - Filipe G. Vieira
+input:
+  - raw fastq file with R1 reads
+  - raw fastq file with R2 reads (optional)
+output:
+  - trimmed fastq file with R1 reads
+  - trimmed fastq file with R2 reads (optional)
+  - fastq file with singleton reads (optional)
+  - fastq file with discarded reads (optional) 
+  - stats file (optonal)
+notes: |
+  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  * The `extra` param allows for additional program arguments.
+  * For more information see, https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/bbduk-guide/

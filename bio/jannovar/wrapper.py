@@ -5,12 +5,14 @@ __license__ = "BSD"
 
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.java import get_java_opts
 
 shell.executable("bash")
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 extra = snakemake.params.get("extra", "")
+java_opts = get_java_opts(snakemake)
 
 pedigree = snakemake.input.get("pedigree", "")
 if pedigree:
@@ -19,5 +21,5 @@ if pedigree:
 shell(
     "jannovar annotate-vcf --database {snakemake.params.database}"
     " --input-vcf {snakemake.input.vcf} --output-vcf {snakemake.output}"
-    " {pedigree} {extra} {log}"
+    " {pedigree} {extra} {java_opts} {log}"
 )

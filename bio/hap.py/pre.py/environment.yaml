@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - hap.py =0.3.10
+  - hap.py =0.3.14

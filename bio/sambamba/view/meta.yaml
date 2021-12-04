@@ -1,0 +1,8 @@
+name: sambamba view
+description: Filter and/or view BAM files. See details `here https://lomereiter.github.io/sambamba/docs/sambamba-view.html`_
+authors:
+  - Jan Forster
+input:
+  - bam/sam file
+output:
+  - (filtered) bam/sam file

@@ -1,5 +1,5 @@
 name: varscan mpileup2indel
-description: Detect indel in NGS data from mpileup files
+description: Detect indel in NGS data from mpileup files with `VarScan <http://varscan.sourceforge.net/germline-calling.html>`_
 authors:
   - Thibault Dayris
 input:

@@ -7,6 +7,8 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+
 params = snakemake.params.get("extra", "")
 
 # check for optional bed file
@@ -15,5 +17,6 @@ if bed:
     bed = "-b " + bed
 
 shell(
-    "samtools depth {params} {bed} " "-o {snakemake.output[0]} {snakemake.input.bams}"
+    "samtools depth {params} {bed} "
+    "-o {snakemake.output[0]} {snakemake.input.bams} {log}"
 )

@@ -1,5 +1,5 @@
 name: SnpSift GWAS Catalog
-description:  Annotate using GWAS catalog.
+description:  Annotate using GWAS catalog with `SnpSift <https://pcingola.github.io/SnpEff/ss_gwascatalog/>`_
 authors:
   - Thibault Dayris
 input:

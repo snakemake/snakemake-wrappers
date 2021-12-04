@@ -1,0 +1,13 @@
+rule prune:
+    input:
+        vg="c.vg"
+    output:
+        pruned="graph/c.pruned.vg"
+    params:
+        "-r"
+    log:
+        "logs/vg/prune/c.log"
+    threads:
+        4
+    wrapper:
+        "master/bio/vg/prune"

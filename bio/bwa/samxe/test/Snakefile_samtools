@@ -1,0 +1,67 @@
+rule bwa_sam_pe:
+    input:
+        fastq=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        sai=["sai/{sample}.1.sai", "sai/{sample}.2.sai"]
+    output:
+        "mapped/{sample}.pe.samtools_sort.sam"
+    params:
+        index="genome",
+        extra=r"-r '@RG\tID:{sample}\tSM:{sample}'", # optional: Extra parameters for bwa.
+        sort="samtools",                             # optional: Enable sorting. Possible values: 'none', 'samtools' or 'picard'`
+        sort_order="queryname",                      # optional: Sort by 'queryname' or 'coordinate'
+        sort_extra=""                                # optional: extra arguments for samtools/picard
+    log:
+        "logs/bwa_sam_pe/{sample}.samtools_sort.log"
+    wrapper:
+        "master/bio/bwa/samxe"
+
+rule bwa_sam_se:
+    input:
+        fastq="reads/{sample}.1.fastq",
+        sai="sai/{sample}.1.sai"
+    output:
+        "mapped/{sample}.se.samtools_sort.sam"
+    params:
+        index="genome",
+        extra=r"-r '@RG\tID:{sample}\tSM:{sample}'", # optional: Extra parameters for bwa.
+        sort="samtools",                             # optional: Enable sorting. Possible values: 'none', 'samtools' or 'picard'`
+        sort_order="queryname",                      # optional: Sort by 'queryname' or 'coordinate'
+        sort_extra=""                                # optional: extra arguments for samtools/picard
+    log:
+        "logs/bwa_sam_se/{sample}.samtools_sort.log"
+    wrapper:
+        "master/bio/bwa/samxe"
+
+rule bwa_bam_pe:
+    input:
+        fastq=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        sai=["sai/{sample}.1.sai", "sai/{sample}.2.sai"]
+    output:
+        "mapped/{sample}.pe.samtools_sort.bam"
+    params:
+        index="genome",
+        extra=r"-r '@RG\tID:{sample}\tSM:{sample}'", # optional: Extra parameters for bwa.
+        sort="samtools",                             # optional: Enable sorting. Possible values: 'none', 'samtools' or 'picard'`
+        sort_order="queryname",                      # optional: Sort by 'queryname' or 'coordinate'
+        sort_extra=""                                # optional: extra arguments for samtools/picard
+    log:
+        "logs/bwa_bam_pe/{sample}.samtools_sort.log"
+    wrapper:
+        "master/bio/bwa/samxe"
+
+rule bwa_bam_se:
+    input:
+        fastq="reads/{sample}.1.fastq",
+        sai="sai/{sample}.1.sai"
+    output:
+        "mapped/{sample}.se.samtools_sort.bam"
+    params:
+        index="genome",
+        extra=r"-r '@RG\tID:{sample}\tSM:{sample}'", # optional: Extra parameters for bwa.
+        sort="samtools",                             # optional: Enable sorting. Possible values: 'none', 'samtools' or 'picard'`
+        sort_order="queryname",                      # optional: Sort by 'queryname' or 'coordinate'
+        sort_extra=""                                # optional: extra arguments for samtools/picard
+    log:
+        "logs/bwa_bam_se/{sample}.samtools_sort.log"
+    wrapper:
+        "master/bio/bwa/samxe"

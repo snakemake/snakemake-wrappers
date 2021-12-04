@@ -1,0 +1,16 @@
+rule gatk_scatter_interval_by_ns:
+    input:
+        ref="genome.fasta",
+        fai="genome.fasta.fai",
+        dict="genome.dict",
+    output:
+        intervals="genome.intervals"
+    log:
+        "logs/genome.log"
+    params:
+        extra="--MAX_TO_MERGE 10 --OUTPUT_TYPE ACGT",
+	java_opts="", # optional
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/gatk/scatterintervalsbyns"
