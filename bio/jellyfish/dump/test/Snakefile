@@ -1,4 +1,4 @@
-rule jellyfish_merge:
+rule jellyfish_dump:
     input:
         "{prefix}.jf",
     output:
@@ -8,4 +8,4 @@ rule jellyfish_merge:
     params:
         extra="-c -t",
     wrapper:
-        "master/bio/jellyfish/merge"
+        "master/bio/jellyfish/dump"
