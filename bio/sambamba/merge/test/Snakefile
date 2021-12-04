@@ -1,0 +1,12 @@
+rule sambamba_merge:
+    input:
+        ["mapped/{sample}_1.sorted.bam", "mapped/{sample}_2.sorted.bam"]
+    output:
+        "mapped/{sample}.merged.bam"
+    params:
+        extra=""  # optional parameters
+    log:
+        "logs/sambamba-merge/{sample}.log"
+    threads: 1
+    wrapper:
+        "master/bio/sambamba/merge"

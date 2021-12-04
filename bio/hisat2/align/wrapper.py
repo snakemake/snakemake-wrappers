@@ -28,7 +28,7 @@ else:
 shell(
     "(hisat2 {extra} "
     "--threads {snakemake.threads} "
-    " -x {snakemake.input.idx} {input_flags} "
+    " -x {snakemake.params.idx} {input_flags} "
     " | samtools view -Sbh -o {snakemake.output[0]} -) "
     " {log}"
 )

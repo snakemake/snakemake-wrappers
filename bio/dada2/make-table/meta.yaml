@@ -1,0 +1,13 @@
+name: dada2_make_table
+description: |
+  `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
+  Build a sequence - sample table from denoised samples using dada2 ``makeSequenceTable`` function. Optional parameters are documented in the `manual <https://www.bioconductor.org/packages/release/bioc/manuals/dada2/man/dada2.pdf#makeSequenceTable>`_ and the function is introduced in the dedicated tutorial `section <https://benjjneb.github.io/dada2/tutorial.html#construct-sequence-table>`_.
+authors:
+  - Charlie Pauvert
+input:
+  - A list of RDS files with denoised samples (se), or denoised and merged samples (pe)
+params: 
+  - names: A list of sample names instead of paths
+  - params: Any other optional arguments for ``makeSequenceTable()``, please provide them as python ``key=value`` pairs
+output:
+  - RDS file with the table

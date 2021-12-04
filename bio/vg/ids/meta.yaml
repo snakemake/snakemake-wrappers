@@ -1,0 +1,5 @@
+name: "vg ids"
+description: Manipulate id space of input graphs.
+  NOTE Use `bio/vg/merge` for making a joint id space for graphs.
+authors:
+  - Ali Ghaffaari

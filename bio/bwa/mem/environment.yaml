@@ -4,5 +4,5 @@ channels:
   - defaults
 dependencies:
   - bwa ==0.7.17
-  - samtools ==1.9
-  - picard ==2.20.1
+  - samtools =1.12
+  - picard =2.25

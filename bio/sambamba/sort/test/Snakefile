@@ -5,6 +5,8 @@ rule sambamba_sort:
         "mapped/{sample}.sorted.bam"
     params:
         ""  # optional parameters
+    log:
+        "logs/sambamba-sort/{sample}.log"
     threads: 8
     wrapper:
         "master/bio/sambamba/sort"

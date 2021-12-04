@@ -5,18 +5,29 @@ __license__ = "MIT"
 
 
 from os import path
-
+import re
+import tempfile
 from snakemake.shell import shell
 
 
 # Extract arguments.
 extra = snakemake.params.get("extra", "")
 
-sort = snakemake.params.get("sort", "none")
+sort = snakemake.params.get("sorting", "none")
 sort_order = snakemake.params.get("sort_order", "coordinate")
 sort_extra = snakemake.params.get("sort_extra", "")
 
+if re.search(r"-T\b", sort_extra) or re.search(r"--TMP_DIR\b", sort_extra):
+    sys.exit(
+        "You have specified temp dir (`-T` or `--TMP_DIR`) in params.sort_extra; this is automatically set from params.tmp_dir."
+    )
+
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+
+tmp_dir = snakemake.params.get("tmp_dir")
+if tmp_dir:
+    tempfile.tempdir = tmp_dir
+
 
 # Check inputs/arguments.
 if not isinstance(snakemake.input.reads, str) and len(snakemake.input.reads) not in {
@@ -36,32 +47,30 @@ if sort == "none":
 
 elif sort == "samtools":
 
-    # Sort alignments using samtools sort.
-    pipe_cmd = "samtools sort {sort_extra} -o {snakemake.output[0]} -"
-
     # Add name flag if needed.
     if sort_order == "queryname":
         sort_extra += " -n"
 
-    prefix = path.splitext(snakemake.output[0])[0]
-    sort_extra += " -T " + prefix + ".tmp"
+    # Sort alignments using samtools sort.
+    pipe_cmd = "samtools sort -T {tmp} {sort_extra} -o {snakemake.output[0]} -"
 
 elif sort == "picard":
 
     # Sort alignments using picard SortSam.
     pipe_cmd = (
-        "picard SortSam {sort_extra} INPUT=/dev/stdin"
-        " OUTPUT={snakemake.output[0]} SORT_ORDER={sort_order}"
+        "picard SortSam {sort_extra} --INPUT /dev/stdin"
+        " --OUTPUT {snakemake.output[0]} --SORT_ORDER {sort_order} --TMP_DIR {tmp}"
     )
 
 else:
     raise ValueError("Unexpected value for params.sort ({})".format(sort))
 
-shell(
-    "(bwa mem"
-    " -t {snakemake.threads}"
-    " {extra}"
-    " {snakemake.params.index}"
-    " {snakemake.input.reads}"
-    " | " + pipe_cmd + ") {log}"
-)
+with tempfile.TemporaryDirectory() as tmp:
+    shell(
+        "(bwa mem"
+        " -t {snakemake.threads}"
+        " {extra}"
+        " {snakemake.params.index}"
+        " {snakemake.input.reads}"
+        " | " + pipe_cmd + ") {log}"
+    )

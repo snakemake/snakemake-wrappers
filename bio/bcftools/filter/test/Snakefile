@@ -1,0 +1,70 @@
+rule bcf_filter_sample:
+    input:
+        "{prefix}.bcf",  # input bcf/vcf needs to be first input
+        samples="samples.txt",  # other inputs, e.g. sample files, are optional
+    output:
+        "{prefix}.filter_sample.vcf",
+    log:
+        "log/{prefix}.filter_sample.vcf.log",
+    params:
+        filter=lambda w, input: f"--exclude 'GT[@{input.samples}]=\"0/1\"'",
+        extra="",
+    wrapper:
+        "master/bio/bcftools/filter"
+
+
+rule bcf_filter_o_vcf:
+    input:
+        "{prefix}.bcf",
+    output:
+        "{prefix}.filter.vcf",
+    log:
+        "log/{prefix}.filter.vcf.log",
+    params:
+        filter="-i 'QUAL > 5'",
+        extra="",
+    wrapper:
+        "master/bio/bcftools/filter"
+
+
+rule bcf_filter_o_vcf_gz:
+    input:
+        "{prefix}.bcf",
+    output:
+        "{prefix}.filter.vcf.gz",
+    log:
+        "log/{prefix}.filter.vcf.gz.log",
+    params:
+        filter="-i 'QUAL > 5'",
+        extra="",
+    wrapper:
+        "master/bio/bcftools/filter"
+
+
+rule bcf_filter_o_bcf:
+    input:
+        "{prefix}.bcf",
+    output:
+        "{prefix}.filter.bcf",
+    log:
+        "log/{prefix}.filter.bcf.log",
+    params:
+        filter="-i 'QUAL > 5'",
+        extra="",
+    wrapper:
+        "master/bio/bcftools/filter"
+
+
+rule bcf_filter_o_uncompressed_bcf:
+    input:
+        "{prefix}.bcf",
+    output:
+        "{prefix}.filter.uncompressed.bcf",
+    log:
+        "log/{prefix}.filter.uncompressed.bcf.log",
+    params:
+        uncompressed_bcf=True,
+        filter="-i 'QUAL > 5'",
+        extra="",
+    wrapper:
+        "master/bio/bcftools/filter"

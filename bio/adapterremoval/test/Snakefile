@@ -1,0 +1,37 @@
+
+rule adapterremoval_se:
+    input:
+        sample=["reads/se/{sample}.fastq"]
+    output:
+        fq="trimmed/se/{sample}.fastq.gz",                               # trimmed reads
+        discarded="trimmed/se/{sample}.discarded.fastq.gz",              # reads that did not pass filters
+        settings="stats/se/{sample}.settings"                            # parameters as well as overall statistics
+    log:
+        "logs/adapterremoval/se/{sample}.log"
+    params:
+        adapters="--adapter1 ACGGCTAGCTA",
+        extra="",
+    threads: 1
+    wrapper:
+        "master/bio/adapterremoval"
+
+
+rule adapterremoval_pe:
+    input:
+        sample=["reads/pe/{sample}.1.fastq", "reads/pe/{sample}.2.fastq"] 
+    output:
+        fq1="trimmed/pe/{sample}_R1.fastq.gz",                           # trimmed mate1 reads
+        fq2="trimmed/pe/{sample}_R2.fastq.gz",                           # trimmed mate2 reads
+        collapsed="trimmed/pe/{sample}.collapsed.fastq.gz",              # overlapping mate-pairs which have been merged into a single read
+        collapsed_trunc="trimmed/pe/{sample}.collapsed_trunc.fastq.gz",  # collapsed reads that were quality trimmed
+        singleton="trimmed/pe/{sample}.singleton.fastq.gz",              # mate-pairs for which the mate has been discarded
+        discarded="trimmed/pe/{sample}.discarded.fastq.gz",              # reads that did not pass filters
+        settings="stats/pe/{sample}.settings"                            # parameters as well as overall statistics
+    log:
+        "logs/adapterremoval/pe/{sample}.log"
+    params:
+        adapters="--adapter1 ACGGCTAGCTA --adapter2 AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC",
+        extra="--collapse --collapse-deterministic",
+    threads: 2
+    wrapper:
+        "master/bio/adapterremoval"

@@ -1,0 +1,14 @@
+rule construct:
+    input:
+        ref="c.fa",
+        vcfgz="c.vcf.gz"
+    output:
+        vg="graph/c.vg"
+    params:
+        "--node-max 10"
+    log:
+        "logs/vg/construct/c.log"
+    threads:
+        4
+    wrapper:
+        "master/bio/vg/construct"

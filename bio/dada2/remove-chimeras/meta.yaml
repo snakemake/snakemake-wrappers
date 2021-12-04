@@ -1,0 +1,12 @@
+name: dada2_remove_chimeras
+description: |
+  `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
+  Remove chimera sequences from the sequence table data using dada2 ``removeBimeraDenovo`` function. Optional parameters are documented in the `manual <https://www.bioconductor.org/packages/release/bioc/manuals/dada2/man/dada2.pdf#removeBimeraDenovo>`_  and the function is introduced in the dedicated tutorial `section <https://benjjneb.github.io/dada2/tutorial.html#remove-chimeras>`_.
+authors:
+  - Charlie Pauvert
+input:
+  - RDS file with the sequence table
+params:
+  - optional arguments for ``removeBimeraDenovo()``, please provide them as python ``key=value`` pairs
+output:
+  - RDS file with the chimera-free sequence table

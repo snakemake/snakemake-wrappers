@@ -10,10 +10,12 @@ import os.path as op
 
 from snakemake.shell import shell
 from snakemake.utils import makedirs
+from snakemake_wrapper_utils.java import get_java_opts
 
 # Defining logging and gathering extra parameters
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
+java_opts = get_java_opts(snakemake)
 
 # Building output dirs
 makedirs(op.dirname(snakemake.output.snp))
@@ -41,7 +43,7 @@ shell(
     "varscan somatic"  # Tool and its subcommand
     " {in_pileup}"  # Path to input file(s)
     " {prefix}"  # Path to output
-    " {extra}"  # Extra parameters
+    " {java_opts} {extra}"  # Extra parameters
     " {mpileup}"
     " --output-snp {snakemake.output.snp}"  # Path to snp output file
     " --output-indel {snakemake.output.indel}"  # Path to indel output file

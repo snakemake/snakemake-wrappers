@@ -1,0 +1,7 @@
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - bowtie2 ==2.4.4  # Keep consistent with version specified in bowtie2/align
+  - samtools ==1.10

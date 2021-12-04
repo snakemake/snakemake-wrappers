@@ -1,0 +1,11 @@
+name: bedtools sort
+description: >
+  Sorts bed, vcf or gff files by chromosome and other criteria, for more information please see `bedtools sort documentation <https://bedtools.readthedocs.io/en/latest/content/tools/sort.html>`_.
+authors:
+  - Antonie Vietor
+input:
+  - BED/GFF/VCF files
+  - optional a tab separating file that determines the sorting order and contains the chromosome names in the first column
+  - optional a fasta index file
+output:
+  - complemented BED/GFF/VCF file

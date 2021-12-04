@@ -1,9 +1,67 @@
-rule bcf_to_vcf:
+rule bcf_view_sample_file:
     input:
-        "{prefix}.bcf"
+        "{prefix}.bcf",  # input bcf/vcf needs to be first input
+        index="{prefix}.bcf.csi",  # other inputs are optional
+        samples="samples.txt",
     output:
-        "{prefix}.vcf"
+        "{prefix}.view_sample.vcf",
+    log:
+        "log/{prefix}.view_sample.vcf.log",
     params:
-        ""  # optional parameters for bcftools view (except -o)
+        # optional extra parameters
+        extra=lambda w, input: f"-S {input.samples}",
+    wrapper:
+        "master/bio/bcftools/view"
+
+
+rule bcf_view_o_vcf:
+    input:
+        "{prefix}.bcf",
+    output:
+        "{prefix}.view.vcf",
+    log:
+        "log/{prefix}.view.vcf.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/bcftools/view"
+
+
+rule bcf_view_o_vcf_gz:
+    input:
+        "{prefix}.bcf",
+    output:
+        "{prefix}.view.vcf.gz",
+    log:
+        "log/{prefix}.view.vcf.gz.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/bcftools/view"
+
+
+rule bcf_view_o_bcf:
+    input:
+        "{prefix}.bcf",
+    output:
+        "{prefix}.view.bcf",
+    log:
+        "log/{prefix}.view.bcf.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/bcftools/view"
+
+
+rule bcf_view_o_uncompressed_bcf:
+    input:
+        "{prefix}.bcf",
+    output:
+        "{prefix}.view.uncompressed.bcf",
+    log:
+        "log/{prefix}.view.uncompressed.bcf.log",
+    params:
+        uncompressed_bcf=True,
+        extra="",
     wrapper:
         "master/bio/bcftools/view"

@@ -1,0 +1,41 @@
+rule opencravat:
+    input:
+        'example_input.tsv',
+        'modules/commons/hg38wgs',
+        'modules/converters/cravat-converter',
+        'modules/mappers/hg38',
+        'modules/annotators/biogrid', 
+        'modules/annotators/clinvar',
+        'modules/postaggregators/tagsampler',
+        'modules/postaggregators/varmeta',
+        'modules/postaggregators/vcfinfo',
+        'modules/reporters/excelreporter',
+        'modules/reporters/tsvreporter',
+        'modules/reporters/csvreporter',
+    output:
+        'example_input.tsv.xlsx',
+        'example_input.tsv.variant.tsv', 
+        'example_input.tsv.variant.csv'
+    log:
+        "logs/open-cravat/run.log"
+    threads: 1 # set number of threads for parallel processing
+    wrapper:
+        "master/bio/open-cravat/run"
+
+rule installmodules:  # [hide]
+    output:  # [hide]
+        directory('modules/commons/hg38wgs'),  # [hide]
+        directory('modules/converters/cravat-converter'),  # [hide]
+        directory('modules/mappers/hg38'),  # [hide]
+        directory('modules/annotators/biogrid'),   # [hide]
+        directory('modules/annotators/clinvar'),  # [hide]
+        directory('modules/postaggregators/tagsampler'),  # [hide]
+        directory('modules/postaggregators/varmeta'),  # [hide]
+        directory('modules/postaggregators/vcfinfo'),  # [hide]
+        directory('modules/reporters/excelreporter'),  # [hide]
+        directory('modules/reporters/tsvreporter'),  # [hide]
+        directory('modules/reporters/csvreporter'),  # [hide]
+    log:  # [hide]
+        "logs/open-cravat/module.log"  # [hide]
+    wrapper:  # [hide]
+        "file:module_wrapper/module_wrapper.py"  # [hide]

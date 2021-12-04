@@ -1,0 +1,13 @@
+rule diamond_blastx:
+    input:
+        fname_fastq = "{sample}.fastq",
+        fname_db = "db.dmnd"
+    output:
+        fname = "{sample}.tsv.gz"
+    log:
+        "logs/diamond_blastx/{sample}.log"
+    params:
+        extra="--header --compress 1"
+    threads: 8
+    wrapper:
+        "master/bio/diamond/blastx"
