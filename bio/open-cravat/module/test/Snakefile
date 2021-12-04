@@ -1,0 +1,9 @@
+rule opencravat_module:
+    output:
+        # add any other desired modules as separate directory outputs
+        directory("modules/annotators/biogrid"),
+    log:
+        "logs/open-cravat/module.log"
+    wrapper:
+        "master/bio/open-cravat/module"
+

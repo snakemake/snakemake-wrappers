@@ -1,0 +1,8 @@
+##fileformat=VCFv4.1
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##contig=<ID="KJ660346.1",length=18957>
+##reference=http://www.ncbi.nlm.nih.gov/nuccore/KJ660346.1
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	fake_KJ660346
+KJ660346	3116	.	C	T	.	.	.	GT	1
+KJ660346	10743	.	T	G	.	.	.	GT	1
+KJ660346	15660	.	C	A	.	.	.	GT	1

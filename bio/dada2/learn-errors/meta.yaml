@@ -1,0 +1,13 @@
+name: dada2_learn_errors
+description: |
+  `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
+  Learning error rates separately on paired-end data using dada2 ``learnErrors`` function. Optional parameters are documented in the `manual <https://www.bioconductor.org/packages/release/bioc/manuals/dada2/man/dada2.pdf#learnErrors>`_ and the function is introduced in the dedicated tutorial `section <https://benjjneb.github.io/dada2/tutorial.html#learn-the-error-rates>`_.
+authors:
+  - Charlie Pauvert
+input:
+  - A list of quality filtered and trimmed forward FASTQ files (potentially compressed)
+params:
+  - optional arguments for ``learnErrors()``, please provide them as python ``key=value`` pairs
+output:
+  - err: RDS file with the stored error model
+  - plot: plot observed vs estimated errors rates

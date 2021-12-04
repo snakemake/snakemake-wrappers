@@ -5,12 +5,14 @@ __license__ = "MIT"
 
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.java import get_java_opts
 
 shell.executable("bash")
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 extra_params = snakemake.params.get("extra", "")
+java_opts = get_java_opts(snakemake)
 
 bam_input = snakemake.input.bam
 
@@ -37,7 +39,7 @@ elif not isinstance(output_file, str):
     raise ValueError("Output bam-file should be a string: " + str(output_file) + "!")
 
 shell(
-    "fgbio AnnotateBamWithUmis"
+    "fgbio {java_opts} AnnotateBamWithUmis"
     " -i {bam_input}"
     " -f {umi_input}"
     " -o {output_file}"

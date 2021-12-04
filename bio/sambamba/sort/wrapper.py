@@ -7,7 +7,10 @@ __license__ = "MIT"
 import os
 from snakemake.shell import shell
 
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+
 shell(
     "sambamba sort {snakemake.params} -t {snakemake.threads} "
-    "-o {snakemake.output[0]} {snakemake.input[0]}"
+    "-o {snakemake.output[0]} {snakemake.input[0]} "
+    "{log}"
 )

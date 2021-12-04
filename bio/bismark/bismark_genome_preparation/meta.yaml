@@ -4,6 +4,6 @@ description: |
 authors:
   - Roman Cherniatchik
 input:
-  - path to genome *.fa (or *.fasta, *.fa.gz, *.fasta.gz) file
+  - path to genome \*.fa (or \*.fasta, \*.fa.gz, \*.fasta.gz) file
 output:
   - No ouptut, generates bismark indexes in parent directory of input file

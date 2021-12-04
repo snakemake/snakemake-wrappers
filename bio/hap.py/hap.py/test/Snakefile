@@ -1,0 +1,22 @@
+rule benchmark_variants:
+    input:
+        truth="truth.vcf",
+        query="query.vcf",
+        truth_regions="truth.bed",
+        strats="stratifications.tsv",
+        strat_dir="strats_dir",
+        genome="genome.fasta",
+        genome_index="genome.fasta.fai"
+    output:
+        multiext("results",".runinfo.json",".vcf.gz",".summary.csv",
+                ".extended.csv",".metrics.json.gz",".roc.all.csv.gz",
+                ".roc.Locations.INDEL.csv.gz",".roc.Locations.INDEL.PASS.csv.gz",
+                ".roc.Locations.SNP.csv.gz",".roc.tsv")
+    params:
+        engine="vcfeval",
+        prefix=lambda wc, input, output: output[0].split('.')[0],
+        ## parameters such as -L to left-align variants
+        extra="--verbose"
+    log: "happy.log"
+    threads: 2
+    wrapper: "master/bio/hap.py/hap.py"

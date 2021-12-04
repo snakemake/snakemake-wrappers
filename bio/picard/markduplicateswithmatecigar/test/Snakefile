@@ -1,0 +1,14 @@
+rule mark_duplicates:
+    input:
+        "mapped/{sample}.bam"
+    output:
+        bam="dedup/{sample}.bam",
+        metrics="dedup/{sample}.metrics.txt"
+    log:
+        "logs/picard/dedup/{sample}.log"
+    params:
+        "REMOVE_DUPLICATES=true"
+    resources:
+        mem_mb=1024
+    wrapper:
+        "master/bio/picard/markduplicateswithmatecigar"

@@ -1,4 +1,4 @@
 name: samtools stats
-description: Generate stats using samtools.
+description: Generate stats using samtools. For more information see `SAMtools documentation <http://www.htslib.org/doc/samtools-stats.html>`_.
 authors:
   - Julian de Ruiter

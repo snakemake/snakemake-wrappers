@@ -5,9 +5,12 @@ __license__ = "MIT"
 
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.java import get_java_opts
 
+extra = snakemake.params
+java_opts = get_java_opts(snakemake)
 
 shell(
-    "picard AddOrReplaceReadGroups {snakemake.params} I={snakemake.input} "
-    "O={snakemake.output} &> {snakemake.log}"
+    "picard AddOrReplaceReadGroups {java_opts} {extra} "
+    "I={snakemake.input} O={snakemake.output} &> {snakemake.log}"
 )
