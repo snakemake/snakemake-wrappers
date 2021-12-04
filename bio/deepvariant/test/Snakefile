@@ -5,7 +5,25 @@ rule deepvariant:
     output:
         vcf="calls/{sample}.vcf.gz"
     params:
-        model="wgs",   # {wgs, wes}
+        model="wgs",   # {wgs, wes, pacbio, hybrid}
+        sample_name=lambda w: w.sample, # optional
+        extra=""
+    threads: 2
+    log:
+        "logs/deepvariant/{sample}/stdout.log"
+    wrapper:
+        "master/bio/deepvariant"
+
+
+rule deepvariant_gvcf:
+    input:
+        bam="mapped/{sample}.bam",
+        ref="genome/genome.fasta"
+    output:
+        vcf="gvcf_calls/{sample}.vcf.gz",
+        gvcf="gvcf_calls/{sample}.g.vcf.gz"
+    params:
+        model="wgs",   # {wgs, wes, pacbio, hybrid}
         extra=""
     threads: 2
     log:

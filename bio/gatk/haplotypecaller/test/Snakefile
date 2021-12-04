@@ -6,10 +6,13 @@ rule haplotype_caller:
         # known="dbsnp.vcf"  # optional
     output:
         gvcf="calls/{sample}.g.vcf",
+#	bam="{sample}.assemb_haplo.bam",
     log:
         "logs/gatk/haplotypecaller/{sample}.log"
     params:
         extra="",  # optional
         java_opts="", # optional
+    resources:
+        mem_mb=1024
     wrapper:
         "master/bio/gatk/haplotypecaller"

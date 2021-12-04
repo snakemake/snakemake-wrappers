@@ -5,9 +5,11 @@ __license__ = "MIT"
 
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.java import get_java_opts
 
 extra = snakemake.params.get("extra", "")
-java_opts = snakemake.params.get("java_opts", "")
+java_opts = get_java_opts(snakemake)
+
 filters = [
     "--filter-name {} --filter-expression '{}'".format(name, expr.replace("'", "\\'"))
     for name, expr in snakemake.params.filters.items()

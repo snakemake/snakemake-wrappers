@@ -1,0 +1,8 @@
+name: sambamba markdup
+description: Marks (default) or removes duplicate reads in BAM file. See details `here https://lomereiter.github.io/sambamba/docs/sambamba-markdup.html`_
+authors:
+  - Jan Forster
+input:
+  - bam file
+output:
+  - deduplicated bam file

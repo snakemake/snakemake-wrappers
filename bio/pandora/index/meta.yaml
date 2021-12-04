@@ -1,0 +1,12 @@
+name: pandora index
+description: Index population reference graph (PRG) sequences.
+url: https://github.com/rmcolq/pandora/wiki/Usage#build-index
+authors:
+  - Michael Hall
+input:
+  - A PRG file (made by `make_prg <https://github.com/iqbal-lab-org/make_prg>`) to index
+output:
+  - index: A pandora index file
+  - kmer_prgs: A directory of the index kmer PRGs in GFA format
+params:
+  options: Any options other than threads (see docs)

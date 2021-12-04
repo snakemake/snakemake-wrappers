@@ -1,0 +1,8 @@
+name: sambamba index
+description: Indexing a bam file with `sambamba https://lomereiter.github.io/sambamba/docs/sambamba-index.html`_
+authors:
+  - Jan Forster
+input:
+  - bam file
+output:
+  - bam index

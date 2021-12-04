@@ -1,0 +1,12 @@
+name: rsem prepare reference
+description: |
+        Run rsem-prepare-reference to create index files for downstream analysis with rsem.
+authors:
+  - Brett Copeland
+input:
+  - reference genome
+  - additional optional arguments
+output:
+  - index files for downstream use with rsem
+notes: |
+  * For more information, see https://github.com/deweylab/RSEM.

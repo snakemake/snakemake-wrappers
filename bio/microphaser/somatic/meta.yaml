@@ -1,0 +1,16 @@
+name: microphaser somatic
+description: |
+  Predict mutated neopeptides and their wildtype counterparts from NGS (whole exome/genome) data
+authors:
+  - Jan Forster
+input:
+  - bam file
+  - bcf file
+  - fasta reference
+  - gtf annotation file
+output:
+  - mutated peptide fasta (nucleotide sequences)
+  - wildtype peptide fasta (nucleotide sequences)
+  - information tsv
+notes: |
+  * For more information see, https://github.com/koesterlab/microphaser.

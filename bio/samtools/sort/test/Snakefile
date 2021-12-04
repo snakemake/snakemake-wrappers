@@ -4,7 +4,8 @@ rule samtools_sort:
     output:
         "mapped/{sample}.sorted.bam"
     params:
-        "-m 4G"
+        extra = "-m 4G",
+        tmp_dir = "/tmp/"
     threads:  # Samtools takes additional threads through its option -@
         8     # This value - 1 will be sent to -@.
     wrapper:

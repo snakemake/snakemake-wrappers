@@ -1,0 +1,15 @@
+rule bowtie2_build:
+    input:
+        reference="genome.fasta"
+    output:
+        multiext(
+            "genome",
+            ".1.bt2", ".2.bt2", ".3.bt2", ".4.bt2", ".rev.1.bt2", ".rev.2.bt2",
+        ),
+    log:
+        "logs/bowtie2_build/build.log"
+    params:
+        extra=""  # optional parameters
+    threads: 8
+    wrapper:
+        "master/bio/bowtie2/build"

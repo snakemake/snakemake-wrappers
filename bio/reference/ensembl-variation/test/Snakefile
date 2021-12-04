@@ -1,16 +1,18 @@
 rule get_variation:
+    # Optional: add fai as input to get VCF with annotated contig lengths (as required by GATK)
+    # and properly sorted VCFs.
+    # input:
+    #     fai="refs/genome.fasta.fai"
     output:
-        vcf="refs/variation.vcf.gz"
-        # Optional: add fai to get VCF with annotated contig lengths (as required by GATK)
-        # and properly sorted VCFs.
-        # fai="refs/genome.fasta.fai"
+        vcf="refs/variation.vcf.gz",
     params:
         species="saccharomyces_cerevisiae",
-        release="98", # releases <98 are unsupported
+        release="98",  # releases <98 are unsupported
         build="R64-1-1",
-        type="all" # one of "all", "somatic", "structural_variation"
+        type="all",  # one of "all", "somatic", "structural_variation"
+        # chromosome="21", # optionally constrain to chromosome, only supported for homo_sapiens
     log:
-        "logs/get_variation.log"
+        "logs/get_variation.log",
     cache: True  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-variation"

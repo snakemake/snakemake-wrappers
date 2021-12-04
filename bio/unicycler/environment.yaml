@@ -1,0 +1,12 @@
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - bowtie2 ==2.4.1
+  - bcftools ==1.10.2
+  - spades ==3.14.1
+  - samtools ==1.10
+  - pilon ==1.23
+  - racon ==1.4.13
+  - blast ==2.10.1
+  - unicycler ==0.4.8 

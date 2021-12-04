@@ -1,6 +1,6 @@
 ---
-name: SnpSift dnNSFP
-description:  Annotate using integrated annotation from dbNSFP.
+name: SnpSift dbNSFP
+description:  Annotate using integrated annotation from dbNSFP with `SnpSift <https://pcingola.github.io/SnpEff/ss_dbnsfp/>`_
 authors:
   - Thibault Dayris
 input:

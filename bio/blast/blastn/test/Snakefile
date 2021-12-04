@@ -1,0 +1,25 @@
+rule blast_nucleotide:
+    input:
+        query = "{sample}.fasta",
+        blastdb=multiext("blastdb/blastdb",
+            ".ndb",
+            ".nhr",
+            ".nin",
+            ".not",
+            ".nsq",
+            ".ntf",
+            ".nto"
+        )
+    output:
+        "{sample}.blast.txt"
+    log:
+        "logs/{sample}.blast.log"
+    threads:
+        2
+    params:
+        # Usable options and specifiers for the different output formats are listed here:
+        # https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/blast/blastn.html.
+        format="6 qseqid sseqid evalue",
+        extra=""
+    wrapper:
+        "master/bio/blast/blastn"

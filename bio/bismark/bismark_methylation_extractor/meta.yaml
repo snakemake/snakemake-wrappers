@@ -14,12 +14,12 @@ params:
   - extra: Any additional args
 output:
   - Depends on bismark options passed to `params.extra`, optional for this wrapper
-  - mbias_report: M-bias report, *.M-bias.txt (if key is provided, the out file will be renamed to this name)
-  - mbias_r1: M-Bias plot for R1, *.M-bias_R1.png (if key is provided, the out file will be renamed to this name)
-  - mbias_r2: M-Bias plot for R2, *.M-bias_R2.png (if key is provided, the out file will be renamed to this name)
-  - splitting_report: Splitting report, *_splitting_report.txt (if key is provided, the out file will be renamed to this name)
-  - methylome_CpG_cov: Bismark coverage file for CpG context, *.bismark.cov.gz (if key is provided, the out file will be renamed to this name)
-  - methylome_CpG_mlevel_bedGraph: Bismark methylation level track, *.bedGraph.gz
-  - read_base_meth_state_cpg: Per read CpG base methylation info, CpG_context_*.txt.gz  (if key is provided, the out file will be renamed to this name)
-  - read_base_meth_state_chg: Per read CpG base methylation info, CHG_context_*.txt.gz  (if key is provided, the out file will be renamed to this name)
-  - read_base_meth_state_chh: Per read CpG base methylation info, CHH_context_*.txt.gz  (if key is provided, the out file will be renamed to this name)
+  - mbias_report: M-bias report, \*.M-bias.txt (if key is provided, the out file will be renamed to this name)
+  - mbias_r1: M-Bias plot for R1, \*.M-bias_R1.png (if key is provided, the out file will be renamed to this name)
+  - mbias_r2: M-Bias plot for R2, \*.M-bias_R2.png (if key is provided, the out file will be renamed to this name)
+  - splitting_report: Splitting report, \*_splitting_report.txt (if key is provided, the out file will be renamed to this name)
+  - methylome_CpG_cov: Bismark coverage file for CpG context, \*.bismark.cov.gz (if key is provided, the out file will be renamed to this name)
+  - methylome_CpG_mlevel_bedGraph: Bismark methylation level track, \*.bedGraph.gz
+  - read_base_meth_state_cpg: Per read CpG base methylation info, CpG_context_\*.txt.gz  (if key is provided, the out file will be renamed to this name)
+  - read_base_meth_state_chg: Per read CpG base methylation info, CHG_context_\*.txt.gz  (if key is provided, the out file will be renamed to this name)
+  - read_base_meth_state_chh: Per read CpG base methylation info, CHH_context_\*.txt.gz  (if key is provided, the out file will be renamed to this name)
