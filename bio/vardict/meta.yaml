@@ -1,0 +1,15 @@
+name: Vardict
+description: Run Vardict to call genomic variants
+authors:
+  - Patrik Smeds
+input:
+  - reference file
+  - bam file
+  - normal file, optional (must be set for tumor/normal mode)
+  - region file
+params:
+  - extra. optional
+  - bed_columns, optional, default -c 1 -S 2 -E 3 -g 4
+  - ah_th optional, default values is 0.01
+output:
+  - A VCF file

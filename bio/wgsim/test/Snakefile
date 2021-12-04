@@ -1,0 +1,12 @@
+rule wgsim:
+    input:
+        ref="genome.fa"
+    output:
+        read1="reads/1.fq",
+        read2="reads/2.fq"
+    log:
+        "logs/wgsim/sim.log"
+    params:
+        "-X 0 -R 0 -r 0.1 -h"
+    wrapper:
+        "master/bio/wgsim"

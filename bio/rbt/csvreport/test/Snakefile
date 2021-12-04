@@ -1,0 +1,13 @@
+rule csv_report:
+    input:
+        # a csv formatted file containing the data for the report
+        "report.csv",
+    output:
+        # path to the resulting report directory
+        directory("qc_data"),
+    params:
+        extra="--sort-column 'contig length'",
+    log:
+        "logs/rbt-csv-report",
+    wrapper:
+        "master/bio/rbt/csvreport"

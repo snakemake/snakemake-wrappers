@@ -20,7 +20,7 @@ else:
     reads = "-1 {} -2 {}".format(*snakemake.input.sample)
 
 shell(
-    "(bowtie2 --threads {snakemake.threads} {snakemake.params.extra} "
+    "(bowtie2 --threads {snakemake.threads} {extra} "
     "-x {snakemake.params.index} {reads} "
     "| samtools view -Sbh -o {snakemake.output[0]} -) {log}"
 )

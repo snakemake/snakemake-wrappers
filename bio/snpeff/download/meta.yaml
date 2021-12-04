@@ -1,4 +1,4 @@
 name: "snpeff download"
-description: Download snpeff DB for a given species.
+description: Download `snpeff <https://pcingola.github.io/SnpEff/se_introduction/>`_ DB for a given species.
 authors:
   - Johannes Köster

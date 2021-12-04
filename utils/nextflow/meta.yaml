@@ -1,0 +1,8 @@
+name: nextflow
+description: Run nextflow pipeline
+authors:
+  - Johannes Köster
+notes: |
+  This wrapper can e.g. be used to run `nf-core <https://nf-co.re>`_ pipelines. 
+  In each of the nf-core pipeline descriptions, you will find available parameters and the output file structure (under "aws results"). 
+  The latter can be used to set the desired output files for this wrapper.

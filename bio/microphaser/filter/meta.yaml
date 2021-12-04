@@ -1,0 +1,16 @@
+name: microphaser filter
+description: |
+  Translate and filter neopeptides from microphaser output
+authors:
+  - Jan Forster
+input:
+  - neopeptides fasta (nucleotide sequences from microphaser somatic)
+  - information tsv (from microphaser somatic)
+  - sample-specific normal/wildtype pepetides (binary created using microphaser build)
+output:
+  - filtered neopeptides (removed self-identical peptides) in amino acid FASTA format
+  - corresponding normal peptides in amino acid FASTA format
+  - filtered information tsv
+  - self-identical peptides removed from the neopeptide set (tsv)
+notes: |
+  * For more information see, https://github.com/koesterlab/microphaser.

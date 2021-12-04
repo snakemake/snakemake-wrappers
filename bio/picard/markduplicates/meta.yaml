@@ -1,9 +1,9 @@
 name: picard MarkDuplicates
 description: |
-  Mark PCR and optical duplicates with picard tools.
+  Mark PCR and optical duplicates with picard tools. For more information about MarkDuplicates see `picard documentation <https://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicates>`_.
 authors:
   - Johannes Köster
 input:
-  - bam file
+  - bam file(s)
 output:
   - bam file with marked or removed duplicates

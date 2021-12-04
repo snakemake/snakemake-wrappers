@@ -1,0 +1,33 @@
+rule vardict_single_mode:
+    input:
+        reference="data/genome.fasta",
+        regions="regions.bed",
+        bam="mapped/{sample}.bam",
+    output:
+        vcf="vcf/{sample}.s.vcf",
+    params:
+        extra="",
+        bed_columns="-c 1 -S 2 -E 3 -g 4",  # Optional, default is -c 1 -S 2 -E 3 -g 4
+        allele_frequency_threshold="0.01",  # Optional, default is 0.01
+    threads: 1
+    log:
+        "logs/varscan_{sample}_s_.log",
+    wrapper:
+        "master/bio/vardict"
+
+
+rule vardict_paired_mode:
+    input:
+        reference="data/genome.fasta",
+        regions="regions.bed",
+        bam="mapped/{sample}.bam",
+        normal="mapped/b.bam",
+    output:
+        vcf="vcf/{sample}.tn.vcf",
+    params:
+        extra="",
+    threads: 1
+    log:
+        "logs/varscan_{sample}_tn.log",
+    wrapper:
+        "master/bio/vardict"

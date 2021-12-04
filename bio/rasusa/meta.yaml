@@ -1,0 +1,23 @@
+name:        rasusa
+description: Randomly subsample sequencing reads to a specified coverage.
+url:         https://github.com/mbhall88/rasusa
+authors:
+  - Michael Hall
+input:
+  - Reads to subsample in FASTA/Q format. Input files can be named or unnamed.
+output:
+  - File paths to write subsampled reads to. If using paired-end data, make sure there are two output files in the same order as the input.
+params:
+  bases: >
+    Explicitly set the number of bases required e.g., 4.3kb, 7Tb, 9000, 4.1MB |nl|
+    If this option is given, ``coverage`` and ``genome_size`` are ignored
+  coverage: >
+    The desired coverage to sub-sample the reads to. |nl|
+    If ``bases`` is not provided, this option and ``genome_size`` are required
+  genome_size: >
+    Genome size to calculate coverage with respect to. e.g., 4.3kb, 7Tb, 9000, 4.1MB |nl|
+    Alternatively, a FASTA/Q index file can be provided and the genome size will be set
+    to the sum of all reference sequences. |nl|
+    If ``bases`` is not provided, this option and ``coverage`` are required
+  options: >
+    Any other options as listed in `the docs <https://github.com/mbhall88/rasusa#usage>`_.

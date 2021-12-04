@@ -1,0 +1,12 @@
+name: "mlst"
+description: Scan contig files against traditional PubMLST typing schemes
+authors:
+  - Torsten Seeman (mlst tool) - https://github.com/tseemann/mlst
+  - Max Cummins (Snakemake wrapper [unaffiliated with Torsten Seeman])
+input:
+  - Genomic assembly (fasta format)
+output:
+  - Returns a tab-separated line containing the filename, matching PubMLST scheme name, ST (sequence type) and the allele IDs. Other output formats are also available (eg. CSV, JSON)
+notes: |
+  * The `extra` param allows for additional program arguments.
+  * For more inforamtion see https://github.com/tseemann/mlst

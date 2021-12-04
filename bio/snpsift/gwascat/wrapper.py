@@ -6,10 +6,12 @@ __email__ = "thibault.dayris@gustaveroussy.fr"
 __license__ = "MIT"
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.java import get_java_opts
+
+java_opts = get_java_opts(snakemake)
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
-
 min_threads = 1
 
 # Uncompression shall be done based on user input
@@ -44,7 +46,7 @@ if snakemake.threads < min_threads:
 
 shell(
     "SnpSift gwasCat "  # Tool and its subcommand
-    " {extra} "  # Extra parameters
+    " {java_opts} {extra} "  # Extra parameters
     " -db {snakemake.input.gwascat} "  # Path to gwasCat file
     " {incall} "  # Path to input vcf file
     " {outcall} "  # Path to output vcf file
