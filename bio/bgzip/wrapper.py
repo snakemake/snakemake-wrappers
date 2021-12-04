@@ -11,9 +11,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 shell(
     """
-    (bgzip \
-        {extra} \
-        --threads {snakemake.threads} \
-        {snakemake.input}) {log}
+    (bgzip -c {extra} --threads {snakemake.threads} \
+        {snakemake.input} > {snakemake.output}) {log}
     """
 )
