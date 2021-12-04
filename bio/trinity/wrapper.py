@@ -9,7 +9,22 @@ from os import path
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
-max_memory = snakemake.params.get("max_memory", "10G")
+# Previous wrapper reserved 10 Gigabytes by default. This behaviour is
+# preserved below:
+max_memory = "10G"
+
+# Getting memory in megabytes, if java opts is not filled with -Xmx parameter
+# By doing so, backward compatibility is preserved
+if "mem_mb" in snakemake.resources.keys():
+    # max_memory from trinity expects a value in gigabytes.
+    rounded_mb_to_gb = int(snakemake.resources["mem_mb"] / 1024)
+    max_memory = "{}G".format(rounded_mb_to_gb)
+
+# Getting memory in gigabytes, for user convenience. Please prefer the use
+# of mem_mb over mem_gb as advised in documentation.
+elif "mem_gb" in snakemake.resources.keys():
+    max_memory = "{}G".format(snakemake.resources["mem_gb"])
+
 
 # allow multiple input files for single assembly
 left = snakemake.input.get("left")
@@ -52,7 +67,7 @@ if not seqtype:
 outdir = path.dirname(snakemake.output[0])
 assert "trinity" in outdir, "output directory name must contain 'trinity'"
 
-log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 shell(
     "Trinity {input_cmd} --CPU {snakemake.threads} "

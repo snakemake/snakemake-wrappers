@@ -13,7 +13,7 @@ shell(
     "vep_install --AUTO cf "
     "--SPECIES {snakemake.params.species} "
     "--ASSEMBLY {snakemake.params.build} "
-    "--CACHE_VERSION {snakemake.params.release} "
+    "--VERSION {snakemake.params.release} "
     "--CACHEDIR {snakemake.output} "
     "--CONVERT "
     "--NO_UPDATE "

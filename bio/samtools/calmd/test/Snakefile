@@ -1,0 +1,11 @@
+rule samtools_calmd:
+    input:
+        aln = "{sample}.bam", # Can be 'sam', 'bam', or 'cram'
+        ref = "genome.fasta"
+    output:
+        "{sample}.calmd.bam"
+    params:
+        "-E" # optional params string
+    threads: 2
+    wrapper:
+        "master/bio/samtools/calmd"

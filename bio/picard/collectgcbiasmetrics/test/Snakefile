@@ -1,0 +1,23 @@
+rule alignment_summary:
+    input:
+        # BAM aligned to reference genome
+        bam="mapped/a.bam",
+        # reference genome FASTA from which GC-context is inferred
+        ref="genome.fasta"
+    output:
+        metrics="results/a.gcmetrics.txt",
+        chart="results/a.gc.pdf",
+        summary="results/a.summary.txt"
+    params:
+        # optional additional parameters, for example,
+        extra="MINIMUM_GENOME_FRACTION=1E-5"
+    log:
+        "logs/picard/a.gcmetrics.log"
+    # optional specification of memory usage of the JVM that snakemake will respect with global
+    # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
+    # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
+    # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
+    resources:
+        mem_mb=1024
+    wrapper:
+        "master/bio/picard/collectgcbiasmetrics"

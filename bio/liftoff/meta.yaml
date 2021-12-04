@@ -1,0 +1,11 @@
+name: "liftoff"
+description: Lift features from one genome assembly to another (https://github.com/agshumate/Liftoff)
+authors:
+  - Tomás Di Domenico
+input:
+  - A fasta formatted reference genome file
+  - A fasta formatted target genome file
+  - A GFF/GTF formatted annotations file
+output:
+  - A GFF formatted file containing the mapped annotations
+  - A GFF formatted file containing the unmapped annotations

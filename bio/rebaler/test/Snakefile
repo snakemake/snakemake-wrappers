@@ -1,0 +1,12 @@
+rule rebaler:
+    input:
+        reference="ref.fa",
+        reads="{sample}.fq",
+    output:
+        assembly="{sample}.asm.fa",
+    log:
+        "logs/rebaler/{sample}.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/rebaler"

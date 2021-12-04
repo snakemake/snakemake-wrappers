@@ -7,7 +7,10 @@ __license__ = "MIT"
 
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.java import get_java_opts
 
+extra = snakemake.params
+java_opts = get_java_opts(snakemake)
 
 inputs = " ".join("INPUT={}".format(in_) for in_ in snakemake.input)
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
@@ -15,7 +18,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 shell(
     "picard"
     " MergeSamFiles"
-    " {snakemake.params}"
+    " {java_opts} {extra}"
     " {inputs}"
     " OUTPUT={snakemake.output[0]}"
     " {log}"

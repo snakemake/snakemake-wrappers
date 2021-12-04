@@ -11,6 +11,6 @@ output:
   - filtered vcf file
 notes: |
   * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-Xmx4G" for one, and "-Xmx4G -XX:ParallelGCThreads=10" for two options.
-  * The `extra` param alllows for additional program arguments.
-  * For more inforamtion see, https://software.broadinstitute.org/gatk/documentation/article?id=11050
+  * The `extra` param allows for additional program arguments.
+  * For more information see, https://software.broadinstitute.org/gatk/documentation/article?id=11050
 

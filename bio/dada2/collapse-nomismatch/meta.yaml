@@ -1,0 +1,12 @@
+name: dada2_collapse_nomismatch
+description: |
+  `DADA2 <https://benjjneb.github.io/dada2/index.html>`_
+  Combine together sequences that are identical up to shifts and/or indels using dada2 ``collapseNoMismatch`` function. Optional parameters are documented in the `manual <https://www.bioconductor.org/packages/release/bioc/manuals/dada2/man/dada2.pdf#collapseNoMismatch>`_. While the function is not included in the `tutorial <https://benjjneb.github.io/dada2/tutorial.html#assign-taxonomy>`_, feel free to browse the dada2 `issues <https://github.com/benjjneb/dada2/issues?q=collapseNoMismatch>`_ for showcases.
+authors:
+  - Charlie Pauvert
+input:
+  - RDS file with the chimera-free sequence table
+params:
+  - optional arguments for ``collapseNoMismatch()``, please provide them as python ``key=value`` pairs 
+output:
+  - RDS file with the sequence table where the needed sequences were collapsed

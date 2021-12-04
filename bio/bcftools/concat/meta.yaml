@@ -1,4 +1,13 @@
 name: bcftools concat
-description: Concatenate vcf/bcf files with bcftools.
+description: Concatenate vcf/bcf files with bcftools. For more information see `BCFtools documentation <https://www.htslib.org/doc/bcftools.html#concat>`_.
 authors:
   - Johannes Köster
+  - Filipe G. Vieira
+input:
+  - vcf files
+output:
+  - Concatenated VCF/BCF file
+notes: |
+  * The `uncompressed_bcf` param allows to specify that a BCF output should be uncompressed (ignored otherwise).
+  * The `extra` param alllows for additional program arguments (not `--threads, `-O/--output-type`, `-m/--max-mem`, or `-T/--temp-dir`).
+  * For more information see, https://samtools.github.io/bcftools/bcftools.html

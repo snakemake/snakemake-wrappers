@@ -14,6 +14,8 @@ rule gatk_baserecalibratorspark:
         #spark_runner="",  # optional, local by default
         #spark_master="",  # optional
         #spark_extra="", # optional
+    resources:
+        mem_mb=1024
     threads: 8
     wrapper:
         "master/bio/gatk/baserecalibratorspark"

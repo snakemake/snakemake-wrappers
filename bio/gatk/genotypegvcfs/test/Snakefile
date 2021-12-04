@@ -1,6 +1,8 @@
 rule genotype_gvcfs:
     input:
         gvcf="calls/all.g.vcf",  # combined gvcf over multiple samples
+	# N.B. gvcf or genomicsdb must be specified
+	# in the latter case, this is a GenomicsDB data store
         ref="genome.fasta"
     output:
         vcf="calls/all.vcf",
@@ -9,5 +11,7 @@ rule genotype_gvcfs:
     params:
         extra="",  # optional
         java_opts="", # optional
+    resources:
+        mem_mb=1024
     wrapper:
         "master/bio/gatk/genotypegvcfs"

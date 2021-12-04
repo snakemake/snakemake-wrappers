@@ -6,11 +6,10 @@ rule bwa_mem2_index:
         "{genome}.amb",
         "{genome}.ann",
         "{genome}.bwt.2bit.64",
-        "{genome}.bwt.8bit.32",
         "{genome}.pac",
     log:
         "logs/bwa-mem2_index/{genome}.log"
     params:
-        prefix="{genome}"
+        prefix=lambda w: w.genome
     wrapper:
         "master/bio/bwa-mem2/index"

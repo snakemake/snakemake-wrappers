@@ -1,0 +1,19 @@
+rule gatk_filtermutectcalls:
+    input:
+        vcf="calls/snvs.vcf",
+        ref="genome.fasta",
+    output:
+        vcf="calls/snvs.mutect.filtered.vcf",
+    log:
+        "logs/gatk/filter/snvs.log",
+    params:
+        extra="--max-alt-allele-count 3",  # optional arguments, see GATK docs
+        java_opts="",  # optional
+    # optional specification of memory usage of the JVM that snakemake will respect with global
+    # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
+    # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
+    # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/gatk/filtermutectcalls"

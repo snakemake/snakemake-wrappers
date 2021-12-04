@@ -36,7 +36,15 @@ if fq1[0].endswith(".gz"):
 else:
     readcmd = ""
 
-outprefix = os.path.dirname(snakemake.output[0]) + "/"
+if "SortedByCoordinate" in extra:
+    bamprefix = "Aligned.sortedByCoord.out."
+else:
+    bamprefix = "Aligned.out."
+
+outprefix = snakemake.output[0].split(bamprefix)[0]
+
+if outprefix == os.path.dirname(snakemake.output[0]):
+    outprefix += "/"
 
 shell(
     "STAR "
