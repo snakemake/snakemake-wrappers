@@ -3,6 +3,8 @@ rule jellyfish_count:
         "{prefix}.fasta",
     output:
         "{prefix}.jf",
+    log:
+        "{prefix}.jf.log",
     params:
         kmer_length=21,
         size="1G",
