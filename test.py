@@ -1823,7 +1823,7 @@ def test_jellyfish_histo():
 @skip_if_not_modified
 def test_jellyfish_merge():
     run(
-        "bio/jellyfish/histo",
+        "bio/jellyfish/merge",
         ["snakemake", "--cores", "2", "--use-conda", "-F", "ab.jf"],
     )
 
