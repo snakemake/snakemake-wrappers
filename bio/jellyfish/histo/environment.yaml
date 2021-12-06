@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - kmer-jellyfish==2.3.0
+  - kmer-jellyfish==2.3
