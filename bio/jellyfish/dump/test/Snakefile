@@ -1,0 +1,11 @@
+rule jellyfish_dump:
+    input:
+        "{prefix}.jf",
+    output:
+        "{prefix}.dump",
+    log:
+        "{prefix}.log",
+    params:
+        extra="-c -t",
+    wrapper:
+        "master/bio/jellyfish/dump"

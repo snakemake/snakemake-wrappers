@@ -1,0 +1,10 @@
+rule jellyfish_histo:
+    input:
+        "{prefix}.jf",
+    output:
+        "{prefix}.histo",
+    log:
+        "{prefix}.log",
+    threads: 2
+    wrapper:
+        "master/bio/jellyfish/histo"

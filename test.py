@@ -1797,6 +1797,38 @@ def test_homer_makeTagDirectory():
 
 
 @skip_if_not_modified
+def test_jellyfish_count():
+    run(
+        "bio/jellyfish/count",
+        ["snakemake", "--cores", "2", "--use-conda", "-F", "a.jf"],
+    )
+
+
+@skip_if_not_modified
+def test_jellyfish_dump():
+    run(
+        "bio/jellyfish/dump",
+        ["snakemake", "--cores", "2", "--use-conda", "-F", "a.dump"],
+    )
+
+
+@skip_if_not_modified
+def test_jellyfish_histo():
+    run(
+        "bio/jellyfish/histo",
+        ["snakemake", "--cores", "2", "--use-conda", "-F", "a.histo"],
+    )
+
+
+@skip_if_not_modified
+def test_jellyfish_merge():
+    run(
+        "bio/jellyfish/merge",
+        ["snakemake", "--cores", "2", "--use-conda", "-F", "ab.jf"],
+    )
+
+
+@skip_if_not_modified
 def test_homer_annotatePeaks():
     run(
         "bio/homer/annotatePeaks",
