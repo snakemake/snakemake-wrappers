@@ -8,6 +8,7 @@ from snakemake.shell import shell
 
 revision = snakemake.params.get("revision")
 profile = snakemake.params.get("profile", [])
+extra = snakemake.params.get("extra", "")
 if isinstance(profile, str):
     profile = [profile]
 
@@ -38,4 +39,4 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 args = " ".join(args)
 pipeline = snakemake.params.pipeline
 
-shell("nextflow run {pipeline} {args} {log}")
+shell("nextflow run {pipeline} {args} {extra} {log}")
