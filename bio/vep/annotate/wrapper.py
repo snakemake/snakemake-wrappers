@@ -23,7 +23,7 @@ stats = snakemake.output.stats
 cache = snakemake.input.get("cache", "")
 plugins = snakemake.input.plugins
 
-load_plugins = "".join(
+load_plugins = " ".join(
     map(
         "--plugin {}".format,
         [
