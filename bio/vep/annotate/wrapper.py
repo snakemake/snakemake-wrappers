@@ -23,7 +23,15 @@ stats = snakemake.output.stats
 cache = snakemake.input.get("cache", "")
 plugins = snakemake.input.plugins
 
-load_plugins = " ".join(map("--plugin {}".format, snakemake.params.plugins))
+load_plugins = "".join(
+    map(
+        "--plugin {}".format,
+        [
+            ",".join([plugin, snakemake.input.get(plugin, "")])
+            for plugin in snakemake.params.plugins
+        ],
+    )
+)
 
 if snakemake.output.calls.endswith(".vcf.gz"):
     fmt = "z"
