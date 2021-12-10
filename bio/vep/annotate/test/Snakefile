@@ -3,12 +3,14 @@ rule annotate_variants:
         calls="variants.bcf",  # .vcf, .vcf.gz or .bcf
         cache="resources/vep/cache",  # can be omitted if fasta and gff are specified
         plugins="resources/vep/plugins",
-        LoFtool="resources/vep/plugins/LoFtool_scores.txt",
         # optionally add reference genome fasta
         # fasta="genome.fasta",
         # fai="genome.fasta.fai", # fasta index
         # gff="annotation.gff",
         # csi="annotation.gff.csi", # tabix index
+        # add mandatory aux-files required by some plugins if not present in the cache directory.
+        # aux files must be defined as following: "<plugin> = /path/to/file" where plugin must be in lowercase
+        # revel = path/to/revel_scores.tsv.gz
     output:
         calls="variants.annotated.bcf",  # .vcf, .vcf.gz or .bcf
         stats="variants.html",
