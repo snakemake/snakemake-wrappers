@@ -28,7 +28,7 @@ plugin_aux_files = {"LoFtool": "LoFtool_scores.txt", "ExACpLI": "ExACpLI_values.
 load_plugins = []
 for plugin in snakemake.params.plugins:
     if plugin in plugin_aux_files.keys():
-        aux_path = os.path.join(cache, plugin_aux_files[plugin])
+        aux_path = os.path.join(plugins, plugin_aux_files[plugin])
         load_plugins.append(",".join([plugin, aux_path]))
     else:
         load_plugins.append(",".join([plugin, snakemake.input.get(plugin.lower(), "")]))
