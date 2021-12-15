@@ -6,6 +6,8 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+
 ## Extract arguments
 header = snakemake.input.get("header", "")
 if header:
@@ -30,5 +32,6 @@ shell(
     "{snakemake.input.vcf} "
     "| bcftools view "
     "{view_extra} "
-    "> {snakemake.output}"
+    "> {snakemake.output} "
+    "{log}"
 )
