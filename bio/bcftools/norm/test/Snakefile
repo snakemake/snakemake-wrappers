@@ -4,7 +4,7 @@ rule norm_vcf:
     output:
         "{prefix}.norm.vcf",
     log:
-	"{prefix}.norm.log",
+        "{prefix}.norm.log",
     params:
         extra="",  # optional parameters for bcftools norm (except -o)
     wrapper:
