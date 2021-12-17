@@ -3,6 +3,7 @@ rule manta:
         ref="human_g1k_v37_decoy.small.fasta",
         samples=["mapped/a.bam"],
         index=["mapped/a.bam.bai"],
+        bed="test.bed.gz", # optional
     output:
         vcf="results/out.bcf",
         idx="results/out.bcf.csi",
