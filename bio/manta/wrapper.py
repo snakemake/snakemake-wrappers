@@ -14,7 +14,7 @@ extra_run = snakemake.params.get("extra_run", "")
 
 bed = snakemake.input.get("bed", "")
 if bed:
-    bed = f"--regions-file {bed} --regions-overlap 1"
+    bed = f"--callRegions {bed}"
 
 mem_gb = math.ceil(snakemake.resources.get("mem_mb", "") / 1024)
 if not mem_gb:
@@ -50,7 +50,7 @@ with TemporaryDirectory() as tempdir:
 
     shell(
         # Configure Manta
-        "configManta.py {extra_cfg} {bams} --referenceFasta {snakemake.input.ref} --runDir {run_dir} {log}; "
+        "configManta.py {extra_cfg} {bams} --referenceFasta {snakemake.input.ref} {bed} --runDir {run_dir} {log}; "
         # Run Manta
         "python2 {run_dir}/runWorkflow.py {extra_run} --jobs {snakemake.threads} {mem_gb} {log}; "
     )
@@ -74,7 +74,7 @@ with TemporaryDirectory() as tempdir:
     if vcf and vcf != vcf_path:
         vcf_format = infer_vcf_ext(vcf)
         shell(
-            "bcftools view --threads {snakemake.threads} {bed} --output-file {vcf:q} --output-type {vcf_format} {vcf_path:q} {log}"
+            "bcftools view --threads {snakemake.threads} --output-file {vcf:q} --output-type {vcf_format} {vcf_path:q} {log}"
         )
 
         idx = snakemake.output.get("idx", "")
@@ -90,7 +90,7 @@ with TemporaryDirectory() as tempdir:
     if cand_indel_vcf and cand_indel_vcf != cand_indel_vcf_path:
         cand_indel_vcf_format = infer_vcf_ext(cand_indel_vcf)
         shell(
-            "bcftools view --threads {snakemake.threads} {bed} --output-file {cand_indel_vcf:q} --output-type {cand_indel_vcf_format} {cand_indel_vcf_path:q} {log}"
+            "bcftools view --threads {snakemake.threads} --output-file {cand_indel_vcf:q} --output-type {cand_indel_vcf_format} {cand_indel_vcf_path:q} {log}"
         )
 
         cand_indel_idx = snakemake.output.get("cand_indel_idx", "")
@@ -106,7 +106,7 @@ with TemporaryDirectory() as tempdir:
     if cand_sv_vcf and cand_sv_vcf != cand_sv_vcf_path:
         cand_sv_vcf_format = infer_vcf_ext(cand_sv_vcf)
         shell(
-            "bcftools view --threads {snakemake.threads} {bed} --output-file {cand_sv_vcf:q} --output-type {cand_sv_vcf_format} {cand_sv_vcf_path:q} {log}"
+            "bcftools view --threads {snakemake.threads} --output-file {cand_sv_vcf:q} --output-type {cand_sv_vcf_format} {cand_sv_vcf_path:q} {log}"
         )
 
         cand_sv_idx = snakemake.output.get("cand_sv_idx", "")
