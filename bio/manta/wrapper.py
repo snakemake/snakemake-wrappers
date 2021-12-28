@@ -75,7 +75,7 @@ with TemporaryDirectory() as tempdir:
     if vcf and vcf != vcf_path:
         vcf_format = infer_vcf_ext(vcf)
         shell(
-            "bcftools sort --threads {snakemake.threads} {bcftools_mem_gb} --temp-dir {tempdir} --output {vcf:q} --output-type {vcf_format} {vcf_path:q} {log}"
+            "bcftools sort {bcftools_mem_gb} --temp-dir {tempdir} --output {vcf:q} --output-type {vcf_format} {vcf_path:q} {log}"
         )
 
         idx = snakemake.output.get("idx", "")
@@ -91,7 +91,7 @@ with TemporaryDirectory() as tempdir:
     if cand_indel_vcf and cand_indel_vcf != cand_indel_vcf_path:
         cand_indel_vcf_format = infer_vcf_ext(cand_indel_vcf)
         shell(
-            "bcftools sort --threads {snakemake.threads} {bcftools_mem_gb} --temp-dir {tempdir} --output {cand_indel_vcf:q} --output-type {cand_indel_vcf_format} {cand_indel_vcf_path:q} {log}"
+            "bcftools sort {bcftools_mem_gb} --temp-dir {tempdir} --output {cand_indel_vcf:q} --output-type {cand_indel_vcf_format} {cand_indel_vcf_path:q} {log}"
         )
 
         cand_indel_idx = snakemake.output.get("cand_indel_idx", "")
@@ -107,7 +107,7 @@ with TemporaryDirectory() as tempdir:
     if cand_sv_vcf and cand_sv_vcf != cand_sv_vcf_path:
         cand_sv_vcf_format = infer_vcf_ext(cand_sv_vcf)
         shell(
-            "bcftools sort --threads {snakemake.threads} {bcftools_mem_gb} --temp-dir {tempdir} --output {cand_sv_vcf:q} --output-type {cand_sv_vcf_format} {cand_sv_vcf_path:q} {log}"
+            "bcftools sort {bcftools_mem_gb} --temp-dir {tempdir} --output {cand_sv_vcf:q} --output-type {cand_sv_vcf_format} {cand_sv_vcf_path:q} {log}"
         )
 
         cand_sv_idx = snakemake.output.get("cand_sv_idx", "")
