@@ -50,6 +50,8 @@ with TemporaryDirectory() as tempdir:
     bams = list(map("--normalBam {}".format, bams))
 
     shell(
+        # Increase max number of open files (https://github.com/Illumina/manta/issues/245)
+        "ulimit -n 10240; "
         # Configure Manta
         "configManta.py {extra_cfg} {bams} --referenceFasta {snakemake.input.ref} {bed} --runDir {run_dir} {log}; "
         # Run Manta
