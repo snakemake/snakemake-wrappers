@@ -20,8 +20,7 @@ mem_gb = math.ceil(snakemake.resources.get("mem_mb", "") / 1024)
 if not mem_gb:
     mem_gb = snakemake.resources.get("mem_gb", "")
 if mem_gb:
-    manta_mem_gb = f"--memGb {mem_gb}"
-    bcftools_mem_gb = f"--max-mem {mem_gb}G"
+    mem_gb = f"--memGb {mem_gb}"
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 
@@ -55,7 +54,7 @@ with TemporaryDirectory() as tempdir:
         # Configure Manta
         "configManta.py {extra_cfg} {bams} --referenceFasta {snakemake.input.ref} {bed} --runDir {run_dir} {log}; "
         # Run Manta
-        "python2 {run_dir}/runWorkflow.py {extra_run} --jobs {snakemake.threads} {manta_mem_gb} {log}; "
+        "python2 {run_dir}/runWorkflow.py {extra_run} --jobs {snakemake.threads} {mem_gb} {log}; "
     )
 
     # Copy outputs into proper position.
@@ -77,7 +76,7 @@ with TemporaryDirectory() as tempdir:
     if vcf and vcf != vcf_path:
         vcf_format = infer_vcf_ext(vcf)
         shell(
-            "bcftools sort {bcftools_mem_gb} --temp-dir {tempdir} --output {vcf:q} --output-type {vcf_format} {vcf_path:q} {log}"
+            "bcftools view --threads {snakemake.threads} --output {vcf:q} --output-type {vcf_format} {vcf_path:q} {log}"
         )
 
         idx = snakemake.output.get("idx", "")
@@ -93,7 +92,7 @@ with TemporaryDirectory() as tempdir:
     if cand_indel_vcf and cand_indel_vcf != cand_indel_vcf_path:
         cand_indel_vcf_format = infer_vcf_ext(cand_indel_vcf)
         shell(
-            "bcftools sort {bcftools_mem_gb} --temp-dir {tempdir} --output {cand_indel_vcf:q} --output-type {cand_indel_vcf_format} {cand_indel_vcf_path:q} {log}"
+            "bcftools view --threads {snakemake.threads} --output {cand_indel_vcf:q} --output-type {cand_indel_vcf_format} {cand_indel_vcf_path:q} {log}"
         )
 
         cand_indel_idx = snakemake.output.get("cand_indel_idx", "")
@@ -109,7 +108,7 @@ with TemporaryDirectory() as tempdir:
     if cand_sv_vcf and cand_sv_vcf != cand_sv_vcf_path:
         cand_sv_vcf_format = infer_vcf_ext(cand_sv_vcf)
         shell(
-            "bcftools sort {bcftools_mem_gb} --temp-dir {tempdir} --output {cand_sv_vcf:q} --output-type {cand_sv_vcf_format} {cand_sv_vcf_path:q} {log}"
+            "bcftools view --threads {snakemake.threads} --output {cand_sv_vcf:q} --output-type {cand_sv_vcf_format} {cand_sv_vcf_path:q} {log}"
         )
 
         cand_sv_idx = snakemake.output.get("cand_sv_idx", "")
