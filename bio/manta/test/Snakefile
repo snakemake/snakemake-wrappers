@@ -3,7 +3,7 @@ rule manta:
         ref="human_g1k_v37_decoy.small.fasta",
         samples=["mapped/a.bam"],
         index=["mapped/a.bam.bai"],
-        bed="test.bed.gz", # optional
+        bed="test.bed.gz",  # optional
     output:
         vcf="results/out.bcf",
         idx="results/out.bcf.csi",
@@ -12,6 +12,7 @@ rule manta:
         cand_sv_vcf="results/cand_sv.vcf.gz",
         cand_sv_idx="results/cand_sv.vcf.gz.tbi",
     params:
+        max_n_open_files=10240,  # optional
         extra_cfg="",  # optional
         extra_run="",  # optional
     log:

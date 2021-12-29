@@ -12,8 +12,8 @@ output:
   - Unfiltered SV and indel candidates (candidateSV.vcf.gz).
   - Subset of the previous file containing only simple insertion and deletion variants less than the minimum scored variant size (candidateSmallIndels.vcf.gz).
 notes: |
+  * The `max_n_open_files` param specifies the maximum number of open files through `ulimit` (https://github.com/Illumina/manta/issues/245)
   * The `extra_cfg` param allows for additional program arguments to `configManta.py`.
   * The `extra_run` param allows for additional program arguments to `runWorkflow.py`.
   * The `runDir` is created using pythons `tempfile`, meaning that all intermediate files are deleted on job completion
-  * If a BED file is provided, `manta` is run on the entire dataset and VCF results are subsetted using `bcftools`. The reason behind it, is that `manta` default BED behaviour will not call SVs when breakpoints fall outside the regions.
   * For more information see, https://github.com/Illumina/manta
