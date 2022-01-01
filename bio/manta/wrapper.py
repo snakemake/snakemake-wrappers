@@ -17,11 +17,9 @@ bed = snakemake.input.get("bed", "")
 if bed:
     bed = f"--callRegions {bed}"
 
-mem_gb = math.ceil(snakemake.resources.get("mem_mb", "") / 1024)
+mem_gb = snakemake.resources.get("mem_gb", "")
 if not mem_gb:
-    mem_gb = snakemake.resources.get("mem_gb", "")
-if mem_gb:
-    mem_gb = f"--memGb {mem_gb}"
+    mem_gb = math.ceil(snakemake.resources.get("mem_mb", 20480) / 1024) # 20 Gb of mem by default
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 
@@ -55,7 +53,7 @@ with TemporaryDirectory() as tempdir:
         # Configure Manta
         "configManta.py {extra_cfg} {bams} --referenceFasta {snakemake.input.ref} {bed} --runDir {run_dir} {log}; "
         # Run Manta
-        "python2 {run_dir}/runWorkflow.py {extra_run} --jobs {snakemake.threads} {mem_gb} {log}; "
+        "python2 {run_dir}/runWorkflow.py {extra_run} --jobs {snakemake.threads} --memGb {mem_gb} {log}; "
     )
 
     # Copy outputs into proper position.
