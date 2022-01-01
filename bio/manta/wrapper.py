@@ -17,9 +17,11 @@ bed = snakemake.input.get("bed", "")
 if bed:
     bed = f"--callRegions {bed}"
 
+
 mem_gb = snakemake.resources.get("mem_gb", "")
 if not mem_gb:
-    mem_gb = math.ceil(snakemake.resources.get("mem_mb", 20480) / 1024) # 20 Gb of mem by default
+    # 20 Gb of mem by default
+    mem_gb = math.ceil(snakemake.resources.get("mem_mb", 20480) / 1024)
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 
