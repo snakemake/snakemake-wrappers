@@ -21,7 +21,7 @@ prefix = os.path.splitext(snakemake.output[0])[0]
 # before allowing additional threads through samtools sort -@
 threads = "" if snakemake.threads <= 2 else " -@ {} ".format(snakemake.threads - 2)
 
-with tempfile.NamedTemporaryFile() as tmpfile:
+with tempfile.NamedTemporaryFile().name as tmpfile:
     shell(
         "(samtools sort -n "
         " {threads} "
