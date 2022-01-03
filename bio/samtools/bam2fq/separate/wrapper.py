@@ -5,6 +5,7 @@ __license__ = "MIT"
 
 
 import os
+import tempfile
 from snakemake.shell import shell
 
 params_sort = snakemake.params.get("sort", "")

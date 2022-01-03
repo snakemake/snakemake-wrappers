@@ -3,6 +3,8 @@ rule samtools_bam2fq_interleaved:
         "mapped/{sample}.bam",
     output:
         "reads/{sample}.fq",
+    log:
+        "{sample}.interleaved.log",
     params:
         " ",
     threads: 3

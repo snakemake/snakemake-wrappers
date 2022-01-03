@@ -4,6 +4,8 @@ rule samtools_bam2fq_separate:
     output:
         "reads/{sample}.1.fq",
         "reads/{sample}.2.fq",
+    log:
+        "{sample}.separate.log",
     params:
         sort="-m 4G",
         bam2fq="-n",
