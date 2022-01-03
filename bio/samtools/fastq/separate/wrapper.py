@@ -9,14 +9,14 @@ import tempfile
 from snakemake.shell import shell
 
 params_sort = snakemake.params.get("sort", "")
-params_bam2fq = snakemake.params.get("bam2fq", "")
+params_fastq = snakemake.params.get("fastq", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 prefix = os.path.splitext(snakemake.output[0])[0]
 
 # Samtools takes additional threads through its option -@
 # One thread is used bu Samtools sort
-# One thread is used by Samtools bam2fq
+# One thread is used by Samtools fastq
 # So snakemake.threads has to take them into account
 # before allowing additional threads through samtools sort -@
 threads = "" if snakemake.threads <= 2 else " -@ {} ".format(snakemake.threads - 2)
@@ -29,7 +29,7 @@ with tempfile.NamedTemporaryFile() as tmpfile:
         " {params_sort} "
         " {snakemake.input[0]} | "
         "samtools fastq "
-        " {params_bam2fq} "
+        " {params_fastq} "
         " -1 {snakemake.output[0]} "
         " -2 {snakemake.output[1]} "
         " -0 /dev/null "
