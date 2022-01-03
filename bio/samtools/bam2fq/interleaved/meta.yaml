@@ -5,3 +5,5 @@ description:
 authors:
   - David Laehnemann
   - Victoria Sack
+notes: |
+  * For more information see, http://www.htslib.org/doc/samtools-fasta.html

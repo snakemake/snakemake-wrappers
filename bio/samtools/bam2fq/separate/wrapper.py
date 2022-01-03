@@ -20,19 +20,20 @@ prefix = os.path.splitext(snakemake.output[0])[0]
 # before allowing additional threads through samtools sort -@
 threads = "" if snakemake.threads <= 2 else " -@ {} ".format(snakemake.threads - 2)
 
-shell(
-    "(samtools sort -n "
-    " {threads} "
-    " -T {prefix} "
-    " {params_sort} "
-    " {snakemake.input[0]} | "
-    "samtools bam2fq "
-    " {params_bam2fq} "
-    " -1 {snakemake.output[0]} "
-    " -2 {snakemake.output[1]} "
-    " -0 /dev/null "
-    " -s /dev/null "
-    " -F 0x900 "
-    " - "
-    ") {log}"
-)
+with tempfile.TemporaryFile() as tmpfile:
+    shell(
+        "(samtools sort -n "
+        " {threads} "
+        " -T {tmpfile}.bam "
+        " {params_sort} "
+        " {snakemake.input[0]} | "
+        "samtools fasta "
+        " {params_bam2fq} "
+        " -1 {snakemake.output[0]} "
+        " -2 {snakemake.output[1]} "
+        " -0 /dev/null "
+        " -s /dev/null "
+        " -F 0x900 "
+        " - "
+        ") {log}"
+    )
