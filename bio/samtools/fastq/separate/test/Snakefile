@@ -1,4 +1,4 @@
-rule samtools_bam2fq_separate:
+rule samtools_fastq_separate:
     input:
         "mapped/{sample}.bam",
     output:
@@ -12,4 +12,4 @@ rule samtools_bam2fq_separate:
     # Remember, this is the number of samtools' additional threads. At least 2 threads have to be requested on cluster sumbission. This value - 2 will be sent to samtools sort -@ argument.
     threads: 3
     wrapper:
-        "master/bio/samtools/bam2fq/separate"
+        "master/bio/samtools/fastq/separate"

@@ -28,7 +28,7 @@ with tempfile.NamedTemporaryFile() as tmpfile:
         " -T {tmpfile.name}.bam "
         " {params_sort} "
         " {snakemake.input[0]} | "
-        "samtools fasta "
+        "samtools fastq "
         " {params_bam2fq} "
         " -1 {snakemake.output[0]} "
         " -2 {snakemake.output[1]} "

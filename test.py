@@ -2448,17 +2448,17 @@ def test_samtools_idxstats():
 
 
 @skip_if_not_modified
-def test_samtools_bam2fq_interleaved():
+def test_samtools_fastq_interleaved():
     run(
-        "bio/samtools/bam2fq/interleaved",
+        "bio/samtools/fastq/interleaved",
         ["snakemake", "--cores", "1", "reads/a.fq", "--use-conda", "-F"],
     )
 
 
 @skip_if_not_modified
-def test_samtools_bam2fq_separate():
+def test_samtools_fastq_separate():
     run(
-        "bio/samtools/bam2fq/separate",
+        "bio/samtools/fastq/separate",
         ["snakemake", "--cores", "1", "reads/a.1.fq", "--use-conda", "-F"],
     )
 

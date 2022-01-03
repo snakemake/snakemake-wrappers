@@ -1,4 +1,4 @@
-rule samtools_bam2fq_interleaved:
+rule samtools_fastq_interleaved:
     input:
         "mapped/{sample}.bam",
     output:
@@ -9,4 +9,4 @@ rule samtools_bam2fq_interleaved:
         " ",
     threads: 3
     wrapper:
-        "master/bio/samtools/bam2fq/interleaved"
+        "master/bio/samtools/fastq/interleaved"
