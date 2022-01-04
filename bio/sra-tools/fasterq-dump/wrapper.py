@@ -23,7 +23,7 @@ for output in snakemake.output:
     if out_ext == ".gz":
         compress += f"pigz -p {snakemake.threads} {out_name}; "
     elif out_ext == ".bz2":
-        compress += f"pbzip2 -p {snakemake.threads} {out_name}; "
+        compress += f"pbzip2 -p{snakemake.threads} {out_name}; "
 
 
 mem = snakemake.resources.get("mem_gb", "")
