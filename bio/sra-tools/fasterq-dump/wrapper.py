@@ -8,6 +8,20 @@ import tempfile
 from snakemake.shell import shell
 
 
+def get_mem(snakemake, out_unit="MB"):
+    # Store resources.mem in MB
+    mem_mb = snakemake.resources.get("mem_gb", 0) * 1024
+    if not mem_mb:
+        mem_mb = snakemake.resources.get("mem_mb", 0)
+
+    if out_unit == "MB":
+        return mem_mb
+    elif out_unit == "GB":
+        return mem_mb / 1024
+    else:
+        raise valueError("invalid out_unit, only MB and GB supported.")
+
+
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
@@ -46,17 +60,3 @@ with tempfile.TemporaryDirectory() as tmp:
         "{compress}"
         ") {log}"
     )
-
-
-def get_mem(snakemake, out_unit="MB"):
-    # Store resources.mem in MB
-    mem_mb = snakemake.resources.get("mem_gb", 0) * 1024
-    if not mem_mb:
-        mem_mb = snakemake.resources.get("mem_mb", 0)
-
-    if out_unit == "MB":
-        return mem_mb
-    elif out_unit == "GB":
-        return mem_mb / 1024
-    else:
-        raise valueError("invalid out_unit, only MB and GB supported.")
