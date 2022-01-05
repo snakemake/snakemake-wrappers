@@ -51,7 +51,7 @@ for output in snakemake.output:
 
 
 if mem_mb:
-    mem = f"--mem_mb {mem_mb}M"
+    mem = f"--mem {mem_mb}M"
 
 with tempfile.TemporaryDirectory() as tmp:
     shell(
