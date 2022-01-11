@@ -9,7 +9,6 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 
-max_n_open_files = snakemake.params.get("max_n_open_files", 10240)
 extra_cfg = snakemake.params.get("extra_cfg", "")
 extra_run = snakemake.params.get("extra_run", "")
 
@@ -50,8 +49,6 @@ with TemporaryDirectory() as tempdir:
     bams = list(map("--normalBam {}".format, bams))
 
     shell(
-        # Increase max number of open files (https://github.com/Illumina/manta/issues/245)
-        "ulimit -S -n {max_n_open_files}; "
         # Configure Manta
         "configManta.py {extra_cfg} {bams} --referenceFasta {snakemake.input.ref} {bed} --runDir {run_dir} {log}; "
         # Run Manta

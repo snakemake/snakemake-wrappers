@@ -12,7 +12,6 @@ rule manta:
         cand_sv_vcf="results/cand_sv.vcf.gz",
         cand_sv_idx="results/cand_sv.vcf.gz.tbi",
     params:
-        max_n_open_files=10240,  # optional
         extra_cfg="",  # optional
         extra_run="",  # optional
     log:
