@@ -26,7 +26,7 @@ expected_endings = [
 def split_file_name(file_parts, file_ending_index):
     return (
         "_".join(file_parts[:file_ending_index]),
-        "_".join(file_parts[file_ending_index]),
+        "_".join(file_parts[file_ending_index:]),
     )
 
 
