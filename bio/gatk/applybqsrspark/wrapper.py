@@ -4,6 +4,7 @@ __license__ = "MIT"
 
 import tempfile
 import random
+from pathlib import Path
 
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
