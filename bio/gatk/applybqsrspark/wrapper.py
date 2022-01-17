@@ -19,7 +19,7 @@ java_opts = get_java_opts(snakemake)
 
 tmpdir = tempfile.gettempdir()
 # This folder must not exist; it is created by GATK
-tmpdir_shards = Path(tmpdir) / "applybqsrspark.shards_{1:06d}".format(
+tmpdir_shards = Path(tmpdir) / "applybqsrspark.shards_{:06d}".format(
     random.randrange(1e6)
 )
 
