@@ -31,10 +31,6 @@ if re.search(r"-T\b", sort_extra) or re.search(r"--TMP_DIR\b", sort_extra):
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-tmp_dir = snakemake.params.get("tmp_dir")
-if tmp_dir:
-    tempfile.tempdir = tmp_dir
-
 
 # Check inputs/arguments.
 if not isinstance(snakemake.input.reads, str) and len(snakemake.input.reads) not in {

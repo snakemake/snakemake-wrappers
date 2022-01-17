@@ -12,7 +12,6 @@ rule bwa_mem:
         sorting="none",  # Can be 'none', 'samtools' or 'picard'.
         sort_order="queryname",  # Can be 'queryname' or 'coordinate'.
         sort_extra="",  # Extra args for samtools/picard.
-        tmp_dir="/tmp/",  # Path to temp dir. (optional)
     threads: 8
     wrapper:
         "master/bio/bwa/mem"
