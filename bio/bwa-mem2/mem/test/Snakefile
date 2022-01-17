@@ -2,7 +2,7 @@ rule bwa_mem2_mem:
     input:
         reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
         # Index can be a list of (all) files created by bwa, or one of them
-        index = multiext("genome.fasta", ".amb", ".ann", ".bwt.2bit.64", ".pac", ".bwt.8bit.32")
+        idx = multiext("genome.fasta", ".amb", ".ann", ".bwt.2bit.64", ".pac")
     output:
         "mapped/{sample}.bam"
     log:

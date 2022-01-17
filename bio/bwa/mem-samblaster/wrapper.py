@@ -16,9 +16,9 @@ samblaster_extra = snakemake.params.get("samblaster_extra", "")
 
 index = snakemake.input.get("index", "")
 if isinstance(index, str):
-    index = path.splitext(snakemake.input["index"])[0]
+    index = path.splitext(snakemake.input.idx)[0]
 else:
-    index = path.splitext(snakemake.input["index"][0])[0]
+    index = path.splitext(snakemake.input.idx[0])[0]
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 

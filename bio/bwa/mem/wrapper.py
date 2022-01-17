@@ -17,11 +17,11 @@ sort = snakemake.params.get("sorting", "none")
 sort_order = snakemake.params.get("sort_order", "coordinate")
 sort_extra = snakemake.params.get("sort_extra", "")
 
-index = snakemake.input["index"]
+index = snakemake.input.idx
 if isinstance(index, str):
-    index = path.splitext(snakemake.input["index"])[0]
+    index = path.splitext(snakemake.input.idx)[0]
 else:
-    index = path.splitext(snakemake.input["index"][0])[0]
+    index = path.splitext(snakemake.input.idx[0])[0]
 
 
 if re.search(r"-T\b", sort_extra) or re.search(r"--TMP_DIR\b", sort_extra):

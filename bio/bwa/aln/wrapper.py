@@ -12,11 +12,11 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-index = snakemake.input["index"]
+index = snakemake.input.idx
 if isinstance(index, str):
-    index = path.splitext(snakemake.input["index"])[0]
+    index = path.splitext(snakemake.input.idx)[0]
 else:
-    index = path.splitext(snakemake.input["index"][0])[0]
+    index = path.splitext(snakemake.input.idx[0])[0]
 
 shell(
     "bwa aln"

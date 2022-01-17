@@ -2,7 +2,7 @@ rule bwa_index:
     input:
         "{genome}.fasta"
     output:
-        index = multiext("{genome}", ".amb", ".ann", ".bwt", ".pac", ".sa")
+        idx = multiext("{genome}", ".amb", ".ann", ".bwt", ".pac", ".sa")
     log:
         "logs/bwa_index/{genome}.log"
     params:

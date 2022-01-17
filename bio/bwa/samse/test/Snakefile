@@ -3,7 +3,7 @@ rule bwa_samse:
         fastq="reads/{sample}.1.fastq",
         sai="sai/{sample}.1.sai",
         # Index can be a list of (all) files created by bwa, or one of them
-        index = multiext("genome", ".amb", ".ann", ".bwt", ".pac", ".sa")
+        idx = multiext("genome", ".amb", ".ann", ".bwt", ".pac", ".sa")
     output:
         "mapped/{sample}.bam"
     params:
