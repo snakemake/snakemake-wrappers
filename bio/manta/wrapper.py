@@ -56,8 +56,6 @@ with TemporaryDirectory() as tempdir:
     )
 
     # Copy outputs into proper position.
-    results_base = run_dir / "results" / "variants"
-
     def infer_vcf_ext(vcf):
         if vcf.endswith(".vcf.gz"):
             return "z"
@@ -68,50 +66,35 @@ with TemporaryDirectory() as tempdir:
                 "invalid VCF extension. Only '.vcf.gz' and '.bcf' are supported."
             )
 
-    # Copy main VCF output
-    vcf = snakemake.output.get("vcf", "")
-    vcf_path = results_base / "diploidSV.vcf.gz"
-    if vcf and vcf != vcf_path:
-        vcf_format = infer_vcf_ext(vcf)
-        shell(
-            "bcftools view --threads {snakemake.threads} --output {vcf:q} --output-type {vcf_format} {vcf_path:q} {log}"
-        )
-
-        idx = snakemake.output.get("idx", "")
-        idx_path = results_base / "diploidSV.vcf.gz.tbi"
-        if idx and idx != idx_path:
+    def copy_vcf(origin_vcf, dest_vcf, dest_idx):
+        if dest_vcf and dest_vcf != origin_vcf:
+            dest_vcf_format = infer_vcf_ext(dest_vcf)
             shell(
-                "bcftools index --threads {snakemake.threads} --output {idx:q} {vcf:q} {log}"
+                "bcftools view --threads {snakemake.threads} --output {dest_vcf:q} --output-type {dest_vcf_format} {origin_vcf:q} {log}"
             )
+
+            origin_idx = origin_vcf + ".tbi"
+            if dest_idx and dest_idx != origin_idx:
+                shell(
+                    "bcftools index --threads {snakemake.threads} --output {dest_idx:q} {dest_vcf:q} {log}"
+                )
+
+    results_base = run_dir / "results" / "variants"
+
+    # Copy main VCF output
+    vcf_temp = results_base / "diploidSV.vcf.gz"
+    vcf_final = snakemake.output.get("vcf", "")
+    idx_final = snakemake.output.get("idx", "")
+    copy_vcf(vcf_temp, vcf_final, idx_final)
 
     # Copy candidate small indels VCF
-    cand_indel_vcf = snakemake.output.get("cand_indel_vcf", "")
-    cand_indel_vcf_path = results_base / "candidateSmallIndels.vcf.gz"
-    if cand_indel_vcf and cand_indel_vcf != cand_indel_vcf_path:
-        cand_indel_vcf_format = infer_vcf_ext(cand_indel_vcf)
-        shell(
-            "bcftools view --threads {snakemake.threads} --output {cand_indel_vcf:q} --output-type {cand_indel_vcf_format} {cand_indel_vcf_path:q} {log}"
-        )
-
-        cand_indel_idx = snakemake.output.get("cand_indel_idx", "")
-        cand_indel_idx_path = results_base / "candidateSmallIndels.vcf.gz.tbi"
-        if cand_indel_idx and cand_indel_idx != cand_indel_idx_path:
-            shell(
-                "bcftools index --threads {snakemake.threads} --output {cand_indel_idx:q} {cand_indel_vcf:q} {log}"
-            )
+    cand_indel_vcf_temp = results_base / "candidateSmallIndels.vcf.gz"
+    cand_indel_vcf_final = snakemake.output.get("cand_indel_vcf", "")
+    cand_indel_idx_final = snakemake.output.get("cand_indel_idx", "")
+    copy_vcf(cand_indel_vcf_temp, cand_indel_vcf_final, cand_indel_idx_final)
 
     # Copy candidates structural variants VCF
-    cand_sv_vcf = snakemake.output.get("cand_sv_vcf", "")
-    cand_sv_vcf_path = results_base / "candidateSV.vcf.gz"
-    if cand_sv_vcf and cand_sv_vcf != cand_sv_vcf_path:
-        cand_sv_vcf_format = infer_vcf_ext(cand_sv_vcf)
-        shell(
-            "bcftools view --threads {snakemake.threads} --output {cand_sv_vcf:q} --output-type {cand_sv_vcf_format} {cand_sv_vcf_path:q} {log}"
-        )
-
-        cand_sv_idx = snakemake.output.get("cand_sv_idx", "")
-        cand_sv_idx_path = results_base / "candidateSV.vcf.gz.tbi"
-        if cand_sv_idx and cand_sv_idx != cand_sv_idx_path:
-            shell(
-                "bcftools index --threads {snakemake.threads} --output {cand_sv_idx:q} {cand_sv_vcf:q} {log}"
-            )
+    cand_sv_vcf_temp = results_base / "candidateSV.vcf.gz"
+    cand_sv_vcf_final = snakemake.output.get("cand_sv_vcf", "")
+    cand_sv_idx_final = snakemake.output.get("cand_sv_idx", "")
+    copy_vcf(cand_sv_vcf_temp, cand_sv_vcf_final, cand_sv_idx_final)
