@@ -1,0 +1,10 @@
+name: fasttree
+description: build phylogenetic trees using fasttree. Documentation found at http://www.microbesonline.org/fasttree/
+authors:
+  - Nikos Tsardakas Renhuldt
+input:
+  - Alignment FASTA or interleaved phylip file
+output:
+  - Newick formatted tree file
+notes: |
+  - fasttree can only be run with a single thread.
