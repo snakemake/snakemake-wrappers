@@ -3,6 +3,7 @@ __copyright__ = "Copyright 2021, Filipe G. Vieira"
 __license__ = "MIT"
 
 import tempfile
+import random
 
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
@@ -16,6 +17,10 @@ spark_extra = snakemake.params.get("spark_extra", "")
 java_opts = get_java_opts(snakemake)
 
 tmpdir = tempfile.gettempdir()
+# This folder must not exist; it is created by GATK
+tmpdir_shards = Path(tmpdir) / "applybqsrspark.shards_{1:06d}".format(
+    random.randrange(1e6)
+)
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
@@ -23,7 +28,7 @@ shell(
     "gatk --java-options '{java_opts}' ApplyBQSRSpark {extra} "
     "--reference {snakemake.input.ref} --input {snakemake.input.bam} "
     "--bqsr-recal-file {snakemake.input.recal_table} "
-    "--tmp-dir {tmpdir} "
+    "--tmp-dir {tmpdir} --output-shard-tmp-dir {tmpdir_shards} "
     "--output {snakemake.output.bam} "
     "-- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra} "
     "{log}"
