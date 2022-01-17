@@ -6,6 +6,7 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
+
 class MissingReferenceError(Exception):
     pass
 

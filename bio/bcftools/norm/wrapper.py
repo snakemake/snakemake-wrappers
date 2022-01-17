@@ -5,6 +5,7 @@ __license__ = "MIT"
 
 
 from snakemake.shell import shell
+
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 
