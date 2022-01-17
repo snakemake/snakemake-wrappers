@@ -25,7 +25,7 @@ with tempfile.NamedTemporaryFile() as tmpfile:
     shell(
         "(samtools sort -n "
         " {threads} "
-        " -T {tmpfile.name}.bam "
+        " -T {tmpfile.name} "
         " {params_sort} "
         " {snakemake.input[0]} | "
         "samtools fastq "
