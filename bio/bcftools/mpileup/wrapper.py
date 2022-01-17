@@ -6,11 +6,11 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
-
 class MissingReferenceError(Exception):
     pass
 
 
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 options = snakemake.params.get("options", "")
 
 # determine if a fasta reference is provided or not and add to options
@@ -26,5 +26,5 @@ if "--no-reference" not in options:
 shell(
     "bcftools mpileup {options} --threads {snakemake.threads} "
     "--output {snakemake.output.pileup} "
-    "{snakemake.input.alignments} 2> {snakemake.log}"
+    "{snakemake.input.alignments} {log}"
 )

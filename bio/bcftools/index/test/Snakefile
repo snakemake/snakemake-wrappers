@@ -3,6 +3,8 @@ rule bcftools_index:
         "a.bcf"
     output:
         "a.bcf.csi"
+    log:
+        "logs/bcftools-index.log"
     params:
         extra=""  # optional parameters for bcftools index
     wrapper:

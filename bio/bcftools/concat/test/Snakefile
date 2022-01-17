@@ -4,7 +4,7 @@ rule bcftools_concat:
     output:
         "all.bcf",
     log:
-        "logs/all.log",
+        "logs/bcftools-concat.log",
     params:
         uncompressed_bcf=False,
         extra="",  # optional parameters for bcftools concat (except -o)

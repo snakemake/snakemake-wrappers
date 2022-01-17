@@ -22,7 +22,9 @@ if caller_opt.strip() not in valid_caller_opts:
 
 options = snakemake.params.get("options", "")
 
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+
 shell(
     "bcftools call {options} {caller_opt} --threads {snakemake.threads} "
-    "-o {snakemake.output.calls} {snakemake.input.pileup} 2> {snakemake.log}"
+    "-o {snakemake.output.calls} {snakemake.input.pileup} {log}"
 )

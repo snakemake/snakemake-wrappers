@@ -22,6 +22,8 @@ else:
 extra = snakemake.params.get("extra", "")
 view_extra = snakemake.params.get("view_extra", "")
 
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+
 shell(
     "bcftools reheader "
     "{extra} "
@@ -31,4 +33,5 @@ shell(
     "| bcftools view "
     "{view_extra} "
     "> {snakemake.output}"
+    "{log}"
 )

@@ -9,4 +9,6 @@ from snakemake.shell import shell
 ## Extract arguments
 extra = snakemake.params.get("extra", "")
 
-shell("bcftools index" " {extra}" " {snakemake.input[0]}")
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+
+shell("bcftools index {extra} {snakemake.input[0]} {log}")

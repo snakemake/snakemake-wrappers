@@ -7,6 +7,8 @@ rule bcftools_reheader:
         samples="samples.tsv"
     output:
         "a.reheader.bcf"
+    log:
+        "logs/bcftools-reheader.log"
     params:
         extra="",  # optional parameters for bcftools reheader
         view_extra="-O b"  # add output format for internal bcftools view call
