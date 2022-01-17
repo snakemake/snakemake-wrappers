@@ -1,0 +1,17 @@
+rule microphaser_normal:
+    input:
+        bam="mapped/{sample}.sorted.bam",
+        index="mapped/{sample}.sorted.bam.bai",
+        ref="genome.fasta",
+        annotation="genome.gtf",
+        variants="calls/{sample}.bcf",
+    output:
+        # all peptides from the healthy proteome
+        peptides="out/{sample}.fasta",
+        tsv="out/{sample}.tsv",
+    log:
+        "logs/microphaser/somatic/{sample}.log",
+    params:
+        extra="--window-len 9",  # optional, desired peptide length in nucleotide bases, e.g. 27 (9 AA) for MHC-I ligands.
+    wrapper:
+        "master/bio/microphaser/normal"

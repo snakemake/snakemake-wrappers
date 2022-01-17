@@ -3,3 +3,5 @@ channels:
   - conda-forge
 dependencies:
   - sra-tools >2.9.1
+  - pigz =2.6
+  - pbzip2 =1.1

@@ -1,0 +1,8 @@
+name: sambamba flagstat
+description: Outputs some statistics drawn from read flags. See details `here https://lomereiter.github.io/sambamba/docs/sambamba-flagstat.html`_
+authors:
+  - Jan Forster
+input:
+  - bam file
+output:
+  - flag statistics

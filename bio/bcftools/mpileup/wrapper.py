@@ -6,6 +6,8 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+
 
 class MissingReferenceError(Exception):
     pass
@@ -26,5 +28,6 @@ if "--no-reference" not in options:
 shell(
     "bcftools mpileup {options} --threads {snakemake.threads} "
     "--output {snakemake.output.pileup} "
-    "{snakemake.input.alignments} 2> {snakemake.log}"
+    "{snakemake.input.alignments} "
+    "{log}"
 )

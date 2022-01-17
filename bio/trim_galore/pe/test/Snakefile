@@ -1,14 +1,14 @@
 rule trim_galore_pe:
     input:
-        ["reads/{sample}.1.fastq.gz", "reads/{sample}.2.fastq.gz"]
+        ["reads/{sample}.1.fastq.gz", "reads/{sample}.2.fastq.gz"],
     output:
         "trimmed/{sample}.1_val_1.fq.gz",
-         "trimmed/{sample}.1.fastq.gz_trimming_report.txt",
-         "trimmed/{sample}.2_val_2.fq.gz",
-         "trimmed/{sample}.2.fastq.gz_trimming_report.txt"
+        "trimmed/{sample}.1.fastq.gz_trimming_report.txt",
+        "trimmed/{sample}.2_val_2.fq.gz",
+        "trimmed/{sample}.2.fastq.gz_trimming_report.txt",
     params:
-        extra="--illumina -q 20"
+        extra="--illumina -q 20",
     log:
-        "logs/trim_galore/{sample}.log"
+        "logs/trim_galore/{sample}.log",
     wrapper:
         "master/bio/trim_galore/pe"

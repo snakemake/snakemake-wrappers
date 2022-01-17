@@ -1,0 +1,25 @@
+rule alignment_summary:
+    input:
+        # BAM aligned, splicing-aware, to reference genome
+        bam="mapped/a.bam",
+        # Annotation file containing transcript, gene, and exon data
+        refflat="annotation.refFlat"
+    output:
+        "results/a.rnaseq_metrics.txt"
+    params:
+        # strand is optional (defaults to NONE) and pertains to the library preparation
+        # options are FIRST_READ_TRANSCRIPTION_STRAND, SECOND_READ_TRANSCRIPTION_STRAND, and NONE
+        strand="NONE",
+        # optional additional parameters, for example,
+        extra="VALIDATION_STRINGENCY=STRICT"
+    log:
+        "logs/picard/rnaseq-metrics/a.log"
+    # optional specification of memory usage of the JVM that snakemake will respect with global
+    # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
+    # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
+    # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
+    resources:
+        mem_mb=1024
+    wrapper:
+	    "https://raw.githubusercontent.com/brcopeland/snakemake-wrappers/picard_collectrnaseqmetrics/bio/picard/collectrnaseqmetrics"
+	    #"master/bio/picard/collectrnaseqmetrics"

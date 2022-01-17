@@ -1,4 +1,4 @@
-"""Snakemake wrapper for trimming paired-end reads using cutadapt."""
+"""Snakemake wrapper for trimming single-end reads using cutadapt."""
 
 __author__ = "Julian de Ruiter"
 __copyright__ = "Copyright 2017, Julian de Ruiter"
@@ -22,8 +22,8 @@ assert (
 
 shell(
     "cutadapt"
-    " {snakemake.params.adapters}"
-    " {snakemake.params.extra}"
+    " {adapters}"
+    " {extra}"
     " -j {snakemake.threads}"
     " -o {snakemake.output.fastq}"
     " {snakemake.input[0]}"

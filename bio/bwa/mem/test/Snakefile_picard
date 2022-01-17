@@ -4,14 +4,15 @@ rule bwa_mem:
         # Index can be a list of (all) files created by bwa, or one of them
         index = multiext("genome", ".amb", ".ann", ".bwt", ".pac", ".sa")
     output:
-        "mapped/{sample}.bam"
+        "mapped/{sample}.bam",
     log:
-        "logs/bwa_mem/{sample}.log"
+        "logs/bwa_mem/{sample}.log",
     params:
         extra=r"-R '@RG\tID:{sample}\tSM:{sample}'",
-        sort="picard",           # Can be 'none', 'samtools' or 'picard'.
+        sort="picard",  # Can be 'none', 'samtools' or 'picard'.
         sort_order="queryname",  # Can be 'queryname' or 'coordinate'.
-        sort_extra=""            # Extra args for samtools/picard.
+        sort_extra="",  # Extra args for samtools/picard.
+        tmp_dir="/tmp/",  # Path to temp dir. (optional)
     threads: 8
     wrapper:
         "master/bio/bwa/mem"

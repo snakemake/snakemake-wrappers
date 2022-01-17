@@ -6,5 +6,8 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell("samtools faidx {snakemake.params} {snakemake.input[0]} > {snakemake.output[0]}")
+shell(
+    "samtools faidx {snakemake.params} {snakemake.input[0]} > {snakemake.output[0]} {log}"
+)

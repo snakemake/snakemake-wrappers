@@ -8,7 +8,9 @@ from snakemake.shell import shell
 
 
 exclude = (
-    "-x {}".format(snakemake.input.exlude) if snakemake.input.get("exlude", "") else ""
+    "-x {}".format(snakemake.input.exclude)
+    if snakemake.input.get("exclude", "")
+    else ""
 )
 
 extra = snakemake.params.get("extra", "")

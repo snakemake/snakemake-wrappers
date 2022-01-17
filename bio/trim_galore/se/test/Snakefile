@@ -1,12 +1,12 @@
 rule trim_galore_se:
     input:
-        "reads/{sample}.fastq.gz"
+        "reads/{sample}.fastq.gz",
     output:
         "trimmed/{sample}_trimmed.fq.gz",
-         "trimmed/{sample}.fastq.gz_trimming_report.txt"
+        "trimmed/{sample}.fastq.gz_trimming_report.txt",
     params:
-        extra="--illumina -q 20"
+        extra="--illumina -q 20",
     log:
-        "logs/trim_galore/{sample}.log"
+        "logs/trim_galore/{sample}.log",
     wrapper:
         "master/bio/trim_galore/se"
