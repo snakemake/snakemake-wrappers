@@ -2030,6 +2030,22 @@ def test_multiqc():
 
 
 @skip_if_not_modified
+def test_muscle_clw():
+    run(
+        "bio/muscle",
+        ["snakemake", "--cores", "1", "test-proteins.clw", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_muscle_fa():
+    run(
+        "bio/muscle",
+        ["snakemake", "--cores", "1", "test-proteins.afa", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_nanosimh():
     run(
         "bio/nanosim-h",
