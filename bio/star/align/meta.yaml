@@ -5,4 +5,7 @@ authors:
   - Tomás Di Domenico
 notes: |
   * The `extra` param allows for additional program arguments.
+  * It is advisable to consider updating the limits setting before running STAR,
+    such as executing `ulimit -n 10000`, to avoid an issue like this:
+    https://github.com/alexdobin/STAR/issues/1344 
   * For more information see, https://github.com/alexdobin/STAR
