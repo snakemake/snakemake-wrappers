@@ -3,3 +3,6 @@ description: Map reads with STAR.
 authors:
   - Johannes Köster
   - Tomás Di Domenico
+notes: |
+  * The `extra` param allows for additional program arguments.
+  * For more information see, https://github.com/alexdobin/STAR
