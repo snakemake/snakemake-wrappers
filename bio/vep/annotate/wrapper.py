@@ -3,6 +3,7 @@ __copyright__ = "Copyright 2020, Johannes Köster"
 __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
 
+import os
 from pathlib import Path
 from snakemake.shell import shell
 
@@ -22,8 +23,16 @@ fork = "--fork {}".format(snakemake.threads) if snakemake.threads > 1 else ""
 stats = snakemake.output.stats
 cache = snakemake.input.get("cache", "")
 plugins = snakemake.input.plugins
+plugin_aux_files = {"LoFtool": "LoFtool_scores.txt", "ExACpLI": "ExACpLI_values.txt"}
 
-load_plugins = " ".join(map("--plugin {}".format, snakemake.params.plugins))
+load_plugins = []
+for plugin in snakemake.params.plugins:
+    if plugin in plugin_aux_files.keys():
+        aux_path = os.path.join(plugins, plugin_aux_files[plugin])
+        load_plugins.append(",".join([plugin, aux_path]))
+    else:
+        load_plugins.append(",".join([plugin, snakemake.input.get(plugin.lower(), "")]))
+load_plugins = " ".join(map("--plugin {}".format, load_plugins))
 
 if snakemake.output.calls.endswith(".vcf.gz"):
     fmt = "z"

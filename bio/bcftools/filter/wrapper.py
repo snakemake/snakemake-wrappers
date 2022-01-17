@@ -17,7 +17,7 @@ filter = snakemake.params.get("filter", "")
 extra = snakemake.params.get("extra", "")
 
 shell(
-    "bcftools filter {filter} {snakemake.input[0]} "
+    "bcftools filter {filter} {extra} {snakemake.input[0]} "
     "{bcftools_opts} "
     "-o {snakemake.output[0]} "
     "{log}"

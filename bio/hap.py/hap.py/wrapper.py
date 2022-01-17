@@ -35,11 +35,11 @@ engine = snakemake.params.get("engine", "")
 if engine:
     engine = "--engine {}".format(engine)
 
-truth_regions = snakemake.input.get("truth_regions")
+truth_regions = snakemake.input.get("truth_regions", "")
 if truth_regions:
     truth_regions = "-f {}".format(truth_regions)
 
-strats = snakemake.input.get("strats")
+strats = snakemake.input.get("strats", "")
 if strats:
     strats = "--stratification {}".format(strats)
 

@@ -3,6 +3,9 @@ description: Map reads with STAR.
 authors:
   - Johannes Köster
   - Tomás Di Domenico
-note:
-  It is recommended to update the limits setting before running the STAR,
-  such as executing `ulimit -n 10000`, to avoid similar issue: https://github.com/alexdobin/STAR/issues/1344 
+notes: |
+  * The `extra` param allows for additional program arguments.
+  * It is advisable to consider updating the limits setting before running STAR,
+    such as executing `ulimit -n 10000`, to avoid an issue like this:
+    https://github.com/alexdobin/STAR/issues/1344 
+  * For more information see, https://github.com/alexdobin/STAR

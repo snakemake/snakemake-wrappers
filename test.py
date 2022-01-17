@@ -773,10 +773,18 @@ def test_bcftools_reheader():
 
 
 @skip_if_not_modified
-def test_bcftools_view_sample_vcf():
+def test_bcftools_reheader():
     run(
-        "bio/bcftools/view",
-        ["snakemake", "--cores", "1", "a.view_sample.vcf", "--use-conda", "-F"],
+        "bio/bcftools/reheader",
+        ["snakemake", "--cores", "1", "a.reheader.bcf", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_bcftools_norm():
+    run(
+        "bio/bcftools/norm",
+        ["snakemake", "--cores", "1", "a.norm.vcf", "--use-conda", "-F"],
     )
 
 
@@ -1793,6 +1801,38 @@ def test_homer_makeTagDirectory():
     run(
         "bio/homer/makeTagDirectory",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "tagDir/a"],
+    )
+
+
+@skip_if_not_modified
+def test_jellyfish_count():
+    run(
+        "bio/jellyfish/count",
+        ["snakemake", "--cores", "2", "--use-conda", "-F", "a.jf"],
+    )
+
+
+@skip_if_not_modified
+def test_jellyfish_dump():
+    run(
+        "bio/jellyfish/dump",
+        ["snakemake", "--cores", "2", "--use-conda", "-F", "a.dump"],
+    )
+
+
+@skip_if_not_modified
+def test_jellyfish_histo():
+    run(
+        "bio/jellyfish/histo",
+        ["snakemake", "--cores", "2", "--use-conda", "-F", "a.histo"],
+    )
+
+
+@skip_if_not_modified
+def test_jellyfish_merge():
+    run(
+        "bio/jellyfish/merge",
+        ["snakemake", "--cores", "2", "--use-conda", "-F", "ab.jf"],
     )
 
 

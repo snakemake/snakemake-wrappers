@@ -28,6 +28,7 @@ bams = list(map("-I {}".format, bams))
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 shell(
     "gatk --java-options '{java_opts}' HaplotypeCaller {extra} "
+    "--native-pair-hmm-threads {snakemake.threads} "
     "-R {snakemake.input.ref} {bams} "
     "-ERC GVCF {bam_output} "
     "-O {snakemake.output.gvcf} {known} {log}"

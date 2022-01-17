@@ -5,6 +5,7 @@ __license__ = "MIT"
 
 
 import os
+import tempfile
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
@@ -36,16 +37,26 @@ if fq1[0].endswith(".gz"):
 else:
     readcmd = ""
 
-outprefix = os.path.dirname(snakemake.output[0]) + "/"
+if "SortedByCoordinate" in extra:
+    bamprefix = "Aligned.sortedByCoord.out."
+else:
+    bamprefix = "Aligned.out."
 
-shell(
-    "STAR "
-    "{extra} "
-    "--runThreadN {snakemake.threads} "
-    "--genomeDir {snakemake.params.index} "
-    "--readFilesIn {input_str} "
-    "{readcmd} "
-    "--outFileNamePrefix {outprefix} "
-    "--outStd Log "
-    "{log}"
-)
+outprefix = snakemake.output[0].split(bamprefix)[0]
+
+if outprefix == os.path.dirname(snakemake.output[0]):
+    outprefix += "/"
+
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "STAR "
+        "{extra} "
+        "--runThreadN {snakemake.threads} "
+        "--genomeDir {snakemake.params.index} "
+        "--readFilesIn {input_str} "
+        "{readcmd} "
+        "--outFileNamePrefix {outprefix} "
+        "--outStd Log "
+        "--outTmpDir {tmpdir}/STARtmp "
+        "{log}"
+    )
