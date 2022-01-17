@@ -17,20 +17,18 @@ spark_master = snakemake.params.get(
 spark_extra = snakemake.params.get("spark_extra", "")
 java_opts = get_java_opts(snakemake)
 
-tmpdir = tempfile.gettempdir()
-# This folder must not exist; it is created by GATK
-tmpdir_shards = Path(tmpdir) / "applybqsrspark.shards_{:06d}".format(
-    random.randrange(10**6)
-)
-
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-shell(
-    "gatk --java-options '{java_opts}' ApplyBQSRSpark {extra} "
-    "--reference {snakemake.input.ref} --input {snakemake.input.bam} "
-    "--bqsr-recal-file {snakemake.input.recal_table} "
-    "--tmp-dir {tmpdir} --output-shard-tmp-dir {tmpdir_shards} "
-    "--output {snakemake.output.bam} "
-    "-- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra} "
-    "{log}"
-)
+with tempfile.TemporaryDirectory() as tmpdir:
+    # This folder must not exist; it is created by GATK
+    tmpdir_shards = Path(tmpdir) / "shards_{:06d}".format(random.randrange(10 ** 6))
+
+    shell(
+        "gatk --java-options '{java_opts}' ApplyBQSRSpark {extra} "
+        "--reference {snakemake.input.ref} --input {snakemake.input.bam} "
+        "--bqsr-recal-file {snakemake.input.recal_table} "
+        "--tmp-dir {tmpdir} --output-shard-tmp-dir {tmpdir_shards} "
+        "--output {snakemake.output.bam} "
+        "-- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra} "
+        "{log}"
+    )
