@@ -73,7 +73,7 @@ with TemporaryDirectory() as tempdir:
                 "bcftools view --threads {snakemake.threads} --output {dest_vcf:q} --output-type {dest_vcf_format} {origin_vcf:q} {log}"
             )
 
-            origin_idx = origin_vcf + ".tbi"
+            origin_idx = str(origin_vcf) + ".tbi"
             if dest_idx and dest_idx != origin_idx:
                 shell(
                     "bcftools index --threads {snakemake.threads} --output {dest_idx:q} {dest_vcf:q} {log}"
