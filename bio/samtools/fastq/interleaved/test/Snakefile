@@ -1,0 +1,12 @@
+rule samtools_fastq_interleaved:
+    input:
+        "mapped/{sample}.bam",
+    output:
+        "reads/{sample}.fq",
+    log:
+        "{sample}.interleaved.log",
+    params:
+        " ",
+    threads: 3
+    wrapper:
+        "master/bio/samtools/fastq/interleaved"

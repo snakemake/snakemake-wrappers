@@ -12,7 +12,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 prefix = os.path.splitext(snakemake.output[0])[0]
 
 shell(
-    "samtools bam2fq {snakemake.params} "
+    "samtools fastq {snakemake.params} "
     " -@ {snakemake.threads} "
     " {snakemake.input[0]}"
     " > {snakemake.output[0]} "
