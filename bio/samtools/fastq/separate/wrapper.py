@@ -21,11 +21,12 @@ prefix = os.path.splitext(snakemake.output[0])[0]
 # before allowing additional threads through samtools sort -@
 threads = "" if snakemake.threads <= 2 else " -@ {} ".format(snakemake.threads - 2)
 
-with tempfile.NamedTemporaryFile() as tmpfile:
+with tempfile.TemporaryDirectory() as tmpdir:
+    tmp_prefix = Path(tmpdir) / "samtools_sort_{:06d}".format(random.randrange(10 ** 6))
     shell(
         "(samtools sort -n "
         " {threads} "
-        " -T {tmpfile.name} "
+        " -T {tmp_prefix} "
         " {params_sort} "
         " {snakemake.input[0]} | "
         "samtools fastq "
