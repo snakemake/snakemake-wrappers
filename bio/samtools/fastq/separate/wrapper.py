@@ -23,10 +23,10 @@ prefix = os.path.splitext(snakemake.output[0])[0]
 threads = "" if snakemake.threads <= 2 else "--threads {}".format(snakemake.threads - 2)
 
 mem = get_mem(snakemake, "MiB")
-mem = "-m {}M".format(mem / threads) if mem else ""
+mem = "-m {}M".format(mem / threads) if mem and threads else ""
 
 with tempfile.TemporaryDirectory() as tmpdir:
-    tmp_prefix = Path(tmpdir) / "samtools_sort_{:06d}".format(random.randrange(10 ** 6))
+    tmp_prefix = Path(tmpdir) / "samtools_sort."
 
     shell(
         "(samtools sort -n"
