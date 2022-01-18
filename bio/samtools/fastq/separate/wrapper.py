@@ -7,6 +7,7 @@ __license__ = "MIT"
 import os
 import tempfile
 from snakemake.shell import shell
+from snakemake_wrapper_utils.snakemake import get_mem
 
 params_sort = snakemake.params.get("sort", "")
 params_fastq = snakemake.params.get("fastq", "")
@@ -19,23 +20,28 @@ prefix = os.path.splitext(snakemake.output[0])[0]
 # One thread is used by Samtools fastq
 # So snakemake.threads has to take them into account
 # before allowing additional threads through samtools sort -@
-threads = "" if snakemake.threads <= 2 else " -@ {} ".format(snakemake.threads - 2)
+threads = "" if snakemake.threads <= 2 else "--threads {}".format(snakemake.threads - 2)
+
+mem = get_mem(snakemake, "MiB")
+mem = "-m {}M".format(mem / threads) if mem else ""
 
 with tempfile.TemporaryDirectory() as tmpdir:
     tmp_prefix = Path(tmpdir) / "samtools_sort_{:06d}".format(random.randrange(10 ** 6))
+
     shell(
-        "(samtools sort -n "
-        " {threads} "
-        " -T {tmp_prefix} "
-        " {params_sort} "
+        "(samtools sort -n"
+        " {threads}"
+        " {mem}"
+        " -T {tmp_prefix}"
+        " {params_sort}"
         " {snakemake.input[0]} | "
-        "samtools fastq "
-        " {params_fastq} "
-        " -1 {snakemake.output[0]} "
-        " -2 {snakemake.output[1]} "
-        " -0 /dev/null "
-        " -s /dev/null "
-        " -F 0x900 "
+        "samtools fastq"
+        " {params_fastq}"
+        " -1 {snakemake.output[0]}"
+        " -2 {snakemake.output[1]}"
+        " -0 /dev/null"
+        " -s /dev/null"
+        " -F 0x900"
         " - "
         ") {log}"
     )
