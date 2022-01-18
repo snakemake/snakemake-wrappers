@@ -14,8 +14,7 @@ extra = snakemake.params.get("extra", "")
 
 
 # Parse memory
-mem = ""
-mem_mb = get_mem(snakemake, "MB")
+mem_mb = get_mem(snakemake, "MiB")
 
 
 # Outdir
@@ -26,8 +25,7 @@ if outdir:
 
 # Output compression
 compress = ""
-if mem_mb:
-    mem = f"-m{mem_mb}"
+mem = f"-m{mem_mb}" if mem_mb else ""
 
 for output in snakemake.output:
     out_name, out_ext = os.path.splitext(output)
@@ -37,12 +35,11 @@ for output in snakemake.output:
         compress += f"pbzip2 -p{snakemake.threads} {mem} {out_name}; "
 
 
-if mem_mb:
-    mem = f"--mem {mem_mb}M"
+with tempfile.TemporaryDirectory() as tmpdir:
+    mem = f"--mem {mem_mb}M" if mem_mb else ""
 
-with tempfile.TemporaryDirectory() as tmp:
     shell(
-        "(fasterq-dump --temp {tmp} --threads {snakemake.threads} {mem} "
+        "(fasterq-dump --temp {tmpdir} --threads {snakemake.threads} {mem} "
         "{extra} {outdir} {snakemake.wildcards.accession}; "
         "{compress}"
         ") {log}"
