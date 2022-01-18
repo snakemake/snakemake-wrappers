@@ -83,18 +83,18 @@ with TemporaryDirectory() as tempdir:
 
     # Copy main VCF output
     vcf_temp = results_base / "diploidSV.vcf.gz"
-    vcf_final = snakemake.output.get("vcf", "")
-    idx_final = snakemake.output.get("idx", "")
+    vcf_final = snakemake.output.get("vcf")
+    idx_final = snakemake.output.get("idx")
     copy_vcf(vcf_temp, vcf_final, idx_final)
 
     # Copy candidate small indels VCF
     cand_indel_vcf_temp = results_base / "candidateSmallIndels.vcf.gz"
-    cand_indel_vcf_final = snakemake.output.get("cand_indel_vcf", "")
-    cand_indel_idx_final = snakemake.output.get("cand_indel_idx", "")
+    cand_indel_vcf_final = snakemake.output.get("cand_indel_vcf")
+    cand_indel_idx_final = snakemake.output.get("cand_indel_idx")
     copy_vcf(cand_indel_vcf_temp, cand_indel_vcf_final, cand_indel_idx_final)
 
     # Copy candidates structural variants VCF
     cand_sv_vcf_temp = results_base / "candidateSV.vcf.gz"
-    cand_sv_vcf_final = snakemake.output.get("cand_sv_vcf", "")
-    cand_sv_idx_final = snakemake.output.get("cand_sv_idx", "")
+    cand_sv_vcf_final = snakemake.output.get("cand_sv_vcf")
+    cand_sv_idx_final = snakemake.output.get("cand_sv_idx")
     copy_vcf(cand_sv_vcf_temp, cand_sv_vcf_final, cand_sv_idx_final)
