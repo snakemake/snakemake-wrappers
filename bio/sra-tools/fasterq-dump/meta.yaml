@@ -5,8 +5,9 @@ authors:
   - Derek Croote
   - Filipe G. Vieira
 output:
-  - fastq file with R1 reads
+  - fastq files for R1 and R2 reads
 notes: |
-  * The output format is automatically detected, and files compressed with either `gzip` or `bzip2`.
+  * The output format is automatically detected and, if needed, files compressed with either `gzip` or `bzip2`.
+  * Currently only supports PE samples
   * The `extra` param alllows for additional program arguments.
   * More information in, https://github.com/ncbi/sra-tools
