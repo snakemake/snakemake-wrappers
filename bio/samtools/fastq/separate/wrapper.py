@@ -13,8 +13,6 @@ params_sort = snakemake.params.get("sort", "")
 params_fastq = snakemake.params.get("fastq", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-prefix = os.path.splitext(snakemake.output[0])[0]
-
 # Samtools takes additional threads through its option -@
 # One thread is used bu Samtools sort
 # One thread is used by Samtools fastq
@@ -26,7 +24,7 @@ mem = get_mem(snakemake, "MiB")
 mem = "-m {}M".format(mem / threads) if mem and threads else ""
 
 with tempfile.TemporaryDirectory() as tmpdir:
-    tmp_prefix = Path(tmpdir) / "samtools_sort."
+    tmp_prefix = Path(tmpdir) / "samtools_fastq.sort_"
 
     shell(
         "(samtools sort -n"
