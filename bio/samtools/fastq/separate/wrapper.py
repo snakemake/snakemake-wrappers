@@ -6,6 +6,7 @@ __license__ = "MIT"
 
 import os
 import tempfile
+from pathlib import Path
 from snakemake.shell import shell
 from snakemake_wrapper_utils.snakemake import get_mem
 
