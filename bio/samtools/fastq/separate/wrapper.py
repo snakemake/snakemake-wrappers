@@ -22,7 +22,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 threads = 0 if snakemake.threads <= 2 else snakemake.threads - 2
 
 mem = get_mem(snakemake, "MiB")
-mem = "-m {}M".format(mem / threads) if mem and threads else ""
+mem = "-m {0:.0g}M".format(mem / threads) if mem and threads else ""
 
 with tempfile.TemporaryDirectory() as tmpdir:
     tmp_prefix = Path(tmpdir) / "samtools_fastq.sort_"
