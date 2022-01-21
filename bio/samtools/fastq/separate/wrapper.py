@@ -19,7 +19,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 # One thread is used by Samtools fastq
 # So snakemake.threads has to take them into account
 # before allowing additional threads through samtools sort -@
-threads = "" if snakemake.threads <= 2 else "--threads {}".format(snakemake.threads - 2)
+threads = 0 if snakemake.threads <= 2 else snakemake.threads - 2
 
 mem = get_mem(snakemake, "MiB")
 mem = "-m {}M".format(mem / threads) if mem and threads else ""
@@ -29,7 +29,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
 
     shell(
         "(samtools sort -n"
-        " {threads}"
+        " --threads {threads}"
         " {mem}"
         " -T {tmp_prefix}"
         " {params_sort}"
