@@ -63,7 +63,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " --INPUT {snakemake.input.bam}"
         " --TMP_DIR {tmpdir}"
         " --OUTPUT {out}"
-        " --REFERENCE {snakemake.input.ref}"
+        " --REFERENCE_SEQUENCE {snakemake.input.ref}"
         " {programs}"
         " {log}"
     )
