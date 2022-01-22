@@ -1,8 +1,8 @@
 rule CollectTargetedPcrMetrics:
     input:
         bam="mapped/{sample}.bam",
-        amplicon_intervals="amplicon.list",
-        target_intervals="target.list",
+        amplicon_intervals="amplicon.interval_list",
+        target_intervals="target.interval_list",
     output:
         "stats/{sample}.pcr.txt",
     log:
