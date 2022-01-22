@@ -1,18 +1,18 @@
 rule bam_to_fastq:
     input:
-        "mapped/{sample}.bam"
+        "mapped/{sample}.bam",
     output:
         fastq1="reads/{sample}.R1.fastq",
-        fastq2="reads/{sample}.R2.fastq"
+        fastq2="reads/{sample}.R2.fastq",
     log:
-        "logs/picard/sam_to_fastq/{sample}.log"
+        "logs/picard/sam_to_fastq/{sample}.log",
     params:
-        extra="" # optional: Extra arguments for picard.
+        extra="",  # optional: Extra arguments for picard.
     # optional specification of memory usage of the JVM that snakemake will respect with global
     # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
     # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
     # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     wrapper:
         "master/bio/picard/samtofastq"
