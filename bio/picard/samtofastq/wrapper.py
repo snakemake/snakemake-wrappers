@@ -38,7 +38,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "picard SamToFastq"
         " {java_opts} {extra}"
-        " --INPUT{snakemake.input[0]}"
+        " --INPUT {snakemake.input[0]}"
         " --TMP_DIR {tmpdir}"
         " {output}"
         " {log}"

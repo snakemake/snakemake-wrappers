@@ -21,6 +21,6 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " --INPUT {snakemake.input}"
         " --TMP_DIR {tmpdir}"
         " --OUTPUT {snakemake.output.txt}"
-        " --HISTOGRAM_FILE {snakemake.output.pdf}"
+        " --Histogram_FILE {snakemake.output.pdf}"
         " {log}"
     )

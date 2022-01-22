@@ -16,7 +16,7 @@ java_opts = get_java_opts(snakemake)
 bams = snakemake.input
 if isinstance(bams, str):
     bams = [bams]
-bams = list(map("INPUT={}".format, bams))
+bams = list(map("--INPUT {}".format, bams))
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(

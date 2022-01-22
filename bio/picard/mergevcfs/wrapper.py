@@ -16,11 +16,12 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
 java_opts = get_java_opts(snakemake)
 
-shell(
-    "picard MergeVcfs"
-    " {java_opts} {extra}"
-    " {inputs}"
-    " --TMP_DIR {tmpdir}"
-    " --OUTPUT {snakemake.output[0]}"
-    " {log}"
-)
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "picard MergeVcfs"
+        " {java_opts} {extra}"
+        " {inputs}"
+        " --TMP_DIR {tmpdir}"
+        " --OUTPUT {snakemake.output[0]}"
+        " {log}"
+    )

@@ -16,11 +16,12 @@ java_opts = get_java_opts(snakemake)
 inputs = " ".join("--INPUT {}".format(in_) for in_ in snakemake.input)
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell(
-    "picard  MergeSamFiles"
-    " {java_opts} {extra}"
-    " {inputs}"
-    " --TMP_DIR {tmpdir}"
-    " --OUTPUT {snakemake.output[0]}"
-    " {log}"
-)
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "picard  MergeSamFiles"
+        " {java_opts} {extra}"
+        " {inputs}"
+        " --TMP_DIR {tmpdir}"
+        " --OUTPUT {snakemake.output[0]}"
+        " {log}"
+    )

@@ -47,7 +47,7 @@ for file in snakemake.output:
             "Unknown type of metrics file requested, for possible metrics files, see https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/picard/collectmultiplemetrics.html"
         )
 
-programs = " PROGRAM=" + " PROGRAM=".join(progs)
+programs = " --PROGRAM " + " --PROGRAM ".join(progs)
 
 out = str(snakemake.wildcards.sample)  # as default
 output_file = str(snakemake.output[0])
@@ -59,7 +59,7 @@ for ext in exts_to_prog:
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "picard CollectMultipleMetrics"
-        " {extra} {java_opts}"
+        " {java_opts} {extra}"
         " --INPUT {snakemake.input.bam}"
         " --TMP_DIR {tmpdir}"
         " --OUTPUT {out}"
