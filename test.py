@@ -2859,6 +2859,11 @@ def test_delly():
 
 
 @skip_if_not_modified
+def test_manta():
+    run("bio/manta", ["snakemake", "--cores", "2", "results/out.bcf", "--use-conda", "-F"])
+
+
+@skip_if_not_modified
 def test_jannovar():
     run(
         "bio/jannovar",
