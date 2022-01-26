@@ -5,20 +5,20 @@ rule picard_collect_hs_metrics:
         # Baits and targets should be given as interval lists. These can
         # be generated from bed files using picard BedToIntervalList.
         bait_intervals="regions.intervals",
-        target_intervals="regions.intervals"
+        target_intervals="regions.intervals",
     output:
-        "stats/hs_metrics/{sample}.txt"
+        "stats/hs_metrics/{sample}.txt",
     params:
         # Optional extra arguments. Here we reduce sample size
         # to reduce the runtime in our unit test.
-        extra="SAMPLE_SIZE=1000"
+        extra="--SAMPLE_SIZE 1000",
     # optional specification of memory usage of the JVM that snakemake will respect with global
     # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
     # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
     # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     log:
-        "logs/picard_collect_hs_metrics/{sample}.log"
+        "logs/picard_collect_hs_metrics/{sample}.log",
     wrapper:
         "master/bio/picard/collecthsmetrics"
