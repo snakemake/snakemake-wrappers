@@ -606,6 +606,14 @@ def test_shovill():
 
 
 @skip_if_not_modified
+def test_seqtk_seq():
+    run(
+        "bio/seqtk/seq",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.fasta"],
+    )
+
+
+@skip_if_not_modified
 def test_seqtk_mergepe():
     run(
         "bio/seqtk/mergepe",
