@@ -15,7 +15,8 @@ expected_endings = [
     "D",
     "SI",
     "INV",
-    "INV_final" "TD",
+    "INV_final",
+    "TD",
     "LI",
     "BP",
     "CloseEndMapped",
@@ -26,7 +27,7 @@ expected_endings = [
 def split_file_name(file_parts, file_ending_index):
     return (
         "_".join(file_parts[:file_ending_index]),
-        "_".join(file_parts[file_ending_index]),
+        "_".join(file_parts[file_ending_index:]),
     )
 
 

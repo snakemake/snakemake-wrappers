@@ -18,6 +18,12 @@ sort = snakemake.params.get("sort", "none")
 sort_order = snakemake.params.get("sort_order", "coordinate")
 sort_extra = snakemake.params.get("sort_extra", "")
 
+index = snakemake.input.get("index", "")
+if isinstance(index, str):
+    index = path.splitext(snakemake.input.idx)[0]
+else:
+    index = path.splitext(snakemake.input.idx[0])[0]
+
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 # Check inputs/arguments.
@@ -63,7 +69,7 @@ shell(
     "(bwa-mem2 mem"
     " -t {snakemake.threads}"
     " {extra}"
-    " {snakemake.params.index}"
+    " {index}"
     " {snakemake.input.reads}"
     " | " + pipe_cmd + ") {log}"
 )

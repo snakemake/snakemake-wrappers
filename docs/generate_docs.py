@@ -119,7 +119,6 @@ def render_meta(path, target):
             used_wrappers = env["wrappers"]
     else:
         used_wrappers = []
-
     snakefile = render_snakefile(path)
 
     name = meta["name"].replace(" ", "_") + ".rst"

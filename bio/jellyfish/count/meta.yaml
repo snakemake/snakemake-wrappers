@@ -1,0 +1,9 @@
+name: jellyfish_count
+description: Count k-mers in a fastn file using jellyfish.
+url: https://github.com/gmarcais/Jellyfish
+authors:
+  - William Rowell
+input:
+  - sequence FASTA file
+output:
+  - kmer count jf file

@@ -36,6 +36,7 @@ else:
 shell(
     "vardict-java -G {reference} "
     "-f {af_th} "
+    " {extra} "
     "-th {snakemake.threads} "
     "{bed_columns} "
     "-N '{name}' "

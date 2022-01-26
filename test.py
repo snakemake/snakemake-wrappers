@@ -781,10 +781,10 @@ def test_bcftools_stats():
 
 
 @skip_if_not_modified
-def test_bcftools_view_sample_vcf():
+def test_bcftools_norm():
     run(
-        "bio/bcftools/view",
-        ["snakemake", "--cores", "1", "a.view_sample.vcf", "--use-conda", "-F"],
+        "bio/bcftools/norm",
+        ["snakemake", "--cores", "1", "a.norm.vcf", "--use-conda", "-F"],
     )
 
 
@@ -916,6 +916,14 @@ def test_bedtools_slop():
     run(
         "bio/bedtools/slop",
         ["snakemake", "--cores", "1", "A.slop.bed", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_bgzip():
+    run(
+        "bio/bgzip",
+        ["snakemake", "--cores", "1", "test.vcf.gz", "--use-conda", "-F"]
     )
 
 
@@ -1601,6 +1609,14 @@ def test_fastq_screen():
 
 
 @skip_if_not_modified
+def test_fasttree():
+    run(
+        "bio/fasttree",
+        ["snakemake", "--cores", "1", "test-proteins.nwk", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_fgbio_annotate():
     run(
         "bio/fgbio/annotatebamwithumis",
@@ -1805,6 +1821,38 @@ def test_homer_makeTagDirectory():
 
 
 @skip_if_not_modified
+def test_jellyfish_count():
+    run(
+        "bio/jellyfish/count",
+        ["snakemake", "--cores", "2", "--use-conda", "-F", "a.jf"],
+    )
+
+
+@skip_if_not_modified
+def test_jellyfish_dump():
+    run(
+        "bio/jellyfish/dump",
+        ["snakemake", "--cores", "2", "--use-conda", "-F", "a.dump"],
+    )
+
+
+@skip_if_not_modified
+def test_jellyfish_histo():
+    run(
+        "bio/jellyfish/histo",
+        ["snakemake", "--cores", "2", "--use-conda", "-F", "a.histo"],
+    )
+
+
+@skip_if_not_modified
+def test_jellyfish_merge():
+    run(
+        "bio/jellyfish/merge",
+        ["snakemake", "--cores", "2", "--use-conda", "-F", "ab.jf"],
+    )
+
+
+@skip_if_not_modified
 def test_homer_annotatePeaks():
     run(
         "bio/homer/annotatePeaks",
@@ -1986,6 +2034,22 @@ def test_multiqc():
     run(
         "bio/multiqc",
         ["snakemake", "--cores", "1", "qc/multiqc.html", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_muscle_clw():
+    run(
+        "bio/muscle",
+        ["snakemake", "--cores", "1", "test-proteins.clw", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_muscle_fa():
+    run(
+        "bio/muscle",
+        ["snakemake", "--cores", "1", "test-proteins.afa", "--use-conda", "-F"],
     )
 
 
@@ -2401,6 +2465,14 @@ def test_samtools_view():
 
 
 @skip_if_not_modified
+def test_samtools_fastx():
+    run(
+        "bio/samtools/fastx",
+        ["snakemake", "--cores", "1", "a.fasta", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_samtools_flagstat():
     run(
         "bio/samtools/flagstat",
@@ -2424,17 +2496,17 @@ def test_samtools_idxstats():
 
 
 @skip_if_not_modified
-def test_samtools_bam2fq_interleaved():
+def test_samtools_fastq_interleaved():
     run(
-        "bio/samtools/bam2fq/interleaved",
+        "bio/samtools/fastq/interleaved",
         ["snakemake", "--cores", "1", "reads/a.fq", "--use-conda", "-F"],
     )
 
 
 @skip_if_not_modified
-def test_samtools_bam2fq_separate():
+def test_samtools_fastq_separate():
     run(
-        "bio/samtools/bam2fq/separate",
+        "bio/samtools/fastq/separate",
         ["snakemake", "--cores", "1", "reads/a.1.fq", "--use-conda", "-F"],
     )
 
@@ -3468,6 +3540,7 @@ def test_ensembl_variation_grch37():
         ["snakemake", "-s", "grch37.smk", "--cores", "1", "--use-conda", "-F"],
     )
 
+
 @skip_if_not_modified
 def test_ensembl_variation_chromosome():
     run(
@@ -4079,4 +4152,12 @@ def test_metaspades():
             "--show-failed-logs",
             "-F",
         ],
+    )
+
+
+@skip_if_not_modified
+def test_verifybamid2():
+    run(
+        "bio/verifybamid/verifybamid2",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )

@@ -1,6 +1,9 @@
+<!-- Ensure that the PR title follows conventional commit style (<type>: <description>)-->
+<!-- Possible types are here: https://github.com/commitizen/conventional-commit-types/blob/master/index.json -->
+
 ### Description
 
-<!--Add a description of your PR here-->
+<!-- Add a description of your PR here-->
 
 ### QC
 <!-- Make sure that you can tick the boxes below. -->

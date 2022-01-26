@@ -4,4 +4,4 @@ channels:
 dependencies:
   # This version should not be changed unless the vep_install command needs an
   # update or suddenly stops working.
-  - ensembl-vep =101
+  - ensembl-vep =105

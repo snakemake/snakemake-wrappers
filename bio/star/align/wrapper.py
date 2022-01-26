@@ -5,6 +5,7 @@ __license__ = "MIT"
 
 
 import os
+import tempfile
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
@@ -46,14 +47,16 @@ outprefix = snakemake.output[0].split(bamprefix)[0]
 if outprefix == os.path.dirname(snakemake.output[0]):
     outprefix += "/"
 
-shell(
-    "STAR "
-    "{extra} "
-    "--runThreadN {snakemake.threads} "
-    "--genomeDir {snakemake.params.index} "
-    "--readFilesIn {input_str} "
-    "{readcmd} "
-    "--outFileNamePrefix {outprefix} "
-    "--outStd Log "
-    "{log}"
-)
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "STAR "
+        "{extra} "
+        "--runThreadN {snakemake.threads} "
+        "--genomeDir {snakemake.params.index} "
+        "--readFilesIn {input_str} "
+        "{readcmd} "
+        "--outFileNamePrefix {outprefix} "
+        "--outStd Log "
+        "--outTmpDir {tmpdir}/STARtmp "
+        "{log}"
+    )
