@@ -1,4 +1,4 @@
-rule mark_duplicates:
+rule mark_duplicates_bamsormadup:
     input:
         "mapped/{sample}.bam",
     output:
