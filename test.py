@@ -2465,6 +2465,14 @@ def test_samtools_view():
 
 
 @skip_if_not_modified
+def test_samtools_fastx():
+    run(
+        "bio/samtools/fastx",
+        ["snakemake", "--cores", "1", "a.fasta", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_samtools_flagstat():
     run(
         "bio/samtools/flagstat",
