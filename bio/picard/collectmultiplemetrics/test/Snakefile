@@ -40,9 +40,6 @@ rule collect_multiple_metrics:
     params:
         # optional parameters
         # REF_FLAT is required if RnaSeqMetrics are used
-        "--VALIDATION_STRINGENCY LENIENT "
-        "--METRIC_ACCUMULATION_LEVEL null "
-        "--METRIC_ACCUMULATION_LEVEL SAMPLE "
-        "--REF_FLAT ref_flat.txt ",
+        extra="--VALIDATION_STRINGENCY LENIENT --METRIC_ACCUMULATION_LEVEL null --METRIC_ACCUMULATION_LEVEL SAMPLE --REF_FLAT ref_flat.txt",
     wrapper:
         "master/bio/picard/collectmultiplemetrics"

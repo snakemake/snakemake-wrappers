@@ -6,7 +6,7 @@ rule merge_bams:
     log:
         "logs/picard_mergesamfiles.log",
     params:
-        "--VALIDATION_STRINGENCY LENIENT",
+        extra="--VALIDATION_STRINGENCY LENIENT",
     # optional specification of memory usage of the JVM that snakemake will respect with global
     # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
     # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:

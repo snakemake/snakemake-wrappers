@@ -9,7 +9,7 @@ from snakemake_wrapper_utils.java import get_java_opts
 
 log = snakemake.log_fmt_shell()
 
-extra = snakemake.params
+extra = snakemake.params.get("extra", "")
 java_opts = get_java_opts(snakemake)
 
 with tempfile.TemporaryDirectory() as tmpdir:
