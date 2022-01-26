@@ -781,10 +781,10 @@ def test_bcftools_reheader():
 
 
 @skip_if_not_modified
-def test_bcftools_reheader():
+def test_bcftools_stats():
     run(
-        "bio/bcftools/reheader",
-        ["snakemake", "--cores", "1", "a.reheader.bcf", "--use-conda", "-F"],
+        "bio/bcftools/stats",
+        ["snakemake", "--cores", "1", "a.bcf.stats.txt", "--use-conda", "-F"],
     )
 
 
