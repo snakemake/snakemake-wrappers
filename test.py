@@ -920,6 +920,14 @@ def test_bedtools_slop():
 
 
 @skip_if_not_modified
+def test_bgzip():
+    run(
+        "bio/bgzip",
+        ["snakemake", "--cores", "1", "test.vcf.gz", "--use-conda", "-F"]
+    )
+
+
+@skip_if_not_modified
 def test_blast_makeblastdb_nucleotide():
     run(
         "bio/blast/makeblastdb",
