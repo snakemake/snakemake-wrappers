@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v0.87.0...v1.0.0) (2022-01-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* added tempdir, updated version and metadata to all picard wrappers (#443)
+
+### Features
+
+* added tempdir, updated version and metadata to all picard wrappers ([#443](https://www.github.com/snakemake/snakemake-wrappers/issues/443)) ([55e672a](https://www.github.com/snakemake/snakemake-wrappers/commit/55e672a893d135d439a972c12a0811ec860ffb78))
+
 ## [0.87.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v0.86.0...v0.87.0) (2022-01-26)
 
 
