@@ -3733,6 +3733,14 @@ def test_tabix():
 
 
 @skip_if_not_modified
+def test_tabix_query():
+    run(
+        "bio/tabix/query",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "A.output.bed"],
+    )
+
+
+@skip_if_not_modified
 def test_msisensor_scan():
     run(
         "bio/msisensor/scan",
