@@ -20,6 +20,8 @@ rule samtools_index:
         "mapped/{sample}.bam"
     output:
         "mapped/{sample}.bam.bai"
+    log:
+        "logs/samtools_index/{sample}.log"
     params:
         "" # optional params string
     wrapper:
