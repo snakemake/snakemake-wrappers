@@ -12,9 +12,13 @@ from snakemake_wrapper_utils.java import get_java_opts
 
 extra = snakemake.params.get("extra", "")
 java_opts = get_java_opts(snakemake)
-interval_file = snakemake.input.get("interval_file", "")
-if interval_file:
-    interval_file = "--intervals {}".format(interval_file)
+
+intervals = snakemake.input.get("intervals", "")
+if not intervals:
+    intervals = snakemake.params.get("intervals", "")
+if intervals:
+    intervals = "--intervals {}".format(intervals)
+
 dbsnp = snakemake.input.get("known", "")
 if dbsnp:
     dbsnp = "--dbsnp {}".format(dbsnp)
@@ -41,7 +45,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " --variant {input_string}"
         " --reference {snakemake.input.ref}"
         " {dbsnp}"
-        " {interval_file}"
+        " {intervals}"
         " {extra}"
         " --tmp-dir {tmpdir}"
         " --output {snakemake.output.vcf}"

@@ -24,13 +24,17 @@ else:
         "invalid option provided to 'params.db_action'; please choose either 'create' or 'update'."
     )
 
+intervals = snakemake.input.get("intervals")
+if not intervals:
+    intervals = snakemake.params.get("intervals")
+
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "gatk --java-options '{java_opts}' GenomicsDBImport"
         " {gvcfs}"
-        " --intervals {snakemake.params.intervals}"
+        " --intervals {intervals}"
         " {extra}"
         " --tmp-dir {tmpdir}"
         " {db_action} {snakemake.output.db}"
