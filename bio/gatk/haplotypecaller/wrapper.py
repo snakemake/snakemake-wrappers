@@ -36,7 +36,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "gatk --java-options '{java_opts}' HaplotypeCaller"
-        "--native-pair-hmm-threads {snakemake.threads}"
+        " --native-pair-hmm-threads {snakemake.threads}"
         " {bams}"
         " --reference {snakemake.input.ref}"
         " {intervals}"
