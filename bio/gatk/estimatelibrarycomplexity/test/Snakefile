@@ -1,13 +1,13 @@
 rule gatk_estimate_library_complexity:
     input:
-        bam="{sample}.bam"
+        bam="{sample}.bam",
     output:
-        metrics="{sample}.metrics"
+        metrics="{sample}.metrics",
     log:
-        "logs/{sample}.log"
+        "logs/{sample}.log",
     params:
         extra="",
-	java_opts="", # optional
+        java_opts="",  # optional
     resources:
         mem_mb=1024,
     wrapper:

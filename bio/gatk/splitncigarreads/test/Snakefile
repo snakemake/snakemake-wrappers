@@ -1,11 +1,11 @@
 rule splitncigarreads:
     input:
         bam="mapped/{sample}.bam",
-        ref="genome.fasta"
+        ref="genome.fasta",
     output:
-        "split/{sample}.bam"
+        "split/{sample}.bam",
     log:
-        "logs/gatk/splitNCIGARreads/{sample}.log"
+        "logs/gatk/splitNCIGARreads/{sample}.log",
     params:
         extra="",  # optional
         java_opts="",  # optional
@@ -14,6 +14,6 @@ rule splitncigarreads:
     # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
     # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     wrapper:
         "master/bio/gatk/splitncigarreads"

@@ -24,11 +24,14 @@ with tempfile.TemporaryDirectory() as tmpdir:
     tmpdir_shards = Path(tmpdir) / "shards_{:06d}".format(random.randrange(10 ** 6))
 
     shell(
-        "gatk --java-options '{java_opts}' ApplyBQSRSpark {extra} "
-        "--reference {snakemake.input.ref} --input {snakemake.input.bam} "
-        "--bqsr-recal-file {snakemake.input.recal_table} "
-        "--tmp-dir {tmpdir} --output-shard-tmp-dir {tmpdir_shards} "
-        "--output {snakemake.output.bam} "
-        "-- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra} "
-        "{log}"
+        "gatk --java-options '{java_opts}' ApplyBQSRSpark"
+        " --input {snakemake.input.bam}"
+        " --bqsr-recal-file {snakemake.input.recal_table}"
+        " --reference {snakemake.input.ref}"
+        " {extra}"
+        " --tmp-dir {tmpdir}"
+        " --output-shard-tmp-dir {tmpdir_shards}"
+        " --output {snakemake.output.bam}"
+        " -- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra}"
+        " {log}"
     )

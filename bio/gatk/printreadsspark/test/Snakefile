@@ -4,17 +4,17 @@ rule gatk_printreadsspark:
         ref="genome.fasta",
         dict="genome.dict",
     output:
-        bam="{sample}.bam"
+        bam="{sample}.bam",
     log:
-        "logs/{sample}.log"
+        "logs/{sample}.log",
     params:
         extra="",  # optional
-        java_opts="", # optional
+        java_opts="",  # optional
         #spark_runner="",  # optional, local by default
         #spark_master="",  # optional
         #spark_extra="", # optional
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     threads: 8
     wrapper:
         "master/bio/gatk/printreadsspark"

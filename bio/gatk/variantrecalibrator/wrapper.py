@@ -5,7 +5,7 @@ __license__ = "MIT"
 
 
 import os
-
+import tempfile
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
@@ -44,10 +44,18 @@ if snakemake.output.tranches:
     tranches = "--tranches-file " + snakemake.output.tranches
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-shell(
-    "gatk --java-options '{java_opts}' VariantRecalibrator {extra} {annotation_resources} "
-    "-R {snakemake.input.ref} -V {snakemake.input.vcf} "
-    "-mode {snakemake.params.mode} "
-    "--output {snakemake.output.vcf} "
-    "{tranches} {annotation} {log}"
-)
+
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "gatk --java-options '{java_opts}' VariantRecalibrator"
+        " --variant {snakemake.input.vcf}"
+        " --reference {snakemake.input.ref}"
+        " --mode {snakemake.params.mode}"
+        " {annotation_resources}"
+        " {tranches}"
+        " {annotation}"
+        " {extra}"
+        " --tmp-dir {tmpdir}"
+        " --output {snakemake.output.vcf}"
+        " {log}"
+    )
