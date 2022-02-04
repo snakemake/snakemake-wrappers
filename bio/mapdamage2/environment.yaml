@@ -4,3 +4,6 @@ channels:
   - defaults
 dependencies:
   - mapdamage2 =2.2
+  - python >=3.9
+  - pysam >=0.17
+
