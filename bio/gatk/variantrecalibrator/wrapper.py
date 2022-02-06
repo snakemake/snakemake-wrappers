@@ -20,9 +20,7 @@ def fmt_res(resname, resparams):
         f = snakemake.input.get(resname)
     except KeyError:
         raise RuntimeError(
-            "There must be a named input file for every resource (missing: {})".format(
-                resname
-            )
+            f"There must be a named input file for every resource (missing: {resname})"
         )
     return "{},known={},training={},truth={},prior={} {}".format(
         resname,
@@ -38,10 +36,12 @@ annotation_resources = [
     "--resource:{}".format(fmt_res(resname, resparams))
     for resname, resparams in snakemake.params["resources"].items()
 ]
+
 annotation = list(map("-an {}".format, snakemake.params.annotation))
-tranches = ""
-if snakemake.output.tranches:
-    tranches = "--tranches-file " + snakemake.output.tranches
+
+tranches = snakemake.output.get("tranches", "")
+if tranches:
+    tranches = f"--tranches-file {tranches}"
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
