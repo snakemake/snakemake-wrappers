@@ -18,7 +18,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " --variant {snakemake.input.vcf}"
         " --reference {snakemake.input.ref}"
         " {extra}"
-        " --tmp-file {tmpdir}"
+        " --tmp-dir {tmpdir}"
         " --output {snakemake.output.vcf}"
         " {log}"
     )

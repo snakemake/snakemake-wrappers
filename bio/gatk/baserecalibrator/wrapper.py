@@ -25,7 +25,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " --reference {snakemake.input.ref}"
         " {known}"
         " {extra}"
-        " --tmpdir {tmpdir}"
+        " --tmp-dir {tmpdir}"
         " --output {snakemake.output.recal_table}"
         " {log}"
     )

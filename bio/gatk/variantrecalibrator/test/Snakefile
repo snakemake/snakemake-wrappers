@@ -1,8 +1,8 @@
-from snakemake.remote import GS
+from snakemake.remote.GS import RemoteProvider as GSRemoteProvider
 
 # GATK resource bundle files can be either directly obtained from google storage (like here), or
 # from FTP. You can also use local files.
-GS = GS.RemoteProvider()
+GS = GSRemoteProvider()
 
 
 def gatk_bundle(f):
