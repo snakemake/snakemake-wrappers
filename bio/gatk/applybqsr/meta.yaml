@@ -6,8 +6,8 @@ authors:
   - Johannes Köster
   - Jake VanCampen
 input:
-  - bam file
-  - fasta reference
+  - BAM file
+  - FASTA reference
   - recalibration table for the bam
 output:
   - recalibrated bam file
