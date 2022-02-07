@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.0.0...v1.0.1) (2022-02-07)
+
+
+### Bug Fixes
+
+* added missing dependencies and improved docs ([#450](https://www.github.com/snakemake/snakemake-wrappers/issues/450)) ([e99f2a1](https://www.github.com/snakemake/snakemake-wrappers/commit/e99f2a1aab0db4f08503340bb863c18a6b15596f))
+
 ## [1.0.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v0.87.0...v1.0.0) (2022-01-26)
 
 
