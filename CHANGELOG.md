@@ -6,6 +6,7 @@
 ### Features
 
 * automatically set temp dir tempfile ([#446](https://www.github.com/snakemake/snakemake-wrappers/issues/446)) ([5b0d26a](https://www.github.com/snakemake/snakemake-wrappers/commit/5b0d26afcb41eda7a0fbd883b82246352a33e7a7))
+* updated delly wrapper to version 0.9.1.
 
 
 ### Bug Fixes
