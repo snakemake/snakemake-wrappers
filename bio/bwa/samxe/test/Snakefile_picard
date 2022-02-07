@@ -2,7 +2,6 @@ rule bwa_sam_pe:
     input:
         fastq=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
         sai=["sai/{sample}.1.sai", "sai/{sample}.2.sai"],
-        # Index can be a list of (all) files created by bwa, or one of them
         idx=multiext("genome", ".amb", ".ann", ".bwt", ".pac", ".sa"),
     output:
         "mapped/{sample}.pe.picard_sort.sam",
@@ -21,7 +20,6 @@ rule bwa_sam_se:
     input:
         fastq="reads/{sample}.1.fastq",
         sai="sai/{sample}.1.sai",
-        # Index can be a list of (all) files created by bwa, or one of them
         idx=multiext("genome", ".amb", ".ann", ".bwt", ".pac", ".sa"),
     output:
         "mapped/{sample}.se.picard_sort.sam",
@@ -40,7 +38,6 @@ rule bwa_bam_pe:
     input:
         fastq=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
         sai=["sai/{sample}.1.sai", "sai/{sample}.2.sai"],
-        # Index can be a list of (all) files created by bwa, or one of them
         idx=multiext("genome", ".amb", ".ann", ".bwt", ".pac", ".sa"),
     output:
         "mapped/{sample}.pe.picard_sort.bam",
@@ -59,7 +56,6 @@ rule bwa_bam_se:
     input:
         fastq="reads/{sample}.1.fastq",
         sai="sai/{sample}.1.sai",
-        # Index can be a list of (all) files created by bwa, or one of them
         idx=multiext("genome", ".amb", ".ann", ".bwt", ".pac", ".sa"),
     output:
         "mapped/{sample}.se.picard_sort.bam",
