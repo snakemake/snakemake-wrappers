@@ -1,6 +1,8 @@
 rule get_genome:
     output:
-        "refs/genome.fasta"
+        # use either .fasta.gz for a compressed reference or
+        # just .fasta for on the fly decompression
+        "refs/genome.fasta.gz"
     params:
         species="saccharomyces_cerevisiae",
         datatype="dna",
@@ -14,6 +16,8 @@ rule get_genome:
 
 rule get_chromosome:
     output:
+        # use either .fasta.gz for a compressed reference or
+        # just .fasta for on the fly decompression
         "refs/chr1.fasta"
     params:
         species="saccharomyces_cerevisiae",

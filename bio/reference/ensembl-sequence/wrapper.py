@@ -65,7 +65,9 @@ for suffix in suffixes:
     except sp.CalledProcessError:
         continue
 
-    shell("(curl -L {url} | gzip -d > {snakemake.output[0]}) {log}")
+
+    unzip = "| gzip -d" if snakemake.output[0].endswith(".gz") else ""
+    shell("(curl -L {url} {unzip} > {snakemake.output[0]}) {log}")
     success = True
     break
 
