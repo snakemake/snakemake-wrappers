@@ -5,7 +5,7 @@ __copyright__ = "Copyright 2019, Dayris Thibault"
 __email__ = "thibault.dayris@gustaveroussy.fr"
 __license__ = "MIT"
 
-import tempdir
+import tempfile
 from snakemake.shell import shell
 from snakemake.utils import makedirs
 
