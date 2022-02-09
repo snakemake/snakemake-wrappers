@@ -55,7 +55,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " {extra}"
         " --outTmpDir {tmpdir}/STARtmp"
         " --outFileNamePrefix {outprefix}"
-        "--outStd Log "
+        " --outStd Log "
         " {log}"
     )
 
