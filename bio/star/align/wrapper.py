@@ -46,6 +46,16 @@ if outprefix == os.path.dirname(snakemake.output[0]):
     outprefix += "/"
 
 with tempfile.TemporaryDirectory() as tmpdir:
+    if "SortedByCoordinate" in extra:
+        bamprefix = "Aligned.sortedByCoord.out."
+    else:
+        bamprefix = "Aligned.out."
+
+    if snakemake.output.get("bam"):
+        shell("ln -s {outprefix}{bamprefix}bam {snakemake.output.bam:q}")
+    elif snakemake.output.get("bam"):
+        shell("ln -s {outprefix}{bamprefix}sam {snakemake.output.sam:q}")
+
     shell(
         "STAR "
         " --runThreadN {snakemake.threads}"
@@ -57,13 +67,3 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " --outFileNamePrefix {outprefix}"
         " {log}"
     )
-
-    if "SortedByCoordinate" in extra:
-        bamprefix = "Aligned.sortedByCoord.out."
-    else:
-        bamprefix = "Aligned.out."
-
-    if snakemake.output.get("bam"):
-        shell("mv {outprefix}{bamprefix}bam {snakemake.output.bam:q}")
-    elif snakemake.output.get("bam"):
-        shell("mv {outprefix}{bamprefix}sam {snakemake.output.sam:q}")
