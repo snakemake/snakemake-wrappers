@@ -12,7 +12,7 @@ rule star_pe_multi:
         "logs/star/pe/{sample}.log",
     params:
         # path to STAR reference genome index
-        index="index",
+        idx="index",
         # optional parameters
         extra="",
     threads: 8
@@ -30,7 +30,7 @@ rule star_se:
         "logs/star/{sample}.log",
     params:
         # path to STAR reference genome index
-        index="index",
+        idx="index",
         # optional parameters
         extra="",
     threads: 8

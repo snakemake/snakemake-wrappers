@@ -42,6 +42,10 @@ if "SortedByCoordinate" in extra:
 else:
     bamprefix = "Aligned.out."
 
+index = snakemake.input.get("idx")
+if not index:
+    index = snakemake.params.get("idx", "")
+
 outprefix = snakemake.output[0].split(bamprefix)[0]
 
 if outprefix == os.path.dirname(snakemake.output[0]):
@@ -52,7 +56,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         "STAR "
         "{extra} "
         "--runThreadN {snakemake.threads} "
-        "--genomeDir {snakemake.params.index} "
+        "--genomeDir {index} "
         "--readFilesIn {input_str} "
         "{readcmd} "
         "--outFileNamePrefix {outprefix} "
