@@ -65,5 +65,5 @@ with tempfile.TemporaryDirectory() as tmpdir:
 
     if snakemake.output.get("bam"):
         shell("cat {outprefix}{bamprefix}bam > {snakemake.output.bam:q}")
-    elif snakemake.output.get("bam"):
+    elif snakemake.output.get("sam"):
         shell("cat {outprefix}{bamprefix}sam > {snakemake.output.sam:q}")

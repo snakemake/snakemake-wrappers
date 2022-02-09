@@ -25,9 +25,9 @@ rule star_se:
         fq1="reads/{sample}_R1.1.fastq",
     output:
         # see STAR manual for additional output files
-        "star/{sample}/Aligned.out.sam",
+        "star/se/{sample}/Aligned.out.sam",
     log:
-        "logs/star/{sample}.log",
+        "logs/star/se/{sample}.log",
     params:
         # path to STAR reference genome index
         idx="index",

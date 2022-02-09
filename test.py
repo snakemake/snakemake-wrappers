@@ -2599,7 +2599,7 @@ def test_star_align():
 
     run(
         "bio/star/align",
-        ["snakemake", "--cores", "1", "star/a/Aligned.out.sam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "star/se/a/Aligned.out.sam", "--use-conda", "-F"],
     )
     run(
         "bio/star/align",
