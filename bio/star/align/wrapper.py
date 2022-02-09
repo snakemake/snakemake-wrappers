@@ -37,16 +37,11 @@ if fq1[0].endswith(".gz"):
 else:
     readcmd = ""
 
-if "SortedByCoordinate" in extra:
-    bamprefix = "Aligned.sortedByCoord.out."
-else:
-    bamprefix = "Aligned.out."
-
 index = snakemake.input.get("idx")
 if not index:
     index = snakemake.params.get("idx", "")
 
-outprefix = snakemake.output[0].split(bamprefix)[0]
+outprefix = os.path.commonprefix(snakemake.output)
 if outprefix == os.path.dirname(snakemake.output[0]):
     outprefix += "/"
 
@@ -60,11 +55,15 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " {extra}"
         " --outTmpDir {tmpdir}/STARtmp"
         " --outFileNamePrefix {outprefix}"
-        " --outStd Log"
         " {log}"
     )
 
+    if "SortedByCoordinate" in extra:
+        bamprefix = "Aligned.sortedByCoord.out."
+    else:
+        bamprefix = "Aligned.out."
+
     if snakemake.output.get("bam"):
-        shell("cp {outprefix}{bamprefix}bam {snakemake.output.bam:q}")
+        shell("mv {outprefix}{bamprefix}bam {snakemake.output.bam:q}")
     elif snakemake.output.get("bam"):
-        shell("cp {outprefix}{bamprefix}sam {snakemake.output.sam:q}")
+        shell("mv {outprefix}{bamprefix}sam {snakemake.output.sam:q}")
