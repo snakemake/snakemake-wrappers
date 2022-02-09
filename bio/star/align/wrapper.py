@@ -54,13 +54,13 @@ if outprefix == os.path.dirname(snakemake.output[0]):
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "STAR "
-        "{extra} "
-        "--runThreadN {snakemake.threads} "
-        "--genomeDir {index} "
-        "--readFilesIn {input_str} "
-        "{readcmd} "
-        "--outFileNamePrefix {outprefix} "
-        "--outStd Log "
-        "--outTmpDir {tmpdir}/STARtmp "
-        "{log}"
+        " --runThreadN {snakemake.threads}"
+        " --genomeDir {index}"
+        " --readFilesIn {input_str}"
+        " {readcmd}"
+        " {extra}"
+        " --outTmpDir {tmpdir}/STARtmp"
+        " --outFileNamePrefix {outprefix}"
+        " --outStd Log"
+        " {log}"
     )
