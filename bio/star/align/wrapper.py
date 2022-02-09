@@ -47,7 +47,6 @@ if not index:
     index = snakemake.params.get("idx", "")
 
 outprefix = snakemake.output[0].split(bamprefix)[0]
-
 if outprefix == os.path.dirname(snakemake.output[0]):
     outprefix += "/"
 
@@ -64,3 +63,8 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " --outStd Log"
         " {log}"
     )
+
+    if snakemake.output.get("bam"):
+        shell("mv {outprefix}/{bamprefix}.bam {snakemake.output.bam:q}")
+    elif snakemake.output.get("bam"):
+        shell("mv {outprefix}/{bamprefix}.sam {snakemake.output.sam:q}")
