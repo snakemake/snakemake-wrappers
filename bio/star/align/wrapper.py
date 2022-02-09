@@ -65,6 +65,6 @@ with tempfile.TemporaryDirectory() as tmpdir:
     )
 
     if snakemake.output.get("bam"):
-        shell("mv {outprefix}/{bamprefix}.bam {snakemake.output.bam:q}")
+        shell("cp {outprefix}{bamprefix}bam {snakemake.output.bam:q}")
     elif snakemake.output.get("bam"):
-        shell("mv {outprefix}/{bamprefix}.sam {snakemake.output.sam:q}")
+        shell("cp {outprefix}{bamprefix}sam {snakemake.output.sam:q}")
