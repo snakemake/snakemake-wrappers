@@ -21,7 +21,7 @@ if chr_names:
 if r_path:
     extra += " --Rpath {}".format(r_path)
 
-with tempfile.TemporaryDirectory() as tmpdir:    
+with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "featureCounts"
         " -T {snakemake.threads}"
