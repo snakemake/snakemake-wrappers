@@ -5,6 +5,7 @@ authors:
   - Christopher Schröder
   - Johannes Köster
   - Jake VanCampen
+  - Filipe G. Vieira
 input:
   - BAM file
   - FASTA reference

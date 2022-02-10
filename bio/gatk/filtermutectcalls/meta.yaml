@@ -3,6 +3,7 @@ description: |
   Run gatk FilterMutectCalls.
 authors:
   - Patrik Smeds
+  - Filipe G. Vieira
 input:
   - vcf file
   - reference genome

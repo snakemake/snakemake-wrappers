@@ -3,7 +3,8 @@ description: |
   Run gatk VariantRecalibrator.
 authors:
   - Johannes Köster
-  - Jake VanCampen 
+  - Jake VanCampen
+  - Filipe G. Vieira
 input:
   - VCF file
 output:
