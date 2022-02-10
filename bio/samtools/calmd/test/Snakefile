@@ -4,6 +4,8 @@ rule samtools_calmd:
         ref="genome.fasta",
     output:
         "{sample}.calmd.bam",
+    log:
+        "{sample}.calmd.log",
     params:
         "-E",  # optional params string
     threads: 2
