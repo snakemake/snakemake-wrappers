@@ -3,6 +3,7 @@ description: Index fasta sequences with STAR
 authors:
   - Thibault Dayris
   - Tomás Di Domenico
+  - Filipe G. Vieira
 input:
   - A (multi)fasta formatted file
 output:

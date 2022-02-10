@@ -41,10 +41,6 @@ index = snakemake.input.get("idx")
 if not index:
     index = snakemake.params.get("idx", "")
 
-outprefix = os.path.commonprefix(snakemake.output)
-if outprefix == os.path.dirname(snakemake.output[0]):
-    outprefix += "/"
-
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "STAR "
@@ -53,18 +49,30 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " --readFilesIn {input_str}"
         " {readcmd}"
         " {extra}"
-        " --outTmpDir {tmpdir}/STARtmp"
-        " --outFileNamePrefix {outprefix}"
+        " --outTmpDir {tmpdir}/temp"
+        " --outFileNamePrefix {tmpdir}/"
         " --outStd Log "
         " {log}"
     )
 
     if "SortedByCoordinate" in extra:
-        bamprefix = "Aligned.sortedByCoord.out."
+        bamprefix = "Aligned.sortedByCoord.out"
     else:
-        bamprefix = "Aligned.out."
+        bamprefix = "Aligned.out"
 
     if snakemake.output.get("bam"):
-        shell("cat {outprefix}{bamprefix}bam > {snakemake.output.bam:q}")
-    elif snakemake.output.get("sam"):
-        shell("cat {outprefix}{bamprefix}sam > {snakemake.output.sam:q}")
+        shell("cat {tmpdir}/{bamprefix}.bam > {snakemake.output.bam:q}")
+    if snakemake.output.get("sam"):
+        shell("cat {tmpdir}/{bamprefix}.sam > {snakemake.output.sam:q}")
+    if snakemake.output.get("reads_per_gene"):
+        shell("cat {tmpdir}/ReadsPerGene.out.tab > {snakemake.output.reads_per_gene:q}")
+    if snakemake.output.get("chim_junc"):
+        shell("cat {tmpdir}/Chimeric.out.junction > {snakemake.output.chim_junc:q}")
+    if snakemake.output.get("sj"):
+        shell("cat {tmpdir}/SJ.out.tab > {snakemake.output.sj:q}")
+    if snakemake.output.get("log"):
+        shell("cat {tmpdir}/Log.out > {snakemake.output.log:q}")
+    if snakemake.output.get("log_progress"):
+        shell("cat {tmpdir}/Log.progress.out > {snakemake.output.log_progress:q}")
+    if snakemake.output.get("log_final"):
+        shell("cat {tmpdir}/Log.final.out > {snakemake.output.log_final:q}")
