@@ -4,6 +4,8 @@ rule samtools_depth:
         bed="regionToCalcDepth.bed",  # optional
     output:
         "depth.txt",
+    log:
+        "depth.log",
     params:
         # optional bed file passed to -b
         extra="",  # optional additional parameters as string

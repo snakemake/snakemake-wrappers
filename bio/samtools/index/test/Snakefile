@@ -6,7 +6,7 @@ rule samtools_index:
     log:
         "logs/samtools_index/{sample}.log",
     params:
-        "",  # optional params string
+        extra="",  # optional params string
     threads: 4  # This value - 1 will be sent to -@
     wrapper:
         "master/bio/samtools/index"

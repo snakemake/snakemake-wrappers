@@ -7,7 +7,7 @@ rule samtools_calmd:
     log:
         "{sample}.calmd.log",
     params:
-        "-E",  # optional params string
+        extra="-E",  # optional params string
     threads: 2
     wrapper:
         "master/bio/samtools/calmd"

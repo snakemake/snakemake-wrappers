@@ -6,5 +6,7 @@ rule samtools_idxstats:
         "mapped/{sample}.bam.idxstats",
     log:
         "logs/samtools/idxstats/{sample}.log",
+    params:
+        extra="",  # optional params string
     wrapper:
         "master/bio/samtools/idxstats"

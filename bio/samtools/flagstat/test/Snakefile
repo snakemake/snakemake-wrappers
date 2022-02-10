@@ -3,5 +3,9 @@ rule samtools_flagstat:
         "mapped/{sample}.bam",
     output:
         "mapped/{sample}.bam.flagstat",
+    log:
+        "{sample}.log",
+    params:
+        extra="",  # optional params string
     wrapper:
         "master/bio/samtools/flagstat"

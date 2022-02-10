@@ -3,10 +3,10 @@ rule samtools_sort:
         "mapped/{sample}.bam",
     output:
         "mapped/{sample}.sorted.bam",
+    log:
+        "{sample}.log",
     params:
         extra="-m 4G",
-        tmp_dir="/tmp/",
-    # Samtools takes additional threads through its option -@
-    threads: 8  # This value - 1 will be sent to -@.
+    threads: 8
     wrapper:
         "master/bio/samtools/sort"
