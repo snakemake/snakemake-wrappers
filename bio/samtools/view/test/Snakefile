@@ -2,10 +2,12 @@ rule samtools_view:
     input:
         "{sample}.sam",
     output:
-        "{sample}.bam",
+        bam="{sample}.bam",
+        idx="{sample}.bai",
     log:
         "{sample}.log",
     params:
         extra="",  # optional params string
+    threads: 2
     wrapper:
         "master/bio/samtools/view"
