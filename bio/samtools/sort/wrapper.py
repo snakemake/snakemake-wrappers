@@ -5,26 +5,19 @@ __license__ = "MIT"
 
 
 import os
+import tempfile
 from snakemake.shell import shell
+from snakemake_wrapper_utils.samtools import get_samtools_opts
 
+samtools_opts = get_samtools_opts(snakemake)
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 out_name, out_ext = os.path.splitext(snakemake.output[0])
 
-tmp_dir = snakemake.params.get("tmp_dir", "")
-if tmp_dir:
-    prefix = os.path.join(tmp_dir, os.path.basename(out_name))
-else:
-    prefix = out_name
+with tempfile.TemporaryDirectory() as tmpdir:
+    tmp_prefix = Path(tmpdir) / "samtools_fastq.sort_"
 
-# Samtools takes additional threads through its option -@
-# One thread for samtools
-# Other threads are *additional* threads passed to the argument -@
-threads = "" if snakemake.threads <= 1 else " -@ {} ".format(snakemake.threads - 1)
-
-shell(
-    "samtools sort {extra} {threads} -o {snakemake.output[0]} "
-    "-T {prefix} {snakemake.input[0]} "
-    "{log}"
-)
+    shell(
+        "samtools sort {samtools_opts} {extra} -T {tmp_prefix} {snakemake.input[0]} {log}"
+    )

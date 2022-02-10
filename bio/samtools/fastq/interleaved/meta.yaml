@@ -7,4 +7,5 @@ authors:
   - Victoria Sack
   - Filipe G. Vieira
 notes: |
+  * The `extra` param allows for additional program arguments (not `-@/--threads` or `-o`).
   * For more information see, http://www.htslib.org/doc/samtools-fasta.html

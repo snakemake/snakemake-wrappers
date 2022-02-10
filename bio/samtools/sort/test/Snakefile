@@ -1,12 +1,12 @@
 rule samtools_sort:
     input:
-        "mapped/{sample}.bam"
+        "mapped/{sample}.bam",
     output:
-        "mapped/{sample}.sorted.bam"
+        "mapped/{sample}.sorted.bam",
     params:
-        extra = "-m 4G",
-        tmp_dir = "/tmp/"
-    threads:  # Samtools takes additional threads through its option -@
-        8     # This value - 1 will be sent to -@.
+        extra="-m 4G",
+        tmp_dir="/tmp/",
+    # Samtools takes additional threads through its option -@
+    threads: 8  # This value - 1 will be sent to -@.
     wrapper:
         "master/bio/samtools/sort"

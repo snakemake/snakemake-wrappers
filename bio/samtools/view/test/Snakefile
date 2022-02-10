@@ -1,11 +1,11 @@
 rule samtools_view:
     input:
-        "{sample}.sam"
+        "{sample}.sam",
     output:
-        "{sample}.bam"
+        "{sample}.bam",
     log:
-        "{sample}.log"
+        "{sample}.log",
     params:
-        extra="" # optional params string
+        extra="",  # optional params string
     wrapper:
         "master/bio/samtools/view"

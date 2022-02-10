@@ -6,15 +6,12 @@ __license__ = "MIT"
 
 import os
 from snakemake.shell import shell
+from snakemake_wrapper_utils.samtools import get_samtools_opts
 
+samtools_opts = get_samtools_opts(
+    snakemake, parse_write_index=False, parse_output_format=False
+)
+extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-prefix = os.path.splitext(snakemake.output[0])[0]
-
-shell(
-    "samtools fastq {snakemake.params} "
-    " -@ {snakemake.threads} "
-    " {snakemake.input[0]}"
-    " > {snakemake.output[0]} "
-    "{log}"
-)
+shell("samtools fastq {samtools_opts} {extra} {snakemake.input[0]} {log}")

@@ -5,19 +5,15 @@ __license__ = "MIT"
 
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.samtools import get_samtools_opts
 
+samtools_opts = get_samtools_opts(
+    snakemake, parse_write_index=False, parse_output_format=False
+)
+extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-extra = snakemake.params.get("extra", "")
-# Samtools takes additional threads through its option -@
-# One thread for samtools merge
-# Other threads are *additional* threads passed to the '-@' argument
-threads = "" if snakemake.threads <= 1 else " -@ {} ".format(snakemake.threads - 1)
 
 shell(
-    """
-    (samtools {snakemake.params.outputtype} \
-        {threads} {extra} \
-        {snakemake.input} > {snakemake.output}) {log}
-    """
+    "samtools {snakemake.params.outputtype} {samtools_opts} {extra} {snakemake.input} {log}"
 )

@@ -6,6 +6,7 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
+extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 # Samtools takes additional threads through its option -@
@@ -14,5 +15,5 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 threads = "" if snakemake.threads <= 1 else " -@ {} ".format(snakemake.threads - 1)
 
 shell(
-    "samtools index {threads} {snakemake.params} {snakemake.input[0]} {snakemake.output[0]} {log}"
+    "samtools index {threads} {extra} {snakemake.input[0]} {snakemake.output[0]} {log}"
 )
