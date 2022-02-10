@@ -11,7 +11,7 @@ samtools_opts = get_samtools_opts(
     snakemake, parse_write_index=False, parse_output_format=False
 )
 extra = snakemake.params.get("extra", "")
-log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
 shell(
