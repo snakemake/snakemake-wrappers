@@ -2,6 +2,7 @@ name: samtools mpileup
 description: Generate pileup using samtools.
 authors:
   - Patrik Smeds
+  - Filipe G. Vieira
 notes: |
   * The `extra` param allows for additional program arguments.
   * For more information see, http://www.htslib.org/doc/samtools-mpileup.html

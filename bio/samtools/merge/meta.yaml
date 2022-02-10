@@ -2,6 +2,7 @@ name: samtools merge
 description: Merge two bam files with samtools.
 authors:
   - Johannes Köster
+  - Filipe G. Vieira
 input:
   - list of bam files to merge
 output:

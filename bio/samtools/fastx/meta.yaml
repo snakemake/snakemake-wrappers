@@ -2,6 +2,7 @@ name: samtools fastx
 description: Converts a SAM, BAM or CRAM into FASTQ or FASTA format.
 authors:
   - William Rowell
+  - Filipe G. Vieira
 input:
   - bam or sam file (.bam, .sam)
 output:
