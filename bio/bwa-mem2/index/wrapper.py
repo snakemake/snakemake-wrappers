@@ -16,7 +16,11 @@ elif len(snakemake.input) > 1:
     raise ValueError("Please provide exactly one reference genome as input.")
 
 # Prefix that should be used for the database
-prefix = snakemake.params.get("prefix", "")
+prefix = None
+if "prefix" in snakemake.params.keys():
+    prefix = snakemake.params["prefix"]
+else:
+    prefix = splitext(snakemake.output[0])[0]
 
 if len(prefix) > 0:
     prefix = "-p " + prefix

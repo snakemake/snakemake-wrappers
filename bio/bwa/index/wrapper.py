@@ -3,7 +3,7 @@ __copyright__ = "Copyright 2016, Patrik Smeds"
 __email__ = "patrik.smeds@gmail.com"
 __license__ = "MIT"
 
-from os import path
+from os.path import splitext
 
 from snakemake.shell import shell
 
@@ -16,7 +16,7 @@ elif len(snakemake.input) > 1:
     raise ValueError("Only one reference genome can be inputed!")
 
 # Prefix that should be used for the database
-prefix = snakemake.params.get("prefix", "")
+prefix = snakemake.params.get("prefix", splitext(snakemake.output.idx[0])[0])
 
 if len(prefix) > 0:
     prefix = "-p " + prefix

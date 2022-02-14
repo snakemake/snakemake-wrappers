@@ -1,0 +1,18 @@
+name: manta
+description: |
+  Call structural variants with manta.
+authors:
+  - Filipe G. Vieira
+input:
+  - BAM/CRAM file(s)
+  - reference genome
+  - BED file (optional)
+output:
+  - SVs and indels scored and genotyped under a diploid model (diploidSV.vcf.gz).
+  - Unfiltered SV and indel candidates (candidateSV.vcf.gz).
+  - Subset of the previous file containing only simple insertion and deletion variants less than the minimum scored variant size (candidateSmallIndels.vcf.gz).
+notes: |
+  * The `extra_cfg` param allows for additional program arguments to `configManta.py`.
+  * The `extra_run` param allows for additional program arguments to `runWorkflow.py`.
+  * The `runDir` is created using pythons `tempfile`, meaning that all intermediate files are deleted on job completion
+  * For more information see, https://github.com/Illumina/manta

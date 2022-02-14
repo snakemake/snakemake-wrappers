@@ -1,0 +1,24 @@
+rule muscle_fasta:
+    input:
+        fasta="{sample}.fa",  # Input fasta file
+    output:
+        alignment="{sample}.afa",  # Output alignment file
+    log:
+        "logs/muscle/{sample}.log",
+    params:
+        extra="",  # Additional arguments
+    wrapper:
+        "master/bio/muscle"
+
+
+rule muscle_clw:
+    input:
+        fasta="{sample}.fa",
+    output:
+        alignment="{sample}.clw",
+    log:
+        "logs/muscle/{sample}.log",
+    params:
+        extra="-clw",
+    wrapper:
+        "master/bio/muscle"

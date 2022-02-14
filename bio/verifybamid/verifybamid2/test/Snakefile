@@ -1,0 +1,21 @@
+rule verify_bam_id:
+    input:
+        bam="a.bam",
+        ref="genome.fasta",
+        # optional - this can be used to specify custom resource files if
+        # necessary (if using GRCh37 or GRCh38 instead simply specify
+        # params.genome_build="38", for example)
+        # N.B. if svd_mu={prefix}.mu, then {prefix}.bed, {prefix}.UD, and
+        # {prefix}.V must also exist
+        svd_mu="ref.vcf.mu",
+    output:
+        selfsm="a.selfSM",
+        ancestry="a.ancestry",
+    params:
+        # optional - see note for input.svd_mu
+        # current choices are {37,38}
+        # genome_build="38",
+    log:
+        "logs/verifybamid2/a.log",
+    wrapper:
+        "master/bio/verifybamid/verifybamid2"

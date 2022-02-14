@@ -46,7 +46,8 @@ jobs:
           export PATH="/usr/share/miniconda/bin:$PATH"
           source activate snakemake
           declare -i ERRORS=0
-          for f in $(git diff origin/master --name-only | grep Snakefile)
+          # get all modified and added files, not those that are deleted
+          for f in $(git diff origin/master --name-only --diff-filter=d | grep Snakefile)
           do 
             snakemake -s $f --lint
             ERRORS+=$?

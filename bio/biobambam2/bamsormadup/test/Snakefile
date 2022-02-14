@@ -1,15 +1,15 @@
-rule mark_duplicates:
+rule mark_duplicates_bamsormadup:
     input:
-        "mapped/{sample}.bam"
+        "mapped/{sample}.bam",
     output:
         bam="dedup/{sample}.bam",
         index="dedup/{sample}.bai",
         metrics="dedup/{sample}.metrics.txt",
     log:
-        "logs/{sample}.log"
+        "logs/{sample}.log",
     params:
-        extra="SO=coordinate"
+        extra="SO=coordinate",
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     wrapper:
         "master/bio/biobambam2/bamsormadup"

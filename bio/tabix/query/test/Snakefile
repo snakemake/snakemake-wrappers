@@ -1,0 +1,14 @@
+rule tabix:
+    input:
+        "{prefix}.bed.gz",
+        "{prefix}.bed.gz.tbi"
+        ## list the VCF/BCF as the first input
+        ## and the index as the second input
+    output:
+        "{prefix}.output.bed"
+    params:
+        region = "1"
+    log:
+        "logs/tabix/query/{prefix}.log"
+    wrapper:
+        "master/bio/tabix/query"

@@ -6,6 +6,7 @@ __email__ = "julianderuiter@gmail.com"
 __license__ = "MIT"
 
 
+import tempfile
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
@@ -22,23 +23,23 @@ fastq_unpaired = snakemake.output.get("unpaired_fastq", None)
 if not isinstance(fastq1, str):
     raise ValueError("f1 needs to be provided")
 
-output = " FASTQ=" + fastq1
+output = f"--FASTQ {fastq1}"
 
 if isinstance(fastq2, str):
-    output += " SECOND_END_FASTQ=" + fastq2
+    output += f" --SECOND_END_FASTQ {fastq2}"
 
 if isinstance(fastq_unpaired, str):
     if not isinstance(fastq2, str):
         raise ValueError("f2 is required if fastq_unpaired is set")
 
-    output += " UNPAIRED_FASTQ=" + fastq_unpaired
+    output += f" --UNPAIRED_FASTQ {fastq_unpaired}"
 
-shell(
-    "picard"
-    " SamToFastq"
-    " {java_opts}"
-    " {extra}"
-    " INPUT={snakemake.input[0]}"
-    " {output}"
-    " {log}"
-)
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "picard SamToFastq"
+        " {java_opts} {extra}"
+        " --INPUT {snakemake.input[0]}"
+        " --TMP_DIR {tmpdir}"
+        " {output}"
+        " {log}"
+    )

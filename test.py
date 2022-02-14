@@ -606,6 +606,14 @@ def test_shovill():
 
 
 @skip_if_not_modified
+def test_seqtk_seq():
+    run(
+        "bio/seqtk/seq",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.fasta"],
+    )
+
+
+@skip_if_not_modified
 def test_seqtk_mergepe():
     run(
         "bio/seqtk/mergepe",
@@ -773,10 +781,18 @@ def test_bcftools_reheader():
 
 
 @skip_if_not_modified
-def test_bcftools_view_sample_vcf():
+def test_bcftools_stats():
     run(
-        "bio/bcftools/view",
-        ["snakemake", "--cores", "1", "a.view_sample.vcf", "--use-conda", "-F"],
+        "bio/bcftools/stats",
+        ["snakemake", "--cores", "1", "a.bcf.stats.txt", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_bcftools_norm():
+    run(
+        "bio/bcftools/norm",
+        ["snakemake", "--cores", "1", "a.norm.vcf", "--use-conda", "-F"],
     )
 
 
@@ -908,6 +924,14 @@ def test_bedtools_slop():
     run(
         "bio/bedtools/slop",
         ["snakemake", "--cores", "1", "A.slop.bed", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_bgzip():
+    run(
+        "bio/bgzip",
+        ["snakemake", "--cores", "1", "test.vcf.gz", "--use-conda", "-F"]
     )
 
 
@@ -1593,6 +1617,14 @@ def test_fastq_screen():
 
 
 @skip_if_not_modified
+def test_fasttree():
+    run(
+        "bio/fasttree",
+        ["snakemake", "--cores", "1", "test-proteins.nwk", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_fgbio_annotate():
     run(
         "bio/fgbio/annotatebamwithumis",
@@ -2014,6 +2046,22 @@ def test_multiqc():
 
 
 @skip_if_not_modified
+def test_muscle_clw():
+    run(
+        "bio/muscle",
+        ["snakemake", "--cores", "1", "test-proteins.clw", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_muscle_fa():
+    run(
+        "bio/muscle",
+        ["snakemake", "--cores", "1", "test-proteins.afa", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_nanosimh():
     run(
         "bio/nanosim-h",
@@ -2425,6 +2473,14 @@ def test_samtools_view():
 
 
 @skip_if_not_modified
+def test_samtools_fastx():
+    run(
+        "bio/samtools/fastx",
+        ["snakemake", "--cores", "1", "a.fasta", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_samtools_flagstat():
     run(
         "bio/samtools/flagstat",
@@ -2448,17 +2504,17 @@ def test_samtools_idxstats():
 
 
 @skip_if_not_modified
-def test_samtools_bam2fq_interleaved():
+def test_samtools_fastq_interleaved():
     run(
-        "bio/samtools/bam2fq/interleaved",
+        "bio/samtools/fastq/interleaved",
         ["snakemake", "--cores", "1", "reads/a.fq", "--use-conda", "-F"],
     )
 
 
 @skip_if_not_modified
-def test_samtools_bam2fq_separate():
+def test_samtools_fastq_separate():
     run(
-        "bio/samtools/bam2fq/separate",
+        "bio/samtools/fastq/separate",
         ["snakemake", "--cores", "1", "reads/a.1.fq", "--use-conda", "-F"],
     )
 
@@ -2800,6 +2856,11 @@ def test_rubic():
 @skip_if_not_modified
 def test_delly():
     run("bio/delly", ["snakemake", "--cores", "1", "sv/calls.bcf", "--use-conda", "-F"])
+
+
+@skip_if_not_modified
+def test_manta():
+    run("bio/manta", ["snakemake", "--cores", "2", "results/out.bcf", "--use-conda", "-F"])
 
 
 @skip_if_not_modified
@@ -3492,6 +3553,7 @@ def test_ensembl_variation_grch37():
         ["snakemake", "-s", "grch37.smk", "--cores", "1", "--use-conda", "-F"],
     )
 
+
 @skip_if_not_modified
 def test_ensembl_variation_chromosome():
     run(
@@ -3672,6 +3734,14 @@ def test_tabix():
     run(
         "bio/tabix",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "test.vcf.gz.tbi"],
+    )
+
+
+@skip_if_not_modified
+def test_tabix_query():
+    run(
+        "bio/tabix/query",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "A.output.bed"],
     )
 
 
@@ -4103,4 +4173,12 @@ def test_metaspades():
             "--show-failed-logs",
             "-F",
         ],
+    )
+
+
+@skip_if_not_modified
+def test_verifybamid2():
+    run(
+        "bio/verifybamid/verifybamid2",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )
