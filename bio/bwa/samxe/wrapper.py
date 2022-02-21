@@ -10,6 +10,12 @@ from os import path
 from snakemake.shell import shell
 
 
+index = snakemake.input.get("idx", "")
+if isinstance(index, str):
+    index = path.splitext(snakemake.input.idx)[0]
+else:
+    index = path.splitext(snakemake.input.idx[0])[0]
+
 # Check inputs.
 fastq = (
     snakemake.input.fastq
@@ -80,7 +86,7 @@ else:
 shell(
     "(bwa {alg}"
     " {extra}"
-    " {snakemake.params.index}"
+    " {index}"
     " {snakemake.input.sai}"
     " {snakemake.input.fastq}"
     " | " + pipe_cmd + ") {log}"

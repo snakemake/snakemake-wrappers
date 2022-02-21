@@ -1,12 +1,12 @@
 rule bwa_mem:
     input:
-        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"]
+        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        idx=multiext("genome", ".amb", ".ann", ".bwt", ".pac", ".sa"),
     output:
         "mapped/{sample}.bam"
     log:
         "logs/bwa_mem/{sample}.log"
     params:
-        index="genome",
         extra=r"-R '@RG\tID:{sample}\tSM:{sample}'",
         sort="samtools",             # Can be 'none', 'samtools' or 'picard'.
         sort_order="coordinate",  # Can be 'queryname' or 'coordinate'.
@@ -20,6 +20,8 @@ rule samtools_index:
         "mapped/{sample}.bam"
     output:
         "mapped/{sample}.bam.bai"
+    log:
+        "logs/samtools_index/{sample}.log"
     params:
         "" # optional params string
     wrapper:

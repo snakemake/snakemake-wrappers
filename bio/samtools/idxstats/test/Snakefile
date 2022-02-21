@@ -1,10 +1,12 @@
 rule samtools_idxstats:
     input:
         bam="mapped/{sample}.bam",
-        idx="mapped/{sample}.bam.bai"
+        idx="mapped/{sample}.bam.bai",
     output:
-        "mapped/{sample}.bam.idxstats"
+        "mapped/{sample}.bam.idxstats",
     log:
-        "logs/samtools/idxstats/{sample}.log"
+        "logs/samtools/idxstats/{sample}.log",
+    params:
+        extra="",  # optional params string
     wrapper:
         "master/bio/samtools/idxstats"

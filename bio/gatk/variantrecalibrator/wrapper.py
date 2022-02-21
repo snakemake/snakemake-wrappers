@@ -5,7 +5,7 @@ __license__ = "MIT"
 
 
 import os
-
+import tempfile
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
@@ -20,9 +20,7 @@ def fmt_res(resname, resparams):
         f = snakemake.input.get(resname)
     except KeyError:
         raise RuntimeError(
-            "There must be a named input file for every resource (missing: {})".format(
-                resname
-            )
+            f"There must be a named input file for every resource (missing: {resname})"
         )
     return "{},known={},training={},truth={},prior={} {}".format(
         resname,
@@ -38,16 +36,26 @@ annotation_resources = [
     "--resource:{}".format(fmt_res(resname, resparams))
     for resname, resparams in snakemake.params["resources"].items()
 ]
+
 annotation = list(map("-an {}".format, snakemake.params.annotation))
-tranches = ""
-if snakemake.output.tranches:
-    tranches = "--tranches-file " + snakemake.output.tranches
+
+tranches = snakemake.output.get("tranches", "")
+if tranches:
+    tranches = f"--tranches-file {tranches}"
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-shell(
-    "gatk --java-options '{java_opts}' VariantRecalibrator {extra} {annotation_resources} "
-    "-R {snakemake.input.ref} -V {snakemake.input.vcf} "
-    "-mode {snakemake.params.mode} "
-    "--output {snakemake.output.vcf} "
-    "{tranches} {annotation} {log}"
-)
+
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "gatk --java-options '{java_opts}' VariantRecalibrator"
+        " --variant {snakemake.input.vcf}"
+        " --reference {snakemake.input.ref}"
+        " --mode {snakemake.params.mode}"
+        " {annotation_resources}"
+        " {tranches}"
+        " {annotation}"
+        " {extra}"
+        " --tmp-dir {tmpdir}"
+        " --output {snakemake.output.vcf}"
+        " {log}"
+    )

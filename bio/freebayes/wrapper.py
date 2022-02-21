@@ -6,6 +6,7 @@ __license__ = "MIT"
 
 from os import path
 from snakemake.shell import shell
+from tempfile import TemporaryDirectory
 
 shell.executable("bash")
 
@@ -13,7 +14,6 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 params = snakemake.params.get("extra", "")
 norm = snakemake.params.get("normalize", False)
-assert norm in [True, False]
 
 
 # Infer output format
@@ -38,7 +38,7 @@ else:
 
 pipe = ""
 if norm:
-    pipe = f"| bcftools norm --output-type {out_format} -"
+    pipe = f"| bcftools norm {norm} --output-type {out_format} -"
 else:
     pipe = f"| bcftools view --output-type {out_format} -"
 
@@ -63,7 +63,8 @@ else:
         snakemake=snakemake, regions=regions
     )
 
-shell(
-    "({freebayes} {params} -f {snakemake.input.ref}"
-    " {snakemake.input.samples} {pipe} > {snakemake.output[0]}) {log}"
-)
+with TemporaryDirectory() as tempdir:
+    shell(
+        "({freebayes} {params} -f {snakemake.input.ref}"
+        " {snakemake.input.samples} | bcftools sort -T {tempdir} - {pipe} > {snakemake.output[0]}) {log}"
+    )

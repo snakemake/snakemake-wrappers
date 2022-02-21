@@ -1,0 +1,11 @@
+rule fasttree:
+    input:
+        alignment="{sample}.fa",  # Input alignment file
+    output:
+        tree="{sample}.nwk",  # Output tree file
+    log:
+        "logs/muscle/{sample}.log",
+    params:
+        extra="",  # Additional arguments
+    wrapper:
+        "master/bio/fasttree"

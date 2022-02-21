@@ -1,0 +1,9 @@
+name: jellyfish_merge
+description: Merge jellyfish databases.
+url: https://github.com/gmarcais/Jellyfish
+authors:
+  - William Rowell
+input:
+  - multiple jf kmer count files
+output:
+  - merged jf kmer count file

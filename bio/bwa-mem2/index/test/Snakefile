@@ -1,6 +1,6 @@
 rule bwa_mem2_index:
     input:
-        "{genome}"
+        "{genome}",
     output:
         "{genome}.0123",
         "{genome}.amb",
@@ -8,8 +8,8 @@ rule bwa_mem2_index:
         "{genome}.bwt.2bit.64",
         "{genome}.pac",
     log:
-        "logs/bwa-mem2_index/{genome}.log"
+        "logs/bwa-mem2_index/{genome}.log",
     params:
-        prefix=lambda w: w.genome
+        prefix=lambda w: w.genome,
     wrapper:
         "master/bio/bwa-mem2/index"

@@ -1,9 +1,11 @@
 rule samtools_index:
     input:
-        "{sample}.fa"
+        "{sample}.fa",
     output:
-        "{sample}.fa.fai"
+        "{sample}.fa.fai",
+    log:
+        "{sample}.log",
     params:
-        "" # optional params string
+        extra="",  # optional params string
     wrapper:
         "master/bio/samtools/faidx"

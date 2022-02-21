@@ -2,11 +2,11 @@ rule mpilup:
     input:
         # single or list of bam files
         bam="mapped/{sample}.bam",
-        reference_genome="genome.fasta"
+        reference_genome="genome.fasta",
     output:
-        "mpileup/{sample}.mpileup.gz"
+        "mpileup/{sample}.mpileup.gz",
     log:
-        "logs/samtools/mpileup/{sample}.log"
+        "logs/samtools/mpileup/{sample}.log",
     params:
         extra="-d 10000",  # optional
     wrapper:

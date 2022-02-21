@@ -11,4 +11,7 @@ output:
   - GC metrics PDF figure
   - GC summary metrics text file
 notes: |
-        * For more information, see https://broadinstitute.github.io/picard/command-line-overview.html#CollectGcBiasMetrics.
+  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  * The `extra` param allows for additional program arguments.
+  * `--TMP_DIR` is automatically set by `resources.tmpdir`
+  * For more information, see https://broadinstitute.github.io/picard/command-line-overview.html#CollectGcBiasMetrics

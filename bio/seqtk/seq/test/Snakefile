@@ -1,0 +1,11 @@
+rule seqtk_seq_fastq_to_fasta:
+    input:
+        "{prefix}.fastq",
+    output:
+        "{prefix}.fasta",
+    log:
+        "{prefix}.log",
+    params:
+        extra="-A",
+    wrapper:
+        "master/bio/seqtk/seq"

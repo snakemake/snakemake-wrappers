@@ -81,7 +81,11 @@ if not os.path.exists(os.path.join(output_dir, "params.txt")):
 else:
     # params.txt file exitst already I restart from previous run
 
-    shell("echo '\n\nRestart Spades \n' >> {log[0]}")
+    shell(
+        "echo '\n\nRestart Spades \n Remove pipline_state file copy files to force copy files if necessary.' >> {log[0]}"
+    )
+
+    shell("rm -f {output_dir}/pipeline_state/stage_*_copy_files 2>> {log}")
 
     shell(
         "spades.py --meta "

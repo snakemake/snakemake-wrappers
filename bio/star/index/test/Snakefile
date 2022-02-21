@@ -1,15 +1,14 @@
 rule star_index:
     input:
-        fasta = "{genome}.fasta"
+        fasta="{genome}.fasta",
     output:
-        directory("{genome}")
+        directory("{genome}"),
     message:
         "Testing STAR index"
-    threads:
-        1
+    threads: 1
     params:
-        extra = ""
+        extra="",
     log:
-        "logs/star_index_{genome}.log"
+        "logs/star_index_{genome}.log",
     wrapper:
         "master/bio/star/index"

@@ -4,13 +4,13 @@ rule genomics_db_import:
     output:
         db=directory("db"),
     log:
-        "logs/gatk/genomicsdbimport.log"
+        "logs/gatk/genomicsdbimport.log",
     params:
         intervals="ref",
-        db_action="create", # optional
+        db_action="create",  # optional
         extra="",  # optional
         java_opts="",  # optional
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     wrapper:
         "master/bio/gatk/genomicsdbimport"

@@ -1,13 +1,13 @@
 rule gatk_interval_list_to_bed:
     input:
-        intervals="genome.intervals"
+        intervals="genome.intervals",
     output:
-        bed="genome.bed"
+        bed="genome.bed",
     log:
-        "logs/genome.log"
+        "logs/genome.log",
     params:
         extra="",
-	java_opts="", # optional
+        java_opts="",  # optional
     resources:
         mem_mb=1024,
     wrapper:

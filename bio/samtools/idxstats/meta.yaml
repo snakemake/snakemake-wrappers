@@ -1,9 +1,13 @@
 name: samtools idxstats
-description: Use samtools to retrieve and print stats form indexed bam, sam or cram files. For more information see `SAMtools documentation <http://www.htslib.org/doc/samtools-idxstats.html>`_.
+description: Use samtools to retrieve and print stats from indexed BAM, SAM or CRAM files.
 authors:
   - Antonie Vietor
+  - Filipe G. Vieira
 input:
-  - indexed sam, bam or cram file (.sam, .bam, .cram)
+  - indexed SAM, BAM or CRAM file (.SAM, .BAM, .CRAM)
   - corresponding index files
 output:
   - idxstat file (.idxstats)
+notes: |
+  * The `extra` param allows for additional program arguments (not `-@/--threads`).
+  * For more information see, http://www.htslib.org/doc/samtools-idxstats.html

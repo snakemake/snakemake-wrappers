@@ -3,15 +3,15 @@ rule gatk_applybqsr:
         bam="mapped/{sample}.bam",
         ref="genome.fasta",
         dict="genome.dict",
-        recal_table="recal/{sample}.grp"
+        recal_table="recal/{sample}.grp",
     output:
-        bam="recal/{sample}.bam"
+        bam="recal/{sample}.bam",
     log:
-        "logs/gatk/gatk_applybqsr/{sample}.log"
+        "logs/gatk/gatk_applybqsr/{sample}.log",
     params:
         extra="",  # optional
-        java_opts="", # optional
+        java_opts="",  # optional
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     wrapper:
         "master/bio/gatk/applybqsr"

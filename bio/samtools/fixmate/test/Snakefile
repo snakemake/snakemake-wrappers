@@ -1,13 +1,14 @@
 rule samtools_fixmate:
     input:
-        "mapped/{input}"
+        "mapped/{input}",
     output:
-        "fixed/{input}"
+        "fixed/{input}",
+    log:
+        "{input}.log",
     message:
         "Fixing mate information in {wildcards.input}"
-    threads:
-        1
+    threads: 1
     params:
-        extra = ""
+        extra="",
     wrapper:
         "master/bio/samtools/fixmate/"

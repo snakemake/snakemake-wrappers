@@ -1,9 +1,11 @@
 rule norm_vcf:
     input:
-        "{prefix}.vcf"
+        "{prefix}.bcf",
     output:
-        "{prefix}.vcf"
+        "{prefix}.norm.vcf",
+    log:
+        "{prefix}.norm.log",
     params:
-        ""  # optional parameters for bcftools norm (except -o)
+        extra="--rm-dup none",  # optional
     wrapper:
         "master/bio/bcftools/norm"

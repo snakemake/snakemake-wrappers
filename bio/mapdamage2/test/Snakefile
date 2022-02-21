@@ -11,11 +11,11 @@ rule mapdamage2:
         len="results/{sample}/Length_plot.pdf",
         lg_dist="results/{sample}/lgdistribution.txt",
         misincorp="results/{sample}/misincorporation.txt",
-#        rescaled_bam="results/{sample}.rescaled.bam", # uncomment if you want the rescaled BAM file
+    #   rescaled_bam="results/{sample}.rescaled.bam", # uncomment if you want the rescaled BAM file
     params:
-        extra="--no-stats"  # optional parameters for mapdamage2 (except -i, -r, -d, --rescale)
+        extra="--no-stats",  # optional parameters for mapdamage2 (except -i, -r, -d, --rescale)
     log:
-        "logs/{sample}/mapdamage2.log"
+        "logs/{sample}/mapdamage2.log",
     threads: 1  # MapDamage2 is not threaded
     wrapper:
         "master/bio/mapdamage2"

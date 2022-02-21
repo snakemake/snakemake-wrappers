@@ -1,19 +1,15 @@
 rule genotype_gvcfs:
     input:
         gvcfs=["calls/a.g.vcf", "calls/b.g.vcf"],
-        ref="genome.fasta"
+        ref="genome.fasta",
     output:
         gvcf="calls/all.g.vcf",
     log:
-        "logs/gatk/combinegvcfs.log"
+        "logs/gatk/combinegvcfs.log",
     params:
         extra="",  # optional
         java_opts="",  # optional
-    # optional specification of memory usage of the JVM that snakemake will respect with global
-    # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
-    # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
-    # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     wrapper:
         "master/bio/gatk/combinegvcfs"

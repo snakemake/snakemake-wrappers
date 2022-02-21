@@ -2,7 +2,7 @@ __author__ = "Filipe G. Vieira"
 __copyright__ = "Copyright 2021, Filipe G. Vieira"
 __license__ = "MIT"
 
-
+import tempfile
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
@@ -50,14 +50,18 @@ if ped:
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
-shell(
-    "gatk --java-options '{java_opts}' VariantEval "
-    "{vcf} "
-    "{bam} "
-    "{ref} "
-    "{ref_dict} "
-    "{known} "
-    "{ped} "
-    "{comp} "
-    "{extra} --output {snakemake.output[0]} {log}"
-)
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "gatk --java-options '{java_opts}' VariantEval"
+        " {vcf}"
+        " {bam}"
+        " {ref}"
+        " {ref_dict}"
+        " {known}"
+        " {ped}"
+        " {comp}"
+        " {extra}"
+        " --tmp-dir {tmpdir}"
+        " --output {snakemake.output[0]}"
+        " {log}"
+    )
