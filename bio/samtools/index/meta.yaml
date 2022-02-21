@@ -1,8 +1,12 @@
 name: samtools index
-description: Index bam file with samtools. For more information see `SAMtools documentation <http://www.htslib.org/doc/samtools-index.html>`_.
+description: Index bam file with samtools.
 authors:
   - Johannes Köster
+  - Filipe G. Vieira
 input:
   - bam file
 output:
   - bam file index (.bai)
+notes: |
+  * The `extra` param allows for additional program arguments.
+  * For more information see, http://www.htslib.org/doc/samtools-index.html

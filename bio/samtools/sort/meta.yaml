@@ -1,6 +1,8 @@
 name: samtools sort
-description: Sort bam file with samtools. For more information see `SAMtools documentation <http://www.htslib.org/doc/samtools-sort.html>`_.
+description: Sort bam file with samtools.
 authors:
   - Johannes Köster
+  - Filipe G. Vieira
 notes: |
-  * Samtools -@/--threads takes one integer as input. This is the number of additional threads and not raw threads.
+  * The `extra` param allows for additional program arguments (not `-@/--threads`, `--write-index`, `-o` or `-O/--output-fmt`).
+  * For more information see, http://www.htslib.org/doc/samtools-sort.html
