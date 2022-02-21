@@ -1,7 +1,6 @@
 rule bwa_aln:
     input:
         fastq="reads/{sample}.{pair}.fastq",
-        # Index can be a list of (all) files created by bwa, or one of them
         idx=multiext("genome", ".amb", ".ann", ".bwt", ".pac", ".sa"),
     output:
         "sai/{sample}.{pair}.sai",
