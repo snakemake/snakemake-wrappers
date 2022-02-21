@@ -3,19 +3,15 @@ rule gatk_baserecalibrator:
         bam="mapped/{sample}.bam",
         ref="genome.fasta",
         dict="genome.dict",
-        known="dbsnp.vcf.gz"  # optional known sites - single or a list
+        known="dbsnp.vcf.gz",  # optional known sites - single or a list
     output:
-        recal_table="recal/{sample}.grp"
+        recal_table="recal/{sample}.grp",
     log:
-        "logs/gatk/baserecalibrator/{sample}.log"
+        "logs/gatk/baserecalibrator/{sample}.log",
     params:
         extra="",  # optional
-        java_opts="", # optional
-    # optional specification of memory usage of the JVM that snakemake will respect with global
-    # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
-    # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
-    # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
+        java_opts="",  # optional
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     wrapper:
         "master/bio/gatk/baserecalibrator"

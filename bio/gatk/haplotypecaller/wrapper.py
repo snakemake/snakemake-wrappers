@@ -5,9 +5,23 @@ __license__ = "MIT"
 
 
 import os
-
+import tempfile
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
+
+extra = snakemake.params.get("extra", "")
+java_opts = get_java_opts(snakemake)
+
+bams = snakemake.input.bam
+if isinstance(bams, str):
+    bams = [bams]
+bams = list(map("--input {}".format, bams))
+
+intervals = snakemake.input.get("intervals", "")
+if not intervals:
+    intervals = snakemake.params.get("intervals", "")
+if intervals:
+    intervals = "--intervals {}".format(intervals)
 
 known = snakemake.input.get("known", "")
 if known:
@@ -17,19 +31,19 @@ bam_output = snakemake.output.get("bam", "")
 if bam_output:
     bam_output = "--bam-output " + str(bam_output)
 
-extra = snakemake.params.get("extra", "")
-java_opts = get_java_opts(snakemake)
-
-bams = snakemake.input.bam
-if isinstance(bams, str):
-    bams = [bams]
-bams = list(map("-I {}".format, bams))
-
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-shell(
-    "gatk --java-options '{java_opts}' HaplotypeCaller {extra} "
-    "--native-pair-hmm-threads {snakemake.threads} "
-    "-R {snakemake.input.ref} {bams} "
-    "-ERC GVCF {bam_output} "
-    "-O {snakemake.output.gvcf} {known} {log}"
-)
+
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "gatk --java-options '{java_opts}' HaplotypeCaller"
+        " --native-pair-hmm-threads {snakemake.threads}"
+        " {bams}"
+        " --reference {snakemake.input.ref}"
+        " {intervals}"
+        " {known}"
+        " {extra}"
+        " --tmp-dir {tmpdir}"
+        " --emit-ref-confidence GVCF {bam_output}"
+        " --output {snakemake.output.gvcf}"
+        " {log}"
+    )

@@ -3102,8 +3102,6 @@ def test_gatk_variantrecalibrator():
             "snakemake",
             "--cores",
             "1",
-            "-s",
-            "test.smk",
             "calls/all.recal.vcf",
             "--use-conda",
             "-F",
