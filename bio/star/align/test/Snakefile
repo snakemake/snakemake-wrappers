@@ -7,12 +7,13 @@ rule star_pe_multi:
         fq2=["reads/{sample}_R2.1.fastq", "reads/{sample}_R2.2.fastq"],  #optional
     output:
         # see STAR manual for additional output files
-        "star/pe/{sample}/Aligned.out.sam",
+        sam="star/pe/{sample}/Aligned.out.sam",
+        log="star/pe/{sample}/Log.out",
     log:
         "logs/star/pe/{sample}.log",
     params:
         # path to STAR reference genome index
-        index="index",
+        idx="index",
         # optional parameters
         extra="",
     threads: 8
@@ -25,12 +26,13 @@ rule star_se:
         fq1="reads/{sample}_R1.1.fastq",
     output:
         # see STAR manual for additional output files
-        "star/{sample}/Aligned.out.sam",
+        sam="star/se/{sample}/Aligned.out.sam",
+        log="star/se/{sample}/Log.out",
     log:
-        "logs/star/{sample}.log",
+        "logs/star/se/{sample}.log",
     params:
         # path to STAR reference genome index
-        index="index",
+        idx="index",
         # optional parameters
         extra="",
     threads: 8
