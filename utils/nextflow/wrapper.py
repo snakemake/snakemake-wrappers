@@ -32,7 +32,12 @@ for name, files in snakemake.input.items():
         files = ",".join(files)
     add_parameter(name, files)
 for name, value in snakemake.params.items():
-    if name != "pipeline" and name != "revision" and name != "profile" and name != "extra":
+    if (
+        name != "pipeline"
+        and name != "revision"
+        and name != "profile"
+        and name != "extra"
+    ):
         add_parameter(name, value)
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
