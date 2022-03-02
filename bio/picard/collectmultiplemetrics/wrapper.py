@@ -47,7 +47,7 @@ for file in snakemake.output:
             "Unknown type of metrics file requested, for possible metrics files, see https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/picard/collectmultiplemetrics.html"
         )
 
-programs = " --PROGRAM " + " --PROGRAM ".join(progs)
+programs = " PROGRAM=null --PROGRAM " + " --PROGRAM ".join(progs)
 
 out = str(snakemake.wildcards.sample)  # as default
 output_file = str(snakemake.output[0])
