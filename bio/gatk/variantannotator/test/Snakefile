@@ -1,9 +1,9 @@
 rule gatk_annotator:
     input:
-        vcf="calls/snvs.vcf",
-        bam="mapped/a.bam",
+        vcf="calls/snvs.vcf.gz",
+        aln="mapped/a.bam",
         ref="genome.fasta",
-        db="calls/snvs.vcf",
+        db="calls/snvs.vcf.gz",
     output:
         vcf="snvs.annot.vcf",
     log:

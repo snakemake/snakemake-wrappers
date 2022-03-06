@@ -11,7 +11,7 @@ java_opts = get_java_opts(snakemake)
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
-input = snakemake.input.get("bam", "")
+input = snakemake.input.get("aln", "")
 if input:
     input = f"--input {input}"
 

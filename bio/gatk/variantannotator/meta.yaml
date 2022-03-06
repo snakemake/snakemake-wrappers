@@ -7,6 +7,7 @@ input:
   - VCF file
   - BAM file
   - reference genome
+  - VCF of known variation
 output:
   - annotated VCF file
 notes: |
