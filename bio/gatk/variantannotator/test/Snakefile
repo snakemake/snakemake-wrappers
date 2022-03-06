@@ -1,0 +1,17 @@
+rule gatk_annotator:
+    input:
+        vcf="calls/snvs.vcf",
+        bam="mapped/a.bam",
+        ref="genome.fasta",
+        db="calls/snvs.vcf",
+    output:
+        vcf="snvs.annot.vcf",
+    log:
+        "logs/gatk/annotator/snvs.log",
+    params:
+        extra="--resource-allele-concordance -A Coverage --expression db.END",
+        java_opts="",  # optional
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/gatk/variantannotator"
