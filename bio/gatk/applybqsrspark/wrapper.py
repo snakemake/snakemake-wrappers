@@ -21,7 +21,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 with tempfile.TemporaryDirectory() as tmpdir:
     # This folder must not exist; it is created by GATK
-    tmpdir_shards = Path(tmpdir) / "shards_{:06d}".format(random.randrange(10 ** 6))
+    tmpdir_shards = Path(tmpdir) / "shards_{:06d}".format(random.randrange(10**6))
 
     shell(
         "gatk --java-options '{java_opts}' ApplyBQSRSpark"
