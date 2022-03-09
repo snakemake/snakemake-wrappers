@@ -34,7 +34,7 @@ if metrics:
 with tempfile.TemporaryDirectory() as tmpdir:
     # This folder must not exist; it is created by BamSorMaDup
     tmpdir_bamsormadup = Path(tmpdir) / "bamsormadup_{:06d}".format(
-        random.randrange(10 ** 6)
+        random.randrange(10**6)
     )
 
     shell(
