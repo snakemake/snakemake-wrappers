@@ -24,6 +24,7 @@ java_opts = get_java_opts(snakemake)
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "gatk --java-options '{java_opts}' Mutect2"  # Tool and its subprocess
+        " --native-pair-hmm-threads {snakemake.threads}"
         " --input {snakemake.input.map}"  # Path to input mapping file
         " --reference {snakemake.input.fasta}"  # Path to reference fasta file
         " {extra}"  # Extra parameters
