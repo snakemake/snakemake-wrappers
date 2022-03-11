@@ -4,6 +4,7 @@ rule gatk_annotator:
         aln="mapped/a.bam",
         ref="genome.fasta",
         db="calls/snvs.vcf.gz",
+#        intervals="targets.bed",
     output:
         vcf="snvs.annot.vcf",
     log:
