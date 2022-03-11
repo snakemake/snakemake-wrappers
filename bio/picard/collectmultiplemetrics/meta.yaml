@@ -52,6 +52,7 @@ description: >
 authors:
   - David Laehnemann
   - Antonie Vietor
+  - Filipe G. Vieira
 input:
   - BAM file (.bam)
   - FASTA reference sequence file (.fasta or .fa)
