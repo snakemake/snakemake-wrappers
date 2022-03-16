@@ -2,6 +2,7 @@ rule gatk_filter:
     input:
         vcf="calls/snvs.vcf",
         ref="genome.fasta",
+#        intervals="targets.bed",
     output:
         vcf="calls/snvs.filtered.vcf",
     log:

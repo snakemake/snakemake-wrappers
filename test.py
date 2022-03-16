@@ -3134,6 +3134,14 @@ def test_gatk_selectvariants():
 
 
 @skip_if_not_modified
+def test_gatk_variantannotator():
+    run(
+        "bio/gatk/variantannotator",
+        ["snakemake", "--cores", "1", "snvs.annot.vcf", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_gatk_variantfiltration():
     run(
         "bio/gatk/variantfiltration",
