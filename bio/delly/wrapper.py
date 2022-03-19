@@ -4,7 +4,9 @@ __email__ = "koester@jimmy.harvard.edu"
 __license__ = "MIT"
 
 
+import tempfile
 from snakemake.shell import shell
+from snakemake_wrapper_utils.bcftools import infer_out_format
 
 
 exclude = (
@@ -16,8 +18,25 @@ exclude = (
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-shell(
-    "OMP_NUM_THREADS={snakemake.threads} delly call {extra} "
-    "{exclude} -g {snakemake.input.ref} "
-    "-o {snakemake.output[0]} {snakemake.input.samples} {log}"
+
+# Infer output format
+out_format = infer_out_format(
+    snakemake.output[0], snakemake.params.get("uncompressed_bcf", False)
 )
+
+
+with NamedTemporaryFile().name as tmpout:
+    shell(
+        "(OMP_NUM_THREADS={snakemake.threads} delly call"
+        " -g {snakemake.input.ref}"
+        " -o {tmpout}"
+        " {exclude}"
+        " {extra}"
+        " {snakemake.input.samples};"
+        # Convert output to specified format
+        "bcftools view"
+        " -O {out_format}"
+        " -o {snakemake.output[0]}"
+        " {tmpout}"
+        ") {log}"
+    )
