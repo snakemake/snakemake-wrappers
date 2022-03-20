@@ -5,7 +5,11 @@ __license__ = "MIT"
 
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.bcftools import get_bcftools_opts
 
+
+bcftools_opts = get_bcftools_opts(snakemake, parse_memory=False)
+extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
@@ -13,21 +17,15 @@ class MissingReferenceError(Exception):
     pass
 
 
-options = snakemake.params.get("options", "")
-
-# determine if a fasta reference is provided or not and add to options
-if "--no-reference" not in options:
+# determine if a fasta reference is provided or not and add to extra
+if "--no-reference" not in extra:
     ref = snakemake.input.get("ref", "")
     if not ref:
         raise MissingReferenceError(
             "The --no-reference option was not given, but no fasta reference was "
             "provided."
         )
-    options += " --fasta-ref {}".format(ref)
+    extra += f" --fasta-ref {ref}"
 
-shell(
-    "bcftools mpileup {options} --threads {snakemake.threads} "
-    "--output {snakemake.output.pileup} "
-    "{snakemake.input.alignments} "
-    "{log}"
-)
+
+shell("bcftools mpileup {extra} {snakemake.input[0]} {log}")

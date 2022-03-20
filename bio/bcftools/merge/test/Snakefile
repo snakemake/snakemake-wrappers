@@ -1,9 +1,9 @@
 rule bcftools_merge:
     input:
-        calls=["a.bcf", "b.bcf"]
+        calls=["a.bcf", "b.bcf"],
     output:
-        "all.bcf"
+        "all.bcf",
     params:
-        ""  # optional parameters for bcftools concat (except -o)
+        extra="",  # optional parameters for bcftools concat (except -o)
     wrapper:
         "master/bio/bcftools/merge"

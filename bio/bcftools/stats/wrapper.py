@@ -5,14 +5,21 @@ __license__ = "MIT"
 
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.bcftools import get_bcftools_opts
 
-# bcftools takes additional decompression threads through --threads
-# Other threads are *additional* threads passed to the '--threads' argument
-threads = (
-    "" if snakemake.threads <= 1 else " --threads {} ".format(snakemake.threads - 1)
+
+bcftools_opts = get_bcftools_opts(
+    snakemake, parse_output=False, parse_output_format=False, parse_memory=False
 )
-log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+extra = snakemake.params.get("extra", "")
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+
 
 shell(
-    "bcftools stats {threads} {snakemake.params} {snakemake.input} > {snakemake.output} {log}"
+    "bcftools stats"
+    " {bcftools_opts}"
+    " {extra}"
+    " {snakemake.input[0]}"
+    " > {snakemake.output[0]}"
+    " {log}"
 )
