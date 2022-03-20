@@ -6,22 +6,18 @@ __license__ = "MIT"
 
 import tempfile
 from snakemake.shell import shell
-from snakemake_wrapper_utils.bcftools import infer_out_format
+from snakemake_wrapper_utils.bcftools import get_bcftools_opts
+
+
+bcftools_opts = get_bcftools_opts(snakemake, parse_memory=False)
+extra = snakemake.params.get("extra", "")
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
 exclude = (
     "-x {}".format(snakemake.input.exclude)
     if snakemake.input.get("exclude", "")
     else ""
-)
-
-extra = snakemake.params.get("extra", "")
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-
-
-# Infer output format
-out_format = infer_out_format(
-    snakemake.output[0], snakemake.params.get("uncompressed_bcf", False)
 )
 
 
@@ -32,11 +28,10 @@ with NamedTemporaryFile().name as tmpout:
         " -o {tmpout}"
         " {exclude}"
         " {extra}"
-        " {snakemake.input.samples};"
+        " {snakemake.input[0]};"
         # Convert output to specified format
         "bcftools view"
-        " -O {out_format}"
-        " -o {snakemake.output[0]}"
+        " {bcftools_opts}"
         " {tmpout}"
         ") {log}"
     )
