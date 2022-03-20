@@ -6,6 +6,7 @@ rule bcftools_mpileup:
     output:
         pileup="pileups/{sample}.pileup.bcf",
     params:
+        uncompressed_bcf=False,
         extra="--max-depth 100 --min-BQ 15",
     log:
         "logs/bcftools_mpileup/{sample}.log",
