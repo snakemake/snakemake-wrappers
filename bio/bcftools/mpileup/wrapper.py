@@ -9,7 +9,9 @@ from snakemake_wrapper_utils.bcftools import get_bcftools_opts
 
 
 extra = snakemake.params.get("extra", "")
-bcftools_opts = get_bcftools_opts(snakemake, parse_ref=("--no-reference" not in extra), parse_memory=False)
+bcftools_opts = get_bcftools_opts(
+    snakemake, parse_ref=("--no-reference" not in extra), parse_memory=False
+)
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 

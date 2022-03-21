@@ -15,4 +15,17 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
+if "--tbi" in extra or "--csi" in extra:
+    raise ValueError(
+        "You have specified index format (`--tbi/--csi`) in `params.extra`; this is automatically infered from the first output file."
+    )
+
+if snakemake.output[0].endswith(".tbi"):
+    extra += " --tbi"
+elif snakemake.output[0].endswith(".csi"):
+    extra += " --csi"
+else:
+    raise ValueError("invalid index file format ('.tbi', '.csi').")
+
+
 shell("bcftools index {bcftools_opts} {extra} {snakemake.input[0]} {log}")
