@@ -1002,6 +1002,14 @@ def test_bowtie2_build():
 
 
 @skip_if_not_modified
+def test_bowtie2_build_large():
+    run(
+        "bio/bowtie2/build",
+        ["snakemake", "--cores", "1", "genome.1.bt2l", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_bwa_mem():
     run(
         "bio/bwa/mem",
