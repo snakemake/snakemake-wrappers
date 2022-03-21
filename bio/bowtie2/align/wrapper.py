@@ -24,8 +24,7 @@ else:
     reads = "-1 {} -2 {}".format(*snakemake.input.sample)
 
 
-index = os.path.commonpath(snakemake.input.idx)
-
+index = os.path.commonprefix(snakemake.input.idx)
 
 
 shell(
