@@ -36,6 +36,6 @@ shell(
     " {extra}"
     "| samtools view"
     " {samtools_opts}"
-    " {extra} -"
+    " -"
     ") {log}"
 )
