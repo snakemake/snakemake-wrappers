@@ -11,7 +11,7 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
-index = os.path.commonprefix(snakemake.output)
+index = os.path.commonprefix(snakemake.output).rstrip(".")
 
 
 shell(
