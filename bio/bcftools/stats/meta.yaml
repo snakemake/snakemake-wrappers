@@ -9,5 +9,5 @@ input:
 output:
   - stats text file
 notes: |
-  * The `extra` param allows for additional program arguments (not `--threads`, or `-o/--output`).
+  * The `extra` param allows for additional program arguments (not `--threads`, `-f/--fasta-ref`, or `-o/--output`).
   * For more information see, http://www.htslib.org/doc/bcftools.html#stats

@@ -10,7 +10,7 @@ from snakemake.shell import shell
 from snakemake_wrapper_utils.bcftools import get_bcftools_opts
 
 
-bcftools_opts = get_bcftools_opts(snakemake, parse_memory=False)
+bcftools_opts = get_bcftools_opts(snakemake, parse_ref=False, parse_memory=False)
 extra = snakemake.params.get("extra", "")
 view_extra = snakemake.params.get("view_extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
@@ -38,7 +38,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " --temp-prefix {tmp_prefix}"
         " {snakemake.input[0]}"
         "| bcftools view"
-        " {bcftools_opt}"
+        " {bcftools_opts}"
         " {view_extra}"
         ") {log}"
     )
