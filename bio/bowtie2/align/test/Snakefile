@@ -15,7 +15,7 @@ rule bowtie2:
     log:
         "logs/bowtie2/{sample}.log",
     params:
-        extra="--large-index",  # optional parameters
+        extra="",  # optional parameters
     threads: 8  # Use at least two threads
     wrapper:
         "master/bio/bowtie2/align"

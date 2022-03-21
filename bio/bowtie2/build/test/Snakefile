@@ -14,7 +14,7 @@ rule bowtie2_build:
     log:
         "logs/bowtie2_build/build.log",
     params:
-        extra="",  # optional parameters
+        extra="--large-index",  # optional parameters
     threads: 8
     wrapper:
         "master/bio/bowtie2/build"
