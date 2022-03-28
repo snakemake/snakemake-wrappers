@@ -1,6 +1,14 @@
 name: "bowtie2"
 description: Map reads with bowtie2.
+url: http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml
 authors:
   - Johannes Köster
-note:
-  This wrapper uses an inner pipe. Make sure to use at least two threads in your Snakefile.
+  - Filipe G. Vieira
+input:
+  - FASTQ file(s)
+  - Bowtie2 indexed reference index
+output:
+  - SAM/BAM/CRAM file
+notes: |
+  * The `extra` param allows for additional program arguments.
+  * This wrapper uses an inner pipe. Make sure to use at least two threads in your Snakefile.
