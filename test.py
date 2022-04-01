@@ -1418,6 +1418,14 @@ def test_bwa_mem2_index():
 
 
 @skip_if_not_modified
+def test_dragmap_build():
+    run(
+        "bio/dragmap/build", 
+        ["snakemake", "--cores", "1", "genome/hash_table.cfg", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_clustalo():
     run(
         "bio/clustalo",

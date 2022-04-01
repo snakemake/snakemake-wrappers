@@ -1,0 +1,22 @@
+rule dragmap_build:
+    input:
+        ref="{genome}.fasta",
+    output:
+        idx=multiext(
+            "{genome}/",
+            "hash_table.cfg",
+            "hash_table.cfg.bin",
+            "hash_table.cmp",
+            "hash_table_stats.txt",
+            "reference.bin",
+            "ref_index.bin",
+            "repeat_mask.bin",
+            "str_table.bin",
+        ),
+    log:
+        "logs/dragmap/{genome}.build.log",
+    params:
+        extra="",
+    threads: 2
+    wrapper:
+        "master/bio/dragmap/build"
