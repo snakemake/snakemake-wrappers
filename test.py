@@ -1426,6 +1426,66 @@ def test_dragmap_build():
 
 
 @skip_if_not_modified
+def test_dragmap_align():
+    run(
+        "bio/dragmap/align",
+        ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_dragmap_align_sort_samtools():
+    run(
+        "bio/dragmap/align",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.bam",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_samtools",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_dragmap_align_sort_samtools_write_index():
+    run(
+        "bio/dragmap/align",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped_with_index/a.bam",
+            "mapped_with_index/a.bam.csi",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_samtools",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_dragmap_align_sort_picard():
+    run(
+        "bio/dragmap/align",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.bam",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_picard",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_clustalo():
     run(
         "bio/clustalo",
