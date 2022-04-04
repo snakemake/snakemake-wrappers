@@ -14,6 +14,7 @@ from snakemake_wrapper_utils.java import get_java_opts
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 samtools_opts = samtools_opts = get_samtools_opts(snakemake)
+java_opts = get_java_opts(snakemake)
 
 
 sort = snakemake.params.get("sorting", "none")
