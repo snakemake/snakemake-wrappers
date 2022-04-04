@@ -67,7 +67,7 @@ else:
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
-        "(dragen-os "
+        "(dragen-os"
         " --num-threads {snakemake.threads}"
         " -r {snakemake.input.idx}"
         " {reads}"
