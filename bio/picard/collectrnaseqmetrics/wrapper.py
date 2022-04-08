@@ -15,14 +15,20 @@ extra = snakemake.params.get("extra", "")
 java_opts = get_java_opts(snakemake)
 
 
+ref = snakemake.input.get("ref", "")
+if ref:
+    ref = f"--REFERENCE_SEQUENCE {ref}"
+
+
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "picard CollectRnaSeqMetrics"
         " {java_opts} {extra}"
         " --INPUT {snakemake.input.bam}"
-        " --TMP_DIR {tmpdir}"
-        " --OUTPUT {snakemake.output}"
+        " {ref}"
         " --REF_FLAT {snakemake.input.refflat}"
         " --STRAND_SPECIFICITY {strand}"
+        " --TMP_DIR {tmpdir}"
+        " --OUTPUT {snakemake.output}"
         " {log}"
     )
