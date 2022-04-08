@@ -1,6 +1,7 @@
 rule feature_counts:
     input:
-        samples="{sample}.bam",  # list of sam or bam files
+        # list of sam or bam files
+        samples="{sample}.bam",
         annotation="annotation.gtf",
         # optional input
         # chr_names="",           # implicitly sets the -A flag
@@ -14,6 +15,7 @@ rule feature_counts:
         ),
     threads: 2
     params:
+        strand=0,
         r_path="",  # implicitly sets the --Rpath flag
         extra="-O --fracOverlap 0.2 -J",
     log:

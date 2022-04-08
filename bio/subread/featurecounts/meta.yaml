@@ -1,6 +1,7 @@
 name: subread featureCounts
 description: >
   FeatureCounts assign mapped reads or fragments (paired-end data) to genomic features such as genes, exons and promoters.
+url: http://subread.sourceforge.net/
 author:
   - Antonie Vietor
   - Filipe G. Vieira
@@ -14,6 +15,5 @@ output:
   - Summary file including summary statistics (tab separated)
   - Junction counts file including count number of reads supporting each exon-exon junction (tab separated)
 notes: |
+  * The `strand` param allows to specify the strandness of the library (0, 1, or 2)
   * The `extra` param allows for additional program arguments.
-  * For more information see, http://subread.sourceforge.net/ and https://bioconductor.org/packages/release/bioc/vignettes/Rsubread/inst/doc/SubreadUsersGuide.pdf
-  * For a tutorial see, http://bioinf.wehi.edu.au/featureCounts/
