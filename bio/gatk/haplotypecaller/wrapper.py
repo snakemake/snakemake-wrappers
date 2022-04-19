@@ -27,9 +27,25 @@ known = snakemake.input.get("known", "")
 if known:
     known = "--dbsnp " + str(known)
 
+vcf_output = snakemake.output.get("vcf", "")
+if vcf_output:
+    output = " --output " + str(vcf_output)
+
+gvcf_output = snakemake.output.get("gvcf", "")
+if gvcf_output:
+    output = " --emit-ref-confidence GVCF " + " --output " + str(gvcf_output)
+
+if (vcf_output and gvcf_output) or (not gvcf_output and not vcf_output):
+    if vcf_output and gvcf_output:
+        raise ValueError(
+            "please set vcf or gvcf as output, not both! It's not supported by gatk"
+        )
+    else:
+        raise ValueError("please set one of vcf or gvcf as output (not both)!")
+
 bam_output = snakemake.output.get("bam", "")
 if bam_output:
-    bam_output = "--bam-output " + str(bam_output)
+    output = " --bam-output " + str(bam_output)
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
@@ -43,7 +59,6 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " {known}"
         " {extra}"
         " --tmp-dir {tmpdir}"
-        " --emit-ref-confidence GVCF {bam_output}"
-        " --output {snakemake.output.gvcf}"
+        " {output} "
         " {log}"
     )
