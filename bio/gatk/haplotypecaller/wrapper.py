@@ -45,7 +45,7 @@ if (vcf_output and gvcf_output) or (not gvcf_output and not vcf_output):
 
 bam_output = snakemake.output.get("bam", "")
 if bam_output:
-    output = " --bam-output " + str(bam_output)
+    bam_output = " --bam-output " + str(bam_output)
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
@@ -59,6 +59,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " {known}"
         " {extra}"
         " --tmp-dir {tmpdir}"
-        " {output} "
+        " {output}"
+        " {bam_output}"
         " {log}"
     )
