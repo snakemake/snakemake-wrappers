@@ -1,9 +1,14 @@
 name: gtfToGenePred
 description: |
         Convert a GTF file to genePred format (see https://genome.ucsc.edu/FAQ/FAQformat.html#format9)
+url: https://hgdownload.cse.ucsc.edu/admin/exe/
 authors:
   - Brett Copeland
+  - Filipe G. Vieira
 input:
   - GTF file
 output:
   - genePred table
+notes: |
+  * The `extra` param allows for additional program arguments.
+  * The `convert_out` param allows to apply some conversions to the `refFlat` output. For example, if set to `PicardCollectRnaSeqMetrics` it makes it compatible with `Picard CollectRnaSeqMetrics` (this one also requires `extra` to be set to `-genePredExt -geneNameAsName2`).
