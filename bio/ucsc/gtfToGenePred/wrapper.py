@@ -14,7 +14,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 pipes = ""
 if convert_out == "PicardCollectRnaSeqMetrics":
-    pipes.append(" | csvcut -t -c 12,1-10 | csvformat -T")
+    pipes += " | csvcut -t -c 12,1-10 | csvformat -T"
 
 
 shell(
