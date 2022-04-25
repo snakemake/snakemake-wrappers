@@ -4211,7 +4211,15 @@ def test_collectrnaseqmetrics():
 def test_gtftogenepred():
     run(
         "bio/ucsc/gtfToGenePred",
-        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "annotation.genePred", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gtftogenepred_picard_collectrnaseqmetrics():
+    run(
+        "bio/ucsc/gtfToGenePred",
+        ["snakemake", "--cores", "1", "annotation.PicardCollectRnaSeqMetrics.genePred", "--use-conda", "-F"],
     )
 
 

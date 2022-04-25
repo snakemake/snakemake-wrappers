@@ -1,12 +1,27 @@
 rule gtfToGenePred:
     input:
         # annotations containing gene, transcript, exon, etc. data in GTF format
-        "annotation.gtf"
+        "annotation.gtf",
     output:
-        "annotation.genePred"
+        "annotation.genePred",
     log:
-        "logs/gtfToGenePred.log"
+        "logs/gtfToGenePred.log",
     params:
-        extra="-genePredExt" # optional parameters to pass to gtfToGenePred
+        extra="-genePredExt",  # optional parameters to pass to gtfToGenePred
+    wrapper:
+        "master/bio/ucsc/gtfToGenePred"
+
+
+rule gtfToGenePred_CollectRnaSeqMetrics:
+    input:
+        # annotations containing gene, transcript, exon, etc. data in GTF format
+        "annotation.gtf",
+    output:
+        "annotation.PicardCollectRnaSeqMetrics.genePred",
+    log:
+        "logs/gtfToGenePred.PicardCollectRnaSeqMetrics.log",
+    params:
+        convert_out="PicardCollectRnaSeqMetrics",
+        extra="-genePredExt -geneNameAsName2",  # optional parameters to pass to gtfToGenePred
     wrapper:
         "master/bio/ucsc/gtfToGenePred"
