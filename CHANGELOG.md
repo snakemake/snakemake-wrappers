@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.3.3](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.3.2...v1.3.3) (2022-04-25)
+
+
+### Bug Fixes
+
+* fixed issue when several output files are specified with gatk splitncigarreads wrapper ([#471](https://www.github.com/snakemake/snakemake-wrappers/issues/471)) ([353bf0a](https://www.github.com/snakemake/snakemake-wrappers/commit/353bf0af238603ea11f9554c6454280bf36630b6))
+
 ### [1.3.2](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.3.1...v1.3.2) (2022-03-28)
 
 
