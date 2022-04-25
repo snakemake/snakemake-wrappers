@@ -15,5 +15,5 @@ output:
   - Summary file including summary statistics (tab separated)
   - Junction counts file including count number of reads supporting each exon-exon junction (tab separated)
 notes: |
-  * The `strand` param allows to specify the strandness of the library (0, 1, or 2)
+  * The `strand` param allows to specify the strandness of the library (0: unstranded, 1: stranded, and 2: reversely stranded)
   * The `extra` param allows for additional program arguments.
