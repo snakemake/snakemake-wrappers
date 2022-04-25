@@ -1,0 +1,16 @@
+rule dragmap_align:
+    input:
+        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        idx="genome",
+    output:
+        "mapped/{sample}.bam",
+    log:
+        "logs/dragmap/{sample}.align.log",
+    params:
+        extra="",
+        sorting="picard",  # Can be 'none', 'samtools' or 'picard'.
+        sort_order="queryname",  # Can be 'queryname' or 'coordinate'.
+        sort_extra="",  # Extra args for samtools/picard.
+    threads: 8
+    wrapper:
+        "master/bio/dragmap/align"
