@@ -15,6 +15,8 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 pipes = ""
 if convert_out == "PicardCollectRnaSeqMetrics":
     pipes += " | csvcut -t -c 12,1-10 | csvformat -T"
+else:
+    raise ValueError(f"Unsupported conversion mode {convert_out}. Please check wrapper documentation.")
 
 
 shell(
