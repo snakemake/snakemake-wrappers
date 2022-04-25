@@ -1,0 +1,13 @@
+name: Dragmap
+description: |
+  Map reads with Dragmap.
+url: https://github.com/Illumina/DRAGMAP
+authors:
+  - Filipe G. Vieira
+input:
+  - FASTQ file(s)
+  - reference hash table
+output:
+  - SAM/BAM/CRAM file
+notes: |
+  * The `extra` param allows for additional program arguments.
