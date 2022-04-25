@@ -25,7 +25,7 @@ mem = get_mem(snakemake, "MiB")
 mem = "-m {0:.0f}M".format(mem / threads) if mem and threads else ""
 
 with tempfile.TemporaryDirectory() as tmpdir:
-    tmp_prefix = Path(tmpdir) / "samtools_fastq.sort_"
+    tmp_prefix = Path(tmpdir) / "samtools_fastq.sort"
 
     shell(
         "(samtools sort -n"
