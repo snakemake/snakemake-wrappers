@@ -25,7 +25,7 @@ jobs:
       #     export PATH="/usr/share/miniconda/bin:$PATH"
       #     source activate fmt
       #     snakefmt --check $(git diff origin/master --name-only | grep Snakefile)
-
+  
   linting:
     runs-on: ubuntu-latest
     steps:
@@ -33,7 +33,7 @@ jobs:
 
       - name: Setup Snakemake environment
         run: |
-           conda install -c conda-forge mamba=0.15.3 --quiet
+           conda install -c conda-forge mamba --quiet
            export PATH="/usr/share/miniconda/bin:$PATH"
            mamba create -c bioconda -c conda-forge --quiet -y --name snakemake snakemake-minimal
       
