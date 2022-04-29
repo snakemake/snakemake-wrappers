@@ -5,7 +5,9 @@
 
 {{ description }}
 
+{% if url %}
 **URL**: {{ url }}
+{% endif %}
 
 Example
 -------
@@ -25,6 +27,14 @@ When running with
     snakemake --use-conda
 
 the software dependencies will be automatically deployed into an isolated environment before execution.
+
+{% if notes %}
+
+Notes
+-----
+
+{{ notes }}
+{% endif %}
 
 {% if pkgs|length %}
 Software dependencies
@@ -74,14 +84,6 @@ Params
 
 {% endif %}
 
-{% if notes %}
-
-Notes
------
-
-{{ notes }}
-{% endif %}
-
 
 Authors
 -------
@@ -97,3 +99,7 @@ Code
 .. code-block:: {{ wrapper_lang }}
 
 {{ wrapper }}
+
+.. |nl| raw:: html
+
+   <br>

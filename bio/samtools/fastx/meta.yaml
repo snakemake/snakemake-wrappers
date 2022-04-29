@@ -1,0 +1,12 @@
+name: samtools fastx
+description: Converts a SAM, BAM or CRAM into FASTQ or FASTA format.
+authors:
+  - William Rowell
+  - Filipe G. Vieira
+input:
+  - bam or sam file (.bam, .sam)
+output:
+  - fastq file (.fastq) or fasta file (.fasta)
+notes: |
+  * The `extra` param allows for additional program arguments (not `-@/--threads` or `-o`).
+  * For more information see, http://www.htslib.org/doc/samtools-fasta.html

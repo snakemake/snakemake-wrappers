@@ -1,10 +1,12 @@
 name: samtools merge
-description: Merge two bam files with samtools. For more information see `SAMtools documentation <http://www.htslib.org/doc/samtools-merge.html>`_.
+description: Merge two bam files with samtools.
 authors:
   - Johannes Köster
+  - Filipe G. Vieira
 input:
   - list of bam files to merge
 output:
   - merged bam file
 notes: |
-  * Samtools -@/--threads takes one integer as input. This is the number of additional threads and not raw threads.
+  * The `extra` param allows for additional program arguments (not `-@/--threads`, `--write-index`, `-o` or `-O/--output-fmt`).
+  * For more information see, http://www.htslib.org/doc/samtools-merge.html

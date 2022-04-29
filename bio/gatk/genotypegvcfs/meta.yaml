@@ -5,6 +5,7 @@ description: |
 authors:
   - Johannes Köster
   - Jake VanCampen
+  - Filipe G. Vieira
 input:
   - gvcf: Path to GVCF files (ignore if ``genomicsdb`` is provided)
   - known: Path to known variants (vcf.gz)

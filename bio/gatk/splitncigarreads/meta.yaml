@@ -4,6 +4,7 @@ description: |
   Run gatk SplitNCigarReads.
 authors:
   - Jan Forster
+  - Filipe G. Vieira
 input:
   - bam: Path to in bam file
   - ref: Path to reference genome

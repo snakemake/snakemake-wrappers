@@ -4,12 +4,12 @@ rule gatk_scatter_interval_by_ns:
         fai="genome.fasta.fai",
         dict="genome.dict",
     output:
-        intervals="genome.intervals"
+        intervals="genome.intervals",
     log:
-        "logs/genome.log"
+        "logs/genome.log",
     params:
         extra="--MAX_TO_MERGE 10 --OUTPUT_TYPE ACGT",
-	java_opts="", # optional
+        java_opts="",  # optional
     resources:
         mem_mb=1024,
     wrapper:

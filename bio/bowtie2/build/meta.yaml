@@ -1,6 +1,7 @@
 name: "bowtie2_build"
 url: http://bowtie-bio.sourceforge.net/bowtie2/index.shtml
 description: Map reads with bowtie2.
+url: http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml
 authors:
   - Daniel Standage
 params:

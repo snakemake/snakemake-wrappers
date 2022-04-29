@@ -5,6 +5,7 @@ description: |
 authors:
   - Johannes Köster
   - Jake VanCampen
+  - Filipe G. Vieira
 input:
   - gvcfs: GVCF files of multiple samples
   - ref: Path to fasta formatted reference genome

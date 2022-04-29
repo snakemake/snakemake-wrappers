@@ -1,0 +1,15 @@
+rule microphaser_build:
+    input:
+        # all normal peptides from the complete proteome as nucleotide sequences
+        ref_peptides="germline/peptides.fasta",
+    output:
+        # a binary of the normal peptides amino acid sequences
+        bin="out/peptides.bin",
+        # the amino acid sequences in FASTA format
+        peptides="out/peptides.fasta",
+    log:
+        "logs/microphaser/build_reference.log"
+    params:
+        extra="--peptide-length 9",  # optional, desired peptide length in amino acids.
+    wrapper:
+        "master/bio/microphaser/build_reference"

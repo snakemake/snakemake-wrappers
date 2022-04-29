@@ -6,6 +6,7 @@ authors:
   - Christopher Schröder
   - Johannes Köster
   - Jake VanCampen
+  - Filipe G. Vieira
 input:
   - bam: Path to bam file
   - ref: Path to  fasta reference

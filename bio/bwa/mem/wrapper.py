@@ -17,16 +17,19 @@ sort = snakemake.params.get("sorting", "none")
 sort_order = snakemake.params.get("sort_order", "coordinate")
 sort_extra = snakemake.params.get("sort_extra", "")
 
+index = snakemake.input.idx
+if isinstance(index, str):
+    index = path.splitext(snakemake.input.idx)[0]
+else:
+    index = path.splitext(snakemake.input.idx[0])[0]
+
+
 if re.search(r"-T\b", sort_extra) or re.search(r"--TMP_DIR\b", sort_extra):
     sys.exit(
         "You have specified temp dir (`-T` or `--TMP_DIR`) in params.sort_extra; this is automatically set from params.tmp_dir."
     )
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
-
-tmp_dir = snakemake.params.get("tmp_dir")
-if tmp_dir:
-    tempfile.tempdir = tmp_dir
 
 
 # Check inputs/arguments.
@@ -70,7 +73,7 @@ with tempfile.TemporaryDirectory() as tmp:
         "(bwa mem"
         " -t {snakemake.threads}"
         " {extra}"
-        " {snakemake.params.index}"
+        " {index}"
         " {snakemake.input.reads}"
         " | " + pipe_cmd + ") {log}"
     )

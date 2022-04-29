@@ -1,4 +1,7 @@
 name: samtools calmd
-description: Calculates MD and NM tags. For more information see `SAMtools documentation <http://www.htslib.org/doc/samtools-calmd.html>`_.
+description: Calculates MD and NM tags.
 authors:
   - Filipe G. Vieira
+notes: |
+  * The `extra` param allows for additional program arguments (not `-@/--threads` or `-O/--output-fmt`).
+  * For more information see, http://www.htslib.org/doc/samtools-calmd.html

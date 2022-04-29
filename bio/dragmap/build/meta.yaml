@@ -1,0 +1,12 @@
+name: Dragmap
+description: |
+  Build hash table for Dragmap read mapper.
+url: https://github.com/Illumina/DRAGMAP
+authors:
+  - Filipe G. Vieira
+input:
+  - FASTA reference
+output:
+  - reference hash table
+notes: |
+  * The `extra` param allows for additional program arguments.

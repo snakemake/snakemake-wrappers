@@ -1,0 +1,11 @@
+name: "metaspades"
+description: |
+  Assemble metagenome with metaspades. For more information see the `Spades documentation <https://cab.spbu.ru/software/spades/>`_.
+
+  Metagenome assembly uses a lot of computational resources. Spades is told to restart from a previous checkpont if the file `params.txt` exist in the output directory. In this way one can use snakemake with `--restart-times` to automatically restart the assembly.
+
+  Input of metaspades should be at least one paired-end library (=2 fastq files) optionally merged reads as a third fastq file might be supplied and singleton reads as a 4th input file. Long reads can also be input as `pacbio` or `nanopore` input argument. To distinguish short from long reads. Use the `reads` as name for the short reads.
+
+authors:
+  - Silas Kieser
+  - Anton Korobeynikov

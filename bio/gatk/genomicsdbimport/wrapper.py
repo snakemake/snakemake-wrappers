@@ -4,7 +4,7 @@ __license__ = "MIT"
 
 
 import os
-
+import tempfile
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
@@ -24,11 +24,19 @@ else:
         "invalid option provided to 'params.db_action'; please choose either 'create' or 'update'."
     )
 
+intervals = snakemake.input.get("intervals")
+if not intervals:
+    intervals = snakemake.params.get("intervals")
+
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-shell(
-    "gatk --java-options '{java_opts}' GenomicsDBImport {extra} "
-    "{gvcfs} "
-    "--intervals {snakemake.params.intervals} "
-    "{db_action} {snakemake.output.db} {log}"
-)
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "gatk --java-options '{java_opts}' GenomicsDBImport"
+        " {gvcfs}"
+        " --intervals {intervals}"
+        " {extra}"
+        " --tmp-dir {tmpdir}"
+        " {db_action} {snakemake.output.db}"
+        " {log}"
+    )

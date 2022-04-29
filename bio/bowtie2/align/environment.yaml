@@ -3,5 +3,6 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - bowtie2 ==2.4.1  # Keep consistent with version specified in bowtie2/build
-  - samtools ==1.10
+  - bowtie2 =2.4  # Keep consistent with version specified in bowtie2/build
+  - samtools =1.14
+  - snakemake-wrapper-utils =0.3

@@ -3,6 +3,7 @@ url: https://gatk.broadinstitute.org/hc/en-us/articles/360037593851-Mutect2
 description: Call somatic SNVs and indels via local assembly of haplotypes
 authors:
   - Thibault Dayris
+  - Filipe G. Vieira
 input:
   - map: Mapped reads (SAM/BAM/CRAM)
   - fasta: Reference Fasta file

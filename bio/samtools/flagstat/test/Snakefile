@@ -1,7 +1,11 @@
 rule samtools_flagstat:
     input:
-        "mapped/{sample}.bam"
+        "mapped/{sample}.bam",
     output:
-        "mapped/{sample}.bam.flagstat"
+        "mapped/{sample}.bam.flagstat",
+    log:
+        "{sample}.log",
+    params:
+        extra="",  # optional params string
     wrapper:
         "master/bio/samtools/flagstat"

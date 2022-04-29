@@ -1,4 +1,4 @@
-rule diamond_blastx:
+rule diamond_makedb:
     input:
         fname = "{reference}.fasta",
     output:

@@ -1,15 +1,19 @@
 name: subread featureCounts
 description: >
   FeatureCounts assign mapped reads or fragments (paired-end data) to genomic features such as genes, exons and promoters.
-  For more information please see `featureCounts tutorial <http://bioinf.wehi.edu.au/featureCounts/>`_, `documentation of subread <https://bioconductor.org/packages/release/bioc/vignettes/Rsubread/inst/doc/SubreadUsersGuide.pdf>`_ and commandline help.
+url: http://subread.sourceforge.net/
 author:
   - Antonie Vietor
+  - Filipe G. Vieira
 input:
   - a list of .sam or .bam files
   - GTF, GFF or SAF annotation file
   - optional a tab separating file that determines the sorting order and contains the chromosome names in the first column
   - optional a fasta index file
 output:
-  - .featureCounts file including read counts (tab separated)
-  - .featureCounts.summary file including summary statistics (tab separated)
-  - .featureCounts.jcounts file including count number of reads supporting each exon-exon junction (tab separated)
+  - Feature counts file including read counts (tab separated)
+  - Summary file including summary statistics (tab separated)
+  - Junction counts file including count number of reads supporting each exon-exon junction (tab separated)
+notes: |
+  * The `strand` param allows to specify the strandness of the library (0: unstranded, 1: stranded, and 2: reversely stranded)
+  * The `extra` param allows for additional program arguments.

@@ -10,4 +10,5 @@ output:
 params:
   - Optional parameters.
 notes: |
-  This tool/wrapper does not handle multithreading
+  * This tool does not handle multithreading
+  * For more information see, https://broadinstitute.github.io/picard/command-line-overview.html#AddOrReplaceReadGroups

@@ -1,7 +1,7 @@
 name: BioBamBam2 BamSorMaDup
 url: https://gitlab.com/german.tischler/biobambam2
 description: |
-  Mark PCR and optical duplicates, followed with sorting, with BioBamBam2 tools
+  Mark PCR and optical duplicates, followed with sorting, with BioBamBam2 tools.
 authors:
   - Filipe G. Vieira
 input:
