@@ -1,6 +1,6 @@
 rule salmon_index:
     input:
-        "assembly/transcriptome.fasta"
+        sequences="assembly/transcriptome.fasta"
     output:
         directory("salmon/transcriptome_index")
     log:

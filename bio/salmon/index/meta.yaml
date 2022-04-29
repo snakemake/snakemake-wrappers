@@ -1,9 +1,14 @@
 name: salmon_index
+url: https://salmon.readthedocs.io/en/latest/salmon.html#preparing-transcriptome-indices-mapping-based-mode
 description: |
-  Index a transcriptome assembly with salmon 
+  Index a transcriptome assembly with salmon
 authors:
   - Tessa Pierce
+  - Thibault Dayris
 input:
-  - assembly fasta
+  - sequences: Path to sequences to index with Salmon. This can be transcriptome sequences or gentrome.
+  - decoys: Optional path to decoy sequences name, in case the above `sequence` was a gentrome.
 output:
-  - indexed assembly 
+  - indexed assembly
+params:
+  - extra: Optional parameters besides `--tmpdir`, `--threads`, and IO.
