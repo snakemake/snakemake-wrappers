@@ -1,13 +1,18 @@
 name: "bwa sam(se/pe)"
+url: http://bio-bwa.sourceforge.net/bwa.shtml
 description: Map paired-end reads with either bwa samse or sampe.
 authors:
   - Filipe G. Vieira
 input:
-  - FASTQ file(s)
-  - SAI file(s)
-  - reference genome
+  - sai: Path to sai file from bwa aln
+  - fastq: List of path to fastq files
 output:
-  - SAM/BAM alignment file
+  - SAM/BAM file
+params:
+  - index: Path to indexed genome sequence
+  - extra: Optional parameters for bwa samse/sampe
+  - sort: Either "none", "samtools", or "picard".
+  - sort_order: Either "coordinate" or "queryname"
+  - sort_extra: Extra parameters for samtools or picard
 notes: |
-  * The `extra` param allows for additional program arguments.
-  * For more information see, http://bio-bwa.sourceforge.net/bwa.shtml
+  This wrapper uses two threads if sort parameter is not None.

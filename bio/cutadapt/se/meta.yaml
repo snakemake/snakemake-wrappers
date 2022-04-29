@@ -1,10 +1,16 @@
 name: cutadapt-se
+url: https://cutadapt.readthedocs.io/en/stable/
 description: |
   Trim single-end reads using cutadapt.
 authors:
   - Julian de Ruiter
 input:
-  - fastq file
+  - fastq file, this must be the first element of the input file list
 output:
-  - trimmed fastq file
-  - text file containing trimming statistics
+  - fastq: trimmed fastq file
+  - qc: text file containing trimming statistics
+params:
+  - adapters: Adapters to remove
+  - extra: Optional parameters
+note: |
+  This wrapper requires either `params.adapters` or `params.extra` to be non null and non empty.

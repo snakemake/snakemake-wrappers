@@ -1,4 +1,13 @@
 name: pindel
+url: http://gmt.genome.wustl.edu/packages/pindel/
 description: Call variants with pindel.
 authors:
   - Johannes Köster
+params:
+  - extra: Optional parameters
+  - prefix: Output file prefix
+input:
+  - config: Path to config file, see `documentation <http://gmt.genome.wustl.edu/packages/pindel/quick-start.html>`_ for more information.
+  - ref: Path to fasta genome sequence
+output:
+  - Calls. This must be the first output of the output file list

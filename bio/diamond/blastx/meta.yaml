@@ -1,4 +1,12 @@
 name: "diamond blastx"
+url: https://github.com/bbuchfink/diamond
 description: DIAMOND is a sequence aligner for protein and translated DNA searches, designed for high performance analysis of big sequence data.
 authors:
   - Kim Philipp Jablonski
+input:
+  - fname_fastq: Path to fastq file
+  - fname_db: Path to diamond database
+output:
+  - fname: Path to TSV output
+params:
+  - extra: Optional parameters

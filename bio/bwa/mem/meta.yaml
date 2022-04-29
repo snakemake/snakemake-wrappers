@@ -1,4 +1,5 @@
 name: "bwa mem"
+url: http://bio-bwa.sourceforge.net/bwa.shtml
 description: Map reads using bwa mem, with optional sorting using
   samtools or picard.
 authors:
@@ -6,13 +7,14 @@ authors:
   - Julian de Ruiter
   - Filipe G. Vieira
 input:
-  - FASTQ file(s)
-  - reference genome
+  - reads: FASTQ file(s)
 output:
   - SAM/BAM/CRAM file
+params:
+  - index: Path to the bwa index
+  - extra: The `extra` param allows for additional arguments for bwa-mem.
+  - sorting: The `sorting` param allows to enable sorting, and can be either 'none', 'samtools' or 'picard'.
+  - sort_extra: The `sort_extra` allows for extra arguments for samtools/picard
+  - tmp_dir: The `tmp_dir` param allows to define path to the temp dir. One can use `tmpdir resources <https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html?highlight=tmpdir#standard-resources>`_ instead.
 notes: |
-  * The `extra` param allows for additional arguments for bwa-mem.
-  * The `sorting` param allows to enable sorting, and can be either 'none', 'samtools' or 'picard'.
-  * The `sort_extra` allows for extra arguments for samtools/picard
-  * The `tmp_dir` param allows to define path to the temp dir.
-  * For more inforamtion see, http://bio-bwa.sourceforge.net/bwa.shtml
+  Warning, this wrapper uses a number of threads equal to one plus the number of threads written in the Snakefile: sort + bwa mem

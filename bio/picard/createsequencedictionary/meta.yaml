@@ -1,14 +1,15 @@
 name: picard CreateSequenceDictionary
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360036712531-CreateSequenceDictionary-Picard-
 description: |
   Create a .dict file for a given FASTA file
 authors:
   - Johannes Köster
 input:
-  - FASTA file
+  - FASTA file. This must be the first element of the input file list
 output:
-  - .dict file
+  - Path to ``.dict`` file. This must be the first element of the output file list
+params:
+  - extra: Optional arguments
 notes: |
-  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
-  * The `extra` param allows for additional program arguments.
-  * `--TMP_DIR` is automatically set by `resources.tmpdir`
+  * This tool/wrapper does not handle multithreading
   * For more information see, https://broadinstitute.github.io/picard/command-line-overview.html#CreateSequenceDictionary

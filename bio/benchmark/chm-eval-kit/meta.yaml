@@ -1,4 +1,12 @@
 name: chm-eval-kit
-description: Download CHM-eval kit (https://github.com/lh3/CHM-eval) for benchmarking variant calling.
+url: https://github.com/lh3/CHM-eval
+description: Download CHM-eval kit for benchmarking variant calling.
 authors:
   - Johannes Köster
+output:
+  - Downloaded kit
+params:
+  - version: The kit version number
+  - tag: The kit tag number
+notes: |
+  At least two threads are required (curl + tar)

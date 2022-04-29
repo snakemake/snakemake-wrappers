@@ -1,15 +1,16 @@
 name: picard CollectInsertSizeMetrics
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360037225252-CollectInsertSizeMetrics-Picard-
 description: |
   Collect metrics on insert size of paired end reads with picard tools.
 authors:
   - Johannes Köster
 input:
-  - bam file
+  - bam file. This must be the only element of the input file list
 output:
   - txt: textual representation of metrics
   - pdf: insert size histogram
+params:
+  - Optional arguments
 notes: |
-  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
-  * The `extra` param allows for additional program arguments.
-  * `--TMP_DIR` is automatically set by `resources.tmpdir`
+  * This tool/wrapper does not handle multithreading
   * For more information see, https://broadinstitute.github.io/picard/command-line-overview.html#CollectInsertSizeMetrics

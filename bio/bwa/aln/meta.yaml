@@ -1,4 +1,11 @@
 name: "bwa aln"
-description: Map reads with bwa aln. For more information about BWA see `BWA documentation <http://bio-bwa.sourceforge.net/bwa.shtml>`_.
+url: http://bio-bwa.sourceforge.net/bwa.shtml
+description: Map reads with bwa aln.
 authors:
   - Julian de Ruiter
+input:
+  - Fastq file. This must be the first element of the input list
+output:
+  - sai file. This must be the first element of the output list
+params:
+  - index: Path to the bwa index

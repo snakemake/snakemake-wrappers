@@ -1,4 +1,11 @@
 name: clustalo
+url: https://www.ebi.ac.uk/Tools/msa/clustalo/
 description: Multiple alignment of nucleic acid and protein sequences.
 authors:
   - Michael Hall
+input:
+  - Sequence in GCG, FASTA, EMBL (Nucleotide only), GenBank, PIR/NBRF, PHYLIP or UniProtKB/Swiss-Prot (Protein only) format. This must be the first element in the input file list.
+output:
+  - Alignment file, this must be the first element in the output file list.
+params:
+  - extra: Optional parameters, see `command line documentation <https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Clustal+Omega+Help+and+Documentation>`_ for more information.

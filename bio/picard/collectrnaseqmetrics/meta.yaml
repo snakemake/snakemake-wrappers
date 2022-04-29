@@ -1,4 +1,5 @@
 name: picard CollectRnaSeqMetrics
+url: https://broadinstitute.github.io/picard/command-line-overview.html#CollectRnaSeqMetrics
 description: |
         Run picard CollectRnaSeqMetrics to generate QC metrics for RNA-seq data.
 url: https://broadinstitute.github.io/picard/command-line-overview.html#CollectRnaSeqMetrics
@@ -6,12 +7,12 @@ authors:
   - Brett Copeland
   - Filipe G. Vieira
 input:
-  - BAM file of RNA-seq data aligned to genome
-  - REF_FLAT formatted file of transcriptome annotations
-  - reference FASTA (optional)
+  - bam: BAM file of RNA-seq data aligned to genome
+  - ref: REF_FLAT formatted file of transcriptome annotations
 output:
-  - RNA-Seq metrics text file
+  - RNA-Seq metrics text file. This must be the first element in the output file list
+params:
+  - extra: Optional parameters
+  - strand: Strand specificity (default "NONE")
 notes: |
-  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
-  * The `extra` param allows for additional program arguments.
-  * `--TMP_DIR` is automatically set by `resources.tmpdir`
+  This tool/wrapper does not handle multithreading.

@@ -1,6 +1,19 @@
 name: "bwa-mem2"
+url: https://github.com/bwa-mem2/bwa-mem2
 description: Bwa-mem2 is the next version of the bwa-mem algorithm in bwa. It produces alignment identical to bwa and is ~1.3-3.1x faster depending on the use-case, dataset and the running machine. Optional sorting using samtools or picard.
 authors:
   - Christopher Schröder
   - Johannes Köster
   - Julian de Ruiter
+input:
+  - reads: List of paths to fastq files. R1 is mandatory, and an optional R2 is required for paired end
+output:
+  - SAM/BAM file
+params:
+  - index: Path to indexed genome
+  - extra: Optional parameters for bwa mem
+  - sort: Either "none", "samtools", or "picard".
+  - sort_order: Either "coordinate" or "queryname"
+  - sort_extra: Extra parameters for samtools or picard
+notes: |
+  This wrapper uses an inner pipe. For X threads reserved in the snakemake rule, this wrapper uses X+1 threads when the `sort` parameter is not none.

@@ -1,10 +1,13 @@
 name: fastqc
+url: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 description: |
   Generate fastq qc statistics using fastqc.
 authors:
   - Julian de Ruiter
 input:
-  - fastq file
+  - fastq file, this must be the first file in the input file list
 output:
-  - html file containing statistics
-  - zip file containing statistics
+  - html: html file containing statistics
+  - zip: zip file containing statistics
+params:
+  - Optional arguments, this must be the only parameters

@@ -1,4 +1,12 @@
 name: filtlong
+url: https://github.com/rrwick/Filtlong
 description: Quality filtering tool for long reads.
 authors:
   - Michael Hall
+input:
+  - reads: Path to input reads
+output:
+  - Filtered reads, this must be the only file in the output file list
+params:
+  - extra: Optional parameters
+  - target_bases: Remove the worst reads until only XXX Mbp remain

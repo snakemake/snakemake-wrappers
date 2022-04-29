@@ -1,9 +1,15 @@
 name: busco
+url: https://busco-archive.ezlab.org/
 description: |
- Assess assembly and annotation completeness with BUSCO 
+ Assess assembly and annotation completeness with BUSCO
 authors:
   - Tessa Pierce
 input:
-  - assembly fasta
+  - assembly fasta, this must be the only element of the input file list
 output:
-  - annotation quality files
+  - annotation quality files, must be the first files in the output file list
+params:
+  - extra: Optional parameters, see `BUSCO official documentation <https://gitlab.com/ezlab/busco/-/raw/3.0.2/BUSCO_v3_userguide.pdf>`_ for more information.
+  - mode: Either genome, proteins, or transcriptome
+  - lineage: location of the BUSCO lineage data to use
+  - download_path: Path to downloaded BUSCO data for offline use

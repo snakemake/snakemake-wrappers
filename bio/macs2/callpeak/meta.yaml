@@ -1,7 +1,19 @@
 
 name: macs2 callpeak
+url: https://github.com/macs3-project/MACS/blob/master/README.md
 description: >
   ``MACS2 callpeak`` model-based analysis tool for ChIP-sequencing that calls peaks from alignment results.
+authors:
+  - Antonie Vietor
+input:
+  - control: Path to input peaks (Optional)
+  - treatment: SAM, BAM, BED, ELAND, ELANDMULTI, ELANDEXPORT, BOWTIE, BAMPE or BEDPE files
+output:
+  - tabular file in excel format (.xls) AND
+  - different optional metrics in bedGraph or BED formats
+params:
+  - Optional parameters. This must b the only element in the param section of the snakemake rule
+notes: |
   For usage information about ``MACS2 callpeak``, please see the `documentation <https://github.com/macs3-project/MACS/blob/master/README.md>`_ and the command line help.
   For more information about ``MACS2``, also see the `source code <https://github.com/macs3-project/MACS>`_ and `published article <https://genomebiology.biomedcentral.com/articles/10.1186/gb-2008-9-9-r137>`_.
   Depending on the selected extension(s), the option(s) will be set automatically (please see table below).
@@ -39,11 +51,3 @@ description: >
     +--------------------------------+----------------------------------------+----------+--------------------+
     | NAME_summits.bed               | peak summits locations for every peak  | BED      | if not set -\-broad|
     +--------------------------------+----------------------------------------+----------+--------------------+
-
-authors:
-  - Antonie Vietor
-input:
-  -  SAM, BAM, BED, ELAND, ELANDMULTI, ELANDEXPORT, BOWTIE, BAMPE or BEDPE files
-output:
-  - tabular file in excel format (.xls) AND
-  - different optional metrics in bedGraph or BED formats

@@ -1,4 +1,5 @@
 name: "fgbio SetMateInformation"
+url: https://fulcrumgenomics.github.io/fgbio/tools/latest/SetMateInformation.html
 description:
   Adds and/or fixes mate information on paired-end reads. Sets the
   MQ (mate mapping quality), MC (mate cigar string), ensures all mate-related
@@ -6,3 +7,11 @@ description:
   position are correct.
 authors:
   - Patrik Smeds
+input:
+  - Bam file. This must be the first input file in the input file list.
+output:
+  - Bam file with mate information. This must be the first output file in the output file list.
+params:
+  - extra: Optional extra parameters
+notes: |
+  See source on `github <https://github.com/fulcrumgenomics/fgbio>`_.

@@ -1,15 +1,19 @@
 name: deepvariant
+url: https://github.com/google/deepvariant
 description: |
-  Call genetic variants using deep neural network. Copyright 2017 Google LLC. BSD 3-Clause "New" or "Revised" https://github.com/google/deepvariant
+  Call genetic variants using deep neural network. Copyright 2017 Google LLC. BSD 3-Clause "New" or "Revised"
 authors:
   - Tetsuro Hisayoshi
   - Nikos Tsardakas Renhuldt
 input:
-  - fasta
-  - bam
+  - ref: Path to genome sequence (fasta)
+  - bam: Path to bam file
 output:
-  - vcf
-  - visual report html 
+  - visual report html
+  - vcf: vcf
+params:
+  - extra: Optional parameters
+  - sample_name: Optional sample name
+  - model: One of ``WGS``, ``WES``, ``PACBIO``, or ``HYBRID_PACBIO_ILLUMINA``
 notes: |
-  * The `extra` param alllows for additional program arguments.
   * This snakemake wrapper uses bioconda deepvariant package. Copyright 2018 Brad Chapman.

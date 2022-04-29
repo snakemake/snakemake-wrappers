@@ -1,7 +1,8 @@
 name: bam2nuc
+url: https://github.com/FelixKrueger/Bismark/blob/master/bam2nuc
 description: |
   Calculate mono- and di-nucleotide coverage of the reads and compares them with average genomic sequence
-  composition (see https://github.com/FelixKrueger/Bismark/blob/master/bam2nuc).
+  composition.
 authors:
   - Roman Cherniatchik
 input:

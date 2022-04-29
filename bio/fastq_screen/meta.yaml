@@ -1,4 +1,5 @@
 name: fastq_screen
+url: http://www.bioinformatics.babraham.ac.uk/projects/fastq_screen
 authors:
   - Ryan Dale
 description: |
@@ -39,10 +40,14 @@ description: |
   arguments verbatim to ``fastq_screen``, for example ``extra="--illumina1_3"`` or
   ``extra="--bowtie2 '--trim5=8'"``.
 input:
-  - A FASTQ file, gzipped or not.
+  - A FASTQ file, gzipped or not. This must be the first file in the input file list
 output:
   - txt: a text file containing the fraction of reads mapping to each provided index
   - png: a bar plot of the contents of ``txt``, saved as a PNG file
+params:
+  - subset: The number of reads processed (default 100000)
+  - aligner: The aligner used with fastq_screen (default bowtie2)
+  - extra: optional parameters
 notes: |
   * ``fastq_screen`` hard-codes the output filenames. This wrapper moves the
     hard-coded output files to those specified by the rule.

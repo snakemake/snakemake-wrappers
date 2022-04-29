@@ -1,4 +1,5 @@
 name: hisat2 index
+url: https://daehwankimlab.github.io/hisat2/
 authors:
   - Joël Simoneau
 description: |

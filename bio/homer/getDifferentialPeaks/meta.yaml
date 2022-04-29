@@ -1,5 +1,14 @@
 name: "Homer getDifferentialPeaks"
+url: http://homer.ucsd.edu/homer/ngs/mergePeaks.html
 description: >
   Detect differentially bound ChIP peaks between samples. For more information, please see the `documentation <http://homer.ucsd.edu/homer/ngs/mergePeaks.html>`_.
 authors:
   - Jan Forster
+input:
+  - peaks: Path to input peaks
+  - first: Path to fist
+  - second: Path to second
+output:
+  - Differential peaks. This must be the only element of the output file list.
+params:
+  - extra: Optional parameters

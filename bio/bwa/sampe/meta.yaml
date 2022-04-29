@@ -1,4 +1,18 @@
 name: "bwa sampe"
+url: http://bio-bwa.sourceforge.net/bwa.shtml
 description: Map paired-end reads with bwa sampe. For more information about BWA see `BWA documentation <http://bio-bwa.sourceforge.net/bwa.shtml>`_.
 authors:
   - Julian de Ruiter
+input:
+  - sai: Path to sai file from bwa aln
+  - fastq: Path to fastq file
+output:
+  - sam/bam file
+params:
+  - index: Path to genome index
+  - extra: Optional parameters for bwa sampe
+  - sort: Either "none", "samtools", or "picard".
+  - sort_order: Either "coordinate" or "queryname"
+  - sort_extra: Extra parameters for samtools or picard
+notes: |
+  This wrapper uses two threads if sort parameter is not None.

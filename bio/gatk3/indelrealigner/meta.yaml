@@ -1,21 +1,21 @@
 name: gatk3 IndelRealigner
+url: https://github.com/broadinstitute/gatk-docs/blob/master/gatk3-tutorials/(howto)_Perform_local_realignment_around_indels.md
 description: |
   Run gatk3 IndelRealigner
 authors:
   - Patrik Smeds
   - Filipe G. Vieira
 input:
-  - bam file
-  - reference genome
-  - target intervals to realign
-  - bed file (optional)
-  - vcf files known variation (optional)
+  - bam: Path to bam file
+  - ref: Path to reference genome
+  - target_intervals: target intervals to realign
+  - bed: Path to Bed intervals (optional)
+  - known: vcf files known variation (optional)
 output:
-  - indel realigned bam file
-  - indel realigned bai file (optional)
-  - temp dir (optional)
+  - bam: indel realigned bam file
+  - bai: indel realigned bai file (optional)
+params:
+  - java_opts: The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (memory is automatically inferred from `resources` and temp dir from `output.java_temp`.
+  - extra: The `extra` param allows for additional program arguments.
 notes: |
-  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (memory is automatically inferred from `resources` and temp dir from `output.java_temp`.
-  * The `extra` param allows for additional program arguments.
-  * For more information see, https://github.com/broadinstitute/gatk-docs/blob/master/gatk3-tutorials/(howto)_Perform_local_realignment_around_indels.md
   * Gatk3.jar is not included in the bioconda package, i.e it need to be added to the conda environment manually.

@@ -1,4 +1,13 @@
 name: bcftools merge
-description: Merge vcf/bcf files with bcftools. For more information see `BCFtools documentation <https://www.htslib.org/doc/bcftools.html#merge>`_.
+url: https://samtools.github.io/bcftools/bcftools.html#index
+description: Merge vcf/bcf files with bcftools.
 authors:
   - Patrik Smeds
+intpu:
+  - calls: List of paths to VCF/BCF files.
+output:
+  - Merged VCF/BCF file, must be the first element in the output file list.
+params:
+  - Optional parameters, must be the first and only value in snakemake's params.
+notes: |
+  BCFTools will take longer to merge non-gzipped VCF files.

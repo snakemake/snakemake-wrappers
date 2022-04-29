@@ -1,14 +1,16 @@
 name: picard MarkDuplicates
+url: https://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicates
 description: |
-  Mark PCR and optical duplicates with picard tools. For more information about MarkDuplicates see `picard documentation <https://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicates>`_.
+  Mark PCR and optical duplicates with picard tools.
 authors:
   - Johannes Köster
 input:
-  - bam file(s)
+  - bam file(s). These must be  the only input files
 output:
-  - bam file with marked or removed duplicates
+  - bam: bam file with marked or removed duplicates
+  - metrics: Path to metrics file
+params:
+  - extra: Optional parameters
 notes: |
-  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
-  * The `extra` param allows for additional program arguments.
-  * `--TMP_DIR` is automatically set by `resources.tmpdir`
-  * For more information see, https://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicates
+  This tool/wrapper does not handle multithreading
+  

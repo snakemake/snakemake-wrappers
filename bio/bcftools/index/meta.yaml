@@ -1,4 +1,13 @@
 name: bcftools index
-description: Index vcf/bcf file. For more information see `BCFtools documentation <https://www.htslib.org/doc/bcftools.html#index>`_.
+url: https://samtools.github.io/bcftools/bcftools.html#index
+description: Index vcf/bcf file.
 authors:
   - Jan Forster
+input:
+  - Path to a VCF/BCF file, must be the first element of the input list.
+output:
+  - Path to the index.
+params:
+  - extra: Optional parameters
+notes: |
+  BCFTools indexes gzipped VCF files or BCF files. Raw, unzipped VCF files will raise an error.

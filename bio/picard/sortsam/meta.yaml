@@ -1,14 +1,15 @@
 name: picard SortSam
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360037594291-SortSam-Picard-
 description: |
   Sort sam/bam files using picard tools.
 authors:
   - Julian de Ruiter
 input:
-  - sam/bam file
+  - sam/bam file. This must be the first element of the input file list
 output:
-  - sorted sam/bam file.
+  - sorted sam/bam file. This must be the first element of the output file list
+params:
+  - extra: Optional parameters
 notes: |
-  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
-  * The `extra` param allows for additional program arguments.
-  * `--TMP_DIR` is automatically set by `resources.tmpdir`
+  * This tool/wrapper does not handle multithreading
   * For more information see, https://broadinstitute.github.io/picard/command-line-overview.html#SortSam

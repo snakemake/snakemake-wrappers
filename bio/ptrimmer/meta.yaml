@@ -1,4 +1,14 @@
 name: "ptrimmer"
+url: https://github.com/DMU-lilab/pTrimmer
 description: Tool to trim off the primer sequence from mutiplex amplicon sequencing
 authors:
   - Felix Mölder
+input:
+  - r1: Path to fastq-formatted foreward reads
+  - r2: For paired-end only, path to fastq-formatted downstream reads
+  - primers: Fasta formatted primers
+output:
+  - r1: Path to fastq-formatted foreward output reads
+  - r2: For paired-end only, path to fastq-formatted downstream reads
+note: |
+  This wrapper/tool does not handle multi-threading

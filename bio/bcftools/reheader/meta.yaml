@@ -1,4 +1,16 @@
 name: bcftools reheader
-description: Change header or sample names of vcf/bcf file. For more information see `BCFtools documentation <https://www.htslib.org/doc/bcftools.html#reheader>`_.
+url: https://samtools.github.io/bcftools/bcftools.html#mpileup
+description: Change header or sample names of vcf/bcf file.
 authors:
   - Jan Forster
+input:
+  - vcf: Path to vcf file
+  - header: Path to the new header (optional)
+  - samples: Path to the sample file (optional)
+output:
+  - reheaded vcf, must be the only output file
+params:
+  - extra: bcftools reheader optional parameters
+  - view_extra: bcftools view optional parameters
+notes: |
+  This wrapper requires at least two threads: one for bcftools reheader, one for bcftools view.

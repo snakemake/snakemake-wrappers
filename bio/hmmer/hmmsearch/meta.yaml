@@ -1,11 +1,18 @@
 name: hmmsearch
+url: http://hmmer.org/
 description: "search profile(s) against a sequence database"
 authors:
   - N Tessa Pierce
 input:
-  - hmm profile(s)
-  - sequence database
+  - profile: hmm profile(s)
+  - fasta: sequence database
 output:
-  - matches between sequences and hmm profiles
-citations:
-  - "`Challenges in Homology Search: HMMER3 and Convergent Evolution of Coiled-Coil Regions. J. Mistry, R. D. Finn, S. R. Eddy, A. Bateman, M. Punta. Nucleic Acids Research, 41:e121, 2013   <https://doi.org/10.1093/nar/gkt263>`_"
+  - tblout: save parseable table of per-sequence hits to file
+  - domtblout: save parseable table of per-sequence hits to file
+  - pfamtblout: save table of hits and domains to file, in Pfam format
+  - outfile: Direct the main human-readable output to a file
+params:
+  - evalue_threshold: default is 0.00001
+  - score_threshold: if bitscore threshold provided, hmmsearch will use that instead
+notes: |
+  "`Challenges in Homology Search: HMMER3 and Convergent Evolution of Coiled-Coil Regions. J. Mistry, R. D. Finn, S. R. Eddy, A. Bateman, M. Punta. Nucleic Acids Research, 41:e121, 2013   <https://doi.org/10.1093/nar/gkt263>`_"

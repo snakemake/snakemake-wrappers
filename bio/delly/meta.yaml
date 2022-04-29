@@ -1,4 +1,13 @@
 name: delly
+url: https://github.com/dellytools/delly
 description: Call variants with delly.
 authors:
   - Johannes Köster
+input:
+  ref: Fasta formatted genome sequence
+  exclude: BED4 formatted list of regions to exclude
+  samples: List of samples (bam)
+output:
+  - VCF file, this must be the first element in the output file list.
+params:
+  - extra: Optional parameters

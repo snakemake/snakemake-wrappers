@@ -1,5 +1,14 @@
 name: "Homer findPeaks"
+url: http://homer.ucsd.edu/homer/ngs/peaks.html
 description: >
-     Find ChIP- or ATAC-Seq peaks with the HOMER suite. For more information, please see the `documentation <http://homer.ucsd.edu/homer/ngs/peaks.html>`_.
+     Find ChIP- or ATAC-Seq peaks with the HOMER suite.
 authors:
   - Jan Forster
+input:
+  - tag: Sample tag directory
+  - control: Control sample tag directory
+output:
+  - Path to peaks file. This must be the only element of the output file list.
+params:
+  - extra: Optional parameters
+  - style: One of ``factor``, ``histone``, ``super``, ``groseq``, ``tss``, ``dnase``, or ``mC``. Required

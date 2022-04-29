@@ -1,10 +1,20 @@
 name: primerclip
+url: https://github.com/swiftbiosciences/primerclip
 description: |
-  Primer trimming on sam file, https://github.com/swiftbiosciences/primerclip
+  Primer trimming on sam file
 authors:
   - Patrik Smeds
 input:
-  - sam file
-  - master primer file
+  - alignment_file: sam file
+  - master_file: master primer file
 output:
-  - sam file
+  - alignment_file: sam file
+notes: |
+  This wrapper uses 4 threads:
+
+  * samtools view
+  * primerclip
+  * head
+  * samtools view
+
+  Despite being present in the Snakefile, this wrapper does not hantle extra parameters

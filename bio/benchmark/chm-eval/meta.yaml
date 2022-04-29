@@ -1,4 +1,16 @@
 name: chm-eval
-description: Evaluate given VCF file with chm-eval (https://github.com/lh3/CHM-eval) for benchmarking variant calling.
+url: https://github.com/lh3/CHM-eval
+description: Evaluate given VCF file with chm-eval for benchmarking variant calling.
 authors:
   - Johannes Köster
+input:
+  - kit: Path to downloaded chm-eval-kit
+  - vcf: Path to VCF formatted calls
+output:
+  - Summary file
+  - bed files containing errors
+params:
+  - build: Genome build
+  - extra: Other optional arguments
+notes: |
+  Output file order and mapping do not matter within the Snakefile

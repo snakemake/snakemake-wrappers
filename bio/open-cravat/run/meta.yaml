@@ -1,4 +1,13 @@
 name: OpenCRAVAT Run
-description: Runs OpenCRAVAT. Annotate variant calls with OpenCRAVAT. For more details, see https://github.com/KarchinLab/open-cravat/wiki.
+url: https://github.com/KarchinLab/open-cravat/wiki
+description: Runs OpenCRAVAT. Annotate variant calls with OpenCRAVAT.
 authors:
-    - Rick Kim
+  - Rick Kim
+params:
+  - genome: Reference genome identifier (default hg38)
+  - extra: Optional parameters
+input:
+  - OpenCRAVAT modules
+  - TSV input
+output:
+  - Output file depending on modules

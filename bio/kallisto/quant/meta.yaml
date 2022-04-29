@@ -1,4 +1,12 @@
 name: "kallisto quant"
+url: https://bioinformatics.readthedocs.io/en/latest/kallisto/
 description: Pseudoalign reads and quantify transcripts using kallisto.
 authors:
   - Joël Simoneau
+input:
+  - index: Path to index directory
+  - fastq: List of paths to fastq files
+output:
+  - Quantification output directory. This must be the only element in the output file list
+params:
+  - extra: Optional parameters

@@ -1,5 +1,12 @@
 name: "bwa-mem2 index"
+url: https://github.com/bwa-mem2/bwa-mem2
 description: "Creates a bwa-mem2 index."
 authors:
   - Christopher Schröder
   - Patrik Smeds
+input:
+  - Path to Fasta formatted genome sequence, must be the first and only element of the input file list.
+output:
+  - Path to genome index
+params:
+  prefix: Genome index prefix

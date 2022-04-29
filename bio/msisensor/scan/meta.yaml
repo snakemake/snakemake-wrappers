@@ -1,8 +1,11 @@
 name: "MSIsensor Scan"
+url: https://github.com/ding-lab/msisensor
 description: "Scan homopolymers and microsatelites with MSIsensor"
 authors:
   - Thibault Dayris
 input:
-  - A (multi)fasta formatted file
+  - A (multi)fasta formatted file. This must be the only input file
 output:
-  - A text file containing homopolymers and microsatelites
+  - A text file containing homopolymers and microsatelites. This must be the only output file
+notes: |
+  Warning, the official repository has been archived by its owner. See msisensor-pro.

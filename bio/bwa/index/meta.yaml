@@ -1,4 +1,12 @@
 name: "bwa index"
-description: Creates a BWA index. For more information about BWA see `BWA documentation <http://bio-bwa.sourceforge.net/bwa.shtml>`_.
+url: http://bio-bwa.sourceforge.net/bwa.shtml
+description: Creates a BWA index.
 authors:
   - Patrik Smeds
+input:
+  - One and only one fasta formatted reference genome
+output:
+  - Indexed sequence genome
+params:
+  - algorithm: Either "is" or "bwtsw", the algorithm for constructing BWT index. Optional
+  - prefix: Genome index prefix, optional

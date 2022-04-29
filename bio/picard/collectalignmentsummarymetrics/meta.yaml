@@ -1,10 +1,16 @@
 name: picard CollectAlignmentSummaryMetrics
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360042476752-CollectAlignmentSummaryMetrics-Picard-
 description: |
   Collect metrics on aligned reads with picard tools.
 authors:
   - Johannes Köster
+input:
+  - bam: Path to bam in which to collect metrics
+  - ref: Path to genome sequence (fasta).
+output:
+  - Metrics. This must be the first element of the output file list
+params:
+  - Optional arguments
 notes: |
-  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
-  * The `extra` param allows for additional program arguments.
-  * `--TMP_DIR` is automatically set by `resources.tmpdir`
+  * This tool does not handle multithreading
   * For more information see, https://broadinstitute.github.io/picard/command-line-overview.html#CollectAlignmentSummaryMetrics

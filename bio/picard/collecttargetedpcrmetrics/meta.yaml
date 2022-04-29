@@ -1,10 +1,17 @@
 name: picard CollectTargetedPcrMetrics
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360037225812-CollectTargetedPcrMetrics-Picard-
 description: |
   Collect metric information for target pcr metrics runs, with picard tools.
 authors:
   - Patrik Smeds
+input:
+  - bam: Path to input bam file
+  - amplicon_intervals: Path to amplicon interval file
+  - target_intervals: Path to target interval file
+output:
+  - Path to metrics file. This must be the first element of the output file list
+params:
+  - extra: Optional parameters
 notes: |
-  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
-  * The `extra` param allows for additional program arguments.
-  * `--TMP_DIR` is automatically set by `resources.tmpdir`
+  * This tool/wrapper does not handle multithreading
   * For more information see, https://broadinstitute.github.io/picard/command-line-overview.html#CollectTargetedPcrMetrics

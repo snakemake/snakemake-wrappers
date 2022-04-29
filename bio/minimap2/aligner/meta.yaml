@@ -1,16 +1,18 @@
 name: minimap2
+url: https://lh3.github.io/minimap2
 description: A versatile pairwise aligner for genomic and spliced nucleotide sequences.
 authors:
   - Tom Poorten
   - Michael Hall
   - Filipe G. Vieira
 input:
-  - FASTQ file(s)
-  - reference genome
+  - query: FASTQ file(s)
+  - targt: reference genome
 output:
-  - SAM/BAM/CRAM file
+  - SAM/BAM/CRAM file. This must be the first output element in the output file list
+params:
+  - extra: The `extra` param allows for additional arguments for minimap2.
+  - sort: The `sort` param allows to enable sorting (if output not PAF), and can be either 'none', 'queryname' or 'coordinate'.
+  - sort_extra: The `sort_extra` allows for extra arguments for samtools/picard
 notes: |
-  * The `extra` param allows for additional arguments for minimap2.
-  * The `sort` param allows to enable sorting (if output not PAF), and can be either 'none', 'queryname' or 'coordinate'.
-  * The `sort_extra` allows for extra arguments for samtools/picard
-  * For more inforamtion see, https://lh3.github.io/minimap2
+  Warning, this threads will use more threads than the number reserved in the Snakefile as soon as ``sort`` parameter is not none. In that case, for X reserved threads, X+1 will be used.

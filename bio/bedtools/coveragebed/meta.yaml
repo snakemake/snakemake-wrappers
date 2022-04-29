@@ -1,6 +1,14 @@
 name: "coverageBed"
+url: https://bedtools.readthedocs.io/en/latest/content/tools/coverage.html
 description:
   Returns the depth and breadth of coverage of features from B
   on the intervals in A.
 authors:
   - Patrik Smeds
+input:
+  - a: BAM/BED/GFF/VCF file
+  - b: One or more BAM/BED/GFF/VCF file(s)
+output:
+  - Output coverage file, this must be the first element of the output file list.
+params:
+  - extra: Optional parameters, see `coverageBed official documentation <https://bedtools.readthedocs.io/en/latest/content/tools/coverage.html#usage-and-option-summary>`_ for more information.

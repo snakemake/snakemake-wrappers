@@ -1,4 +1,22 @@
 name: "bwa mem samblaster"
+url: https://github.com/bwa-mem2/bwa-mem2
 description: Map reads using bwa-mem2, mark duplicates by samblaster and sort and index by sambamba.
 authors:
   - Christopher Schröder
+input:
+  - reads: List of paths to fastq files. R1 is mandatory, and an optional R2 is required for paired end
+output:
+  - SAM/BAM file
+params:
+  - index: Path to indexed genome
+  - extra: Optional parameters for bwa mem
+  - sort: Either "none", "samtools", or "picard".
+  - sort_order: Either "coordinate" or "queryname"
+  - sort_extra: Extra parameters for samtools or picard
+notes: |
+  This wrapper uses more threads than the number reserved in the snakemake rule. For X reserved threads, 3X+1 threads are used:
+
+  * X in BWA mem,
+  * X more in sambamba view,
+  * X more in sambamba sort.
+  * 1 more in samblaster

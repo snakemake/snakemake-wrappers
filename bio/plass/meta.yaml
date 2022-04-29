@@ -1,10 +1,14 @@
 name: plass
+url: https://github.com/soedinglab/plass
 description: "Plass (Protein-Level ASSembler) is software to assemble short read sequencing data on a protein level. The main purpose of Plass is the assembly of complex metagenomic datasets."
 authors:
   - N. Tessa Pierce
 input:
-  - fastq files
+  - left: Path to R1 fastq files
+  - right: Path to R2 fastq files (Optional)
 output:
-  - fasta containing protein assembly
-citations:
-  - "Steinegger M, Mirdita M and Soeding J. Protein-level assembly increases protein sequence recovery from metagenomic samples manyfold. biorxiv, doi: doi.org/10.1101/386110 (2018)"
+  - fasta containing protein assembly, this must be the first element of the output file list
+params:
+  - extra:  Optional parameters
+notes: |
+  "Steinegger M, Mirdita M and Soeding J. Protein-level assembly increases protein sequence recovery from metagenomic samples manyfold. biorxiv, doi: doi.org/10.1101/386110 (2018)"
