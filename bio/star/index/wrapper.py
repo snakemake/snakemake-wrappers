@@ -5,6 +5,7 @@ __copyright__ = "Copyright 2019, Dayris Thibault"
 __email__ = "thibault.dayris@gustaveroussy.fr"
 __license__ = "MIT"
 
+import tempfile
 from snakemake.shell import shell
 from snakemake.utils import makedirs
 
@@ -15,21 +16,23 @@ sjdb_overhang = snakemake.params.get("sjdbOverhang", "100")
 
 gtf = snakemake.input.get("gtf")
 if gtf is not None:
-    gtf = "--sjdbGTFfile " + gtf
-    sjdb_overhang = "--sjdbOverhang " + sjdb_overhang
+    gtf = f"--sjdbGTFfile {gtf}"
+    sjdb_overhang = f"--sjdbOverhang {sjdb_overhang}"
 else:
     gtf = sjdb_overhang = ""
 
 makedirs(snakemake.output)
 
-shell(
-    "STAR "  # Tool
-    "--runMode genomeGenerate "  # Indexation mode
-    "{extra} "  # Optional parameters
-    "--runThreadN {snakemake.threads} "  # Number of threads
-    "--genomeDir {snakemake.output} "  # Path to output
-    "--genomeFastaFiles {snakemake.input.fasta} "  # Path to fasta files
-    "{sjdb_overhang} "  # Read-len - 1
-    "{gtf} "  # Highly recommended GTF
-    "{log}"  # Logging
-)
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "STAR"
+        " --runThreadN {snakemake.threads}"  # Number of threads
+        " --runMode genomeGenerate"  # Indexation mode
+        " --genomeFastaFiles {snakemake.input.fasta}"  # Path to fasta files
+        " {sjdb_overhang}"  # Read-len - 1
+        " {gtf}"  # Highly recommended GTF
+        " {extra}"  # Optional parameters
+        " --outTmpDir {tmpdir}/STARtmp"  # Temp dir
+        " --genomeDir {snakemake.output}"  # Path to output
+        " {log}"  # Logging
+    )

@@ -1,0 +1,9 @@
+name: bgzip
+description: Block compression/decompression utility
+url: https://github.com/samtools/htslib
+authors:
+  - William Rowell
+input:
+  - file to be compressed or decompressed
+output:
+  - compressed or decompressed output

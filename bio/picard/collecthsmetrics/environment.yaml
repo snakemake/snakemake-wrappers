@@ -2,5 +2,5 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
-  - picard ==2.22.1
+  - picard =2.26
   - snakemake-wrapper-utils ==0.1.3

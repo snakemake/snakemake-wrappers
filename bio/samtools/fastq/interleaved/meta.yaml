@@ -1,0 +1,11 @@
+name: samtools fastq interleaved
+description:
+  Convert a bam file back to unaligned reads in a single fastq file with
+  samtools. For paired end reads, this results in an unsorted interleaved file.
+authors:
+  - David Laehnemann
+  - Victoria Sack
+  - Filipe G. Vieira
+notes: |
+  * The `extra` param allows for additional program arguments (not `-@/--threads` or `-o`).
+  * For more information see, http://www.htslib.org/doc/samtools-fasta.html

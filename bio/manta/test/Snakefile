@@ -1,0 +1,23 @@
+rule manta:
+    input:
+        ref="human_g1k_v37_decoy.small.fasta",
+        samples=["mapped/a.bam"],
+        index=["mapped/a.bam.bai"],
+        bed="test.bed.gz",  # optional
+    output:
+        vcf="results/out.bcf",
+        idx="results/out.bcf.csi",
+        cand_indel_vcf="results/small_indels.vcf.gz",
+        cand_indel_idx="results/small_indels.vcf.gz.tbi",
+        cand_sv_vcf="results/cand_sv.vcf.gz",
+        cand_sv_idx="results/cand_sv.vcf.gz.tbi",
+    params:
+        extra_cfg="",  # optional
+        extra_run="",  # optional
+    log:
+        "logs/manta.log",
+    threads: 2
+    resources:
+        mem_mb=4096,
+    wrapper:
+        "master/bio/manta"

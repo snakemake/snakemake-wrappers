@@ -1,4 +1,8 @@
 name: samtools depth
-description: Compute the read depth at each position or region using samtools. For more information see `SAMtools documentation <http://www.htslib.org/doc/samtools-depth.html>`_.
+description: Compute the read depth at each position or region using samtools.
 authors:
   - Dayne Filer
+  - Filipe G. Vieira
+notes: |
+  * The `extra` param allows for additional program arguments (not `-@/--threads` or `-o`).
+  * For more information see, http://www.htslib.org/doc/samtools-depth.html

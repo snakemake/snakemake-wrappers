@@ -1,4 +1,8 @@
 name: samtools stats
-description: Generate stats using samtools. For more information see `SAMtools documentation <http://www.htslib.org/doc/samtools-stats.html>`_.
+description: Generate stats using samtools.
 authors:
   - Julian de Ruiter
+  - Filipe G. Vieira
+notes: |
+  * The `extra` param allows for additional program arguments (not `-@/--threads`).
+  * For more information see, http://www.htslib.org/doc/samtools-stats.html

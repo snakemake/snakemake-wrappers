@@ -4,6 +4,7 @@ __email__ = "christopher.schroeder@tu-dortmund.de"
 __license__ = "MIT"
 
 
+import tempfile
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
@@ -17,8 +18,14 @@ if known:
         known = [known]
     known = list(map("--known-sites {}".format, known))
 
-shell(
-    "gatk --java-options '{java_opts}' BaseRecalibrator {extra} "
-    "-R {snakemake.input.ref} -I {snakemake.input.bam} "
-    "-O {snakemake.output.recal_table} {known} {log}"
-)
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "gatk --java-options '{java_opts}' BaseRecalibrator"
+        " --input {snakemake.input.bam}"
+        " --reference {snakemake.input.ref}"
+        " {known}"
+        " {extra}"
+        " --tmp-dir {tmpdir}"
+        " --output {snakemake.output.recal_table}"
+        " {log}"
+    )
