@@ -81,5 +81,5 @@ outdir = dirname(snakemake.output.get("quant"))
 shell(
     "salmon quant --index {snakemake.input.index} "
     " --libType {libtype} {read_cmd} --output {outdir} {gene_map} "
-    " --threads {snakemake.threads} {extra} {bam} {log} || cat {snakemake.log[0]} | lkhsl"
+    " --threads {snakemake.threads} {extra} {bam} {log}"
 )
