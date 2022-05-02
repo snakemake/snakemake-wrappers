@@ -19,7 +19,7 @@ rule salmon_index:
             "refseq.bin",
             "seq.bin",
             "versionInfo.json",
-        )
+        ),
     log:
         "logs/salmon/transcriptome_index.log",
     threads: 2
