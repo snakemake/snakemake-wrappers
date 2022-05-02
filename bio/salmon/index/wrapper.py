@@ -16,7 +16,7 @@ if "decoys" in snakemake.input.keys():
     decoys = "--decoys {}".format(snakemake.input["decoys"])
 
 resources_tmp = snakemake.resources.get("tmpdir", None)
-with TemporaryDirectory(dir=resources_tmp) as tempdir:
+with TemporaryDirectory() as tempdir:
     shell(
         "salmon index "
         "--transcripts {snakemake.input.sequences} "
