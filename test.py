@@ -1418,6 +1418,74 @@ def test_bwa_mem2_index():
 
 
 @skip_if_not_modified
+def test_dragmap_build():
+    run(
+        "bio/dragmap/build", 
+        ["snakemake", "--cores", "1", "genome/hash_table.cfg", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_dragmap_align():
+    run(
+        "bio/dragmap/align",
+        ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_dragmap_align_sort_samtools():
+    run(
+        "bio/dragmap/align",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.bam",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_samtools",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_dragmap_align_sort_samtools_write_index():
+    run(
+        "bio/dragmap/align",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped_with_index/a.bam",
+            "mapped_with_index/a.bam.csi",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_samtools",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_dragmap_align_sort_picard():
+    run(
+        "bio/dragmap/align",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.bam",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_picard",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_clustalo():
     run(
         "bio/clustalo",
@@ -3543,10 +3611,18 @@ def test_ensembl_sequence_chromosome_old_release():
 
 
 @skip_if_not_modified
-def test_ensembl_annotation():
+def test_ensembl_annotation_gtf():
     run(
         "bio/reference/ensembl-annotation",
-        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "refs/annotation.gtf", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_ensembl_annotation_gtf_gz():
+    run(
+        "bio/reference/ensembl-annotation",
+        ["snakemake", "--cores", "1", "refs/annotation.gtf.gz", "--use-conda", "-F"],
     )
 
 
@@ -4142,7 +4218,15 @@ def test_collectrnaseqmetrics():
 def test_gtftogenepred():
     run(
         "bio/ucsc/gtfToGenePred",
-        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "annotation.genePred", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gtftogenepred_picard_collectrnaseqmetrics():
+    run(
+        "bio/ucsc/gtfToGenePred",
+        ["snakemake", "--cores", "1", "annotation.PicardCollectRnaSeqMetrics.genePred", "--use-conda", "-F"],
     )
 
 

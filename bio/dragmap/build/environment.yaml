@@ -3,5 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - ucsc-gtftogenepred =377
-  - csvkit =1.0
+  - dragmap =1.2
