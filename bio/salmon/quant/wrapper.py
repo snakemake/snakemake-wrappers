@@ -68,13 +68,13 @@ elif r is not None:
 else:
     raise MissingMateError()
 
-gene_map = ""
-if "gtf" in snakemake.input.keys():
-    gene_map = "--geneMap {}"
+gene_map = snakemake.input.get("gtf", "")
+if gene_map:
+    gene_map = f"--geneMap {gene_map}"
 
-bam = ""
-if "bam" in snakemake.output.keys():
-    bam = "--writeMappings {}".format(snakemake.output["bam"])
+bam = snakemake.output.get("bam", "")
+if bam:
+    bam = f"--writeMappings {bam}"
 
 outdir = dirname(snakemake.output.get("quant"))
 

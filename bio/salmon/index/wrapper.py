@@ -11,9 +11,9 @@ from tempfile import TemporaryDirectory
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
-decoys = ""
-if "decoys" in snakemake.input.keys():
-    decoys = "--decoys {}".format(snakemake.input["decoys"])
+decoys = snakemake.input.get("decoys", "")
+if decoys:
+    decoys = f"--decoys {decoys}"
 
 resources_tmp = snakemake.resources.get("tmpdir", None)
 with TemporaryDirectory() as tempdir:
