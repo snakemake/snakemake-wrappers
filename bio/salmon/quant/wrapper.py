@@ -77,6 +77,9 @@ if bam:
     bam = f"--writeMappings {bam}"
 
 outdir = dirname(snakemake.output.get("quant"))
+index = snakemake.input["index"]
+if isinstance(index, list):
+    index = dirname(index[0])
 
 shell(
     "salmon quant --index {snakemake.input.index} "
