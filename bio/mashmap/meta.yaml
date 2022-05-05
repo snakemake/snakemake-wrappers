@@ -1,0 +1,17 @@
+name: MashMap
+description: Compute local alignment boundaries between long DNA sequences with MashMap
+url: https://github.com/marbl/MashMap
+authors:
+  - Thibault Dayris
+input:
+  - ref: Path to reference file
+  - query: Path to query file (fasta, fastq)
+output:
+  - Path to the alignment file
+params:
+  - extra: Optional parameters for MashMap
+notes: |
+  `input.ref` may be either a path to a file containing sequences (fasta) or a text file containing a list
+  paths to fasta-formatted sequence files.
+  
+  `input.query` may be either a fastq file or a fasta file.
