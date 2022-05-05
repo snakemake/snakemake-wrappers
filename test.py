@@ -2988,6 +2988,20 @@ def test_salmon_index():
         ],
     )
 
+    run(
+        "bio/salmon/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "salmon/transcriptome_index/",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_dir"
+        ],
+    )
+
 
 @skip_if_not_modified
 def test_salmon_quant():

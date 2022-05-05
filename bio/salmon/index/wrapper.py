@@ -5,6 +5,7 @@ __copyright__ = "Copyright 2018, Tessa Pierce"
 __email__ = "ntpierce@gmail.com"
 __license__ = "MIT"
 
+from os.path import dirname
 from snakemake.shell import shell
 from tempfile import TemporaryDirectory
 
@@ -15,12 +16,17 @@ decoys = snakemake.input.get("decoys", "")
 if decoys:
     decoys = f"--decoys {decoys}"
 
+print(type(snakemake.output))
+output = snakemake.output
+if len(output) > 1:
+    output = dirname(snakemake.output[0])
+
 resources_tmp = snakemake.resources.get("tmpdir", None)
 with TemporaryDirectory() as tempdir:
     shell(
         "salmon index "
         "--transcripts {snakemake.input.sequences} "
-        "--index {snakemake.output} "
+        "--index {output} "
         "--threads {snakemake.threads} "
         "--tmpdir {tempdir} "
         "{decoys} "
