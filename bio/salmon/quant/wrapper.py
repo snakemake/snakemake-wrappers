@@ -82,7 +82,7 @@ elif r is not None:
     if any(mate is not None for mate in [r1, r2]):
         raise MixedPairedUnpairedInput()
 
-    r, max_threads= uncompress_bz2(r, max_threads)
+    r, max_threads = uncompress_bz2(r, max_threads)
     read_cmd = " --unmatedReads {}".format(" ".join(r))
 
 else:
