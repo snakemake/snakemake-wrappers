@@ -10,7 +10,6 @@ rule salmon_quant_reads:
     params:
         # optional parameters
         libtype="A",
-        #zip_ext = bz2 # req'd for bz2 files ('bz2'); optional for gz files('gz')
         extra="",
     threads: 2
     wrapper:
