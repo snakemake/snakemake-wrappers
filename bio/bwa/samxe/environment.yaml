@@ -4,4 +4,4 @@ channels:
 dependencies:
   - bwa ==0.7.17
   - samtools ==1.9
-  - picard-slim ==2.20.1
+  - picard-slim =2.27
