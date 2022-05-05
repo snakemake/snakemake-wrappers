@@ -5,4 +5,4 @@ channels:
 dependencies:
   - bwa-mem2 ==2.2.1
   - samtools ==1.12
-  - picard ==2.23
+  - picard-slim ==2.23
