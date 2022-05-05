@@ -3160,7 +3160,14 @@ def test_gatk_applybqsrspark():
 
 
 @skip_if_not_modified
-def test_gatk_haplotypecaller():
+def test_gatk_haplotypecaller_vcf():
+    run(
+        "bio/gatk/haplotypecaller",
+        ["snakemake", "--cores", "1", "calls/a.vcf", "--use-conda", "-F"],
+    )
+
+@skip_if_not_modified
+def test_gatk_haplotypecaller_gvcf():
     run(
         "bio/gatk/haplotypecaller",
         ["snakemake", "--cores", "1", "calls/a.g.vcf", "--use-conda", "-F"],
