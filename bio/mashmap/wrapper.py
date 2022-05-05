@@ -15,7 +15,7 @@ extra = snakemake.params.get("extra", "")
 
 # Handling input file types (either a fasta file, or a text file with a list of paths to fasta files)
 ref = snakemake.input["ref"]
-if ref.endswith((".fa", ".fna")):
+if ref.endswith((".fa", ".fna", ".fasta")):
     ref = f"--ref {ref}"
 else:
     ref = f"--refList {ref}"
