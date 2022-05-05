@@ -3052,6 +3052,20 @@ def test_salmon_quant():
         [
             "snakemake",
             "--cores",
+            "2",
+            "salmon/a_se_x_transcriptome/quant.sf",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_se_bz2",
+        ],
+    )
+
+    run(
+        "bio/salmon/quant",
+        [
+            "snakemake",
+            "--cores",
             "1",
             "salmon/ab_pe_x_transcriptome/quant.sf",
             "--use-conda",

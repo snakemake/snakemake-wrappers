@@ -21,13 +21,40 @@ class MixedPairedUnpairedInput(Exception):
 class MissingMateError(Exception):
     def __init__(self):
         super().__init__(
-            "Salmon requires an equal number of paried reads in `r1` and `r2`,"
+            "Salmon requires an equal number of paired reads in `r1` and `r2`,"
             " or a list of unpaired reads `r`"
         )
 
 
+def uncompress_bz2(snake_io, salmon_threads):
+    """
+    Provide bzip2 on-the-fly decompression
+
+    For each of these b-unzipping, a thread will be used. Therefore, the maximum number of threads given to Salmon
+    shall be reduced by one in order not to be killed on a cluster.
+    """
+
+    # Asking forgiveness instead of permission
+    try:
+        # If no error are raised, then we have a string.
+        if snake_io.endswith("bz2"):
+            return [f"<( bzip2 --decompress --stdout {snake_io} )"], salmon_threads - 1
+        return [snake_io], salmon_threads
+    except AttributeError:
+        # As an error has been raise, we have a list of fastq files.
+        fq_files = []
+        for fastq in snake_io:
+            if fastq.endswith("bz2"):
+                fq_files.append(f"<( bzip2 --decompress --stdout {fastq} )")
+                salmon_threads -= 1
+            else:
+                fq_files.append(fastq)
+        return fq_files, salmon_threads
+
+
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 libtype = snakemake.params.get("libtype", "A")
+max_threads = snakemake.threads
 
 extra = snakemake.params.get("extra", "")
 if "--validateMappings" in extra:
@@ -39,16 +66,8 @@ r = snakemake.input.get("r")
 
 
 if all(mate is not None for mate in [r1, r2]):
-    r1 = (
-        [snakemake.input.r1]
-        if isinstance(snakemake.input.r1, str)
-        else snakemake.input.r1
-    )
-    r2 = (
-        [snakemake.input.r2]
-        if isinstance(snakemake.input.r2, str)
-        else snakemake.input.r2
-    )
+    r1, max_threads = uncompress_bz2(r1, max_threads)
+    r2, max_threads = uncompress_bz2(r2, max_threads)
 
     if len(r1) != len(r2):
         raise MissingMateError()
@@ -63,7 +82,7 @@ elif r is not None:
     if any(mate is not None for mate in [r1, r2]):
         raise MixedPairedUnpairedInput()
 
-    r = [snakemake.input.r] if isinstance(snakemake.input.r, str) else snakemake.input.r
+    r, max_threads= uncompress_bz2(r, max_threads)
     read_cmd = " --unmatedReads {}".format(" ".join(r))
 
 else:
@@ -82,8 +101,14 @@ index = snakemake.input["index"]
 if isinstance(index, list):
     index = dirname(index[0])
 
+if max_threads < 1:
+    raise ValueError(
+        "On-the-fly b-unzipping have raised the required number of threads. "
+        f"Please request at least {1 - max_threads} more threads."
+    )
+
 shell(
     "salmon quant --index {index} "
     " --libType {libtype} {read_cmd} --output {outdir} {gene_map} "
-    " --threads {snakemake.threads} {extra} {bam} {log}"
+    " --threads {max_threads} {extra} {bam} {log}"
 )
