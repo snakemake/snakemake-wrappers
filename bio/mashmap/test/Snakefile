@@ -1,0 +1,12 @@
+rule test_mashmap:
+    input:
+        ref="reference.fasta",
+        query="reads.fq.gz"
+    output:
+        "mashmap.out"
+    params:
+        extra=""
+    log:
+        "logs/mashmap.log"
+    wrapper:
+        "master/bio/mashmap"

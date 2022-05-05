@@ -131,6 +131,18 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_mashmap():
+    run(
+        "bio/mashmap",
+        ["snakemake", "--cores", "1", "mashmap.out", "--use-conda", "-F"]
+    )
+
+    run(
+        "bio/mashmap",
+        ["snakemake", "--cores", "1", "mashmap.out", "--use-conda", "-F", "-s", "Snakefile_reflist.smk"]
+    )
+
+@skip_if_not_modified
 def test_rbt_csvreport():
     run(
         "bio/rbt/csvreport",
