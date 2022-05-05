@@ -5,6 +5,7 @@ __copyright__ = "Copyright 2018, Tessa Pierce"
 __email__ = "ntpierce@gmail.com"
 __license__ = "MIT"
 
+
 from os.path import dirname
 from snakemake.shell import shell
 
@@ -82,7 +83,7 @@ if isinstance(index, list):
     index = dirname(index[0])
 
 shell(
-    "salmon quant --index {snakemake.input.index} "
+    "salmon quant --index {index} "
     " --libType {libtype} {read_cmd} --output {outdir} {gene_map} "
     " --threads {snakemake.threads} {extra} {bam} {log}"
 )
