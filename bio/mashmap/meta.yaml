@@ -11,7 +11,5 @@ output:
 params:
   - extra: Optional parameters for MashMap
 notes: |
-  `input.ref` may be either a path to a file containing sequences (fasta) or a text file containing a list
-  paths to fasta-formatted sequence files.
-  
-  `input.query` may be either a fastq file or a fasta file.
+  * `input.ref` may be either a path to a fasta file or a text file containing a list of paths to several fasta files.
+  * `input.query` may be either a fastq file or a fasta file.
