@@ -1,1 +1,1 @@
-reference.fasta
+reference.fasta.gz

@@ -19,7 +19,7 @@ ref = snakemake.input["ref"]
 if ref.endswith(".txt"):
     ref = f"--refList {ref}"
 elif ref.endswith(".gz"):
-    ref = f"--ref <(gzip --decompress --stdout {ref})"
+    ref = f"--ref <( gzip --decompress --stdout {ref} )"
     max_threads -= 1
 else:
     ref = f"--ref {ref}"
@@ -27,7 +27,7 @@ else:
 if max_threads < 1:
     raise ValueError(
         "Reference fasta on-the-fly g-unzipping consumed one thread."
-        f" Please increase the number of available threads by {1 - num_threads}."
+        f" Please increase the number of available threads by {1 - max_threads}."
     )
 
 

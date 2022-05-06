@@ -1,9 +1,10 @@
 rule test_mashmap:
     input:
-        ref="reference.fasta",  # This can be a txt file with a path to a fasta-file per line
+        ref="reference.fasta.gz",  # This can be a txt file with a path to a fasta-file per line
         query="read.fasta.gz",
     output:
         "mashmap.out",
+    threads: 2
     params:
         extra="-s 1000 --pi 99",
     log:
