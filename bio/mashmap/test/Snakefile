@@ -1,11 +1,11 @@
 rule test_mashmap:
     input:
         ref="reference.fasta",
-        query="reads.fq.gz"
+        query="read.fasta.gz"
     output:
         "mashmap.out"
     params:
-        extra=""
+        extra="-s 1000 --pi 99"
     log:
         "logs/mashmap.log"
     wrapper:
