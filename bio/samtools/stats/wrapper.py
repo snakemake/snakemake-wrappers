@@ -8,11 +8,9 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
-bed = snakemake.input.get("bed", None)
-if bed is not None:
-    bed = " -t " + bed
-else:
-    bed = ""
+bed = snakemake.input.get("bed", "")
+if bed:
+    bed = "-b " + bed"
 
 extra = snakemake.params.get("extra", "")
 region = snakemake.params.get("region", "")
@@ -20,5 +18,5 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 
 shell(
-    "samtools stats {extra} {snakemake.input} {bed} {region} > {snakemake.output} {log}"
+    "samtools stats {extra} {snakemake.input.bam} {bed} {region} > {snakemake.output} {log}"
 )
