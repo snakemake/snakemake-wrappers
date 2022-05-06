@@ -5,43 +5,60 @@ __license__ = "MIT"
 
 import subprocess
 import sys
+from pathlib import Path
 from snakemake.shell import shell
 
+
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+
+
 species = snakemake.params.species.lower()
-release = int(snakemake.params.release)
-fmt = snakemake.params.fmt
 build = snakemake.params.build
-flavor = snakemake.params.get("flavor", "")
+release = int(snakemake.params.release)
+out_fmt = Path(snakemake.output[0]).suffixes
+out_gz = (out_fmt.pop() and True) if out_fmt[-1] == ".gz" else False
+out_fmt = out_fmt.pop().lstrip(".")
+
 
 branch = ""
 if release >= 81 and build == "GRCh37":
     # use the special grch37 branch for new releases
     branch = "grch37/"
 
+
+flavor = snakemake.params.get("flavor", "")
 if flavor:
     flavor += "."
 
-log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 suffix = ""
-if fmt == "gtf":
+if out_fmt == "gtf":
     suffix = "gtf.gz"
-elif fmt == "gff3":
+elif out_fmt == "gff3":
     suffix = "gff3.gz"
+else:
+    raise ValueError(
+        "invalid format specified. Only 'gtf[.gz]' and 'gff3[.gz]' are currently supported."
+    )
 
-url = "ftp://ftp.ensembl.org/pub/{branch}release-{release}/{fmt}/{species}/{species_cap}.{build}.{release}.{flavor}{suffix}".format(
+
+url = "ftp://ftp.ensembl.org/pub/{branch}release-{release}/{out_fmt}/{species}/{species_cap}.{build}.{release}.{flavor}{suffix}".format(
     release=release,
     build=build,
     species=species,
-    fmt=fmt,
+    out_fmt=out_fmt,
     species_cap=species.capitalize(),
     suffix=suffix,
     flavor=flavor,
     branch=branch,
 )
 
+
 try:
-    shell("(curl -L {url} | gzip -d > {snakemake.output[0]}) {log}")
+    if out_gz:
+        shell("curl -L {url} > {snakemake.output[0]} {log}")
+    else:
+        shell("(curl -L {url} | gzip -d > {snakemake.output[0]}) {log}")
 except subprocess.CalledProcessError as e:
     if snakemake.log:
         sys.stderr = open(snakemake.log[0], "a")

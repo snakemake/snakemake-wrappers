@@ -3,17 +3,13 @@ rule gatk_select:
         vcf="calls/all.vcf",
         ref="genome.fasta",
     output:
-        vcf="calls/snvs.vcf"
+        vcf="calls/snvs.vcf",
     log:
-        "logs/gatk/select/snvs.log"
+        "logs/gatk/select/snvs.log",
     params:
         extra="--select-type-to-include SNP",  # optional filter arguments, see GATK docs
-        java_opts="", # optional
-    # optional specification of memory usage of the JVM that snakemake will respect with global
-    # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
-    # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
-    # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
+        java_opts="",  # optional
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     wrapper:
         "master/bio/gatk/selectvariants"

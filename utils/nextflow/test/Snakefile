@@ -7,10 +7,10 @@ rule all:  # [hide]
 rule get_genome:  # [hide]
     output:  # [hide]
         "data/genome.fasta",  # [hide]
-    conda:
+    conda:  # [hide]
         "envs/curl.yaml"
     log:
-        "logs/get-genome.log"
+        "logs/get-genome.log",
     shell:  # [hide]
         "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genome.fa > {output} 2> {log}"  # [hide]
 
@@ -21,7 +21,7 @@ rule get_annotation:  # [hide]
     conda:
         "envs/curl.yaml"
     log:
-        "logs/get-annotation.log"
+        "logs/get-annotation.log",
     shell:  # [hide]
         "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genes.gtf > {output} 2> {log}"  # [hide]
 
@@ -29,10 +29,10 @@ rule get_annotation:  # [hide]
 rule get_design:  # [hide]
     output:  # [hide]
         "design.csv",  # [hide]
-    conda:
-        "envs/curl.yaml"
-    log:
-        "logs/get-design.log"
+    conda:  # [hide]
+        "envs/curl.yaml"  # [hide]
+    log:  # [hide]
+        "logs/get-design.log",  # [hide]
     shell:  # [hide]
         "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/design.csv > {output} 2> {log}"  # [hide]
 

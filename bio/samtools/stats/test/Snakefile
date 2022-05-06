@@ -3,11 +3,11 @@ rule samtools_stats:
         bam="mapped/{sample}.bam",
         bed="design.bed",              #Optional input, specify target regions
     output:
-        "samtools_stats/{sample}.txt"
+        "samtools_stats/{sample}.txt",
     params:
-        extra="",                       # Optional: extra arguments.
-        region="xx:1000000-2000000"      # Optional: region string.
+        extra="",  # Optional: extra arguments.
+        region="xx:1000000-2000000",  # Optional: region string.
     log:
-        "logs/samtools_stats/{sample}.log"
+        "logs/samtools_stats/{sample}.log",
     wrapper:
         "master/bio/samtools/stats"

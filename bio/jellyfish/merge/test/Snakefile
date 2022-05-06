@@ -1,0 +1,10 @@
+rule jellyfish_merge:
+    input:
+        "a.jf",
+        "b.jf",
+    output:
+        "ab.jf",
+    log:
+        "ab.jf.log",
+    wrapper:
+        "master/bio/jellyfish/merge"

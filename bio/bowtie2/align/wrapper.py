@@ -4,10 +4,15 @@ __email__ = "koester@jimmy.harvard.edu"
 __license__ = "MIT"
 
 
+import os
 from snakemake.shell import shell
+from snakemake_wrapper_utils.samtools import get_samtools_opts
 
+
+samtools_opts = get_samtools_opts(snakemake)
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+
 
 n = len(snakemake.input.sample)
 assert (
@@ -19,8 +24,18 @@ if n == 1:
 else:
     reads = "-1 {} -2 {}".format(*snakemake.input.sample)
 
+
+index = os.path.commonprefix(snakemake.input.idx).rstrip(".")
+
+
 shell(
-    "(bowtie2 --threads {snakemake.threads} {extra} "
-    "-x {snakemake.params.index} {reads} "
-    "| samtools view -Sbh -o {snakemake.output[0]} -) {log}"
+    "(bowtie2"
+    " --threads {snakemake.threads}"
+    " {reads} "
+    " -x {index}"
+    " {extra}"
+    "| samtools view"
+    " {samtools_opts}"
+    " -"
+    ") {log}"
 )

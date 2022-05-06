@@ -2,3 +2,4 @@ name: vep annotate
 description: Annotate variant calls with VEP.
 authors:
   - Johannes Köster
+  - Felix Mölder

@@ -1,13 +1,13 @@
 rule bwa_aln:
     input:
-        "reads/{sample}.{pair}.fastq"
+        fastq="reads/{sample}.{pair}.fastq",
+        idx=multiext("genome", ".amb", ".ann", ".bwt", ".pac", ".sa"),
     output:
-        "sai/{sample}.{pair}.sai"
+        "sai/{sample}.{pair}.sai",
     params:
-        index="genome",
-        extra=""
+        extra="",
     log:
-        "logs/bwa_aln/{sample}.{pair}.log"
+        "logs/bwa_aln/{sample}.{pair}.log",
     threads: 8
     wrapper:
         "master/bio/bwa/aln"

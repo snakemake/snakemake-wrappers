@@ -4,12 +4,13 @@ __email__ = "antonie.v@gmx.de"
 __license__ = "MIT"
 
 import sys
+import tempfile
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-extra = snakemake.params
+extra = snakemake.params.get("extra", "")
 java_opts = get_java_opts(snakemake)
 
 exts_to_prog = {
@@ -46,7 +47,7 @@ for file in snakemake.output:
             "Unknown type of metrics file requested, for possible metrics files, see https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/picard/collectmultiplemetrics.html"
         )
 
-programs = " PROGRAM=" + " PROGRAM=".join(progs)
+programs = " --PROGRAM null --PROGRAM " + " --PROGRAM ".join(progs)
 
 out = str(snakemake.wildcards.sample)  # as default
 output_file = str(snakemake.output[0])
@@ -55,10 +56,14 @@ for ext in exts_to_prog:
         out = output_file[: -len(ext)]
         break
 
-shell(
-    "(picard CollectMultipleMetrics "
-    "I={snakemake.input.bam} "
-    "O={out} "
-    "R={snakemake.input.ref} "
-    "{extra} {programs} {java_opts}) {log}"
-)
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "picard CollectMultipleMetrics"
+        " {java_opts} {extra}"
+        " --INPUT {snakemake.input.bam}"
+        " --TMP_DIR {tmpdir}"
+        " --OUTPUT {out}"
+        " --REFERENCE_SEQUENCE {snakemake.input.ref}"
+        " {programs}"
+        " {log}"
+    )

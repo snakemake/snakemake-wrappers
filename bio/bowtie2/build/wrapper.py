@@ -4,12 +4,21 @@ __email__ = "daniel.standage@nbacc.dhs.gov"
 __license__ = "MIT"
 
 
+import os
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-indexbase = snakemake.output[0].replace(".1.bt2", "")
+
+
+index = os.path.commonprefix(snakemake.output).rstrip(".")
+
+
 shell(
-    "bowtie2-build --threads {snakemake.threads} {snakemake.params.extra} "
-    "{snakemake.input.reference} {indexbase}"
+    "bowtie2-build"
+    " --threads {snakemake.threads}"
+    " {extra}"
+    " {snakemake.input.ref}"
+    " {index}"
+    " {log}"
 )

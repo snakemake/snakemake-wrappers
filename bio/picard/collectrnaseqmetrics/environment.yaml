@@ -3,5 +3,5 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - picard ==2.25.4
+  - picard =2.26
   - snakemake-wrapper-utils ==0.1.3

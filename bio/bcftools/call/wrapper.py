@@ -6,6 +6,8 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+
 
 class CallerOptionError(Exception):
     pass
@@ -24,5 +26,6 @@ options = snakemake.params.get("options", "")
 
 shell(
     "bcftools call {options} {caller_opt} --threads {snakemake.threads} "
-    "-o {snakemake.output.calls} {snakemake.input.pileup} 2> {snakemake.log}"
+    "-o {snakemake.output.calls} {snakemake.input.pileup} "
+    "{log}"
 )

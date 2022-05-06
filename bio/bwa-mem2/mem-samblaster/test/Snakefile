@@ -1,15 +1,16 @@
 rule bwa_mem:
     input:
-        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"]
+        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        # Index can be a list of (all) files created by bwa, or one of them
+        idx=multiext("genome.fasta", ".amb", ".ann", ".bwt.2bit.64", ".pac"),
     output:
         bam="mapped/{sample}.bam",
-        index="mapped/{sample}.bam.bai"
+        index="mapped/{sample}.bam.bai",
     log:
-        "logs/bwa_mem2_sambamba/{sample}.log"
+        "logs/bwa_mem2_sambamba/{sample}.log",
     params:
-        index="genome.fasta",
         extra=r"-R '@RG\tID:{sample}\tSM:{sample}'",
-        sort_extra="-q" # Extra args for sambamba.
+        sort_extra="-q",  # Extra args for sambamba.
     threads: 8
     wrapper:
         "master/bio/bwa-mem2/mem-samblaster"

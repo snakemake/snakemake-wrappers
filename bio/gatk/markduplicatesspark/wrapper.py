@@ -3,7 +3,6 @@ __copyright__ = "Copyright 2021, Filipe G. Vieira"
 __license__ = "MIT"
 
 import tempfile
-
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
@@ -15,21 +14,20 @@ spark_master = snakemake.params.get(
 spark_extra = snakemake.params.get("spark_extra", "")
 java_opts = get_java_opts(snakemake)
 
-tmpdir = tempfile.gettempdir()
-
 metrics = snakemake.output.get("metrics", "")
 if metrics:
     metrics = f"--metrics-file {metrics}"
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-shell(
-    "gatk --java-options '{java_opts}' MarkDuplicatesSpark "
-    "{extra} "
-    "--input {snakemake.input} "
-    "--tmp-dir {tmpdir} "
-    "--output {snakemake.output.bam} "
-    "{metrics} "
-    "-- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra} "
-    "{log}"
-)
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "gatk --java-options '{java_opts}' MarkDuplicatesSpark"
+        " --input {snakemake.input}"
+        " {extra}"
+        " --tmp-dir {tmpdir}"
+        " --output {snakemake.output.bam}"
+        " {metrics}"
+        " -- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra}"
+        " {log}"
+    )

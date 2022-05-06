@@ -1,0 +1,13 @@
+name: samtools fastq separate
+description:
+  Convert a bam file with paired end reads back to unaligned reads in a two
+  separate fastq files with `samtools`. Reads that are not properly paired are
+  discarded (READ_OTHER and singleton reads in `samtools fastq` documentation),
+  as are secondary (0x100) and supplementary reads (0x800).
+authors:
+  - David Laehnemann
+  - Victoria Sack
+  - Filipe G. Vieira
+notes: |
+  * The `extra` param allows for additional program arguments.
+  * For more information see, http://www.htslib.org/doc/samtools-fasta.html

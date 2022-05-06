@@ -1,8 +1,12 @@
 name: samtools fixmate
-description: Use samtools to correct mate information after BWA mapping. For more information see `SAMtools documentation <http://www.htslib.org/doc/samtools-fixmate.html>`_.
+description: Use samtools to correct mate information after BWA mapping.
 authors:
   - Thibault Dayris
+  - Filipe G. Vieira
 input:
   - bam or sam file (.bam,.sam)
 output:
   - bam or sam file (.bam,.sam)
+notes: |
+  * The `extra` param allows for additional program arguments (not `-@/--threads` or `-O/--output-fmt`).
+  * For more information see, http://www.htslib.org/doc/samtools-fixmate.html

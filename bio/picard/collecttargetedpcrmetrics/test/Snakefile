@@ -1,19 +1,19 @@
 rule CollectTargetedPcrMetrics:
     input:
         bam="mapped/{sample}.bam",
-        amplicon_intervals="amplicon.list",
-        target_intervals="target.list"
+        amplicon_intervals="amplicon.interval_list",
+        target_intervals="target.interval_list",
     output:
-        "stats/{sample}.pcr.txt"
+        "stats/{sample}.pcr.txt",
     log:
-        "logs/picard/collecttargetedpcrmetrics/{sample}.log"
+        "logs/picard/collecttargetedpcrmetrics/{sample}.log",
     params:
-        extra=""
+        extra="",
     # optional specification of memory usage of the JVM that snakemake will respect with global
     # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
     # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
     # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     wrapper:
         "master/bio/picard/collecttargetedpcrmetrics"

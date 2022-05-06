@@ -1,0 +1,14 @@
+rule jellyfish_count:
+    input:
+        "{prefix}.fasta",
+    output:
+        "{prefix}.jf",
+    log:
+        "{prefix}.jf.log",
+    params:
+        kmer_length=21,
+        size="1G",
+        extra="--canonical",
+    threads: 2
+    wrapper:
+        "master/bio/jellyfish/count"

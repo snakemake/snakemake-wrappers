@@ -33,9 +33,11 @@ jobs:
 
       - name: Setup Snakemake environment
         run: |
-           conda install -c conda-forge mamba --quiet
-           export PATH="/usr/share/miniconda/bin:$PATH"
-           mamba create -c bioconda -c conda-forge --quiet -y --name snakemake snakemake-minimal
+          # ensure that mamba is happy to write into the cache
+          sudo chown -R runner:docker /usr/share/miniconda/pkgs/cache
+          conda install -c conda-forge mamba --quiet
+          export PATH="/usr/share/miniconda/bin:$PATH"
+          mamba create -c bioconda -c conda-forge --quiet -y --name snakemake snakemake-minimal
       
       - name: Fetch master
         run: |
@@ -46,7 +48,8 @@ jobs:
           export PATH="/usr/share/miniconda/bin:$PATH"
           source activate snakemake
           declare -i ERRORS=0
-          for f in $(git diff origin/master --name-only | grep Snakefile)
+          # get all modified and added files, not those that are deleted
+          for f in $(git diff origin/master --name-only --diff-filter=d | grep Snakefile)
           do 
             snakemake -s $f --lint
             ERRORS+=$?

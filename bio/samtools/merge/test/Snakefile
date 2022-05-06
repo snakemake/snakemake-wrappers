@@ -1,11 +1,12 @@
 rule samtools_merge:
     input:
-        ["mapped/A.bam", "mapped/B.bam"]
+        ["mapped/A.bam", "mapped/B.bam"],
     output:
-        "merged.bam"
+        "merged.bam",
+    log:
+        "merged.log",
     params:
-        "" # optional additional parameters as string
-    threads:  # Samtools takes additional threads through its option -@
-        8     # This value - 1 will be sent to -@
+        extra="",  # optional additional parameters as string
+    threads: 8
     wrapper:
         "master/bio/samtools/merge"

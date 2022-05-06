@@ -4,6 +4,9 @@ __license__ = "MIT"
 
 
 import os
+import random
+import tempfile
+from pathlib import Path
 from snakemake.shell import shell
 
 
@@ -28,6 +31,18 @@ if metrics:
     metrics = f"M={metrics}"
 
 
-shell(
-    "bamsormadup threads={snakemake.threads} inputformat={in_format} outputformat={out_format} {index} {metrics} {extra} < {snakemake.input[0]} > {snakemake.output[0]} {log}"
-)
+with tempfile.TemporaryDirectory() as tmpdir:
+    # This folder must not exist; it is created by BamSorMaDup
+    tmpdir_bamsormadup = Path(tmpdir) / "bamsormadup_{:06d}".format(
+        random.randrange(10**6)
+    )
+
+    shell(
+        "bamsormadup threads={snakemake.threads}"
+        " inputformat={in_format}"
+        " tmpfile={tmpdir_bamsormadup}"
+        " outputformat={out_format}"
+        " {index} {metrics} {extra}"
+        " < {snakemake.input[0]} > {snakemake.output[0]}"
+        " {log}"
+    )
