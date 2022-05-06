@@ -1,6 +1,7 @@
 rule samtools_stats:
     input:
-        "mapped/{sample}.bam"
+        bam="mapped/{sample}.bam",
+        bed="design.bed",              #Optional input, specify target regions
     output:
         "samtools_stats/{sample}.txt"
     params:
