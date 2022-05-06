@@ -12,7 +12,7 @@ from snakemake_wrapper_utils.samtools import get_samtools_opts
 
 bed = snakemake.input.get("bed", "")
 if bed:
-    bed = "-b " + bed"
+    bed = "-b " + bed
 
 samtools_opts = get_samtools_opts(
     snakemake, parse_write_index=False, parse_output=False, parse_output_format=False
