@@ -21,7 +21,6 @@ else:
     ref = f"--refList {ref}"
 
 shell(
-    #"/usr/bin/time -v "
     "mashmap "
     "{ref} "
     "--query {snakemake.input.query} "
