@@ -1,6 +1,6 @@
 rule test_mashmap:
     input:
-        ref="reference.fasta",
+        ref="reference.fasta", # This can be a txt file with a path to a fasta-file per line
         query="read.fasta.gz"
     output:
         "mashmap.out"
