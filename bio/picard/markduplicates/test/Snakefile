@@ -1,6 +1,6 @@
 rule mark_duplicates:
     input:
-        "mapped/{sample}.bam",
+        bams="mapped/{sample}.bam",
     # optional to specify a list of BAMs; this has the same effect
     # of marking duplicates on separate read groups for a sample
     # and then merging
@@ -23,7 +23,7 @@ rule mark_duplicates:
 
 rule mark_duplicates_cram:
     input:
-        bam="mapped/{sample}.bam",
+        bams="mapped/{sample}.bam",
         ref="ref/genome.fasta",
     # optional to specify a list of BAMs; this has the same effect
     # of marking duplicates on separate read groups for a sample
