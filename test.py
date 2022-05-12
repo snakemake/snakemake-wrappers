@@ -2202,6 +2202,14 @@ def test_picard_markduplicates():
 
 
 @skip_if_not_modified
+def test_picard_markduplicates_cram():
+    run(
+        "bio/picard/markduplicates",
+        ["snakemake", "--cores", "1", "dedup/a.cram", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_picard_markduplicateswithmatecigar():
     run(
         "bio/picard/markduplicateswithmatecigar",
