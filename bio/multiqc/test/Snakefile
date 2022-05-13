@@ -4,7 +4,7 @@ rule multiqc_dir:
     output:
         "qc/multiqc.html"
     params:
-        extrra=""  # Optional: extra parameters for multiqc.
+        extra=""  # Optional: extra parameters for multiqc.
     log:
         "logs/multiqc.log"
     wrapper:
