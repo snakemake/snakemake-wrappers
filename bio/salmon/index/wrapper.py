@@ -21,7 +21,6 @@ output = snakemake.output
 if len(output) > 1:
     output = dirname(snakemake.output[0])
 
-resources_tmp = snakemake.resources.get("tmpdir", None)
 with TemporaryDirectory() as tempdir:
     shell(
         "salmon index "
