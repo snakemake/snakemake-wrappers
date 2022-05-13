@@ -17,7 +17,7 @@ rule multiqc_file:
         "qc/multiqc_a.html"
     params:
         extra="",  # Optional: extra parameters for multiqc.
-        use_files_as_input=False, # Optional, use only a.txt and don't search folder samtools_stats for files
+        use_input_files_only=True, # Optional, use only a.txt and don't search folder samtools_stats for files
     log:
         "logs/multiqc.log"
     wrapper:
