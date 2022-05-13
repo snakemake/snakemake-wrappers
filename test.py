@@ -2202,6 +2202,14 @@ def test_picard_markduplicates():
 
 
 @skip_if_not_modified
+def test_picard_markduplicates_cram():
+    run(
+        "bio/picard/markduplicates",
+        ["snakemake", "--cores", "1", "dedup/a.cram", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_picard_markduplicateswithmatecigar():
     run(
         "bio/picard/markduplicateswithmatecigar",
@@ -3160,7 +3168,14 @@ def test_gatk_applybqsrspark():
 
 
 @skip_if_not_modified
-def test_gatk_haplotypecaller():
+def test_gatk_haplotypecaller_vcf():
+    run(
+        "bio/gatk/haplotypecaller",
+        ["snakemake", "--cores", "1", "calls/a.vcf", "--use-conda", "-F"],
+    )
+
+@skip_if_not_modified
+def test_gatk_haplotypecaller_gvcf():
     run(
         "bio/gatk/haplotypecaller",
         ["snakemake", "--cores", "1", "calls/a.g.vcf", "--use-conda", "-F"],
