@@ -14,9 +14,9 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 # Set this to False if multiqc should use the actual input directly
 # instead of parsing the folders where the provided files are located
-convert_file_input_to_dirs = snakemake.params.get("use_files_as_input", True)
+use_input_files_only = snakemake.params.get("use_input_files_only", False)
 
-if convert_file_input_to_dirs:
+if not use_input_files_only:
     input_data = set(path.dirname(fp) for fp in snakemake.input)
 else:
     input_data = set(snakemake.input)
