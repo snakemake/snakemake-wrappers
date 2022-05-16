@@ -1,6 +1,7 @@
 name: multiqc
 description: |
   Generate qc report using multiqc.
+url: https://multiqc.info/
 authors:
   - Julian de Ruiter
 input:
