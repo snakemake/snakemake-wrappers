@@ -2132,6 +2132,12 @@ def test_multiqc():
         ["snakemake", "--cores", "1", "qc/multiqc.html", "--use-conda", "-F"],
     )
 
+@skip_if_not_modified
+def test_multiqc_a():
+    run(
+        "bio/multiqc",
+        ["snakemake", "--cores", "1", "qc/multiqc_a.html", "--use-conda", "-F"],
+    )
 
 @skip_if_not_modified
 def test_muscle_clw():
