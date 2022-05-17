@@ -3,6 +3,8 @@ rule bcftools_merge:
         calls=["a.bcf", "b.bcf"],
     output:
         "all.bcf",
+    log:
+        "all.log"
     params:
         uncompressed_bcf=False,
         extra="",  # optional parameters for bcftools concat (except -o)
