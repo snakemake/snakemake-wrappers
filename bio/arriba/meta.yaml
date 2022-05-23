@@ -1,4 +1,18 @@
 name: "arriba"
+url: https://github.com/suhrig/arriba
 description: Detect gene fusions from chimeric STAR output
 authors:
   - Jan Forster
+input:
+  - bam: Path to bam formatted alignment file from STAR
+  - genome: Path to fasta formatted genome sequence
+  - annotation: Path to GTF formatted genome annotation
+output:
+  - fusions: Path to output fusion file
+params:
+  - known_fusions: Path to known fusions file, see `official documentation on known fusions <https://arriba.readthedocs.io/en/latest/input-files/#known-fusions>`_ for more information.
+  - blacklist: Path to blacklist file, see `official documentation on blacklist <https://arriba.readthedocs.io/en/latest/input-files/#blacklist>`_ for more information.
+  - sv_file: Path to structural variations calls from WGS, see `official documentation on SV <https://arriba.readthedocs.io/en/latest/input-files/#structural-variant-calls-from-wgs>`_ for more information.
+  - extra: Other `optional parameters <https://arriba.readthedocs.io/en/latest/command-line-options/>`_
+notes: |
+  This tool/wrapper does not handle multi threading.
