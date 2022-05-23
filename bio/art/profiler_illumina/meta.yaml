@@ -1,6 +1,15 @@
 name: art_profiler_illumina
+url: https://www.niehs.nih.gov/research/resources/software/biostatistics/art/index.cfm
 description: Use the art profiler to create a base quality score profile for
   Illumina read data from a fastq file.
 authors:
   - David Laehnemann
   - Victoria Sack
+input:
+  - Path to fastq-formatted input file (first place in the input list of files)
+output:
+  - Path to txt formatted profile (first place in the output list of files)
+params:
+  - Extra parameters (no keyword mapped parameter)
+notes: |
+  Your input file must have one of the following extensions: fastq, fastq.gz, fq or fq.gz

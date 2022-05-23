@@ -1,8 +1,15 @@
 name: bamtools split
+url: https://github.com/pezmaster31/bamtools
 description: Split bam file into sub files, default by reference
 authors:
   - Patrik Smeds
 input:
-  - bam file
+  - bam file, this must be the only file in input.
 output:
-  - multiple bam file
+  - multiple bam file multiple formats.
+params:
+  - extra: Optional parameters
+notes: |
+  A complete usage documentation is available here: https://raw.githubusercontent.com/wiki/pezmaster31/bamtools/Tutorial_Toolkit_BamTools-1.0.pdf
+
+  This tool/wrapper does not handle multi threading
