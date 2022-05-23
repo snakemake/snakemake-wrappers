@@ -51,8 +51,8 @@ else:
 # Gathering decoy sequences names
 # Sed command works as follow:
 # -n       = do not print all lines
-# s/ .*//g = Remove anything after spaces. Aka: remove comments.
-# s/>//p  = Remove '>' character at the begining of sequence names. Print it.
+# s/ .*//g = Remove anything after spaces. (remove comments)
+# s/>//p  = Remove '>' character at the begining of sequence names. Print names.
 shell("( sed -n 's/ .*//g;s/>//p' {genome} ) > {snakemake.output.decoys} {log}")
 
 # Building big gentrome file
