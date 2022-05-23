@@ -16,7 +16,6 @@ decoys = snakemake.input.get("decoys", "")
 if decoys:
     decoys = f"--decoys {decoys}"
 
-print(type(snakemake.output))
 output = snakemake.output
 if len(output) > 1:
     output = dirname(snakemake.output[0])
