@@ -1,0 +1,13 @@
+rule salmon_index:
+    input:
+        sequences="assembly/transcriptome.fasta",
+    output:
+        directory("salmon/transcriptome_index/"),
+    log:
+        "logs/salmon/transcriptome_index.log",
+    threads: 2
+    params:
+        # optional parameters
+        extra="",
+    wrapper:
+        "master/bio/salmon/index"

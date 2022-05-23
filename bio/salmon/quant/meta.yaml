@@ -1,9 +1,23 @@
-name: salmon_quant
+name: salmon quant
+url: https://salmon.readthedocs.io/en/latest/salmon.html#quantifying-in-mapping-based-mode
 description: |
-  Quantify transcripts with salmon 
+  Quantify transcripts with salmon
 authors:
   - Tessa Pierce
+  - Thibault Dayris
 input:
-  - assembly index, fastq files
+  - index: Path to Salmon indexed sequences, see `bio/salmon/index`
+  - gtf: Optional path to a GTF formatted genome annotation
+  - r: Path to unpaired reads
+  - r1: Path to upstream reads file.
+  - r2: Path to downstream reads file.
 output:
-  - quantification files 
+  - Path to quantification file
+  - bam: Path to pseudo-bam file
+params:
+  - libType: Format string describing the library type, see `official documentation on Library Types <https://salmon.readthedocs.io/en/latest/library_type.html>`_ for list of accepted values.
+  - extra: Optional command line parameters, besides IO parameters and threads.
+notes: |
+  Salmon accepted either a list of unpaired reads (`r` parameter), or two lists
+  of the same length containing paired reads (`r1` and `r2` parameters). Not
+  both.

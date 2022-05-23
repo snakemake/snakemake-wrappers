@@ -1432,7 +1432,7 @@ def test_bwa_mem2_index():
 @skip_if_not_modified
 def test_dragmap_build():
     run(
-        "bio/dragmap/build", 
+        "bio/dragmap/build",
         ["snakemake", "--cores", "1", "genome/hash_table.cfg", "--use-conda", "-F"],
     )
 
@@ -3008,9 +3008,23 @@ def test_salmon_index():
             "snakemake",
             "--cores",
             "1",
-            "salmon/transcriptome_index",
+            "salmon/transcriptome_index/complete_ref_lens.bin",
             "--use-conda",
             "-F",
+        ],
+    )
+
+    run(
+        "bio/salmon/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "salmon/transcriptome_index/",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_dir"
         ],
     )
 
@@ -3037,11 +3051,39 @@ def test_salmon_quant():
             "snakemake",
             "--cores",
             "1",
+            "salmon/a/quant.sf",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_index_list",
+        ],
+    )
+
+    run(
+        "bio/salmon/quant",
+        [
+            "snakemake",
+            "--cores",
+            "1",
             "salmon/a_se_x_transcriptome/quant.sf",
             "--use-conda",
             "-F",
             "-s",
             "Snakefile_se",
+        ],
+    )
+
+    run(
+        "bio/salmon/quant",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "salmon/a_se_x_transcriptome/quant.sf",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_se_bz2",
         ],
     )
 

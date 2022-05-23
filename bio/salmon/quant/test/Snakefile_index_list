@@ -1,8 +1,10 @@
-rule salmon_index:
+rule salmon_quant_reads:
     input:
-        sequences="assembly/transcriptome.fasta",
-    output:
-        multiext(
+        # If you have multiple fastq files for a single sample (e.g. technical replicates)
+        # use a list for r1 and r2.
+        r1="reads/{sample}_1.fq.gz",
+        r2="reads/{sample}_2.fq.gz",
+        index=multiext(
             "salmon/transcriptome_index/",
             "complete_ref_lens.bin",
             "ctable.bin",
@@ -20,11 +22,15 @@ rule salmon_index:
             "seq.bin",
             "versionInfo.json",
         ),
+    output:
+        quant="salmon/{sample}/quant.sf",
+        lib="salmon/{sample}/lib_format_counts.json",
     log:
-        "logs/salmon/transcriptome_index.log",
-    threads: 2
+        "logs/salmon/{sample}.log",
     params:
         # optional parameters
+        libtype="A",
         extra="",
+    threads: 2
     wrapper:
-        "master/bio/salmon/index"
+        "master/bio/salmon/quant"
