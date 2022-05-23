@@ -53,7 +53,7 @@ else:
 # -n       = do not print all lines
 # s/ .*//g = Remove anything after spaces. Aka: remove comments.
 # s/>//gp  = Remove '>' character at the begining of sequence names. Print it.
-shell("( sed -n 's/ .*//g;s/>//p' " "{genome} )" "> {snakemake.output.decoys} {log}")
+shell("( sed -n 's/ .*//g;s/>//p' {genome} ) > {snakemake.output.decoys} {log}")
 
 # Building big gentrome file
 shell(
