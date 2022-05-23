@@ -1420,7 +1420,7 @@ def test_bwa_mem2_index():
 @skip_if_not_modified
 def test_dragmap_build():
     run(
-        "bio/dragmap/build", 
+        "bio/dragmap/build",
         ["snakemake", "--cores", "1", "genome/hash_table.cfg", "--use-conda", "-F"],
     )
 
@@ -2979,6 +2979,21 @@ def test_trinity():
             "--use-conda",
             "-F",
         ],
+    )
+
+
+@skip_if_not_modified
+def test_salmon_decoys():
+    run(
+        "bio/salmon/decoys",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "gentrome.fasta.gz"
+        ]
     )
 
 

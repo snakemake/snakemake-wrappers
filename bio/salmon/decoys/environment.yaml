@@ -1,0 +1,6 @@
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - bzip2 =1.0.8
+  - gzip =1.12

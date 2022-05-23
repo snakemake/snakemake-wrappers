@@ -1,0 +1,10 @@
+rule test_salmon_decoy:
+    input:
+        transcriptome="transcriptome.fasta.gz",
+        genome="genome.fasta.gz",
+    output:
+        gentrome="gentrome.fasta.gz",
+        decoys="decoys.txt",
+    threads: 2
+    wrapper:
+        "master/bio/salmon/decoys"
