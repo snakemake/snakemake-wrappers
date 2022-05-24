@@ -20,5 +20,5 @@ with tempfile.TemporaryDirectory() as tmpdir:
     tmp_prefix = Path(tmpdir) / "samtools_fastq.sort_"
 
     shell(
-        "samtools sort {samtools_opts} {extra} -T {tmp_prefix} {snakemake.input[0]} {log}"
+        "samtools sort {samtools_opts} {extra} -o {snakemake.output[0]} -T {tmp_prefix} {snakemake.input[0]} {log}"
     )
