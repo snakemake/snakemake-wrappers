@@ -4095,6 +4095,14 @@ def test_vep_annotate():
 
 
 @skip_if_not_modified
+def test_genefuse():
+    run(
+        "bio/genefuse",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a_fusions.txt", "a_genefuse_report.html"],
+    )
+
+
+@skip_if_not_modified
 def test_genomepy():
     # download dm3 genome (relatively small, +/- 250 mb)
     run(
