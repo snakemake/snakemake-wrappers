@@ -2,9 +2,9 @@ rule gatk_depth_of_coverage:
     input:
         bam="mapped/a.bam",
         fasta="genome.fasta",
-        intervals="regions.interval_list",
+        intervals="regions.interval_list", # Regions where the coverage is computed
     output:
-        basename="depths/a",
+        basename="depths/a", # File name base for all the output files
     log:
         "logs/gatk/depthofcoverage.log",
     params:
