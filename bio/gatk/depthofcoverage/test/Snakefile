@@ -1,0 +1,16 @@
+rule gatk_depth_of_coverage:
+    input:
+        bam="mapped/a.bam",
+        fasta="genome.fasta",
+        intervals="regions.interval_list",
+    output:
+        basename="depths/a",
+    log:
+        "logs/gatk/depthofcoverage.log",
+    params:
+        extra="",
+        java_opts="",
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/gatk/depthofcoverage"

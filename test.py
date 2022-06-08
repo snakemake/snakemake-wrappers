@@ -3397,6 +3397,21 @@ def test_gatk_mutect_bam():
 
 
 @skip_if_not_modified
+def test_depth_of_coverage():
+    run(
+        "bio/gatk/depthofcoverage",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "depths/a",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_vardict_single_mode():
     run(
         "bio/vardict",
