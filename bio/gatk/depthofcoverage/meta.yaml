@@ -1,0 +1,11 @@
+name: gatk DepthOfCoverage
+description: |
+  Run gatk DepthOfCoverage (BETA).
+authors:
+  - Lauri Mesilaakso
+input:
+  - one or more bam files to be analyzed for coverage statistics
+  - one or more genomic intervals over which to operate
+  - reference genome
+output:
+  - base file location to which to write coverage summary information
