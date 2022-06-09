@@ -1,6 +1,6 @@
 rule gatk_depth_of_coverage:
     input:
-        bam="mapped/a.bam",
+        bam="mapped/a.bam", # File containing reads
         fasta="genome.fasta",
         intervals="regions.interval_list", # Regions where the coverage is computed
     output:
