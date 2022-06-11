@@ -73,7 +73,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     )
 
 
-# Under some circumstnaces, some picard programs might not produce an output (https://github.com/snakemake/snakemake-wrappers/issues/357). To avoid snakemake errors, the ourput files of those programs are touched at the end.
+# Under some circumstances, some picard programs might not produce an output (https://github.com/snakemake/snakemake-wrappers/issues/357). To avoid snakemake errors, the output files of those programs are created empty (if they do not exist).
 for ext in [
     ext for ext, prog in exts_to_prog.items() if prog in ["CollectInsertSizeMetrics"]
 ]:
