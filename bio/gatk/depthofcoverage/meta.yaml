@@ -1,6 +1,7 @@
 name: gatk DepthOfCoverage
 description: |
   Run gatk DepthOfCoverage (BETA).
+url: https://gatk.broadinstitute.org/hc/en-us/articles/5358877443995-DepthOfCoverage-BETA-
 authors:
   - Lauri Mesilaakso
 input:
@@ -10,4 +11,4 @@ input:
 output:
   - base file location to which to write coverage summary information
 notes: |
-  * For more information see, https://gatk.broadinstitute.org/hc/en-us/articles/5358877443995-DepthOfCoverage-BETA-
+  * The `extra` param allows for additional program arguments.
