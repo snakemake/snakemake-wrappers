@@ -6,7 +6,7 @@ rule gatk_depth_of_coverage:
     output:
         basename="depths/{sample}",  # File name base for all the output files
     log:
-        "logs/gatk/depthofcoverage.log",
+        "logs/gatk/{sample}_depthofcoverage.log",
     params:
         extra="",
         java_opts="",
