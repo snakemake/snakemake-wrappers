@@ -1,8 +1,8 @@
 rule bcftools_mpileup:
     input:
-        index="genome.fasta.fai",
-        ref="genome.fasta",  # this can be left out if --no-reference is in options
         alignments="mapped/{sample}.bam",
+        ref="genome.fasta",  # this can be left out if --no-reference is in options
+        index="genome.fasta.fai",
     output:
         pileup="pileups/{sample}.pileup.bcf",
     params:
