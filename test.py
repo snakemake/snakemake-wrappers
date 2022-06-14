@@ -3001,6 +3001,21 @@ def test_trinity():
 
 
 @skip_if_not_modified
+def test_salmon_decoys():
+    run(
+        "bio/salmon/decoys",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "gentrome.fasta.gz"
+        ]
+    )
+
+
+@skip_if_not_modified
 def test_salmon_index():
     run(
         "bio/salmon/index",
