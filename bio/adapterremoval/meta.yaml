@@ -1,17 +1,20 @@
 name: "AdapterRemoval"
 description: rapid adapter trimming, identification, and read merging.
+url: https://adapterremoval.readthedocs.io/en/latest/
 authors:
   - Filipe G. Vieira
 input:
-  - raw fastq file with R1 reads
-  - raw fastq file with R2 reads (PE only)
+  - sample:
+    - raw fastq file with R1 reads
+    - raw fastq file with R2 reads (PE only)
 output:
-  - trimmed fastq file with R1 reads
-  - trimmed fastq file with R2 reads (PE only)
-  - fastq file with singleton reads (PE only; PE reads for which the mate has been discarded)
-  - fastq file with collapsed reads (PE only; overlapping mate-pairs which have been merged into a single read)
-  - fastq file with collapsed truncated reads (PE only; collapsed reads that were quality trimmed)
-  - fastq file with discarded reads (reads that did not pass filters)
-  - settings and stats file
+  - fq: path to single fastq file (SE only)
+  - fq1: path to fastq R1 (PE only)
+  - fq2: path to fastq R2 (PE only)
+  - singleton: fastq file with singleton reads (PE only; PE reads for which the mate has been discarded)
+  - collapsed: fastq file with collapsed reads (PE only; overlapping mate-pairs which have been merged into a single read)
+  - collapsed_trunc: fastq file with collapsed truncated reads (PE only; collapsed reads that were quality trimmed)
+  - discarded: fastq file with discarded reads (reads that did not pass filters)
+  - settings: settings and stats file
 notes: |
-  * For more information see, https://adapterremoval.readthedocs.io/en/latest/
+  * All output files, except for 'settings', must be compressed the same way (gz, or bz2).
