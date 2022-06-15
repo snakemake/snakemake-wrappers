@@ -5,7 +5,7 @@ url: https://gatk.broadinstitute.org/hc/en-us/articles/5358877443995-DepthOfCove
 authors:
   - Lauri Mesilaakso
 input:
-  - one or more bam files to be analyzed for coverage statistics
+  - one bam file to be analyzed for coverage statistics
   - one or more genomic intervals over which to operate
   - reference genome
 output:

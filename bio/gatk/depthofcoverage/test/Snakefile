@@ -1,12 +1,12 @@
 rule gatk_depth_of_coverage:
     input:
-        bam="mapped/{sample}.bam",  # File containing reads
+        bam="mapped/a.bam",  # File containing reads
         fasta="genome.fasta",
         intervals="regions.interval_list",  # Regions where the coverage is computed
     output:
-        basename="depths/{sample}",  # File name base for all the output files
+        basename="depth/a",  # File name base for all the output files
     log:
-        "logs/gatk/{sample}_depthofcoverage.log",
+        "logs/gatk/depthofcoverage.log",
     params:
         extra="",
         java_opts="",
