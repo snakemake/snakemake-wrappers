@@ -1,0 +1,16 @@
+name: decoys
+url: https://combine-lab.github.io/alevin-tutorial/2019/selective-alignment/
+description: Generate gentrome sequences and gather decoy sequences name
+authors:
+  - Thibault Dayris
+input:
+  - transcriptome: Path to transcriptome sequences, fasta (gz/bz2) formatted.
+  - genome: Path to genome sequences, fasta (gz/bz2) formatted.
+output:
+  - gentrome: Path to gentrome, fasta (gz/bz2) formatted.
+  - decoys: Path to text file contianing decoy sequence names.
+notes: |
+  Provide transcriptome and genome under the same format (raw fasta, gzipped
+  or bgzipped). In case of compressed input, this wrapper requires 2 threads:
+  one for on-the-fly decompression and one for actual decoy sequences
+  acquisition.

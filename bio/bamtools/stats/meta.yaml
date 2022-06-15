@@ -1,8 +1,14 @@
 name: bamtools stats
+url: https://github.com/pezmaster31/bamtools
 description: Use bamtools to collect statistics from a BAM file. For more information about bamtools see `bamtools documentation <http://stab.st-andrews.ac.uk/wiki/index.php/Bamtools>`_ and `bamtools source code <https://github.com/pezmaster31/bamtools>`_.
 authors:
   - Antonie Vietor
 input:
-  - bam files (.bam)
+  - bam files (.bam), must be in first position
 output:
-  - bamstats file (.bamstats)
+  - bamstats file (.bamstats), must be in first position
+params:
+  - Optional parameters as first and only value.
+notes: |
+  A complete usage documentation is available here: https://raw.githubusercontent.com/wiki/pezmaster31/bamtools/Tutorial_Toolkit_BamTools-1.0.pdf
+  This tool/wrapper does not handle multi threading
