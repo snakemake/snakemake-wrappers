@@ -3412,15 +3412,20 @@ def test_gatk_mutect_bam():
 
 
 @skip_if_not_modified
-def test_depth_of_coverage():
+def test_gatk_depth_of_coverage():
     run(
         "bio/gatk/depthofcoverage",
         [
             "snakemake",
             "--cores",
             "1",
-            "depths/a",
-            "--use-conda",
+            "depth/a",
+            "depth/a.sample_cumulative_coverage_counts",
+            "depth/a.sample_cumulative_coverage_proportions",
+            "depth/a.sample_interval_statistics",
+            "depth/a.sample_interval_summary",
+            "depth/a.sample_statistics",
+            "depth/a.sample_summary" "--use-conda",
             "-F",
         ],
     )

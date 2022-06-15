@@ -4,7 +4,16 @@ rule gatk_depth_of_coverage:
         fasta="genome.fasta",
         intervals="regions.interval_list",  # Regions where the coverage is computed
     output:
-        basename="depth/a",  # File name base for all the output files
+        multiext(
+            "depth/a",
+            "",
+            ".sample_interval_summary",
+            ".sample_cumulative_coverage_counts",
+            ".sample_cumulative_coverage_proportions",
+            ".sample_interval_statistics",
+            ".sample_statistics",
+            ".sample_summary",
+        ),
     log:
         "logs/gatk/depthofcoverage.log",
     params:
