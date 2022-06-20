@@ -32,5 +32,3 @@ with TemporaryDirectory() as tempdir:
         " mv {tmpdir}/tmp_prefix_result.tsv {snakemake.output.tsv:q} )"
         " {log}"
     )
-    
-
