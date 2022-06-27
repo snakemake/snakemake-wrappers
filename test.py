@@ -131,6 +131,18 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_mashmap():
+    run(
+        "bio/mashmap",
+        ["snakemake", "--cores", "2", "mashmap.out", "--use-conda", "-F"]
+    )
+
+    run(
+        "bio/mashmap",
+        ["snakemake", "--cores", "2", "mashmap.out", "--use-conda", "-F", "-s", "Snakefile_reflist.smk"]
+    )
+
+@skip_if_not_modified
 def test_rbt_csvreport():
     run(
         "bio/rbt/csvreport",
@@ -1420,7 +1432,7 @@ def test_bwa_mem2_index():
 @skip_if_not_modified
 def test_dragmap_build():
     run(
-        "bio/dragmap/build", 
+        "bio/dragmap/build",
         ["snakemake", "--cores", "1", "genome/hash_table.cfg", "--use-conda", "-F"],
     )
 
@@ -2120,6 +2132,12 @@ def test_multiqc():
         ["snakemake", "--cores", "1", "qc/multiqc.html", "--use-conda", "-F"],
     )
 
+@skip_if_not_modified
+def test_multiqc_a():
+    run(
+        "bio/multiqc",
+        ["snakemake", "--cores", "1", "qc/multiqc_a.html", "--use-conda", "-F"],
+    )
 
 @skip_if_not_modified
 def test_muscle_clw():
@@ -2983,6 +3001,21 @@ def test_trinity():
 
 
 @skip_if_not_modified
+def test_salmon_decoys():
+    run(
+        "bio/salmon/decoys",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "gentrome.fasta.gz"
+        ]
+    )
+
+
+@skip_if_not_modified
 def test_salmon_index():
     run(
         "bio/salmon/index",
@@ -2990,9 +3023,23 @@ def test_salmon_index():
             "snakemake",
             "--cores",
             "1",
-            "salmon/transcriptome_index",
+            "salmon/transcriptome_index/complete_ref_lens.bin",
             "--use-conda",
             "-F",
+        ],
+    )
+
+    run(
+        "bio/salmon/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "salmon/transcriptome_index/",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_dir"
         ],
     )
 
@@ -3019,11 +3066,39 @@ def test_salmon_quant():
             "snakemake",
             "--cores",
             "1",
+            "salmon/a/quant.sf",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_index_list",
+        ],
+    )
+
+    run(
+        "bio/salmon/quant",
+        [
+            "snakemake",
+            "--cores",
+            "1",
             "salmon/a_se_x_transcriptome/quant.sf",
             "--use-conda",
             "-F",
             "-s",
             "Snakefile_se",
+        ],
+    )
+
+    run(
+        "bio/salmon/quant",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "salmon/a_se_x_transcriptome/quant.sf",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_se_bz2",
         ],
     )
 

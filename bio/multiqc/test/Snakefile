@@ -1,10 +1,23 @@
-rule multiqc:
+rule multiqc_dir:
     input:
         expand("samtools_stats/{sample}.txt", sample=["a", "b"])
     output:
         "qc/multiqc.html"
     params:
-        ""  # Optional: extra parameters for multiqc.
+        extra=""  # Optional: extra parameters for multiqc.
+    log:
+        "logs/multiqc.log"
+    wrapper:
+        "master/bio/multiqc"
+
+rule multiqc_file:
+    input:
+        expand("samtools_stats/{sample}.txt", sample=["a"])
+    output:
+        "qc/multiqc_a.html"
+    params:
+        extra="",  # Optional: extra parameters for multiqc.
+        use_input_files_only=True, # Optional, use only a.txt and don't search folder samtools_stats for files
     log:
         "logs/multiqc.log"
     wrapper:

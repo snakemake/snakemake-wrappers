@@ -1,6 +1,6 @@
 rule salmon_quant_reads:
     input:
-        r="reads/{sample}.fq.gz",
+        r="reads/{sample}.fq.bz2",
         index="salmon/transcriptome_index",
     output:
         quant="salmon/{sample}_x_transcriptome/quant.sf",
