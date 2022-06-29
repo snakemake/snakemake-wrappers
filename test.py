@@ -3425,7 +3425,8 @@ def test_gatk_depth_of_coverage():
             "depth/a.sample_interval_statistics",
             "depth/a.sample_interval_summary",
             "depth/a.sample_statistics",
-            "depth/a.sample_summary" "--use-conda",
+            "depth/a.sample_summary",
+            "--use-conda",
             "-F",
         ],
     )
