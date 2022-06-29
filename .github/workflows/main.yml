@@ -42,6 +42,7 @@ jobs:
            conda install -c conda-forge mamba --quiet
            export PATH="/usr/share/miniconda/bin:$PATH"
            mamba create -c bioconda -c conda-forge --quiet -y --name snakemake snakemake-minimal pytest
+           conda config --set channel_priority strict
 
       - name: Fetch master
         if: github.ref != 'refs/heads/master'
