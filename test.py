@@ -130,6 +130,15 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+
+@skip_if_not_modified
+def meryl_count():
+    run(
+        "bio/meryl/count",
+        ["snakemake", "--cores", "2", "genome", "--use-conda", "-F"],
+    )
+
+
 @skip_if_not_modified
 def test_mashmap():
     run(

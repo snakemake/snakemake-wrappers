@@ -1,0 +1,13 @@
+name: meryl count
+description: |
+  A genomic k-mer counter (and sequence utility) with nice features.
+url: https://github.com/marbl/meryl
+authors:
+  - Filipe G. Vieira
+input:
+  - fasta file
+output:
+  - meryl database (directory)
+notes: |
+  * The `command` param allows to specify how to count the kmers: canonical (count), only forward (`count-forward`), or only reverse (`count-reverse`) kmers (default: `count`).
+  * The `extra` param allows for additional program arguments.
