@@ -1,0 +1,12 @@
+name: meryl union
+description: |
+  A genomic k-mer counter (and sequence utility) with nice features.
+url: https://github.com/marbl/meryl
+authors:
+  - Filipe G. Vieira
+input:
+  - meryl database(s)
+output:
+  - meryl database
+notes: |
+  * The `command` param allows to specify how to unite the kmers: number of inputs (`union`), minimum count (`union-min`), maximum count (`union-max`), or sum of the counts (`union-sum`) [default: `union`].

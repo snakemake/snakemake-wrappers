@@ -1,0 +1,12 @@
+rule meryl_union:
+    input:
+        "{genome}",
+        "{genome}",
+    output:
+        directory("union/{genome}/"),
+    log:
+        "logs/meryl_union/{genome}.log",
+    params:
+        command="union-sum",
+    wrapper:
+        "master/bio/meryl/union"

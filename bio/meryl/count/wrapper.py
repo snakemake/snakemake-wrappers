@@ -10,6 +10,7 @@ from snakemake_wrapper_utils.snakemake import get_mem
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
+
 command = snakemake.params.get("command", "count")
 assert command in [
     "count",
@@ -17,7 +18,9 @@ assert command in [
     "count-reverse",
 ], "invalid command specified."
 
+
 mem_gb = get_mem(snakemake, out_unit="GiB")
+
 
 shell(
     "meryl"
@@ -26,5 +29,6 @@ shell(
     " memory={mem_gb}"
     " {extra}"
     " {snakemake.input}"
-    " output {snakemake.output} {log}"
+    " output {snakemake.output}"
+    " {log}"
 )
