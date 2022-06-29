@@ -140,6 +140,14 @@ def meryl_count():
 
 
 @skip_if_not_modified
+def meryl_union():
+    run(
+        "bio/meryl/union",
+        ["snakemake", "--cores", "1", "union/genome", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_mashmap():
     run(
         "bio/mashmap",
