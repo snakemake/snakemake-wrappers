@@ -1,6 +1,7 @@
 channels:
   - conda-forge
   - bioconda
+  - nodefaults
 dependencies:
   - bwa ==0.7.17
   - sambamba ==0.7.1

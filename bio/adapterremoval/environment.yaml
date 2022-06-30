@@ -1,4 +1,5 @@
 channels:
   - bioconda
+  - nodefaults
 dependencies:
   - adapterremoval =2.3

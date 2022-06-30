@@ -1,6 +1,7 @@
 channels:
   - conda-forge
   - bioconda
+  - nodefaults
 dependencies:
   - qualimap ==2.2.2d
   - snakemake-wrapper-utils ==0.1.3

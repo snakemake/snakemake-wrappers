@@ -1,6 +1,7 @@
 channels:
   - conda-forge
   - bioconda
+  - nodefaults
 dependencies:
   - bcftools =1.11
   - snakemake-wrapper-utils =0.2

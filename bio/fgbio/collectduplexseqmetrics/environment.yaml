@@ -2,6 +2,7 @@ channels:
   - r
   - conda-forge
   - bioconda
+  - nodefaults
 dependencies:
   - fgbio ==0.6.1
   - r-ggplot2

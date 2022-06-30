@@ -1,5 +1,6 @@
 name: vardict-java
 channels:
   - bioconda
+  - nodefaults
 dependencies:
   - vardict-java ==1.8.2

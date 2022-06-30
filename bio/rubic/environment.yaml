@@ -1,6 +1,7 @@
 channels:
     - bioconda
     - conda-forge
+  - nodefaults
 dependencies:
     - r-base =3.4.1
     - r-rubic =1.0.3

@@ -2,5 +2,6 @@ channels:
   - conda-forge
   - bioconda
   - default
+  - nodefaults
 dependencies:
   - vembrane =0.5.1

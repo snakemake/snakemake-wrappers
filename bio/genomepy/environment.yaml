@@ -1,5 +1,6 @@
 channels:
   - bioconda
   - conda-forge
+  - nodefaults
 dependencies:
   - bioconda::genomepy==0.8.3

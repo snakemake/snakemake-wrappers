@@ -1,6 +1,7 @@
 channels:
   - conda-forge
   - bioconda
+  - nodefaults
 dependencies:
   - snpsift ==4.3.1t
   - bcftools ==1.10.2
