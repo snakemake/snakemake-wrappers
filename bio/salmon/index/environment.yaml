@@ -1,5 +1,6 @@
 channels:
-  - conda-forge
   - bioconda
+  - conda-forge
+  - defaults
 dependencies:
   - salmon ==1.8.0

@@ -1,6 +1,6 @@
 channels:
-  - conda-forge
   - bioconda
+  - conda-forge
 dependencies:
   - samtools ==1.6
   - lofreq ==2.1.3.1

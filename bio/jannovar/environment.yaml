@@ -1,6 +1,7 @@
 channels:
-  - conda-forge
   - bioconda
+  - conda-forge
+  - defaults
 dependencies:
   - jannovar-cli ==0.31
   - snakemake-wrapper-utils ==0.1.3

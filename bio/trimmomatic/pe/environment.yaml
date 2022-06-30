@@ -1,6 +1,7 @@
 channels:
-  - conda-forge
   - bioconda
+  - conda-forge
+  - defaults
 dependencies:
   - trimmomatic ==0.36
   - pigz ==2.3.4

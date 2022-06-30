@@ -1,5 +1,5 @@
 channels:
-  - conda-forge
   - bioconda
+  - conda-forge
 dependencies:
   - nanosim-h ==1.1.0.4

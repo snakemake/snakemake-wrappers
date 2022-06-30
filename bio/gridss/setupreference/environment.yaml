@@ -1,5 +1,6 @@
 channels:
-  - conda-forge
   - bioconda
+  - conda-forge
+  - defaults
 dependencies:
   - gridss ==2.9.4

@@ -1,6 +1,7 @@
 channels:
-  - conda-forge
   - bioconda
+  - conda-forge
+  - defaults
 dependencies:
   - fastq-screen ==0.5.2
   - bowtie2 ==2.2.6

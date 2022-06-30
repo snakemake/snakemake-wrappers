@@ -1,7 +1,8 @@
 name: varscan-pileup2snp
 channels:
-  - conda-forge
   - bioconda
+  - conda-forge
+  - defaults
 dependencies:
   - varscan ==2.4.3
   - snakemake-wrapper-utils ==0.1.3

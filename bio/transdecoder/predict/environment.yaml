@@ -1,5 +1,6 @@
 channels:
     - conda-forge
     - bioconda
-  dependencies:
+    - defaults
+dependencies:
     - transdecoder=5.5.0 

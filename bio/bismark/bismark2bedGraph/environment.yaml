@@ -1,6 +1,7 @@
 channels:
-  - conda-forge
   - bioconda
+  - conda-forge
+  - defaults
 dependencies:
   - bowtie2 ==2.4.2
   - bismark ==0.23.0

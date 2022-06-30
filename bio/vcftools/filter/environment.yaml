@@ -1,5 +1,6 @@
 channels:
-  - conda-forge
   - bioconda
+  - conda-forge
+  - defaults
 dependencies:
   - vcftools ==0.1.16

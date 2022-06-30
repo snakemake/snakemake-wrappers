@@ -1,6 +1,6 @@
 channels:
-  - conda-forge
   - bioconda
+  - conda-forge
 dependencies:
   - umis ==1.0.3
   - samtools ==1.9

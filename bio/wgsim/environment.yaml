@@ -1,5 +1,5 @@
 channels:
-  - conda-forge
   - bioconda
+  - defaults
 dependencies:
   - wgsim ==1.0.0

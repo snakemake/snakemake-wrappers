@@ -1,5 +1,6 @@
 channels:
-  - conda-forge
   - bioconda
+  - conda-forge
+  - defaults
 dependencies:
   - shovill ==1.1.0
