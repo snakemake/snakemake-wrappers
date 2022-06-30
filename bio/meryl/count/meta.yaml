@@ -9,5 +9,5 @@ input:
 output:
   - meryl database
 notes: |
-  * The `command` param allows to specify how to count the kmers: canonical (`count`), only forward (`count-forward`), or only reverse (`count-reverse`) kmers (default: `count`).
+  * The `command` param allows to specify how to count the kmers: `count` (canonical kmers) [default], `count-forward` (only forward kmers), or `count-reverse` (only reverse kmers).
   * The `extra` param allows for additional program arguments (kmer size `k` is mandatory).

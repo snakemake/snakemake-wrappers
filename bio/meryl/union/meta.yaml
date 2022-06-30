@@ -9,4 +9,4 @@ input:
 output:
   - meryl database
 notes: |
-  * The `command` param allows to specify how to unite the kmers: number of inputs (`union`), minimum count (`union-min`), maximum count (`union-max`), or sum of the counts (`union-sum`) [default: `union`].
+  * The `command` param allows to specify how to unite the kmers: `union` (number of inputs) [default], `union-min` (minimum count), `union-max` (maximum count), or `union-sum` (sum of the counts).
