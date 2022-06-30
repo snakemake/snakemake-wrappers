@@ -1,6 +1,6 @@
 channels:
-  - bioconda
   - conda-forge
+  - bioconda
 dependencies:
   - bowtie2 ==2.4.1
   - bcftools ==1.10.2

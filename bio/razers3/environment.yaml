@@ -1,6 +1,5 @@
 channels:
   - conda-forge
   - bioconda
-  - defaults
 dependencies:
   - razers3 ==3.5.8

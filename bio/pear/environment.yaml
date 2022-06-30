@@ -1,6 +1,5 @@
 channels:
-  - bioconda
   - conda-forge
-  - defaults
+  - bioconda
 dependencies:
   - pear=0.9.6

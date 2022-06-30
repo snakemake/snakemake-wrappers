@@ -1,7 +1,6 @@
 channels:
-  - bioconda
   - conda-forge
-  - defaults
+  - bioconda
 dependencies:
   - paladin=1.4.4
   - samtools=1.5

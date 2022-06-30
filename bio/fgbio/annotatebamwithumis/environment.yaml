@@ -1,7 +1,6 @@
 channels:
-  - bioconda
   - conda-forge
-  - defaults
+  - bioconda
 dependencies:
   - fgbio ==1.4.0
   - snakemake-wrapper-utils ==0.2

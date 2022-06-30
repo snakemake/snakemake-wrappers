@@ -1,6 +1,5 @@
 channels:
-  - bioconda
   - conda-forge
-  - defaults
+  - bioconda
 dependencies:
   - infernal=1.1.2
