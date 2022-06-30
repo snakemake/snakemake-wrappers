@@ -131,6 +131,14 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_genomescope():
+    run(
+        "bio/genomescope",
+        ["snakemake", "--cores", "1", "a/model.txt", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_mashmap():
     run(
         "bio/mashmap",
@@ -141,6 +149,7 @@ def test_mashmap():
         "bio/mashmap",
         ["snakemake", "--cores", "2", "mashmap.out", "--use-conda", "-F", "-s", "Snakefile_reflist.smk"]
     )
+
 
 @skip_if_not_modified
 def test_rbt_csvreport():
