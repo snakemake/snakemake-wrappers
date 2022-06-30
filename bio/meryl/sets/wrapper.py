@@ -15,6 +15,13 @@ assert command in [
     "union-min",
     "union-max",
     "union-sum",
+    "intersect",
+    "intersect-min",
+    "intersect-max",
+    "intersect-sum",
+    "subtract",
+    "difference",
+    "symmetric-difference",
 ], "invalid command specified."
 
 

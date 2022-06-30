@@ -140,10 +140,25 @@ def meryl_count():
 
 
 @skip_if_not_modified
-def meryl_union():
+def meryl_sets():
     run(
-        "bio/meryl/union",
-        ["snakemake", "--cores", "1", "union/genome", "--use-conda", "-F"],
+        "bio/meryl/sets",
+        ["snakemake", "--cores", "1", "genome_union", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/meryl/sets",
+        ["snakemake", "--cores", "1", "genome_intersect", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/meryl/sets",
+        ["snakemake", "--cores", "1", "genome_subtract", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/meryl/sets",
+        ["snakemake", "--cores", "1", "genome_difference", "--use-conda", "-F"],
     )
 
 
