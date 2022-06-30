@@ -3,6 +3,6 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - picard =2.26
-  - samtools =1.15.1
+  - picard =2.27
+  - samtools =1.15
   - snakemake-wrapper-utils ==0.1.3
