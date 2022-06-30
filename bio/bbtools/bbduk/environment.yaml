@@ -1,7 +1,6 @@
 channels:
-  - bioconda
   - conda-forge
-  - defaults
+  - bioconda
 dependencies:
   - bbmap ==38.90
   - snakemake-wrapper-utils ==0.1.3

@@ -1,8 +1,7 @@
 name: varscan-pileup2indel
 channels:
-  - bioconda
   - conda-forge
-  - defaults
+  - bioconda
 dependencies:
   - varscan ==2.4.3
   - snakemake-wrapper-utils ==0.1.3
