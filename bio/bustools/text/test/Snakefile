@@ -1,26 +1,26 @@
 rule test_bustools_text:
     input:
-        "file.bus"
+        "file.bus",
     output:
-        "file.txt"
+        "file.txt",
     threads: 1
     params:
-        extra=""
+        extra="",
     log:
-        "logs/bustools.log"
+        "logs/bustools.log",
     wrapper:
         "master/bio/bustools/text"
 
 
 rule test_bustools_text_list:
     input:
-        ["file.bus", "file2.bus"]
+        ["file.bus", "file2.bus"],
     output:
-        "file2.txt"
+        "file2.txt",
     threads: 1
     params:
-        extra="--flags --pad"
+        extra="--flags --pad",
     log:
-        "logs/bustools.log"
+        "logs/bustools.log",
     wrapper:
         "master/bio/bustools/text"

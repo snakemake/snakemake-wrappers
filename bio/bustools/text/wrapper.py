@@ -18,10 +18,4 @@ bus_files = snakemake.input[0]
 if isinstance(bus_files, list):
     bus_files = " ".join(bus_files)
 
-shell(
-    "bustools text "
-    "--output {snakemake.output[0]} "
-    "{extra} "
-    "{bus_files} "
-    "{log}"
-)
+shell("bustools text --output {snakemake.output[0]} {extra} {bus_files} {log}")
