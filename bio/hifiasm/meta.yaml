@@ -1,0 +1,13 @@
+name: Hifiasm
+description: A haplotype-resolved assembler for accurate Hifi reads
+url: https://github.com/chhylp123/hifiasm
+authors:
+  - Filipe G. Vieira
+input:
+  - bam file
+output:
+  - bam file with added or replaced read groups
+notes: |
+  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  * The `extra` param allows for additional program arguments.
+  * `--TMP_DIR` is automatically set by `resources.tmpdir`
