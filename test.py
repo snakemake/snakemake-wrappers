@@ -177,11 +177,11 @@ def test_biobambam2_bamsormadup():
 def test_bustools_text():
     run(
         "bio/bustools/text",
-        ["snakemake", "--cores", "1", "file.txt", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "file.tsv", "--use-conda", "-F"]
     )
     run(
         "bio/bustools/text",
-        ["snakemake", "--cores", "1", "file2.txt", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "file2.tsv", "--use-conda", "-F"]
     )
 
 
