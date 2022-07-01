@@ -8,7 +8,6 @@ __copyright__ = "Copyright 2022, Thibault Dayris"
 __email__ = "thibault.dayris@gustaveroussy.fr"
 __license__ = "MIT"
 
-from numpy import isin
 from snakemake.shell import shell
 from os.path import commonprefix
 
