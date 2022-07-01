@@ -2,6 +2,7 @@ import subprocess
 import os
 import tempfile
 import shutil
+from unittest import skip
 import pytest
 import sys
 import yaml
@@ -180,6 +181,12 @@ def test_open_cravat_run():
         ["snakemake", "--cores", "1", "--use-conda"],
     )
 
+@skip_if_not_modified
+def test_bustools_count():
+    run(
+        "bio/bustools/count",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "buscount.mtx"]
+    )
 
 @skip_if_not_modified
 def test_open_cravat_module():
