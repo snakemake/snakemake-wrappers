@@ -31,7 +31,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
 
     shell(
         "(bcftools reheader"
-        " --threads {threads}"
+        " --threads {snakemake.threads}"
         " {header}"
         " {samples}"
         " {extra}"
