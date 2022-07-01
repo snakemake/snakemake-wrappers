@@ -2,7 +2,6 @@ import subprocess
 import os
 import tempfile
 import shutil
-from unittest import skip
 import pytest
 import sys
 import yaml
