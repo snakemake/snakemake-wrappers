@@ -13,5 +13,6 @@ rule bcftools_reheader:
         uncompressed_bcf=False,
         extra="",  # optional parameters for bcftools reheader
         view_extra="",  # optional parameters for bcftools view
+    threads: 2
     wrapper:
         "master/bio/bcftools/reheader"
