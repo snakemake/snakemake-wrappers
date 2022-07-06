@@ -16,13 +16,6 @@ elif len(snakemake.input) > 1:
     raise ValueError("Please provide exactly one reference genome as input.")
 
 # Prefix that should be used for the database
-prefix = None
-if "prefix" in snakemake.params.keys():
-    prefix = snakemake.params["prefix"]
-else:
-    prefix = splitext(snakemake.output[0])[0]
-
-if len(prefix) > 0:
-    prefix = "-p " + prefix
+prefix = "-p" + path.splitext(snakemake.output[0])[0]
 
 shell("bwa-mem2 index" " {prefix}" " {snakemake.input[0]}" " {log}")
