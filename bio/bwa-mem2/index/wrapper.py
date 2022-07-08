@@ -16,6 +16,10 @@ elif len(snakemake.input) > 1:
     raise ValueError("Please provide exactly one reference genome as input.")
 
 # Prefix that should be used for the database
-prefix = "-p" + path.splitext(snakemake.output[0])[0]
+# all output files have a single file extension, except bwat.2bit.64
+if snakemake.output[0].endswith(".bwt.2bit.64"):
+    prefix = snakemake.output[0][0 : -len(".bwt.2bit.64")]
+else:
+    prefix, _ = path.splitext(snakemake.output[0])
 
-shell("bwa-mem2 index" " {prefix}" " {snakemake.input[0]}" " {log}")
+shell(f"bwa-mem2 index -p {prefix} {snakemake.input[0]} {log}")
