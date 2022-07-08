@@ -1,0 +1,17 @@
+name: cooltools insulation
+description: Calculate insulation score for a resolution in an .mcool file
+url: https://github.com/open2c/cooltools
+authors:
+  - Ilya Flyamer
+input:
+  - a multiresolution cooler file (.mcool)
+output:
+  - >
+    A .tsv file with insulation score and called boundaries for all window sizes. Has to
+    have a {resolution} wildcard that specifies the resolution used in the analysis.
+params:
+  window: > 
+    Window size for insulation score calculation, in bp. Can be a list of multiple
+    sizes, then all are calculated in one go
+  chunksize: How many pixels to process in each chunk
+notes:
