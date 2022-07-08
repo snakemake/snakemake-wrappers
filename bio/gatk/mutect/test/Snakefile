@@ -32,6 +32,7 @@ rule mutect2_bam:
     wrapper:
         "master/bio/gatk/mutect"
 
+
 rule mutect2_complete:
     input:
         fasta="genome/genome.fasta",
@@ -40,7 +41,7 @@ rule mutect2_complete:
     output:
         vcf="variant_complete/{sample}.vcf",
         bam="variant_complete/{sample}.bam",
-        f1r2="counts/f1r2.tar.gz"
+        f1r2="counts/f1r2.tar.gz",
     message:
         "Testing Mutect2 with {wildcards.sample}"
     threads: 1
