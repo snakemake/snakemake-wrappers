@@ -38,8 +38,8 @@ rule mutect2_complete:
         map="mapped/{sample}.bam",
         intervals="genome/intervals.bed",
     output:
-        vcf="variant_bam/{sample}.vcf",
-        bam="variant_bam/{sample}.bam",
+        vcf="variant_complete/{sample}.vcf",
+        bam="variant_complete/{sample}.bam",
         f1r2="counts/f1r2.tar.gz"
     message:
         "Testing Mutect2 with {wildcards.sample}"
