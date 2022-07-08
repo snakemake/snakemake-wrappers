@@ -9,6 +9,7 @@ input:
   - fasta: Reference Fasta file
   - intervals: Optional path to a BED interval file
   - pon: Optional path to Panel of Normals (flagged as BETA)
+  - germline: Optional path to known germline variants
 output:
   - vcf: Path to variant file
   - bam: Optional path to output bam file
