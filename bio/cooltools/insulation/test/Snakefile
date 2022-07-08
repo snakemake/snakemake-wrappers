@@ -10,4 +10,4 @@ rule cooltools_insulation:
     log:
         "logs/insulation/{sample}_{resolution}_insulation.log"
     wrapper:
-        "file:../wrapper.py"
+        "master/bio/cooltools/insulation"
