@@ -1492,6 +1492,52 @@ def test_cooltools_insulation():
 
 
 @skip_if_not_modified
+def test_cooltools_expected_cis():
+    run(
+        "bio/cooltools/expected_cis",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "CN_1000000.cis.expected.tsv",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_cooltools_expected_trans():
+    run(
+        "bio/cooltools/expected_trans",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "CN_1000000.trans.expected.tsv",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_cooltools_eigs_cis():
+    run(
+        "bio/cooltools/eigs_cis",
+        ["snakemake", "--cores", "1", "CN_1000000.cis.eigs.tsv", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_cooltools_eigs_trans():
+    run(
+        "bio/cooltools/eigs_trans",
+        ["snakemake", "--cores", "1", "CN_1000000.trans.eigs.tsv", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_cutadapt_pe():
     run(
         "bio/cutadapt/pe",
