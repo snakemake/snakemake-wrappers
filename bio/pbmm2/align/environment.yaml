@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - pbmm2 ==1.4.0
+  - pbmm2 ==1.3.0
