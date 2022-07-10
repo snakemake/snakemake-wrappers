@@ -7,7 +7,13 @@ from snakemake.shell import shell
 
 ## Extract arguments
 window = " ".format(snakemake.params.get("window", ""))
+view = " ".format(snakemake.params.get("view", ""))
+if view:
+    view = f"--view {view}"
+else:
+    view = ""
 chunksize = snakemake.params.get("chunksize", 20000000)
+extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
@@ -15,6 +21,7 @@ shell(
     "(cooltools insulation"
     " {snakemake.input.cooler}::resolutions/{snakemake.wildcards.resolution} "
     " {window} --chunksize {chunksize} "
-    #    " -p {snakemake.threads} "
-    " > {snakemake.output}) {log}"
+    " {extra} "
+    " {view} "
+    " -o {snakemake.output}) {log}"
 )

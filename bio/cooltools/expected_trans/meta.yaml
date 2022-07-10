@@ -1,0 +1,16 @@
+name: cooltools expected_trans
+description: Calculate trans expected for a resolution in an .mcool file
+url: https://github.com/open2c/cooltools
+authors:
+  - Ilya Flyamer
+input:
+  - a multiresolution cooler file (.mcool)
+output:
+  - >
+    A .tsv file with mean interaction frequency between chromosomes. Has to have a
+    {resolution} wildcard that specifies the resolution used in the analysis.
+params:
+  view: > 
+    Path to a bed-style file with region coordinates and names to use for analysis
+  extra: Any additional arguments to pass
+notes:

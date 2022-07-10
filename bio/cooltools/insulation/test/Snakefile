@@ -6,7 +6,9 @@ rule cooltools_insulation:
     params:
         ## Add optional parameters 
         window=[10000000, 12000000], ## In this example, we test with two window sizes
-        chunksize=20000000 ## How many pixels are loaded in memory at once
+        chunksize=20000000, ## How many pixels are loaded in memory at once
+        view="mm9_view.txt", ## File with the chromosome names and lengths
+
     log:
         "logs/insulation/{sample}_{resolution}_insulation.log"
     wrapper:
