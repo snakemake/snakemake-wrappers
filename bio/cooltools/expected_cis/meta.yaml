@@ -7,8 +7,8 @@ input:
   - a multiresolution cooler file (.mcool)
 output:
   - >
-    A .tsv file with mean interaction frequency at each diagonal. Has to have a
-    {resolution} wildcard that specifies the resolution used in the analysis.
+    A .tsv file with mean interaction frequency at each diagonal.
+    Has to have a {resolution} wildcard that specifies the resolution for the analysis.
 params:
   view: > 
     Path to a bed-style file with region coordinates and names to use for analysis
