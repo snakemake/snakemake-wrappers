@@ -12,7 +12,6 @@ rule cooltools_saddle:
     log:
         "logs/saddle/CN_{resolution}_saddle.log"
     wrapper:
-        # "master/bio/cooltools/saddle"
-        "file:/Users/ilya/Projects/snakemake-wrappers/bio/cooltools/saddle/"
+        "master/bio/cooltools/saddle"
 
 # Note that in this test files are edited to remove 
