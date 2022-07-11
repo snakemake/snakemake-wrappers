@@ -2,11 +2,11 @@ rule cooltools_expected_cis:
     input:
         cooler="CN.mm9.1000kb.mcool", ## Multiresolution cooler file
     output:
-        "{sample}_{resolution,[0-9]+}.cis.expected.tsv"
+        "CN_{resolution,[0-9]+}.cis.expected.tsv"
     params:
         ## Add optional parameters 
         view="mm9_view.txt", ## File with the chromosome names and lengths
     log:
-        "logs/expected_cis/{sample}_{resolution}_cis_expected.log"
+        "logs/expected_cis/CN_{resolution}_cis_expected.log"
     wrapper:
         "master/bio/cooltools/expected_cis"

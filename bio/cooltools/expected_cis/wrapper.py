@@ -6,14 +6,13 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 ## Extract arguments
-view = " ".format(snakemake.params.get("view", ""))
+view = snakemake.params.get("view", "")
 if view:
     view = f"--view {view}"
 else:
     view = ""
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-
 
 shell(
     "(cooltools expected-cis"

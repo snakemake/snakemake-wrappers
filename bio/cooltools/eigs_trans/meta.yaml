@@ -9,6 +9,7 @@ input:
 output:
   - >
     A .tsv file with values of trans eigenvectors at each bin.
+    Another file with eigenvalues is saved into {output}.lam.txt.
     Has to have a {resolution} wildcard that specifies the resolution for the analysis.
 params:
   view: > 

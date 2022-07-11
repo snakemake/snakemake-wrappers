@@ -1,0 +1,21 @@
+name: cooltools saddle
+description: Calculate a saddle for a resolution in an .mcool file using a track
+url: https://github.com/open2c/cooltools
+authors:
+  - Ilya Flyamer
+input:
+  - a multiresolution cooler file (.mcool)
+  - track file
+  - expected file
+output:
+  - >
+    Saves a binary .npz file with saddles and extra information about it, and a track
+    file with digitized values. Can also save saddle plots using extra --fig argument.
+    All output files have the same prefix, taken from the first output argument (i.e.
+    enough to give one output argument).
+    Has to have a {resolution} wildcard that specifies the resolution for the analysis.
+params:
+  view: > 
+    Path to a bed-style file with region coordinates and names to use for analysis
+  extra: Any additional arguments to pass
+notes:

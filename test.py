@@ -1538,6 +1538,14 @@ def test_cooltools_eigs_trans():
 
 
 @skip_if_not_modified
+def test_cooltools_saddle():
+    run(
+        "bio/cooltools/saddle",
+        ["snakemake", "--cores", "1", "CN_1000000.saddledump.npz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_cutadapt_pe():
     run(
         "bio/cutadapt/pe",
