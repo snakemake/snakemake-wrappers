@@ -3290,6 +3290,18 @@ def test_gatk_filtermutectcalls():
         ],
     )
 
+    run(
+        "bio/gatk/filtermutectcalls",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "calls/snvs.mutect.filtered.b.vcf",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
 
 @skip_if_not_modified
 def test_gatk_selectvariants():
