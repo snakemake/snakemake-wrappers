@@ -1546,6 +1546,14 @@ def test_cooltools_saddle():
 
 
 @skip_if_not_modified
+def test_cooltools_pileup():
+    run(
+        "bio/cooltools/pileup",
+        ["snakemake", "--cores", "1", "CN_1000000.pileup.npz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_cutadapt_pe():
     run(
         "bio/cutadapt/pe",

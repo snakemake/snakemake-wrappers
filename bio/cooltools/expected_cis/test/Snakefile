@@ -6,7 +6,8 @@ rule cooltools_expected_cis:
     params:
         ## Add optional parameters 
         view="mm9_view.txt", ## File with the chromosome names and lengths
+    threads: 4
     log:
-        "logs/expected_cis/CN_{resolution}_cis_expected.log"
+        "logs/CN_{resolution}_cis_expected.log"
     wrapper:
         "master/bio/cooltools/expected_cis"

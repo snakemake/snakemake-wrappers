@@ -19,5 +19,6 @@ shell(
     " {snakemake.input.cooler}::resolutions/{snakemake.wildcards.resolution} "
     " {view} "
     " {extra} "
+    " -p {snakemake.threads} "
     " -o {snakemake.output}) {log}"
 )

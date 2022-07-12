@@ -21,7 +21,8 @@ shell(
     "(cooltools insulation"
     " {snakemake.input.cooler}::resolutions/{snakemake.wildcards.resolution} "
     " {window} --chunksize {chunksize} "
-    " {extra} "
     " {view} "
+    " -p {snakemake.threads} "
+    " {extra} "
     " -o {snakemake.output}) {log}"
 )

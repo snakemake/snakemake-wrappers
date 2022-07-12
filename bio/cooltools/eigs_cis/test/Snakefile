@@ -7,6 +7,6 @@ rule cooltools_eigs_cis:
         ## Add optional parameters 
         view="mm9_view.txt", ## File with the chromosome names and lengths
     log:
-        "logs/expected_cis/CN_{resolution}_cis_eigs.log"
+        "logs/CN_{resolution}_cis_eigs.log"
     wrapper:
         "master/bio/cooltools/eigs_cis"

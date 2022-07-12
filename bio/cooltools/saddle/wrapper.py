@@ -22,7 +22,7 @@ else:
     track = ""
 
 expected = snakemake.input.get("expected", "")
-range = snakemake.input.get("range", "--qrange 0 1")
+range = snakemake.params.get("range", "--qrange 0 1")
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 

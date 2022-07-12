@@ -10,7 +10,7 @@ rule cooltools_saddle:
         view="mm9_view.txt", ## File with the chromosome names and lengths
         range="--qrange 0.01 0.99"
     log:
-        "logs/saddle/CN_{resolution}_saddle.log"
+        "logs/CN_{resolution}_saddle.log"
     wrapper:
         "master/bio/cooltools/saddle"
 

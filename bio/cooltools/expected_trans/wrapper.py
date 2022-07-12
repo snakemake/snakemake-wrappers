@@ -19,6 +19,7 @@ shell(
     "(cooltools expected-trans"
     " {snakemake.input.cooler}::resolutions/{snakemake.wildcards.resolution} "
     " {view} "
+    " -p {snakemake.threads} "
     " {extra} "
     " -o {snakemake.output}) {log}"
 )

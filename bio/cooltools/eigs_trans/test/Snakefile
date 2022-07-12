@@ -6,6 +6,6 @@ rule cooltools_eigs_trans:
     params:
         ## Add optional parameters 
     log:
-        "logs/expected_cis/CN_{resolution}_trans_eigs.log"
+        "logs/CN_{resolution}_trans_eigs.log"
     wrapper:
         "master/bio/cooltools/eigs_trans"
