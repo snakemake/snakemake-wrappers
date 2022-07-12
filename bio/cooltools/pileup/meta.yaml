@@ -1,15 +1,15 @@
-name: cooltools eigs_cis
-description: Calculate cis eigenvectors for a resolution in an .mcool file
+name: cooltools pileup
+description: Pileup features for a resolution in an .mcool file
 url: https://github.com/open2c/cooltools
 authors:
   - Ilya Flyamer
 input:
   - a multiresolution cooler file (.mcool)
-  - (optional) phasing track file
+  - a file with features to pileup
+  - (optional) file with expected
 output:
   - >
-    A .tsv file with values of cis eigenvectors at each bin.
-    Another file with eigenvalues is saved into {output}.lam.txt.
+    A file (.npz or .h5) with piled up snippets.
     Has to have a {resolution} wildcard that specifies the resolution for the analysis.
 params:
   view: > 
