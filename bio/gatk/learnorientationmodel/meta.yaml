@@ -1,0 +1,12 @@
+name: GATK LearnOrientationModel
+url: https://gatk.broadinstitute.org/hc/en-us/articles/4405451237147-LearnReadOrientationModel
+description: Get the maximum likelihood estimates of artifact prior probabilities in the orientation bias mixture model filter
+authors:
+  - Thibault Dayris
+input:
+  - f1r2: Path to one or multiple f1r2 files
+output:
+  - Path to tar.gz of artifact prior tables
+notes: |
+  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  * The `extra` param allows for additional program arguments.
