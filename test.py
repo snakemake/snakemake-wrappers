@@ -3396,6 +3396,14 @@ def test_gatk_mutect():
 
 
 @skip_if_not_modified
+def test_gatk_learn_read_orientation():
+    run(
+        "bio/gatk/learnreadorientationmodel",
+        ["snakemake", "--cores", "1", "--use-conda"]
+    )
+
+
+@skip_if_not_modified
 def test_gatk_mutect_bam():
     run(
         "bio/gatk/mutect",
