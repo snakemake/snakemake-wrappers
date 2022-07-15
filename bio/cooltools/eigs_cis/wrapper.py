@@ -23,6 +23,10 @@ else:
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
+if "--bigwig" in extra:
+    mv_bigwig = " && mv {snakemake.output}.cis.bw {snakemake.output}.bw"
+else:
+    mv_bigwig = ""
 
 shell(
     "(cooltools eigs-cis"
@@ -30,7 +34,7 @@ shell(
     " {track}"
     " {view} "
     " {extra} "
-    " -o {snakemake.output} && "
+    " -o {snakemake.output[0]} && "
     " mv {snakemake.output}.cis.vecs.tsv {snakemake.output} && "
-    " mv  {snakemake.output}.cis.lam.txt {snakemake.output}.lam.txt ) {log}"
+    " mv {snakemake.output}.cis.lam.txt {snakemake.output}.lam.txt {mv_bigwig}) {log}"
 )

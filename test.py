@@ -1554,6 +1554,21 @@ def test_cooltools_pileup():
 
 
 @skip_if_not_modified
+def test_cooltools_genome_binnify():
+    run(
+        "bio/cooltools/genome/binnify",
+        ["snakemake", "--cores", "1", "hg38_1000000_bins.bed", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_cooltools_genome_gc():
+    run(
+        "bio/cooltools/genome/gc",
+        ["snakemake", "--cores", "1", "gc_100000.tsv", "--use-conda", "-F"],
+    )
+
+@skip_if_not_modified
 def test_cutadapt_pe():
     run(
         "bio/cutadapt/pe",
