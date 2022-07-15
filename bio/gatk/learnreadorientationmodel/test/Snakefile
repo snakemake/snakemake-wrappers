@@ -1,13 +1,13 @@
 rule test_gatk_learnreadorientationmodel:
     input:
-        f1r2="f1r2.tar.gz"
+        f1r2="f1r2.tar.gz",
     output:
-        "artifacts_prior.tar.gz"
+        "artifacts_prior.tar.gz",
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     params:
-        extra=""
+        extra="",
     log:
-        "learnreadorientationbias.log"
+        "learnreadorientationbias.log",
     wrapper:
         "master/bio/gatk/learnreadorientationmodel"
