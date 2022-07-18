@@ -9,8 +9,6 @@ from snakemake.shell import shell
 view = snakemake.params.get("view", "")
 if view:
     view = f"--view {view}"
-else:
-    view = ""
 track = snakemake.input.get("track", "")
 track_col_name = snakemake.params.get("track_col_name", "")
 if track and track_col_name:
