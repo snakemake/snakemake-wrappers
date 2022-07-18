@@ -9,8 +9,6 @@ from snakemake.shell import shell
 view = snakemake.params.get("view", "")
 if view:
     view = f"--view {view}"
-else:
-    view = ""
 features = snakemake.input.get("features", "")
 if not features:
     raise ValueError("Please provide features file")
