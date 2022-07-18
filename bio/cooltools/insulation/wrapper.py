@@ -10,8 +10,6 @@ window = " ".format(snakemake.params.get("window", ""))
 view = snakemake.params.get("view", "")
 if view:
     view = f"--view {view}"
-else:
-    view = ""
 chunksize = snakemake.params.get("chunksize", 20000000)
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
