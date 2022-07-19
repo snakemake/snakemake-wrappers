@@ -1,0 +1,21 @@
+name: QuAsT
+description: |
+  Quality Assessment Tool for Genome Assemblies
+url: http://quast.sourceforge.net/
+authors:
+  - Filipe G. Vieira
+input:
+  - meryl database(s)
+output:
+  - Assessment summary in plain text format
+  - Tab-separated version of the summary
+  - LaTeX version of the summary
+  - Icarus main menu with links to interactive viewers
+  - PDF report of all plots combined with all tables
+  - HTML version of the report with interactive plots inside
+  - Report on misassemblies
+  - Report on unaligned and partially unaligned contigs
+  - Report on k-mer-based metrics
+  - Report on mapped reads statistics.
+notes: |
+  * 
