@@ -13,9 +13,12 @@ output:
     file with digitized values. Can also save saddle plots using extra --fig argument.
     All output files have the same prefix, taken from the first output argument (i.e.
     enough to give one output argument).
-    Has to have a {resolution} wildcard that specifies the resolution for the analysis.
+    Can have a {resolution} wildcard that specifies the resolution for the analysis,
+    then it doesn't need to be specified as a parameter.
 params:
   view: > 
     Path to a bed-style file with region coordinates and names to use for analysis
+  resolution: >
+    Optional, can be instead specified as a wildcard in the output
   extra: Any additional arguments to pass
 notes:

@@ -9,14 +9,19 @@ from snakemake.shell import shell
 view = snakemake.params.get("view", "")
 if view:
     view = f"--view {view}"
-else:
-    view = ""
+
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
+resolution = snakemake.params.get(
+    "resolution", snakemake.wildcards.get("resolution", 0)
+)
+if not resolution:
+    raise ValueError("Please specify resolution either as a wildcard or as a parameter")
+
 shell(
     "(cooltools expected-cis"
-    " {snakemake.input.cooler}::resolutions/{snakemake.wildcards.resolution} "
+    " {snakemake.input.cooler}::resolutions/{resolution} "
     " {view} "
     " {extra} "
     " -p {snakemake.threads} "

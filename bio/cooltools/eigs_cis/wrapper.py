@@ -26,9 +26,15 @@ if "--bigwig" in extra:
 else:
     mv_bigwig = ""
 
+resolution = snakemake.params.get(
+    "resolution", snakemake.wildcards.get("resolution", 0)
+)
+if not resolution:
+    raise ValueError("Please specify resolution either as a wildcard or as a parameter")
+
 shell(
     "(cooltools eigs-cis"
-    " {snakemake.input.cooler}::resolutions/{snakemake.wildcards.resolution} "
+    " {snakemake.input.cooler}::resolutions/{resolution} "
     " {track}"
     " {view} "
     " {extra} "

@@ -6,7 +6,9 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 ## Extract arguments
-binsize = snakemake.params.get("binsize", 0)
+binsize = snakemake.params.get("binsize", snakemake.wildcards.get("binsize", 0))
+if not binsize:
+    raise ValueError("Please specify resolution either as a wildcard or as a parameter")
 if not binsize:
     raise ValueError("binsize is required")
 extra = snakemake.params.get("extra", "")
