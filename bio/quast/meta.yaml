@@ -5,7 +5,9 @@ url: http://quast.sourceforge.net/
 authors:
   - Filipe G. Vieira
 input:
-  - meryl database(s)
+  - Sequences in FASTA format
+  - Reference genome (optional)
+  - GFF (optional)
 output:
   - Assessment summary in plain text format
   - Tab-separated version of the summary
@@ -18,4 +20,4 @@ output:
   - Report on k-mer-based metrics
   - Report on mapped reads statistics.
 notes: |
-  * 
+  * The `extra` param allows for additional program arguments.
