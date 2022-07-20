@@ -8,6 +8,14 @@ input:
   - Sequences in FASTA format
   - Reference genome (optional)
   - GFF (optional)
+  - Paired end read (optional)
+  - Mate-pair reads (optional)
+  - Unpaired reads (optional)
+  - PacBio SMRT reads (optional)
+  - Oxford Nanopore reads (optional)
+  - Mapped reads against the reference in SAM/BAM (optional)
+  - Mapped reads against each of the assemblies in SAM/BAM (same order; optional)
+  - Structural variants in BEDPE (optional)
 output:
   - Assessment summary in plain text format
   - Tab-separated version of the summary
