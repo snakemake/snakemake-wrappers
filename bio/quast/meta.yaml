@@ -1,7 +1,7 @@
 name: QuAsT
 description: |
   Quality Assessment Tool for Genome Assemblies
-url: http://quast.sourceforge.net/
+url: https://github.com/ablab/quast
 authors:
   - Filipe G. Vieira
 input:
