@@ -26,7 +26,7 @@ with TemporaryDirectory() as tempdir:
     shell(
         "bustools sort "
         "--memory {mem} "
-        "--temp {tmpdir} "
+        "--temp {tempdir} "
         "--threads {snakemake.threads} "
         "--output {snakemake.output[0]} "
         "{bus_files} "
