@@ -4,3 +4,4 @@ channels:
   - defaults
 dependencies:
   - bustools =0.41
+  - snakemake-wrapper-utils =0.4
