@@ -55,7 +55,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         )
     if snakemake.output.get("full_table"):
         shell(
-            "cat {tmpdir}/output/run_{lineage}/full_table.txt > {snakemake.output.full_table:q}"
+            "cat {tmpdir}/output/run_{lineage}/full_table.tsv > {snakemake.output.full_table:q}"
         )
     if snakemake.output.get("miss_list"):
         shell(
