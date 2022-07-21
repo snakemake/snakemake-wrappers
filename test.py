@@ -139,6 +139,7 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+
 @skip_if_not_modified
 def test_bwa_memx_index():
     run(
@@ -389,10 +390,17 @@ def test_salsa2():
 
 
 @skip_if_not_modified
-def test_merqury():
+def test_merqury_haploid():
     run(
         "bio/merqury",
-        ["snakemake", "--cores", "1", "results/merqury.tsv", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "results/haploid/out.qv", "--use-conda", "-F"],
+    )
+
+@skip_if_not_modified
+def test_merqury_diploid():
+    run(
+        "bio/merqury",
+        ["snakemake", "--cores", "1", "results/diploid/out.qv", "--use-conda", "-F"],
     )
 
 

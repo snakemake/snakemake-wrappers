@@ -30,14 +30,10 @@ with tempfile.TemporaryDirectory() as tmpdir:
     if snakemake.output.get("meryldb_hist"):
         shell("cat {meryldb}.hist > {snakemake.output.meryldb_hist}")
     if snakemake.output.get("meryldb_hist_ploidy"):
-        shell(
-            "cat {meryldb}.hist.ploidy > {snakemake.output.meryldb_hist_ploidy}"
-        )
+        shell("cat {meryldb}.hist.ploidy > {snakemake.output.meryldb_hist_ploidy}")
 
     if snakemake.output.get("completeness_stats"):
-        shell(
-            "cat out.completeness.stats > {snakemake.output.completeness_stats}"
-        )
+        shell("cat out.completeness.stats > {snakemake.output.completeness_stats}")
     if snakemake.output.get("dist_only_hist"):
         shell("cat out.dist_only.hist > {snakemake.output.dist_only_hist}")
     if snakemake.output.get("only_hist"):
@@ -47,9 +43,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     if snakemake.output.get("spectra_asm_hist"):
         shell("cat out.spectra-asm.hist > {snakemake.output.spectra_asm_hist}")
     if snakemake.output.get("spectra_asm_png"):
-        shell(
-            "cat out.spectra-asm.ln.png > {snakemake.output.spectra_asm_png}"
-        )
+        shell("cat out.spectra-asm.ln.png > {snakemake.output.spectra_asm_png}")
     if snakemake.output.get("spectra_cn_hist"):
         shell("cat out.spectra-cn.hist > {snakemake.output.spectra_cn_hist}")
     if snakemake.output.get("spectra_cn_png"):
