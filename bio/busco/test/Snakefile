@@ -1,6 +1,6 @@
 rule run_busco:
     input:
-        "proteins.fasta",
+        "protein.fasta",
     output:
         json="txome_busco/short_summary.json",
         txt="txome_busco/short_summary.txt",
@@ -19,7 +19,7 @@ rule run_busco:
 
 rule run_busco_euk:
     input:
-        "proteins.fasta",
+        "protein.fasta",
     output:
         out_dir=directory("txome_busco/euk"),
         dataset_dir=directory("resources/busco_downloads"),
@@ -36,7 +36,7 @@ rule run_busco_euk:
 
 rule run_busco_prok:
     input:
-        "proteins.fasta",
+        "protein.fasta",
     output:
         out_dir=directory("txome_busco/prok"),
         dataset_dir=directory("resources/busco_downloads"),
