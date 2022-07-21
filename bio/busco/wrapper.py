@@ -5,33 +5,55 @@ __copyright__ = "Copyright 2018, Tessa Pierce"
 __email__ = "ntpierce@gmail.com"
 __license__ = "MIT"
 
-from snakemake.shell import shell
-from os import path
+
 import tempfile
+from snakemake.shell import shell
+
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
+
+
 mode = snakemake.params.get("mode")
-assert mode is not None, "please input a run mode: genome, transcriptome or proteins"
-lineage = snakemake.params.get("lineage")
-assert lineage is not None, "please input the path to a lineage for busco assessment"
+assert mode in [
+    "genome",
+    "transcriptome",
+    "proteins",
+], "invalid run mode: only 'genome', 'transcriptome' or 'proteins' allowed"
 
-stripped_output = snakemake.output[0].rstrip("/")
-out = path.basename(stripped_output)
-out_dirname = path.dirname(stripped_output)
-out_path = " --out_path {} ".format(out_dirname) if out_dirname else ""
 
-download_path_dir = snakemake.params.get("download_path", "")
-download_path = (
-    " --download_path {} ".format(download_path_dir) if download_path_dir else ""
-)
+lineage = lineage_opt = snakemake.params.get("lineage", "")
+if lineage_opt:
+    lineage_opt = f"--lineage {lineage_opt}"
 
-# note: --force allows snakemake to handle rewriting files as necessary
-# without needing to specify *all* busco outputs as snakemake outputs
-shell(
-    "busco --in {snakemake.input} --out {out} --force "
-    "{out_path} "
-    "--cpu {snakemake.threads} --mode {mode} --lineage {lineage} "
-    "{download_path} "
-    "{extra} {log}"
-)
+
+with tempfile.TemporaryDirectory() as tmpdir:
+    dataset_dir = snakemake.input.get("dataset_dir", "")
+    if not dataset_dir:
+        dataset_dir = f"{tmpdir}/dataset"
+
+    shell(
+        "busco"
+        " --cpu {snakemake.threads}"
+        " --in {snakemake.input}"
+        " --mode {mode}"
+        " {lineage_opt}"
+        " {extra}"
+        " --download_path {dataset_dir}"
+        " --out_path {tmpdir}"
+        " --out output"
+        " {log}"
+    )
+
+    if snakemake.output.get("txt"):
+        shell(
+            "cat {tmpdir}/output/short_summary.specific.{lineage}.output.txt > {snakemake.output.txt:q}"
+        )
+    if snakemake.output.get("json"):
+        shell(
+            "cat {tmpdir}/output/short_summary.specific.{lineage}.output.json > {snakemake.output.json:q}"
+        )
+    if snakemake.output.get("out_dir"):
+        shell("mv {tmpdir}/output {snakemake.output.out_dir:q}")
+    if snakemake.output.get("dataset_dir"):
+        shell("mv {dataset_dir} {snakemake.output.dataset_dir:q}")
