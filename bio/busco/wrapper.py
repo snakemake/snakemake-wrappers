@@ -46,18 +46,22 @@ with tempfile.TemporaryDirectory() as tmpdir:
     )
 
     if snakemake.output.get("short_txt"):
+        assert lineage, "parameter 'lineage' is required to output 'short_tsv'"
         shell(
             "cat {tmpdir}/output/short_summary.specific.{lineage}.output.txt > {snakemake.output.short_txt:q}"
         )
     if snakemake.output.get("short_json"):
+        assert lineage, "parameter 'lineage' is required to output 'short_json'"
         shell(
             "cat {tmpdir}/output/short_summary.specific.{lineage}.output.json > {snakemake.output.short_json:q}"
         )
     if snakemake.output.get("full_table"):
+        assert lineage, "parameter 'lineage' is required to output 'full_table'"
         shell(
             "cat {tmpdir}/output/run_{lineage}/full_table.tsv > {snakemake.output.full_table:q}"
         )
     if snakemake.output.get("miss_list"):
+        assert lineage, "parameter 'lineage' is required to output 'miss_list'"
         shell(
             "cat {tmpdir}/output/run_{lineage}/missing_busco_list.tsv > {snakemake.output.miss_list:q}"
         )
