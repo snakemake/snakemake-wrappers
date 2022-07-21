@@ -2,8 +2,10 @@ rule run_busco:
     input:
         "protein.fasta",
     output:
-        json="txome_busco/short_summary.json",
-        txt="txome_busco/short_summary.txt",
+        short_json="txome_busco/short_summary.json",
+        short_txt="txome_busco/short_summary.txt",
+        full_table="txome_busco/full_table.tsv",
+        miss_list="txome_busco/busco_missing.tsv",
         dataset_dir=directory("resources/busco_downloads"),
     log:
         "logs/proteins_busco.log",

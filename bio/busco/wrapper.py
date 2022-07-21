@@ -45,13 +45,21 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " {log}"
     )
 
-    if snakemake.output.get("txt"):
+    if snakemake.output.get("short_txt"):
         shell(
-            "cat {tmpdir}/output/short_summary.specific.{lineage}.output.txt > {snakemake.output.txt:q}"
+            "cat {tmpdir}/output/short_summary.specific.{lineage}.output.txt > {snakemake.output.short_txt:q}"
         )
-    if snakemake.output.get("json"):
+    if snakemake.output.get("short_json"):
         shell(
-            "cat {tmpdir}/output/short_summary.specific.{lineage}.output.json > {snakemake.output.json:q}"
+            "cat {tmpdir}/output/short_summary.specific.{lineage}.output.json > {snakemake.output.short_json:q}"
+        )
+    if snakemake.output.get("full_table"):
+        shell(
+            "cat {tmpdir}/output/run_{lineage}/full_table.txt > {snakemake.output.full_table:q}"
+        )
+    if snakemake.output.get("miss_list"):
+        shell(
+            "cat {tmpdir}/output/run_{lineage}/missing_busco_list.tsv > {snakemake.output.miss_list:q}"
         )
     if snakemake.output.get("out_dir"):
         shell("mv {tmpdir}/output {snakemake.output.out_dir:q}")
