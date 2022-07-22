@@ -28,7 +28,7 @@ if out_ext != "PAF":
 
         if out_ext != "SAM":
             # Simply convert to output format using samtools view.
-            pipe_cmd = f"| samtools view -h {samtools_opts} -"
+            pipe_cmd = f"| samtools view -h {samtools_opts}"
 
     elif sort in ["coordinate", "queryname"]:
 
@@ -37,19 +37,19 @@ if out_ext != "PAF":
             sort_extra += " -n"
 
         # Sort alignments.
-        pipe_cmd = f"| samtools sort {sort_extra} {samtools_opts} -"
+        pipe_cmd = f"| samtools sort {sort_extra} {samtools_opts}"
 
     else:
         raise ValueError(f"Unexpected value for params.sort: {sort}")
 
 
 shell(
-    "minimap2"
+    "(minimap2"
     " -t {snakemake.threads}"
     " {extra} "
     " {snakemake.input.target}"
     " {snakemake.input.query}"
     " {pipe_cmd}"
     " > {snakemake.output[0]}"
-    " {log}"
+    ") {log}"
 )

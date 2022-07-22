@@ -2035,10 +2035,18 @@ def test_minimap2_aligner_sam():
 
 
 @skip_if_not_modified
-def test_minimap2_aligner_bam():
+def test_minimap2_aligner_sam_sorted():
     run(
         "bio/minimap2/aligner",
-        ["snakemake", "--cores", "1", "aligned/genome_aln.bam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "aligned/genome_aln.sorted.sam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_minimap2_aligner_bam_sorted():
+    run(
+        "bio/minimap2/aligner",
+        ["snakemake", "--cores", "1", "aligned/genome_aln.sorted.bam", "--use-conda", "-F"],
     )
 
 
