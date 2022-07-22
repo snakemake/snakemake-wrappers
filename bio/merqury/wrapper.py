@@ -8,7 +8,7 @@ import tempfile
 from pathlib import Path
 from snakemake.shell import shell
 
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 
 meryldb_parents = snakemake.input.get("meryldb_parents", "")
 
@@ -22,6 +22,8 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " out"
         " {log}"
     )
+
+    shell("ls -lrt {log}")
 
     meryldb = Path(snakemake.input.meryldb.rstrip("/")).stem
 
@@ -40,14 +42,25 @@ with tempfile.TemporaryDirectory() as tmpdir:
         shell("cat out.only.hist > {snakemake.output.only_hist}")
     if snakemake.output.get("qv"):
         shell("cat out.qv > {snakemake.output.qv}")
+
     if snakemake.output.get("spectra_asm_hist"):
         shell("cat out.spectra-asm.hist > {snakemake.output.spectra_asm_hist}")
-    if snakemake.output.get("spectra_asm_png"):
-        shell("cat out.spectra-asm.ln.png > {snakemake.output.spectra_asm_png}")
+    if snakemake.output.get("spectra_asm_ln_png"):
+        shell("cat out.spectra-asm.ln.png > {snakemake.output.spectra_asm_ln_png}")
+    if snakemake.output.get("spectra_asm_fl_png"):
+        shell("cat out.spectra-asm.fl.png > {snakemake.output.spectra_asm_fl_png}")
+    if snakemake.output.get("spectra_asm_st_png"):
+        shell("cat out.spectra-asm.st.png > {snakemake.output.spectra_asm_st_png}")
+
     if snakemake.output.get("spectra_cn_hist"):
         shell("cat out.spectra-cn.hist > {snakemake.output.spectra_cn_hist}")
-    if snakemake.output.get("spectra_cn_png"):
-        shell("cat out.spectra-cn.ln.png > {snakemake.output.spectra_cn_png}")
+    if snakemake.output.get("spectra_cn_ln_png"):
+        shell("cat out.spectra-cn.ln.png > {snakemake.output.spectra_cn_ln_png}")
+    if snakemake.output.get("spectra_cn_fl_png"):
+        shell("cat out.spectra-cn.fl.png > {snakemake.output.spectra_cn_fl_png}")
+    if snakemake.output.get("spectra_cn_st_png"):
+        shell("cat out.spectra-cn.st.png > {snakemake.output.spectra_cn_st_png}")
+
     if snakemake.output.get("hapmers_count"):
         shell("cat out.hapmers.count > {snakemake.output.hapmers_count}")
     if snakemake.output.get("hapmers_png"):
@@ -64,7 +77,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         input_fas = [input_fas]
 
     for fas in range(1, len(input_fas) + 1):
-        prefix = Path(input_fas[fas - 1]).stem
+        prefix = Path(input_fas[fas - 1]).name.removesuffix(".fasta")
 
         out = snakemake.output.get(f"fas{fas}_only_bed")
         if out:
@@ -82,6 +95,12 @@ with tempfile.TemporaryDirectory() as tmpdir:
         out = snakemake.output.get(f"fas{fas}_spectra_hist")
         if out:
             shell("cat out.{prefix}.spectra-cn.hist > {out}")
-        out = snakemake.output.get(f"fas{fas}_spectra_png")
+        out = snakemake.output.get(f"fas{fas}_spectra_ln_png")
         if out:
             shell("cat out.{prefix}.spectra-cn.ln.png > {out}")
+        out = snakemake.output.get(f"fas{fas}_spectra_fl_png")
+        if out:
+            shell("cat out.{prefix}.spectra-cn.fl.png > {out}")
+        out = snakemake.output.get(f"fas{fas}_spectra_st_png")
+        if out:
+            shell("cat out.{prefix}.spectra-cn.st.png > {out}")
