@@ -11,4 +11,4 @@ rule purge_dups_get_seqs:
         extra="",
     threads: 1
     wrapper:
-        "bio/purge_dups/get_seqs"
+        "master/bio/purge_dups/get_seqs"
