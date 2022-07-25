@@ -130,6 +130,50 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+
+@skip_if_not_modified
+def test_purge_dups_calcuts():
+    run(
+        "bio/purge_dups/calcuts",
+        ["snakemake", "--cores", "1", "out/calcuts.cutoffs", "--use-conda", "-F"]
+    )
+
+@skip_if_not_modified
+def test_purge_dups_get_seqs():
+    run(
+        "bio/purge_dups/get_seqs",
+        ["snakemake", "--cores", "1", "out/get_seqs.hap.fasta", "--use-conda", "-F"]
+    )
+
+@skip_if_not_modified
+def test_purge_dups_ngscstat():
+    run(
+        "bio/purge_dups/ngscstat",
+        ["snakemake", "--cores", "1", "out/ngscstat.cov", "--use-conda", "-F"]
+    )
+
+@skip_if_not_modified
+def test_purge_dups_pbcstat():
+    run(
+        "bio/purge_dups/pbcstat",
+        ["snakemake", "--cores", "1", "out/pbcstat.cov", "--use-conda", "-F"]
+    )
+
+@skip_if_not_modified
+def test_purge_dups_purge_dups():
+    run(
+        "bio/purge_dups/purge_dups",
+        ["snakemake", "--cores", "1", "out/purge_dups.bed", "--use-conda", "-F"]
+    )
+
+@skip_if_not_modified
+def test_purge_dups_split_fa():
+    run(
+        "bio/purge_dups/split_fa",
+        ["snakemake", "--cores", "1", "out/genome.split", "--use-conda", "-F"]
+    )
+
+
 @skip_if_not_modified
 def test_mashmap():
     run(
