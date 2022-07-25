@@ -13,10 +13,10 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
-        "get_seqs {extra} {snakemake.input.bed} {snakemake.input.fas} > {snakemake.output[0]} {log}"
+        "get_seqs {extra} -p {tmpdir}/out {snakemake.input.bed} {snakemake.input.fas} {log}"
     )
 
     if snakemake.output.get("hap"):
-        shell("cat {tmpdir}/hap.fa > {snakemake.output.hap}")
+        shell("cat {tmpdir}/out.hap.fa > {snakemake.output.hap}")
     if snakemake.output.get("purged"):
-        shell("cat {tmpdir}/purged.fa > {snakemake.output.purged}")
+        shell("cat {tmpdir}/out.purged.fa > {snakemake.output.purged}")
