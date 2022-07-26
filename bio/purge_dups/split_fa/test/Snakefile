@@ -4,7 +4,7 @@ rule purge_dups_split_fa:
     output:
         "out/{a}.split",
     log:
-        "logs/split_fa.log",
+        "logs/{a}.split_fa.log",
     params:
         extra="",
     threads: 1
