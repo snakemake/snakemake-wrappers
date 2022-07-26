@@ -3,11 +3,4 @@ channels:
   - defaults
   - bioconda
 dependencies:
-  - python=3.8
-  - pip
-  - cython
-  - numpy
-  - numba
-  - h5py
-  - pip:
-    - cooltools==0.5.1
+  - cooltools =0.5.1
