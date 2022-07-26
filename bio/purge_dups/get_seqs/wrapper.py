@@ -11,12 +11,18 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 
-with tempfile.TemporaryDirectory() as tmpdir:
-    shell(
-        "get_seqs {extra} -p {tmpdir}/out {snakemake.input.bed} {snakemake.input.fas} {log}"
-    )
+if Path(snakemake.input.bed).stat().st_size:
+    with tempfile.TemporaryDirectory() as tmpdir:
+        shell(
+            "get_seqs {extra} -p {tmpdir}/out {snakemake.input.bed} {snakemake.input.fas} {log}"
+        )
 
-    if snakemake.output.get("hap"):
-        shell("cat {tmpdir}/out.hap.fa > {snakemake.output.hap}")
-    if snakemake.output.get("purged"):
-        shell("cat {tmpdir}/out.purged.fa > {snakemake.output.purged}")
+        if snakemake.output.get("hap"):
+            shell("cat {tmpdir}/out.hap.fa > {snakemake.output.hap}")
+        if snakemake.output.get("purged"):
+            shell("cat {tmpdir}/out.purged.fa > {snakemake.output.purged}")
+else:
+    # If BED file empty, copy input to output since `get_seqs` will segfault
+    snakemake.logger.info("Input BED file is empty. Copying input FASTA to output.")
+    shell("cp {snakemake.input.fas} {snakemake.output.hap}")
+    Path(snakemake.output.purged).touch
