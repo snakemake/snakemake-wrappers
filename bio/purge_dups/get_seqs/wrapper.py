@@ -29,4 +29,4 @@ else:
         "WARN: Input BED file is empty. Input FASTA file will be copied to output."
     )
     shell("cp {snakemake.input.fas} {snakemake.output.hap}")
-    Path(snakemake.output.purged).touch
+    Path(snakemake.output.purged).touch()
