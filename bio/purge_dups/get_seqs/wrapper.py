@@ -24,7 +24,7 @@ if Path(snakemake.input.bed).stat().st_size:
             shell("cat {tmpdir}/out.purged.fa > {snakemake.output.purged}")
 else:
     # If BED file empty, copy input to output since `get_seqs` will segfault
-    log = Path(snakemake.log)
+    log = Path(snakemake.log[0])
     log.write_text(
         "WARN: Input BED file is empty. Input FASTA file will be copied to output."
     )
