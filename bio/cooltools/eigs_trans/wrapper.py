@@ -49,4 +49,3 @@ with tempfile.TemporaryDirectory() as tmpdir:
     shell("mv {tmpdir}/out.trans.lam.txt {snakemake.output.lam}")
     if bigwig:
         shell("mv {tmpdir}/out.trans.bw {snakemake.output.bigwig}")
-
