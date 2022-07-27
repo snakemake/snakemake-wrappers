@@ -11,9 +11,6 @@ output:
   vecs: A .tsv file with values of cis eigenvectors at each bin.
   lams: A file with eigenvalues
   bigwig: A .bigwig file for visualization of the first eigenvector
-  note:
-    - They all can have a {resolution} wildcard that specifies the resolution for the analysis,
-      then it doesn't need to be specified as a parameter.
 params:
   resolution: >
     Optional, can be instead specified as a wildcard in the output
@@ -21,3 +18,5 @@ params:
     Name of the column in the track file to use
   extra: Any additional arguments to pass
 notes:
+    - Output files can have a {resolution} wildcard that specifies the resolution for
+      the analysis, then it doesn't need to be specified as a parameter.
