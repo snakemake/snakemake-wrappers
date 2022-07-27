@@ -1,11 +1,14 @@
 rule cooltools_eigs_trans:
     input:
-        cooler="CN.mm9.1000kb.mcool", ## Multiresolution cooler file
+        cooler="CN.mm9.1000kb.mcool",  ## Multiresolution cooler file
     output:
-        "CN_{resolution,[0-9]+}.trans.eigs.tsv"
+        vecs="CN_{resolution,[0-9]+}.trans.vecs.tsv",
+        lam="CN_{resolution,[0-9]+}.trans.lam.tsv",
+        bigwig="CN_{resolution,[0-9]+}.trans.bw",
     params:
-        ## Add optional parameters 
+        ## Add optional parameters
+        extra="",
     log:
-        "logs/CN_{resolution}_trans_eigs.log"
+        "logs/CN_{resolution}_trans_eigs.log",
     wrapper:
         "master/bio/cooltools/eigs_trans"

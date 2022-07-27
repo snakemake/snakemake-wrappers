@@ -7,7 +7,7 @@ from snakemake.shell import shell
 from os import path
 
 ## Extract arguments
-view = snakemake.params.get("view", "")
+view = snakemake.input.get("view", "")
 if view:
     view = f"--view {view}"
 

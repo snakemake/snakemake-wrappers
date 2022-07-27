@@ -5,14 +5,13 @@ authors:
   - Ilya Flyamer
 input:
   - a multiresolution cooler file (.mcool)
+  - (optional) view, a bed-style file with region coordinates and names to use for analysis
 output:
   - >
     A .tsv file with insulation score and called boundaries for all window sizes.
     Can have a {resolution} wildcard that specifies the resolution for the analysis,
     then it doesn't need to be specified as a parameter.
 params:
-  view: > 
-    Path to a bed-style file with region coordinates and names to use for analysis
   window: > 
     Window size for insulation score calculation, in bp. Can be a list of multiple
     sizes, then all are calculated in one go

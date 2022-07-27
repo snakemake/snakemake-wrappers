@@ -1525,7 +1525,16 @@ def test_cooltools_expected_trans():
 def test_cooltools_eigs_cis():
     run(
         "bio/cooltools/eigs_cis",
-        ["snakemake", "--cores", "1", "CN_1000000.cis.eigs.tsv", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "CN_1000000.cis.vecs.tsv",
+            "CN_1000000.cis.lam.tsv",
+            "CN_1000000.cis.bw",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -1533,7 +1542,16 @@ def test_cooltools_eigs_cis():
 def test_cooltools_eigs_trans():
     run(
         "bio/cooltools/eigs_trans",
-        ["snakemake", "--cores", "1", "CN_1000000.trans.eigs.tsv", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "CN_1000000.trans.vecs.tsv",
+            "CN_1000000.trans.lam.tsv",
+            "CN_1000000.trans.bw",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -1567,6 +1585,7 @@ def test_cooltools_genome_gc():
         "bio/cooltools/genome/gc",
         ["snakemake", "--cores", "1", "gc_100000.tsv", "--use-conda", "-F"],
     )
+
 
 @skip_if_not_modified
 def test_cutadapt_pe():

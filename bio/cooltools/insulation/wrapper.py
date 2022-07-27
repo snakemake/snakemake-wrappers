@@ -13,7 +13,7 @@ if isinstance(window, list):
 else:
     window = str(window)
 
-view = snakemake.params.get("view", "")
+view = snakemake.input.get("view", "")
 if view:
     view = f"--view {view}"
 chunksize = snakemake.params.get("chunksize", 20000000)
