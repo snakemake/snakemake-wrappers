@@ -31,6 +31,8 @@ if not resolution:
 if snakemake.output.get("fig", ""):
     ext = path.splitext(snakemake.output.get("fig", ""))[1][1:]
     fig = f"--fig {ext}"
+else:
+    fig = ""
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
