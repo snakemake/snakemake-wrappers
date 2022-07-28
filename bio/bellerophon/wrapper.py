@@ -8,7 +8,7 @@ from snakemake_wrapper_utils.samtools import get_samtools_opts
 
 
 samtools_opts = get_samtools_opts(snakemake, parse_output=False)
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
 sort = snakemake.params.get("sorting", "none")
 sort_extra = snakemake.params.get("sort_extra", "")
