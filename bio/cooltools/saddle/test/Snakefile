@@ -5,9 +5,11 @@ rule cooltools_saddle:
         expected="CN_1000000.cis.expected.tsv",  ## Expected file
         view="mm9_view.txt",  ## File with the region names and coordinates
     output:
-        "CN_{resolution,[0-9]+}.saddledump.npz",
+        saddle="CN_{resolution,[0-9]+}.saddledump.npz",
+        digitized_track="CN_{resolution,[0-9]+}.digitized.tsv",
+        fig="CN_{resolution,[0-9]+}.saddle.pdf",
     params:
-        ## Add optional parameters 
+        ## Add optional parameters
         range="--qrange 0.01 0.99",
         extra="",
     log:

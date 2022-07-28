@@ -11,7 +11,7 @@ if not binsize:
     raise ValueError("Please specify binsize either as a wildcard or as a parameter")
 
 extra = snakemake.params.get("extra", "")
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 
 shell(

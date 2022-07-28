@@ -17,15 +17,13 @@ if track and track_col_name:
     track = f"--phasing-track {track}::{track_col_name}"
 elif track:
     track = f"--phasing-track {track}"
-else:
-    track = ""
 
 extra = snakemake.params.get("extra", "")
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 bigwig = snakemake.output.get("bigwig", "")
 if bigwig:
-    bigwig = f"--bigwig"
+    bigwig = "--bigwig"
 
 resolution = snakemake.params.get("resolution", snakemake.wildcards.get("resolution"))
 assert (
