@@ -30,20 +30,3 @@ rule bellerophon_bam:
     threads: 2
     wrapper:
         "master/bio/bellerophon"
-
-
-rule bellerophon_cram:
-    input:
-        fwd="test_1500_forward.bam",
-        rev="test_1500_reverse.bam",
-    output:
-        bam="out.cram",
-    log:
-        "logs/bellerophon.log",
-    params:
-        extra="--quality 20",
-        sorting="queryname",  # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
-        sort_extra="--no-PG",  # optional: extra arguments for samtools/picard
-    threads: 2
-    wrapper:
-        "master/bio/bellerophon"

@@ -142,11 +142,6 @@ def test_bellerophon():
         ["snakemake", "--cores", "2", "out.bam", "--use-conda", "-F"],
     )
 
-    run(
-        "bio/bellerophon",
-        ["snakemake", "--cores", "2", "out.cram", "--use-conda", "-F"],
-    )
-
 
 @skip_if_not_modified
 def test_mashmap():
