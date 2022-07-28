@@ -1,0 +1,13 @@
+rule bellerophon:
+    input:
+        fwd="test_1500_forward.bam",
+        rev="test_1500_reverse.bam",
+    output:
+        bam="out.bam",
+    log:
+        "logs/bellerophon.log",
+    params:
+        extra="--quality 20",
+    threads: 2
+    wrapper:
+        "master/bio/bellerophon"

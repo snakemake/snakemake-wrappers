@@ -131,6 +131,14 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_bellerophon():
+    run(
+        "bio/bellerophon",
+        ["snakemake", "--cores", "2", "out.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_mashmap():
     run(
         "bio/mashmap",
