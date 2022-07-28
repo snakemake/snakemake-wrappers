@@ -4,8 +4,8 @@ url: https://github.com/wtsi-hpag/PretextMap
 authors:
   - Filipe G. Vieira
 input:
-  - SAM/BAM/CRAM file(s)
+  - SAM/BAM/CRAM file
 output:
-  - genome contact map
+  - pretext contact map
 notes: |
   * The `extra` param allows for additional arguments.
