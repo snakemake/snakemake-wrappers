@@ -1,4 +1,21 @@
-rule bellerophon:
+rule bellerophon_sam:
+    input:
+        fwd="test_1500_forward.bam",
+        rev="test_1500_reverse.bam",
+    output:
+        bam="out.sam",
+    log:
+        "logs/bellerophon.log",
+    params:
+        extra="--quality 20",
+        sorting="none",  # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
+        sort_extra="--no-PG",  # optional: extra arguments for samtools/picard
+    threads: 2
+    wrapper:
+        "master/bio/bellerophon"
+
+
+rule bellerophon_bam:
     input:
         fwd="test_1500_forward.bam",
         rev="test_1500_reverse.bam",
@@ -8,6 +25,25 @@ rule bellerophon:
         "logs/bellerophon.log",
     params:
         extra="--quality 20",
+        sorting="coordinate",  # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
+        sort_extra="--no-PG",  # optional: extra arguments for samtools/picard
+    threads: 2
+    wrapper:
+        "master/bio/bellerophon"
+
+
+rule bellerophon_cram:
+    input:
+        fwd="test_1500_forward.bam",
+        rev="test_1500_reverse.bam",
+    output:
+        bam="out.cram",
+    log:
+        "logs/bellerophon.log",
+    params:
+        extra="--quality 20",
+        sorting="queryname",  # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
+        sort_extra="--no-PG",  # optional: extra arguments for samtools/picard
     threads: 2
     wrapper:
         "master/bio/bellerophon"
