@@ -8,4 +8,4 @@ input:
 output:
   - genome contact map
 notes: |
-  * The `extra` param allows for additional arguments for minimap2.
+  * The `extra` param allows for additional arguments.

@@ -134,7 +134,20 @@ def run(wrapper, cmd, check_log=None):
 def test_pretext_map():
     run(
         "bio/pretext/map",
-        ["snakemake", "--cores", "1", "pretext_map.out", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "map.pretext", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_pretext_snapshot():
+    run(
+        "bio/pretext/snapshot",
+        ["snakemake", "--cores", "1", "out.png", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/pretext/snapshot",
+        ["snakemake", "--cores", "1", "out.jpg", "--use-conda", "-F"],
     )
 
 

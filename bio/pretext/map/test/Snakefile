@@ -2,7 +2,7 @@ rule pretext_map:
     input:
         "a.bam",
     output:
-        "pretext_map.out",
+        "map.pretext",
     log:
         "logs/pretext_map.log",
     params:

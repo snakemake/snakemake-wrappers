@@ -1,0 +1,28 @@
+rule pretext_snapshot_png:
+    input:
+        "map.pretext",
+    output:
+        xx="out.png",
+        full_map="full_map.png",
+    log:
+        "logs/pretext_snapshot_png.log",
+    params:
+        extra="--resolution 1080",
+    threads: 1
+    wrapper:
+        "master/bio/pretext/snapshot"
+
+
+rule pretext_snapshot_jpg:
+    input:
+        "map.pretext",
+    output:
+        xx="out.jpg",
+        full_map="full_map.jpg",
+    log:
+        "logs/pretext_snapshot_jpg.log",
+    params:
+        extra="--resolution 1080",
+    threads: 1
+    wrapper:
+        "master/bio/pretext/snapshot"
