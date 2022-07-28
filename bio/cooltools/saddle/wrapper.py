@@ -28,11 +28,10 @@ resolution = snakemake.params.get(
 if not resolution:
     raise ValueError("Please specify resolution either as a wildcard or as a parameter")
 
-if snakemake.output.get("fig", ""):
-    ext = path.splitext(snakemake.output.get("fig", ""))[1][1:]
+fig = snakemake.output.get("fig", "")
+if fig:
+    ext = path.splitext(fig)[1][1:]
     fig = f"--fig {ext}"
-else:
-    fig = ""
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
@@ -50,5 +49,5 @@ with tempfile.TemporaryDirectory() as tmpdir:
 
     shell("mv {tmpdir}/out.saddledump.npz {snakemake.output.saddle}")
     shell("mv {tmpdir}/out.digitized.tsv {snakemake.output.digitized_track}")
-    if snakemake.output.get("fig", ""):
+    if fig:
         shell(f"mv {{tmpdir}}/out.{ext} {{snakemake.output.fig}}")
