@@ -12,7 +12,11 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
 
-format = Path(snakemake.output[0]).suffix.removeprefix(".")
+out_maps = snakemake.output.keys()
+sequences = "=" + ", =".join(snakemake.output.keys())
+
+
+format = Path(snakemake.output.full).suffix.removeprefix(".")
 if format == "jpg":
     format = "jpeg"
 
@@ -22,13 +26,15 @@ with tempfile.TemporaryDirectory() as tmpdir:
         "PretextSnapshot"
         " --map {snakemake.input[0]}"
         " {extra}"
+        " --sequences {sequences:q}"
         " --format {format}"
         " --folder {tmpdir}"
         " --prefix out_"
         " {log}"
     )
 
-    if snakemake.output.get("xx"):
-        shell("mv {tmpdir}/out_xx.{format} {snakemake.output.xx}")
-    if snakemake.output.get("full_map"):
-        shell("mv {tmpdir}/out_FullMap.{format} {snakemake.output.full_map}")
+    if snakemake.output.get("full"):
+        shell("mv {tmpdir}/out_FullMap.{format} {snakemake.output.full}")
+    if snakemake.output.get("all"):
+        Path(snakemake.output.all).mkdir(parents=True, exist_ok=True)
+        shell("mv {tmpdir}/out_*.{format} {snakemake.output.all}/.")

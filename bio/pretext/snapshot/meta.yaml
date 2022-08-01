@@ -6,7 +6,9 @@ authors:
 input:
   - pretext contact map
 output:
-  - image (PNG/BMP/JPG)
+  - full image (mandatory)
+  - all images (optional)
+  - specific sequences (optional)
 notes: |
-  * Outputs must all have the same format.
+  * Outputs must all have the same format (PNG/BMP/JPG).
   * The `extra` param allows for additional arguments.
