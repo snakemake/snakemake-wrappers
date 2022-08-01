@@ -142,12 +142,12 @@ def test_pretext_map():
 def test_pretext_snapshot():
     run(
         "bio/pretext/snapshot",
-        ["snakemake", "--cores", "1", "out.png", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "full_map.png", "--use-conda", "-F"],
     )
 
     run(
         "bio/pretext/snapshot",
-        ["snakemake", "--cores", "1", "out.jpg", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "full_map.jpg", "--use-conda", "-F"],
     )
 
 
