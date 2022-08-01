@@ -9,18 +9,3 @@ rule bamtobed:
         extra="-bedpe",  # optional parameters
     wrapper:
         "master/bio/bedtools/bamtobed"
-
-
-rule bamtobed_sort:
-    input:
-        "{sample}.bam",
-    output:
-        "{sample}.sorted.bed",
-    log:
-        "logs/bamtobed/{sample}.sorted.log",
-    params:
-        extra="-bedpe",  # optional parameters
-        sorting=True,
-        sort_extra="-chrThenSizeA",  # optional sort parameters
-    wrapper:
-        "master/bio/bedtools/bamtobed"
