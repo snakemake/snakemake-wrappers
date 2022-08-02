@@ -11,7 +11,7 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
-enzyme = snakemake.input.get("enzyme", "")
+enzyme = snakemake.params.get("enzyme", "")
 if enzyme:
     enzyme = f"--enzyme {enzyme}"
 
