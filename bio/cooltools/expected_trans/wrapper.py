@@ -9,8 +9,6 @@ from snakemake.shell import shell
 view = snakemake.input.get("view", "")
 if view:
     view = f"--view {view}"
-else:
-    view = ""
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 

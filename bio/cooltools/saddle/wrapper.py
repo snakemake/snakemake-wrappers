@@ -50,4 +50,4 @@ with tempfile.TemporaryDirectory() as tmpdir:
     shell("mv {tmpdir}/out.saddledump.npz {snakemake.output.saddle}")
     shell("mv {tmpdir}/out.digitized.tsv {snakemake.output.digitized_track}")
     if fig:
-        shell(f"mv {{tmpdir}}/out.{ext} {{snakemake.output.fig}}")
+        shell("mv {tmpdir}/out.{ext} {snakemake.output.fig}")
