@@ -1603,7 +1603,7 @@ def test_cooltools_pileup():
 def test_cooltools_dots():
     run(
         "bio/cooltools/dots",
-        ["snakemake", "--cores", "1", "CN_10000.dots.bedpe", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "HFF_10000.dots.bedpe", "--use-conda", "-F"],
     )
 
 
