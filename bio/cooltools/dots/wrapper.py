@@ -10,8 +10,6 @@ view = snakemake.input.get("view", "")
 if view:
     view = f"--view {view}"
 
-features_format = snakemake.params.get("features_format", "")
-
 expected = snakemake.input.get("expected", "")
 
 extra = snakemake.params.get("extra", "")
