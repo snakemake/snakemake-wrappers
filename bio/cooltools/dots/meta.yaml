@@ -6,14 +6,13 @@ authors:
 input:
   - a multiresolution cooler file (.mcool)
   - an expected file
+  - (optional) view, a bed-style file with region coordinates and names to use for analysis
 output:
   - >
     A .bedpe file with coordinates of detected dots.
     Can have a {resolution} wildcard that specifies the resolution for the analysis,
     then it doesn't need to be specified as a parameter.
 params:
-  view: > 
-    Path to a bed-style file with region coordinates and names to use for analysis
   resolution: >
     Optional, can be instead specified as a wildcard in the output
   extra: Any additional arguments to pass
