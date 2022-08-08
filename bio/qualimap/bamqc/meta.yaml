@@ -1,0 +1,12 @@
+name: qualimap rnaseq
+description: |
+        Run qualimap rnaseq to create a QC report for RNA-seq data.
+authors:
+  - Brett Copeland
+input:
+  - BAM file of RNA-seq data aligned to genome
+  - GTF file containing genome annotations
+output:
+  - QC report in html/pdf format
+notes: |
+  * For more information, see http://qualimap.conesalab.org/doc_html/analysis.html#rnaseqqc.
