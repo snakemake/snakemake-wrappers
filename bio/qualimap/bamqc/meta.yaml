@@ -1,0 +1,12 @@
+name: qualimap rnaseq
+description: |
+        Run qualimap bamqc to create a QC report for aligned NGS data data. It can be
+        used for WGS, WES, RNA, ChIP-Seq, etc.
+authors:
+  - Fritjof Lammers
+input:
+  - BAM file of data aligned to genome
+output:
+  - QC report in html/pdf format
+notes: |
+  * For more information, see http://qualimap.conesalab.org/doc_html/analysis.html#bam-qc.
