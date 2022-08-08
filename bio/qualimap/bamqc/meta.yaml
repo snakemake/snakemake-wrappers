@@ -4,6 +4,7 @@ description: |
         used for WGS, WES, RNA, ChIP-Seq, etc.
 authors:
   - Fritjof Lammers
+  - Brett Copeland
 input:
   - BAM file of data aligned to genome
 output:

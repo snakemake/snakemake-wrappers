@@ -1,6 +1,7 @@
 __author__ = "Fritjof Lammers"
 __copyright__ = "Copyright 2022, Fritjof Lammers"
 __email__ = "f.lammers@dkfz.de"
+
 __license__ = "MIT"
 
 
