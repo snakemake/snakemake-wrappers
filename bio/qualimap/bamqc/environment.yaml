@@ -3,4 +3,5 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - qualimap ==2.2.2d
+  - qualimap =2.2
+  - snakemake-wrapper-utils =0.4
