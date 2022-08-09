@@ -8,8 +8,10 @@ __license__ = "MIT"
 import os
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.java import get_java_opts
 
-java_opts = snakemake.params.get("java_opts", "")
+java_opts = get_java_opts(snakemake)
+
 if java_opts:
     java_opts_str = f'JAVA_OPTS="{java_opts}"'
 else:
