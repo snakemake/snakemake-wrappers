@@ -11,4 +11,4 @@ input:
 output:
   - QC report in TXT format (genome_results.txt)
 notes: |
-  * For more information, see http://qualimap.conesalab.org/doc_html/analysis.html#bam-qc.
+  * The `extra` param allows for additional program arguments.
