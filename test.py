@@ -4292,7 +4292,7 @@ def test_qualimaprnaseq():
 def test_qualimapbamqc():
     run(
         "bio/qualimap/bamqc",
-        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "qc/a", "--use-conda", "-F"],
     )
 
 @skip_if_not_modified
