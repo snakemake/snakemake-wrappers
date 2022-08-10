@@ -5,3 +5,4 @@ channels:
 dependencies:
   - liftoff =1.6
   - biopython =1.79
+  - packaging =21
