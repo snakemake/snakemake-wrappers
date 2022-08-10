@@ -68,7 +68,7 @@ def run(wrapper, cmd, check_log=None):
             raise Skipped("wrappers not modified")
 
         if any(
-            yaml.load(os.path.join(w, "meta.yaml"), Loader=yaml.BaseLoader).get(
+            yaml.load(open(os.path.join(w, "meta.yaml")), Loader=yaml.BaseLoader).get(
                 "blacklisted"
             )
             for w in used_wrappers

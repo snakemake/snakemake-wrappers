@@ -74,6 +74,8 @@ def render_wrapper(path, target, wrapper_id):
     print("rendering", path)
     with open(os.path.join(path, "meta.yaml")) as meta:
         meta = yaml.load(meta, Loader=yaml.BaseLoader)
+    if "blacklisted" not in meta:
+        meta["blacklisted"] = None
 
     envpath = os.path.join(path, "environment.yaml")
     if os.path.exists(envpath):
@@ -102,7 +104,6 @@ def render_wrapper(path, target, wrapper_id):
             wrapper_lang=wrapper_lang,
             pkgs=pkgs,
             id=wrapper_id,
-            blacklisted=meta.get("blacklisted"),
             **meta,
         )
         readme.write(rst)
