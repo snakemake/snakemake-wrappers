@@ -2,15 +2,15 @@ rule baserecalibrator:
     input:
         bam="mapped/{sample}.bam",
         ref="genome.fasta",
-        known="dbsnp.vcf.gz"
+        known="dbsnp.vcf.gz",
     output:
-        "{sample}.recal_data_table"
+        "{sample}.recal_data_table",
     log:
-        "logs/gatk3/bqsr/{sample}.log"
+        "logs/gatk3/bqsr/{sample}.log",
     params:
-        extra=""  # optional
+        extra="",  # optional
     resources:
-        mem_mb = 1024
+        mem_mb=1024,
     threads: 16
     wrapper:
         "bio/gatk/baserecalibrator"

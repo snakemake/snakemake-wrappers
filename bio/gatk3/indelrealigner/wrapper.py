@@ -32,7 +32,6 @@ if output_bai is None:
     extra += " --disable_bam_indexing"
 
 
-
 shell(
     "gatk {java_opts}"
     " --analysis_type IndelRealigner"
