@@ -3,4 +3,4 @@ channels:
   - bioconda
   - defaults
 dependencies:
-  - minimap2 =2
+  - minimap2 =2.24
