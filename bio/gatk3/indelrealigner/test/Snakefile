@@ -17,4 +17,4 @@ rule indelrealigner:
     resources:
         mem_mb=1024,
     wrapper:
-        "bio/gatk/indelrealigner"
+        "master/bio/gatk/indelrealigner"

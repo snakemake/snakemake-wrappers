@@ -13,4 +13,4 @@ rule baserecalibrator:
         mem_mb=1024,
     threads: 16
     wrapper:
-        "bio/gatk/baserecalibrator"
+        "master/bio/gatk/baserecalibrator"

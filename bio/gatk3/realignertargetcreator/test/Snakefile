@@ -5,7 +5,6 @@ rule realignertargetcreator:
         known="dbsnp.vcf.gz",
     output:
         intervals="{sample}.intervals",
-        java_temp=temp(directory("gatk3_indelrealigner/{sample}")),
     log:
         "logs/gatk/realignertargetcreator/{sample}.log",
     params:
@@ -14,4 +13,4 @@ rule realignertargetcreator:
         mem_mb=1024,
     threads: 16
     wrapper:
-        "bio/gatk3/realignertargetcreator"
+        "master/bio/gatk3/realignertargetcreator"
