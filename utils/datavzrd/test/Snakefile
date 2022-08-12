@@ -1,0 +1,22 @@
+rule all:  # [hide]
+    input:  # [hide]
+        "results/datavzrd-report/A",  # [hide]
+
+
+rule datavzrd:
+    input:
+        table="data/A.tsv",
+        config="resources/{sample}.datavzrd.yaml",
+    output:
+        report(
+            directory("results/datavzrd-report/{sample}"),
+            htmlindex="index.html",
+            caption="../report/calls.rst",
+            category="Variant calls",
+            labels=["Fancy label"],
+            subcategory="somatic variants",
+        ),
+    log:
+        "logs/datavzrd_report/{sample}.log",
+    wrapper:
+        "master/utils/datavzrd"
