@@ -22,9 +22,9 @@ if bed:
 known = snakemake.input.get("known", "")
 if known:
     if isinstance(known, str):
-        known = f"--known {known}"
+        known = f"--knownAlleles {known}"
     else:
-        known = list(map("--known {}".format, known))
+        known = list(map("----knownAlleles {}".format, known))
 
 
 output_bai = snakemake.output.get("bai", None)
