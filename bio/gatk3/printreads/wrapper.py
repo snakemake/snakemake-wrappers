@@ -14,7 +14,7 @@ java_opts = get_java_opts(snakemake)
 
 
 shell(
-    "gatk {java_opts}"
+    "gatk3 {java_opts}"
     " --analysis_type PrintReads"
     " --input_file {snakemake.input.bam}"
     " --reference_sequence {snakemake.input.ref}"

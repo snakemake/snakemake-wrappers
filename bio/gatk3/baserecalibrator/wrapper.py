@@ -22,7 +22,7 @@ input_known = "--knownSites ".join(snakemake.input.known)
 
 
 shell(
-    "gatk {java_opts}"
+    "gatk3 {java_opts}"
     " --analysis_type BaseRecalibrator"
     " --num_cpu_threads_per_data_thread {snakemake.threads}"
     " --input_file {snakemake.input.bam}"

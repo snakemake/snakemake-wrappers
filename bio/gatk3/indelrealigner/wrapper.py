@@ -33,7 +33,7 @@ if output_bai is None:
 
 
 shell(
-    "gatk {java_opts}"
+    "gatk3 {java_opts}"
     " --analysis_type IndelRealigner"
     " --input_file {snakemake.input.bam}"
     " --reference_sequence {snakemake.input.ref}"

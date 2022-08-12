@@ -27,7 +27,7 @@ if known:
 
 
 shell(
-    "gatk {java_opts}"
+    "gatk3 {java_opts}"
     " --analysis_type RealignerTargetCreator"
     " --num_threads {snakemake.threads}"
     " --input_file {snakemake.input.bam}"
