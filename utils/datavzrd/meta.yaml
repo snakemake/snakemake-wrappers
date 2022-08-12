@@ -3,5 +3,6 @@ description: |
   datavzrd allows to render tables by providing a configuration file.
   All other input variables are optional but the user has to ensure that files linked
   within the configuration file are present. 
+url: https://github.com/koesterlab/datavzrd
 authors:
   - Felix Mölder
