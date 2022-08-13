@@ -3,6 +3,10 @@
 {{ name|upper }}
 {{ name | length * '=' }}
 
+{% if blacklisted %}
+.. image:: https://img.shields.io/badge/blacklisted-{{ blacklisted }}-red
+{% endif %}
+
 {{ description }}
 
 {% if url %}
