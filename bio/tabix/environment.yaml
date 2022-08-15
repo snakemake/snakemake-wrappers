@@ -1,5 +1,6 @@
 channels:
-  - bioconda
   - conda-forge
+  - bioconda
+  - nodefaults
 dependencies:
   - htslib ==1.10
