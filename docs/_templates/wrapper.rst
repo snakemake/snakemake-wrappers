@@ -4,7 +4,7 @@
 {{ name | length * '=' }}
 
 {% if blacklisted %}
-.. image:: https://img.shields.io/badge/blacklisted-{{ blacklisted }}-red
+.. image:: https://img.shields.io/badge/blacklisted-{{ blacklisted|urlencode }}-red
 {% endif %}
 
 {{ description }}
