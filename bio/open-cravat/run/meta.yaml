@@ -2,3 +2,4 @@ name: OpenCRAVAT Run
 description: Runs OpenCRAVAT. Annotate variant calls with OpenCRAVAT. For more details, see https://github.com/KarchinLab/open-cravat/wiki.
 authors:
     - Rick Kim
+blacklisted: Fails to get wghg19-1.0.3 with HTTP error
