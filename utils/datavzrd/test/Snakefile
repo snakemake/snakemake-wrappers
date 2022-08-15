@@ -5,8 +5,9 @@ rule all:  # [hide]
 
 rule datavzrd:
     input:
-        table="data/A.tsv",
         config="resources/{sample}.datavzrd.yaml",
+        # optional files required for rendering
+        table="data/A.tsv",
     output:
         report(
             directory("results/datavzrd-report/{sample}"),
