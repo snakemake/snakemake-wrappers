@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.7.3](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.7.2...v1.7.3) (2022-08-15)
+
+
+### Performance Improvements
+
+* updated cutadapt version, formatted files, and improved docs. ([#505](https://www.github.com/snakemake/snakemake-wrappers/issues/505)) ([3a20eb7](https://www.github.com/snakemake/snakemake-wrappers/commit/3a20eb75dc8ac7449b1a58948bb3e1327c2754a8))
+
 ### [1.7.2](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.7.1...v1.7.2) (2022-08-15)
 
 
