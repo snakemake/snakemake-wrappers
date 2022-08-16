@@ -145,6 +145,7 @@ def test_hifiasm():
     run(
         "bio/hifiasm",
         ["snakemake", "--cores", "2", "hifiasm/a.a_ctg.gfa", "--use-conda", "-F"],
+    )
 
 
 @skip_if_not_modified
