@@ -1,0 +1,14 @@
+name: cooltools genome_gc
+description: Calculate GC content for a genome in bins
+url: https://github.com/open2c/cooltools
+authors:
+  - Ilya Flyamer
+input:
+  - .bed file with bin coordinates
+  - fasta file with the genome sequence
+output:
+  - >
+    A tsv file with GC content in bins
+params:
+  extra: Any additional arguments to pass
+notes:

@@ -1,0 +1,22 @@
+name: cooltools eigs_cis
+description: Calculate cis eigenvectors for a resolution in an .mcool file
+url: https://github.com/open2c/cooltools
+authors:
+  - Ilya Flyamer
+input:
+  - a multiresolution cooler file (.mcool)
+  - (optional) phasing track file
+  - (optional) view, a bed-style file with region coordinates and names to use for analysis
+output:
+  vecs: A .tsv file with values of cis eigenvectors at each bin.
+  lams: A file with eigenvalues
+  bigwig: A .bigwig file for visualization of the first eigenvector
+params:
+  resolution: >
+    Optional, can be instead specified as a wildcard in the output
+  track_col_name: >
+    Name of the column in the track file to use
+  extra: Any additional arguments to pass
+notes:
+    - Output files can have a {resolution} wildcard that specifies the resolution for
+      the analysis, then it doesn't need to be specified as a parameter.

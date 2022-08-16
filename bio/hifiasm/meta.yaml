@@ -1,0 +1,12 @@
+name: Hifiasm
+description: A haplotype-resolved assembler for accurate Hifi reads
+url: https://github.com/chhylp123/hifiasm
+authors:
+  - Filipe G. Vieira
+input:
+  - PacBio HiFi reads (fasta)
+  - Hi-C reads (fastq; optional)
+output:
+  - assembly graphs (GFA)
+notes: |
+  * The `extra` param allows for additional program arguments.
