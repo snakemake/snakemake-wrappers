@@ -1,0 +1,12 @@
+rule tabix:
+    input:
+        "{prefix}.vcf.gz",
+    output:
+        "{prefix}.vcf.gz.tbi",
+    log:
+        "logs/tabix/{prefix}.log",
+    params:
+        # pass arguments to tabix (e.g. index a vcf)
+        "-p vcf",
+    wrapper:
+        "master/bio/tabix/index"

@@ -3924,9 +3924,9 @@ def test_bismark_bismark2bedgraph():
 
 
 @skip_if_not_modified
-def test_tabix():
+def test_tabix_index():
     run(
-        "bio/tabix",
+        "bio/tabix/index",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "test.vcf.gz.tbi"],
     )
 
