@@ -139,7 +139,6 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
-
 @skip_if_not_modified
 def test_gfatools():
     run(
@@ -175,6 +174,14 @@ def test_gfatools():
     run(
         "bio/gfatools",
         ["snakemake", "--cores", "1", "a.sql", "--use-conda", "-F"]
+    )
+
+
+@skip_if_not_modified
+def test_hifiasm():
+    run(
+        "bio/hifiasm",
+        ["snakemake", "--cores", "2", "hifiasm/a.a_ctg.gfa", "--use-conda", "-F"],
     )
 
 
@@ -278,12 +285,30 @@ def test_biobambam2_bamsormadup():
 
 
 @skip_if_not_modified
+def test_bustools_text():
+    run(
+        "bio/bustools/text",
+        ["snakemake", "--cores", "1", "file.tsv", "--use-conda", "-F"]
+    )
+    run(
+        "bio/bustools/text",
+        ["snakemake", "--cores", "1", "file2.tsv", "--use-conda", "-F"]
+    )
+
+
+@skip_if_not_modified
 def test_open_cravat_run():
     run(
         "bio/open-cravat/run",
         ["snakemake", "--cores", "1", "--use-conda"],
     )
 
+@skip_if_not_modified
+def test_bustools_count():
+    run(
+        "bio/bustools/count",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "buscount.mtx"]
+    )
 
 @skip_if_not_modified
 def test_open_cravat_module():
