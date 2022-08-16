@@ -1,14 +1,14 @@
 name: bcftools filter
 description: filter vcf/bcf file.
+url: http://www.htslib.org/doc/bcftools.html#filter
 authors:
   - Patrik Smeds
   - Nikos Tsardakas Renhuldt
+  - Filipe G. Vieira
 input:
   - VCF/BCF file
 output:
   - Filtered VCF/BCF file
 notes: |
   * The `uncompressed_bcf` param allows to specify that a BCF output should be uncompressed (ignored otherwise).
-  * The `bcftools_use_mem` param controls whether to pass the resources.mem_mb to bcftools
-  * The `extra` param allows for additional program arguments (not `--threads, `-O/--output-type`, `-m/--max-mem`, or `-T/--temp-dir`).
-  * For more information see, https://samtools.github.io/bcftools/bcftools.html
+  * The `extra` param allows for additional program arguments (not `--threads`, `-o/--output`, or `-O/--output-type`).

@@ -1,0 +1,14 @@
+rule cooltools_expected_cis:
+    input:
+        cooler="CN.mm9.1000kb.mcool",  ## Multiresolution cooler file
+        view="mm9_view.txt",  ## File with the region names and coordinates
+    output:
+        "CN_{resolution,[0-9]+}.cis.expected.tsv",
+    params:
+        ## Add optional parameters 
+        extra="",  ## File with the chromosome names and lengths
+    threads: 4
+    log:
+        "logs/CN_{resolution}_cis_expected.log",
+    wrapper:
+        "master/bio/cooltools/expected_cis"

@@ -48,17 +48,12 @@ if chromosome:
             "invalid datatype, to select a single chromosome the datatype must be dna"
         )
 
+spec = spec.format(build=build, release=release)
+url_prefix = f"ftp://ftp.ensembl.org/pub/{branch}release-{release}/fasta/{species}/{datatype}/{species.capitalize()}.{spec}"
+
 success = False
 for suffix in suffixes:
-    url = "ftp://ftp.ensembl.org/pub/{branch}release-{release}/fasta/{species}/{datatype}/{species_cap}.{spec}.{suffix}".format(
-        release=release,
-        species=species,
-        datatype=datatype,
-        spec=spec.format(build=build, release=release),
-        suffix=suffix,
-        species_cap=species.capitalize(),
-        branch=branch,
-    )
+    url = f"{url_prefix}.{suffix}"
 
     try:
         shell("curl -sSf {url} > /dev/null 2> /dev/null")
@@ -70,9 +65,14 @@ for suffix in suffixes:
     break
 
 if not success:
+    if len(suffixes) > 1:
+        url = f"{url_prefix}.[{'|'.join(suffixes)}]"
+    else:
+        url = f"{url_prefix}.{suffixes[0]}"
     print(
-        "Unable to download requested sequence data from Ensembl. "
-        "Did you check that this combination of species, build, and release is actually provided?",
+        f"Unable to download requested sequence data from Ensembl ({url}). "
+        "Please check whether above URL is currently available (might be a temporal server issue). "
+        "Apart from that, did you check that this combination of species, build, and release is actually provided?",
         file=sys.stderr,
     )
     exit(1)
