@@ -16,10 +16,14 @@ elif len(snakemake.input) > 1:
     raise ValueError("Please provide exactly one reference genome as input.")
 
 valid_suffixes = {".0123", ".amb", ".ann", ".bwt.2bit.64", ".pac"}
+
+
 def get_valid_suffix(path):
     for suffix in valid_suffixes:
         if path.endswith(suffix):
             return suffix
+
+
 prefixes = []
 for s in snakemake.output:
     suffix = get_valid_suffix(s)
