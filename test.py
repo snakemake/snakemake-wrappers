@@ -274,6 +274,14 @@ def test_bustools_count():
     )
 
 @skip_if_not_modified
+def test_bustools_sort():
+    run(
+        "bio/bustools/sort",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "sorted.bus"]
+    )
+
+
+@skip_if_not_modified
 def test_open_cravat_module():
     run(
         "bio/open-cravat/module",

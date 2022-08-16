@@ -1,0 +1,14 @@
+rule test_bustools_sort:
+    input:
+        "file.bus",
+    output:
+        "sorted.bus",
+    threads: 1
+    resources:
+        mem_mb=765,
+    params:
+        extra="--umi",
+    log:
+        "bustools.log",
+    wrapper:
+        "master/bio/bustools/sort"
