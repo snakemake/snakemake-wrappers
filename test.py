@@ -139,6 +139,46 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+
+@skip_if_not_modified
+def meryl_count():
+    run(
+        "bio/meryl/count",
+        ["snakemake", "--cores", "2", "genome", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def meryl_sets():
+    run(
+        "bio/meryl/sets",
+        ["snakemake", "--cores", "1", "genome_union", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/meryl/sets",
+        ["snakemake", "--cores", "1", "genome_intersect", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/meryl/sets",
+        ["snakemake", "--cores", "1", "genome_subtract", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/meryl/sets",
+        ["snakemake", "--cores", "1", "genome_difference", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def meryl_union():
+    run(
+        "bio/meryl/stats",
+        ["snakemake", "--cores", "1", "genome.stats", "--use-conda", "-F"],
+    )
+
+
 @skip_if_not_modified
 def test_mashmap():
     run(
