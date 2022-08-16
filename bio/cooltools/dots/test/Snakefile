@@ -7,7 +7,6 @@ rule cooltools_dots:
     output:
         "HFF_{resolution,[0-9]+}.dots.bedpe",
     params:
-        ## Add optional parameters 
         extra="",  ## Add extra parameters
     threads: 4
     log:
