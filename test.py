@@ -1029,6 +1029,14 @@ def test_bcftools_view_uncompressed_bcf():
 
 
 @skip_if_not_modified
+def test_bedtools_bamtobed():
+    run(
+        "bio/bedtools/bamtobed",
+        ["snakemake", "--cores", "1", "a.bed", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_bedtools_genomecoveragebed():
     run(
         "bio/bedtools/genomecov",
