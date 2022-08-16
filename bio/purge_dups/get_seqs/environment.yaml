@@ -1,6 +1,6 @@
 channels:
-  - bioconda
   - conda-forge
-  - defaults
+  - bioconda
+  - nodefaults
 dependencies:
   - purge_dups =1.2
