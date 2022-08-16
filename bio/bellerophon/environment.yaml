@@ -1,7 +1,7 @@
 channels:
   - conda-forge
   - bioconda
-  - defaults
+  - nodefaults
 dependencies:
   - bellerophon =1.0
   - samtools =1.15
