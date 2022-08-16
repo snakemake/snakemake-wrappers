@@ -139,6 +139,43 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+@skip_if_not_modified
+def test_gfatools():
+    run(
+        "bio/gfatools",
+        ["snakemake", "--cores", "1", "a.stat", "--use-conda", "-F"]
+    )
+
+    run(
+        "bio/gfatools",
+        ["snakemake", "--cores", "1", "a.fas", "--use-conda", "-F"]
+    )
+
+    run(
+        "bio/gfatools",
+        ["snakemake", "--cores", "1", "a.bed", "--use-conda", "-F"]
+    )
+
+    run(
+        "bio/gfatools",
+        ["snakemake", "--cores", "1", "a.blacklist", "--use-conda", "-F"]
+    )
+
+    run(
+        "bio/gfatools",
+        ["snakemake", "--cores", "1", "a.bubble", "--use-conda", "-F"]
+    )
+
+    run(
+        "bio/gfatools",
+        ["snakemake", "--cores", "1", "a.asm", "--use-conda", "-F"]
+    )
+
+    run(
+        "bio/gfatools",
+        ["snakemake", "--cores", "1", "a.sql", "--use-conda", "-F"]
+    )
+
 
 @skip_if_not_modified
 def test_hifiasm():
