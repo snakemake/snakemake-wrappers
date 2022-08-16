@@ -1,0 +1,54 @@
+rule meryl_union:
+    input:
+        "{genome}",
+        "{genome}",
+    output:
+        directory("{genome}_union/"),
+    log:
+        "logs/{genome}.union.log",
+    params:
+        command="union-sum",
+    wrapper:
+        "master/bio/meryl/sets"
+
+
+rule meryl_intersect:
+    input:
+        "{genome}",
+        "{genome}",
+    output:
+        directory("{genome}_intersect/"),
+    log:
+        "logs/{genome}.intersect.log",
+    params:
+        command="intersect-max",
+    wrapper:
+        "master/bio/meryl/sets"
+
+
+rule meryl_subtract:
+    input:
+        "{genome}",
+        "{genome}",
+    output:
+        directory("{genome}_subtract/"),
+    log:
+        "logs/{genome}.subtract.log",
+    params:
+        command="subtract",
+    wrapper:
+        "master/bio/meryl/sets"
+
+
+rule meryl_difference:
+    input:
+        "{genome}",
+        "{genome}",
+    output:
+        directory("{genome}_difference/"),
+    log:
+        "logs/{genome}.difference.log",
+    params:
+        command="difference",
+    wrapper:
+        "master/bio/meryl/sets"
