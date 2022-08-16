@@ -1,9 +1,11 @@
 rule bcftools_index:
     input:
-        "a.bcf"
+        "a.bcf",
     output:
-        "a.bcf.csi"
+        "a.bcf.csi",
+    log:
+        "index/a.log",
     params:
-        extra=""  # optional parameters for bcftools index
+        extra="",  # optional parameters for bcftools index
     wrapper:
         "master/bio/bcftools/index"

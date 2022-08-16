@@ -1,0 +1,15 @@
+rule meryl_count:
+    input:
+        fasta="{genome}.fasta",
+    output:
+        directory("{genome}/"),
+    log:
+        "logs/meryl_count/{genome}.log",
+    params:
+        command="count",
+        extra="k=32",
+    threads: 2
+    resources:
+        mem_mb=2048,
+    wrapper:
+        "master/bio/meryl/count"

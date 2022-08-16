@@ -1,8 +1,8 @@
 name: varscan
 channels:
-  - bioconda
   - conda-forge
-  - defaults
+  - bioconda
+  - nodefaults
 dependencies:
   - varscan ==2.4.3
   - snakemake-wrapper-utils ==0.1.3

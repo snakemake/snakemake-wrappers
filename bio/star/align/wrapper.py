@@ -8,8 +8,10 @@ import os
 import tempfile
 from snakemake.shell import shell
 
+
 extra = snakemake.params.get("extra", "")
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+
 
 fq1 = snakemake.input.get("fq1")
 assert fq1 is not None, "input-> fq1 is a required input parameter"
@@ -32,14 +34,27 @@ input_str_fq1 = ",".join(fq1)
 input_str_fq2 = ",".join(fq2) if fq2 is not None else ""
 input_str = " ".join([input_str_fq1, input_str_fq2])
 
+
 if fq1[0].endswith(".gz"):
-    readcmd = "--readFilesCommand zcat"
+    readcmd = "--readFilesCommand gunzip -c"
+elif fq1[0].endswith(".bz2"):
+    readcmd = "--readFilesCommand bunzip2 -c"
 else:
     readcmd = ""
+
 
 index = snakemake.input.get("idx")
 if not index:
     index = snakemake.params.get("idx", "")
+
+
+if "--outSAMtype BAM SortedByCoordinate" in extra:
+    stdout = "BAM_SortedByCoordinate"
+elif "BAM Unsorted" in extra:
+    stdout = "BAM_Unsorted"
+else:
+    stdout = "SAM"
+
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
@@ -49,21 +64,13 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " --readFilesIn {input_str}"
         " {readcmd}"
         " {extra}"
-        " --outTmpDir {tmpdir}/temp"
+        " --outTmpDir {tmpdir}/STARtmp"
         " --outFileNamePrefix {tmpdir}/"
-        " --outStd Log "
+        " --outStd {stdout}"
+        " > {snakemake.output.aln}"
         " {log}"
     )
 
-    if "SortedByCoordinate" in extra:
-        bamprefix = "Aligned.sortedByCoord.out"
-    else:
-        bamprefix = "Aligned.out"
-
-    if snakemake.output.get("bam"):
-        shell("cat {tmpdir}/{bamprefix}.bam > {snakemake.output.bam:q}")
-    if snakemake.output.get("sam"):
-        shell("cat {tmpdir}/{bamprefix}.sam > {snakemake.output.sam:q}")
     if snakemake.output.get("reads_per_gene"):
         shell("cat {tmpdir}/ReadsPerGene.out.tab > {snakemake.output.reads_per_gene:q}")
     if snakemake.output.get("chim_junc"):
