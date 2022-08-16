@@ -9,7 +9,6 @@ __email__ = "thibault.dayris@gustaveroussy.fr"
 __license__ = "MIT"
 
 
-import os
 import tempfile
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
