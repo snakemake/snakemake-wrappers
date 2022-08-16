@@ -6,7 +6,6 @@ rule test_bustools_sort:
     threads: 1
     resources:
         mem_mb=765,
-        tmpdir="tmp",
     params:
         extra="--umi",
     log:
