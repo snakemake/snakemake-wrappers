@@ -1,8 +1,8 @@
 channels:
-  - bioconda
   - conda-forge
-  - defaults
+  - bioconda
+  - nodefaults
 dependencies:
-  - picard =2.26
+  - picard =2.27
   - r-base ==3.6.2
   - snakemake-wrapper-utils ==0.1.3

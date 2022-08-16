@@ -1,5 +1,6 @@
 channels:
-  - bioconda
   - conda-forge
+  - bioconda
+  - nodefaults
 dependencies:
   - cairosvg =2.4.2

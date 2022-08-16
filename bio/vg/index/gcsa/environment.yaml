@@ -1,5 +1,6 @@
 channels:
+  - conda-forge
   - bioconda
-  - defaults
+  - nodefaults
 dependencies:
   - vg ==1.27.0

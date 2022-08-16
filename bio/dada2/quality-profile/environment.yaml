@@ -1,7 +1,6 @@
 channels:
-  - bioconda
   - conda-forge
-  - defaults
+  - bioconda
+  - nodefaults
 dependencies:
-  - bioconductor-dada2 == 1.16
-
+  - bioconductor-dada2 =1.22
