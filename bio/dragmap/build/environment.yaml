@@ -1,6 +1,6 @@
 channels:
-  - bioconda
   - conda-forge
-  - defaults
+  - bioconda
+  - nodefaults
 dependencies:
   - dragmap =1.2

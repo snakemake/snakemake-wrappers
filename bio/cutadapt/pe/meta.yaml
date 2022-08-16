@@ -1,6 +1,7 @@
 name: cutadapt-pe
 description: |
   Trim paired-end reads using cutadapt.
+url: https://github.com/marcelm/cutadapt
 authors:
   - Julian de Ruiter
   - David Laehnemann
@@ -9,3 +10,6 @@ input:
 output:
   - two trimmed (paired-end) fastq files
   - text file containing trimming statistics
+notes: |
+  * The `extra` param allows for additional program arguments.
+  * The `adapters` param allows for separatelly specifying adapter options (optional).
