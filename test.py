@@ -240,6 +240,18 @@ def test_biobambam2_bamsormadup():
 
 
 @skip_if_not_modified
+def test_bustools_text():
+    run(
+        "bio/bustools/text",
+        ["snakemake", "--cores", "1", "file.tsv", "--use-conda", "-F"]
+    )
+    run(
+        "bio/bustools/text",
+        ["snakemake", "--cores", "1", "file2.tsv", "--use-conda", "-F"]
+    )
+
+
+@skip_if_not_modified
 def test_open_cravat_run():
     run(
         "bio/open-cravat/run",
