@@ -3,7 +3,12 @@ rule qualimap:
         # BAM aligned, splicing-aware, to reference genome
         bam="mapped/a.bam",
     output:
-        directory("qc/a"),
+        report(
+            directory("qc/a"),
+            htmlindex="qualimapReport.html",
+            # see https://snakemake.readthedocs.io/en/stable/snakefiles/reporting.html
+            # for more options
+        )
     log:
         "logs/qualimap/bamqc/a.log",
     # optional specification of memory usage of the JVM that snakemake will respect with global
