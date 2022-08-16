@@ -139,6 +139,15 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+
+@skip_if_not_modified
+def test_quast():
+    run(
+        "bio/quast",
+        ["snakemake", "--cores", "1", "a/quast.log", "--use-conda", "-F"],
+    )
+
+
 @skip_if_not_modified
 def test_gfatools():
     run(
