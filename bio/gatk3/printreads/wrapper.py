@@ -13,13 +13,18 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 java_opts = get_java_opts(snakemake)
 
 
+bqsr = snakemake.input.get("recal_data", "")
+if bqsr:
+    bqsr = f"--BQSR {bqsr}"
+
+
 shell(
     "gatk3 {java_opts}"
     " --analysis_type PrintReads"
     " --input_file {snakemake.input.bam}"
     " --reference_sequence {snakemake.input.ref}"
-    " --BQSR {snakemake.input.recal_data}"
+    " {bqsr}"
     " {extra}"
-    " --out {snakemake.output}"
+    " --out {snakemake.output.bam}"
     " {log}"
 )
