@@ -3408,7 +3408,7 @@ def test_busco():
             "snakemake",
             "--cores",
             "1",
-            "txome_busco",
+            "txome_busco/short_summary.json",
             "--use-conda",
             "-F",
         ],
