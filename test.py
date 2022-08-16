@@ -187,6 +187,7 @@ def test_purge_dups_split_fa():
     )
 
 
+@skip_if_not_modified
 def test_quast():
     run(
         "bio/quast",
