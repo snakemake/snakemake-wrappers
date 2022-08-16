@@ -255,6 +255,35 @@ def test_bellerophon():
 
 
 @skip_if_not_modified
+def test_pretext_map():
+    run(
+        "bio/pretext/map",
+        ["snakemake", "--cores", "1", "map.pretext", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_pretext_snapshot():
+    run(
+        "bio/pretext/snapshot",
+        ["snakemake", "--cores", "1", "full_map.png", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/pretext/snapshot",
+        ["snakemake", "--cores", "1", "full_map.jpg", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_pretext_graph():
+    run(
+        "bio/pretext/graph",
+        ["snakemake", "--cores", "1", "a.pretext", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_mashmap():
     run(
         "bio/mashmap", ["snakemake", "--cores", "2", "mashmap.out", "--use-conda", "-F"]

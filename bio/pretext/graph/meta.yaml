@@ -1,0 +1,11 @@
+name: Pretext Map
+description: Embeds bedgraph data into Pretext contact maps.
+url: https://github.com/wtsi-hpag/PretextGraph
+authors:
+  - Filipe G. Vieira
+input:
+  - BEDgraph file
+output:
+  - pretext contact map
+notes: |
+  * The `extra` param allows for additional arguments.
