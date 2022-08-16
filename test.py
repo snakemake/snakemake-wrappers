@@ -284,6 +284,14 @@ def test_pretext_graph():
 
 
 @skip_if_not_modified
+def test_salsa2():
+    run(
+        "bio/salsa2",
+        ["snakemake", "--cores", "1", "out/a.agp", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_mashmap():
     run(
         "bio/mashmap", ["snakemake", "--cores", "2", "mashmap.out", "--use-conda", "-F"]
