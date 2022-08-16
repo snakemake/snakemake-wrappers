@@ -3653,6 +3653,14 @@ def test_gatk_mutect():
 
 
 @skip_if_not_modified
+def test_gatk_getpileupsummaries():
+    run(
+        "bio/gatk/getpileupsummaries",
+        ["snakemake", "--cores", "1", "summaries.table", "--use-conda", "-F"]
+    )
+
+
+@skip_if_not_modified
 def test_gatk_mutect_bam():
     run(
         "bio/gatk/mutect",
