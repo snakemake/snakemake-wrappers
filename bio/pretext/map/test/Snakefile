@@ -7,6 +7,5 @@ rule pretext_map:
         "logs/pretext_map.log",
     params:
         extra="--sortby length --sortorder descend --mapq 10",
-    threads: 1
     wrapper:
         "master/bio/pretext/map"

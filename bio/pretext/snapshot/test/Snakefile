@@ -8,7 +8,6 @@ rule pretext_snapshot_png:
         "logs/pretext_snapshot_png.log",
     params:
         extra="--resolution 1080",
-    threads: 1
     wrapper:
         "master/bio/pretext/snapshot"
 
@@ -23,6 +22,5 @@ rule pretext_snapshot_jpg:
         "logs/pretext_snapshot_jpg.log",
     params:
         extra="--resolution 1080",
-    threads: 1
     wrapper:
         "master/bio/pretext/snapshot"

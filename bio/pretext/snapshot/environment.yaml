@@ -1,6 +1,6 @@
 channels:
   - conda-forge
   - bioconda
-  - defaults
+  - nodefaults
 dependencies:
   - pretextsnapshot ==0.0.4
