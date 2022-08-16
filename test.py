@@ -4629,6 +4629,12 @@ def test_qualimaprnaseq():
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )
 
+@skip_if_not_modified
+def test_qualimapbamqc():
+    run(
+        "bio/qualimap/bamqc",
+        ["snakemake", "--cores", "1", "qc/a", "--use-conda", "-F"],
+    )
 
 @skip_if_not_modified
 def test_collectrnaseqmetrics():
