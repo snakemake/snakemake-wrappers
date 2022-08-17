@@ -1,0 +1,14 @@
+name: Bellerophon
+description: Filter mapped reads where the mapping spans a junction, retaining the 5-prime read.
+url: https://github.com/davebx/bellerophon/
+authors:
+  - Filipe G. Vieira
+input:
+  - Forward reads (BAM format)
+  - Reverse reads (BAM format)
+output:
+  - SAM/BAM/CRAM file
+notes: |
+  * The `sort` param allows to enable sorting ('none', 'queryname' or 'coordinate').
+  * The `sort_extra` allows for extra arguments for samtools.
+  * The `extra` param allows for additional program arguments.

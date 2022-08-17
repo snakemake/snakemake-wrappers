@@ -1,0 +1,11 @@
+rule pretext_map:
+    input:
+        "a.bam",
+    output:
+        "map.pretext",
+    log:
+        "logs/pretext_map.log",
+    params:
+        extra="--sortby length --sortorder descend --mapq 10",
+    wrapper:
+        "master/bio/pretext/map"

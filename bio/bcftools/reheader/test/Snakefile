@@ -4,11 +4,15 @@ rule bcftools_reheader:
         ## new header, can be omitted if "samples" is set
         header="header.txt",
         ## file containing new sample names, can be omitted if "header" is set
-        samples="samples.tsv"
+        samples="samples.tsv",
     output:
-        "a.reheader.bcf"
+        "a.reheader.bcf",
+    log:
+        "reheader.log",
     params:
+        uncompressed_bcf=False,
         extra="",  # optional parameters for bcftools reheader
-        view_extra="-O b"  # add output format for internal bcftools view call
+        view_extra="",  # optional parameters for bcftools view
+    threads: 2
     wrapper:
         "master/bio/bcftools/reheader"

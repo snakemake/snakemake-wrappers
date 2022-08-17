@@ -1,6 +1,6 @@
 channels:
-  - bioconda
   - conda-forge
-  - defaults
+  - bioconda
+  - nodefaults
 dependencies:
   - sourmash==2.0.0a7

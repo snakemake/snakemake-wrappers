@@ -1,0 +1,14 @@
+name: Pretext Map
+description: Commandline image generator for Pretext contact maps.
+url: https://github.com/wtsi-hpag/PretextSnapshot
+authors:
+  - Filipe G. Vieira
+input:
+  - pretext contact map
+output:
+  - full image (mandatory)
+  - all images (optional)
+  - specific sequences (optional)
+notes: |
+  * Outputs must all have the same format (PNG/BMP/JPG).
+  * The `extra` param allows for additional arguments.
