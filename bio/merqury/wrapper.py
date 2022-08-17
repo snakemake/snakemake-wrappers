@@ -23,8 +23,6 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " {log}"
     )
 
-    shell("ls -lrt {log}")
-
     meryldb = Path(snakemake.input.meryldb.rstrip("/")).stem
 
     if snakemake.output.get("meryldb_filt"):

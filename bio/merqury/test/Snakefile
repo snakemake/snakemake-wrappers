@@ -21,8 +21,6 @@ rule run_merqury_haploid:
     log:
         "logs/haploid.log",
     threads: 1
-    shadow:
-        "minimal"
     wrapper:
         "master/bio/merqury"
 
@@ -40,7 +38,7 @@ rule run_merqury_diploid:
         only_hist="results/diploid/out.only.hist",
         qv="results/diploid/out.qv",
         spectra_asm_hist="results/diploid/out.spectra_asm.hist",
-        spectra_asm_lb_png="results/diploid/out.spectra_asm.png",
+        spectra_asm_ln_png="results/diploid/out.spectra_asm.png",
         spectra_cn_hist="results/diploid/out.spectra_cn.hist",
         spectra_cn_ln_png="results/diploid/out.spectra_cn.png",
         fas1_only_bed="results/diploid/hap1.bed",
@@ -59,7 +57,5 @@ rule run_merqury_diploid:
     log:
         "logs/diploid.log",
     threads: 1
-    shadow:
-        "minimal"
     wrapper:
         "master/bio/merqury"
