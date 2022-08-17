@@ -1,0 +1,31 @@
+name: QuAsT
+description: |
+  Quality Assessment Tool for Genome Assemblies
+url: https://github.com/ablab/quast
+authors:
+  - Filipe G. Vieira
+input:
+  - Sequences in FASTA format
+  - Reference genome (optional)
+  - GFF (optional)
+  - Paired end read (optional)
+  - Mate-pair reads (optional)
+  - Unpaired reads (optional)
+  - PacBio SMRT reads (optional)
+  - Oxford Nanopore reads (optional)
+  - Mapped reads against the reference in SAM/BAM (optional)
+  - Mapped reads against each of the assemblies in SAM/BAM (same order; optional)
+  - Structural variants in BEDPE (optional)
+output:
+  - Assessment summary in plain text format
+  - Tab-separated version of the summary
+  - LaTeX version of the summary
+  - Icarus main menu with links to interactive viewers
+  - PDF report of all plots combined with all tables
+  - HTML version of the report with interactive plots inside
+  - Report on misassemblies
+  - Report on unaligned and partially unaligned contigs
+  - Report on k-mer-based metrics
+  - Report on mapped reads statistics.
+notes: |
+  * The `extra` param allows for additional program arguments.

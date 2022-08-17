@@ -1,0 +1,15 @@
+
+rule cooltools_dots:
+    input:
+        cooler="small_test.mcool",  ## Multiresolution cooler file
+        expected="test_expected.tsv",  ## Expected file
+        view="test_view.txt",  ## File with the region names and coordinates
+    output:
+        "HFF_{resolution,[0-9]+}.dots.bedpe",
+    params:
+        extra="",  ## Add extra parameters
+    threads: 4
+    log:
+        "logs/HFF_{resolution}_dots.log",
+    wrapper:
+        "master/bio/cooltools/dots"

@@ -25,3 +25,4 @@ For all wrappers added by this PR,
 * `Snakefile`s pass the linting (`snakemake --lint`),
 * `Snakefile`s are formatted with [snakefmt](https://github.com/snakemake/snakefmt),
 * Python wrapper scripts are formatted with [black](https://black.readthedocs.io).
+* Conda environments use a minimal amount of channels, in recommended ordering. E.g. for bioconda, use (conda-forge, bioconda, nodefaults, as conda-forge should have highest priority and defaults channels are usually not needed because most packages are in conda-forge nowadays).

@@ -6,6 +6,7 @@ rule norm_vcf:
     log:
         "{prefix}.norm.log",
     params:
+        #        uncompressed_bcf=False,
         extra="--rm-dup none",  # optional
     wrapper:
         "master/bio/bcftools/norm"
