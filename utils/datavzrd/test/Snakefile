@@ -12,10 +12,8 @@ rule datavzrd:
         report(
             directory("results/datavzrd-report/{sample}"),
             htmlindex="index.html",
-            caption="../report/calls.rst",
-            category="Variant calls",
-            labels=["Fancy label"],
-            subcategory="somatic variants",
+            # see https://snakemake.readthedocs.io/en/stable/snakefiles/reporting.html
+            # for additional options like caption, categories and labels
         ),
     log:
         "logs/datavzrd_report/{sample}.log",
