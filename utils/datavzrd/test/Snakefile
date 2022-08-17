@@ -6,7 +6,7 @@ rule all:  # [hide]
 rule datavzrd:
     input:
         config="resources/{sample}.datavzrd.yaml",
-        # optional files required for rendering
+        # optional files required for rendering the given config
         table="data/A.tsv",
     output:
         report(
