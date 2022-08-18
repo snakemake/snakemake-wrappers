@@ -1,0 +1,21 @@
+rule all:  # [hide]
+    input:  # [hide]
+        "results/datavzrd-report/A",  # [hide]
+
+
+rule datavzrd:
+    input:
+        config="resources/{sample}.datavzrd.yaml",
+        # optional files required for rendering the given config
+        table="data/A.tsv",
+    output:
+        report(
+            directory("results/datavzrd-report/{sample}"),
+            htmlindex="index.html",
+            # see https://snakemake.readthedocs.io/en/stable/snakefiles/reporting.html
+            # for additional options like caption, categories and labels
+        ),
+    log:
+        "logs/datavzrd_report/{sample}.log",
+    wrapper:
+        "master/utils/datavzrd"
