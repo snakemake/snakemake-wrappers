@@ -7,9 +7,9 @@ def get_processed_consensus_input(wildcards):
     ]
 
 
-rule all:
-    input:
-        "results/consensus/sampleA.merged.bam",
+rule all:  # [hide]
+    input:  # [hide]
+        "results/consensus/sampleA.merged.bam",  # [hide]
 
 
 rule bwa_index:
