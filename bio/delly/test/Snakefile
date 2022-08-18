@@ -1,13 +1,13 @@
 rule delly_bcf:
     input:
         ref="genome.fasta",
-        samples=["mapped/a.bam"],
-        # optional exclude template (see https://github.com/dellytools/delly)
+        alns=["mapped/a.bam"],
+        # optional
         exclude="human.hg19.excl.tsv",
     output:
         "sv/calls.bcf",
     params:
-        uncompressed_bcf=False,
+        uncompressed_bcf=True,
         extra="",  # optional parameters for delly (except -g, -x)
     log:
         "logs/delly.log",
@@ -19,8 +19,8 @@ rule delly_bcf:
 rule delly_vcfgz:
     input:
         ref="genome.fasta",
-        samples=["mapped/a.bam"],
-        # optional exclude template (see https://github.com/dellytools/delly)
+        alns=["mapped/a.bam"],
+        # optional
         exclude="human.hg19.excl.tsv",
     output:
         "sv/calls.vcf.gz",
