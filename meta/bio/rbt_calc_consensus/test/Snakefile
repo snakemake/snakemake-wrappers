@@ -6,9 +6,11 @@ def get_processed_consensus_input(wildcards):
         "results/consensus/{}.2.fq".format(wildcards.sample),
     ]
 
+
 rule all:
     input:
-        "results/consensus/sampleA.merged.bam"
+        "results/consensus/sampleA.merged.bam",
+
 
 rule bwa_index:
     input:
@@ -21,6 +23,7 @@ rule bwa_index:
         mem_mb=369000,
     wrapper:
         "master/bio/bwa/index"
+
 
 rule samtools_sort:
     input:
@@ -35,20 +38,22 @@ rule samtools_sort:
     wrapper:
         "master/bio/samtools/sort"
 
+
 rule calc_consensus_reads:
-     input:
-         "mapped/{sample}.marked.sorted.bam",
-     output:
-         consensus_r1=temp("results/consensus/{sample}.1.fq"),
-         consensus_r2=temp("results/consensus/{sample}.2.fq"),
-         consensus_se=temp("results/consensus/{sample}.se.fq"),
-         skipped=temp("results/consensus/{sample}.skipped.bam"),
-     params:
-         extra="--verbose-read-names",
-     log:
-         "logs/consensus/{sample}.log",
-     wrapper:
-         "master/bio/rbt/calc_consensus"
+    input:
+        "mapped/{sample}.marked.sorted.bam",
+    output:
+        consensus_r1=temp("results/consensus/{sample}.1.fq"),
+        consensus_r2=temp("results/consensus/{sample}.2.fq"),
+        consensus_se=temp("results/consensus/{sample}.se.fq"),
+        skipped=temp("results/consensus/{sample}.skipped.bam"),
+    params:
+        extra="--verbose-read-names",
+    log:
+        "logs/consensus/{sample}.log",
+    wrapper:
+        "master/bio/rbt/calc_consensus"
+
 
 rule map_consensus_reads:
     input:
@@ -87,6 +92,7 @@ rule mark_skipped_duplicates:
         mem_mb=1024,
     wrapper:
         "master/bio/picard/markduplicates"
+
 
 rule merge_consensus_reads:
     input:
