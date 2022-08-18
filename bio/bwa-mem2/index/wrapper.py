@@ -33,6 +33,6 @@ for s in snakemake.output:
 
 if len(prefixes) != 1:
     raise ValueError("Output files must share common prefix up to their file endings.")
-prefix = prefixes[0]
+(prefix,) = prefixes
 
 shell("bwa-mem2 index -p {prefix} {snakemake.input[0]} {log}")
