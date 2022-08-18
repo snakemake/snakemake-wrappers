@@ -1,0 +1,6 @@
+name: rbt collapse-reads-to-fragments bam
+description: |
+  Calculate consensus reads from read groups marked by PicardTools MarkDuplicates or UmiAwareMarkDuplicatesWithMateCigar.
+url: https://github.com/rust-bio/rust-bio-tools
+authors:
+  - Felix Mölder
