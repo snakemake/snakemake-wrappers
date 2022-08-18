@@ -1,10 +1,4 @@
-def get_processed_consensus_input(wildcards):
-    if wildcards.read_type == "se":
-        return "results/consensus/{}.se.fq".format(wildcards.sample)
-    return [
-        "results/consensus/{}.1.fq".format(wildcards.sample),
-        "results/consensus/{}.2.fq".format(wildcards.sample),
-    ]
+include: "common.smk"
 
 
 rule all:  # [hide]
@@ -33,6 +27,8 @@ rule samtools_sort:
     params:
         extra="-m 4G",
         tmp_dir="/tmp/",
+    log:
+        "{path}_{sample}.log",
     # Samtools takes additional threads through its option -@
     threads: 8  # This value - 1 will be sent to -@.
     wrapper:
