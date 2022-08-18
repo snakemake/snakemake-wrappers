@@ -3331,6 +3331,11 @@ def test_delly():
 
 
 @skip_if_not_modified
+def test_delly():
+    run("bio/delly", ["snakemake", "--cores", "1", "sv/calls.vcf.gz", "--use-conda", "-F"])
+
+
+@skip_if_not_modified
 def test_manta():
     run(
         "bio/manta",
