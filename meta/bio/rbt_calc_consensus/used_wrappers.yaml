@@ -1,0 +1,7 @@
+wrappers:
+ - bio/rbt/calc_consensus
+ - bio/bwa/mem
+ - bio/bwa/index
+ - bio/samtools/merge
+ - bio/samtools/sort
+ - bio/picard/markduplicates
