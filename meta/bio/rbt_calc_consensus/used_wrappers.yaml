@@ -1,5 +1,5 @@
 wrappers:
- - bio/rbt/calc_consensus
+ - bio/rbt/collapse-reads-to-fragments_bam
  - bio/bwa/mem
  - bio/bwa/index
  - bio/samtools/merge
