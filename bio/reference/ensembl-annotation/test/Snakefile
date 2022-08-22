@@ -6,6 +6,7 @@ rule get_annotation:
         release="87",
         build="GRCh37",
         flavor="",  # optional, e.g. chr_patch_hapl_scaff, see Ensembl FTP.
+        # branch="plants",  # optional: specify branch
     log:
         "logs/get_annotation.log",
     cache: True  # save space and time with between workflow caching (see docs)
@@ -21,6 +22,7 @@ rule get_annotation_gz:
         release="87",
         build="GRCh37",
         flavor="",  # optional, e.g. chr_patch_hapl_scaff, see Ensembl FTP.
+        # branch="plants",  # optional: specify branch
     log:
         "logs/get_annotation.log",
     cache: True  # save space and time with between workflow caching (see docs)
