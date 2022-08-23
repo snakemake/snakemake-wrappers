@@ -16,4 +16,4 @@ rule calc_consensus_reads:
     log:
         "logs/consensus/{sample}.log",
     wrapper:
-        "master/bio/rbt/collapse-reads-to-fragments_bam"
+        "master/bio/rbt/collapse_reads_to_fragments-bam"
