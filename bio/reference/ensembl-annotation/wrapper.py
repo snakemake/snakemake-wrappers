@@ -24,6 +24,8 @@ branch = ""
 if release >= 81 and build == "GRCh37":
     # use the special grch37 branch for new releases
     branch = "grch37/"
+elif snakemake.params.get("branch"):
+    branch = snakemake.params.branch + "/"
 
 
 flavor = snakemake.params.get("flavor", "")

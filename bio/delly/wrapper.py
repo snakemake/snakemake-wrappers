@@ -5,19 +5,27 @@ __license__ = "MIT"
 
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.bcftools import get_bcftools_opts
 
 
-exclude = (
-    "-x {}".format(snakemake.input.exclude)
-    if snakemake.input.get("exclude", "")
-    else ""
-)
-
+bcftools_opts = get_bcftools_opts(snakemake, parse_ref=False, parse_memory=False)
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
+
+exclude = snakemake.input.get("exclude", "")
+if exclude:
+    exclude = f"-x {exclude}"
+
+
 shell(
-    "OMP_NUM_THREADS={snakemake.threads} delly call {extra} "
-    "{exclude} -g {snakemake.input.ref} "
-    "-o {snakemake.output[0]} {snakemake.input.samples} {log}"
+    "(OMP_NUM_THREADS={snakemake.threads} delly call"
+    " -g {snakemake.input.ref}"
+    " {exclude}"
+    " {extra}"
+    " {snakemake.input.alns} | "
+    # Convert output to specified format
+    "bcftools view"
+    " {bcftools_opts}"
+    ") {log}"
 )

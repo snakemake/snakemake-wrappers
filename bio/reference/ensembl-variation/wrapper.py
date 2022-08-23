@@ -16,14 +16,17 @@ build = snakemake.params.build
 type = snakemake.params.type
 chromosome = snakemake.params.get("chromosome", "")
 
-if release < 98:
-    print("Ensembl releases <98 are unsupported.", file=open(snakemake.log[0], "w"))
-    exit(1)
 
 branch = ""
 if release >= 81 and build == "GRCh37":
     # use the special grch37 branch for new releases
     branch = "grch37/"
+elif snakemake.params.get("branch"):
+    branch = snakemake.params.branch + "/"
+
+if release < 98 and not branch:
+    print("Ensembl releases <98 are unsupported.", file=open(snakemake.log[0], "w"))
+    exit(1)
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
