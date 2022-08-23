@@ -37,10 +37,10 @@ rule map_consensus_reads:
     input:
         reads=lambda wc: expand(
             "results/consensus/{sample}.{read}.fq",
-            sample=w.sample,
-            read="se" if w.read_type == "se" else (1, 2),
+            sample=wc.sample,
+            read="se" if wc.read_type == "se" else (1, 2),
         ),
-        idx=multiext("genome", ".amb", ".ann", ".bwt", ".pac", ".sa"),
+        idx=multiext("resources/genome.fa", ".amb", ".ann", ".bwt", ".pac", ".sa"),
     output:
         temp("results/consensus/{sample}.{read_type}.mapped.bam"),
     params:
@@ -82,7 +82,7 @@ rule merge_consensus_reads:
         "results/consensus/{sample}.se.mapped.bam",
         "results/consensus/{sample}.pe.mapped.bam",
     output:
-        "results/consensus/{sample}.bam",
+        "results/consensus/{sample}.merged.bam",
     log:
         "logs/samtools_merge/{sample}.log",
     threads: 8

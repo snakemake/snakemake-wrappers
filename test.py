@@ -4797,5 +4797,5 @@ def test_collapse_reads_to_fragments_bam():
 def test_calc_consensus_reads():
     run(
         "meta/bio/rbt_calc_consensus/",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/consensus/sampleA.bam"],
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/consensus/sampleA.merged.bam"],
     )
