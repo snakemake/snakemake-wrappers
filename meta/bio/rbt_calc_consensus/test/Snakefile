@@ -1,24 +1,3 @@
-include: "common.smk"
-
-
-rule all:  # [hide]
-    input:  # [hide]
-        "results/consensus/sampleA.merged.bam",  # [hide]
-
-
-rule bwa_index:
-    input:
-        "resources/chr21.fa",
-    output:
-        idx=multiext("resources/chr21.fa", ".amb", ".ann", ".bwt", ".pac", ".sa"),
-    log:
-        "logs/bwa_index.log",
-    resources:
-        mem_mb=369000,
-    wrapper:
-        "master/bio/bwa/index"
-
-
 rule samtools_sort:
     input:
         "{path}/{sample}.bam",
@@ -39,12 +18,15 @@ rule calc_consensus_reads:
     input:
         "mapped/{sample}.marked.sorted.bam",
     output:
+        # non-overlapping consensus read pairs will be written into consensus_r1 and consensus_r2 
         consensus_r1=temp("results/consensus/{sample}.1.fq"),
         consensus_r2=temp("results/consensus/{sample}.2.fq"),
+        # consensus reads from single end records or overlapping read pairs will be merged into a single end record
         consensus_se=temp("results/consensus/{sample}.se.fq"),
+        # skipped reads (soft-clipped or unpropper mapped reads) will be skipped and unmarked
         skipped=temp("results/consensus/{sample}.skipped.bam"),
     params:
-        extra="--verbose-read-names",
+        extra="",
     log:
         "logs/consensus/{sample}.log",
     wrapper:
@@ -53,8 +35,12 @@ rule calc_consensus_reads:
 
 rule map_consensus_reads:
     input:
-        reads=get_processed_consensus_input,
-        idx=rules.bwa_index.output,
+        reads=lambda wc: expand(
+            "results/consensus/{sample}.{read}.fq",
+            sample=w.sample,
+            read="se" if w.read_type == "se" else (1, 2),
+        ),
+        idx=multiext("genome", ".amb", ".ann", ".bwt", ".pac", ".sa"),
     output:
         temp("results/consensus/{sample}.{read_type}.mapped.bam"),
     params:
@@ -96,7 +82,7 @@ rule merge_consensus_reads:
         "results/consensus/{sample}.se.mapped.bam",
         "results/consensus/{sample}.pe.mapped.bam",
     output:
-        "results/consensus/{sample}.merged.bam",
+        "results/consensus/{sample}.bam",
     log:
         "logs/samtools_merge/{sample}.log",
     threads: 8
