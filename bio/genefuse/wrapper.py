@@ -38,4 +38,4 @@ with TemporaryDirectory() as tempdir:
         shell("mv {json_path} {snakemake.output.json}")
 
     if snakemake.output.get("fusions", None):
-        shell(f"mv {txt_path} {snakemake.output.fusions}")
+        shell("mv {txt_path} {snakemake.output.fusions}")
