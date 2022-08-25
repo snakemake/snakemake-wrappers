@@ -27,7 +27,7 @@ with TemporaryDirectory() as tempdir:
         "-h {html_path} "
         "-j {json_path} "
         "{extra} > "
-        f"{txt_path}) "
+        "{txt_path}) "
         "{log}"
     )
 
