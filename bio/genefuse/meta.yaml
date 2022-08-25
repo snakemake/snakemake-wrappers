@@ -9,5 +9,6 @@ input:
 output:
   - txt file with fusions
   - html report
+  - json report
 notes: |
   * For more inforamtion see, https://github.com/OpenGene/GeneFuse

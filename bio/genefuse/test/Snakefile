@@ -9,7 +9,7 @@ rule genefuse:
         json="{sample}_genefuse_report.json",
         fusions="{sample}_fusions.txt",
     log:
-        "logs/genefuse{sample}.log",
+        "logs/{sample}_genefuse.log",
     params:
         # optional parameters
         extra="",

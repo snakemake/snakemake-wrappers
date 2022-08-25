@@ -25,17 +25,17 @@ with TemporaryDirectory() as tempdir:
         "-1 {snakemake.input.fastq1} "
         "-2 {snakemake.input.fastq2} "
         f"-h {html_path} "
-        f"-h {json_path} "
+        f"-j {json_path} "
         "{extra} > "
-        f"{txt_path} "
+        f"{txt_path}) "
         "{log}"
     )
 
-    if snakemake.output.get('html', None):
+    if snakemake.output.get("html", None):
         shell(f"mv {html_path} {snakemake.output.html}")
 
-    if snakemake.output.get('json', None):
+    if snakemake.output.get("json", None):
         shell(f"mv {json_path} {snakemake.output.json}")
 
-    if snakemake.output.get('fusions', None):
+    if snakemake.output.get("fusions", None):
         shell(f"mv {txt_path} {snakemake.output.fusions}")
