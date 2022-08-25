@@ -6,6 +6,7 @@ rule genefuse:
         reference="genome.fasta",
     output:
         html="{sample}_genefuse_report.html",
+        json="{sample}_genefuse_report.json",
         fusions="{sample}_fusions.txt",
     log:
         "logs/genefuse{sample}.log",
