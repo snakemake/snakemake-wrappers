@@ -32,7 +32,7 @@ with TemporaryDirectory() as tempdir:
     )
 
     if snakemake.output.get("html", None):
-        shell(f"mv {html_path} {snakemake.output.html}")
+        shell("mv {html_path} {snakemake.output.html}")
 
     if snakemake.output.get("json", None):
         shell(f"mv {json_path} {snakemake.output.json}")
