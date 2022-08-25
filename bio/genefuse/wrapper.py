@@ -35,7 +35,7 @@ with TemporaryDirectory() as tempdir:
         shell("mv {html_path} {snakemake.output.html}")
 
     if snakemake.output.get("json", None):
-        shell(f"mv {json_path} {snakemake.output.json}")
+        shell("mv {json_path} {snakemake.output.json}")
 
     if snakemake.output.get("fusions", None):
         shell(f"mv {txt_path} {snakemake.output.fusions}")
