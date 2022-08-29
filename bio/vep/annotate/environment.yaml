@@ -5,4 +5,4 @@ channels:
 dependencies:
   - ensembl-vep =107
   - bcftools =1.15
-  - perl-encode-locale
+  - perl-lwp-simple
