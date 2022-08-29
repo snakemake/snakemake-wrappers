@@ -61,7 +61,7 @@ if cache:
         "--offline --cache --dir_cache {cache} --cache_version {release} --species {species} --assembly {build}"
     ).format(cache=cache, release=release, build=build, species=species)
 
-shell("ls $CONDA_PREFIX/lib/perl5/site_perl/Encode/Locale.pm")
+shell("ls $CONDA_PREFIX/lib/perl5/site_perl")
 shell(
     "(bcftools view '{snakemake.input.calls}' | "
     "vep {extra} {fork} "
