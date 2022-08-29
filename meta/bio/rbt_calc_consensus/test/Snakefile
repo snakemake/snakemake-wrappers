@@ -1,13 +1,13 @@
-rule samtools_sort:
+rule samtools_sort_consensus:
     input:
-        "{path}/{sample}.bam",
+        "results/consensus_reads/{sample}.bam",
     output:
-        temp("{path}/{sample}.sorted.bam"),
+        temp("results/consensus_reads/{sample}.sorted.bam"),
     params:
         extra="-m 4G",
         tmp_dir="/tmp/",
     log:
-        "{path}_{sample}.log",
+        "logs/sort_consensus/{sample}.log",
     # Samtools takes additional threads through its option -@
     threads: 8  # This value - 1 will be sent to -@.
     wrapper:
@@ -16,15 +16,16 @@ rule samtools_sort:
 
 rule calc_consensus_reads:
     input:
-        "mapped/{sample}.marked.sorted.bam",
+        # sorted bam file
+        "mapped/{sample}.marked.bam",
     output:
         # non-overlapping consensus read pairs will be written into consensus_r1 and consensus_r2 
-        consensus_r1=temp("results/consensus/{sample}.1.fq"),
-        consensus_r2=temp("results/consensus/{sample}.2.fq"),
+        consensus_r1=temp("results/consensus_reads/{sample}.1.fq"),
+        consensus_r2=temp("results/consensus_reads/{sample}.2.fq"),
         # consensus reads from single end records or overlapping read pairs will be merged into a single end record
-        consensus_se=temp("results/consensus/{sample}.se.fq"),
+        consensus_se=temp("results/consensus_reads/{sample}.se.fq"),
         # skipped reads (soft-clipped or unpropper mapped reads) will be skipped and unmarked
-        skipped=temp("results/consensus/{sample}.skipped.bam"),
+        skipped=temp("results/consensus_reads/{sample}.skipped.bam"),
     params:
         extra="",
     log:
@@ -36,13 +37,13 @@ rule calc_consensus_reads:
 rule map_consensus_reads:
     input:
         reads=lambda wc: expand(
-            "results/consensus/{sample}.{read}.fq",
+            "results/consensus_reads/{sample}.{read}.fq",
             sample=wc.sample,
             read="se" if wc.read_type == "se" else (1, 2),
         ),
         idx=multiext("resources/genome.fa", ".amb", ".ann", ".bwt", ".pac", ".sa"),
     output:
-        temp("results/consensus/{sample}.{read_type}.mapped.bam"),
+        temp("results/consensus_mapped/{sample}.{read_type}.bam"),
     params:
         index=lambda w, input: os.path.splitext(input.idx[0])[0],
         sort="samtools",
@@ -58,10 +59,10 @@ rule map_consensus_reads:
 
 rule mark_skipped_duplicates:
     input:
-        bams=["results/consensus/{sample}.sorted.bam"],
+        bams=["results/consensus_reads/{sample}.sorted.bam"],
     output:
-        bam=temp("results/consensus/{sample}.marked.bam"),
-        metrics="results/consensus/{sample}.metrics.txt",
+        bam=temp("results/consensus_dupmarked/{sample}.marked.bam"),
+        metrics="results/consensus_dupmarked/{sample}.metrics.txt",
     log:
         "logs/picard/marked/{sample}.log",
     params:
@@ -78,11 +79,11 @@ rule mark_skipped_duplicates:
 
 rule merge_consensus_reads:
     input:
-        "results/consensus/{sample}.skipped.marked.bam",
-        "results/consensus/{sample}.se.mapped.bam",
-        "results/consensus/{sample}.pe.mapped.bam",
+        "results/consensus_dupmarked/{sample}.skipped.marked.bam",
+        "results/consensus_mapped/{sample}.se.bam",
+        "results/consensus_mapped/{sample}.pe.bam",
     output:
-        "results/consensus/{sample}.merged.bam",
+        "results/consensus/{sample}.bam",
     log:
         "logs/samtools_merge/{sample}.log",
     threads: 8
