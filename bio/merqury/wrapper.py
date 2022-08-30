@@ -66,7 +66,7 @@ if snakemake.output.get("logs"):
     Path(snakemake.output.logs).mkdir(parents=True, exist_ok=True)
     for log in Path("logs").iterdir():
         if log.is_file() and str(log) != str(snakemake.log):
-            shell("cat {log} > {snakemake.output.logs}/{log.name}")
+            shell("mv {log} {snakemake.output.logs}/{log.name}")
 
 input_fas = snakemake.input.fasta
 if isinstance(input_fas, str):
