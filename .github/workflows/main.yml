@@ -19,7 +19,7 @@ jobs:
         run: |
           export PATH="/usr/share/miniconda/bin:$PATH"
           pip install -r docs/requirements.txt
-      
+
       - name: Test doc generation
         run: |
           export PATH="/usr/share/miniconda/bin:$PATH"
@@ -57,6 +57,6 @@ jobs:
           # activate conda env
           export PATH="/usr/share/miniconda/bin:$PATH"
           source activate snakemake
-          
+
           # run tests
           pytest test.py -v
