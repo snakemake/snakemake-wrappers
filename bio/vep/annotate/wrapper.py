@@ -60,7 +60,7 @@ if cache:
     cache = (
         "--offline --cache --dir_cache {cache} --cache_version {release} --species {species} --assembly {build}"
     ).format(cache=cache, release=release, build=build, species=species)
-shell("which perl; conda list")
+shell("which perl; conda list; echo $PERL5LIB")
 shell(
     "(bcftools view '{snakemake.input.calls}' | "
     "vep {extra} {fork} "
