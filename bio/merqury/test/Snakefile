@@ -21,6 +21,8 @@ rule run_merqury_haploid:
     log:
         "logs/haploid.log",
     threads: 1
+    shadow:
+        "minimal"
     wrapper:
         "master/bio/merqury"
 
@@ -57,5 +59,7 @@ rule run_merqury_diploid:
     log:
         "logs/diploid.log",
     threads: 1
+    shadow:
+        "minimal"
     wrapper:
         "master/bio/merqury"
