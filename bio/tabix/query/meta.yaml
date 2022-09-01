@@ -1,4 +1,4 @@
-name: tabix
+name: tabix query
 description: Query given file with tabix.
 url: https://www.htslib.org/doc/tabix.html#QUERYING_AND_OTHER_OPTIONS
 authors:

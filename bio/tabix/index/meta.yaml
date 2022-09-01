@@ -1,4 +1,4 @@
-name: tabix
+name: tabix index
 description: Process given file with tabix (e.g., create index).
 url: https://www.htslib.org/doc/tabix.html#INDEXING_OPTIONS
 authors:

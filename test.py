@@ -4527,7 +4527,15 @@ def test_vep_plugins():
 def test_vep_annotate():
     run(
         "bio/vep/annotate",
-        ["snakemake", "--cores", "1", "variants.annotated.bcf", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "variants.annotated.bcf", "--use-conda", "-F", "--verbose"],
+    )
+
+
+@skip_if_not_modified
+def test_genefuse():
+    run(
+        "bio/genefuse",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a_fusions.txt", "a_genefuse_report.html"],
     )
 
 
@@ -4804,4 +4812,19 @@ def test_verifybamid2():
     run(
         "bio/verifybamid/verifybamid2",
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
+@skip_if_not_modified
+def test_collapse_reads_to_fragments_bam():
+    run(
+        "bio/rbt/collapse_reads_to_fragments-bam",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_calc_consensus_reads():
+    run(
+        "meta/bio/rbt_calc_consensus/",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/consensus/sampleA.bam"],
     )
