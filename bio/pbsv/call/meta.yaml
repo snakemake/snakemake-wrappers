@@ -1,0 +1,4 @@
+name: pbsv call
+description: Call structural variants and assign genotypes from PacBio data https://github.com/PacificBiosciences/pbsv/
+authors:
+  - William Rowell

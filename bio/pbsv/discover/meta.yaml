@@ -1,0 +1,4 @@
+name: pbsv discover
+description: Discover signatures of structural variation in PacBio data https://github.com/PacificBiosciences/pbsv/
+authors:
+  - William Rowell

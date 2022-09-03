@@ -1,0 +1,6 @@
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - pbsv ==2.4.0
