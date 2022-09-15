@@ -3,6 +3,7 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
+  - python<=3.9
   - cython
   - numpy
   - h5py
