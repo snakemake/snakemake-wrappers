@@ -1,4 +1,4 @@
-rule cooltools_pileup:
+rule coolpuppy:
     input:
         cooler="CN.mm9.1000kb.mcool",  ## Multiresolution cooler file
         features="CN.mm9.toy_features.bed",  ## Feature file
@@ -7,11 +7,11 @@ rule cooltools_pileup:
     output:
         "CN_{resolution,[0-9]+}.clpy",
     params:
-        ## Add optional parameters 
+        ## Add optional parameters
         features_format="bed",  ## Format of the features file
         extra="--local",  ## Add extra parameters
     threads: 2
     log:
         "logs/CN_{resolution}_coolpuppy.log",
     wrapper:
-        "file:///Users/ilya/Projects/snakemake-wrappers/bio/coolpuppy"
+        "master/bio/cooltools/insulation"
