@@ -1,0 +1,12 @@
+name: purge_dups ngscstat
+description: Purge haplotigs and overlaps in an assembly based on read depth
+url: https://github.com/dfguan/purge_dups
+authors:
+  - Filipe Vieira
+input:
+  - mapped reads in PAF format
+output:
+  - coverage
+  - stats
+notes: |
+  * The `extra` param allows for additional program arguments.

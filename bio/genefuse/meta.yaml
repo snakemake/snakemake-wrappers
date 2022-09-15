@@ -1,0 +1,15 @@
+name: GeneFuse
+description: A tool to detect and visualize target gene fusions by scanning FASTQ files directly.
+url: https://github.com/OpenGene/GeneFuse
+authors:
+  - Patrik Smeds
+input:
+  - fastq files
+  - gene fuse settings files
+  - refeference genome
+output:
+  - txt file with fusions
+  - html report
+  - json report
+notes: |
+  * The `extra` param allows for additional program arguments.

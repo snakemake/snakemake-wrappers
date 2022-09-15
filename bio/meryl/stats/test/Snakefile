@@ -1,0 +1,11 @@
+rule meryl_stats:
+    input:
+        "{genome}",
+    output:
+        "{genome}.stats",
+    log:
+        "logs/meryl_stats/{genome}.log",
+    params:
+        command="statistics",
+    wrapper:
+        "master/bio/meryl/stats"

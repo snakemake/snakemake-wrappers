@@ -1,0 +1,11 @@
+name: purge_dups
+description: Purge haplotigs and overlaps in an assembly based on read depth
+url: https://github.com/dfguan/purge_dups
+authors:
+  - Filipe Vieira
+input:
+  - Self-aligned split assembly in PAF format
+output:
+  - BED file
+notes: |
+  * The `extra` param allows for additional program arguments.

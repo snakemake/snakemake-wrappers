@@ -1,0 +1,13 @@
+rule purge_dups_pbcstat:
+    input:
+        paf="HiFi_dataset_01.paf.gz",
+    output:
+        cov="out/pbcstat.cov",
+        stat="out/pbcstat.stat",
+    log:
+        "logs/pbcstat.log",
+    params:
+        extra="",
+    threads: 1
+    wrapper:
+        "master/bio/purge_dups/pbcstat"

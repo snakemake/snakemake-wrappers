@@ -1,6 +1,6 @@
-name: "coverageBed"
+name: coverageBed
 description:
-  Returns the depth and breadth of coverage of features from B
-  on the intervals in A.
+  Returns the depth and breadth of coverage of features from B on the intervals in A.
+url: https://bedtools.readthedocs.io/en/latest/content/tools/coverage.html
 authors:
   - Patrik Smeds

@@ -1,0 +1,13 @@
+rule pretext_graph:
+    input:
+        bedgraph="{a}.bedgraph",
+        map="map.pretext",
+    output:
+        "{a}.pretext",
+    log:
+        "logs/{a}.pretext_graph.log",
+    params:
+        graph_name="graph_name",
+        extra="",
+    wrapper:
+        "master/bio/pretext/graph"
