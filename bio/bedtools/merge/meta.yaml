@@ -1,4 +1,5 @@
-name: "bedtools merge"
+name: mergeBed
 description: Merge entries in one or multiple BED/BAM/VCF/GFF files with bedtools.
+url: https://bedtools.readthedocs.io/en/latest/content/tools/merge.html
 authors:
   - Jan Forster

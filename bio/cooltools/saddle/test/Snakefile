@@ -1,0 +1,21 @@
+rule cooltools_saddle:
+    input:
+        cooler="CN.mm9.1000kb.mcool",  ## Multiresolution cooler file
+        track="CN_1000000.eigs.tsv",  ## Track file
+        expected="CN_1000000.cis.expected.tsv",  ## Expected file
+        view="mm9_view.txt",  ## File with the region names and coordinates
+    output:
+        saddle="CN_{resolution,[0-9]+}.saddledump.npz",
+        digitized_track="CN_{resolution,[0-9]+}.digitized.tsv",
+        fig="CN_{resolution,[0-9]+}.saddle.pdf",
+    params:
+        ## Add optional parameters
+        range="--qrange 0.01 0.99",
+        extra="",
+    log:
+        "logs/CN_{resolution}_saddle.log",
+    wrapper:
+        "master/bio/cooltools/saddle"
+
+
+# Note that in this test files are edited to remove

@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+  - defaults
+  - bioconda
+dependencies:
+  - ucsc-bedgraphtobigwig
+  - cooltools =0.5

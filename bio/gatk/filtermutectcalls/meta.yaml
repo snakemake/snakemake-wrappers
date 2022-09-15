@@ -1,14 +1,22 @@
 name: gatk FilterMutectCalls
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360042476952-FilterMutectCalls
 description: |
-  Run gatk FilterMutectCalls.
+  Run gatk FilterMutectCalls to filter variants in a Mutect2 VCF callset.
 authors:
   - Patrik Smeds
   - Filipe G. Vieira
+  - Thibault Dayris
 input:
-  - vcf file
-  - reference genome
+  - vcf: Path to vcf file (pbgzipped, indexed)
+  - ref: Path to reference genome (with .dict file alongside)
+  - aln: Optional path to SAM/BAM/CRAM files
+  - contamination: Optional path to 
+  - segmentation: Optional path to tumor segments
+  - f1r2: Optional path to prior artefact (tar.gz2)
+  - intervels: Optional file to BED intervals
 output:
-  - filtered vcf file
+  - vcf: filtered vcf file
+  - stats: Optional stats from Mutect2
 notes: |
   * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
   * The `extra` param allows for additional program arguments.

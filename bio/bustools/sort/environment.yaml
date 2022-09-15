@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - bustools =0.41
+  - snakemake-wrapper-utils =0.4

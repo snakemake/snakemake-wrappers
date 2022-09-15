@@ -1,0 +1,12 @@
+rule purge_dups_split_fa:
+    input:
+        "{a}.fasta",
+    output:
+        "out/{a}.split",
+    log:
+        "logs/{a}.split_fa.log",
+    params:
+        extra="",
+    threads: 1
+    wrapper:
+        "master/bio/purge_dups/split_fa"

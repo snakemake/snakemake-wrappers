@@ -1,0 +1,17 @@
+rule cooltools_pileup:
+    input:
+        cooler="CN.mm9.1000kb.mcool",  ## Multiresolution cooler file
+        features="CN.mm9.toy_features.bed",  ## Feature file
+        expected="CN.mm9.toy_expected.tsv",  ## Expected file
+        view="CN.mm9.toy_regions.bed",  ## File with the region names and coordinates
+    output:
+        "CN_{resolution,[0-9]+}.pileup.npz",
+    params:
+        ## Add optional parameters 
+        features_format="bed",  ## Format of the features file
+        extra="--aggregate mean",  ## Add extra parameters
+    threads: 4
+    log:
+        "logs/CN_{resolution}_pileup.log",
+    wrapper:
+        "master/bio/cooltools/pileup"

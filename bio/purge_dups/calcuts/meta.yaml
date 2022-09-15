@@ -1,0 +1,11 @@
+name: purge_dups calcuts
+description: Purge haplotigs and overlaps in an assembly based on read depth
+url: https://github.com/dfguan/purge_dups
+authors:
+  - Filipe Vieira
+input:
+  - stats file
+output:
+  - coverage cut-offs
+notes: |
+  * The `extra` param allows for additional program arguments.

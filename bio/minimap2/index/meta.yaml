@@ -1,4 +1,9 @@
 name: minimap2 index
 description: creates a minimap2 index
+url: https://lh3.github.io/minimap2
 authors:
   - Tom Poorten
+input:
+  - reference genome in FASTA format
+output:
+  - indexed reference genome

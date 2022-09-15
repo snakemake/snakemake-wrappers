@@ -1,4 +1,5 @@
-name: "bedtools intersect"
+name: intersectBed
 description: Intersect BED/BAM/VCF files with bedtools.
+url: https://bedtools.readthedocs.io/en/latest/content/tools/intersect.html
 authors:
   - Jan Forster

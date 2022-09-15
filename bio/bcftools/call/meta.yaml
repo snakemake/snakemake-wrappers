@@ -1,5 +1,10 @@
 name: bcftools call
-description: Call variants with `bcftools call <https://samtools.github.io/bcftools/bcftools.html#call>`_.
+description: Call variants with `bcftools call`.
+url: http://www.htslib.org/doc/bcftools.html#call
 authors:
   - Johannes Köster
   - Michael Hall
+  - Filipe G. Vieira
+notes: |
+  * The `uncompressed_bcf` param allows to specify that a BCF output should be uncompressed (ignored otherwise).
+  * The `extra` param allows for additional program arguments (not `--threads`, `-o/--output`, or `-O/--output-type`).

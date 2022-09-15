@@ -1,0 +1,21 @@
+rule genomescope:
+    input:
+        hist="{sample}.hist",
+    output:
+        multiext(
+            "{sample}/",
+            "linear_plot.png",
+            "log_plot.png",
+            "model.txt",
+            "progress.txt",
+            "SIMULATED_testing.tsv",
+            "summary.txt",
+            "transformed_linear_plot.png",
+            "transformed_log_plot.png",
+        ),
+    log:
+        "logs/genomescope/{sample}.log",
+    params:
+        extra="--kmer_length 32 --testing",
+    wrapper:
+        "master/bio/genomescope"

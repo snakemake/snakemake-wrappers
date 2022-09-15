@@ -1,0 +1,23 @@
+rule test_bustools_count:
+    input:
+        bus="file.bus",
+        ecmap="matrix.ec",
+        txnames="transcripts.txt",
+        genemap="t2g.txt",
+    output:
+        multiext(
+            "buscount",
+            ".barcodes.txt",
+            ".CUPerCell.txt",
+            ".cu.txt",
+            ".genes.txt",
+            ".hist.txt",
+            ".mtx",
+        ),
+    threads: 1
+    params:
+        extra="",
+    log:
+        "bustools.log",
+    wrapper:
+        "master/bio/bustools/count"

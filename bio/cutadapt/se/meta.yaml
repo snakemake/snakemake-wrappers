@@ -1,6 +1,7 @@
 name: cutadapt-se
 description: |
   Trim single-end reads using cutadapt.
+url: https://github.com/marcelm/cutadapt
 authors:
   - Julian de Ruiter
 input:
@@ -8,3 +9,6 @@ input:
 output:
   - trimmed fastq file
   - text file containing trimming statistics
+notes: |
+  * The `extra` param allows for additional program arguments.
+  * The `adapters` param allows for separatelly specifying adapter options (optional).
