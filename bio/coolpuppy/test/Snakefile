@@ -14,4 +14,4 @@ rule coolpuppy:
     log:
         "logs/CN_{resolution}_coolpuppy.log",
     wrapper:
-        "master/bio/cooltools/insulation"
+        "master/bio/coolpuppy"
