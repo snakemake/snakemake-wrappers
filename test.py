@@ -1510,6 +1510,12 @@ def test_clustalo():
         ["snakemake", "--cores", "1", "test.msa.fa", "--use-conda", "-F"],
     )
 
+@skip_if_not_modified
+def test_coolpuppy():
+    run(
+        "bio/coolpuppy",
+        ["snakemake", "--cores", "1", "CN_1000000.clpy", "--use-conda", "-F"],
+    )
 
 @skip_if_not_modified
 def test_cooltools_insulation():

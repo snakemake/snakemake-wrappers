@@ -1,0 +1,10 @@
+channels:
+  - conda-forge
+  - defaults
+  - bioconda
+dependencies:
+  - cython
+  - numpy
+  - h5py
+  - pip:
+    - https://github.com/open2c/coolpuppy/archive/master.zip
