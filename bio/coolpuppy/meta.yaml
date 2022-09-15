@@ -10,7 +10,7 @@ input:
   - (optional) view, a bed-style file with region coordinates and names to use for analysis
 output:
   - >
-    A file (.npz or .h5) with piled up snippets.
+    A file (.clpy, HDF5-based format) with the pileup.
     Can have a {resolution} wildcard that specifies the resolution for the analysis,
     then it doesn't need to be specified as a parameter.
 params:
