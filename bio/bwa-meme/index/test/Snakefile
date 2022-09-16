@@ -15,5 +15,4 @@ rule bwa_mem2_index:
         "logs/bwa-meme_index/{genome}.log",
     threads: 8
     wrapper:
-        # "master/bio/bwa-meme/index"
-        "file://.."
+        "master/bio/bwa-meme/index"
