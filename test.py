@@ -1640,6 +1640,22 @@ def test_bwa_mem2_sort_samtools():
         ],
     )
 
+@skip_if_not_modified
+def test_bwa_meme_sort_samtools():
+    run(
+        "bio/bwa-mem2/mem",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.cram",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_samtools",
+        ],
+    )
+
 
 @skip_if_not_modified
 def test_bwa_mem2_sort_picard():

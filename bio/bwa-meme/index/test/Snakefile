@@ -1,0 +1,19 @@
+rule bwa_mem2_index:
+    input:
+        "{genome}",
+    output:
+        "{genome}.0123",
+        "{genome}.amb",
+        "{genome}.ann",
+        "{genome}.pac",
+        "{genome}.pos_packed",
+        "{genome}.suffixarray_uint64",
+        "{genome}.suffixarray_uint64_L0_PARAMETERS",
+        "{genome}.suffixarray_uint64_L1_PARAMETERS",
+        "{genome}.suffixarray_uint64_L2_PARAMETERS",
+    log:
+        "logs/bwa-meme_index/{genome}.log",
+    threads: 8
+    wrapper:
+        # "master/bio/bwa-meme/index"
+        "file://.."
