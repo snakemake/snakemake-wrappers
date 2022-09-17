@@ -36,7 +36,7 @@ rule bwa_meme_mem:
             ".suffixarray_uint64_L2_PARAMETERS",
         ),
     output:
-        "mapped/{sample}.cram",
+        "mapped/{sample}.cram",  # Output can be .cram, .bam, or .sam
     log:
         "logs/bwa_meme/{sample}.log",
     params:
