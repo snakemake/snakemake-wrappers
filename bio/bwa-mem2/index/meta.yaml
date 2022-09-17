@@ -1,5 +1,10 @@
 name: "bwa-mem2 index"
 description: "Creates a bwa-mem2 index."
+url: https://github.com/bwa-mem2/bwa-mem2
 authors:
   - Christopher Schröder
   - Patrik Smeds
+input:
+  - Reference genome (FASTA )
+output:
+  - Indexed reference genome
