@@ -1,3 +1,23 @@
+rule bwa_meme_index: #[hide]
+    input: #[hide]
+        "genome.fasta", #[hide]
+    output: #[hide]
+        "{genome}.0123", #[hide]
+        "{genome}.amb", #[hide]
+        "{genome}.ann", #[hide]
+        "{genome}.pac", #[hide]
+        "{genome}.pos_packed", #[hide]
+        "{genome}.suffixarray_uint64", #[hide]
+        "{genome}.suffixarray_uint64_L0_PARAMETERS", #[hide]
+        "{genome}.suffixarray_uint64_L1_PARAMETERS", #[hide]
+        "{genome}.suffixarray_uint64_L2_PARAMETERS", #[hide]
+    threads: 8 #[hide]
+    log: #[hide]
+        "logs/bwa_meme_index/{genome}.log", #[hide]
+    wrapper: #[hide]
+        "master/bio/bwa-meme/index" #[hide]
+#[hide]
+#[hide]
 rule bwa_meme_mem:
     input:
         reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
@@ -16,18 +36,18 @@ rule bwa_meme_mem:
             ".suffixarray_uint64_L2_PARAMETERS",
         ),
     output:
-        "mapped/{sample}.cram",  # May generate '.sam, '.bam' or '.cram'.
+        "mapped/{sample}.cram",  # Output can be .cram, .bam, or .sam
     log:
         "logs/bwa_meme/{sample}.log",
     params:
-        extra=r"-R '@RG\tID:{sample}\tSM:{sample}'",
-        sort="none",  # Can be 'none' or 'samtools'.
+        extra=r"-R '@RG\tID:{sample}\tSM:{sample}' -M",
+        sort="samtools",  # Can be 'none' or 'samtools'.
         sort_order="coordinate",  # Can be 'coordinate' (default) or 'queryname'.
         sort_extra="",  # Extra args for samtools.
-        dedup="none",  # Can be 'none' (default), 'mark' or 'remove'.
-        dedup_extra="",  # Extra args for samblaster.
-        exceed_thread_limit=True,  # Set threads als for samtools sort / view (total used CPU may exceed threads!, default: False)
-        embed_ref=True,  # Embed reference when writing cram (default: False).
+        dedup="mark",  # Can be 'none' (default), 'mark' or 'remove'.
+        dedup_extra="-M",  # Extra args for samblaster.
+        exceed_thread_limit=True,  # Set threads als for samtools sort / view (total used CPU may exceed threads!)
+        embed_ref=True,  # Embed reference when writing cram.
     threads: 8
     wrapper:
         "master/bio/bwa-meme/mem"
