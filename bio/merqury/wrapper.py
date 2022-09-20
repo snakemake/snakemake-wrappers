@@ -21,7 +21,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     for input in snakemake.input:
         src = Path(input)
         dst = Path(tmpdir) / input
-        src = Path(os.path.relpath(src.resolve(), dst.resolve()))
+        src = Path(os.path.relpath(src.resolve(), dst.resolve().parent))
         dst.symlink_to(src)
     os.chdir(tmpdir)
     Path(str(snakemake.log)).parent.mkdir(parents=True, exist_ok=True)
