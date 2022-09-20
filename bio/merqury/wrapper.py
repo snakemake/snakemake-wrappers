@@ -4,99 +4,136 @@ __license__ = "MIT"
 
 
 import os
+import tempfile
 from pathlib import Path
 from snakemake.shell import shell
 
-log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 meryldb_parents = snakemake.input.get("meryldb_parents", "")
 
+out_prefix = "out"
 
-shell(
-    "merqury.sh"
-    " {snakemake.input.meryldb}"
-    " {meryldb_parents}"
-    " {snakemake.input.fasta}"
-    " out"
-    " {log}"
-)
 
-meryldb = Path(snakemake.input.meryldb.rstrip("/")).stem
+with tempfile.TemporaryDirectory() as tmpdir:
+    cwd = Path.cwd()
+    # Create symlinks for input files
+    for input in snakemake.input:
+        src = Path(input)
+        dst = Path(tmpdir) / input
+        src = Path(os.path.relpath(src.resolve(), dst.resolve()))
+        dst.symlink_to(src)
+    os.chdir(tmpdir)
+    Path(str(snakemake.log)).parent.mkdir(parents=True, exist_ok=True)
 
-if snakemake.output.get("meryldb_filt"):
-    shell("cat {meryldb}.filt > {snakemake.output.meryldb_filt}")
-if snakemake.output.get("meryldb_hist"):
-    shell("cat {meryldb}.hist > {snakemake.output.meryldb_hist}")
-if snakemake.output.get("meryldb_hist_ploidy"):
-    shell("cat {meryldb}.hist.ploidy > {snakemake.output.meryldb_hist_ploidy}")
+    shell(
+        "merqury.sh"
+        " {snakemake.input.meryldb}"
+        " {meryldb_parents}"
+        " {snakemake.input.fasta}"
+        " {out_prefix}"
+        " {log}"
+    )
 
-if snakemake.output.get("completeness_stats"):
-    shell("cat out.completeness.stats > {snakemake.output.completeness_stats}")
-if snakemake.output.get("dist_only_hist"):
-    shell("cat out.dist_only.hist > {snakemake.output.dist_only_hist}")
-if snakemake.output.get("only_hist"):
-    shell("cat out.only.hist > {snakemake.output.only_hist}")
-if snakemake.output.get("qv"):
-    shell("cat out.qv > {snakemake.output.qv}")
+    meryldb = Path(snakemake.input.meryldb.rstrip("/")).stem
 
-if snakemake.output.get("spectra_asm_hist"):
-    shell("cat out.spectra-asm.hist > {snakemake.output.spectra_asm_hist}")
-if snakemake.output.get("spectra_asm_ln_png"):
-    shell("mv out.spectra-asm.ln.png {snakemake.output.spectra_asm_ln_png}")
-if snakemake.output.get("spectra_asm_fl_png"):
-    shell("mv out.spectra-asm.fl.png {snakemake.output.spectra_asm_fl_png}")
-if snakemake.output.get("spectra_asm_st_png"):
-    shell("mv out.spectra-asm.st.png {snakemake.output.spectra_asm_st_png}")
+    if snakemake.output.get("meryldb_filt"):
+        out = cwd / snakemake.output.meryldb_filt
+        shell("cat {meryldb}.filt > {out}")
+    if snakemake.output.get("meryldb_hist"):
+        out = cwd / snakemake.output.meryldb_hist
+        shell("cat {meryldb}.hist > {out}")
+    if snakemake.output.get("meryldb_hist_ploidy"):
+        out = cwd / snakemake.output.meryldb_hist_ploidy
+        shell("cat {meryldb}.hist.ploidy > {out}")
 
-if snakemake.output.get("spectra_cn_hist"):
-    shell("cat out.spectra-cn.hist > {snakemake.output.spectra_cn_hist}")
-if snakemake.output.get("spectra_cn_ln_png"):
-    shell("mv out.spectra-cn.ln.png {snakemake.output.spectra_cn_ln_png}")
-if snakemake.output.get("spectra_cn_fl_png"):
-    shell("mv out.spectra-cn.fl.png {snakemake.output.spectra_cn_fl_png}")
-if snakemake.output.get("spectra_cn_st_png"):
-    shell("mv out.spectra-cn.st.png {snakemake.output.spectra_cn_st_png}")
+    if snakemake.output.get("completeness_stats"):
+        out = cwd / snakemake.output.completeness_stats
+        shell("cat {out_prefix}.completeness.stats > {out}")
+    if snakemake.output.get("dist_only_hist"):
+        out = cwd / snakemake.output.dist_only_hist
+        shell("cat {out_prefix}.dist_only.hist > {out}")
+    if snakemake.output.get("only_hist"):
+        out = cwd / snakemake.output.only_hist
+        shell("cat {out_prefix}.only.hist > {out}")
+    if snakemake.output.get("qv"):
+        out = cwd / snakemake.output.qv
+        shell("cat {out_prefix}.qv > {out}")
 
-if snakemake.output.get("hapmers_count"):
-    shell("cat out.hapmers.count > {snakemake.output.hapmers_count}")
-if snakemake.output.get("hapmers_png"):
-    shell("mv out.hapmers.blob.png {snakemake.output.hapmers_png}")
+    if snakemake.output.get("spectra_asm_hist"):
+        out = cwd / snakemake.output.spectra_asm_hist
+        shell("cat {out_prefix}.spectra-asm.hist > {out}")
+    if snakemake.output.get("spectra_asm_ln_png"):
+        out = cwd / snakemake.output.spectra_asm_ln_png
+        shell("mv {out_prefix}.spectra-asm.ln.png {out}")
+    if snakemake.output.get("spectra_asm_fl_png"):
+        out = cwd / snakemake.output.spectra_asm_fl_png
+        shell("mv {out_prefix}.spectra-asm.fl.png {out}")
+    if snakemake.output.get("spectra_asm_st_png"):
+        out = cwd / snakemake.output.spectra_asm_st_png
+        shell("mv {out_prefix}.spectra-asm.st.png {out}")
 
-if snakemake.output.get("logs"):
-    Path(snakemake.output.logs).mkdir(parents=True, exist_ok=True)
-    for log in Path("logs").iterdir():
-        if log.is_file() and str(log) != str(snakemake.log):
-            shell("mv {log} {snakemake.output.logs}/{log.name}")
+    if snakemake.output.get("spectra_cn_hist"):
+        out = cwd / snakemake.output.spectra_cn_hist
+        shell("cat {out_prefix}.spectra-cn.hist > {out}")
+    if snakemake.output.get("spectra_cn_ln_png"):
+        out = cwd / snakemake.output.spectra_cn_ln_png
+        shell("mv {out_prefix}.spectra-cn.ln.png {out}")
+    if snakemake.output.get("spectra_cn_fl_png"):
+        out = cwd / snakemake.output.spectra_cn_fl_png
+        shell("mv {out_prefix}.spectra-cn.fl.png {out}")
+    if snakemake.output.get("spectra_cn_st_png"):
+        out = cwd / snakemake.output.spectra_cn_st_png
+        shell("mv {out_prefix}.spectra-cn.st.png {out}")
 
-input_fas = snakemake.input.fasta
-if isinstance(input_fas, str):
-    input_fas = [input_fas]
+    if snakemake.output.get("hapmers_count"):
+        out = cwd / snakemake.output.hapmers_count
+        shell("cat {out_prefix}.hapmers.count > {out}")
+    if snakemake.output.get("hapmers_png"):
+        out = cwd / snakemake.output.hapmers_png
+        shell("mv {out_prefix}.hapmers.blob.png {out}")
 
-for fas in range(1, len(input_fas) + 1):
-    prefix = Path(input_fas[fas - 1]).name.removesuffix(".fasta")
+    if snakemake.output.logs:
+        out = cwd / str(snakemake.output.logs)
+        shell("mv logs {out}")
 
-    out = snakemake.output.get(f"fas{fas}_only_bed")
-    if out:
-        shell("cat {prefix}_only.bed > {out}")
-    out = snakemake.output.get(f"fas{fas}_only_wig")
-    if out:
-        shell("cat {prefix}_only.wig > {out}")
+    input_fas = snakemake.input.fasta
+    if isinstance(input_fas, str):
+        input_fas = [input_fas]
 
-    out = snakemake.output.get(f"fas{fas}_only_hist")
-    if out:
-        shell("cat out.{prefix}.only.hist > {out}")
-    out = snakemake.output.get(f"fas{fas}_qv")
-    if out:
-        shell("cat out.{prefix}.qv > {out}")
-    out = snakemake.output.get(f"fas{fas}_spectra_hist")
-    if out:
-        shell("cat out.{prefix}.spectra-cn.hist > {out}")
-    out = snakemake.output.get(f"fas{fas}_spectra_ln_png")
-    if out:
-        shell("mv out.{prefix}.spectra-cn.ln.png {out}")
-    out = snakemake.output.get(f"fas{fas}_spectra_fl_png")
-    if out:
-        shell("mv out.{prefix}.spectra-cn.fl.png {out}")
-    out = snakemake.output.get(f"fas{fas}_spectra_st_png")
-    if out:
-        shell("mv out.{prefix}.spectra-cn.st.png {out}")
+    for fas in range(1, len(input_fas) + 1):
+        prefix = Path(input_fas[fas - 1]).name.removesuffix(".fasta")
+
+        out = snakemake.output.get(f"fas{fas}_only_bed")
+        if out:
+            out = cwd / out
+            shell("cat {prefix}_only.bed > {out}")
+        out = snakemake.output.get(f"fas{fas}_only_wig")
+        if out:
+            out = cwd / out
+            shell("cat {prefix}_only.wig > {out}")
+
+        out = snakemake.output.get(f"fas{fas}_only_hist")
+        if out:
+            out = cwd / out
+            shell("cat {out_prefix}.{prefix}.only.hist > {out}")
+        out = snakemake.output.get(f"fas{fas}_qv")
+        if out:
+            out = cwd / out
+            shell("cat {out_prefix}.{prefix}.qv > {out}")
+        out = snakemake.output.get(f"fas{fas}_spectra_hist")
+        if out:
+            out = cwd / out
+            shell("cat {out_prefix}.{prefix}.spectra-cn.hist > {out}")
+        out = snakemake.output.get(f"fas{fas}_spectra_ln_png")
+        if out:
+            out = cwd / out
+            shell("mv {out_prefix}.{prefix}.spectra-cn.ln.png {out}")
+        out = snakemake.output.get(f"fas{fas}_spectra_fl_png")
+        if out:
+            out = cwd / out
+            shell("mv {out_prefix}.{prefix}.spectra-cn.fl.png {out}")
+        out = snakemake.output.get(f"fas{fas}_spectra_st_png")
+        if out:
+            out = cwd / out
+            shell("mv {out_prefix}.{prefix}.spectra-cn.st.png {out}")
