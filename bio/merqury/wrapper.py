@@ -35,8 +35,14 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " {log}"
     )
 
-    meryldb = Path(snakemake.input.meryldb.rstrip("/")).stem
+    if snakemake.log:
+        out = cwd / str(snakemake.log)
+        shell("mv {snakemake.log} {out}")
+    if snakemake.output.logs:
+        out = cwd / str(snakemake.output.logs)
+        shell("mv logs {out}")
 
+    meryldb = Path(snakemake.input.meryldb.rstrip("/")).stem
     if snakemake.output.get("meryldb_filt"):
         out = cwd / snakemake.output.meryldb_filt
         shell("cat {meryldb}.filt > {out}")
@@ -92,10 +98,6 @@ with tempfile.TemporaryDirectory() as tmpdir:
     if snakemake.output.get("hapmers_png"):
         out = cwd / snakemake.output.hapmers_png
         shell("mv {out_prefix}.hapmers.blob.png {out}")
-
-    if snakemake.output.logs:
-        out = cwd / str(snakemake.output.logs)
-        shell("mv logs {out}")
 
     input_fas = snakemake.input.fasta
     if isinstance(input_fas, str):
