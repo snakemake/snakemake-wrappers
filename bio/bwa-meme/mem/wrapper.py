@@ -77,13 +77,12 @@ elif sort == "samtools":
 
     # Sort alignments using samtools sort.
 
-# elif sort == "picard":
-#     # Sort alignments using picard SortSam.
-#     pipe_cmd = (
-#         "picard SortSam {sort_extra} INPUT=/dev/stdin"
-#         " OUTPUT={snakemake.output[0]} SORT_ORDER={sort_order}"
-#     )
-
+elif sort == "picard":
+    # Sort alignments using picard SortSam.
+    pipe_cmd = (
+        "picard SortSam {sort_extra} -I /dev/stdin"
+        " -O /dev/stdout -SO {sort_order} | samtools view -h -O {output_format} -o {snakemake.output[0]} -T {reference} -@ {samtools_threads} -"
+    )
 else:
     raise ValueError("Unexpected value for params.sort ({})".format(sort))
 
@@ -100,18 +99,8 @@ elif dedup == "mark":
 elif dedup == "remove":
     dedup_cmd = "samblaster -q -r {dedup_extra} | "
 
-# elif sort == "picard":
-#     # Sort alignments using picard SortSam.
-#     pipe_cmd = (
-#         "picard SortSam {sort_extra} INPUT=/dev/stdin"
-#         " OUTPUT={snakemake.output[0]} SORT_ORDER={sort_order}"
-#     )
-
 else:
     raise ValueError("Unexpected value for params.dedup ({})".format(dedup))
-
-
-duplicates = snakemake.params.get("mark_duplicates", False)
 
 
 shell(

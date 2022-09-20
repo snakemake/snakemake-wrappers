@@ -1,4 +1,4 @@
-rule bwa_mem2_index:
+rule bwa_meme_index:
     input:
         "{genome}",
     output:
@@ -12,8 +12,8 @@ rule bwa_mem2_index:
             ".suffixarray_uint64",
             ".suffixarray_uint64_L0_PARAMETERS",
             ".suffixarray_uint64_L1_PARAMETERS",
-            ".suffixarray_uint64_L2_PARAMETERS"
-        )
+            ".suffixarray_uint64_L2_PARAMETERS",
+        ),
     log:
         "logs/bwa-meme_index/{genome}.log",
     threads: 8

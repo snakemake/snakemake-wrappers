@@ -1648,7 +1648,7 @@ def test_bwa_meme():
             "snakemake",
             "--cores",
             "1",
-            "mapped/a.cram",
+            "test",
             "--use-conda",
             "-F",
             "-s",
