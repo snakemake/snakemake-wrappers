@@ -4,4 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - gatk =3.8
-  - snakemake-wrapper-utils =0.4
+  - python >=3.10
+  - snakemake-wrapper-utils =0.5
