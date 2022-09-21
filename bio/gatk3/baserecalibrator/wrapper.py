@@ -18,7 +18,11 @@ if bed:
     bed = f"--intervals {bed}"
 
 
-input_known = "--knownSites ".join(snakemake.input.known)
+input_known = snakemake.input.get("known", "")
+if input_known:
+    if isinstance(input_known, str):
+        input_known = [input_known]
+    input_known = list(map("--knownSites {}".format, input_known))
 
 
 shell(
