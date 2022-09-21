@@ -30,7 +30,7 @@ shell(
     " --analysis_type BaseRecalibrator"
     " --num_cpu_threads_per_data_thread {snakemake.threads}"
     " --input_file {snakemake.input.bam}"
-    " --knownSites {input_known}"
+    " {input_known}"
     " --reference_sequence {snakemake.input.ref}"
     " {bed}"
     " {extra}"
