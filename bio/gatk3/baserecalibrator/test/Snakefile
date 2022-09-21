@@ -12,7 +12,7 @@ rule baserecalibrator:
     log:
         "logs/gatk3/bqsr/{sample}.log",
     params:
-        extra="",  # optional
+        extra="--defaultBaseQualities 20 --filter_reads_with_N_cigar",  # optional
     resources:
         mem_mb=1024,
     threads: 16
