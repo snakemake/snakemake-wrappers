@@ -3620,6 +3620,13 @@ def test_gatk_applybqsr():
         ["snakemake", "--cores", "1", "recal/a.bam", "--use-conda", "-F"],
     )
 
+@skip_if_not_modified
+def test_gatk_applybqsr_spark():
+    run(
+        "bio/gatk/applybqsr",
+        ["snakemake", "--cores", "1", "recal/a.cram", "--use-conda", "-F"],
+    )
+
 
 @skip_if_not_modified
 def test_gatk_applybqsrspark():
