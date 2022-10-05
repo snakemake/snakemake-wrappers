@@ -10,7 +10,7 @@ from snakemake_wrapper_utils.java import get_java_opts
 
 # Extract arguments
 extra = snakemake.params.get("extra", "")
-reference = snakemake.input.get("reference")
+reference = snakemake.input.get("ref")
 embed_ref = snakemake.params.get("embed_ref", False)
 java_opts = get_java_opts(snakemake)
 

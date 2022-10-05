@@ -11,7 +11,7 @@ rule gatk_applybqsr:
     params:
         extra="",  # optional
         java_opts="",  # optional
-        embed_ref=True,  # embed the reference in output cram
+        embed_ref=True,  # embed the reference in cram output
     resources:
         mem_mb=1024,
     wrapper:
