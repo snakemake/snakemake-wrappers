@@ -19,5 +19,4 @@ rule gatk_applybqsr_spark:
     resources:
         mem_mb=1024,
     wrapper:
-        #"master/bio/gatk/applybqsrspark"
-        "file://.."
+        "master/bio/gatk/applybqsrspark"
