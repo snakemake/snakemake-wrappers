@@ -18,9 +18,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 
 if snakemake.output.bam.endswith(".cram") and embed_ref:
     output = "/dev/stdout"
-    pipe_cmd = (
-        " | samtools view -h -O cram,embed_ref -T {reference} -o {snakemake.output.bam}"
-    )
+    pipe_cmd = " | samtools view -h -O cram,embed_ref -T {reference} -o {snakemake.output.bam} -"
 else:
     output = snakemake.output.bam
     pipe_cmd = ""
@@ -33,7 +31,5 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " --reference {reference}"
         " {extra}"
         " --tmp-dir {tmpdir}"
-        " --output {output}"
-        " {pipe_cmd})"
-        " {log}"
+        " --output {output}" + pipe_cmd + ") {log}"
     )

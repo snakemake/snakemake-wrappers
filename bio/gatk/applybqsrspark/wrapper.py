@@ -28,8 +28,8 @@ else:
     samtools_threads = 1
 
 if snakemake.output.bam.endswith(".cram") and embed_ref:
-    output = "/dev/stdout"
-    pipe_cmd = " | samtools view -h -O cram,embed_ref -T {reference} -o {snakemake.output.bam} -@ {samtools_threads}"
+    output = "/dev/stdout --create-output-bam-splitting-index false"
+    pipe_cmd = " | samtools view -h -O cram,embed_ref -T {reference} -o {snakemake.output.bam} -@ {samtools_threads} -"
 else:
     output = snakemake.output.bam
     pipe_cmd = ""
@@ -49,6 +49,6 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " --output-shard-tmp-dir {tmpdir_shards}"
         " --output {output}"
         " -- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra}"
-        " {pipe_cmd})"
-        " {log}"
+        + pipe_cmd
+        + ") {log}"
     )
