@@ -17,13 +17,13 @@ rule bwa_meme_index:  #[hide]
         "genome.fasta.suffixarray_uint64_L0_PARAMETERS",  #[hide]
         "genome.fasta.suffixarray_uint64_L1_PARAMETERS",  #[hide]
         "genome.fasta.suffixarray_uint64_L2_PARAMETERS",  #[hide]
+    conda:
+        "../environment.yaml"
     threads: 8  #[hide]
     log:  #[hide]
         "logs/bwa_meme_index/genome.fasta.log",  #[hide]
-    wrapper:  #[hide]
-        "master/bio/bwa-meme/index"  #[hide]
-
-
+    shell:  #[hide]
+        "(bwa-meme index -a meme -p genome.fasta genome.fasta -t {threads} && build_rmis_dna.sh {input}) > {log}" #[hide]
 # [hide]
 # [hide]
 rule bwa_meme_mem:
