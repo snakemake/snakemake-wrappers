@@ -58,8 +58,7 @@ rule bwa_meme_mem:
         embed_ref=True,  # Embed reference when writing cram.
     threads: 8
     wrapper:
-        # "master/bio/bwa-meme/mem"
-        "file://.."
+        "master/bio/bwa-meme/mem"
 
 
 # [hide]
@@ -84,5 +83,4 @@ rule bwa_meme_mem_picard:  #[hide]
         embed_ref=True,  #[hide]
     threads: 8  #[hide]
     wrapper:  #[hide]
-        # "master/bio/bwa-meme/mem"  #[hide]
-        "file://.."
+        "master/bio/bwa-meme/mem"  #[hide]
