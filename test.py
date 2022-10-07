@@ -1651,8 +1651,6 @@ def test_bwa_meme():
             "test",
             "--use-conda",
             "-F",
-            "-s",
-            "Snakefile_samtools",
         ],
     )
 
