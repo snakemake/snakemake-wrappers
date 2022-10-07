@@ -8,18 +8,18 @@ rule bwa_meme_index:  #[hide]
     input:  #[hide]
         "genome.fasta",  #[hide]
     output:  #[hide]
-        "{genome}.0123",  #[hide]
-        "{genome}.amb",  #[hide]
-        "{genome}.ann",  #[hide]
-        "{genome}.pac",  #[hide]
-        "{genome}.pos_packed",  #[hide]
-        "{genome}.suffixarray_uint64",  #[hide]
-        "{genome}.suffixarray_uint64_L0_PARAMETERS",  #[hide]
-        "{genome}.suffixarray_uint64_L1_PARAMETERS",  #[hide]
-        "{genome}.suffixarray_uint64_L2_PARAMETERS",  #[hide]
+        "genome.fasta.0123",  #[hide]
+        "genome.fasta.amb",  #[hide]
+        "genome.fasta.ann",  #[hide]
+        "genome.fasta.pac",  #[hide]
+        "genome.fasta.pos_packed",  #[hide]
+        "genome.fasta.suffixarray_uint64",  #[hide]
+        "genome.fasta.suffixarray_uint64_L0_PARAMETERS",  #[hide]
+        "genome.fasta.suffixarray_uint64_L1_PARAMETERS",  #[hide]
+        "genome.fasta.suffixarray_uint64_L2_PARAMETERS",  #[hide]
     threads: 8  #[hide]
     log:  #[hide]
-        "logs/bwa_meme_index/{genome}.log",  #[hide]
+        "logs/bwa_meme_index/genome.fasta.log",  #[hide]
     wrapper:  #[hide]
         "master/bio/bwa-meme/index"  #[hide]
 
@@ -58,7 +58,8 @@ rule bwa_meme_mem:
         embed_ref=True,  # Embed reference when writing cram.
     threads: 8
     wrapper:
-        "master/bio/bwa-meme/mem"
+        # "master/bio/bwa-meme/mem"
+        "file://.."
 
 
 # [hide]
@@ -83,4 +84,5 @@ rule bwa_meme_mem_picard:  #[hide]
         embed_ref=True,  #[hide]
     threads: 8  #[hide]
     wrapper:  #[hide]
-        "master/bio/bwa-meme/mem"  #[hide]
+        # "master/bio/bwa-meme/mem"  #[hide]
+        "file://.."
