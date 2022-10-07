@@ -1,7 +1,7 @@
 rule test:  # [hide]
-    input:
-        "mapped/a.cram",
-        "mapped/a.picard.cram",
+    input:  # [hide]
+        "mapped/a.cram",  # [hide]
+        "mapped/a.picard.cram",  # [hide]
 
 
 rule bwa_meme_index:  #[hide]
@@ -63,7 +63,7 @@ rule bwa_meme_mem:
 
 # [hide]
 # [hide]
-rule bwa_meme_mem:  #[hide]
+rule bwa_meme_mem_picard:  #[hide]
     input:  #[hide]
         reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],  #[hide]
         reference="genome.fasta",  #[hide]

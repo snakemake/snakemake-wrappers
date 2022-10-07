@@ -1643,7 +1643,7 @@ def test_bwa_mem2_sort_samtools():
 @skip_if_not_modified
 def test_bwa_meme():
     run(
-        "bio/bwa-mem2/mem",
+        "bio/bwa-meme/mem",
         [
             "snakemake",
             "--cores",
