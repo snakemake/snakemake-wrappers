@@ -1,4 +1,4 @@
-rule test:  # [hide]
+rule all:  # [hide]
     input:  # [hide]
         "mapped/a.cram",  # [hide]
         "mapped/a.picard.cram",  # [hide]
