@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.14.2](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.14.1...v1.14.2) (2022-10-09)
+
+
+### Bug Fixes
+
+* improve bcftools norm example rule ([#561](https://www.github.com/snakemake/snakemake-wrappers/issues/561)) ([ad41354](https://www.github.com/snakemake/snakemake-wrappers/commit/ad41354b3308e2c2926d9ca7b6fa258dfb555815))
+
 ### [1.14.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.14.0...v1.14.1) (2022-09-27)
 
 
