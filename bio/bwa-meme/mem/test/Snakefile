@@ -11,6 +11,8 @@ rule L2_PARAMETERS_extract:  #[hide]
         temp("genome.fasta.suffixarray_uint64_L2_PARAMETERS"),  #[hide]
     shell:  #[hide]
         "zcat {input} > {output}"
+
+
 # [hide]
 # [hide]
 rule bwa_meme_mem:
