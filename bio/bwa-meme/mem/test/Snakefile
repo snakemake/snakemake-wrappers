@@ -17,11 +17,15 @@ rule bwa_meme_index:  #[hide]
         "genome.fasta.suffixarray_uint64_L0_PARAMETERS",  #[hide]
         "genome.fasta.suffixarray_uint64_L1_PARAMETERS",  #[hide]
         "genome.fasta.suffixarray_uint64_L2_PARAMETERS",  #[hide]
+    params:  #[hide]
+        num_models=2684354,  #[hide]
     threads: 8  #[hide]
     log:  #[hide]
         "logs/bwa_meme_index/genome.fasta.log",  #[hide]
-    wrapper: #[hide]
-        "master/bio/bwa-meme/index" #[hide]
+    wrapper:  #[hide]
+        "master/bio/bwa-meme/index"  #[hide]
+
+
 # [hide]
 # [hide]
 rule bwa_meme_mem:

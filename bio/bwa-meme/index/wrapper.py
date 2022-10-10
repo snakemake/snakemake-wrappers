@@ -45,6 +45,14 @@ if len(prefixes) != 1:
     raise ValueError("Output files must share common prefix up to their file endings.")
 (prefix,) = prefixes
 
+suffixarray = snakemake.input[0] + ".suffixarray_uint64"
+dirname = path.dirname(suffixarray)
+basename = path.basename(suffixarray)
+num_models = snakemake.params.get("num_models", 268435456)
+
+if not dirname:
+    dirname = "."
+
 shell(
-    "(bwa-meme index -a meme -p {prefix} {snakemake.input[0]} -t {snakemake.threads} && build_rmis_dna.sh {snakemake.input[0]}) {log}"
+    "(bwa-meme index -a meme -p {prefix} {snakemake.input[0]} -t {snakemake.threads} && bwa-meme-train-prmi -t {snakemake.threads} --data-path {dirname} {suffixarray} {basename} pwl,linear,linear_spline {num_models}) {log}"
 )
