@@ -17,7 +17,7 @@ rule bwa_meme_index:
     log:
         "logs/bwa-meme_index/{genome}.log",
     params:  #[hide]
-        num_models=2684354,  #[hide]
+        num_models=100000  #[hide]
     threads: 8
     wrapper:
         "master/bio/bwa-meme/index"

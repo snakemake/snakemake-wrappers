@@ -48,7 +48,7 @@ if len(prefixes) != 1:
 suffixarray = snakemake.input[0] + ".suffixarray_uint64"
 dirname = path.dirname(suffixarray)
 basename = path.basename(suffixarray)
-num_models = snakemake.params.get("num_models", 268435456)
+num_models = snakemake.params.get("num_models", 268435456) # change only for testing!
 
 if not dirname:
     dirname = "."
