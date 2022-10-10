@@ -109,6 +109,6 @@ shell(
     " {extra}"
     " {reference}"
     " {snakemake.input.reads}"
-    " | mbuffer -q -m 10G "
+    " | mbuffer -q -m 2G "
     " | " + dedup_cmd + pipe_cmd + ") {log}"
 )
