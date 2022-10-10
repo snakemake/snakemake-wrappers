@@ -20,9 +20,6 @@ sort_extra = snakemake.params.get("sort_extra", "")
 embed_ref = snakemake.params.get("embed_ref", False)
 
 # Option to set the threads of samtools sort and view to the snakemake limit.
-# In theory, bwa and alternate and samtools view starts only when sort is
-# finished, so that never more threads are used than the limit. But it can
-# not always be guaranteed.
 exceed_thread_limit = snakemake.params.get("exceed_thread_limit", False)
 dedup = snakemake.params.get("dedup", "none")
 dedup_extra = snakemake.params.get("dedup_extra", "")

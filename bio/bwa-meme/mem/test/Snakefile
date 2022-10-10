@@ -60,24 +60,24 @@ rule bwa_meme_mem_picard:  #[hide]
     input:  #[hide]
         reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],  #[hide]
         reference="genome.fasta",  #[hide]
-        idx=multiext(
-            "genome.fasta",
-            ".0123",
-            ".amb",
-            ".ann",
-            ".pac",
-            ".pos_packed",
-            ".suffixarray_uint64",
-            ".suffixarray_uint64_L0_PARAMETERS",
-            ".suffixarray_uint64_L1_PARAMETERS",
-            ".suffixarray_uint64_L2_PARAMETERS",
-        ),
+        idx=multiext(  #[hide]
+            "genome.fasta",  #[hide]
+            ".0123",  #[hide]
+            ".amb",  #[hide]
+            ".ann",  #[hide]
+            ".pac",  #[hide]
+            ".pos_packed",  #[hide]
+            ".suffixarray_uint64",  #[hide]
+            ".suffixarray_uint64_L0_PARAMETERS",  #[hide]
+            ".suffixarray_uint64_L1_PARAMETERS",  #[hide]
+            ".suffixarray_uint64_L2_PARAMETERS",  #[hide]
+        ),  #[hide]
     output:  #[hide]
         "mapped/{sample}.picard.cram",  #[hide]
     log:  #[hide]
         "logs/bwa_meme/{sample}.log",  #[hide]
     params:  #[hide]
-        extra=r"-R '@RG\tID:{sample}\tSM:{sample}' -M",
+        extra=r"-R '@RG\tID:{sample}\tSM:{sample}' -M",  #[hide]
         sort="picard",  #[hide]
         sort_order="coordinate",  #[hide]
         sort_extra="",  #[hide]

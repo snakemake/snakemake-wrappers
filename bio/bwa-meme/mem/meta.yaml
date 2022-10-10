@@ -4,3 +4,4 @@ authors:
   - Christopher Schröder
   - Johannes Köster
   - Julian de Ruiter
+notes: Theoretically, bwa and samtools alternate in CPU usage. Sorting consumes computing power when bwa performs io operations and vice versa. But this cannot always be guaranteed. Therefore it is recommended to set exceed_thread_limit=True to maximize CPU usage.
