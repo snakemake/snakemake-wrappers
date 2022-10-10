@@ -21,7 +21,7 @@ rule bwa_meme_index:  #[hide]
     log:  #[hide]
         "logs/bwa_meme_index/genome.fasta.log",  #[hide]
     wrapper: #[hide]
-        "v1.14.1/bio/bwa-meme/index" #[hide]
+        "master/bio/bwa-meme/index" #[hide]
 # [hide]
 # [hide]
 rule bwa_meme_mem:
