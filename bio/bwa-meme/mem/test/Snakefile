@@ -9,6 +9,8 @@ rule L2_PARAMETERS_extract:  #[hide]
         "genome.fasta.suffixarray_uint64_L2_PARAMETERS.gz",  #[hide]
     output:  #[hide]
         temp("genome.fasta.suffixarray_uint64_L2_PARAMETERS"),  #[hide]
+    conda:
+        "gzip.yaml"
     log:
         "log/extract.l2.log",
     shell:  #[hide]
@@ -85,5 +87,4 @@ rule bwa_meme_mem_picard:  #[hide]
         embed_ref=True,  #[hide]
     threads: 8  #[hide]
     wrapper:  #[hide]
-        "file://.."
-        # "master/bio/bwa-meme/mem"  #[hide]
+        "master/bio/bwa-meme/mem"  #[hide]
