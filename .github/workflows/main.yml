@@ -49,6 +49,11 @@ jobs:
         run: |
           git fetch origin master
 
+      - name: Set Swap Space
+        uses: pierotofy/set-swap-space@master
+        with:
+          swap-size-gb: 100
+
       - name: Run tests
         env:
           DIFF_MASTER: ${{ github.event_name == 'pull_request' }}
