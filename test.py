@@ -3617,6 +3617,13 @@ def test_gatk_applybqsr():
         ["snakemake", "--cores", "1", "recal/a.bam", "--use-conda", "-F"],
     )
 
+@skip_if_not_modified
+def test_gatk_applybqsr_cram():
+    run(
+        "bio/gatk/applybqsr",
+        ["snakemake", "-s", "Snakefile_cram", "--cores", "1", "recal/a.cram", "--use-conda", "-F"],
+    )
+
 
 @skip_if_not_modified
 def test_gatk_applybqsrspark():
@@ -3625,6 +3632,12 @@ def test_gatk_applybqsrspark():
         ["snakemake", "--cores", "1", "recal/a.bam", "--use-conda", "-F"],
     )
 
+@skip_if_not_modified
+def test_gatk_applybqsrspark_cram():
+    run(
+        "bio/gatk/applybqsrspark",
+        ["snakemake", "-s", "Snakefile_cram", "--cores", "1", "recal/a.cram", "--use-conda", "-F"],
+    )
 
 @skip_if_not_modified
 def test_gatk_haplotypecaller_vcf():

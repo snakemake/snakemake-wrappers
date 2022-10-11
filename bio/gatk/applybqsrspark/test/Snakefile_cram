@@ -5,7 +5,7 @@ rule gatk_applybqsr_spark:
         dict="genome.dict",
         recal_table="recal/{sample}.grp",
     output:
-        bam="recal/{sample}.bam",
+        bam="recal/{sample}.cram",
     log:
         "logs/gatk/gatk_applybqsr_spark/{sample}.log",
     params:
@@ -15,7 +15,7 @@ rule gatk_applybqsr_spark:
         #spark_master="",  # optional
         #spark_extra="", # optional
         embed_ref=True,  # embed reference in cram output
-        exceed_thread_limit=True,  # samtools is also parallized and thread limit is not guaranteed anymore
+        exceed_thread_limit=True,  # samtools is also parallized
     resources:
         mem_mb=1024,
     wrapper:
