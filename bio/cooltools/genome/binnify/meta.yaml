@@ -1,0 +1,17 @@
+name: cooltools genome_binnify
+description: Split chromosomes into equal sized bins
+url: https://github.com/open2c/cooltools
+authors:
+  - Ilya Flyamer
+input:
+  - a chromsizes file
+output:
+  - >
+    A .bed file with bin coordinates. 
+    Can have a {binsize} wildcard that specifies the resolution for the analysis,
+    then it doesn't need to be specified as a parameter.
+params:
+  binsize: size of bins in bp.
+    Optional, can be instead specified as a wildcard in the output
+  extra: Any additional arguments to pass
+notes:

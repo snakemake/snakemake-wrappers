@@ -1,9 +1,15 @@
 name: busco
 description: |
  Assess assembly and annotation completeness with BUSCO 
+url: https://busco.ezlab.org/
 authors:
   - Tessa Pierce
+  - Filipe G. Vieira
 input:
   - assembly fasta
 output:
   - annotation quality files
+notes: |
+  * The `mode` parameter sets the assessment mode (mandatory), and only allows for arguments: "genome", "transcriptome", and "proteins".
+  * The `lineage` parameter sets the lineage dataset ot use (optional). In `auto-lineage` mode, `output` or `dataset` folders need to be retrieved as a whole, since it is not possible to infer the output file names (they depend on the best lineage match).
+  * The `extra` param allows for additional program arguments.

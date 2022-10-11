@@ -23,7 +23,7 @@ rule star_align:
         idx="resources/star_genome",
     output:
         # see STAR manual for additional output files
-        bam="star/{sample}/Aligned.out.bam",
+        aln="star/{sample}/Aligned.out.bam",
         reads_per_gene="star/{sample}/ReadsPerGene.out.tab",
     log:
         "logs/star/{sample}.log",

@@ -1,6 +1,11 @@
 channels:
-  - bioconda
   - conda-forge
+  - bioconda
+  - nodefaults
 dependencies:
-  - ensembl-vep =105
-  - bcftools =1.12
+  - ensembl-vep =107
+  - bcftools =1.15
+  # TODO remove once bioconda CDN has been updated to exclude
+  # broken unpinned perl-encode-locale packages
+  - perl-encode-locale=1.05=pl5321hdfd78af_7
+  - perl =5.32.1

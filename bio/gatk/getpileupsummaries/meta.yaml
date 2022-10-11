@@ -1,0 +1,13 @@
+name: GATK Get pileup summaries
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360037593451-GetPileupSummaries
+description: Summarizes counts of reads that support reference, alternate and other alleles
+author:
+  - Thibault Dayris
+input:
+  - bam: Path to bam file (sorted and indexed)
+  - intervals: Path to one or more BED genomic intervals over which to operate
+  - variants: Path to a VCF containing allele frequencies (pbgzipped and tabix indexed)
+output:
+  - Path to output table
+params:
+  - extra: Optional parameters

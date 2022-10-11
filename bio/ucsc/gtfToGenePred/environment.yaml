@@ -1,7 +1,7 @@
 channels:
-  - bioconda
   - conda-forge
-  - defaults
+  - bioconda
+  - nodefaults
 dependencies:
   - ucsc-gtftogenepred =377
   - csvkit =1.0

@@ -1,0 +1,5 @@
+name: calc_consensus_reads
+description: |
+    Performs consensus read calculation on a marked bam and merges single, 
+    paired and skipped-consensus reads into a single sorted bam file.
+author: Felix Mölder

@@ -1,5 +1,6 @@
 name: "star"
 description: Map reads with STAR.
+url: https://github.com/alexdobin/STAR
 authors:
   - Johannes Köster
   - Tomás Di Domenico
@@ -9,4 +10,3 @@ notes: |
   * It is advisable to consider updating the limits setting before running STAR,
     such as executing `ulimit -n 10000`, to avoid an issue like this:
     https://github.com/alexdobin/STAR/issues/1344 
-  * For more information see, https://github.com/alexdobin/STAR

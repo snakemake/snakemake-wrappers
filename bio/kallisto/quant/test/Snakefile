@@ -1,13 +1,13 @@
 rule kallisto_quant:
     input:
-        fastq = ["reads/{exp}_R1.fastq", "reads/{exp}_R2.fastq"],
-        index = "index/transcriptome.idx"
+        fastq=["reads/{exp}_R1.fastq", "reads/{exp}_R2.fastq"],
+        index="index/transcriptome.idx",
     output:
-        directory('quant_results_{exp}')
+        directory("quant_results_{exp}"),
     params:
-        extra = ""
+        extra="",
     log:
-        "logs/kallisto_quant_{exp}.log"
+        "logs/kallisto_quant_{exp}.log",
     threads: 1
     wrapper:
         "master/bio/kallisto/quant"

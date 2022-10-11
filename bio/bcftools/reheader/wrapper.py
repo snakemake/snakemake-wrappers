@@ -4,34 +4,41 @@ __email__ = "j.forster@dkfz.de"
 __license__ = "MIT"
 
 
+import tempfile
+from pathlib import Path
 from snakemake.shell import shell
+from snakemake_wrapper_utils.bcftools import get_bcftools_opts
 
+
+bcftools_opts = get_bcftools_opts(snakemake, parse_ref=False, parse_memory=False)
+extra = snakemake.params.get("extra", "")
+view_extra = snakemake.params.get("view_extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+
 
 ## Extract arguments
 header = snakemake.input.get("header", "")
 if header:
-    header_cmd = "-h " + header
-else:
-    header_cmd = ""
+    header = f"-h {header}"
 
 samples = snakemake.input.get("samples", "")
 if samples:
-    samples_cmd = "-s " + samples
-else:
-    samples_cmd = ""
+    samples = f"-s {samples}"
 
-extra = snakemake.params.get("extra", "")
-view_extra = snakemake.params.get("view_extra", "")
 
-shell(
-    "bcftools reheader "
-    "{extra} "
-    "{header_cmd} "
-    "{samples_cmd} "
-    "{snakemake.input.vcf} "
-    "| bcftools view "
-    "{view_extra} "
-    "> {snakemake.output} "
-    "{log}"
-)
+with tempfile.TemporaryDirectory() as tmpdir:
+    tmp_prefix = Path(tmpdir) / "bcftools_reheader."
+
+    shell(
+        "(bcftools reheader"
+        " --threads {snakemake.threads}"
+        " {header}"
+        " {samples}"
+        " {extra}"
+        " --temp-prefix {tmp_prefix}"
+        " {snakemake.input[0]}"
+        "| bcftools view"
+        " {bcftools_opts}"
+        " {view_extra}"
+        ") {log}"
+    )

@@ -1,5 +1,6 @@
 name: minimap2
 description: A versatile pairwise aligner for genomic and spliced nucleotide sequences.
+url: https://lh3.github.io/minimap2
 authors:
   - Tom Poorten
   - Michael Hall
@@ -13,4 +14,3 @@ notes: |
   * The `extra` param allows for additional arguments for minimap2.
   * The `sort` param allows to enable sorting (if output not PAF), and can be either 'none', 'queryname' or 'coordinate'.
   * The `sort_extra` allows for extra arguments for samtools/picard
-  * For more inforamtion see, https://lh3.github.io/minimap2

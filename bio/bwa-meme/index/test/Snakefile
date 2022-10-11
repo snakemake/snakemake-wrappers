@@ -1,0 +1,23 @@
+rule bwa_meme_index:
+    input:
+        "{genome}",
+    output:
+        multiext(
+            "{genome}",
+            ".0123",
+            ".amb",
+            ".ann",
+            ".pac",
+            ".pos_packed",
+            ".suffixarray_uint64",
+            ".suffixarray_uint64_L0_PARAMETERS",
+            ".suffixarray_uint64_L1_PARAMETERS",
+            ".suffixarray_uint64_L2_PARAMETERS",
+        ),
+    log:
+        "logs/bwa-meme_index/{genome}.log",
+    params:  #[hide]
+        num_models=100000,  #[hide]
+    threads: 8
+    wrapper:
+        "master/bio/bwa-meme/index"

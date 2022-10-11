@@ -1,11 +1,13 @@
 rule norm_vcf:
     input:
         "{prefix}.bcf",
+        #ref="genome.fasta"  # optional reference (will be translated into the -f option)
     output:
-        "{prefix}.norm.vcf",
+        "{prefix}.norm.vcf", # can also be .bcf, corresponding --output-type parameter is inferred automatically
     log:
         "{prefix}.norm.log",
     params:
         extra="--rm-dup none",  # optional
+        #uncompressed_bcf=False,
     wrapper:
         "master/bio/bcftools/norm"
