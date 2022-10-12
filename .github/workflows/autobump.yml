@@ -1,0 +1,26 @@
+name: Tests
+
+# TODO replace by nightly cron job
+on:
+  schedule:
+    - cron: "0 0 * * 5"
+
+jobs:
+  autobump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: tibdex/github-app-token@v1
+        id: generate-token
+        with:
+          app_id: ${{ secrets.SNAKEDEPLOY_BOT_APP_ID }}
+          private_key: ${{ secrets.SNAKEDEPLOY_BOT_PRIVATE_KEY }}
+
+      - name: Update conda envs
+        uses: snakemake/snakedeploy-github-action@v1
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+        with:
+          subcommand: update-conda-envs
+          args: "*/*/environment.yaml */*/*/environment.yaml --create-prs --entity-regex '(?P<entity>.+)/environment.yaml' --pr-add-label"
