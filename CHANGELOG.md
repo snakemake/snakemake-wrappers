@@ -1,5 +1,26 @@
 # Changelog
 
+### [1.15.2](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.15.1...v1.15.2) (2022-10-12)
+
+
+### Performance Improvements
+
+* update bio/adapterremoval/environment.yaml. ([#573](https://www.github.com/snakemake/snakemake-wrappers/issues/573)) ([8cb0391](https://www.github.com/snakemake/snakemake-wrappers/commit/8cb03915ba46d0a7bf186b54882aa23c4b78f7ed))
+* update bio/assembly-stats/environment.yaml. ([#575](https://www.github.com/snakemake/snakemake-wrappers/issues/575)) ([2c12db0](https://www.github.com/snakemake/snakemake-wrappers/commit/2c12db04b2afae3e5ac1c56ee36baff66a8aff0e))
+* update bio/bellerophon/environment.yaml. ([#576](https://www.github.com/snakemake/snakemake-wrappers/issues/576)) ([fd06157](https://www.github.com/snakemake/snakemake-wrappers/commit/fd06157a4daec8fb6146bccb8925b00d025231e5))
+* update bio/bgzip/environment.yaml. ([#577](https://www.github.com/snakemake/snakemake-wrappers/issues/577)) ([36720ca](https://www.github.com/snakemake/snakemake-wrappers/commit/36720ca9a0d2c6093c7b8ebe26e0b78b5e90227b))
+* update bio/busco/environment.yaml. ([#581](https://www.github.com/snakemake/snakemake-wrappers/issues/581)) ([9825a5f](https://www.github.com/snakemake/snakemake-wrappers/commit/9825a5f882228f6a663408c21e9647ae31c00e53))
+* update bio/clustalo/environment.yaml. ([#582](https://www.github.com/snakemake/snakemake-wrappers/issues/582)) ([dc322c8](https://www.github.com/snakemake/snakemake-wrappers/commit/dc322c898466341a292b06354301f83f51c005cc))
+* update bio/delly/environment.yaml. ([#584](https://www.github.com/snakemake/snakemake-wrappers/issues/584)) ([0eb8ebc](https://www.github.com/snakemake/snakemake-wrappers/commit/0eb8ebc51a1f312836c4a3a7d3d2cfc16a4853c8))
+* update bio/fastp/environment.yaml. ([#585](https://www.github.com/snakemake/snakemake-wrappers/issues/585)) ([a573035](https://www.github.com/snakemake/snakemake-wrappers/commit/a573035813ba39d6bf47eb3bb9c5c68aecf074e0))
+* update bio/fastq_screen/environment.yaml. ([#586](https://www.github.com/snakemake/snakemake-wrappers/issues/586)) ([73a3d45](https://www.github.com/snakemake/snakemake-wrappers/commit/73a3d450ae1d7eff884eae89195758039aadd9c4))
+* update bio/fastqc/environment.yaml. ([#587](https://www.github.com/snakemake/snakemake-wrappers/issues/587)) ([9a0b30e](https://www.github.com/snakemake/snakemake-wrappers/commit/9a0b30e8131560d705c35d9a2eb68b986c743812))
+* update bio/fasttree/environment.yaml. ([#588](https://www.github.com/snakemake/snakemake-wrappers/issues/588)) ([b9b8a4e](https://www.github.com/snakemake/snakemake-wrappers/commit/b9b8a4e6ada4e3e2fcf6e266d7430ab51ab978eb))
+* update bio/filtlong/environment.yaml. ([#589](https://www.github.com/snakemake/snakemake-wrappers/issues/589)) ([3394085](https://www.github.com/snakemake/snakemake-wrappers/commit/33940856b332699f73410b5b49d6b387b817bd1b))
+* update bio/freebayes/environment.yaml. ([#590](https://www.github.com/snakemake/snakemake-wrappers/issues/590)) ([17c9581](https://www.github.com/snakemake/snakemake-wrappers/commit/17c95816b6158eb7c2db56bc1b7c257357359441))
+* update bio/genefuse/environment.yaml. ([#591](https://www.github.com/snakemake/snakemake-wrappers/issues/591)) ([63c620d](https://www.github.com/snakemake/snakemake-wrappers/commit/63c620d40435fc9306d0c5e63e06c79287e537c8))
+* update bio/genomepy/environment.yaml. ([#592](https://www.github.com/snakemake/snakemake-wrappers/issues/592)) ([4cfb29b](https://www.github.com/snakemake/snakemake-wrappers/commit/4cfb29b97770555af53b16523b14b033d0a1f2fb))
+
 ### [1.15.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.15.0...v1.15.1) (2022-10-11)
 
 
