@@ -2,12 +2,8 @@ name: Tests
 
 # TODO replace by nightly cron job
 on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - "*"
+  schedule:
+    - cron: "0 0 * * 5"
 
 jobs:
   autobump:
