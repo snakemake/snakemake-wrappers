@@ -1,0 +1,9 @@
+rule bazam:
+    input:
+        reads="mapped/a.bam",
+    output:
+        interleaved="results/reads/a.fastq",
+    log:
+        "logs/bazam/a.log",
+    wrapper:
+        "master/bio/bazam"

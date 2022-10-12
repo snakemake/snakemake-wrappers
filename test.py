@@ -4854,3 +4854,10 @@ def test_calc_consensus_reads():
         "meta/bio/rbt_calc_consensus/",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "results/consensus/sampleA.bam"],
     )
+
+@skip_if_not_modified
+def test_bazam():
+    run(
+        "meta/bio/bazam/",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/reads/a.fastq"],
+    )
