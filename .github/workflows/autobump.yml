@@ -18,7 +18,7 @@ jobs:
           private_key: ${{ secrets.SNAKEDEPLOY_BOT_PRIVATE_KEY }}
 
       - name: Update conda envs
-        uses: snakemake/snakedeploy-github-action@dbg
+        uses: snakemake/snakedeploy-github-action@v1
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         with:
