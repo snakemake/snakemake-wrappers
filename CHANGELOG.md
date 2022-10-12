@@ -1,5 +1,15 @@
 # Changelog
 
+### [1.15.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.15.0...v1.15.1) (2022-10-11)
+
+
+### Performance Improvements
+
+* autobump bio/bcftools/index/environment.yaml ([#570](https://www.github.com/snakemake/snakemake-wrappers/issues/570)) ([bc77e03](https://www.github.com/snakemake/snakemake-wrappers/commit/bc77e037a0a086c1fede8cd54481426001460a13))
+* update bio/bcftools/call/environment.yaml. ([#567](https://www.github.com/snakemake/snakemake-wrappers/issues/567)) ([5c4356a](https://www.github.com/snakemake/snakemake-wrappers/commit/5c4356af4a2bcb288f4fe71169f97151df524d52))
+* update bio/bcftools/concat/environment.yaml. ([#568](https://www.github.com/snakemake/snakemake-wrappers/issues/568)) ([70685f1](https://www.github.com/snakemake/snakemake-wrappers/commit/70685f12db06ffe17f09aff7ecd258bcff27284a))
+* update utils/datavzrd/environment.yaml. ([#566](https://www.github.com/snakemake/snakemake-wrappers/issues/566)) ([a6f4ff8](https://www.github.com/snakemake/snakemake-wrappers/commit/a6f4ff88e1cf9949737de779b0cc8a56d749e374))
+
 ## [1.15.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.14.1...v1.15.0) (2022-10-11)
 
 
