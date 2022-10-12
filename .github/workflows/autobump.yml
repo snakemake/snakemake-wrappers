@@ -22,9 +22,9 @@ jobs:
           private_key: ${{ secrets.SNAKEDEPLOY_BOT_PRIVATE_KEY }}
 
       - name: Update conda envs
-        uses: snakemake/snakedeploy-github-action@dbg
+        uses: snakemake/snakedeploy-github-action@v1
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         with:
           subcommand: update-conda-envs
-          args: "*/*/environment.yaml */*/*/environment.yaml --create-prs"
+          args: "*/*/environment.yaml */*/*/environment.yaml --create-prs --entity-regex '(?P<entity>.+)/environment.yaml' --pr-add-label"
