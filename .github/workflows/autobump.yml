@@ -25,4 +25,4 @@ jobs:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         with:
           subcommand: update-conda-envs
-          args: workflow/envs/*.yaml --create-prs
+          args: "*/*/environment.yaml */*/*/environment.yaml --create-prs"
