@@ -2,3 +2,5 @@ name: pindel
 description: Call variants with pindel.
 authors:
   - Johannes Köster
+notes: |
+  * For more information about pindel, see <https://gmt.genome.wustl.edu/packages/pindel/>
