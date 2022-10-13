@@ -21,6 +21,4 @@ rule bazam_separated:
     log:
         "logs/bazam/{sample}.log",
     wrapper:
-        "file://.."
-        # "master/bio/bazam"
-
+        "master/bio/bazam"
