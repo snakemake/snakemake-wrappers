@@ -11,6 +11,7 @@ rule bazam_interleaved:
 
 rule bazam_separated:
     input:
+        bam="mapped/{sample}.bam",
     output:
         r1="results/reads/{sample}.r1.fastq",
         r2="results/reads/{sample}.r2.fastq",
