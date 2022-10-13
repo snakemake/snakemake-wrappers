@@ -1,9 +1,20 @@
-rule bazam:
+rule bazam_interleaved:
     input:
-        bam="mapped/a.bam",
+        bam="mapped/{sample}.bam",
     output:
-        reads="results/reads/a.fastq",
+        reads="results/reads/{sample}.fastq",
     log:
-        "logs/bazam/a.log",
+        "logs/bazam/{sample}.log",
+    wrapper:
+        "master/bio/bazam"
+
+
+rule bazam_separated:
+    input:
+    output:
+        r1="results/reads/{sample}.r1.fastq",
+        r2="results/reads/{sample}.r2.fastq",
+    log:
+        "logs/bazam/{sample}.log",
     wrapper:
         "master/bio/bazam"

@@ -4856,8 +4856,15 @@ def test_calc_consensus_reads():
     )
 
 @skip_if_not_modified
-def test_bazam():
+def test_bazam_interleaved():
     run(
         "bio/bazam",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "results/reads/a.fastq"],
+    )
+
+@skip_if_not_modified
+def test_bazam_separated():
+    run(
+        "bio/bazam",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/reads/a.r1.fastq"],
     )
