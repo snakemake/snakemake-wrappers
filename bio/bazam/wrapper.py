@@ -4,9 +4,6 @@ __email__ = "christopher.schroeder@tu-dortmund.de"
 __license__ = "MIT"
 
 from snakemake.shell import shell
-from snakemake_wrapper_utils.java import get_java_opts
-from snakemake_wrapper_utils.samtools import get_samtools_opts
-
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 bam = snakemake.input.bam
