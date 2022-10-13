@@ -26,8 +26,6 @@ if reads := snakemake.output.get("reads", ""):
 elif (r1 := snakemake.output.get("r1", "")) and (r2 := snakemake.output.get("r2", "")):
     out_cmd = f"-r1 {r1} -r2 {r2}"
 else:
-    raise ValueError(
-        "either 'reads' or 'r1' and 'r2' must be specified in output"
-    )
+    raise ValueError("either 'reads' or 'r1' and 'r2' must be specified in output")
 
 shell("(bazam -Xmx12g {reference_cmd} {extra} -bam {bam} {out_cmd}) {log}")
