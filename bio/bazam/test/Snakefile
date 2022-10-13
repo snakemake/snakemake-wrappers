@@ -1,8 +1,8 @@
 rule bazam:
     input:
-        reads="mapped/a.bam",
+        bam="mapped/a.bam",
     output:
-        interleaved="results/reads/a.fastq",
+        reads="results/reads/a.fastq",
     log:
         "logs/bazam/a.log",
     wrapper:
