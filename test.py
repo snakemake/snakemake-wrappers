@@ -2743,7 +2743,51 @@ def test_picard_createsequencedictionary():
 def test_pindel_call():
     run(
         "bio/pindel/call",
-        ["snakemake", "--cores", "1", "pindel/all_D", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "pindel/all_D",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_pindel_call_include():
+    def check_log(log):
+        assert "Looking at chromosome 1 bases 1000 to 10000" in log
+
+    run(
+        "bio/pindel/call",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "pindel/all_included_D",
+            "--use-conda",
+            "-F",
+        ],
+        check_log=check_log,
+    )
+
+
+@skip_if_not_modified
+def test_pindel_call_exclude():
+    def check_log(log):
+        assert "Looking at chromosome 1 bases 1 to 1000" in log
+
+    run(
+        "bio/pindel/call",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "pindel/all_excluded_D",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 

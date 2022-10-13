@@ -3,13 +3,34 @@ __copyright__ = "Copyright 2016, Johannes Köster"
 __email__ = "koester@jimmy.harvard.edu"
 __license__ = "MIT"
 
-import os
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
+include_bed = snakemake.input.get("include_bed", None)
+exclude_bed = snakemake.input.get("exclude_bed", None)
+
+if include_bed is not None and exclude_bed is not None:
+    raise Exception("supply either include_bed or exclude_bed, not both")
+
+include_arg = ""
+if include_bed is not None:
+    include_arg = f"-j {include_bed}"
+
+exclude_arg = ""
+if exclude_bed is not None:
+    exclude_arg = f"-J {exclude_bed}"
+
+output_prefix = snakemake.output[0].rsplit("_", 1)[0]
+
 shell(
-    "pindel -T {snakemake.threads} {snakemake.params.extra} -i {snakemake.input.config} "
-    "-f {snakemake.input.ref} -o {snakemake.params.prefix} {log}"
+    "pindel "
+    "-T {snakemake.threads} "
+    "{extra} "
+    "{include_arg} "
+    "{exclude_arg} "
+    "-i {snakemake.input.config} "
+    "-f {snakemake.input.ref} "
+    "-o {output_prefix} {log}"
 )
