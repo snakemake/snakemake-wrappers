@@ -16,7 +16,7 @@ if include_bed is not None and exclude_bed is not None:
 
 include_arg = ""
 if include_bed is not None:
-    include_arg = "-j {}".format(include_bed)
+    include_arg = f"-j {include_bed}"
 
 exclude_arg = ""
 if exclude_bed is not None:
