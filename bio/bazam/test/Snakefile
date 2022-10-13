@@ -3,7 +3,7 @@ rule bazam_interleaved:
         bam="mapped/{sample}.bam",
         bai="mapped/{sample}.bam.bai",
     output:
-        reads="results/reads/{sample}.fastq",
+        reads="results/reads/{sample}.fastq.gz",
     log:
         "logs/bazam/{sample}.log",
     wrapper:
@@ -16,8 +16,8 @@ rule bazam_separated:
         bai="mapped/{sample}.cram.crai",
         reference="genome.fasta",
     output:
-        r1="results/reads/{sample}.r1.fastq",
-        r2="results/reads/{sample}.r2.fastq",
+        r1="results/reads/{sample}.r1.fastq.gz",
+        r2="results/reads/{sample}.r2.fastq.gz",
     log:
         "logs/bazam/{sample}.log",
     wrapper:
