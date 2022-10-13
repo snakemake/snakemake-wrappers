@@ -20,7 +20,7 @@ if include_bed is not None:
 
 exclude_arg = ""
 if exclude_bed is not None:
-    exclude_arg = "-J {}".format(exclude_bed)
+    exclude_arg = f"-J {exclude_bed}"
 
 output_prefix = snakemake.output[0].rsplit("_", 1)[0]
 
