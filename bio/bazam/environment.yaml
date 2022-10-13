@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - bazam =1.0
+  - snakemake-wrapper-utils ==0.5

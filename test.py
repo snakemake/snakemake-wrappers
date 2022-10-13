@@ -4898,3 +4898,17 @@ def test_calc_consensus_reads():
         "meta/bio/calc_consensus_reads/",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "results/consensus/sampleA.bam"],
     )
+
+@skip_if_not_modified
+def test_bazam_interleaved():
+    run(
+        "bio/bazam",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/reads/a.fastq.gz"],
+    )
+
+@skip_if_not_modified
+def test_bazam_separated():
+    run(
+        "bio/bazam",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/reads/a.r1.fastq.gz"],
+    )
