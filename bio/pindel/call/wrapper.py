@@ -22,6 +22,7 @@ exclude_arg = ""
 if exclude_bed is not None:
     exclude_arg = "-J {}".format(exclude_bed)
 
+output_prefix = snakemake.output[0].rsplit("_", 1)[0]
 
 shell(
     "pindel "
@@ -31,5 +32,5 @@ shell(
     "{exclude_arg} "
     "-i {snakemake.input.config} "
     "-f {snakemake.input.ref} "
-    "-o {snakemake.params.prefix} {log}"
+    "-o {output_prefix} {log}"
 )

@@ -11,8 +11,6 @@ rule pindel:
     output:
         expand("pindel/all_{type}", type=pindel_types),
     params:
-        # prefix must be consistent with output files
-        prefix=lambda w, output: output[0].rsplit("_", 1)[0],
         extra="",  # optional parameters (except -i, -f, -o, -j, -J)
     log:
         "logs/pindel.log",
@@ -29,8 +27,6 @@ rule pindel_include_regions:
         include_bed="regions.bed",
     output:
         expand("pindel/all_included_{type}", type=pindel_types),
-    params:
-        prefix=lambda w, output: output[0].rsplit("_", 1)[0],
     log:
         "logs/pindel_j.log",
     threads: 4
