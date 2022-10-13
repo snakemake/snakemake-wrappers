@@ -4,6 +4,8 @@ rule bazam_interleaved:
         bai="mapped/{sample}.bam.bai",
     output:
         reads="results/reads/{sample}.fastq.gz",
+    resources:
+        mem_mb=12000,
     log:
         "logs/bazam/{sample}.log",
     wrapper:
@@ -18,6 +20,8 @@ rule bazam_separated:
     output:
         r1="results/reads/{sample}.r1.fastq.gz",
         r2="results/reads/{sample}.r2.fastq.gz",
+    resources:
+        mem_mb=12000,
     log:
         "logs/bazam/{sample}.log",
     wrapper:
