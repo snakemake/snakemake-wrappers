@@ -2765,9 +2765,7 @@ def test_pindel_call_include():
             "snakemake",
             "--cores",
             "1",
-            "pindel/all_D",
-            "pindel/all_j_D",
-            "pindel/all_include_D",
+            "pindel/all_included_D",
             "--use-conda",
             "-F",
         ],
@@ -2786,88 +2784,10 @@ def test_pindel_call_exclude():
             "snakemake",
             "--cores",
             "1",
-            "pindel/all_D",
-            "pindel/all_J_D",
-            "pindel/all_exclude_D",
+            "pindel/all_excluded_D",
             "--use-conda",
             "-F",
         ],
-    )
-
-
-@skip_if_not_modified
-def test_pindel_call_j_fail():
-    def check_log(log):
-        assert "error: file not found: missing_regions.bed" in log
-
-    run(
-        "bio/pindel/call",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "pindel/all_j_fails_D",
-            "--use-conda",
-            "-F",
-        ],
-        check_log=check_log,
-    )
-
-
-@skip_if_not_modified
-def test_pindel_call_include_fail():
-    def check_log(log):
-        assert "error: file not found: missing_regions.bed" in log
-
-    run(
-        "bio/pindel/call",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "pindel/all_include_fails_D",
-            "--use-conda",
-            "-F",
-        ],
-        check_log=check_log,
-    )
-
-
-@skip_if_not_modified
-def test_pindel_call_J_fail():
-    def check_log(log):
-        assert "error: file not found: missing_regions.bed" in log
-
-    run(
-        "bio/pindel/call",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "pindel/all_J_fails_D",
-            "--use-conda",
-            "-F",
-        ],
-        check_log=check_log,
-    )
-
-
-@skip_if_not_modified
-def test_pindel_call_exclude_fail():
-    def check_log(log):
-        assert "error: file not found: missing_regions.bed" in log
-
-    run(
-        "bio/pindel/call",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "pindel/all_exclude_fails_D",
-            "--use-conda",
-            "-F",
-        ],
-        check_log=check_log,
     )
 
 

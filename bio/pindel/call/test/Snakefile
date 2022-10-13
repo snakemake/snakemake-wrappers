@@ -7,30 +7,30 @@ rule pindel:
         # samples to call
         samples=["mapped/a.bam"],
         # bam configuration file, see http://gmt.genome.wustl.edu/packages/pindel/quick-start.html
-        config="pindel_config.txt"
+        config="pindel_config.txt",
     output:
-        expand("pindel/all_{type}", type=pindel_types)
+        expand("pindel/all_{type}", type=pindel_types),
     params:
         # prefix must be consistent with output files
         prefix=lambda w, output: output[0].rsplit("_", 1)[0],
-        extra=""  # optional parameters (except -i, -f, -o)
+        extra="",  # optional parameters (except -i, -f, -o, -j, -J)
     log:
-        "logs/pindel.log"
+        "logs/pindel.log",
     threads: 4
     wrapper:
         "master/bio/pindel/call"
 
 
-rule pindel_j:
+rule pindel_include_regions:
     input:
         ref="genome.fasta",
         samples=["mapped/a.bam"],
         config="pindel_config.txt",
+        include_bed="regions.bed",
     output:
-        expand("pindel/all_j_{type}", type=pindel_types)
+        expand("pindel/all_included_{type}", type=pindel_types),
     params:
         prefix=lambda w, output: output[0].rsplit("_", 1)[0],
-        extra="-j regions.bed",
     log:
         "logs/pindel_j.log",
     threads: 4
@@ -38,120 +38,16 @@ rule pindel_j:
         "master/bio/pindel/call"
 
 
-rule pindel_include:
+rule pindel_exclude_regions:
     input:
         ref="genome.fasta",
         samples=["mapped/a.bam"],
         config="pindel_config.txt",
+        exclude_bed="regions.bed",
     output:
-        expand("pindel/all_include_{type}", type=pindel_types)
-    params:
-        prefix=lambda w, output: output[0].rsplit("_", 1)[0],
-        extra="--include regions.bed",
+        expand("pindel/all_excluded_{type}", type=pindel_types),
     log:
         "logs/pindel_include.log",
-    threads: 4
-    wrapper:
-        "master/bio/pindel/call"
-
-
-rule pindel_J:
-    input:
-        ref="genome.fasta",
-        samples=["mapped/a.bam"],
-        config="pindel_config.txt",
-    output:
-        expand("pindel/all_J_{type}", type=pindel_types)
-    params:
-        prefix=lambda w, output: output[0].rsplit("_", 1)[0],
-        extra="-J regions.bed",
-    log:
-        "logs/pindel_J.log",
-    threads: 4
-    wrapper:
-        "master/bio/pindel/call"
-
-
-rule pindel_exclude:
-    input:
-        ref="genome.fasta",
-        samples=["mapped/a.bam"],
-        config="pindel_config.txt",
-    output:
-        expand("pindel/all_exclude_{type}", type=pindel_types)
-    params:
-        prefix=lambda w, output: output[0].rsplit("_", 1)[0],
-        extra="--exclude regions.bed",
-    log:
-        "logs/pindel_exclude.log",
-    threads: 4
-    wrapper:
-        "master/bio/pindel/call"
-
-
-rule pindel_j_fails:
-    input:
-        ref="genome.fasta",
-        samples=["mapped/a.bam"],
-        config="pindel_config.txt",
-    output:
-        expand("pindel/all_j_fails_{type}", type=pindel_types)
-    params:
-        prefix=lambda w, output: output[0].rsplit("_", 1)[0],
-        extra="-j missing_regions.bed",
-    log:
-        "logs/pindel_j_fails.log",
-    threads: 4
-    wrapper:
-        "master/bio/pindel/call"
-
-
-rule pindel_include_fails:
-    input:
-        ref="genome.fasta",
-        samples=["mapped/a.bam"],
-        config="pindel_config.txt",
-    output:
-        expand("pindel/all_include_fails_{type}", type=pindel_types)
-    params:
-        prefix=lambda w, output: output[0].rsplit("_", 1)[0],
-        extra="--include missing_regions.bed",
-    log:
-        "logs/pindel_include_fails.log",
-    threads: 4
-    wrapper:
-        "master/bio/pindel/call"
-
-
-rule pindel_J_fails:
-    input:
-        ref="genome.fasta",
-        samples=["mapped/a.bam"],
-        config="pindel_config.txt",
-    output:
-        expand("pindel/all_J_fails_{type}", type=pindel_types)
-    params:
-        prefix=lambda w, output: output[0].rsplit("_", 1)[0],
-        extra="-J missing_regions.bed",
-    log:
-        "logs/pindel_J_fails.log",
-    threads: 4
-    wrapper:
-        "master/bio/pindel/call"
-
-
-rule pindel_exclude_fails:
-    input:
-        ref="genome.fasta",
-        samples=["mapped/a.bam"],
-        config="pindel_config.txt",
-    output:
-        expand("pindel/all_exclude_fails_{type}", type=pindel_types)
-    params:
-        prefix=lambda w, output: output[0].rsplit("_", 1)[0],
-        extra="--exclude missing_regions.bed",
-    log:
-        "logs/pindel_exclude_fails.log",
     threads: 4
     wrapper:
         "master/bio/pindel/call"
