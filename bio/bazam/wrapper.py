@@ -12,11 +12,11 @@ bam = snakemake.input.bam
 extra = snakemake.params.get("extra", "")
 
 if bam.endswith(".cram"):
-    if not (reference := snakemake.output.get("reference", "")):
+    if not (reference := snakemake.input.get("reference", "")):
         raise ValueError(
             "input 'reference' is required when working with CRAM input files"
         )
-    reference_cmd = "-Dsamjdk.reference_fasta={reference}"
+    reference_cmd = f"-Dsamjdk.reference_fasta={reference}"
 else:
     reference_cmd = ""
 
