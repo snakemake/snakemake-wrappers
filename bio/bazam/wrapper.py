@@ -4,6 +4,9 @@ __email__ = "christopher.schroeder@tu-dortmund.de"
 __license__ = "MIT"
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.java import get_java_opts
+
+java_opts = get_java_opts(snakemake)
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 bam = snakemake.input.bam
@@ -28,4 +31,4 @@ elif (r1 := snakemake.output.get("r1", "")) and (r2 := snakemake.output.get("r2"
 else:
     raise ValueError("either 'reads' or 'r1' and 'r2' must be specified in output")
 
-shell("(bazam -Xmx12g {reference_cmd} {extra} -bam {bam} {out_cmd}) {log}")
+shell("(bazam {java_opts} {reference_cmd} {extra} -bam {bam} {out_cmd}) {log}")
