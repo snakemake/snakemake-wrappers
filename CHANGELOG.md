@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.16.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.15.2...v1.16.0) (2022-10-13)
+
+
+### Features
+
+* bazam wrapper ([#580](https://www.github.com/snakemake/snakemake-wrappers/issues/580)) ([17e58e6](https://www.github.com/snakemake/snakemake-wrappers/commit/17e58e6f254ce429b3b76b841df29b573949e278))
+
+
+### Bug Fixes
+
+* set RG tag ([#593](https://www.github.com/snakemake/snakemake-wrappers/issues/593)) ([506a083](https://www.github.com/snakemake/snakemake-wrappers/commit/506a08391b56d4b53edda2c6555b9b9d404d4f94))
+
+
+### Performance Improvements
+
+* autobump bio/deepvariant ([#583](https://www.github.com/snakemake/snakemake-wrappers/issues/583)) ([9b7c4fe](https://www.github.com/snakemake/snakemake-wrappers/commit/9b7c4feec69d05fc7d6286dcdfdc65802cb93317))
+
 ### [1.15.2](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.15.1...v1.15.2) (2022-10-12)
 
 
