@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.17.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.16.0...v1.17.0) (2022-10-13)
+
+
+### Features
+
+* move pindel region bed files to input ([#594](https://www.github.com/snakemake/snakemake-wrappers/issues/594)) ([8f52877](https://www.github.com/snakemake/snakemake-wrappers/commit/8f52877aeb5d6510e34ebe846a4fbe2d0e9a2458))
+
 ## [1.16.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.15.2...v1.16.0) (2022-10-13)
 
 
