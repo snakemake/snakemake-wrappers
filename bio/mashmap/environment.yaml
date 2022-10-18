@@ -5,4 +5,4 @@ channels:
 dependencies:
   - mashmap =2.0
   - gsl =2.7
-  - gzip =1.11
+  - gzip =1.12
