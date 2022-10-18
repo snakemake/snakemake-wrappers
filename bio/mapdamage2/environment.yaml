@@ -3,6 +3,6 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - mapdamage2 =2.2
-  - python >=3.9
-  - pysam >=0.17
+  - mapdamage2 =2.2.1
+  - python =3.10.6
+  - pysam =0.19.1
