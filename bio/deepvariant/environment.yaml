@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - deepvariant =1.4
-  - numpy =1.23
+  - deepvariant =0.7.0
+  - numpy =1.14.6
