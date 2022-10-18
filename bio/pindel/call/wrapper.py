@@ -11,15 +11,15 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 include_bed = snakemake.input.get("include_bed", None)
 exclude_bed = snakemake.input.get("exclude_bed", None)
 
-if include_bed is not None and exclude_bed is not None:
+if include_bed and exclude_bed:
     raise Exception("supply either include_bed or exclude_bed, not both")
 
 include_arg = ""
-if include_bed is not None:
+if include_bed:
     include_arg = f"-j {include_bed}"
 
 exclude_arg = ""
-if exclude_bed is not None:
+if exclude_bed:
     exclude_arg = f"-J {exclude_bed}"
 
 output_prefix = snakemake.output[0].rsplit("_", 1)[0]
