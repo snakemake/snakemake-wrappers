@@ -8,19 +8,17 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-include_bed = snakemake.input.get("include_bed", None)
-exclude_bed = snakemake.input.get("exclude_bed", None)
+include_bed = snakemake.input.get("include_bed", "")
+exclude_bed = snakemake.input.get("exclude_bed", "")
 
-if include_bed is not None and exclude_bed is not None:
+if include_bed and exclude_bed:
     raise Exception("supply either include_bed or exclude_bed, not both")
 
-include_arg = ""
-if include_bed is not None:
-    include_arg = f"-j {include_bed}"
+if include_bed:
+    include_bed = f"-j {include_bed}"
 
-exclude_arg = ""
-if exclude_bed is not None:
-    exclude_arg = f"-J {exclude_bed}"
+if exclude_bed:
+    exclude_bed = f"-J {exclude_bed}"
 
 output_prefix = snakemake.output[0].rsplit("_", 1)[0]
 
@@ -28,8 +26,8 @@ shell(
     "pindel "
     "-T {snakemake.threads} "
     "{extra} "
-    "{include_arg} "
-    "{exclude_arg} "
+    "{include_bed} "
+    "{exclude_bed} "
     "-i {snakemake.input.config} "
     "-f {snakemake.input.ref} "
     "-o {output_prefix} {log}"
