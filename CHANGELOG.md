@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.17.2](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.17.1...v1.17.2) (2022-10-19)
+
+
+### Bug Fixes
+
+* allow for optional pindel bed files ([#598](https://www.github.com/snakemake/snakemake-wrappers/issues/598)) ([123fd98](https://www.github.com/snakemake/snakemake-wrappers/commit/123fd98bcac86013bbbd59f9eaaa35a94c144ea7))
+
 ### [1.17.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.17.0...v1.17.1) (2022-10-18)
 
 
