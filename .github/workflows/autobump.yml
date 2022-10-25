@@ -27,6 +27,7 @@ jobs:
         uses: snakemake/snakedeploy-github-action@dbg
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+          TMPDIR: ${{ env.RUNNER_TEMP }}
         with:
           subcommand: update-conda-envs
           args: "*/*/environment.yaml */*/*/environment.yaml --create-prs --warn-on-error --entity-regex '(?P<entity>.+)/environment.yaml' --pr-add-label"
