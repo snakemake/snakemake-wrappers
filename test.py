@@ -140,6 +140,42 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_bwa_memx_index():
+    run(
+        "bio/bwa-memx/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "genome.sa",
+        ],
+    )
+    run(
+        "bio/bwa-memx/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "genome.bwt.2bit.64",
+        ],
+    )
+    run(
+        "bio/bwa-memx/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "genome.pos_packed",
+        ],
+    )
+
+@skip_if_not_modified
 def test_purge_dups_calcuts():
     run(
         "bio/purge_dups/calcuts",
