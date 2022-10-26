@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - scikit-learn==1.0 # doesn't work with 1.1
-  - cooltools =0.5
+  - scikit-learn =1.1.2
+  - cooltools =0.4.0
