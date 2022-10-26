@@ -176,6 +176,20 @@ def test_bwa_memx_index():
     )
 
 @skip_if_not_modified
+def test_bwa_memx_mem():
+    run(
+        "bio/bwa-memx/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "bwa_meme_test",
+        ],
+    )
+
+@skip_if_not_modified
 def test_purge_dups_calcuts():
     run(
         "bio/purge_dups/calcuts",
