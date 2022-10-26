@@ -178,7 +178,7 @@ def test_bwa_memx_index():
 @skip_if_not_modified
 def test_bwa_memx_mem():
     run(
-        "bio/bwa-memx/index",
+        "bio/bwa-memx/mem",
         [
             "snakemake",
             "--cores",
