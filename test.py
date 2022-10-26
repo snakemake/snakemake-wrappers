@@ -149,7 +149,7 @@ def test_bwa_memx_index():
             "1",
             "--use-conda",
             "-F",
-            "genome.sa",
+            "genome.fasta.sa",
         ],
     )
     run(
@@ -160,7 +160,7 @@ def test_bwa_memx_index():
             "1",
             "--use-conda",
             "-F",
-            "genome.bwt.2bit.64",
+            "genome.fasta.bwt.2bit.64",
         ],
     )
     run(
@@ -171,7 +171,7 @@ def test_bwa_memx_index():
             "1",
             "--use-conda",
             "-F",
-            "genome.pos_packed",
+            "genome.fasta.pos_packed",
         ],
     )
 
