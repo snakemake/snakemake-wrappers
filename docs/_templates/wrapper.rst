@@ -8,9 +8,6 @@
 {% endif %}
 
 .. image:: https://img.shields.io/github/issues-pr/snakemake/snakemake-wrappers/{{ wrapper_path }}?label=version%20update%20pull%20requests
-
-.. image:: https://img.shields.io/github/issues-pr/snakemake/snakemake-wrappers/bio/bwa/samse?label=version%20update%20pull%20requests
-   :alt: GitHub pull requests by-label
    :target: https://github.com/snakemake/snakemake-wrappers/pulls?q=is%3Apr+is%3Aopen+label%3A{{ wrapper_path }}
 
 {{ description }}
