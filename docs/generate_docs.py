@@ -105,7 +105,7 @@ def render_wrapper(path, target, wrapper_id):
             wrapper_lang=wrapper_lang,
             pkgs=pkgs,
             id=wrapper_id,
-            wrapper_path=path,
+            wrapper_path=os.path.relpath(path, WRAPPER_DIR),
             **meta,
         )
         readme.write(rst)
