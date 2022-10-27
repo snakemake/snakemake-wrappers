@@ -185,7 +185,7 @@ def test_bwa_memx_mem():
             "1",
             "--use-conda",
             "-F",
-            "bwa_meme_test",
+            "bwa_memx_test",
         ],
     )
 
