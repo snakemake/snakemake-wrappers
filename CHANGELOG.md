@@ -1,5 +1,14 @@
 # Changelog
 
+### [1.17.6](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.17.5...v1.17.6) (2022-10-27)
+
+
+### Performance Improvements
+
+* autobump bio/dada2/add-species ([#703](https://www.github.com/snakemake/snakemake-wrappers/issues/703)) ([3296efd](https://www.github.com/snakemake/snakemake-wrappers/commit/3296efd54e266510c57158f6ee0e51379c0c79b0))
+* autobump bio/dada2/assign-taxonomy ([#705](https://www.github.com/snakemake/snakemake-wrappers/issues/705)) ([cf0b49e](https://www.github.com/snakemake/snakemake-wrappers/commit/cf0b49ea11380e482e91f8ed4df6aefd0d59b8b6))
+* autobump bio/dada2/collapse-nomismatch ([#706](https://www.github.com/snakemake/snakemake-wrappers/issues/706)) ([e314e90](https://www.github.com/snakemake/snakemake-wrappers/commit/e314e90b3e0b19613e04574bf0ec11765c261357))
+
 ### [1.17.5](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.17.4...v1.17.5) (2022-10-27)
 
 
