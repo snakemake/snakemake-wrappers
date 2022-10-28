@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - razers3 ==3.5.8
+  - razers3 =3.5.8

@@ -1,0 +1,18 @@
+rule gatk_applybqsr:
+    input:
+        bam="mapped/{sample}.bam",
+        ref="genome.fasta",
+        dict="genome.dict",
+        recal_table="recal/{sample}.grp",
+    output:
+        bam="recal/{sample}.cram",
+    log:
+        "logs/gatk/gatk_applybqsr/{sample}.log",
+    params:
+        extra="",  # optional
+        java_opts="",  # optional
+        embed_ref=True,  # embed the reference in cram output
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/gatk/applybqsr"

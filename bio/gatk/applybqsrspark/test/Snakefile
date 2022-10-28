@@ -14,6 +14,8 @@ rule gatk_applybqsr_spark:
         #spark_runner="",  # optional, local by default
         #spark_master="",  # optional
         #spark_extra="", # optional
+        embed_ref=True,  # embed reference in cram output
+        exceed_thread_limit=True,  # samtools is also parallized and thread limit is not guaranteed anymore
     resources:
         mem_mb=1024,
     wrapper:

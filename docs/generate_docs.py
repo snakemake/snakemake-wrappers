@@ -1,4 +1,5 @@
 import os
+import re
 import textwrap
 from jinja2 import Template
 import yaml
@@ -63,9 +64,9 @@ def render_tool(tool, subcmds):
 
 def render_snakefile(path):
     with open(os.path.join(path, "test", "Snakefile")) as snakefile:
-        lines = filter(lambda line: "# [hide]" not in line, snakefile)
+        lines = filter(lambda line: re.search(r"# ?\[hide\]", line) is None, snakefile)
         snakefile = textwrap.indent(
-            "\n".join(l.rstrip() for l in lines), "    "
+            "\n".join(l.rstrip() for l in lines).strip(), "    "
         ).replace("master", TAG)
         return snakefile
 
@@ -104,6 +105,7 @@ def render_wrapper(path, target, wrapper_id):
             wrapper_lang=wrapper_lang,
             pkgs=pkgs,
             id=wrapper_id,
+            wrapper_path=os.path.relpath(path, WRAPPER_DIR),
             **meta,
         )
         readme.write(rst)

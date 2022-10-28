@@ -4,10 +4,9 @@ __email__ = "christopher.schroeder@tu-dortmund.de, patrik.smeds@gmail.com"
 __license__ = "MIT"
 
 from os import path
-
 from snakemake.shell import shell
 
-log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 # Check inputs/arguments.
 if len(snakemake.input) == 0:

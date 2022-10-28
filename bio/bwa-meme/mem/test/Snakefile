@@ -1,0 +1,86 @@
+rule all:  # [hide]
+    input:  # [hide]
+        "mapped/a.cram",  # [hide]
+        "mapped/a.picard.cram",  # [hide]
+
+
+rule L2_PARAMETERS_extract:  #[hide]
+    input:  #[hide]
+        "genome.fasta.suffixarray_uint64_L2_PARAMETERS.gz",  #[hide]
+    output:  #[hide]
+        temp("genome.fasta.suffixarray_uint64_L2_PARAMETERS"),  #[hide]
+    conda:  # [hide]
+        "gzip.yaml"  # [hide]
+    log:  # [hide]
+        "log/extract.l2.log",  # [hide]
+    shell:  #[hide]
+        "zcat {input} > {output} 2> {log}"  # [hide]
+
+
+rule bwa_meme_mem:
+    input:
+        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        # Index can be a list of (all) files created by bwa, or one of them
+        reference="genome.fasta",
+        idx=multiext(
+            "genome.fasta",
+            ".0123",
+            ".amb",
+            ".ann",
+            ".pac",
+            ".pos_packed",
+            ".suffixarray_uint64",
+            ".suffixarray_uint64_L0_PARAMETERS",
+            ".suffixarray_uint64_L1_PARAMETERS",
+            ".suffixarray_uint64_L2_PARAMETERS",
+        ),
+    output:
+        "mapped/{sample}.cram",  # Output can be .cram, .bam, or .sam
+    log:
+        "logs/bwa_meme/{sample}.log",
+    params:
+        extra=r"-R '@RG\tID:{sample}\tSM:{sample}' -M",
+        sort="samtools",  # Can be 'none' or 'samtools or picard'.
+        sort_order="coordinate",  # Can be 'coordinate' (default) or 'queryname'.
+        sort_extra="",  # Extra args for samtools.
+        dedup="mark",  # Can be 'none' (default), 'mark' or 'remove'.
+        dedup_extra="-M",  # Extra args for samblaster.
+        exceed_thread_limit=True,  # Set threads als for samtools sort / view (total used CPU may exceed threads!)
+        embed_ref=True,  # Embed reference when writing cram.
+    threads: 8
+    wrapper:
+        "master/bio/bwa-meme/mem"
+
+
+rule bwa_meme_mem_picard:
+    input:
+        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        reference="genome.fasta",
+        idx=multiext(
+            "genome.fasta",
+            ".0123",
+            ".amb",
+            ".ann",
+            ".pac",
+            ".pos_packed",
+            ".suffixarray_uint64",
+            ".suffixarray_uint64_L0_PARAMETERS",
+            ".suffixarray_uint64_L1_PARAMETERS",
+            ".suffixarray_uint64_L2_PARAMETERS",
+        ),
+    output:
+        "mapped/{sample}.picard.cram",
+    log:
+        "logs/bwa_meme/{sample}.log",
+    params:
+        extra=r"-R '@RG\tID:{sample}\tSM:{sample}' -M",
+        sort="picard",
+        sort_order="coordinate",
+        sort_extra="",
+        dedup="mark",
+        dedup_extra="-M",
+        exceed_thread_limit=True,
+        embed_ref=True,
+    threads: 8
+    wrapper:
+        "master/bio/bwa-meme/mem"

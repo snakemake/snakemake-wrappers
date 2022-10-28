@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - rebaler ==0.2.0
+  - rebaler =0.2.0
