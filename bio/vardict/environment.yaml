@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - vardict-java ==1.8
+  - vardict-java =1.8.3
