@@ -67,7 +67,7 @@ def render_snakefile(path):
         lines = filter(lambda line: re.search(r"# ?\[hide\]", line) is None, snakefile)
         snakefile = textwrap.indent(
             "\n".join(l.rstrip() for l in lines), "    "
-        ).replace("master", TAG)
+        ).replace("master", TAG).strip()
         return snakefile
 
 
