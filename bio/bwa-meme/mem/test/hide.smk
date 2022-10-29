@@ -1,4 +1,4 @@
-rule all:
+rule bwa_meme_test:
     input:
         "mapped/a.cram",
         "mapped/a.picard.cram",

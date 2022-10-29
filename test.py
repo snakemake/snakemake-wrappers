@@ -1700,6 +1700,7 @@ def test_bwa_meme():
             "1",
             "--use-conda",
             "-F",
+            "bwa_meme_test",
         ],
     )
 
