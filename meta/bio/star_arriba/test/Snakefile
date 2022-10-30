@@ -9,7 +9,7 @@ rule star_index:
         extra="--sjdbGTFfile resources/genome.gtf --sjdbOverhang 100",
     log:
         "logs/star_index_genome.log",
-    cache: True
+    cache: True  # mark as eligible for between workflow caching
     wrapper:
         "master/bio/star/index"
 
