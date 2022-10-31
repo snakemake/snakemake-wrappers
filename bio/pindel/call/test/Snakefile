@@ -7,15 +7,43 @@ rule pindel:
         # samples to call
         samples=["mapped/a.bam"],
         # bam configuration file, see http://gmt.genome.wustl.edu/packages/pindel/quick-start.html
-        config="pindel_config.txt"
+        config="pindel_config.txt",
     output:
-        expand("pindel/all_{type}", type=pindel_types)
+        expand("pindel/all_{type}", type=pindel_types),
     params:
-        # prefix must be consistent with output files
-        prefix="pindel/all",
-        extra=""  # optional parameters (except -i, -f, -o)
+        extra="",  # optional parameters (except -i, -f, -o, -j, -J)
     log:
-        "logs/pindel.log"
+        "logs/pindel.log",
+    threads: 4
+    wrapper:
+        "master/bio/pindel/call"
+
+
+rule pindel_include_regions:
+    input:
+        ref="genome.fasta",
+        samples=["mapped/a.bam"],
+        config="pindel_config.txt",
+        include_bed="regions.bed",
+    output:
+        expand("pindel/all_included_{type}", type=pindel_types),
+    log:
+        "logs/pindel_j.log",
+    threads: 4
+    wrapper:
+        "master/bio/pindel/call"
+
+
+rule pindel_exclude_regions:
+    input:
+        ref="genome.fasta",
+        samples=["mapped/a.bam"],
+        config="pindel_config.txt",
+        exclude_bed="regions.bed",
+    output:
+        expand("pindel/all_excluded_{type}", type=pindel_types),
+    log:
+        "logs/pindel_include.log",
     threads: 4
     wrapper:
         "master/bio/pindel/call"

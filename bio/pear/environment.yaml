@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - pear=0.9.6
+  - pear =0.9.6
