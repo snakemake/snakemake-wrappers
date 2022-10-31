@@ -1,5 +1,17 @@
 # Changelog
 
+### [1.18.4](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.18.3...v1.18.4) (2022-10-31)
+
+
+### Bug Fixes
+
+* fixed GATK3 conda channel priorities and code reformat ([#534](https://www.github.com/snakemake/snakemake-wrappers/issues/534)) ([43e5a16](https://www.github.com/snakemake/snakemake-wrappers/commit/43e5a16c1bb88ea09999278d12eaee89c8d4e424))
+
+
+### Performance Improvements
+
+* autobump bio/bismark/deduplicate_bismark ([#672](https://www.github.com/snakemake/snakemake-wrappers/issues/672)) ([c4ee12f](https://www.github.com/snakemake/snakemake-wrappers/commit/c4ee12f83c544833aa4f807b60e691516c030bf3))
+
 ### [1.18.3](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.18.2...v1.18.3) (2022-10-30)
 
 
