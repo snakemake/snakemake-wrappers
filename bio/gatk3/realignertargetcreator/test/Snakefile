@@ -1,17 +1,20 @@
 rule realignertargetcreator:
     input:
-        bam="mapped/{sample}.bam",
+        bam="{sample}.bam",
+        bai="{sample}.bai",
         ref="genome.fasta",
+        fai="genome.fasta.fai",
+        dict="genome.dict",
         known="dbsnp.vcf.gz",
+        known_idx="dbsnp.vcf.gz.tbi",
     output:
         intervals="{sample}.intervals",
-        java_temp=temp(directory("gatk3_indelrealigner/{sample}")),
     log:
         "logs/gatk/realignertargetcreator/{sample}.log",
     params:
-        extra="", # optional
+        extra="--defaultBaseQualities 20 --filter_reads_with_N_cigar",  # optional
     resources:
         mem_mb=1024,
     threads: 16
     wrapper:
-        "bio/gatk3/realignertargetcreator"
+        "master/bio/gatk3/realignertargetcreator"

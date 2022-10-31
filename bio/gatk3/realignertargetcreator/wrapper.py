@@ -9,33 +9,32 @@ from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
 extra = snakemake.params.get("extra", "")
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 java_opts = get_java_opts(snakemake)
 
 
 bed = snakemake.input.get("bed", "")
 if bed:
-    bed = "-L " + bed
+    bed = f"--intervals {bed}"
 
 
 known = snakemake.input.get("known", "")
 if known:
     if isinstance(known, str):
-        known = "-known {}".format(known)
+        known = f"--known {known}"
     else:
-        known = list(map("-known {}".format, known))
-
-
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+        known = list(map("--known {}".format, known))
 
 
 shell(
-    "gatk3 {java_opts} -T RealignerTargetCreator"
-    " -nt {snakemake.threads}"
-    " {extra}"
-    " -I {snakemake.input.bam}"
-    " -R {snakemake.input.ref}"
+    "gatk3 {java_opts}"
+    " --analysis_type RealignerTargetCreator"
+    " --num_threads {snakemake.threads}"
+    " --input_file {snakemake.input.bam}"
+    " --reference_sequence {snakemake.input.ref}"
     " {known}"
     " {bed}"
-    " -o {snakemake.output.intervals}"
+    " {extra}"
+    " --out {snakemake.output.intervals}"
     " {log}"
 )
