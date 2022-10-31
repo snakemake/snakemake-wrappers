@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - snp-mutator ==1.2.0
+  - snp-mutator =1.2.0

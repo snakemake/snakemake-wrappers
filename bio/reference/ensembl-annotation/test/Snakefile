@@ -9,7 +9,7 @@ rule get_annotation:
         # branch="plants",  # optional: specify branch
     log:
         "logs/get_annotation.log",
-    cache: True  # save space and time with between workflow caching (see docs)
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-annotation"
 
@@ -25,6 +25,6 @@ rule get_annotation_gz:
         # branch="plants",  # optional: specify branch
     log:
         "logs/get_annotation.log",
-    cache: True  # save space and time with between workflow caching (see docs)
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-annotation"

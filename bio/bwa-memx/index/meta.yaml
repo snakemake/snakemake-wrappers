@@ -1,0 +1,5 @@
+name: "bwa-mem2 index"
+description: "Creates a bwa-mem, bwa-mem2 or bwa-meme index."
+authors:
+  - Christopher Schröder
+  - Patrik Smeds

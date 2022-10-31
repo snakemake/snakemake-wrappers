@@ -1,0 +1,28 @@
+rule bazam_interleaved:
+    input:
+        bam="mapped/{sample}.bam",
+        bai="mapped/{sample}.bam.bai",
+    output:
+        reads="results/reads/{sample}.fastq.gz",
+    resources:
+        mem_mb=12000,
+    log:
+        "logs/bazam/{sample}.log",
+    wrapper:
+        "master/bio/bazam"
+
+
+rule bazam_separated:
+    input:
+        bam="mapped/{sample}.cram",
+        bai="mapped/{sample}.cram.crai",
+        reference="genome.fasta",
+    output:
+        r1="results/reads/{sample}.r1.fastq.gz",
+        r2="results/reads/{sample}.r2.fastq.gz",
+    resources:
+        mem_mb=12000,
+    log:
+        "logs/bazam/{sample}.log",
+    wrapper:
+        "master/bio/bazam"

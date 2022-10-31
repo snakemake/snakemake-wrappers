@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bowtie2 =2.4  # Keep consistent with version specified in bowtie2/align
+  - bowtie2 =2.4.5

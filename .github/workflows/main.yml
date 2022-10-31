@@ -5,9 +5,8 @@ on:
     branches:
       - master
   pull_request:
-    branches_ignore: []
-  schedule:
-    - cron: '0 0 * * 0'
+    branches:
+      - "*"
 
 jobs:
   docs:
@@ -37,12 +36,12 @@ jobs:
 
       - name: Setup Snakemake environment
         run: |
-           # ensure that mamba is happy to write into the cache
-           sudo chown -R runner:docker /usr/share/miniconda/pkgs/cache
-           conda install -c conda-forge mamba --quiet
-           export PATH="/usr/share/miniconda/bin:$PATH"
-           mamba create -c bioconda -c conda-forge --quiet -y --name snakemake snakemake-minimal pytest
-           conda config --set channel_priority strict
+          # ensure that mamba is happy to write into the cache
+          sudo chown -R runner:docker /usr/share/miniconda/pkgs/cache
+          conda install -c conda-forge mamba --quiet
+          export PATH="/usr/share/miniconda/bin:$PATH"
+          mamba create -c bioconda -c conda-forge --quiet -y --name snakemake snakemake-minimal pytest
+          conda config --set channel_priority strict
 
       - name: Fetch master
         if: github.ref != 'refs/heads/master'

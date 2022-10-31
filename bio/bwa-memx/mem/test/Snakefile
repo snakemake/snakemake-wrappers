@@ -1,0 +1,98 @@
+include: "hide.smk"  #[hide]
+
+
+rule bwa_memx_mem:
+    input:
+        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        reference="genome.fasta",
+        idx=multiext(
+            "genome.fasta",
+            ".amb",
+            ".ann",
+            ".bwt",
+            ".pac",
+            ".sa",
+        ),
+    output:
+        "mapped/mem/{sample}.cram",  # Output can be .cram, .bam, or .sam
+    log:
+        "logs/bwa_memx/{sample}.log",
+    params:
+        bwa="bwa-mem",  # Can be 'bwa-mem, bwa-mem2 or bwa-meme.
+        extra=r"-R '@RG\tID:{sample}\tSM:{sample}' -M",
+        sort="samtools",  # Can be 'none' or 'samtools or picard'.
+        sort_order="coordinate",  # Can be 'coordinate' (default) or 'queryname'.
+        sort_extra="",  # Extra args for samtools.
+        dedup="mark",  # Can be 'none' (default), 'mark' or 'remove'.
+        dedup_extra="-M",  # Extra args for samblaster.
+        exceed_thread_limit=True,  # Set threads als for samtools sort / view (total used CPU may exceed threads!)
+        embed_ref=True,  # Embed reference when writing cram.
+    threads: 8
+    wrapper:
+        "master/bio/bwa-memx/mem"
+
+
+rule bwa_memx_mem2:
+    input:
+        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        reference="genome.fasta",
+        idx=multiext(
+            "genome.fasta",
+            ".0123",
+            ".amb",
+            ".ann",
+            ".bwt.2bit.64",
+            ".pac",
+        ),
+    output:
+        "mapped/mem2/{sample}.cram",
+    log:
+        "logs/bwa_memx/{sample}.log",
+    params:
+        bwa="bwa-mem2",
+        extra=r"-R '@RG\tID:{sample}\tSM:{sample}' -M",
+        sort="picard",
+        sort_order="queryname",
+        sort_extra="",
+        dedup="none",
+        dedup_extra="-M",
+        exceed_thread_limit=True,
+        embed_ref=True,
+    threads: 8
+    wrapper:
+        "master/bio/bwa-memx/mem"
+
+
+rule bwa_memx_meme:
+    input:
+        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        reference="genome.fasta",
+        idx=multiext(
+            "genome.fasta",
+            ".0123",
+            ".amb",
+            ".ann",
+            ".pac",
+            ".pos_packed",
+            ".suffixarray_uint64",
+            ".suffixarray_uint64_L0_PARAMETERS",
+            ".suffixarray_uint64_L1_PARAMETERS",
+            ".suffixarray_uint64_L2_PARAMETERS",
+        ),
+    output:
+        "mapped/meme/{sample}.cram",
+    log:
+        "logs/bwa_memx/{sample}.log",
+    params:
+        bwa="bwa-meme",
+        extra=r"-R '@RG\tID:{sample}\tSM:{sample}' -M",
+        sort="picard",
+        sort_order="coordinate",
+        sort_extra="",
+        dedup="remove",
+        dedup_extra="-M",
+        exceed_thread_limit=False,
+        embed_ref=False,
+    threads: 8
+    wrapper:
+        "master/bio/bwa-memx/mem"

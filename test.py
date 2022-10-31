@@ -140,6 +140,56 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_bwa_memx_index():
+    run(
+        "bio/bwa-memx/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "genome.fasta.sa",
+        ],
+    )
+    run(
+        "bio/bwa-memx/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "genome.fasta.bwt.2bit.64",
+        ],
+    )
+    run(
+        "bio/bwa-memx/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "genome.fasta.pos_packed",
+        ],
+    )
+
+@skip_if_not_modified
+def test_bwa_memx_mem():
+    run(
+        "bio/bwa-memx/mem",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "bwa_memx_test",
+        ],
+    )
+
+@skip_if_not_modified
 def test_purge_dups_calcuts():
     run(
         "bio/purge_dups/calcuts",
@@ -1643,16 +1693,14 @@ def test_bwa_mem2_sort_samtools():
 @skip_if_not_modified
 def test_bwa_meme():
     run(
-        "bio/bwa-mem2/mem",
+        "bio/bwa-meme/mem",
         [
             "snakemake",
             "--cores",
             "1",
-            "mapped/a.cram",
             "--use-conda",
             "-F",
-            "-s",
-            "Snakefile_samtools",
+            "bwa_meme_test",
         ],
     )
 
@@ -2746,7 +2794,51 @@ def test_picard_createsequencedictionary():
 def test_pindel_call():
     run(
         "bio/pindel/call",
-        ["snakemake", "--cores", "1", "pindel/all_D", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "pindel/all_D",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_pindel_call_include():
+    def check_log(log):
+        assert "Looking at chromosome 1 bases 1000 to 10000" in log
+
+    run(
+        "bio/pindel/call",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "pindel/all_included_D",
+            "--use-conda",
+            "-F",
+        ],
+        check_log=check_log,
+    )
+
+
+@skip_if_not_modified
+def test_pindel_call_exclude():
+    def check_log(log):
+        assert "Looking at chromosome 1 bases 1 to 1000" in log
+
+    run(
+        "bio/pindel/call",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "pindel/all_excluded_D",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -3620,6 +3712,13 @@ def test_gatk_applybqsr():
         ["snakemake", "--cores", "1", "recal/a.bam", "--use-conda", "-F"],
     )
 
+@skip_if_not_modified
+def test_gatk_applybqsr_cram():
+    run(
+        "bio/gatk/applybqsr",
+        ["snakemake", "-s", "Snakefile_cram", "--cores", "1", "recal/a.cram", "--use-conda", "-F"],
+    )
+
 
 @skip_if_not_modified
 def test_gatk_applybqsrspark():
@@ -3628,6 +3727,12 @@ def test_gatk_applybqsrspark():
         ["snakemake", "--cores", "1", "recal/a.bam", "--use-conda", "-F"],
     )
 
+@skip_if_not_modified
+def test_gatk_applybqsrspark_cram():
+    run(
+        "bio/gatk/applybqsrspark",
+        ["snakemake", "-s", "Snakefile_cram", "--cores", "1", "recal/a.cram", "--use-conda", "-F"],
+    )
 
 @skip_if_not_modified
 def test_gatk_haplotypecaller_vcf():
@@ -4873,6 +4978,20 @@ def test_collapse_reads_to_fragments_bam():
 @skip_if_not_modified
 def test_calc_consensus_reads():
     run(
-        "meta/bio/rbt_calc_consensus/",
+        "meta/bio/calc_consensus_reads/",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "results/consensus/sampleA.bam"],
+    )
+
+@skip_if_not_modified
+def test_bazam_interleaved():
+    run(
+        "bio/bazam",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/reads/a.fastq.gz"],
+    )
+
+@skip_if_not_modified
+def test_bazam_separated():
+    run(
+        "bio/bazam",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/reads/a.r1.fastq.gz"],
     )

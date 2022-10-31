@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - nanosim-h ==1.1.0.4
+  - nanosim-h =1.1.0.4

@@ -13,4 +13,4 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
-shell("bcftools concat {bcftools_opts} {extra} {snakemake.input[0]} {log}")
+shell("bcftools concat {bcftools_opts} {extra} {snakemake.input.calls} {log}")
