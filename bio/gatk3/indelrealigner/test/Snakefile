@@ -1,21 +1,22 @@
 rule indelrealigner:
     input:
-        bam="mapped/{sample}.bam",
-        bai="mapped/{sample}.bai",
+        bam="{sample}.bam",
+        bai="{sample}.bai",
         ref="genome.fasta",
+        fai="genome.fasta.fai",
+        dict="genome.dict",
         known="dbsnp.vcf.gz",
         known_idx="dbsnp.vcf.gz.tbi",
-        target_intervals="{sample}.intervals"
+        target_intervals="{sample}.intervals",
     output:
-        bam="realigned/{sample}.bam",
-        bai="realigned/{sample}.bai",
-        java_temp=temp(directory("/tmp/gatk3_indelrealigner/{sample}")),
+        bam="{sample}.realigned.bam",
+        bai="{sample}.realigned.bai",
     log:
-        "logs/gatk3/indelrealigner/{sample}.log"
+        "logs/gatk3/indelrealigner/{sample}.log",
     params:
-        extra=""  # optional
+        extra="--defaultBaseQualities 20 --filter_reads_with_N_cigar",  # optional
     threads: 16
     resources:
-        mem_mb = 1024
+        mem_mb=1024,
     wrapper:
-        "bio/gatk/indelrealigner"
+        "master/bio/gatk3/indelrealigner"

@@ -1,12 +1,12 @@
 rule chm_eval_kit:
     output:
-        directory("resources/chm-eval-kit")
+        directory("resources/chm-eval-kit"),
     params:
         # Tag and version must match, see https://github.com/lh3/CHM-eval/releases.
         tag="v0.5",
-        version="20180222"
+        version="20180222",
     log:
-        "logs/chm-eval-kit.log"
-    cache: True
+        "logs/chm-eval-kit.log",
+    cache: "omit-software"
     wrapper:
         "master/bio/benchmark/chm-eval-kit"

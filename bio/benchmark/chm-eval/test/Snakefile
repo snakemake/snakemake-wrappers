@@ -1,28 +1,28 @@
-rule chm_eval_kit:                           # [hide]
-    output:                                  # [hide]
-        directory("resources/chm-eval-kit")  # [hide]
-    params:                                  # [hide]
-        tag="v0.5",                          # [hide]
-        version="20180222"                   # [hide]
-    log:                                     # [hide]
-        "logs/chm-eval-kit.log"              # [hide]
-    cache: True                              # [hide]
-    wrapper:                                 # [hide]
+rule chm_eval_kit:  # [hide]
+    output:  # [hide]
+        directory("resources/chm-eval-kit"),  # [hide]
+    params:  # [hide]
+        tag="v0.5",  # [hide]
+        version="20180222",  # [hide]
+    log:  # [hide]
+        "logs/chm-eval-kit.log",  # [hide]
+    cache: "omit-software"  # [hide]
+    wrapper:  # [hide]
         "master/bio/benchmark/chm-eval-kit"  # [hide]
-                                             # [hide]
+        # [hide]
 
 
 rule chm_eval:
     input:
         kit="resources/chm-eval-kit",
-        vcf="{sample}.vcf"
+        vcf="{sample}.vcf",
     output:
-        summary="chm-eval/{sample}.summary", # summary statistics
-        bed="chm-eval/{sample}.err.bed.gz" # bed file with errors
+        summary="chm-eval/{sample}.summary",  # summary statistics
+        bed="chm-eval/{sample}.err.bed.gz",  # bed file with errors
     params:
         extra="",
-        build="38"
+        build="38",
     log:
-        "logs/chm-eval/{sample}.log"
+        "logs/chm-eval/{sample}.log",
     wrapper:
         "master/bio/benchmark/chm-eval"
