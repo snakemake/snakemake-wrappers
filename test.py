@@ -1818,6 +1818,14 @@ def test_clustalo():
 
 
 @skip_if_not_modified
+def test_coolpuppy():
+    run(
+        "bio/coolpuppy",
+        ["snakemake", "--cores", "1", "CN_1000000.clpy", "--use-conda", "-F"],
+    )
+
+    
+@skip_if_not_modified
 def test_cooltools_insulation():
     run(
         "bio/cooltools/insulation",
