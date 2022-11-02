@@ -16,9 +16,7 @@ if expected:
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-resolution = snakemake.params.get(
-    "resolution", snakemake.wildcards.get("resolution")
-)
+resolution = snakemake.params.get("resolution", snakemake.wildcards.get("resolution"))
 if not resolution:
     raise ValueError("Please specify resolution either as a wildcard or as a parameter")
 
