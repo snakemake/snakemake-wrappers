@@ -8,11 +8,9 @@ import tempfile
 from pathlib import Path
 from snakemake.shell import shell
 
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-
 meryldb_parents = snakemake.input.get("meryldb_parents", "")
-
 out_prefix = "out"
+log_tmp = "__LOG__.tmp"
 
 
 with tempfile.TemporaryDirectory() as tmpdir:
@@ -24,7 +22,6 @@ with tempfile.TemporaryDirectory() as tmpdir:
         src = Path(os.path.relpath(src.resolve(), dst.resolve().parent))
         dst.symlink_to(src)
     os.chdir(tmpdir)
-    Path(str(snakemake.log)).parent.mkdir(parents=True, exist_ok=True)
 
     shell(
         "merqury.sh"
@@ -32,15 +29,15 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " {meryldb_parents}"
         " {snakemake.input.fasta}"
         " {out_prefix}"
-        " {log}"
+        " > {log_tmp} 2>&1"
     )
 
-    if snakemake.log:
-        out = cwd / str(snakemake.log)
-        shell("mv {snakemake.log} {out}")
-    if snakemake.output.logs:
-        out = cwd / str(snakemake.output.logs)
-        shell("mv logs {out}")
+    if snakemake.log.get("std"):
+        out = cwd / str(snakemake.log.std)
+        shell("mv {log_tmp} {out}")
+    if snakemake.log.get("spectra_cn"):
+        out = cwd / str(snakemake.log.spectra_cn)
+        shell("mv logs/{out_prefix}.spectra-cn.log {out}")
 
     meryldb = Path(snakemake.input.meryldb.rstrip("/")).stem
     if snakemake.output.get("meryldb_filt"):
