@@ -24,3 +24,4 @@ dependencies:
   - retry
   - time
   - argparse
+  - tempfile

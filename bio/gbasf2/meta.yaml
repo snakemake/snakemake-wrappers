@@ -1,6 +1,6 @@
 name: "gbasf2"
 description: Gbasf2 is a helper package to use the Belle II Computing Grid, similar to the LHC Computing Grid. To be run on KEKcc computing cluster. Takes care of proxy setup, job submission and steering, as well as log and output data download. Returns log files and text files with lists of paths of downloaded output files. Based on the b2luigi helper package for Luigi.
-url: https://stash.desy.de/projects/B2WM/repos/gbasf2_wrapper_snakemake
+url: https://software.belle2.org/development/sphinx/online_book/computing/gbasf2.html
 authors:
   - Caspar Schmitt
   - b2luigi authors (https://github.com/nils-braun/b2luigi)
