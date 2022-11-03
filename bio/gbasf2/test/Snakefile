@@ -1,0 +1,38 @@
+localrules:
+    Skim,
+    SetProxy,
+
+
+from extravariables import outputfile
+
+
+rule Skim:
+    input:
+        proxy_text_file="proxy.dat",
+    params:
+        steeringfile=f"{workflow.basedir}/Skim.py",
+        sandbox_input_files=["extravariables.py"],
+        gbasf2_dataset="/belle/MC/release-05-02-00/DB00001330/MC14ri_d/prod00021635/s00/e1003/4S/r00000/uubar/mdst",
+        release="release-06-00-03",
+        maxretries=10,
+        gbasf2_download_logs=True,
+        gbasf2_min_proxy_lifetime=0,
+        gbasf2_proxy_lifetime=24,
+        gbasf2_output_file_name=outputfile,
+    output:
+        output_filelist="data/skimslist.dat",
+    log:
+        "logs/skim_log.log"
+    wrapper:
+        "master/bio/gbasf2"
+
+
+rule SetProxy:
+    params:
+        setProxy=True,
+    output:
+        proxy_text_file=temp("proxy.dat"),
+    log:
+        "logs/proxy_log.log"
+    wrapper:
+        "master/bio/gbasf2"

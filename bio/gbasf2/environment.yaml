@@ -1,0 +1,26 @@
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - errno
+  - hashlib
+  - json
+  - os
+  - re
+  - shlex
+  - shutil
+  - subprocess
+  - sys
+  - tempfile
+  - warnings
+  - collections
+  - datetime
+  - functools
+  - glob
+  - itertools
+  - typing
+  - getpass
+  - jinja2
+  - retry
+  - time
+  - argparse
