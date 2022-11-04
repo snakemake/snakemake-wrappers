@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - ensembl-vep =108.0
+  - ensembl-vep =108.1
