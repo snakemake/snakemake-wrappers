@@ -24,8 +24,7 @@ rule skim: #submit a job to the Belle II grid
     log:
         "logs/skim_log.log"
     wrapper:
-        "file:/gpfs/group/belle/users/schmitca/gbasf2_wrapper_snakemake"
-        #"master/bio/gbasf2"
+        "master/bio/gbasf2"
 
 
 rule set_proxy: #set the gbasf2 proxy to be used by the subsequent rules
@@ -36,5 +35,4 @@ rule set_proxy: #set the gbasf2 proxy to be used by the subsequent rules
     log:
         "logs/proxy_log.log"
     wrapper:
-        "file:/gpfs/group/belle/users/schmitca/gbasf2_wrapper_snakemake"
-        #"master/bio/gbasf2"
+        "master/bio/gbasf2"
