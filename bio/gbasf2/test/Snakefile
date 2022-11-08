@@ -12,7 +12,7 @@ rule skim: #submit a job to the Belle II grid
     params:
         steeringfile=f"{workflow.basedir}/Skim.py", #steering file script
         sandbox_input_files=["extravariables.py"], #files to add to job sandbox
-        gbasf2_dataset="/belle/MC/release-05-02-00/DB00001330/MC14ri_d/prod00021635/s00/e1003/4S/r00000/uubar/mdst", #gbasf2 input file path
+        gbasf2_dataset=lambda wildcards: open("gbasf2_paths.dat").read().strip(), #gbasf2 input file path
         release="release-06-00-03", #basf2 release
         maxretries=10, #maximal number of reschedulings
         gbasf2_download_logs=True, #should logs be downloaded
@@ -24,7 +24,8 @@ rule skim: #submit a job to the Belle II grid
     log:
         "logs/skim_log.log"
     wrapper:
-        "master/bio/gbasf2"
+        "file:/gpfs/group/belle/users/schmitca/gbasf2_wrapper_snakemake"
+        #"master/bio/gbasf2"
 
 
 rule set_proxy: #set the gbasf2 proxy to be used by the subsequent rules
@@ -35,4 +36,5 @@ rule set_proxy: #set the gbasf2 proxy to be used by the subsequent rules
     log:
         "logs/proxy_log.log"
     wrapper:
-        "master/bio/gbasf2"
+        "file:/gpfs/group/belle/users/schmitca/gbasf2_wrapper_snakemake"
+        #"master/bio/gbasf2"
