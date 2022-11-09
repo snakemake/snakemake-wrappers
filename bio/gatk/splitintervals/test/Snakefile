@@ -1,0 +1,15 @@
+rule gatk_split_interval_list:
+    input:
+        intervals="genome.interval_list",
+        ref="genome.fasta",
+    output:
+        bed=multiext("out/genome", ".00.bed", ".01.bed", ".02.bed"),
+    log:
+        "logs/genome.log",
+    params:
+        extra="--subdivision-mode BALANCING_WITHOUT_INTERVAL_SUBDIVISION_WITH_OVERFLOW",
+        java_opts="",  # optional
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/gatk/splitintervals"
