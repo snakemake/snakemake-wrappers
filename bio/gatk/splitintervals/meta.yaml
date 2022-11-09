@@ -1,5 +1,5 @@
 name: gatk SplitIntervals
-url: https://gatk.broadinstitute.org/hc/en-us/articles/360046789092-SplitIntervals
+url: https://gatk.broadinstitute.org/hc/en-us/articles/9570513631387-SplitIntervals
 description: |
   This tool takes in intervals via the standard arguments of IntervalArgumentCollection and splits them into interval files for scattering. The resulting files contain equal number of bases. Standard GATK engine arguments include -L and -XL, interval padding, and interval set rule etc. For example, for the -L argument, the tool accepts GATK-style intervals (.list or .intervals), BED files and VCF files. See --subdivision-mode parameter for more options.
 authors:

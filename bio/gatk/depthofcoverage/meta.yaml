@@ -1,7 +1,7 @@
 name: gatk DepthOfCoverage
 description: |
   Run gatk DepthOfCoverage (BETA).
-url: https://gatk.broadinstitute.org/hc/en-us/articles/5358877443995-DepthOfCoverage-BETA-
+url: https://gatk.broadinstitute.org/hc/en-us/articles/9570475259291-DepthOfCoverage-BETA-
 authors:
   - Lauri Mesilaakso
 input:

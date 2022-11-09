@@ -1,5 +1,5 @@
-name: GATK Get pileup summaries
-url: https://gatk.broadinstitute.org/hc/en-us/articles/360037593451-GetPileupSummaries
+name: GATK GetPileupSummaries
+url: https://gatk.broadinstitute.org/hc/en-us/articles/9570416554907-GetPileupSummaries
 description: Summarizes counts of reads that support reference, alternate and other alleles
 author:
   - Thibault Dayris
