@@ -7,7 +7,9 @@ pull_request_rules:
       - "check-success=linting"
       - "check-success=testing"
       - "check-success=docs"
-      - "#approved-reviews-by>=0"
     actions:
+      review:
+        type: APPROVE
+        message: Automatically approving successfull autobump
       merge:
         method: squash
