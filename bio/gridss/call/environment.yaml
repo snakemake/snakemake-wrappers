@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - gridss ==2.9.4
+  - gridss =2.13.2
   - cpulimit =0.2
