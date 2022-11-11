@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - rsem ==1.3.3
+  - rsem =1.3.3
