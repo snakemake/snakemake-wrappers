@@ -1,0 +1,12 @@
+pull_request_rules:
+  - name: Merge autobump PRs if tests are successful
+    conditions:
+      - "author=snakedeploy-bot"
+      - "check-success=PR / title-format (pull_request_target)"
+      - "check-success=Code quality / formatting (pull_request)"
+      - "check-success=Code quality / linting (pull_request)"
+      - "check-success=Tests / testing (pull_request)"
+      - "check-success=Tests / docs (pull_request)"
+    actions:
+      merge:
+        method: squash
