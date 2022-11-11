@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - strelka ==2.9.10
+  - strelka =2.9.10
