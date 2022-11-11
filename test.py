@@ -1700,6 +1700,7 @@ def test_bwa_meme():
             "1",
             "--use-conda",
             "-F",
+            "bwa_meme_test",
         ],
     )
 
@@ -1816,6 +1817,14 @@ def test_clustalo():
     )
 
 
+@skip_if_not_modified
+def test_coolpuppy():
+    run(
+        "bio/coolpuppy",
+        ["snakemake", "--cores", "1", "CN_1000000.clpy", "--use-conda", "-F"],
+    )
+
+    
 @skip_if_not_modified
 def test_cooltools_insulation():
     run(
@@ -3864,6 +3873,38 @@ def test_gatk_cleansam():
     run(
         "bio/gatk/cleansam",
         ["snakemake", "--cores", "1", "a.clean.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk3_realignertargetcreator():
+    run(
+        "bio/gatk3/realignertargetcreator",
+        ["snakemake", "--cores", "1", "a.intervals", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk3_indelrealigner():
+    run(
+        "bio/gatk3/indelrealigner",
+        ["snakemake", "--cores", "1", "a.realigned.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk3_baserecalibrator():
+    run(
+        "bio/gatk3/baserecalibrator",
+        ["snakemake", "--cores", "1", "a.recal_data_table", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk3_printreads():
+    run(
+        "bio/gatk3/printreads",
+        ["snakemake", "--cores", "1", "a.bqsr.bam", "--use-conda", "-F"],
     )
 
 

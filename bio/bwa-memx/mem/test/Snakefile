@@ -1,21 +1,4 @@
-rule bwa_memx_test:  # [hide]
-    input:  # [hide]
-        "mapped/mem/a.cram",  # [hide]
-        "mapped/mem2/a.cram",  # [hide]
-        "mapped/meme/a.cram",  # [hide]
-
-
-rule L2_PARAMETERS_extract:  #[hide]
-    input:  #[hide]
-        "genome.fasta.suffixarray_uint64_L2_PARAMETERS.gz",  #[hide]
-    output:  #[hide]
-        temp("genome.fasta.suffixarray_uint64_L2_PARAMETERS"),  #[hide]
-    conda:  #[hide]
-        "gzip.yaml"  #[hide]
-    log:  #[hide]
-        "log/extract.l2.log",  #[hide]
-    shell:  #[hide]
-        "zcat {input} > {output} 2> {log}"  #[hide]
+include: "hide.smk"  #[hide]
 
 
 rule bwa_memx_mem:

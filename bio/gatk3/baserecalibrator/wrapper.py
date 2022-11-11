@@ -9,31 +9,31 @@ from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
 extra = snakemake.params.get("extra", "")
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 java_opts = get_java_opts(snakemake)
 
-input_bam = snakemake.input.bam
-input_known = snakemake.input.known
-input_ref = snakemake.input.ref
-bed = snakemake.params.get("bed", None)
-if bed is not None:
-    bed = "-L " + bed
-else:
-    bed = ""
 
-input_known_string = ""
-for known in input_known:
-    input_known_string = input_known_string + "  --knownSites {}".format(known)
+bed = snakemake.params.get("bed", "")
+if bed:
+    bed = f"--intervals {bed}"
 
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+
+input_known = snakemake.input.get("known", "")
+if input_known:
+    if isinstance(input_known, str):
+        input_known = [input_known]
+    input_known = list(map("--knownSites {}".format, input_known))
+
 
 shell(
-    "gatk3 {java_opts} -T BaseRecalibrator"
-    " -nct {snakemake.threads}"
-    " {extra}"
-    " -I {input_bam}"
-    " -R {input_ref}"
-    " {input_known_string}"
+    "gatk3 {java_opts}"
+    " --analysis_type BaseRecalibrator"
+    " --num_cpu_threads_per_data_thread {snakemake.threads}"
+    " --input_file {snakemake.input.bam}"
+    " {input_known}"
+    " --reference_sequence {snakemake.input.ref}"
     " {bed}"
-    " -o {snakemake.output}"
+    " {extra}"
+    " --out {snakemake.output}"
     " {log}"
 )

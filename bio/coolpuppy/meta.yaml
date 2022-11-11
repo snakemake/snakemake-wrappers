@@ -1,0 +1,20 @@
+name: coolpup.py
+description: Pileup features for a resolution in an .mcool file
+url: https://github.com/open2c/coolpuppy
+authors:
+  - Ilya Flyamer
+input:
+  - a multiresolution cooler file (.mcool)
+  - a file with features to pileup
+  - (optional) file with expected
+  - (optional) view, a bed-style file with region coordinates and names to use for analysis
+output:
+  - >
+    A file (.clpy, HDF5-based format) with the pileup.
+    Can have a {resolution} wildcard that specifies the resolution for the analysis,
+    then it doesn't need to be specified as a parameter.
+params:
+  resolution: >
+    Optional, can be instead specified as a wildcard in the output
+  extra: Any additional arguments to pass
+notes:
