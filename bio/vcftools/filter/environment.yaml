@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - vcftools ==0.1.16
+  - vcftools =0.1.16
