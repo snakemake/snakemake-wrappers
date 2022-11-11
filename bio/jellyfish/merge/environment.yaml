@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - kmer-jellyfish==2.3
+  - kmer-jellyfish =2.3.0
