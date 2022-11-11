@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - epic =0.2.7
-  - pandas =0.22.0
+  - epic =0.2.12
+  - pandas =1.1.5
