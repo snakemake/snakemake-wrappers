@@ -3,11 +3,11 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - r-base =4.1.3
+  - r-base =4.2.2
   - r-rubic =1.0.3
   - r-data.table =1.14.4
   - r-pracma =2.4.2
-  - r-ggplot2 =3.3.6
+  - r-ggplot2 =3.4.0
   - r-gtable =0.3.1
   - r-codetools =0.2_18
   - r-digest =0.6.30
