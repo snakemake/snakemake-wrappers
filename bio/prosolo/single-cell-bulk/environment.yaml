@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - prosolo ==0.6.1
+  - prosolo =0.6.1
