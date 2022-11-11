@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - pretextsnapshot ==0.0.4
+  - pretextsnapshot =0.0.4
