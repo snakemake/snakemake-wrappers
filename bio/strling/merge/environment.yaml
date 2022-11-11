@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - strling ==0.3
+  - strling =0.5.1

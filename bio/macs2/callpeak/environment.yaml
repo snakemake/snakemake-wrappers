@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - macs2>=2.2
+  - macs2 =2.2.7.1
