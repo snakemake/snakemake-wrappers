@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - pindel ==0.2.5b8
+  - pindel =0.2.5b9
