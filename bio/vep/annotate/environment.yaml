@@ -3,7 +3,7 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - ensembl-vep =108.1
+  - ensembl-vep =108.2
   - bcftools =1.16
   - perl-encode-locale =1.05
   - perl =5.32.1
