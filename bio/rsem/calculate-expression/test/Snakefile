@@ -19,5 +19,6 @@ rule calculate_expression:
         extra="--seed 42",
     log:
         "logs/rsem/calculate_expression/a.log",
+    threads: 2
     wrapper:
         "master/bio/rsem/calculate-expression"
