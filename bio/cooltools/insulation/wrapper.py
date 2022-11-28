@@ -32,7 +32,7 @@ shell(
     " {snakemake.input.cooler}::resolutions/{resolution} "
     " {window} --chunksize {chunksize} "
     " {view} "
-    # " -p {snakemake.threads} " Will be available in the next release
+    " -p {snakemake.threads} "
     " {extra} "
     " -o {snakemake.output}) {log}"
 )
