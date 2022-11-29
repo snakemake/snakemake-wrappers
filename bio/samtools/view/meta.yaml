@@ -12,4 +12,3 @@ output:
 notes: |
   * The `extra` param allows for additional program arguments (not `-@/--threads`, `--write-index`, `-o` or `-O/--output-fmt`).
   * The `region` param allows one to specify region to extract as `RNAME[:STARTPOS[-ENDPOS]]` (e.g. `chr1`, `chr2:10000000`, `chr3:1000-2000`, `'*'`).
-  * For more information see, http://www.htslib.org/doc/samtools-view.html
