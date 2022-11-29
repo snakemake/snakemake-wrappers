@@ -1,8 +1,10 @@
 name: samtools view
 description: Convert or filter SAM/BAM.
+url: http://www.htslib.org/doc/samtools-view.html
 authors:
   - Johannes Köster
   - Filipe G. Vieira
+  - Lance Parsons
 input:
   - SAM/BAM/CRAM file
 output:
@@ -10,4 +12,4 @@ output:
   - SAM/BAM/CRAM index file (optional)
 notes: |
   * The `extra` param allows for additional program arguments (not `-@/--threads`, `--write-index`, `-o` or `-O/--output-fmt`).
-  * For more information see, http://www.htslib.org/doc/samtools-view.html
+  * The `region` param allows one to specify region to extract as `RNAME[:STARTPOS[-ENDPOS]]` (e.g. `chr1`, `chr2:10000000`, `chr3:1000-2000`, `'*'`).
