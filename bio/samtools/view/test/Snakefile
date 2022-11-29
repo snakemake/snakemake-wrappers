@@ -8,6 +8,7 @@ rule samtools_view:
         "{sample}.log",
     params:
         extra="",  # optional params string
+        region="",  # optional region string
     threads: 2
     wrapper:
         "master/bio/samtools/view"
