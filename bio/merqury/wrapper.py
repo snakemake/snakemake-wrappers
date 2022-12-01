@@ -41,9 +41,14 @@ with tempfile.TemporaryDirectory() as tmpdir:
     )
 
     ### Saving LOG files
-    save_output(log_tmp, "", cwd, snakemake.output.get("std"))
+    save_output(log_tmp, "", cwd, snakemake.log.get("std"))
     for type in ["spectra_cn"]:
-        save_output(f"logs/{out_prefix}", "." + type.replace("_", "-") + ".log", cwd, snakemake.output.get(type))
+        save_output(
+            f"logs/{out_prefix}",
+            "." + type.replace("_", "-") + ".log",
+            cwd,
+            snakemake.log.get(type),
+        )
 
     ### Saving OUTPUT files
     # EXT: replace all "_" with "."
