@@ -1,0 +1,13 @@
+name: gatk SplitIntervals
+url: https://gatk.broadinstitute.org/hc/en-us/articles/9570513631387-SplitIntervals
+description: |
+  This tool takes in intervals via the standard arguments of IntervalArgumentCollection and splits them into interval files for scattering. The resulting files contain equal number of bases. Standard GATK engine arguments include -L and -XL, interval padding, and interval set rule etc. For example, for the -L argument, the tool accepts GATK-style intervals (.list or .intervals), BED files and VCF files. See --subdivision-mode parameter for more options.
+authors:
+  - Filipe G. Vieira
+input:
+  - Intervals/BED file
+output:
+  - Several Intervals/BED files
+notes: |
+  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  * The `extra` param allows for additional program arguments, but not `--scatter-count`, `--output`, `--interval-file-prefix`, `--interval-file-num-digits`, or `--extension` (automatically inferred from output files).

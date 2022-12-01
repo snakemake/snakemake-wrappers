@@ -1,4 +1,5 @@
 name: gatk GenomicsDBImport
+url: https://gatk.broadinstitute.org/hc/en-us/articles/9570326648475-GenomicsDBImport
 description: |
   Run gatk GenomicsDBImport.
 authors:
@@ -12,4 +13,3 @@ notes: |
   * The `intervals` param is mandatory
   * By default, the wrapper will create a new database (output directory must be empty or non-existent). If you want to update an existing DB, set `db_action` param to `update`.
   * The `extra` param allows for additional program arguments.
-  * For more information see, https://gatk.broadinstitute.org/hc/en-us/articles/4405451266331-GenomicsDBImport

@@ -1,5 +1,5 @@
 name: gatk FilterMutectCalls
-url: https://gatk.broadinstitute.org/hc/en-us/articles/360042476952-FilterMutectCalls
+url: https://gatk.broadinstitute.org/hc/en-us/articles/9570331605531-FilterMutectCalls
 description: |
   Run gatk FilterMutectCalls to filter variants in a Mutect2 VCF callset.
 authors:
