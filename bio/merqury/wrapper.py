@@ -13,6 +13,14 @@ out_prefix = "out"
 log_tmp = "__LOG__.tmp"
 
 
+def save_output(out_prefix, ext, cwd, file):
+    if file is None:
+        return 0
+    src = f"{out_prefix}{ext}"
+    dest = cwd / file
+    shell("cat {src} > {dest}")
+
+
 with tempfile.TemporaryDirectory() as tmpdir:
     cwd = Path.cwd()
     # Create symlinks for input files
@@ -32,69 +40,52 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " > {log_tmp} 2>&1"
     )
 
-    if snakemake.log.get("std"):
-        out = cwd / str(snakemake.log.std)
-        shell("mv {log_tmp} {out}")
-    if snakemake.log.get("spectra_cn"):
-        out = cwd / str(snakemake.log.spectra_cn)
-        shell("mv logs/{out_prefix}.spectra-cn.log {out}")
+    ### Saving LOG files
+    save_output(log_tmp, "", cwd, snakemake.output.get("std"))
+    for type in ["spectra_cn"]:
+        save_output(f"logs/{out_prefix}", "." + type.replace("_", "-") + ".log", cwd, snakemake.output.get(type))
 
+    ### Saving OUTPUT files
+    # EXT: replace all "_" with "."
     meryldb = Path(snakemake.input.meryldb.rstrip("/")).stem
-    if snakemake.output.get("meryldb_filt"):
-        out = cwd / snakemake.output.meryldb_filt
-        shell("cat {meryldb}.filt > {out}")
-    if snakemake.output.get("meryldb_hist"):
-        out = cwd / snakemake.output.meryldb_hist
-        shell("cat {meryldb}.hist > {out}")
-    if snakemake.output.get("meryldb_hist_ploidy"):
-        out = cwd / snakemake.output.meryldb_hist_ploidy
-        shell("cat {meryldb}.hist.ploidy > {out}")
+    for type in ["filt", "hist", "hist_ploidy"]:
+        save_output(
+            meryldb, "." + type.replace("_", "."), cwd, snakemake.output.get(type)
+        )
 
-    if snakemake.output.get("completeness_stats"):
-        out = cwd / snakemake.output.completeness_stats
-        shell("cat {out_prefix}.completeness.stats > {out}")
-    if snakemake.output.get("dist_only_hist"):
-        out = cwd / snakemake.output.dist_only_hist
-        shell("cat {out_prefix}.dist_only.hist > {out}")
-    if snakemake.output.get("only_hist"):
-        out = cwd / snakemake.output.only_hist
-        shell("cat {out_prefix}.only.hist > {out}")
-    if snakemake.output.get("qv"):
-        out = cwd / snakemake.output.qv
-        shell("cat {out_prefix}.qv > {out}")
+    # EXT: replace last "_" with "."
+    for type in [
+        "completeness_stats",
+        "dist_only_hist",
+        "only_hist",
+        "qv",
+        "hapmers_count",
+        "hapmers_blob_png",
+    ]:
+        save_output(
+            out_prefix,
+            "." + type[::-1].replace("_", ".", 1)[::-1],
+            cwd,
+            snakemake.output.get(type),
+        )
 
-    if snakemake.output.get("spectra_asm_hist"):
-        out = cwd / snakemake.output.spectra_asm_hist
-        shell("cat {out_prefix}.spectra-asm.hist > {out}")
-    if snakemake.output.get("spectra_asm_ln_png"):
-        out = cwd / snakemake.output.spectra_asm_ln_png
-        shell("mv {out_prefix}.spectra-asm.ln.png {out}")
-    if snakemake.output.get("spectra_asm_fl_png"):
-        out = cwd / snakemake.output.spectra_asm_fl_png
-        shell("mv {out_prefix}.spectra-asm.fl.png {out}")
-    if snakemake.output.get("spectra_asm_st_png"):
-        out = cwd / snakemake.output.spectra_asm_st_png
-        shell("mv {out_prefix}.spectra-asm.st.png {out}")
-
-    if snakemake.output.get("spectra_cn_hist"):
-        out = cwd / snakemake.output.spectra_cn_hist
-        shell("cat {out_prefix}.spectra-cn.hist > {out}")
-    if snakemake.output.get("spectra_cn_ln_png"):
-        out = cwd / snakemake.output.spectra_cn_ln_png
-        shell("mv {out_prefix}.spectra-cn.ln.png {out}")
-    if snakemake.output.get("spectra_cn_fl_png"):
-        out = cwd / snakemake.output.spectra_cn_fl_png
-        shell("mv {out_prefix}.spectra-cn.fl.png {out}")
-    if snakemake.output.get("spectra_cn_st_png"):
-        out = cwd / snakemake.output.spectra_cn_st_png
-        shell("mv {out_prefix}.spectra-cn.st.png {out}")
-
-    if snakemake.output.get("hapmers_count"):
-        out = cwd / snakemake.output.hapmers_count
-        shell("cat {out_prefix}.hapmers.count > {out}")
-    if snakemake.output.get("hapmers_png"):
-        out = cwd / snakemake.output.hapmers_png
-        shell("mv {out_prefix}.hapmers.blob.png {out}")
+    # EXT: replace first "_" with "-", and remaining with "."
+    for type in [
+        "spectra_asm_hist",
+        "spectra_asm_ln_png",
+        "spectra_asm_fl_png",
+        "spectra_asm_st_png",
+        "spectra_cn_hist",
+        "spectra_cn_ln_png",
+        "spectra_cn_fl_png",
+        "spectra_cn_st_png",
+    ]:
+        save_output(
+            out_prefix,
+            "." + type.replace("_", ".").replace(".", "-", 1),
+            cwd,
+            snakemake.output.get(type),
+        )
 
     input_fas = snakemake.input.fasta
     if isinstance(input_fas, str):
@@ -103,36 +94,34 @@ with tempfile.TemporaryDirectory() as tmpdir:
     for fas in range(1, len(input_fas) + 1):
         prefix = Path(input_fas[fas - 1]).name.removesuffix(".fasta")
 
-        out = snakemake.output.get(f"fas{fas}_only_bed")
-        if out:
-            out = cwd / out
-            shell("cat {prefix}_only.bed > {out}")
-        out = snakemake.output.get(f"fas{fas}_only_wig")
-        if out:
-            out = cwd / out
-            shell("cat {prefix}_only.wig > {out}")
+        # EXT: remove everything until first "_" and replace last "_" with "."
+        for type in [f"fas{fas}_only_bed", f"fas{fas}_only_wig"]:
+            save_output(
+                prefix,
+                type[type.find("_") :][::-1].replace("_", ".", 1)[::-1],
+                cwd,
+                snakemake.output.get(type),
+            )
 
-        out = snakemake.output.get(f"fas{fas}_only_hist")
-        if out:
-            out = cwd / out
-            shell("cat {out_prefix}.{prefix}.only.hist > {out}")
-        out = snakemake.output.get(f"fas{fas}_qv")
-        if out:
-            out = cwd / out
-            shell("cat {out_prefix}.{prefix}.qv > {out}")
-        out = snakemake.output.get(f"fas{fas}_spectra_hist")
-        if out:
-            out = cwd / out
-            shell("cat {out_prefix}.{prefix}.spectra-cn.hist > {out}")
-        out = snakemake.output.get(f"fas{fas}_spectra_ln_png")
-        if out:
-            out = cwd / out
-            shell("mv {out_prefix}.{prefix}.spectra-cn.ln.png {out}")
-        out = snakemake.output.get(f"fas{fas}_spectra_fl_png")
-        if out:
-            out = cwd / out
-            shell("mv {out_prefix}.{prefix}.spectra-cn.fl.png {out}")
-        out = snakemake.output.get(f"fas{fas}_spectra_st_png")
-        if out:
-            out = cwd / out
-            shell("mv {out_prefix}.{prefix}.spectra-cn.st.png {out}")
+        # EXT: remove everything until first "_" and replace all "_" with "."
+        for type in [f"fas{fas}_only_hist", f"fas{fas}_qv"]:
+            save_output(
+                f"{out_prefix}.{prefix}",
+                type[type.find("_") :].replace("_", "."),
+                cwd,
+                snakemake.output.get(type),
+            )
+
+        # EXT: remove everything until first "_", replace first "_" with "-", and remaining with "."
+        for type in [
+            f"fas{fas}_spectra_cn_hist",
+            f"fas{fas}_spectra_cn_ln_png",
+            f"fas{fas}_spectra_cn_fl_png",
+            f"fas{fas}_spectra_cn_st_png",
+        ]:
+            save_output(
+                f"{out_prefix}.{prefix}",
+                "." + type[type.find("_") + 1 :].replace("_", ".").replace(".", "-", 1),
+                cwd,
+                snakemake.output.get(type),
+            )
