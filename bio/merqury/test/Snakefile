@@ -3,17 +3,17 @@ rule run_merqury_haploid:
         fasta="hap1.fasta",
         meryldb="meryldb",
     output:
-        # meryldb
+        # meryldb output
         filt="results/haploid/meryldb.filt",
         hist="results/haploid/meryldb.hist",
         hist_ploidy="results/haploid/meryldb.hist.ploidy",
-	# general output
+        # general output
         completeness_stats="results/haploid/out.completeness.stats",
         dist_only_hist="results/haploid/out.dist.only.hist",
         qv="results/haploid/out.qv",
         spectra_asm_hist="results/haploid/out.spectra_asm.hist",
         spectra_asm_ln_png="results/haploid/out.spectra_asm.png",
-	# haplotype-specific output
+        # haplotype-specific output
         fas1_only_bed="results/haploid/hap1.bed",
         fas1_only_wig="results/haploid/hap1.wig",
         fas1_only_hist="results/haploid/hap1.hist",
@@ -33,11 +33,11 @@ rule run_merqury_diploid:
         fasta=["hap1.fasta", "hap2.fasta"],
         meryldb="meryldb",
     output:
-        # meryldb
+        # meryldb output
         filt="results/diploid/meryldb.filt",
         hist="results/diploid/meryldb.hist",
         hist_ploidy="results/diploid/meryldb.hist.ploidy",
-	# general output
+        # general output
         completeness_stats="results/diploid/out.completeness.stats",
         dist_only_hist="results/diploid/out.dist.only.hist",
         only_hist="results/diploid/out.only.hist",
@@ -46,7 +46,7 @@ rule run_merqury_diploid:
         spectra_asm_ln_png="results/diploid/out.spectra_asm.png",
         spectra_cn_hist="results/diploid/out.spectra_cn.hist",
         spectra_cn_ln_png="results/diploid/out.spectra_cn.png",
-	# haplotype-specific output
+        # haplotype-specific output
         fas1_only_bed="results/diploid/hap1.bed",
         fas1_only_wig="results/diploid/hap1.wig",
         fas1_only_hist="results/diploid/hap1.hist",
