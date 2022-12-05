@@ -21,10 +21,9 @@ germline_resource = snakemake.input.get("germline", "")
 if germline_resource:
     germline_resource = f"--germline-resource {germline_resource}"
 
-intervals = ""
-if "intervals" in snakemake.input.keys():
-    intervals = "--intervals {}".format(snakemake.input["intervals"])
-
+intervals = snakemake.input.get("intervals", "")
+if intervals:
+    intervals = f"--intervals {intervals}"
 
 f1r2 = ""
 if "f1r2" in snakemake.output.keys():
