@@ -29,9 +29,9 @@ f1r2 = snakemake.output.get("f1r2", "")
 if f1r2:
     f1r2 = f"--f1r2-tar-gz {f1r2}"
 
-pon = ""
-if "pon" in snakemake.input.keys():
-    pon = "--panel-of-normals {}".format(snakemake.input["pon"])
+pon = snakemake.input.get("pon", ""):
+if pon:
+    pon = f"--panel-of-normals {pon}"
 
 extra = snakemake.params.get("extra", "")
 java_opts = get_java_opts(snakemake)
