@@ -25,9 +25,9 @@ intervals = snakemake.input.get("intervals", "")
 if intervals:
     intervals = f"--intervals {intervals}"
 
-f1r2 = ""
-if "f1r2" in snakemake.output.keys():
-    f1r2 = "--f1r2-tar-gz {}".format(snakemake.output["f1r2"])
+f1r2 = snakemake.output.get("f1r2", "")
+if f1r2:
+    f1r2 = f"--f1r2-tar-gz {f1r2}"
 
 pon = ""
 if "pon" in snakemake.input.keys():
