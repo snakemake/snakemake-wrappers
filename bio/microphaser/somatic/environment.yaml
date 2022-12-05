@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - microphaser =0.3
+  - microphaser =0.7.0

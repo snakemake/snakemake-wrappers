@@ -3,4 +3,4 @@ channels:
   - defaults
   - bioconda
 dependencies:
-  - cooltools =0.5
+  - cooltools =0.5.1

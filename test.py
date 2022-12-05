@@ -140,6 +140,56 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_bwa_memx_index():
+    run(
+        "bio/bwa-memx/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "genome.fasta.sa",
+        ],
+    )
+    run(
+        "bio/bwa-memx/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "genome.fasta.bwt.2bit.64",
+        ],
+    )
+    run(
+        "bio/bwa-memx/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "genome.fasta.pos_packed",
+        ],
+    )
+
+@skip_if_not_modified
+def test_bwa_memx_mem():
+    run(
+        "bio/bwa-memx/mem",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "bwa_memx_test",
+        ],
+    )
+
+@skip_if_not_modified
 def test_purge_dups_calcuts():
     run(
         "bio/purge_dups/calcuts",
@@ -1650,6 +1700,7 @@ def test_bwa_meme():
             "1",
             "--use-conda",
             "-F",
+            "bwa_meme_test",
         ],
     )
 
@@ -1766,6 +1817,14 @@ def test_clustalo():
     )
 
 
+@skip_if_not_modified
+def test_coolpuppy():
+    run(
+        "bio/coolpuppy",
+        ["snakemake", "--cores", "1", "CN_1000000.clpy", "--use-conda", "-F"],
+    )
+
+    
 @skip_if_not_modified
 def test_cooltools_insulation():
     run(
@@ -2743,7 +2802,51 @@ def test_picard_createsequencedictionary():
 def test_pindel_call():
     run(
         "bio/pindel/call",
-        ["snakemake", "--cores", "1", "pindel/all_D", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "pindel/all_D",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_pindel_call_include():
+    def check_log(log):
+        assert "Looking at chromosome 1 bases 1000 to 10000" in log
+
+    run(
+        "bio/pindel/call",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "pindel/all_included_D",
+            "--use-conda",
+            "-F",
+        ],
+        check_log=check_log,
+    )
+
+
+@skip_if_not_modified
+def test_pindel_call_exclude():
+    def check_log(log):
+        assert "Looking at chromosome 1 bases 1 to 1000" in log
+
+    run(
+        "bio/pindel/call",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "pindel/all_excluded_D",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -3563,6 +3666,14 @@ def test_gatk_scatterintervalsbyns():
 
 
 @skip_if_not_modified
+def test_gatk_splitintervals():
+    run(
+        "bio/gatk/splitintervals",
+        ["snakemake", "--cores", "1", "out/genome.00.bed", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_gatk_printreadsspark():
     run(
         "bio/gatk/printreadsspark",
@@ -3770,6 +3881,38 @@ def test_gatk_cleansam():
     run(
         "bio/gatk/cleansam",
         ["snakemake", "--cores", "1", "a.clean.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk3_realignertargetcreator():
+    run(
+        "bio/gatk3/realignertargetcreator",
+        ["snakemake", "--cores", "1", "a.intervals", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk3_indelrealigner():
+    run(
+        "bio/gatk3/indelrealigner",
+        ["snakemake", "--cores", "1", "a.realigned.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk3_baserecalibrator():
+    run(
+        "bio/gatk3/baserecalibrator",
+        ["snakemake", "--cores", "1", "a.recal_data_table", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk3_printreads():
+    run(
+        "bio/gatk3/printreads",
+        ["snakemake", "--cores", "1", "a.bqsr.bam", "--use-conda", "-F"],
     )
 
 

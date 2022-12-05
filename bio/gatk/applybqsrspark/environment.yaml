@@ -3,7 +3,6 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - gatk4 =4.2
-  - openjdk =8
-  - snakemake-wrapper-utils =0.3
-  - samtools =1.16
+  - gatk4 =4.3.0.0
+  - snakemake-wrapper-utils =0.5.0
+  - samtools =1.16.1

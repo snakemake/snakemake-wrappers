@@ -4,4 +4,4 @@ channels:
   - bioconda
 dependencies:
   - ucsc-bedgraphtobigwig
-  - cooltools =0.5
+  - cooltools =0.5.2

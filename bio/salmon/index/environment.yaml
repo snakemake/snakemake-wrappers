@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - salmon ==1.8.0
+  - salmon =1.9.0

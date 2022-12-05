@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - wgsim ==1.0.0
+  - wgsim =1.0
