@@ -12,9 +12,9 @@ from snakemake_wrapper_utils.java import get_java_opts
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-bam_output = ""
-if "bam" in snakemake.output.keys():
-    bam_output = "--bam-output {}".format(snakemake.output["bam"])
+bam_output = snakemake.output.get("bam", ""):
+if bam_output:
+    bam_output = f"--bam-output {bam_output }"
 
 
 germline_resource = ""
