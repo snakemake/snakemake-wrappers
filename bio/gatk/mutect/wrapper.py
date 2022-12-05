@@ -5,12 +5,19 @@ __copyright__ = "Copyright 2019, Dayris Thibault"
 __email__ = "thibault.dayris@gustaveroussy.fr"
 __license__ = "MIT"
 
+import os
 import tempfile
 from snakemake.shell import shell
 from snakemake.utils import makedirs
 from snakemake_wrapper_utils.java import get_java_opts
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+
+# On non-omp systems, and in case OMP_NUM_THREADS
+# was not set, define OMP_NUM_THREADS through python
+if 'OMP_NUM_THREADS' not in os.environ.keys():
+    os.environ["OMP_NUM_THREADS"] = snakemake.threads
+
 
 bam_output = snakemake.output.get("bam", ""):
 if bam_output:
