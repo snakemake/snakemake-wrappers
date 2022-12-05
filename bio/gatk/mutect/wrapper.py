@@ -17,9 +17,9 @@ if bam_output:
     bam_output = f"--bam-output {bam_output }"
 
 
-germline_resource = ""
-if "germline" in snakemake.input.keys():
-    germline_resource = "--germline-resource {}".format(snakemake.input["germline"])
+germline_resource = snakemake.input.get("germline", "")
+if germline_resource:
+    germline_resource = f"--germline-resource {germline_resource}"
 
 intervals = ""
 if "intervals" in snakemake.input.keys():
