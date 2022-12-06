@@ -43,6 +43,14 @@ if pon:
 extra = snakemake.params.get("extra", "")
 java_opts = get_java_opts(snakemake)
 
+# In case Java execution environment suits GC parallel
+# calls, these must be given as optional java parameters
+if "UseParallelGC" not in java_opts:
+    java_opts += " -XX:+UseParallelGC "
+if "ParallelGCThreads" not in java_opts:
+    java_opts += " -XX:ParallelGCThreads={snakemake.threads}"
+
+
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "gatk --java-options '{java_opts}' Mutect2"  # Tool and its subprocess
