@@ -48,7 +48,7 @@ java_opts = get_java_opts(snakemake)
 if "UseParallelGC" not in java_opts:
     java_opts += " -XX:+UseParallelGC "
 if "ParallelGCThreads" not in java_opts:
-    java_opts += " -XX:ParallelGCThreads={snakemake.threads}"
+    java_opts += f" -XX:ParallelGCThreads={snakemake.threads}"
 
 
 with tempfile.TemporaryDirectory() as tmpdir:
