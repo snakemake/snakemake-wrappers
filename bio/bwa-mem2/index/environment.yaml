@@ -1,6 +1,6 @@
 channels:
-  - bioconda
   - conda-forge
-  - defaults
+  - bioconda
+  - nodefaults
 dependencies:
-  - bwa-mem2 ==2.2.1
+  - bwa-mem2 =2.2.1

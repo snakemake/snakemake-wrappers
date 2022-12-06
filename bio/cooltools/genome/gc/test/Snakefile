@@ -1,0 +1,13 @@
+rule cooltools_genome_gc:
+    input:
+        bins="ASM584v2/bins_100000.bed",  # 100000 bins
+        fasta="ASM584v2/ASM584v2.fa",  # genome fasta for E. coli
+    output:
+        "gc_100000.tsv",
+    params:
+        extra="",
+    threads: 1
+    log:
+        "logs/gc.log",
+    wrapper:
+        "master/bio/cooltools/genome/gc"

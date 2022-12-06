@@ -1,4 +1,15 @@
 name: delly
 description: Call variants with delly.
+url: https://github.com/dellytools/delly
 authors:
   - Johannes Köster
+  - Filipe G. Vieira
+input:
+  - BAM/CRAM file(s)
+  - reference genome
+  - BED file (optional)
+output:
+  - VCF/BCF with SVs.
+notes: |
+  * The `uncompressed_bcf` param sets output to uncompressed BCF (ignored if output is `vcf` or `vcf.gz`)
+  * The `extra` param allows for additional program arguments

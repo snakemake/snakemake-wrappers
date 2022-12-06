@@ -1,5 +1,7 @@
 channels:
   - conda-forge
   - bioconda
+  - nodefaults
 dependencies:
-  - deepvariant ==1.1.0
+  - deepvariant =1.4
+  - numpy =1.23

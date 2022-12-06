@@ -1,4 +1,6 @@
 channels:
+  - conda-forge
   - bioconda
+  - nodefaults
 dependencies:
-  - preseq ==2.0.3
+  - preseq =3.2.0

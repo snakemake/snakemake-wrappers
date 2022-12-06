@@ -1,4 +1,5 @@
 name: GATK Mutect2
+url: https://gatk.broadinstitute.org/hc/en-us/articles/9570422171291-Mutect2
 description: Call somatic SNVs and indels via local assembly of haplotypes
 url: https://gatk.broadinstitute.org/hc/en-us/articles/360037593851-Mutect2
 authors:
@@ -17,7 +18,5 @@ output:
 notes: |
   * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
   * The `extra` param allows for additional program arguments.
-  * For more information see, https://gatk.broadinstitute.org/hc/en-us/articles/360037593851-Mutect2
   * In order to allow multithreading in Mutect2 through OMP, add and export OMP_NUM_THREADS as an environment variable: `OMP_NUM_THREADS={snakemake.threads} && export OMP_NUM_THREADS`.
   * In order to allow multithreading in Mutect2 through java ParallelGC, add `-XX:+UseParallelGC -XX:ParallelGCThreads={snakemake.threads}` in java options.
-

@@ -1,0 +1,10 @@
+name: "bazam"
+description: Bazam is a smarter way to realign reads from one genome to another. If you've tried to use Picard SAMtoFASTQ or samtools bam2fq before and ended up unsatisfied with complicated, long running inefficient pipelines, bazam might be what you wanted. Bazam will output FASTQ in a form that can stream directly into common aligners such as BWA or Bowtie2, so that you can quickly and easily realign reads without extraction to any intermediate format. Bazam can target a specific region of the genome, specified as a region or a gene name if you prefer.
+url: https://github.com/ssadedin/bazam
+authors:
+  - Christopher Schröder
+input:
+  - BAM/CRAM file
+  - reference genome
+output:
+  - fastq file

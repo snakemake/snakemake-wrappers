@@ -1,6 +1,7 @@
 channels:
   - conda-forge
   - bioconda
+  - nodefaults
 dependencies:
   - samtools =1.14
   - snakemake-wrapper-utils =0.3

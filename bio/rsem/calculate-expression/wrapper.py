@@ -19,14 +19,14 @@ if bam:
     paired_end = snakemake.params.get("paired-end", False)
 else:
     input_bam = ""
-    if fq:
+    if fq_one:
         input_bam = False
-        if isinstance(fq, list):
-            num_fq_one = len(fq)
-            input_string = ",".join(fq)
+        if isinstance(fq_one, list):
+            num_fq_one = len(fq_one)
+            input_string = ",".join(fq_one)
         else:
             num_fq_one = 1
-            input_string = fq
+            input_string = fq_one
         if fq_two:
             paired_end = True
             if isinstance(fq_two, list):

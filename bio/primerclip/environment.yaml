@@ -1,5 +1,6 @@
 channels:
   - bioconda
+  - nodefaults
 dependencies:
   - samtools ==1.9
   - primerclip ==0.3.8

@@ -1,0 +1,12 @@
+name: bamToBed
+description: >
+  Conversion utility that converts sequence alignments in BAM format into BED, BED12, and/or BEDPE records.
+url: https://bedtools.readthedocs.io/en/latest/content/tools/bamtobed.html
+authors:
+  - Filipe G. Vieira
+input:
+  - BAM file
+output:
+  - BED file
+notes: |
+  * The `extra` param allows for additional program arguments.

@@ -1,0 +1,12 @@
+name: My variant report
+datasets:
+  variants:
+    path: "data/A.tsv"
+    separator: "\t"
+
+default-view: variants
+views:
+  variants:
+    dataset: variants
+    desc: |
+      ### Some crazy variants

@@ -1,0 +1,14 @@
+rule purge_dups:
+    input:
+        paf="split.self.paf.gz",
+        #cov="pbcstat.cov",
+        #cutoff="calcuts.cutoffs",
+    output:
+        "out/purge_dups.bed",
+    log:
+        "logs/purge_dups.log",
+    params:
+        extra="-2",
+    threads: 1
+    wrapper:
+        "master/bio/purge_dups/purge_dups"

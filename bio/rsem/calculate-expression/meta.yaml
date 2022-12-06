@@ -1,11 +1,15 @@
 name: rsem calculate expression
+url: http://deweylab.github.io/RSEM/rsem-calculate-expression.html
 description: |
         Run rsem-calculate-expression to estimate gene and isoform expression from RNA-Seq data.
 authors:
   - Brett Copeland
 input:
-  - BAM aligned to transcriptome
+  - bam: BAM file with reads aligned to transcriptome
+  - fq_one: FASTQ file of reads (read_1 for paired-end sequencing)
+  - fq_two: Optional second FASTQ file of reads (read_2 for paired-end sequencing)
 output:
-  - Per-gene and per-isoform read quantification.
+  - genes_results: This file contains per-gene quantification data for the sample
+  - isoforms_results: This file contains per-transcript quantification data for the sample
 notes: |
   * For more information, see https://github.com/deweylab/RSEM.

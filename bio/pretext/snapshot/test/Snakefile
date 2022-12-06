@@ -1,0 +1,26 @@
+rule pretext_snapshot_png:
+    input:
+        "map.pretext",
+    output:
+        all=directory("all_maps/"),
+        full="full_map.png",
+    log:
+        "logs/pretext_snapshot_png.log",
+    params:
+        extra="--resolution 1080",
+    wrapper:
+        "master/bio/pretext/snapshot"
+
+
+rule pretext_snapshot_jpg:
+    input:
+        "map.pretext",
+    output:
+        all=directory("all_maps/"),
+        full="full_map.jpg",
+    log:
+        "logs/pretext_snapshot_jpg.log",
+    params:
+        extra="--resolution 1080",
+    wrapper:
+        "master/bio/pretext/snapshot"

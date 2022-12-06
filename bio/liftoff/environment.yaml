@@ -1,5 +1,8 @@
 channels:
-  - bioconda
   - conda-forge
+  - bioconda
+  - nodefaults
 dependencies:
-  - liftoff =1.6
+  - liftoff =1.6.3
+  - biopython =1.79
+  - packaging =21.3

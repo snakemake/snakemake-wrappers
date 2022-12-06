@@ -1,5 +1,6 @@
 channels:
-  - bioconda
   - conda-forge
+  - bioconda
+  - nodefaults
 dependencies:
-  - gdc-client ==1.5.0
+  - gdc-client =1.6.1

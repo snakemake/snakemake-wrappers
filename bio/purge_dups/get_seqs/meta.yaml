@@ -1,0 +1,12 @@
+name: purge_dups get_seqs
+description: Purge haplotigs and overlaps in an assembly based on read depth
+url: https://github.com/dfguan/purge_dups
+authors:
+  - Filipe Vieira
+input:
+  - BED file
+  - FASTA file
+output:
+  - purged FASTA file
+notes: |
+  * The `extra` param allows for additional program arguments.

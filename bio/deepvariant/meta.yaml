@@ -13,3 +13,4 @@ output:
 notes: |
   * The `extra` param alllows for additional program arguments.
   * This snakemake wrapper uses bioconda deepvariant package. Copyright 2018 Brad Chapman.
+blacklisted: make_examples.py does not find numpy

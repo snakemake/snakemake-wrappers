@@ -1,8 +1,8 @@
 channels:
   - r
-  - bioconda
   - conda-forge
-  - defaults
+  - bioconda
+  - nodefaults
 dependencies:
   - fgbio ==0.6.1
   - r-ggplot2

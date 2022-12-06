@@ -1,54 +1,52 @@
 name: picard CollectMultipleMetrics
 description: >
   A ``picard`` meta-metrics tool that collects multiple classes of metrics.
-  For usage information about CollectMultipleMetrics, please see  ``picard``'s `documentation <https://broadinstitute.github.io/picard/command-line-overview.html#CollectMultipleMetrics>`_.
-  For more information about ``picard``, also see the `source code <https://github.com/broadinstitute/picard>`_.
-
 
   You can select which tool(s) to run by adding the respective extension(s) (see table below) to the requested output of the wrapper invocation (see example Snakemake rule below).
 
     +-----------------------------------+-----------------------------------------+
     |               Tool                |    Extension(s) for the output files    |
     +===================================+=========================================+
-    | CollectAlignmentSummaryMetrics    | ".alignment_summary_metrics"            |
+    | CollectAlignmentSummaryMetrics    | `.alignment_summary_metrics`            |
     +-----------------------------------+-----------------------------------------+
-    | CollectInsertSizeMetrics          | ".insert_size_metrics",                 |
+    | CollectInsertSizeMetrics          | `.insert_size_metrics`,                 |
     |                                   |                                         |
-    |                                   | ".insert_size_histogram.pdf"            |
+    |                                   | `.insert_size_histogram.pdf`            |
     +-----------------------------------+-----------------------------------------+
-    | QualityScoreDistribution          | ".quality_distribution_metrics",        |
+    | QualityScoreDistribution          | `.quality_distribution_metrics`,        |
     |                                   |                                         |
-    |                                   | ".quality_distribution.pdf"             |
+    |                                   | `.quality_distribution.pdf`             |
     +-----------------------------------+-----------------------------------------+
-    | MeanQualityByCycle                | ".quality_by_cycle_metrics",            |
+    | MeanQualityByCycle                | `.quality_by_cycle_metrics`,            |
     |                                   |                                         |
-    |                                   | ".quality_by_cycle.pdf"                 |
+    |                                   | `.quality_by_cycle.pdf`                 |
     +-----------------------------------+-----------------------------------------+
-    | CollectBaseDistributionByCycle    | ".base_distribution_by_cycle_metrics",  |
+    | CollectBaseDistributionByCycle    | `.base_distribution_by_cycle_metrics`,  |
     |                                   |                                         |
-    |                                   | ".base_distribution_by_cycle.pdf"       |
+    |                                   | `.base_distribution_by_cycle.pdf`       |
     +-----------------------------------+-----------------------------------------+
-    | CollectGcBiasMetrics              | ".gc_bias.detail_metrics",              |
+    | CollectGcBiasMetrics              | `.gc_bias.detail_metrics`,              |
     |                                   |                                         |
-    |                                   | ".gc_bias.summary_metrics",             |
+    |                                   | `.gc_bias.summary_metrics`,             |
     |                                   |                                         |
-    |                                   | ".gc_bias.pdf"                          |
+    |                                   | `.gc_bias.pdf`                          |
     +-----------------------------------+-----------------------------------------+
-    | RnaSeqMetrics                     | ".rna_metrics"                          |
+    | RnaSeqMetrics                     | `.rna_metrics`                          |
     +-----------------------------------+-----------------------------------------+
-    | CollectSequencingArtifactMetrics  | ".bait_bias_detail_metrics",            |
+    | CollectSequencingArtifactMetrics  | `.bait_bias_detail_metrics`,            |
     |                                   |                                         |
-    |                                   | ".bait_bias_summary_metrics",           |
+    |                                   | `.bait_bias_summary_metrics`,           |
     |                                   |                                         |
-    |                                   | ".error_summary_metrics",               |
+    |                                   | `.error_summary_metrics`,               |
     |                                   |                                         |
-    |                                   | ".pre_adapter_detail_metrics",          |
+    |                                   | `.pre_adapter_detail_metrics`,          |
     |                                   |                                         |
-    |                                   | ".pre_adapter_summary_metrics"          |
+    |                                   | `.pre_adapter_summary_metrics`          |
     +-----------------------------------+-----------------------------------------+
-    | CollectQualityYieldMetrics        | ".quality_yield_metrics"                |
+    | CollectQualityYieldMetrics        | `.quality_yield_metrics`                |
     +-----------------------------------+-----------------------------------------+
 
+url: https://broadinstitute.github.io/picard/command-line-overview.html#CollectMultipleMetrics
 authors:
   - David Laehnemann
   - Antonie Vietor
@@ -61,7 +59,6 @@ output:
   - multiple metrics pdf files (.pdf)
   - the appropriate extensions for the output files must be used depending on the desired tools
 notes: |
-  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. `-XX:ParallelGCThreads=10` (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
   * The `extra` param allows for additional program arguments.
   * `--TMP_DIR` is automatically set by `resources.tmpdir`
-  * For more information see, https://broadinstitute.github.io/picard/command-line-overview.html#CollectMultipleMetrics

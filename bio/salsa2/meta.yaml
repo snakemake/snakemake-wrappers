@@ -1,0 +1,15 @@
+name: Salsa2
+description: |
+  A tool to scaffold long read assemblies with Hi-C data
+url: https://github.com/marbl/SALSA
+authors:
+  - Filipe G. Vieira
+input:
+  - BED file
+  - FASTA file
+  - FASTA index file
+output:
+  - polished assembly (FASTA format)
+  - polished assembly (AGP format)
+notes: |
+  * The `extra` param allows for additional program arguments.

@@ -1,16 +1,53 @@
 rule run_busco:
     input:
-        "transcripts.fasta"
+        "protein.fasta",
     output:
-        directory("txome_busco")
+        short_json="txome_busco/short_summary.json",
+        short_txt="txome_busco/short_summary.txt",
+        full_table="txome_busco/full_table.tsv",
+        miss_list="txome_busco/busco_missing.tsv",
+        dataset_dir=directory("resources/busco_downloads"),
     log:
-        "logs/quality/transcriptome_busco.log"
-    threads: 8
+        "logs/proteins_busco.log",
     params:
-        mode="transcriptome",
+        mode="proteins",
         lineage="stramenopiles_odb10",
-        downloads_path="resources/busco_downloads",
         # optional parameters
-        extra="" 
+        extra="",
+    threads: 8
+    wrapper:
+        "master/bio/busco"
+
+
+rule run_busco_euk:
+    input:
+        "protein.fasta",
+    output:
+        out_dir=directory("txome_busco/euk"),
+        dataset_dir=directory("resources/busco_downloads"),
+    log:
+        "logs/proteins_busco_euk.log",
+    params:
+        mode="proteins",
+        # optional parameters
+        extra="--auto-lineage-euk",
+    threads: 8
+    wrapper:
+        "master/bio/busco"
+
+
+rule run_busco_prok:
+    input:
+        "protein.fasta",
+    output:
+        out_dir=directory("txome_busco/prok"),
+        dataset_dir=directory("resources/busco_downloads"),
+    log:
+        "logs/proteins_busco_prok.log",
+    params:
+        mode="proteins",
+        # optional parameters
+        extra="--auto-lineage-prok",
+    threads: 8
     wrapper:
         "master/bio/busco"

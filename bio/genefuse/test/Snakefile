@@ -1,0 +1,18 @@
+rule genefuse:
+    input:
+        fastq1="reads/{sample}_R1.fastq",
+        fastq2="reads/{sample}_R2.fastq",
+        config="genes.csv",
+        reference="genome.fasta",
+    output:
+        html="{sample}_genefuse_report.html",
+        json="{sample}_genefuse_report.json",
+        fusions="{sample}_fusions.txt",
+    log:
+        "logs/{sample}_genefuse.log",
+    params:
+        # optional parameters
+        extra="",
+    threads:1
+    wrapper:
+        "master/bio/genefuse"

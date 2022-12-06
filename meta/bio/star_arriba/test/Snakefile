@@ -9,7 +9,7 @@ rule star_index:
         extra="--sjdbGTFfile resources/genome.gtf --sjdbOverhang 100",
     log:
         "logs/star_index_genome.log",
-    cache: True
+    cache: True  # mark as eligible for between workflow caching
     wrapper:
         "master/bio/star/index"
 
@@ -23,7 +23,7 @@ rule star_align:
         idx="resources/star_genome",
     output:
         # see STAR manual for additional output files
-        bam="star/{sample}/Aligned.out.bam",
+        aln="star/{sample}/Aligned.out.bam",
         reads_per_gene="star/{sample}/ReadsPerGene.out.tab",
     log:
         "logs/star/{sample}.log",

@@ -1,0 +1,14 @@
+rule cooltools_expected_trans:
+    input:
+        cooler="CN.mm9.1000kb.mcool",  ## Multiresolution cooler file
+        view="mm9_view.txt",  ## File with the region names and coordinates
+    output:
+        "{sample}_{resolution,[0-9]+}.trans.expected.tsv",
+    params:
+        ## Add optional parameters
+        extra="",
+    threads: 4
+    log:
+        "logs/{sample}_{resolution}_trans_expected.log",
+    wrapper:
+        "master/bio/cooltools/expected_trans"

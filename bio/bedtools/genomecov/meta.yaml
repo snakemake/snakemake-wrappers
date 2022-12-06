@@ -1,8 +1,7 @@
-name: bedtools genomeCoverageBed
+name: genomeCoverageBed
 description: >
-  ``bedtools``'s genomeCoverageBed computes the coverage of a feature file as histograms, per-base reports or BEDGRAPH summaries among a given genome.
-  For usage information about genomeCoverageBed, please see ``bedtools``'s `documentation <https://bedtools.readthedocs.io/en/latest/content/tools/genomecov.html>`_.
-  For more information about ``bedtools``, also see the `source code <https://github.com/arq5x/bedtools2>`_.
+  Computes the coverage of a feature file as histograms, per-base reports or BEDGRAPH summaries among a given genome.
+url: https://bedtools.readthedocs.io/en/latest/content/tools/genomecov.html
 authors:
   - Antonie Vietor
 input:

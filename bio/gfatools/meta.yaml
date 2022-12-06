@@ -1,0 +1,12 @@
+name: gfatools
+description: |
+  Tools for manipulating sequence graphs in the GFA and rGFA formats
+url: https://github.com/lh3/gfatools
+authors:
+  - Filipe G. Vieira
+input:
+  - GFA file
+output:
+  - GFA/stats/FAS/BED/ASM/SQL/TXT (depends on command)
+notes: |
+  * The `command` param allows to specify how to do with the GFA: `view` [default], `stat`, `gfa2fa`, `gfa2bed`, `blacklist`, `bubble`, `asm`, `sql`, or `version`.

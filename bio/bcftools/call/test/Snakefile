@@ -4,8 +4,9 @@ rule bcftools_call:
     output:
         calls="{sample}.calls.bcf",
     params:
-        caller="-m", # valid options include -c/--consensus-caller or -m/--multiallelic-caller
-        options="--ploidy 1 --prior 0.001",
+        uncompressed_bcf=False,
+        caller="-m",  # valid options include -c/--consensus-caller or -m/--multiallelic-caller
+        extra="--ploidy 1 --prior 0.001",
     log:
         "logs/bcftools_call/{sample}.log",
     wrapper:

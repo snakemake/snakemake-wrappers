@@ -1,6 +1,7 @@
 name: "bwa mem"
 description: Map reads using bwa mem, with optional sorting using
   samtools or picard.
+url: http://bio-bwa.sourceforge.net/bwa.shtml
 authors:
   - Johannes Köster
   - Julian de Ruiter
@@ -14,5 +15,3 @@ notes: |
   * The `extra` param allows for additional arguments for bwa-mem.
   * The `sorting` param allows to enable sorting, and can be either 'none', 'samtools' or 'picard'.
   * The `sort_extra` allows for extra arguments for samtools/picard
-  * The `tmp_dir` param allows to define path to the temp dir.
-  * For more inforamtion see, http://bio-bwa.sourceforge.net/bwa.shtml

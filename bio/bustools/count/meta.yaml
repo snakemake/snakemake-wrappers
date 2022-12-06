@@ -1,0 +1,20 @@
+name: bustools count
+description: BUS files can be converted into a barcode-feature matrix
+url: https://github.com/BUStools/bustools#count
+author:
+  - Thibault Dayris
+input:
+  - bus: Single bus-file, or List of bus-files
+  - genemap: Transcript to gene mapping
+  - txnames: List of transcripts
+  - ecmap: Equivalence classes for transcripts
+output:
+  - barcodes, equivalence classes, and count matrix
+params:
+  - extra: Optional parameters, besides `--output`, `--ecmap`, and `--genemap`
+notes: |
+  When multiple bus files are provided, only one count matrix is returned.
+
+  When an output endswith: ".hist.txt", then `--hist` parameter is automatically used.
+
+  When an output endswith: ".genes.txt", then `--genemap` parameter is automatically used.

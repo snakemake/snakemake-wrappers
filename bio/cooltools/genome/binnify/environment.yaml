@@ -1,0 +1,6 @@
+channels:
+  - conda-forge
+  - defaults
+  - bioconda
+dependencies:
+  - cooltools =0.5

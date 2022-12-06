@@ -1,0 +1,13 @@
+rule purge_dups_ngscstat:
+    input:
+        bam="reads.bam",
+    output:
+        cov="out/ngscstat.cov",
+        stat="out/ngscstat.stat",
+    log:
+        "logs/ngscstat.log",
+    params:
+        extra="",
+    threads: 1
+    wrapper:
+        "master/bio/purge_dups/ngscstat"

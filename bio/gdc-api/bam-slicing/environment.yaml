@@ -1,4 +1,5 @@
 channels:
   - conda-forge
+  - nodefaults
 dependencies:
-  - curl ==7.69.1
+  - curl =7.86.0

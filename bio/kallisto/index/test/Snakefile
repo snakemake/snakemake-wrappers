@@ -1,12 +1,12 @@
 rule kallisto_index:
     input:
-        fasta = "{transcriptome}.fasta"
+        fasta="{transcriptome}.fasta",
     output:
-        index = "{transcriptome}.idx"
+        index="{transcriptome}.idx",
     params:
-        extra = "--kmer-size=5"
+        extra="",  # optional parameters
     log:
-        "logs/kallisto_index_{transcriptome}.log"
+        "logs/kallisto_index_{transcriptome}.log",
     threads: 1
     wrapper:
         "master/bio/kallisto/index"

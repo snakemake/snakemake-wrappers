@@ -1,0 +1,92 @@
+rule gfatools_stat:
+    input:
+        "{sample}.gfa",
+    output:
+        "{sample}.stat",
+    log:
+        "logs/{sample}.stat.log",
+    params:
+        command="stat",
+    wrapper:
+        "master/bio/gfatools"
+
+
+rule gfatools_gfa2fa:
+    input:
+        "{sample}.gfa",
+    output:
+        "{sample}.fas",
+    log:
+        "logs/{sample}.gfa2fa.log",
+    params:
+        command="gfa2fa",
+	extra="-l 90",
+    wrapper:
+        "master/bio/gfatools"
+
+
+rule gfatools_gfa2bed:
+    input:
+        "{sample}.gfa",
+    output:
+        "{sample}.bed",
+    log:
+        "logs/{sample}.gfa2bed.log",
+    params:
+        command="gfa2bed",
+    wrapper:
+        "master/bio/gfatools"
+
+
+rule gfatools_blacklist:
+    input:
+        "{sample}.gfa",
+    output:
+        "{sample}.blacklist",
+    log:
+        "logs/{sample}.blacklist.log",
+    params:
+        command="blacklist",
+	extra="-l 100",
+    wrapper:
+        "master/bio/gfatools"
+
+
+rule gfatools_bubble:
+    input:
+        "{sample}.gfa",
+    output:
+        "{sample}.bubble",
+    log:
+        "logs/{sample}.bubble.log",
+    params:
+        command="bubble",
+    wrapper:
+        "master/bio/gfatools"
+
+
+rule gfatools_asm:
+    input:
+        "{sample}.gfa",
+    output:
+        "{sample}.asm",
+    log:
+        "logs/{sample}.asm.log",
+    params:
+        command="asm",
+	extra="-u",
+    wrapper:
+        "master/bio/gfatools"
+
+
+rule gfatools_sql:
+    input:
+        "{sample}.gfa",
+    output:
+        "{sample}.sql",
+    log:
+        "logs/{sample}.sql.log",
+    params:
+        command="sql",
+    wrapper:
+        "master/bio/gfatools"
