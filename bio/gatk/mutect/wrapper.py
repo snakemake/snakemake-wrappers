@@ -19,7 +19,7 @@ if 'OMP_NUM_THREADS' not in os.environ.keys():
     os.environ["OMP_NUM_THREADS"] = snakemake.threads
 
 
-bam_output = snakemake.output.get("bam", ""):
+bam_output = snakemake.output.get("bam", "")
 if bam_output:
     bam_output = f"--bam-output {bam_output }"
 
@@ -36,7 +36,7 @@ f1r2 = snakemake.output.get("f1r2", "")
 if f1r2:
     f1r2 = f"--f1r2-tar-gz {f1r2}"
 
-pon = snakemake.input.get("pon", ""):
+pon = snakemake.input.get("pon", "")
 if pon:
     pon = f"--panel-of-normals {pon}"
 
