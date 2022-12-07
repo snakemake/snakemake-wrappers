@@ -3058,6 +3058,9 @@ def test_samtools_view():
     run(
         "bio/samtools/view", ["snakemake", "--cores", "1", "a.bam", "--use-conda", "-F"]
     )
+    run(
+        "bio/samtools/view", ["snakemake", "--cores", "1", "a.filtered.bam", "--use-conda", "-F"]
+    )
 
 
 @skip_if_not_modified

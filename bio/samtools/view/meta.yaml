@@ -7,6 +7,7 @@ authors:
   - Lance Parsons
 input:
   - SAM/BAM/CRAM file
+  - region: Use an index and multi-region iterator to only output alignments overlapping the input BED FILE
 output:
   - SAM/BAM/CRAM file
   - SAM/BAM/CRAM index file (optional)

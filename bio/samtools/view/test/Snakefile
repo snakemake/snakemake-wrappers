@@ -12,3 +12,20 @@ rule samtools_view:
     threads: 2
     wrapper:
         "master/bio/samtools/view"
+
+
+rule samtools_view_region:
+    input:
+        aln="{sample}.bam",
+        region="region.bed",
+    output:
+        bam="{sample}.filtered.bam",
+        idx="{sample}.filtered.bai",
+    log:
+        "{sample}.log",
+    params:
+        extra="",  # optional params string
+        region="",  # optional region string
+    threads: 2
+    wrapper:
+        "master/bio/samtools/view"
