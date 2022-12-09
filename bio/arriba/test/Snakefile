@@ -21,7 +21,7 @@ rule arriba:
         # file containing information from structural variant analysis
         sv_file="",  # optional
         # optional parameters
-        extra="-T -P -i 1,2",
+        extra="-i 1,2",
     threads: 1
     wrapper:
         "master/bio/arriba"
