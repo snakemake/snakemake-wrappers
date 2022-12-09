@@ -40,6 +40,7 @@ rule star_align:
         fq1="reads/{sample}_R1.1.fastq",
         fq2="reads/{sample}_R2.1.fastq",  #optional
         idx="resources/star_genome",
+        annotation="resources/star_genome"
     output:
         # see STAR manual for additional output files
         aln="star/{sample}/Aligned.out.bam",
@@ -48,7 +49,7 @@ rule star_align:
         "logs/star/{sample}.log",
     params:
         # specific parameters to work well with arriba
-        extra="--quantMode GeneCounts --sjdbGTFfile resources/genome.gtf"
+        extra=lambda wc, input: f"--quantMode GeneCounts --sjdbGTFfile {input.annotation}"
         " --outSAMtype BAM Unsorted --chimSegmentMin 10 --chimOutType WithinBAM SoftClip"
         " --chimJunctionOverhangMin 10 --chimScoreMin 1 --chimScoreDropMax 30 --chimScoreJunctionNonGTAG 0"
         " --chimScoreSeparation 1 --alignSJstitchMismatchNmax 5 -1 5 5 --chimSegmentReadGapMax 3",

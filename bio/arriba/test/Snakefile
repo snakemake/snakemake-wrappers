@@ -7,7 +7,7 @@ rule arriba:
         # path to annotation gtf
         annotation="annotation.gtf",
         # arriba blacklist file
-        blacklist="",  # strongly recommended, see https://arriba.readthedocs.io/en/latest/input-files/#blacklist
+        blacklist=[],  # strongly recommended, see https://arriba.readthedocs.io/en/latest/input-files/#blacklist
     output:
         # approved gene fusions
         fusions="fusions/{sample}.tsv",
