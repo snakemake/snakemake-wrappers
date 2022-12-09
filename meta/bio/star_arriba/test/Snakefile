@@ -40,7 +40,7 @@ rule star_align:
         fq1="reads/{sample}_R1.1.fastq",
         fq2="reads/{sample}_R2.1.fastq",  #optional
         idx="resources/star_genome",
-        annotation="resources/star_genome"
+        annotation="resources/star_genome",
     output:
         # see STAR manual for additional output files
         aln="star/{sample}/Aligned.out.bam",
