@@ -8,6 +8,8 @@ rule download_blacklists:
         outdir=lambda wc, output: os.path.split(output[0])[0],
     log:
         "logs/download_arriba_blacklists.log",
+    conda:
+        "envs/curl.yaml"
     shell:
         """
         curl -L https://github.com/suhrig/arriba/releases/download/v2.3.0/arriba_v2.3.0.tar.gz | 
@@ -66,7 +68,7 @@ rule arriba:
         fusions="results/arriba/{sample}.fusions.tsv",
         discarded="results/arriba/{sample}.fusions.discarded.tsv",
     params:
-        extra="",  # -i describes the wanted contigs, remove if you want to use all hg38 chromosomes
+        extra="",
     log:
         "logs/arriba/{sample}.log",
     threads: 1
