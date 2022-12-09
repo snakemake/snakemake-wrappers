@@ -6,7 +6,7 @@ rule star_index:
         directory("resources/star_genome"),
     threads: 4
     params:
-        extra="--sjdbGTFfile resources/genome.gtf --sjdbOverhang 100",
+        extra=lambda wc, input: f"--sjdbGTFfile {input.annotation} --sjdbOverhang 100",
     log:
         "logs/star_index_genome.log",
     cache: True  # mark as eligible for between workflow caching
@@ -49,7 +49,7 @@ rule arriba:
     params:
         # A tsv containing identified artifacts, such as read-through fusions of neighbouring genes, see https://arriba.readthedocs.io/en/latest/input-files/#blacklist
         blacklist="arriba_blacklist.tsv",
-        extra="-T -P -i 1,2",  # -i describes the wanted contigs, remove if you want to use all hg38 chromosomes
+        extra="-i 1,2",  # -i describes the wanted contigs, remove if you want to use all hg38 chromosomes
     log:
         "logs/arriba/{sample}.log",
     threads: 1
