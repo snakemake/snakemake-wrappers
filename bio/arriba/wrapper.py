@@ -16,7 +16,7 @@ if discarded_fusions:
 else:
     discarded_cmd = ""
 
-blacklist = snakemake.params.get("blacklist")
+blacklist = snakemake.input.get("blacklist")
 if blacklist:
     blacklist_cmd = "-b " + blacklist
 else:
