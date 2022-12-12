@@ -44,14 +44,18 @@ rule arriba:
         bam="star/{sample}/Aligned.out.bam",
         genome="resources/genome.fasta",
         annotation="resources/genome.gtf",
-        # optional blacklist file
+        # optional: # A custom tsv containing identified artifacts, such as read-through fusions of neighbouring genes.
+        # default blacklists are selected via blacklist parameter
+        # see https://arriba.readthedocs.io/en/latest/input-files/#blacklist
         blacklist=[],
     output:
         fusions="results/arriba/{sample}.fusions.tsv",
         discarded="results/arriba/{sample}.fusions.discarded.tsv",
     params:
+        # required if blacklist or known_fusions is set
         genome_build="GRCh38",
         blacklist=True,
+        known_fusions=True,
         extra="",
     log:
         "logs/arriba/{sample}.log",
