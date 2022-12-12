@@ -3,6 +3,7 @@ url: https://github.com/suhrig/arriba
 description: Detect gene fusions from chimeric STAR output
 authors:
   - Jan Forster
+  - Felix Mölder
 input:
   - bam: Path to bam formatted alignment file from STAR
   - genome: Path to fasta formatted genome sequence
