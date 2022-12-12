@@ -16,21 +16,46 @@ if discarded_fusions:
 else:
     discarded_cmd = ""
 
-blacklist = snakemake.input.get("blacklist")
-if blacklist:
-    blacklist_cmd = "-b " + blacklist
-else:
-    blacklist_cmd = "-f blacklist"
+database_dir = os.path.join(os.environ["CONDA_PREFIX"], "var/lib/arriba")
+build = snakemake.params.get("genome_build", None)
+blacklist_input = snakemake.input.get("blacklist")
+blacklist = snakemake.params.get("blacklist", False)
 
-known_fusions = snakemake.params.get("known_fusions")
+if blacklist_input and not blacklist:
+    blacklist_cmd = "-b " + blacklist_input
+elif not blacklist_input and blacklist:
+    blacklist_dict = {
+        "GRCh37": "blacklist_hg19_hs37d5_GRCh37_v2.3.0.tsv.gz",
+        "GRCh38": "blacklist_hg38_GRCh38_v2.3.0.tsv.gz",
+        "GRCm38": "blacklist_mm10_GRCm38_v2.3.0.tsv.gz",
+        "GRCm39": "blacklist_mm39_GRCm39_v2.3.0.tsv.gz",
+    }
+    blacklist_path = os.path.join(database_dir, blacklist_dict[build])
+    blacklist_cmd = "-b " + blacklist_path
+elif not blacklist_input and not blacklist:
+    blacklist_cmd = "-f blacklist"
+else:
+    raise ValueError(
+        "blacklist input file and blacklist parameter option defined. Please set only one of both."
+    )
+
+
+known_fusions = snakemake.params.get("known_fusions", False)
 if known_fusions:
-    known_cmd = "-k" + known_fusions
+    fusions_dict = {
+        "GRCh37": "known_fusions_hg19_hs37d5_GRCh37_v2.3.0.tsv.gz",
+        "GRCh38": "known_fusions_hg38_GRCh38_v2.3.0.tsv.gz",
+        "GRCm38": "known_fusions_mm10_GRCm38_v2.3.0.tsv.gz",
+        "GRCm39": "known_fusions_mm39_GRCm39_v2.3.0.tsv.gz",
+    }
+    known_fusions_path = os.path.join(database_dir, fusions_dict[build])
+    known_cmd = "-k " + known_fusions_path
 else:
     known_cmd = ""
 
 sv_file = snakemake.params.get("sv_file")
 if sv_file:
-    sv_cmd = "-d" + sv_file
+    sv_cmd = "-d " + sv_file
 else:
     sv_cmd = ""
 

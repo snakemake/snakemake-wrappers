@@ -6,8 +6,8 @@ rule arriba:
         genome="genome.fasta",
         # path to annotation gtf
         annotation="annotation.gtf",
-        # arriba blacklist file
-        blacklist=[],  # strongly recommended, see https://arriba.readthedocs.io/en/latest/input-files/#blacklist
+        # optional arriba blacklist file
+        blacklist=[],
     output:
         # approved gene fusions
         fusions="fusions/{sample}.tsv",
@@ -16,8 +16,12 @@ rule arriba:
     log:
         "logs/arriba/{sample}.log",
     params:
-        # file containing known fusions
-        known_fusions="",  # optional
+        # required when blacklist or known_fusions is set 
+        genome_build="GRCh38",
+        # strongly recommended, see https://arriba.readthedocs.io/en/latest/input-files/#blacklist
+        # only set blacklist input-file or blacklist-param
+        blacklist=False,  # optional
+        known_fusions=True,  # optional
         # file containing information from structural variant analysis
         sv_file="",  # optional
         # optional parameters

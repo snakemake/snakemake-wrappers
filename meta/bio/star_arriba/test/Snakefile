@@ -1,22 +1,3 @@
-rule download_blacklists:
-    output:
-        expand(
-            "resources/blacklists/blacklist_{build}_v2.3.0.tsv.gz",
-            build=["mm10_GRCm38", "hg19_hs37d5_GRCh37", "hg38_GRCh38", "mm39_GRCm39"],
-        ),
-    params:
-        outdir=lambda wc, output: os.path.split(output[0])[0],
-    log:
-        "logs/download_arriba_blacklists.log",
-    conda:
-        "envs/curl.yaml"
-    shell:
-        """
-        curl -L https://github.com/suhrig/arriba/releases/download/v2.3.0/arriba_v2.3.0.tar.gz | 
-        tar -xzv --strip-components 2 -C {params.outdir} --wildcards "*blacklist*.tsv.gz" &> {log}
-        """
-
-
 rule star_index:
     input:
         fasta="resources/genome.fasta",
@@ -64,11 +45,13 @@ rule arriba:
         genome="resources/genome.fasta",
         annotation="resources/genome.gtf",
         # optional blacklist file
-        blacklist="resources/blacklists/blacklist_hg38_GRCh38_v2.3.0.tsv.gz",
+        blacklist=[],
     output:
         fusions="results/arriba/{sample}.fusions.tsv",
         discarded="results/arriba/{sample}.fusions.discarded.tsv",
     params:
+        genome_build="GRCh38",
+        blacklist=True,
         extra="",
     log:
         "logs/arriba/{sample}.log",
