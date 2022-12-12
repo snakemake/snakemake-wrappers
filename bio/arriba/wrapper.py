@@ -57,10 +57,10 @@ else:
 
 if default_known_fusions:
     fusions_dict = {
-        f"GRCh37": "known_fusions_hg19_hs37d5_GRCh37_v{arriba_vers}.tsv.gz",
-        f"GRCh38": "known_fusions_hg38_GRCh38_v{arriba_vers}.tsv.gz",
-        f"GRCm38": "known_fusions_mm10_GRCm38_v{arriba_vers}.tsv.gz",
-        f"GRCm39": "known_fusions_mm39_GRCm39_v{arriba_vers}.tsv.gz",
+        "GRCh37": f"known_fusions_hg19_hs37d5_GRCh37_v{arriba_vers}.tsv.gz",
+        "GRCh38": f"known_fusions_hg38_GRCh38_v{arriba_vers}.tsv.gz",
+        "GRCm38": f"known_fusions_mm10_GRCm38_v{arriba_vers}.tsv.gz",
+        "GRCm39": f"known_fusions_mm39_GRCm39_v{arriba_vers}.tsv.gz",
     }
     known_fusions_path = os.path.join(database_dir, fusions_dict[build])
     known_cmd = "-k " + known_fusions_path
