@@ -5,11 +5,17 @@ __license__ = "MIT"
 
 
 import os
-import pandas as pd
+import json
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+
+arriba_vers = [
+    entry["version"]
+    for entry in json.load(os.popen("conda list --json"))
+    if entry["name"] == "arriba"
+][0]
 
 discarded_fusions = snakemake.output.get("discarded", "")
 if discarded_fusions:
@@ -24,9 +30,6 @@ blacklist_input = snakemake.input.get("custom_blacklist")
 blacklist = snakemake.params.get("default_blacklist", False)
 
 known_fusions = snakemake.params.get("default_known_fusions", False)
-
-env_df = pd.read_json(os.popen("conda list --json").read())
-arriba_vers = env_df[env_df["name"] == "arriba"]["version"].values[0]
 
 if (blacklist or known_fusions) and not build:
     raise ValueError(
