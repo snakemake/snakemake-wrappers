@@ -1,5 +1,37 @@
 # Changelog
 
+## [1.21.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.20.0...v1.21.0) (2022-12-12)
+
+
+### Features
+
+* tmpdir in Sambamba wrappers ([#960](https://www.github.com/snakemake/snakemake-wrappers/issues/960)) ([a8333a3](https://www.github.com/snakemake/snakemake-wrappers/commit/a8333a3e44d3eac30453860f1793678d01167e40))
+* update arriba and star_arriba meta-wrapper ([#963](https://www.github.com/snakemake/snakemake-wrappers/issues/963)) ([f75d997](https://www.github.com/snakemake/snakemake-wrappers/commit/f75d997ca582e20165adbb34e55ce2224136081d))
+
+
+### Bug Fixes
+
+* updated parsing of bcftools opts ([#959](https://www.github.com/snakemake/snakemake-wrappers/issues/959)) ([0af69c9](https://www.github.com/snakemake/snakemake-wrappers/commit/0af69c9f5ea2e016ea70ebe8a44747dc6fbd3e30))
+
+
+### Performance Improvements
+
+* autobump bio/bwa-memx/index ([#955](https://www.github.com/snakemake/snakemake-wrappers/issues/955)) ([f51c0d6](https://www.github.com/snakemake/snakemake-wrappers/commit/f51c0d6e1cc6dfe714a0ef875bd68c0401dcc21a))
+* autobump bio/cooltools/pileup ([#948](https://www.github.com/snakemake/snakemake-wrappers/issues/948)) ([bf28d88](https://www.github.com/snakemake/snakemake-wrappers/commit/bf28d88b33aff888d9b3dc339b8a740a7e2017c8))
+* autobump bio/dada2/assign-taxonomy ([#946](https://www.github.com/snakemake/snakemake-wrappers/issues/946)) ([ed9ebfb](https://www.github.com/snakemake/snakemake-wrappers/commit/ed9ebfb588af703fe550cf71945ee5b684efa0d8))
+* autobump bio/diamond/makedb ([#944](https://www.github.com/snakemake/snakemake-wrappers/issues/944)) ([a95b5db](https://www.github.com/snakemake/snakemake-wrappers/commit/a95b5db5d7c722804b9e4ecb3fa375a76e4f3191))
+* autobump bio/gatk/genotypegvcfs ([#951](https://www.github.com/snakemake/snakemake-wrappers/issues/951)) ([5fb96d8](https://www.github.com/snakemake/snakemake-wrappers/commit/5fb96d8e8e43b3350ba2833f291c09d3e7ea1ff0))
+* autobump bio/gatk/selectvariants ([#947](https://www.github.com/snakemake/snakemake-wrappers/issues/947)) ([5f697b8](https://www.github.com/snakemake/snakemake-wrappers/commit/5f697b80cf3acee5367efd2fddc58aa7828abba9))
+* autobump bio/homer/annotatePeaks ([#952](https://www.github.com/snakemake/snakemake-wrappers/issues/952)) ([8f1270d](https://www.github.com/snakemake/snakemake-wrappers/commit/8f1270de93dd613e1d3f4042ed5c2c3c099b87b5))
+* autobump bio/homer/mergePeaks ([#957](https://www.github.com/snakemake/snakemake-wrappers/issues/957)) ([0330a43](https://www.github.com/snakemake/snakemake-wrappers/commit/0330a434160a5a015c19fb76a9c67665ace630ff))
+* autobump bio/jellyfish/count ([#950](https://www.github.com/snakemake/snakemake-wrappers/issues/950)) ([0a6f68d](https://www.github.com/snakemake/snakemake-wrappers/commit/0a6f68db8723f2c3f8a794d33badef8e4e32a773))
+* autobump bio/last/lastal ([#942](https://www.github.com/snakemake/snakemake-wrappers/issues/942)) ([8e5ef69](https://www.github.com/snakemake/snakemake-wrappers/commit/8e5ef69bc49fc2b911b7b9da6ba8f97c6149590b))
+* autobump bio/microphaser/build_reference ([#943](https://www.github.com/snakemake/snakemake-wrappers/issues/943)) ([1e7ece5](https://www.github.com/snakemake/snakemake-wrappers/commit/1e7ece5157bab0a83608a14cbdf45bced50322f0))
+* autobump bio/picard/collecttargetedpcrmetrics ([#949](https://www.github.com/snakemake/snakemake-wrappers/issues/949)) ([5239da9](https://www.github.com/snakemake/snakemake-wrappers/commit/5239da9b112d0ad5af6e0f79275b162d9a2b3f57))
+* autobump bio/transdecoder/longorfs ([#956](https://www.github.com/snakemake/snakemake-wrappers/issues/956)) ([54c2b74](https://www.github.com/snakemake/snakemake-wrappers/commit/54c2b74e6913cef43fa81a0fd86e997d12c37cde))
+* autobump bio/tximport ([#954](https://www.github.com/snakemake/snakemake-wrappers/issues/954)) ([4942f36](https://www.github.com/snakemake/snakemake-wrappers/commit/4942f365b97cabeb7478113aece432d2439ac9ce))
+* autobump bio/varscan/somatic ([#958](https://www.github.com/snakemake/snakemake-wrappers/issues/958)) ([28df43c](https://www.github.com/snakemake/snakemake-wrappers/commit/28df43c261751477a9cc888c30794709795e9dcb))
+
 ## [1.20.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.19.2...v1.20.0) (2022-12-01)
 
 
