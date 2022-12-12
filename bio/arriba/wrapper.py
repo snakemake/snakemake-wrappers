@@ -11,12 +11,6 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-arriba_vers = [
-    entry["version"]
-    for entry in json.load(os.popen("conda list --json"))
-    if entry["name"] == "arriba"
-][0]
-
 discarded_fusions = snakemake.output.get("discarded", "")
 if discarded_fusions:
     discarded_cmd = "-O " + discarded_fusions
@@ -27,19 +21,25 @@ database_dir = os.path.join(os.environ["CONDA_PREFIX"], "var/lib/arriba")
 build = snakemake.params.get("genome_build", None)
 
 blacklist_input = snakemake.input.get("custom_blacklist")
-blacklist = snakemake.params.get("default_blacklist", False)
+default_blacklist = snakemake.params.get("default_blacklist", False)
 
-known_fusions = snakemake.params.get("default_known_fusions", False)
+default_known_fusions = snakemake.params.get("default_known_fusions", False)
 
-if (blacklist or known_fusions) and not build:
-    raise ValueError(
-        "Please provide a genome build when using blacklist- or known_fusion-filtering"
-    )
+if default_blacklist or default_known_fusions:
+    if not build:
+        raise ValueError(
+            "Please provide a genome build when using blacklist- or known_fusion-filtering"
+        )
+    arriba_vers = [
+        entry["version"]
+        for entry in json.load(os.popen("conda list --json"))
+        if entry["name"] == "arriba"
+    ][0]
 
 
-if blacklist_input and not blacklist:
+if blacklist_input and not default_blacklist:
     blacklist_cmd = "-b " + blacklist_input
-elif not blacklist_input and blacklist:
+elif not blacklist_input and default_blacklist:
     blacklist_dict = {
         "GRCh37": f"blacklist_hg19_hs37d5_GRCh37_v{arriba_vers}.tsv.gz",
         "GRCh38": f"blacklist_hg38_GRCh38_v{arriba_vers}.tsv.gz",
@@ -48,19 +48,19 @@ elif not blacklist_input and blacklist:
     }
     blacklist_path = os.path.join(database_dir, blacklist_dict[build])
     blacklist_cmd = "-b " + blacklist_path
-elif not blacklist_input and not blacklist:
+elif not blacklist_input and not default_blacklist:
     blacklist_cmd = "-f blacklist"
 else:
     raise ValueError(
         "custom_blacklist input file and default_blacklist parameter option defined. Please set only one of both."
     )
 
-if known_fusions:
+if default_known_fusions:
     fusions_dict = {
-        "GRCh37": "known_fusions_hg19_hs37d5_GRCh37_v2.3.0.tsv.gz",
-        "GRCh38": "known_fusions_hg38_GRCh38_v2.3.0.tsv.gz",
-        "GRCm38": "known_fusions_mm10_GRCm38_v2.3.0.tsv.gz",
-        "GRCm39": "known_fusions_mm39_GRCm39_v2.3.0.tsv.gz",
+        f"GRCh37": "known_fusions_hg19_hs37d5_GRCh37_v{arriba_vers}.tsv.gz",
+        f"GRCh38": "known_fusions_hg38_GRCh38_v{arriba_vers}.tsv.gz",
+        f"GRCm38": "known_fusions_mm10_GRCm38_v{arriba_vers}.tsv.gz",
+        f"GRCm39": "known_fusions_mm39_GRCm39_v{arriba_vers}.tsv.gz",
     }
     known_fusions_path = os.path.join(database_dir, fusions_dict[build])
     known_cmd = "-k " + known_fusions_path
