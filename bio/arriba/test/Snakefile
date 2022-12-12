@@ -7,7 +7,7 @@ rule arriba:
         # path to annotation gtf
         annotation="annotation.gtf",
         # optional arriba blacklist file
-        blacklist=[],
+        custom_blacklist=[],
     output:
         # approved gene fusions
         fusions="fusions/{sample}.tsv",
@@ -20,8 +20,8 @@ rule arriba:
         genome_build="GRCh38",
         # strongly recommended, see https://arriba.readthedocs.io/en/latest/input-files/#blacklist
         # only set blacklist input-file or blacklist-param
-        blacklist=False,  # optional
-        known_fusions=True,  # optional
+        default_blacklist=False,  # optional
+        default_known_fusions=True,  # optional
         # file containing information from structural variant analysis
         sv_file="",  # optional
         # optional parameters

@@ -18,8 +18,17 @@ else:
 
 database_dir = os.path.join(os.environ["CONDA_PREFIX"], "var/lib/arriba")
 build = snakemake.params.get("genome_build", None)
-blacklist_input = snakemake.input.get("blacklist")
-blacklist = snakemake.params.get("blacklist", False)
+
+blacklist_input = snakemake.input.get("custom_blacklist")
+blacklist = snakemake.params.get("default_blacklist", False)
+
+known_fusions = snakemake.params.get("default_known_fusions", False)
+
+if (blacklist or known_fusions) and not build:
+    raise ValueError(
+        "Please provide a genome build when using blacklist- or known_fusion-filtering"
+    )
+
 
 if blacklist_input and not blacklist:
     blacklist_cmd = "-b " + blacklist_input
@@ -39,8 +48,6 @@ else:
         "blacklist input file and blacklist parameter option defined. Please set only one of both."
     )
 
-
-known_fusions = snakemake.params.get("known_fusions", False)
 if known_fusions:
     fusions_dict = {
         "GRCh37": "known_fusions_hg19_hs37d5_GRCh37_v2.3.0.tsv.gz",
