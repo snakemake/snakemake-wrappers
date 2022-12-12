@@ -20,7 +20,7 @@ blacklist = snakemake.input.get("blacklist")
 if blacklist:
     blacklist_cmd = "-b " + blacklist
 else:
-    blacklist_cmd = ""
+    blacklist_cmd = "-f blacklist"
 
 known_fusions = snakemake.params.get("known_fusions")
 if known_fusions:
