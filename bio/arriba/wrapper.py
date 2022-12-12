@@ -5,6 +5,7 @@ __license__ = "MIT"
 
 
 import os
+import pandas as pd
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
@@ -24,6 +25,9 @@ blacklist = snakemake.params.get("default_blacklist", False)
 
 known_fusions = snakemake.params.get("default_known_fusions", False)
 
+env_df = pd.read_json(os.popen("conda list --json").read())
+arriba_vers = env_df[env_df["name"] == "arriba"]["version"].values[0]
+
 if (blacklist or known_fusions) and not build:
     raise ValueError(
         "Please provide a genome build when using blacklist- or known_fusion-filtering"
@@ -34,10 +38,10 @@ if blacklist_input and not blacklist:
     blacklist_cmd = "-b " + blacklist_input
 elif not blacklist_input and blacklist:
     blacklist_dict = {
-        "GRCh37": "blacklist_hg19_hs37d5_GRCh37_v2.3.0.tsv.gz",
-        "GRCh38": "blacklist_hg38_GRCh38_v2.3.0.tsv.gz",
-        "GRCm38": "blacklist_mm10_GRCm38_v2.3.0.tsv.gz",
-        "GRCm39": "blacklist_mm39_GRCm39_v2.3.0.tsv.gz",
+        "GRCh37": f"blacklist_hg19_hs37d5_GRCh37_v{arriba_vers}.tsv.gz",
+        "GRCh38": f"blacklist_hg38_GRCh38_v{arriba_vers}.tsv.gz",
+        "GRCm38": f"blacklist_mm10_GRCm38_v{arriba_vers}.tsv.gz",
+        "GRCm39": f"blacklist_mm39_GRCm39_v{arriba_vers}.tsv.gz",
     }
     blacklist_path = os.path.join(database_dir, blacklist_dict[build])
     blacklist_cmd = "-b " + blacklist_path
