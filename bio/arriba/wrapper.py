@@ -45,7 +45,7 @@ elif not blacklist_input and not blacklist:
     blacklist_cmd = "-f blacklist"
 else:
     raise ValueError(
-        "blacklist input file and blacklist parameter option defined. Please set only one of both."
+        "custom_blacklist input file and default_blacklist parameter option defined. Please set only one of both."
     )
 
 if known_fusions:
