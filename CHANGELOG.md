@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.21.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.21.0...v1.21.1) (2022-12-21)
+
+
+### Performance Improvements
+
+* update datavzrd wrapper to 2.11.1 ([12b3076](https://www.github.com/snakemake/snakemake-wrappers/commit/12b30766e1fbecefeae5ad99dce8856a8f28f006))
+
 ## [1.21.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.20.0...v1.21.0) (2022-12-12)
 
 
