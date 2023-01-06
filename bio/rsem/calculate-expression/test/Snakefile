@@ -5,6 +5,7 @@ rule calculate_expression:
         bam="mapped/a.bam",
         # one of the index files created by rsem-prepare-reference; the file suffix is stripped and passed on to rsem
         reference="index/reference.seq",
+        # reference_bowtie: Only needed for FASTQ input; One of the bowtie index files created by bowtie-build
     output:
         # genes_results must end in .genes.results; this suffix is stripped and passed to rsem as an output name prefix
         # this file contains per-gene quantification data for the sample
