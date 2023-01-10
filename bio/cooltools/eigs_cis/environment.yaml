@@ -5,3 +5,4 @@ channels:
 dependencies:
   - ucsc-bedgraphtobigwig
   - cooltools =0.5.2
+  - numpy <1.24

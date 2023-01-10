@@ -4,3 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - cooltools =0.5
+  - numpy <1.24

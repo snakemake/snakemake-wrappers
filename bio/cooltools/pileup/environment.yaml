@@ -4,3 +4,4 @@ channels:
   - bioconda
 dependencies:
   - cooltools =0.5.2
+  - numpy <1.24
