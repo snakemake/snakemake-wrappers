@@ -8,6 +8,7 @@ from snakemake.shell import shell
 
 revision = snakemake.params.get("revision")
 profile = snakemake.params.get("profile", [])
+resume = snakemake.params.get("resume", "")
 extra = snakemake.params.get("extra", "")
 if isinstance(profile, str):
     profile = [profile]
@@ -18,6 +19,8 @@ if revision:
     args += ["-revision", revision]
 if profile:
     args += ["-profile", ",".join(profile)]
+if resume:
+    args += ["-resume"]
 print(args)
 
 # TODO pass threads in case of single job
@@ -36,6 +39,7 @@ for name, value in snakemake.params.items():
         name != "pipeline"
         and name != "revision"
         and name != "profile"
+        and name != "resume"
         and name != "extra"
     ):
         add_parameter(name, value)
