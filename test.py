@@ -3173,11 +3173,11 @@ def test_star_align():
             shell=True,
         )
         subprocess.check_call(
-            "mamba activate star-env; STAR --genomeDir "
+            "bash -l -c 'mamba activate star-env; STAR --genomeDir "
             "bio/star/align/test/index "
             "--genomeFastaFiles bio/star/align/test/genome.fasta "
             "--runMode genomeGenerate "
-            "--genomeSAindexNbases 8",
+            "--genomeSAindexNbases 8'",
             shell=True,
         )
     finally:
