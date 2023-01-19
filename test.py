@@ -3173,7 +3173,7 @@ def test_star_align():
             shell=True,
         )
         subprocess.check_call(
-            "bash -l -c 'source $(dirname $(which mamba))/activate star-env; STAR --genomeDir "
+            "bash -l -c 'source $(dirname $(dirname $(which mamba)))/bin/activate star-env; STAR --genomeDir "
             "bio/star/align/test/index "
             "--genomeFastaFiles bio/star/align/test/genome.fasta "
             "--runMode genomeGenerate "
