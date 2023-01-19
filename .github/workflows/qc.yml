@@ -8,45 +8,60 @@ jobs:
   formatting:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
+
+      - name: Setup mamba
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: fmt
+          channels: "conda-forge, bioconda"
+          miniforge-variant: Mambaforge
+          miniforge-version: latest
 
       - name: Setup environment
-        run: conda create --quiet -c bioconda -c conda-forge --name fmt black snakefmt
+        shell: bash -el {0}
+        run: |
+          conda config --set channel_priority strict
+          mamba install -n fmt -y black snakefmt
 
       - name: Check Python formatting
+        shell: bash -el {0}
         run: |
-          export PATH="/usr/share/miniconda/bin:$PATH"
-          source activate fmt
           black --check */*/*/wrapper.py */*/wrapper.py
-      
+
       # TODO reactivate once comment errors are fixed
       # - name: Check Snakemake formatting
       #   run: |
       #     export PATH="/usr/share/miniconda/bin:$PATH"
       #     source activate fmt
       #     snakefmt --check $(git diff origin/master --name-only | grep Snakefile)
-  
+
   linting:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
 
+      - name: Setup mamba
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: snakemake
+          channels: "conda-forge, bioconda"
+          miniforge-variant: Mambaforge
+          miniforge-version: latest
+
       - name: Setup Snakemake environment
+        shell: bash -el {0}
         run: |
-          # ensure that mamba is happy to write into the cache
-          sudo chown -R runner:docker /usr/share/miniconda/pkgs/cache
-          conda install -c conda-forge mamba --quiet
-          export PATH="/usr/share/miniconda/bin:$PATH"
-          mamba create -c bioconda -c conda-forge --quiet -y --name snakemake snakemake-minimal
-      
+          conda config --set channel_priority strict
+          mamba install -n snakemake -y snakemake-minimal snakemake
+
       - name: Fetch master
         run: |
           git fetch origin master
 
       - name: Linting
+        shell: bash -el {0}
         run: |
-          export PATH="/usr/share/miniconda/bin:$PATH"
-          source activate snakemake
           declare -i ERRORS=0
           # get all modified and added files, not those that are deleted
           for f in $(git diff origin/master --name-only --diff-filter=d | grep Snakefile)
