@@ -59,9 +59,5 @@ jobs:
           DIFF_MASTER: ${{ github.event_name == 'pull_request' }}
           DIFF_LAST_COMMIT: ${{ github.ref == 'refs/heads/master' }}
         run: |
-          # activate conda env
-          export PATH="/usr/share/miniconda/bin:$PATH"
-          source activate snakemake
-
           # run tests
           pytest test.py -v
