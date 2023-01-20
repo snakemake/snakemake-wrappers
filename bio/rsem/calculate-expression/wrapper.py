@@ -61,7 +61,7 @@ if not snakemake.output.isoforms_results.endswith(".isoforms.results"):
         "(rsem will append .isoforms.results suffix)"
     )
 
-reference_prefix = os.path.splitext(snakemake.input.reference)[0]
+reference_prefix = os.path.splitext(snakemake.input.reference[0])[0]
 
 extra = snakemake.params.get("extra", "")
 threads = snakemake.threads
