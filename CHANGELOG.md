@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.21.4](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.21.3...v1.21.4) (2023-01-20)
+
+
+### Bug Fixes
+
+* channel definitions for cooltools (and update version to 0.5.2), genefuse, genomescope, qualimap and meryl ([#980](https://www.github.com/snakemake/snakemake-wrappers/issues/980)) ([26271ac](https://www.github.com/snakemake/snakemake-wrappers/commit/26271acfb27c02d51d2a8cc0922b4780998e6b53))
+* RSEM-calculate-expression wrapper with FASTQ-files as input + Integration of test case ([#970](https://www.github.com/snakemake/snakemake-wrappers/issues/970)) ([ea9c897](https://www.github.com/snakemake/snakemake-wrappers/commit/ea9c8978259c87156f4e48711eed0172a8966209))
+
 ### [1.21.3](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.21.2...v1.21.3) (2023-01-20)
 
 
