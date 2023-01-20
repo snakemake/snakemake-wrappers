@@ -1,5 +1,25 @@
 # Changelog
 
+### [1.21.3](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.21.2...v1.21.3) (2023-01-20)
+
+
+### Bug Fixes
+
+* consensus meta wrapper ([#977](https://www.github.com/snakemake/snakemake-wrappers/issues/977)) ([a320aa5](https://www.github.com/snakemake/snakemake-wrappers/commit/a320aa5fdef6dd6215b5cfee8232713dcdf19de3))
+* snakemake and mamba deployment ([#978](https://www.github.com/snakemake/snakemake-wrappers/issues/978)) ([4c64b96](https://www.github.com/snakemake/snakemake-wrappers/commit/4c64b9647eddbb52d80e9377ca16357cf00136c0))
+
+### [1.21.2](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.21.1...v1.21.2) (2023-01-10)
+
+
+### Bug Fixes
+
+* make 'params: extra=' optional for rbt collapse_reads_to_fragments-bam wrapper ([#968](https://www.github.com/snakemake/snakemake-wrappers/issues/968)) ([03463da](https://www.github.com/snakemake/snakemake-wrappers/commit/03463da5ea60046d7c9a1a33459d3296c3ddb98c))
+
+
+### Performance Improvements
+
+* update datavzrd wrapper to 2.12.0 ([#973](https://www.github.com/snakemake/snakemake-wrappers/issues/973)) ([8523e73](https://www.github.com/snakemake/snakemake-wrappers/commit/8523e737ca0a5d7ae28a8a98b0988d6ea9e7f67b))
+
 ### [1.21.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.21.0...v1.21.1) (2022-12-21)
 
 
