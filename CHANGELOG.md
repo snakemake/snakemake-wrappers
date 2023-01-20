@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.21.3](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.21.2...v1.21.3) (2023-01-20)
+
+
+### Bug Fixes
+
+* consensus meta wrapper ([#977](https://www.github.com/snakemake/snakemake-wrappers/issues/977)) ([a320aa5](https://www.github.com/snakemake/snakemake-wrappers/commit/a320aa5fdef6dd6215b5cfee8232713dcdf19de3))
+* snakemake and mamba deployment ([#978](https://www.github.com/snakemake/snakemake-wrappers/issues/978)) ([4c64b96](https://www.github.com/snakemake/snakemake-wrappers/commit/4c64b9647eddbb52d80e9377ca16357cf00136c0))
+
 ### [1.21.2](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.21.1...v1.21.2) (2023-01-10)
 
 
