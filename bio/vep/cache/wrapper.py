@@ -18,7 +18,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "curl -L ftp://ftp.ensembl.org/pub/release-{snakemake.params.release}/"
         "variation/VEP/{cache_tarball} "
-        "-o {tmpdir.name}/{cache_tarball} {log}"
+        "-o {tmpdir}/{cache_tarball} {log}"
     )
 
     log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
@@ -27,7 +27,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         "--SPECIES {snakemake.params.species} "
         "--ASSEMBLY {snakemake.params.build} "
         "--VERSION {snakemake.params.release} "
-        "--CACHEURL {tmpdir.name} "
+        "--CACHEURL {tmpdir} "
         "--CACHEDIR {snakemake.output} "
         "--CONVERT "
         "--NO_UPDATE "
