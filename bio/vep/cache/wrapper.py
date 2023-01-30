@@ -10,11 +10,16 @@ from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 
+try:
+    release = int(snakemake.params.release)
+except ValueError:
+    raise ValueError("The parameter release is supposed to be an integer.")
+
 with tempfile.TemporaryDirectory() as tmpdir:
     # We download the cache tarball manually because vep_install does not consider proxy settings (in contrast to curl).
     # See https://github.com/bcbio/bcbio-nextgen/issues/1080
-    vep_dir = "vep" if snakemake.params.release >= 97 else "VEP"
-    cache_tarball = f"{snakemake.params.species}_vep_{snakemake.params.release}_{snakemake.params.build}.tar.gz"
+    vep_dir = "vep" if release >= 97 else "VEP"
+    cache_tarball = f"{snakemake.params.species}_vep_{release}_{snakemake.params.build}.tar.gz"
     log = snakemake.log_fmt_shell(stdout=True, stderr=True)
     shell(
         "curl -L ftp://ftp.ensembl.org/pub/release-{snakemake.params.release}/"
@@ -27,7 +32,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         "vep_install --AUTO cf "
         "--SPECIES {snakemake.params.species} "
         "--ASSEMBLY {snakemake.params.build} "
-        "--VERSION {snakemake.params.release} "
+        "--VERSION {release} "
         "--CACHEURL {tmpdir} "
         "--CACHEDIR {snakemake.output} "
         "--CONVERT "
