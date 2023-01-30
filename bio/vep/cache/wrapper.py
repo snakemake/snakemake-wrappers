@@ -13,11 +13,12 @@ extra = snakemake.params.get("extra", "")
 with tempfile.TemporaryDirectory() as tmpdir:
     # We download the cache tarball manually because vep_install does not consider proxy settings (in contrast to curl).
     # See https://github.com/bcbio/bcbio-nextgen/issues/1080
+    vep_dir = "vep" if snakemake.params.release >= 97 else "VEP"
     cache_tarball = f"{snakemake.params.species}_vep_{snakemake.params.release}_{snakemake.params.build}.tar.gz"
     log = snakemake.log_fmt_shell(stdout=True, stderr=True)
     shell(
         "curl -L ftp://ftp.ensembl.org/pub/release-{snakemake.params.release}/"
-        "variation/VEP/{cache_tarball} "
+        "variation/{vep_dir}/{cache_tarball} "
         "-o {tmpdir}/{cache_tarball} {log}"
     )
 
