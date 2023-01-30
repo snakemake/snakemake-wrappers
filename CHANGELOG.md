@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.21.6](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.21.5...v1.21.6) (2023-01-30)
+
+
+### Bug Fixes
+
+* properly handle proxy setting in vep cache wrapper ([#986](https://www.github.com/snakemake/snakemake-wrappers/issues/986)) ([3a5379b](https://www.github.com/snakemake/snakemake-wrappers/commit/3a5379bf8b672e7374b7f0bab3ed966c5bfe211a))
+
 ### [1.21.5](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.21.4...v1.21.5) (2023-01-30)
 
 
