@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.21.5](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.21.4...v1.21.5) (2023-01-30)
+
+
+### Performance Improvements
+
+* autobump bio/sambamba/merge ([#982](https://www.github.com/snakemake/snakemake-wrappers/issues/982)) ([701abe0](https://www.github.com/snakemake/snakemake-wrappers/commit/701abe0819f23ab63a672aa7d5d02397e2591aa7))
+* update datavzrd to version 2.14.1 ([#985](https://www.github.com/snakemake/snakemake-wrappers/issues/985)) ([07fc839](https://www.github.com/snakemake/snakemake-wrappers/commit/07fc8391b967fc287803b04b2716c94a1f74eb46))
+
 ### [1.21.4](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.21.3...v1.21.4) (2023-01-20)
 
 
