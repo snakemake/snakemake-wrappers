@@ -3782,6 +3782,12 @@ def test_gatk_variantrecalibrator():
         check_log=check_log,
     )
 
+@skip_if_not_modified
+def test_gatk_variantstotable():
+    run(
+        "bio/gatk/variantstotable",
+        ["snakemake", "--cores", "1", "calls/snvs.tab", "--use-conda", "-F"],
+    )
 
 @skip_if_not_modified
 def test_gatk_filtermutectcalls():
