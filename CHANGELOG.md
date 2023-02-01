@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.22.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.21.6...v1.22.0) (2023-02-01)
+
+
+### Features
+
+* Add GATK VariantsToTable ([#989](https://www.github.com/snakemake/snakemake-wrappers/issues/989)) ([e3654ce](https://www.github.com/snakemake/snakemake-wrappers/commit/e3654ced09ad53eecc2b7abe8eee8c59fc6e44aa))
+
+
+### Bug Fixes
+
+* do not download fasta file in VEP cache wrapper ([#992](https://www.github.com/snakemake/snakemake-wrappers/issues/992)) ([612933e](https://www.github.com/snakemake/snakemake-wrappers/commit/612933e4cb945355d0e6fa752f80a6564ee8d3f6))
+
+
+### Performance Improvements
+
+* Sambamba version update 0.8.2->1.0 ([#988](https://www.github.com/snakemake/snakemake-wrappers/issues/988)) ([6525373](https://www.github.com/snakemake/snakemake-wrappers/commit/6525373d909155025d5d7a494bc27739f88944d6))
+
 ### [1.21.6](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.21.5...v1.21.6) (2023-01-30)
 
 
