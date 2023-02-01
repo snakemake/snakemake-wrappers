@@ -31,7 +31,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
 
     log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
     shell(
-        "vep_install --AUTO cf "
+        "vep_install --AUTO c "
         "--SPECIES {snakemake.params.species} "
         "--ASSEMBLY {snakemake.params.build} "
         "--VERSION {release} "
