@@ -20,7 +20,8 @@ jobs:
           private_key: ${{ secrets.SNAKEDEPLOY_BOT_PRIVATE_KEY }}
 
       # TODO restore old yml after debugging
-      - run: pip install snakedeploy
+      - run: |
+          pip install snakedeploy
           snakedeploy --verbose update-conda-envs */*/environment.yaml */*/*/environment.yaml --warn-on-error --entity-regex '(?P<entity>.+)/environment.yaml'
 
       # - name: Update conda envs
