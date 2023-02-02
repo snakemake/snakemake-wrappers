@@ -3959,6 +3959,13 @@ def test_gatk_learn_read_orientation():
         ["snakemake", "--cores", "1", "--use-conda"]
     )
 
+@skip_if_not_modified
+def test_gatk_leftalignandtrimvariants():
+    run(
+        "bio/gatk/leftalignandtrimvariants",
+        ["snakemake", "--cores", "1", "calls/split_multiallelics.vcf", "--use-conda", "-F"],
+    )
+
 
 @skip_if_not_modified
 def test_gatk_getpileupsummaries():
