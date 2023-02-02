@@ -20,7 +20,18 @@ jobs:
           private_key: ${{ secrets.SNAKEDEPLOY_BOT_PRIVATE_KEY }}
 
       # TODO restore old yml after debugging
-      - run: |
+      - name: Setup mamba
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: snakedeploy
+          channels: "conda-forge, bioconda"
+          miniforge-variant: Mambaforge
+          miniforge-version: latest
+
+      - name: autobump
+        shell: bash -el {0}
+        run: |
+          mamba install --only-deps snakedeploy
           pip install snakedeploy
           snakedeploy --verbose update-conda-envs */*/environment.yaml */*/*/environment.yaml --warn-on-error --entity-regex '(?P<entity>.+)/environment.yaml'
 
