@@ -53,6 +53,6 @@ expected_2_actual_paths = [
         prefix + (".multiple" if arg_multiple else "") + ".deduplication_report.txt",
     ),
 ]
-for (exp_path, actual_path) in expected_2_actual_paths:
+for exp_path, actual_path in expected_2_actual_paths:
     if exp_path and (exp_path != actual_path):
         shell("mv {actual_path:q} {exp_path:q} {log_append}")

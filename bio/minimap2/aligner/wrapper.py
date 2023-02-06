@@ -25,13 +25,11 @@ if out_ext != "PAF":
 
     # Determine which pipe command to use for converting to bam or sorting.
     if sort == "none":
-
         if out_ext != "SAM":
             # Simply convert to output format using samtools view.
             pipe_cmd = f"| samtools view -h {samtools_opts}"
 
     elif sort in ["coordinate", "queryname"]:
-
         # Add name flag if needed.
         if sort == "queryname":
             sort_extra += " -n"
