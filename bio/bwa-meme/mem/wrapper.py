@@ -65,7 +65,6 @@ if sort == "none":
     pipe_cmd = "samtools view -h -O {output_format} -o {snakemake.output[0]} -T {reference} -@ {samtools_threads} -"
 
 elif sort == "samtools":
-
     pipe_cmd = "samtools sort {sort_extra} -O {output_format} -o {snakemake.output[0]} --reference {reference} -@ {samtools_threads} -"
 
     # Add name flag if needed.
