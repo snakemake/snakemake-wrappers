@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - pyfastaq =3.17
+  - pyfastaq =3.17.0
