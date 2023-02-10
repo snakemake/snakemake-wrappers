@@ -1,5 +1,27 @@
 # Changelog
 
+### [1.23.2](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.23.1...v1.23.2) (2023-02-10)
+
+
+### Performance Improvements
+
+* autobump bio/bismark/bismark ([#1046](https://www.github.com/snakemake/snakemake-wrappers/issues/1046)) ([4c692f6](https://www.github.com/snakemake/snakemake-wrappers/commit/4c692f6316a6b257df7c26b69d4739e01c5886c4))
+* autobump bio/bustools/sort ([#1039](https://www.github.com/snakemake/snakemake-wrappers/issues/1039)) ([915ff3d](https://www.github.com/snakemake/snakemake-wrappers/commit/915ff3d96ce6702daac5132948b62ba63adac307))
+* autobump bio/bwa-mem2/mem-samblaster ([#1035](https://www.github.com/snakemake/snakemake-wrappers/issues/1035)) ([68d0b8e](https://www.github.com/snakemake/snakemake-wrappers/commit/68d0b8e63e69079ae86cca78c4379821257b645e))
+* autobump bio/cooltools/insulation ([#1032](https://www.github.com/snakemake/snakemake-wrappers/issues/1032)) ([3ccb3c1](https://www.github.com/snakemake/snakemake-wrappers/commit/3ccb3c1a03600d4e71c7d14b8570c17c93f177e8))
+* autobump bio/dada2/add-species ([#1031](https://www.github.com/snakemake/snakemake-wrappers/issues/1031)) ([1e84d85](https://www.github.com/snakemake/snakemake-wrappers/commit/1e84d85c3f38f86a6956a9f0bc833288e9e3301c))
+* autobump bio/dada2/assign-species ([#1040](https://www.github.com/snakemake/snakemake-wrappers/issues/1040)) ([939fb25](https://www.github.com/snakemake/snakemake-wrappers/commit/939fb2538e59064bc733e772ef1c4efbd9f4bcc8))
+* autobump bio/dada2/sample-inference ([#1043](https://www.github.com/snakemake/snakemake-wrappers/issues/1043)) ([8d40576](https://www.github.com/snakemake/snakemake-wrappers/commit/8d40576408d2cddec2a79a723ec078c6ae8fa740))
+* autobump bio/igv-reports ([#1029](https://www.github.com/snakemake/snakemake-wrappers/issues/1029)) ([a9765ed](https://www.github.com/snakemake/snakemake-wrappers/commit/a9765edc4e6e5867aab9afde84177405d8e6f0ef))
+* autobump bio/last/lastal ([#1041](https://www.github.com/snakemake/snakemake-wrappers/issues/1041)) ([1854b53](https://www.github.com/snakemake/snakemake-wrappers/commit/1854b5352df38080adf6355f2270c3aa6747c1b7))
+* autobump bio/mapdamage2 ([#1045](https://www.github.com/snakemake/snakemake-wrappers/issues/1045)) ([dae7008](https://www.github.com/snakemake/snakemake-wrappers/commit/dae70088efce7f40a3581bc7abeb0e93449e4fa6))
+* autobump bio/minimap2/aligner ([#1033](https://www.github.com/snakemake/snakemake-wrappers/issues/1033)) ([c1bbdd8](https://www.github.com/snakemake/snakemake-wrappers/commit/c1bbdd8804acb80e65de718ae3dc589ede5d9375))
+* autobump bio/paladin/index ([#1036](https://www.github.com/snakemake/snakemake-wrappers/issues/1036)) ([0ce4cee](https://www.github.com/snakemake/snakemake-wrappers/commit/0ce4cee58e720f69faaa73ea30b9b407b72b48ae))
+* autobump bio/picard/markduplicateswithmatecigar ([#1042](https://www.github.com/snakemake/snakemake-wrappers/issues/1042)) ([19a404b](https://www.github.com/snakemake/snakemake-wrappers/commit/19a404b0cb304de290790414666ca67b2109345d))
+* autobump bio/sra-tools/fasterq-dump ([#1047](https://www.github.com/snakemake/snakemake-wrappers/issues/1047)) ([c74a7c3](https://www.github.com/snakemake/snakemake-wrappers/commit/c74a7c3cd4a5dc289294e023d4d49669803982fa))
+* autobump bio/trim_galore/se ([#1034](https://www.github.com/snakemake/snakemake-wrappers/issues/1034)) ([daeb43d](https://www.github.com/snakemake/snakemake-wrappers/commit/daeb43dd375f56f83d0a5b06bedf4dbec80be9d8))
+* autobump bio/vg/ids ([#1037](https://www.github.com/snakemake/snakemake-wrappers/issues/1037)) ([d89576e](https://www.github.com/snakemake/snakemake-wrappers/commit/d89576ef745b57387b07b5c2b2d826e8023a1a8b))
+
 ### [1.23.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.23.0...v1.23.1) (2023-02-07)
 
 
