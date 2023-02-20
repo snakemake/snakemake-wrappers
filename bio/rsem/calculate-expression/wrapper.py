@@ -16,7 +16,7 @@ if bam:
         raise Exception("Only input.bam or input.fq_one expected, got both.")
     input_bam = "--alignments"
     input_string = bam
-    paired_end = snakemake.params.get("paired-end", False)
+    paired_end = snakemake.params.get("paired_end", False)
 else:
     input_bam = ""
     if fq_one:
