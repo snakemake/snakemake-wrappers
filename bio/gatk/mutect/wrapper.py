@@ -15,7 +15,9 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 # On non-omp systems, and in case OMP_NUM_THREADS
 # was not set, define OMP_NUM_THREADS through python
-if "OMP_NUM_THREADS" not in os.environ.keys() and snakemake.params.get("use_omp", False):
+if "OMP_NUM_THREADS" not in os.environ.keys() and snakemake.params.get(
+    "use_omp", False
+):
     os.environ["OMP_NUM_THREADS"] = snakemake.threads
 
 
