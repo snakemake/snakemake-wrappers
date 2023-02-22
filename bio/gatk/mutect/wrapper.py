@@ -15,7 +15,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 # On non-omp systems, and in case OMP_NUM_THREADS
 # was not set, define OMP_NUM_THREADS through python
-if "OMP_NUM_THREADS" not in os.environ.keys():
+if "OMP_NUM_THREADS" not in os.environ.keys() and snakemake.params.get("use_omp", False):
     os.environ["OMP_NUM_THREADS"] = snakemake.threads
 
 
@@ -45,10 +45,11 @@ java_opts = get_java_opts(snakemake)
 
 # In case Java execution environment suits GC parallel
 # calls, these must be given as optional java parameters
-if "UseParallelGC" not in java_opts:
-    java_opts += " -XX:+UseParallelGC "
-if "ParallelGCThreads" not in java_opts:
-    java_opts += f" -XX:ParallelGCThreads={snakemake.threads}"
+if snakemake.params.get("use_parallelgc", False):
+    if "UseParallelGC" not in java_opts:
+        java_opts += " -XX:+UseParallelGC "
+    if "ParallelGCThreads" not in java_opts:
+        java_opts += f" -XX:ParallelGCThreads={snakemake.threads}"
 
 
 with tempfile.TemporaryDirectory() as tmpdir:
