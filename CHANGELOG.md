@@ -1,5 +1,31 @@
 # Changelog
 
+### [1.23.5](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.23.4...v1.23.5) (2023-02-24)
+
+
+### Bug Fixes
+
+* fixed bug in obtaining paired_end parameter for RSEM calculate-expression ([#1075](https://www.github.com/snakemake/snakemake-wrappers/issues/1075)) ([8bf224b](https://www.github.com/snakemake/snakemake-wrappers/commit/8bf224b79504a1a632756a104949ce6edaad360a))
+
+
+### Performance Improvements
+
+* autobump bio/dada2/dereplicate-fastq ([#1084](https://www.github.com/snakemake/snakemake-wrappers/issues/1084)) ([437f6a8](https://www.github.com/snakemake/snakemake-wrappers/commit/437f6a83a34ad3450047bd87efdab23499d3aa9c))
+* autobump bio/diamond/blastp ([#1083](https://www.github.com/snakemake/snakemake-wrappers/issues/1083)) ([7a33605](https://www.github.com/snakemake/snakemake-wrappers/commit/7a33605b9f4fc23aef1880dd31d5c9455148e46f))
+* autobump bio/fgbio/filterconsensusreads ([#1088](https://www.github.com/snakemake/snakemake-wrappers/issues/1088)) ([39c3c37](https://www.github.com/snakemake/snakemake-wrappers/commit/39c3c3729875469e073a00e3a8c5cfd433209a21))
+* autobump bio/fgbio/setmateinformation ([#1089](https://www.github.com/snakemake/snakemake-wrappers/issues/1089)) ([c50c845](https://www.github.com/snakemake/snakemake-wrappers/commit/c50c845c5d5e0eea30a41f788ffab610d7fc6966))
+* autobump bio/jellyfish/dump ([#1077](https://www.github.com/snakemake/snakemake-wrappers/issues/1077)) ([260ba99](https://www.github.com/snakemake/snakemake-wrappers/commit/260ba99d2e86a9bcc36afe0447803e4625d78b3c))
+* autobump bio/last/lastal ([#1087](https://www.github.com/snakemake/snakemake-wrappers/issues/1087)) ([03401fa](https://www.github.com/snakemake/snakemake-wrappers/commit/03401fa1f0a10f7a90f53060ef3140b2405a0b3c))
+* autobump bio/last/lastdb ([#1091](https://www.github.com/snakemake/snakemake-wrappers/issues/1091)) ([8bf8271](https://www.github.com/snakemake/snakemake-wrappers/commit/8bf8271a469960325f4982486f6c888fc4309ff2))
+* autobump bio/pbmm2/align ([#1086](https://www.github.com/snakemake/snakemake-wrappers/issues/1086)) ([3cc3e23](https://www.github.com/snakemake/snakemake-wrappers/commit/3cc3e239ef414045d1b78ef64315c5ad306e8ad5))
+* autobump bio/picard/collectrnaseqmetrics ([#1082](https://www.github.com/snakemake/snakemake-wrappers/issues/1082)) ([812a58a](https://www.github.com/snakemake/snakemake-wrappers/commit/812a58a46259488b9a34047fba6394fba5efaa16))
+* autobump bio/picard/collecttargetedpcrmetrics ([#1003](https://www.github.com/snakemake/snakemake-wrappers/issues/1003)) ([43682ed](https://www.github.com/snakemake/snakemake-wrappers/commit/43682ed68205f418027d9df58ada9d5eb8a7fc27))
+* autobump bio/picard/sortsam ([#1081](https://www.github.com/snakemake/snakemake-wrappers/issues/1081)) ([176f729](https://www.github.com/snakemake/snakemake-wrappers/commit/176f729b3cdf0ea72d65ef1b0e32c5a466bf5848))
+* autobump bio/star/index ([#1090](https://www.github.com/snakemake/snakemake-wrappers/issues/1090)) ([9e654cb](https://www.github.com/snakemake/snakemake-wrappers/commit/9e654cb6af57b8c3b7b42b2a4511a474c538dbdf))
+* autobump bio/transdecoder/longorfs ([#1080](https://www.github.com/snakemake/snakemake-wrappers/issues/1080)) ([d8c37ce](https://www.github.com/snakemake/snakemake-wrappers/commit/d8c37cecf5c33cfffd99087b27349e8745f74fe0))
+* autobump bio/transdecoder/predict ([#1085](https://www.github.com/snakemake/snakemake-wrappers/issues/1085)) ([2ef8d50](https://www.github.com/snakemake/snakemake-wrappers/commit/2ef8d50ebcb3c1de4031adeddcba05e2a608a5c6))
+* autobump bio/unicycler ([#1078](https://www.github.com/snakemake/snakemake-wrappers/issues/1078)) ([3c1770c](https://www.github.com/snakemake/snakemake-wrappers/commit/3c1770c1558e50c5d5bd61e4ecdab1edde41f145))
+
 ### [1.23.4](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.23.3...v1.23.4) (2023-02-17)
 
 
