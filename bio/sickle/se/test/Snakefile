@@ -10,4 +10,4 @@ rule sickle_se:
     # optional extra parameters
     extra=""
   wrapper:
-    "bio/sickle/se"
+    "master/bio/sickle/se"
