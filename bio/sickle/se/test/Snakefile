@@ -1,4 +1,4 @@
-rule sickle_pe:
+rule sickle_se:
   input:
     "input_R1.fq"
   output:
@@ -10,4 +10,4 @@ rule sickle_pe:
   log:
     "logs/sickle/job.log"
   wrapper:
-    "master/bio/sickle/pe"
+    "master/bio/sickle/se"

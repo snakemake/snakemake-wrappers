@@ -139,6 +139,35 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+
+@skip_if_not_modified
+def test_sickle_pe():
+    run(
+        "bio/sickle/pe",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "output_R1.fq",
+            "output_R2.fq",
+            "output_single.fq",
+        ],
+    )
+
+@skip_if_not_modified
+def test_sickle_se():
+    run(
+        "bio/sickle/se",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "output_R1.fq",
+        ],
+    )
+
 @skip_if_not_modified
 def test_bwa_memx_index():
     run(
