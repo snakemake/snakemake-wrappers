@@ -149,9 +149,9 @@ def test_sickle_pe():
             "--cores",
             "1",
             "--use-conda",
-            "output_R1.fq",
-            "output_R2.fq",
-            "output_single.fq",
+            "a.1.fq",
+            "a.2.fq",
+            "a.single.fq",
         ],
     )
 
@@ -164,7 +164,7 @@ def test_sickle_se():
             "--cores",
             "1",
             "--use-conda",
-            "output_R1.fq",
+            "a.1.fq",
         ],
     )
 
