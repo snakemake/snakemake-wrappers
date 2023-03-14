@@ -1,8 +1,8 @@
 rule sickle_se:
   input:
-    "reads/{sample}.1.fq"
+    "reads/{sample}.1.fastq"
   output:
-    "{sample}.1.fq"
+    "{sample}.1.fastq"
   log:
     "logs/sickle/{sample}.log"
   params:
@@ -10,4 +10,4 @@ rule sickle_se:
     # optional extra parameters
     extra=""
   wrapper:
-    "master/bio/sickle/se"
+    "bio/sickle/se"

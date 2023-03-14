@@ -1,11 +1,11 @@
 rule sickle_pe:
   input:
-    r1="reads/{sample}.1.fq",
-    r2="reads/{sample}.2.fq"
+    r1="reads/{sample}.1.fastq",
+    r2="reads/{sample}.2.fastq"
   output:
-    r1="{sample}.1.fq",
-    r2="{sample}.2.fq",
-    rs="{sample}.single.fq",
+    r1="{sample}.1.fastq",
+    r2="{sample}.2.fastq",
+    rs="{sample}.single.fastq",
   log:
     "logs/sickle/{sample}.log"
   params:
