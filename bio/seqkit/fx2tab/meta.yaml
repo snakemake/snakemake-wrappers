@@ -7,7 +7,7 @@ authors:
 input:
   - fastx: Input FASTA/Q file
 output:
-  - fastx: Output FASTA/Q file
+  - tsv: Output TSV file
 params:
   - extra: Optional parameters
 notes: |
