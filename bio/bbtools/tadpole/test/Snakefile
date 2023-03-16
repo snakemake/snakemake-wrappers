@@ -1,0 +1,70 @@
+rule tadpole_correct_se:
+    input:
+        sample=["reads/se/{sample}.fastq"],
+    output:
+        out="correct/se/{sample}.fastq.gz",
+        discarded="correct/se/{sample}.discarded.fastq.gz",
+    log:
+        "logs/correct/se/{sample}.log",
+    params:
+        mode="correct",
+        extra="",
+    threads: 2
+    resources:
+        mem_mb=1024
+    wrapper:
+        "master/bio/bbtools/tadpole"
+
+
+rule tadpole_correct_pe:
+    input:
+        sample=["reads/pe/{sample}.1.fastq", "reads/pe/{sample}.2.fastq"],
+    output:
+        out=["correct/pe/{sample}.1.fastq", "correct/pe/{sample}.2.fastq"],
+        discarded="correct/pe/{sample}.discarded.fastq",
+    log:
+        "logs/correct/pe/{sample}.log",
+    params:
+        mode="correct",
+        extra="",
+    threads: 2
+    resources:
+        mem_mb=1024
+    wrapper:
+        "master/bio/bbtools/tadpole"
+
+
+rule tadpole_extend_se:
+    input:
+        sample=["reads/se/{sample}.fastq"],
+    output:
+        out="extend/se/{sample}.fastq.gz",
+        discarded="extend/se/{sample}.discarded.fastq.gz",
+    log:
+        "logs/extend/se/{sample}.log",
+    params:
+        mode="extend",
+        extra="",
+    threads: 2
+    resources:
+        mem_mb=1024
+    wrapper:
+        "master/bio/bbtools/tadpole"
+
+
+rule tadpole_extend_pe:
+    input:
+        sample=["reads/pe/{sample}.1.fastq", "reads/pe/{sample}.2.fastq"],
+    output:
+        out=["extend/pe/{sample}.1.fastq", "extend/pe/{sample}.2.fastq"],
+        discarded="extend/pe/{sample}.discarded.fastq",
+    log:
+        "logs/extend/pe/{sample}.log",
+    params:
+        mode="extend",
+        extra="",
+    threads: 2
+    resources:
+        mem_mb=1024
+    wrapper:
+        "master/bio/bbtools/tadpole"
