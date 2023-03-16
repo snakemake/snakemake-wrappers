@@ -141,6 +141,31 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_seqkit_rmdup():
+    run(
+        "bio/seqkit/rmdup",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/rmdup_name/a.fastq.gz",
+        ],
+    )
+    run(
+        "bio/seqkit/rmdup",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/rmdup_seq/a.fastq.gz",
+        ],
+    )
+
+@skip_if_not_modified
 def test_seqkit_fx2tab():
     run(
         "bio/seqkit/fx2tab",
