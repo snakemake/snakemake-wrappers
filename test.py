@@ -143,7 +143,7 @@ def run(wrapper, cmd, check_log=None):
 @skip_if_not_modified
 def test_seqkit_stats():
     run(
-        "bio/seqkit/fx2tab",
+        "bio/seqkit/stats",
         [
             "snakemake",
             "--cores",
