@@ -150,7 +150,7 @@ def test_seqkit_stats():
             "2",
             "--use-conda",
             "-F",
-            "out/stats/a.stats",
+            "out/stats/a.tsv",
         ],
     )
 
