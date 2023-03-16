@@ -140,6 +140,30 @@ def run(wrapper, cmd, check_log=None):
 
 
 
+def test_seqkit_grep():
+    run(
+        "bio/seqkit/grep",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/grep_name/a.fastq.gz",
+        ],
+    )
+    run(
+        "bio/seqkit/grep",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/grep_seq/a.fastq.gz",
+        ],
+    )
+
 @skip_if_not_modified
 def test_sickle_pe():
     run(
