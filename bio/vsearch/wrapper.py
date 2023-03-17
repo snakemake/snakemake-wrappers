@@ -6,7 +6,6 @@ from snakemake.shell import shell
 
 
 extra = snakemake.params.get("extra", "")
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
 fasta_arg = snakemake.params.get("fasta_arg", "")
@@ -29,9 +28,8 @@ if out_arg:
     out_arg = out_arg.replace("{", "{snakemake.")
 
 
-out_log = snakemake.output.get("log", "")
-if out_log:
-    out_log = f"--log {out_log}"
+if snakemake.log:
+    log = f"--log {snakemake.log}"
 
 
 shell(
@@ -40,6 +38,6 @@ shell(
     " {fastq_arg}"
     " {db}"
     " {extra}"
-    " " + out_arg + " {out_log}"
     " {log}"
+    " " + out_arg
 )

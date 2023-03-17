@@ -151,6 +151,8 @@ def test_vsearch():
             "out/cluster_fast/a.profile",
             "out/maskfasta/a.fasta",
             "out/fastx_uniques/a.fastq",
+            "out/fastx_uniques/a.fastq.gz",
+            "out/fastx_uniques/a.fastq.bz2",
             "out/fastq_convert/a.fastq",
         ],
     )
