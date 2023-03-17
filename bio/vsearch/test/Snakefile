@@ -1,0 +1,66 @@
+rule vsearch_cluster_fast:
+    input:
+        fasta="reads/{sample}.fasta",
+    output:
+        profile="out/cluster_fast/{sample}.profile",
+        log="out/cluster_fast/{sample}.log",
+    log:
+        "logs/vsearch/cluster_fast/{sample}.log",
+    params:
+        fasta_arg="--cluster_fast",
+        out_arg="--profile {output.profile}",
+        extra="--id 0.2 --sizeout --minseqlength 5",
+    threads: 2
+    wrapper:
+        "master/bio/vsearch"
+
+
+rule vsearch_maskfasta:
+    input:
+        fasta="reads/{sample}.fasta",
+    output:
+        fasta="out/maskfasta/{sample}.fasta",
+        log="out/maskfasta/{sample}.log",
+    log:
+        "logs/vsearch/maskfasta/{sample}.log",
+    params:
+        fasta_arg="--maskfasta",
+        out_arg="--output {output.fasta}",
+        extra="--hardmask",
+    threads: 2
+    wrapper:
+        "master/bio/vsearch"
+
+
+rule vsearch_fastx_uniques:
+    input:
+        fastq="reads/{sample}.fastq",
+    output:
+        fastq="out/fastx_uniques/{sample}.fastq",
+        log="out/fastx_uniques/{sample}.log",
+    log:
+        "logs/vsearch/fastx_uniques/{sample}.log",
+    params:
+        fastq_arg="--fastx_uniques",
+        out_arg="--fastqout {output.fastq}",
+        extra="--strand both --minseqlength 5",
+    threads: 2
+    wrapper:
+        "master/bio/vsearch"
+
+
+rule vsearch_fastq_convert:
+    input:
+        fastq="reads/{sample}.fastq",
+    output:
+        fastq="out/fastq_convert/{sample}.fastq",
+        log="out/fastq_convert/{sample}.log",
+    log:
+        "logs/vsearch/fastq_convert/{sample}.log",
+    params:
+        fastq_arg="--fastq_convert",
+        out_arg="--fastqout {output.fastq}",
+        extra="--fastq_ascii 33 --fastq_asciiout 64",
+    threads: 2
+    wrapper:
+        "master/bio/vsearch"

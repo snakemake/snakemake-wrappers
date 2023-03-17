@@ -141,10 +141,24 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_vsearch():
+    run(
+        "bio/vsearch",
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "out/cluster_fast/a.profile",
+            "out/maskfasta/a.fasta",
+            "out/fastx_uniques/a.fastq",
+            "out/fastq_convert/a.fastq",
+        ],
+    )
+
+@skip_if_not_modified
 def test_loglog():
     run(
         "bio/bbtools/loglog",
-        [
             "snakemake",
             "--cores",
             "2",

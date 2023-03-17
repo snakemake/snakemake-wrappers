@@ -1,0 +1,22 @@
+name: VSEARCH
+url: https://github.com/torognes/vsearch
+description: |
+  Versatile open-source tool for microbiome analysis.
+authors:
+  - Filipe G. Vieira
+input:
+  - fasta: Input FASTA file (optional)
+  - fastq: Input FASTQ file (optional)
+  - db: Input DB file (optional)
+output:
+  - any output file(s), as long as they match the ones on `out_arg`.
+params:
+  - fasta_arg: vsearch argument for input FASTA file (optional)
+  - fastq_arg: vsearch argument for input FASTQ file (optional)
+  - out_arg: vsearch argument for output file(s)
+  - extra: Optional parameters
+notes: |
+  * `fasta_arg`: argument to process FASTA files. It can be one of (e.g.) `uchime_denovo`, `cluster_fast`, `fastx_uniques`, `maskfasta`, etc...
+  * `fastq_arg`: argument to process FASTQ files. It can be one of (e.g.) `fastx_uniques`, `fastq_convert`, `fastq_mergepairs`, etc...
+  * `out_arg`: argument(s) (without `--`) to output files. 
+  * The `extra` param allows for additional program arguments.
