@@ -26,7 +26,7 @@ else:
         "Reads parameter must contain at least 1 and at most 2" " input files."
     )
 
-ht2_files = Path(snakemake.input.idx).glob('*.ht2')
+ht2_files = Path(snakemake.input.idx).glob("*.ht2")
 idx_prefix = os.path.commonprefix(ht2_files)
 
 # Executed shell command
