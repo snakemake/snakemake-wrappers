@@ -4,14 +4,14 @@ __email__ = "patrik.smeds@gmail.com"
 __license__ = "MIT"
 
 
-from snakemake.shell import shell
 from os import path
+from snakemake.shell import shell
+from snakemake_wrapper_utils.java import get_java_opts
 
-shell.executable("bash")
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
-
 extra_params = snakemake.params.get("extra", "")
+java_opts = get_java_opts(snakemake)
 
 bam_input = snakemake.input[0]
 
@@ -74,7 +74,7 @@ if not isinstance(bam_input, str) and len(snakemake.input) != 1:
     raise ValueError("Input bam should be one bam file: " + str(bam_input) + "!")
 
 shell(
-    "fgbio CollectDuplexSeqMetrics"
+    "fgbio {java_opts} CollectDuplexSeqMetrics"
     " -i {bam_input}"
     " -o {path_name_prefix}"
     " {duplex_umi_counts_flag}"
