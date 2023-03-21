@@ -141,6 +141,23 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_tadpole():
+    run(
+        "bio/bbtools/tadpole",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "correct_se/a.fastq.gz",
+            "correct_pe/a.1.fastq",
+            "extend_se/a.fastq.gz",
+            "extend_pe/a.1.fastq",
+        ],
+    )
+
+@skip_if_not_modified
 def test_sickle_pe():
     run(
         "bio/sickle/pe",
