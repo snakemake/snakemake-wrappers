@@ -3231,7 +3231,7 @@ def test_star_index():
 def test_snpeff_annotate():
     run(
         "bio/snpeff/annotate",
-        ["snakemake", "--cores", "1", "snpeff/fake_KJ660346.vcf", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "snpeff/fake_KJ660346.vcf", "snpeff_nostats/fake_KJ660346.vcf", "--use-conda", "-F"],
     )
 
 
@@ -3246,23 +3246,6 @@ def test_snpeff_download():
             "resources/snpeff/ebola_zaire",
             "--use-conda",
             "-F",
-        ],
-    )
-
-
-@skip_if_not_modified
-def test_snpeff_nostats():
-    run(
-        "bio/snpeff/annotate",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "snpeff_nostats/fake_KJ660346.vcf",
-            "--use-conda",
-            "-F",
-            "-s",
-            "Snakefile_nostats",
         ],
     )
 
