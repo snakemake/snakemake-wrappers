@@ -1,5 +1,17 @@
 name: "trimmomatic pe"
-description: Trim paired-end reads with `trimmomatic <http://www.usadellab.org/cms/?page=trimmomatic>`_ . (De)compress with pigz.
+description: Trim paired-end reads with Trimmomatic (de)compress with pigz.
+url: http://www.usadellab.org/cms/?page=trimmomatic
 authors:
   - Johannes Köster
   - Jorge Langa
+input:
+  - fastq(gz) files
+output:
+  - trimmed R1 fastq file
+  - trimmed R2 fastq file
+  - unpaired R1 fastq file
+  - unpaired R2 fastq file
+  - failed reads (optional)
+params:
+  - trimmer: trimming steps
+  - extra: additional program arguments
