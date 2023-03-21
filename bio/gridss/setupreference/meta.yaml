@@ -5,6 +5,6 @@ description: >
     ``setupreference`` is a once-off setup generating additional files in the same directory as the reference.
     WARNING multiple instances of GRIDSS attempting to perform setupreference at the same time will result in file corruption.
     Make sure these files are generated before running parallel GRIDSS jobs.
-    Documentation at: https://github.com/PapenfussLab/gridss
+url: https://github.com/PapenfussLab/gridss
 authors:
   - Christopher Schröder

@@ -1,10 +1,8 @@
 rule gridss_setupreference:
     input:
         reference="reference/genome.fasta",
-        dictionary="reference/genome.dict",
-        indices=multiext("reference/genome.fasta", ".amb", ".ann", ".bwt", ".pac", ".sa")
     output:
-        multiext("reference/genome.fasta", ".gridsscache", ".img")
+        idx=multiext("reference/genome.fasta", ".amb", ".ann", ".bwt", ".dict", ".fai", ".pac", ".sa")
     params:
         extra="--jvmheap 1g"
     log:
