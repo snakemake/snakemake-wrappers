@@ -1,4 +1,5 @@
 name: vep download cache
 description: Download VEP cache for given species, build and release.
+url: http://www.ensembl.org/info/docs/tools/vep/index.html
 authors:
   - Johannes Köster
