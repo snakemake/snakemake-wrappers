@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - hap.py ==0.3.14
-  - rtg-tools ==3.10.1
+  - hap.py =0.3.14
+  - rtg-tools =3.12.1

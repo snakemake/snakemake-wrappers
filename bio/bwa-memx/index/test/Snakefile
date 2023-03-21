@@ -1,0 +1,66 @@
+rule bwa_mem_index:
+    input:
+        "{genome}",
+    output:
+        multiext(
+            "{genome}",
+            ".amb",
+            ".ann",
+            ".bwt",
+            ".pac",
+            ".sa",
+        ),
+    log:
+        "logs/bwa-mem_index/{genome}.log",
+    params:
+        bwa="bwa-mem",
+    threads: 8
+    wrapper:
+        "master/bio/bwa-memx/index"
+
+
+rule bwa_mem2_index:
+    input:
+        "{genome}",
+    output:
+        multiext(
+            "{genome}",
+            ".0123",
+            ".amb",
+            ".ann",
+            ".bwt.2bit.64",
+            ".pac",
+        ),
+    log:
+        "logs/bwa-mem2_index/{genome}.log",
+    params:
+        bwa="bwa-mem2",
+    threads: 8
+    wrapper:
+        "master/bio/bwa-memx/index"
+
+
+rule bwa_meme_index:
+    input:
+        "{genome}",
+    output:
+        multiext(
+            "{genome}",
+            ".0123",
+            ".amb",
+            ".ann",
+            ".pac",
+            ".pos_packed",
+            ".suffixarray_uint64",
+            ".suffixarray_uint64_L0_PARAMETERS",
+            ".suffixarray_uint64_L1_PARAMETERS",
+            ".suffixarray_uint64_L2_PARAMETERS",
+        ),
+    log:
+        "logs/bwa-meme_index/{genome}.log",
+    params:
+        bwa="bwa-meme",
+        num_models=100000,  #[hide]
+    threads: 8
+    wrapper:
+        "master/bio/bwa-memx/index"

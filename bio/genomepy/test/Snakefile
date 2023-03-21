@@ -1,11 +1,18 @@
 rule genomepy:
     output:
-        multiext("{assembly}/{assembly}", ".fa", ".fa.fai", ".fa.sizes", ".gaps.bed", 
-                 ".annotation.gtf.gz", ".blacklist.bed")
+        multiext(
+            "{assembly}/{assembly}",
+            ".fa",
+            ".fa.fai",
+            ".fa.sizes",
+            ".gaps.bed",
+            ".annotation.gtf.gz",
+            ".blacklist.bed",
+        ),
     log:
-        "logs/genomepy_{assembly}.log"
+        "logs/genomepy_{assembly}.log",
     params:
-        provider="UCSC"  # optional, defaults to ucsc. Choose from ucsc, ensembl, and ncbi
-    cache: True  # mark as eligible for between workflow caching
+        provider="UCSC",  # optional, defaults to ucsc. Choose from ucsc, ensembl, and ncbi
+    cache: "omit-software"  # mark as eligible for between workflow caching
     wrapper:
         "master/bio/genomepy"

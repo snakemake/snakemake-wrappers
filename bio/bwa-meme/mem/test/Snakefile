@@ -1,24 +1,6 @@
-rule all:  # [hide]
-    input:  # [hide]
-        "mapped/a.cram",  # [hide]
-        "mapped/a.picard.cram",  # [hide]
+include: "hide.smk"  #[hide]
 
 
-rule L2_PARAMETERS_extract:  #[hide]
-    input:  #[hide]
-        "genome.fasta.suffixarray_uint64_L2_PARAMETERS.gz",  #[hide]
-    output:  #[hide]
-        temp("genome.fasta.suffixarray_uint64_L2_PARAMETERS"),  #[hide]
-    conda:
-        "gzip.yaml"
-    log:
-        "log/extract.l2.log",
-    shell:  #[hide]
-        "zcat {input} > {output} 2> {log}"
-
-
-# [hide]
-# [hide]
 rule bwa_meme_mem:
     input:
         reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
@@ -52,39 +34,3 @@ rule bwa_meme_mem:
     threads: 8
     wrapper:
         "master/bio/bwa-meme/mem"
-
-
-# [hide]
-# [hide]
-rule bwa_meme_mem_picard:  #[hide]
-    input:  #[hide]
-        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],  #[hide]
-        reference="genome.fasta",  #[hide]
-        idx=multiext(
-            "genome.fasta",
-            ".0123",
-            ".amb",
-            ".ann",
-            ".pac",
-            ".pos_packed",
-            ".suffixarray_uint64",
-            ".suffixarray_uint64_L0_PARAMETERS",
-            ".suffixarray_uint64_L1_PARAMETERS",
-            ".suffixarray_uint64_L2_PARAMETERS",
-        ),
-    output:  #[hide]
-        "mapped/{sample}.picard.cram",  #[hide]
-    log:  #[hide]
-        "logs/bwa_meme/{sample}.log",  #[hide]
-    params:  #[hide]
-        extra=r"-R '@RG\tID:{sample}\tSM:{sample}' -M",
-        sort="picard",  #[hide]
-        sort_order="coordinate",  #[hide]
-        sort_extra="",  #[hide]
-        dedup="mark",  #[hide]
-        dedup_extra="-M",  #[hide]
-        exceed_thread_limit=True,  #[hide]
-        embed_ref=True,  #[hide]
-    threads: 8  #[hide]
-    wrapper:  #[hide]
-        "master/bio/bwa-meme/mem"  #[hide]

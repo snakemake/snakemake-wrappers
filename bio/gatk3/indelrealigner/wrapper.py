@@ -10,20 +10,21 @@ from snakemake_wrapper_utils.java import get_java_opts
 
 
 extra = snakemake.params.get("extra", "")
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 java_opts = get_java_opts(snakemake)
 
 
 bed = snakemake.input.get("bed", "")
 if bed:
-    bed = "-L " + bed
+    bed = f"--intervals {bed}"
 
 
 known = snakemake.input.get("known", "")
 if known:
     if isinstance(known, str):
-        known = "-known {}".format(known)
+        known = f"--knownAlleles {known}"
     else:
-        known = list(map("-known {}".format, known))
+        known = list(map("----knownAlleles {}".format, known))
 
 
 output_bai = snakemake.output.get("bai", None)
@@ -31,17 +32,15 @@ if output_bai is None:
     extra += " --disable_bam_indexing"
 
 
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-
-
 shell(
-    "gatk3 {java_opts} -T IndelRealigner"
-    " {extra}"
-    " -I {snakemake.input.bam}"
-    " -R {snakemake.input.ref}"
+    "gatk3 {java_opts}"
+    " --analysis_type IndelRealigner"
+    " --input_file {snakemake.input.bam}"
+    " --reference_sequence {snakemake.input.ref}"
     " {known}"
     " {bed}"
     " --targetIntervals {snakemake.input.target_intervals}"
-    " -o {snakemake.output.bam}"
+    " {extra}"
+    " --out {snakemake.output.bam}"
     " {log}"
 )

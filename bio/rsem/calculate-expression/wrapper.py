@@ -14,19 +14,18 @@ fq_two = snakemake.input.get("fq_two", "")
 if bam:
     if fq_one:
         raise Exception("Only input.bam or input.fq_one expected, got both.")
-    input_bam = " --bam"
+    input_bam = "--alignments"
     input_string = bam
-    paired_end = snakemake.params.get("paired-end", False)
+    paired_end = snakemake.params.get("paired_end", False)
 else:
     input_bam = ""
-    if fq:
-        input_bam = False
-        if isinstance(fq, list):
-            num_fq_one = len(fq)
-            input_string = ",".join(fq)
+    if fq_one:
+        if isinstance(fq_one, list):
+            num_fq_one = len(fq_one)
+            input_string = ",".join(fq_one)
         else:
             num_fq_one = 1
-            input_string = fq
+            input_string = fq_one
         if fq_two:
             paired_end = True
             if isinstance(fq_two, list):
@@ -62,7 +61,7 @@ if not snakemake.output.isoforms_results.endswith(".isoforms.results"):
         "(rsem will append .isoforms.results suffix)"
     )
 
-reference_prefix = os.path.splitext(snakemake.input.reference)[0]
+reference_prefix = os.path.splitext(snakemake.input.reference[0])[0]
 
 extra = snakemake.params.get("extra", "")
 threads = snakemake.threads
