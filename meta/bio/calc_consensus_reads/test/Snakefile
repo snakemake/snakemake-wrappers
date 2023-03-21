@@ -29,7 +29,7 @@ rule map_consensus_reads:
     output:
         temp("results/consensus_mapped/{sample}.{read_type}.bam"),
     params:
-        extra=r"-R '@RG\tID:{sample}\tSM:{sample}'",
+        extra=r"-C -R '@RG\tID:{sample}\tSM:{sample}'",
         index=lambda w, input: os.path.splitext(input.idx[0])[0],
         sort="samtools",
         sort_order="coordinate",
