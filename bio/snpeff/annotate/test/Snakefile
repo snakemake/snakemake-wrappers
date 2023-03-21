@@ -8,11 +8,25 @@ rule snpeff:
         csvstats="snpeff/{sample}.csv" # summary statistics in CSV, optional
     log:
         "logs/snpeff/{sample}.log"
-    # optional specification of memory usage of the JVM that snakemake will respect with global
-    # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
-    # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
-    # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
     resources:
+        java_opts="-XX:ParallelGCThreads=10",
         mem_mb=4096
+    wrapper:
+        "master/bio/snpeff/annotate"
+
+rule snpeff_nostats:
+    input:
+        calls="{sample}.vcf",
+        db="resources/snpeff/ebola_zaire"
+    output:
+        calls="snpeff_nostats/{sample}.vcf",    # the main output file
+        # if either "genes" or "stats" outputs are provided, both are created
+    log:
+        "logs/snpeff_nostats/{sample}.log"
+    params:
+        java_opts="-XX:ParallelGCThreads=10",
+        extra=""                 # optional parameters
+    resources:
+        mem_mb=1024
     wrapper:
         "master/bio/snpeff/annotate"
