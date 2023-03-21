@@ -10,7 +10,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
 mode = "-align"
-if snakemake.params.get("super5")
+if snakemake.params.get("super5"):
     mode = "-super5"
 
 shell(
