@@ -1,16 +1,20 @@
 rule baserecalibrator:
     input:
-        bam="mapped/{sample}.bam",
+        bam="{sample}.bam",
+        bai="{sample}.bai",
         ref="genome.fasta",
-        known="dbsnp.vcf.gz"
+        fai="genome.fasta.fai",
+        dict="genome.dict",
+        known="dbsnp.vcf.gz",
+        known_idx="dbsnp.vcf.gz.tbi",
     output:
-        "{sample}.recal_data_table"
+        recal_table="{sample}.recal_data_table",
     log:
-        "logs/gatk3/bqsr/{sample}.log"
+        "logs/gatk3/bqsr/{sample}.log",
     params:
-        extra=""  # optional
+        extra="--defaultBaseQualities 20 --filter_reads_with_N_cigar",  # optional
     resources:
-        mem_mb = 1024
+        mem_mb=1024,
     threads: 16
     wrapper:
-        "bio/gatk/baserecalibrator"
+        "master/bio/gatk3/baserecalibrator"

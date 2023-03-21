@@ -1,4 +1,5 @@
 name: GATK MarkDuplicatesSpark
+url: https://gatk.broadinstitute.org/hc/en-us/articles/9570319741083-MarkDuplicatesSpark
 description: |
   Spark implementation of Picard MarkDuplicates that allows the tool to be run in parallel on multiple cores on a local machine or multiple machines on a Spark cluster while still matching the output of the non-Spark Picard version of the tool. Since the tool requires holding all of the readnames in memory while it groups read information, machine configuration and starting sort-order impact tool performance.
 authors:
@@ -14,4 +15,3 @@ notes: |
   * The `spark_runner` param = "LOCAL"|"SPARK"|"GCS" allows to set the spark_runner. Set the parameter to "LOCAL" or don't set it at all to run on local machine.
   * The `spark_master` param allows to set the URL of the Spark Master to submit the job. Set to "local[number_of_cores]" for local execution. Don't set it at all for local execution with number of cores determined by snakemake.
   * The `spark_extra` param allows for additional spark arguments.
-  * For more information see, https://gatk.broadinstitute.org/hc/en-us/articles/360050814112-MarkDuplicatesSpark

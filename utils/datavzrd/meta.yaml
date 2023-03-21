@@ -5,6 +5,6 @@ description: |
   `rendering integration <https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#template-rendering-integration>`_.
   Any files specified in the configuration file have to be also specified as additional input files in the
   datavzrd rule.
-url: https://github.com/koesterlab/datavzrd
+url: https://github.com/datavzrd/datavzrd
 authors:
   - Felix Mölder

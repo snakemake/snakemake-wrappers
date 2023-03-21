@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - sickle-trim ==1.33
+  - sickle-trim =1.33

@@ -14,6 +14,6 @@ rule get_variation:
         # branch="plants",  # optional: specify branch
     log:
         "logs/get_variation.log",
-    cache: True  # save space and time with between workflow caching (see docs)
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-variation"

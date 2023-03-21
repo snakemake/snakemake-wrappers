@@ -1,0 +1,17 @@
+rule coolpuppy:
+    input:
+        cooler="CN.mm9.1000kb.mcool",  ## Multiresolution cooler file
+        features="CN.mm9.toy_features.bed",  ## Feature file
+        expected="CN.mm9.toy_expected.tsv",  ## Expected file
+        view="CN.mm9.toy_regions.bed",  ## File with the region names and coordinates
+    output:
+        "CN_{resolution,[0-9]+}.clpy",
+    params:
+        ## Add optional parameters
+        features_format="bed",  ## Format of the features file
+        extra="--local",  ## Add extra parameters
+    threads: 2
+    log:
+        "logs/CN_{resolution}_coolpuppy.log",
+    wrapper:
+        "master/bio/coolpuppy"

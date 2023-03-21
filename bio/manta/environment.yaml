@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - manta=1.6
-  - bcftools=1.14
+  - manta =1.6.0
+  - bcftools =1.16

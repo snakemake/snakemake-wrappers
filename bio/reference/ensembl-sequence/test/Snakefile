@@ -8,7 +8,7 @@ rule get_genome:
         release="98",
     log:
         "logs/get_genome.log",
-    cache: True  # save space and time with between workflow caching (see docs)
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-sequence"
 
@@ -25,6 +25,6 @@ rule get_chromosome:
         # branch="plants",  # optional: specify branch
     log:
         "logs/get_genome.log",
-    cache: True  # save space and time with between workflow caching (see docs)
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-sequence"

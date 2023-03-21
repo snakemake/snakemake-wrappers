@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - dragmap =1.2
+  - dragmap =1.3.0

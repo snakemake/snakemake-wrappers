@@ -1,10 +1,12 @@
 name: muscle
-description: build multiple sequence alignments using MUSCLE. Documentation found at https://www.drive5.com/muscle/manual/index.html
+description: build multiple sequence alignments using MUSCLE.
+url: https://drive5.com/muscle5/manual/
 authors:
   - Nikos Tsardakas Renhuldt
 input:
   - FASTA file
 output:
   - Alignment file, with FASTA as default file format
-notes: |
-  * MUSCLE is a single-core program. It cannot utilize more than 1 thread.
+params:
+  - super5: specifies whether to use the Super5 algorithm to align sequences
+

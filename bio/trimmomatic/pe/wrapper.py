@@ -18,6 +18,7 @@ __license__ = "MIT"
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
+
 # Distribute available threads between trimmomatic itself and any potential pigz instances
 def distribute_threads(input_files, output_files, available_threads):
     gzipped_input_files = sum(1 for file in input_files if file.endswith(".gz"))

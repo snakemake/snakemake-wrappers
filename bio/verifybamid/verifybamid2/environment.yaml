@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - verifybamid2 ==2.0.1
+  - verifybamid2 =2.0.1

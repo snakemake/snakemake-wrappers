@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - plass=2.c7e35
+  - plass =4.687d7

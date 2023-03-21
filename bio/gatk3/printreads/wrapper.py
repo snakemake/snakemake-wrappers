@@ -9,20 +9,22 @@ from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
 extra = snakemake.params.get("extra", "")
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 java_opts = get_java_opts(snakemake)
 
-input_bam = snakemake.input.bam
-input_recal_data = snakemake.input.recal_data
-input_ref = snakemake.input.ref
 
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+bqsr = snakemake.input.get("recal_data", "")
+if bqsr:
+    bqsr = f"--BQSR {bqsr}"
+
 
 shell(
-    "gatk3 {java_opts} -T PrintReads"
+    "gatk3 {java_opts}"
+    " --analysis_type PrintReads"
+    " --input_file {snakemake.input.bam}"
+    " --reference_sequence {snakemake.input.ref}"
+    " {bqsr}"
     " {extra}"
-    " -I {input_bam}"
-    " -R {input_ref}"
-    " -BQSR {input_recal_data}"
-    " -o {snakemake.output}"
+    " --out {snakemake.output.bam}"
     " {log}"
 )

@@ -27,12 +27,10 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 # Determine which pipe command to use for converting to bam or sorting.
 if sort == "none":
-
     # Simply convert to bam using samtools view.
     pipe_cmd = "samtools view -Sbh -o {snakemake.output[0]} -"
 
 elif sort == "samtools":
-
     # Sort alignments using samtools sort.
     pipe_cmd = "samtools sort {sort_extra} -o {snakemake.output[0]} -"
 
@@ -45,7 +43,6 @@ elif sort == "samtools":
     sort_extra += " -T " + prefix + ".tmp"
 
 elif sort == "picard":
-
     # Sort alignments using picard SortSam.
     pipe_cmd = (
         "picard SortSam {sort_extra} INPUT=/dev/stdin"
