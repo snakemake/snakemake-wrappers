@@ -854,8 +854,13 @@ def test_gridss_setupreference():
             "1",
             "--use-conda",
             "--show-failed-logs",
-            "reference/genome.fasta.gridsscache",
-            "reference/genome.fasta.img",
+            "reference/genome.fasta.amb",
+            "reference/genome.fasta.ann",
+            "reference/genome.fasta.bwt",
+            "reference/genome.fasta.dict",
+            "reference/genome.fasta.fai",
+            "reference/genome.fasta.pac",
+            "reference/genome.fasta.sa",
         ],
     )
 
