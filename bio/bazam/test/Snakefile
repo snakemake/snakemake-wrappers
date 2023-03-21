@@ -7,7 +7,7 @@ rule bazam_interleaved:
     resources:
         # suggestion according to:
         # https://github.com/ssadedin/bazam/blob/c5988daf4cda4492e3d519c94f2f1e2022af5efe/README.md?plain=1#L46-L55
-        mem_mb=lambda wildcards, input: 0.2 * input.size_mb,
+        mem_mb=lambda wildcards, input: max([0.2 * input.size_mb, 200]),
     log:
         "logs/bazam/{sample}.log",
     wrapper:
@@ -25,7 +25,7 @@ rule bazam_separated:
     resources:
         # suggestion according to:
         # https://github.com/ssadedin/bazam/blob/c5988daf4cda4492e3d519c94f2f1e2022af5efe/README.md?plain=1#L46-L55
-        mem_mb=lambda wildcards, input: 0.4 * input.size_mb,
+        mem_mb=lambda wildcards, input: max([0.4 * input.size_mb, 200]),
     log:
         "logs/bazam/{sample}.log",
     wrapper:

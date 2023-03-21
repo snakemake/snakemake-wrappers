@@ -13,7 +13,7 @@ rule mark_duplicates_spark:
         #spark_master="",  # optional
         #spark_extra="", # optional
     resources:
-        mem_mb=lambda wildcards, input: input.size_mb * 0.25,
+        mem_mb=lambda wildcards, input: max([input.size_mb * 0.25, 200]),
     threads: 8
     wrapper:
         "master/bio/gatk/markduplicatesspark"
