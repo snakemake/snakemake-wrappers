@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - ngs-disambiguate ==2016.11.10
-  - bamtools ==2.4.0
+  - ngs-disambiguate =2018.05.03
+  - bamtools =2.5.1

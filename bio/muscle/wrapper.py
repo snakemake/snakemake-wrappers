@@ -9,10 +9,15 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
+mode = "-align"
+if snakemake.params.get("super5"):
+    mode = "-super5"
+
 shell(
-    "muscle "
-    "{extra} "
-    "-in {snakemake.input.fasta} "
-    "-out {snakemake.output.alignment} "
-    "{log}"
+    "muscle"
+    " -threads {snakemake.threads}"
+    " {mode} {snakemake.input.fasta}"
+    " {extra}"
+    " -output {snakemake.output.alignment}"
+    " {log}"
 )

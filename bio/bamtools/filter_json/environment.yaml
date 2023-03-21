@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bamtools ==2.5.1
+  - bamtools =2.5.2

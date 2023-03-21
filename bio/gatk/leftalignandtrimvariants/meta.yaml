@@ -1,0 +1,13 @@
+name: gatk LeftAlignAndTrimVariants
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360037225872-LeftAlignAndTrimVariants
+description: |
+  Run gatk LeftAlignAndTrimVariants
+authors:
+  - Dmitry Bespiatykh
+input:
+  - A variant call set to left-align and trim
+output:
+  - A left-aligned VCF
+notes: |
+  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. `-XX:ParallelGCThreads=10` (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  * The `extra` param allows for additional program arguments.

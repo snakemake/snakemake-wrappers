@@ -1,0 +1,18 @@
+rule gatk_leftalignandtrimvariants:
+    input:
+        vcf="calls/test_split_with_AS_filters.vcf",
+        ref="Homo_sapiens_assembly38.chrM.fasta",
+        fai="Homo_sapiens_assembly38.chrM.fasta.fai",
+        dict="Homo_sapiens_assembly38.chrM.dict",
+#       intervals="intervals.bed", # optional
+    output:
+        vcf="calls/split_multiallelics.vcf",
+    log:
+        "logs/gatk/leftalignandtrimvariants.log",
+    params:
+        extra="--split-multi-allelics", # optional
+        java_opts="",  # optional
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/gatk/leftalignandtrimvariants"

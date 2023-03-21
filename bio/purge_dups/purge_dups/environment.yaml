@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - purge_dups =1.2
+  - purge_dups =1.2.6

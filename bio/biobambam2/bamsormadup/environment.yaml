@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - biobambam =2.0
+  - biobambam =2.0.183

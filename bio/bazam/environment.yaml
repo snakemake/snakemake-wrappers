@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bazam =1.0
-  - snakemake-wrapper-utils ==0.5
+  - bazam =1.0.1
+  - snakemake-wrapper-utils =0.5.0

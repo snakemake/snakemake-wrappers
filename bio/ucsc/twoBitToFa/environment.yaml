@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - ucsc-twobittofa == 377
+  - ucsc-twobittofa =377
