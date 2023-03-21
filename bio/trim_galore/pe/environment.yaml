@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - trim-galore ==0.6.6
+  - trim-galore =0.6.10
