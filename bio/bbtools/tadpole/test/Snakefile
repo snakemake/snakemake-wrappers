@@ -2,8 +2,8 @@ rule tadpole_correct_se:
     input:
         sample=["reads/se/{sample}.fastq"],
     output:
-        out="correct_se/{sample}.fastq.gz",
-        discarded="correct_se/{sample}.discarded.fastq.gz",
+        out="out/correct_se/{sample}.fastq.gz",
+        discarded="out/correct_se/{sample}.discarded.fastq.gz",
     log:
         "logs/correct_se/{sample}.log",
     params:
@@ -13,15 +13,15 @@ rule tadpole_correct_se:
     resources:
         mem_mb=1024,
     wrapper:
-        "bio/bbtools/tadpole"
+        "master/bio/bbtools/tadpole"
 
 
 rule tadpole_correct_pe:
     input:
         sample=["reads/pe/{sample}.1.fastq", "reads/pe/{sample}.2.fastq"],
     output:
-        out=["correct_pe/{sample}.1.fastq", "correct/pe/{sample}.2.fastq"],
-        discarded="correct_pe/{sample}.discarded.fastq",
+        out=["out/correct_pe/{sample}.1.fastq", "out/correct/pe/{sample}.2.fastq"],
+        discarded="out/correct_pe/{sample}.discarded.fastq",
     log:
         "logs/correct_pe/{sample}.log",
     params:
@@ -31,15 +31,15 @@ rule tadpole_correct_pe:
     resources:
         mem_mb=1024,
     wrapper:
-        "bio/bbtools/tadpole"
+        "master/bio/bbtools/tadpole"
 
 
 rule tadpole_extend_se:
     input:
         sample=["reads/se/{sample}.fastq"],
     output:
-        out="extend_se/{sample}.fastq.gz",
-        discarded="extend_se/{sample}.discarded.fastq.gz",
+        out="out/extend_se/{sample}.fastq.gz",
+        discarded="out/extend_se/{sample}.discarded.fastq.gz",
     log:
         "logs/extend_se/{sample}.log",
     params:
@@ -49,15 +49,15 @@ rule tadpole_extend_se:
     resources:
         mem_mb=1024,
     wrapper:
-        "bio/bbtools/tadpole"
+        "master/bio/bbtools/tadpole"
 
 
 rule tadpole_extend_pe:
     input:
         sample=["reads/pe/{sample}.1.fastq", "reads/pe/{sample}.2.fastq"],
     output:
-        out=["extend_pe/{sample}.1.fastq", "extend/pe/{sample}.2.fastq"],
-        discarded="extend_pe/{sample}.discarded.fastq",
+        out=["out/extend_pe/{sample}.1.fastq", "out/extend/pe/{sample}.2.fastq"],
+        discarded="out/extend_pe/{sample}.discarded.fastq",
     log:
         "logs/extend_pe/{sample}.log",
     params:
@@ -67,4 +67,4 @@ rule tadpole_extend_pe:
     resources:
         mem_mb=1024,
     wrapper:
-        "bio/bbtools/tadpole"
+        "master/bio/bbtools/tadpole"
