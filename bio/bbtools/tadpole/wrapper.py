@@ -12,7 +12,7 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
-assert(snakemake.params.mode in ["contig", "extend", "correct", "insert", "discard"])
+assert snakemake.params.mode in ["contig", "extend", "correct", "insert", "discard"]
 
 
 n = len(snakemake.input.sample)
