@@ -6,11 +6,13 @@ __license__ = "MIT"
 
 import os
 from snakemake.shell import shell
+from tempfile import TemporaryDirectory
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-shell(
-    "sambamba sort {snakemake.params} -t {snakemake.threads} "
-    "-o {snakemake.output[0]} {snakemake.input[0]} "
-    "{log}"
-)
+with TemporaryDirectory() as tempdir:
+    shell(
+        "sambamba sort {snakemake.params} --nthreads {snakemake.threads} "
+        "--tmpdir {tempdir} --out {snakemake.output[0]} {snakemake.input[0]} "
+        "{log}"
+    )

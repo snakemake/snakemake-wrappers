@@ -1,13 +1,13 @@
-rule sickle_pe:
+rule sickle_se:
   input:
-    "input_R1.fq"
+    "reads/{sample}.1.fastq"
   output:
-    "output_R1.fq"
+    "{sample}.1.fastq"
+  log:
+    "logs/sickle/{sample}.log"
   params:
     qual_type="sanger",
     # optional extra parameters
     extra=""
-  log:
-    "logs/sickle/job.log"
   wrapper:
-    "master/bio/sickle/pe"
+    "master/bio/sickle/se"

@@ -53,7 +53,7 @@ key2prefix_suffix = [
 ]
 
 log_append = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
-for (key, (prefix, suffix)) in key2prefix_suffix:
+for key, (prefix, suffix) in key2prefix_suffix:
     exp_path = snakemake.output.get(key, None)
     if exp_path:
         if len(snakemake.input) != 1:

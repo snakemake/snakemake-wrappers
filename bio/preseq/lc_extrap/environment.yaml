@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - preseq =2.0
+  - preseq =3.2.0
