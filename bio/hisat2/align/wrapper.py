@@ -27,7 +27,7 @@ else:
     )
 
 ht2_files = Path(snakemake.input.idx).glob("*.ht2")
-idx_prefix = os.path.commonprefix(ht2_files)
+idx_prefix = os.path.commonprefix(list(ht2_files))
 
 # Executed shell command
 shell(
