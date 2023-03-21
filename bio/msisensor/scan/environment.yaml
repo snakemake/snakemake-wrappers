@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - msisensor ==0.5
+  - msisensor =0.5

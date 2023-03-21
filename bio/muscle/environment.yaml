@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - muscle ==3.8.1551
+  - muscle =5.1

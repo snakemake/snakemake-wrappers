@@ -1,0 +1,13 @@
+name: gatk VariantsToTable
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360036896892-VariantsToTable
+description: |
+  Run gatk VariantsToTable
+authors:
+  - Dmitry Bespiatykh
+input:
+  - A VCF file to convert to a table
+output:
+  - A tab-delimited file containing the values of the requested fields in the VCF file
+notes: |
+  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. `-XX:ParallelGCThreads=10` (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  * The `extra` param allows for additional program arguments.

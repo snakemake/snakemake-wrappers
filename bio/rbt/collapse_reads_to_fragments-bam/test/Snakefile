@@ -12,7 +12,7 @@ rule calc_consensus_reads:
         consensus_se="results/consensus/{sample}.se.fq",
         skipped="results/consensus/{sample}.skipped.bam",
     params:
-        extra="--verbose-read-names",
+        extra="--annotate-record-ids",
     log:
         "logs/consensus/{sample}.log",
     wrapper:
