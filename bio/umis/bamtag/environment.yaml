@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - umis =1.0.8
+  - umis =1.0.9
   - samtools =1.16.1

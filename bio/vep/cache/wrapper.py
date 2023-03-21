@@ -34,7 +34,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         "vep_install --AUTO c "
         "--SPECIES {snakemake.params.species} "
         "--ASSEMBLY {snakemake.params.build} "
-        "--VERSION {release} "
+        "--CACHE_VERSION {release} "
         "--CACHEURL {tmpdir} "
         "--CACHEDIR {snakemake.output} "
         "--CONVERT "
