@@ -5,7 +5,6 @@ __copyright__ = "Copyright 2018, Tessa Pierce"
 __email__ = "ntpierce@gmail.com"
 __license__ = "MIT"
 
-from os import path
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
@@ -65,13 +64,10 @@ if not seqtype:
             seqtype is not None
         ), "cannot infer 'fq' or 'fa' seqtype from input files. Please specify 'fq' or 'fa' in 'seqtype' parameter"
 
-outdir = path.dirname(snakemake.output.dir)
-assert "trinity" in outdir, "output directory name must contain 'trinity'"
-
 
 shell(
     "Trinity {input_cmd} --CPU {snakemake.threads} "
     " --max_memory {max_memory} --seqType {seqtype} "
-    " --output {outdir} {snakemake.params.extra} "
+    " --output {snakemake.output.dir} {snakemake.params.extra} "
     " {log}"
 )

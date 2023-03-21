@@ -7,4 +7,6 @@ authors:
 input:
   - fastq files
 output:
-  - fasta containing assembly
+  - fas: fasta containing assembly
+  - map: gene transcripts map
+  - dir: folder for intermediate results
