@@ -139,6 +139,35 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+
+@skip_if_not_modified
+def test_sickle_pe():
+    run(
+        "bio/sickle/pe",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "a.1.fastq",
+            "a.2.fastq",
+            "a.single.fastq",
+        ],
+    )
+
+@skip_if_not_modified
+def test_sickle_se():
+    run(
+        "bio/sickle/se",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "a.1.fastq",
+        ],
+    )
+
 @skip_if_not_modified
 def test_bwa_memx_index():
     run(
@@ -2582,18 +2611,18 @@ def test_multiqc_a():
 
 
 @skip_if_not_modified
-def test_muscle_clw():
+def test_muscle_super5():
     run(
         "bio/muscle",
-        ["snakemake", "--cores", "1", "test-proteins.clw", "--use-conda", "-F"],
+        ["snakemake", "--cores", "2", "test-proteins.super5.fas", "--use-conda", "-F"],
     )
 
 
 @skip_if_not_modified
-def test_muscle_fa():
+def test_muscle_fas():
     run(
         "bio/muscle",
-        ["snakemake", "--cores", "1", "test-proteins.afa", "--use-conda", "-F"],
+        ["snakemake", "--cores", "2", "test-proteins.fas", "--use-conda", "-F"],
     )
 
 

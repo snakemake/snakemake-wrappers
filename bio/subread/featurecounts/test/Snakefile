@@ -17,7 +17,7 @@ rule feature_counts:
     params:
         strand=0,  # optional; strandness of the library (0: unstranded [default], 1: stranded, and 2: reversely stranded)
         r_path="",  # implicitly sets the --Rpath flag
-        extra="-O --fracOverlap 0.2 -J",
+        extra="-O --fracOverlap 0.2 -J -p",
     log:
         "logs/{sample}.log",
     wrapper:
