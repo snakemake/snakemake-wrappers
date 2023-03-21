@@ -1,7 +1,7 @@
 rule hisat2_align:
     input:
         reads=["reads/{sample}_R1.fastq", "reads/{sample}_R2.fastq"],
-        idx=directory("index/"),
+        idx="index/",
     output:
         "mapped/{sample}.bam",
     log:
