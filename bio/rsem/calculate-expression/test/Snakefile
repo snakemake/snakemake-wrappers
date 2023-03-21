@@ -3,8 +3,10 @@ rule calculate_expression:
         # input.bam or input.fq_one must be specified (and if input.fq_one, optionally input.fq_two if paired-end)
         # an aligned to transcriptome BAM
         bam="mapped/a.bam",
-        # one of the index files created by rsem-prepare-reference; the file suffix is stripped and passed on to rsem
-        reference="index/reference.seq",
+        # Index files created by rsem-prepare-reference
+        reference=multiext("index/reference", ".grp", ".ti", ".transcripts.fa", ".seq", ".idx.fa", ".n2g.idx.fa"),
+        # reference_bowtie: Additionally needed for FASTQ input; Index files created (by bowtie-build) from the reference transcriptome
+        # reference_bowtie=multiext("index/reference", ".1.ebwt", ".2.ebwt", ".3.ebwt", ".4.ebwt", ".rev.1.ebwt", ".rev.2.ebwt"),
     output:
         # genes_results must end in .genes.results; this suffix is stripped and passed to rsem as an output name prefix
         # this file contains per-gene quantification data for the sample

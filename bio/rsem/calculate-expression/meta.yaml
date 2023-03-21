@@ -8,6 +8,8 @@ input:
   - bam: BAM file with reads aligned to transcriptome
   - fq_one: FASTQ file of reads (read_1 for paired-end sequencing)
   - fq_two: Optional second FASTQ file of reads (read_2 for paired-end sequencing)
+  - reference: Index files created by rsem-prepare-reference
+  - reference_bowtie: Additionally needed for FASTQ input; Index files created (by bowtie-build) from the reference transcriptome
 output:
   - genes_results: This file contains per-gene quantification data for the sample
   - isoforms_results: This file contains per-transcript quantification data for the sample

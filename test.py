@@ -139,6 +139,35 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+
+@skip_if_not_modified
+def test_sickle_pe():
+    run(
+        "bio/sickle/pe",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "a.1.fastq",
+            "a.2.fastq",
+            "a.single.fastq",
+        ],
+    )
+
+@skip_if_not_modified
+def test_sickle_se():
+    run(
+        "bio/sickle/se",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "a.1.fastq",
+        ],
+    )
+
 @skip_if_not_modified
 def test_bwa_memx_index():
     run(
@@ -802,14 +831,14 @@ def test_gridss_preprocess():
             "--use-conda",
             "--show-failed-logs",
             "working_dir/A.bam.gridss.working/A.bam.cigar_metrics",
+            "working_dir/A.bam.gridss.working/A.bam.computesamtags.changes.tsv",
             "working_dir/A.bam.gridss.working/A.bam.coverage.blacklist.bed",
             "working_dir/A.bam.gridss.working/A.bam.idsv_metrics",
             "working_dir/A.bam.gridss.working/A.bam.insert_size_histogram.pdf",
             "working_dir/A.bam.gridss.working/A.bam.insert_size_metrics",
             "working_dir/A.bam.gridss.working/A.bam.mapq_metrics",
             "working_dir/A.bam.gridss.working/A.bam.sv.bam",
-            "working_dir/A.bam.gridss.working/A.bam.sv.bam.bai",
-            "working_dir/A.bam.gridss.working/A.bam.sv_metrics",
+            "working_dir/A.bam.gridss.working/A.bam.sv.bam.csi",
             "working_dir/A.bam.gridss.working/A.bam.tag_metrics",
         ],
     )
@@ -825,8 +854,13 @@ def test_gridss_setupreference():
             "1",
             "--use-conda",
             "--show-failed-logs",
-            "reference/genome.fasta.gridsscache",
-            "reference/genome.fasta.img",
+            "reference/genome.fasta.amb",
+            "reference/genome.fasta.ann",
+            "reference/genome.fasta.bwt",
+            "reference/genome.fasta.dict",
+            "reference/genome.fasta.fai",
+            "reference/genome.fasta.pac",
+            "reference/genome.fasta.sa",
         ],
     )
 
@@ -2582,18 +2616,18 @@ def test_multiqc_a():
 
 
 @skip_if_not_modified
-def test_muscle_clw():
+def test_muscle_super5():
     run(
         "bio/muscle",
-        ["snakemake", "--cores", "1", "test-proteins.clw", "--use-conda", "-F"],
+        ["snakemake", "--cores", "2", "test-proteins.super5.fas", "--use-conda", "-F"],
     )
 
 
 @skip_if_not_modified
-def test_muscle_fa():
+def test_muscle_fas():
     run(
         "bio/muscle",
-        ["snakemake", "--cores", "1", "test-proteins.afa", "--use-conda", "-F"],
+        ["snakemake", "--cores", "2", "test-proteins.fas", "--use-conda", "-F"],
     )
 
 
@@ -3169,18 +3203,16 @@ def test_star_align():
     os.makedirs("bio/star/align/test/index", exist_ok=True)
     try:
         subprocess.check_call(
-            "conda env create " "--file bio/star/align/environment.yaml " "-n star-env",
+            "mamba env create --file bio/star/align/environment.yaml -n star-env",
             shell=True,
-            executable="/bin/bash",
         )
         subprocess.check_call(
-            "source activate star-env; STAR --genomeDir "
+            "bash -l -c 'source $(dirname $(dirname $(which mamba)))/bin/activate star-env; STAR --genomeDir "
             "bio/star/align/test/index "
             "--genomeFastaFiles bio/star/align/test/genome.fasta "
             "--runMode genomeGenerate "
-            "--genomeSAindexNbases 8",
+            "--genomeSAindexNbases 8'",
             shell=True,
-            executable="/bin/bash",
         )
     finally:
         shutil.rmtree("star-env", ignore_errors=True)
@@ -3204,7 +3236,7 @@ def test_star_index():
 def test_snpeff_annotate():
     run(
         "bio/snpeff/annotate",
-        ["snakemake", "--cores", "1", "snpeff/fake_KJ660346.vcf", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "snpeff/fake_KJ660346.vcf", "snpeff_nostats/fake_KJ660346.vcf", "--use-conda", "-F"],
     )
 
 
@@ -3219,23 +3251,6 @@ def test_snpeff_download():
             "resources/snpeff/ebola_zaire",
             "--use-conda",
             "-F",
-        ],
-    )
-
-
-@skip_if_not_modified
-def test_snpeff_nostats():
-    run(
-        "bio/snpeff/annotate",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "snpeff_nostats/fake_KJ660346.vcf",
-            "--use-conda",
-            "-F",
-            "-s",
-            "Snakefile_nostats",
         ],
     )
 
@@ -3784,6 +3799,12 @@ def test_gatk_variantrecalibrator():
         check_log=check_log,
     )
 
+@skip_if_not_modified
+def test_gatk_variantstotable():
+    run(
+        "bio/gatk/variantstotable",
+        ["snakemake", "--cores", "1", "calls/snvs.tab", "--use-conda", "-F"],
+    )
 
 @skip_if_not_modified
 def test_gatk_filtermutectcalls():
@@ -3953,6 +3974,13 @@ def test_gatk_learn_read_orientation():
     run(
         "bio/gatk/learnreadorientationmodel",
         ["snakemake", "--cores", "1", "--use-conda"]
+    )
+
+@skip_if_not_modified
+def test_gatk_leftalignandtrimvariants():
+    run(
+        "bio/gatk/leftalignandtrimvariants",
+        ["snakemake", "--cores", "1", "calls/split_multiallelics.vcf", "--use-conda", "-F"],
     )
 
 
@@ -4427,8 +4455,8 @@ def test_bismark_deduplicate_bismark():
             "snakemake",
             "--cores",
             "1",
-            "bams/a_genome_pe.deduplicated.bam",
-            "bams/b_genome.deduplicated.bam",
+            "bams/a_pe.deduplicated.bam",
+            "bams/b.deduplicated.bam",
             "--use-conda",
             "-F",
         ],
@@ -4934,10 +4962,16 @@ def test_collectgcbiasmetrics():
 
 
 @skip_if_not_modified
-def test_calculate_expression():
+def test_rsem_calculate_expression():
     run(
         "bio/rsem/calculate-expression",
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+    
+    run(
+        "bio/rsem/calculate-expression",
+        ["snakemake", "--cores", "1", "--use-conda", "-F",
+        "-s", "Snakefile_fastq"],
     )
 
 
