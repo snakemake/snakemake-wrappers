@@ -2,8 +2,8 @@ name: RUBIC
 authors:
   - Beatrice F. Tan
 description: |
-  `RUBIC <http://ccb.nki.nl/software/rubic/doc/>`_
-  detects recurrent copy number alterations using copy number breaks.
+  RUBIC detects recurrent copy number alterations using copy number breaks.
+url: https://github.com/NKI-CCB/RUBIC
 input:
   seg: segmentation file containing copy number profiles from multiple tumor samples
   markers: file with marker positions
