@@ -1,6 +1,7 @@
 name: trinity
 description: |
   Generate transcriptome assembly with Trinity
+url: https://github.com/trinityrnaseq/trinityrnaseq/
 authors:
   - Tessa Pierce
 input:

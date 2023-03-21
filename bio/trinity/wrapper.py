@@ -9,6 +9,7 @@ from os import path
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 # Previous wrapper reserved 10 Gigabytes by default. This behaviour is
 # preserved below:
 max_memory = "10G"
@@ -57,17 +58,16 @@ seqtype = snakemake.params.get("seqtype")
 if not seqtype:
     if "fq" in left[0] or "fastq" in left[0]:
         seqtype = "fq"
-    elif "fa" in left[0] or "fasta" in left[0]:
+    elif "fa" in left[0] or "fas" in left[0] or "fasta" in left[0]:
         seqtype = "fa"
     else:  # assertion is redundant - warning or error instead?
         assert (
             seqtype is not None
         ), "cannot infer 'fq' or 'fa' seqtype from input files. Please specify 'fq' or 'fa' in 'seqtype' parameter"
 
-outdir = path.dirname(snakemake.output[0])
+outdir = path.dirname(snakemake.output.dir)
 assert "trinity" in outdir, "output directory name must contain 'trinity'"
 
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 shell(
     "Trinity {input_cmd} --CPU {snakemake.threads} "

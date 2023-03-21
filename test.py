@@ -3502,7 +3502,7 @@ def test_trinity():
             "snakemake",
             "--cores",
             "1",
-            "trinity_out_dir/Trinity.fasta",
+            "trinity_out_dir.Trinity.fasta",
             "--use-conda",
             "-F",
         ],
