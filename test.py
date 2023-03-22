@@ -146,7 +146,7 @@ def test_vsearch():
         "bio/vsearch",
             "snakemake",
             "--cores",
-            "2",
+            "1",
             "--use-conda",
             "out/cluster_fast/a.profile",
             "out/maskfasta/a.fasta",
