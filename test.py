@@ -141,6 +141,84 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_seqkit_stats():
+    run(
+        "bio/seqkit/stats",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/stats/a.tsv",
+        ],
+    )
+
+@skip_if_not_modified
+def test_seqkit_rmdup():
+    run(
+        "bio/seqkit/rmdup",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/rmdup_name/a.fastq.gz",
+        ],
+    )
+    run(
+        "bio/seqkit/rmdup",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/rmdup_seq/a.fastq.gz",
+        ],
+    )
+
+@skip_if_not_modified
+def test_seqkit_fx2tab():
+    run(
+        "bio/seqkit/fx2tab",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/fx2tab/a.tsv",
+        ],
+    )
+
+@skip_if_not_modified
+def test_seqkit_grep():
+    run(
+        "bio/seqkit/grep",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/grep_name/a.fastq.gz",
+        ],
+    )
+    run(
+        "bio/seqkit/grep",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/grep_seq/a.fastq.gz",
+        ],
+    )
+
+@skip_if_not_modified
 def test_sickle_pe():
     run(
         "bio/sickle/pe",
