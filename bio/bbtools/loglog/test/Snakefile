@@ -1,0 +1,26 @@
+rule loglog_se:
+    input:
+        sample=["reads/se/{sample}.fastq"],
+    log:
+        "logs/se/{sample}.log",
+    params:
+        extra="buckets=2048 seed=1234",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/bbtools/loglog"
+
+
+rule loglog_pe:
+    input:
+        sample=["reads/pe/{sample}.1.fastq", "reads/pe/{sample}.2.fastq"],
+    log:
+        "logs/pe/{sample}.log",
+    params:
+        extra="buckets=2048 seed=1234",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/bbtools/loglog"

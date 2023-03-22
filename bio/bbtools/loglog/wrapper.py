@@ -12,9 +12,6 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
-assert snakemake.params.mode in ["contig", "extend", "correct", "insert", "discard"]
-
-
 n = len(snakemake.input.sample)
 assert (
     n == 1 or n == 2
@@ -22,28 +19,13 @@ assert (
 
 if n == 1:
     reads = "in={}".format(snakemake.input.sample)
-    out = "out={}".format(snakemake.output.out)
 else:
     reads = "in={} in2={}".format(*snakemake.input.sample)
-    out = "out={} out2={}".format(*snakemake.output.out)
-
-
-in_extra = snakemake.input.get("extra", "")
-if in_extra:
-    reads += f" extra={in_extra}"
-
-
-discarded = snakemake.output.get("discarded", "")
-if discarded:
-    out += f" outd={discarded}"
 
 
 shell(
-    "tadpole.sh {java_opts}"
-    " threads={snakemake.threads}"
-    " mode={snakemake.params.mode}"
+    "loglog.sh {java_opts}"
     " {reads}"
     " {extra}"
-    " {out}"
     " {log}"
 )
