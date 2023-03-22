@@ -1,14 +1,22 @@
 name: GATK Mutect2
 url: https://gatk.broadinstitute.org/hc/en-us/articles/9570422171291-Mutect2
 description: Call somatic SNVs and indels via local assembly of haplotypes
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360037593851-Mutect2
 authors:
   - Thibault Dayris
   - Filipe G. Vieira
 input:
-  - Mapped reads (SAM/BAM/CRAM)
-  - Reference Fasta file
+  - map: Mapped reads (SAM/BAM/CRAM)
+  - fasta: Reference Fasta file
+  - intervals: Optional path to a BED interval file
+  - pon: Optional path to Panel of Normals (flagged as BETA)
+  - germline: Optional path to known germline variants
 output:
-  - Variant file
-notes: |
-  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
-  * The `extra` param allows for additional program arguments.
+  - vcf: Path to variant file
+  - bam: Optional path to output bam file
+  - f1r2: Optional path to f1r2 count file
+params:
+  - extra: Optional parameters for GATK Mutect2
+  - use_parallelgc: Automatically add "-XX:ParallelGCThreads={snakemake.threads}" to your command line. Set to `True`  if your architecture supports ParallelGCThreads.
+  - use_omp: Automatically set `OMP_NUM_THREADS` environment variable. Set to `True` if your java architecture uses OMP threads.
+  - java_opts: allows for additional arguments to be passed to the java compiler (not for `-XmX` or `-Djava.io.tmpdir`, `-XX:ParallelGCThreads`, since they are handled automatically).
