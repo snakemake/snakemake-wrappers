@@ -158,6 +158,84 @@ def test_tadpole():
     )
 
 @skip_if_not_modified
+def test_seqkit_stats():
+    run(
+        "bio/seqkit/stats",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/stats/a.tsv",
+        ],
+    )
+
+@skip_if_not_modified
+def test_seqkit_rmdup():
+    run(
+        "bio/seqkit/rmdup",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/rmdup_name/a.fastq.gz",
+        ],
+    )
+    run(
+        "bio/seqkit/rmdup",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/rmdup_seq/a.fastq.gz",
+        ],
+    )
+
+@skip_if_not_modified
+def test_seqkit_fx2tab():
+    run(
+        "bio/seqkit/fx2tab",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/fx2tab/a.tsv",
+        ],
+    )
+
+@skip_if_not_modified
+def test_seqkit_grep():
+    run(
+        "bio/seqkit/grep",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/grep_name/a.fastq.gz",
+        ],
+    )
+    run(
+        "bio/seqkit/grep",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/grep_seq/a.fastq.gz",
+        ],
+    )
+
+@skip_if_not_modified
 def test_sickle_pe():
     run(
         "bio/sickle/pe",
@@ -431,6 +509,21 @@ def test_salsa2():
     run(
         "bio/salsa2",
         ["snakemake", "--cores", "1", "out/a.agp", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_merqury_haploid():
+    run(
+        "bio/merqury",
+        ["snakemake", "--cores", "1", "results/haploid/out.qv", "--use-conda", "-F"],
+    )
+
+@skip_if_not_modified
+def test_merqury_diploid():
+    run(
+        "bio/merqury",
+        ["snakemake", "--cores", "1", "results/diploid/out.qv", "--use-conda", "-F"],
     )
 
 
@@ -848,14 +941,14 @@ def test_gridss_preprocess():
             "--use-conda",
             "--show-failed-logs",
             "working_dir/A.bam.gridss.working/A.bam.cigar_metrics",
+            "working_dir/A.bam.gridss.working/A.bam.computesamtags.changes.tsv",
             "working_dir/A.bam.gridss.working/A.bam.coverage.blacklist.bed",
             "working_dir/A.bam.gridss.working/A.bam.idsv_metrics",
             "working_dir/A.bam.gridss.working/A.bam.insert_size_histogram.pdf",
             "working_dir/A.bam.gridss.working/A.bam.insert_size_metrics",
             "working_dir/A.bam.gridss.working/A.bam.mapq_metrics",
             "working_dir/A.bam.gridss.working/A.bam.sv.bam",
-            "working_dir/A.bam.gridss.working/A.bam.sv.bam.bai",
-            "working_dir/A.bam.gridss.working/A.bam.sv_metrics",
+            "working_dir/A.bam.gridss.working/A.bam.sv.bam.csi",
             "working_dir/A.bam.gridss.working/A.bam.tag_metrics",
         ],
     )
@@ -871,8 +964,13 @@ def test_gridss_setupreference():
             "1",
             "--use-conda",
             "--show-failed-logs",
-            "reference/genome.fasta.gridsscache",
-            "reference/genome.fasta.img",
+            "reference/genome.fasta.amb",
+            "reference/genome.fasta.ann",
+            "reference/genome.fasta.bwt",
+            "reference/genome.fasta.dict",
+            "reference/genome.fasta.fai",
+            "reference/genome.fasta.pac",
+            "reference/genome.fasta.sa",
         ],
     )
 
@@ -3248,7 +3346,7 @@ def test_star_index():
 def test_snpeff_annotate():
     run(
         "bio/snpeff/annotate",
-        ["snakemake", "--cores", "1", "snpeff/fake_KJ660346.vcf", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "snpeff/fake_KJ660346.vcf", "snpeff_nostats/fake_KJ660346.vcf", "--use-conda", "-F"],
     )
 
 
@@ -3263,23 +3361,6 @@ def test_snpeff_download():
             "resources/snpeff/ebola_zaire",
             "--use-conda",
             "-F",
-        ],
-    )
-
-
-@skip_if_not_modified
-def test_snpeff_nostats():
-    run(
-        "bio/snpeff/annotate",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "snpeff_nostats/fake_KJ660346.vcf",
-            "--use-conda",
-            "-F",
-            "-s",
-            "Snakefile_nostats",
         ],
     )
 
@@ -3531,7 +3612,7 @@ def test_trinity():
             "snakemake",
             "--cores",
             "1",
-            "trinity_out_dir/Trinity.fasta",
+            "trinity_out_dir.Trinity.fasta",
             "--use-conda",
             "-F",
         ],
@@ -3995,6 +4076,10 @@ def test_gatk_mutect():
     run(
         "bio/gatk/mutect",
         ["snakemake", "--cores", "1", "variant/a.vcf", "--use-conda", "-F"],
+    )
+    run(
+        "bio/gatk/mutect",
+        ["snakemake", "--cores", "1", "variant_complete/a.vcf", "--use-conda", "-F"],
     )
 
 

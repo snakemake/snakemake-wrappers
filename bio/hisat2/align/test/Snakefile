@@ -1,13 +1,13 @@
 rule hisat2_align:
     input:
-      reads=["reads/{sample}_R1.fastq", "reads/{sample}_R2.fastq"]
+        reads=["reads/{sample}_R1.fastq", "reads/{sample}_R2.fastq"],
+        idx="index/",
     output:
-      "mapped/{sample}.bam"
+        "mapped/{sample}.bam",
     log:
-        "logs/hisat2_align_{sample}.log"
+        "logs/hisat2_align_{sample}.log",
     params:
-      extra="",
-      idx="index/",
+        extra="",
     threads: 2
     wrapper:
-      "master/bio/hisat2/align"
+        "master/bio/hisat2/align"
