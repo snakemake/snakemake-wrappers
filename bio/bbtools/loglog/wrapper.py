@@ -23,9 +23,4 @@ else:
     reads = "in={} in2={}".format(*snakemake.input.sample)
 
 
-shell(
-    "loglog.sh {java_opts}"
-    " {reads}"
-    " {extra}"
-    " {log}"
-)
+shell("loglog.sh {java_opts} {reads} {extra} {log}")
