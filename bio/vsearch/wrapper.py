@@ -33,7 +33,7 @@ for key, value in snakemake.output.items():
         out_list.append(f"--{key} /dev/stdout | bzip2 > {value}")
     else:
         out_list.append(f"--{key} {value}")
- 
+
 # Check which output files are to be compressed
 out_gz = [out.endswith(".gz") for out in out_list]
 out_bz2 = [out.endswith(".bz2") for out in out_list]
