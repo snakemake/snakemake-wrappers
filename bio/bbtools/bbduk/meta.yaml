@@ -12,8 +12,7 @@ output:
   - discarded: fastq file with discarded reads (optional)
   - stats: stats file (optional)
 params:
-  - extra: Optional parameters
+  - extra: additional program arguments
   - adapters: Literal adapters sequences
 notes: |
   * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
-  * The `extra` param allows for additional program arguments.

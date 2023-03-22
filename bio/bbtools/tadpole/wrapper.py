@@ -22,10 +22,10 @@ assert (
 
 if n == 1:
     reads = "in={}".format(snakemake.input.sample)
-    out = "out={}".format(snakemake.output.fq)
+    out = "out={}".format(snakemake.output.out)
 else:
     reads = "in={} in2={}".format(*snakemake.input.sample)
-    out = "out={} out2={}".format(*snakemake.output.fq)
+    out = "out={} out2={}".format(*snakemake.output.out)
 
 
 extra = snakemake.output.get("extra", "")
@@ -41,7 +41,7 @@ if discarded:
 shell(
     "tadpole.sh {java_opts}"
     " threads={snakemake.threads}"
-    " mode={params.mode}"
+    " mode={snakemake.params.mode}"
     " {reads}"
     " {extra}"
     " {out}"
