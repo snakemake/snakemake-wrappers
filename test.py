@@ -496,6 +496,21 @@ def test_salsa2():
 
 
 @skip_if_not_modified
+def test_merqury_haploid():
+    run(
+        "bio/merqury",
+        ["snakemake", "--cores", "1", "results/haploid/out.qv", "--use-conda", "-F"],
+    )
+
+@skip_if_not_modified
+def test_merqury_diploid():
+    run(
+        "bio/merqury",
+        ["snakemake", "--cores", "1", "results/diploid/out.qv", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_mashmap():
     run(
         "bio/mashmap", ["snakemake", "--cores", "2", "mashmap.out", "--use-conda", "-F"]
