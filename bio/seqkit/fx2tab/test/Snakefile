@@ -1,0 +1,12 @@
+rule seqkit_fx2tab:
+    input:
+        fastx="reads/{sample}.fastq",
+    output:
+        tsv="out/fx2tab/{sample}.tsv",
+    log:
+        "logs/fx2tab/{sample}.log",
+    params:
+        extra="--name",
+    threads: 2
+    wrapper:
+        "master/bio/seqkit/fx2tab"

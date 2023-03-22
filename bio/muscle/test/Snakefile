@@ -2,23 +2,26 @@ rule muscle_fasta:
     input:
         fasta="{sample}.fa",  # Input fasta file
     output:
-        alignment="{sample}.afa",  # Output alignment file
+        alignment="{sample}.fas",  # Output alignment file
     log:
         "logs/muscle/{sample}.log",
     params:
-        extra="",  # Additional arguments
+        extra="-refineiters 50",  # Additional arguments
+    threads: 2
     wrapper:
         "master/bio/muscle"
 
 
-rule muscle_clw:
+rule muscle_super5:
     input:
         fasta="{sample}.fa",
     output:
-        alignment="{sample}.clw",
+        alignment="{sample}.super5.fas",
     log:
-        "logs/muscle/{sample}.log",
+        "logs/muscle/{sample}.super5.log",
     params:
-        extra="-clw",
+        super5 = True,
+        extra="-refineiters 50",
+    threads: 2
     wrapper:
         "master/bio/muscle"
