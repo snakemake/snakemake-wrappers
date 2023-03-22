@@ -141,6 +141,23 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_tadpole():
+    run(
+        "bio/bbtools/tadpole",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/correct_se/a.fastq.gz",
+            "out/correct_pe/a.1.fastq",
+            "out/extend_se/a.fastq.gz",
+            "out/extend_pe/a.1.fastq",
+        ],
+    )
+
+@skip_if_not_modified
 def test_seqkit_stats():
     run(
         "bio/seqkit/stats",
