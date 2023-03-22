@@ -1,0 +1,17 @@
+name: Tadpole
+url: https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/tadpole-guide/
+description: |
+  Run Tadpole.
+authors:
+  - Filipe G. Vieira
+input:
+  - sample: list of R1 and (if PE) R2 fastq file(s)
+  - extra: kmer data, but not for error-correction or extension (optional)
+output:
+  - trimmed: trimmed fastq file with R1 reads, trimmed fastq file with R2 reads (PE only, optional)
+  - discarded: fastq file with discarded reads (optional)
+params:
+  - mode: Run mode (one of `contig`, `extend`, `correct`, `insert`, or `discard`; mandatory)
+  - extra: additional program arguments
+notes: |
+  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. `-XX:ParallelGCThreads=10` (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).

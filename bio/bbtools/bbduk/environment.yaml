@@ -5,3 +5,4 @@ channels:
 dependencies:
   - bbmap =39.01
   - snakemake-wrapper-utils =0.5.2
+  - python =3.11.0
