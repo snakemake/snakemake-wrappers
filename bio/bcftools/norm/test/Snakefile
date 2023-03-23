@@ -3,7 +3,7 @@ rule norm_vcf:
         "{prefix}.bcf",
         #ref="genome.fasta"  # optional reference (will be translated into the -f option)
     output:
-        "{prefix}.norm.vcf", # can also be .bcf, corresponding --output-type parameter is inferred automatically
+        "{prefix}.norm.vcf",  # can also be .bcf, corresponding --output-type parameter is inferred automatically
     log:
         "{prefix}.norm.log",
     params:

@@ -34,7 +34,7 @@ rule collect_multiple_metrics:
     # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
     # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
     resources:
-        mem_gb=3,
+        mem_mb=4096,
     log:
         "logs/picard/multiple_metrics/{sample}.log",
     params:
