@@ -141,6 +141,21 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_loglog():
+    run(
+        "bio/bbtools/loglog",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "logs/se/a.log",
+            "logs/pe/a.log",
+        ],
+    )
+
+@skip_if_not_modified
 def test_tadpole():
     run(
         "bio/bbtools/tadpole",
@@ -151,9 +166,15 @@ def test_tadpole():
             "--use-conda",
             "-F",
             "out/correct_se/a.fastq.gz",
+            "out/correct_se/a.discarded.fastq.gz",
             "out/correct_pe/a.1.fastq",
+            "out/correct_pe/a.2.fastq",
+            "out/correct_pe/a.discarded.fastq",
             "out/extend_se/a.fastq.gz",
+            "out/extend_se/a.discarded.fastq.gz",
             "out/extend_pe/a.1.fastq",
+            "out/extend_pe/a.2.fastq",
+            "out/extend_pe/a.discarded.fastq",
         ],
     )
 
