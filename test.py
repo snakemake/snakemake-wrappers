@@ -144,6 +144,7 @@ def run(wrapper, cmd, check_log=None):
 def test_vsearch():
     run(
         "bio/vsearch",
+        [
             "snakemake",
             "--cores",
             "1",
@@ -161,6 +162,7 @@ def test_vsearch():
 def test_loglog():
     run(
         "bio/bbtools/loglog",
+        [
             "snakemake",
             "--cores",
             "2",

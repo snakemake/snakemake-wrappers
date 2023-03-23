@@ -10,19 +10,7 @@ if snakemake.log:
     log = f"--log {snakemake.log}"
 
 
-fasta_arg = snakemake.params.get("fasta_arg", "")
-if fasta_arg:
-    fasta_arg = f"{fasta_arg} {snakemake.input.fasta}"
-
-
-fastq_arg = snakemake.params.get("fastq_arg", "")
-if fastq_arg:
-    fastq_arg = f"{fastq_arg} {snakemake.input.fastq}"
-
-
-db = snakemake.input.get("db", "")
-if db:
-    db = f"--db {db}"
+input = " ".join([f"--{key} {value}" for key, value in snakemake.input.items()])
 
 
 out_list = list()
@@ -44,11 +32,5 @@ output = [out for _, out in sorted(zip(out_gz or out_bz2, out_list))]
 
 
 shell(
-    "vsearch --threads {snakemake.threads}"
-    " {fasta_arg}"
-    " {fastq_arg}"
-    " {db}"
-    " {extra}"
-    " {log}"
-    " {output}"
+    "vsearch --threads {snakemake.threads}" " {input}" " {extra}" " {log}" " {output}"
 )
