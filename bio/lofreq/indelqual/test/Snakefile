@@ -1,0 +1,12 @@
+rule lofreq_indelqual:
+    input:
+        bam="data/{sample}.bam",
+    output:
+        "{sample}.indel.bam"
+    log:
+        "logs/{sample}.log"
+    params:
+        extra=""
+    threads: 8
+    wrapper:
+        "master/bio/lofreq/indelqual"

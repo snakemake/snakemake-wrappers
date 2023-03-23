@@ -1,0 +1,15 @@
+name: lofreq indelqual
+description: Insert indel qualities into BAM file (required for indel predictions)
+url: https://csb5.github.io/lofreq/
+authors:
+  - Tobin Groth
+input:
+  - bam file that will have variants called
+output:
+  - bam file with indel qualities added
+params (optional):
+  - -u | --uniform INT[,INT]  Add this indel quality uniformly to all bases. Use two comma separated values to specify insertion and deletion quality separately. (clashes with --dindel)
+  - --dindel Add Dindel's indel qualities (Illumina specific) (clashes with -u; needs --ref)
+  - -f | --ref Reference sequence used for mapping (Only required for --dindel)
+  - -o | --out FILE Output BAM file [- = stdout = default]
+  - --verbose Be verbose
