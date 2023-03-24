@@ -138,13 +138,14 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+@skip_if_not_modified
 def test_indelqual():
     run(
         "bio/lofreq/indelqual",
         [
             "snakemake",
             "--cores",
-            "2",
+            "1",
             "--use-conda",
             "-F",
             "out/indelqual/a.indel.bam"
