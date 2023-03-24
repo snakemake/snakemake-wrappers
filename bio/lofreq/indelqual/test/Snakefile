@@ -2,11 +2,11 @@ rule lofreq_indelqual:
     input:
         bam="data/{sample}.bam",
     output:
-        "{sample}.indel.bam"
+        "out/indelqual/{sample}.indel.bam"
     log:
         "logs/{sample}.log"
     params:
-        extra=""
+        extra="-u 15"
     threads: 8
     wrapper:
         "master/bio/lofreq/indelqual"

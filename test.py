@@ -138,7 +138,19 @@ def run(wrapper, cmd, check_log=None):
             # go back to original directory
             os.chdir(origdir)
 
+def test_indelqual():
+    run(
+        "bio/lofreq/indelqual",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/indelqual/a.indel.bam"
 
+        ]
+    )
 
 @skip_if_not_modified
 def test_loglog():
