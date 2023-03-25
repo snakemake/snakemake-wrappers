@@ -1,5 +1,22 @@
 # Changelog
 
+### [1.25.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.25.0...v1.25.1) (2023-03-25)
+
+
+### Performance Improvements
+
+* autobump bio/bwa-meme/mem ([#1163](https://www.github.com/snakemake/snakemake-wrappers/issues/1163)) ([5236667](https://www.github.com/snakemake/snakemake-wrappers/commit/52366674dbfaac0796041db97397e10b216bdf1a))
+* autobump bio/diamond/blastp ([#1161](https://www.github.com/snakemake/snakemake-wrappers/issues/1161)) ([1f89877](https://www.github.com/snakemake/snakemake-wrappers/commit/1f898770af5b3c41135ede213508885bb214ab5f))
+* autobump bio/gatk/filtermutectcalls ([#1155](https://www.github.com/snakemake/snakemake-wrappers/issues/1155)) ([0071533](https://www.github.com/snakemake/snakemake-wrappers/commit/00715334b70c8b0e2ae1e52b47351320fe8157af))
+* autobump bio/gatk/learnreadorientationmodel ([#1158](https://www.github.com/snakemake/snakemake-wrappers/issues/1158)) ([97cd747](https://www.github.com/snakemake/snakemake-wrappers/commit/97cd7470196fa28fa229361b81cc10466f87b495))
+* autobump bio/gatk/variantannotator ([#1160](https://www.github.com/snakemake/snakemake-wrappers/issues/1160)) ([f7001e2](https://www.github.com/snakemake/snakemake-wrappers/commit/f7001e2c2a6ce9e3fef0fe700bb1a37c56d86c22))
+* autobump bio/gdc-api/bam-slicing ([#1159](https://www.github.com/snakemake/snakemake-wrappers/issues/1159)) ([96a1a42](https://www.github.com/snakemake/snakemake-wrappers/commit/96a1a42b672bdf9fca9a8e8ef5d140cc02d93753))
+* autobump bio/last/lastal ([#1165](https://www.github.com/snakemake/snakemake-wrappers/issues/1165)) ([ca0d13f](https://www.github.com/snakemake/snakemake-wrappers/commit/ca0d13fad8396327826d41d394861809305c87d5))
+* autobump bio/lofreq/call ([#1156](https://www.github.com/snakemake/snakemake-wrappers/issues/1156)) ([c750bbf](https://www.github.com/snakemake/snakemake-wrappers/commit/c750bbf2b0fd45abd3d0ba8b926a6cf404b38c0d))
+* autobump bio/microphaser/filter ([#1164](https://www.github.com/snakemake/snakemake-wrappers/issues/1164)) ([8932d38](https://www.github.com/snakemake/snakemake-wrappers/commit/8932d3882426094d0de56fc32c8e9b81a72c37e5))
+* autobump bio/seqkit/rmdup ([#1162](https://www.github.com/snakemake/snakemake-wrappers/issues/1162)) ([88f74d4](https://www.github.com/snakemake/snakemake-wrappers/commit/88f74d4bc502b3299b40eb127f8eefa7e0554fcf))
+* bump Salmon to v1.10.1 ([#1168](https://www.github.com/snakemake/snakemake-wrappers/issues/1168)) ([a718777](https://www.github.com/snakemake/snakemake-wrappers/commit/a718777f285f175c5f6c67170b6d6440d504184b))
+
 ## [1.25.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.24.0...v1.25.0) (2023-03-23)
 
 
