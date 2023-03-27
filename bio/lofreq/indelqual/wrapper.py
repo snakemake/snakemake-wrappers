@@ -14,8 +14,8 @@ if len(snakemake.output) != 1:
 
 shell(
     "lofreq indelqual "
-    " {bam_input}"
-    " -o {output_file}"
+    " {snakemake.input.bam}"
+    " -o {snakemake.output[0]}"
     " {extra}"
     " {log}"
 )
