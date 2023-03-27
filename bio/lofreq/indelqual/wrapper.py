@@ -9,12 +9,8 @@ from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
-output_file = snakemake.output[0]
-
-if output_file is None:
-    raise ValueError("Missing output file")
-elif not len(snakemake.output) == 1:
-    raise ValueError("Only expecting one output file: " + str(output_file) + "!")
+if len(snakemake.output) != 1:
+    raise ValueError("Expecting only one output file!")
 
 shell(
     "lofreq indelqual "
