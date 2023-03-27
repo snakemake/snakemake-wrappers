@@ -12,9 +12,15 @@ extra = snakemake.params.get("extra", "")
 if len(snakemake.output) != 1:
     raise ValueError("Expecting only one output file!")
 
+ref = snakemake.input.get("ref","")
+if "--dindel" in extra and not ref:
+    raise ValueError("Reference required if --dindel option specified")
+if ref:
+    ref = "--ref {ref}"
 shell(
     "lofreq indelqual "
     " {snakemake.input.bam}"
+    " {ref}"
     " -o {snakemake.output[0]}"
     " {extra}"
     " {log}"

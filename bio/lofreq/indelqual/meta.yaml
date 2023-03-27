@@ -5,6 +5,7 @@ authors:
   - Tobin Groth
 input:
   - bam file that will have variants called
+  - reference genome of bam (optional unless --dindel specified)
 output:
   - bam file with indel qualities added
 params (optional):
