@@ -8,8 +8,4 @@ input:
 output:
   - bam file with indel qualities added
 params (optional):
-  - -u | --uniform INT[,INT]  Add this indel quality uniformly to all bases. Use two comma separated values to specify insertion and deletion quality separately. (clashes with --dindel)
-  - --dindel Add Dindel's indel qualities (Illumina specific) (clashes with -u; needs --ref)
-  - -f | --ref Reference sequence used for mapping (Only required for --dindel)
-  - -o | --out FILE Output BAM file [- = stdout = default]
-  - --verbose Be verbose
+  - extra: additional paramters (e.g.) `--uniform INT[,INT]` (uniform quality), or `--dindel` (dindel's indel qualities).
