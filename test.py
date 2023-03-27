@@ -2835,12 +2835,18 @@ def test_picard_markduplicates_cram():
 
 
 @skip_if_not_modified
+def test_picard_markduplicates_matecigar():
+    run(
+        "bio/picard/markduplicates",
+        ["snakemake", "--cores", "1", "dedup/a.matecigar.bam", "--use-conda", "-F"],
+    )
+
+@skip_if_not_modified
 def test_picard_markduplicateswithmatecigar():
     run(
         "bio/picard/markduplicateswithmatecigar",
         ["snakemake", "--cores", "1", "dedup/a.bam", "--use-conda", "-F"],
     )
-
 
 @skip_if_not_modified
 def test_picard_collectalignmentsummarymetrics():

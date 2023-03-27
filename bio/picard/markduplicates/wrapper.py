@@ -7,38 +7,41 @@ __license__ = "MIT"
 import tempfile
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
+from snakemake_wrapper_utils.samtools import get_samtools_opts
+
 
 log = snakemake.log_fmt_shell()
-
 extra = snakemake.params.get("extra", "")
 # the --SORTING_COLLECTION_SIZE_RATIO default of 0.25 might
 # indicate a JVM memory overhead of that proportion
 java_opts = get_java_opts(snakemake, java_mem_overhead_factor=0.3)
+samtools_opts = get_samtools_opts(snakemake)
+
+
+tool = "MarkDuplicates"
+if snakemake.params.get("withmatecigar", False):
+    tool = "MarkDuplicatesWithMateCigar"
+
 
 bams = snakemake.input.bams
 if isinstance(bams, str):
     bams = [bams]
 bams = list(map("--INPUT {}".format, bams))
 
-if snakemake.output.bam.endswith(".cram"):
-    output = "/dev/stdout"
-    if snakemake.params.embed_ref:
-        view_options = "-O cram,embed_ref"
-    else:
-        view_options = "-O cram"
-    convert = f" | samtools view -@ {snakemake.threads} {view_options} --reference {snakemake.input.ref} -o {snakemake.output.bam}"
-else:
-    output = snakemake.output.bam
-    convert = ""
+
+# NOTE: output format inference should be done by snakemake-wrapper-utils. Keeping it here for backwards compatibility.
+if snakemake.output.bam.endswith(".cram") and snakemake.params.embed_ref:
+    samtools_opts += ",embed_ref"
+
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
-        "(picard MarkDuplicates"  # Tool and its subcommand
+        "(picard {tool}"  # Tool and its subcommand
         " {java_opts}"  # Automatic java option
         " {extra}"  # User defined parmeters
         " {bams}"  # Input bam(s)
         " --TMP_DIR {tmpdir}"
-        " --OUTPUT {output}"  # Output bam
+        " --OUTPUT /dev/stdout"  # Output bam
         " --METRICS_FILE {snakemake.output.metrics}"  # Output metrics
-        " {convert} ) {log}"  # Logging
+        " | samtools view {samtools_opts}) {log}"  # Logging
     )
