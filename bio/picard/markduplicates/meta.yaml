@@ -11,7 +11,7 @@ input:
 output:
   - bam/cram file with marked or removed duplicates
 params:
-  - `java_opts` allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  - java_opts allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
   - extra: allows for additional program arguments.
   - embed_ref: allows to embed the fasta reference into the cram
   - withmatecigar: allows to run `MarkDuplicatesWithMateCigar <https://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicatesWithMateCigar>`_ instead.
