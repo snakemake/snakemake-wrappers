@@ -12,7 +12,7 @@ tag = snakemake.params.tag
 
 conf_path = os.environ["REFGENIE"]
 
-rgc = refgenconf.RefGenConf(conf_path, writable=True)
+rgc = refgenconf.RefGenConf(conf_path, writable=False)
 
 # pull asset if necessary
 # BUG Times out when pulling large assets
