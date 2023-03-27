@@ -9,12 +9,6 @@ from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
-
-bam_input = snakemake.input.bam
-
-if bam_input is None:
-    raise ValueError("Missing bam input file!")
-
 output_file = snakemake.output[0]
 
 if output_file is None:
