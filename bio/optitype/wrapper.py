@@ -1,10 +1,11 @@
-__author__ = "Jan Forster"
+__author__ = "Jan Forster, David Lähnemann"
 __copyright__ = "Copyright 2020, Jan Forster"
 __email__ = "j.forster@dkfz.de"
 __license__ = "MIT"
 
 
 import os
+from tempfile import TemporaryDirectory
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
