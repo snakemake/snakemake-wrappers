@@ -2830,7 +2830,7 @@ def test_picard_markduplicates():
 def test_picard_markduplicates_cram():
     run(
         "bio/picard/markduplicates",
-        ["snakemake", "--cores", "1", "dedup/a.cram", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "dedup/a.cram", "dedup/a.crai", "--use-conda", "-F"],
     )
 
 
@@ -2838,7 +2838,7 @@ def test_picard_markduplicates_cram():
 def test_picard_markduplicates_matecigar():
     run(
         "bio/picard/markduplicates",
-        ["snakemake", "--cores", "1", "dedup/a.matecigar.bam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "dedup/a.matecigar.bam", "dedup/a.matecigar.bai","--use-conda", "-F"],
     )
 
 @skip_if_not_modified

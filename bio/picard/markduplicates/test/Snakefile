@@ -6,7 +6,6 @@ rule mark_duplicates:
     # and then merging
     output:
         bam="dedup/{sample}.bam",
-        idx="dedup/{sample}.bai",
         metrics="dedup/{sample}.metrics.txt",
     log:
         "logs/dedup/{sample}.log",
