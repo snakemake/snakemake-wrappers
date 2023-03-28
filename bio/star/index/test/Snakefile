@@ -7,7 +7,6 @@ rule star_index:
         "Testing STAR index"
     threads: 1
     params:
-        sjdbOverhang=100,
         extra="",
     log:
         "logs/star_index_{genome}.log",
