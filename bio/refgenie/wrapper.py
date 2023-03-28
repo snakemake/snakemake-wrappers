@@ -19,12 +19,13 @@ try:
     rgc = refgenconf.RefGenConf(conf_path, writable=True)
 except RefgenconfError:
     # If read lock timeout, attempt to skip the read lock
-    rgc = refgenconf.RefGenConf(conf_path,
-                                writable=True,
-                                skip_read_lock=True,
-                                genome_exact=False)
+    rgc = refgenconf.RefGenConf(
+        conf_path, writable=True, skip_read_lock=True, genome_exact=False
+    )
 # pull asset if necessary
-gat, archive_data, server_url = rgc.pull(genome, asset, tag, force=False, force_large=True)
+gat, archive_data, server_url = rgc.pull(
+    genome, asset, tag, force=False, force_large=True
+)
 
 for seek_key, out in snakemake.output.items():
     path = rgc.seek(genome, asset, tag_name=tag, seek_key=seek_key, strict_exists=True)
