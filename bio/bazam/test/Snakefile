@@ -5,7 +5,9 @@ rule bazam_interleaved:
     output:
         reads="results/reads/{sample}.fastq.gz",
     resources:
-        mem_mb=12000,
+        # suggestion according to:
+        # https://github.com/ssadedin/bazam/blob/c5988daf4cda4492e3d519c94f2f1e2022af5efe/README.md?plain=1#L46-L55
+        mem_mb=lambda wildcards, input: max([0.2 * input.size_mb, 200]),
     log:
         "logs/bazam/{sample}.log",
     wrapper:
@@ -21,7 +23,9 @@ rule bazam_separated:
         r1="results/reads/{sample}.r1.fastq.gz",
         r2="results/reads/{sample}.r2.fastq.gz",
     resources:
-        mem_mb=12000,
+        # suggestion according to:
+        # https://github.com/ssadedin/bazam/blob/c5988daf4cda4492e3d519c94f2f1e2022af5efe/README.md?plain=1#L46-L55
+        mem_mb=lambda wildcards, input: max([0.4 * input.size_mb, 200]),
     log:
         "logs/bazam/{sample}.log",
     wrapper:

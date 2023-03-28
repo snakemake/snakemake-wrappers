@@ -1,8 +1,9 @@
 channels:
-  - conda-forge
   - bioconda
+  - conda-forge
   - nodefaults
 dependencies:
-  - salmon =1.9.0
+  - salmon =1.10.1
   - gzip =1.12
   - bzip2 =1.0.8
+  

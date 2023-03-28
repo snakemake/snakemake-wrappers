@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - jannovar-cli =0.36
-  - snakemake-wrapper-utils =0.5.0
+  - snakemake-wrapper-utils =0.5.2

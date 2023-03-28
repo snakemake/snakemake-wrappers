@@ -2,19 +2,17 @@
 rule trinity:
     input:
         left=["reads/reads.left.fq.gz", "reads/reads2.left.fq.gz"],
-        right=["reads/reads.right.fq.gz", "reads/reads2.right.fq.gz"]
+        right=["reads/reads.right.fq.gz", "reads/reads2.right.fq.gz"],
     output:
-        "trinity_out_dir/Trinity.fasta"
+        dir=temp(directory("trinity_out_dir/")),
+        fas="trinity_out_dir.Trinity.fasta",
+        map="trinity_out_dir.Trinity.fasta.gene_trans_map",
     log:
-        'logs/trinity/trinity.log'
+        'logs/trinity/trinity.log',
     params:
-        extra=""
+        extra="",
     threads: 4
-    # optional specification of memory usage of the JVM that snakemake will respect with global
-    # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
-    # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
-    # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
     resources:
-        mem_gb=10
+        mem_gb=10,
     wrapper:
         "master/bio/trinity"

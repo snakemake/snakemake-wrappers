@@ -4,6 +4,8 @@ __email__ = "bow@bow.web.id"
 __license__ = "BSD"
 
 
+import os
+from pathlib import Path
 from snakemake.shell import shell
 
 # Placeholder for optional parameters
@@ -24,11 +26,14 @@ else:
         "Reads parameter must contain at least 1 and at most 2" " input files."
     )
 
+ht2_files = Path(snakemake.input.idx).glob("*.ht2")
+idx_prefix = os.path.commonprefix(list(ht2_files)).rstrip(".")
+
 # Executed shell command
 shell(
     "(hisat2 {extra} "
     "--threads {snakemake.threads} "
-    " -x {snakemake.params.idx} {input_flags} "
+    " -x {idx_prefix} {input_flags} "
     " | samtools view -Sbh -o {snakemake.output[0]} -) "
     " {log}"
 )

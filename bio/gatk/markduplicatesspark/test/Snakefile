@@ -13,7 +13,9 @@ rule mark_duplicates_spark:
         #spark_master="",  # optional
         #spark_extra="", # optional
     resources:
-        mem_mb=1024,
+        # Memory needs to be at least 471859200 for Spark, so 589824000 when
+        # accounting for default JVM overhead of 20%. We round round to 650M.
+        mem_mb=lambda wildcards, input: max([input.size_mb * 0.25, 650]),
     threads: 8
     wrapper:
         "master/bio/gatk/markduplicatesspark"
