@@ -10,4 +10,5 @@ input:
 output:
   - A directory containing the indexed sequence for downstream STAR mapping
 params:
+  - sjdbOverhang: length of the donor/acceptor sequence on each side of the junctions (optional)
   - extra: additional program arguments.
