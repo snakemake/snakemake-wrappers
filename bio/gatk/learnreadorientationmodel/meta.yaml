@@ -1,5 +1,5 @@
-name: GATK LearnOrientationModel
-url: https://gatk.broadinstitute.org/hc/en-us/articles/4405451237147-LearnReadOrientationModel
+name: GATK LearnReadOrientationModel
+url: https://gatk.broadinstitute.org/hc/en-us/articles/9570329571227-LearnReadOrientationModel
 description: Get the maximum likelihood estimates of artifact prior probabilities in the orientation bias mixture model filter
 authors:
   - Thibault Dayris

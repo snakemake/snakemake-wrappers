@@ -6,12 +6,10 @@ rule liftoff:
     output:
         main="{ref}_{ann}_{tgt}.gff3",
         unmapped="{ref}_{ann}_{tgt}.unmapped.txt",
-    message:
-        "Testing liftoff"
-    threads: 1
-    params:
-        extra="",
     log:
         "logs/liftoff_{ref}_{ann}_{tgt}.log",
+    params:
+        extra="",
+    threads: 1
     wrapper:
         "master/bio/liftoff"

@@ -1,17 +1,16 @@
 rule sickle_pe:
   input:
-    r1="input_R1.fq",
-    r2="input_R2.fq"
+    r1="reads/{sample}.1.fastq",
+    r2="reads/{sample}.2.fastq"
   output:
-    r1="output_R1.fq",
-    r2="output_R2.fq",
-    rs="output_single.fq",
+    r1="{sample}.1.fastq",
+    r2="{sample}.2.fastq",
+    rs="{sample}.single.fastq",
+  log:
+    "logs/sickle/{sample}.log"
   params:
     qual_type="sanger",
     # optional extra parameters
     extra=""
-  log:
-    # optional log file
-    "logs/sickle/job.log"
   wrapper:
     "master/bio/sickle/pe"

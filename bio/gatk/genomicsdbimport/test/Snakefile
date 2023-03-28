@@ -11,6 +11,6 @@ rule genomics_db_import:
         extra="",  # optional
         java_opts="",  # optional
     resources:
-        mem_mb=1024,
+        mem_mb=lambda wildcards, input: max([input.size_mb * 1.6, 200]),
     wrapper:
         "master/bio/gatk/genomicsdbimport"

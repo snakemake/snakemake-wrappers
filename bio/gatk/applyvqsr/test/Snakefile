@@ -12,6 +12,6 @@ rule apply_vqsr:
         mode="SNP",  # set mode, must be either SNP, INDEL or BOTH
         extra="",  # optional
     resources:
-        mem_mb=50,
+        mem_mb=1024,
     wrapper:
         "master/bio/gatk/applyvqsr"

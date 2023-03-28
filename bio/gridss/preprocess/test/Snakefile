@@ -6,9 +6,9 @@ rule gridss_preprocess:
         bai="mapped/{sample}.bam.bai",
         reference="reference/genome.fasta",
         dictionary="reference/genome.dict",
-        refindex=multiext("reference/genome.fasta", ".amb", ".ann", ".bwt", ".pac", ".sa", ".gridsscache", ".img")
+        refindex=multiext("reference/genome.fasta", ".amb", ".ann", ".bwt", ".pac", ".sa")
     output:
-        multiext("{WORKING_DIR}/{sample}.bam.gridss.working/{sample}.bam", ".cigar_metrics", ".coverage.blacklist.bed", ".idsv_metrics", ".insert_size_histogram.pdf", ".insert_size_metrics", ".mapq_metrics", ".sv.bam", ".sv.bam.bai", ".sv_metrics", ".tag_metrics")
+        multiext("{WORKING_DIR}/{sample}.bam.gridss.working/{sample}.bam", ".cigar_metrics", ".computesamtags.changes.tsv", ".coverage.blacklist.bed", ".idsv_metrics", ".insert_size_histogram.pdf", ".insert_size_metrics", ".mapq_metrics", ".sv.bam", ".sv.bam.csi", ".tag_metrics")
     params:
         extra="--jvmheap 1g",
         workingdir=WORKING_DIR

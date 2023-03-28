@@ -31,3 +31,23 @@ rule mutect2_bam:
         "logs/mutect_{sample}.log",
     wrapper:
         "master/bio/gatk/mutect"
+
+
+rule mutect2_complete:
+    input:
+        fasta="genome/genome.fasta",
+        map="mapped/{sample}.bam",
+        intervals="genome/intervals.bed",
+    output:
+        vcf="variant_complete/{sample}.vcf",
+        bam="variant_complete/{sample}.bam",
+        f1r2="counts/{sample}.f1r2.tar.gz",
+    message:
+        "Testing Mutect2 with {wildcards.sample}"
+    threads: 1
+    resources:
+        mem_mb=1024,
+    log:
+        "logs/mutect_{sample}.log",
+    wrapper:
+        "master/bio/gatk/mutect"

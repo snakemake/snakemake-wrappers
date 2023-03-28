@@ -1,0 +1,12 @@
+name: lofreq indelqual
+description: Insert indel qualities into BAM file (required for indel predictions)
+url: https://csb5.github.io/lofreq/
+authors:
+  - Tobin Groth
+input:
+  - bam file that will have variants called
+  - reference genome of bam (optional unless --dindel specified)
+output:
+  - bam file with indel qualities added
+params (optional):
+  - extra: additional paramters (e.g.) `--uniform INT[,INT]` (uniform quality), or `--dindel` (dindel's indel qualities).
