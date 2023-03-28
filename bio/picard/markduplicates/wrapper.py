@@ -5,9 +5,10 @@ __license__ = "MIT"
 
 
 import tempfile
+from pathlib import Path
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
-from snakemake_wrapper_utils.samtools import get_samtools_opts
+from snakemake_wrapper_utils.samtools import get_samtools_opts, infer_out_format
 
 
 log = snakemake.log_fmt_shell()
@@ -29,9 +30,19 @@ if isinstance(bams, str):
 bams = list(map("--INPUT {}".format, bams))
 
 
-# NOTE: output format inference should be done by snakemake-wrapper-utils. Keeping it here for backwards compatibility.
-if snakemake.output.bam.endswith(".cram") and snakemake.params.embed_ref:
-    samtools_opts += ",embed_ref"
+output = snakemake.output.bam
+output_fmt = infer_out_format(output)
+convert = ""
+if output_fmt == "CRAM":
+    output = "/dev/stdout"
+
+    # NOTE: output format inference should be done by snakemake-wrapper-utils. Keeping it here for backwards compatibility.
+    if snakemake.params.get("embed_ref", False):
+        samtools_opts += ",embed_ref"
+
+    convert = f" | samtools view {samtools_opts}"
+elif output_fmt == "BAM" and snakemake.output.get("idx"):
+    extra += " --CREATE_INDEX"
 
 
 with tempfile.TemporaryDirectory() as tmpdir:
@@ -41,7 +52,13 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " {extra}"  # User defined parmeters
         " {bams}"  # Input bam(s)
         " --TMP_DIR {tmpdir}"
-        " --OUTPUT /dev/stdout"  # Output bam
+        " --OUTPUT {output}"  # Output bam
         " --METRICS_FILE {snakemake.output.metrics}"  # Output metrics
-        " | samtools view {samtools_opts}) {log}"  # Logging
+        " {convert}) {log}"  # Logging
     )
+
+
+output_prefix = Path(snakemake.output.bam).with_suffix("")
+if snakemake.output.get("idx"):
+    if (output_fmt == "BAM" and snakemake.output.idx != str(output_prefix) + ".bai"):
+        shell("mv {output_prefix}.bai {snakemake.output.idx}")
