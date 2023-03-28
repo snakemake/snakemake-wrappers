@@ -9,3 +9,5 @@ input:
   - A (multi)fasta formatted file
 output:
   - A directory containing the indexed sequence for downstream STAR mapping
+params:
+  - extra: additional program arguments.
