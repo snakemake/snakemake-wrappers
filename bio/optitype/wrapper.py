@@ -29,7 +29,7 @@ with TemporaryDirectory() as tempdir:
         "  {seq_type}"
         "  {config}"
         "  {extra}; "
-        " mv {tmpdir}/tmp_prefix_coverage_plot.pdf {snakemake.output.pdf:q} ;"
-        " mv {tmpdir}/tmp_prefix_result.tsv {snakemake.output.tsv:q} )"
+        " mv {tempdir}/tmp_prefix_coverage_plot.pdf {snakemake.output.pdf:q} ;"
+        " mv {tempdir}/tmp_prefix_result.tsv {snakemake.output.tsv:q} )"
         " {log}"
     )
