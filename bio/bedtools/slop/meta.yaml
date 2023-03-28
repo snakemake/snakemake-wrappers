@@ -1,4 +1,5 @@
-name: "bedtools slop"
+name: slopBed
 description: Increase the size of each feature in a BED/BAM/VCF by a specified factor.
+url: https://bedtools.readthedocs.io/en/latest/content/tools/slop.html
 authors:
   - Jan Forster

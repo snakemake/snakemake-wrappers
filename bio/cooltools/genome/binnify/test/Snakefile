@@ -1,0 +1,12 @@
+rule cooltools_genome_binnify:
+    input:
+        chromsizes="hg38_chromsizes.txt",  ## Chromsizes file
+    output:
+        "hg38_1000000_bins.bed",
+    params:
+        binsize=1000000,
+    threads: 1
+    log:
+        "logs/binnify.log",
+    wrapper:
+        "master/bio/cooltools/genome/binnify"

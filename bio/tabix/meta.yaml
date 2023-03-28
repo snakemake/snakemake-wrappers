@@ -1,4 +1,0 @@
-name: tabix
-description: Process given file with tabix (e.g., create index).
-authors:
-  - Johannes Köster

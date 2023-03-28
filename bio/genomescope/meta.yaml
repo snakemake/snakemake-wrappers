@@ -1,0 +1,11 @@
+name: GenomeScope
+description: Reference-free profiling of polyploid genomes
+url: https://github.com/tbenavi1/genomescope2.0
+authors:
+  - Filipe G. Vieira
+input:
+  - kmer histogram
+output:
+  - inferred genome characteristics and plots
+notes: |
+  * The `extra` param allows for additional program arguments (kmer length `-k`/`--kmer_length` is mandatory).

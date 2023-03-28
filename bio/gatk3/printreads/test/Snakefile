@@ -1,16 +1,20 @@
 rule printreads:
     input:
-        bam="mapped/{sample}.bam",
+        bam="{sample}.bam",
+        bai="{sample}.bai",
+#        recal_data="{sample}.recal_data_table",
         ref="genome.fasta",
-        recal_data="{sample}.recal_data_table"
+        fai="genome.fasta.fai",
+        dict="genome.dict",
     output:
-        "alignment/{sample}.bqsr.bam"
+        bam="{sample}.bqsr.bam",
+        bai="{sample}.bqsr.bai",
     log:
-        "logs/gatk/bqsr/{sample}..log"
+        "logs/gatk/bqsr/{sample}.log",
     params:
-        extra=""  # optional
+        extra="--defaultBaseQualities 20 --filter_reads_with_N_cigar",  # optional
     resources:
-        mem_mb = 1024
+        mem_mb=1024,
     threads: 16
     wrapper:
-        "bio/gatk3/printreads"
+        "master/bio/gatk3/printreads"

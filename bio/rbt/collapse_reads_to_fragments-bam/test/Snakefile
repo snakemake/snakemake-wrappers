@@ -1,0 +1,19 @@
+rule all:  # [hide]
+    input:  # [hide]
+        "results/consensus/sampleA.1.fq",  # [hide]
+
+
+rule calc_consensus_reads:
+    input:
+        "mapped/{sample}.marked.bam",
+    output:
+        consensus_r1="results/consensus/{sample}.1.fq",
+        consensus_r2="results/consensus/{sample}.2.fq",
+        consensus_se="results/consensus/{sample}.se.fq",
+        skipped="results/consensus/{sample}.skipped.bam",
+    params:
+        extra="--annotate-record-ids",
+    log:
+        "logs/consensus/{sample}.log",
+    wrapper:
+        "master/bio/rbt/collapse_reads_to_fragments-bam"

@@ -1,4 +1,9 @@
 name: bcftools reheader
-description: Change header or sample names of vcf/bcf file. For more information see `BCFtools documentation <https://www.htslib.org/doc/bcftools.html#reheader>`_.
+description: Change header or sample names of vcf/bcf file.
+url: http://www.htslib.org/doc/bcftools.html#reheader
 authors:
   - Jan Forster
+  - Filipe G. Vieira
+notes: |
+  * The `uncompressed_bcf` param allows to specify that a BCF output should be uncompressed (ignored otherwise).
+  * The `extra` param allows for additional program arguments (not `--threads`, `-o/--output`, `-O/--output-type`, or `-T/--temp-prefix`).

@@ -1,0 +1,25 @@
+pull_request_rules:
+  - name: Approve autobump PRs if tests are successful
+    conditions:
+      - "author=snakedeploy-bot[bot]"
+      - "check-success=title-format"
+      - "check-success=formatting"
+      - "check-success=linting"
+      - "check-success=testing"
+      - "check-success=docs"
+    actions:
+      review:
+        type: APPROVE
+        message: Automatically approving successfull autobump
+  - name: Merge autobump PRs if tests are successful
+    conditions:
+      - "author=snakedeploy-bot[bot]"
+      - "#approved-reviews-by>=1"
+      - "check-success=title-format"
+      - "check-success=formatting"
+      - "check-success=linting"
+      - "check-success=testing"
+      - "check-success=docs"
+    actions:
+      merge:
+        method: squash

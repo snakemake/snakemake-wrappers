@@ -13,3 +13,25 @@ rule gatk_filtermutectcalls:
         mem_mb=1024,
     wrapper:
         "master/bio/gatk/filtermutectcalls"
+
+
+rule gatk_filtermutectcalls_complete:
+    input:
+        vcf="calls/snvs.vcf",
+        ref="genome.fasta",
+        bam="mapped/a.bam",
+        intervals="intervals.bed",
+        # contamination="", # from gatk CalculateContamination
+        # segmentation="", # from gatk CalculateContamination
+        # f1r2="", # from gatk LearnReadOrientationBias
+    output:
+        vcf="calls/snvs.mutect.filtered.b.vcf",
+    log:
+        "logs/gatk/filter/snvs.log",
+    params:
+        extra="--max-alt-allele-count 3",  # optional arguments, see GATK docs
+        java_opts="",  # optional
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/gatk/filtermutectcalls"

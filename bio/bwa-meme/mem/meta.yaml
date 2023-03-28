@@ -1,0 +1,6 @@
+name: "bwa-meme"
+description: BWA-MEME is a practical and efficient seeding algorithm based on a suffix array search algorithm that solves the challenges in utilizing learned indices for SMEM search which is extensively used in the seeding phase. It achieves up to 3.45× speedup in seeding throughput over BWA-MEM2 by reducing the number of instructions by 4.60×, memory accesses by 8.77× and LLC misses by 2.21×, while ensuring the identical SAM output to BWA-MEM2.
+authors:
+  - Christopher Schröder
+  - Johannes Köster
+  - Julian de Ruiter

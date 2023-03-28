@@ -1,0 +1,12 @@
+name: meryl stats
+description: |
+  A genomic k-mer counter (and sequence utility) with nice features.
+url: https://github.com/marbl/meryl
+authors:
+  - Filipe G. Vieira
+input:
+  - meryl database(s)
+output:
+  - meryl stats (either the kmers, statistics, or histogram)
+notes: |
+  * The `command` param allows to specify which stats to print: `statistics` (display total, unique, distinct kmers) [default], `histogram` (display kmer frequency), or `print` (display kmers).

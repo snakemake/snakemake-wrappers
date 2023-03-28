@@ -1,0 +1,12 @@
+name: meryl sets
+description: |
+  A genomic k-mer counter (and sequence utility) with nice features.
+url: https://github.com/marbl/meryl
+authors:
+  - Filipe G. Vieira
+input:
+  - meryl database(s)
+output:
+  - meryl database
+notes: |
+  * The `command` param allows to specify how to handle the kmer sets: `union` (number of inputs) [default], `union-min` (union with minimum count), `union-max` (union with maximum count), `union-sum` (union with sum of the counts), `intersect` (intersect with counts in the first input), `intersect-min` (intersect with minimum count), `intersect-max` (intersect with maximum count), `intersect-sum` (intersect with sum of counts), `subtract` (counts from first input, subtracting counts from the other inputs), `difference` (counts from first input, but none of the other inputs), or `symmetric-difference` (exactly one input).

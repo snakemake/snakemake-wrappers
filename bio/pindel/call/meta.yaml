@@ -1,4 +1,18 @@
 name: pindel
 description: Call variants with pindel.
+url: https://gmt.genome.wustl.edu/packages/pindel
 authors:
-  - Johannes Köster
+  - Johannes Köster, Niklas Mähler
+input:
+  - reference genome fasta file
+  - one or more bam files
+  - bam configuration file, see http://gmt.genome.wustl.edu/packages/pindel/quick-start.html
+  - bed file of regions to include (optional)
+  - bed file of regions to exclude (optional)
+output:
+  - >
+    One file for each variant type.
+    For a more detailed description of the output format, see https://gmt.genome.wustl.edu/packages/pindel/user-manual.html#example-output-record.
+notes: >
+  The include and exclude BED file arguments are incompatible with each other.
+  Either supply one of them or none of them.

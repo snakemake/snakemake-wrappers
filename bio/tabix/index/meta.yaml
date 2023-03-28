@@ -1,0 +1,11 @@
+name: tabix index
+description: Process given file with tabix (e.g., create index).
+url: https://www.htslib.org/doc/tabix.html#INDEXING_OPTIONS
+authors:
+  - Johannes Köster
+input:
+  - Bgzip compressed file (e.g. BED.gz, GFF.gz, or VCF.gz)
+output:
+  - Tabix index file
+notes: |
+  * Specify tabix index params (e.g. `-p vcf`) through `params`.

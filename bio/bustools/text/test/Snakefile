@@ -1,0 +1,26 @@
+rule test_bustools_text:
+    input:
+        "file.bus",
+    output:
+        "file.tsv",
+    threads: 1
+    params:
+        extra="",
+    log:
+        "logs/bustools.log",
+    wrapper:
+        "master/bio/bustools/text"
+
+
+rule test_bustools_text_list:
+    input:
+        ["file.bus", "file2.bus"],
+    output:
+        "file2.tsv",
+    threads: 1
+    params:
+        extra="--flags --pad",
+    log:
+        "logs/bustools.log",
+    wrapper:
+        "master/bio/bustools/text"

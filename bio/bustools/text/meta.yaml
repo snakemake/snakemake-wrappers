@@ -1,0 +1,13 @@
+name: bustools text
+description: convert bus to tsv files
+url: https://github.com/BUStools/bustools#text
+author:
+  - Thibault Dayris
+input:
+  - list of bus files
+output:
+  - Path to TSV output
+params:
+  - extra: Optional parameters, besides `--o/-output`
+notes: |
+  When multiple bus files are provided, only one TSV file is produced.

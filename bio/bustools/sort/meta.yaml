@@ -1,0 +1,17 @@
+name: bustools sort
+description: Sort raw BUS output from pseudoalignment programs
+url: https://github.com/BUStools/bustools#sort
+author:
+  - Thibault Dayris
+input:
+  - Path to bus file, or list of bus files
+output:
+  - Path to bus file
+params:
+  - extra: Optional parameters
+notes: |
+  `--temp` is automatically defined through `resources.tmpdir`
+
+  `--memory` is automatically defined through `resources.mem_mb`
+
+  Multiple bus files in input will result in a single bus file in output.

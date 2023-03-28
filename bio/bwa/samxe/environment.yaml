@@ -1,7 +1,8 @@
 channels:
-  - bioconda
   - conda-forge
+  - bioconda
+  - nodefaults
 dependencies:
-  - bwa ==0.7.17
-  - samtools ==1.9
-  - picard-slim =2.27
+  - bwa =0.7.17
+  - samtools =1.16.1
+  - picard-slim =2.27.4

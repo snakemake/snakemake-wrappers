@@ -1,0 +1,7 @@
+name: "bwa-memx"
+description: Collection of bwa-mem, bwa-mem2 and bwa-meme.
+note: Depending on the "bwa" param, bwa-mem, bwa-mem2 or bwa-meme is used for alignment. Correspondingly different indices are expected as input.
+authors:
+  - Christopher Schröder
+  - Johannes Köster
+  - Julian de Ruiter

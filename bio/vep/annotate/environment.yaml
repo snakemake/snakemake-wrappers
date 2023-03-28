@@ -1,6 +1,9 @@
 channels:
-  - bioconda
   - conda-forge
+  - bioconda
+  - nodefaults
 dependencies:
-  - ensembl-vep =105
-  - bcftools =1.12
+  - ensembl-vep =109.3
+  - bcftools =1.16
+  - perl-encode-locale =1.05
+  - perl =5.32.1

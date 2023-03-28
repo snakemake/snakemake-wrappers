@@ -1,6 +1,7 @@
 name: deduplicate_bismark
 description: |
-  Deduplicate Bismark Bam Files and saves as \*.bam file (see https://github.com/FelixKrueger/Bismark/blob/master/deduplicate_bismark).
+  Deduplicate Bismark Bam Files
+url: https://github.com/FelixKrueger/Bismark/
 authors:
   - Roman Cherniatchik
 input:

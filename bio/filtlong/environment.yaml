@@ -1,4 +1,6 @@
 channels:
+  - conda-forge
   - bioconda
+  - nodefaults
 dependencies:
-  - filtlong=0.2.0=he941832_2
+  - filtlong =0.2.1

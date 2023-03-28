@@ -1,0 +1,17 @@
+rule cooltools_eigs_cis:
+    input:
+        cooler="CN.mm9.1000kb.mcool",  ## Multiresolution cooler file
+        view="mm9_view.txt",  ## File with the region names and coordinates
+        track="mm9_1000000_gc.bed",
+    output:
+        vecs="CN_{resolution,[0-9]+}.cis.vecs.tsv",
+        lam="CN_{resolution,[0-9]+}.cis.lam.tsv",
+        bigwig="CN_{resolution,[0-9]+}.cis.bw",
+    params:
+        ## Add optional parameters
+        track_col_name="GC",
+        extra="",
+    log:
+        "logs/CN_{resolution}_cis_eigs.log",
+    wrapper:
+        "master/bio/cooltools/eigs_cis"

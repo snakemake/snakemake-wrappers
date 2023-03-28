@@ -1,0 +1,11 @@
+name: Pretext Map
+description: Paired REad TEXTure Mapper. Converts SAM formatted read pairs into genome contact maps.
+url: https://github.com/wtsi-hpag/PretextMap
+authors:
+  - Filipe G. Vieira
+input:
+  - SAM/BAM/CRAM file
+output:
+  - pretext contact map
+notes: |
+  * The `extra` param allows for additional arguments.

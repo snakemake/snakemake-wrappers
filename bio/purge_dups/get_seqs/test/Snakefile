@@ -1,0 +1,14 @@
+rule purge_dups_get_seqs:
+    input:
+        fas="genome.fasta",
+        bed="purge_dups.bed",
+    output:
+        hap="out/get_seqs.hap.fasta",
+        purged="out/get_seqs.purged.fasta",
+    log:
+        "logs/get_seqs.log",
+    params:
+        extra="",
+    threads: 1
+    wrapper:
+        "master/bio/purge_dups/get_seqs"

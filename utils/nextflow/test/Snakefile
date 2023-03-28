@@ -8,9 +8,9 @@ rule get_genome:  # [hide]
     output:  # [hide]
         "data/genome.fasta",  # [hide]
     conda:  # [hide]
-        "envs/curl.yaml"
-    log:
-        "logs/get-genome.log",
+        "envs/curl.yaml"  # [hide]
+    log:  # [hide]
+        "logs/get-genome.log",  # [hide]
     shell:  # [hide]
         "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genome.fa > {output} 2> {log}"  # [hide]
 
@@ -18,10 +18,10 @@ rule get_genome:  # [hide]
 rule get_annotation:  # [hide]
     output:  # [hide]
         "data/genome.gtf",  # [hide]
-    conda:
-        "envs/curl.yaml"
-    log:
-        "logs/get-annotation.log",
+    conda:  # [hide]
+        "envs/curl.yaml"  # [hide]
+    log:  # [hide]
+        "logs/get-annotation.log",  # [hide]
     shell:  # [hide]
         "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genes.gtf > {output} 2> {log}"  # [hide]
 

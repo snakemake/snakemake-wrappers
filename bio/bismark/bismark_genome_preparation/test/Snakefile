@@ -20,6 +20,6 @@ rule bismark_genome_preparation_fa_gz:
     log:
         "logs/indexes/{genome}/Bisulfite_Genome.log"
     params:
-        ""  # optional params string
+        extra=""  # optional params string
     wrapper:
         "master/bio/bismark/bismark_genome_preparation"

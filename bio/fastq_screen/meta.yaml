@@ -59,3 +59,4 @@ notes: |
     details). One way of doing this is by adding  something like
     ``shell.prefix("export TMPDIR=/scratch; ")`` to the snakefile calling this
     wrapper.
+blacklisted: wrapper does not generate expected png file

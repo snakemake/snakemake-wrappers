@@ -1,6 +1,7 @@
 channels:
-    - bioconda
-    - conda-forge
-    - conda
+  - bioconda
+  - conda-forge
+  - conda
+  - nodefaults
 dependencies:
-    - open-cravat =2.1
+  - open-cravat =2.1

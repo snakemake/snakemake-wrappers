@@ -1,0 +1,7 @@
+wrappers:
+ - bio/rbt/collapse_reads_to_fragments-bam
+ - bio/bwa/mem
+ - bio/bwa/index
+ - bio/samtools/merge
+ - bio/samtools/sort
+ - bio/picard/markduplicates

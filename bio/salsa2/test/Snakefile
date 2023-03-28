@@ -1,0 +1,17 @@
+rule salsa2:
+    input:
+        fas="{sample}.fasta",
+        fai="{sample}.fasta.fai",
+        bed="{sample}.bed",
+    output:
+        agp="out/{sample}.agp",
+        fas="out/{sample}.fas",
+    log:
+        "logs/salsa2/{sample}.log",
+    params:
+        enzyme="CTTAAG",  # optional
+        extra="--clean yes",  # optional
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/salsa2"
