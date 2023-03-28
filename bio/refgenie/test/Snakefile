@@ -12,9 +12,7 @@ rule obtain_asset:
 
 rule obtain_large_asset:
     output:
-        # the name refers to the refgenie seek key (see attributes on http://refgenomes.databio.org)
         star_index=directory("refs/star_index/hg38/star_index")
-        # Multiple outputs/seek keys are possible here.
     params:
         genome="hg38",
         asset="star_index",
