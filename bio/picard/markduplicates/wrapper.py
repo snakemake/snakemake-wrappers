@@ -11,7 +11,9 @@ from snakemake_wrapper_utils.java import get_java_opts
 log = snakemake.log_fmt_shell()
 
 extra = snakemake.params.get("extra", "")
-java_opts = get_java_opts(snakemake)
+# the --SORTING_COLLECTION_SIZE_RATIO default of 0.25 might
+# indicate a JVM memory overhead of that proportion
+java_opts = get_java_opts(snakemake, java_mem_overhead_factor=0.3)
 
 bams = snakemake.input.bams
 if isinstance(bams, str):

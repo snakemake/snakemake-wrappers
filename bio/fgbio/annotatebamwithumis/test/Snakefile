@@ -6,7 +6,10 @@ rule AnnotateBam:
         "mapped/{sample}.annotated.bam",
     params: ""
     resources:
-        mem_gb="4" # memory to be given to fgbio
+        # suggestion assuming unsorted input, so that memory should
+        # be proportional to input size:
+        # https://fulcrumgenomics.github.io/fgbio/tools/latest/AnnotateBamWithUmis.html
+        mem_mb=lambda wildcards, input: max([input.size_mb * 1.3, 200])
     log:
         "logs/fgbio/annotate_bam/{sample}.log",
     wrapper:

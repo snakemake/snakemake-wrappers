@@ -11,7 +11,7 @@ rule jannovar:
     # and which can be used to request RAM during cluster job submission as `{resources.mem_mg}`:
     # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
     resources:
-        mem_gb = 1
+        mem_mb = 1024,
     params:
         database="hg19_small.ser", # path to jannovar reference dataset
         extra="--show-all"         # optional parameters

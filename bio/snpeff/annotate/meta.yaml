@@ -1,4 +1,16 @@
 name: "snpeff"
-description: Annotate predicted effect of nucleotide changes with `SnpEff <https://pcingola.github.io/SnpEff/se_introduction/>`_
+description: Annotate predicted effect of nucleotide changes with SnpEff.
+url: https://pcingola.github.io/SnpEff/se_introduction/
 authors:
   - Bradford Powell
+input:
+  - calls: input VCF/BCF file
+  - db: SnpEff database
+output:
+  - calls: trimmed fastq file with R1 reads, trimmed fastq file with R2 reads (PE only, optional)
+  - genes: genes output file (optional)
+  - stats: stats file (optional)
+  - csvstats: stats CSV file (optional)
+params:
+  - java_opts: additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  - extra: additional program arguments.

@@ -6,4 +6,4 @@ dependencies:
   - dragmap =1.2
   - samtools =1.14
   - picard =2.26
-  - snakemake-wrapper-utils =0.3
+  - snakemake-wrapper-utils =0.5.2

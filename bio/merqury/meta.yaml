@@ -1,0 +1,14 @@
+name: Merqury
+description: |
+ Evaluate genome assemblies with k-mers and more.
+url: https://github.com/marbl/merqury
+authors:
+  - Filipe G. Vieira
+input:
+  - one on two assembly fasta file(s)
+  - meryl database
+output:
+  - annotation quality files
+notes: |
+  * `Merqury` does not return non-zero exit code when it fails, so always include (at least) one PNG file in your rule's output.
+  * `Merqury` does not allow for extra params.

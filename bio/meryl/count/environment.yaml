@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - meryl =2013
-  - snakemake-wrapper-utils =0.5.0
+  - snakemake-wrapper-utils =0.5.2
