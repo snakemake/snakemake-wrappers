@@ -1,5 +1,6 @@
 name: "STAR Index"
 description: Index fasta sequences with STAR
+url: https://github.com/alexdobin/STAR
 authors:
   - Thibault Dayris
   - Tomás Di Domenico
