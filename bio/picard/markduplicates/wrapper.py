@@ -60,5 +60,5 @@ with tempfile.TemporaryDirectory() as tmpdir:
 
 output_prefix = Path(snakemake.output.bam).with_suffix("")
 if snakemake.output.get("idx"):
-    if (output_fmt == "BAM" and snakemake.output.idx != str(output_prefix) + ".bai"):
+    if output_fmt == "BAM" and snakemake.output.idx != str(output_prefix) + ".bai":
         shell("mv {output_prefix}.bai {snakemake.output.idx}")
