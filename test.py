@@ -2832,10 +2832,26 @@ def test_picard_addorreplacegroups():
 
 
 @skip_if_not_modified
-def test_picard_markduplicates():
+def test_picard_markduplicates_bam():
     run(
         "bio/picard/markduplicates",
-        ["snakemake", "--cores", "1", "dedup/a.bam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "dedup_bam/a.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_picard_markduplicateswithmatecigar_bam():
+    run(
+        "bio/picard/markduplicates",
+        ["snakemake", "--cores", "1", "dedup_bam/a.matecigar.bam", "dedup_bam/a.mcigar.bai","--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_picard_markduplicates_sam():
+    run(
+        "bio/picard/markduplicates",
+        ["snakemake", "--cores", "1", "dedup_sam/a.sam", "--use-conda", "-F"],
     )
 
 
@@ -2843,15 +2859,7 @@ def test_picard_markduplicates():
 def test_picard_markduplicates_cram():
     run(
         "bio/picard/markduplicates",
-        ["snakemake", "--cores", "1", "dedup/a.cram", "--use-conda", "-F"],
-    )
-
-
-@skip_if_not_modified
-def test_picard_markduplicateswithmatecigar():
-    run(
-        "bio/picard/markduplicateswithmatecigar",
-        ["snakemake", "--cores", "1", "dedup/a.bam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "dedup_cram/a.cram", "dedup_cram/a.cram.crai", "--use-conda", "-F"],
     )
 
 
