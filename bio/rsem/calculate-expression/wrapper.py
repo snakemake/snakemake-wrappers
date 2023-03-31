@@ -64,7 +64,7 @@ if not snakemake.output.isoforms_results.endswith(".isoforms.results"):
 # BUG input_string is 'r' given the input but is should be the reference base path?
 # subprocess.CalledProcessError: Command 'set -euo pipefail;  rsem-calculate-expression --num-threads 24 --estimate-rspd --calc-ci --strandedness reverse --time --paired-end --alignments results/star/D-1/Aligned.toTranscriptome.out.bam r results/rsem/D-1/D-1  > logs/rsem/calculate_expression/D-1.log 2>&1' returned non-zero exit status 255.
 reference_path = Path(snakemake.input.reference[0])
-reference_prefix = reference_path.parents[0]/reference_path.stem
+reference_prefix = str(reference_path.parents[0]/reference_path.stem)
 
 extra = snakemake.params.get("extra", "")
 threads = snakemake.threads
