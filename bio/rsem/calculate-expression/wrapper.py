@@ -15,6 +15,8 @@ if bam:
     if fq_one:
         raise Exception("Only input.bam or input.fq_one expected, got both.")
     input_bam = "--alignments"
+    # BUG input_string is 'r' given the input 
+    # subprocess.CalledProcessError: Command 'set -euo pipefail;  rsem-calculate-expression --num-threads 24 --estimate-rspd --calc-ci --strandedness reverse --time --paired-end --alignments results/star/D-1/Aligned.toTranscriptome.out.bam r results/rsem/D-1/D-1  > logs/rsem/calculate_expression/D-1.log 2>&1' returned non-zero exit status 255.
     input_string = bam
     paired_end = snakemake.params.get("paired_end", False)
 else:
@@ -68,7 +70,7 @@ threads = snakemake.threads
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 shell(
     "rsem-calculate-expression --num-threads {snakemake.threads} {extra} "
-    "{paired_end_string} {input_bam} {input_string} "
+    "{paired_end_string} {input_bam} "
     "{reference_prefix} {output_prefix} "
     "{log}"
 )
