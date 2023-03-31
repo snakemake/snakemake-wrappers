@@ -5,7 +5,7 @@ __license__ = "MIT"
 
 
 import os
-
+from pathlib import Path
 from snakemake.shell import shell
 
 bam = snakemake.input.get("bam", "")
@@ -15,8 +15,6 @@ if bam:
     if fq_one:
         raise Exception("Only input.bam or input.fq_one expected, got both.")
     input_bam = "--alignments"
-    # BUG input_string is 'r' given the input 
-    # subprocess.CalledProcessError: Command 'set -euo pipefail;  rsem-calculate-expression --num-threads 24 --estimate-rspd --calc-ci --strandedness reverse --time --paired-end --alignments results/star/D-1/Aligned.toTranscriptome.out.bam r results/rsem/D-1/D-1  > logs/rsem/calculate_expression/D-1.log 2>&1' returned non-zero exit status 255.
     input_string = bam
     paired_end = snakemake.params.get("paired_end", False)
 else:
@@ -62,8 +60,11 @@ if not snakemake.output.isoforms_results.endswith(".isoforms.results"):
         "output.isoforms_results file name malformed "
         "(rsem will append .isoforms.results suffix)"
     )
-
-reference_prefix = os.path.splitext(snakemake.input.reference[0])[0]
+    
+# BUG input_string is 'r' given the input but is should be the reference base path?
+# subprocess.CalledProcessError: Command 'set -euo pipefail;  rsem-calculate-expression --num-threads 24 --estimate-rspd --calc-ci --strandedness reverse --time --paired-end --alignments results/star/D-1/Aligned.toTranscriptome.out.bam r results/rsem/D-1/D-1  > logs/rsem/calculate_expression/D-1.log 2>&1' returned non-zero exit status 255.
+reference_path = Path(snakemake.input.reference[0])
+reference_prefix = reference_path.parents[0]/reference_path.stem
 
 extra = snakemake.params.get("extra", "")
 threads = snakemake.threads
