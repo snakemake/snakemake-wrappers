@@ -1,9 +1,12 @@
 name: trinity
 description: |
   Generate transcriptome assembly with Trinity
+url: https://github.com/trinityrnaseq/trinityrnaseq/
 authors:
   - Tessa Pierce
 input:
   - fastq files
 output:
-  - fasta containing assembly
+  - fas: fasta containing assembly
+  - map: gene transcripts map
+  - dir: folder for intermediate results

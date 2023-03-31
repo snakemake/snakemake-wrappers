@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - snpsift =5.1
-  - snakemake-wrapper-utils =0.5.0
+  - snakemake-wrapper-utils =0.5.3

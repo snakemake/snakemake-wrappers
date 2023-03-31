@@ -10,7 +10,10 @@ from snakemake_wrapper_utils.java import get_java_opts
 
 
 extra = snakemake.params.get("extra", "")
-java_opts = get_java_opts(snakemake)
+# uses Java native library TileDB, which requires a lot of memory outside
+# of the `-Xmx` memory, so we reserve 40% instead of the default 20%. See:
+# https://gatk.broadinstitute.org/hc/en-us/articles/9570326648475-GenomicsDBImportGenomicsDBImport
+java_opts = get_java_opts(snakemake, java_mem_overhead_factor=0.4)
 
 gvcfs = list(map("--variant {}".format, snakemake.input.gvcfs))
 

@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - hifiasm =0.16.1
+  - hifiasm =0.18.5

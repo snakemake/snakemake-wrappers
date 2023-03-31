@@ -10,18 +10,16 @@ from snakemake.shell import shell
 from snakemake.utils import makedirs
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-
 extra = snakemake.params.get("extra", "")
-sjdb_overhang = snakemake.params.get("sjdbOverhang", "100")
 
-gtf = snakemake.input.get("gtf")
-if gtf is not None:
-    gtf = f"--sjdbGTFfile {gtf}"
+sjdb_overhang = snakemake.params.get("sjdbOverhang", "")
+if sjdb_overhang:
     sjdb_overhang = f"--sjdbOverhang {sjdb_overhang}"
-else:
-    gtf = sjdb_overhang = ""
 
-makedirs(snakemake.output)
+gtf = snakemake.input.get("gtf", "")
+if gtf:
+    gtf = f"--sjdbGTFfile {gtf}"
+
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(

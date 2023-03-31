@@ -1,8 +1,7 @@
 channels:
-  - r
   - conda-forge
   - bioconda
   - nodefaults
 dependencies:
-  - fgbio ==0.6.1
-  - r-ggplot2
+  - fgbio =2.1.0
+  - snakemake-wrapper-utils =0.5.3
