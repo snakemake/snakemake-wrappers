@@ -1,0 +1,82 @@
+rule vsearch_cluster_fast:
+    input:
+        cluster_fast="reads/{sample}.fasta",
+    output:
+        profile="out/cluster_fast/{sample}.profile",
+    log:
+        "logs/vsearch/cluster_fast/{sample}.log",
+    params:
+        extra="--id 0.2 --sizeout --minseqlength 5",
+    threads: 1
+    wrapper:
+        "master/bio/vsearch"
+
+
+rule vsearch_maskfasta:
+    input:
+        maskfasta="reads/{sample}.fasta",
+    output:
+        output="out/maskfasta/{sample}.fasta",
+    log:
+        "logs/vsearch/maskfasta/{sample}.log",
+    params:
+        extra="--hardmask",
+    threads: 1
+    wrapper:
+        "master/bio/vsearch"
+
+
+rule vsearch_fastx_uniques:
+    input:
+        fastx_uniques="reads/{sample}.fastq",
+    output:
+        fastqout="out/fastx_uniques/{sample}.fastq",
+    log:
+        "logs/vsearch/fastx_uniques/{sample}.log",
+    params:
+        extra="--strand both --minseqlength 5",
+    threads: 2
+    wrapper:
+        "master/bio/vsearch"
+
+
+rule vsearch_fastx_uniques_gzip:
+    input:
+        fastx_uniques="reads/{sample}.fastq",
+    output:
+        fastqout="out/fastx_uniques/{sample}.fastq.gz",
+    log:
+        "logs/vsearch/fastx_uniques/{sample}.log",
+    params:
+        extra="--strand both --minseqlength 5",
+    threads: 2
+    wrapper:
+        "master/bio/vsearch"
+
+
+rule vsearch_fastx_uniques_bzip2:
+    input:
+        fastx_uniques="reads/{sample}.fastq",
+    output:
+        fastqout="out/fastx_uniques/{sample}.fastq.bz2",
+    log:
+        "logs/vsearch/fastx_uniques/{sample}.log",
+    params:
+        extra="--strand both --minseqlength 5",
+    threads: 2
+    wrapper:
+        "master/bio/vsearch"
+
+
+rule vsearch_fastq_convert:
+    input:
+        fastq_convert="reads/{sample}.fastq",
+    output:
+        fastqout="out/fastq_convert/{sample}.fastq",
+    log:
+        "logs/vsearch/fastq_convert/{sample}.log",
+    params:
+        extra="--fastq_ascii 33 --fastq_asciiout 64",
+    threads: 2
+    wrapper:
+        "master/bio/vsearch"

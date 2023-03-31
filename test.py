@@ -154,6 +154,24 @@ def test_indelqual():
     )
 
 @skip_if_not_modified
+def test_vsearch():
+    run(
+        "bio/vsearch",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "out/cluster_fast/a.profile",
+            "out/maskfasta/a.fasta",
+            "out/fastx_uniques/a.fastq",
+            "out/fastx_uniques/a.fastq.gz",
+            "out/fastx_uniques/a.fastq.bz2",
+            "out/fastq_convert/a.fastq",
+        ],
+    )
+
+@skip_if_not_modified
 def test_loglog():
     run(
         "bio/bbtools/loglog",
