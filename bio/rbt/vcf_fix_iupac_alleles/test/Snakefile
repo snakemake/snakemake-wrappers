@@ -1,0 +1,16 @@
+
+rule vcf_fix_iupac_alleles:
+    input:
+        "{file}.vcf.gz",
+    output:
+        vcf="results/{file}.vcf.gz",
+        idx="results/{file}.vcf.gz.tbi",
+    log:
+        "logs/{file}.log",
+    params:
+        extra="",
+    threads: 1
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/rbt/vcf_fix_iupac_alleles"
