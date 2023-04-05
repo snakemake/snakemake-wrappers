@@ -5203,7 +5203,7 @@ def test_rbt_collapse_reads_to_fragments_bam():
 def test_rbt_vcf_fix_iupac_alleles():
     run(
         "bio/rbt/vcf_fix_iupac_alleles",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/annotation.vcf.gz"],
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/homo_sapiens-chrMT.vcf.gz"],
     )
 
 
