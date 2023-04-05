@@ -4,3 +4,7 @@ description: |
 url: https://github.com/rust-bio/rust-bio-tools
 authors:
   - Filipe G. Vieira
+input:
+  - VCF
+output:
+  - VCF/BCF
