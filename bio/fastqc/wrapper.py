@@ -15,7 +15,7 @@ from snakemake_wrapper_utils.snakemake import get_mem
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 # Define memory per thread (https://github.com/s-andrews/FastQC/blob/master/fastqc#L201-L222)
-mem_mb = get_mem(snakemake, "MiB") / snakemake.threads
+mem_mb = int(get_mem(snakemake, "MiB") / snakemake.threads)
 
 
 def basename_without_ext(file_path):
@@ -42,7 +42,7 @@ with TemporaryDirectory() as tempdir:
         " --threads {snakemake.threads}"
         " --memory {mem_mb}"
         " {extra}"
-        "--outdir {tempdir:q}"
+        " --outdir {tempdir:q}"
         " {snakemake.input[0]:q}"
         " {log}"
     )
