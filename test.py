@@ -2218,6 +2218,21 @@ def test_deeptools_plotprofile():
 
 
 @skip_if_not_modified
+def test_deeptools_plotcoverage():
+    run(
+        "bio/deeptools/plotcoverage",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "coverage.png",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_deepvariant():
     run(
         "bio/deepvariant",
