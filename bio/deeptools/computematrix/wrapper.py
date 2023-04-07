@@ -9,8 +9,8 @@ from tempfile import TemporaryDirectory
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 blacklist = snakemake.input.get("blacklist", "")
-if blacklist != "":
-    blacklist = " --blackListFileName " + blacklist
+if blacklist:
+    blacklist = f"--blackListFileName {blacklist}"
 
 out_tab = snakemake.output.get("matrix_tab")
 out_bed = snakemake.output.get("matrix_bed")
