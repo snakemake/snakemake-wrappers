@@ -69,11 +69,14 @@ default_effective_genome_size = {
 }
 
 effective_genome_size = snakemake.params.get("effective_genome_size")
-if not effective_genome_size:
+if not effective_genome_size: 
     genome = snakemake.params.get("genome")
     read_length = snakemake.params.get("read_length")
     if genome and read_length:
-        effective_genome_size = default_effective_genome_size[genome][str(read_length)]
+        effective_genome_size = "--effectiveGenomeSize "
+        effective_genome_size += default_effective_genome_size[genome][str(read_length)]
+else:
+    effective_genome_size = "--effectiveGenomeSize " + str(effective_genome_size)
 
 
 output_format = ""
@@ -96,7 +99,7 @@ shell(
     "bamCoverage "
     "{blacklist} {extra} "
     "--numberOfProcessors {snakemake.threads} "
-    "--effectiveGenomeSize {effective_genome_size} "
+    "{effective_genome_size} "
     "--bam {snakemake.input.bam} "
     "--outFileName {snakemake.output} "
     "--outFileFormat {output_format} "
