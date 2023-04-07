@@ -1,0 +1,17 @@
+name: deepTools bamcoverage
+url: https://deeptools.readthedocs.io/en/develop/content/tools/bamCoverage.html?highlight=bamcoverage
+description: >
+  ``deepTools bamcoverage`` takes an alignment of reads or fragments as input (BAM file) and generates a coverage track (bigWig or bedGraph) as output. 
+  For more information about ``deepTools``, also see the `source code <https://github.com/deeptools/deepTools>`_.
+authors:
+  - Thibault Dayris
+input:
+  - bam: Path to alignment (BAM) file
+  - blacklist: Path to optional blacklist region file (BED)
+output:
+  - Path to coverage file
+params:
+  - effective_genome_size: Optional effective genome size value
+  - genome: Optional parameter used to fill effective genome size with pre-computed parameters. Can only be one of `GRCm37`, `GRCm38`, `GRCh37`, `GRCh38`, `dm3`, `dm6`, `WBcel235`, or `GRCz10`.
+  - read_length: Optional parameter used to fill effective genome size with pre-computed parameters. Can only be one of `50`, `75`, `100`, `150`, or `200`.
+  - extra: Optional parameters to be given to deepTools bamcoverage
