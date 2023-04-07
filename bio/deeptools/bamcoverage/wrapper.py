@@ -92,7 +92,7 @@ else:
 
 
 blacklist = snakemake.input.get("blacklist", "")
-if blacklist != "":
+if blacklist:
     blacklist = "--blackListFileName " + blacklist
 
 shell(
