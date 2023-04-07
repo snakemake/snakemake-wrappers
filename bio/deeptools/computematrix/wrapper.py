@@ -27,7 +27,7 @@ if out_bed:
 with TemporaryDirectory() as tempdir:
     temp = ""
     if "deepBlueURL" in snakemake.params.extra:
-        temp = "--deepBlueTempDir " + tempdir
+        temp = f"--deepBlueTempDir {tempdir}"
 
     shell(
         "computeMatrix "
