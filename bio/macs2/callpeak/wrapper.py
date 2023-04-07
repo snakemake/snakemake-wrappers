@@ -24,7 +24,9 @@ if in_contr:
     opt_input = "-c {contr}".format(contr=in_contr)
 
 if in_fragsize:
-    params += "--extsize {fragsize}".format(fragsize=in_fragsize)
+    with open(in_fragsize) as handler:
+        in_fragsize = handler.readline().strip()
+    params += " --extsize {fragsize}".format(fragsize=in_fragsize)
 
 
 if out_dir:
