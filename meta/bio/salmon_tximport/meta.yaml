@@ -1,0 +1,8 @@
+name: Salmon Tximport
+url: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6178912.2/
+description: >
+  1. Create a decoy aware transcriptome index.
+  2. Quantify reads with Salmon on (RNA-Seq) bulk data, using a decoy aware index. 
+  3. Import them in R with tximport and a ready-to-use SummarizedExperiment object.
+authors:
+  - Thibault Dayris
