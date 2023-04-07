@@ -10,6 +10,7 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 in_contr = snakemake.input.get("control")
+in_fragsize = snakemake.input.get("fragsize")
 params = "{}".format(snakemake.params)
 opt_input = ""
 out_dir = ""
@@ -21,6 +22,10 @@ out_dir = os.path.dirname(out_file)
 
 if in_contr:
     opt_input = "-c {contr}".format(contr=in_contr)
+
+if in_fragsize:
+    params += "--extsize {fragsize}".format(fragsize=in_fragsize)
+
 
 if out_dir:
     out_dir = "--outdir {dir}".format(dir=out_dir)

@@ -22,7 +22,8 @@ rule callpeak:
 rule callpeak_options:
     input:
         treatment="samples/a.bam",   # required: treatment sample(s)
-        control="samples/b.bam"      # optional: control sample(s)
+        control="samples/b.bam",      # optional: control sample(s)
+        fragsize="samples/fragsize.txt" # optional: fragment size
     output:
         # all output-files must share the same basename and only differ by it's extension
         # Usable extensions (and which tools they implicitly call) are listed here:
