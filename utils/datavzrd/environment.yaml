@@ -1,5 +1,5 @@
 channels:
-- conda-forge
-- nodefaults
+  - conda-forge
+  - nodefaults
 dependencies:
   - datavzrd =2.18.1
