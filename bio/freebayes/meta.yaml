@@ -1,4 +1,4 @@
-name: "freebayes"
+name: freebayes
 description: Call small genomic variants with freebayes.
 url: https://github.com/freebayes/freebayes
 authors:
@@ -12,5 +12,5 @@ output:
   - VCF/VCF.gz/BCF file
 params:
   - extra: additional arguments for freebayes
-  - normalize: use `bcftools norm` to normalize indels; one of the params must be passed: `-a`, `-f`, `-m`, `-D` or `-d`
+  - normalize: use `bcftools norm` to normalize indels (one of `-a`, `-f`, `-m`, `-D` or `-d` must be used)
   - chunkzise: reference genome chunk size for parallelization (default: `100000`)
