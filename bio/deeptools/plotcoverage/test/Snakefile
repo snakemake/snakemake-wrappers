@@ -1,11 +1,11 @@
 rule test_deeptools_plotcoverage:
     input:
-        bams=["a.bam"],
-        bais=["a.bam.bai"],
         # Optional blacklisted regions
         # blacklist="",
         # Optional region file
         # bed="",
+        bams=["a.bam"],
+        bais=["a.bam.bai"],
     output:
         plot="coverage.png",
         # Optional raw counts
