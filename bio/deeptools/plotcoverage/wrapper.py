@@ -36,11 +36,22 @@ if blacklist:
     blacklist = " --blackListFileName " + blacklist
 
 
+accepted_extensions = ["eps", "png", "svg", "pdf"]
+out_image_extension = str(snakemake.output["plot"]).split(".")[-1]
+if out_image_extension not in accepted_extensions:
+    raise ValueError(
+        "Wrong image format: {ext}, expected: {expected}".format(
+            ext=out_image_extension, expected=str(accepted_extensions)
+        )
+    )
+
+
 shell(
     "plotCoverage "
     "{extra} {bed} {raw_counts} {metrics} {blacklist} "
     "--numberOfProcessors {snakemake.threads} "
     "--bamfiles {snakemake.input.bams} "
     "--plotFile {snakemake.output.plot} "
+    "--plotFileFormat {out_image_extension} "
     " {log}"
 )
