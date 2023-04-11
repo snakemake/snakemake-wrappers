@@ -1,4 +1,5 @@
 name: deepTools plotCoverage
+url: https://deeptools.readthedocs.io/en/develop/content/tools/plotCoverage.html
 description: >
   ``deepTools plotCoverage`` assess the sequencing depth of given samples.
   For more information about ``deepTools``, also see the `source code <https://github.com/deeptools/deepTools>`_.
