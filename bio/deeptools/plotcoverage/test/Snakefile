@@ -14,5 +14,7 @@ rule test_deeptools_plotcoverage:
         metrics="coverage.metrics",
     params:
         extra="--coverageThresholds 1",
+    log:
+        "logs/deeptools/coverage.log"
     wrapper:
         "master/bio/deeptools/plotcoverage"
