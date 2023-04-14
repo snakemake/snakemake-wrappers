@@ -56,7 +56,7 @@ if ("txi" %in% base::names(x = snakemake@input)) {
     )
 
 # Case user provides a RangesSummarizedExperiment object
-} else if ("rse" %in% base::names(x = snakemake@input)) {
+} else if ("se" %in% base::names(x = snakemake@input)) {
     # Loading RangedSummarizedExperiment object
     se <- base::readRDS(file = snakemake@input[["se"]])
 
@@ -163,7 +163,7 @@ if ("txi" %in% base::names(x = snakemake@input)) {
     )
 
     # Building command line
-    dds_command <- "base::readRDS(object = dds)"
+    dds_command <- "base::readRDS(file = dds_path)"
 }else {
     base::stop("Error: No counts provided !")
 }
@@ -194,10 +194,10 @@ if (is_factor && is_reference && is_test) {
     # Actual relevel
     levels <- c(reference_name, test_name)
     dds[[factor_name]] <- base::factor(
-        ddf[[factor_name]], levels = levels
+        dds[[factor_name]], levels = levels
     )
     dds[[factor_name]] <- stats::relevel(
-        dds[[factor_name]], ref = reference_level
+        dds[[factor_name]], ref = reference_name
     )
     dds[[factor_name]] <- base::droplevels(dds[[factor_name]])
     base::message(
@@ -213,20 +213,22 @@ if (is_factor && is_reference && is_test) {
 
 # Dropping null counts (or below threshold) on user demand
 if ("min_count" %in% base::names(x = snakemake@params)) {
-    count_filter <- base::as.numeric(x = snakemake@params[["min_count"]])
+    # Casting count filter since integer/numeric cannot be compared
+    # to double, and other number-like types in R (depending on R version)
+    count_filter <- base::as.double(x = snakemake@params[["min_count"]])
     base::message(
         "Genes with less than ",
         count_filter,
         " estimated/counted reads are filtered out."
     )
-    keep <- base::rowSums(BiocGenerics::counts(dds)) > count_filter
+    keep <- rowSums(counts(dds)) >= count_filter
     dds <- dds[keep, ]
 }
 
 # Saving DESeqDataSet object
 base::saveRDS(
     object = dds,
-    file = base::as.character(x = snakemake@output[[0]])
+    file = base::as.character(x = snakemake@output[[1]])
 )
 base::message("Process over")
 
