@@ -30,10 +30,10 @@ colData <- utils::read.table(
 )
 
 # Cast formula from string to R formula
-formula <- base::as.formula(object = snakemake@params[["formula"]])
+formula <- stats::as.formula(object = snakemake@params[["formula"]])
 dds_command <- NULL
 
-# Case user provides a Tximport object
+# Case user provides a Tximport/Tximeta object
 if ("txi" %in% base::names(x = snakemake@input)) {
     # Loading tximport object
     txi <- base::readRDS(file = snakemake@input[["txi"]])
@@ -154,7 +154,17 @@ if ("txi" %in% base::names(x = snakemake@input)) {
         dds_parameters,
         ")"
     )
-} else {
+
+# Case user provides a DDS object to filter
+} else if ("dds" %in% base::names(x = snakemake@input)) {
+    # Loading count table
+    dds_path <- base::as.character(
+        x = snakemake@input[["dds"]]
+    )
+
+    # Building command line
+    dds_command <- "base::readRDS(object = dds)"
+}else {
     base::stop("Error: No counts provided !")
 }
 
