@@ -1,13 +1,14 @@
 name: DESeqDataSetFromTximport
-url: https://bioconductor.org/packages/3.16/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#transcript-abundance-files-and-tximport-tximeta
+url: https://bioconductor.org/packages/3.16/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#input-data
 description: |
   Create a DESeqDataSet object from a tximport SummarizedExperiment, from a directory containing HTSeq counts, from a sample table containing paths to count matrices, or from a RangedSummarizedExperiment object.
 authors:
   - Thibault Dayris
 input:
   - coldata: Path to the file describing the experiment design (TSV formatted file). First column contains sample names. (Required, other input are mutually exclusives)
-  - txi: Path to the tximport SummarizedExperiment object (RDS formatted file) *OR*
-  - rse: Path to the RangedSummarizedExperiment object (RDS formatted file) *OR*
+  - dds: Path to the DESeqDataSet object (RDS formatted file) *OR*
+  - txi: Path to the tximport/tximeta SummarizedExperiment object (RDS formatted file) *OR*
+  - se: Path to the RangedSummarizedExperiment object (RDS formatted file) *OR*
   - matrix: Path to the R `matrix(...) ` containing counts. Sample names must be in rownames. (RDS formatted file) *OR*
   - counts: Path to the text matrix containing counts. Sample names should be in the first column. (TSV formatted file) *OR*
   - htseq_dir: Path to the directory containing HTSeq/FeatureCount count matrices *AND*
@@ -21,3 +22,5 @@ params:
   - factor: Factor of interest, in case relevel is needed
   - min_count: Minimum number of counted/estimated reads threshold (do not filter by default)
   - extra: Optional argument passed to DESeq2 besdes `txi`, `colData`, `design`, `htseq`, `directory`, `se`, `sampleTable`, or `tidy`
+note: |
+  `dds` input is here to enable filters on already existing DESeqDataSet objects

@@ -931,6 +931,39 @@ def test_dada2_add_species():
 
 
 @skip_if_not_modified
+def test_deseq2_deseqdataset():
+    # DDS import
+    run(
+        "bio/deseq2/DESeqDataSet",
+        ["snakemake", "--cores", "1", "--use-conda", "dds_minimal.RDS"],
+    )
+
+    # txi import
+    run(
+        "bio/deseq2/DESeqDataSet",
+        ["snakemake", "--cores", "1", "--use-conda", "dds_txi.RDS"],
+    )
+
+    # SE import
+    run(
+        "bio/deseq2/DESeqDataSet",
+        ["snakemake", "--cores", "1", "--use-conda", "dds_se.RDS"],
+    )
+
+    # R matrix import
+    run(
+        "bio/deseq2/DESeqDataSet",
+        ["snakemake", "--cores", "1", "--use-conda", "dds_rmatrix.RDS"],
+    )
+
+    # text matrix import
+    run(
+        "bio/deseq2/DESeqDataSet",
+        ["snakemake", "--cores", "1", "--use-conda", "dds_matrix.RDS"],
+    )
+
+
+@skip_if_not_modified
 def test_arriba_star_meta():
     run(
         "meta/bio/star_arriba",

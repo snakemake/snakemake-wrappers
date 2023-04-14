@@ -4,7 +4,8 @@
 # __license__ = "MIT"
 
 # This script builds a deseq2 dataset from a range of possible input
-# files. It also performs relevel if needed.
+# files. It also performs relevel if needed,
+# as well as count filtering.
 
 # Sink the stderr and stdout to the snakemake log file
 # https://stackoverflow.com/a/48173272
@@ -57,7 +58,7 @@ if ("txi" %in% base::names(x = snakemake@input)) {
 # Case user provides a RangesSummarizedExperiment object
 } else if ("rse" %in% base::names(x = snakemake@input)) {
     # Loading RangedSummarizedExperiment object
-    se <- base::readRDS(file = snakemake@input[["rse"]])
+    se <- base::readRDS(file = snakemake@input[["se"]])
 
     # Acquiring user-defined optional parameters
     dds_parameters <- "se = se, design = formula, ignoreRank = FALSE"
@@ -206,7 +207,8 @@ if ("min_count" %in% base::names(x = snakemake@params)) {
     base::message(
         "Genes with less than ",
         count_filter,
-        " estimated/counted reads are filtered out.")
+        " estimated/counted reads are filtered out."
+    )
     keep <- base::rowSums(BiocGenerics::counts(dds)) > count_filter
     dds <- dds[keep, ]
 }
