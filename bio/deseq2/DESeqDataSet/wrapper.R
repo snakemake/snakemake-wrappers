@@ -28,9 +28,11 @@ colData <- utils::read.table(
     sep = "\t",
     stringsAsFactors = FALSE
 )
+base::print(head(colData))
 
 # Cast formula from string to R formula
 formula <- stats::as.formula(object = snakemake@params[["formula"]])
+base::print(formula)
 dds_command <- NULL
 
 # Case user provides a Tximport/Tximeta object
@@ -81,6 +83,7 @@ if ("txi" %in% base::names(x = snakemake@input)) {
 } else if ("htseq_dir" %in% base::names(x = snakemake@input)) {
     # Casting path in case it contains numbers
     hts_dir <- base::as.character(x = snakemake@input[["htseq_dir"]])
+    base::message(hts_dir)
 
     # Acquiring user-defined optional parameters
     dds_parameters <- "directory = hts_dir, colData = colData, design = formula"
@@ -103,15 +106,14 @@ if ("txi" %in% base::names(x = snakemake@input)) {
 } else if ("matrix" %in% base::names(x = snakemake@input)) {
     # Loading RangedSummarizedExperiment object
     count_matrix <- base::readRDS(file = snakemake@input[["matrix"]])
+    base::print(head(count_matrix))
+
 
     # Acquiring user-defined optional parameters
-    dds_parameters <- ""
+    dds_parameters <- "countData = count_matrix, colData = colData, design = formula, tidy = TRUE"
     if ("extra" %in% base::names(snakemake@params)) {
         dds_parameters <- base::paste(
-            "countData = count_matrix",
-            "colData = colData",
-            "design = formula",
-            "tidy = TRUE",
+            dds_parameters,
             base::as.character(x = snakemake@params[["extra"]]),
             sep = ", "
         )
@@ -134,15 +136,13 @@ if ("txi" %in% base::names(x = snakemake@input)) {
         row.names = 1,
         stringsAsFactors = FALSE
     )
+    base::print(head(count_matrix))
 
     # Acquiring user-defined optional parameters
-    dds_parameters <- ""
+    dds_parameters <- "countData = count_matrix, colData = colData, design = formula, tidy = TRUE"
     if ("extra" %in% base::names(snakemake@params)) {
         dds_parameters <- base::paste(
-            "countData = count_matrix",
-            "colData = colData",
-            "design = formula",
-            "tidy = TRUE",
+            dds_parameters,
             base::as.character(x = snakemake@params[["extra"]]),
             sep = ", "
         )

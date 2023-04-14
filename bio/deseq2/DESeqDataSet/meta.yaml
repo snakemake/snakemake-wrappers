@@ -1,7 +1,9 @@
 name: DESeqDataSetFromTximport
 url: https://bioconductor.org/packages/3.16/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#input-data
 description: |
-  Create a DESeqDataSet object from a tximport SummarizedExperiment, from a directory containing HTSeq counts, from a sample table containing paths to count matrices, or from a RangedSummarizedExperiment object.
+  Create a DESeqDataSet object from a tximport SummarizedExperiment, from a directory containing HTSeq counts, 
+  from a sample table containing paths to count matrices, or from a RangedSummarizedExperiment object. 
+  Then optionally run DESeq2 pre-filtering 
 authors:
   - Thibault Dayris
 input:
