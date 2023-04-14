@@ -30,7 +30,7 @@ colData <- utils::read.table(
 )
 
 # Cast formula from string to R formula
-formula <- base::as.formula(x = snakemake@params[["formula"]])
+formula <- base::as.formula(object = snakemake@params[["formula"]])
 dds_command <- NULL
 
 # Case user provides a Tximport object
