@@ -111,5 +111,7 @@ rule tximport:
         txi="tximport/SummarizedExperimentObject.RDS",
     params:
         extra="type='salmon'",
+    log:
+        "logs/tximport.log"
     wrapper:
         "master/bio/tximport"
