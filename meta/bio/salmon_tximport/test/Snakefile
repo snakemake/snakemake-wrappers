@@ -7,7 +7,7 @@ rule salmon_decoy_sequences:
         decoys=temp("resources/decoys.txt"),
     threads: 1
     log:
-        "decoys.log"
+        "decoys.log",
     wrapper:
         "master/bio/salmon/decoys"
 
@@ -89,15 +89,26 @@ rule salmon_quant_reads:
 
 rule tximport:
     input:
-        quant=expand("pseudo_mapping/{sample}/quant.sf", sample=["S1", "S2", "S3", "S4"]),
-        lib=expand("pseudo_mapping/{sample}/lib_format_counts.json", sample=["S1", "S2", "S3", "S4"]),
-        aux_info=expand("pseudo_mapping/{sample}/aux_info", sample=["S1", "S2", "S3", "S4"]),
-        cmd_info=expand("pseudo_mapping/{sample}/cmd_info.json", sample=["S1", "S2", "S3", "S4"]),
-        libparams=expand("pseudo_mapping/{sample}/libParams", sample=["S1", "S2", "S3", "S4"]),
+        quant=expand(
+            "pseudo_mapping/{sample}/quant.sf", sample=["S1", "S2", "S3", "S4"]
+        ),
+        lib=expand(
+            "pseudo_mapping/{sample}/lib_format_counts.json",
+            sample=["S1", "S2", "S3", "S4"],
+        ),
+        aux_info=expand(
+            "pseudo_mapping/{sample}/aux_info", sample=["S1", "S2", "S3", "S4"]
+        ),
+        cmd_info=expand(
+            "pseudo_mapping/{sample}/cmd_info.json", sample=["S1", "S2", "S3", "S4"]
+        ),
+        libparams=expand(
+            "pseudo_mapping/{sample}/libParams", sample=["S1", "S2", "S3", "S4"]
+        ),
         logs=expand("pseudo_mapping/{sample}/logs", sample=["S1", "S2", "S3", "S4"]),
         tx_to_gene="resources/tx2gene.tsv",
     output:
-        txi="tximport/SummarizedExperimentObject.RDS"
+        txi="tximport/SummarizedExperimentObject.RDS",
     params:
         extra="type='salmon'",
     wrapper:
