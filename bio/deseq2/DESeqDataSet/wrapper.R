@@ -19,15 +19,16 @@ base::library(package = "jsonlite", character.only = TRUE)
 base::library(package = "DESeq2", character.only = TRUE)
 base::message("Libraries loaded")
 
-# Load coldata since it is always used
-coldata <- utils::read.table(
-    file = snakemake@input[["coldata"]],
+# Load colData since it is always used
+colData <- utils::read.table(
+    file = snakemake@input[["col_data"]],
     header = TRUE,
     row.names = 1,
     sep = "\t",
     stringsAsFactors = FALSE
 )
 
+# Cast formula from string to R formula
 formula <- base::as.formula(x = snakemake@params[["formula"]])
 dds_command <- NULL
 
@@ -42,7 +43,7 @@ if ("txi" %in% base::names(x = snakemake@input)) {
         dds_parameters <- base::paste(
             dds_parameters,
             base::as.character(x = snakemake@params[["extra"]]),
-            sep=", "
+            sep = ", "
         )
     }
 
@@ -60,11 +61,11 @@ if ("txi" %in% base::names(x = snakemake@input)) {
 
     # Acquiring user-defined optional parameters
     dds_parameters <- "se = se, design = formula, ignoreRank = FALSE"
-    if ("extra" %in% base::names(snakemake@params) {
+    if ("extra" %in% base::names(snakemake@params)) {
         dds_parameters <- base::paste(
             dds_parameters,
             base::as.character(x = snakemake@params[["extra"]]),
-            sep=", "
+            sep = ", "
         )
     }
 
@@ -81,12 +82,12 @@ if ("txi" %in% base::names(x = snakemake@input)) {
     hts_dir <- base::as.character(x = snakemake@input[["htseq_dir"]])
 
     # Acquiring user-defined optional parameters
-    dds_parameters <- "directory = hts_dir, colData = coldata, design = formula"
-    if ("extra" %in% base::names(snakemake@params) {
+    dds_parameters <- "directory = hts_dir, colData = colData, design = formula"
+    if ("extra" %in% base::names(snakemake@params)) {
         dds_parameters <- base::paste(
             dds_parameters,
             base::as.character(x = snakemake@params[["extra"]]),
-            sep=", "
+            sep = ", "
         )
     }
 
@@ -103,12 +104,15 @@ if ("txi" %in% base::names(x = snakemake@input)) {
     count_matrix <- base::readRDS(file = snakemake@input[["matrix"]])
 
     # Acquiring user-defined optional parameters
-    dds_parameters <- "countData, colData = coldata, design = formula, tidy = TRUE"
-    if ("extra" %in% base::names(snakemake@params) {
+    dds_parameters <- ""
+    if ("extra" %in% base::names(snakemake@params)) {
         dds_parameters <- base::paste(
-            dds_parameters,
+            "countData = count_matrix",
+            "colData = colData",
+            "design = formula",
+            "tidy = TRUE",
             base::as.character(x = snakemake@params[["extra"]]),
-            sep=", "
+            sep = ", "
         )
     }
 
@@ -131,12 +135,15 @@ if ("txi" %in% base::names(x = snakemake@input)) {
     )
 
     # Acquiring user-defined optional parameters
-    dds_parameters <- "countData, colData = coldata, design = formula, tidy = TRUE"
-    if ("extra" %in% base::names(snakemake@params) {
+    dds_parameters <- ""
+    if ("extra" %in% base::names(snakemake@params)) {
         dds_parameters <- base::paste(
-            dds_parameters,
+            "countData = count_matrix",
+            "colData = colData",
+            "design = formula",
+            "tidy = TRUE",
             base::as.character(x = snakemake@params[["extra"]]),
-            sep=", "
+            sep = ", "
         )
     }
 
@@ -161,7 +168,7 @@ is_factor <- "factor" %in% base::names(x = snakemake@params)
 is_reference <- "reference_level" %in% base::names(x = snakemake@params)
 is_test <- "tested_level" %in% base::names(x = snakemake@params)
 
-if (is_factor & is_reference & is_test) {
+if (is_factor && is_reference && is_test) {
     # Casting characters in case of factors/levels being numbers
     factor_name <- base::as.character(
         x = snakemake@params[["factor"]]
@@ -185,7 +192,7 @@ if (is_factor & is_reference & is_test) {
     base::message(
         "Factors have been relevel-ed. Reference level: `",
         reference_name,
-        "`, tested level: `"
+        "`, tested level: `",
         test_name,
         "`. Factor of interest: `",
         factor_name,

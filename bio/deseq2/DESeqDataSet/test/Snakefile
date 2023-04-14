@@ -1,7 +1,7 @@
 rule test_deseqdataset_minimal:
     input:
         txi="",
-        coldata="",
+        col_data="",
     output:
         "dds_txi.RDS",
     threads: 1
@@ -16,7 +16,7 @@ rule test_deseqdataset_minimal:
 rule test_deseqdataset_txi:
     input:
         txi="",
-        coldata="",
+        col_data="",
     output:
         "dds_txi.RDS",
     threads: 1
@@ -36,7 +36,7 @@ rule test_deseqdataset_txi:
 rule test_deseqdataset_se:
     input:
         se="",
-        coldata="",
+        col_data="",
     output:
         "dds_se.RDS",
     threads: 1
@@ -56,7 +56,7 @@ rule test_deseqdataset_se:
 rule test_deseqdataset_r_matrix:
     input:
         matrix="",
-        coldata="",
+        col_data="",
     output:
         "dds_rmatrix.RDS",
     threads: 1
@@ -76,7 +76,7 @@ rule test_deseqdataset_r_matrix:
 rule test_deseqdataset_tsv_matrix:
     input:
         counts="",
-        coldata="",
+        col_data="",
     output:
         "dds_matrix.RDS",
     threads: 1
@@ -97,7 +97,7 @@ rule test_deseqdataset_htseq_dir:
     input:
         htseq_dir="",
         sample_table="",
-        coldata="",
+        col_data="",
     output:
         "dds_htseq.RDS",
     threads: 1
