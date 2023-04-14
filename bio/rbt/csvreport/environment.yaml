@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - rust-bio-tools =0.41.0
+  - rust-bio-tools =0.42.0
