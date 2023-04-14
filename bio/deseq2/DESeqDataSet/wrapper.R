@@ -21,7 +21,7 @@ base::message("Libraries loaded")
 
 # Load colData since it is always used
 colData <- utils::read.table(
-    file = snakemake@input[["col_data"]],
+    file = snakemake@input[["colData"]],
     header = TRUE,
     row.names = 1,
     sep = "\t",
