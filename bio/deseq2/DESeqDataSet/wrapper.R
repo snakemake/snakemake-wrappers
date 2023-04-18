@@ -110,7 +110,7 @@ if ("txi" %in% base::names(x = snakemake@input)) {
 
 
     # Acquiring user-defined optional parameters
-    dds_parameters <- "countData = count_matrix, colData = colData, design = formula, tidy = TRUE"
+    dds_parameters <- "countData = count_matrix, colData = colData, design = formula"
     if ("extra" %in% base::names(snakemake@params)) {
         dds_parameters <- base::paste(
             dds_parameters,
@@ -139,7 +139,7 @@ if ("txi" %in% base::names(x = snakemake@input)) {
     base::print(head(count_matrix))
 
     # Acquiring user-defined optional parameters
-    dds_parameters <- "countData = count_matrix, colData = colData, design = formula, tidy = TRUE"
+    dds_parameters <- "countData = count_matrix, colData = colData, design = formula"
     if ("extra" %in% base::names(snakemake@params)) {
         dds_parameters <- base::paste(
             dds_parameters,
