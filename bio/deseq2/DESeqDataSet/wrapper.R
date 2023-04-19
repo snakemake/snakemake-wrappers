@@ -20,6 +20,32 @@ base::library(package = "jsonlite", character.only = TRUE)
 base::library(package = "DESeq2", character.only = TRUE)
 base::message("Libraries loaded")
 
+
+# A small function to add user-defined parameters
+# if and only if this parameter is not null and not
+# empty
+add_extra <- function(wrapper_defined) {
+    if ("extra" %in% base::names(snakemake@params)) {
+        # Then user defined optional parameters
+        user_defined <- snakemake@params[["extra"]]
+
+        if ((user_defined != "") && inherits(user_defined, "character")) {
+            # Then there paremters are non-empty characters
+            base::return(
+                base::paste(
+                    wrapper_defined,
+                    user_defined,
+                    sep = ", "
+                )
+            )
+        }
+    }
+
+    # Case user did not provide any optional parameter
+    # or did provide a non/empty character value
+    base::return(wrapper_defined)
+}
+
 # Load colData since it is always used
 colData <- utils::read.table(
     file = snakemake@input[["colData"]],
@@ -41,14 +67,9 @@ if ("txi" %in% base::names(x = snakemake@input)) {
     txi <- base::readRDS(file = snakemake@input[["txi"]])
 
     # Acquiring user-defined optional parameters
-    dds_parameters <- "txi = txi, colData = colData, design = formula"
-    if ("extra" %in% base::names(snakemake@params)) {
-        dds_parameters <- base::paste(
-            dds_parameters,
-            base::as.character(x = snakemake@params[["extra"]]),
-            sep = ", "
-        )
-    }
+    dds_parameters <- add_extra(
+        wrapper_defined = "txi = txi, colData = colData, design = formula"
+    )
 
     # Building command line
     dds_command <- base::paste0(
@@ -63,14 +84,9 @@ if ("txi" %in% base::names(x = snakemake@input)) {
     se <- base::readRDS(file = snakemake@input[["se"]])
 
     # Acquiring user-defined optional parameters
-    dds_parameters <- "se = se, design = formula, ignoreRank = FALSE"
-    if ("extra" %in% base::names(snakemake@params)) {
-        dds_parameters <- base::paste(
-            dds_parameters,
-            base::as.character(x = snakemake@params[["extra"]]),
-            sep = ", "
-        )
-    }
+    dds_parameters <- add_extra(
+        wrapper_defined = "se = se, design = formula, ignoreRank = FALSE"
+    )
 
     # Building command line
     dds_command <- base::paste0(
@@ -86,14 +102,9 @@ if ("txi" %in% base::names(x = snakemake@input)) {
     base::message(hts_dir)
 
     # Acquiring user-defined optional parameters
-    dds_parameters <- "directory = hts_dir, colData = colData, design = formula"
-    if ("extra" %in% base::names(snakemake@params)) {
-        dds_parameters <- base::paste(
-            dds_parameters,
-            base::as.character(x = snakemake@params[["extra"]]),
-            sep = ", "
-        )
-    }
+    dds_parameters <- add_extra(
+        "directory = hts_dir, colData = colData, design = formula"
+    )
 
     # Building command line
     dds_command <- base::paste0(
@@ -110,14 +121,9 @@ if ("txi" %in% base::names(x = snakemake@input)) {
 
 
     # Acquiring user-defined optional parameters
-    dds_parameters <- "countData = count_matrix, colData = colData, design = formula"
-    if ("extra" %in% base::names(snakemake@params)) {
-        dds_parameters <- base::paste(
-            dds_parameters,
-            base::as.character(x = snakemake@params[["extra"]]),
-            sep = ", "
-        )
-    }
+    dds_parameters <- add_extra(
+        "countData = count_matrix, colData = colData, design = formula"
+    )
 
     # Building command line
     dds_command <- base::paste0(
@@ -139,14 +145,9 @@ if ("txi" %in% base::names(x = snakemake@input)) {
     base::print(head(count_matrix))
 
     # Acquiring user-defined optional parameters
-    dds_parameters <- "countData = count_matrix, colData = colData, design = formula"
-    if ("extra" %in% base::names(snakemake@params)) {
-        dds_parameters <- base::paste(
-            dds_parameters,
-            base::as.character(x = snakemake@params[["extra"]]),
-            sep = ", "
-        )
-    }
+    dds_parameters <- add_extra(
+        "countData = count_matrix, colData = colData, design = formula"
+    )
 
     # Building command line
     dds_command <- base::paste0(
