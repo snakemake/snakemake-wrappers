@@ -2,11 +2,10 @@ name: Code quality
 
 on:
   pull_request:
-    branches_ignore: []
 
 jobs:
   formatting:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, python-3.10]
     steps:
       - uses: actions/checkout@v3
 
@@ -37,7 +36,7 @@ jobs:
       #     snakefmt --check $(git diff origin/master --name-only | grep Snakefile)
 
   linting:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, python-3.10]
     steps:
       - uses: actions/checkout@v1
 
