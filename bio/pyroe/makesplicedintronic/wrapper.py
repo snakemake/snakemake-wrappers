@@ -8,7 +8,6 @@ from tempfile import TemporaryDirectory
 from snakemake.shell import shell
 
 
-
 log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 extra = snakemake.params.get("extra", "")
 
@@ -29,7 +28,6 @@ if unspliced:
     unspliced = "--extra-unspliced " + unspliced
 
 
-
 with TemporaryDirectory() as tempdir:
     shell(
         "pyroe make-spliced+intronic "
@@ -43,7 +41,7 @@ with TemporaryDirectory() as tempdir:
     )
 
     shell("ls {tempdir} {log}")
-    
+
     if snakemake.output.get("fasta", False):
         shell(
             "mv --verbose "
