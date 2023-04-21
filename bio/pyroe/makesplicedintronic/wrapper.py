@@ -40,8 +40,6 @@ with TemporaryDirectory() as tempdir:
         "{log}"
     )
 
-    shell("ls {tempdir} {log}")
-
     if snakemake.output.get("fasta", False):
         shell(
             "mv --verbose "
