@@ -248,6 +248,21 @@ def test_seqkit_rmdup():
         ],
     )
 
+
+@skip_if_not_modified
+def test_gffread():
+    run(
+        "bio/gffread",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "transcripts.fa"
+        ]
+    )
+
 @skip_if_not_modified
 def test_seqkit_fx2tab():
     run(
@@ -1181,6 +1196,7 @@ def test_art_profiler_illumina():
             "profiles/a.2.txt",
             "--use-conda",
             "-F",
+            "-p"
         ],
     )
 
