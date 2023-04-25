@@ -12,6 +12,8 @@ input:
 output:
   - fasta: Path to spliced+unspliced sequences (Fasta formatted)
   - gene_id_to_name: Path to a TSV formatted text file containing gene_id <-> gene_name correspondence
-  - t2g: Path to a TSV formatted text file containing the transcript_id <-> gene_name <-> splicing status correspondence
+  - t2g_3col: Path to a TSV formatted text file containing the transcript_id <-> gene_name <-> splicing status correspondence
+  - t2g: Path to a TSV formatted text file containing the transcript_id <-> gene_name
+  - g2g: Path to a TSV formatted text file containing the gene_id <-> gene_name
 params:
   - extra: Optional parameters to be passed to pyroe
