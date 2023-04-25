@@ -50,11 +50,7 @@ with TemporaryDirectory() as tempdir:
         )
 
     if snakemake.output.get("t2g", False):
-        shell(
-            "mv --verbose {tempdir}/spliceu_t2g.tsv {snakemake.output.t2g} {log} "
-        )
+        shell("mv --verbose {tempdir}/spliceu_t2g.tsv {snakemake.output.t2g} {log} ")
 
     if snakemake.output.get("g2g", False):
-        shell(
-            "mv --verbose {tempdir}/spliceu_g2g.tsv {snakemake.output.g2g} {log} "
-        )
+        shell("mv --verbose {tempdir}/spliceu_g2g.tsv {snakemake.output.g2g} {log} ")
