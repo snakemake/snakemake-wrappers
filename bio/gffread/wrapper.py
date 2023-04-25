@@ -67,4 +67,3 @@ shell(
     "{annotation} "
     "{log} "
 )
-
