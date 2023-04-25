@@ -1196,7 +1196,6 @@ def test_art_profiler_illumina():
             "profiles/a.2.txt",
             "--use-conda",
             "-F",
-            "-p"
         ],
     )
 
