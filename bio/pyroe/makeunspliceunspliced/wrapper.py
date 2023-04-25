@@ -28,7 +28,6 @@ with TemporaryDirectory() as tempdir:
         "{unspliced} "
         "{snakemake.input.fasta} "
         "{snakemake.input.gtf} "
-        "{read_length} "
         "{tempdir} "
         "{log}"
     )
@@ -36,7 +35,7 @@ with TemporaryDirectory() as tempdir:
     if snakemake.output.get("fasta", False):
         shell(
             "mv --verbose "
-            "{tempdir}/splici.fa "
+            "{tempdir}/spliceu.fa "
             "{snakemake.output.fasta} {log}"
         )
 
@@ -47,9 +46,23 @@ with TemporaryDirectory() as tempdir:
             "{snakemake.output.gene_id_to_name} {log}"
         )
 
+    if snakemake.output.get("t2g_3col", False):
+        shell(
+            "mv --verbose "
+            "{tempdir}/spliceu_t2g_3col.tsv "
+            "{snakemake.output.t2g_3col} {log} "
+        )
+
     if snakemake.output.get("t2g", False):
         shell(
             "mv --verbose "
-            "{tempdir}/splici_fl{flank_length}_t2g_3col.tsv "
+            "{tempdir}/spliceu_t2g.tsv "
             "{snakemake.output.t2g} {log} "
+        )
+
+    if snakemake.output.get("g2g", False):
+        shell(
+            "mv --verbose "
+            "{tempdir}/spliceu_g2g.tsv "
+            "{snakemake.output.g2g} {log} "
         )
