@@ -8,6 +8,8 @@ rule datavzrd:
         config="resources/{sample}.datavzrd.yaml",
         # optional files required for rendering the given config
         table="data/A.tsv",
+    params:
+        extra="",
     output:
         report(
             directory("results/datavzrd-report/{sample}"),
