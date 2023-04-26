@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.27.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.26.0...v1.27.0) (2023-04-26)
+
+
+### Features
+
+* Update datavzrd to 2.18.4 and add extra params ([#1292](https://www.github.com/snakemake/snakemake-wrappers/issues/1292)) ([fa11c1c](https://www.github.com/snakemake/snakemake-wrappers/commit/fa11c1cc37361f879d47ae9dbcf5d7e410003cb1))
+
 ## [1.26.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.25.0...v1.26.0) (2023-04-21)
 
 
