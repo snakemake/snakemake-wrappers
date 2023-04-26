@@ -96,3 +96,23 @@ rule test_deseqdataset_tsv_matrix:
         # extra="", # Optional parameters provided to import function
     wrapper:
         "master/bio/deseq2/DESeqDataSet"
+
+
+rule test_deseqdataset_from_htseqcount:
+    input:
+        htseq_dir="dataset/htseq_dir",
+        sample_table="sample_table.tsv",
+    output:
+        "dds_htseq.RDS",
+    threads: 1
+    log:
+        "logs/deseqdataset/txt_matrix.log",
+    params:
+        formula="~condition",  # Required R statistical formula
+        # factor="condition", # Optionally used for relevel
+        # reference_level="A", # Optionally used for relevel
+        # tested_level="B", # Optionally used for relevel
+        # min_counts=0, # Optionally used to filter low counts
+        # extra="", # Optional parameters provided to import function
+    wrapper:
+        "master/bio/deseq2/DESeqDataSet"

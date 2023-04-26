@@ -932,6 +932,12 @@ def test_dada2_add_species():
 
 @skip_if_not_modified
 def test_deseq2_deseqdataset():
+    # from HTSeqcount / Featurecount
+    run(
+        "bio/deseq2/DESeqDataSet",
+        ["snakemake", "--cores", "1", "--use-conda", "dds_htseq.RDS"],
+    )
+
     # DDS import
     run(
         "bio/deseq2/DESeqDataSet",
