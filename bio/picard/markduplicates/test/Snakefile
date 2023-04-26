@@ -1,14 +1,14 @@
-rule mark_duplicates:
+rule markduplicates_bam:
     input:
         bams="mapped/{sample}.bam",
     # optional to specify a list of BAMs; this has the same effect
     # of marking duplicates on separate read groups for a sample
     # and then merging
     output:
-        bam="dedup/{sample}.bam",
-        metrics="dedup/{sample}.metrics.txt",
+        bam="dedup_bam/{sample}.bam",
+        metrics="dedup_bam/{sample}.metrics.txt",
     log:
-        "logs/picard/dedup/{sample}.log",
+        "logs/dedup_bam/{sample}.log",
     params:
         extra="--REMOVE_DUPLICATES true",
     # optional specification of memory usage of the JVM that snakemake will respect with global
@@ -21,26 +21,39 @@ rule mark_duplicates:
         "master/bio/picard/markduplicates"
 
 
-rule mark_duplicates_cram:
+use rule markduplicates_bam as markduplicateswithmatecigar_bam with:
+    output:
+        bam="dedup_bam/{sample}.matecigar.bam",
+        idx="dedup_bam/{sample}.mcigar.bai",
+        metrics="dedup_bam/{sample}.matecigar.metrics.txt",
+    log:
+        "logs/dedup_bam/{sample}.matecigar.log",
+    params:
+        withmatecigar=True,
+        extra="--REMOVE_DUPLICATES true",
+
+
+use rule markduplicates_bam as markduplicates_sam with:
+    output:
+        bam="dedup_sam/{sample}.sam",
+        metrics="dedup_sam/{sample}.metrics.txt",
+    log:
+        "logs/dedup_sam/{sample}.log",
+    params:
+        extra="--REMOVE_DUPLICATES true",
+
+
+use rule markduplicates_bam as markduplicates_cram with:
     input:
         bams="mapped/{sample}.bam",
         ref="ref/genome.fasta",
-    # optional to specify a list of BAMs; this has the same effect
-    # of marking duplicates on separate read groups for a sample
-    # and then merging
     output:
-        bam="dedup/{sample}.cram",
-        metrics="dedup/{sample}.metrics.txt",
+        bam="dedup_cram/{sample}.cram",
+        idx="dedup_cram/{sample}.cram.crai",
+        metrics="dedup_cram/{sample}.metrics.txt",
     log:
-        "logs/picard/dedup/{sample}.log",
+        "logs/dedup_cram/{sample}.log",
     params:
         extra="--REMOVE_DUPLICATES true",
         embed_ref=True,  # set true if the fasta reference should be embedded into the cram
-    # optional specification of memory usage of the JVM that snakemake will respect with global
-    # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
-    # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
-    # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
-    resources:
-        mem_mb=1024,
-    wrapper:
-        "master/bio/picard/markduplicates"
+        withmatecigar=False,

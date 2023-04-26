@@ -1,0 +1,14 @@
+name: VSEARCH
+url: https://github.com/torognes/vsearch
+description: |
+  Versatile open-source tool for microbiome analysis.
+authors:
+  - Filipe G. Vieira
+input:
+  - input file(s)
+output:
+  - output file(s)
+params:
+  - extra: additional program arguments
+notes: |
+  * Keys for `input` and `output` files need to match `vsearch` arguments, (e.g. input) `uchime_denovo`, `cluster_fast`, `fastx_uniques`, `maskfasta`, `fastq_convert`, `fastq_mergepairs`, or (e.g. output) `chimeras`, `fastaout`, `fastqout`, `output`.
