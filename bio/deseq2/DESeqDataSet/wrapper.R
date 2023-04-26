@@ -46,15 +46,17 @@ add_extra <- function(wrapper_defined) {
     base::return(wrapper_defined)
 }
 
-# Load colData since it is always used
-colData <- utils::read.table(
-    file = snakemake@input[["colData"]],
-    header = TRUE,
-    row.names = 1,
-    sep = "\t",
-    stringsAsFactors = FALSE
-)
-base::print(head(colData))
+if ("colData" %in% base::names(snakemake@input)) {
+    # Load colData
+    colData <- utils::read.table(
+        file = snakemake@input[["colData"]],
+        header = TRUE,
+        row.names = 1,
+        sep = "\t",
+        stringsAsFactors = FALSE
+    )
+    base::print(head(colData))
+}
 
 # Cast formula from string to R formula
 formula <- stats::as.formula(object = snakemake@params[["formula"]])
@@ -97,13 +99,31 @@ if ("txi" %in% base::names(x = snakemake@input)) {
 
 # Case user provides HTSeq-Count/Feature-Count input files
 } else if ("htseq_dir" %in% base::names(x = snakemake@input)) {
-    # Casting path in case it contains numbers
+    # Casting path in case it contains only numbers
     hts_dir <- base::as.character(x = snakemake@input[["htseq_dir"]])
     base::message(hts_dir)
 
+    # Loading sample table, and casting factors
+    sample_table <- utils::read.table(
+        file = snakemake@input[["sample_table"]],
+        sep = "\t",
+        header = TRUE,
+        stringsAsFactors = TRUE
+    )
+
+    # The columns `sampleName` and `fileName`
+    # are expected to be characters, while the rest
+    # is supposed to be factors.
+    sample_table$sampleName <- base::lapply(
+        sample_table$sampleName, base::as.character
+    )
+    sample_table$fileName <- base::lapply(
+        sample_table$fileName, base::as.character
+    )
+
     # Acquiring user-defined optional parameters
     dds_parameters <- add_extra(
-        "directory = hts_dir, colData = colData, design = formula"
+        "sampleTable = sample_table, directory = hts_dir, design = formula"
     )
 
     # Building command line
@@ -165,7 +185,7 @@ if ("txi" %in% base::names(x = snakemake@input)) {
 
     # Building command line
     dds_command <- "base::readRDS(file = dds_path)"
-}else {
+} else {
     base::stop("Error: No counts provided !")
 }
 
