@@ -48,7 +48,7 @@ with tempfile.NamedTemporaryFile() as tmp:
     in_uncomp = snakemake.input[0]
     if uncomp:
         in_uncomp = tmp.name
-        shell("{uncomp} snakemake.input[0] > {in_uncomp}")
+        shell("{uncomp} {snakemake.input[0]} > {in_uncomp}")
 
     shell(
         "nonpareil"
