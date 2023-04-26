@@ -32,5 +32,5 @@ output = [out for _, out in sorted(zip(out_gz or out_bz2, out_list))]
 
 
 shell(
-    "vsearch --threads {snakemake.threads}" " {input}" " {extra}" " {log}" " {output}"
+    "vsearch --threads {snakemake.threads} {input} {extra} {log} {output}"
 )
