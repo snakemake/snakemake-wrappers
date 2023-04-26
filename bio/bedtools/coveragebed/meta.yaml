@@ -11,3 +11,5 @@ output:
   - Path to the coverage file.
 params:
   - extra: additional program arguments (except `-a` and `-b`)
+notes: |
+  * This program/wrapper does not handle multi-threading.

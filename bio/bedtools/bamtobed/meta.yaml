@@ -10,3 +10,5 @@ output:
   - BED file, this must be the first file in the output file list
 params:
   - extra: additional program arguments (except `-i`)
+notes: |
+  * This program/wrapper does not handle multi-threading.

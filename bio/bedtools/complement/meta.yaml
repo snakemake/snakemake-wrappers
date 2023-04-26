@@ -11,3 +11,5 @@ output:
   - complemented BED/GFF/VCF file
 params:
   - extra: additional program arguments (except `-i` and `-g`)
+notes: |
+  * This program/wrapper does not handle multi-threading.
