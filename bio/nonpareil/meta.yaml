@@ -4,9 +4,12 @@ url: https://nonpareil.readthedocs.io/en/latest/
 authors:
   - Filipe G. Vieira
 input:
-  - 
+  - reads in FASTA/Q format (can be gziped or bziped)
 output:
-  - 
+  - redund_sum: redundancy summary TSV file with six columns, representing sequencing effort, summary of the distribution of redundancy (average redundancy, standard deviation, quartile 1, median, and quartile 3).
+  - redund_val: redundancy values TSV file with three columns (similar to redundancy summary, but provides ALL results), representing sequencing effort, ID of the replicate and estimated redundancy value.
+  - mate_distr: mate distribution file, with the number of reads in the dataset matching a query read.
+  - log: log of internal Nonpareil processing.
 params:
-  - alg: nonpareil algorithm: `kmer` or `alignment` (mandatory).
+  - alg: nonpareil algorithm, either `kmer` or `alignment` (mandatory).
   - extra: additional program arguments
