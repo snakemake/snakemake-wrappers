@@ -15,6 +15,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 config_extra = snakemake.params.get("config_extra", "")
 run_extra = snakemake.params.get("run_extra", "")
+rm_existing = snakemake.params.get("rm_existing", False)
 
 # If a normal bam is given in input,
 # then it should be provided in the input
