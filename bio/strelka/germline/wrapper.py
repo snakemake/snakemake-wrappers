@@ -30,14 +30,14 @@ if snakemake.output.get("sample_genomes_indices"):
 
 bam_input = " ".join(f"--bam {b}" for b in bam)
 
-with tempfile.TemporaryDirectory() as run_dir:
+with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "(configureStrelkaGermlineWorkflow.py "  # configure the strelka run
         "{bam_input} "  # input bam
         "--referenceFasta {snakemake.input.fasta} "  # reference genome
-        "--runDir {run_dir} "  # output directory
+        "--runDir {tmpdir} "  # output directory
         "{config_extra} "  # additional parameters for the configuration
-        "&& {run_dir}/runWorkflow.py "  # run the strelka workflow
+        "&& {tmpdir}/runWorkflow.py "  # run the strelka workflow
         "-m local "  # run in local mode
         "-j {snakemake.threads} "  # number of threads
         "{run_extra}) "  # additional parameters for the run
@@ -53,12 +53,12 @@ with tempfile.TemporaryDirectory() as run_dir:
             "cat {tmpdir}/results/variants/variants.vcf.gz.tbi > {snakemake.output.variants_index:q}"
         )
     if snakemake.output.get("sample_genomes"):
-        origins = glob.glob(f"{run_dir}/results/variants/genome.S*.vcf.gz")
+        origins = glob.glob(f"{tmpdir}/results/variants/genome.S*.vcf.gz")
         assert len(origins) == len(snakemake.output.get("sample_genomes"))
         for origin, target in zip(origins, snakemake.output.get("sample_genomes")):
             shell(f"cat {origin} > {target}")
     if snakemake.output.get("sample_genomes_incides"):
-        origins = glob.glob(f"{run_dir}/results/variants/genome.S*.vcf.gz.tbi")
+        origins = glob.glob(f"{tmpdir}/results/variants/genome.S*.vcf.gz.tbi")
         assert len(origins) == len(snakemake.output.get("sample_genomes_incides"))
         for origin, target in zip(
             origins, snakemake.output.get("sample_genomes_incides")
