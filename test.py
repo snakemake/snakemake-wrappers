@@ -3425,7 +3425,7 @@ def test_snpeff_download():
 def test_strelka_germline():
     run(
         "bio/strelka/germline",
-        ["snakemake", "--cores", "1", "strelka/a", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "strelka/a.vcf.gz", "--use-conda", "-F"],
     )
 
 
