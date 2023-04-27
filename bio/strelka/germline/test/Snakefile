@@ -13,7 +13,8 @@ rule strelka_germline:
     params:
         # optional parameters
         config_extra="",
-        run_extra=""
+        run_extra="",
+        rm_existing=True, # delete existing strelka run dir
     threads: 8
     wrapper:
         "master/bio/strelka/germline"

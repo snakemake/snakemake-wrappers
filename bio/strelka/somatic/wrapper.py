@@ -1,9 +1,11 @@
 """Snakemake wrapper for Strelka"""
 
-__author__ = "Thibault Dayris"
+__author__ = "Thibault Dayris, Christopher Schröder"
 __copyright__ = "Copyright 2019, Dayris Thibault"
 __email__ = "thibault.dayris@gustaveroussy.fr"
 __license__ = "MIT"
+
+import os, shutil
 
 from pathlib import Path
 from snakemake.shell import shell
@@ -28,6 +30,10 @@ if snakemake.output[0].endswith("vcf.gz"):
     run_dir = Path(snakemake.output[0]).parents[2]
 else:
     run_dir = snakemake.output
+
+# delete existing run directory
+if rm_existing and os.path.exists(run_dir):
+    shutil.rmtree(run_dir)
 
 shell(
     "(configureStrelkaSomaticWorkflow.py "  # Configuration script

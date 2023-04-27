@@ -15,7 +15,8 @@ rule strelka:
         1
     params:
         run_extra = "",
-        config_extra = ""
+        config_extra = "",
+        rm_existing=True, # delete existing strelka run dir
     log:
         "logs/strelka_{tumor}.log"
     wrapper:
