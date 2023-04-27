@@ -33,7 +33,7 @@ else:
     run_dir = snakemake.output
 
 # delete existing run directory
-if rm_existing and os.path.exists(run_dir):
+if rm_existing and os.path.exists(str(run_dir)):
     shutil.rmtree(run_dir)
 
 shell(
