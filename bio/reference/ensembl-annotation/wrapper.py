@@ -15,7 +15,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 species = snakemake.params.species.lower()
 build = snakemake.params.build
 release = int(snakemake.params.release)
-gft_release = release
+gtf_release = release
 out_fmt = Path(snakemake.output[0]).suffixes
 out_gz = (out_fmt.pop() and True) if out_fmt[-1] == ".gz" else False
 out_fmt = out_fmt.pop().lstrip(".")
@@ -27,7 +27,7 @@ if build == "GRCh37":
         # use the special grch37 branch for new releases
         branch = "grch37/"
     if release > 87:
-        gft_release = 87
+        gtf_release = 87
 elif snakemake.params.get("branch"):
     branch = snakemake.params.branch + "/"
 
@@ -48,9 +48,9 @@ else:
     )
 
 
-url = "ftp://ftp.ensembl.org/pub/{branch}release-{release}/{out_fmt}/{species}/{species_cap}.{build}.{gft_release}.{flavor}{suffix}".format(
+url = "ftp://ftp.ensembl.org/pub/{branch}release-{release}/{out_fmt}/{species}/{species_cap}.{build}.{gtf_release}.{flavor}{suffix}".format(
     release=release,
-    gft_release=gft_release,
+    gtf_release=gtf_release,
     build=build,
     species=species,
     out_fmt=out_fmt,
