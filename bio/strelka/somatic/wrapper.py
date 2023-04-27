@@ -1,52 +1,66 @@
-"""Snakemake wrapper for Strelka"""
-
-__author__ = "Thibault Dayris, Christopher Schröder"
-__copyright__ = "Copyright 2019, Dayris Thibault"
-__email__ = "thibault.dayris@gustaveroussy.fr"
+__author__ = "Jan Forster, Christopher Schröder"
+__copyright__ = "Copyright 2019, Jan Forster"
+__email__ = "jan.forster@uk-essen.de"
 __license__ = "MIT"
 
-import os, shutil
+import os
+import tempfile
 
 from pathlib import Path
 from snakemake.shell import shell
-from snakemake.utils import makedirs
-
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 config_extra = snakemake.params.get("config_extra", "")
 run_extra = snakemake.params.get("run_extra", "")
-rm_existing = snakemake.params.get("rm_existing", False)
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-# If a normal bam is given in input,
-# then it should be provided in the input
-# block, so Snakemake will perform additional
-# tests on file existance.
-normal = (
-    "--normalBam {}".format(snakemake.input["normal"])
-    if "normal" in snakemake.input.keys()
-    else ""
-)
+bam = snakemake.input.get("bam")  # input bam file, required
+assert bam is not None, "input-> bam is a required input parameter"
+if isinstance(bam, str):
+    bam = [bam]
 
-if snakemake.output[0].endswith("vcf.gz"):
-    run_dir = Path(snakemake.output[0]).parents[2]
-else:
-    run_dir = snakemake.output
+if snakemake.output.get("sample_genomes"):
+    assert len(bam) == len(
+        snakemake.output.get("sample_genomes")
+    ), "number of input bams and sample_genomes must be equal "
 
-# delete existing run directory
-if rm_existing and os.path.exists(str(run_dir)):
-    shutil.rmtree(run_dir)
+if snakemake.output.get("sample_genomes_indices"):
+    assert len(bam) == len(
+        snakemake.output.get("sample_genomes_indices")
+    ), "number of input bams and sample_genomes_indices must be equal "
 
-shell(
-    "(configureStrelkaSomaticWorkflow.py "  # Configuration script
-    "{normal} "  # Path to normal bam (if any)
-    "--tumorBam {snakemake.input.tumor} "  # Path to tumor bam
-    "--referenceFasta {snakemake.input.fasta} "  # Path to fasta file
-    "--runDir {run_dir} "  # Path to output directory
-    "{config_extra} "  # Extra parametersfor configuration
-    " && "
-    "{run_dir}/runWorkflow.py "  # Run the pipeline
-    "--mode local "  # Stop internal job submission
-    "--jobs {snakemake.threads} "  # Nomber of threads
-    "{run_extra}) "  # Extra parameters for runWorkflow
-    "{log}"  # Logging behaviour
-)
+bam_input = " ".join(f"--bam {b}" for b in bam)
+
+with tempfile.TemporaryDirectory() as run_dir:
+    shell(
+        "(configureStrelkaGermlineWorkflow.py "  # configure the strelka run
+        "{bam_input} "  # input bam
+        "--referenceFasta {snakemake.input.fasta} "  # reference genome
+        "--runDir {run_dir} "  # output directory
+        "{config_extra} "  # additional parameters for the configuration
+        "&& {run_dir}/runWorkflow.py "  # run the strelka workflow
+        "-m local "  # run in local mode
+        "-j {snakemake.threads} "  # number of threads
+        "{run_extra}) "  # additional parameters for the run
+        "{log}"
+    )  # logging
+
+    if snakemake.output.get("variants"):
+        shell(
+            "cat {tmpdir}/results/variants/variants.vcf.gz > {snakemake.output.variants:q}"
+        )
+    if snakemake.output.get("variants_index"):
+        shell(
+            "cat {tmpdir}/results/variants/variants.vcf.gz.tbi > {snakemake.output.variants_index:q}"
+        )
+    if snakemake.output.get("sample_genomes"):
+        origins = glob.glob(f"{run_dir}/results/variants/genome.S*.vcf.gz")
+        targets = snakemake.output.get("sample_genomes")
+        assert len(origins) == len(targets)
+        for origin, target in zip(origins, targets):
+            shell(f"cat {origin} > {target}")
+    if snakemake.output.get("sample_genomes_incides"):
+        origins = glob.glob(f"{run_dir}/results/variants/genome.S*.vcf.gz.tbi")
+        targets = snakemake.output.get("sample_genomes_incides")
+        assert len(origins) == len(targets)
+        for origin, target in zip(origins, targets):
+            shell(f"cat {origin} > {target}")

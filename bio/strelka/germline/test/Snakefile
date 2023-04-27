@@ -7,14 +7,13 @@ rule strelka_germline:
         fasta_index="genome.fasta.fai"
     output:
         # Strelka results - either use directory or complete file path
-        directory("strelka/{sample}")
+        variants="strelka/variants.vcf.gz"
     log:
         "logs/strelka/germline/{sample}.log"
     params:
         # optional parameters
         config_extra="",
         run_extra="",
-        rm_existing=True, # delete existing strelka run dir
     threads: 8
     wrapper:
         "master/bio/strelka/germline"
