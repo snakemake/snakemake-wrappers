@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.28.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.27.0...v1.28.0) (2023-04-28)
+
+
+### Features
+
+* Pyroe make-spliced+intronic ([#1288](https://www.github.com/snakemake/snakemake-wrappers/issues/1288)) ([352d6f3](https://www.github.com/snakemake/snakemake-wrappers/commit/352d6f38218fba384e2ab93076966245a7494bc0))
+
+
+### Performance Improvements
+
+* autobump bio/bbtools/loglog ([#1304](https://www.github.com/snakemake/snakemake-wrappers/issues/1304)) ([9316253](https://www.github.com/snakemake/snakemake-wrappers/commit/93162531beede4dd06096630c4c1199022792ea5))
+* autobump bio/bismark/bismark ([#1303](https://www.github.com/snakemake/snakemake-wrappers/issues/1303)) ([fa68ba8](https://www.github.com/snakemake/snakemake-wrappers/commit/fa68ba87f07eb5eb8499c16cc3a6f9888ced7bf0))
+* autobump bio/fgbio/annotatebamwithumis ([#1312](https://www.github.com/snakemake/snakemake-wrappers/issues/1312)) ([13cb583](https://www.github.com/snakemake/snakemake-wrappers/commit/13cb583b4245d88127e13b6248fac76eddada186))
+* autobump bio/gatk/intervallisttobed ([#1305](https://www.github.com/snakemake/snakemake-wrappers/issues/1305)) ([d895b8f](https://www.github.com/snakemake/snakemake-wrappers/commit/d895b8fa7a73083175f51f1c4a46505d42eab22e))
+* autobump bio/minimap2/index ([#1308](https://www.github.com/snakemake/snakemake-wrappers/issues/1308)) ([a578d2f](https://www.github.com/snakemake/snakemake-wrappers/commit/a578d2f4bb66cfd0a862e0ea6dfa5e099aace832))
+* autobump bio/paladin/prepare ([#1299](https://www.github.com/snakemake/snakemake-wrappers/issues/1299)) ([1e27b4c](https://www.github.com/snakemake/snakemake-wrappers/commit/1e27b4cef31a985dace89b17cb04d8395a211e0e))
+* autobump bio/picard/mergevcfs ([#1307](https://www.github.com/snakemake/snakemake-wrappers/issues/1307)) ([7a8a8aa](https://www.github.com/snakemake/snakemake-wrappers/commit/7a8a8aa893fcd0b5be78c3576e7e25335e010492))
+* autobump bio/qualimap/rnaseq ([#1306](https://www.github.com/snakemake/snakemake-wrappers/issues/1306)) ([0ba2d3e](https://www.github.com/snakemake/snakemake-wrappers/commit/0ba2d3ec80362179223149bf06d97e3f0b35bc84))
+* autobump bio/samtools/merge ([#1300](https://www.github.com/snakemake/snakemake-wrappers/issues/1300)) ([69332cd](https://www.github.com/snakemake/snakemake-wrappers/commit/69332cd327df12de1935f9c5e1e993f5c33900f4))
+* autobump bio/samtools/mpileup ([#1310](https://www.github.com/snakemake/snakemake-wrappers/issues/1310)) ([f72ccf0](https://www.github.com/snakemake/snakemake-wrappers/commit/f72ccf0b3ef51a8ceeda5474367902781103edc1))
+* autobump bio/seqkit/grep ([#1301](https://www.github.com/snakemake/snakemake-wrappers/issues/1301)) ([dfa1f4d](https://www.github.com/snakemake/snakemake-wrappers/commit/dfa1f4d2ddbe03295c8c4eb9e888e15995333b4c))
+* autobump bio/snpsift/dbnsfp ([#1309](https://www.github.com/snakemake/snakemake-wrappers/issues/1309)) ([007437e](https://www.github.com/snakemake/snakemake-wrappers/commit/007437e877d48a091e3da77c1abbb152f0987e37))
+* autobump bio/vembrane/filter ([#1311](https://www.github.com/snakemake/snakemake-wrappers/issues/1311)) ([15dc129](https://www.github.com/snakemake/snakemake-wrappers/commit/15dc12911e108fca225ff1a049b7dcb0115385dd))
+* update datavzrd to 2.18.5 ([#1313](https://www.github.com/snakemake/snakemake-wrappers/issues/1313)) ([0089e88](https://www.github.com/snakemake/snakemake-wrappers/commit/0089e8825eb6b962be66da9a0964bd658b9b96fc))
+
 ## [1.27.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.26.0...v1.27.0) (2023-04-26)
 
 
