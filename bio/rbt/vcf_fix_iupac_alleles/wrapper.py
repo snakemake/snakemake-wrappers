@@ -16,6 +16,3 @@ with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "(rbt vcf-fix-iupac-alleles {extra} < {snakemake.input[0]} | bcftools sort --temp-dir {tmpdir} {bcftools_opts}) {log}"
     )
-
-    if snakemake.output.get("idx"):
-        shell("tabix -p vcf {snakemake.output.vcf}")

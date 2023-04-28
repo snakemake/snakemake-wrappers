@@ -5206,6 +5206,11 @@ def test_rbt_vcf_fix_iupac_alleles():
         ["snakemake", "--cores", "1", "--use-conda", "-F", "results/homo_sapiens-chrMT.vcf.gz"],
     )
 
+    run(
+        "bio/rbt/vcf_fix_iupac_alleles",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/homo_sapiens-chrMT.bcf"],
+    )
+
 
 @skip_if_not_modified
 def test_calc_consensus_reads():
