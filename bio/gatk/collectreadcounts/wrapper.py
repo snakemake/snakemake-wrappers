@@ -1,6 +1,6 @@
 __author__ = "Patrik Smeds"
 __copyright__ = "Copyright 2023, Patrik Smed"
-__email__ = "patri.smeds@gmail.com"
+__email__ = "patrik.smeds@gmail.com"
 __license__ = "MIT"
 
 
