@@ -1184,7 +1184,6 @@ def test_art_profiler_illumina():
         ],
     )
 
-
 @skip_if_not_modified
 def test_pyroe_makesplicedunspliced():
     run(
@@ -1198,6 +1197,21 @@ def test_pyroe_makesplicedunspliced():
             "spliceu.fa",
         ]
     )
+
+@skip_if_not_modified
+def test_pyroe_makesplicedintronic():
+    run(
+        "bio/pyroe/makesplicedintronic",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "splici_full/spliced_intronic_sequences.fasta",
+            "--use-conda",
+            "-F",
+        ],
+    ) 
+
 
 
 @skip_if_not_modified
@@ -2451,8 +2465,6 @@ def test_freebayes_bcf():
                 "calls/a.bcf",
                 "--use-conda",
                 "-F",
-                "-s",
-                "Snakefile_bcf",
             ],
         )
 
@@ -2466,11 +2478,9 @@ def test_freebayes_bed():
                 "snakemake",
                 "--cores",
                 str(c),
-                "calls/a.bcf",
+                "calls/a.vcf.gz",
                 "--use-conda",
                 "-F",
-                "-s",
-                "Snakefile_bed",
             ],
         )
 
