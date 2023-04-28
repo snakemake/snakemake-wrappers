@@ -1,0 +1,17 @@
+name: gatk CollectAllelicCounts
+url: https://gatk.broadinstitute.org/hc/en-us/articles/13832754187035-CollectAllelicCounts
+description: |
+  Collects reference and alternate allele counts at specified sites.
+authors:
+  - Patrik Smeds
+input:
+  - BAM/SAM/CRAM file containing reads
+  - One or more genomic intervals over which to operate
+  - Reference FASTA file 
+params:
+  - extra any additional settings that should be forwarded to gatk
+output:
+  - Allelic-counts file. This is a tab-separated values (TSV) file with a SAM-style header
+notes: |
+  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  * The `extra` param allows for additional program arguments.

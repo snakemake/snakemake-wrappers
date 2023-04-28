@@ -3918,6 +3918,14 @@ def test_gatk_baserecalibratorspark():
 
 
 @skip_if_not_modified
+def test_gatk_collectalleliccounts():
+    run(
+        "bio/gatk/collectalleliccounts",
+        ["snakemake", "--cores", "1", "a.counts.tsv", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_gatk_applybqsr():
     run(
         "bio/gatk/applybqsr",
