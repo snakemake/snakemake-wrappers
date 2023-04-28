@@ -2,7 +2,7 @@ rule test_gffread:
     input:
         fasta="genome.fasta",
         annotation="annotation.gtf",
-        # ids="",  # Optional path to records to kkep
+        # ids="",  # Optional path to records to keep
         # nids="",  # Optional path to records to drop
         # seq_info="",  # Optional path to sequence information
         # sort_by="",  # Optional path to the ordered list of reference sequences
