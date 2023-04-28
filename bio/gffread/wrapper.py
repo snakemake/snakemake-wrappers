@@ -13,19 +13,23 @@ annotation = snakemake.input.annotation
 records = snakemake.output.records
 
 # Input format control
-if (annotation.endswith(".bed")) and (" --in-bed " not in extra):
+if annotation.endswith(".bed"):
     extra += " --in-bed "
-elif (annotation.endswith(".tlf")) and (" --in-tlf " not in extra):
+elif annotation.endswith(".tlf"):
     extra += " --in-tlf "
+else:
+    raise ValueError("Unknown annotation format")
 
 
 # Output format control
-if records.endswith(".gtf") and (" -T " not in extra):
+if records.endswith(".gtf"):
     extra += " -T "
-elif (records.endswith(".bed")) and (" --bed " not in extra):
+elif records.endswith(".bed"):
     extra += " --bed "
-elif (records.endswith(".tlf")) and (" --tlf " not in extra):
+elif records.endswith(".tlf"):
     extra += " --tlf "
+else:
+    raise ValueError("Unknown records format")
 
 
 # Optional input files
