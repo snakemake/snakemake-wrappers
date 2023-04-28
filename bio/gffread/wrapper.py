@@ -9,8 +9,8 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-annotation = snakemake.input["annotation"]
-records = snakemake.output["records"]
+annotation = snakemake.input.annotation
+records = snakemake.output.records
 
 # Input format control
 if (annotation.endswith(".bed")) and (" --in-bed " not in extra):
