@@ -1184,6 +1184,19 @@ def test_art_profiler_illumina():
         ],
     )
 
+@skip_if_not_modified
+def test_pyroe_makesplicedunspliced():
+    run(
+        "bio/pyroe/makeunspliceunspliced/",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "spliceu.fa",
+        ]
+    )
 
 @skip_if_not_modified
 def test_pyroe_makesplicedintronic():
@@ -1197,7 +1210,8 @@ def test_pyroe_makesplicedintronic():
             "--use-conda",
             "-F",
         ],
-    )
+    ) 
+
 
 
 @skip_if_not_modified
