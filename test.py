@@ -288,6 +288,42 @@ def test_seqkit_grep():
     )
 
 @skip_if_not_modified
+def test_seqkit_subseq():
+    run(
+        "bio/seqkit/subseq",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/subseq_bed/t_bed.fa.gz",
+        ],
+    )
+    run(
+        "bio/seqkit/subseq",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/subseq_gtf/t_gtf.fa.gz",
+        ],
+    )
+    run(
+        "bio/seqkit/subseq",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/subseq_region/t_region.fa.gz",
+        ],
+    )
+
+@skip_if_not_modified
 def test_sickle_pe():
     run(
         "bio/sickle/pe",
