@@ -11,5 +11,3 @@ output:
   - fasta: Output FASTA file
 params:
   - extra: Optional parameters
-notes: |
-  * The `extra` param allows for additional program arguments.
