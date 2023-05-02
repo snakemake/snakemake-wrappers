@@ -1,0 +1,6 @@
+rule test_deeptools_alignment_sieve:
+    input:
+        bam="aln.bam",
+        bai="aln.bam.bai",
+    output:
+        "res.bam",
