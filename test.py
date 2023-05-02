@@ -222,9 +222,8 @@ def test_bbgeneric():
             "--use-conda",
             "--resources mem_mb=1000",
             "-F",
-            "covstats/sample1.tsv",
-            "covstats/sample2.tsv",
-            "logs/bbmap/sample1.out"
+            "out/covstats/sample1.tsv",
+            "out/covstats/sample2.tsv",
         ],
     )
 
