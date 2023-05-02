@@ -21,7 +21,7 @@ rule create_reads:
 # all rules use the same wrapper!!
 rule bbmap:
     input:
-        input=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        input=["reads/{sample}.1.fastq.gz", "reads/{sample}.2.fastq.gz"],
         ref="genome.fasta",
     output:
         sam=pipe("mapped/{sample}.sam"),
