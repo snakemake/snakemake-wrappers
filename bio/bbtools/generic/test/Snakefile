@@ -34,7 +34,7 @@ rule bbmap:
         machineout=True,
         overwrite = True,
         unpigz=True
-    threads: 4
+    threads: 8
     resources:
         mem= "50GB"               # oprional: bbmap normaly needs a lot of memory
     wrapper:
