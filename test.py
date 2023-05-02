@@ -288,6 +288,42 @@ def test_seqkit_grep():
     )
 
 @skip_if_not_modified
+def test_seqkit_subseq():
+    run(
+        "bio/seqkit/subseq",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/subseq_bed/t_bed.fa.gz",
+        ],
+    )
+    run(
+        "bio/seqkit/subseq",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/subseq_gtf/t_gtf.fa.gz",
+        ],
+    )
+    run(
+        "bio/seqkit/subseq",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/subseq_region/t_region.fa.gz",
+        ],
+    )
+
+@skip_if_not_modified
 def test_sickle_pe():
     run(
         "bio/sickle/pe",
@@ -1183,6 +1219,35 @@ def test_art_profiler_illumina():
             "-F",
         ],
     )
+
+@skip_if_not_modified
+def test_pyroe_makesplicedunspliced():
+    run(
+        "bio/pyroe/makeunspliceunspliced/",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "spliceu.fa",
+        ]
+    )
+
+@skip_if_not_modified
+def test_pyroe_makesplicedintronic():
+    run(
+        "bio/pyroe/makesplicedintronic",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "splici_full/spliced_intronic_sequences.fasta",
+            "--use-conda",
+            "-F",
+        ],
+    ) 
+
 
 
 @skip_if_not_modified
@@ -2436,8 +2501,6 @@ def test_freebayes_bcf():
                 "calls/a.bcf",
                 "--use-conda",
                 "-F",
-                "-s",
-                "Snakefile_bcf",
             ],
         )
 
@@ -2451,11 +2514,9 @@ def test_freebayes_bed():
                 "snakemake",
                 "--cores",
                 str(c),
-                "calls/a.bcf",
+                "calls/a.vcf.gz",
                 "--use-conda",
                 "-F",
-                "-s",
-                "Snakefile_bed",
             ],
         )
 
