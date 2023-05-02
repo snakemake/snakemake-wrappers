@@ -22,7 +22,7 @@ def get_format(path: str) -> str:
 bowtie2_threads = snakemake.threads - 1
 if bowtie2_threads < 1:
     raise ValueError(
-        f"This wrapper expected at lease two threads, got {snakemake.threads}"
+        f"This wrapper expected at least two threads, got {snakemake.threads}"
     )
 
 # Setting parse_threads to false since samtools performs only
