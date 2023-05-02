@@ -2232,6 +2232,21 @@ def test_deeptools_computematrix():
 
 
 @skip_if_not_modified
+def test_deeptools_alignmentsieve():
+    run(
+        "bio/deeptools/alignmentsieve",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "filtered.bam",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_deeptools_plotheatmap():
     run(
         "bio/deeptools/plotheatmap",

@@ -18,10 +18,10 @@ if out_file.endswith(".bed"):
     extra += " --BED "
 
 shell(
-    "alignmentSieve.py "
+    "alignmentSieve "
     "{extra} "
     "--numberOfProcessors {snakemake.threads} "
-    "--bam {input.aln} "
+    "--bam {snakemake.input.aln} "
     "--outFile {out_file} "
     "{log} "
 )
