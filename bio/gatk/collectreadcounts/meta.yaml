@@ -9,9 +9,7 @@ input:
   - One or more genomic intervals over which to operate
 params:
   - mergingRule, default OVERLAPPING_ONLY
-  - extra any additional settings that should be forwarded to gatk
+  - The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  - The `extra` param allows for additional program arguments.
 output:
   - Output file for read counts, tsv or hdf5
-notes: |
-  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
-  * The `extra` param allows for additional program arguments.
