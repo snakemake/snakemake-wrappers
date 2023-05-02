@@ -227,6 +227,23 @@ def test_loglog():
 
 
 @skip_if_not_modified
+def test_bbgeneric():
+    run(
+        "bio/bbtools/generic",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "--resources mem_mb=1000",
+            "-F",
+            "covstats/sample1.tsv",
+            "covstats/sample2.tsv",
+            "logs/bbmap/sample1.out"
+        ],
+    )
+
+@skip_if_not_modified
 def test_seqkit_stats():
     run(
         "bio/seqkit/stats",
