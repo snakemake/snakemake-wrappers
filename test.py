@@ -3963,6 +3963,14 @@ def test_gatk_haplotypecaller_gvcf():
 
 
 @skip_if_not_modified
+def test_gatk_modelsegments():
+    run(
+        "bio/gatk/modelsegments",
+        ["snakemake", "--cores", "1", "a.den.modelFinal.seg", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_gatk_variantrecalibrator():
     def check_log(log):
         assert "USAGE" not in log
