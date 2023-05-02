@@ -30,7 +30,7 @@ elif records.endswith(".bed"):
     extra += " --bed "
 elif records.endswith(".tlf"):
     extra += " --tlf "
-elif records.endswith(".fasta"):
+elif records.endswith((".fasta", ".fa", ".fna")):
     pass
 else:
     raise ValueError("Unknown records format")
