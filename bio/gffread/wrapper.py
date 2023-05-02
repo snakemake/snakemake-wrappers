@@ -24,7 +24,7 @@ else:
 
 
 # Output format control
-if records.endswith(".gtf"):
+if records.endswith((".gtf", ".gff", ".gff3")):
     extra += " -T "
 elif records.endswith(".bed"):
     extra += " --bed "
@@ -43,6 +43,11 @@ if ids:
 
 nids = snakemake.input.get("nids", "")
 if nids:
+    if ids:
+        raise ValueError(
+            "Provide either sequences ids to keep, or to drop."
+            " Or else, an empty file is produced."
+        )
     extra += f" --nids {nids} "
 
 seq_info = snakemake.input.get("seq_info", "")
@@ -55,6 +60,11 @@ if sort_by:
 
 attr = snakemake.input.get("attr", "")
 if attr:
+    if not records.endswith((".gtf", ".gff", ".gff3")):
+        raise ValueError(
+            "GTF attributes specified in input, "
+            "but records are not in GTF/GFF format."
+        )
     extra += f" --attrs {attr} "
 
 chr_replace = snakemake.input.get("chr_replace", "")
