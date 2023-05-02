@@ -8,50 +8,46 @@ import logging, traceback
 
 
 # Errors in the wrapper should be logged to the stderr file if available
-def get_stderr_file(snakemake,stderr_keys=["stderr","err","error"]):
+def get_stderr_file(snakemake, stderr_keys=["stderr", "err", "error"]):
     """
     If multiple log files are provided, try to infer which one is for stderr.
     """
 
     n_logfiles = len(snakemake.log)
 
-
-    if n_logfiles==0:
+    if n_logfiles == 0:
         raise Exception("No log file provided")
-        
-    elif n_logfiles>1:
-            
-        for key in stderr_keys:
 
+    elif n_logfiles > 1:
+        for key in stderr_keys:
             if hasattr(key, snakemake.log):
                 return snakemake.log[key]
-        
-        
+
         return snakemake.log[0]
 
 
-    
-def multiple_log_fmt_shell(snakemake,append_stderr=False,append_stdout=False):
+def multiple_log_fmt_shell(snakemake, append_stderr=False, append_stdout=False):
     """
     Format shell command for logging to stdout and stderr files.
     """
 
     import warnings
 
-    if len(snakemake.log) ==2:
+    if len(snakemake.log) == 2:
+        stderr_file, stdout_file = None, None
 
-        stderr_file,stdout_file = None,None
-
-        for key in ["stderr","err"]:
+        for key in ["stderr", "err"]:
             if hasattr(key, snakemake.log):
                 stderr_file = snakemake.log[key]
-        
-        for key in ["stdout","out"]:
+
+        for key in ["stdout", "out"]:
             if hasattr(key, snakemake.log):
                 stdout_file = snakemake.log[key]
 
         if (stderr_file is None) or (stderr_file is None):
-            warnings.warn("Cannot infer which logfile is stderr and which is stdout, Logging stderr and stdout to the same file")
+            warnings.warn(
+                "Cannot infer which logfile is stderr and which is stdout, Logging stderr and stdout to the same file"
+            )
         else:
             # sucessfully inferred und stderr and stdout file
 
@@ -70,15 +66,8 @@ def multiple_log_fmt_shell(snakemake,append_stderr=False,append_stdout=False):
                 shell_log_fmt += "> {stdout_file} "
 
             return shell_log_fmt
-        
 
-
-
-
-
-    return snakemake.log_fmt_shell(append=True ,**keywords)
-
-
+    return snakemake.log_fmt_shell(append=True, **keywords)
 
 
 try:
@@ -88,7 +77,6 @@ try:
     open(logfile, "w").close()
 
 except:
-
     print("No log file provided, logging to stdout")
     logfile = None
 
@@ -118,14 +106,15 @@ def handle_exception(exc_type, exc_value, exc_traceback):
 # Install exception handler
 sys.excepthook = handle_exception
 
-logger = logging.getLogger(__file__) 
+logger = logging.getLogger(__file__)
 
 ##############################################################
 ## helper functions they should go in snakemake_wrapper_utils
 
 
 # global flags to check if input and output are parsed multiple times
-parsed_input,parsed_output=False,False
+parsed_input, parsed_output = False, False
+
 
 def _parse_bbmap_in_out(input_or_output, values):
     """
@@ -148,51 +137,53 @@ def _parse_bbmap_in_out(input_or_output, values):
     """
 
     if input_or_output == "input":
-        key="in"
+        key = "in"
         global parsed_input
-        already_parsed= parsed_input
+        already_parsed = parsed_input
     elif input_or_output == "output":
-        key="out"
+        key = "out"
         global parsed_output
-        already_parsed= parsed_output
+        already_parsed = parsed_output
 
     else:
         raise Exception("input_or_output should be 'input' or 'output'")
-    
-    if already_parsed:
 
+    if already_parsed:
         raise Exception(f"{input_or_output} should be defined only once!")
 
     if len(values) == 1 or isinstance(values, str):
         # single input file
-        parsed_arg= f" {key}={values} "
-    
+        parsed_arg = f" {key}={values} "
+
     elif len(values) == 2:
-        parsed_arg= f" in1={values[0]} in2={values[1]} "
+        parsed_arg = f" in1={values[0]} in2={values[1]} "
 
     else:
         # multiple files
-        logger.error("More than 2 files provided, this case cannot be parsed unambigously! I parse it as a comma seperated list of files.")
+        logger.error(
+            "More than 2 files provided, this case cannot be parsed unambigously! I parse it as a comma seperated list of files."
+        )
 
-        parsed_arg= f" {key}="+ ",".join(values) 
-    
+        parsed_arg = f" {key}=" + ",".join(values)
 
     logger.info(f"parsed {input_or_output} argument: {parsed_arg}")
 
     if input_or_output == "input":
-        parsed_input=True
+        parsed_input = True
     else:
-        parsed_output=True
+        parsed_output = True
 
     return parsed_arg
 
 
-
-
-
-
-def __parse_bbtools_keywords(command, extra="", input_keys=['input', 'fastq', 'sample'],
-                                output_keys=["out","output"],ignore_keys=["flag"] , **kwargs):
+def __parse_bbtools_keywords(
+    command,
+    extra="",
+    input_keys=["input", "fastq", "sample"],
+    output_keys=["out", "output"],
+    ignore_keys=["flag"],
+    **kwargs,
+):
     """
     Parse rule input, output and params into a bbmap command.
 
@@ -209,34 +200,25 @@ def __parse_bbtools_keywords(command, extra="", input_keys=['input', 'fastq', 's
 
     """
 
-
     # add extra arguments  at the beginning
 
     logger.info(f"extra arguments at the begginging: {extra} ")
     command += f" {extra} "
 
     for k in kwargs:
-
-
         if k in ignore_keys:
-
             logger.info(f"{k} argument detected, This is not passed to the bbtool.")
             pass
 
         # INPUT
         if k in input_keys:
-            
             logger.info(f"{k} argument detected, parsing it as input.")
-            command += _parse_bbmap_in_out("input",kwargs[k])
-
-
+            command += _parse_bbmap_in_out("input", kwargs[k])
 
         # OUTPUT
         if k in output_keys:
-
             logger.info(f"{k} argument detected, parsing it as output.")
-            command += _parse_bbmap_in_out("output",kwargs[k])
-
+            command += _parse_bbmap_in_out("output", kwargs[k])
 
         else:
             # bool conversions
@@ -247,17 +229,12 @@ def __parse_bbtools_keywords(command, extra="", input_keys=['input', 'fastq', 's
             if isinstance(kwargs[k], list):
                 kwargs[k] = ",".join(kwargs[k])
 
-
             command += f" {k}={kwargs[k]} "
-
-
-        
 
     return command
 
 
 def __check_for_duplicated_keywords(snakemake):
-
     input_keys = snakemake.input.keys()
     output_keys = snakemake.output.keys()
     params_keys = snakemake.params.keys()
@@ -266,16 +243,14 @@ def __check_for_duplicated_keywords(snakemake):
 
     if len(all_keys) != len(set(all_keys)):
         raise Exception("Duplicated keywords in input, output or params")
-    
+
 
 def parse_bbmap(snakemake):
-
     from snakemake_wrapper_utils.java import get_java_opts
 
     java_opts = get_java_opts(snakemake)
-    #log = snakemake.log_fmt_shell(stdout=True, stderr=True,append=True)
-    log= multiple_log_fmt_shell(snakeamke,append_stderr=True)
-
+    # log = snakemake.log_fmt_shell(stdout=True, stderr=True,append=True)
+    log = multiple_log_fmt_shell(snakeamke, append_stderr=True)
 
     if not hasattr(snakemake.params, "command"):
         raise Exception("params needs 'command' argument")
@@ -283,9 +258,8 @@ def parse_bbmap(snakemake):
     ## keywords
     __check_for_duplicated_keywords(snakemake)
 
-
     command = parse_bbmap(**snakemake.input, **snakemake.params, **snakemake.output)
-    command += f" {java_opts} t={snakemake.threads} {log}"    
+    command += f" {java_opts} t={snakemake.threads} {log}"
 
 
 ######################################
