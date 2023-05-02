@@ -5,8 +5,8 @@ rule test_deeptools_alignment_sieve:
         "filtered.bam",
     threads: 1
     log:
-        "logs/deeptools.log"
+        "logs/deeptools.log",
     params:
-        extra=""
+        extra="",
     wrapper:
         "master/bio/deeptools/alignmentsieve"
