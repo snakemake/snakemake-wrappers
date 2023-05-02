@@ -223,8 +223,8 @@ def test_bbgeneric():
             "--resources",
             "mem_mb=1000",
             "-F",
-            "out/covstats/sample1.tsv",
-            "out/covstats/sample2.tsv",
+            "covstats/sample1.tsv",
+            "covstats/sample2.tsv",
         ],
     )
 
