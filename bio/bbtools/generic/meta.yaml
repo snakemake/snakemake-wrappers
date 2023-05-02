@@ -7,8 +7,7 @@ authors:
 input:
   - input: All keywords in input are passed to the bbtool as key=value pairs. A special case is 'input' see in the notes. 
 output:
-  - out: |
-    All keywords in output are passed to the bbtool as key=value pairs. A special case is 'out' see in the notes. 
+  - out: All keywords in output are passed to the bbtool as key=value pairs. A special case is 'out' see in the notes. 
 params:
   - command: Required parameter defining the command to be used e.g. 'bbmap.sh'
   - extra: additional program arguments
