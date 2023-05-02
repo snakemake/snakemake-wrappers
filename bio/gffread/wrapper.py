@@ -17,6 +17,8 @@ if annotation.endswith(".bed"):
     extra += " --in-bed "
 elif annotation.endswith(".tlf"):
     extra += " --in-tlf "
+elif annotation.endswith(".gtf"):
+    pass
 else:
     raise ValueError("Unknown annotation format")
 
@@ -28,6 +30,8 @@ elif records.endswith(".bed"):
     extra += " --bed "
 elif records.endswith(".tlf"):
     extra += " --tlf "
+elif records.endswith(".fasta"):
+    pass
 else:
     raise ValueError("Unknown records format")
 
