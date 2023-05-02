@@ -3854,6 +3854,14 @@ def test_vcftoolsfilter():
 
 
 @skip_if_not_modified
+def test_gatk_callcopyrationsegments():
+    run(
+        "bio/gatk/callcopyratiosegments",
+        ["snakemake", "--cores", "1", "a.called.seg", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_gatk_scatterintervalsbyns():
     run(
         "bio/gatk/scatterintervalsbyns",
