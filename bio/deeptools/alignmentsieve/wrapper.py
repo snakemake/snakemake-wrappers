@@ -21,7 +21,7 @@ shell(
     "alignmentSieve.py "
     "{extra} "
     "--numberOfProcessors {snakemake.threads} "
-    "--bam {input.bam} "
+    "--bam {input.aln} "
     "--outFile {out_file} "
     "{log} "
 )

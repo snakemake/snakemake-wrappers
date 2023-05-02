@@ -1,6 +1,12 @@
 rule test_deeptools_alignment_sieve:
     input:
-        bam="aln.bam",
-        bai="aln.bam.bai",
+        aln="a.bam",
     output:
         "res.bam",
+    threads: 1
+    log:
+        "logs/deeptools.log"
+    params:
+        extra=""
+    wrapper:
+        "master/bio/deeptools/alignmentsieve"
