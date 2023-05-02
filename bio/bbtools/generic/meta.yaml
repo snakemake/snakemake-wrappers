@@ -1,0 +1,32 @@
+name: Generic
+url: https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide
+description: |
+  Generic wrapper for BBTools. One to run them all.
+authors:
+  - Silas Kieser
+input:
+  - input: All keywords in input are passed to the bbtool as key=value pairs. A special case is 'input' see in the notes. 
+output:
+  - out: |
+    All keywords in output are passed to the bbtool as key=value pairs. A special case is 'out' see in the notes. 
+params:
+  - command: Required parameter defining the command to be used e.g. 'bbmap.sh'
+  - extra: additional program arguments
+  - other: All other parameters are passed to the bbtool as key=value pairs
+notes: |
+  This wrapper allows to run any of the bbtools. The command is defined by the 'command' parameter, which required.
+  **All keywords in input, output, params are passed as key value pairs to the command!**
+  Take care that they are valid for the bbtool.
+  
+  As it it not possible to define 'in' as a keyword, the keyword 'input' is used instead. 
+  If exactly two files are provides for 'input' or 'out' the wrapper parses them as in1, in2 or out1, out2, respectively.
+  
+  For all parameters, if more than two files are provided, the wrapper parses them as key=value1,value2,value3... 
+
+  The keyword 'flag' is ignored and allows to make input files that are not processed by the bbtool. 
+
+  Limitations:
+    - The wrapper cannot run bbwarap with paired + singleton files. But this is a rare use case.
+
+
+  

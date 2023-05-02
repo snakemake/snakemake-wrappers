@@ -209,6 +209,23 @@ def test_tadpole():
         ],
     )
 
+
+@skip_if_not_modified
+def test_loglog():
+    run(
+        "bio/bbtools/generic",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "logs/se/a.log",
+            "logs/pe/a.log",
+        ],
+    )
+
+
 @skip_if_not_modified
 def test_seqkit_stats():
     run(
@@ -219,7 +236,10 @@ def test_seqkit_stats():
             "2",
             "--use-conda",
             "-F",
-            "out/stats/a.tsv",
+            "--resources mem_mb=1000",
+            "covstats/sample1.tsv",
+            "covstats/sample2.tsv",
+            "logs/bbmap/sample1.out"
         ],
     )
 

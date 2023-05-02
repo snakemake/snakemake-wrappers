@@ -1,0 +1,63 @@
+
+
+rule create_reads:
+    input:
+        ref="genome.fasta"
+    output:
+        out=["reads/{sample}.1.fastq.gz", "reads/{sample}.2.fastq.gz"],
+    params: 
+        command="randomreads.sh", # Define which bbmap command to use
+        length = 100,    # All parameters are passed to the command
+        reads= 10,
+        overwrite = True # Otherwise snakemake has problems
+        pigz=True
+    threads: 1
+    wrapper:
+        "master/bio/bbtools/generic"
+
+
+    
+
+# all rules use the same wrapper!!
+rule bbmap:  
+    input:
+        input=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        ref="genome.fasta"
+    output:
+        sam=pipe("mapped/{sample}.sam"),
+    log:
+        stdout= "logs/bbmap/{sample}.out" # Split stdout and stderr into separate files to have a nice log file
+        stderr= "logs/bbmap/{sample}.log"
+    params: 
+        command="bbmap.sh",
+        nodisk = True,    
+        machineout=True,
+        overwrite = True,
+        unpigz=True
+    threads: 4
+    resources:
+        mem= "50GB"               # oprional: bbmap normaly needs a lot of memory
+    wrapper:
+        "master/bio/bbtools/generic"
+
+
+
+rule pileup: 
+    input:
+        input= "mapped/{sample}.sam",
+        ref="genome.fasta"
+    output:
+        covstats="covstats/{sample}.tsv",
+        basecov="basecov/{sample}.tsv"
+    log:
+        stdout= "logs/bbmap/{sample}.out"
+        stderr= "logs/bbmap/{sample}.log"
+    params: 
+        command="pileup.sh",
+        nzo = True,
+        overwrite = True
+    threads: 2
+    resources:
+        mem= "10GB"
+    wrapper:
+        "master/bio/bbtools/generic" 
