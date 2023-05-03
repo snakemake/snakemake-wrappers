@@ -5,10 +5,10 @@ description: |
 authors:
   - Patrik Smeds
 input:
-  - copy_ratio_seg, cr.seq file from ModelSegments
+  - copy_ratio_seg: cr.seq file from ModelSegments
 output:
-  - copy_ratio_seg called copy ratio segments file
-  - igv_seg CBS formatted igv.seg file, optional
+  - copy_ratio_seg: called copy ratio segments file
+  - igv_seg: CBS formatted igv.seg file, optional
 params:
-  - The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
-  - The `extra` param allows for additional program arguments.
+  - java_opts: param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  - extra: param allows for additional program arguments.
