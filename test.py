@@ -1579,7 +1579,17 @@ def test_blast_blastn():
 def test_bowtie2_align():
     run(
         "bio/bowtie2/align",
-        ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "2", "mapped_idx/a.cram", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/bowtie2/align",
+        ["snakemake", "--cores", "2", "mapped_idx/a.bam", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/bowtie2/align",
+        ["snakemake", "--cores", "2", "mapped/a.bam", "--use-conda", "-F"],
     )
 
 
@@ -2244,6 +2254,21 @@ def test_deeptools_computematrix():
             "matrix_files/matrix.gz",
             "matrix_files/matrix.tab",
             "matrix_files/matrix.bed",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_deeptools_alignmentsieve():
+    run(
+        "bio/deeptools/alignmentsieve",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "filtered.bam",
             "--use-conda",
             "-F",
         ],
@@ -3923,6 +3948,14 @@ def test_vcftoolsfilter():
 
 
 @skip_if_not_modified
+def test_gatk_callcopyrationsegments():
+    run(
+        "bio/gatk/callcopyratiosegments",
+        ["snakemake", "--cores", "1", "a.called.seg", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_gatk_scatterintervalsbyns():
     run(
         "bio/gatk/scatterintervalsbyns",
@@ -3985,6 +4018,20 @@ def test_gatk_baserecalibratorspark():
         ["snakemake", "--cores", "1", "recal/a.grp", "--use-conda", "-F"],
     )
 
+@skip_if_not_modified
+def test_gatk_collectreadcounts():
+    run(
+        "bio/gatk/collectreadcounts",
+        ["snakemake", "--cores", "1", "a.counts.hdf5", "--use-conda", "-F"],
+    )
+
+@skip_if_not_modified
+def test_gatk_collectalleliccounts():
+    run(
+        "bio/gatk/collectalleliccounts",
+        ["snakemake", "--cores", "1", "a.counts.tsv", "--use-conda", "-F"],
+    )
+
 
 @skip_if_not_modified
 def test_gatk_applybqsr():
@@ -4015,6 +4062,15 @@ def test_gatk_applybqsrspark_cram():
         ["snakemake", "-s", "Snakefile_cram", "--cores", "1", "recal/a.cram", "--use-conda", "-F"],
     )
 
+
+@skip_if_not_modified
+def test_gatk_denoisereadcounts():
+    run(
+        "bio/gatk/denoisereadcounts",
+        ["snakemake", "--cores", "1", "a.standardizedCR.tsv", "a.denoisedCR.tsv", "--use-conda", "-F"],
+    )
+
+
 @skip_if_not_modified
 def test_gatk_haplotypecaller_vcf():
     run(
@@ -4028,6 +4084,14 @@ def test_gatk_haplotypecaller_gvcf():
     run(
         "bio/gatk/haplotypecaller",
         ["snakemake", "--cores", "1", "calls/a.g.vcf", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk_modelsegments():
+    run(
+        "bio/gatk/modelsegments",
+        ["snakemake", "--cores", "1", "a.den.modelFinal.seg", "--use-conda", "-F"],
     )
 
 

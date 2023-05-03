@@ -1,0 +1,16 @@
+rule call_copy_ratio_segments:
+    input:
+        copy_ratio_seg="a.cr.seg",
+    output:
+        called_copy_ratio_seg="a.called.seg",
+        igv_seg="a.called.igv.seg",
+    log:
+        "logs/gatk/call_copy_ratio_segments.log",
+    params:
+        #prefix="a.den.test",
+        extra="",  # optional
+        java_opts="",  # optional
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/gatk/callcopyratiosegments"
