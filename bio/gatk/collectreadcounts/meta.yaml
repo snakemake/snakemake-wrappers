@@ -12,4 +12,4 @@ params:
   - java_opts: additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
   - extra: additional program arguments.
 output:
-  - Output file for read counts, tsv or hdf5
+  - counts: output file for read counts, `tsv` or `hdf5`
