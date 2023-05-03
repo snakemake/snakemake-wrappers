@@ -11,7 +11,7 @@ from snakemake_wrapper_utils.java import get_java_opts
 
 panel_of_normal = ""
 if snakemake.input.get("pon", None):
-    panel_of_normal = "--count-panel-of-normals {snakemake.input.PoN}"
+    panel_of_normal = "--count-panel-of-normals {snakemake.input.pon}"
 
 
 gc_intervals = ""
