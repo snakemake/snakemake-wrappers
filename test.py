@@ -4043,6 +4043,15 @@ def test_gatk_applybqsrspark_cram():
         ["snakemake", "-s", "Snakefile_cram", "--cores", "1", "recal/a.cram", "--use-conda", "-F"],
     )
 
+
+@skip_if_not_modified
+def test_gatk_denoisereadcounts():
+    run(
+        "bio/gatk/denoisereadcounts",
+        ["snakemake", "--cores", "1", "a.standardizedCR.tsv", "a.denoisedCR.tsv", "--use-conda", "-F"],
+    )
+
+
 @skip_if_not_modified
 def test_gatk_haplotypecaller_vcf():
     run(
