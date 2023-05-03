@@ -6,11 +6,11 @@ authors:
   - Patrik Smeds
 input:
   - hdf5: TSV or HDF5 file with counts from CollectReadCounts.
-  - PoN: Panel-of-normals from CreateReadCountPanelOfNormals (optional)
+  - pon: Panel-of-normals from CreateReadCountPanelOfNormals (optional)
   - gc_interval: GC-content annotated-intervals from {@link AnnotateIntervals (optional)
 output:
-  - stdCopyRatio: Standardized-copy-ratios file
-  - denoisedCopyRatio: Denoised-copy-ratios file
+  - std_copy_ratio: Standardized-copy-ratios file
+  - denoised_copy_ratio: Denoised-copy-ratios file
 params:
   - java_opts: additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
   - extra: additional program arguments.
