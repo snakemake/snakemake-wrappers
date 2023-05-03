@@ -241,9 +241,9 @@ def __parse_bbtools_keywords(
 
 
 def __check_for_duplicated_keywords(snakemake):
-    input_keys = snakemake.input.keys()
-    output_keys = snakemake.output.keys()
-    params_keys = snakemake.params.keys()
+    input_keys = list(snakemake.input.keys())
+    output_keys = list(snakemake.output.keys())
+    params_keys = list(snakemake.params.keys())
 
     all_keys = input_keys + output_keys + params_keys
 
