@@ -6,7 +6,7 @@ rule map_reads_with_bbmap:
         input=["reads/{sample}.1.fastq.gz", "reads/{sample}.2.fastq.gz"],
         ref="genome.fasta",
     output:
-        sam="mapped/{sample}.sam",
+        out="mapped/{sample}.sam",
     log:
         stderr="logs/bbmap/{sample}.log", # Split stdout and stderr into separate files to have a nice log file
         stdout="logs/bbmap/{sample}.out",  
