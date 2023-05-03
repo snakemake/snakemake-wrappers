@@ -5,11 +5,11 @@ description: |
 authors:
   - Patrik Smeds
 input:
-  - BAM/SAM/CRAM file containing reads
-  - One or more genomic intervals over which to operate
-  - Reference FASTA file 
-params:
-  - The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
-  - The `extra` param allows for additional program arguments.
+  - bam: BAM/SAM/CRAM file containing reads
+  - intervals: one or more genomic intervals over which to operate
+  - ref: reference FASTA file
 output:
-  - Allelic-counts file. This is a tab-separated values (TSV) file with a SAM-style header
+  - counts: tab-separated values (TSV) file with allelic counts and a SAM-style header
+params:
+  - java_opts: additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  - extra: additional program arguments.
