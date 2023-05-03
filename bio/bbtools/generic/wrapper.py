@@ -54,6 +54,8 @@ def multiple_log_fmt_shell(snakemake, append_stderr=False, append_stdout=False):
     Format shell command for logging to stdout and stderr files.
     """
 
+    from snakemake.script import _log_shell_redirect
+
     stderr_file, stdout_file = infer_stdout_and_stderr(snakemake.log)
 
     if stdout_file is None:
@@ -62,11 +64,11 @@ def multiple_log_fmt_shell(snakemake, append_stderr=False, append_stdout=False):
         # sucessfully inferred und stderr and stdout file
 
         shell_log_fmt = (
-            snakemake._log_shell_redirect(
+            _log_shell_redirect(
                 stderr_file, stdout=False, stderr=True, append=append_stderr
             )
             + " "
-            + snakemake._log_shell_redirect(
+            + _log_shell_redirect(
                 stdout_file, stdout=True, stderr=False, append=append_stdout
             )
         )
