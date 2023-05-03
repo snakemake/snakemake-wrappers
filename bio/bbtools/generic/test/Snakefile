@@ -54,6 +54,7 @@ rule create_reads:
         command="randomreads.sh",  
         length=100,  
         reads=10,
+        paired=True,
         overwrite=True,  
         pigz=True,
         define_threads = False # By default, the number of threads is defined by snakemake
