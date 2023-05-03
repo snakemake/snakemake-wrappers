@@ -5,11 +5,11 @@ description: |
 authors:
   - Patrik Smeds
 input:
-  - BAM/SAM/CRAM file containing reads
-  - One or more genomic intervals over which to operate
+  - bam: BAM/SAM/CRAM file containing reads
+  - intervals: one or more genomic intervals over which to operate
 params:
-  - mergingRule, default OVERLAPPING_ONLY
-  - The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
-  - The `extra` param allows for additional program arguments.
+  - mergingRule: interval merging rule for abutting intervals (default, OVERLAPPING_ONLY)
+  - java_opts: additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  - extra: additional program arguments.
 output:
   - Output file for read counts, tsv or hdf5
