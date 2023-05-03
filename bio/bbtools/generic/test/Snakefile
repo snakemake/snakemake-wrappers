@@ -6,7 +6,7 @@ rule map_reads_with_bbmap:
         input=["reads/{sample}.1.fastq.gz", "reads/{sample}.2.fastq.gz"],
         ref="genome.fasta",
     output:
-        sam=pipe("mapped/{sample}.sam"),
+        sam="mapped/{sample}.sam",
     log:
         stdout="logs/bbmap/{sample}.out",  # Split stdout and stderr into separate files to have a nice log file
         stderr="logs/bbmap/{sample}.log",
@@ -16,9 +16,9 @@ rule map_reads_with_bbmap:
         machineout=True,
         overwrite=True, # Otherwise snakemake has problems
         unpigz=True,
-    threads: 8
+    threads: 12
     resources:
-        mem="50GB",  # optional: bbmap normaly needs a lot of memory
+        mem="60GB",  # optional: bbmap normaly needs a lot of memory
     wrapper:
         "master/bio/bbtools/generic"
 
@@ -37,9 +37,9 @@ rule pileup:  # all rules use the same wrapper!!
         command="pileup.sh",
         nzo=True,
         overwrite=True,
-    threads: 2
+    threads: 4
     resources:
-        mem="10GB",
+        mem="20GB",
     wrapper:
         "master/bio/bbtools/generic"
 

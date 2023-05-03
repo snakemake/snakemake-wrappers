@@ -49,7 +49,7 @@ def infer_stdout_and_stderr(log) -> tuple:
             return stdout_file, stderr_file
 
 
-def multiple_log_fmt_shell(snakemake, append_stderr=False, append_stdout=False):
+def multiple_log_fmt_shell(snakemake, append_stderr=False, append_stdout=False) -> str:
     """
     Format shell command for logging to stdout and stderr files.
     """
