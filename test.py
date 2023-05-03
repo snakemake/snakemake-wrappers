@@ -3966,6 +3966,12 @@ def test_gatk_baserecalibratorspark():
         ["snakemake", "--cores", "1", "recal/a.grp", "--use-conda", "-F"],
     )
 
+@skip_if_not_modified
+def test_gatk_collectreadcounts():
+    run(
+        "bio/gatk/collectreadcounts",
+        ["snakemake", "--cores", "1", "a.counts.hdf5", "--use-conda", "-F"],
+    )
 
 @skip_if_not_modified
 def test_gatk_collectalleliccounts():
