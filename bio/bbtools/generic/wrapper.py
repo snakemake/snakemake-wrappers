@@ -59,7 +59,8 @@ def multiple_log_fmt_shell(snakemake, append_stderr=False, append_stdout=False):
     stderr_file, stdout_file = infer_stdout_and_stderr(snakemake.log)
 
     if stdout_file is None:
-        return snakemake.log_fmt_shell(append=append_stderr,stdout=True,stderr=True)
+        # log both to the same file
+        return snakemake.log_fmt_shell(append=append_stderr or append_stdout,stdout=True,stderr=True)
     else:
         # sucessfully inferred und stderr and stdout file
 
@@ -265,7 +266,7 @@ def parse_bbtool(snakemake):
     from snakemake_wrapper_utils.java import get_java_opts
 
     java_opts = get_java_opts(snakemake)
-    # log = snakemake.log_fmt_shell(stdout=True, stderr=True,append=True)
+
     log = multiple_log_fmt_shell(snakemake, append_stderr=True)
 
     if not hasattr(snakemake.params, "command"):
@@ -275,7 +276,7 @@ def parse_bbtool(snakemake):
     __check_for_duplicated_keywords(snakemake)
 
     command = __parse_keywords_for_bbtool(**snakemake.input, **snakemake.params, **snakemake.output)
-    command += f" {java_opts} t={snakemake.threads} {log}"
+    command += f" {java_opts} threads={snakemake.threads} {log}"
 
     return command
 
