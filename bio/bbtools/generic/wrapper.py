@@ -250,7 +250,7 @@ def parse_bbmap(snakemake):
 
     java_opts = get_java_opts(snakemake)
     # log = snakemake.log_fmt_shell(stdout=True, stderr=True,append=True)
-    log = multiple_log_fmt_shell(snakeamke, append_stderr=True)
+    log = multiple_log_fmt_shell(snakemake, append_stderr=True)
 
     if not hasattr(snakemake.params, "command"):
         raise Exception("params needs 'command' argument")
