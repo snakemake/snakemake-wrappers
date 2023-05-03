@@ -18,7 +18,7 @@ rule map_reads_with_bbmap:
         unpigz=True,
     threads: 12
     resources:
-        mem="60GB",  # optional: bbmap normaly needs a lot of memory
+        mem="1GB",  # optional: bbmap normaly needs a lot of memory, e.g. 60
     wrapper:
         "master/bio/bbtools/generic"
 
@@ -39,7 +39,7 @@ rule pileup:  # all rules use the same wrapper!!
         overwrite=True,
     threads: 4
     resources:
-        mem="20GB",
+        mem="1GB",
     wrapper:
         "master/bio/bbtools/generic"
 
