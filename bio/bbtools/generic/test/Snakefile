@@ -8,13 +8,13 @@ rule map_reads_with_bbmap:
     output:
         out="mapped/{sample}.sam",
     log:
-        stderr="logs/bbmap/{sample}.log", # Split stdout and stderr into separate files to have a nice log file
-        stdout="logs/bbmap/{sample}.out",  
+        stderr="logs/bbmap/{sample}.log",  # Split stdout and stderr into separate files to have a nice log file
+        stdout="logs/bbmap/{sample}.out",
     params:
-        command="bbmap.sh",    # Define which bbmap command to use
-        nodisk=True,           # All parameters are passed to the command
+        command="bbmap.sh",  # Define which bbmap command to use
+        nodisk=True,  # All parameters are passed to the command
         machineout=True,
-        overwrite=True, # Otherwise snakemake has problems
+        overwrite=True,  # Otherwise snakemake has problems
         unpigz=True,
     threads: 12
     resources:
@@ -44,22 +44,20 @@ rule pileup:  # all rules use the same wrapper!!
         "master/bio/bbtools/generic"
 
 
-
 rule create_reads:
     input:
         ref="genome.fasta",
     output:
         out=["reads/{sample}.1.fastq.gz", "reads/{sample}.2.fastq.gz"],
     params:
-        command="randomreads.sh",  
-        length=100,  
+        command="randomreads.sh",
+        length=100,
         reads=10,
         paired=True,
-        overwrite=True,  
+        overwrite=True,
         pigz=True,
-        define_threads = False # By default, the number of threads is defined by snakemake
+        define_threads=False,  # By default, the number of threads is defined by snakemake
     log:
         "logs/create_reads/{sample}.log",
     wrapper:
         "master/bio/bbtools/generic"
-
