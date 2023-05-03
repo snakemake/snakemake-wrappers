@@ -59,7 +59,7 @@ def multiple_log_fmt_shell(snakemake, append_stderr=False, append_stdout=False):
     stderr_file, stdout_file = infer_stdout_and_stderr(snakemake.log)
 
     if stdout_file is None:
-        return snakemake.log_fmt_shell(append=append_stdout)
+        return snakemake.log_fmt_shell(append=append_stderr,stdout=True,stderr=True)
     else:
         # sucessfully inferred und stderr and stdout file
 
