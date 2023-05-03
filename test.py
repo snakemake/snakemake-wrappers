@@ -1560,7 +1560,17 @@ def test_blast_blastn():
 def test_bowtie2_align():
     run(
         "bio/bowtie2/align",
-        ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "2", "mapped_idx/a.cram", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/bowtie2/align",
+        ["snakemake", "--cores", "2", "mapped_idx/a.bam", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/bowtie2/align",
+        ["snakemake", "--cores", "2", "mapped/a.bam", "--use-conda", "-F"],
     )
 
 
