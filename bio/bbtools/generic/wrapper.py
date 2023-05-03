@@ -56,7 +56,7 @@ def multiple_log_fmt_shell(snakemake, append_stderr=False, append_stdout=False) 
 
     from snakemake.script import _log_shell_redirect
 
-    stderr_file, stdout_file = infer_stdout_and_stderr(snakemake.log)
+    stdout_file, stderr_file = infer_stdout_and_stderr(snakemake.log)
 
     if stdout_file is None:
         # log both to the same file
