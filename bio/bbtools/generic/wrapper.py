@@ -189,7 +189,7 @@ def __parse_keywords_for_bbtool(
     extra="",
     input_keys=["input", "fastq", "sample"],
     output_keys=["out", "output"],
-    ignore_keys=["flag"],
+    ignore_keys=["flag","define_threads"],
     **kwargs,
 ):
     """
@@ -265,9 +265,7 @@ def __check_for_duplicated_keywords(snakemake):
 def parse_bbtool(snakemake):
     from snakemake_wrapper_utils.java import get_java_opts
 
-    java_opts = get_java_opts(snakemake)
 
-    log = multiple_log_fmt_shell(snakemake, append_stderr=True)
 
     if not hasattr(snakemake.params, "command"):
         raise Exception("params needs 'command' argument")
@@ -276,7 +274,15 @@ def parse_bbtool(snakemake):
     __check_for_duplicated_keywords(snakemake)
 
     command = __parse_keywords_for_bbtool(**snakemake.input, **snakemake.params, **snakemake.output)
-    command += f" {java_opts} threads={snakemake.threads} {log}"
+
+    if snakemake.params.get("define_threads", True):
+        command += f" threads={snakemake.threads} "
+
+    #memory and log
+    java_opts = get_java_opts(snakemake)
+    log = multiple_log_fmt_shell(snakemake, append_stderr=True)
+
+    command += f" {java_opts} {log}"
 
     return command
 

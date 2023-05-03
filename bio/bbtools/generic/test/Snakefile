@@ -1,25 +1,7 @@
 
 
-rule create_reads:
-    input:
-        ref="genome.fasta",
-    output:
-        out=["reads/{sample}.1.fastq.gz", "reads/{sample}.2.fastq.gz"],
-    params:
-        command="randomreads.sh",  # Define which bbmap command to use
-        length=100,  # All parameters are passed to the command
-        reads=10,
-        overwrite=True,  # Otherwise snakemake has problems
-        pigz=True,
-    threads: 1
-    log:
-        "logs/create_reads/{sample}.log",
-    wrapper:
-        "master/bio/bbtools/generic"
 
-
-# all rules use the same wrapper!!
-rule bbmap:
+rule map_reads_with_bbmap:
     input:
         input=["reads/{sample}.1.fastq.gz", "reads/{sample}.2.fastq.gz"],
         ref="genome.fasta",
@@ -29,19 +11,19 @@ rule bbmap:
         stdout="logs/bbmap/{sample}.out",  # Split stdout and stderr into separate files to have a nice log file
         stderr="logs/bbmap/{sample}.log",
     params:
-        command="bbmap.sh",
-        nodisk=True,
+        command="bbmap.sh",    # Define which bbmap command to use
+        nodisk=True,           # All parameters are passed to the command
         machineout=True,
-        overwrite=True,
+        overwrite=True, # Otherwise snakemake has problems
         unpigz=True,
     threads: 8
     resources:
-        mem="50GB",  # oprional: bbmap normaly needs a lot of memory
+        mem="50GB",  # optional: bbmap normaly needs a lot of memory
     wrapper:
         "master/bio/bbtools/generic"
 
 
-rule pileup:
+rule pileup:  # all rules use the same wrapper!!
     input:
         input="mapped/{sample}.sam",
         ref="genome.fasta",
@@ -60,3 +42,23 @@ rule pileup:
         mem="10GB",
     wrapper:
         "master/bio/bbtools/generic"
+
+
+
+rule create_reads:
+    input:
+        ref="genome.fasta",
+    output:
+        out=["reads/{sample}.1.fastq.gz", "reads/{sample}.2.fastq.gz"],
+    params:
+        command="randomreads.sh",  
+        length=100,  
+        reads=10,
+        overwrite=True,  
+        pigz=True,
+        define_threads = False # By default, the number of threads is defined by snakemake
+    log:
+        "logs/create_reads/{sample}.log",
+    wrapper:
+        "master/bio/bbtools/generic"
+
