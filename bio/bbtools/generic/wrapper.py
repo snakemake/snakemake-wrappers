@@ -32,11 +32,11 @@ def infer_stdout_and_stderr(log) -> tuple:
     else:
         # infer stdout and stderr file
         for key in ["stderr", "err"]:
-            if hasattr(key, log):
+            if hasattr(log, key):
                 stderr_file = log[key]
 
         for key in ["stdout", "out"]:
-            if hasattr(key, log):
+            if hasattr(log,key):
                 stdout_file = log[key]
 
         if (stderr_file is None) or (stderr_file is None):
