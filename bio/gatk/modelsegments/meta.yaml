@@ -10,7 +10,6 @@ input:
   - matched_normal allelic-counts, Optional
   - segments picard interval-list file containing a multisample segmentation output by a previous run, optional
 params:
-  - prefix for output filenames, if not specified the wrapper will try to extract it from the output files
   - The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
   - The `extra` param allows for additional program arguments.
 output:

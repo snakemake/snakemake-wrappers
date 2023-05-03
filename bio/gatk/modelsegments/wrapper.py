@@ -39,45 +39,6 @@ if normal_allelic_counts and not allelic_counts:
         "'allelica_counts' is required when 'normal-allelic-counts' is an input to the rule!"
     )
 
-
-output_prefix = None
-if snakemake.params.get("output_prefix"):
-    # Make sure specified prefix matches listed output files
-    output_prefix = snakemake.params.output_prefix
-    for output in snakemake.output:
-        output_file = os.path.basename(output)
-        if not output_file.startswith(prefix):
-            raise Exception(
-                f"output file {output_file} doesn't start with the provided prefix {prefix}"
-            )
-else:
-    expected_output_file_endings = [
-        ".modelFinal.seq",
-        ".cr.seg",
-        ".af.igv.seg",
-        ".cr.igv.seg",
-        ".hets.tsv",
-        ".modelBegin.cr.param",
-        ".modelBegin.af.param",
-        ".modelBegin.seg",
-        ".modelFinal.af.param",
-        ".modelFinal.cr.param",
-    ]
-    # Create prefix from listed output files
-    for output in snakemake.output:
-        output_file = os.path.basename(output)
-        for output_extensions in expected_output_file_endings:
-            if output_file.endswith(output_extensions):
-                output_prefix = output_file.replace(output_extensions, "")
-                break
-        if output_prefix:
-            break
-    if not output_prefix:
-        raise Exception(
-            "Unable to extract prefix from listed files, expecting file(s) ending "
-            f"with at least one of {expected_output_file_endings}"
-        )
-
 extra = snakemake.params.get("extra", "")
 java_opts = get_java_opts(snakemake)
 
@@ -92,14 +53,31 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " {denoised_copy_ratios}"
         " {allelic_counts}"
         " {normal_allelic_counts}"
-        " --output-prefix {output_prefix}"
+        " --output-prefix temp_name__"
         " -O {output_folder}"
         " --tmp-dir {tmpdir}"
         " {extra}"
         " {log}"
     )
 
+    created_files = {}
+    # Find all created files
+    for new_file in os.listdir(output_folder):
+        file_path = os.path.join(output_folder, new_file)
+        if os.path.isfile(file_path):
+            file_end = os.path.basename(file_path).split("__")[1]
+            created_files[file_end] = file_path
+
+    # Match expected output with found files
     for output in snakemake.output:
-        filename = os.path.basename(output)
-        outfile = os.path.join(output_folder, filename)
-        shell("cp {outfile} {output}")
+        file_found = False
+        for file_ending in created_files:
+            if output.endswith(file_ending):
+                shell(f"cp {created_files[file_ending]} {output}")
+                file_found = True
+                break
+        if not file_found:
+            created_files_list = [f"{e}" for e in created_files]
+            raise IOError(
+                f"Could not create file {output}, possible files ends with {created_files_list}"
+            )

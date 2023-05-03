@@ -3,7 +3,7 @@ rule modelsegments_denoise_input:
         denoised_copy_ratios="a.denoisedCR.tsv",
     output:
         "a.den.modelFinal.seg",
-        "a.den.cr.seg",
+        "a.n.cr.seg",
     log:
         "logs/gatk/modelsegments_denoise.log",
     params:
