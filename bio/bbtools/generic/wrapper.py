@@ -121,6 +121,7 @@ logger = logging.getLogger(__file__)
 # global flags to check if input and output are parsed multiple times
 parsed_input, parsed_output = False, False
 
+import warnings
 
 def _parse_bbmap_in_out(input_or_output, values):
     """
@@ -162,11 +163,11 @@ def _parse_bbmap_in_out(input_or_output, values):
         parsed_arg = f" {key}={values} "
 
     elif len(values) == 2:
-        parsed_arg = f" in1={values[0]} in2={values[1]} "
+        parsed_arg = f" {key}1={values[0]} {key}2={values[1]} "
 
     else:
         # multiple files
-        logger.error(
+        warnings.warn(
             "More than 2 files provided, this case cannot be parsed unambigously! I parse it as a comma seperated list of files."
         )
 
@@ -206,24 +207,28 @@ def __parse_keywords_for_bbtool(
 
     """
 
-    # add extra arguments  at the beginning
+    assert type(command) == str, "command should be a string"
 
-    logger.info(f"extra arguments at the begginging: {extra} ")
-    command += f" {extra} "
+    # add extra arguments  at the beginning
+    if extra != "":
+        logger.info(f"extra arguments at the begginging: {extra} ")
+        command += f" {extra} "
 
     for k in kwargs:
+
+        logger.info(f"Parse keyword: {k}")
         if k in ignore_keys:
             logger.info(f"{k} argument detected, This is not passed to the bbtool.")
             pass
 
         # INPUT
-        if k in input_keys:
-            logger.info(f"{k} argument detected, parsing it as input.")
+        elif k in input_keys:
+            logger.info("Parsing it as input.")
             command += _parse_bbmap_in_out("input", kwargs[k])
 
         # OUTPUT
-        if k in output_keys:
-            logger.info(f"{k} argument detected, parsing it as output.")
+        elif k in output_keys:
+            logger.info("Parsing it as output.")
             command += _parse_bbmap_in_out("output", kwargs[k])
 
         else:
@@ -235,7 +240,10 @@ def __parse_keywords_for_bbtool(
             if isinstance(kwargs[k], list):
                 kwargs[k] = ",".join(kwargs[k])
 
-            command += f" {k}={kwargs[k]} "
+            parsed = f" {k}={kwargs[k]} "
+
+            logger.info(f"parsed argument: {parsed}")
+            command += parsed
 
     return command
 
