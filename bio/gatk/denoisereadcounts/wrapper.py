@@ -29,7 +29,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " -I {snakemake.input.hdf5} "
         " {panel_of_normal}"
         " {gc_intervals}"
-        "--standardized-copy-ratios {snakemake.output.std_cpy_ratio} "
+        "--standardized-copy-ratios {snakemake.output.std_copy_ratio} "
         "--denoised-copy-ratios {snakemake.output.denoised_copy_ratio} "
         " --tmp-dir {tmpdir}"
         " {extra}"
