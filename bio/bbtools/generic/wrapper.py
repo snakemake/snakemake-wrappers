@@ -7,9 +7,6 @@ import sys
 import logging, traceback
 
 
-
-
-
 def infer_stdout_and_stderr(log) -> tuple:
     """
     If multiple log files are provided, try to infer which one is for stderr.
@@ -26,15 +23,13 @@ def infer_stdout_and_stderr(log) -> tuple:
     """
     import warnings
 
-    if len(log) ==0:
+    if len(log) == 0:
         return None, None
-    
+
     elif len(log) == 1:
-
         return None, log[0]
-    
-    else:
 
+    else:
         # infer stdout and stderr file
         for key in ["stderr", "err"]:
             if hasattr(key, log):
@@ -49,11 +44,9 @@ def infer_stdout_and_stderr(log) -> tuple:
                 "Cannot infer which logfile is stderr and which is stdout, Logging stderr and stdout to the same file"
             )
             return None, log[0]
-        
+
         else:
-            return stdout_file, stderr_file 
-
-
+            return stdout_file, stderr_file
 
 
 def multiple_log_fmt_shell(snakemake, append_stderr=False, append_stdout=False):
@@ -64,14 +57,19 @@ def multiple_log_fmt_shell(snakemake, append_stderr=False, append_stdout=False):
     stderr_file, stdout_file = infer_stdout_and_stderr(snakemake.log)
 
     if stdout_file is None:
-         
         return snakemake.log_fmt_shell(append=append_stdout)
     else:
-         
         # sucessfully inferred und stderr and stdout file
 
-        shell_log_fmt = snakemake._log_shell_redirect(stderr_file,stdout=False,stderr=True, append=append_stderr) \
-        + " "+ snakemake._log_shell_redirect(stdout_file,stdout=True,stderr=False, append=append_stdout)
+        shell_log_fmt = (
+            snakemake._log_shell_redirect(
+                stderr_file, stdout=False, stderr=True, append=append_stderr
+            )
+            + " "
+            + snakemake._log_shell_redirect(
+                stdout_file, stdout=True, stderr=False, append=append_stdout
+            )
+        )
 
         return shell_log_fmt
 
