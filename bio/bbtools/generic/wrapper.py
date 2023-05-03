@@ -209,6 +209,8 @@ def __parse_keywords_for_bbtool(
 
     assert type(command) == str, "command should be a string"
 
+    logger.info(f"command is: {command}")
+
     # add extra arguments  at the beginning
     if extra != "":
         logger.info(f"extra arguments at the begginging: {extra} ")
@@ -274,6 +276,8 @@ def parse_bbtool(snakemake):
 
     command = __parse_keywords_for_bbtool(**snakemake.input, **snakemake.params, **snakemake.output)
     command += f" {java_opts} t={snakemake.threads} {log}"
+
+    return command
 
 
 ######################################
