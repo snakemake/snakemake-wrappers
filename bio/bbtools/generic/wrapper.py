@@ -7,23 +7,53 @@ import sys
 import logging, traceback
 
 
-# Errors in the wrapper should be logged to the stderr file if available
-def get_stderr_file(snakemake, stderr_keys=["stderr", "err", "error"]):
+
+
+
+def infer_stdout_and_stderr(log) -> tuple:
     """
     If multiple log files are provided, try to infer which one is for stderr.
+
+    If only one log file is provided, or inference fails, return None for stdout_file
+
+
+    Returns
+    -------
+    tuple
+        stdout_file, stderr_file
+
+
     """
+    import warnings
 
-    n_logfiles = len(snakemake.log)
+    if len(log) ==0:
+        return None, None
+    
+    elif len(log) == 1:
 
-    if n_logfiles == 0:
-        raise Exception("No log file provided")
+        return None, log[0]
+    
+    else:
 
-    elif n_logfiles > 1:
-        for key in stderr_keys:
-            if hasattr(key, snakemake.log):
-                return snakemake.log[key]
+        # infer stdout and stderr file
+        for key in ["stderr", "err"]:
+            if hasattr(key, log):
+                stderr_file = log[key]
 
-        return snakemake.log[0]
+        for key in ["stdout", "out"]:
+            if hasattr(key, log):
+                stdout_file = log[key]
+
+        if (stderr_file is None) or (stderr_file is None):
+            warnings.warn(
+                "Cannot infer which logfile is stderr and which is stdout, Logging stderr and stdout to the same file"
+            )
+            return None, log[0]
+        
+        else:
+            return stdout_file, stderr_file 
+
+
 
 
 def multiple_log_fmt_shell(snakemake, append_stderr=False, append_stdout=False):
@@ -31,47 +61,23 @@ def multiple_log_fmt_shell(snakemake, append_stderr=False, append_stdout=False):
     Format shell command for logging to stdout and stderr files.
     """
 
-    import warnings
+    stderr_file, stdout_file = infer_stdout_and_stderr(snakemake.log)
 
-    if len(snakemake.log) == 2:
-        stderr_file, stdout_file = None, None
+    if stdout_file is None:
+         
+        return snakemake.log_fmt_shell(append=append_stdout)
+    else:
+         
+        # sucessfully inferred und stderr and stdout file
 
-        for key in ["stderr", "err"]:
-            if hasattr(key, snakemake.log):
-                stderr_file = snakemake.log[key]
+        shell_log_fmt = snakemake._log_shell_redirect(stderr_file,stdout=False,stderr=True, append=append_stderr) \
+        + " "+ snakemake._log_shell_redirect(stdout_file,stdout=True,stderr=False, append=append_stdout)
 
-        for key in ["stdout", "out"]:
-            if hasattr(key, snakemake.log):
-                stdout_file = snakemake.log[key]
-
-        if (stderr_file is None) or (stderr_file is None):
-            warnings.warn(
-                "Cannot infer which logfile is stderr and which is stdout, Logging stderr and stdout to the same file"
-            )
-        else:
-            # sucessfully inferred und stderr and stdout file
-
-            shell_log_fmt = ""
-
-            if append_stderr:
-                shell_log_fmt += "2>> {stderr_file} "
-
-            else:
-                shell_log_fmt += "2> {stderr_file} "
-
-            if append_stdout:
-                shell_log_fmt += ">> {stdout_file} "
-
-            else:
-                shell_log_fmt += "> {stdout_file} "
-
-            return shell_log_fmt
-
-    return snakemake.log_fmt_shell(append=True, **keywords)
+        return shell_log_fmt
 
 
 try:
-    logfile = get_stderr_file(snakemake)
+    _, logfile = infer_stdout_and_stderr(snakemake.log)
 
     # clear stderr file
     open(logfile, "w").close()
