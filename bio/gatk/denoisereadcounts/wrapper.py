@@ -10,7 +10,7 @@ from snakemake_wrapper_utils.java import get_java_opts
 
 
 panel_of_normal = ""
-if snakemake.input.get("PoN", None):
+if snakemake.input.get("pon", None):
     panel_of_normal = "--count-panel-of-normals {snakemake.input.PoN}"
 
 
@@ -29,8 +29,8 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " -I {snakemake.input.hdf5} "
         " {panel_of_normal}"
         " {gc_intervals}"
-        "--standardized-copy-ratios {snakemake.output.stdCopyRatio} "
-        "--denoised-copy-ratios {snakemake.output.denoisedCopyRatio} "
+        "--standardized-copy-ratios {snakemake.output.std_cpy_ratio} "
+        "--denoised-copy-ratios {snakemake.output.denoised_copy_ratio} "
         " --tmp-dir {tmpdir}"
         " {extra}"
         " {log}"
