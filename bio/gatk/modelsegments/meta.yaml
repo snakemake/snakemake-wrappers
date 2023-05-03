@@ -15,5 +15,5 @@ params:
   - java_opts: additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
   - extra: additional program arguments.
 note: |
-  * Expected input is either denoised_copy_ratios or allelic_counts
-  * matched_normal must provided together with allelic_counts
+  * Expected input is either `denoised_copy_ratios` or `allelic_counts`
+  * `normal_allelic_counts` must be provided together with `allelic_counts`
