@@ -8,8 +8,8 @@ rule map_reads_with_bbmap:
     output:
         sam="mapped/{sample}.sam",
     log:
-        stdout="logs/bbmap/{sample}.out",  # Split stdout and stderr into separate files to have a nice log file
-        stderr="logs/bbmap/{sample}.log",
+        stderr="logs/bbmap/{sample}.log", # Split stdout and stderr into separate files to have a nice log file
+        stdout="logs/bbmap/{sample}.out",  
     params:
         command="bbmap.sh",    # Define which bbmap command to use
         nodisk=True,           # All parameters are passed to the command
@@ -31,8 +31,8 @@ rule pileup:  # all rules use the same wrapper!!
         covstats="covstats/{sample}.tsv",
         basecov="basecov/{sample}.tsv",
     log:
-        stdout="logs/bbmap/{sample}.out",
-        stderr="logs/bbmap/{sample}.log",
+        stderr="logs/pileup/{sample}.log",
+        stdout="logs/pileup/{sample}.out",
     params:
         command="pileup.sh",
         nzo=True,
