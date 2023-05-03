@@ -182,7 +182,7 @@ def _parse_bbmap_in_out(input_or_output, values):
     return parsed_arg
 
 
-def __parse_bbtools_keywords(
+def __parse_keywords_for_bbtool(
     command,
     extra="",
     input_keys=["input", "fastq", "sample"],
@@ -194,7 +194,7 @@ def __parse_bbtools_keywords(
     Parse rule input, output and params into a bbmap command.
 
     Run as.
-        parse_bbmap(
+        __parse_keywords_for_bbtool(
         **snakemake.input, **snakemake.params, **snakemake.output
 
     Special params:
@@ -251,7 +251,7 @@ def __check_for_duplicated_keywords(snakemake):
         raise Exception("Duplicated keywords in input, output or params")
 
 
-def parse_bbmap(snakemake):
+def parse_bbtool(snakemake):
     from snakemake_wrapper_utils.java import get_java_opts
 
     java_opts = get_java_opts(snakemake)
@@ -264,7 +264,7 @@ def parse_bbmap(snakemake):
     ## keywords
     __check_for_duplicated_keywords(snakemake)
 
-    command = parse_bbmap(**snakemake.input, **snakemake.params, **snakemake.output)
+    command = __parse_keywords_for_bbtool(**snakemake.input, **snakemake.params, **snakemake.output)
     command += f" {java_opts} t={snakemake.threads} {log}"
 
 
@@ -275,7 +275,7 @@ def parse_bbmap(snakemake):
 from snakemake.shell import shell
 
 
-command = parse_bbmap(snakemake)
+command = parse_bbtool(snakemake)
 logger.info(f"run command:\n\n\t{command}\n")
 
 shell(command)
