@@ -36,7 +36,7 @@ def infer_stdout_and_stderr(log) -> tuple:
                 stderr_file = log[key]
 
         for key in ["stdout", "out"]:
-            if hasattr(log,key):
+            if hasattr(log, key):
                 stdout_file = log[key]
 
         if (stderr_file is None) or (stderr_file is None):
@@ -60,7 +60,9 @@ def multiple_log_fmt_shell(snakemake, append_stderr=False, append_stdout=False) 
 
     if stdout_file is None:
         # log both to the same file
-        return snakemake.log_fmt_shell(append=append_stderr or append_stdout,stdout=True,stderr=True)
+        return snakemake.log_fmt_shell(
+            append=append_stderr or append_stdout, stdout=True, stderr=True
+        )
     else:
         # sucessfully inferred und stderr and stdout file
 
@@ -123,6 +125,7 @@ logger = logging.getLogger(__file__)
 parsed_input, parsed_output = False, False
 
 import warnings
+
 
 def _parse_bbmap_in_out(input_or_output, values):
     """
@@ -189,7 +192,7 @@ def __parse_keywords_for_bbtool(
     extra="",
     input_keys=["input", "fastq", "sample"],
     output_keys=["out", "output"],
-    ignore_keys=["flag","define_threads"],
+    ignore_keys=["flag", "define_threads"],
     **kwargs,
 ):
     """
@@ -218,7 +221,6 @@ def __parse_keywords_for_bbtool(
         command += f" {extra} "
 
     for k in kwargs:
-
         logger.info(f"Parse keyword: {k}")
         if k in ignore_keys:
             logger.info(f"{k} argument detected, This is not passed to the bbtool.")
@@ -265,20 +267,20 @@ def __check_for_duplicated_keywords(snakemake):
 def parse_bbtool(snakemake):
     from snakemake_wrapper_utils.java import get_java_opts
 
-
-
     if not hasattr(snakemake.params, "command"):
         raise Exception("params needs 'command' argument")
 
     ## keywords
     __check_for_duplicated_keywords(snakemake)
 
-    command = __parse_keywords_for_bbtool(**snakemake.input, **snakemake.params, **snakemake.output)
+    command = __parse_keywords_for_bbtool(
+        **snakemake.input, **snakemake.params, **snakemake.output
+    )
 
     if snakemake.params.get("define_threads", True):
         command += f" threads={snakemake.threads} "
 
-    #memory and log
+    # memory and log
     java_opts = get_java_opts(snakemake)
     log = multiple_log_fmt_shell(snakemake, append_stderr=True)
 
