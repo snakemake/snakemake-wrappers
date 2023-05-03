@@ -2,8 +2,8 @@ rule denoisereadcounts:
     input:
         hdf5=["a.counts.hdf5"],
     output:
-        stdCopyRatio="a.standardizedCR.tsv",
-        denoisedCopyRatio="a.denoisedCR.tsv",
+        std_copy_ratio="a.standardizedCR.tsv",
+        denoised_copy_ratio="a.denoisedCR.tsv",
     log:
         "logs/gatk/denoisereadcounts.log",
     params:
