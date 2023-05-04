@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.29.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.28.0...v1.29.0) (2023-05-04)
+
+
+### Features
+
+* Add seqkit subseq ([#1318](https://www.github.com/snakemake/snakemake-wrappers/issues/1318)) ([262d9bb](https://www.github.com/snakemake/snakemake-wrappers/commit/262d9bb50cf8d03edca00916bc29fe5f1009209a))
+* Deeptools Alignement seive ([#1320](https://www.github.com/snakemake/snakemake-wrappers/issues/1320)) ([b7cb7ab](https://www.github.com/snakemake/snakemake-wrappers/commit/b7cb7ab5b70c1eec3b89d02f0bc94a2294e6a9aa))
+* fix threads and new IO options in Bowtie2 ([#1324](https://www.github.com/snakemake/snakemake-wrappers/issues/1324)) ([a9c7117](https://www.github.com/snakemake/snakemake-wrappers/commit/a9c711718533f18429db50fb052549c49aa6fcf7))
+* gatk CallCopyRatioSegments ([#1323](https://www.github.com/snakemake/snakemake-wrappers/issues/1323)) ([528c91a](https://www.github.com/snakemake/snakemake-wrappers/commit/528c91a5b87ffe0d34964b01478a9b5d520ed80f))
+* gatk collectalleliccount wrapper ([#1316](https://www.github.com/snakemake/snakemake-wrappers/issues/1316)) ([158c328](https://www.github.com/snakemake/snakemake-wrappers/commit/158c328d1b846fb45c90c946edbcf2a7a0da15de))
+* gatk collectreadcount wrapper ([#1315](https://www.github.com/snakemake/snakemake-wrappers/issues/1315)) ([ee55de4](https://www.github.com/snakemake/snakemake-wrappers/commit/ee55de4cc2a850775ef94d5394f9a220844d8a7b))
+* gatk DenoisedReadCounts wrapper ([#1319](https://www.github.com/snakemake/snakemake-wrappers/issues/1319)) ([0288ace](https://www.github.com/snakemake/snakemake-wrappers/commit/0288ace7e61fbf2adf79514eefa2ff8f3566041e))
+* gatk modelsegments wrapper ([#1321](https://www.github.com/snakemake/snakemake-wrappers/issues/1321)) ([dfecc26](https://www.github.com/snakemake/snakemake-wrappers/commit/dfecc26de3c649c4661ac26203d846a54f7dd0b0))
+* Pyroe make-spliced+unspliced ([#1290](https://www.github.com/snakemake/snakemake-wrappers/issues/1290)) ([96a2cbb](https://www.github.com/snakemake/snakemake-wrappers/commit/96a2cbbf667fb45676087c2002fa875a76982e6b))
+
+
+### Bug Fixes
+
+* Lofreq indelqual ([#1325](https://www.github.com/snakemake/snakemake-wrappers/issues/1325)) ([dabecf0](https://www.github.com/snakemake/snakemake-wrappers/commit/dabecf065975b7e53102221a63ec11b2c812cdee))
+
+
+### Performance Improvements
+
+* Updated version of datavzrd to 2.19.1 ([#1328](https://www.github.com/snakemake/snakemake-wrappers/issues/1328)) ([fd89645](https://www.github.com/snakemake/snakemake-wrappers/commit/fd89645aa28773f872a3b2f54192d66129852d83))
+
 ## [1.28.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.27.0...v1.28.0) (2023-04-28)
 
 
