@@ -7,7 +7,7 @@ description: |
 authors:
   - Thibault Dayris
 input:
-  - colData: Path to the file describing the experiment design (TSV formatted file). First column contains sample names. (Required, other input are mutually exclusives)
+  - colData: Path to the file describing the experiment design (TSV formatted file). First column contains sample names.
   - dds: Path to the DESeqDataSet object (RDS formatted file) *OR*
   - txi: Path to the tximport/tximeta SummarizedExperiment object (RDS formatted file) *OR*
   - se: Path to the RangedSummarizedExperiment object (RDS formatted file) *OR*
