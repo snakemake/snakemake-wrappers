@@ -27,5 +27,5 @@ params:
 note: |
   * `dds` input is here to enable filters on already existing DESeqDataSet objects.
   * Use sould provide, either (`dds`), or (`txi` and `colData`), or (`se`), or (`matrix` and `colData`), or (`counts` and `colData`), or (`htseq_dir` and `sample_table`).
-  * According to DESeq2 documentation, a `sample_table` should be a TSV file with at least two columns: `sampleName` and `fileName`. Other columns contains factors and levels information.
-  * According to DESeq2 documentation, a `colData` table should be a TSV file with samples names being on the first column. Other columns contains factors and levels information.
+  * According to DESeq2 documentation, a `sample_table` should be a TSV file with at least two columns: `sampleName` and `fileName`. Other columns may contain factors and levels information.
+  * According to DESeq2 documentation, a `colData` table should be a TSV file with samples names being on the first column. Other columns may contain factors and levels information.
