@@ -1,4 +1,4 @@
-name: DESeqDataSetFromTximport
+name: DESeqDataSet
 url: https://bioconductor.org/packages/3.16/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#input-data
 description: |
   Create a DESeqDataSet object from a tximport SummarizedExperiment, from a directory containing HTSeq counts, 
