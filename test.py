@@ -934,37 +934,37 @@ def test_dada2_add_species():
 def test_deseq2_deseqdataset():
     # from HTSeqcount / Featurecount
     run(
-        "bio/deseq2/DESeqDataSet",
+        "bio/deseq2/deseqdataset",
         ["snakemake", "--cores", "1", "--use-conda", "dds_htseq.RDS"],
     )
 
     # DDS import
     run(
-        "bio/deseq2/DESeqDataSet",
+        "bio/deseq2/deseqdataset",
         ["snakemake", "--cores", "1", "--use-conda", "dds_minimal.RDS"],
     )
 
     # txi import
     run(
-        "bio/deseq2/DESeqDataSet",
+        "bio/deseq2/deseqdataset",
         ["snakemake", "--cores", "1", "--use-conda", "dds_txi.RDS"],
     )
 
     # SE import
     run(
-        "bio/deseq2/DESeqDataSet",
+        "bio/deseq2/deseqdataset",
         ["snakemake", "--cores", "1", "--use-conda", "dds_se.RDS"],
     )
 
     # R matrix import
     run(
-        "bio/deseq2/DESeqDataSet",
+        "bio/deseq2/deseqdataset",
         ["snakemake", "--cores", "1", "--use-conda", "dds_rmatrix.RDS"],
     )
 
     # text matrix import
     run(
-        "bio/deseq2/DESeqDataSet",
+        "bio/deseq2/deseqdataset",
         ["snakemake", "--cores", "1", "--use-conda", "dds_matrix.RDS"],
     )
 
