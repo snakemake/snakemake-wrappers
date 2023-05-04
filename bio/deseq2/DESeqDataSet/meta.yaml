@@ -7,7 +7,7 @@ description: |
 authors:
   - Thibault Dayris
 input:
-  - coldata: Path to the file describing the experiment design (TSV formatted file). First column contains sample names. (Required, other input are mutually exclusives)
+  - colData: Path to the file describing the experiment design (TSV formatted file). First column contains sample names. (Required, other input are mutually exclusives)
   - dds: Path to the DESeqDataSet object (RDS formatted file) *OR*
   - txi: Path to the tximport/tximeta SummarizedExperiment object (RDS formatted file) *OR*
   - se: Path to the RangedSummarizedExperiment object (RDS formatted file) *OR*
@@ -25,4 +25,7 @@ params:
   - min_count: Minimum number of counted/estimated reads threshold (do not filter by default)
   - extra: Optional argument passed to DESeq2 besdes `txi`, `colData`, `design`, `htseq`, `directory`, `se`, `sampleTable`, or `tidy`
 note: |
-  `dds` input is here to enable filters on already existing DESeqDataSet objects
+  * `dds` input is here to enable filters on already existing DESeqDataSet objects.
+  * Use sould provide, either (`dds`), or (`txi` and `colData`), or (`se`), or (`matrix` and `colData`), or (`counts` and `colData`), or (`htseq_dir` and `sample_table`).
+  * According to DESeq2 documentation, a `sample_table` should be a TSV file with at least two columns: `sampleName` and `fileName`. Other columns contains factors and levels information.
+  * According to DESeq2 documentation, a `colData` table should be a TSV file with samples names being on the first column. Other columns contains factors and levels information.

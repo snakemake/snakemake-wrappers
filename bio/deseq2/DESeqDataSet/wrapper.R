@@ -22,8 +22,8 @@ base::message("Libraries loaded")
 
 
 # A small function to add user-defined parameters
-# if and only if this parameter is not null and not
-# empty
+# if and only if this parameter is not null **and** not
+# empty (R does not like trailing commas on function calls)
 add_extra <- function(wrapper_defined) {
     if ("extra" %in% base::names(snakemake@params)) {
         # Then user defined optional parameters
@@ -46,6 +46,7 @@ add_extra <- function(wrapper_defined) {
     base::return(wrapper_defined)
 }
 
+colData <- NULL
 if ("colData" %in% base::names(snakemake@input)) {
     # Load colData
     colData <- utils::read.table(
@@ -65,6 +66,13 @@ dds_command <- NULL
 
 # Case user provides a Tximport/Tximeta object
 if ("txi" %in% base::names(x = snakemake@input)) {
+    if (base::is.null(colData)) {
+        base::stop(
+            "When a `txi` dataset is provided in input,",
+            " then a `colData` is expected"
+        )
+    }
+
     # Loading tximport object
     txi <- base::readRDS(file = snakemake@input[["txi"]])
 
@@ -113,7 +121,7 @@ if ("txi" %in% base::names(x = snakemake@input)) {
 
     # The columns `sampleName` and `fileName`
     # are expected to be characters, while the rest
-    # is supposed to be factors.
+    # (if any) is supposed to be factors.
     sample_table$sampleName <- base::lapply(
         sample_table$sampleName, base::as.character
     )
@@ -135,6 +143,13 @@ if ("txi" %in% base::names(x = snakemake@input)) {
 
 # Case user provides an R count matrix as input
 } else if ("matrix" %in% base::names(x = snakemake@input)) {
+    if (base::is.null(colData)) {
+        base::stop(
+            "When a R `matrix` is provided in input,",
+            " then a `colData` is expected"
+        )
+    }
+
     # Loading RangedSummarizedExperiment object
     count_matrix <- base::readRDS(file = snakemake@input[["matrix"]])
     base::print(head(count_matrix))
@@ -154,6 +169,12 @@ if ("txi" %in% base::names(x = snakemake@input)) {
 
 # Case user provides a TSV count matrix as input
 } else if ("counts" %in% base::names(x = snakemake@input)) {
+    if (base::is.null(colData)) {
+        base::stop(
+            "When `counts` are provided in input, then a `colData` is expected"
+        )
+    }
+
     # Loading count table
     count_matrix <- utils::read.table(
         file = snakemake@input[["counts"]],
@@ -230,6 +251,11 @@ if (is_factor && is_reference && is_test) {
         factor_name,
         "`. Other levels have been filtered out."
     )
+} else {
+    base::message(
+        "No relevel performed, since either `factor`, `reference_level`,",
+        " and/or `tested_level` are missing in `snakemake@params`."
+    )
 }
 
 # Dropping null counts (or below threshold) on user demand
@@ -244,6 +270,11 @@ if ("min_count" %in% base::names(x = snakemake@params)) {
     )
     keep <- rowSums(counts(dds)) >= count_filter
     dds <- dds[keep, ]
+} else {
+    base::message(
+        "No count filtering performed since `min_count` is missing ",
+        "in `snakemake@params`"
+    )
 }
 
 # Saving DESeqDataSet object
@@ -251,7 +282,7 @@ base::saveRDS(
     object = dds,
     file = base::as.character(x = snakemake@output[[1]])
 )
-base::message("Process over")
+base::message("DDS object saved, process over")
 
 # Proper syntax to close the connection for the log file
 # but could be optional for Snakemake wrapper
