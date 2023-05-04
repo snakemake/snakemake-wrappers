@@ -24,7 +24,14 @@ params:
   - min_count: Minimum number of counted/estimated reads threshold (do not filter by default)
   - extra: Optional argument passed to DESeq2, apart from `txi`, `colData`, `design`, `htseq`, `directory`, `se`, `sampleTable`, or `tidy`.
 note: |
-  * `dds` input is here to enable filters on already existing DESeqDataSet objects.
-  * Use sould provide, either (`dds`), or (`txi` and `colData`), or (`se`), or (`matrix` and `colData`), or (`counts` and `colData`), or (`htseq_dir` and `sample_table`).
-  * According to DESeq2 documentation, a `sample_table` should be a TSV file with at least two columns: `sampleName` and `fileName`. Other columns may contain factors and levels information.
-  * According to DESeq2 documentation, a `colData` table should be a TSV file with samples names being on the first column. Other columns may contain factors and levels information.
+  * `dds` input is here to enable filters on already existing `DESeqDataSet` objects.
+  * User should provide either:
+    * `dds`
+    * `txi` and `colData`
+    * `se`
+    * `matrix` and `colData`
+    * `counts` and `colData`
+    * `htseq_dir` and `sample_table`
+  * According to `DESeq2` documentation, a `sample_table` should be a TSV file with at least two columns: `sampleName` and `fileName`. Other columns may contain factors and levels information.
+  * According to `DESeq2` documentation, a `colData` table should be a TSV file with sample names on the first column. Other columns may contain factors and levels information.
+  
