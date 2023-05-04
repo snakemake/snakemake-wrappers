@@ -23,7 +23,7 @@ params:
   - tested_level: Optional tested level name, in case relevel is needed
   - factor: Factor of interest, in case relevel is needed
   - min_count: Minimum number of counted/estimated reads threshold (do not filter by default)
-  - extra: Optional argument passed to DESeq2 besdes `txi`, `colData`, `design`, `htseq`, `directory`, `se`, `sampleTable`, or `tidy`
+  - extra: Optional argument passed to DESeq2, apart from `txi`, `colData`, `design`, `htseq`, `directory`, `se`, `sampleTable`, or `tidy`.
 note: |
   * `dds` input is here to enable filters on already existing DESeqDataSet objects.
   * Use sould provide, either (`dds`), or (`txi` and `colData`), or (`se`), or (`matrix` and `colData`), or (`counts` and `colData`), or (`htseq_dir` and `sample_table`).
