@@ -1,7 +1,6 @@
-rule test_deseqdataset_dds:
+rule test_deseqdataset_filtering:
     input:
         dds="dataset/dds.RDS",
-        colData="coldata.tsv",
     output:
         "dds_minimal.RDS",
     threads: 1
@@ -18,7 +17,7 @@ rule test_deseqdataset_dds:
         "master/bio/deseq2/DESeqDataSet"
 
 
-rule test_deseqdataset_txi:
+rule test_deseqdataset_from_tximport:
     input:
         txi="dataset/txi.RDS",
         colData="coldata.tsv",
@@ -38,10 +37,9 @@ rule test_deseqdataset_txi:
         "master/bio/deseq2/DESeqDataSet"
 
 
-rule test_deseqdataset_se:
+rule test_deseqdataset_from_ranged_se:
     input:
         se="dataset/se.RDS",
-        colData="coldata.tsv",
     output:
         "dds_se.RDS",
     threads: 1
@@ -58,7 +56,7 @@ rule test_deseqdataset_se:
         "master/bio/deseq2/DESeqDataSet"
 
 
-rule test_deseqdataset_r_matrix:
+rule test_deseqdataset_from_r_matrix:
     input:
         matrix="dataset/matrix.RDS",
         colData="coldata.tsv",
@@ -78,7 +76,7 @@ rule test_deseqdataset_r_matrix:
         "master/bio/deseq2/DESeqDataSet"
 
 
-rule test_deseqdataset_tsv_matrix:
+rule test_deseqdataset_from_tsv_matrix:
     input:
         counts="dataset/counts.tsv",
         colData="coldata.tsv",
