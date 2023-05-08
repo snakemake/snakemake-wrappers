@@ -18,7 +18,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 mem_per_thread_mb = int(get_mem(snakemake) / snakemake.threads)
 
 with tempfile.TemporaryDirectory() as tmpdir:
-    tmp_prefix = Path(tmpdir) / "samtools_sort."
+    tmp_prefix = Path(tmpdir) / "samtools_sort"
 
     shell(
         "samtools sort {samtools_opts} -m {mem_per_thread_mb}M {extra} -T {tmp_prefix} {snakemake.input[0]} {log}"
