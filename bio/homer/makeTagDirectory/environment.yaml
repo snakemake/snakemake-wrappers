@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - homer =4.11
-  - samtools =1.16.1
+  - samtools =1.17

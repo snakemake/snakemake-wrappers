@@ -1,0 +1,16 @@
+name: gatk DenoiseReadCounts
+url: https://gatk.broadinstitute.org/hc/en-us/articles/13832751133851-DenoiseReadCounts
+description: |
+  Denoises read counts to produce denoised copy ratios
+authors:
+  - Patrik Smeds
+input:
+  - hdf5: TSV or HDF5 file with counts from CollectReadCounts.
+  - pon: Panel-of-normals from CreateReadCountPanelOfNormals (optional)
+  - gc_interval: GC-content annotated-intervals from {@link AnnotateIntervals (optional)
+output:
+  - std_copy_ratio: Standardized-copy-ratios file
+  - denoised_copy_ratio: Denoised-copy-ratios file
+params:
+  - java_opts: additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  - extra: additional program arguments.
