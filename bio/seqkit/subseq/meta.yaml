@@ -1,0 +1,13 @@
+name: SeqKit subseq
+url: https://bioinf.shenwei.me/seqkit/usage/#subseq
+description: |
+  Run SeqKit grep to get subsequences by region/gtf/bed, including flanking sequences.
+authors:
+  - Connor McEntee
+input:
+  - fasta: Input FASTA file
+  - gtf: GTF (version 2.2) file
+output:
+  - fasta: Output FASTA file
+params:
+  - extra: Optional parameters

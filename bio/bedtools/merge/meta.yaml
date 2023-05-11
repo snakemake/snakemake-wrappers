@@ -3,3 +3,11 @@ description: Merge entries in one or multiple BED/BAM/VCF/GFF files with bedtool
 url: https://bedtools.readthedocs.io/en/latest/content/tools/merge.html
 authors:
   - Jan Forster
+input:
+  - Path or list of paths to interval(s) file(s) (BED/GFF/VCF/BAM)
+output:
+  - Path to merged interval(s) file.
+params:
+  - extra: additional program arguments (except for `-i`)
+notes: |
+  * Warning: If multiple files are provided in input, then this wrapper requires exactly 3 threads. Else, it requires exactly one thread.

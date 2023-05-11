@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - pyroe=0.9.1
+  - bedtools=2.30.0

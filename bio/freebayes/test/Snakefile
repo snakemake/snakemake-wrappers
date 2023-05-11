@@ -1,21 +1,49 @@
 rule freebayes:
     input:
+        alns="mapped/{sample}.bam",
+        idxs="mapped/{sample}.bam.bai",
         ref="genome.fasta",
-        # you can have a list of samples here
-        samples="mapped/{sample}.bam",
-        # the matching BAI indexes have to present for freebayes
-        indexes="mapped/{sample}.bam.bai",
-        # optional BED file specifying chromosomal regions on which freebayes 
-        # should run, e.g. all regions that show coverage
-        #regions="path/to/region-file.bed"
     output:
-        "calls/{sample}.vcf",  # either .vcf or .bcf
+        vcf = "calls/{sample}.vcf",
     log:
         "logs/freebayes/{sample}.log",
     params:
-        extra="",  # optional parameters
-        chunksize=100000,  # reference genome chunk size for parallelization (default: 100000)
-        normalize=False,  # optional flag to use bcftools norm to normalize indels (Valid params are -a, -f, -m, -D or -d)
+        normalize="-a",
     threads: 2
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/freebayes"
+
+
+rule freebayes_bcf:
+    input:
+        alns="mapped/{sample}.bam",
+        ref="genome.fasta",
+    output:
+        bcf="calls/{sample}.bcf",
+    log:
+        "logs/freebayes/{sample}.bcf.log",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/freebayes"
+
+
+rule freebayes_bed:
+    input:
+        alns="mapped/{sample}.bam",
+        ref="genome.fasta",
+        regions="regions.bed",
+    output:
+        vcf="calls/{sample}.vcf.gz",
+    log:
+        "logs/freebayes/{sample}.bed.log",
+    params:
+        chunksize=50000,
+    threads: 2
+    resources:
+        mem_mb=1024,
     wrapper:
         "master/bio/freebayes"
