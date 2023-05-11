@@ -4,11 +4,22 @@ url: http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml
 authors:
   - Johannes Köster
   - Filipe G. Vieira
+  - Thibault Dayris
 input:
-  - FASTQ file(s)
-  - Bowtie2 indexed reference index
+  - sample: FASTQ file(s)
+  - idx: Bowtie2 indexed reference index
+  - ref: Optional path to genome sequence (FASTA)
+  - ref_fai: Optional path to reference genome sequence index (FAI)
 output:
-  - SAM/BAM/CRAM file
+  - SAM/BAM/CRAM file. This must be the first output file in the output file list.
+  - idx: Optional path to bam index.
+  - metrics: Optional path to metrics file.
+  - unaligned: Optional path to unaligned unpaired reads.
+  - unpaired: Optional path to unpaired reads that aligned at least once.
+  - unconcordant: Optional path to pairs that didn't align concordantly.
+  - concordant: Optional path to pairs that aligned concordantly at least once.
+params:
+  - extra: additional program arguments (except for `-x`, `-U`, `-1`, `-2`, `--interleaved`, `-b`, `--met-file`, `--un`, `--al`, `--un-conc`, `--al-conc`, `-f`, `--tab6`, `--tab5`, `-q`, or `-p/--threads`)
+  - interleaved: Input `sample` contains interleaved paired-end FASTQ/FASTA reads. `False`(default) or `True`.
 notes: |
-  * The `extra` param allows for additional program arguments.
   * This wrapper uses an inner pipe. Make sure to use at least two threads in your Snakefile.

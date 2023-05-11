@@ -3,3 +3,13 @@ description: Increase the size of each feature in a BED/BAM/VCF by a specified f
 url: https://bedtools.readthedocs.io/en/latest/content/tools/slop.html
 authors:
   - Jan Forster
+input:
+  - Path to an interval file (BED/GFF/VCF)
+output:
+  - Path to the expanded intervals file
+params:
+  - genome: Path to a genome file
+  - extra: additional program arguments (except for `-i` or `-g`)
+notes: |
+  * Extra parameters requires either `-b` or (`-l` and `-r`)
+  * This program/wrapper does not handle multi-threading.
