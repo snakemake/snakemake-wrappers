@@ -6,7 +6,7 @@ description: >
 authors:
   - Thibault Dayris
 input:
-  - bam: Path to alignment (BAM)
+  - bams: Path to alignment (BAM)
   - bed: Path to region file (BED)
   - blacklist: Path to blacklisted regions (BED)
 output:
