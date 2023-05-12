@@ -1,0 +1,20 @@
+name: gffread
+url: http://ccb.jhu.edu/software/stringtie/gff.shtml
+description: >
+  Validate, filter, convert and perform various other operations on GFF/GTF files with Gffread
+author:
+  - Thibault Dayris
+input:
+  - fasta: Path to genome file (FASTA formatted).
+  - annotation: Path to genome annotation (GTF/GTF/BED formatted).
+  - ids: Optional path to records/transcript to keep.
+  - nids: Optional path to records/transcripts to discard.
+  - seq_info: Optional path to sequence information, a TSV formatted text file containing `<seq-name> <seq-length> <seq-description>`
+  - sort_by: Optional path to a text file containing the ordered list of reference sequences.
+  - attr: Optional text file containing comma-separated list of annotation attributes to keep.
+  - chr_replace: Optional path to a TSV-formatted text file containing `<original_ref_ID> <new_ref_ID>`.
+output:
+  - records: Path to genome sequence/annotation in the requested format, containing the requested information.
+  - dupinfo: Optional path to clustering/merging information
+notes: |
+  Input/output formats are automatically detected from their file extension.
