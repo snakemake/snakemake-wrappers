@@ -709,6 +709,20 @@ def test_open_cravat_module():
 
 
 @skip_if_not_modified
+def test_salmon_tximport_meta():
+    run(
+        "meta/bio/salmon_tximport",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "tximport/SummarizedExperimentObject.RDS",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_dada2_se_meta():
     run(
         "meta/bio/dada2_se",
