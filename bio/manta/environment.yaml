@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - manta =1.6.0
-  - bcftools =1.16
+  - bcftools =1.17

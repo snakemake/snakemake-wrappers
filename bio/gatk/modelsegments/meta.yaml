@@ -1,0 +1,19 @@
+name: gatk ModelSegments
+url: https://gatk.broadinstitute.org/hc/en-us/articles/13832747657883-ModelSegments
+description: |
+  Models segmented copy ratios from denoised copy ratios and segmented minor-allele fractions from allelic counts
+authors:
+  - Patrik Smeds
+input:
+  - denoised_copy_ratios: denoised_copy_ratios file (optional)
+  - allelic_counts: allelic_counts file (optional)
+  - normal_allelic_counts: matched_normal allelic-counts (optional)
+  - segments: segments Picard interval-list file containing a multisample segmentation output by a previous run (optional)
+output:
+  - list of files ending with either '.modelFinal.seq', '.cr.seg', '.af.igv.seg', '.cr.igv.seg', '.hets.tsv', '.modelBegin.cr.param', '.modelBegin.af.param', '.modelBegin.seg', '.modelFinal.af.param' or '.modelFinal.cr.param'
+params:
+  - java_opts: additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  - extra: additional program arguments.
+note: |
+  * Expected input is either `denoised_copy_ratios` or `allelic_counts`
+  * `normal_allelic_counts` must be provided together with `allelic_counts`

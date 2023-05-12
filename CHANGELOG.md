@@ -1,5 +1,62 @@
 # Changelog
 
+## [1.29.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.28.0...v1.29.0) (2023-05-04)
+
+
+### Features
+
+* Add seqkit subseq ([#1318](https://www.github.com/snakemake/snakemake-wrappers/issues/1318)) ([262d9bb](https://www.github.com/snakemake/snakemake-wrappers/commit/262d9bb50cf8d03edca00916bc29fe5f1009209a))
+* Deeptools Alignement seive ([#1320](https://www.github.com/snakemake/snakemake-wrappers/issues/1320)) ([b7cb7ab](https://www.github.com/snakemake/snakemake-wrappers/commit/b7cb7ab5b70c1eec3b89d02f0bc94a2294e6a9aa))
+* fix threads and new IO options in Bowtie2 ([#1324](https://www.github.com/snakemake/snakemake-wrappers/issues/1324)) ([a9c7117](https://www.github.com/snakemake/snakemake-wrappers/commit/a9c711718533f18429db50fb052549c49aa6fcf7))
+* gatk CallCopyRatioSegments ([#1323](https://www.github.com/snakemake/snakemake-wrappers/issues/1323)) ([528c91a](https://www.github.com/snakemake/snakemake-wrappers/commit/528c91a5b87ffe0d34964b01478a9b5d520ed80f))
+* gatk collectalleliccount wrapper ([#1316](https://www.github.com/snakemake/snakemake-wrappers/issues/1316)) ([158c328](https://www.github.com/snakemake/snakemake-wrappers/commit/158c328d1b846fb45c90c946edbcf2a7a0da15de))
+* gatk collectreadcount wrapper ([#1315](https://www.github.com/snakemake/snakemake-wrappers/issues/1315)) ([ee55de4](https://www.github.com/snakemake/snakemake-wrappers/commit/ee55de4cc2a850775ef94d5394f9a220844d8a7b))
+* gatk DenoisedReadCounts wrapper ([#1319](https://www.github.com/snakemake/snakemake-wrappers/issues/1319)) ([0288ace](https://www.github.com/snakemake/snakemake-wrappers/commit/0288ace7e61fbf2adf79514eefa2ff8f3566041e))
+* gatk modelsegments wrapper ([#1321](https://www.github.com/snakemake/snakemake-wrappers/issues/1321)) ([dfecc26](https://www.github.com/snakemake/snakemake-wrappers/commit/dfecc26de3c649c4661ac26203d846a54f7dd0b0))
+* Pyroe make-spliced+unspliced ([#1290](https://www.github.com/snakemake/snakemake-wrappers/issues/1290)) ([96a2cbb](https://www.github.com/snakemake/snakemake-wrappers/commit/96a2cbbf667fb45676087c2002fa875a76982e6b))
+
+
+### Bug Fixes
+
+* Lofreq indelqual ([#1325](https://www.github.com/snakemake/snakemake-wrappers/issues/1325)) ([dabecf0](https://www.github.com/snakemake/snakemake-wrappers/commit/dabecf065975b7e53102221a63ec11b2c812cdee))
+
+
+### Performance Improvements
+
+* Updated version of datavzrd to 2.19.1 ([#1328](https://www.github.com/snakemake/snakemake-wrappers/issues/1328)) ([fd89645](https://www.github.com/snakemake/snakemake-wrappers/commit/fd89645aa28773f872a3b2f54192d66129852d83))
+
+## [1.28.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.27.0...v1.28.0) (2023-04-28)
+
+
+### Features
+
+* Pyroe make-spliced+intronic ([#1288](https://www.github.com/snakemake/snakemake-wrappers/issues/1288)) ([352d6f3](https://www.github.com/snakemake/snakemake-wrappers/commit/352d6f38218fba384e2ab93076966245a7494bc0))
+
+
+### Performance Improvements
+
+* autobump bio/bbtools/loglog ([#1304](https://www.github.com/snakemake/snakemake-wrappers/issues/1304)) ([9316253](https://www.github.com/snakemake/snakemake-wrappers/commit/93162531beede4dd06096630c4c1199022792ea5))
+* autobump bio/bismark/bismark ([#1303](https://www.github.com/snakemake/snakemake-wrappers/issues/1303)) ([fa68ba8](https://www.github.com/snakemake/snakemake-wrappers/commit/fa68ba87f07eb5eb8499c16cc3a6f9888ced7bf0))
+* autobump bio/fgbio/annotatebamwithumis ([#1312](https://www.github.com/snakemake/snakemake-wrappers/issues/1312)) ([13cb583](https://www.github.com/snakemake/snakemake-wrappers/commit/13cb583b4245d88127e13b6248fac76eddada186))
+* autobump bio/gatk/intervallisttobed ([#1305](https://www.github.com/snakemake/snakemake-wrappers/issues/1305)) ([d895b8f](https://www.github.com/snakemake/snakemake-wrappers/commit/d895b8fa7a73083175f51f1c4a46505d42eab22e))
+* autobump bio/minimap2/index ([#1308](https://www.github.com/snakemake/snakemake-wrappers/issues/1308)) ([a578d2f](https://www.github.com/snakemake/snakemake-wrappers/commit/a578d2f4bb66cfd0a862e0ea6dfa5e099aace832))
+* autobump bio/paladin/prepare ([#1299](https://www.github.com/snakemake/snakemake-wrappers/issues/1299)) ([1e27b4c](https://www.github.com/snakemake/snakemake-wrappers/commit/1e27b4cef31a985dace89b17cb04d8395a211e0e))
+* autobump bio/picard/mergevcfs ([#1307](https://www.github.com/snakemake/snakemake-wrappers/issues/1307)) ([7a8a8aa](https://www.github.com/snakemake/snakemake-wrappers/commit/7a8a8aa893fcd0b5be78c3576e7e25335e010492))
+* autobump bio/qualimap/rnaseq ([#1306](https://www.github.com/snakemake/snakemake-wrappers/issues/1306)) ([0ba2d3e](https://www.github.com/snakemake/snakemake-wrappers/commit/0ba2d3ec80362179223149bf06d97e3f0b35bc84))
+* autobump bio/samtools/merge ([#1300](https://www.github.com/snakemake/snakemake-wrappers/issues/1300)) ([69332cd](https://www.github.com/snakemake/snakemake-wrappers/commit/69332cd327df12de1935f9c5e1e993f5c33900f4))
+* autobump bio/samtools/mpileup ([#1310](https://www.github.com/snakemake/snakemake-wrappers/issues/1310)) ([f72ccf0](https://www.github.com/snakemake/snakemake-wrappers/commit/f72ccf0b3ef51a8ceeda5474367902781103edc1))
+* autobump bio/seqkit/grep ([#1301](https://www.github.com/snakemake/snakemake-wrappers/issues/1301)) ([dfa1f4d](https://www.github.com/snakemake/snakemake-wrappers/commit/dfa1f4d2ddbe03295c8c4eb9e888e15995333b4c))
+* autobump bio/snpsift/dbnsfp ([#1309](https://www.github.com/snakemake/snakemake-wrappers/issues/1309)) ([007437e](https://www.github.com/snakemake/snakemake-wrappers/commit/007437e877d48a091e3da77c1abbb152f0987e37))
+* autobump bio/vembrane/filter ([#1311](https://www.github.com/snakemake/snakemake-wrappers/issues/1311)) ([15dc129](https://www.github.com/snakemake/snakemake-wrappers/commit/15dc12911e108fca225ff1a049b7dcb0115385dd))
+* update datavzrd to 2.18.5 ([#1313](https://www.github.com/snakemake/snakemake-wrappers/issues/1313)) ([0089e88](https://www.github.com/snakemake/snakemake-wrappers/commit/0089e8825eb6b962be66da9a0964bd658b9b96fc))
+
+## [1.27.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.26.0...v1.27.0) (2023-04-26)
+
+
+### Features
+
+* Update datavzrd to 2.18.4 and add extra params ([#1292](https://www.github.com/snakemake/snakemake-wrappers/issues/1292)) ([fa11c1c](https://www.github.com/snakemake/snakemake-wrappers/commit/fa11c1cc37361f879d47ae9dbcf5d7e410003cb1))
+
 ## [1.26.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.25.0...v1.26.0) (2023-04-21)
 
 

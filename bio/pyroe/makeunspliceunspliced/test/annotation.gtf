@@ -1,0 +1,27 @@
+##gff-version 2
+##source-version rtracklayer 1.52.1
+##date 2021-09-14
+chr1	rtracklayer	exon	1	2	.	+	.	gene_id "g1"; gene_name "g1"; transcript_id "tx1.1"; exon_id "E1"
+chr1	rtracklayer	exon	36	45	.	+	.	gene_id "g1"; gene_name "g1"; transcript_id "tx1.1"; exon_id "E2"
+chr1	rtracklayer	exon	71	80	.	+	.	gene_id "g1"; gene_name "g1"; transcript_id "tx1.1"; exon_id "E3"
+chr1	rtracklayer	exon	46	55	.	+	.	gene_id "g1"; gene_name "g1"; transcript_id "tx1.2"; exon_id "E4"
+chr1	rtracklayer	exon	91	100	.	+	.	gene_id "g1"; gene_name "g1"; transcript_id "tx1.2"; exon_id "E5"
+chr1	rtracklayer	exon	121	130	.	+	.	gene_id "g1"; gene_name "g1"; transcript_id "tx1.3"; exon_id "E6"
+chr1	rtracklayer	exon	156	160	.	+	.	gene_id "g1"; gene_name "g1"; transcript_id "tx1.3"; exon_id "E7"
+chr1	rtracklayer	exon	191	200	.	+	.	gene_id "g1"; gene_name "g1"; transcript_id "tx1.3"; exon_id "E8"
+chr1	rtracklayer	transcript	1	80	.	+	.	gene_id "g1"; gene_name "g1"; transcript_id "tx1.1";
+chr1	rtracklayer	transcript	46	100	.	+	.	gene_id "g1"; gene_name "g1"; transcript_id "tx1.2";
+chr1	rtracklayer	transcript	121	200	.	+	.	gene_id "g1"; gene_name "g1"; transcript_id "tx1.3";
+chr1	rtracklayer	gene	1	200	.	+	.	gene_id "g1"; gene_name "g1";
+chr2	rtracklayer	exon	1	2	.	-	.	gene_id "g2"; gene_name "g2"; transcript_id "tx2.1"; exon_id "E9"
+chr2	rtracklayer	exon	36	45	.	-	.	gene_id "g2"; gene_name "g2"; transcript_id "tx2.1"; exon_id "E10"
+chr2	rtracklayer	exon	71	80	.	-	.	gene_id "g2"; gene_name "g2"; transcript_id "tx2.1"; exon_id "E11"
+chr2	rtracklayer	exon	46	55	.	-	.	gene_id "g2"; gene_name "g2"; transcript_id "tx2.2"; exon_id "E12"
+chr2	rtracklayer	exon	91	100	.	-	.	gene_id "g2"; gene_name "g2"; transcript_id "tx2.2"; exon_id "E13"
+chr2	rtracklayer	exon	121	130	.	-	.	gene_id "g2"; gene_name "g2"; transcript_id "tx2.3"; exon_id "E14"
+chr2	rtracklayer	exon	156	160	.	-	.	gene_id "g2"; gene_name "g2"; transcript_id "tx2.3"; exon_id "E15"
+chr2	rtracklayer	exon	191	200	.	-	.	gene_id "g2"; gene_name "g2"; transcript_id "tx2.3"; exon_id "E16"
+chr2	rtracklayer	transcript	1	80	.	-	.	gene_id "g2"; gene_name "g2"; transcript_id "tx2.1";
+chr2	rtracklayer	transcript	46	100	.	-	.	gene_id "g2"; gene_name "g2"; transcript_id "tx2.2";
+chr2	rtracklayer	transcript	121	200	.	-	.	gene_id "g2"; gene_name "g2"; transcript_id "tx2.3";
+chr2	rtracklayer	gene	1	200	.	-	.	gene_id "g2"; gene_name "g2";

@@ -3,3 +3,12 @@ description: Intersect BED/BAM/VCF files with bedtools.
 url: https://bedtools.readthedocs.io/en/latest/content/tools/intersect.html
 authors:
   - Jan Forster
+input:
+  - left: Path to the left region file. Each feature in left region file is compared to right region(s) file(s) in search of overlaps. (BAM/BED/GFF/VCF formatted)
+  - right: Path or list of paths to region(s) file(s) (BAM/BED/GFF/VCF formatted)
+output:
+  - Path to the intersection.
+params:
+  - extra: additional program arguments (except `-a` (left) and `-b` (right))
+note: |
+  * This program/wrapper does not handle multi-threading.

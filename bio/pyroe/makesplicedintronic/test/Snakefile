@@ -1,0 +1,19 @@
+rule test_pyroe_makesplicedintronic:
+    input:
+        fasta="genome.fasta",
+        gtf="annotation.gtf",
+        spliced="extra_spliced.fasta",  # Optional path to additional spliced sequences (FASTA)
+        unspliced="extra_unspliced.fasta",  # Optional path to additional unspliced sequences (FASTA)
+    output:
+        fasta="splici_full/spliced_intronic_sequences.fasta",
+        gene_id_to_name="splici_full/gene_id_to_name.tsv",
+        t2g="splici_full/t2g.tsv",
+    threads: 1
+    log:
+        "logs/pyroe.log",
+    params:
+        read_length=91,  # Required
+        flank_trim_length=5,  # Optional l
+        extra="",  # Optional parameters
+    wrapper:
+        "master/bio/pyroe/makesplicedintronic"

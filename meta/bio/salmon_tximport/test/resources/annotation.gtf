@@ -1,0 +1,11 @@
+#!genome-build ManuallyMadeForExample
+#!genome-version MMFE01
+#!genome-date 2023-04
+#!genome-build-accession NCBI:GCA_000001405.14
+#!genebuild-last-updated 2023-04
+chromosome1	manually_made	gene	160	208	.	+	.	gene_id "ENMG01"; gene_version "1"; gene_name "ManuallyMadeGene1"; gene_source "manually_made"; gene_biotype "protein_coding";
+chromosome1	manually_made	transcript	160	208	.	+	.	gene_id "ENMG01"; gene_version "1"; transcript_id "transcript1"; transcript_version "1"; gene_name "ManuallyMadeGene1"; gene_source "manually_made"; gene_biotype "protein_coding"; transcript_name "ENMT01"; transcript_source "manually_made"; transcript_biotype "processed_transcript"; tag "basic";
+chromosome1	manually_made	exon	160	208	.	+	.	gene_id "ENMG01"; gene_version "1"; transcript_id "transcript1"; transcript_version "1"; exon_number "1"; gene_name "ManuallyMadeGene1"; gene_source "manually_made"; gene_biotype "protein_coding"; transcript_name: "ENMT01"; transcript_source "manually_made"; transcript_biotype "processed_transcript"; tag "basic"; exon_id "ENEX01"; exon_version "1";
+chromosome1	manually_made	gene	160	240	.	+	.	gene_id "ENMG02"; gene_version "1"; gene_name "ManuallyMadeGene2"; gene_source "manually_made"; gene_biotype "protein_coding";
+chromosome1	manually_made	transcript	160	240	.	+	.	gene_id "ENMG02"; gene_version "1"; transcript_id "transcript2"; transcript_version "1"; gene_name "ManuallyMadeGene2"; gene_source "manually_made"; gene_biotype "protein_coding"; transcript_name "ENMT02"; transcript_source "manually_made"; transcript_biotype "processed_transcript"; tag "basic";
+chromosome1	manually_made	exon	160	240	.	+	.	gene_id "ENMG02"; gene_version "1"; transcript_id "transcript2"; transcript_version "1"; exon_number "1"; gene_name "ManuallyMadeGene2"; gene_source "manually_made"; gene_biotype "protein_coding"; transcript_name: "ENMT02"; transcript_source "manually_made"; transcript_biotype "processed_transcript"; tag "basic"; exon_id "ENEX02"; exon_version "1";

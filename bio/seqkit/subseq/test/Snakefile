@@ -1,0 +1,40 @@
+rule seqkit_subseq_bed:
+    input:
+        fasta="sequences/t.fa",
+        bed="sequences/t.bed",
+    output:
+        fasta="out/subseq_bed/t_bed.fa.gz",
+    log:
+        "logs/subseq_bed/bed.log",
+    threads: 2
+    wrapper:
+        "master/bio/seqkit/subseq"
+
+
+rule seqkit_subseq_gtf:
+    input:
+        fasta="sequences/t.fa",
+        gtf="sequences/t.gtf",
+    output:
+        fasta="out/subseq_gtf/t_gtf.fa.gz",
+    log:
+        "logs/subseq_gtf/gtf.log",
+    params:
+        extra="--feature CDS",
+    threads: 2
+    wrapper:
+        "master/bio/seqkit/subseq"
+
+
+rule seqkit_subseq_region:
+    input:
+        fasta="sequences/t.fa",
+    output:
+        fasta="out/subseq_region/t_region.fa.gz",
+    log:
+        "logs/subseq_region/region.log",
+    params:
+        extra="--region 1:12",
+    threads: 2
+    wrapper:
+        "master/bio/seqkit/subseq"
