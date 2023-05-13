@@ -139,6 +139,26 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+
+@skip_if_not_modified
+def test_nonpareil():
+    run(
+        "bio/nonpareil",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results/a.fa.npo",
+            "results/a.fas.bz2.npo",
+            "results/a.fasta.gz.npo",
+            "results/a.fq.npo",
+            "results/a.fq.bz2.npo",
+            "results/a.fastq.gz.npo",
+        ]
+    )
+
 @skip_if_not_modified
 def test_indelqual():
     run(
