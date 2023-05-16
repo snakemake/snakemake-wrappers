@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.31.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.30.0...v1.31.0) (2023-05-16)
+
+
+### Features
+
+* add nonpareil wrapper ([#1294](https://www.github.com/snakemake/snakemake-wrappers/issues/1294)) ([53318ed](https://www.github.com/snakemake/snakemake-wrappers/commit/53318edadc897c57d72375ba426dbdf9b456fe92))
+
+
+### Bug Fixes
+
+* removed unnecessary dependencies ([#1366](https://www.github.com/snakemake/snakemake-wrappers/issues/1366)) ([4262cea](https://www.github.com/snakemake/snakemake-wrappers/commit/4262cea3fad8b28d07b542461a941a89a6cde380))
+
 ## [1.30.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.29.0...v1.30.0) (2023-05-12)
 
 
