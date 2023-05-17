@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.31.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.31.0...v1.31.1) (2023-05-17)
+
+
+### Bug Fixes
+
+* fix snpsift annotate output compression (bcf and vcf.gz) ([#1367](https://www.github.com/snakemake/snakemake-wrappers/issues/1367)) ([7b46592](https://www.github.com/snakemake/snakemake-wrappers/commit/7b46592aae016d1dbbf96b92dde26e7765bccb70))
+
 ## [1.31.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.30.0...v1.31.0) (2023-05-16)
 
 
