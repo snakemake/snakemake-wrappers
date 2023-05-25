@@ -2,6 +2,7 @@ rule gatk_annotator:
     input:
         vcf="calls/snvs.vcf.gz",
         aln="mapped/a.bam",
+        bai="mapped/a.bam.bai",
         ref="genome.fasta",
         db="calls/snvs.vcf.gz",
 #        intervals="targets.bed",
