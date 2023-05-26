@@ -691,6 +691,13 @@ def test_liftoff():
 
 
 @skip_if_not_modified
+def test_download_cosmic_db():
+    run(
+        "bio/cosmic-db",
+        ["snakemake", "--cores", "1", "--use-conda", "resources/CosmicHGNC.tsv.gz"],
+    )
+
+@skip_if_not_modified
 def test_biobambam2_bamsormadup():
     run(
         "bio/biobambam2/bamsormadup",

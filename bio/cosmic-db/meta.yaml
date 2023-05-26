@@ -1,0 +1,9 @@
+name: cosmic-db
+description: |
+  Download cosmic databases from https://cancer.sanger.ac.uk/cosmic/download
+authors:
+  - Till Hartmann
+input:
+  - genome build, cosmic release version, dataset and file name
+output:
+  - database

@@ -1,0 +1,16 @@
+envvars:
+    "COSMIC_EMAIL",
+    "COSMIC_PW"
+
+rule cosmic_download:
+    output:
+        "resources/{db}"
+    params:
+        build="GRCh38",
+        dataset="cosmic",
+        version="v92",
+        file=lambda wc: wc.db  # e.g. "CosmicHGNC.tsv.gz"
+    log:
+        "logs/cosmic-db/{db}.log"
+    wrapper:
+        "master/bio/cosmic-db"
