@@ -1,0 +1,14 @@
+name: ragtag-path
+description: |
+  Homology-based assembly patching.
+authors:
+  - Curro Campuzano Jiménez
+input:
+  - reference fasta file (uncompressed or bgzipped)
+  - query fasta file (uncompressed or bgzipped)
+output:
+  - The final AGP file defining how ragtag.patch.fasta is built.
+  - The final FASTA file containing the patched assembly
+params:
+  - extra: additional parameters
+notes: https://github.com/malonge/RagTag/wiki/patch

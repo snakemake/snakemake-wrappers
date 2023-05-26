@@ -1,0 +1,14 @@
+name: ragtag-merge
+description: |
+  Scaffold merging.
+authors:
+  - Curro Campuzano Jiménez
+input:
+  - assembly fasta file (uncompressed or bgzipped)
+  - scaffolding AGP files
+output:
+  - The merged scaffold results in AGP format.
+  - The merged scaffolds in FASTA format.
+params:
+  - extra: additional parameters
+notes: https://github.com/malonge/RagTag/wiki/merge

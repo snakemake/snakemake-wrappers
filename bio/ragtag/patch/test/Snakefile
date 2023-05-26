@@ -1,0 +1,13 @@
+rule patch:
+    input:
+        query= "fasta/{query}.fasta",
+        reference = "fasta/{reference}.fasta",
+    output:
+        "{query}_patch_{reference}/ragtag.patch.agp",
+        "{query}_patch_{reference}/ragtag.patch.fasta",
+    params:
+        extra="",
+    log:
+        "logs/ragtag/{query}_patch_{reference}.log",
+    wrapper:
+        "master/bio/ragtag/patch"

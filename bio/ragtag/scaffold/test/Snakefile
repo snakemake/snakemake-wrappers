@@ -1,0 +1,14 @@
+rule scaffold:
+    input:
+        query= "fasta/{query}.fasta",
+        reference = "fasta/{reference}.fasta",
+    output:
+        "{query}_scaffold_{reference}/ragtag.scaffold.fasta",
+        "{query}_scaffold_{reference}/ragtag.scaffold.agp",
+        "{query}_scaffold_{reference}/ragtag.scaffold.stats",
+    params:
+        extra="",
+    log:
+        "logs/ragtag/{query}_scaffold_{reference}.log",
+    wrapper:
+        "master/bio/ragtag/scaffold"

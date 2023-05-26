@@ -1,0 +1,14 @@
+rule merge:
+    input:
+        "input/{assembly}.fasta",
+        "input/{scaffolds1}.agp",
+        "input/{scaffolds2}.agp",
+    output:
+        "{assembly}_merge_{scaffolds1}_{scaffolds2}/ragtag.merge.fasta",
+        "{assembly}_merge_{scaffolds1}_{scaffolds2}/ragtag.merge.agp",
+    params:
+        extra="",
+    log:
+        "logs/ragtag/{assembly}_merge_{scaffolds1}_{scaffolds2}.log",
+    wrapper:
+        "master/bio/ragtag/merge"

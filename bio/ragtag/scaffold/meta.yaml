@@ -1,0 +1,15 @@
+name: ragtag-scaffold
+description: |
+  Homology-based assembly scaffolding.
+authors:
+  - Curro Campuzano Jiménez
+input:
+  - reference fasta file (uncompressed or bgzipped)
+  - query fasta file (uncompressed or bgzipped)
+output:
+  - The ordering and orientations of query sequences in AGP format.
+  - The scaffolds in FASTA format, defined by the ordering and orientations of ragtag.scaffold.agp.
+  - Summary statistics for the scaffolding process.
+params:
+  - extra: additional parameters
+notes: https://github.com/malonge/RagTag/wiki/scaffold
