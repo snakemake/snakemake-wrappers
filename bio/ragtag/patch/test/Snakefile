@@ -1,12 +1,13 @@
 rule patch:
     input:
-        query= "fasta/{query}.fasta",
-        reference = "fasta/{reference}.fasta",
+        query="fasta/{query}.fasta",
+        reference="fasta/{reference}.fasta",
     output:
         "{query}_patch_{reference}/ragtag.patch.agp",
         "{query}_patch_{reference}/ragtag.patch.fasta",
     params:
         extra="",
+    threads: 16
     log:
         "logs/ragtag/{query}_patch_{reference}.log",
     wrapper:

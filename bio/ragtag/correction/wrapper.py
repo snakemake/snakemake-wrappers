@@ -35,6 +35,6 @@ shell(
     " {snakemake.input.reference}"
     " {snakemake.input.query}"
     " {snakemake.params.extra}"
-    " -o {out_dir}"
+    " -o {out_dir} -t {snakemake.threads}"
     " {log}"
 )

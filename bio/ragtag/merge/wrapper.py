@@ -32,6 +32,6 @@ shell(
     "ragtag.py merge"
     " {snakemake.input}"
     " {snakemake.params.extra}"
-    " -o {out_dir}"
+    " -o {out_dir} -t {snakemake.threads}"
     " {log}"
 )

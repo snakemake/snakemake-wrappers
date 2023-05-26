@@ -8,6 +8,7 @@ rule merge:
         "{assembly}_merge_{scaffolds1}_{scaffolds2}/ragtag.merge.agp",
     params:
         extra="",
+    threads: 16
     log:
         "logs/ragtag/{assembly}_merge_{scaffolds1}_{scaffolds2}.log",
     wrapper:
