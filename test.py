@@ -1660,6 +1660,11 @@ def test_bowtie2_align():
         ["snakemake", "--cores", "2", "mapped/a.bam", "--use-conda", "-F"],
     )
 
+    run(
+        "bio/bowtie2/align",
+        ["snakemake", "--cores", "2", "mapped_se_gz/a.bam", "--use-conda", "-F"],
+    )
+
 
 @skip_if_not_modified
 def test_bowtie2_build():
