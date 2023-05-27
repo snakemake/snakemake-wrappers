@@ -7,31 +7,34 @@ __license__ = "MIT"
 
 
 from snakemake.shell import shell
-import os.path
+import tempfile
 
 
-log = snakemake.log_fmt_shell()
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 # Check that two input files were supplied
 n = len(snakemake.input)
 assert n >= 2, "Input must contain at least 2 files. Given: %r." % n
 
-# Check that four output files were supplied
-m = len(snakemake.output)
-assert m >= 2, "Output must contain two files (FASTA and AGP file). Given: %r." % m
-
-# Check that all output files are in the same directory
-out_dir = os.path.dirname(snakemake.output[0])
-for file_path in snakemake.output[1:]:
-    assert out_dir == os.path.dirname(file_path), (
-        "ragtag can only output files to a single directory."
-        " Please indicate only one directory for the output files."
-    )
-
-shell(
-    "ragtag.py merge"
-    " {snakemake.input}"
-    " {snakemake.params.extra}"
-    " -o {out_dir}"
-    " {log}"
+# Check that all keys in snakemake output are valid are either agp, fasta or links
+assert snakemake.output.keys(), (
+    "Output must contain at least one named file. Given: %r." % n
 )
+
+valid_keys = ["agp", "fasta", "links"]
+for key in snakemake.output.keys():
+    assert (
+        key in valid_keys
+    ), "Invalid key in output. Valid keys are: %r. Given: %r." % (valid_keys, key)
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "ragtag.py merge"
+        " {snakemake.input}"
+        " {snakemake.params.extra}"
+        " -o {tmpdir}"
+        " {log}"
+    )
+    for key in valid_keys:
+        outfile = snakemake.output.get(key)
+        if outfile:
+            shell("mv {tmpdir}/ragtag.merge.{key} {outfile}")

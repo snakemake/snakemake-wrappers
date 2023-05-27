@@ -4,8 +4,9 @@ rule merge:
         "input/{scaffolds1}.agp",
         "input/{scaffolds2}.agp",
     output:
-        "{assembly}_merge_{scaffolds1}_{scaffolds2}/ragtag.merge.fasta",
-        "{assembly}_merge_{scaffolds1}_{scaffolds2}/ragtag.merge.agp",
+        fasta="{assembly}_merge_{scaffolds1}_{scaffolds2}.fasta",
+        agp="{assembly}_merge_{scaffolds1}_{scaffolds2}.agp",
+        #links = "{assembly}_merge_{scaffolds1}_{scaffolds2}.links",
     params:
         extra="",
     log:

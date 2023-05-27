@@ -5,12 +5,11 @@ __copyright__ = "Copyright 2023, Curro Campuzano Jiménez"
 __email__ = "campuzanocurro@gmail.com"
 __license__ = "MIT"
 
-
+import tempfile
 from snakemake.shell import shell
-import os.path
 
 
-log = snakemake.log_fmt_shell()
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 # Check that two input files were supplied
 n = len(snakemake.input)
@@ -18,23 +17,40 @@ assert n == 2, "Input must contain 2 files. Given: %r." % n
 query = snakemake.input.query
 reference = snakemake.input.reference
 
-# Check that four output files were supplied
-m = len(snakemake.output)
-assert m >= 2, "Output must contain three files (FASTA and AGP file). Given: %r." % m
-
-# Check that all output files are in the same directory
-out_dir = os.path.dirname(snakemake.output[0])
-for file_path in snakemake.output[1:]:
-    assert out_dir == os.path.dirname(file_path), (
-        "ragtag can only output files to a single directory."
-        " Please indicate only one directory for the output files."
-    )
-
-shell(
-    "ragtag.py patch"
-    " {snakemake.input.reference}"
-    " {snakemake.input.query}"
-    " {snakemake.params.extra}"
-    " -o {out_dir} -t {snakemake.threads}"
-    " {log}"
+assert snakemake.output.keys(), (
+    "Output must contain at least one named file. Given: %r." % n
 )
+
+valid_keys = [
+    "agp",
+    "fasta",
+    "rename_agp",
+    "rename_fasta",
+    "comps_fasta",
+    "ctg_agp",
+    "ctg_fasta",
+    "asm_dir",
+]
+for key in snakemake.output.keys():
+    assert (
+        key in valid_keys
+    ), "Invalid key in output. Valid keys are: %r. Given: %r." % (valid_keys, key)
+
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "ragtag.py patch"
+        " {snakemake.input.reference}"
+        " {snakemake.input.query}"
+        " {snakemake.params.extra}"
+        " -o {tmpdir} -t {snakemake.threads}"
+        " {log}"
+    )
+    for key in valid_keys[:-1]:
+        outfile = snakemake.output.get(key)
+        if outfile:
+            extension = key.replace("_", ".")
+            shell("mv {tmpdir}/ragtag.patch.{extension} {outfile}")
+    outdir = snakemake.output.get("asm_dir")
+    if outdir:
+        # Move files into directory outdir
+        shell("mkdir -p {outdir} && mv {tmpdir}/ragtag.patch.* {outdir}")

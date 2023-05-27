@@ -3,8 +3,8 @@ rule correction:
         query="fasta/{query}.fasta",
         ref="fasta/{reference}.fasta",
     output:
-        "{query}_corrected_{reference}/ragtag.correct.fasta",
-        "{query}_corrected_{reference}/ragtag.correct.agp",
+        fasta="{query}_corrected_{reference}/ragtag.correct.fasta",
+        agp="{query}_corrected_{reference}/ragtag.correct.agp",
     params:
         extra="",
     threads: 16
