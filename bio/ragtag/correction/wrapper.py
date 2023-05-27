@@ -31,7 +31,6 @@ for file_path in snakemake.output[1:]:
 shell(
     "ragtag.py correct"
     " {snakemake.input.ref}"
-
     " {snakemake.input.query}"
     " {snakemake.params.extra}"
     " -o {out_dir} -t {snakemake.threads}"
