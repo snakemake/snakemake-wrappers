@@ -15,8 +15,6 @@ log = snakemake.log_fmt_shell()
 # Check that two input files were supplied
 n = len(snakemake.input)
 assert n == 2, "Input must contain 2 files. Given: %r." % n
-query = snakemake.input.query
-reference = snakemake.input.reference
 
 # Check that four output files were supplied
 m = len(snakemake.output)
