@@ -1,15 +1,14 @@
 name: ragtag-correction
-description: |
-  Homology-based misassembly correction.
+description: Homology-based misassembly correction.
+url: https://github.com/malonge/RagTag/wiki/correct
 authors:
   - Curro Campuzano Jiménez
 input:
   - ref: reference fasta file (uncompressed or bgzipped)
   - query: query fasta file (uncompressed or bgzipped)
-
 output:
   - The corrected query assembly in FASTA format.
   - The AGP file defining the exact coordinates of query sequence breaks.
 params:
   - extra: additional parameters
-notes: https://github.com/malonge/RagTag/wiki/correct
+notes: Multiple threads can be used during Minimap/Unimap alignment. 

@@ -1,6 +1,6 @@
 name: ragtag-path
-description: |
-  Homology-based assembly patching.
+description: Homology-based assembly patching.
+url: https://github.com/malonge/RagTag/wiki/patch
 authors:
   - Curro Campuzano Jiménez
 input:
@@ -11,4 +11,4 @@ output:
   - The final FASTA file containing the patched assembly
 params:
   - extra: additional parameters
-notes: https://github.com/malonge/RagTag/wiki/patch
+notes: Multiple threads can be used during Minimap/Unimap alignment.

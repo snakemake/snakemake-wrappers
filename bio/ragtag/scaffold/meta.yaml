@@ -1,6 +1,6 @@
 name: ragtag-scaffold
-description: |
-  Homology-based assembly scaffolding.
+description: Homology-based assembly scaffolding.
+url: https://github.com/malonge/RagTag/wiki/scaffold
 authors:
   - Curro Campuzano Jiménez
 input:
@@ -12,4 +12,4 @@ output:
   - Summary statistics for the scaffolding process.
 params:
   - extra: additional parameters
-notes: https://github.com/malonge/RagTag/wiki/scaffold
+notes: Multiple threads can be used during Minimap/Unimap alignment.

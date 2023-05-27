@@ -1,6 +1,7 @@
 name: ragtag-merge
 description: |
   Scaffold merging.
+url: https://github.com/malonge/RagTag/wiki/merge
 authors:
   - Curro Campuzano Jiménez
 input:
@@ -11,4 +12,4 @@ output:
   - The merged scaffolds in FASTA format.
 params:
   - extra: additional parameters
-notes: https://github.com/malonge/RagTag/wiki/merge
+notes: |
