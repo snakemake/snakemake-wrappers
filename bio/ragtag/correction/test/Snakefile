@@ -1,7 +1,7 @@
 rule correction:
     input:
         query="fasta/{query}.fasta",
-        reference="fasta/{reference}.fasta",
+        ref="fasta/{reference}.fasta",
     output:
         "{query}_corrected_{reference}/ragtag.correct.fasta",
         "{query}_corrected_{reference}/ragtag.correct.agp",
