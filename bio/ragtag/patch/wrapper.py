@@ -17,9 +17,7 @@ assert n == 2, "Input must contain 2 files. Given: %r." % n
 query = snakemake.input.query
 reference = snakemake.input.reference
 
-assert snakemake.output.keys(), (
-    "Output must contain at least one named file. Given: %r." % n
-)
+assert snakemake.output.keys(), "Output must contain at least one named file."
 
 valid_keys = [
     "agp",

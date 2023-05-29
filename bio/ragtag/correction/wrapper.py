@@ -15,9 +15,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 n = len(snakemake.input)
 assert n == 2, "Input must contain 2 files. Given: %r." % n
 
-assert snakemake.output.keys(), (
-    "Output must contain at least one named file. Given: %r." % n
-)
+assert snakemake.output.keys(), "Output must contain at least one named file."
 
 valid_keys = ["agp", "fasta"]
 for key in snakemake.output.keys():
