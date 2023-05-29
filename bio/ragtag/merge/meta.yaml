@@ -12,5 +12,5 @@ output:
   - agp: The merged scaffold results in AGP format.
   - links: Optional. If using -b, Hi-C link quantification. 
 params:
-  - extra: additional parameters
+  - extra: additional parameters. Do not use with '-b', add the links file to the input instead.
 notes: |
