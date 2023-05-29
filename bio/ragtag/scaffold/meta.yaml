@@ -7,9 +7,9 @@ input:
   - reference fasta file (uncompressed or bgzipped)
   - query fasta file (uncompressed or bgzipped)
 output:
-  - The ordering and orientations of query sequences in AGP format.
-  - The scaffolds in FASTA format, defined by the ordering and orientations of ragtag.scaffold.agp.
-  - Summary statistics for the scaffolding process.
+  - fasta: The scaffolds in FASTA format, defined by the ordering and orientations of ragtag.scaffold.agp.
+  - agp: The ordering and orientations of query sequences in AGP format.
+  - stats: Summary statistics for the scaffolding process.
 params:
   - extra: additional parameters
 notes: Multiple threads can be used during Minimap/Unimap alignment.

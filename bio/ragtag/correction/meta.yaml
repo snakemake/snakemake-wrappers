@@ -7,8 +7,8 @@ input:
   - ref: reference fasta file (uncompressed or bgzipped)
   - query: query fasta file (uncompressed or bgzipped)
 output:
-  - The corrected query assembly in FASTA format.
-  - The AGP file defining the exact coordinates of query sequence breaks.
+  - fasta: The corrected query assembly in FASTA format.
+  - agp: The AGP file defining the exact coordinates of query sequence breaks.
 params:
   - extra: additional parameters
 notes: Multiple threads can be used during Minimap/Unimap alignment. 

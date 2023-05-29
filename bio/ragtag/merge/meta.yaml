@@ -8,8 +8,9 @@ input:
   - assembly fasta file (uncompressed or bgzipped)
   - scaffolding AGP files
 output:
-  - The merged scaffold results in AGP format.
-  - The merged scaffolds in FASTA format.
+  - fasta: The merged scaffolds in FASTA format.
+  - agp: The merged scaffold results in AGP format.
+  - links: Optional. If using -b, Hi-C link quantification. 
 params:
   - extra: additional parameters
 notes: |
