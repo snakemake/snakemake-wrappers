@@ -143,7 +143,7 @@ def run(wrapper, cmd, check_log=None):
 @skip_if_not_modified
 def test_nonpareil():
     run(
-        "bio/nonpareil",
+        "bio/nonpareil/infer",
         [
             "snakemake",
             "--cores",
