@@ -1,7 +1,7 @@
 rule patch:
     input:
         query="fasta/{query}.fasta",
-        reference="fasta/{reference}.fasta",
+        ref="fasta/{reference}.fasta",
     output:
         agp="{query}_{reference}.agp",
         fasta="{query}_{reference}.fasta",
