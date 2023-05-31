@@ -1,7 +1,7 @@
 rule scaffold:
     input:
         query="fasta/{query}.fasta",
-        reference="fasta/{reference}.fasta",
+        ref="fasta/{reference}.fasta",
     output:
         fasta="{query}_scaffold_{reference}/ragtag.scaffold.fasta",
         agp="{query}_scaffold_{reference}/ragtag.scaffold.agp",
