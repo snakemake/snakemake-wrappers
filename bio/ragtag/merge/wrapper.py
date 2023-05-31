@@ -40,12 +40,14 @@ for key in snakemake.output.keys():
         key in valid_keys
     ), "Invalid key in output. Valid keys are: %r. Given: %r." % (valid_keys, key)
 
+extra = snakemake.params.get("extra", "")
+
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "ragtag.py merge"
         " {fasta_file}"
         " {agp_files}"
-        " {snakemake.params.extra}"
+        " {extra}"
         " -o {tmpdir}"
         " {log}"
     )
