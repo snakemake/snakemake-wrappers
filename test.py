@@ -160,6 +160,20 @@ def test_nonpareil():
     )
 
 @skip_if_not_modified
+def test_nonpareil_plot():
+    run(
+        "bio/nonpareil/plot",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results/a.pdf",
+        ]
+    )
+
+@skip_if_not_modified
 def test_indelqual():
     run(
         "bio/lofreq/indelqual",
