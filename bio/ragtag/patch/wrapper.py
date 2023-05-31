@@ -36,7 +36,6 @@ with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "ragtag.py patch"
         " {snakemake.input.ref}"
-
         " {snakemake.input.query}"
         " {snakemake.params.extra}"
         " -o {tmpdir} -t {snakemake.threads}"
