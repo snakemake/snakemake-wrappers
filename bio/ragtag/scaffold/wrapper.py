@@ -26,7 +26,8 @@ for key in snakemake.output.keys():
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "ragtag.py scaffold"
-        " {snakemake.input.reference}"
+        " {snakemake.input.ref}"
+
         " {snakemake.input.query}"
         " {snakemake.params.extra}"
         " -o {tmpdir} -t {snakemake.threads}"
