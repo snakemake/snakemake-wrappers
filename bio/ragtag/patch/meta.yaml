@@ -6,7 +6,6 @@ authors:
 input:
   - ref: reference fasta file (uncompressed or bgzipped)
   - query: query fasta file (uncompressed or bgzipped)
-
 output:
   - fasta: The final FASTA file containing the patched assembly
   - agp: The final AGP file defining how ragtag.patch.fasta is built.
