@@ -1,8 +1,10 @@
 rule merge:
     input:
-        "input/{assembly}.fasta",
-        "input/{scaffolds1}.agp",
-        "input/{scaffolds2}.agp",
+        fasta= "input/{assembly}.fasta",
+        agp1="input/{scaffolds1}.agp",
+        agp2="input/{scaffolds2}.agp",
+        #agp3="input/{scaffolds3}.agp",
+        #bam = "input/Hi-C.bam",
     output:
         fasta="{assembly}_merge_{scaffolds1}_{scaffolds2}.fasta",
         agp="{assembly}_merge_{scaffolds1}_{scaffolds2}.agp",

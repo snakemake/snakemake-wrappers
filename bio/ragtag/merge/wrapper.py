@@ -12,26 +12,21 @@ import tempfile
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-agp_files = [f for f in snakemake.input if f.endswith(".agp")]
+fasta_file = snakemake.input.get("fasta")
+# Check fasta_file is no
+assert fasta_file, "Input must contain only one fasta file."
+
+agp_files = [snakemake.input[agp] for agp in snakemake.input.keys() if agp not in ['fasta', 'bam']]
+
 assert len(agp_files) >= 2, "Input must contain at least 2 agp files. Given: %r." % len(
     agp_files
 )
 
-bam_file = [f for f in snakemake.input if f.endswith(".bam")]
-assert (
-    len(bam_file) <= 1
-), "Input must contain only one Hi-C BAM file, if any. Given: %r." % len(bam_file)
-
-fasta_file = [
-    f for f in snakemake.input if not f.endswith(".bam") and not f.endswith(".agp")
-]
-assert len(fasta_file) == 1, "Input must contain only one fasta file. Given: %r." % len(
-    fasta_file
-)
+bam_file = snakemake.input.get("agps")
 
 # Add Hi-C BAM file to params if present
 if bam_file:
-    snakemake.params.extra += f" -b {bam_file[0]}"
+    snakemake.params.extra += f" -b {bam_file}"
 
 # Raise warning if links file is expected but no Hi-C BAM file is given
 if snakemake.output.get("links") and not bam_file:
@@ -48,7 +43,7 @@ for key in snakemake.output.keys():
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "ragtag.py merge"
-        " {fasta_file[0]}"
+        " {fasta_file}"
         f" {' '.join(agp_files)}"
         " {snakemake.params.extra}"
         " -o {tmpdir}"
