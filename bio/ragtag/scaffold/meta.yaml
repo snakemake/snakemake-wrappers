@@ -6,7 +6,6 @@ authors:
 input:
   - ref: reference fasta file (uncompressed or bgzipped)
   - query: query fasta file (uncompressed or bgzipped)
-
 output:
   - fasta: The scaffolds in FASTA format, defined by the ordering and orientations of ragtag.scaffold.agp.
   - agp: The ordering and orientations of query sequences in AGP format.
