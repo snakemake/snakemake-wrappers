@@ -5626,7 +5626,7 @@ def test_ragtag_merge():
             "snakemake",
             "--cores",
             "1",
-            "asm_merge_scf1_scf2.fasta",
+            "asm_merged.fasta",
             "--use-conda",
             "-F",
         ],

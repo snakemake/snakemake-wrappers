@@ -1,17 +1,15 @@
 rule merge:
     input:
         fasta= "input/{assembly}.fasta",
-        agp1="input/{scaffolds1}.agp",
-        agp2="input/{scaffolds2}.agp",
-        #agp3="input/{scaffolds3}.agp",
+        agps = expand("input/{scaffold}.agp", scaffold=['scf1', 'scf2']),
         #bam = "input/Hi-C.bam",
     output:
-        fasta="{assembly}_merge_{scaffolds1}_{scaffolds2}.fasta",
-        agp="{assembly}_merge_{scaffolds1}_{scaffolds2}.agp",
-        #links = "{assembly}_merge_{scaffolds1}_{scaffolds2}.links",
+        fasta="{assembly}_merged.fasta",
+        agp="{assembly}_merged.agp",
+        #links = "{assembly}_merged.links",
     params:
         extra="",
     log:
-        "logs/ragtag/{assembly}_merge_{scaffolds1}_{scaffolds2}.log",
+        "logs/ragtag/{assembly}_merged.log",
     wrapper:
         "master/bio/ragtag/merge"

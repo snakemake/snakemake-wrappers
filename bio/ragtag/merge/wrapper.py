@@ -16,13 +16,13 @@ fasta_file = snakemake.input.get("fasta")
 # Check fasta_file is no
 assert fasta_file, "Input must contain only one fasta file."
 
-agp_files = [snakemake.input[agp] for agp in snakemake.input.keys() if agp not in ['fasta', 'bam']]
+agp_files = snakemake.input.get("agps")
 
 assert len(agp_files) >= 2, "Input must contain at least 2 agp files. Given: %r." % len(
     agp_files
 )
 
-bam_file = snakemake.input.get("agps")
+bam_file = snakemake.input.get("bam")
 
 # Add Hi-C BAM file to params if present
 if bam_file:
@@ -44,7 +44,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "ragtag.py merge"
         " {fasta_file}"
-        f" {' '.join(agp_files)}"
+        " {agp_files}"
         " {snakemake.params.extra}"
         " -o {tmpdir}"
         " {log}"
