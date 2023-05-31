@@ -4,8 +4,9 @@ url: https://github.com/malonge/RagTag/wiki/scaffold
 authors:
   - Curro Campuzano Jiménez
 input:
-  - reference fasta file (uncompressed or bgzipped)
-  - query fasta file (uncompressed or bgzipped)
+  - ref: reference fasta file (uncompressed or bgzipped)
+  - query: query fasta file (uncompressed or bgzipped)
+
 output:
   - fasta: The scaffolds in FASTA format, defined by the ordering and orientations of ragtag.scaffold.agp.
   - agp: The ordering and orientations of query sequences in AGP format.
