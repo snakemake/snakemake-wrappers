@@ -47,4 +47,4 @@ with tempfile.TemporaryDirectory() as tmpdir:
     outdir = snakemake.output.get("asm_dir")
     if outdir:
         # Move files into directory outdir
-        shell("mkdir -p {outdir} && mv {tmpdir}/ragtag.patch.* {outdir}")
+        shell("mkdir -p {outdir} && mv {tmpdir}/ragtag.patch.asm.* {outdir}")
