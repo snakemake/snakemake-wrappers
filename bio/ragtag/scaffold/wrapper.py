@@ -10,6 +10,7 @@ from snakemake.shell import shell
 import tempfile
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+extra = snakemake.params.get("extra", "")
 
 assert snakemake.output.keys(), "Output must contain at least one named file."
 
@@ -18,8 +19,6 @@ for key in snakemake.output.keys():
     assert (
         key in valid_keys
     ), "Invalid key in output. Valid keys are: %r. Given: %r." % (valid_keys, key)
-
-extra = snakemake.params.get("extra", "")
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(

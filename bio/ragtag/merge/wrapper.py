@@ -11,6 +11,7 @@ import tempfile
 
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+extra = snakemake.params.get("extra", "")
 
 fasta_file = snakemake.input.get("fasta")
 # Check fasta_file is no
@@ -26,7 +27,7 @@ bam_file = snakemake.input.get("bam")
 
 # Add Hi-C BAM file to params if present
 if bam_file:
-    snakemake.params.extra += f" -b {bam_file}"
+    extra += f" -b {bam_file}"
 
 # Raise warning if links file is expected but no Hi-C BAM file is given
 if snakemake.output.get("links") and not bam_file:
@@ -39,8 +40,6 @@ for key in snakemake.output.keys():
     assert (
         key in valid_keys
     ), "Invalid key in output. Valid keys are: %r. Given: %r." % (valid_keys, key)
-
-extra = snakemake.params.get("extra", "")
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
