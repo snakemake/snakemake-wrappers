@@ -33,7 +33,7 @@ def basename_without_ext(file_path):
 
 # If you have multiple input files fastqc doesn't know what to do. Taking silently only first gives unapreciated results
 
-if len(snakemake.input)>1: 
+if len(snakemake.input) > 1:
     raise IOError("Got multiple input files, I don't know how to process them!")
 
 # Run fastqc, since there can be race conditions if multiple jobs
