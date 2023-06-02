@@ -1,0 +1,20 @@
+rule test_deeptools_plotcoverage:
+    input:
+        # Optional blacklisted regions
+        # blacklist="",
+        # Optional region file
+        # bed="",
+        bams=["a.bam"],
+        bais=["a.bam.bai"],
+    output:
+        plot="coverage.png",
+        # Optional raw counts
+        raw_counts="coverage.raw",
+        # Optional metrics
+        metrics="coverage.metrics",
+    params:
+        extra="--coverageThresholds 1",
+    log:
+        "logs/deeptools/coverage.log"
+    wrapper:
+        "master/bio/deeptools/plotcoverage"

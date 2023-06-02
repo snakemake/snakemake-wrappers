@@ -9,10 +9,13 @@ __license__ = "MIT"
 from os import path
 import re
 from tempfile import TemporaryDirectory
-
 from snakemake.shell import shell
+from snakemake_wrapper_utils.snakemake import get_mem
 
+extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+# Define memory per thread (https://github.com/s-andrews/FastQC/blob/master/fastqc#L201-L222)
+mem_mb = int(get_mem(snakemake, "MiB") / snakemake.threads)
 
 
 def basename_without_ext(file_path):
@@ -40,8 +43,12 @@ if len(snakemake.input)>1:
 # use the same fastqc dir, we create a temp dir.
 with TemporaryDirectory() as tempdir:
     shell(
-        "fastqc {snakemake.params} -t {snakemake.threads} "
-        "--outdir {tempdir:q} {snakemake.input[0]:q}"
+        "fastqc"
+        " --threads {snakemake.threads}"
+        " --memory {mem_mb}"
+        " {extra}"
+        " --outdir {tempdir:q}"
+        " {snakemake.input[0]:q}"
         " {log}"
     )
 

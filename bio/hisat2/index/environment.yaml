@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - hisat2 =2.2.1
-  - samtools =1.16.1
+  - samtools =1.17

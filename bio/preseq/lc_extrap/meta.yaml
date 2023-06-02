@@ -1,8 +1,7 @@
 name: preseq lc_extrap
 description: >
   ``preseq`` estimates the library complexity of existing sequencing data to then estimate the yield of future experiments based on their design.
-  For usage information, please see ``preseq``'s command line help (this seems more up to date than the available `documentation from 2014 <http://smithlabresearch.org/wp-content/uploads/manual.pdf>`_ ).
-  For more information about ``preseq``, also see the `source code <https://github.com/smithlabcode/preseq>`_.
+url: https://github.com/smithlabcode/preseq
 authors:
   - Antonie Vietor
 input:

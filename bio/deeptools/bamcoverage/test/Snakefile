@@ -1,0 +1,15 @@
+rule test_deeptools_bamcoverage:
+    input:
+        bam="a.sorted.bam",
+        bai="a.sorted.bam.bai",
+        # Optional path to a blacklist bed file
+        # blacklist="",
+    output:
+        "a.coverage.bw",
+    params:
+        effective_genome_size=1000,
+        extra="",
+    log:
+        "logs/coverage.log",
+    wrapper:
+        "master/bio/deeptools/bamcoverage"
