@@ -34,6 +34,11 @@ def basename_without_ext(file_path):
     return base
 
 
+# If you have multiple input files fastqc doesn't know what to do. Taking silently only first gives unapreciated results
+
+if len(snakemake.input) > 1:
+    raise IOError("Got multiple input files, I don't know how to process them!")
+
 # Run fastqc, since there can be race conditions if multiple jobs
 # use the same fastqc dir, we create a temp dir.
 with TemporaryDirectory() as tempdir:
