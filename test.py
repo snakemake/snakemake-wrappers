@@ -139,6 +139,26 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+
+@skip_if_not_modified
+def test_nonpareil():
+    run(
+        "bio/nonpareil",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results/a.fa.npo",
+            "results/a.fas.bz2.npo",
+            "results/a.fasta.gz.npo",
+            "results/a.fq.npo",
+            "results/a.fq.bz2.npo",
+            "results/a.fastq.gz.npo",
+        ]
+    )
+
 @skip_if_not_modified
 def test_indelqual():
     run(
@@ -254,6 +274,20 @@ def test_seqkit_rmdup():
         ],
     )
 
+
+@skip_if_not_modified
+def test_gffread():
+    run(
+        "bio/gffread",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "transcripts.fa"
+        ]
+    )
 
 @skip_if_not_modified
 def test_seqkit_fx2tab():
@@ -709,6 +743,20 @@ def test_open_cravat_module():
 
 
 @skip_if_not_modified
+def test_salmon_tximport_meta():
+    run(
+        "meta/bio/salmon_tximport",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "tximport/SummarizedExperimentObject.RDS",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_dada2_se_meta():
     run(
         "meta/bio/dada2_se",
@@ -962,6 +1010,45 @@ def test_dada2_add_species():
     run(
         "bio/dada2/add-species",
         ["snakemake", "--cores", "1", "--use-conda", "results/dada2/taxa-sp.RDS"],
+    )
+
+
+@skip_if_not_modified
+def test_deseq2_deseqdataset():
+    # from HTSeqcount / Featurecount
+    run(
+        "bio/deseq2/deseqdataset",
+        ["snakemake", "--cores", "1", "--use-conda", "dds_htseq.RDS"],
+    )
+
+    # DDS import
+    run(
+        "bio/deseq2/deseqdataset",
+        ["snakemake", "--cores", "1", "--use-conda", "dds_minimal.RDS"],
+    )
+
+    # txi import
+    run(
+        "bio/deseq2/deseqdataset",
+        ["snakemake", "--cores", "1", "--use-conda", "dds_txi.RDS"],
+    )
+
+    # SE import
+    run(
+        "bio/deseq2/deseqdataset",
+        ["snakemake", "--cores", "1", "--use-conda", "dds_se.RDS"],
+    )
+
+    # R matrix import
+    run(
+        "bio/deseq2/deseqdataset",
+        ["snakemake", "--cores", "1", "--use-conda", "dds_rmatrix.RDS"],
+    )
+
+    # text matrix import
+    run(
+        "bio/deseq2/deseqdataset",
+        ["snakemake", "--cores", "1", "--use-conda", "dds_matrix.RDS"],
     )
 
 
@@ -2243,6 +2330,20 @@ def test_deeptools_computematrix():
 
 
 @skip_if_not_modified
+def test_deeptools_bamcoverage():
+    run(
+        "bio/deeptools/bamcoverage",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "a.coverage.bw",
+            "--use-conda",
+            "-F",
+        ],
+    )
+   
+@skip_if_not_modified   
 def test_deeptools_alignmentsieve():
     run(
         "bio/deeptools/alignmentsieve",
@@ -2255,7 +2356,6 @@ def test_deeptools_alignmentsieve():
             "-F",
         ],
     )
-
 
 @skip_if_not_modified
 def test_deeptools_plotheatmap():
@@ -2302,6 +2402,21 @@ def test_deeptools_plotprofile():
             "plot_profile/plot.png",
             "plot_profile/regions.bed",
             "plot_profile/data.tab",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_deeptools_plotcoverage():
+    run(
+        "bio/deeptools/plotcoverage",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "coverage.png",
             "--use-conda",
             "-F",
         ],
