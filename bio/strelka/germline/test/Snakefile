@@ -7,7 +7,10 @@ rule strelka_germline:
         fasta_index="genome.fasta.fai"
     output:
         # Strelka results - either use directory or complete file path
-        variants="strelka/{sample}.vcf.gz"
+        variants="strelka/{sample}.vcf.gz",,
+        variants_index="strelka/{sample}.vcf.gz.tbi",
+        sample_genomes=["strelka/{sample}.genome.vcf.gz"],
+        sample_genomes_indices=["strelka/{sample}.genome.vcf.gz.tbi"],
     log:
         "logs/strelka/germline/{sample}.log"
     params:
