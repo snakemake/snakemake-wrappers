@@ -19,5 +19,4 @@ rule strelka_germline:
         run_extra="",
     threads: 8
     wrapper:
-        "file://.."
-        # "master/bio/strelka/germline"
+        "master/bio/strelka/germline"
