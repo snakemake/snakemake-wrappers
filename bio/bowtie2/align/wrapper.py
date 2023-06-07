@@ -41,7 +41,7 @@ assert (
 
 reads = ""
 if n == 1:
-    if get_format(snakemake.input.sample) in ("bam", "sam"):
+    if get_format(snakemake.input.sample[0]) in ("bam", "sam"):
         reads = f"-b {snakemake.input.sample}"
     else:
         if snakemake.params.get("interleaved", False):
