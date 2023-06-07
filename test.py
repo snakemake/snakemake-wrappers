@@ -139,7 +139,6 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
-
 @skip_if_not_modified
 def test_nonpareil():
     run(
@@ -156,8 +155,9 @@ def test_nonpareil():
             "results/a.fq.npo",
             "results/a.fq.bz2.npo",
             "results/a.fastq.gz.npo",
-        ]
+        ],
     )
+
 
 @skip_if_not_modified
 def test_nonpareil_plot():
@@ -293,15 +293,9 @@ def test_seqkit_rmdup():
 def test_gffread():
     run(
         "bio/gffread",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "--use-conda",
-            "-F",
-            "transcripts.fa"
-        ]
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "transcripts.fa"],
     )
+
 
 @skip_if_not_modified
 def test_seqkit_fx2tab():
@@ -2361,8 +2355,9 @@ def test_deeptools_bamcoverage():
             "-F",
         ],
     )
-   
-@skip_if_not_modified   
+
+
+@skip_if_not_modified
 def test_deeptools_alignmentsieve():
     run(
         "bio/deeptools/alignmentsieve",
@@ -2375,6 +2370,7 @@ def test_deeptools_alignmentsieve():
             "-F",
         ],
     )
+
 
 @skip_if_not_modified
 def test_deeptools_plotheatmap():
@@ -5592,5 +5588,65 @@ def test_bazam_separated():
             "--use-conda",
             "-F",
             "results/reads/a.r1.fastq.gz",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_ragtag_correction():
+    run(
+        "bio/ragtag/correction",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "query_corrected_reference/ragtag.correct.fasta",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_ragtag_patch():
+    run(
+        "bio/ragtag/patch",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "query_reference.fasta",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_ragtag_scaffold():
+    run(
+        "bio/ragtag/scaffold",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "query_scaffold_reference/ragtag.scaffold.fasta",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_ragtag_merge():
+    run(
+        "bio/ragtag/merge",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "asm_merged.fasta",
+            "--use-conda",
+            "-F",
         ],
     )
