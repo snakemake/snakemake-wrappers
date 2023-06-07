@@ -59,7 +59,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
             shell(f"cat {origin} > {target}")
     if snakemake.output.get("sample_genomes_indices"):
         origins = glob.glob(f"{tmpdir}/results/variants/genome.S*.vcf.gz.tbi")
-        assert len(origins) == len(snakemake.output.get("sample_genomes_incides"))
+        assert len(origins) == len(snakemake.output.get("sample_genomes_indices"))
         for origin, target in zip(
             origins, snakemake.output.get("sample_genomes_incides")
         ):
