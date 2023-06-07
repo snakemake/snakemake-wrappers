@@ -3,8 +3,8 @@ __copyright__ = "Copyright 2019, Jan Forster"
 __email__ = "jan.forster@uk-essen.de"
 __license__ = "MIT"
 
-import os
 import tempfile
+import glob
 
 from pathlib import Path
 from snakemake.shell import shell
