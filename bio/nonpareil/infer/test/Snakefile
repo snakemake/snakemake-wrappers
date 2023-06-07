@@ -12,4 +12,4 @@ rule nonpareil:
         alg="kmer",
         extra="-X 1 -k 3 -F",
     wrapper:
-        "master/bio/nonpareil"
+        "master/bio/nonpareil/infer"

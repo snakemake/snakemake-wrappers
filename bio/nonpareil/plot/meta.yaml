@@ -1,0 +1,17 @@
+name: nonpareil
+description: Plot Nonpareil results.
+url: https://nonpareil.readthedocs.io/en/latest/
+authors:
+  - Filipe G. Vieira
+input:
+  - NPO file
+output:
+  - PDF file with plot
+params:
+  - label: Plot title.
+  - col: Color of the curve.
+  - enforce_consistency: Fails verbosely on insufficient data, otherwise it warns about the inconsistencies and attempts the estimations.
+  - star: Objective coverage in percentage (i.e., coverage value considered near-complete).
+  - correction_factor: Apply overlap-dependent correction factor, otherwise redundancy is assumed to equal coverage.
+  - weights_exp: Vector of values to be tested as exponent of the weights distribution.
+  - skip_model: Skip model estimation.

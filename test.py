@@ -143,7 +143,7 @@ def run(wrapper, cmd, check_log=None):
 @skip_if_not_modified
 def test_nonpareil():
     run(
-        "bio/nonpareil",
+        "bio/nonpareil/infer",
         [
             "snakemake",
             "--cores",
@@ -156,6 +156,20 @@ def test_nonpareil():
             "results/a.fq.npo",
             "results/a.fq.bz2.npo",
             "results/a.fastq.gz.npo",
+        ]
+    )
+
+@skip_if_not_modified
+def test_nonpareil_plot():
+    run(
+        "bio/nonpareil/plot",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results/a.pdf",
         ]
     )
 
