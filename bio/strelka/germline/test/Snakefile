@@ -19,4 +19,5 @@ rule strelka_germline:
         run_extra="",
     threads: 8
     wrapper:
-        "master/bio/strelka/germline"
+        "file://.."
+        # "master/bio/strelka/germline"
