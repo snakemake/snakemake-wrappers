@@ -2709,7 +2709,7 @@ def test_happy_prepy():
 def test_happy_prepy():
     run(
         "bio/hap.py/pre.py",
-        ["snakemake", "--cores", "1", "normalized/variants.vcf", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "normalized/variants.vcf.gz", "--use-conda", "-F"],
     )
 
 
