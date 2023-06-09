@@ -3,7 +3,7 @@ rule preprocess_variants:
         ##vcf/bcf
         variants="variants.vcf"
     output:
-        "normalized/variants.vcf"
+        "normalized/variants.vcf.gz"
     params:
         ## path to reference genome
         genome="genome.fasta",
