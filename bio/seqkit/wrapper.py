@@ -29,7 +29,7 @@ extra_output = " ".join(
 
 
 shell(
-    "seqkit {snakemake.params.cmd}"
+    "seqkit {snakemake.params.command}"
     " --threads {snakemake.threads}"
     " {extra_input}"
     " {extra_output}"

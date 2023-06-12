@@ -1,12 +1,12 @@
 rule seqkit_seq:
     input:
-        fasta="sequences/{sample}.fa",
+        fasta="data/{sample}.fa",
     output:
         fasta="out/seq/{sample}.fa.gz",
     log:
         "logs/seq/{sample}.log",
     params:
-        cmd="seq",
+        command="seq",
         extra="--min-len 10",
     threads: 2
     wrapper:
@@ -15,14 +15,14 @@ rule seqkit_seq:
 
 rule seqkit_subseq_bed:
     input:
-        fasta="sequences/{sample}.fa",
-        bed="sequences/{sample}.bed",
+        fasta="data/{sample}.fa",
+        bed="data/{sample}.bed",
     output:
         fasta="out/subseq/bed/{sample}.fa.gz",
     log:
         "logs/subseq/bed/{sample}.log",
     params:
-        cmd="subseq",
+        command="subseq",
     threads: 2
     wrapper:
         "master/bio/seqkit"
@@ -30,14 +30,14 @@ rule seqkit_subseq_bed:
 
 rule seqkit_subseq_gtf:
     input:
-        fasta="sequences/{sample}.fa",
-        gtf="sequences/{sample}.gtf",
+        fasta="data/{sample}.fa",
+        gtf="data/{sample}.gtf",
     output:
         fasta="out/subseq/gtf/{sample}.fa.gz",
     log:
         "logs/subseq/gtf/{sample}.log",
     params:
-        cmd="subseq",
+        command="subseq",
         extra="--feature CDS",
     threads: 2
     wrapper:
@@ -46,13 +46,13 @@ rule seqkit_subseq_gtf:
 
 rule seqkit_subseq_region:
     input:
-        fasta="sequences/{sample}.fa",
+        fasta="data/{sample}.fa",
     output:
         fasta="out/subseq/region/{sample}.fa.gz",
     log:
         "logs/subseq/region/{sample}.log",
     params:
-        cmd="subseq",
+        command="subseq",
         extra="--region 1:12",
     threads: 2
     wrapper:
@@ -61,13 +61,13 @@ rule seqkit_subseq_region:
 
 rule seqkit_fx2tab:
     input:
-        fastx="reads/{sample}.fastq",
+        fastx="data/{sample}.fastq",
     output:
         tsv="out/fx2tab/{sample}.tsv",
     log:
         "logs/fx2tab/{sample}.log",
     params:
-        cmd="fx2tab",
+        command="fx2tab",
         extra="--name",
     threads: 2
     wrapper:
@@ -76,14 +76,14 @@ rule seqkit_fx2tab:
 
 rule seqkit_grep_name:
     input:
-        fastx="reads/{sample}.fastq",
-        pattern="reads/name.txt",
+        fastx="data/{sample}.fastq",
+        pattern="data/name.txt",
     output:
         fastx="out/grep/name/{sample}.fastq.gz",
     log:
         "logs/grep/name/{sample}.log",
     params:
-        cmd="grep",
+        command="grep",
         extra="--by-name",
     threads: 2
     wrapper:
@@ -92,14 +92,14 @@ rule seqkit_grep_name:
 
 rule seqkit_grep_seq:
     input:
-        fastx="reads/{sample}.fastq",
-        pattern="reads/seq.txt",
+        fastx="data/{sample}.fastq",
+        pattern="data/seq.txt",
     output:
         fastx="out/grep/seq/{sample}.fastq.gz",
     log:
         "logs/grep/seq/{sample}.log",
     params:
-        cmd="grep",
+        command="grep",
         extra="--by-seq",
     threads: 2
     wrapper:
@@ -108,7 +108,7 @@ rule seqkit_grep_seq:
 
 rule seqkit_rmdup_name:
     input:
-        fastx="reads/{sample}.fastq",
+        fastx="data/{sample}.fastq",
     output:
         fastx="out/rmdup/name/{sample}.fastq.gz",
         dup_num="out/rmdup/name/{sample}.num.txt",
@@ -116,7 +116,7 @@ rule seqkit_rmdup_name:
     log:
         "logs/rmdup/name/{sample}.log",
     params:
-        cmd="rmdup",
+        command="rmdup",
         extra="--by-name",
     threads: 2
     wrapper:
@@ -125,7 +125,7 @@ rule seqkit_rmdup_name:
 
 rule seqkit_rmdup_seq:
     input:
-        fastx="reads/{sample}.fastq",
+        fastx="data/{sample}.fastq",
     output:
         fastx="out/rmdup/seq/{sample}.fastq.gz",
         dup_num="out/rmdup/seq/{sample}.num.txt",
@@ -133,7 +133,7 @@ rule seqkit_rmdup_seq:
     log:
         "logs/rmdup/seq/{sample}.log",
     params:
-        cmd="rmdup",
+        command="rmdup",
         extra="--by-seq",
     threads: 2
     wrapper:
@@ -142,13 +142,13 @@ rule seqkit_rmdup_seq:
 
 rule seqkit_stats:
     input:
-        fastx="reads/{sample}.fastq",
+        fastx="data/{sample}.fastq",
     output:
         stats="out/stats/{sample}.tsv",
     log:
         "logs/stats/{sample}.log",
     params:
-        cmd="stats",
+        command="stats",
         extra="--all --tabular",
     threads: 2
     wrapper:
