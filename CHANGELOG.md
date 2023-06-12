@@ -1,5 +1,21 @@
 # Changelog
 
+### [1.32.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.32.0...v1.32.1) (2023-06-09)
+
+
+### Performance Improvements
+
+* autobump bio/bedtools/slop ([#1419](https://www.github.com/snakemake/snakemake-wrappers/issues/1419)) ([68c27c9](https://www.github.com/snakemake/snakemake-wrappers/commit/68c27c929c251ad6e0658deb834d6f7788867653))
+* autobump bio/bismark/bismark_methylation_extractor ([#1418](https://www.github.com/snakemake/snakemake-wrappers/issues/1418)) ([fa75c52](https://www.github.com/snakemake/snakemake-wrappers/commit/fa75c5286a50a22bea4bd8cc576ba012827503b7))
+* autobump bio/blast/blastn ([#1416](https://www.github.com/snakemake/snakemake-wrappers/issues/1416)) ([9a73c52](https://www.github.com/snakemake/snakemake-wrappers/commit/9a73c520e065521fe4657c078d9d5047273f01ff))
+* autobump bio/freebayes ([#1420](https://www.github.com/snakemake/snakemake-wrappers/issues/1420)) ([3d8a9ef](https://www.github.com/snakemake/snakemake-wrappers/commit/3d8a9ef0d1673236359e688d888a58cdcc114d55))
+* autobump bio/gatk/cleansam ([#1421](https://www.github.com/snakemake/snakemake-wrappers/issues/1421)) ([bcbbcee](https://www.github.com/snakemake/snakemake-wrappers/commit/bcbbceeed5ae5c6af4fb949af80b93ba67887fb6))
+* autobump bio/hap.py/pre.py ([#1414](https://www.github.com/snakemake/snakemake-wrappers/issues/1414)) ([307bd02](https://www.github.com/snakemake/snakemake-wrappers/commit/307bd0224758738eb654871eb4c6198eb4f28568))
+* autobump bio/open-cravat/run ([#1413](https://www.github.com/snakemake/snakemake-wrappers/issues/1413)) ([58c1065](https://www.github.com/snakemake/snakemake-wrappers/commit/58c1065f513a036f0b6a7c1b1d8a211f121c9f67))
+* autobump bio/seqtk/seq ([#1423](https://www.github.com/snakemake/snakemake-wrappers/issues/1423)) ([cc1a6bf](https://www.github.com/snakemake/snakemake-wrappers/commit/cc1a6bff91c1c5d58365d1a228bd3cf54ec61019))
+* autobump bio/tximport ([#1422](https://www.github.com/snakemake/snakemake-wrappers/issues/1422)) ([7557c08](https://www.github.com/snakemake/snakemake-wrappers/commit/7557c0881321047591135c716a2e7491012cf6a6))
+* autobump bio/vg/kmers ([#1417](https://www.github.com/snakemake/snakemake-wrappers/issues/1417)) ([0d849eb](https://www.github.com/snakemake/snakemake-wrappers/commit/0d849ebd22c73e3e77f776d55a5b161b59468d5a))
+
 ## [1.32.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.31.1...v1.32.0) (2023-06-07)
 
 
