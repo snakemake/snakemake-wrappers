@@ -6,7 +6,7 @@ rule seqkit_seq:
     log:
         "logs/seq/{sample}.log",
     params:
-        command="seq",
+        cmd="seq",
         extra="--min-len 10",
     threads: 2
     wrapper:
@@ -22,7 +22,7 @@ rule seqkit_subseq_bed:
     log:
         "logs/subseq/bed/{sample}.log",
     params:
-        command="subseq",
+        cmd="subseq",
     threads: 2
     wrapper:
         "master/bio/seqkit"
@@ -37,7 +37,7 @@ rule seqkit_subseq_gtf:
     log:
         "logs/subseq/gtf/{sample}.log",
     params:
-        command="subseq",
+        cmd="subseq",
         extra="--feature CDS",
     threads: 2
     wrapper:
@@ -52,7 +52,7 @@ rule seqkit_subseq_region:
     log:
         "logs/subseq/region/{sample}.log",
     params:
-        command="subseq",
+        cmd="subseq",
         extra="--region 1:12",
     threads: 2
     wrapper:
@@ -67,7 +67,7 @@ rule seqkit_fx2tab:
     log:
         "logs/fx2tab/{sample}.log",
     params:
-        command="fx2tab",
+        cmd="fx2tab",
         extra="--name",
     threads: 2
     wrapper:
@@ -77,13 +77,13 @@ rule seqkit_fx2tab:
 rule seqkit_grep_name:
     input:
         fastx="reads/{sample}.fastq",
-        patterns="reads/name.txt",
+        pattern="reads/name.txt",
     output:
         fastx="out/grep/name/{sample}.fastq.gz",
     log:
         "logs/grep/name/{sample}.log",
     params:
-        command="grep",
+        cmd="grep",
         extra="--by-name",
     threads: 2
     wrapper:
@@ -93,13 +93,13 @@ rule seqkit_grep_name:
 rule seqkit_grep_seq:
     input:
         fastx="reads/{sample}.fastq",
-        patterns="reads/seq.txt",
+        pattern="reads/seq.txt",
     output:
         fastx="out/grep/seq/{sample}.fastq.gz",
     log:
         "logs/grep/seq/{sample}.log",
     params:
-        command="grep",
+        cmd="grep",
         extra="--by-seq",
     threads: 2
     wrapper:
@@ -112,11 +112,11 @@ rule seqkit_rmdup_name:
     output:
         fastx="out/rmdup/name/{sample}.fastq.gz",
         dup_num="out/rmdup/name/{sample}.num.txt",
-        dup_seq="out/rmdup/name/{sample}.seq.txt",
+        dup_seqs="out/rmdup/name/{sample}.seq.txt",
     log:
         "logs/rmdup/name/{sample}.log",
     params:
-        command="rmdup",
+        cmd="rmdup",
         extra="--by-name",
     threads: 2
     wrapper:
@@ -129,11 +129,11 @@ rule seqkit_rmdup_seq:
     output:
         fastx="out/rmdup/seq/{sample}.fastq.gz",
         dup_num="out/rmdup/seq/{sample}.num.txt",
-        dup_seq="out/rmdup/seq/{sample}.seq.txt",
+        dup_seqs="out/rmdup/seq/{sample}.seq.txt",
     log:
         "logs/rmdup/seq/{sample}.log",
     params:
-        command="rmdup",
+        cmd="rmdup",
         extra="--by-seq",
     threads: 2
     wrapper:
@@ -148,7 +148,7 @@ rule seqkit_stats:
     log:
         "logs/stats/{sample}.log",
     params:
-        command="stats",
+        cmd="stats",
         extra="--all --tabular",
     threads: 2
     wrapper:
