@@ -1,0 +1,155 @@
+rule seqkit_seq:
+    input:
+        fasta="sequences/{sample}.fa",
+    output:
+        fasta="out/seq/{sample}.fa.gz",
+    log:
+        "logs/seq/{sample}.log",
+    params:
+        command="seq",
+        extra="--min-len 10",
+    threads: 2
+    wrapper:
+        "master/bio/seqkit"
+
+
+rule seqkit_subseq_bed:
+    input:
+        fasta="sequences/{sample}.fa",
+        bed="sequences/{sample}.bed",
+    output:
+        fasta="out/subseq/bed/{sample}.fa.gz",
+    log:
+        "logs/subseq/bed/{sample}.log",
+    params:
+        command="subseq",
+    threads: 2
+    wrapper:
+        "master/bio/seqkit"
+
+
+rule seqkit_subseq_gtf:
+    input:
+        fasta="sequences/{sample}.fa",
+        gtf="sequences/{sample}.gtf",
+    output:
+        fasta="out/subseq/gtf/{sample}.fa.gz",
+    log:
+        "logs/subseq/gtf/{sample}.log",
+    params:
+        command="subseq",
+        extra="--feature CDS",
+    threads: 2
+    wrapper:
+        "master/bio/seqkit"
+
+
+rule seqkit_subseq_region:
+    input:
+        fasta="sequences/{sample}.fa",
+    output:
+        fasta="out/subseq/region/{sample}.fa.gz",
+    log:
+        "logs/subseq/region/{sample}.log",
+    params:
+        command="subseq",
+        extra="--region 1:12",
+    threads: 2
+    wrapper:
+        "master/bio/seqkit"
+
+
+rule seqkit_fx2tab:
+    input:
+        fastx="reads/{sample}.fastq",
+    output:
+        tsv="out/fx2tab/{sample}.tsv",
+    log:
+        "logs/fx2tab/{sample}.log",
+    params:
+        command="fx2tab",
+        extra="--name",
+    threads: 2
+    wrapper:
+        "master/bio/seqkit"
+
+
+rule seqkit_grep_name:
+    input:
+        fastx="reads/{sample}.fastq",
+        patterns="reads/name.txt",
+    output:
+        fastx="out/grep/name/{sample}.fastq.gz",
+    log:
+        "logs/grep/name/{sample}.log",
+    params:
+        command="grep",
+        extra="--by-name",
+    threads: 2
+    wrapper:
+        "master/bio/seqkit"
+
+
+rule seqkit_grep_seq:
+    input:
+        fastx="reads/{sample}.fastq",
+        patterns="reads/seq.txt",
+    output:
+        fastx="out/grep/seq/{sample}.fastq.gz",
+    log:
+        "logs/grep/seq/{sample}.log",
+    params:
+        command="grep",
+        extra="--by-seq",
+    threads: 2
+    wrapper:
+        "master/bio/seqkit"
+
+
+rule seqkit_rmdup_name:
+    input:
+        fastx="reads/{sample}.fastq",
+    output:
+        fastx="out/rmdup/name/{sample}.fastq.gz",
+        dup_num="out/rmdup/name/{sample}.num.txt",
+        dup_seq="out/rmdup/name/{sample}.seq.txt",
+    log:
+        "logs/rmdup/name/{sample}.log",
+    params:
+        command="rmdup",
+        extra="--by-name",
+    threads: 2
+    wrapper:
+        "master/bio/seqkit"
+
+
+rule seqkit_rmdup_seq:
+    input:
+        fastx="reads/{sample}.fastq",
+    output:
+        fastx="out/rmdup/seq/{sample}.fastq.gz",
+        dup_num="out/rmdup/seq/{sample}.num.txt",
+        dup_seq="out/rmdup/seq/{sample}.seq.txt",
+    log:
+        "logs/rmdup/seq/{sample}.log",
+    params:
+        command="rmdup",
+        extra="--by-seq",
+    threads: 2
+    wrapper:
+        "master/bio/seqkit"
+
+
+rule seqkit_stats:
+    input:
+        fastx="reads/{sample}.fastq",
+    output:
+        stats="out/stats/{sample}.tsv",
+    log:
+        "logs/stats/{sample}.log",
+    params:
+        command="stats",
+        extra="--all --tabular",
+    threads: 2
+    wrapper:
+        "master/bio/seqkit"
