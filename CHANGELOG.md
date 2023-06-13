@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.0.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.32.1...v2.0.0) (2023-06-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* replace individual seqkit wrappers with a single wrapper for all seqkit commands (#1426)
+
+### Features
+
+* remove existing run directory option for strelka ([#1297](https://www.github.com/snakemake/snakemake-wrappers/issues/1297)) ([6f384dd](https://www.github.com/snakemake/snakemake-wrappers/commit/6f384ddc857293ec799526b75d355f5015191f70))
+* replace individual seqkit wrappers with a single wrapper for all seqkit commands ([#1426](https://www.github.com/snakemake/snakemake-wrappers/issues/1426)) ([c7a4d96](https://www.github.com/snakemake/snakemake-wrappers/commit/c7a4d960044888825f2b9475d4df7b8f09cec0a0))
+
+
+### Performance Improvements
+
+* update datavzrd to 2.21.0 ([#1424](https://www.github.com/snakemake/snakemake-wrappers/issues/1424)) ([c7d757a](https://www.github.com/snakemake/snakemake-wrappers/commit/c7d757a31b86a367c3e104590ec86ce343e8127f))
+
 ### [1.32.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.32.0...v1.32.1) (2023-06-09)
 
 
