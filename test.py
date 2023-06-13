@@ -251,7 +251,7 @@ def test_tadpole():
 @skip_if_not_modified
 def test_seqkit_stats():
     run(
-        "bio/seqkit/stats",
+        "bio/seqkit",
         [
             "snakemake",
             "--cores",
@@ -266,25 +266,25 @@ def test_seqkit_stats():
 @skip_if_not_modified
 def test_seqkit_rmdup():
     run(
-        "bio/seqkit/rmdup",
+        "bio/seqkit",
         [
             "snakemake",
             "--cores",
             "2",
             "--use-conda",
             "-F",
-            "out/rmdup_name/a.fastq.gz",
+            "out/rmdup/name/a.fastq.gz",
         ],
     )
     run(
-        "bio/seqkit/rmdup",
+        "bio/seqkit",
         [
             "snakemake",
             "--cores",
             "2",
             "--use-conda",
             "-F",
-            "out/rmdup_seq/a.fastq.gz",
+            "out/rmdup/seq/a.fastq.gz",
         ],
     )
 
@@ -300,7 +300,7 @@ def test_gffread():
 @skip_if_not_modified
 def test_seqkit_fx2tab():
     run(
-        "bio/seqkit/fx2tab",
+        "bio/seqkit",
         [
             "snakemake",
             "--cores",
@@ -315,25 +315,25 @@ def test_seqkit_fx2tab():
 @skip_if_not_modified
 def test_seqkit_grep():
     run(
-        "bio/seqkit/grep",
+        "bio/seqkit",
         [
             "snakemake",
             "--cores",
             "2",
             "--use-conda",
             "-F",
-            "out/grep_name/a.fastq.gz",
+            "out/grep/name/a.fastq.gz",
         ],
     )
     run(
-        "bio/seqkit/grep",
+        "bio/seqkit",
         [
             "snakemake",
             "--cores",
             "2",
             "--use-conda",
             "-F",
-            "out/grep_seq/a.fastq.gz",
+            "out/grep/seq/a.fastq.gz",
         ],
     )
 
@@ -341,36 +341,51 @@ def test_seqkit_grep():
 @skip_if_not_modified
 def test_seqkit_subseq():
     run(
-        "bio/seqkit/subseq",
+        "bio/seqkit",
         [
             "snakemake",
             "--cores",
             "2",
             "--use-conda",
             "-F",
-            "out/subseq_bed/t_bed.fa.gz",
+            "out/subseq/bed/a.fa.gz",
         ],
     )
     run(
-        "bio/seqkit/subseq",
+        "bio/seqkit",
         [
             "snakemake",
             "--cores",
             "2",
             "--use-conda",
             "-F",
-            "out/subseq_gtf/t_gtf.fa.gz",
+            "out/subseq/gtf/a.fa.gz",
         ],
     )
     run(
-        "bio/seqkit/subseq",
+        "bio/seqkit",
         [
             "snakemake",
             "--cores",
             "2",
             "--use-conda",
             "-F",
-            "out/subseq_region/t_region.fa.gz",
+            "out/subseq/region/a.fa.gz",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_seqkit_seq():
+    run(
+        "bio/seqkit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/seq/a.fa.gz",
         ],
     )
 
