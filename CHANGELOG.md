@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.33.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.32.1...v1.33.0) (2023-06-13)
+
+
+### Features
+
+* remove existing run directory option for strelka ([#1297](https://www.github.com/snakemake/snakemake-wrappers/issues/1297)) ([6f384dd](https://www.github.com/snakemake/snakemake-wrappers/commit/6f384ddc857293ec799526b75d355f5015191f70))
+
 ### [1.32.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.32.0...v1.32.1) (2023-06-09)
 
 
