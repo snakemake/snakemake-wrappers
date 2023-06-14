@@ -12,7 +12,7 @@ output:
   - deseq2_result_dir: Optional path to a directory that shall contain all DESeq2 results for each comparison (each file is TSV formatted)
   - normalized_counts_table: Optional path to normalized counts (TSV formatted)
   - normalized_counts_rds: Optional path to normalized counts (RDS formatted)
-parameters:
+params:
   - deseq_extra: Optional parameters provided to the function `DESeq()`
   - schrink_extra: Optional parameters provided to the function `lfSchrink()`
   - results_extra: Optional parameters provided to the function `result()`
