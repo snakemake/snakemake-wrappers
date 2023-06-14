@@ -1076,6 +1076,14 @@ def test_deseq2_deseqdataset():
 
 
 @skip_if_not_modified
+def test_deseq2_wald():
+    run(
+        "bio/deseq2/wald",
+        ["snakemake", "--cores", "1", "--use-conda", "dge.tsv"]
+    )
+
+
+@skip_if_not_modified
 def test_arriba_star_meta():
     run(
         "meta/bio/star_arriba",
