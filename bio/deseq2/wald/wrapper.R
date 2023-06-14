@@ -22,22 +22,22 @@ base::library(package = "ashr", character.only = TRUE)
 # and still follow R syntax
 add_extra <- function(wrapper_extra, snakemake_param_name) {
   if (snakemake_param_name %in% base::names(snakemake@params)) {
-    # Case user did used parameters name in snakemake rule
+    # Case user provides snakemake_param_name in snakemake rule
     user_param <- snakemake@params[[snakemake_param_name]]
 
     param_is_empty <- user_param == ""
     param_is_character <- inherits(x = user_param, what = "charcter")
     if ((! param_is_empty) && (param_is_character)) {
-      # Case user did not provide an empty string, as
-      # R does not like trailing commas at the end
-      # of a function call.
+      # Case user do not provide an empty string
+      # (R does not like trailing commas at the end
+      # of a function call)
       wrapper_extra <- base::paste(
         wrapper_extra,
         user_param,
         sep = ", "
       )
-    }
-  }
+    } # Nothing to do if user provides an empty / NULL parameter value
+  } # Nothing to do if user did not provide snakemake_param_name
 
   # In any case, required parameters must be returned
   base::return(wrapper_extra)
@@ -78,6 +78,8 @@ wald <- base::eval(base::parse(text = deseq2_cmd))
 
 
 # Save main result on user request (RDS)
+# This includes counts, wald tests for all levels
+# assays, design, etc.
 if ("wald_rds" %in% base::names(x = snakemake@output)) {
   output_rds <- base::as.character(x = snakemake@output[["wald_rds"]])
   base::saveRDS(obj = wald, file = output_rds)
@@ -87,7 +89,7 @@ if ("wald_rds" %in% base::names(x = snakemake@output)) {
 # Saving normalized counts on demand
 table <- counts(wald)
 
-# TSV
+# TSV-formatted count table
 if ("normalized_counts_table" %in% base::names(snakemake@output)) {
   output_table <- base::as.character(
     x = snakemake@output[["normalized_counts_table"]]
@@ -96,7 +98,8 @@ if ("normalized_counts_table" %in% base::names(snakemake@output)) {
   base::message("Normalized counts saved as TSV")
 }
 
-# RDS
+# RDS-formated count object with many information,
+# including counts, assays, etc.
 if ("normalized_counts_rds" %in% base::names(snakemake@output)) {
   output_rds <- base::as.character(
     x = snakemake@output[["normalized_counts_rds"]]
@@ -105,9 +108,9 @@ if ("normalized_counts_rds" %in% base::names(snakemake@output)) {
   base::message("Normalized counts saved as RDS")
 }
 
-# On user request: saving all results as TSV in a directory.
-# User can later access the directory content with
-# a checkpoint rule.
+# On user request: save all results as TSV in a directory.
+# User can later access the directory content, e.g. with
+# a snakemake checkpoint-rule.
 if ("deseq2_result_dir" %in% base::names(snakemake@output)) {
   # Acquire list of available results in DESeqDataSet
   wald_results_names <- DESeq2::resultsNames(object = wald)
