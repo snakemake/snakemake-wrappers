@@ -1084,6 +1084,19 @@ def test_arriba_star_meta():
 
 
 @skip_if_not_modified
+def test_xsv_select():
+    run(
+        "bio/xsv/select",
+        ["snakemake", "--cores", "1", "--use-conda", "selected1.csv"]
+    )
+
+    run(
+        "bio/xsv/select",
+        ["snakemake", "--cores", "1", "--use-conda", "selected2.csv"]
+    )
+
+
+@skip_if_not_modified
 def test_bwa_mapping_meta():
     run(
         "meta/bio/bwa_mapping",

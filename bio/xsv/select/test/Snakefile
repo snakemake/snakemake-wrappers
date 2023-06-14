@@ -1,0 +1,28 @@
+rule test_xsv_select:
+    input:
+        "table.csv",
+    output:
+        "selected1.csv",
+    threads: 1
+    log:
+        "xsv.log",
+    params:
+        extra="",
+        selection="s1-s3",
+    wrapper:
+        "master/bio/xsv/select"
+
+
+rule text_xsv_select:
+    input:
+        "table.tsv",
+    output:
+        "selected2.csv",
+    threads: 1
+    log:
+        "xsv.log",
+    params:
+        extra="",
+        selection="s1-s3",
+    wrapper:
+        "master/bio/xsv/select"

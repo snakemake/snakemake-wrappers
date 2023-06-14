@@ -1,0 +1,12 @@
+name: xsv select
+url: https://github.com/BurntSushi/xsv
+description: >
+  Select or re-order columns from CSV/TSV data.
+authors:
+  - Thibault Dayris
+input:
+  - Path to CSV/TSV table. This table must be the first input in the input file list.
+output:
+  - Path to filtered / re-ordered CSV table.
+params:
+  - extra: Optional arguments for `xsv select`. For TSV files, `--delimiter` is automatically set to a tabulation.
