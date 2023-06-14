@@ -2,7 +2,7 @@ name: autobump
 
 on:
   schedule:
-    - cron: "0 0 * * 5"
+    - cron: "50 0 * * 5"
 
 jobs:
   autobump:

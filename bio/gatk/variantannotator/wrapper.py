@@ -32,7 +32,7 @@ if intervals:
 resources = [
     f"--resource:{name} {file}"
     for name, file in snakemake.input.items()
-    if name not in ["vcf", "aln", "ref", "known", "intervals"]
+    if name not in ["vcf", "aln", "ref", "known", "intervals", "bai"]
 ]
 
 

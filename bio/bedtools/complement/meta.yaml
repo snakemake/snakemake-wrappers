@@ -5,7 +5,11 @@ url: https://bedtools.readthedocs.io/en/latest/content/tools/complement.html
 authors:
   - Antonie Vietor
 input:
-  - BED/GFF/VCF files
-  - genome file
+  - in_file: interval files (BED/GFF/VCF)
+  - genome: genome file
 output:
   - complemented BED/GFF/VCF file
+params:
+  - extra: additional program arguments (except `-i` and `-g`)
+notes: |
+  * This program/wrapper does not handle multi-threading.
