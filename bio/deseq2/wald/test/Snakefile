@@ -1,6 +1,6 @@
 rule test_deseq2_wald:
     input:
-        dds="dds.RDS"
+        dds="dds.RDS",
     output:
         wald_rds="wald.RDS",
         wald_tsv="dge.tsv",
@@ -14,6 +14,6 @@ rule test_deseq2_wald:
         contrast=["condition", "A", "B"],
     threads: 1
     log:
-        "logs/deseq2.log"
+        "logs/deseq2.log",
     wrapper:
         "master/bio/deseq2/wald"
