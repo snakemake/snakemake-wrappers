@@ -1,0 +1,28 @@
+rule test_xsv_search_csv:
+    input:
+        "table.csv",
+    output:
+        "searched1.csv",
+    threads: 1
+    log:
+        "xsv.log",
+    params:
+        extra="",
+        regex="ensg02",
+    wrapper:
+        "master/bio/xsv/search"
+
+
+rule test_xsv_search_tsv:
+    input:
+        "table.tsv",
+    output:
+        "searched2.csv",
+    threads: 1
+    log:
+        "xsv.log",
+    params:
+        extra="",
+        regex="ensg02",
+    wrapper:
+        "master/bio/xsv/search"

@@ -1,0 +1,13 @@
+name: xsv search
+url: https://github.com/BurntSushi/xsv
+description: >
+  Filters CSV data by whether the given regex matches a row.
+authors:
+  - Thibault Dayris
+input:
+  - Path to CSV/TSV table.
+output:
+  - Path to the filtered table.
+params:
+  - regex: Required regular expression.
+  - extra: Optional arguments for `xsv search`. For TSV files, `--delimiter` is automatically set to a tabulation.

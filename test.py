@@ -1113,6 +1113,19 @@ def test_gridss_call():
 
 
 @skip_if_not_modified
+def test_xsv_search():
+    run(
+        "bio/xsv/search",
+        ["snakemake", "--cores", "1", "--use-conda", "searched1.csv"]
+    )
+
+    run(
+        "bio/xsv/search",
+        ["snakemake", "--cores", "1", "--use-conda", "searched2.csv"]
+    )
+
+
+@skip_if_not_modified
 def test_gridss_assemble():
     run(
         "bio/gridss/assemble",
