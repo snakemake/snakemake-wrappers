@@ -1098,6 +1098,19 @@ def test_bwa_mapping_meta():
 
 
 @skip_if_not_modified
+def test_xsv_index():
+    run(
+        "bio/xsv/index",
+        ["snakemake", "--cores", "1", "--use-conda", "table.csv.idx"]
+    )
+
+    run(
+        "bio/xsv/index",
+        ["snakemake", "--cores", "1", "--use-conda", "table.tsv.idx"]
+    )
+
+
+@skip_if_not_modified
 def test_gridss_call():
     run(
         "bio/gridss/call",

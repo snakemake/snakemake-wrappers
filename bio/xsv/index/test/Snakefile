@@ -1,0 +1,26 @@
+rule test_xsv_index_csv:
+    input:
+        "table.csv",
+    output:
+        "table.csv.idx",
+    threads: 1
+    log:
+        "xsv.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/xsv/index"
+
+
+rule test_xsv_index_tsv:
+    input:
+        "table.tsv",
+    output:
+        "table.tsv.idx",
+    threads: 1
+    log:
+        "xsv.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/xsv/index"

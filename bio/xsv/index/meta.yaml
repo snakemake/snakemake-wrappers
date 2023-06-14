@@ -1,0 +1,12 @@
+name: xsv index
+url: https://github.com/BurntSushi/xsv
+description: >
+  Create an index for a CSV file. This is very quick and provides constant time indexing into the CSV file with other xsv commands.
+authors:
+  - Thibault Dayris
+input:
+  - Path to CSV/TSV table.
+output:
+  - Path to the index of the table.
+params:
+  - extra: Optional arguments for `xsv index`. For TSV files, `--delimiter` is automatically set to a tabulation.
