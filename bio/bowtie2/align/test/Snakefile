@@ -28,6 +28,22 @@ rule test_bowtie2:
         "master/bio/bowtie2/align"
 
 
+use rule test_bowtie2 as test_bowtie2_se_gz with:
+    input:
+        sample=["reads/{sample}.1.fastq.gz"],
+        idx=multiext(
+            "index/genome",
+            ".1.bt2",
+            ".2.bt2",
+            ".3.bt2",
+            ".4.bt2",
+            ".rev.1.bt2",
+            ".rev.2.bt2",
+        ),
+    output:
+        "mapped_se_gz/{sample}.bam",
+
+
 rule test_bowtie2_index:
     input:
         sample=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],

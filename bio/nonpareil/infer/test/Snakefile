@@ -1,0 +1,15 @@
+rule nonpareil:
+    input:
+        "reads/{sample}",
+    output:
+        redund_sum="results/{sample}.npo",
+        redund_val="results/{sample}.npa",
+        mate_distr="results/{sample}.npc",
+        log="results/{sample}.log",
+    log:
+        "logs/{sample}.log",
+    params:
+        alg="kmer",
+        extra="-X 1 -k 3 -F",
+    wrapper:
+        "master/bio/nonpareil/infer"
