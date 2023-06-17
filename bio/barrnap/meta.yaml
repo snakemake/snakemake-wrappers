@@ -10,4 +10,5 @@ output:
   - fasta: Optional. Fasta file with the hit sequences.
 params:
   - extra: additional parameters
+  - kingdom: database to use, either Bacteria:`bac`, Archaea:`arc`, Eukaryota:`euk` or Metazoan Mitochondria:`mito`.
 notes: Multiple threads can be used during nhmmer search.
