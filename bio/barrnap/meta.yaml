@@ -1,0 +1,13 @@
+name: barrnap
+description: BAsic Rapid Ribosomal RNA Predictor
+url: https://github.com/tseemann/barrnap
+authors:
+  - Curro Campuzano Jiménez
+input:
+  - fasta: query fasta file
+output:
+  - gff: The rRNA locations in GFF3 format. 
+  - fasta: Optional. Fasta file with the hit sequences.
+params:
+  - extra: additional parameters
+notes: Multiple threads can be used during nhmmer search.

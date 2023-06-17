@@ -5575,3 +5575,17 @@ def test_bazam_separated():
             "results/reads/a.r1.fastq.gz",
         ],
     )
+
+@skip_if_not_modified
+def test_barrnap():
+    run(
+        "bio/barrnap",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mitochondria.gff",
+            "--use-conda",
+            "-F",
+        ],
+    )

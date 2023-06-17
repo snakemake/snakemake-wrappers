@@ -1,0 +1,13 @@
+rule barrnap:
+    input:
+        fasta="{sample}.fasta",
+    output:
+        gff="{sample}.gff",
+        fasta="{sample}_hits.fasta",
+    params:
+        extra="",
+    threads: 1
+    log:
+        "logs/barrnap/{sample}.log",
+    wrapper:
+        "master/bio/barrnap"
