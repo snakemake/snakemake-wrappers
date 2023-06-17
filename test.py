@@ -5664,12 +5664,16 @@ def test_ragtag_merge():
             "-F",
         ],
     )
-    
+
 @skip_if_not_modified
 def test_barrnap():
     run(
         "bio/barrnap",
-        "mitochondria.gff",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mitochondria.gff",
             "--use-conda",
             "-F",
         ],
