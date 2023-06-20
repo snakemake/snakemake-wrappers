@@ -37,16 +37,35 @@ base::print(params)
 
 
 pdf(snakemake@output[[1]])
-Nonpareil.curve(file = snakemake@input[[1]],
+curve <- Nonpareil.curve(file = snakemake@input[[1]],
 		label = params[["label"]],
 		col = params[["col"]],
 		enforce.consistency = params[["enforce_consistency"]],
 		star = params[["star"]],
 		correction.factor = params[["correction_factor"]],
 		weights.exp = params[["weights_exp"]],
-		skip.model = params[["skip_model"]]
-	       )
+		skip.model = params[["skip_model"]],
+		plot = FALSE
+		)
 
+
+# Print	stats to log
+summary(curve)
+# Get stats
+stats <- summary(curve)
+# Convert to Gb
+stats[3] <- stats[3] / 1e9
+stats[5] <- stats[5] / 1e9
+# Round
+stats <- round(stats, digits = 2)
+# Fix names
+names(stats) <-	c("Redundancy", "Avg. coverage", "Seq. effort", "Model correlation", "Required seq. effort", "Diversity")
+
+# Save plot
+plot(curve)
+
+# Add legend
+legend("bottomright", legend = paste0(paste(names(stats), stats, sep=": "), c("",""," Gb",""," Gb","")), cex = 0.5)
 
 base::message("Nonpareil plot saved")
 dev.off()
