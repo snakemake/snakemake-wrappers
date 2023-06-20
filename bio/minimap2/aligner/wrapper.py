@@ -15,6 +15,7 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 sort = snakemake.params.get("sorting", "none")
 sort_extra = snakemake.params.get("sort_extra", "")
+gap_opening = snakemake.params.get("gap_opening", "")
 
 out_ext = infer_out_format(snakemake.output[0])
 
@@ -45,6 +46,7 @@ shell(
     "(minimap2"
     " -t {snakemake.threads}"
     " {extra} "
+    " -O {gap_opening} "
     " {snakemake.input.target}"
     " {snakemake.input.query}"
     " {pipe_cmd}"
