@@ -20,15 +20,6 @@ assert kingdom in [
     kingdom
 )
 
-valid_keys = ["gff", "fasta"]
-for key in snakemake.output.keys():
-    assert (
-        key in valid_keys
-    ), "Invalid key in output. Valid keys are: %r. Given: %r." % (valid_keys, key)
-
-gff_out = snakemake.output.get("gff")
-assert gff_out, "Output must contain at least a gff file."
-
 fasta_out = snakemake.output.get("fasta")
 if fasta_out:
     extra += f" -o {fasta_out}"
@@ -36,9 +27,10 @@ if fasta_out:
 shell(
     "barrnap"
     " --threads {snakemake.threads}"
-    " -k {kingdom}"
+    " -k {snakemake.params.kingdom}"
+
     " {extra}"
-    " < {snakemake.input}"
-    " > {gff_out}"
+    " < {snakemake.input.fasta}"
+    " > {snakemake.output.gff}"
     " {log}"
 )
