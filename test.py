@@ -170,8 +170,9 @@ def test_nonpareil_plot():
             "--use-conda",
             "-F",
             "results/a.pdf",
-        ]
+        ],
     )
+
 
 @skip_if_not_modified
 def test_indelqual():
@@ -2724,7 +2725,14 @@ def test_happy_prepy():
 def test_happy_prepy():
     run(
         "bio/hap.py/pre.py",
-        ["snakemake", "--cores", "1", "normalized/variants.vcf.gz", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "normalized/variants.vcf.gz",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -3724,7 +3732,15 @@ def test_subread_featurecounts():
 def test_trim_galore_pe():
     run(
         "bio/trim_galore/pe",
-        ["snakemake", "--cores", "1", "trimmed/a.1_val_1.fq.gz", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "trimmed/a_R1.fq.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_trim_galore_pe_uncompressed():
+    run(
+        "bio/trim_galore/pe",
+        ["snakemake", "--cores", "1", "trimmed/a_R2.fastq", "--use-conda", "-F"],
     )
 
 
@@ -3733,6 +3749,14 @@ def test_trim_galore_se():
     run(
         "bio/trim_galore/se",
         ["snakemake", "--cores", "1", "trimmed/a_trimmed.fq.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_trim_galore_se_uncompressed():
+    run(
+        "bio/trim_galore/se",
+        ["snakemake", "--cores", "1", "trimmed/a_trimmed.fastq", "--use-conda", "-F"],
     )
 
 

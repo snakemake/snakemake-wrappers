@@ -7,10 +7,11 @@ __license__ = "MIT"
 
 
 from snakemake.shell import shell
-import os.path
+import tempfile
+import os
 
 
-log = snakemake.log_fmt_shell()
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 # Check that two input files were supplied
 n = len(snakemake.input)
@@ -30,19 +31,36 @@ if "--fastqc" in snakemake.params.get("extra", ""):
 m = len(snakemake.output)
 assert m == 4, "Output must contain 4 files. Given: %r." % m
 
-# Check that all output files are in the same directory
-out_dir = os.path.dirname(snakemake.output[0])
-for file_path in snakemake.output[1:]:
-    assert out_dir == os.path.dirname(file_path), (
-        "trim_galore can only output files to a single directory."
-        " Please indicate only one directory for the output files."
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "(trim_galore"
+        " {snakemake.params.extra}"
+        " --paired"
+        " -o {tmpdir}"
+        " {snakemake.input})"
+        " {log}"
+    )
+    # Get all files in tmpdir
+    fasta_fwd, fasta_rev, report_fwd, report_rev = (
+        snakemake.output.get(key)
+        for key in ["fasta_fwd", "fasta_rev", "report_fwd", "report_rev"]
     )
 
-shell(
-    "(trim_galore"
-    " {snakemake.params.extra}"
-    " --paired"
-    " -o {out_dir}"
-    " {snakemake.input})"
-    " {log}"
-)
+    if fasta_fwd:
+        file = [f for f in os.listdir(tmpdir) if "_val_1" in f][
+            0
+        ]  # It always have _val_1
+        shell("mv {tmpdir}/{file} {fasta_fwd}")
+
+    if fasta_rev:
+        file = [f for f in os.listdir(tmpdir) if "_val_2" in f][0]
+        shell("mv {tmpdir}/{file} {fasta_rev}")
+
+    if report_fwd:
+        # Get filename from snakemake.input[0]
+        file = f"{os.path.basename(snakemake.input[0])}_trimming_report.txt"
+        shell("mv {tmpdir}/{file} {report_fwd}")
+
+    if report_rev:
+        file = f"{os.path.basename(snakemake.input[1])}_trimming_report.txt"
+        shell("mv {tmpdir}/{file} {report_rev}")

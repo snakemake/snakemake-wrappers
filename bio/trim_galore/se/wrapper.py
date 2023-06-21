@@ -7,10 +7,11 @@ __license__ = "MIT"
 
 
 from snakemake.shell import shell
-import os.path
+import os
+import tempfile
 
 
-log = snakemake.log_fmt_shell()
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 # Don't run with `--fastqc` flag
 if "--fastqc" in snakemake.params.get("extra", ""):
@@ -21,23 +22,30 @@ if "--fastqc" in snakemake.params.get("extra", ""):
         "You can use the fastqc Snakemake wrapper on "
         "the input and output files instead."
     )
+# Check that input files were supplied
+n = len(snakemake.input)
+assert n == 1, "Input must contain 1 files. Given: %r." % n
 
 # Check that two output files were supplied
 m = len(snakemake.output)
 assert m == 2, "Output must contain 2 files. Given: %r." % m
 
-# Check that all output files are in the same directory
-out_dir = os.path.dirname(snakemake.output[0])
-for file_path in snakemake.output[1:]:
-    assert out_dir == os.path.dirname(file_path), (
-        "trim_galore can only output files to a single directory."
-        " Please indicate only one directory for the output files."
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "(trim_galore"
+        " {snakemake.params.extra}"
+        " -o {tmpdir}"
+        " {snakemake.input})"
+        " {log}"
     )
+    # Get all files in tmpdir
+    fasta, report = (snakemake.output.get(key) for key in ["fasta", "report"])
 
-shell(
-    "(trim_galore"
-    " {snakemake.params.extra}"
-    " -o {out_dir}"
-    " {snakemake.input})"
-    " {log}"
-)
+    if fasta:
+        file = [f for f in os.listdir(tmpdir) if "_trimmed" in f][0]
+        shell("mv {tmpdir}/{file} {fasta}")
+
+    if report:
+        # Get filename from snakemake.input[0]
+        file = f"{os.path.basename(snakemake.input[0])}_trimming_report.txt"
+        shell("mv {tmpdir}/{file} {report}")
