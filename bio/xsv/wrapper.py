@@ -49,7 +49,12 @@ def threading(threads: int = snakemake.threads) -> str:
     return f" --jobs {threads} "
 
 
-def add_extra(extra: str, add_in_delimiter: bool = False, add_out_delimiter: bool = False, add_threading: bool = False) -> str:
+def add_extra(
+    extra: str,
+    add_in_delimiter: bool = False,
+    add_out_delimiter: bool = False,
+    add_threading: bool = False,
+) -> str:
     if add_in_delimiter:
         extra += in_delimiter()
     if add_out_delimiter:
@@ -58,6 +63,7 @@ def add_extra(extra: str, add_in_delimiter: bool = False, add_out_delimiter: boo
         extra += threading()
 
     return extra
+
 
 output_command = f"> {snakemake.output}"
 extra = snakemake.params.get("extra", "")
@@ -78,7 +84,6 @@ elif command == "frequency":
     extra = add_extra(extra, add_in_delimiter=True, add_threading=True)
 elif command == "headers":
     extra = add_extra(extra, add_in_delimiter=True)
-
 
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)

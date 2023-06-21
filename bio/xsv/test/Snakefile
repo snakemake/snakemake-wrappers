@@ -1,13 +1,13 @@
 ### Concatenation subcommand ###
 rule test_xsv_cat_rows:
     input:
-        table=["table.csv", "right.csv"]
+        table=["table.csv", "right.csv"],
         # Optional CSV indexed may be given below
     output:
-        "catrows.csv"
+        "catrows.csv",
     threads: 1
     log:
-        "xsv/catrow.log"
+        "xsv/catrow.log",
     params:
         subcommand="cat rows",
         extra="",
@@ -17,13 +17,13 @@ rule test_xsv_cat_rows:
 
 rule test_xsv_cat_cols:
     input:
-        table=["table.csv", "right.csv"]
+        table=["table.csv", "right.csv"],
         # Optional CSV indexed may be given below
     output:
-        "catcols.csv"
+        "catcols.csv",
     threads: 1
     log:
-        "xsv/catcol.log"
+        "xsv/catcol.log",
     params:
         subcommand="cat columns",
         extra="",
@@ -34,13 +34,13 @@ rule test_xsv_cat_cols:
 ### Count subcommand ###
 rule test_xsv_count:
     input:
-        table="table.csv"
+        table="table.csv",
         # Optional CSV indexed may be given below
     output:
-        "count.csv"
+        "count.csv",
     threads: 1
     log:
-        "xsv/count.log"
+        "xsv/count.log",
     params:
         subcommand="count",
         extra="",
@@ -51,13 +51,13 @@ rule test_xsv_count:
 ### Fix lengths subcommand ###
 rule test_xsv_fixlength:
     input:
-        table="table.csv"
+        table="table.csv",
         # Optional CSV indexed may be given below
     output:
-        "fixlength.csv"
+        "fixlength.csv",
     threads: 1
     log:
-        "xsv/fixlength.log"
+        "xsv/fixlength.log",
     params:
         subcommand="fixlengths",
         length=20,
@@ -69,13 +69,13 @@ rule test_xsv_fixlength:
 ### Flatten subcommand ###
 rule test_xsv_flatten:
     input:
-        table="table.csv"
+        table="table.csv",
         # Optional CSV indexed may be given below
     output:
-        "flatten.csv"
+        "flatten.csv",
     threads: 1
     log:
-        "xsv/flatten.log"
+        "xsv/flatten.log",
     params:
         subcommand="flatten",
         extra="",
@@ -83,17 +83,16 @@ rule test_xsv_flatten:
         "master/bio/xsv"
 
 
-
 ### Format subcommand ###
 rule test_xsv_fmt:
     input:
-        table="table.csv"
+        table="table.csv",
         # Optional CSV indexed may be given below
     output:
-        "fmt.tsv"
+        "fmt.tsv",
     threads: 1
     log:
-        "xsv/fmt.log"
+        "xsv/fmt.log",
     params:
         subcommand="fmt",
         extra="",
@@ -104,13 +103,13 @@ rule test_xsv_fmt:
 ### Frequency subcommand ###
 rule test_xsv_frequency:
     input:
-        table="table.csv"
+        table="table.csv",
         # Optional CSV indexed may be given below
     output:
-        "frequency.csv"
+        "frequency.csv",
     threads: 1
     log:
-        "xsv/frequency.log"
+        "xsv/frequency.log",
     params:
         subcommand="frequency",
         extra="",
@@ -121,13 +120,13 @@ rule test_xsv_frequency:
 ### Headers subcommand ###
 rule test_xsv_headers:
     input:
-        table="table.csv"
+        table="table.csv",
         # Optional CSV indexed may be given below
     output:
-        "headers.csv"
+        "headers.csv",
     threads: 1
     log:
-        "xsv/headers.log"
+        "xsv/headers.log",
     params:
         subcommand="headers",
         extra="",
@@ -137,13 +136,13 @@ rule test_xsv_headers:
 
 rule test_xsv_headers_list:
     input:
-        table=["table.csv", "right.csv"]
+        table=["table.csv", "right.csv"],
         # Optional CSV indexed may be given below
     output:
-        "headers_all.csv"
+        "headers_all.csv",
     threads: 1
     log:
-        "xsv/headers.log"
+        "xsv/headers.log",
     params:
         subcommand="headers",
         extra="",
@@ -154,12 +153,12 @@ rule test_xsv_headers_list:
 ### Index subcommand ###
 rule test_xsv_index:
     input:
-        table="table.csv"
+        table="table.csv",
     output:
-        "table.csv.idx"
+        "table.csv.idx",
     threads: 1
     log:
-        "xsv/index.log"
+        "xsv/index.log",
     params:
         subcommand="index",
         extra="",
@@ -170,12 +169,12 @@ rule test_xsv_index:
 ### Input subcommand ###
 rule test_xsv_input:
     input:
-        table="table.csv"
+        table="table.csv",
     output:
-        "input.csv"
+        "input.csv",
     threads: 1
     log:
-        "xsv/input.log"
+        "xsv/input.log",
     params:
         subcommand="input",
         extra="",
@@ -186,12 +185,12 @@ rule test_xsv_input:
 ### Join subcommand ###
 rule test_xsv_join_cols_as_list:
     input:
-        table=["table.csv", "right.csv"]
+        table=["table.csv", "right.csv"],
     output:
-        "join.list.csv"
+        "join.list.csv",
     threads: 1
     log:
-        "xsv/join.log"
+        "xsv/join.log",
     params:
         subcommand="join",
         left_columns="gene_id",
@@ -204,12 +203,12 @@ rule test_xsv_join_cols_as_list:
 rule test_xsv_join:
     input:
         # Faster with indexed table
-        table=["table.csv", "right.csv"]
+        table=["table.csv", "right.csv"],
     output:
-        "join.csv"
+        "join.csv",
     threads: 1
     log:
-        "xsv/join.log"
+        "xsv/join.log",
     params:
         subcommand="join",
         left_columns=["gene_id"],
@@ -219,16 +218,15 @@ rule test_xsv_join:
         "master/bio/xsv"
 
 
-
 ### Sample subcommand ###
 rule test_xsv_sample:
     input:
-        table="table.csv" # Faster with indexed table
+        table="table.csv",  # Faster with indexed table
     output:
-        "sample.csv"
+        "sample.csv",
     threads: 1
     log:
-        "xsv/sample.log"
+        "xsv/sample.log",
     params:
         subcommand="sample",
         sample_size=1,
@@ -237,16 +235,15 @@ rule test_xsv_sample:
         "master/bio/xsv"
 
 
-
 ### Search subcommand ###
 rule test_xsv_search:
     input:
-        table="table.csv" # Faster with indexed table
+        table="table.csv",  # Faster with indexed table
     output:
-        "search.csv"
+        "search.csv",
     threads: 1
     log:
-        "xsv/search.log"
+        "xsv/search.log",
     params:
         subcommand="search",
         regex="ENSG[0-9]+",
@@ -258,12 +255,12 @@ rule test_xsv_search:
 ### Select subcommand ###
 rule test_xsv_select:
     input:
-        table="table.csv" # Faster with indexed table
+        table="table.csv",  # Faster with indexed table
     output:
-        "select.csv"
+        "select.csv",
     threads: 1
     log:
-        "xsv/select.log"
+        "xsv/select.log",
     params:
         subcommand="select",
         selection="3-",
@@ -275,12 +272,12 @@ rule test_xsv_select:
 ### Slice subcommand ###
 rule test_xsv_slice:
     input:
-        table="table.csv" # Faster with indexed table
+        table="table.csv",  # Faster with indexed table
     output:
-        "slice.csv"
+        "slice.csv",
     threads: 1
     log:
-        "xsv/slice.log"
+        "xsv/slice.log",
     params:
         subcommand="slice",
         extra="-i 2",
@@ -291,12 +288,12 @@ rule test_xsv_slice:
 ### Sort subcommand ###
 rule test_xsv_sort:
     input:
-        table="table.csv"
+        table="table.csv",
     output:
-        "sort.csv"
+        "sort.csv",
     threads: 1
     log:
-        "xsv/sort.log"
+        "xsv/sort.log",
     params:
         subcommand="sort",
         extra="",
@@ -307,18 +304,17 @@ rule test_xsv_sort:
 ### Split subcommand ###
 rule test_xsv_split:
     input:
-        table="table.csv" # Faster with indexed table
+        table="table.csv",  # Faster with indexed table
     output:
-        directory("split.csv")
+        directory("split.csv"),
     threads: 1
     log:
-        "xsv/split.log"
+        "xsv/split.log",
     params:
         subcommand="split",
         extra="",
     wrapper:
         "master/bio/xsv"
-
 
 
 ### TODO Table
