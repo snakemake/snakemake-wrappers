@@ -6,6 +6,7 @@ rule trim_galore_se:
         "trimmed/{sample}.fastq.gz_trimming_report.txt",
     params:
         extra="--illumina -q 20",
+    threads: 1
     log:
         "logs/trim_galore/{sample}.log",
     wrapper:
