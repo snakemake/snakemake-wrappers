@@ -170,8 +170,9 @@ def test_nonpareil_plot():
             "--use-conda",
             "-F",
             "results/a.pdf",
-        ]
+        ],
     )
+
 
 @skip_if_not_modified
 def test_indelqual():
@@ -1085,50 +1086,23 @@ def test_arriba_star_meta():
 
 @skip_if_not_modified
 def test_xsv():
-    run(
-        "bio/xsv",
-        ["snakemake", "--cores", "1", "--use-conda", "headers_all.csv"]
-    )
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "headers_all.csv"])
 
-    run(
-        "bio/xsv",
-        ["snakemake", "--cores", "1", "--use-conda", "headers.csv"]
-    )
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "headers.csv"])
 
-    run(
-        "bio/xsv",
-        ["snakemake", "--cores", "1", "--use-conda", "frequency.csv"]
-    )
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "frequency.csv"])
 
-    run(
-        "bio/xsv",
-        ["snakemake", "--cores", "1", "--use-conda", "fmt.tsv"]
-    )
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "fmt.tsv"])
 
-    run(
-        "bio/xsv",
-        ["snakemake", "--cores", "1", "--use-conda", "flatten.csv"]
-    )
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "flatten.csv"])
 
-    run(
-        "bio/xsv",
-        ["snakemake", "--cores", "1", "--use-conda", "fixlength.csv"]
-    )
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "fixlength.csv"])
 
-    run(
-        "bio/xsv",
-        ["snakemake", "--cores", "1", "--use-conda", "count.csv"]
-    )
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "count.csv"])
 
-    run(
-        "bio/xsv",
-        ["snakemake", "--cores", "1", "--use-conda", "catrows.csv"]
-    )
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "catrows.csv"])
 
-    run(
-        "bio/xsv",
-        ["snakemake", "--cores", "1", "--use-conda", "catcols.csv"]
-    )
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "catcols.csv"])
 
 
 @skip_if_not_modified
@@ -2772,7 +2746,14 @@ def test_happy_prepy():
 def test_happy_prepy():
     run(
         "bio/hap.py/pre.py",
-        ["snakemake", "--cores", "1", "normalized/variants.vcf.gz", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "normalized/variants.vcf.gz",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
