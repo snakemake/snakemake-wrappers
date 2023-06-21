@@ -28,7 +28,6 @@ shell(
     "barrnap"
     " --threads {snakemake.threads}"
     " -k {snakemake.params.kingdom}"
-
     " {extra}"
     " < {snakemake.input.fasta}"
     " > {snakemake.output.gff}"
