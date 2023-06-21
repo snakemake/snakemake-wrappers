@@ -38,7 +38,8 @@ if fasta.endswith("gz"):
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "(trim_galore"
-        " {snakemake.params.extra}"
+        " {extra}"
+        " --cores {snakemake.threads}"
         " -o {tmpdir}"
         " {snakemake.input})"
         " {log}"

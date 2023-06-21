@@ -20,6 +20,7 @@ rule trim_galore_se_uncompressed:
         report="trimmed/report/{sample}.fastq_trimming_report.txt",
     params:
         extra="--illumina -q 20",
+    threads: 1
     log:
         "logs/trim_galore/{sample}.log",
     wrapper:

@@ -6,6 +6,7 @@ rule trim_galore_pe:
         report_fwd="trimmed/reports/{sample}_R1_trimming_report.txt",
         fasta_rev="trimmed/{sample}_R2.fq.gz",
         report_rev="trimmed/reports/{sample}_R2_trimming_report.txt",
+    threads: 1
     params:
         extra="--illumina -q 20",
     log:
@@ -22,6 +23,7 @@ rule trim_galore_pe_uncompressed:
         report_fwd="trimmed/reports/{sample}_R1_trimming_report.txt",
         fasta_rev="trimmed/{sample}_R2.fastq",
         report_rev="trimmed/reports/{sample}_R2_trimming_report.txt",
+    threads: 1
     params:
         extra="--illumina -q 20",
     log:

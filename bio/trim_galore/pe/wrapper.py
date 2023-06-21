@@ -43,6 +43,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "(trim_galore"
         " {extra}"
+        " --cores {snakemake.threads}"
         " --paired"
         " -o {tmpdir}"
         " {snakemake.input})"
