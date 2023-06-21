@@ -15,7 +15,6 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 sort = snakemake.params.get("sorting", "none")
 sort_extra = snakemake.params.get("sort_extra", "")
-gap_opening = snakemake.params.get("gap_opening", "")
 
 out_ext = infer_out_format(snakemake.output[0])
 
@@ -41,15 +40,11 @@ if out_ext != "PAF":
     else:
         raise ValueError(f"Unexpected value for params.sort: {sort}")
 
-# prepend -O to the command only if gap_opening is specified
-if gap_opening:
-    gap_opening = f"-O {gap_opening}"
 
 shell(
     "(minimap2"
     " -t {snakemake.threads}"
     " {extra} "
-    " {gap_opening} "
     " {snakemake.input.target}"
     " {snakemake.input.query}"
     " {pipe_cmd}"

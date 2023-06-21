@@ -10,7 +10,6 @@ rule minimap2_paf:
         extra="-x map-pb",  # optional
         sorting="coordinate",  # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
         sort_extra="",  # optional: extra arguments for samtools/picard
-        gap_opening="4" #optional: gap opening penalty for minimap2. Example usage: '4' or '4,24'
     threads: 3
     wrapper:
         "master/bio/minimap2/aligner"
@@ -28,7 +27,6 @@ rule minimap2_sam:
         extra="-x map-pb",  # optional
         sorting="none",  # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
         sort_extra="",  # optional: extra arguments for samtools/picard
-        gap_opening="4" #optional: gap opening penalty for minimap2. Example usage: '4' or '4,24'
     threads: 3
     wrapper:
         "master/bio/minimap2/aligner"
@@ -46,7 +44,6 @@ rule minimap2_sam_sorted:
         extra="-x map-pb",  # optional
         sorting="queryname",  # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
         sort_extra="",  # optional: extra arguments for samtools/picard
-        gap_opening="4" #optional: gap opening penalty for minimap2. Example usage: '4' or '4,24'
     threads: 3
     wrapper:
         "master/bio/minimap2/aligner"
@@ -64,7 +61,6 @@ rule minimap2_bam_sorted:
         extra="-x map-pb",  # optional
         sorting="coordinate",  # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
         sort_extra="",  # optional: extra arguments for samtools/picard
-        gap_opening="4" #optional: gap opening penalty for minimap2. Example usage: '4' or '4,24'
     threads: 3
     wrapper:
         "master/bio/minimap2/aligner"
