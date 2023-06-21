@@ -12,7 +12,7 @@ import os
 
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-
+extra = snakemake.params.get("extra", "")
 # Check that two input files were supplied
 n = len(snakemake.input)
 assert n == 2, "Input must contain 2 files. Given: %r." % n
@@ -31,30 +31,24 @@ if "--fastqc" in snakemake.params.get("extra", ""):
 m = len(snakemake.output)
 assert m == 4, "Output must contain 4 files. Given: %r." % m
 
+fasta_fwd, fasta_rev, report_fwd, report_rev = (
+        snakemake.output.get(key)
+        for key in ["fasta_fwd", "fasta_rev", "report_fwd", "report_rev"]
+    )
+    
+if fasta_fwd.endswith("gz") and fasta_rev.endswith('gz'):
+    extra += ' --gzip'
+
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "(trim_galore"
-        " {snakemake.params.extra}"
+        " {extra}"
         " --paired"
         " -o {tmpdir}"
         " {snakemake.input})"
         " {log}"
     )
-    # Get all files in tmpdir
-    fasta_fwd, fasta_rev, report_fwd, report_rev = (
-        snakemake.output.get(key)
-        for key in ["fasta_fwd", "fasta_rev", "report_fwd", "report_rev"]
-    )
-
-    if fasta_fwd:
-        file = [f for f in os.listdir(tmpdir) if "_val_1" in f][
-            0
-        ]  # It always have _val_1
-        shell("mv {tmpdir}/{file} {fasta_fwd}")
-
-    if fasta_rev:
-        file = [f for f in os.listdir(tmpdir) if "_val_2" in f][0]
-        shell("mv {tmpdir}/{file} {fasta_rev}")
+    
 
     if report_fwd:
         # Get filename from snakemake.input[0]
@@ -64,3 +58,10 @@ with tempfile.TemporaryDirectory() as tmpdir:
     if report_rev:
         file = f"{os.path.basename(snakemake.input[1])}_trimming_report.txt"
         shell("mv {tmpdir}/{file} {report_rev}")
+
+    if fasta_fwd:
+        shell("mv {tmpdir}/*_val_1* {fasta_fwd}")
+
+    if fasta_rev:
+        shell("mv {tmpdir}/*_val_2* {fasta_rev}")
+

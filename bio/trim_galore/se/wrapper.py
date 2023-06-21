@@ -12,6 +12,7 @@ import tempfile
 
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+extra = snakemake.params.get("extra", "")
 
 # Don't run with `--fastqc` flag
 if "--fastqc" in snakemake.params.get("extra", ""):
@@ -30,6 +31,10 @@ assert n == 1, "Input must contain 1 files. Given: %r." % n
 m = len(snakemake.output)
 assert m == 2, "Output must contain 2 files. Given: %r." % m
 
+fasta, report = (snakemake.output.get(key) for key in ["fasta", "report"])
+if fasta.endswith("gz"):
+        extra += ' --gzip'
+
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "(trim_galore"
@@ -38,12 +43,10 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " {snakemake.input})"
         " {log}"
     )
-    # Get all files in tmpdir
-    fasta, report = (snakemake.output.get(key) for key in ["fasta", "report"])
-
+    
     if fasta:
         file = [f for f in os.listdir(tmpdir) if "_trimmed" in f][0]
-        shell("mv {tmpdir}/{file} {fasta}")
+        shell("mv {tmpdir}/*_trimmed* {fasta}")
 
     if report:
         # Get filename from snakemake.input[0]
