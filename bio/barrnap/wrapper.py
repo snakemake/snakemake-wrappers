@@ -19,7 +19,7 @@ if fasta_out:
 shell(
     "barrnap"
     " --threads {snakemake.threads}"
-    " -k {snakemake.params.kingdom}"
+    " -k {kingdom}"
     " {extra}"
     " < {snakemake.input.fasta}"
     " > {snakemake.output.gff}"
