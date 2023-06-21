@@ -10,15 +10,7 @@ from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
-kingdom = snakemake.params.get("kingdom", "")
-assert kingdom in [
-    "bac",
-    "arc",
-    "euk",
-    "mito",
-], "Invalid kingdom. Valid kingdoms are: 'bac', 'arc', 'euk', 'mito'. Given: %r." % (
-    kingdom
-)
+kingdom = snakemake.params.get("kingdom", "bac")
 
 fasta_out = snakemake.output.get("fasta")
 if fasta_out:
