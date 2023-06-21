@@ -33,7 +33,7 @@ assert m == 2, "Output must contain 2 files. Given: %r." % m
 
 fasta, report = (snakemake.output.get(key) for key in ["fasta", "report"])
 if fasta.endswith("gz"):
-        extra += ' --gzip'
+    extra += " --gzip"
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
@@ -43,7 +43,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " {snakemake.input})"
         " {log}"
     )
-    
+
     if fasta:
         file = [f for f in os.listdir(tmpdir) if "_trimmed" in f][0]
         shell("mv {tmpdir}/*_trimmed* {fasta}")

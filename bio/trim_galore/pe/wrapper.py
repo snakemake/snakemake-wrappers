@@ -32,12 +32,12 @@ m = len(snakemake.output)
 assert m == 4, "Output must contain 4 files. Given: %r." % m
 
 fasta_fwd, fasta_rev, report_fwd, report_rev = (
-        snakemake.output.get(key)
-        for key in ["fasta_fwd", "fasta_rev", "report_fwd", "report_rev"]
-    )
-    
-if fasta_fwd.endswith("gz") and fasta_rev.endswith('gz'):
-    extra += ' --gzip'
+    snakemake.output.get(key)
+    for key in ["fasta_fwd", "fasta_rev", "report_fwd", "report_rev"]
+)
+
+if fasta_fwd.endswith("gz") and fasta_rev.endswith("gz"):
+    extra += " --gzip"
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
@@ -48,7 +48,6 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " {snakemake.input})"
         " {log}"
     )
-    
 
     if report_fwd:
         # Get filename from snakemake.input[0]
@@ -64,4 +63,3 @@ with tempfile.TemporaryDirectory() as tmpdir:
 
     if fasta_rev:
         shell("mv {tmpdir}/*_val_2* {fasta_rev}")
-
