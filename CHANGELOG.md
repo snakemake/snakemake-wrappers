@@ -1,5 +1,30 @@
 # Changelog
 
+### [2.0.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.0.0...v2.0.1) (2023-06-21)
+
+
+### Bug Fixes
+
+* add threads to trim_galore ([#1452](https://www.github.com/snakemake/snakemake-wrappers/issues/1452)) ([96a3958](https://www.github.com/snakemake/snakemake-wrappers/commit/96a39582e6cd9bf7c292b322bc14c3c0322382c3))
+
+
+### Performance Improvements
+
+* autobump bio/benchmark/chm-eval-sample ([#1438](https://www.github.com/snakemake/snakemake-wrappers/issues/1438)) ([3e62178](https://www.github.com/snakemake/snakemake-wrappers/commit/3e62178c9bffa8be375f35d3e50d3f3c298933f5))
+* autobump bio/bismark/bismark ([#1445](https://www.github.com/snakemake/snakemake-wrappers/issues/1445)) ([2110b31](https://www.github.com/snakemake/snakemake-wrappers/commit/2110b31ef4a8fa72e58a12e5f1a05ec79b87fe7d))
+* autobump bio/blast/makeblastdb ([#1439](https://www.github.com/snakemake/snakemake-wrappers/issues/1439)) ([477dc3f](https://www.github.com/snakemake/snakemake-wrappers/commit/477dc3fe8a95f24ed5abe491a7494d703ae49047))
+* autobump bio/cutadapt/se ([#1436](https://www.github.com/snakemake/snakemake-wrappers/issues/1436)) ([f0b1c63](https://www.github.com/snakemake/snakemake-wrappers/commit/f0b1c631591b902d0b4db8cd8fc6ef7ef001be1e))
+* autobump bio/deeptools/plotcoverage ([#1443](https://www.github.com/snakemake/snakemake-wrappers/issues/1443)) ([369bf8c](https://www.github.com/snakemake/snakemake-wrappers/commit/369bf8ceb6b367844076a33599e5b981d03cb709))
+* autobump bio/deseq2/deseqdataset ([#1447](https://www.github.com/snakemake/snakemake-wrappers/issues/1447)) ([969113f](https://www.github.com/snakemake/snakemake-wrappers/commit/969113f54b53ed156dcca00c12c60797ad1dc9cc))
+* autobump bio/gatk3/indelrealigner ([#1437](https://www.github.com/snakemake/snakemake-wrappers/issues/1437)) ([11b52bf](https://www.github.com/snakemake/snakemake-wrappers/commit/11b52bf54687f61621870448601523c283ce9e5f))
+* autobump bio/hap.py/hap.py ([#1435](https://www.github.com/snakemake/snakemake-wrappers/issues/1435)) ([2669467](https://www.github.com/snakemake/snakemake-wrappers/commit/26694676366160152467e8b6ed169d5564aa17c2))
+* autobump bio/minimap2/index ([#1433](https://www.github.com/snakemake/snakemake-wrappers/issues/1433)) ([77c690d](https://www.github.com/snakemake/snakemake-wrappers/commit/77c690da1a97e9321637d4b190894f666309cbf7))
+* autobump bio/pbmm2/index ([#1442](https://www.github.com/snakemake/snakemake-wrappers/issues/1442)) ([cbbe8b8](https://www.github.com/snakemake/snakemake-wrappers/commit/cbbe8b86a3dc1311b6a8aa8531ce77ddb9b3f139))
+* autobump bio/ucsc/bedGraphToBigWig ([#1441](https://www.github.com/snakemake/snakemake-wrappers/issues/1441)) ([a587628](https://www.github.com/snakemake/snakemake-wrappers/commit/a587628ee55735ea7ef5c8edc7fd560295688cb5))
+* autobump bio/unicycler ([#1446](https://www.github.com/snakemake/snakemake-wrappers/issues/1446)) ([2edc574](https://www.github.com/snakemake/snakemake-wrappers/commit/2edc574dfcef371da9335917891d43ffa7f3ecf4))
+* autobump bio/vembrane/filter ([#1444](https://www.github.com/snakemake/snakemake-wrappers/issues/1444)) ([59a0c94](https://www.github.com/snakemake/snakemake-wrappers/commit/59a0c94226aca46b2e0c39ec7f06d26159ee11d1))
+* autobump bio/vep/plugins ([#1440](https://www.github.com/snakemake/snakemake-wrappers/issues/1440)) ([37ad96d](https://www.github.com/snakemake/snakemake-wrappers/commit/37ad96dbc3ad7d92cdd421d885570cc6704c4580))
+
 ## [2.0.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v1.32.1...v2.0.0) (2023-06-13)
 
 
