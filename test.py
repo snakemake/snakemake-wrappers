@@ -1084,15 +1084,50 @@ def test_arriba_star_meta():
 
 
 @skip_if_not_modified
-def test_xsv_select():
+def test_xsv():
     run(
-        "bio/xsv/select",
-        ["snakemake", "--cores", "1", "--use-conda", "selected1.csv"]
+        "bio/xsv",
+        ["snakemake", "--cores", "1", "--use-conda", "headers_all.csv"]
     )
 
     run(
-        "bio/xsv/select",
-        ["snakemake", "--cores", "1", "--use-conda", "selected2.csv"]
+        "bio/xsv",
+        ["snakemake", "--cores", "1", "--use-conda", "headers.csv"]
+    )
+
+    run(
+        "bio/xsv",
+        ["snakemake", "--cores", "1", "--use-conda", "frequency.csv"]
+    )
+
+    run(
+        "bio/xsv",
+        ["snakemake", "--cores", "1", "--use-conda", "fmt.tsv"]
+    )
+
+    run(
+        "bio/xsv",
+        ["snakemake", "--cores", "1", "--use-conda", "flatten.csv"]
+    )
+
+    run(
+        "bio/xsv",
+        ["snakemake", "--cores", "1", "--use-conda", "fixlength.csv"]
+    )
+
+    run(
+        "bio/xsv",
+        ["snakemake", "--cores", "1", "--use-conda", "count.csv"]
+    )
+
+    run(
+        "bio/xsv",
+        ["snakemake", "--cores", "1", "--use-conda", "catrows.csv"]
+    )
+
+    run(
+        "bio/xsv",
+        ["snakemake", "--cores", "1", "--use-conda", "catcols.csv"]
     )
 
 
