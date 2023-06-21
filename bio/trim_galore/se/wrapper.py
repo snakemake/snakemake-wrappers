@@ -37,6 +37,7 @@ for file_path in snakemake.output[1:]:
 shell(
     "(trim_galore"
     " {snakemake.params.extra}"
+    " --cores {snakemake.threads}"
     " -o {out_dir}"
     " {snakemake.input})"
     " {log}"
