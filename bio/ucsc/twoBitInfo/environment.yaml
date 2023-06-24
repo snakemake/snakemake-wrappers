@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - ucsc-twobitinfo =377
+  - ucsc-twobitinfo =447

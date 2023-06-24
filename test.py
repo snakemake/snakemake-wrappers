@@ -5630,7 +5630,6 @@ def test_bazam_separated():
         ],
     )
 
-
 @skip_if_not_modified
 def test_ragtag_correction():
     run(
@@ -5685,6 +5684,20 @@ def test_ragtag_merge():
             "--cores",
             "1",
             "asm_merged.fasta",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+@skip_if_not_modified
+def test_barrnap():
+    run(
+        "bio/barrnap",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mitochondria.gff",
             "--use-conda",
             "-F",
         ],
