@@ -3,7 +3,7 @@ rule test_xsv_cat_rows:
     input:
         table=["table.csv", "right.csv"],
     output:
-        "catrows.csv",
+        "xsv_catrows.csv",
     threads: 1
     log:
         "xsv/catrow.log",
@@ -18,7 +18,7 @@ rule test_xsv_cat_cols:
     input:
         table=["table.csv", "right.csv"],
     output:
-        "catcols.csv",
+        "xsv_catcols.csv",
     threads: 1
     log:
         "xsv/catcol.log",
@@ -34,7 +34,7 @@ rule test_xsv_count:
     input:
         table="table.csv",
     output:
-        "count.csv",
+        "xsv_count.csv",
     threads: 1
     log:
         "xsv/count.log",
@@ -49,7 +49,7 @@ rule test_xsv_count_tsv_input:
     input:
         table="table.tsv",
     output:
-        "count.tsv_as_input.csv",
+        "xsv_count.tsv_as_input.csv",
     threads: 1
     log:
         "xsv/count.log",
@@ -65,7 +65,7 @@ rule test_xsv_fixlength:
     input:
         table="table.csv",
     output:
-        "fixlength.csv",
+        "xsv_fixlength.csv",
     threads: 1
     log:
         "xsv/fixlength.log",
@@ -81,7 +81,7 @@ rule test_xsv_flatten:
     input:
         table="table.csv",
     output:
-        "flatten.csv",
+        "xsv_flatten.csv",
     threads: 1
     log:
         "xsv/flatten.log",
@@ -97,7 +97,7 @@ rule test_xsv_fmt:
     input:
         table="table.csv",
     output:
-        "fmt.tsv",
+        "xsv_fmt.tsv",
     threads: 1
     log:
         "xsv/fmt.log",
@@ -113,7 +113,7 @@ rule test_xsv_frequency:
     input:
         table="table.csv",
     output:
-        "frequency.csv",
+        "xsv_frequency.csv",
     threads: 1
     log:
         "xsv/frequency.log",
@@ -129,7 +129,7 @@ rule test_xsv_headers:
     input:
         table="table.csv",
     output:
-        "headers.csv",
+        "xsv_headers.csv",
     threads: 1
     log:
         "xsv/headers.log",
@@ -144,7 +144,7 @@ rule test_xsv_headers_list:
     input:
         table=["table.csv", "right.csv"],
     output:
-        "headers_all.csv",
+        "xsv_headers_all.csv",
     threads: 1
     log:
         "xsv/headers_all.log",
@@ -160,7 +160,7 @@ rule test_xsv_index:
     input:
         table="table.csv",
     output:
-        "table.csv.idx",
+        "xsv_table.csv.idx",
     threads: 1
     log:
         "xsv/index.log",
@@ -176,7 +176,7 @@ rule test_xsv_input:
     input:
         table="table.csv",
     output:
-        "input.csv",
+        "xsv_input.csv",
     threads: 1
     log:
         "xsv/input.log",
@@ -192,7 +192,7 @@ rule test_xsv_join:
     input:
         table=["table.csv", "right.csv"],
     output:
-        "join.csv",
+        "xsv_join.csv",
     threads: 1
     log:
         "xsv/join.log",
@@ -210,7 +210,7 @@ rule test_xsv_sample:
     input:
         table="table.csv",
     output:
-        "sample.csv",
+        "xsv_sample.csv",
     threads: 1
     log:
         "xsv/sample.log",
@@ -226,7 +226,7 @@ rule test_xsv_search:
     input:
         table="table.csv",
     output:
-        "search.csv",
+        "xsv_search.csv",
     threads: 1
     log:
         "xsv/search.log",
@@ -242,7 +242,7 @@ rule test_xsv_select:
     input:
         table="table.csv",
     output:
-        "select.csv",
+        "xsv_select.csv",
     threads: 1
     log:
         "xsv/select.log",
@@ -258,7 +258,7 @@ rule test_xsv_slice:
     input:
         table="table.csv",
     output:
-        "slice.csv",
+        "xsv_slice.csv",
     threads: 1
     log:
         "xsv/slice.log",
@@ -274,7 +274,7 @@ rule test_xsv_sort:
     input:
         table="table.csv",
     output:
-        "sort.csv",
+        "xsv_sort.csv",
     threads: 1
     log:
         "xsv/sort.log",
@@ -290,7 +290,7 @@ rule test_xsv_split:
     input:
         table="table.csv",
     output:
-        directory("split"),
+        directory("xsv_split"),
     threads: 1
     log:
         "xsv/split.log",
@@ -306,7 +306,7 @@ rule test_xsv_stats:
     input:
         table="table.csv",
     output:
-        "stats.txt",
+        "xsv_stats.txt",
     threads: 1
     log:
         "xsv/stats.log",
@@ -322,7 +322,7 @@ rule test_xsv_table:
     input:
         table="table.csv",
     output:
-        "table.txt",
+        "xsv_table.txt",
     threads: 1
     log:
         "xsv/table.log",
