@@ -301,7 +301,6 @@ rule test_xsv_split:
         "master/bio/xsv"
 
 
-
 rule test_xsv_split_list:
     input:
         table="table.csv",

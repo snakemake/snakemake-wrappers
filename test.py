@@ -1087,7 +1087,7 @@ def test_arriba_star_meta():
 @skip_if_not_modified
 def test_xsv():
     run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_split/0.csv"])
-    
+
     run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_table.txt"])
 
     run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_stats.txt"])
