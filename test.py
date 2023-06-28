@@ -1118,7 +1118,7 @@ def test_xsv():
 
     run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_flatten.csv"])
 
-    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "fixlength.csv"])
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_fixlength.csv"])
 
     run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_count.csv"])
 
