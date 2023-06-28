@@ -5,6 +5,7 @@ __license__ = "MIT"
 
 import tempfile
 import glob
+import os
 
 from pathlib import Path
 from snakemake.shell import shell
@@ -52,13 +53,17 @@ with tempfile.TemporaryDirectory() as tmpdir:
         shell(
             "cat {tmpdir}/results/variants/variants.vcf.gz.tbi > {snakemake.output.variants_index:q}"
         )
-    if targets := snakemake.output.get("sample_genomes"):
+    if targets := snakemake.output.get("sample_genomes", snakemake.params.get("sample_genomes")):
         origins = glob.glob(f"{tmpdir}/results/variants/genome.S*.vcf.gz")
         assert len(origins) == len(targets)
         for origin, target in zip(origins, targets):
+            print("makedirs", str(Path(target).parent))
+            os.makedirs(str(Path(target).parent), exist_ok=True)
             shell(f"cat {origin} > {target}")
-    if targets := snakemake.output.get("sample_genomes_indices"):
+    if targets := snakemake.output.get("sample_genomes_indices", snakemake.params.get("sample_indices")):
         origins = glob.glob(f"{tmpdir}/results/variants/genome.S*.vcf.gz.tbi")
         assert len(origins) == len(targets)
         for origin, target in zip(origins, targets):
+            print("makedirs", str(Path(target).parent))
+            os.makedirs(str(Path(target).parent), exist_ok=True)
             shell(f"cat {origin} > {target}")
