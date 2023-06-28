@@ -301,6 +301,22 @@ rule test_xsv_split:
         "master/bio/xsv"
 
 
+
+rule test_xsv_split_list:
+    input:
+        table="table.csv",
+    output:
+        expand("xsv_split/{nb}.csv", nb=["0", "1"]),
+    threads: 1
+    log:
+        "xsv/split.log",
+    params:
+        subcommand="split",
+        extra="-s 1",
+    wrapper:
+        "master/bio/xsv"
+
+
 ### Stat subcommand ###
 rule test_xsv_stats:
     input:
