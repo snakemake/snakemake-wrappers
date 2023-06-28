@@ -296,7 +296,7 @@ rule test_xsv_split:
         "xsv/split.log",
     params:
         subcommand="split",
-        extra=lambda wildcards, output: f"-s 2 {output}",
+        extra="-s 2",
     wrapper:
         "master/bio/xsv"
 

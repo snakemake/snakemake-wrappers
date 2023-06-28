@@ -32,9 +32,15 @@ if subcommand == "join":
         "{snakemake.params.col2} {snakemake.input.table[1]} "
         "> {snakemake.output} {log}"
     )
-elif subcommand in ["index", "split"]:
+elif subcommand == "index":
     log = snakemake.log_fmt_shell(stdout=True, stderr=True)
     shell("xsv {subcommand} {extra} {snakemake.input.table} {log}")
+elif subcommand == "split":
+    log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+    outdir = snakemake.output
+    if len(outdir) > 1:
+        outdir = os.path.dirname(outdir[0])
+    shell("xsv {subcommand} {extra} {outdir} {snakemake.input.table} {log}")
 else:
     shell(
         "xsv {subcommand} {extra} {snakemake.input.table} "
