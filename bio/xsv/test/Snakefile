@@ -160,7 +160,7 @@ rule test_xsv_index:
     input:
         table="table.csv",
     output:
-        "xsv_table.csv.idx",
+        "table.csv.idx",
     threads: 1
     log:
         "xsv/index.log",
@@ -320,7 +320,7 @@ rule test_xsv_stats:
 ### Table subcommand ###
 rule test_xsv_table:
     input:
-        table="table.csv",
+        table="right.csv",
     output:
         "xsv_table.txt",
     threads: 1

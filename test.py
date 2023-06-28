@@ -1106,7 +1106,7 @@ def test_xsv():
 
     run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_input.csv"])
 
-    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_table.csv.idx"])
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "table.csv.idx"])
 
     run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_headers_all.csv"])
 
