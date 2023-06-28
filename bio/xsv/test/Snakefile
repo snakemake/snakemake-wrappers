@@ -2,7 +2,6 @@
 rule test_xsv_cat_rows:
     input:
         table=["table.csv", "right.csv"],
-        # Optional CSV indexed may be given below
     output:
         "catrows.csv",
     threads: 1
@@ -18,7 +17,6 @@ rule test_xsv_cat_rows:
 rule test_xsv_cat_cols:
     input:
         table=["table.csv", "right.csv"],
-        # Optional CSV indexed may be given below
     output:
         "catcols.csv",
     threads: 1
@@ -35,9 +33,23 @@ rule test_xsv_cat_cols:
 rule test_xsv_count:
     input:
         table="table.csv",
-        # Optional CSV indexed may be given below
     output:
         "count.csv",
+    threads: 1
+    log:
+        "xsv/count.log",
+    params:
+        subcommand="count",
+        extra="",
+    wrapper:
+        "master/bio/xsv"
+
+
+rule test_xsv_count_tsv_input:
+    input:
+        table="table.tsv",
+    output:
+        "count.tsv_as_input.csv",
     threads: 1
     log:
         "xsv/count.log",
@@ -52,7 +64,6 @@ rule test_xsv_count:
 rule test_xsv_fixlength:
     input:
         table="table.csv",
-        # Optional CSV indexed may be given below
     output:
         "fixlength.csv",
     threads: 1
@@ -60,8 +71,7 @@ rule test_xsv_fixlength:
         "xsv/fixlength.log",
     params:
         subcommand="fixlengths",
-        length=20,
-        extra="",
+        extra="--length 20",
     wrapper:
         "master/bio/xsv"
 
@@ -70,7 +80,6 @@ rule test_xsv_fixlength:
 rule test_xsv_flatten:
     input:
         table="table.csv",
-        # Optional CSV indexed may be given below
     output:
         "flatten.csv",
     threads: 1
@@ -87,7 +96,6 @@ rule test_xsv_flatten:
 rule test_xsv_fmt:
     input:
         table="table.csv",
-        # Optional CSV indexed may be given below
     output:
         "fmt.tsv",
     threads: 1
@@ -104,7 +112,6 @@ rule test_xsv_fmt:
 rule test_xsv_frequency:
     input:
         table="table.csv",
-        # Optional CSV indexed may be given below
     output:
         "frequency.csv",
     threads: 1
@@ -121,7 +128,6 @@ rule test_xsv_frequency:
 rule test_xsv_headers:
     input:
         table="table.csv",
-        # Optional CSV indexed may be given below
     output:
         "headers.csv",
     threads: 1
@@ -137,15 +143,14 @@ rule test_xsv_headers:
 rule test_xsv_headers_list:
     input:
         table=["table.csv", "right.csv"],
-        # Optional CSV indexed may be given below
     output:
         "headers_all.csv",
     threads: 1
     log:
-        "xsv/headers.log",
+        "xsv/headers_all.log",
     params:
         subcommand="headers",
-        extra="",
+        extra="--intersect",
     wrapper:
         "master/bio/xsv"
 
@@ -183,26 +188,8 @@ rule test_xsv_input:
 
 
 ### Join subcommand ###
-rule test_xsv_join_cols_as_list:
-    input:
-        table=["table.csv", "right.csv"],
-    output:
-        "join.list.csv",
-    threads: 1
-    log:
-        "xsv/join.log",
-    params:
-        subcommand="join",
-        left_columns="gene_id",
-        right_columns="gene_id",
-        extra="",
-    wrapper:
-        "master/bio/xsv"
-
-
 rule test_xsv_join:
     input:
-        # Faster with indexed table
         table=["table.csv", "right.csv"],
     output:
         "join.csv",
@@ -211,8 +198,8 @@ rule test_xsv_join:
         "xsv/join.log",
     params:
         subcommand="join",
-        left_columns=["gene_id"],
-        right_columns=["gene_id"],
+        col1="gene_id",
+        col2="gene_id",
         extra="",
     wrapper:
         "master/bio/xsv"
@@ -221,7 +208,7 @@ rule test_xsv_join:
 ### Sample subcommand ###
 rule test_xsv_sample:
     input:
-        table="table.csv",  # Faster with indexed table
+        table="table.csv",
     output:
         "sample.csv",
     threads: 1
@@ -229,8 +216,7 @@ rule test_xsv_sample:
         "xsv/sample.log",
     params:
         subcommand="sample",
-        sample_size=1,
-        extra="",
+        extra="1",
     wrapper:
         "master/bio/xsv"
 
@@ -238,7 +224,7 @@ rule test_xsv_sample:
 ### Search subcommand ###
 rule test_xsv_search:
     input:
-        table="table.csv",  # Faster with indexed table
+        table="table.csv",
     output:
         "search.csv",
     threads: 1
@@ -246,8 +232,7 @@ rule test_xsv_search:
         "xsv/search.log",
     params:
         subcommand="search",
-        regex="ENSG[0-9]+",
-        extra="",
+        extra="--select gene_id ENSG[0-9]+",
     wrapper:
         "master/bio/xsv"
 
@@ -255,7 +240,7 @@ rule test_xsv_search:
 ### Select subcommand ###
 rule test_xsv_select:
     input:
-        table="table.csv",  # Faster with indexed table
+        table="table.csv",
     output:
         "select.csv",
     threads: 1
@@ -263,8 +248,7 @@ rule test_xsv_select:
         "xsv/select.log",
     params:
         subcommand="select",
-        selection="3-",
-        extra="",
+        extra="3-",
     wrapper:
         "master/bio/xsv"
 
@@ -272,7 +256,7 @@ rule test_xsv_select:
 ### Slice subcommand ###
 rule test_xsv_slice:
     input:
-        table="table.csv",  # Faster with indexed table
+        table="table.csv",
     output:
         "slice.csv",
     threads: 1
@@ -304,17 +288,46 @@ rule test_xsv_sort:
 ### Split subcommand ###
 rule test_xsv_split:
     input:
-        table="table.csv",  # Faster with indexed table
+        table="table.csv",
     output:
-        directory("split.csv"),
+        directory("split"),
     threads: 1
     log:
         "xsv/split.log",
     params:
         subcommand="split",
+        extra=lambda wildcards, output: f"-s 2 {output}",
+    wrapper:
+        "master/bio/xsv"
+
+
+### Stat subcommand ###
+rule test_xsv_stats:
+    input:
+        table="table.csv",
+    output:
+        "stats.txt",
+    threads: 1
+    log:
+        "xsv/stats.log",
+    params:
+        subcommand="stats",
         extra="",
     wrapper:
         "master/bio/xsv"
 
 
-### TODO Table
+### Table subcommand ###
+rule test_xsv_table:
+    input:
+        table="table.csv",
+    output:
+        "table.txt",
+    threads: 1
+    log:
+        "xsv/table.log",
+    params:
+        subcommand="table",
+        extra="",
+    wrapper:
+        "master/bio/xsv"

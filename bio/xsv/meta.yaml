@@ -1,12 +1,15 @@
-name: xsv select
+name: xsv
 url: https://github.com/BurntSushi/xsv
 description: >
-  Select or re-order columns from CSV/TSV data.
+  Perform various operations over CSV/TSV tables.
 authors:
   - Thibault Dayris
 input:
-  - Path to CSV/TSV table. This table must be the first input in the input file list.
+  - table: Path to CSV/TSV table.
 output:
-  - Path to filtered / re-ordered CSV table.
+  - Path the result file / directory
 params:
-  - extra: Optional arguments for `xsv select`. For TSV files, `--delimiter` is automatically set to a tabulation.
+  - extra: Optional arguments for `xsv`. For TSV files, `--delimiter` is automatically set to a tabulation.
+  - subcommand: `xsv` subcommand among `cat`, `count`, `fixlengths`, `flatten`, `fmt`, `frequency`, `headers`, `index`, `input`, `join`, `sample`, `search`, `select`, `slice`, `sort`, `split`, `stats", or "table"
+notes: |
+  Adding table(s) index(es) to the input file list makes many subcommands faster.
