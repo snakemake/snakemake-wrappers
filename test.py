@@ -1085,6 +1085,56 @@ def test_arriba_star_meta():
 
 
 @skip_if_not_modified
+def test_xsv():
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_split/0.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_table.txt"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_stats.txt"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_split"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_sort.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_slice.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_select.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_search.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_sample.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_join.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_input.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "table.csv.idx"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_headers_all.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_headers.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_frequency.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_fmt.tsv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_flatten.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_fixlength.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_count.csv"])
+
+    run(
+        "bio/xsv",
+        ["snakemake", "--cores", "1", "--use-conda", "xsv_count.tsv_as_input.csv"],
+    )
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_catrows.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_catcols.csv"])
+
+
+@skip_if_not_modified
 def test_bwa_mapping_meta():
     run(
         "meta/bio/bwa_mapping",

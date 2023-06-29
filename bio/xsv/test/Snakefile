@@ -1,0 +1,348 @@
+### Concatenation subcommand ###
+rule test_xsv_cat_rows:
+    input:
+        table=["table.csv", "right.csv"],
+    output:
+        "xsv_catrows.csv",
+    threads: 1
+    log:
+        "xsv/catrow.log",
+    params:
+        subcommand="cat rows",
+        extra="",
+    wrapper:
+        "master/bio/xsv"
+
+
+rule test_xsv_cat_cols:
+    input:
+        table=["table.csv", "right.csv"],
+    output:
+        "xsv_catcols.csv",
+    threads: 1
+    log:
+        "xsv/catcol.log",
+    params:
+        subcommand="cat columns",
+        extra="",
+    wrapper:
+        "master/bio/xsv"
+
+
+### Count subcommand ###
+rule test_xsv_count:
+    input:
+        table="table.csv",
+    output:
+        "xsv_count.csv",
+    threads: 1
+    log:
+        "xsv/count.log",
+    params:
+        subcommand="count",
+        extra="",
+    wrapper:
+        "master/bio/xsv"
+
+
+rule test_xsv_count_tsv_input:
+    input:
+        table="table.tsv",
+    output:
+        "xsv_count.tsv_as_input.csv",
+    threads: 1
+    log:
+        "xsv/count.log",
+    params:
+        subcommand="count",
+        extra="",
+    wrapper:
+        "master/bio/xsv"
+
+
+### Fix lengths subcommand ###
+rule test_xsv_fixlength:
+    input:
+        table="table.csv",
+    output:
+        "xsv_fixlength.csv",
+    threads: 1
+    log:
+        "xsv/fixlength.log",
+    params:
+        subcommand="fixlengths",
+        extra="--length 20",
+    wrapper:
+        "master/bio/xsv"
+
+
+### Flatten subcommand ###
+rule test_xsv_flatten:
+    input:
+        table="table.csv",
+    output:
+        "xsv_flatten.csv",
+    threads: 1
+    log:
+        "xsv/flatten.log",
+    params:
+        subcommand="flatten",
+        extra="",
+    wrapper:
+        "master/bio/xsv"
+
+
+### Format subcommand ###
+rule test_xsv_fmt:
+    input:
+        table="table.csv",
+    output:
+        "xsv_fmt.tsv",
+    threads: 1
+    log:
+        "xsv/fmt.log",
+    params:
+        subcommand="fmt",
+        extra="",
+    wrapper:
+        "master/bio/xsv"
+
+
+### Frequency subcommand ###
+rule test_xsv_frequency:
+    input:
+        table="table.csv",
+    output:
+        "xsv_frequency.csv",
+    threads: 1
+    log:
+        "xsv/frequency.log",
+    params:
+        subcommand="frequency",
+        extra="",
+    wrapper:
+        "master/bio/xsv"
+
+
+### Headers subcommand ###
+rule test_xsv_headers:
+    input:
+        table="table.csv",
+    output:
+        "xsv_headers.csv",
+    threads: 1
+    log:
+        "xsv/headers.log",
+    params:
+        subcommand="headers",
+        extra="",
+    wrapper:
+        "master/bio/xsv"
+
+
+rule test_xsv_headers_list:
+    input:
+        table=["table.csv", "right.csv"],
+    output:
+        "xsv_headers_all.csv",
+    threads: 1
+    log:
+        "xsv/headers_all.log",
+    params:
+        subcommand="headers",
+        extra="--intersect",
+    wrapper:
+        "master/bio/xsv"
+
+
+### Index subcommand ###
+rule test_xsv_index:
+    input:
+        table="table.csv",
+    output:
+        "table.csv.idx",
+    threads: 1
+    log:
+        "xsv/index.log",
+    params:
+        subcommand="index",
+        extra="",
+    wrapper:
+        "master/bio/xsv"
+
+
+### Input subcommand ###
+rule test_xsv_input:
+    input:
+        table="table.csv",
+    output:
+        "xsv_input.csv",
+    threads: 1
+    log:
+        "xsv/input.log",
+    params:
+        subcommand="input",
+        extra="",
+    wrapper:
+        "master/bio/xsv"
+
+
+### Join subcommand ###
+rule test_xsv_join:
+    input:
+        table=["table.csv", "right.csv"],
+    output:
+        "xsv_join.csv",
+    threads: 1
+    log:
+        "xsv/join.log",
+    params:
+        subcommand="join",
+        col1="gene_id",
+        col2="gene_id",
+        extra="",
+    wrapper:
+        "master/bio/xsv"
+
+
+### Sample subcommand ###
+rule test_xsv_sample:
+    input:
+        table="table.csv",
+    output:
+        "xsv_sample.csv",
+    threads: 1
+    log:
+        "xsv/sample.log",
+    params:
+        subcommand="sample",
+        extra="1",
+    wrapper:
+        "master/bio/xsv"
+
+
+### Search subcommand ###
+rule test_xsv_search:
+    input:
+        table="table.csv",
+    output:
+        "xsv_search.csv",
+    threads: 1
+    log:
+        "xsv/search.log",
+    params:
+        subcommand="search",
+        extra="--select gene_id ENSG[0-9]+",
+    wrapper:
+        "master/bio/xsv"
+
+
+### Select subcommand ###
+rule test_xsv_select:
+    input:
+        table="table.csv",
+    output:
+        "xsv_select.csv",
+    threads: 1
+    log:
+        "xsv/select.log",
+    params:
+        subcommand="select",
+        extra="3-",
+    wrapper:
+        "master/bio/xsv"
+
+
+### Slice subcommand ###
+rule test_xsv_slice:
+    input:
+        table="table.csv",
+    output:
+        "xsv_slice.csv",
+    threads: 1
+    log:
+        "xsv/slice.log",
+    params:
+        subcommand="slice",
+        extra="-i 2",
+    wrapper:
+        "master/bio/xsv"
+
+
+### Sort subcommand ###
+rule test_xsv_sort:
+    input:
+        table="table.csv",
+    output:
+        "xsv_sort.csv",
+    threads: 1
+    log:
+        "xsv/sort.log",
+    params:
+        subcommand="sort",
+        extra="",
+    wrapper:
+        "master/bio/xsv"
+
+
+### Split subcommand ###
+rule test_xsv_split:
+    input:
+        table="table.csv",
+    output:
+        directory("xsv_split"),
+    threads: 1
+    log:
+        "xsv/split.log",
+    params:
+        subcommand="split",
+        extra="-s 2",
+    wrapper:
+        "master/bio/xsv"
+
+
+rule test_xsv_split_list:
+    input:
+        table="table.csv",
+    output:
+        expand("xsv_split/{nb}.csv", nb=["0", "1"]),
+    threads: 1
+    log:
+        "xsv/split.log",
+    params:
+        subcommand="split",
+        extra="-s 1",
+    wrapper:
+        "master/bio/xsv"
+
+
+### Stat subcommand ###
+rule test_xsv_stats:
+    input:
+        table="table.csv",
+    output:
+        "xsv_stats.txt",
+    threads: 1
+    log:
+        "xsv/stats.log",
+    params:
+        subcommand="stats",
+        extra="",
+    wrapper:
+        "master/bio/xsv"
+
+
+### Table subcommand ###
+rule test_xsv_table:
+    input:
+        table="right.csv",
+    output:
+        "xsv_table.txt",
+    threads: 1
+    log:
+        "xsv/table.log",
+    params:
+        subcommand="table",
+        extra="",
+    wrapper:
+        "master/bio/xsv"
