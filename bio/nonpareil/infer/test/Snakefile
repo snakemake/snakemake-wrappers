@@ -11,5 +11,8 @@ rule nonpareil:
     params:
         alg="kmer",
         extra="-X 1 -k 3 -F",
+    threads: 2
+    resources:
+        mem_mb=50,
     wrapper:
         "master/bio/nonpareil/infer"

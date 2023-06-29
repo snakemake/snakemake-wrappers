@@ -170,7 +170,10 @@ def test_nonpareil_plot():
             "--use-conda",
             "-F",
             "results/a.pdf",
-        ],
+            "results/samples.pdf",
+# Test disabled due to bug in nonpareil (#62)
+#            "results/a.nomodel.pdf",
+        ]
     )
 
 

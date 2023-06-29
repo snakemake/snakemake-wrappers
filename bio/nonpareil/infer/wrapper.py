@@ -5,9 +5,12 @@ __license__ = "MIT"
 from os import path
 import tempfile
 from snakemake.shell import shell
+from snakemake_wrapper_utils.snakemake import get_mem
+
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
+mem_mb = get_mem(snakemake, out_unit="MiB")
 
 uncomp = ""
 in_name, in_ext = path.splitext(snakemake.input[0])
@@ -52,6 +55,8 @@ with tempfile.NamedTemporaryFile() as tmp:
 
     shell(
         "nonpareil"
+        " -t {snakemake.threads}"
+        " -R {mem_mb}"
         " -T {snakemake.params.alg}"
         " -s {in_uncomp}"
         " -f {in_format}"
