@@ -4,5 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - varscan =2.4.4
-  - snakemake-wrapper-utils =0.5.3
+  - snakemake-wrapper-utils =0.6.1
 name: varscan-pileup2snp
