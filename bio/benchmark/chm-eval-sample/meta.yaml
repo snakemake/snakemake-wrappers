@@ -1,4 +1,10 @@
 name: chm-eval-sample
-description: Download CHM-eval sample (https://github.com/lh3/CHM-eval) for benchmarking variant calling.
+description: Download CHM-eval sample for benchmarking variant calling.
+url: https://github.com/lh3/CHM-eval
 authors:
   - Johannes Köster
+output:
+  - bam: Path to CHM-eval sample (BAM formatted)
+  - bai: Path to the corresponding BAM index
+params:
+  - first_n: Optional parameter for grab only the first `n` elements.
