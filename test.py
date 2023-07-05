@@ -170,8 +170,9 @@ def test_nonpareil_plot():
             "--use-conda",
             "-F",
             "results/a.pdf",
-        ]
+        ],
     )
+
 
 @skip_if_not_modified
 def test_indelqual():
@@ -1334,11 +1335,11 @@ def test_art_profiler_illumina():
 def test_pyroe_id_to_name():
     run(
         "bio/pyroe/idtoname",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "id2name.gtf.tsv"]
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "id2name.gtf.tsv"],
     )
     run(
         "bio/pyroe/idtoname",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "id2name.gff3.tsv"]
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "id2name.gff3.tsv"],
     )
 
 
@@ -2736,7 +2737,14 @@ def test_happy_prepy():
 def test_happy_prepy():
     run(
         "bio/hap.py/pre.py",
-        ["snakemake", "--cores", "1", "normalized/variants.vcf.gz", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "normalized/variants.vcf.gz",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
