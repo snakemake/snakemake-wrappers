@@ -10,7 +10,9 @@ from snakemake_wrapper_utils.samtools import infer_out_format
 from snakemake_wrapper_utils.samtools import get_samtools_opts
 
 
-samtools_opts = get_samtools_opts(snakemake, parse_output=False)
+samtools_opts = get_samtools_opts(
+    snakemake, parse_output=False, param_name="sort_extra"
+)
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 sort = snakemake.params.get("sorting", "none")

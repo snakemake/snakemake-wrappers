@@ -2,10 +2,28 @@ rule trim_galore_pe:
     input:
         ["reads/{sample}.1.fastq.gz", "reads/{sample}.2.fastq.gz"],
     output:
-        "trimmed/{sample}.1_val_1.fq.gz",
-        "trimmed/{sample}.1.fastq.gz_trimming_report.txt",
-        "trimmed/{sample}.2_val_2.fq.gz",
-        "trimmed/{sample}.2.fastq.gz_trimming_report.txt",
+        fasta_fwd="trimmed/{sample}_R1.fq.gz",
+        report_fwd="trimmed/reports/{sample}_R1_trimming_report.txt",
+        fasta_rev="trimmed/{sample}_R2.fq.gz",
+        report_rev="trimmed/reports/{sample}_R2_trimming_report.txt",
+    threads: 1
+    params:
+        extra="--illumina -q 20",
+    log:
+        "logs/trim_galore/{sample}.log",
+    wrapper:
+        "master/bio/trim_galore/pe"
+
+
+rule trim_galore_pe_uncompressed:
+    input:
+        ["reads/{sample}_R1.fastq", "reads/{sample}_R2.fastq"],
+    output:
+        fasta_fwd="trimmed/{sample}_R1.fastq",
+        report_fwd="trimmed/reports/{sample}_R1_trimming_report.txt",
+        fasta_rev="trimmed/{sample}_R2.fastq",
+        report_rev="trimmed/reports/{sample}_R2_trimming_report.txt",
+    threads: 1
     params:
         extra="--illumina -q 20",
     log:

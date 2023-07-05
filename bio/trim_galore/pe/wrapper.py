@@ -7,14 +7,44 @@ __license__ = "MIT"
 
 
 from snakemake.shell import shell
-import os.path
+import tempfile
+import re
+import os
 
 
-log = snakemake.log_fmt_shell()
+def report_filename(infile: str) -> str:
+    """Infer report output file name from input
+    >>> report_filename('reads/sample.1.fastq.gz')
+    'sample.1.fastq.gz_trimming_report.txt
+    >>> report_filename('reads/sample_R2.fastq.gz')
+    'sample_R2.fastq.gz_trimming_report.txt
+    """
+    return os.path.basename(infile) + "_trimming_report.txt"
+
+
+def fasta_filename(infile: str, infix: str, out_gzip: bool) -> str:
+    """Infer fasta output file name from input
+    >>> fasta_filename('reads/sample.1.fq.gz', infix = '_val_1', out_gzip = False)
+    'sample.1_val_1.fq.gz'
+    >>> fasta_filename('reads/sample_R2.fastq', infix = '_val_2', out_gzip = True)
+    'sample_R2_val_2.fq.gz'
+    """
+    base_input = os.path.basename(infile)
+    suffix = ".gz" if out_gzip or infile.endswith(".gz") else ""
+    REGEX_RULES = [r"\.fastq$", "\.fastq\.gz$", r"\.fq$", r"\.fq\.gz$"]
+    for regex in REGEX_RULES:
+        if re.search(regex, base_input):
+            return re.sub(regex, f"{infix}.fq", base_input) + suffix
+    return base_input + infix + suffix
+
+
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+extra = snakemake.params.get("extra", "")
 
 # Check that two input files were supplied
 n = len(snakemake.input)
 assert n == 2, "Input must contain 2 files. Given: %r." % n
+infile_fwd, infile_rev = snakemake.input[0:2]
 
 # Don't run with `--fastqc` flag
 if "--fastqc" in snakemake.params.get("extra", ""):
@@ -30,19 +60,36 @@ if "--fastqc" in snakemake.params.get("extra", ""):
 m = len(snakemake.output)
 assert m == 4, "Output must contain 4 files. Given: %r." % m
 
-# Check that all output files are in the same directory
-out_dir = os.path.dirname(snakemake.output[0])
-for file_path in snakemake.output[1:]:
-    assert out_dir == os.path.dirname(file_path), (
-        "trim_galore can only output files to a single directory."
-        " Please indicate only one directory for the output files."
+fasta_fwd, fasta_rev, report_fwd, report_rev = (
+    snakemake.output.get(key)
+    for key in ["fasta_fwd", "fasta_rev", "report_fwd", "report_rev"]
+)
+
+out_gzip = any((fasta_fwd.endswith("gz"), fasta_rev.endswith("gz")))
+if out_gzip:
+    extra += " --gzip"
+
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "(trim_galore"
+        " {extra}"
+        " --cores {snakemake.threads}"
+        " --paired"
+        " -o {tmpdir}"
+        " {infile_fwd} {infile_rev})"
+        " {log}"
     )
 
-shell(
-    "(trim_galore"
-    " {snakemake.params.extra}"
-    " --paired"
-    " -o {out_dir}"
-    " {snakemake.input})"
-    " {log}"
-)
+    if report_fwd:
+        shell(f"mv {tmpdir}/{report_filename(infile_fwd)} {report_fwd}")
+    if report_rev:
+        shell(f"mv {tmpdir}/{report_filename(infile_rev)} {report_rev}")
+
+    if fasta_fwd:
+        shell(
+            f"mv {tmpdir}/{fasta_filename(infile_fwd, '_val_1', out_gzip)} {fasta_fwd}"
+        )
+    if fasta_rev:
+        shell(
+            f"mv {tmpdir}/{fasta_filename(infile_rev, '_val_2', out_gzip)} {fasta_rev}"
+        )

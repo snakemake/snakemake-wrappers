@@ -6,4 +6,4 @@ dependencies:
   - snpsift =5.1
   - bcftools =1.17
   - pbgzip =2016.08.04
-  - snakemake-wrapper-utils =0.5.3
+  - snakemake-wrapper-utils =0.6.1
