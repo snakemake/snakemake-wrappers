@@ -1331,6 +1331,18 @@ def test_art_profiler_illumina():
 
 
 @skip_if_not_modified
+def test_pyroe_id_to_name():
+    run(
+        "bio/pyroe/idtoname",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "id2name.gtf.tsv"]
+    )
+    run(
+        "bio/pyroe/idtoname",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "id2name.gff3.tsv"]
+    )
+
+
+@skip_if_not_modified
 def test_pyroe_makesplicedunspliced():
     run(
         "bio/pyroe/makeunspliceunspliced/",
