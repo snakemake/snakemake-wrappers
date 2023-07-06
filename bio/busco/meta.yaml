@@ -8,7 +8,7 @@ authors:
 input:
   - Path to assembly fasta
 output:
-  - out_dir: Path t oannotation quality files
+  - out_dir: Path to annotation quality files
   - dataset_dir: Optional path to dataset directory
   - short_txt: Optional path to plain text results summary. Requires parameter `lineage`.
   - short_json: Optional path to json formatted results summary. Requires parameter `lineage`.
