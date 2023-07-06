@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.2.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.1.1...v2.2.0) (2023-07-06)
+
+
+### Features
+
+* Deseq2 wald ([#1428](https://www.github.com/snakemake/snakemake-wrappers/issues/1428)) ([e0d2831](https://www.github.com/snakemake/snakemake-wrappers/commit/e0d28313726251e918ee92816a8c5102cf1712b8))
+* Pyroe id-to-name ([#1499](https://www.github.com/snakemake/snakemake-wrappers/issues/1499)) ([6e1d31d](https://www.github.com/snakemake/snakemake-wrappers/commit/6e1d31d2162e6125268d1a9e11909cbac65d6098))
+
 ### [2.1.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.1.0...v2.1.1) (2023-06-30)
 
 
