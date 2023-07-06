@@ -1,0 +1,12 @@
+rule test_pyroe_idtoname:
+    input:
+        "annotation.{format}",
+    output:
+        "id2name.{format}.tsv",
+    threads: 1
+    log:
+        "logs/{format}.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/pyroe/idtoname"

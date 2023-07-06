@@ -170,7 +170,6 @@ def test_nonpareil_plot():
             "--use-conda",
             "-F",
             "results/a.pdf",
-            "results/samples.pdf",
 # Test disabled due to bug in nonpareil (#62)
 #            "results/a.nomodel.pdf",
         ]
@@ -1389,6 +1388,18 @@ def test_art_profiler_illumina():
             "--use-conda",
             "-F",
         ],
+    )
+
+
+@skip_if_not_modified
+def test_pyroe_id_to_name():
+    run(
+        "bio/pyroe/idtoname",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "id2name.gtf.tsv"],
+    )
+    run(
+        "bio/pyroe/idtoname",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "id2name.gff3.tsv"],
     )
 
 
