@@ -5584,6 +5584,22 @@ def test_calc_consensus_reads():
     )
 
 
+
+@skip_if_not_modified
+def test_bowtie2_sambamba_meta():
+    run(
+        "meta/bio/bowtie2_sambamba",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "mapped/Sample1.rmdup.bam.bai"
+        ]
+    )
+
+
 @skip_if_not_modified
 def test_bazam_interleaved():
     run(
