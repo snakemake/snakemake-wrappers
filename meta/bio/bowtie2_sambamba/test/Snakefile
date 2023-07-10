@@ -37,7 +37,7 @@ rule bowtie2_alignment:
     log:
         "logs/bowtie2/{sample}.log",
     params:
-        extra="",
+        extra="--rg-id {sample} --rg SM:{sample}",
     threads: 8
     wrapper:
         "master/bio/bowtie2/align"
