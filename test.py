@@ -5579,7 +5579,7 @@ def test_gatk_best_practice():
             "2",
             "--use-conda",
             "-F",
-            "variant/{sample}.filtered.vcf.gz.tbi",
+            "variant/Sample1.filtered.vcf.gz.tbi",
         ]
     )
 

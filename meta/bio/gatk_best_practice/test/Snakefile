@@ -1,12 +1,40 @@
+rule create_dict:
+    input:
+        "genome.fasta",
+    output:
+        "genome.dict",
+    threads: 1
+    resources:
+        mem_mb=1024,
+    log:
+        "logs/picard/create_dict.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/picard/createsequencedictionary"
 
+
+rule samtools_index:
+    input:
+        "genome.fasta",
+    output:
+        "genome.fasta.fai",
+    log:
+        "logs/genome_index.log",
+    params:
+        extra="",  # optional params string
+    wrapper:
+        "master/bio/samtools/faidx"
 
 
 rule gatk_baserecalibrator:
     input:
         bam="mapped/{sample}.bam",
         ref="genome.fasta",
+        ref_idx="genome.fasta.fai",
         dict="genome.dict",
         known="known.vcf.gz",
+        known_idx="known.vcf.gz.tbi",
     output:
         recal_table="recal/{sample}.grp",
     threads: 1

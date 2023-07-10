@@ -1,4 +1,6 @@
 wrappers:
+  - bio/samtools/faidx
+  - bio/picard/createsequencedictionary
   - bio/gatk/baserecalibrator
   - bio/gatk/applybqsr
   - bio/gatk/mutect
