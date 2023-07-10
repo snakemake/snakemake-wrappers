@@ -1,0 +1,150 @@
+
+
+
+rule gatk_baserecalibrator:
+    input:
+        bam="mapped/{sample}.bam",
+        ref="genome.fasta",
+        dict="genome.dict",
+        known="known.vcf.gz",
+    output:
+        recal_table="recal/{sample}.grp",
+    threads: 1
+    resources:
+        mem_mb=1024,
+    log:
+        "logs/gatk/baserecalibrator/{sample}.log",
+    params:
+        extra="",  # optional
+        java_opts="",  # optional
+    wrapper:
+        "master/bio/gatk/baserecalibrator"
+
+
+rule gatk_applybqsr:
+    input:
+        bam="mapped/{sample}.bam",
+        ref="genome.fasta",
+        dict="genome.dict",
+        recal_table="recal/{sample}.grp",
+    output:
+        bam="recal/{sample}.bam",
+    threads: 1
+    resources:
+        mem_mb=1024,
+    log:
+        "logs/gatk/gatk_applybqsr/{sample}.log",
+    params:
+        extra="",  # optional
+        java_opts="",  # optional
+        embed_ref=True,  # embed the reference in cram output
+    wrapper:
+        "master/bio/gatk/applybqsr"
+
+
+rule mutect2:
+    input:
+        fasta="genome.fasta",
+        map="recal/{sample}.bam",
+    output:
+        vcf="variant/{sample}.vcf",
+        bam="variant/{sample}.bam",
+        f1r2="counts/{sample}.f1r2.tar.gz",
+    threads: 1
+    resources:
+        mem_mb=1024,
+    log:
+        "logs/mutect/{sample}.log",
+    wrapper:
+        "master/bio/gatk/mutect"
+
+
+rule gatk_get_pileup_summaries:
+    input:
+        bam="recal/{sample}.bam",
+        variants="known.vcf.gz",
+    output:
+        "summaries/{sample}.table",
+    threads: 1
+    resources:
+        mem_mb=1024,
+    params:
+        extra="",
+    log:
+        "logs/summary/{sample}.log",
+    wrapper:
+        "master/bio/gatk/getpileupsummaries"
+
+
+#TODO: CalculateContamination
+
+
+rule gatk_learnreadorientationmodel:
+    input:
+        f1r2="counts/{sample}.f1r2.tar.gz",
+    output:
+        "artifacts_prior/{sample}.tar.gz",
+    threads: 1
+    resources:
+        mem_mb=1024,
+    params:
+        extra="",
+    log:
+        "logs/learnreadorientationbias/{sample}.log",
+    wrapper:
+        "master/bio/gatk/learnreadorientationmodel"
+
+
+
+rule filtermutectcalls_complete:
+    input:
+        vcf="variant/{sample}.vcf",
+        ref="genome.fasta",
+        bam="recal/{sample}.bam",
+        contamination="summaries/{sample}.table",
+        # segmentation="", # from gatk CalculateContamination
+        f1r2="artifacts_prior/{sample}.tar.gz",
+    output:
+        vcf="variant/{sample}.filtered.vcf",
+    threads: 1
+    resources:
+        mem_mb=1024,
+    log:
+        "logs/gatk/filter/{sample}.log",
+    params:
+        extra="--max-alt-allele-count 3",
+        java_opts="",
+    wrapper:
+        "master/bio/gatk/filtermutectcalls"
+
+
+rule bcf_view_o_vcf_gz:
+    input:
+        "variant/{sample}.filtered.vcf",
+    output:
+        "variant/{sample}.filtered.vcf.gz",
+    threads: 1
+    resources:
+        mem_mb=1024,
+    log:
+        "log/bcftools/{sample}.view.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/bcftools/view"
+
+
+rule tabix:
+    input:
+        "variant/{sample}.filtered.vcf.gz",
+    output:
+        "variant/{sample}.filtered.vcf.gz.tbi",
+    threads: 1
+    resources:
+        mem_mb=1024,
+    log:
+        "logs/tabix/{sample}.log",
+    params:
+        "-p vcf",
+    wrapper:
+        "master/bio/tabix/index"

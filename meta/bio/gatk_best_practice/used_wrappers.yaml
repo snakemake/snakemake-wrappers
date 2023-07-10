@@ -1,0 +1,10 @@
+wrappers:
+  - bio/gatk/baserecalibrator
+  - bio/gatk/applybqsr
+  - bio/gatk/mutect
+  - bio/gatk/getpileupsummaries
+  # - bio/gatk/calculatecontaminations
+  - bio/gatk/learnreadorientationmodel
+  - bio/gatk/filtermutectcalls
+  - bio/bcftools/view
+  - bio/tabix/index

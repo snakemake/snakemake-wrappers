@@ -5570,6 +5570,21 @@ def test_collapse_reads_to_fragments_bam():
 
 
 @skip_if_not_modified
+def test_gatk_best_practice():
+    run(
+        "meta/bio/gatk_best_practice",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "variant/{sample}.filtered.vcf.gz.tbi",
+        ]
+    )
+
+
+@skip_if_not_modified
 def test_calc_consensus_reads():
     run(
         "meta/bio/calc_consensus_reads/",
