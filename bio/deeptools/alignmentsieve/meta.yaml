@@ -4,7 +4,7 @@ description: >
   filters/shift alignments in a BAM/CRAM file according the the specified parameters. 
   It can optionally output to BEDPE format.
 authors:
-  Thibault Dayris
+  - Thibault Dayris
 input:
   - aln: Path to BAM/CRAM formatted alignments. Bam filesm ust be indexed.
 output:

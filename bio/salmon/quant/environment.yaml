@@ -3,7 +3,6 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - salmon =1.10.1
+  - salmon =1.10.2
   - gzip =1.12
   - bzip2 =1.0.8
-  

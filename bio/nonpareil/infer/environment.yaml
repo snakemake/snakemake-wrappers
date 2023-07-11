@@ -4,3 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - nonpareil =3.4.1
+  - snakemake-wrapper-utils =0.5.3
