@@ -1,27 +1,27 @@
 rule test_enhanced_volcano_tsv:
     input:
-        "table.tsv"
+        "table.tsv",
     output:
-        "volcano_tsv.png"
+        "volcano_tsv.png",
     threads: 1
     log:
-        "logs/enhanced-volcano/tsv.log"
+        "logs/enhanced-volcano/tsv.log",
     params:
         extra="lab='Gene_id', x='ShrinkedFC', y='adjusted_pvalues'",
-        width=1024, # Optional PNG width in px
-        height=768, # Optional PNG height in px
+        width=1024,  # Optional PNG width in px
+        height=768,  # Optional PNG height in px
     wrapper:
         "master/bio/enhancedvolcano"
 
 
 rule test_enhanced_volcano_csv:
     input:
-        "table.csv"
+        "table.csv",
     output:
-        "volcano_csv.png"
+        "volcano_csv.png",
     threads: 1
     log:
-        "logs/enhanced-volcano/csv.log"
+        "logs/enhanced-volcano/csv.log",
     params:
         extra="lab='Gene_id', x='ShrinkedFC', y='adjusted_pvalues'",
     wrapper:
@@ -30,12 +30,12 @@ rule test_enhanced_volcano_csv:
 
 rule test_enhanced_volcano_rds:
     input:
-        "table.RDS"
+        "table.RDS",
     output:
-        "volcano_rds.png"
+        "volcano_rds.png",
     threads: 1
     log:
-        "logs/enhanced-volcano/rds.log"
+        "logs/enhanced-volcano/rds.log",
     params:
         extra="lab='Gene_id', x='ShrinkedFC', y='adjusted_pvalues'",
     wrapper:
