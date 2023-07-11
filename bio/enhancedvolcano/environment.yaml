@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - bioconductor-enhancedvolcano
+  - bioconductor-enhancedvolcano =1.18.0
