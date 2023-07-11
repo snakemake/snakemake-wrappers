@@ -1,0 +1,42 @@
+rule test_enhanced_volcano_tsv:
+    input:
+        "table.tsv"
+    output:
+        "volcano_tsv.png"
+    threads: 1
+    log:
+        "logs/enhanced-volcano/tsv.log"
+    params:
+        extra="lab='Gene_id', x='ShrinkedFC', y='adjusted_pvalues'",
+        width=1024, # Optional PNG width in px
+        height=768, # Optional PNG height in px
+    wrapper:
+        "master/bio/enhancedvolcano"
+
+
+rule test_enhanced_volcano_csv:
+    input:
+        "table.csv"
+    output:
+        "volcano_csv.png"
+    threads: 1
+    log:
+        "logs/enhanced-volcano/csv.log"
+    params:
+        extra="lab='Gene_id', x='ShrinkedFC', y='adjusted_pvalues'",
+    wrapper:
+        "master/bio/enhancedvolcano"
+
+
+rule test_enhanced_volcano_rds:
+    input:
+        "table.RDS"
+    output:
+        "volcano_rds.png"
+    threads: 1
+    log:
+        "logs/enhanced-volcano/rds.log"
+    params:
+        extra="lab='Gene_id', x='ShrinkedFC', y='adjusted_pvalues'",
+    wrapper:
+        "master/bio/enhancedvolcano"
