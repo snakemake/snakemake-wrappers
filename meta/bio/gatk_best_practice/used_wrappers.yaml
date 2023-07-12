@@ -1,6 +1,7 @@
 wrappers:
   - bio/samtools/faidx
   - bio/picard/createsequencedictionary
+  - bio/picard/addorreplacereadgroups
   - bio/gatk/baserecalibrator
   - bio/gatk/applybqsr
   - bio/gatk/mutect
@@ -8,5 +9,3 @@ wrappers:
   # - bio/gatk/calculatecontaminations
   - bio/gatk/learnreadorientationmodel
   - bio/gatk/filtermutectcalls
-  - bio/bcftools/view
-  - bio/tabix/index

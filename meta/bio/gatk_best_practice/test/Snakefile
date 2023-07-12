@@ -27,9 +27,26 @@ rule samtools_index:
         "master/bio/samtools/faidx"
 
 
+rule picard_replace_rg:
+    input:
+        "mapped/{sample}.bam",
+    output:
+        "mapped/{sample}.group.bam",
+    threads: 1
+    resources:
+        mem_mb=1024,
+    log:
+        "logs/picard/replace_rg/{sample}.log",
+    params:
+        # Required for GATK
+        extra="--RGLB lib1 --RGPL illumina --RGPU {sample} --RGSM {sample}",
+    wrapper:
+        "master/bio/picard/addorreplacereadgroups"
+
+
 rule gatk_baserecalibrator:
     input:
-        bam="mapped/{sample}.bam",
+        bam="mapped/{sample}.group.bam",
         ref="genome.fasta",
         ref_idx="genome.fasta.fai",
         dict="genome.dict",
@@ -63,9 +80,9 @@ rule gatk_applybqsr:
     log:
         "logs/gatk/gatk_applybqsr/{sample}.log",
     params:
-        extra="",  # optional
-        java_opts="",  # optional
-        embed_ref=True,  # embed the reference in cram output
+        extra=" ",
+        java_opts="",
+        embed_ref=True,
     wrapper:
         "master/bio/gatk/applybqsr"
 
@@ -74,6 +91,7 @@ rule mutect2:
     input:
         fasta="genome.fasta",
         map="recal/{sample}.bam",
+        intervals="regions.bed",
     output:
         vcf="variant/{sample}.vcf",
         bam="variant/{sample}.bam",
@@ -81,6 +99,12 @@ rule mutect2:
     threads: 1
     resources:
         mem_mb=1024,
+    params:
+        extra=(
+            " --tumor-sample {sample}_tumor "
+            "--disable-tool-default-read-filters " # Since we use toy example
+            " --pcr-indel-model NONE " # Since recalibration was performed
+        ),
     log:
         "logs/mutect/{sample}.log",
     wrapper:
@@ -91,6 +115,7 @@ rule gatk_get_pileup_summaries:
     input:
         bam="recal/{sample}.bam",
         variants="known.vcf.gz",
+        intervals="regions.bed",
     output:
         "summaries/{sample}.table",
     threads: 1
@@ -133,46 +158,15 @@ rule filtermutectcalls_complete:
         # segmentation="", # from gatk CalculateContamination
         f1r2="artifacts_prior/{sample}.tar.gz",
     output:
-        vcf="variant/{sample}.filtered.vcf",
+        vcf="variant/{sample}.filtered.vcf.gz",
+        vcf_idx="variant/{sample}.filtered.vcf.gz.tbi"
     threads: 1
     resources:
         mem_mb=1024,
     log:
         "logs/gatk/filter/{sample}.log",
     params:
-        extra="--max-alt-allele-count 3",
+        extra="--create-output-variant-index --min-median-mapping-quality 35 --max-alt-allele-count 3",
         java_opts="",
     wrapper:
         "master/bio/gatk/filtermutectcalls"
-
-
-rule bcf_view_o_vcf_gz:
-    input:
-        "variant/{sample}.filtered.vcf",
-    output:
-        "variant/{sample}.filtered.vcf.gz",
-    threads: 1
-    resources:
-        mem_mb=1024,
-    log:
-        "log/bcftools/{sample}.view.log",
-    params:
-        extra="",
-    wrapper:
-        "master/bio/bcftools/view"
-
-
-rule tabix:
-    input:
-        "variant/{sample}.filtered.vcf.gz",
-    output:
-        "variant/{sample}.filtered.vcf.gz.tbi",
-    threads: 1
-    resources:
-        mem_mb=1024,
-    log:
-        "logs/tabix/{sample}.log",
-    params:
-        "-p vcf",
-    wrapper:
-        "master/bio/tabix/index"
