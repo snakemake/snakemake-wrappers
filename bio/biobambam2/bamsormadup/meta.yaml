@@ -1,15 +1,15 @@
 name: BioBamBam2 BamSorMaDup
 description: |
   Mark PCR and optical duplicates, followed with sorting, with BioBamBam2 tools.
+url: https://gitlab.com/german.tischler/biobambam2
 authors:
   - Filipe G. Vieira
 input:
-  - SAM/BAM/CRAM file
-  - reference (for CRAM output)
+  - Path to SAM/BAM/CRAM file, this must be the first file in the input file list.
+  - Path to reference (for CRAM output)
 output:
-  - SAM/BAM/CRAM file with marked duplicates
-  - BAM index file (optional)
-  - metrics file (optional)
-notes: |
-  * The `extra` param allows for additional program arguments (not `inputformat`, `outputformat` or `tmpfile`).
-  * For more information see, https://gitlab.com/german.tischler/biobambam2
+  - Path to SAM/BAM/CRAM file with marked duplicates. This must be the fist output file in the output file list.
+  - index: Path to BAM index file (optional)
+  - metrics: Path to metrics file (optional)
+params:
+  - extra: additional program arguments (not `inputformat`, `outputformat` or `tmpfile`).
