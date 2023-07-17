@@ -1,0 +1,26 @@
+rule lofreq_uniform_indelqual:
+    input:
+        bam="data/{sample}.bam",
+    output:
+        "out/indelqual/{sample}.uindel.bam"
+    log:
+        "logs/{sample}.uindel.log"
+    params:
+        extra="-u 15"
+    threads: 8
+    wrapper:
+        "master/bio/lofreq/indelqual"
+
+rule lofreq_dindel_indelqual:
+    input:
+        bam="data/{sample}.bam",
+        ref="data/hg38_chr21.fa"
+    output:
+        "out/indelqual/{sample}.dindel.bam"
+    log:
+        "logs/{sample}.dindel.log"
+    params:
+        extra="--dindel"
+    threads: 8
+    wrapper:
+        "master/bio/lofreq/indelqual"

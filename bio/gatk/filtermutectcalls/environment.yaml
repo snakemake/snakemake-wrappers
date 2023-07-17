@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - gatk4 =4.3.0.0
-  - snakemake-wrapper-utils =0.5.0
+  - gatk4 =4.4.0.0
+  - snakemake-wrapper-utils =0.5.3

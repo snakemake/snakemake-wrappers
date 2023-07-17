@@ -1,0 +1,12 @@
+name: LogLog
+url: https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/bbnorm-guide/
+description: |
+  Run LogLog to estimate memory requirements.
+authors:
+  - Filipe G. Vieira
+input:
+  - sample: list of R1 and (if PE) R2 fastq file(s)
+params:
+  - extra: additional program arguments
+notes: |
+  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. `-XX:ParallelGCThreads=10` (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).

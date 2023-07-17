@@ -1,0 +1,15 @@
+rule gatk_variantstotable:
+    input:
+        vcf="calls/snvs.vcf",
+#        intervals="intervals.bed",
+    output:
+        tab="calls/snvs.tab",
+    log:
+        "logs/gatk/varintstotable.log",
+    params:
+        extra="-F CHROM -F POS -F TYPE -GF AD",
+        java_opts="",  # optional
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/gatk/variantstotable"

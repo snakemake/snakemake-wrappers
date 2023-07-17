@@ -3,6 +3,6 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - fastq-screen =0.15.2
-  - bowtie2 =2.5.0
+  - fastq-screen =0.15.3
+  - bowtie2 =2.5.1
   - bowtie =1.3.1

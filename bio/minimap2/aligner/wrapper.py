@@ -10,7 +10,9 @@ from snakemake_wrapper_utils.samtools import infer_out_format
 from snakemake_wrapper_utils.samtools import get_samtools_opts
 
 
-samtools_opts = get_samtools_opts(snakemake, parse_output=False)
+samtools_opts = get_samtools_opts(
+    snakemake, parse_output=False, param_name="sort_extra"
+)
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 sort = snakemake.params.get("sorting", "none")
@@ -25,13 +27,11 @@ if out_ext != "PAF":
 
     # Determine which pipe command to use for converting to bam or sorting.
     if sort == "none":
-
         if out_ext != "SAM":
             # Simply convert to output format using samtools view.
             pipe_cmd = f"| samtools view -h {samtools_opts}"
 
     elif sort in ["coordinate", "queryname"]:
-
         # Add name flag if needed.
         if sort == "queryname":
             sort_extra += " -n"

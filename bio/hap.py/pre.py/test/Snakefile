@@ -1,14 +1,16 @@
 rule preprocess_variants:
     input:
         ##vcf/bcf
-        variants="variants.vcf"
+        variants="variants.vcf",
     output:
-        "normalized/variants.vcf"
+        "normalized/variants.vcf.gz",
+    log:
+        "log/pre.log",
     params:
         ## path to reference genome
         genome="genome.fasta",
         ## parameters such as -L to left-align variants
-        extra="-L"
+        extra="-L",
     threads: 2
     wrapper:
         "master/bio/hap.py/pre.py"

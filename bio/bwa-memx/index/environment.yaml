@@ -5,4 +5,4 @@ channels:
 dependencies:
   - bwa =0.7.17
   - bwa-mem2 =2.2.1
-  - bwa-meme =1.0.5
+  - bwa-meme =1.0.6

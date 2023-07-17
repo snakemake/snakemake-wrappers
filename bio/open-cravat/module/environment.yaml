@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - open-cravat =2.2.9
+  - open-cravat =2.3.1

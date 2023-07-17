@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - hap.py =0.3.14
+  - hap.py =0.3.15

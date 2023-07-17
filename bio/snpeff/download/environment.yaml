@@ -4,5 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - snpeff =5.1
-  - bcftools =1.16
-  - snakemake-wrapper-utils =0.5.0
+  - bcftools =1.17
+  - snakemake-wrapper-utils =0.5.3

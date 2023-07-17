@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - picard =2.27
-  - snakemake-wrapper-utils ==0.1.3
+  - picard =3.0.0
+  - snakemake-wrapper-utils =0.5.3

@@ -1,5 +1,6 @@
 name: "STAR Index"
 description: Index fasta sequences with STAR
+url: https://github.com/alexdobin/STAR
 authors:
   - Thibault Dayris
   - Tomás Di Domenico
@@ -8,3 +9,6 @@ input:
   - A (multi)fasta formatted file
 output:
   - A directory containing the indexed sequence for downstream STAR mapping
+params:
+  - sjdbOverhang: length of the donor/acceptor sequence on each side of the junctions (optional)
+  - extra: additional program arguments.

@@ -4,5 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - bwa-mem2 =2.2.1
-  - sambamba =0.8.2
+  - sambamba =1.0
   - samblaster =0.1.26
