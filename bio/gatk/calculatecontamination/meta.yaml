@@ -5,7 +5,8 @@ description: |
 authors:
   - Thibault Dayris
 input:
-  - Path to pileup table from GATK GetPileupSummaries
+  - tumor: Path to pileup table from GATK GetPileupSummaries
+  - normal: Optional path to noram pileup table
 output:
   - Path to contamination table
 params:
