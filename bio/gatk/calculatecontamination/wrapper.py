@@ -10,10 +10,10 @@ from snakemake_wrapper_utils.java import get_java_opts
 
 extra = snakemake.params.get("extra", "")
 java_opts = get_java_opts(snakemake)
-
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-if "normal" in snakemake.input.keys():
-    extra += f" --matched-normal {snakemake.input['normal']}"
+
+if snakemake.input.get("normal"):
+    extra += f" --matched-normal {snakemake.input.normal}"
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
