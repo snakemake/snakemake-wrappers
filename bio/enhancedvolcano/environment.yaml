@@ -1,6 +1,7 @@
 channels:
-  - bioconda
   - conda-forge
+  - bioconda
+  - r
   - nodefaults
 dependencies:
   - bioconductor-enhancedvolcano =1.18.0
