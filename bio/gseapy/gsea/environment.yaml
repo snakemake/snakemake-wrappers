@@ -1,6 +1,6 @@
 channels:
-  - bioconda
   - conda-forge
+  - bioconda
   - nodefaults
 dependencies:
   - gseapy =1.0.5

@@ -4159,6 +4159,21 @@ def test_salmon_quant():
 
 
 @skip_if_not_modified
+def test_gseapy_gsea():
+    run(
+        "bio/gseapy/gsea",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results_enrichr.pkl"
+        ]
+    )
+
+
+@skip_if_not_modified
 def test_sourmash_compute():
     run(
         "bio/sourmash/compute/",

@@ -1,0 +1,97 @@
+rule test_gseapy_enrichr:
+    input:
+        gene_list="genes_list.txt",
+        gmt="geneset.gmt",
+    output:
+        outdir=directory("results_enrichr"),
+        pkl="results_enrichr.pkl",
+    threads: 1
+    params:
+        extra={
+            "min_size": 1,
+            "format": "png",
+        },
+        # gene_sets = [""] # Optional list of gene sets available on biomart
+    log:
+        "logs/gseapy/enrichr.log"
+    wrapper:
+        "master/bio/gseapy/gsea"
+
+
+rule test_gseapy_gsea:
+    input:
+        expr="genes_expr.tsv",
+        cls="sample_class.cls",
+        gmt="geneset.gmt",
+    output:
+        outdir=directory("results_gsea"),
+        pkl="results_gsea.pkl",
+    threads: 1
+    params:
+        extra={
+            "min_size": 1
+        },
+        # gene_sets = [""] # Optional list of gene sets available on biomart
+    log:
+        "logs/gseapy/gsea.log"
+    wrapper:
+        "master/bio/gseapy/gsea"
+
+
+rule test_gseapy_ssgsea:
+    input:
+        expr="genes_expr.tsv",
+        gmt="geneset.gmt",
+    output:
+        outdir=directory("results_ssgsea"),
+        pkl="results_ssgsea.pkl",
+    threads: 1
+    params:
+        extra={
+            "min_size": 1
+        },
+        # gene_sets = [""] # Optional list of gene sets available on biomart
+    log:
+        "logs/gseapy/ssgsea.log"
+    wrapper:
+        "master/bio/gseapy/gsea"
+
+
+rule test_gseapy_prerank_listfiles:
+    input:
+        rank="genes.rnk",
+        gmt="geneset.gmt",
+    output:
+        csv="lst/prerank.csv",
+        gmt="lst/geneset.gmt",
+        log="logs.txt",
+        figures=directory("lst/figures"),
+        pkl="lst/results.pkl",
+    threads: 1
+    params:
+        extra={
+            "min_size": 1
+        },
+        # gene_sets = [""] # Optional list of gene sets available on biomart
+    log:
+        "logs/gseapy/prerank.log"
+    wrapper:
+        "master/bio/gseapy/gsea"
+
+rule test_gseapy_prerank_outdir:
+    input:
+        rank="genes.rnk",
+        gmt="geneset.gmt",
+    output:
+        outdir=directory("results_prerank"),
+        pkl="results_prerank.pkl",
+    threads: 1
+    params:
+        extra={
+            "min_size": 1
+        },
+        # gene_sets = [""] # Optional list of gene sets available on biomart
+    log:
+        "logs/gseapy/prerank.log"
+    wrapper:
+        "master/bio/gseapy/gsea"
