@@ -1,0 +1,12 @@
+configfile: "config.yaml"
+
+rule get_inphareddb:
+    output:
+        expand("{date}{suffix}", date=config["date"], suffix=config["suffix"])    
+    params:
+        prefix = config["prefix"], 
+        date = config["date"],
+        suffix = config["suffix"]
+    wrapper:
+        "master/bio/reference/inphared-db"
+
