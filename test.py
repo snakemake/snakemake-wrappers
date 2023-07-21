@@ -4168,7 +4168,7 @@ def test_gseapy_gsea():
             "1",
             "--use-conda",
             "-F",
-            "results_enrichr.pkl"
+            "results_ssgsea"
         ]
     )
 
@@ -4180,7 +4180,31 @@ def test_gseapy_gsea():
             "1",
             "--use-conda",
             "-F",
-            "results_gsea.pkl"
+            "results_prerank"
+        ]
+    )
+
+    run(
+        "bio/gseapy/gsea",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results_gsea"
+        ]
+    )
+
+    run(
+        "bio/gseapy/gsea",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results_enrichr"
         ]
     )
 
