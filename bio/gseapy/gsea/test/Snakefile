@@ -25,8 +25,6 @@ rule test_gseapy_gsea:
     params:
         extra={
             "min_size": 1,
-            "permutation_num": 2,
-            "method": 't_test',
         },
         # gene_sets = [""] # Optional list of gene sets available on biomart
     log:
@@ -44,7 +42,7 @@ rule test_gseapy_ssgsea:
     threads: 1
     params:
         extra={
-            "min_size": 1
+            "min_size": 1,
         },
         # gene_sets = [""] # Optional list of gene sets available on biomart
     log:
@@ -62,7 +60,7 @@ rule test_gseapy_prerank:
     threads: 1
     params:
         extra={
-            "min_size": 1
+            "min_size": 1,
         },
         # gene_sets = [""] # Optional list of gene sets available on biomart
     log:
