@@ -1,5 +1,5 @@
-Gene_id___Sample1___Sample2___Sample3___Sample4
-Gene1___1___1___3___4
-Gene2___0___0___14___18.96
-Gene3___0___0___0___0
-Gene4___15___15___15___15
+Gene_id	Sample1	Sample2	Sample3	Sample4	Sample5	Sample6
+Gene1	1	1	3	4	1	5
+Gene2	0	0	14	18	0	15
+Gene3	0	0	0	0	0	0
+Gene4	15	15	15	15	15	15

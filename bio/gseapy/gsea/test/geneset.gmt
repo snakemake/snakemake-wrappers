@@ -1,3 +1,3 @@
-PosGS___PositiveGeneSet___Gene1___Gene2___Gene3
-NegGS___NegativeGeneSet___Gene4___Gene5___Gene12___Gene6
-MisGS___FilteredOutGeneSet___Gene145___Gene39
+PosGS	PositiveGeneSet	Gene1	Gene2	Gene3
+NegGS	NegativeGeneSet	Gene4	Gene5	Gene12	Gene6
+MisGS	FilteredOutGeneSet	Gene145	Gene39

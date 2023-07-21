@@ -8,7 +8,6 @@ rule test_gseapy_enrichr:
     threads: 1
     params:
         extra={
-            "min_size": 1,
             "format": "png",
         },
         # gene_sets = [""] # Optional list of gene sets available on biomart
