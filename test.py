@@ -4160,17 +4160,17 @@ def test_salmon_quant():
 
 @skip_if_not_modified
 def test_gseapy_gsea():
-    # run(
-    #     "bio/gseapy/gsea",
-    #     [
-    #         "snakemake",
-    #         "--cores",
-    #         "1",
-    #         "--use-conda",
-    #         "-F",
-    #         "results_enrichr.pkl"
-    #     ]
-    # )
+    run(
+        "bio/gseapy/gsea",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results_enrichr.pkl"
+        ]
+    )
 
     run(
         "bio/gseapy/gsea",
