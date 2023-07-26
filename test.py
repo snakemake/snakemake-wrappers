@@ -4220,6 +4220,14 @@ def test_gatk_callcopyrationsegments():
 
 
 @skip_if_not_modified
+def test_gatk_calculatecontamination():
+    run(
+        "bio/gatk/calculatecontamination",
+        ["snakemake", "--cores", "1", "contamination.table", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_gatk_scatterintervalsbyns():
     run(
         "bio/gatk/scatterintervalsbyns",

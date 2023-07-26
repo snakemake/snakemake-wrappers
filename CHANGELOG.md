@@ -1,5 +1,29 @@
 # Changelog
 
+### [2.2.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.2.0...v2.2.1) (2023-07-07)
+
+
+### Performance Improvements
+
+* autobump bio/bcftools/call ([#1508](https://www.github.com/snakemake/snakemake-wrappers/issues/1508)) ([4732e05](https://www.github.com/snakemake/snakemake-wrappers/commit/4732e051fc177b2285232798ed63eb01b5734fe0))
+* autobump bio/bismark/bismark_genome_preparation ([#1512](https://www.github.com/snakemake/snakemake-wrappers/issues/1512)) ([531493a](https://www.github.com/snakemake/snakemake-wrappers/commit/531493acb3ede05ef26f6f230fd454593d08afd8))
+* autobump bio/bustools/count ([#1516](https://www.github.com/snakemake/snakemake-wrappers/issues/1516)) ([4f3925a](https://www.github.com/snakemake/snakemake-wrappers/commit/4f3925ab7fe5913bd4f25e6f267146dc31a58e9b))
+* autobump bio/delly ([#1505](https://www.github.com/snakemake/snakemake-wrappers/issues/1505)) ([6b12ad1](https://www.github.com/snakemake/snakemake-wrappers/commit/6b12ad1c38f7b7c105c26ff9434ccbbeb469970e))
+* autobump bio/deseq2/wald ([#1510](https://www.github.com/snakemake/snakemake-wrappers/issues/1510)) ([3ab5304](https://www.github.com/snakemake/snakemake-wrappers/commit/3ab53047b504a266a3ded1aa95508c688a1e1d94))
+* autobump bio/gatk/getpileupsummaries ([#1506](https://www.github.com/snakemake/snakemake-wrappers/issues/1506)) ([ed84924](https://www.github.com/snakemake/snakemake-wrappers/commit/ed849241aa03a125e8828b999414373cb4501b6c))
+* autobump bio/gatk/haplotypecaller ([#1504](https://www.github.com/snakemake/snakemake-wrappers/issues/1504)) ([b45b7fd](https://www.github.com/snakemake/snakemake-wrappers/commit/b45b7fd6f5694cd0d158d3086ed17402f8f28523))
+* autobump bio/gatk/selectvariants ([#1501](https://www.github.com/snakemake/snakemake-wrappers/issues/1501)) ([8557991](https://www.github.com/snakemake/snakemake-wrappers/commit/855799137c2dd4453154f2ba9fa3bface51c92d6))
+* autobump bio/picard/collectinsertsizemetrics ([#1517](https://www.github.com/snakemake/snakemake-wrappers/issues/1517)) ([b9749bb](https://www.github.com/snakemake/snakemake-wrappers/commit/b9749bb97a66254b518be660f22d12887a0a7d80))
+* autobump bio/picard/markduplicates ([#1511](https://www.github.com/snakemake/snakemake-wrappers/issues/1511)) ([6e4f778](https://www.github.com/snakemake/snakemake-wrappers/commit/6e4f7786dfc925e4fcc82c3bf60d81e17bf027db))
+* autobump bio/salmon/quant ([#1513](https://www.github.com/snakemake/snakemake-wrappers/issues/1513)) ([a2c9c37](https://www.github.com/snakemake/snakemake-wrappers/commit/a2c9c37a5b0472a94d2824666da2c85e0f383c6a))
+* autobump bio/snpeff/annotate ([#1507](https://www.github.com/snakemake/snakemake-wrappers/issues/1507)) ([b0acd16](https://www.github.com/snakemake/snakemake-wrappers/commit/b0acd16c82a5e0f5ed7d495646814e4764728939))
+* autobump bio/snpsift/genesets ([#1514](https://www.github.com/snakemake/snakemake-wrappers/issues/1514)) ([41edbc7](https://www.github.com/snakemake/snakemake-wrappers/commit/41edbc79d7753f4049d1b9b4f29183827633a1c0))
+* autobump bio/subread/featurecounts ([#1509](https://www.github.com/snakemake/snakemake-wrappers/issues/1509)) ([83256f1](https://www.github.com/snakemake/snakemake-wrappers/commit/83256f16b0b325fc794664f764bbe835b2b11348))
+* autobump bio/trinity ([#1503](https://www.github.com/snakemake/snakemake-wrappers/issues/1503)) ([84c1bef](https://www.github.com/snakemake/snakemake-wrappers/commit/84c1bef8d7dd509562a419ea0ef9508fe868e03c))
+* autobump bio/tximport ([#1520](https://www.github.com/snakemake/snakemake-wrappers/issues/1520)) ([26e8842](https://www.github.com/snakemake/snakemake-wrappers/commit/26e88422d3cb4d4d9a7f7d7913eb24b154fcd61f))
+* autobump bio/vg/merge ([#1515](https://www.github.com/snakemake/snakemake-wrappers/issues/1515)) ([a85a6c9](https://www.github.com/snakemake/snakemake-wrappers/commit/a85a6c9da4f94df790c669367619b6e5e461dfc4))
+* autobump bio/vg/prune ([#1519](https://www.github.com/snakemake/snakemake-wrappers/issues/1519)) ([93099d3](https://www.github.com/snakemake/snakemake-wrappers/commit/93099d322011e91260c3650c145c9e84bc7d755d))
+
 ## [2.2.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.1.1...v2.2.0) (2023-07-06)
 
 

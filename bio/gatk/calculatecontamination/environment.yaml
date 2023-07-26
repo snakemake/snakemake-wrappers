@@ -3,4 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - salmon =1.10.2
+  - gatk4 =4.4.0.0
+  - snakemake-wrapper-utils =0.6.2
