@@ -42,7 +42,7 @@ elif fq1[0].endswith(".bz2"):
 else:
     readcmd = ""
 
-out_unmapped = snakemake.output.get("unmapped", None)
+out_unmapped = snakemake.output.get("unmapped", "")
 if out_unmapped:
     out_unmapped = "--outReadsUnmapped Fastx"
 
