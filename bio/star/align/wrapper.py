@@ -96,5 +96,5 @@ with tempfile.TemporaryDirectory() as tmpdir:
         for i, out_unmapped in enumerate(unmapped, 1):
             cmd = "gzip -c" if out_unmapped.endswith("gz") else "cat"
             shell(
-                "{cmd} {tmpdir}/Unmapped.out.mate{i} > {snakemake.output.unmapped[i-1]:q}"
+                "{cmd} {tmpdir}/Unmapped.out.mate{i} > {out_unmapped}"
             )
