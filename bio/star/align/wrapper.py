@@ -42,7 +42,7 @@ elif fq1[0].endswith(".bz2"):
 else:
     readcmd = ""
 
-out_unmapped = snakemake.output.get("unmapped", "")
+out_unmapped = snakemake.output.get("unmapped", None)
 if out_unmapped:
     out_unmapped = "--outReadsUnmapped Fastx"
 
@@ -95,6 +95,4 @@ with tempfile.TemporaryDirectory() as tmpdir:
 
         for i, out_unmapped in enumerate(unmapped, 1):
             cmd = "gzip -c" if out_unmapped.endswith("gz") else "cat"
-            shell(
-                "{cmd} {tmpdir}/Unmapped.out.mate{i} > {out_unmapped}"
-            )
+            shell("{cmd} {tmpdir}/Unmapped.out.mate{i} > {out_unmapped}")
