@@ -99,4 +99,6 @@ with tempfile.TemporaryDirectory() as tmpdir:
                 "gzip -c {tmpdir}/Unmapped.out.mate{i+1} > {snakemake.output.unmapped[i]:q}"
             )
         else:
-            shell("cat {tmpdir}/Unmapped.out.mate{i+1} > {snakemake.output.unmapped[i]:q}")
+            shell(
+                "cat {tmpdir}/Unmapped.out.mate{i+1} > {snakemake.output.unmapped[i]:q}"
+            )
