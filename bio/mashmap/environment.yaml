@@ -3,6 +3,6 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - mashmap =3.0.1
+  - mashmap =3.0.5
   - gsl =2.7
   - gzip =1.12

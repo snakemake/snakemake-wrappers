@@ -3,6 +3,7 @@ rule test_nonpareil_plot:
         npo="{sample}.npo",
     output:
         pdf="results/{sample}.pdf",
+	model="results/{sample}.RData",
     threads: 1
     log:
         "logs/{sample}.log",
@@ -16,3 +17,36 @@ rule test_nonpareil_plot:
         skip_model=False,
     wrapper:
         "master/bio/nonpareil/plot"
+
+
+use rule test_nonpareil_plot as test_nonpareil_plot_multiple with:
+    input:
+        npo=["a.npo", "b.npo"],
+    output:
+        pdf="results/samples.pdf",
+	model="results/samples.RData",
+    log:
+        "logs/samples.log",
+    params:
+        label="Plot of 2 samples",
+        labels="Model A,Model B",
+        col="blue,red",
+        enforce_consistency=True,
+        star=95,
+        correction_factor=True,
+
+
+use rule test_nonpareil_plot as test_nonpareil_plot_nomodel with:
+    output:
+        pdf="results/{sample}.nomodel.pdf",
+	model="results/{sample}.RData",
+    log:
+        "logs/{sample}.nomodel.log",
+    params:
+        label="Plot",
+        col="blue",
+        enforce_consistency=True,
+        star=95,
+        correction_factor=True,
+        weights_exp="-1.1,-1.2,-0.9,-1.3,-1",
+        skip_model=True,

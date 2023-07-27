@@ -5,8 +5,10 @@ authors:
   - Daniel Standage
   - Filipe G. Vieira
 input:
-  - FASTA reference
+  - ref: Path to FASTA reference
 output:
-  - Bowtie2 reference index
+  - Path to Bowtie2 reference index
+params:
+  - extra: additional program arguments besides `--threads` and io options.
 notes: |
   * The `extra` param allows for additional program arguments.
