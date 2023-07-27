@@ -33,7 +33,7 @@ rule bowtie2_alignment:
             ".rev.2.bt2",
         ),
     output:
-        "mapped/{sample}.bam",
+        temp("mapped/{sample}.bam"),
     log:
         "logs/bowtie2/{sample}.log",
     params:
@@ -50,7 +50,7 @@ rule sambamba_sort:
     input:
         "mapped/{sample}.bam",
     output:
-        "mapped/{sample}.sorted.bam",
+        temp("mapped/{sample}.sorted.bam"),
     params:
         "",
     log:
@@ -64,7 +64,7 @@ rule sambamba_view:
     input:
         "mapped/{sample}.sorted.bam",
     output:
-        "mapped/{sample}.filtered.bam",
+        temp("mapped/{sample}.filtered.bam"),
     params:
         extra=(
             " --format 'bam' "
