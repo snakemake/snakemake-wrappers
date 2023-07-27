@@ -44,49 +44,6 @@ rule picard_replace_rg:
         "master/bio/picard/addorreplacereadgroups"
 
 
-rule gatk_baserecalibrator:
-    input:
-        bam="mapped/{sample}.group.bam",
-        ref="genome.fasta",
-        ref_idx="genome.fasta.fai",
-        dict="genome.dict",
-        known="known.vcf.gz",
-        known_idx="known.vcf.gz.tbi",
-    output:
-        recal_table="recal/{sample}.grp",
-    threads: 1
-    resources:
-        mem_mb=1024,
-    log:
-        "logs/gatk/baserecalibrator/{sample}.log",
-    params:
-        extra="",  # optional
-        java_opts="",  # optional
-    wrapper:
-        "master/bio/gatk/baserecalibrator"
-
-
-rule gatk_applybqsr:
-    input:
-        bam="mapped/{sample}.bam",
-        ref="genome.fasta",
-        dict="genome.dict",
-        recal_table="recal/{sample}.grp",
-    output:
-        bam="recal/{sample}.bam",
-    threads: 1
-    resources:
-        mem_mb=1024,
-    log:
-        "logs/gatk/gatk_applybqsr/{sample}.log",
-    params:
-        extra=" ",
-        java_opts="",
-        embed_ref=True,
-    wrapper:
-        "master/bio/gatk/applybqsr"
-
-
 rule mutect2:
     input:
         fasta="genome.fasta",
@@ -100,11 +57,7 @@ rule mutect2:
     resources:
         mem_mb=1024,
     params:
-        extra=(
-            " --tumor-sample {sample}_tumor "
-            "--disable-tool-default-read-filters " # Since we use toy example
-            " --pcr-indel-model NONE " # Since recalibration was performed
-        ),
+        extra=" --tumor-sample {sample}_tumor "
     log:
         "logs/mutect/{sample}.log",
     wrapper:
