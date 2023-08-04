@@ -1,0 +1,17 @@
+rule galah:
+    input:
+        "fas/a.fa",
+        "fas/b.fas.bz2",
+        "fas/c.fasta.gz",
+    output:
+        clusters="results.tsv",
+        repres="results.list",
+    log:
+        "logs/out.log",
+    params:
+        extra="--precluster-ani 0.9 --ani 0.95",
+    threads: 2
+    resources:
+        mem_mb=50,
+    wrapper:
+        "master/bio/galah"

@@ -140,6 +140,22 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_galah():
+    run(
+        "bio/galah",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results.tsv",
+            "results.list",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_nonpareil():
     run(
         "bio/nonpareil/infer",
