@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.3.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.3.0...v2.3.1) (2023-08-04)
+
+
+### Performance Improvements
+
+* bump datavzrd to 2.23.1 ([#1723](https://www.github.com/snakemake/snakemake-wrappers/issues/1723)) ([b0d79d8](https://www.github.com/snakemake/snakemake-wrappers/commit/b0d79d88afec45f67c6dfccff46af91f898b9a5f))
+
 ## [2.3.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.2.1...v2.3.0) (2023-08-04)
 
 
