@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - fastp =0.23.2
+  - fastp =0.23.4

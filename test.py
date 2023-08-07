@@ -170,8 +170,11 @@ def test_nonpareil_plot():
             "--use-conda",
             "-F",
             "results/a.pdf",
+# Test disabled due to bug in nonpareil (#62)
+#            "results/a.nomodel.pdf",
         ]
     )
+
 
 @skip_if_not_modified
 def test_indelqual():
@@ -1076,11 +1079,69 @@ def test_deseq2_deseqdataset():
 
 
 @skip_if_not_modified
+def test_deseq2_wald():
+    run(
+        "bio/deseq2/wald",
+        ["snakemake", "--cores", "1", "--use-conda", "dge.tsv"]
+    )
+
+
+@skip_if_not_modified
 def test_arriba_star_meta():
     run(
         "meta/bio/star_arriba",
         ["snakemake", "--cores", "1", "--use-conda", "results/arriba/a.fusions.tsv"],
     )
+
+
+@skip_if_not_modified
+def test_xsv():
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_split/0.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_table.txt"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_stats.txt"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_split"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_sort.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_slice.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_select.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_search.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_sample.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_join.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_input.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "table.csv.idx"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_headers_all.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_headers.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_frequency.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_fmt.tsv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_flatten.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_fixlength.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_count.csv"])
+
+    run(
+        "bio/xsv",
+        ["snakemake", "--cores", "1", "--use-conda", "xsv_count.tsv_as_input.csv"],
+    )
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_catrows.csv"])
+
+    run("bio/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv_catcols.csv"])
 
 
 @skip_if_not_modified
@@ -1363,6 +1424,18 @@ def test_art_profiler_illumina():
             "--use-conda",
             "-F",
         ],
+    )
+
+
+@skip_if_not_modified
+def test_pyroe_id_to_name():
+    run(
+        "bio/pyroe/idtoname",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "id2name.gtf.tsv"],
+    )
+    run(
+        "bio/pyroe/idtoname",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "id2name.gff3.tsv"],
     )
 
 
@@ -2760,7 +2833,14 @@ def test_happy_prepy():
 def test_happy_prepy():
     run(
         "bio/hap.py/pre.py",
-        ["snakemake", "--cores", "1", "normalized/variants.vcf.gz", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "normalized/variants.vcf.gz",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -3760,7 +3840,15 @@ def test_subread_featurecounts():
 def test_trim_galore_pe():
     run(
         "bio/trim_galore/pe",
-        ["snakemake", "--cores", "1", "trimmed/a.1_val_1.fq.gz", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "trimmed/a_R1.fq.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_trim_galore_pe_uncompressed():
+    run(
+        "bio/trim_galore/pe",
+        ["snakemake", "--cores", "1", "trimmed/a_R2.fastq", "--use-conda", "-F"],
     )
 
 
@@ -3769,6 +3857,14 @@ def test_trim_galore_se():
     run(
         "bio/trim_galore/se",
         ["snakemake", "--cores", "1", "trimmed/a_trimmed.fq.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_trim_galore_se_uncompressed():
+    run(
+        "bio/trim_galore/se",
+        ["snakemake", "--cores", "1", "trimmed/a_trimmed.fastq", "--use-conda", "-F"],
     )
 
 
@@ -4156,6 +4252,14 @@ def test_gatk_callcopyrationsegments():
     run(
         "bio/gatk/callcopyratiosegments",
         ["snakemake", "--cores", "1", "a.called.seg", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk_calculatecontamination():
+    run(
+        "bio/gatk/calculatecontamination",
+        ["snakemake", "--cores", "1", "contamination.table", "--use-conda", "-F"],
     )
 
 
@@ -5620,6 +5724,22 @@ def test_calc_consensus_reads():
     )
 
 
+
+@skip_if_not_modified
+def test_bowtie2_sambamba_meta():
+    run(
+        "meta/bio/bowtie2_sambamba",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "mapped/Sample1.rmdup.bam.bai"
+        ]
+    )
+
+
 @skip_if_not_modified
 def test_bazam_interleaved():
     run(
@@ -5641,7 +5761,6 @@ def test_bazam_separated():
             "results/reads/a.r1.fastq.gz",
         ],
     )
-
 
 @skip_if_not_modified
 def test_ragtag_correction():
@@ -5697,6 +5816,20 @@ def test_ragtag_merge():
             "--cores",
             "1",
             "asm_merged.fasta",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+@skip_if_not_modified
+def test_barrnap():
+    run(
+        "bio/barrnap",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mitochondria.gff",
             "--use-conda",
             "-F",
         ],

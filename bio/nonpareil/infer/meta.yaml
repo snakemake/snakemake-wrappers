@@ -1,4 +1,4 @@
-name: nonpareil
+name: nonpareil infer
 description: Nonpareil uses the redundancy of the reads in metagenomic datasets to estimate the average coverage and predict the amount of sequences that will be required to achieve “nearly complete coverage”.
 url: https://nonpareil.readthedocs.io/en/latest/
 authors:
@@ -13,3 +13,5 @@ output:
 params:
   - alg: nonpareil algorithm, either `kmer` or `alignment` (mandatory).
   - extra: additional program arguments
+notes: |
+  * For a PDF version of the manual, see https://nonpareil.readthedocs.io/_/downloads/en/latest/pdf/

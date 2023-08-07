@@ -2,10 +2,25 @@ rule trim_galore_se:
     input:
         "reads/{sample}.fastq.gz",
     output:
-        "trimmed/{sample}_trimmed.fq.gz",
-        "trimmed/{sample}.fastq.gz_trimming_report.txt",
+        fasta="trimmed/{sample}_trimmed.fq.gz",
+        report="trimmed/report/{sample}.fastq.gz_trimming_report.txt",
     params:
         extra="--illumina -q 20",
+    log:
+        "logs/trim_galore/{sample}.log",
+    wrapper:
+        "master/bio/trim_galore/se"
+
+
+rule trim_galore_se_uncompressed:
+    input:
+        "reads/{sample}.fastq",
+    output:
+        fasta="trimmed/{sample}_trimmed.fastq",
+        report="trimmed/report/{sample}.fastq_trimming_report.txt",
+    params:
+        extra="--illumina -q 20",
+    threads: 1
     log:
         "logs/trim_galore/{sample}.log",
     wrapper:
