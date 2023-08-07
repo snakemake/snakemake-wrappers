@@ -2654,7 +2654,22 @@ def test_fgbio_annotate():
             "snakemake",
             "--cores",
             "1",
-            "mapped/a.annotated.bam mapped/a-a.annotated.bam",
+            "mapped/a.annotated.bam",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_fgbio_annotate_two_umi_fastqs():
+    run(
+        "bio/fgbio/annotatebamwithumis",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a-a.annotated.bam",
             "--use-conda",
             "-F",
         ],
