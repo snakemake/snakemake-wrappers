@@ -2654,7 +2654,7 @@ def test_fgbio_annotate():
             "snakemake",
             "--cores",
             "1",
-            ["mapped/a.annotated.bam", "mapped/a-a.annotated.bam"],
+            "mapped/a.annotated.bam mapped/a-a.annotated.bam",
             "--use-conda",
             "-F",
         ],
