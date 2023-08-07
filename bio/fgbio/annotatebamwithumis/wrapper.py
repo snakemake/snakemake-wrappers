@@ -23,7 +23,11 @@ umi_input = snakemake.input.umi
 if umi_input is None:
     raise ValueError("Missing input file with UMIs")
 elif not isinstance(umi_input, str) or isinstance(umi_input, list):
-    raise ValueError("Input UMIs-file should be a string or a list of strings: " + str(umi_input) + "!")
+    raise ValueError(
+        "Input UMIs-file should be a string or a list of strings: "
+        + str(umi_input)
+        + "!"
+    )
 
 if not len(snakemake.output) == 1:
     raise ValueError("Only one output value expected: " + str(snakemake.output) + "!")
