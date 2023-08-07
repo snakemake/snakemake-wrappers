@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.3.2](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.3.1...v2.3.2) (2023-08-07)
+
+
+### Bug Fixes
+
+* fgbio annotatebamwithumis allow multiple umi fastq files ([#1726](https://www.github.com/snakemake/snakemake-wrappers/issues/1726)) ([101744d](https://www.github.com/snakemake/snakemake-wrappers/commit/101744d37b9b062677e26453ee243ba42a6e48f9))
+
 ### [2.3.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.3.0...v2.3.1) (2023-08-04)
 
 
