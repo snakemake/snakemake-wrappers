@@ -21,8 +21,8 @@ rule annotate_bam_multiple_fastqs:
     input:
         bam="mapped/{sample}.bam",
         umi=[
-            "umi/a.fastq",
-            "umi/a.fastq",
+            "umi/{sample}.fastq",
+            "umi/{sample}.fastq",
         ],
     output:
         "mapped/{sample}-{sample}.annotated.bam",
