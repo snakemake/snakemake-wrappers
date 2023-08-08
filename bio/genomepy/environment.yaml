@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - genomepy =0.15.0
+  - genomepy =0.16.1
