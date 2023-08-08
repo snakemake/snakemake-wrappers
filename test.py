@@ -170,9 +170,9 @@ def test_nonpareil_plot():
             "--use-conda",
             "-F",
             "results/a.pdf",
-# Test disabled due to bug in nonpareil (#62)
-#            "results/a.nomodel.pdf",
-        ]
+            # Test disabled due to bug in nonpareil (#62)
+            #            "results/a.nomodel.pdf",
+        ],
     )
 
 
@@ -1080,10 +1080,7 @@ def test_deseq2_deseqdataset():
 
 @skip_if_not_modified
 def test_deseq2_wald():
-    run(
-        "bio/deseq2/wald",
-        ["snakemake", "--cores", "1", "--use-conda", "dge.tsv"]
-    )
+    run("bio/deseq2/wald", ["snakemake", "--cores", "1", "--use-conda", "dge.tsv"])
 
 
 @skip_if_not_modified
@@ -2689,7 +2686,29 @@ def test_fasttree():
 def test_fgbio_annotate():
     run(
         "bio/fgbio/annotatebamwithumis",
-        ["snakemake", "--cores", "1", "mapped/a.annotated.bam", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.annotated.bam",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_fgbio_annotate_two_umi_fastqs():
+    run(
+        "bio/fgbio/annotatebamwithumis",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a-a.annotated.bam",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -5724,7 +5743,6 @@ def test_calc_consensus_reads():
     )
 
 
-
 @skip_if_not_modified
 def test_bowtie2_sambamba_meta():
     run(
@@ -5735,8 +5753,8 @@ def test_bowtie2_sambamba_meta():
             "2",
             "--use-conda",
             "-F",
-            "mapped/Sample1.rmdup.bam.bai"
-        ]
+            "mapped/Sample1.rmdup.bam.bai",
+        ],
     )
 
 
@@ -5761,6 +5779,7 @@ def test_bazam_separated():
             "results/reads/a.r1.fastq.gz",
         ],
     )
+
 
 @skip_if_not_modified
 def test_ragtag_correction():
@@ -5820,6 +5839,7 @@ def test_ragtag_merge():
             "-F",
         ],
     )
+
 
 @skip_if_not_modified
 def test_barrnap():
