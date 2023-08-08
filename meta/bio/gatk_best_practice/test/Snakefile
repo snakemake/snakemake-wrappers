@@ -27,11 +27,11 @@ rule samtools_index:
         "master/bio/samtools/faidx"
 
 
-rule picard_replace_rg:
+rule picard_replace_read_groups:
     input:
         "mapped/{sample}.bam",
     output:
-        "mapped/{sample}.group.bam",
+        "picard/{sample}.bam",
     threads: 1
     resources:
         mem_mb=1024,
@@ -44,10 +44,27 @@ rule picard_replace_rg:
         "master/bio/picard/addorreplacereadgroups"
 
 
-rule mutect2:
+rule sambamba_index_picard_bam:
+    input:
+        "picard/{sample}.bam",
+    output:
+        "picard/{sample}.bam.bai",
+    threads: 1
+    log:
+        "logs/sambamba/index/{sample}.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/sambamba/index"
+
+
+rule mutect2_call:
     input:
         fasta="genome.fasta",
-        map="recal/{sample}.bam",
+        fasta_dict="genome.dict",
+        fasta_fai="genome.fasta.fai",
+        map="picard/{sample}.bam",
+        map_idx="picard/{sample}.bam.bai",
         intervals="regions.bed",
     output:
         vcf="variant/{sample}.vcf",
@@ -57,7 +74,7 @@ rule mutect2:
     resources:
         mem_mb=1024,
     params:
-        extra=" --tumor-sample {sample}_tumor "
+        extra=" --tumor-sample {sample} "
     log:
         "logs/mutect/{sample}.log",
     wrapper:
@@ -66,11 +83,13 @@ rule mutect2:
 
 rule gatk_get_pileup_summaries:
     input:
-        bam="recal/{sample}.bam",
+        bam="picard/{sample}.bam",
+        bai_bai="picard/{sample}.bam.bai",
         variants="known.vcf.gz",
+        variants_tbi="known.vcf.gz.tbi",
         intervals="regions.bed",
     output:
-        "summaries/{sample}.table",
+        temp("summaries/{sample}.table"),
     threads: 1
     resources:
         mem_mb=1024,
@@ -82,14 +101,27 @@ rule gatk_get_pileup_summaries:
         "master/bio/gatk/getpileupsummaries"
 
 
-#TODO: CalculateContamination
+rule gatk_calculate_contamination:
+    input:
+        tumor="summaries/{sample}.table",
+    output:
+        temp("segmentation/{sample}.pileups.table"),
+    threads: 1
+    resources:
+        mem_mb=1024,
+    log:
+        "logs/gatk/contamination.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/gatk/calculatecontamination"
 
 
-rule gatk_learnreadorientationmodel:
+rule gatk_learn_read_orientation_model:
     input:
         f1r2="counts/{sample}.f1r2.tar.gz",
     output:
-        "artifacts_prior/{sample}.tar.gz",
+        temp("artifacts_prior/{sample}.tar.gz"),
     threads: 1
     resources:
         mem_mb=1024,
@@ -102,13 +134,16 @@ rule gatk_learnreadorientationmodel:
 
 
 
-rule filtermutectcalls_complete:
+rule filter_mutect_calls:
     input:
         vcf="variant/{sample}.vcf",
         ref="genome.fasta",
-        bam="recal/{sample}.bam",
+        ref_dict="genome.dict",
+        ref_fai="genome.fasta.fai",
+        bam="picard/{sample}.bam",
+        bam_bai="picard/{sample}.bam.bai",
         contamination="summaries/{sample}.table",
-        # segmentation="", # from gatk CalculateContamination
+        segmentation="segmentation/{sample}.pileups.table",
         f1r2="artifacts_prior/{sample}.tar.gz",
     output:
         vcf="variant/{sample}.filtered.vcf.gz",
