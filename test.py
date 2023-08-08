@@ -5570,7 +5570,7 @@ def test_collapse_reads_to_fragments_bam():
 
 
 @skip_if_not_modified
-def test_gatk_best_practice():
+def test_gatk_best_practice_meta():
     run(
         "meta/bio/gatk_best_practice",
         [
