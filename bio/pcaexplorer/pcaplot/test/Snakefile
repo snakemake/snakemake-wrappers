@@ -1,0 +1,11 @@
+rule test_pcaexplorer_pcaplot:
+    input:
+        "dst.RDS",
+    output:
+        "pca.png",
+    params:
+        extra="",
+    log:
+        "logs/pca.log"
+    wrapper:
+        "master/bio/pcaexplorer/pcaplot"
