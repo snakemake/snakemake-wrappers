@@ -6,6 +6,6 @@ rule test_pcaexplorer_pcaplot:
     params:
         extra="",
     log:
-        "logs/pca.log"
+        "logs/pca.log",
     wrapper:
         "master/bio/pcaexplorer/pcaplot"
