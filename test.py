@@ -2275,6 +2275,18 @@ def test_clustalo():
 
 
 @skip_if_not_modified
+def test_cnv_facets():
+    run(
+        "bio/cnv_facets",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "CNV_pileup.vcf.gz"]
+    )
+    run(
+        "bio/cnv_facets",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "CNV_bam.vcf.gz"]
+    )
+
+
+@skip_if_not_modified
 def test_coolpuppy():
     run(
         "bio/coolpuppy",
