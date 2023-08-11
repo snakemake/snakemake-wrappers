@@ -10,13 +10,13 @@ rule test_cnv_facets_bam:
         spider="qc_bam.spider.pdf",
         pileup="CNV_bam.pileup.csv.gz",
     log:
-        "logs/cnv_facets_bam.log"
+        "logs/cnv_facets_bam.log",
     params:
         extra="",
     wrapper:
         "master/bio/cnv_facets"
-        
-        
+
+
 rule test_cnv_facets_pileup:
     input:
         pileup="pileup.csv.gz",
@@ -28,7 +28,7 @@ rule test_cnv_facets_pileup:
         spider="qc_pileup.spider.pdf",
         pileup="CNV_pileup.pileup.csv.gz",
     log:
-        "logs/cnv_facets_bam.log"
+        "logs/cnv_facets_bam.log",
     params:
         extra="",
     wrapper:
