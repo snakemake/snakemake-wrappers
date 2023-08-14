@@ -11,6 +11,6 @@ rule test_immunedeconv:
         method="deconvolute",
         extra="method='epic'",
     log:
-        "logs/immunedeconv/csv.log"
+        "logs/immunedeconv/csv.log",
     wrapper:
         "master/bio/immunedeconv"
