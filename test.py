@@ -2876,6 +2876,14 @@ def test_homer_makeTagDirectory():
 
 
 @skip_if_not_modified
+def test_immunedeconv():
+    run(
+        "bio/immunedeconv",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "deconv.csv"]
+    )
+
+
+@skip_if_not_modified
 def test_jellyfish_count():
     run(
         "bio/jellyfish/count",
