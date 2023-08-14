@@ -17,20 +17,22 @@ base::sink(file = log_file, type = "message")
 base::library("immunedeconv", character.only = TRUE)
 base::message("Library loaded")
 
+
 # Function used to load matrices depending on their format
-load_input_file <- base::function(path) {
-    if (base::endsWith(x = data_matrix, suffix = "RDS")) {
-        data_matrix <- base::readRDS(file = data_matrix)
-    } else if (base::endsWith(x = data_matrix, suffix = "tsv")) {
-        utils::read.table(
-            file = data_matrix,
+load_input_file <- function(path) {
+    data_matrix <- NULL
+    if (base::endsWith(x = path, suffix = "RDS")) {
+        data_matrix <- base::readRDS(file = path)
+    } else if (base::endsWith(x = path, suffix = "tsv")) {
+        data_matrix <- utils::read.table(
+            file = path,
             sep = "\t",
             header = TRUE,
             row.names = TRUE
         )
-    } else if (base::endsWith(x = data_matrix, suffix = "csv")) {
-        utils::read.table(
-            file = data_matrix,
+    } else if (base::endsWith(x = path, suffix = "csv")) {
+        data_matrix <- utils::read.table(
+            file = path,
             sep = ",",
             header = TRUE,
             row.names = TRUE
@@ -96,7 +98,7 @@ if ("signature" %in% base::names(x = snakemake@input)) {
     base::message("Custom signatures loaded")
 }
 
-cmd <- base::paste0("immunedeconv::", method, "(", extra ")")
+cmd <- base::paste0("immunedeconv::", method, "(", extra, ")")
 base::message("Command line used:")
 base::message(cmd)
 
