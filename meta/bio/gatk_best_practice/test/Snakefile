@@ -105,12 +105,12 @@ rule gatk_calculate_contamination:
     input:
         tumor="summaries/{sample}.table",
     output:
-        temp("segmentation/{sample}.pileups.table"),
+        temp("contamination/{sample}.pileups.table"),
     threads: 1
     resources:
         mem_mb=1024,
     log:
-        "logs/gatk/contamination.log",
+        "logs/contamination/{sample}.log",
     params:
         extra="",
     wrapper:
@@ -142,8 +142,7 @@ rule filter_mutect_calls:
         ref_fai="genome.fasta.fai",
         bam="picard/{sample}.bam",
         bam_bai="picard/{sample}.bam.bai",
-        contamination="summaries/{sample}.table",
-        segmentation="segmentation/{sample}.pileups.table",
+        contamination="contamination/{sample}.pileups.table",
         f1r2="artifacts_prior/{sample}.tar.gz",
     output:
         vcf="variant/{sample}.filtered.vcf.gz",

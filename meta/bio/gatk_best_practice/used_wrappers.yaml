@@ -5,6 +5,6 @@ wrappers:
   - bio/picard/addorreplacereadgroups
   - bio/gatk/mutect
   - bio/gatk/getpileupsummaries
-  - bio/gatk/calculatecontaminations
+  - bio/gatk/calculatecontamination
   - bio/gatk/learnreadorientationmodel
   - bio/gatk/filtermutectcalls
