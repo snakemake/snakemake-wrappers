@@ -2129,7 +2129,7 @@ def test_bwa_samse_sort_picard():
 def test_bwa_mem2_mem():
     run(
         "bio/bwa-mem2/mem",
-        ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "2", "mapped/a.bam", "--use-conda", "-F"],
     )
 
 
@@ -2140,7 +2140,7 @@ def test_bwa_mem2_sort_samtools():
         [
             "snakemake",
             "--cores",
-            "1",
+            "2",
             "mapped/a.bam",
             "--use-conda",
             "-F",
@@ -2172,7 +2172,7 @@ def test_bwa_mem2_sort_picard():
         [
             "snakemake",
             "--cores",
-            "1",
+            "2",
             "mapped/a.bam",
             "--use-conda",
             "-F",
