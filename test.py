@@ -1630,6 +1630,14 @@ def test_bedtools_sort():
         ],
     )
 
+    
+@skip_if_not_modified
+def test_bedtools_split():
+    run(
+        "bio/bedtools/split",
+        ["snakemake", "--cores", "1", "results/a.1-of-2.bed", "results/a.2-of-2.bed", "--use-conda", "-F"],
+    )
+
 
 @skip_if_not_modified
 def test_bedtools_intersect():
