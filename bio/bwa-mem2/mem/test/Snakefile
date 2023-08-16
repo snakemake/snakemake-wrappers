@@ -9,9 +9,9 @@ rule bwa_mem2_mem:
         "logs/bwa_mem2/{sample}.log",
     params:
         extra=r"-R '@RG\tID:{sample}\tSM:{sample}'",
-        sort="none",  # Can be 'none', 'samtools' or 'picard'.
+        sort="none",  # Can be 'none', 'samtools', 'picard' or 'sam'.
         sort_order="coordinate",  # Can be 'coordinate' (default) or 'queryname'.
-        sort_extra="",  # Extra args for samtools/picard.
+        sort_extra="",  # Extra args for samtools/picard sorts.
     threads: 8
     wrapper:
         "master/bio/bwa-mem2/mem"
