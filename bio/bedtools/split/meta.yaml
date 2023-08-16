@@ -1,0 +1,14 @@
+name: bedtools split
+description: >
+  Splits a BED file balancing the number of subfiles not just by number of lines, but also by total number of base pairs in each sub file.
+url: https://bedtools.readthedocs.io/
+authors:
+  - Filipe G. Vieira
+input:
+  - bed: Path to BED file
+output:
+  - Several BED files
+params:
+  - extra: additional program arguments (except for `-i`, `-n`, or `-p`)
+notes: |
+  * This program/wrapper does not handle multi-threading.
