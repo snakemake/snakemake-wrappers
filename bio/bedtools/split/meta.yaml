@@ -12,3 +12,4 @@ params:
   - extra: additional program arguments (except for `-i`, `-n`, or `-p`)
 notes: |
   * This program/wrapper does not handle multi-threading.
+  * 'bedtools split' is currently undocumented, even though it was added to 'bedtools' on version `2.23.0` (https://bedtools.readthedocs.io/en/latest/content/history.html#version-2-23-0-22-feb-2015).
