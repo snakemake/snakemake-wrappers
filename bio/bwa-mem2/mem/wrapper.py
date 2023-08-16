@@ -19,14 +19,17 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 sort = snakemake.params.get("sort", "none")
 sort_order = snakemake.params.get("sort_order", "coordinate")
 sort_extra = snakemake.params.get("sort_extra", "")
-samtools_opts = get_samtools_opts(snakemake, parse_threads=False, param_name="sort_extra")
+samtools_opts = get_samtools_opts(
+    snakemake, parse_threads=False, param_name="sort_extra"
+)
 java_opts = get_java_opts(snakemake)
+
 
 def split_threads(threads):
     """
     Return correct number of threads: first for BWA, second for Samtools.
 
-    Remember, samtools `--threads` value must be reduced by 1 
+    Remember, samtools `--threads` value must be reduced by 1
     since it accounts for supplementary threads after the first one.
     """
     if threads % 2 == 0:
@@ -42,8 +45,9 @@ def split_threads(threads):
             "Not enough threads available. "
             "This wrapper requires at least two threads"
         )
-    
+
     return threads[0], threads[1] - 1
+
 
 bwa_threads = snakemake.threads
 index = snakemake.input.get("index", "")
@@ -91,7 +95,9 @@ elif sort == "picard":
     # Correctly assign number of threads according to user request
     bwa_threads = bwa_threads - 1
     if bwa_threads <= 0:
-        raise ValueError("Not enough threads requested. This wrapper requires exactly one more.")
+        raise ValueError(
+            "Not enough threads requested. This wrapper requires exactly one more."
+        )
 
     # Sort alignments using picard SortSam.
     pipe_cmd = (
