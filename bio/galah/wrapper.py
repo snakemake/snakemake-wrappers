@@ -2,12 +2,22 @@ __author__ = "Filipe G. Vieira"
 __copyright__ = "Copyright 2023, Filipe G. Vieira"
 __license__ = "MIT"
 
-import tempfile
 from snakemake.shell import shell
 
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
+
+
+fas = snakemake.input.get("fas", "")
+if fas:
+    fas = " ".join(fas)
+    fas = f"--genome-fasta-files {fas}"
+
+
+fas_list = snakemake.input.get("fas_list", "")
+if fas_list:
+    fas_list = f"--genome-fasta-list {fas_list}"
 
 
 clusters = snakemake.output.get("clusters", "")
@@ -20,15 +30,13 @@ if repres:
     repres = f"--output-representative-list {repres}"
 
 
-with tempfile.NamedTemporaryFile() as tmp:
-    shell("ls {snakemake.input} > {tmp.name}")
-
-    shell(
-        "galah cluster"
-        " --threads {snakemake.threads}"
-        " --genome-fasta-list {tmp.name}"
-        " {extra}"
-        " {clusters}"
-        " {repres}"
-        " {log}"
-    )
+shell(
+    "galah cluster"
+    " --threads {snakemake.threads}"
+    " {fas}"
+    " {fas_list}"
+    " {extra}"
+    " {clusters}"
+    " {repres}"
+    " {log}"
+)
