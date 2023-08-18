@@ -1040,6 +1040,14 @@ def test_dada2_add_species():
 
 
 @skip_if_not_modified
+def test_datavzrd():
+    run(
+        "utils/datavzrd",
+        ["snakemake", "--cores", "1", "--use-conda", "results/datavzrd-report/A"],
+    )
+
+
+@skip_if_not_modified
 def test_deseq2_deseqdataset():
     # from HTSeqcount / Featurecount
     run(
