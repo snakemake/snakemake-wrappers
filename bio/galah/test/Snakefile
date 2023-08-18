@@ -1,13 +1,11 @@
-rule galah:
+rule galah_fas:
     input:
-        "fas/a.fa",
-        "fas/b.fas.bz2",
-        "fas/c.fasta.gz",
+        fas=["fas/a.fa", "fas/b.fas.bz2", "fas/c.fasta.gz"],
     output:
-        clusters="results.tsv",
-        repres="results.list",
+        clusters="results.fas.tsv",
+        repres="results.fas.list",
     log:
-        "logs/out.log",
+        "logs/out.fas.log",
     params:
         extra="--precluster-ani 0.9 --ani 0.95",
     threads: 2
@@ -15,3 +13,13 @@ rule galah:
         mem_mb=50,
     wrapper:
         "master/bio/galah"
+
+
+use rule galah_fas as galah_fas_list with:
+    input:
+        fas_list="fas/a.fas_list",
+    output:
+        clusters="results.fas_list.tsv",
+        repres="results.fas_list.list",
+    log:
+        "logs/out.fas_list.log",

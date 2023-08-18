@@ -149,8 +149,10 @@ def test_galah():
             "1",
             "--use-conda",
             "-F",
-            "results.tsv",
-            "results.list",
+            "results.fas.tsv",
+            "results.fas.list",
+            "results.fas_list.tsv",
+            "results.fas_list.list",
         ],
     )
 
