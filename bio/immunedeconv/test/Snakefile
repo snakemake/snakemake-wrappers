@@ -5,7 +5,7 @@ rule test_immunedeconv:
         # cibersort_bin="",  # Path to CIBERSORT binary.
         # cibersort_mat="",  # Path to CIBERSORT matrix.
     output:
-        "deconv.csv",
+        "deconv.csv", # Available formats are: RDS, csv or tsv
     threads: 1
     params:
         method="deconvolute",
