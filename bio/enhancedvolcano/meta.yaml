@@ -7,7 +7,7 @@ description: |
 input:
   - Path to a TSV/CSV table (separator are inferred from file extension) or a RDS formatted object convertible into a `data.frame`.
 output:
-  - Path to SVG formatted Volcano plot
+  - Path to SVG or PNG formatted Volcano plot
 params:
   - extra: additional parameters besides `toptable`
   - height: plot default height (in `grDevices::svg`)
