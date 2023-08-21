@@ -14,6 +14,5 @@ output:
   - cnv: Path to a summary plot of CNVs across the genome. (PNG)
   - hist: Path to histograms of the distribution of read depth across all the position in the tumour and normal sample, before and after filtering positions. (PDF)
   - spider: Path to a diagnostic plot to check how well the copy number fits work (PDF)
-  - pileup: Path to the pileup file of nucleotide counts at each SNP in normal and tumour sample. (pbgzip CSV)
 params:
   - extra: Optional parameters given to `cnv_facets`, besides `-t`, `-n`, `-vcf` and `-o`.

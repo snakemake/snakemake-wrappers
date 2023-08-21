@@ -38,8 +38,9 @@ with TemporaryDirectory() as tempdir:
     )
 
     # Allow user to define all output files
-    shell("mv --verbose {prefix}.vcf.gz {output.vcf} {log}")
-    shell("mv --verbose {prefix}.cnv.png {output.cnv} {log}")
-    shell("mv --verbose {prefix}.cov.pdf {output.hist} {log}")
-    shell("mv --verbose {prefix}.spider.pdf {output.spider} {log}")
-    shell("mv --verbose {prefix}.csv.gz {output.pileup} {log}")
+    shell("ls -lrth {prefix}* {log}")
+    shell("mv --verbose {prefix}.vcf.gz {snakemake.output.vcf} {log}")
+    shell("mv --verbose {prefix}.vcf.gz.tbi {snakemake.output.vcf}.tbi {log}")
+    shell("mv --verbose {prefix}.cnv.png {snakemake.output.cnv} {log}")
+    shell("mv --verbose {prefix}.cov.pdf {snakemake.output.hist} {log}")
+    shell("mv --verbose {prefix}.spider.pdf {snakemake.output.spider} {log}")
