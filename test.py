@@ -1183,7 +1183,7 @@ def test_enhanced_volcano():
             "--cores",
             "1",
             "--use-conda",
-            "volcano_csv.png",
+            "volcano_csv.svg",
         ],
     )
 
@@ -1194,7 +1194,7 @@ def test_enhanced_volcano():
             "--cores",
             "1",
             "--use-conda",
-            "volcano_rds.png",
+            "volcano_rds.svg",
         ],
     )
 

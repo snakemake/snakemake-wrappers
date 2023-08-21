@@ -16,70 +16,92 @@ base::sink(log.file, type = "message")
 base::library(package = "EnhancedVolcano", character.only = TRUE)
 base::message("Library loaded")
 
+save_png <- function(output_path, width, height) {
+  grDevices::png(
+    filename = output_path,
+    width = width,
+    height = height,
+  )
+
+  base::print(base::eval(base::parse(text = cmd)))
+
+  grDevices::dev.off()
+}
+
+save_svg <- function(output_path, width, height) {
+  grDevices::svg(
+    filename = output_path,
+    width = width,
+    height = height
+  )
+  
+  base::print(base::eval(base::parse(text = cmd)))
+
+  grDevices::dev.off()
+}
+
 input_path <- base::as.character(x = snakemake@input[[1]])
 toptable <- NULL
 if (base::endsWith(x = input_path, suffix = ".tsv")) {
-    toptable <- utils::read.table(
-        file = input_path,
-        header = TRUE,
-        sep = "\t",
-        stringsAsFactors = FALSE,
-    )
+  toptable <- utils::read.table(
+    file = input_path,
+    header = TRUE,
+    sep = "\t",
+    stringsAsFactors = FALSE,
+  )
 } else if (base::endsWith(x = input_path, suffix = ".csv")) {
-   toptable <- utils::read.table(
-        file = input_path,
-        header = TRUE,
-        sep = ",",
-        stringsAsFactors = FALSE,
-    )
+  toptable <- utils::read.table(
+    file = input_path,
+    header = TRUE,
+    sep = ",",
+    stringsAsFactors = FALSE,
+  )
 } else if (base::endsWith(x = input_path, suffix = ".RDS")) {
-   toptable <- base::readRDS(file = input_path)
+  toptable <- base::readRDS(file = input_path)
 } else {
-    base::stop(
-        "Input file format unknown. Expected either '.tsv', '.csv', or 'RDS'"
-    )
+  base::stop(
+    "Input file format unknown. Expected either '.tsv', '.csv', or 'RDS'"
+  )
 }
 base::message("Data loaded")
+base::print(toptable)
 
 # Building command line
 extra <- "toptable = toptable"
 if ("extra" %in% base::names(snakemake@params)) {
-    extra <- base::paste(
-        extra,
-        base::as.character(x = snakemake@params[["extra"]]),
-        sep = ","
-    )
+  extra <- base::paste(
+    extra,
+    base::as.character(x = snakemake@params[["extra"]]),
+    sep = ","
+  )
 }
 
-width <- 480
+width <- 7
 if ("width" %in% base::names(snakemake@params)) {
-    width <- base::as.numeric(x = snakemake@params[["width"]])
+  width <- base::as.numeric(x = snakemake@params[["width"]])
 }
-height <- 480
+height <- 7
 if ("height" %in% base::names(snakemake@params)) {
-    height <- base::as.numeric(x = snakemake@params[["height"]])
+  height <- base::as.numeric(x = snakemake@params[["height"]])
 }
+
 
 cmd <- base::paste0(
-    "EnhancedVolcano::EnhancedVolcano(",
-    extra,
-    ")"
+  "EnhancedVolcano::EnhancedVolcano(",
+  extra,
+  ")"
 )
 base::message("Command line: ")
 base::message(cmd)
 
 
 # Run EnhancedVolcano
-grDevices::png(
-    filename = base::as.character(x = snakemake@output[[1]]),
-    units = "px",
-    width = width,
-    height = height
-)
-
-base::eval(base::parse(text = cmd))
-
-grDevices::dev.off()
+outfile <- base::as.character(x = snakemake@output[[1]])
+if (base::endsWith(x = outfile, suffix = ".png")) {
+  save_png(output_path = outfile, width = width, height = height)
+} else {
+  save_svg(output_path = outfile, width = width, height = height)
+}
 base::message("Process over")
 
 # Proper syntax to close the connection for the log file
