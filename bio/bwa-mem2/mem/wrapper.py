@@ -60,7 +60,6 @@ if sort == "none":
 
 elif sort == "samtools":
     # Correctly assign number of threads according to user request
-    bwa_threads, samtools_threads = split_threads(snakemake.threads)
     if samtools_threads >= 1:
         samtools_opts += f" --threads {samtools_threads} "
 
