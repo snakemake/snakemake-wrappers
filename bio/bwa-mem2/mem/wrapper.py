@@ -24,32 +24,9 @@ samtools_opts = get_samtools_opts(
 )
 java_opts = get_java_opts(snakemake)
 
-
-def split_threads(threads):
-    """
-    Return correct number of threads: first for BWA, second for Samtools.
-
-    Remember, samtools `--threads` value must be reduced by 1
-    since it accounts for supplementary threads after the first one.
-    """
-    if threads % 2 == 0:
-        # Case threads are even
-        threads = [int(threads / 2), int(threads / 2)]
-    else:
-        # Case threads are odds, then BWA should have the remaining thread
-        # since it consumed the highest amount of time and memory here.
-        threads = [int(threads / 2) + 1, int(threads / 2)]
-
-    if any(value <= 0 for value in threads):
-        raise ValueError(
-            "Not enough threads available. "
-            "This wrapper requires at least two threads"
-        )
-
-    return threads[0], threads[1] - 1
-
-
 bwa_threads = snakemake.threads
+samtools_threads = snakemake.threads - 1
+
 index = snakemake.input.get("index", "")
 if isinstance(index, str):
     index = path.splitext(snakemake.input.idx)[0]
@@ -70,12 +47,15 @@ if sort_order not in {"coordinate", "queryname"}:
 # Determine which pipe command to use for converting to bam or sorting.
 if sort == "none":
     # Correctly assign number of threads according to user request
-    bwa_threads, samtools_threads = split_threads(snakemake.threads)
     if samtools_threads >= 1:
         samtools_opts += f" --threads {samtools_threads} "
 
-    # Simply convert to bam using samtools view.
-    pipe_cmd = " | samtools view {samtools_opts} > {snakemake.output[0]}"
+    if str(snakemake.output[0]).lower().endswith(("bam", "cram")):
+        # Simply convert to bam using samtools view.
+        pipe_cmd = " | samtools view {samtools_opts} > {snakemake.output[0]}"
+    else:
+        # Do not perform any sort nor compression, output raw sam
+        pipe_cmd = " > {snakemake.output[0]} "
 
 
 elif sort == "samtools":
@@ -107,10 +87,6 @@ elif sort == "picard":
         "--SORT_ORDER {sort_order} "
         "--OUTPUT {snakemake.output[0]}"
     )
-
-elif sort == "sam":
-    # Do not perform any sort nor compression, output raw sam
-    pipe_cmd = " > {snakemake.output[0]} "
 
 else:
     raise ValueError(f"Unexpected value for params.sort ({sort})")

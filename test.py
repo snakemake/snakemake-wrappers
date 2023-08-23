@@ -2131,6 +2131,10 @@ def test_bwa_mem2_mem():
         "bio/bwa-mem2/mem",
         ["snakemake", "--cores", "2", "mapped/a.bam", "--use-conda", "-F"],
     )
+    run(
+        "bio/bwa-mem2/mem",
+        ["snakemake", "--cores", "2", "mapped/a.sam", "--use-conda", "-F"],
+    )
 
 
 @skip_if_not_modified
