@@ -1,5 +1,21 @@
 # Changelog
 
+### [2.4.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.4.0...v2.4.1) (2023-08-23)
+
+
+### Bug Fixes
+
+* ensembl-variation - remove index ([#1760](https://www.github.com/snakemake/snakemake-wrappers/issues/1760)) ([702a85b](https://www.github.com/snakemake/snakemake-wrappers/commit/702a85b7a2564fc9e94038825a12ed514192bc78))
+
+
+### Performance Improvements
+
+* bump datavzrd to 2.23.6 ([#1757](https://www.github.com/snakemake/snakemake-wrappers/issues/1757)) ([c500eb9](https://www.github.com/snakemake/snakemake-wrappers/commit/c500eb9682ef1230a1023211b1d96443cb341ab7))
+* update datavzrd 2.23.7 ([#1763](https://www.github.com/snakemake/snakemake-wrappers/issues/1763)) ([b19813d](https://www.github.com/snakemake/snakemake-wrappers/commit/b19813d62a43db1d168087dccb62f85cd466a4cf))
+* update picard markduplicates ([#1761](https://www.github.com/snakemake/snakemake-wrappers/issues/1761)) ([0c8aad0](https://www.github.com/snakemake/snakemake-wrappers/commit/0c8aad0a9e786850d49c49bb0baef21b5335883d))
+* update snakemake wrapper utils ([#1762](https://www.github.com/snakemake/snakemake-wrappers/issues/1762)) ([371f337](https://www.github.com/snakemake/snakemake-wrappers/commit/371f3376d27efcacb679e0b2b645ba6ee33be24c))
+* update vep annotate ([#1759](https://www.github.com/snakemake/snakemake-wrappers/issues/1759)) ([f7e372f](https://www.github.com/snakemake/snakemake-wrappers/commit/f7e372f4d1576306975ad611e5aeb1c335b6658a))
+
 ## [2.4.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.3.2...v2.4.0) (2023-08-21)
 
 
