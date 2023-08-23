@@ -19,9 +19,10 @@ assert fasta is not None, "input-> a FASTA-file is required"
 fasta = " ".join(fasta) if isinstance(fasta, list) else fasta
 
 shell(
-    "kallisto index "  # Tool
-    "{extra} "  # Optional parameters
-    "--index={snakemake.output.index} "  # Output file
-    "{fasta} "  # Input FASTA files
-    "{log}"  # Logging
+    "kallisto index"  # Tool
+    " --threads {snakemake.threads}"
+    " {extra}"  # Optional parameters
+    " --index {snakemake.output.index}"  # Output file
+    " {fasta}"  # Input FASTA files
+    " {log}"  # Logging
 )
