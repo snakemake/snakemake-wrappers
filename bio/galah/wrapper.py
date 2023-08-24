@@ -11,8 +11,7 @@ extra = snakemake.params.get("extra", "")
 
 fas = snakemake.input.get("fas", "")
 if fas:
-    fas = " ".join(fas)
-    fas = f"--genome-fasta-files {fas}"
+    fas = f"--genome-fasta-files {' '.join(fas)}"
 
 
 fas_list = snakemake.input.get("fas_list", "")
