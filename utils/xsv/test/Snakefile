@@ -231,9 +231,9 @@ rule test_xsv_table:
     input:
         table="right.csv",
     output:
-        "xsv_table.txt",
+        "xsv/table.txt",
     log:
-        "xsv/table.log",
+        "logs/table.log",
     params:
         subcommand="table",
         extra="",
