@@ -3,7 +3,7 @@ rule test_xsv_cat_rows:
     input:
         table=["table.csv", "right.csv"],
     output:
-        "xsv_catrows.csv",
+        "xsv/catrows.csv",
     log:
         "logs/catrow.log",
     params:
@@ -16,7 +16,7 @@ rule test_xsv_cat_rows:
 
 use rule test_xsv_cat_rows as test_xsv_cat_cols with:
     output:
-        "xsv_catcols.csv",
+        "xsv/catcols.csv",
     log:
         "logs/catcol.log",
     params:
