@@ -1182,6 +1182,42 @@ def test_bwa_mapping_meta():
 
 
 @skip_if_not_modified
+def test_enhanced_volcano():
+    run(
+        "bio/enhancedvolcano",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "volcano_tsv.png",
+        ],
+    )
+
+    run(
+        "bio/enhancedvolcano",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "volcano_csv.svg",
+        ],
+    )
+
+    run(
+        "bio/enhancedvolcano",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "volcano_rds.svg",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_gridss_call():
     run(
         "bio/gridss/call",
