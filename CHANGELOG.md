@@ -1,5 +1,27 @@
 # Changelog
 
+## [2.6.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.5.0...v2.6.0) (2023-08-25)
+
+
+### Features
+
+* add galah wrapper ([#1754](https://www.github.com/snakemake/snakemake-wrappers/issues/1754)) ([083688a](https://www.github.com/snakemake/snakemake-wrappers/commit/083688a059439b1b886ac2db95fd53530d5bef11))
+* Enhanced-volcano ([#1521](https://www.github.com/snakemake/snakemake-wrappers/issues/1521)) ([0bd316d](https://www.github.com/snakemake/snakemake-wrappers/commit/0bd316db902ed47d36250b4464f5d8710b295a61))
+* Immunedeconv ([#1741](https://www.github.com/snakemake/snakemake-wrappers/issues/1741)) ([97b5bde](https://www.github.com/snakemake/snakemake-wrappers/commit/97b5bdec2bcff9b26de7e6889cba72521b845e99))
+
+
+### Bug Fixes
+
+* Bwa mem threads ([#1743](https://www.github.com/snakemake/snakemake-wrappers/issues/1743)) ([e35e312](https://www.github.com/snakemake/snakemake-wrappers/commit/e35e31219af8e7bf7b2f7174ddd7ade93abf7cad))
+
+
+### Performance Improvements
+
+* autobump bio/hifiasm ([#1768](https://www.github.com/snakemake/snakemake-wrappers/issues/1768)) ([5795e2c](https://www.github.com/snakemake/snakemake-wrappers/commit/5795e2c31d0d6742908223fb7ff86fb186dd09f5))
+* autobump bio/sourmash/compute ([#1767](https://www.github.com/snakemake/snakemake-wrappers/issues/1767)) ([412f289](https://www.github.com/snakemake/snakemake-wrappers/commit/412f2892dc44c7218656b23dc6d83cb15e15eae0))
+* autobump bio/vg/prune ([#1769](https://www.github.com/snakemake/snakemake-wrappers/issues/1769)) ([fe30289](https://www.github.com/snakemake/snakemake-wrappers/commit/fe302896b2550585c257ac0311ed9c5ee462a2dd))
+* update datavzrd 2.23.8 ([#1764](https://www.github.com/snakemake/snakemake-wrappers/issues/1764)) ([2f76671](https://www.github.com/snakemake/snakemake-wrappers/commit/2f766717bbf35dfaf748c02757b4f5eef0ff96ba))
+
 ## [2.5.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.4.0...v2.5.0) (2023-08-24)
 
 
