@@ -1155,12 +1155,9 @@ def test_xsv():
 
     run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/fixlength.csv"])
 
-    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/count.csv"])
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/count_csv.csv"])
 
-    run(
-        "utils/xsv",
-        ["snakemake", "--cores", "1", "--use-conda", "xsv/count.tsv_as_input.csv"],
-    )
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/count_tsv.csv"])
 
     run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/catrows.csv"])
 
