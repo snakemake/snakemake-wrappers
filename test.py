@@ -1141,7 +1141,7 @@ def test_xsv():
 
     run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/input.csv"])
 
-    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/table.csv.idx"])
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "table.csv.idx"])
 
     run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/headers_all.csv"])
 

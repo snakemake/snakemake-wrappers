@@ -112,7 +112,7 @@ use rule test_xsv_cat_rows as test_xsv_headers_list with:
 ### Index subcommand ###
 use rule test_xsv_count as test_xsv_index with:
     output:
-        "xsv/table.csv.idx",
+        "table.csv.idx",
     log:
         "logs/index.log",
     params:
