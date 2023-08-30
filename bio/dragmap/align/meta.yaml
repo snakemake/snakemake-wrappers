@@ -5,9 +5,12 @@ url: https://github.com/Illumina/DRAGMAP
 authors:
   - Filipe G. Vieira
 input:
-  - FASTQ file(s)
-  - reference hash table
+  - reads: FASTQ file(s)
+  - idx: reference hash table
 output:
   - SAM/BAM/CRAM file
-notes: |
-  * The `extra` param allows for additional program arguments.
+params:
+  - extra: Optional parameters, besides `--num-threads`, and `-r`
+  - sorting: Either `none`, `samtools` or `picard`
+  - sort_order: Either `queryname` or `coordinate`
+  - sort_extra: Optional parameters for samtools/picard
