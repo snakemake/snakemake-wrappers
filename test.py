@@ -2278,11 +2278,11 @@ def test_clustalo():
 def test_cnv_facets():
     run(
         "bio/cnv_facets",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "CNV_pileup.vcf.gz"]
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "CNV_bam.vcf.gz"]
     )
     run(
         "bio/cnv_facets",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "CNV_bam.vcf.gz"]
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "CNV_pileup.vcf.gz"]
     )
 
 

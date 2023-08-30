@@ -15,9 +15,9 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 # Consider user input datasets
 input_data = ""
 if all(key in snakemake.input.keys() for key in ["tumor", "normal"]):
-    input_data = f"-t {snakemake.input.tumor} -n {snakemake.input.normal}"
+    input_data = f" --snp-tumour {snakemake.input.tumor} --snp-normal {snakemake.input.normal}  --snp-vcf {snakemake.input.vcf} "
 elif "pileup" in snakemake.input.keys():
-    input_data = f"-p {snakemake.input.pileup}"
+    input_data = f" --pileup {snakemake.input.pileup} --snp-vcf {snakemake.input.vcf} "
 else:
     raise KeyError(
         "Either provide both `tumor` *and* `normal` bam files, "
