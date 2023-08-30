@@ -3,5 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - qualimap =2.2.2d
-  - snakemake-wrapper-utils =0.6.2
+  - r-immunedeconv =2.1.2

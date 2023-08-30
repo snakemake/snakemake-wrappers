@@ -1,0 +1,16 @@
+name: Enhanced Volcano
+url: https://bioconductor.org/packages/3.17/bioc/html/EnhancedVolcano.html
+authors:
+  - Thibault Dayris
+description: |
+  Build Volcano-plots with EnhancedVolcano
+input:
+  - Path to a TSV/CSV table (separator are inferred from file extension) or a RDS formatted object convertible into a `data.frame`.
+output:
+  - Path to SVG or PNG formatted Volcano plot
+params:
+  - extra: additional parameters besides `toptable`
+  - height: plot default height (in `grDevices::svg`)
+  - width: plot default width (in `grDevices::svg`)
+notes: |
+  * Input table requires at least the following: column for variable names; a column for log2 fold changes; a column for nominal or adjusted p-value.
