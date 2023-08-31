@@ -5693,9 +5693,9 @@ def test_collapse_reads_to_fragments_bam():
 
 
 @skip_if_not_modified
-def test_gatk_best_practice_meta():
+def test_gatk_mutect2_calling_meta():
     run(
-        "meta/bio/gatk_best_practice",
+        "meta/bio/gatk_mutect2_calling",
         [
             "snakemake",
             "--cores",
