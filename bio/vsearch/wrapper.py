@@ -6,13 +6,13 @@ from snakemake.shell import shell
 
 
 extra = snakemake.params.get("extra", "")
-if snakemake.log:
-    log = f"--log {snakemake.log}"
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 
+# Parse input files
 input = " ".join([f"--{key} {value}" for key, value in snakemake.input.items()])
 
-
+# Parse output files
 out_list = list()
 for key, value in snakemake.output.items():
     if value.endswith(".gz"):
@@ -31,4 +31,4 @@ assert sum(out_gz + out_bz2) <= 1, "only one output can be compressed"
 output = [out for _, out in sorted(zip(out_gz or out_bz2, out_list))]
 
 
-shell("vsearch --threads {snakemake.threads} {input} {extra} {log} {output}")
+shell("vsearch --threads {snakemake.threads} {input} {extra} {log} {output} {log}")
