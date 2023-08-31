@@ -28,7 +28,9 @@ out_bz2 = [out.endswith(".bz2") for out in out_list]
 assert sum(out_gz + out_bz2) <= 1, "only one output can be compressed"
 
 # Move compressed file (if any) to last
-output = [out for _, out in sorted(zip(out_gz or out_bz2, out_list))]
+output = [
+    out for _, out in sorted(zip([x | y for x, y in zip(out_gz, out_bz2)], out_list))
+]
 
 
 shell("(vsearch --threads {snakemake.threads} {input} {extra} {output}) {log}")
