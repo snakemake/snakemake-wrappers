@@ -12,4 +12,4 @@ params:
   - extra: additional program options (e.g. `-s` for `sample` or `-b/-e` for `trimfq`)
   - compress_lvl: compression level (see `gzip` manual for details)
 notes: |
-  * Multiple threads can be used during compression of the output file with ``pigz``.
+  * Multiple threads can be used during compression of the output file.
