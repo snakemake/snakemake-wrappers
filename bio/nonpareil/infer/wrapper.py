@@ -15,7 +15,11 @@ mem_mb = get_mem(snakemake, out_unit="MiB")
 uncomp = ""
 in_name, in_ext = path.splitext(snakemake.input[0])
 if in_ext in [".gz", ".bz2"]:
-    uncomp = "zcat" if in_ext == ".gz" else "bzcat"
+    uncomp = (
+        "gzip --decompress --stdout"
+        if in_ext == ".gz"
+        else "bzip2 --decompress --stdout"
+    )
     in_name, in_ext = path.splitext(in_name)
 
 # Infer output format
@@ -51,7 +55,7 @@ with tempfile.NamedTemporaryFile() as tmp:
     in_uncomp = snakemake.input[0]
     if uncomp:
         in_uncomp = tmp.name
-        shell("{uncomp} {snakemake.input[0]} > {in_uncomp}")
+        shell("{uncomp} {snakemake.input[0]} > {tmp.name}")
 
     shell(
         "nonpareil"
