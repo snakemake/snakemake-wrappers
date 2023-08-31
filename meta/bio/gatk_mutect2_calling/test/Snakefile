@@ -74,7 +74,7 @@ rule mutect2_call:
     resources:
         mem_mb=1024,
     params:
-        extra=" --tumor-sample {sample} "
+        extra=" --tumor-sample {sample} ",
     log:
         "logs/mutect/{sample}.log",
     wrapper:
@@ -133,7 +133,6 @@ rule gatk_learn_read_orientation_model:
         "master/bio/gatk/learnreadorientationmodel"
 
 
-
 rule filter_mutect_calls:
     input:
         vcf="variant/{sample}.vcf",
@@ -146,7 +145,7 @@ rule filter_mutect_calls:
         f1r2="artifacts_prior/{sample}.tar.gz",
     output:
         vcf="variant/{sample}.filtered.vcf.gz",
-        vcf_idx="variant/{sample}.filtered.vcf.gz.tbi"
+        vcf_idx="variant/{sample}.filtered.vcf.gz.tbi",
     threads: 1
     resources:
         mem_mb=1024,
