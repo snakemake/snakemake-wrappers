@@ -38,7 +38,7 @@ rule vsearch_fastx_uniques:
         "logs/vsearch/fastx_uniques/{sample}.log",
     params:
         extra="--strand both --minseqlength 5",
-    threads: 2
+    threads: 1
     wrapper:
         "master/bio/vsearch"
 

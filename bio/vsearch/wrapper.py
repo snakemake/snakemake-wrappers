@@ -16,9 +16,13 @@ input = " ".join([f"--{key} {value}" for key, value in snakemake.input.items()])
 out_list = list()
 for key, value in snakemake.output.items():
     if value.endswith(".gz"):
-        out_list.append(f"--{key} /dev/stdout | gzip > {value}")
+        out_list.append(
+            f"--{key} /dev/stdout | pigz --processes {snakemake.threads} --stdout > {value}"
+        )
     elif value.endswith(".bz2"):
-        out_list.append(f"--{key} /dev/stdout | bzip2 > {value}")
+        out_list.append(
+            f"--{key} /dev/stdout | pbzip2 -p{snakemake.threads} --stdout > {value}"
+        )
     else:
         out_list.append(f"--{key} {value}")
 
