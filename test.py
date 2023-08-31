@@ -5094,6 +5094,72 @@ def test_bismark_deduplicate_bismark():
 
 
 @skip_if_not_modified
+def test_methyldackel_extract():
+    run(
+        "bio/methyldackel/extract",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "-F",
+            "--use-conda",
+            "cpg.meth.bg"
+        ]
+    )
+
+
+    run(
+        "bio/methyldackel/extract",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "-F",
+            "--use-conda",
+            "cpg.count.bg"
+        ]
+    )
+
+
+    run(
+        "bio/methyldackel/extract",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "-F",
+            "--use-conda",
+            "cpg.logit.bg"
+        ]
+    )
+
+    run(
+        "bio/methyldackel/extract",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "-F",
+            "--use-conda",
+            "report.tsv"
+        ]
+    )
+
+
+    run(
+        "bio/methyldackel/extract",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "-F",
+            "--use-conda",
+            "chgchh.bbm",
+        ]
+    )
+
+
+@skip_if_not_modified
 def test_bismark_bismark_methylation_extractor():
     run(
         "bio/bismark/bismark_methylation_extractor",
