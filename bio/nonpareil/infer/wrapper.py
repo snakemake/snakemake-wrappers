@@ -16,9 +16,9 @@ uncomp = ""
 in_name, in_ext = path.splitext(snakemake.input[0])
 if in_ext in [".gz", ".bz2"]:
     uncomp = (
-        "gzip --decompress --stdout"
+        "pigz --processes {snakemake.threads} --decompress --stdout"
         if in_ext == ".gz"
-        else "bzip2 --decompress --stdout"
+        else "pbzip2 -p{snakemake.threads} --decompress --stdout"
     )
     in_name, in_ext = path.splitext(in_name)
 
