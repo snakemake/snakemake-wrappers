@@ -10,5 +10,5 @@ output:
   - BWA index files
 params:
   - extra: aditional program arguments
-note:
+notes: |
   * Wrapper automatically calculates `block_size`.
