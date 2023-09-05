@@ -1,5 +1,5 @@
 name: "bwa index"
-description: Creates a BWA index. For more information about BWA see `BWA documentation <http://bio-bwa.sourceforge.net/bwa.shtml>`_.
+description: Creates a BWA index.
 url: https://github.com/lh3/bwa
 authors:
   - Patrik Smeds
@@ -9,4 +9,6 @@ input:
 output:
   - BWA index files
 params:
-  - extra: aditional program arguments; currently only algorithm (`is` or `bwtsw`)
+  - extra: aditional program arguments
+note:
+  * Wrapper automatically calculates `block_size`.

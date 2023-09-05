@@ -1,11 +1,11 @@
-rule bwa_index:
+rule bwa_index_bwtsw:
     input:
         "{genome}.fasta",
     output:
-        idx=multiext("{genome}", ".amb", ".ann", ".bwt", ".pac", ".sa"),
+        idx=multiext("{genome}.{alg}", ".amb", ".ann", ".bwt", ".pac", ".sa"),
     log:
-        "logs/bwa_index/{genome}.log",
+        "logs/bwa_index/{genome}.{alg}.log",
     params:
-        extra="-a bwtsw",
+        extra=lambda w: f"-a {w.alg}",
     wrapper:
         "master/bio/bwa/index"
