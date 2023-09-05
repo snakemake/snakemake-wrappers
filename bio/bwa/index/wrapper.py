@@ -20,4 +20,7 @@ block_size = int(Path(snakemake.input[0]).stat().st_size / 1024 / 1024 / 10)
 if snakemake.input[0].endswith(".gz"):
     block_size *= 3
 
+# Ensure default minimum block size
+block_size = max(10, block_size)
+
 shell("bwa index -b {block_size}M -p {prefix} {extra} {snakemake.input} {log}")
