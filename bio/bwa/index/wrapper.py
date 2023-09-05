@@ -15,7 +15,7 @@ prefix = snakemake.params.get("prefix", splitext(snakemake.output[0])[0])
 
 # Block size should be ~10x length of reference (https://github.com/lh3/bwa/issues/104)
 print(type(snakemake.input).__name__)
-block_size = int(Path(snakemake.input[0]).stat().st_size * 1024 * 1024 / 10)
+block_size = int(Path(snakemake.input[0]).stat().st_size / 1024 / 1024 / 10)
 # If GZip, assuming a 3-fold compression
 if snakemake.input[0].endswith(".gz"):
     block_size *= 3
