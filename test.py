@@ -1939,7 +1939,7 @@ def test_bwa_index():
         ],
     )
 
-        run(
+    run(
         "bio/bwa/index",
         [
             "snakemake",
@@ -1955,7 +1955,7 @@ def test_bwa_index():
         ],
     )
 
-        run(
+    run(
         "bio/bwa/index",
         [
             "snakemake",
