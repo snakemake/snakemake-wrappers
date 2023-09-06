@@ -15,12 +15,16 @@ prefix = snakemake.params.get("prefix", splitext(snakemake.output[0])[0])
 
 # Block size should be ~10x length of reference (https://github.com/lh3/bwa/issues/104)
 print(type(snakemake.input).__name__)
-block_size = int(Path(snakemake.input[0]).stat().st_size / 1024 / 1024 / 10)
-# If GZip, assuming a 3-fold compression
+block_size = Path(snakemake.input[0]).stat().st_size / 1024 / 1024 / 10
+# If GZip, assuming a 4-fold compression:
+# - https://scfbm.biomedcentral.com/articles/10.1186/s13029-019-0073-5/tables/3
+# - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7336184/
+# - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3866555/bin/supp_btt594_supplement-rev2.pdf
+# - https://softpanorama.org/HPC/DNA_sequencing/Genomic_data_compression/index.shtml
 if snakemake.input[0].endswith(".gz"):
-    block_size *= 3
+    block_size *= 4
 
 # Ensure default minimum block size
-block_size = max(10, block_size)
+block_size = max(10, int(block_size))
 
 shell("bwa index -b {block_size}M -p {prefix} {extra} {snakemake.input} {log}")
