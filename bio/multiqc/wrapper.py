@@ -35,5 +35,10 @@ with tempfile.TemporaryDirectory() as tmpdir:
     )
 
     for output in snakemake.output:
-        ext = Path(output).suffix
+        if output.endswith("_data"):
+            ext = "_data"
+        elif output.endswith("_data.zip"):
+            ext = "_data.zip"
+        else:
+            ext = Path(output).suffix
         shell("mv {tmpdir}/out{ext} {output}")
