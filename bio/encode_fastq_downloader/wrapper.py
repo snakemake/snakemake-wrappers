@@ -1,3 +1,4 @@
+import os
 import json
 import urllib.request
 
@@ -8,8 +9,8 @@ def exception_to_log(check, msg):
     log = snakemake.log_fmt_shell(stdout=True, stderr=True)
     if not check:
         shell(f"""echo "{msg}" {log} """)
-        raise Exception
-
+        # exit without stack trace
+        os._exit(1)
 
 def download_encff(accession, layout, dest):
     exception_to_log(
@@ -17,7 +18,13 @@ def download_encff(accession, layout, dest):
         msg=f"""Can't download accession "{accession}" directly as it isn't a file. This shouldn't happen..""",
     )
     url = f"https://www.encodeproject.org/files/{accession}/?format=json"
-    response = urllib.request.urlopen(urllib.request.Request(url)).read()
+    try:
+        response = urllib.request.urlopen(urllib.request.Request(url)).read()
+    except urllib.error.HTTPError:
+        exception_to_log(
+            check=False,
+            msg=f"""Having trouble connecting to ENCODE or the accesion "{accession}" doesn't exist."""
+        )
     response = json.loads(response.decode("utf-8"))
 
     exception_to_log(
@@ -57,7 +64,13 @@ def download_encff(accession, layout, dest):
 
 def download_encsr(accession, layout, dest):
     url = f"https://www.encodeproject.org/search/?type=File&dataset=/experiments/{accession}/&file_format=fastq&format=json&frame=object"
-    response = urllib.request.urlopen(urllib.request.Request(url)).read()
+    try:
+        response = urllib.request.urlopen(urllib.request.Request(url)).read()
+    except urllib.error.HTTPError:
+        exception_to_log(
+            check=False,
+            msg=f"""Having trouble connecting to ENCODE or the accesion "{accession}" doesn't exist."""
+        )
     response = json.loads(response.decode("utf-8"))
 
     # check if all run types are the same
