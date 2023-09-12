@@ -5902,14 +5902,8 @@ def test_barrnap():
     )
 
 
-# def test_encode_fastq_downloader():
-#     run(
-#         "bio/encode_fastq_downloader",
-#         ["snakemake", "--cores", "1", "--use-conda", "-F", "ENCFF140TJA.fastq.gz"],
-#     )
-
 def test_encode_fastq_downloader():
     run(
         "bio/encode_fastq_downloader",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "ENCSR813BDU_R1.fastq.gz", "ENCSR813BDU_R2.fastq.gz"],
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "ENCFF140TJA.fastq.gz"],
     )
