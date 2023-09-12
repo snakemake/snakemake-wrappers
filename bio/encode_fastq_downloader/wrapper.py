@@ -12,6 +12,7 @@ def exception_to_log(check, msg):
         # exit without stack trace
         os._exit(1)
 
+
 def download_encff(accession, layout, dest):
     exception_to_log(
         check=accession.startswith("ENCFF"),
@@ -23,7 +24,7 @@ def download_encff(accession, layout, dest):
     except urllib.error.HTTPError:
         exception_to_log(
             check=False,
-            msg=f"""Having trouble connecting to ENCODE or the accesion "{accession}" doesn't exist."""
+            msg=f"""Having trouble connecting to ENCODE or the accesion "{accession}" doesn't exist.""",
         )
     response = json.loads(response.decode("utf-8"))
 
@@ -69,7 +70,7 @@ def download_encsr(accession, layout, dest):
     except urllib.error.HTTPError:
         exception_to_log(
             check=False,
-            msg=f"""Having trouble connecting to ENCODE or the accesion "{accession}" doesn't exist."""
+            msg=f"""Having trouble connecting to ENCODE or the accesion "{accession}" doesn't exist.""",
         )
     response = json.loads(response.decode("utf-8"))
 
