@@ -1,0 +1,21 @@
+rule encode_fastq_download_PE:
+    output:
+        "{accession}_R1.fastq.gz",
+        "{accession}_R2.fastq.gz"
+    wildcard_constraints:
+        accession="ENC(SR|FF).+"
+    log:
+        "logs/download_fastq_encode_PE_{accession}.log",
+    wrapper:
+        "master/bio/encode_fastq_downloader"
+
+
+rule encode_fastq_download_SE:
+    output:
+        "{accession}.fastq.gz"
+    wildcard_constraints:
+        accession="ENC(SR|FF)[^_R{1,2}]+"
+    log:
+        "logs/download_fastq_encode_SE_{accession}.log",
+    wrapper:
+        "master/bio/encode_fastq_downloader"
