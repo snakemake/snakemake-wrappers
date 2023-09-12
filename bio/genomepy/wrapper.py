@@ -7,7 +7,7 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 # Optional parameters
-provider = snakemake.params.get("provider", "ucsc")
+provider = snakemake.params.get("provider", "ucsc").lower()
 
 # set options for plugins
 all_plugins = "blacklist,bowtie2,bwa,gmap,hisat2,minimap2,star"
