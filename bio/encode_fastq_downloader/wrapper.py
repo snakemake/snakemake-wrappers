@@ -14,20 +14,20 @@ def exception_to_log(check, msg):
 def download_encff(accession, layout, dest):
     exception_to_log(
         check=accession.startswith("ENCFF"),
-        msg=f"""Can't download accession "{accession}" directly as it isn't a file. This shouldn't happen.."""
+        msg=f"""Can't download accession "{accession}" directly as it isn't a file. This shouldn't happen..""",
     )
     url = f"https://www.encodeproject.org/files/{accession}/?format=json"
     response = urllib.request.urlopen(urllib.request.Request(url)).read()
-    response = json.loads(response.decode('utf-8'))
+    response = json.loads(response.decode("utf-8"))
 
     exception_to_log(
         check=response["file_format"] == "fastq",
-        msg=f"""Can't download accession "{accession}" directly as it doesn't refer to a fastq file. It is a "{response["file_format"]}" file."""
+        msg=f"""Can't download accession "{accession}" directly as it doesn't refer to a fastq file. It is a "{response["file_format"]}" file.""",
     )
 
     exception_to_log(
         check=layout in ["single", "paired"],
-        msg=f"""The layout of the sample is not single ended or paired, but it is "{layout}"."""
+        msg=f"""The layout of the sample is not single ended or paired, but it is "{layout}".""",
     )
 
     if layout == "single":
@@ -38,7 +38,9 @@ def download_encff(accession, layout, dest):
         mate_accession = response["paired_with"].split("/")[2]
         mate_url = f"https://www.encodeproject.org/files/{mate_accession}/?format=json"
         mate_response = json.loads(
-            urllib.request.urlopen(urllib.request.Request(mate_url)).read().decode("utf-8")
+            urllib.request.urlopen(urllib.request.Request(mate_url))
+            .read()
+            .decode("utf-8")
         )
 
         # get the urls to download them
@@ -56,19 +58,19 @@ def download_encff(accession, layout, dest):
 def download_encsr(accession, layout, dest):
     url = f"https://www.encodeproject.org/search/?type=File&dataset=/experiments/{accession}/&file_format=fastq&format=json&frame=object"
     response = urllib.request.urlopen(urllib.request.Request(url)).read()
-    response = json.loads(response.decode('utf-8'))
+    response = json.loads(response.decode("utf-8"))
 
     # check if all run types are the same
     exception_to_log(
         check=len(set([file["run_type"] for file in response["@graph"]])) == 1,
-        msg=f"""Not all the runs of "{accession} are of the same type: {set([file["run_type"] for file in response["@graph"]])}. It is ambiguous how to proceed."""
+        msg=f"""Not all the runs of "{accession} are of the same type: {set([file["run_type"] for file in response["@graph"]])}. It is ambiguous how to proceed.""",
     )
     inferred_layout = response["@graph"][0]["run_type"]
 
     if layout == "single":
         exception_to_log(
             check=inferred_layout == "single-ended",
-            msg=f"""The sample was automatically inferred to be single-ended, but it is: "{inferred_layout}"."""
+            msg=f"""The sample was automatically inferred to be single-ended, but it is: "{inferred_layout}".""",
         )
         for encff_accession in response["@graph"]:
             encff_accession = encff_accession["accession"]
@@ -76,7 +78,7 @@ def download_encsr(accession, layout, dest):
     elif layout == "paired":
         exception_to_log(
             check=inferred_layout == "single-ended",
-            msg=f"""The sample was automatically inferred to be paired-ended, but it is: "{inferred_layout}"."""
+            msg=f"""The sample was automatically inferred to be paired-ended, but it is: "{inferred_layout}".""",
         )
 
         # get all the R1s
@@ -91,7 +93,7 @@ def download_encsr(accession, layout, dest):
 # determine the layout (single-ended vs paired-ended)
 exception_to_log(
     check=len(snakemake.output) in [1, 2],
-    msg=f"""The numer of specified outputs of this rule should be 1 or 2, but it is "{len(snakemake.output)}"."""
+    msg=f"""The numer of specified outputs of this rule should be 1 or 2, but it is "{len(snakemake.output)}".""",
 )
 if len(snakemake.output) == 1:
     layout = "single"
@@ -100,17 +102,13 @@ else:
 
 exception_to_log(
     check=snakemake.wildcards.accession.startswith(("ENCFF", "ENCSR")),
-    msg=f"""The sample accession ({snakemake.wildcards.accession}) should start with ENCFF or ENCSR."""
+    msg=f"""The sample accession ({snakemake.wildcards.accession}) should start with ENCFF or ENCSR.""",
 )
 if snakemake.wildcards.accession.startswith("ENCFF"):
     download_encff(
-        accession=snakemake.wildcards.accession,
-        layout=layout,
-        dest=snakemake.output
+        accession=snakemake.wildcards.accession, layout=layout, dest=snakemake.output
     )
 else:
     download_encsr(
-        accession=snakemake.wildcards.accession,
-        layout=layout,
-        dest=snakemake.output
+        accession=snakemake.wildcards.accession, layout=layout, dest=snakemake.output
     )
