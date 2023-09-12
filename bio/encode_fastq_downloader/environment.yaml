@@ -2,5 +2,5 @@ channels:
   - conda-forge
   - bioconda
   - nodefaults
-requirements:
+dependencies:
   python >= 3.8
