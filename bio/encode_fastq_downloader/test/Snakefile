@@ -14,7 +14,7 @@ rule encode_fastq_download_SE:
     output:
         "{accession}.fastq.gz"
     wildcard_constraints:
-        accession="ENC(SR|FF)[^_R{1,2}]+"
+        accession="ENC(SR|FF)((?!_R{1,2}).)+"
     log:
         "logs/download_fastq_encode_SE_{accession}.log",
     wrapper:
