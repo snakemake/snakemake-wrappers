@@ -40,7 +40,7 @@ def download_encff(accession, layout, dest):
 
     if layout == "single":
         url = "https://www.encodeproject.org" + response["href"]
-        shell(f"wget -O - -o /dev/null {url} >> {dest}")
+        shell(f"wget -O - -o /dev/null {url} >> {dest.r1}")
     if layout == "paired":
         # lookup the mate
         mate_accession = response["paired_with"].split("/")[2]
@@ -59,8 +59,8 @@ def download_encff(accession, layout, dest):
         if response["paired_end"] == "2":
             url, mate_url = mate_url, url
 
-        shell(f"wget -O - -o /dev/null {url} >> {dest[0]}")
-        shell(f"wget -O - -o /dev/null {mate_url} >> {dest[1]}")
+        shell(f"wget -O - -o /dev/null {url} >> {dest.r1}")
+        shell(f"wget -O - -o /dev/null {mate_url} >> {dest.r2}")
 
 
 def download_encsr(accession, layout, dest):
@@ -111,8 +111,16 @@ exception_to_log(
 )
 if len(snakemake.output) == 1:
     layout = "single"
+    exception_to_log(
+        check=hasattr(snakemake.output, "r1"),
+        msg=f"""Single-ended data needs to specify its output with r1.""",
+    )
 else:
     layout = "paired"
+    exception_to_log(
+        check=hasattr(snakemake.output, "r1") and hasattr(snakemake.output, "r2"),
+        msg=f"""Paired-ended data needs to specify its output with r1 and r2.""",
+    )
 
 exception_to_log(
     check=snakemake.wildcards.accession.startswith(("ENCFF", "ENCSR")),
