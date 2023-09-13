@@ -7,5 +7,5 @@ channels:
 # Once the underlying issue is fixed, this environment.yaml can be removed. See:
 # https://github.com/snakemake/snakemake/issues/1718
 dependencies:
-  - python >=3.8
+  - python >=3.7
   
