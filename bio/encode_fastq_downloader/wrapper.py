@@ -91,7 +91,7 @@ def download_encsr(accession, layout, dest):
             download_encff(encff_accession, layout, dest)
     elif layout == "paired":
         exception_to_log(
-            check=inferred_layout == "single-ended",
+            check=inferred_layout == "paired-ended",
             msg=f"""The sample was automatically inferred to be paired-ended, but it is: "{inferred_layout}".""",
         )
 
