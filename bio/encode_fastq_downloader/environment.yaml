@@ -1,0 +1,10 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+# there are no dependencies for this wrapper, but
+# the tests require a environment.yaml with 
+# dependencies. So this is just to please the tests :)
+dependencies:
+  - snakemake-wrapper-utils >=0.6.2
+  
