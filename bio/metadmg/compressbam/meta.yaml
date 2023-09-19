@@ -1,0 +1,12 @@
+name: CompressBam
+url: https://github.com/metaDMG-dev/metaDMG-cpp
+description: metaDMG-cpp is a fast and efficient method for estimating mutation and damage rates in ancient DNA data
+authors:
+  - Filipe G. Vieira
+input:
+  - aln: SAM/BAM/CRAM file
+  - ref: reference file in FASTA format (mandatory if CRAM input)
+output:
+  - output BAM file
+params:
+  - extra: additional program arguments.

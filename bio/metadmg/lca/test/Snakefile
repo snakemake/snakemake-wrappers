@@ -1,0 +1,18 @@
+
+rule metadmg_lca:
+    input:
+        aln="{sample}.bam",
+    output:
+        res="results/lca/{sample}.out.gz",
+        lca="results/lca/{sample}.lca.gz",
+        stats="results/lca/{sample}.tsv",
+        log="results/lca/{sample}.log",
+    log:
+        "logs/lca/{sample}.log",
+    params:
+        extra="-simscorelow 0.95 -simscorehigh 1.0 -minmapq 30 -howmany 30 -lca_rank species",
+    threads: 4
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/metadmg/lca"
