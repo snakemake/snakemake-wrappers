@@ -1,0 +1,60 @@
+rule ngsngs_fq_se:
+    input:
+        "{genome}.fasta",
+    output:
+        fq="results/{genome}.SE.fq.gz",
+    log:
+        "logs/{genome}.SE.fq.log",
+    params:
+        extra="--sequencing SE --lengthdist Norm,50,20 --reads 2",
+    wrapper:
+        "master/bio/ngsngs"
+
+
+use rule ngsngs_fq_se as ngsngs_fq_pe with:
+    output:
+        fq1="results/{genome}_R1.fq.gz",
+	fq2="results/{genome}_R2.fq.gz",
+    log:
+        "logs/{genome}.PE.fq.log",
+    params:
+        extra="--sequencing PE --lengthdist Norm,50,20 --reads 2",
+
+
+use rule ngsngs_fq_se as ngsngs_bam_se with:
+    output:
+        bam="results/{genome}.SE.bam",
+    log:
+        "logs/{genome}.SE.bam.log",
+
+
+use rule ngsngs_bam_se as ngsngs_bam_pe with:
+    output:
+        bam="results/{genome}.PE.bam",
+    log:
+        "logs/{genome}.PE.bam.log",
+    params:
+        extra="--sequencing PE --lengthdist Norm,50,20 --reads 2",
+
+
+use rule ngsngs_fq_se as ngsngs_randvar with:
+    output:
+        fas="results/{genome}.randvar.fas",
+        pos="results/{genome}.randvar.pos",
+    log:
+        "logs/{genome}.randvar.log",
+    params:
+        tool="RandVar",
+        extra="--modulus 2",
+
+
+rule ngsngs_randref:
+    output:
+        fas="results/{genome}.randref.fas",
+    log:
+        "logs/{genome}.randref.log",
+    params:
+        tool="RandRef",
+        extra="--length 1000 --chrNo 2 --NoNt --NoStopCodon",
+    wrapper:
+        "master/bio/ngsngs"

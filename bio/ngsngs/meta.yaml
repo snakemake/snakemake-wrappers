@@ -1,0 +1,11 @@
+name: NGSNGS
+description: Next-Generation Simulator for Next-Generation Sequencing data
+url: https://github.com/RAHenriksen/NGSNGS
+authors:
+  - Filipe G. Vieira
+input:
+  - 
+output:
+  - 
+params:
+  - tool: tool to use, either "ngsngs" (default), "LenConvert", "MisConvert", "MetaMisConvert", "RandRef", "RandVar", "QualConvert", "VCFtoBED", or "RemoveCodon"
