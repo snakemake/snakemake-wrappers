@@ -7,7 +7,7 @@ rule compressbam:
     log:
         "logs/compressbam/{sample}.log",
     params:
-        extra="", # optional
+        extra="",  # optional
     threads: 4
     resources:
         mem_mb=1024,

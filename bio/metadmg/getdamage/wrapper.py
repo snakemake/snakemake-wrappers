@@ -17,16 +17,24 @@ if ref:
 
 
 with tempfile.TemporaryDirectory() as tmpdir:
-    shell("metaDMG-cpp getdamage --threads {snakemake.threads} {ref} {extra} --outname {tmpdir}/out {input.aln} {log}")
+    shell(
+        "metaDMG-cpp getdamage --threads {snakemake.threads} {ref} {extra} --outname {tmpdir}/out {snakemake.input.aln} {log}"
+    )
 
     if snakemake.output.get("dmg"):
-        assert snakemake.output.dmg.endswith(".gz"), "'dmg' file is Gzip compressed, but extension is not '.gz'"
+        assert snakemake.output.dmg.endswith(
+            ".gz"
+        ), "'dmg' file is Gzip compressed, but extension is not '.gz'"
         shell("cat {tmpdir}/out.bdamage.gz > {snakemake.output.dmg}")
 
     if snakemake.output.get("res"):
-        assert snakemake.output.res.endswith(".gz"), "'res' file is Gzip compressed, but extension is not '.gz'"
+        assert snakemake.output.res.endswith(
+            ".gz"
+        ), "'res' file is Gzip compressed, but extension is not '.gz'"
         shell("cat {tmpdir}/out.res.gz > {snakemake.output.res}")
 
     if snakemake.output.get("stats"):
-        assert not snakemake.output.stats.endswith(".gz"), "'stats' file is NOT Gzip compressed, but extension is '.gz'"
+        assert not snakemake.output.stats.endswith(
+            ".gz"
+        ), "'stats' file is NOT Gzip compressed, but extension is '.gz'"
         shell("cat {tmpdir}/out.stat > {snakemake.output.stats}")

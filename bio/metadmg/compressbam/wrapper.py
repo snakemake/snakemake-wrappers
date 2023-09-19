@@ -16,7 +16,9 @@ if ref:
     ref = f"--ref {ref}"
 
 
-out_fmt = Path(snakemake.input.aln).suffix
+out_fmt = Path(snakemake.input.aln).suffix.lstrip(".").lower()
 
 
-shell("compressbam --threads {snakemake.threads} -hts {snakemake.input.aln} {ref} {extra} -type {out_fmt} -out {snakemake.output[0]} {log}")
+shell(
+    "compressbam -threads {snakemake.threads} -hts {snakemake.input.aln} {ref} {extra} -type {out_fmt} -out {snakemake.output[0]} {log}"
+)
