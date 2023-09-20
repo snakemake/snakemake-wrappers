@@ -12,6 +12,6 @@ output:
   - log: log of internal Nonpareil processing.
 params:
   - alg: nonpareil algorithm, either `kmer` or `alignment` (mandatory).
-  - extra: additional program arguments
+  - extra: additional program arguments (not `-X`)
 notes: |
   * For a PDF version of the manual, see https://nonpareil.readthedocs.io/_/downloads/en/latest/pdf/
