@@ -57,11 +57,18 @@ with tempfile.NamedTemporaryFile() as tmp:
         in_uncomp = tmp.name
         shell("{uncomp} {snakemake.input[0]} > {tmp.name}")
 
-    # Get total number of reads
+    # Get total number of lines
     total_n_lines = sum(1 for line in open(tmp.name))
+    # Get total number of reads (depends on format)
     total_n_reads = total_n_lines / 4 if in_format == "fastq" else total_n_lines / 2
+    # Get total number of reads to sample
     sample_n_reads = int(total_n_reads * 0.1) - 1
-    sample_n_reads = min(1000, sample_n_reads) if snakemake.params.alg == "alignment" else min(10000, sample_n_reads)
+    # Get total number of reads to sample, depending on defaults
+    sample_n_reads = (
+        min(1000, sample_n_reads)
+        if snakemake.params.alg == "alignment"
+        else min(10000, sample_n_reads)
+    )
 
     shell(
         "nonpareil"
