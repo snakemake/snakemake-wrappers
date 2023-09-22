@@ -10,7 +10,7 @@ rule metadmg_getdamage:
     log:
         "logs/getdamage/{sample}.log",
     params:
-        extra="--minlength 30 --printlength 30 --runmode 1",
+        extra="-l 30 -p 30 -r 1",
     threads: 4
     resources:
         mem_mb=1024,

@@ -13,12 +13,12 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 ref = snakemake.input.get("ref", "")
 if ref:
-    ref = f"--fasta {ref}"
+    ref = f"-f {ref}"
 
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
-        "metaDMG-cpp getdamage --threads {snakemake.threads} {ref} {extra} --outname {tmpdir}/out {snakemake.input.aln} {log}"
+        "metaDMG-cpp getdamage --threads {snakemake.threads} {ref} {extra} -o {tmpdir}/out {snakemake.input.aln} {log}"
     )
 
     if snakemake.output.get("dmg"):

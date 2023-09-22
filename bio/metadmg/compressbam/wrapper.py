@@ -4,6 +4,7 @@ __license__ = "MIT"
 
 
 import tempfile
+from pathlib import Path
 from snakemake.shell import shell
 
 
@@ -13,12 +14,12 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 ref = snakemake.input.get("ref", "")
 if ref:
-    ref = f"--ref {ref}"
+    ref = f"-ref {ref}"
 
 
 out_fmt = Path(snakemake.input.aln).suffix.lstrip(".").lower()
 
 
 shell(
-    "compressbam -threads {snakemake.threads} -hts {snakemake.input.aln} {ref} {extra} -type {out_fmt} -out {snakemake.output[0]} {log}"
+    "compressbam -@ {snakemake.threads} -hts {snakemake.input.aln} {ref} {extra} -type {out_fmt} -out {snakemake.output[0]} {log}"
 )

@@ -2,6 +2,9 @@
 rule metadmg_lca:
     input:
         aln="{sample}.bam",
+        names="names.dmp.gz",
+        nodes="nodes.dmp.gz",
+        acc2taxid="acc2taxid.tsv",
     output:
         res="results/lca/{sample}.out.gz",
         lca="results/lca/{sample}.lca.gz",
@@ -10,7 +13,7 @@ rule metadmg_lca:
     log:
         "logs/lca/{sample}.log",
     params:
-        extra="-simscorelow 0.95 -simscorehigh 1.0 -minmapq 30 -howmany 30 -lca_rank species",
+        extra="-simscorelow 0.95 -simscorehigh 1.0 -minmapq 30 -howmany 30 -lca_rank genus -fix_ncbi 0",
     threads: 4
     resources:
         mem_mb=1024,

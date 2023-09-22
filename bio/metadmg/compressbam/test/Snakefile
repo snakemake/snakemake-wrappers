@@ -2,6 +2,7 @@
 rule compressbam:
     input:
         aln="{sample}.bam",
+        ref="genome.fasta",
     output:
         "results/compressbam/{sample}.bam",
     log:
