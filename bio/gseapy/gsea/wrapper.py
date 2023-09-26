@@ -1,4 +1,4 @@
-#coding: utf-8
+# coding: utf-8
 
 __author__ = "Thibault Dayris"
 __copyright__ = "Copyright 2023, Thibault Dayris"
@@ -8,9 +8,11 @@ __license__ = "MIT"
 import gseapy
 import logging
 
+
 class TooManyThreadsRequested(Exception):
     def __init__(self):
         super().__init__("This subcommand uses only one threads.")
+
 
 # Building Gene sets object
 gmt_path = snakemake.input.get("gmt", [])
@@ -64,7 +66,6 @@ elif snakemake.input.get("gene_list"):
     if snakemake.threads > 1:
         raise TooManyThreadsRequested()
 
-
     print("Using Biomart EnrichR method")
     result = gseapy.enrichr(
         gene_list=snakemake.input.gene_list,
@@ -73,6 +74,4 @@ elif snakemake.input.get("gene_list"):
         **extra
     )
 else:
-    raise ValueError(
-        "Could not decide between GSEApy functions"
-    )
+    raise ValueError("Could not decide between GSEApy functions")

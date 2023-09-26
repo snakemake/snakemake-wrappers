@@ -7,9 +7,9 @@ rule test_gseapy_enrichr:
     threads: 1
     params:
         extra={"cutoff": 1},
-        gene_sets = ["KEGG_2016"] # Optional list of gene sets available on biomart
+        gene_sets=["KEGG_2016"],  # Optional list of gene sets available on biomart
     log:
-        "logs/gseapy/enrichr.log"
+        "logs/gseapy/enrichr.log",
     wrapper:
         "master/bio/gseapy/gsea"
 
@@ -28,7 +28,7 @@ rule test_gseapy_gsea:
         },
         # gene_sets = [""] # Optional list of gene sets available on biomart
     log:
-        "logs/gseapy/gsea.log"
+        "logs/gseapy/gsea.log",
     wrapper:
         "master/bio/gseapy/gsea"
 
@@ -46,7 +46,7 @@ rule test_gseapy_ssgsea:
         },
         # gene_sets = [""] # Optional list of gene sets available on biomart
     log:
-        "logs/gseapy/ssgsea.log"
+        "logs/gseapy/ssgsea.log",
     wrapper:
         "master/bio/gseapy/gsea"
 
@@ -64,6 +64,6 @@ rule test_gseapy_prerank:
         },
         # gene_sets = [""] # Optional list of gene sets available on biomart
     log:
-        "logs/gseapy/prerank.log"
+        "logs/gseapy/prerank.log",
     wrapper:
         "master/bio/gseapy/gsea"
