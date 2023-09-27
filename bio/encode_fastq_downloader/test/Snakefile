@@ -5,7 +5,7 @@ rule encode_fastq_download_PE:
     wildcard_constraints:
         accession="ENC(SR|FF).+"
     log:
-        "logs/download_fastq_encode_PE_{accession}.log",
+        "logs/download_fastq_encode/PE_{accession}.log",
     wrapper:
         "master/bio/encode_fastq_downloader"
 
@@ -16,6 +16,6 @@ rule encode_fastq_download_SE:
     wildcard_constraints:
         accession="ENC(SR|FF)((?!_R{1,2}).)+"
     log:
-        "logs/download_fastq_encode_SE_{accession}.log",
+        "logs/download_fastq_encode/SE_{accession}.log",
     wrapper:
         "master/bio/encode_fastq_downloader"
