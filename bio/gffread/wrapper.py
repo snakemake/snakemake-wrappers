@@ -22,6 +22,8 @@ elif annotation.endswith(".gtf"):
 else:
     raise ValueError("Unknown annotation format")
 
+# In most cases, output can be specified with -o
+out_flag = " -o "
 
 # Output format control
 if records.endswith((".gtf", ".gff", ".gff3")):
@@ -31,7 +33,8 @@ elif records.endswith(".bed"):
 elif records.endswith(".tlf"):
     extra += " --tlf "
 elif records.endswith((".fasta", ".fa", ".fna")):
-    pass
+    # Fasta output must be specified with -w
+    out_flag = " -w "
 else:
     raise ValueError("Unknown records format")
 
@@ -80,8 +83,8 @@ if dupinfo:
 
 shell(
     "gffread {extra} "
-    "-o {records} "
-    "{snakemake.input.fasta} "
+    "{out_flag} {records} "
+    "-g {snakemake.input.fasta} "
     "{annotation} "
     "{log} "
 )
