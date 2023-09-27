@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - varscan =2.4.4
-  - snakemake-wrapper-utils =0.6.1
+  - varscan =2.4.6
+  - snakemake-wrapper-utils =0.6.2
