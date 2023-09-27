@@ -11,7 +11,6 @@ output:
   - cpg: Path to CpG metrics (BedGraph)
   - chg: Optional path to CHG metrics (BedGraph)
   - chh: Optional path to CHH metrics (BedGraph)
-  - bbm: Optional path to Binary Bismap
   - logit: Optional path to bedgraph with logit(M/(M+U)) tracked.
 params:
   - extra: Optional parameters provided to `MethylDackel extract`
