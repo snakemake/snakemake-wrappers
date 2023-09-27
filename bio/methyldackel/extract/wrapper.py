@@ -32,12 +32,6 @@ if bbm_in:
 
 
 # Output files
-bbm_out = snakemake.output.get("bbm", "")
-if bbm_out and bw:
-    # extra += f" --outputBBMFile --outputBBMFileName {bbm_out} "
-    extra += f" --outputBBMFile "
-
-
 chg = snakemake.output.get("chg")
 if chg:
     extra += " --CHG "

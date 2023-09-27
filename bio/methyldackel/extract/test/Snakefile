@@ -66,21 +66,3 @@ rule test_methyldackel_extract_report:
         extra="",
     wrapper:
         "master/bio/methyldackel/extract"
-
-
-rule test_methyldackel_extract:
-    input:
-        ref="chgchh.fa",
-        ref_idx="chgchh.fa.fai",
-        aln="chgchh_aln.bam",
-        aln_bai="chgchh_aln.bam.bai",
-        bw="chgchh.bw",
-    output:
-        cpg="cpg.bg",
-        bbm="chgchh.bbm",
-    log:
-        "logs/md_extract/bbm.log",
-    params:
-        extra="",
-    wrapper:
-        "master/bio/methyldackel/extract"

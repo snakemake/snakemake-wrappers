@@ -5146,19 +5146,6 @@ def test_methyldackel_extract():
     )
 
 
-    run(
-        "bio/methyldackel/extract",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "-F",
-            "--use-conda",
-            "chgchh.bbm",
-        ]
-    )
-
-
 @skip_if_not_modified
 def test_bismark_bismark_methylation_extractor():
     run(
