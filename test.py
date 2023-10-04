@@ -3200,7 +3200,7 @@ def test_multiqc():
 def test_multiqc_a():
     run(
         "bio/multiqc",
-        ["snakemake", "--cores", "1", "qc/multiqc_a.html", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "qc/multiqc.a.html", "--use-conda", "-F"],
     )
 
 
