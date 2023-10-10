@@ -362,7 +362,7 @@ def parse_bbtool(snakemake):
 
         # add extra arguments  at the beginning
         if hasattr(snakemake.params, "extra"):
-            extra= snakemake.params.extra
+            extra = snakemake.params.extra
             assert type(extra) == str, "extra should be a string"
             logger.info(f"extra arguments: {extra} ")
             command_with_parameters += f" {extra} "
