@@ -367,7 +367,7 @@ def parse_bbtool(snakemake):
 
     command_with_parameters += __parse_keywords_for_bbtool(snakemake.input, "input")
     command_with_parameters += __parse_keywords_for_bbtool(snakemake.output, "output")
-    command_with_parameters += __parse_keywords_for_bbtool(snakemake.param, "params")
+    command_with_parameters += __parse_keywords_for_bbtool(snakemake.params, "params")
 
     # Add threads if not in single threaded scripts
     if command in single_threaded_scripts:
