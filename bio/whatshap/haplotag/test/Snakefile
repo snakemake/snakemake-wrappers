@@ -1,0 +1,14 @@
+rule whatshap_haplotag:
+    input:
+        vcf="haplotag.10x.vcf.gz",
+        bam="haplotag.10x.bam",
+        reference = "reference.fasta"
+    output:
+        "haplotag/{sample}.phased.bam"
+    params:
+        extra="" # optionally use --ignore-linked-read 
+    log:
+        "logs/whatshap_haplotag/{sample}.phased.log"
+    threads: 4
+    wrapper:
+        "master/bio/whatshap/haplotag"
