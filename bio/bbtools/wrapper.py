@@ -250,7 +250,7 @@ def __parse_keywords_for_bbtool(
     extra="",
     input_keys=["input", "fastq", "sample"],
     output_keys=["out", "output"],
-    ignore_keys=["flag", "define_threads"],
+    ignore_keys=["flag"],
     **kwargs,
 ):
     """
@@ -270,6 +270,8 @@ def __parse_keywords_for_bbtool(
     """
 
     assert type(command) == str, "command should be a string"
+    assert len(command.split()) == 1, "command should not contain spaces"
+    assert command.endswith(".sh"), "command should end with .sh"
 
     logger.info(f"command is: {command}")
 
