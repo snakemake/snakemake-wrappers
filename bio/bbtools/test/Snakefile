@@ -231,8 +231,8 @@ rule bbduk_se:
         adapters="adapt.fas",
     output:
         "trimmed/se/{sample}.fastq.gz",
-        singleton="trimmed/se/{sample}.single.fastq.gz",
-        discarded="trimmed/se/{sample}.discarded.fastq.gz",
+        outsingle="trimmed/se/{sample}.single.fastq.gz",
+        outmatch="trimmed/se/{sample}.discarded.fastq.gz",
         stats="trimmed/se/{sample}.stats.txt",
     log:
         "logs/bbduk/se/{sample}.log",
@@ -255,8 +255,8 @@ rule bbduk_pe:
         adapters="adapt.fas",
     output:
         out=["trimmed/pe/{sample}.1.fastq.gz", "trimmed/pe/{sample}.2.fastq.gz"],
-        singleton="trimmed/pe/{sample}.single.fastq.gz",
-        discarded="trimmed/pe/{sample}.discarded.fastq.gz",
+        outsingle="trimmed/pe/{sample}.single.fastq.gz",
+        outmatch="trimmed/pe/{sample}.discarded.fastq.gz",
         stats="trimmed/pe/{sample}.stats.txt",
     log:
         "logs/bbduk/pe/{sample}.log",
