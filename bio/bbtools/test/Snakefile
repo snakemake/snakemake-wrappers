@@ -105,7 +105,7 @@ rule tadpole_correct_se:
     params:
         command="tadpole.sh",
         mode="correct",
-        extra="",
+
     threads: 2
     resources:
         mem_mb=1024,
@@ -124,7 +124,7 @@ rule tadpole_correct_pe:
     params:
         command="tadpole.sh",
         mode="correct",
-        extra="",
+
     threads: 2
     resources:
         mem_mb=1024,
@@ -135,6 +135,7 @@ rule tadpole_correct_pe:
 rule tadpole_extend_se:
     input:
         "reads/se/{sample}.fastq.gz",
+        extra="reads/se/b.fastq.gz", # This is a bbmap option, it passes as expected however you can no longer use the extra parameter in the wrapper
     output:
         out="out/extend_se/{sample}.fastq.gz",
         outd="out/extend_se/{sample}.discarded.fastq.gz",
@@ -143,7 +144,7 @@ rule tadpole_extend_se:
     params:
         command="tadpole.sh",
         mode="extend",
-        extra="",
+
     threads: 2
     resources:
         mem_mb=1024,
@@ -162,7 +163,7 @@ rule tadpole_extend_pe:
     params:
         command="tadpole.sh",
         mode="extend",
-        extra="",
+
     threads: 2
     resources:
         mem_mb=1024,
@@ -180,7 +181,7 @@ rule tadpole_assemble_pe:
     params:
         command="tadpole.sh",
         mode="contig",
-        extra="",
+
     threads: 2
     resources:
         mem_mb=1024,

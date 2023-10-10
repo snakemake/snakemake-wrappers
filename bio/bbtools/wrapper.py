@@ -9,12 +9,6 @@ import logging, traceback
 
 input_keys = ["input", "fastq", "sample", "reads"]
 output_keys = ["out", "output"]
-ignore_keys = [
-    "flag",
-    # are parsed seperately
-    "extra",
-    "command",
-]
 
 single_threaded_scripts = [
     "pileup.sh",
@@ -298,10 +292,13 @@ def __parse_keywords_for_bbtool(parameter_list, section):
 
     if section == "input":
         special_keys = input_keys
+        ignore_keys = ["flag"]
     elif section == "output":
         special_keys = output_keys
+        ignore_keys = ["flag"]
     elif section == "params":
         special_keys = []
+        ignore_keys= ["command","extra"]
     else:
         raise Exception("section should be 'input', 'output' or 'params'")
 
