@@ -214,7 +214,7 @@ def test_tadpole():
 @skip_if_not_modified
 def test_bbgeneric():
     run(
-        "bio/bbtools/generic",
+        "bio/bbtools",
         [
             "snakemake",
             "--cores",
