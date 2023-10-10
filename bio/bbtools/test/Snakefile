@@ -255,7 +255,6 @@ rule bbduk_pe:
         reads=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
         adapters="adapt.fas",
     output:
-
         trimmed=["trimmed/pe/{sample}.1.fastq.gz", "trimmed/pe/{sample}.2.fastq.gz"],
         singleton="trimmed/pe/{sample}.single.fastq.gz",
         discarded="trimmed/pe/{sample}.discarded.fastq.gz",
