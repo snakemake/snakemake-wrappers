@@ -8,9 +8,11 @@ rule bbduk_se:
         discarded="trimmed/se/{sample}.discarded.fastq.gz",
         stats="trimmed/se/{sample}.stats.txt",
     log:
-        "logs/bbduk/se/{sample}.log"
+        "logs/bbduk/se/{sample}.log",
     params:
-        extra = lambda w, input: "ref={},adapters,artifacts ktrim=r k=23 mink=11 hdist=1 tpe tbo trimpolygright=10 minlen=25 maxns=30 entropy=0.5 entropywindow=50 entropyk=5".format(input.adapters),
+        extra=lambda w, input: "ref={},adapters,artifacts ktrim=r k=23 mink=11 hdist=1 tpe tbo trimpolygright=10 minlen=25 maxns=30 entropy=0.5 entropywindow=50 entropyk=5".format(
+            input.adapters
+        ),
     resources:
         mem_mb=4000,
     threads: 7
@@ -28,9 +30,11 @@ rule bbduk_pe:
         discarded="trimmed/pe/{sample}.discarded.fastq",
         stats="trimmed/pe/{sample}.stats.txt",
     log:
-        "logs/bbduk/pe/{sample}.log"
+        "logs/bbduk/pe/{sample}.log",
     params:
-        extra = lambda w, input: "ref={},adapters,artifacts ktrim=r k=23 mink=11 hdist=1 tpe tbo trimpolygright=10 minlen=25 maxns=30 entropy=0.5 entropywindow=50 entropyk=5".format(input.adapters),
+        extra=lambda w, input: "ref={},adapters,artifacts ktrim=r k=23 mink=11 hdist=1 tpe tbo trimpolygright=10 minlen=25 maxns=30 entropy=0.5 entropywindow=50 entropyk=5".format(
+            input.adapters
+        ),
     resources:
         mem_mb=4000,
     threads: 7

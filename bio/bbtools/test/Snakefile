@@ -61,6 +61,7 @@ rule create_pe_reads:
     wrapper:
         "master/bio/bbtools"
 
+
 rule create_se_reads:
     input:
         ref="genome.fasta",
@@ -79,19 +80,20 @@ rule create_se_reads:
         "master/bio/bbtools"
 
 
-
 #### Tadpole wrapper
 
 
 rule all_tadpole:
     input:
         "out/correct_se/{sample}.fastq.gz",
-        "out/correct_pe/{sample}.1.fastq.gz","out/correct_pe/{sample}.2.fastq.gz",
+        "out/correct_pe/{sample}.1.fastq.gz",
+        "out/correct_pe/{sample}.2.fastq.gz",
         "out/extend_se/{sample}.fastq.gz",
-        "out/extend_pe/{sample}.1.fastq.gz", "out/extend_pe/{sample}.2.fastq.gz",
-        "out/assembly/{sample}.fasta.gz"
+        "out/extend_pe/{sample}.1.fastq.gz",
+        "out/extend_pe/{sample}.2.fastq.gz",
+        "out/assembly/{sample}.fasta.gz",
     output:
-        touch("tadpole.done")
+        touch("tadpole.done"),
 
 
 rule tadpole_correct_se:
@@ -174,7 +176,7 @@ rule tadpole_assemble_pe:
     input:
         sample=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
     output:
-        out="out/assembly/{sample}.fasta.gz"
+        out="out/assembly/{sample}.fasta.gz",
     log:
         "logs/assemble_pe/{sample}.log",
     params:
@@ -187,7 +189,9 @@ rule tadpole_assemble_pe:
     wrapper:
         "master/bio/bbtools"
 
+
 ## loglog
+
 
 rule loglog_se:
     input:
@@ -219,6 +223,7 @@ rule loglog_pe:
 
 ## BBduck
 
+
 rule bbduk_se:
     input:
         sample=["reads/se/{sample}.fastq.gz"],
@@ -229,10 +234,12 @@ rule bbduk_se:
         discarded="trimmed/se/{sample}.discarded.fastq.gz",
         stats="trimmed/se/{sample}.stats.txt",
     log:
-        "logs/bbduk/se/{sample}.log"
+        "logs/bbduk/se/{sample}.log",
     params:
         # This is not reccomended, but I keep it from previous version
-        extra = lambda w, input: "ref={},adapters,artifacts ktrim=r k=23 mink=11 hdist=1 tpe tbo trimpolygright=10 minlen=25 maxns=30 entropy=0.5 entropywindow=50 entropyk=5".format(input.adapters),
+        extra=lambda w, input: "ref={},adapters,artifacts ktrim=r k=23 mink=11 hdist=1 tpe tbo trimpolygright=10 minlen=25 maxns=30 entropy=0.5 entropywindow=50 entropyk=5".format(
+            input.adapters
+        ),
     resources:
         mem_mb=4000,
     threads: 7
@@ -250,10 +257,12 @@ rule bbduk_pe:
         discarded="trimmed/pe/{sample}.discarded.fastq.gz",
         stats="trimmed/pe/{sample}.stats.txt",
     log:
-        "logs/bbduk/pe/{sample}.log"
+        "logs/bbduk/pe/{sample}.log",
     params:
         # This is not reccomended, but I keep it from previous version
-        extra = lambda w, input: "ref={},adapters,artifacts ktrim=r k=23 mink=11 hdist=1 tpe tbo trimpolygright=10 minlen=25 maxns=30 entropy=0.5 entropywindow=50 entropyk=5".format(input.adapters),
+        extra=lambda w, input: "ref={},adapters,artifacts ktrim=r k=23 mink=11 hdist=1 tpe tbo trimpolygright=10 minlen=25 maxns=30 entropy=0.5 entropywindow=50 entropyk=5".format(
+            input.adapters
+        ),
     resources:
         mem_mb=4000,
     threads: 7

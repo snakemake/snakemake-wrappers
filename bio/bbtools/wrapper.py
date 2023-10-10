@@ -6,7 +6,7 @@ __license__ = "MIT"
 import sys
 import logging, traceback
 
-single_threaded_scripts= [
+single_threaded_scripts = [
     "pileup.sh",
     "summarizescafstats.sh",
     "filterbycoverage.sh.",
