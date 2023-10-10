@@ -1,0 +1,17 @@
+
+scattergather:
+    n_bed=2,
+
+
+rule bedtools_split:
+    input:
+        bed="a.bed",
+    output:
+        scatter.n_bed("results/a.{scatteritem}.bed"),
+    log:
+        "logs/a.split.log",
+    params:
+        ## Add optional parameters for spliting order
+        extra="--algorithm size",
+    wrapper:
+        "master/bio/bedtools/split"

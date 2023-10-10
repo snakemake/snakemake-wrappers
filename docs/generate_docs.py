@@ -28,7 +28,13 @@ BLACKLIST = {
     "test.py",
     ".pytest_cache",
 } | SCRIPTS
-TAG = subprocess.check_output(["git", "describe", "--tags"]).decode().strip()
+
+_REPO_OWNER = subprocess.check_output(["git", "remote", "-v"]).decode().strip()
+_REPO_OWNER = _REPO_OWNER.split(":")[-1].split("/")[0]
+if _REPO_OWNER == "snakemake":
+    TAG = subprocess.check_output(["git", "describe", "--tags"]).decode().strip()
+else:
+    TAG = "UNDEFINED"
 
 
 with open(os.path.join(BASE_DIR, "_templates", "tool.rst")) as f:
