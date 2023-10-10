@@ -298,7 +298,7 @@ def __parse_keywords_for_bbtool(parameter_list, section):
         ignore_keys = ["flag"]
     elif section == "params":
         special_keys = []
-        ignore_keys= ["command","extra"]
+        ignore_keys = ["command", "extra"]
     else:
         raise Exception("section should be 'input', 'output' or 'params'")
 

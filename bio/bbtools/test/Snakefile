@@ -105,7 +105,6 @@ rule tadpole_correct_se:
     params:
         command="tadpole.sh",
         mode="correct",
-
     threads: 2
     resources:
         mem_mb=1024,
@@ -115,7 +114,8 @@ rule tadpole_correct_se:
 
 rule tadpole_correct_pe:
     input:
-        "reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz",
+        "reads/pe/{sample}.1.fastq.gz",
+        "reads/pe/{sample}.2.fastq.gz",
     output:
         out=["out/correct_pe/{sample}.1.fastq.gz", "out/correct_pe/{sample}.2.fastq.gz"],
         outd="out/correct_pe/{sample}.discarded.fastq.gz",
@@ -124,7 +124,6 @@ rule tadpole_correct_pe:
     params:
         command="tadpole.sh",
         mode="correct",
-
     threads: 2
     resources:
         mem_mb=1024,
@@ -135,7 +134,7 @@ rule tadpole_correct_pe:
 rule tadpole_extend_se:
     input:
         "reads/se/{sample}.fastq.gz",
-        extra="reads/se/b.fastq.gz", # This is a bbmap option, it passes as expected however you can no longer use the extra parameter in the wrapper
+        extra="reads/se/b.fastq.gz",  # This is a bbmap option, it passes as expected however you can no longer use the extra parameter in the wrapper
     output:
         out="out/extend_se/{sample}.fastq.gz",
         outd="out/extend_se/{sample}.discarded.fastq.gz",
@@ -144,7 +143,6 @@ rule tadpole_extend_se:
     params:
         command="tadpole.sh",
         mode="extend",
-
     threads: 2
     resources:
         mem_mb=1024,
@@ -154,7 +152,8 @@ rule tadpole_extend_se:
 
 rule tadpole_extend_pe:
     input:
-        "reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz",
+        "reads/pe/{sample}.1.fastq.gz",
+        "reads/pe/{sample}.2.fastq.gz",
     output:
         out=["out/extend_pe/{sample}.1.fastq.gz", "out/extend_pe/{sample}.2.fastq.gz"],
         outd="out/extend_pe/{sample}.discarded.fastq.gz",
@@ -163,7 +162,6 @@ rule tadpole_extend_pe:
     params:
         command="tadpole.sh",
         mode="extend",
-
     threads: 2
     resources:
         mem_mb=1024,
@@ -173,7 +171,8 @@ rule tadpole_extend_pe:
 
 rule tadpole_assemble_pe:
     input:
-        "reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz",
+        "reads/pe/{sample}.1.fastq.gz",
+        "reads/pe/{sample}.2.fastq.gz",
     output:
         out="out/assembly/{sample}.fasta.gz",
     log:
@@ -181,7 +180,6 @@ rule tadpole_assemble_pe:
     params:
         command="tadpole.sh",
         mode="contig",
-
     threads: 2
     resources:
         mem_mb=1024,
@@ -209,7 +207,8 @@ rule loglog_se:
 
 rule loglog_pe:
     input:
-        "reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz",
+        "reads/pe/{sample}.1.fastq.gz",
+        "reads/pe/{sample}.2.fastq.gz",
     log:
         "logs/pe/{sample}.log",
     params:
