@@ -179,7 +179,7 @@ rule tadpole_assemble_pe:
         "logs/assemble_pe/{sample}.log",
     params:
         command="tadpole.sh",
-        mode="assemble",
+        mode="contig",
         extra="",
     threads: 2
     resources:
