@@ -5,10 +5,10 @@ description: |
 authors:
   - Silas Kieser
 input:
-  - input: All keywords in input are passed to the bbtool as key=value pairs. A special case is 'input' see in the notes. 
+  - input: All keywords in input are passed to the bbtool as key=value pairs. A special case is 'input' see in the notes.
   - flag: The keyword 'flag' is ignored and allows to make input files that are not processed by the bbtool.
 output:
-  - out: All keywords in output are passed to the bbtool as key=value pairs. A special case is 'out' see in the notes. 
+  - out: All keywords in output are passed to the bbtool as key=value pairs. A special case is 'out' see in the notes.
 params:
   - command: Required parameter defining the command to be used e.g. 'bbmap.sh'
   - extra: additional program arguments
@@ -18,14 +18,99 @@ notes: |
   This wrapper allows to run any of the bbtools. The command is defined by the 'command' parameter, which required.
   **All keywords in input, output, params are passed as key value pairs to the command!**
   Take care that they are valid for the bbtool.
-  
+
   As it it not possible to define 'in' as a keyword, the keyword 'input' is used instead. 
   If exactly two files are provides for 'input' or 'out' the wrapper parses them as in1, in2 or out1, out2, respectively.
-  
+
   For all parameters, if more than two files are provided, the wrapper parses them as key=value1,value2,value3... 
 
   Limitations:
     - The wrapper cannot run bbwarap with paired + singleton files. But this is a rare use case.
 
 
-  
+  Certainly! Here are three lists of shell scripts extracted from the provided information:
+
+  ### List of all the tools in the bbtools suite 39.01
+
+  In theory all of them are sported by this wrapper, but we didn't test them all.
+  Scripts with different input/output might not supported by this wrapper.
+
+  1. bbduk.sh
+  2. bbduk2.sh
+  3. seal.sh
+  4. summarizeseal.sh
+  5. loglog.sh
+  6. kmercountexact.sh
+  7. bbnorm.sh
+  8. ecc.sh
+  9. khist.sh
+  10. bbcountunique.sh
+  11. commonkmers.sh
+  12. kmercoverage.sh
+  13. callpeaks.sh
+  14. tadpole.sh
+  15. tadwrapper.sh
+  16. kcompress.sh
+  17. stats.sh
+  18. statswrapper.sh
+  19. countgc.sh
+  20. fungalrelease.sh
+  21. filterbytaxa.sh
+  22. gi2taxid.sh
+  23. gitable.sh
+  24. sortbytaxa.sh
+  25. splitbytaxa.sh
+  26. taxonomy.sh
+  27. taxtree.sh
+  28. reducesilva.sh
+  29. synthmda.sh
+  30. crosscontaminate.sh
+  31. decontaminate.sh
+  32. crossblock.sh
+  33. dedupe.sh
+  34. dedupe2.sh
+  35. dedupebymapping.sh
+  36. clumpify.sh
+  37. bbmerge.sh
+  38. bbmerge-auto.sh
+  39. bbmergegapped.sh
+  40. randomreads.sh
+  41. bbfakereads.sh
+  42. gradesam.sh
+  43. samtoroc.sh
+  44. addadapters.sh
+  45. grademerge.sh
+  46. printtime.sh
+  47. msa.sh
+  48. cutprimers.sh
+  49. idmatrix.sh
+  50. matrixtocolumns.sh
+  51. countbarcodes.sh
+  52. filterbarcodes.sh
+  53. mergebarcodes.sh
+  54. removebadbarcodes.sh
+  55. demuxbyname.sh
+  56. filterbysequence.sh
+  57. filterbyname.sh
+  58. filtersubs.sh
+  59. getreads.sh
+  60. estherfilter.sh
+  61. bbqc.sh
+  62. rqcfilter.sh
+  63. shred.sh
+  64. fuse.sh
+  65. shuffle.sh
+  66. calcmem.sh
+  67. textfile.sh
+  68. countsharedlines.sh
+  69. filterlines.sh
+  70. a_sample_mt.sh
+  71. bbmask.sh
+  72. calctruequality.sh
+  73. makechimeras.sh
+  74. rename.sh
+  75. repair.sh
+  76. splitnextera.sh
+  77. splitsam.sh
+  78. testformat.sh
+  79. translate6frames.sh
