@@ -159,7 +159,7 @@ except:
 
 logging.basicConfig(
     filename=logfile,
-    level=logging.INFO,
+    level=logging.DEBUG,
     format="%(asctime)s %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
@@ -276,7 +276,11 @@ def __parse_keywords_for_bbtool(parameter_list,special_keys=[], ignore_keys=igno
     
     keys= list(parameter_list.keys())
     
-    
+    logger.debug(f"parameter_list: {parameter_list}")
+    logger.debug(f"keys: {parameter_list.keys()}")
+
+    logger.debug(f"Lenght of parameter_list: {len(parameter_list)}")
+    logger.debug(f"Lenght of keys: {len(keys)}")
 
     n_unnamed_arguments= len(parameter_list) - len(keys)
 
@@ -286,7 +290,8 @@ def __parse_keywords_for_bbtool(parameter_list,special_keys=[], ignore_keys=igno
 
         command += _parse_bbmap_in_out(parse_special_keys_as, [parameter_list[i] for i in range(n_unnamed_arguments)])
 
-
+    # transform to dict
+    parameter_list = dict(parameter_list)
 
     for k in keys:
         logger.info(f"Parse keyword: {k}")

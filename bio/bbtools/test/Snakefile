@@ -71,7 +71,6 @@ rule create_se_reads:
         command="randomreads.sh",
         length=100,
         reads=10,
-        paired=True,
         overwrite=True,
         pigz=True,
     log:

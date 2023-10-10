@@ -87,7 +87,7 @@ def run(wrapper, cmd, check_log=None):
         cmd = cmd + [
             "--wrapper-prefix",
             "file://{}/".format(d),
-            "--conda-cleanup-pkgs",
+            #"--conda-cleanup-pkgs",
             "--printshellcmds",
             "--show-failed-logs",
         ]
@@ -130,11 +130,11 @@ def run(wrapper, cmd, check_log=None):
                 raise e
         finally:
             # cleanup environments to save disk space
-            subprocess.check_call(
-                "for env in `conda env list | grep -P '\.snakemake/conda' | "
-                "cut -f1 | tr -d ' '`; do conda env remove --prefix $env; done",
-                shell=True,
-            )
+            # subprocess.check_call(
+            #     "for env in `conda env list | grep -P '\.snakemake/conda' | "
+            #     "cut -f1 | tr -d ' '`; do conda env remove --prefix $env; done",
+            #     shell=True,
+            # )
             # go back to original directory
             os.chdir(origdir)
 
