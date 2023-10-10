@@ -277,7 +277,7 @@ def _get_unnamed_arguments(parameter_list):
 
     # as for input arguments either is is a string or a list of strings
     if n_unnamed_arguments == 1:
-        return parameter_list[0]
+        return str(parameter_list[0])
     else:
         return [parameter_list[i] for i in range(n_unnamed_arguments)]
 
