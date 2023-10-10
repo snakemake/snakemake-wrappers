@@ -288,7 +288,7 @@ def __parse_keywords_for_bbtool(parameter_list, section):
     logger.debug(f"parameter_list: {parameter_list}")
 
     # get number of unnamed arguments as the position of the first named argument
-    keys_with_positions = outpuparameter_list._names
+    keys_with_positions = parameter_list._names
     first_key = next(iter(keys_with_positions.items()))
     n_unnamed_arguments = first_key[1][0]
 
