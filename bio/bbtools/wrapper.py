@@ -258,6 +258,26 @@ def _parse_bbmap_in_out(input_or_output, values):
     return parsed_arg
 
 
+def _get_unnamed_arguments(parameter_list):
+    """
+    Get unnamed arguments of snakemake.input or snakemake.output.
+    Find it as the first key in the parameter_list.
+
+    Run as:
+        _get_unnamed_arguments(snakemake.input)
+
+    """
+    keys_with_positions = parameter_list._names
+    if len(keys_with_positions) == 0:
+        # all arguments are unnamed
+        return list(parameter_list)
+
+    first_key = next(iter(keys_with_positions.items()))
+    n_unnamed_arguments = first_key[1][0]
+
+    return [parameter_list[i] for i in range(n_unnamed_arguments)]
+
+
 def __parse_keywords_for_bbtool(parameter_list, section):
     """
     Parse rule input, output and params into a bbmap command.
@@ -283,29 +303,24 @@ def __parse_keywords_for_bbtool(parameter_list, section):
     # command to be build
     command = ""
 
-    keys = list(parameter_list.keys())
-
     logger.debug(f"parameter_list: {parameter_list}")
 
-    # get number of unnamed arguments as the position of the first named argument
-    keys_with_positions = parameter_list._names
-    first_key = next(iter(keys_with_positions.items()))
-    n_unnamed_arguments = first_key[1][0]
+    ## unnamed arguments
+    unnamed_arguments = _get_unnamed_arguments(parameter_list)
 
-    if n_unnamed_arguments > 0:
+    if len(unnamed_arguments) > 0:
         assert section in ["input", "output"]
         logger.info(
             f"Found {n_unnamed_arguments} unnamed arguments. parse them as {section}"
         )
 
-        command += _parse_bbmap_in_out(
-            section, [parameter_list[i] for i in range(n_unnamed_arguments)]
-        )
+        command += _parse_bbmap_in_out(section, unnamed_arguments)
 
+    # parameters with keywords
     # transform to dict
     parameter_list = dict(parameter_list)
 
-    for k in keys:
+    for k in parameter_list.keys():
         logger.info(f"Parse keyword: {k}")
         if k in ignore_keys:
             logger.info(f"{k} argument detected, This is not passed to the bbtool.")
