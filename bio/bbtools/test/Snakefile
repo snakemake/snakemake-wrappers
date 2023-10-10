@@ -230,7 +230,7 @@ rule bbduk_se:
         reads=["reads/se/{sample}.fastq.gz"],
         adapters="adapt.fas",
     output:
-        trimmed="trimmed/se/{sample}.fastq.gz",
+        "trimmed/se/{sample}.fastq.gz",
         singleton="trimmed/se/{sample}.single.fastq.gz",
         discarded="trimmed/se/{sample}.discarded.fastq.gz",
         stats="trimmed/se/{sample}.stats.txt",
@@ -254,7 +254,7 @@ rule bbduk_pe:
         reads=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
         adapters="adapt.fas",
     output:
-        trimmed=["trimmed/pe/{sample}.1.fastq.gz", "trimmed/pe/{sample}.2.fastq.gz"],
+        out=["trimmed/pe/{sample}.1.fastq.gz", "trimmed/pe/{sample}.2.fastq.gz"],
         singleton="trimmed/pe/{sample}.single.fastq.gz",
         discarded="trimmed/pe/{sample}.discarded.fastq.gz",
         stats="trimmed/pe/{sample}.stats.txt",
