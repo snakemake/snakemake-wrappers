@@ -270,14 +270,15 @@ def _get_unnamed_arguments(parameter_list):
     keys_with_positions = parameter_list._names
     if len(keys_with_positions) == 0:
         # all arguments are unnamed
-        return list(parameter_list)
+        return parameter_list
 
     first_key = next(iter(keys_with_positions.items()))
     n_unnamed_arguments = first_key[1][0]
 
+    logger.debug(f"Found {n_unnamed_arguments} unnamed arguments")
     # as for input arguments either is is a string or a list of strings
     if n_unnamed_arguments == 1:
-        return str(parameter_list[0])
+        return parameter_list[0]
     else:
         return [parameter_list[i] for i in range(n_unnamed_arguments)]
 
