@@ -315,9 +315,7 @@ def __parse_keywords_for_bbtool(parameter_list, section):
 
     if len(unnamed_arguments) > 0:
         assert section in ["input", "output"]
-        logger.info(
-            f"Found unnamed arguments. parse them as {section}"
-        )
+        logger.info(f"Found unnamed arguments. parse them as {section}")
 
         command += _parse_bbmap_in_out(section, unnamed_arguments)
 
