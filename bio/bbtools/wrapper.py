@@ -6,6 +6,13 @@ __license__ = "MIT"
 import sys
 import logging, traceback
 
+
+input_keys=["input", "fastq", "sample","reads"]
+output_keys=["out", "output"]
+ignore_keys=["flag",
+             # are parsed seperately
+             "extra","command"]
+
 single_threaded_scripts = [
     "pileup.sh",
     "summarizescafstats.sh",
@@ -178,12 +185,16 @@ sys.excepthook = handle_exception
 
 logger = logging.getLogger(__file__)
 
+###################################### Beginning of logging ######################################
+
+
+
 
 # global flags to check if input and output are parsed multiple times
 parsed_input, parsed_output = False, False
 
 import warnings
-
+from snakemake_wrapper_utils.java import get_java_opts
 
 def _parse_bbmap_in_out(input_or_output, values):
     """
@@ -245,14 +256,7 @@ def _parse_bbmap_in_out(input_or_output, values):
     return parsed_arg
 
 
-def __parse_keywords_for_bbtool(
-    command,
-    extra="",
-    input_keys=["input", "fastq", "sample"],
-    output_keys=["out", "output"],
-    ignore_keys=["flag"],
-    **kwargs,
-):
+def __parse_keywords_for_bbtool(parameter_list,special_keys=[], ignore_keys=ignore_keys,parse_special_keys_as=None):
     """
     Parse rule input, output and params into a bbmap command.
 
@@ -261,51 +265,52 @@ def __parse_keywords_for_bbtool(
         **snakemake.input, **snakemake.params, **snakemake.output
 
     Special params:
-        'command' in params to define the bbmap command
-        input_keys: list of keywords that are parsed as input
+        special_keys: list of keywords that are parsed as input/output
         output_keys: list of keywords that are parsed as output
-        ignore_keys: list of keywords that are ignored
-        extra: extra arguments that are added to the command
+        parse_special_keys_as: "input" or "output". If special_keys is not empty, this argument is required.
+        
 
     """
+    
+    command=""
+    
+    keys= list(parameter_list.keys())
+    
+    
 
-    assert type(command) == str, "command should be a string"
-    assert len(command.split()) == 1, "command should not contain spaces"
-    assert command.endswith(".sh"), "command should end with .sh"
+    n_unamed_arguments= (len(parameter_list) - len(keys))
 
-    logger.info(f"command is: {command}")
+    if n_unamed_arguments > 0:
+        assert parse_special_keys_as in ["input","output"]
+        logger.info(f"Found {n_unamed_arguments} unamed arguments. parse them as {parse_special_keys_as}")
 
-    # add extra arguments  at the beginning
-    if extra != "":
-        logger.info(f"extra arguments at the begginging: {extra} ")
-        command += f" {extra} "
+        command += _parse_bbmap_in_out(parse_special_keys_as, [parameter_list[i] for i in range(n_unamed_arguments)])
 
-    for k in kwargs:
+
+
+    for k in keys:
         logger.info(f"Parse keyword: {k}")
         if k in ignore_keys:
             logger.info(f"{k} argument detected, This is not passed to the bbtool.")
             pass
 
-        # INPUT
-        elif k in input_keys:
-            logger.info("Parsing it as input.")
-            command += _parse_bbmap_in_out("input", kwargs[k])
+        # INPUT/OUTPUT
+        elif k in special_keys:
+            assert parse_special_keys_as in ["input","output"]
+            logger.info(f"Parsing it as {parse_special_keys_as}.")
+            command += _parse_bbmap_in_out(parse_special_keys_as, parameter_list[k])
 
-        # OUTPUT
-        elif k in output_keys:
-            logger.info("Parsing it as output.")
-            command += _parse_bbmap_in_out("output", kwargs[k])
 
         else:
             # bool conversions
-            if type(kwargs[k]) == bool:
-                kwargs[k] = "t" if kwargs[k] else "f"
+            if type(parameter_list[k]) == bool:
+                parameter_list[k] = "t" if parameter_list[k] else "f"
 
-            # if list
-            if isinstance(kwargs[k], list):
-                kwargs[k] = ",".join(kwargs[k])
+            # collapse list
+            if isinstance(parameter_list[k], list):
+                parameter_list[k] = ",".join(parameter_list[k])
 
-            parsed = f" {k}={kwargs[k]} "
+            parsed = f" {k}={parameter_list[k]} "
 
             logger.info(f"parsed argument: {parsed}")
             command += parsed
@@ -325,28 +330,43 @@ def __check_for_duplicated_keywords(snakemake):
 
 
 def parse_bbtool(snakemake):
-    from snakemake_wrapper_utils.java import get_java_opts
-
-    if not hasattr(snakemake.params, "command"):
-        raise Exception("params needs 'command' parameter")
-    else:
-        shell_script = snakemake.params.command.split()[0]
+    
 
     ## keywords
     __check_for_duplicated_keywords(snakemake)
 
-    command = __parse_keywords_for_bbtool(
-        **snakemake.input, **snakemake.params, **snakemake.output
-    )
+    if not hasattr(snakemake.params, "command"):
+        raise Exception("params needs 'command' parameter")
+    else:
 
+        command = snakemake.params.command
+        assert type(command) == str, "command should be a string"
+        assert len(command.split()) == 1, "command should not contain spaces"
+        assert command.endswith(".sh"), "command should end with .sh"
+
+        command_with_parameters = command
+        logger.info(f"command is: {command_with_parameters}")
+
+        # add extra arguments  at the beginning
+        if hasattr(snakemake.params, "extra"):
+            logger.info(f"extra arguments: {extra} ")
+            command_with_parameters += f" {extra} "
+
+
+
+
+    command_with_parameters += __parse_keywords_for_bbtool(snakemake.input,parse_special_keys_as="input",special_keys=input_keys)
+    command_with_parameters += __parse_keywords_for_bbtool(snakemake.output,parse_special_keys_as="output",special_keys=output_keys)
+    command_with_parameters += __parse_keywords_for_bbtool(snakemake.params)
+    
     # Add threads if not in single threaded scripts
-    if shell_script in single_threaded_scripts:
+    if command in single_threaded_scripts:
         if snakemake.threads > 3:
             logger.warning(
                 f"Shell script {shell_script} will only use 1-3 threads, but you specify {snakemake.threads} threads. I ignore the threads argument."
             )
     else:
-        command += f" threads={snakemake.threads} "
+        command_with_parameters += f" threads={snakemake.threads} "
 
     # memory
     java_opts = get_java_opts(snakemake)
@@ -354,9 +374,9 @@ def parse_bbtool(snakemake):
     # log
     log = multiple_log_fmt_shell(snakemake, append_stderr=True)
 
-    command += f" {java_opts} {log}"
+    command_with_parameters += f" {java_opts} {log}"
 
-    return command
+    return command_with_parameters
 
 
 ######################################
