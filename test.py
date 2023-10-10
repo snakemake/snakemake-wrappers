@@ -255,16 +255,7 @@ def test_tadpole():
             "2",
             "--use-conda",
             "-F",
-            "out/correct_se/a.fastq.gz",
-            "out/correct_se/a.discarded.fastq.gz",
-            "out/correct_pe/a.1.fastq.gz",
-            "out/correct_pe/a.2.fastq.gz",
-            "out/correct_pe/a.discarded.fastq",
-            "out/extend_se/a.fastq.gz",
-            "out/extend_se/a.discarded.fastq.gz",
-            "out/extend_pe/a.1.fastq.gz",
-            "out/extend_pe/a.2.fastq.gz",
-            "out/extend_pe/a.discarded.fastq.gz",
+            "tadpole.done",
         ],
     )
 
