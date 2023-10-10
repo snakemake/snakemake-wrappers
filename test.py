@@ -174,7 +174,7 @@ def test_vsearch():
 @skip_if_not_modified
 def test_loglog():
     run(
-        "bio/bbtools/loglog",
+        "bio/bbtools",
         [
             "snakemake",
             "--cores",
@@ -189,7 +189,7 @@ def test_loglog():
 @skip_if_not_modified
 def test_tadpole():
     run(
-        "bio/bbtools/tadpole",
+        "bio/bbtools",
         [
             "snakemake",
             "--cores",
@@ -212,7 +212,7 @@ def test_tadpole():
 
 
 @skip_if_not_modified
-def test_bbgeneric():
+def test_bbmap():
     run(
         "bio/bbtools",
         [
