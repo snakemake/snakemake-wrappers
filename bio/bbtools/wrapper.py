@@ -6,6 +6,67 @@ __license__ = "MIT"
 import sys
 import logging, traceback
 
+single_threaded_scripts= [
+    "pileup.sh",
+    "summarizescafstats.sh",
+    "filterbycoverage.sh.",
+    "mergeOTUs.sh",
+    "bbest.sh",
+    "summarizeseal.sh",
+    "bbcountunique.sh",
+    "commonkmers.sh",
+    "callpeaks.sh",
+    "kcompress.sh",
+    "stats.sh",
+    "statswrapper.sh",
+    "fungalrelease.sh",
+    "filterbytaxa.sh",
+    "gi2taxid.sh",
+    "gitable.sh",
+    "sortbytaxa.sh",
+    "taxonomy.sh",
+    "taxtree.sh",
+    "reducesilva.sh",
+    "synthmda.sh",
+    "crosscontaminate.sh",
+    "dedupebymapping.sh",
+    "randomreads.sh",
+    "bbfakereads.sh",
+    "gradesam.sh",
+    "samtoroc.sh",
+    "addadapters.sh",
+    "grademerge.sh",
+    "printtime.sh",
+    "msa.sh",
+    "cutprimers.sh",
+    "matrixtocolumns.sh",
+    "countbarcodes.sh",
+    "filterbarcodes.sh",
+    "mergebarcodes.sh",
+    "removebadbarcodes.sh",
+    "demuxbyname.sh",
+    "filterbyname.sh",
+    "filtersubs.sh",
+    "getreads.sh",
+    "shred.sh",
+    "fuse.sh",
+    "shuffle.sh",
+    "textfile.sh",
+    "countsharedlines.sh",
+    "filterlines.sh",
+    "makechimeras.sh",
+    "phylip2fasta.sh",
+    "readlength.sh",
+    "reformat.sh",
+    "rename.sh",
+    "repair.sh",
+    "bbsplitpairs.sh",
+    "splitnextera.sh",
+    "splitsam.sh",
+    "testformat.sh",
+    "translate6frames.sh",
+]
+
 
 def infer_stdout_and_stderr(log) -> tuple:
     """
@@ -116,9 +177,6 @@ def handle_exception(exc_type, exc_value, exc_traceback):
 sys.excepthook = handle_exception
 
 logger = logging.getLogger(__file__)
-
-##############################################################
-## helper functions they should go in snakemake_wrapper_utils
 
 
 # global flags to check if input and output are parsed multiple times
@@ -268,7 +326,9 @@ def parse_bbtool(snakemake):
     from snakemake_wrapper_utils.java import get_java_opts
 
     if not hasattr(snakemake.params, "command"):
-        raise Exception("params needs 'command' argument")
+        raise Exception("params needs 'command' parameter")
+    else:
+        shell_script = snakemake.params.command.split()[0]
 
     ## keywords
     __check_for_duplicated_keywords(snakemake)
@@ -277,11 +337,19 @@ def parse_bbtool(snakemake):
         **snakemake.input, **snakemake.params, **snakemake.output
     )
 
-    if snakemake.params.get("define_threads", True):
+    # Add threads if not in single threaded scripts
+    if shell_script in single_threaded_scripts:
+        if snakemake.threads > 3:
+            logger.warning(
+                f"Shell script {shell_script} will only use 1-3 threads, but you specify {snakemake.threads} threads. I ignore the threads argument."
+            )
+    else:
         command += f" threads={snakemake.threads} "
 
-    # memory and log
+    # memory
     java_opts = get_java_opts(snakemake)
+
+    # log
     log = multiple_log_fmt_shell(snakemake, append_stderr=True)
 
     command += f" {java_opts} {log}"
