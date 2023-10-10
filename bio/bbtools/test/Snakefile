@@ -3,7 +3,7 @@
 
 rule map_reads_with_bbmap:
     input:
-        input=["reads/{sample}.1.fastq.gz", "reads/{sample}.2.fastq.gz"],
+        input=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
         ref="genome.fasta",
     output:
         out="mapped/{sample}.sam",
