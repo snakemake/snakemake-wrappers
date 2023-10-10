@@ -256,39 +256,50 @@ def _parse_bbmap_in_out(input_or_output, values):
     return parsed_arg
 
 
-def __parse_keywords_for_bbtool(parameter_list,special_keys=[], ignore_keys=ignore_keys,parse_special_keys_as=None):
+def __parse_keywords_for_bbtool(parameter_list,section):
     """
     Parse rule input, output and params into a bbmap command.
 
     Run as.
         __parse_keywords_for_bbtool(
-        **snakemake.input, **snakemake.params, **snakemake.output
-
-    Special params:
-        special_keys: list of keywords that are parsed as input/output
-        output_keys: list of keywords that are parsed as output
-        parse_special_keys_as: "input" or "output". If special_keys is not empty, this argument is required.
+        snakemake.input,"input")
         
 
     """
-    
+
+    logger.info(f"Parse {section} section of snamemake rule into bbmap command")
+
+    if section == "input":
+        special_keys = input_keys
+    elif section == "output":
+        special_keys = output_keys
+    elif section == "params":
+        special_keys = []
+    else:
+        raise Exception("section should be 'input', 'output' or 'params'")
+
+
+
+
+
+    # command to be build
     command=""
     
     keys= list(parameter_list.keys())
     
     logger.debug(f"parameter_list: {parameter_list}")
-    logger.debug(f"keys: {parameter_list.keys()}")
 
-    logger.debug(f"Lenght of parameter_list: {len(parameter_list)}")
-    logger.debug(f"Lenght of keys: {len(keys)}")
 
-    n_unnamed_arguments= len(parameter_list) - len(keys)
+    # get number of unnamed arguments as the position of the first named argument
+    keys_with_positions= outpuparameter_list._names
+    first_key= next(iter(keys_with_positions.items()))
+    n_unnamed_arguments= first_key[1][0]
 
     if n_unnamed_arguments > 0:
-        assert parse_special_keys_as in ["input","output"]
-        logger.info(f"Found {n_unnamed_arguments} unnamed arguments. parse them as {parse_special_keys_as}")
+        assert section in ["input","output"]
+        logger.info(f"Found {n_unnamed_arguments} unnamed arguments. parse them as {section}")
 
-        command += _parse_bbmap_in_out(parse_special_keys_as, [parameter_list[i] for i in range(n_unnamed_arguments)])
+        command += _parse_bbmap_in_out(section, [parameter_list[i] for i in range(n_unnamed_arguments)])
 
     # transform to dict
     parameter_list = dict(parameter_list)
@@ -301,9 +312,9 @@ def __parse_keywords_for_bbtool(parameter_list,special_keys=[], ignore_keys=igno
 
         # INPUT/OUTPUT
         elif k in special_keys:
-            assert parse_special_keys_as in ["input","output"]
-            logger.info(f"Parsing it as {parse_special_keys_as}.")
-            command += _parse_bbmap_in_out(parse_special_keys_as, parameter_list[k])
+            assert section in ["input","output"]
+            logger.info(f"Parsing it as {section}.")
+            command += _parse_bbmap_in_out(section, parameter_list[k])
 
 
         else:
@@ -359,10 +370,10 @@ def parse_bbtool(snakemake):
 
 
 
-
-    command_with_parameters += __parse_keywords_for_bbtool(snakemake.input,parse_special_keys_as="input",special_keys=input_keys)
-    command_with_parameters += __parse_keywords_for_bbtool(snakemake.output,parse_special_keys_as="output",special_keys=output_keys)
-    command_with_parameters += __parse_keywords_for_bbtool(snakemake.params)
+    
+    command_with_parameters += __parse_keywords_for_bbtool(snakemake.input,"input")
+    command_with_parameters += __parse_keywords_for_bbtool(snakemake.output,"output")
+    command_with_parameters += __parse_keywords_for_bbtool(snakemake.param,"params")
     
     # Add threads if not in single threaded scripts
     if command in single_threaded_scripts:
