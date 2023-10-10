@@ -199,6 +199,7 @@ rule loglog_se:
     log:
         "logs/se/{sample}.log",
     params:
+        command="loglog.sh",
         extra="buckets=2048 seed=1234",
     threads: 2
     resources:
@@ -213,6 +214,7 @@ rule loglog_pe:
     log:
         "logs/pe/{sample}.log",
     params:
+        command="loglog.sh",
         extra="buckets=2048 seed=1234",
     threads: 2
     resources:
@@ -236,6 +238,7 @@ rule bbduk_se:
     log:
         "logs/bbduk/se/{sample}.log",
     params:
+        command="bbduk.sh",
         # This is not reccomended, but I keep it from previous version
         extra=lambda w, input: "ref={},adapters,artifacts ktrim=r k=23 mink=11 hdist=1 tpe tbo trimpolygright=10 minlen=25 maxns=30 entropy=0.5 entropywindow=50 entropyk=5".format(
             input.adapters
@@ -252,6 +255,7 @@ rule bbduk_pe:
         reads=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
         adapters="adapt.fas",
     output:
+        command="bbduk.sh",
         trimmed=["trimmed/pe/{sample}.1.fastq.gz", "trimmed/pe/{sample}.2.fastq.gz"],
         singleton="trimmed/pe/{sample}.single.fastq.gz",
         discarded="trimmed/pe/{sample}.discarded.fastq.gz",
