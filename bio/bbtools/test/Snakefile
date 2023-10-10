@@ -18,9 +18,9 @@ rule map_reads_with_bbmap:
         unpigz=True,
     threads: 12
     resources:
-        mem="1GB",  # optional: bbmap normaly needs a lot of memory, e.g. 60
+        mem_mb=1000,  # optional: bbmap normaly needs a lot of memory, e.g. 60GB
     wrapper:
-        "master/bio/bbtools/generic"
+        "master/bio/bbtools"
 
 
 rule pileup:  # all rules use the same wrapper!!
@@ -39,16 +39,16 @@ rule pileup:  # all rules use the same wrapper!!
         overwrite=True,
     threads: 4
     resources:
-        mem="1GB",
+        mem_mb=1000,
     wrapper:
-        "master/bio/bbtools/generic"
+        "master/bio/bbtools"
 
 
-rule create_reads:
+rule create_pe_reads:
     input:
         ref="genome.fasta",
     output:
-        out=["reads/{sample}.1.fastq.gz", "reads/{sample}.2.fastq.gz"],
+        out=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
     params:
         command="randomreads.sh",
         length=100,
@@ -56,8 +56,206 @@ rule create_reads:
         paired=True,
         overwrite=True,
         pigz=True,
-        define_threads=False,  # By default, the number of threads is defined by snakemake
     log:
         "logs/create_reads/{sample}.log",
     wrapper:
-        "master/bio/bbtools/generic"
+        "master/bio/bbtools"
+
+rule create_se_reads:
+    input:
+        ref="genome.fasta",
+    output:
+        out="reads/se/{sample}.fastq.gz",
+    params:
+        command="randomreads.sh",
+        length=100,
+        reads=10,
+        paired=True,
+        overwrite=True,
+        pigz=True,
+    log:
+        "logs/create_reads/{sample}.log",
+    wrapper:
+        "master/bio/bbtools"
+
+
+
+#### Tadpole wrapper
+
+
+rule all_tadpole:
+    input:
+        "out/correct_se/{sample}.fastq.gz",
+        "out/correct_pe/{sample}.1.fastq.gz","out/correct_pe/{sample}.2.fastq.gz",
+        "out/extend_se/{sample}.fastq.gz",
+        "out/extend_pe/{sample}.1.fastq.gz", "out/extend_pe/{sample}.2.fastq.gz",
+        "out/assembly/{sample}.fasta.gz"
+    output:
+        touch("tadpole.done")
+
+
+rule tadpole_correct_se:
+    input:
+        sample=["reads/se/{sample}.fastq.gz"],
+    output:
+        out="out/correct_se/{sample}.fastq.gz",
+        discarded="out/correct_se/{sample}.discarded.fastq.gz",
+    log:
+        "logs/correct_se/{sample}.log",
+    params:
+        command="tadpole.sh",
+        mode="correct",
+        extra="",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/bbtools"
+
+
+rule tadpole_correct_pe:
+    input:
+        sample=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
+    output:
+        out=["out/correct_pe/{sample}.1.fastq.gz", "out/correct_pe/{sample}.2.fastq.gz"],
+        discarded="out/correct_pe/{sample}.discarded.fastq.gz",
+    log:
+        "logs/correct_pe/{sample}.log",
+    params:
+        command="tadpole.sh",
+        mode="correct",
+        extra="",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/bbtools"
+
+
+rule tadpole_extend_se:
+    input:
+        sample=["reads/se/{sample}.fastq.gz"],
+    output:
+        out="out/extend_se/{sample}.fastq.gz",
+        discarded="out/extend_se/{sample}.discarded.fastq.gz",
+    log:
+        "logs/extend_se/{sample}.log",
+    params:
+        command="tadpole.sh",
+        mode="extend",
+        extra="",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/bbtools"
+
+
+rule tadpole_extend_pe:
+    input:
+        sample=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
+    output:
+        out=["out/extend_pe/{sample}.1.fastq.gz", "out/extend_pe/{sample}.2.fastq.gz"],
+        discarded="out/extend_pe/{sample}.discarded.fastq.gz",
+    log:
+        "logs/extend_pe/{sample}.log",
+    params:
+        command="tadpole.sh",
+        mode="extend",
+        extra="",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/bbtools"
+
+
+rule tadpole_assemble_pe:
+    input:
+        sample=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
+    output:
+        out="out/assembly/{sample}.fasta.gz"
+    log:
+        "logs/assemble_pe/{sample}.log",
+    params:
+        command="tadpole.sh",
+        mode="assemble",
+        extra="",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/bbtools"
+
+## loglog
+
+rule loglog_se:
+    input:
+        sample=["reads/se/{sample}.fastq.gz"],
+    log:
+        "logs/se/{sample}.log",
+    params:
+        extra="buckets=2048 seed=1234",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/bbtools"
+
+
+rule loglog_pe:
+    input:
+        sample=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
+    log:
+        "logs/pe/{sample}.log",
+    params:
+        extra="buckets=2048 seed=1234",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/bbtools"
+
+
+## BBduck
+
+rule bbduk_se:
+    input:
+        sample=["reads/se/{sample}.fastq.gz"],
+        adapters="adapt.fas",
+    output:
+        trimmed="trimmed/se/{sample}.fastq.gz",
+        singleton="trimmed/se/{sample}.single.fastq.gz",
+        discarded="trimmed/se/{sample}.discarded.fastq.gz",
+        stats="trimmed/se/{sample}.stats.txt",
+    log:
+        "logs/bbduk/se/{sample}.log"
+    params:
+        # This is not reccomended, but I keep it from previous version
+        extra = lambda w, input: "ref={},adapters,artifacts ktrim=r k=23 mink=11 hdist=1 tpe tbo trimpolygright=10 minlen=25 maxns=30 entropy=0.5 entropywindow=50 entropyk=5".format(input.adapters),
+    resources:
+        mem_mb=4000,
+    threads: 7
+    wrapper:
+        "master/bio/bbtools"
+
+
+rule bbduk_pe:
+    input:
+        sample=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
+        adapters="adapt.fas",
+    output:
+        trimmed=["trimmed/pe/{sample}.1.fastq.gz", "trimmed/pe/{sample}.2.fastq.gz"],
+        singleton="trimmed/pe/{sample}.single.fastq.gz",
+        discarded="trimmed/pe/{sample}.discarded.fastq.gz",
+        stats="trimmed/pe/{sample}.stats.txt",
+    log:
+        "logs/bbduk/pe/{sample}.log"
+    params:
+        # This is not reccomended, but I keep it from previous version
+        extra = lambda w, input: "ref={},adapters,artifacts ktrim=r k=23 mink=11 hdist=1 tpe tbo trimpolygright=10 minlen=25 maxns=30 entropy=0.5 entropywindow=50 entropyk=5".format(input.adapters),
+    resources:
+        mem_mb=4000,
+    threads: 7
+    wrapper:
+        "master/bio/bbtools"
