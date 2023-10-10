@@ -7,11 +7,14 @@ import sys
 import logging, traceback
 
 
-input_keys=["input", "fastq", "sample","reads"]
-output_keys=["out", "output"]
-ignore_keys=["flag",
-             # are parsed seperately
-             "extra","command"]
+input_keys = ["input", "fastq", "sample", "reads"]
+output_keys = ["out", "output"]
+ignore_keys = [
+    "flag",
+    # are parsed seperately
+    "extra",
+    "command",
+]
 
 single_threaded_scripts = [
     "pileup.sh",
@@ -188,13 +191,12 @@ logger = logging.getLogger(__file__)
 ###################################### Beginning of logging ######################################
 
 
-
-
 # global flags to check if input and output are parsed multiple times
 parsed_input, parsed_output = False, False
 
 import warnings
 from snakemake_wrapper_utils.java import get_java_opts
+
 
 def _parse_bbmap_in_out(input_or_output, values):
     """
@@ -256,14 +258,14 @@ def _parse_bbmap_in_out(input_or_output, values):
     return parsed_arg
 
 
-def __parse_keywords_for_bbtool(parameter_list,section):
+def __parse_keywords_for_bbtool(parameter_list, section):
     """
     Parse rule input, output and params into a bbmap command.
 
     Run as.
         __parse_keywords_for_bbtool(
         snakemake.input,"input")
-        
+
 
     """
 
@@ -278,28 +280,27 @@ def __parse_keywords_for_bbtool(parameter_list,section):
     else:
         raise Exception("section should be 'input', 'output' or 'params'")
 
-
-
-
-
     # command to be build
-    command=""
-    
-    keys= list(parameter_list.keys())
-    
+    command = ""
+
+    keys = list(parameter_list.keys())
+
     logger.debug(f"parameter_list: {parameter_list}")
 
-
     # get number of unnamed arguments as the position of the first named argument
-    keys_with_positions= outpuparameter_list._names
-    first_key= next(iter(keys_with_positions.items()))
-    n_unnamed_arguments= first_key[1][0]
+    keys_with_positions = outpuparameter_list._names
+    first_key = next(iter(keys_with_positions.items()))
+    n_unnamed_arguments = first_key[1][0]
 
     if n_unnamed_arguments > 0:
-        assert section in ["input","output"]
-        logger.info(f"Found {n_unnamed_arguments} unnamed arguments. parse them as {section}")
+        assert section in ["input", "output"]
+        logger.info(
+            f"Found {n_unnamed_arguments} unnamed arguments. parse them as {section}"
+        )
 
-        command += _parse_bbmap_in_out(section, [parameter_list[i] for i in range(n_unnamed_arguments)])
+        command += _parse_bbmap_in_out(
+            section, [parameter_list[i] for i in range(n_unnamed_arguments)]
+        )
 
     # transform to dict
     parameter_list = dict(parameter_list)
@@ -312,10 +313,9 @@ def __parse_keywords_for_bbtool(parameter_list,section):
 
         # INPUT/OUTPUT
         elif k in special_keys:
-            assert section in ["input","output"]
+            assert section in ["input", "output"]
             logger.info(f"Parsing it as {section}.")
             command += _parse_bbmap_in_out(section, parameter_list[k])
-
 
         else:
             # bool conversions
@@ -346,15 +346,12 @@ def __check_for_duplicated_keywords(snakemake):
 
 
 def parse_bbtool(snakemake):
-    
-
     ## keywords
     __check_for_duplicated_keywords(snakemake)
 
     if not hasattr(snakemake.params, "command"):
         raise Exception("params needs 'command' parameter")
     else:
-
         command = snakemake.params.command
         assert type(command) == str, "command should be a string"
         assert len(command.split()) == 1, "command should not contain spaces"
@@ -368,13 +365,10 @@ def parse_bbtool(snakemake):
             logger.info(f"extra arguments: {extra} ")
             command_with_parameters += f" {extra} "
 
+    command_with_parameters += __parse_keywords_for_bbtool(snakemake.input, "input")
+    command_with_parameters += __parse_keywords_for_bbtool(snakemake.output, "output")
+    command_with_parameters += __parse_keywords_for_bbtool(snakemake.param, "params")
 
-
-    
-    command_with_parameters += __parse_keywords_for_bbtool(snakemake.input,"input")
-    command_with_parameters += __parse_keywords_for_bbtool(snakemake.output,"output")
-    command_with_parameters += __parse_keywords_for_bbtool(snakemake.param,"params")
-    
     # Add threads if not in single threaded scripts
     if command in single_threaded_scripts:
         if snakemake.threads > 3:

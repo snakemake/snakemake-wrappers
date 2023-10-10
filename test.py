@@ -269,7 +269,6 @@ def test_tadpole():
     )
 
 
-
 @skip_if_not_modified
 def test_bbmap():
     run(
@@ -1727,12 +1726,20 @@ def test_bedtools_sort():
         ],
     )
 
-    
+
 @skip_if_not_modified
 def test_bedtools_split():
     run(
         "bio/bedtools/split",
-        ["snakemake", "--cores", "1", "results/a.1-of-2.bed", "results/a.2-of-2.bed", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/a.1-of-2.bed",
+            "results/a.2-of-2.bed",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -2664,7 +2671,6 @@ def test_epic_peaks():
     )
 
 
-
 @skip_if_not_modified
 def test_fastp_pe():
     run(
@@ -2973,7 +2979,7 @@ def test_homer_makeTagDirectory():
 def test_immunedeconv():
     run(
         "bio/immunedeconv",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "deconv.csv"]
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "deconv.csv"],
     )
 
 
