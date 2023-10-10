@@ -278,13 +278,13 @@ def __parse_keywords_for_bbtool(parameter_list,special_keys=[], ignore_keys=igno
     
     
 
-    n_unamed_arguments= (len(parameter_list) - len(keys))
+    n_unnamed_arguments= len(parameter_list) - len(keys)
 
-    if n_unamed_arguments > 0:
+    if n_unnamed_arguments > 0:
         assert parse_special_keys_as in ["input","output"]
-        logger.info(f"Found {n_unamed_arguments} unamed arguments. parse them as {parse_special_keys_as}")
+        logger.info(f"Found {n_unnamed_arguments} unnamed arguments. parse them as {parse_special_keys_as}")
 
-        command += _parse_bbmap_in_out(parse_special_keys_as, [parameter_list[i] for i in range(n_unamed_arguments)])
+        command += _parse_bbmap_in_out(parse_special_keys_as, [parameter_list[i] for i in range(n_unnamed_arguments)])
 
 
 
