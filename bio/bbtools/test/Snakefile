@@ -100,7 +100,6 @@ rule tadpole_correct_se:
         "reads/se/{sample}.fastq.gz",
     output:
         out="out/correct_se/{sample}.fastq.gz",
-        discarded="out/correct_se/{sample}.discarded.fastq.gz",
     log:
         "logs/correct_se/{sample}.log",
     params:
@@ -119,7 +118,7 @@ rule tadpole_correct_pe:
         "reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz",
     output:
         out=["out/correct_pe/{sample}.1.fastq.gz", "out/correct_pe/{sample}.2.fastq.gz"],
-        discarded="out/correct_pe/{sample}.discarded.fastq.gz",
+        outd="out/correct_pe/{sample}.discarded.fastq.gz",
     log:
         "logs/correct_pe/{sample}.log",
     params:
@@ -138,7 +137,7 @@ rule tadpole_extend_se:
         "reads/se/{sample}.fastq.gz",
     output:
         out="out/extend_se/{sample}.fastq.gz",
-        discarded="out/extend_se/{sample}.discarded.fastq.gz",
+        outd="out/extend_se/{sample}.discarded.fastq.gz",
     log:
         "logs/extend_se/{sample}.log",
     params:
@@ -157,7 +156,7 @@ rule tadpole_extend_pe:
         "reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz",
     output:
         out=["out/extend_pe/{sample}.1.fastq.gz", "out/extend_pe/{sample}.2.fastq.gz"],
-        discarded="out/extend_pe/{sample}.discarded.fastq.gz",
+        outd="out/extend_pe/{sample}.discarded.fastq.gz",
     log:
         "logs/extend_pe/{sample}.log",
     params:
