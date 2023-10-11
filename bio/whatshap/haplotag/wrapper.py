@@ -5,7 +5,6 @@ __copyright__ = "Copyright 2023, Pavel Dimens"
 __email__ = "pdimens@gmail.com"
 __license__ = "MIT"
 
-from os import path
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
@@ -13,10 +12,11 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
     "whatshap haplotag"
-    " {extra}"
-    " --output-threads={snakemake.threads}"
-    " -o {snakemake.output}"
-    " --reference {snakemake.input.reference}"
-    " {snakemake.input.vcf}"
-    " {snakemake.input.bam}"
+    "{extra} "
+    "--output-threads={snakemake.threads} "
+    "-o {snakemake.output} "
+    "--reference {snakemake.input.reference} "
+    "{snakemake.input.vcf} "
+    "{snakemake.input.bam} "
+    "{snakemake.log}"
 )
