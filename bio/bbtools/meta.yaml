@@ -23,7 +23,7 @@ notes: |
   For all parameters, if more than two files are provided, the wrapper parses them as key=value1,value2,value3... 
 
   Limitations:
-    - The wrapper cannot run bbwarap with paired + singleton files. But this is a rare use case.
+    - The wrapper cannot run bbwrap with paired + singleton files. But this is a rare use case.
 
 
   Certainly! Here are three lists of shell scripts extracted from the provided information:
