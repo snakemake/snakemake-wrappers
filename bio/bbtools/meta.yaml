@@ -1,5 +1,5 @@
 name: Generic
-url: https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide
+url: https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/
 description: |
   Generic wrapper for BBTools. One to run them all.
 authors:
