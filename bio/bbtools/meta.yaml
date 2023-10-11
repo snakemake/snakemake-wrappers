@@ -13,7 +13,7 @@ params:
   - command: Required parameter defining the command to be used e.g. 'bbmap.sh'
   - extra: additional program arguments. All other parameters are passed to the bbtool as key=value pairs
 notes: |
-  This wrapper allows to run any of the bbtools. The command is defined by the 'command' parameter, which required.
+  This wrapper allows to run any of the bbtools. The command is defined by the 'command' parameter, which is required.
   **All keywords in input, output, params are passed as key value pairs to the command!**
   Take care that they are valid for the bbtool.
 
