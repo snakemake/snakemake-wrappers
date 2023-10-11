@@ -390,7 +390,7 @@ def parse_bbtool(snakemake):
     if command in single_threaded_scripts:
         if snakemake.threads > 3:
             logger.warning(
-                f"Shell script {shell_script} will only use 1-3 threads, but you specify {snakemake.threads} threads. I ignore the threads argument."
+                f"Shell script {command} will only use 1-3 threads, but you specify {snakemake.threads} threads. I ignore the threads argument."
             )
     else:
         command_with_parameters += f" threads={snakemake.threads} "
@@ -406,8 +406,7 @@ def parse_bbtool(snakemake):
     return command_with_parameters
 
 
-######################################
-## beginn of wrapper
+###################################### beginn of wrapper
 
 
 from snakemake.shell import shell
