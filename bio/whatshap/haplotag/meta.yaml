@@ -1,5 +1,6 @@
 name: "whatshap haplotag"
 description: Phase BAM records by haplotype. For more information about whatshap see `whatshap documentation <https://whatshap.readthedocs.io/en/latest/guide.html#whatshap-haplotag>`_.
+url: https://github.com/whatshap/whatshap
 authors:
   - Pavel Dimens
 input:
