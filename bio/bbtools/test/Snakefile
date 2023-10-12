@@ -44,9 +44,24 @@ rule pileup:  # all rules use the same wrapper!!
         "master/bio/bbtools"
 
 
+rule index_genome:
+    input:
+        ref="genome.fasta",
+    output:
+        flag=touch("genome.indexed"),
+    params:
+        command="randomreads.sh",
+        build= 1
+    log:
+        "logs/index_genome/{sample}.log",
+    wrapper:
+        "master/bio/bbtools"
+
+
 rule create_pe_reads:
     input:
         ref="genome.fasta",
+        flag="genome.indexed",
     output:
         out=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
     params:
@@ -65,6 +80,7 @@ rule create_pe_reads:
 rule create_se_reads:
     input:
         ref="genome.fasta",
+        flag="genome.indexed",
     output:
         out="reads/se/{sample}.fastq.gz",
     params:
