@@ -1,14 +1,14 @@
 rule whatshap_haplotag:
     input:
         vcf="haplotag.10x.vcf.gz",
-        tbi="haplotag.10x.vcf.gz.tbi",
-        bam="haplotag.10x.bam",
-        bai="haplotag.10x.bam.bai",
+        vcfindex="haplotag.10x.vcf.gz.tbi", # omit if uncompressed vcf
+        aln="haplotag.10x.bam",
+        alnindex="haplotag.10x.bam.bai",    # omit if SAM file
         reference = "reference.fasta"
     output:
         "haplotag.10X.phased.bam"
     params:
-        extra="" # optionally use --ignore-linked-read 
+        extra="" # optionally use --ignore-linked-read, --tag-supplementary, etc.
     log:
         "logs/haplotag.10X.phased.log"
     threads: 4

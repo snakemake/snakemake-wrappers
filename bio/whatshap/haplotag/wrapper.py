@@ -17,6 +17,6 @@ shell(
     "-o {snakemake.output} "
     "--reference {snakemake.input.reference} "
     "{snakemake.input.vcf} "
-    "{snakemake.input.bam} "
+    "{snakemake.input.aln} "
     "{log}"
 )

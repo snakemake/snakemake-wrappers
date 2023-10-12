@@ -4,12 +4,18 @@ url: https://github.com/whatshap/whatshap
 authors:
   - Pavel Dimens
 input:
-  - vcf: Path to vcf/vcf.gz/bcf file of phased SNPs.
-  - bam: Path to alignments for the sample in BAM format (must have corresponding .bai index in same directory).
+  - vcf: Path to vcf.gz/bcf file of phased SNPs.
+  - vcfindex: Path to vcf index file (.tbi for vcf.gz, .csi for .bcf).
+  - aln: Path to alignments for the sample in SAM/BAM/CRAM format.
+  - alnindex: Path to alignment index file in .bai format.
   - reference: Path to FASTA reference used to create vcf file.
 output: Path to output phased BAM file.
 notes: |
   * Input `.vcf.gz` or `.bcf` files requires corresponding index files in the same directories.
-  * Input BAM file requires corresponding `.bai` index file in the same directory.
-  * Specify `--ignore-linked-read` under `extra` params if
-  you want whatshap to ignore `BX` tag information.
+  * Input BAM/CRAM file requires corresponding `.bai` (or .csi) index file in the same directory.
+  * Extra params:
+    * --ignore-linked-read (ignore BX tag information)
+    * --linked-read-distance-cutoff DISTANCE (distance after which to split molecules with same BX tag)
+    * --ignore-read-groups (assume all reads come from the same sample)
+    * --sample SAMPLE (only phase this sample from the VCF)
+    * --tag-supplementary (also tag supplementary alignments)
