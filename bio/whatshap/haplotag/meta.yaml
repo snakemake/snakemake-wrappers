@@ -6,13 +6,13 @@ authors:
 input:
   - vcf: Path to vcf.gz/bcf file of phased SNPs.
   - vcfindex: Path to vcf index file (.tbi for vcf.gz, .csi for .bcf).
-  - aln: Path to alignments for the sample in SAM/BAM/CRAM format.
-  - alnindex: Path to alignment index file in .bai format.
+  - aln: Path to alignments for the sample in BAM/CRAM format.
+  - alnindex: Path to alignment index file in .bai/.crai format.
   - reference: Path to FASTA reference used to create vcf file.
 output: Path to output phased BAM file.
 notes: |
   * Input `.vcf.gz` or `.bcf` files requires corresponding index files in the same directories.
-  * Input BAM/CRAM file requires corresponding `.bai` (or .csi) index file in the same directory.
+  * Input BAM/CRAM file requires corresponding `.bai` (or .crai) index file in the same directory.
   * Extra params:
     * --ignore-linked-read (ignore BX tag information)
     * --linked-read-distance-cutoff DISTANCE (distance after which to split molecules with same BX tag)

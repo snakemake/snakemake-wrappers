@@ -1,9 +1,9 @@
 rule whatshap_haplotag:
     input:
         vcf="haplotag.10X.vcf.gz",
-        vcfindex="haplotag.10X.vcf.gz.tbi", # omit if uncompressed vcf
+        vcfindex="haplotag.10X.vcf.gz.tbi",
         aln="haplotag.10X.bam",
-        alnindex="haplotag.10X.bam.bai",    # omit if SAM file
+        alnindex="haplotag.10X.bam.bai", 
         reference = "reference.fasta"
     output:
         "haplotag.10X.phased.bam"
