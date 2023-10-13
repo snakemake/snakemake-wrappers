@@ -4,5 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - trimmomatic =0.39
-  - pigz =2.6
+  - pigz =2.8
   - snakemake-wrapper-utils =0.6.2
