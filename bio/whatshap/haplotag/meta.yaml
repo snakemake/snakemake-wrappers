@@ -10,12 +10,5 @@ input:
   - alnindex: Path to alignment index file in .bai/.crai format.
   - reference: Path to FASTA reference used to create vcf file.
 output: Path to output phased BAM file.
-notes: |
-  * Input `.vcf.gz` or `.bcf` files requires corresponding index files in the same directories.
-  * Input BAM/CRAM file requires corresponding `.bai` (or .crai) index file in the same directory.
-  * Extra params:
-    * --ignore-linked-read (ignore BX tag information)
-    * --linked-read-distance-cutoff DISTANCE (distance after which to split molecules with same BX tag)
-    * --ignore-read-groups (assume all reads come from the same sample)
-    * --sample SAMPLE (only phase this sample from the VCF)
-    * --tag-supplementary (also tag supplementary alignments)
+params:
+  - extra: additional program arguments (e.g. `--ignore-linked-read` to ignore BX tag, `--linked-read-distance-cutoff` to set distance after which to split molecules with same BX tag, `--ignore-read-groups`, `--sample SAMPLE` to only phase this sample, `--tag-supplementary` to also tag supplementary alignments.
