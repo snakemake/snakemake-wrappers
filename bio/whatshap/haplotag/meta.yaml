@@ -5,9 +5,9 @@ authors:
   - Pavel Dimens
 input:
   - vcf: Path to vcf.gz/bcf file of phased SNPs.
-  - vcfindex: Path to vcf index file (.tbi for vcf.gz, .csi for .bcf).
+  - Path to vcf index file (.tbi for vcf.gz, .csi for .bcf).
   - aln: Path to alignments for the sample in BAM/CRAM format.
-  - alnindex: Path to alignment index file in .bai/.crai format.
+  - Path to alignment index file in .bai/.crai format.
   - reference: Path to FASTA reference used to create vcf file.
 output: Path to output phased BAM file.
 params:
