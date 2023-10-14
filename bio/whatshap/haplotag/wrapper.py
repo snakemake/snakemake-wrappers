@@ -15,7 +15,7 @@ shell(
     "{extra} "
     "--output-threads={snakemake.threads} "
     "-o {snakemake.output} "
-    "--reference {snakemake.input.reference} "
+    "--reference {snakemake.input.ref} "
     "{snakemake.input.vcf} "
     "{snakemake.input.aln} "
     "{log}"
