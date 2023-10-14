@@ -2,9 +2,9 @@ rule whatshap_haplotag:
     input:
         vcf="haplotag.10X.vcf.gz",
         aln="haplotag.10X.bam",
+        ref = "reference.fasta",
         "haplotag.10X.vcf.gz.tbi",
         "haplotag.10X.bam.bai", 
-        ref = "reference.fasta",
         "reference.fasta.fai"
     output:
         "haplotag.10X.phased.bam"
