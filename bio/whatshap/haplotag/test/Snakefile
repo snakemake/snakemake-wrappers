@@ -1,13 +1,13 @@
 rule whatshap_haplotag:
     input:
-        "haplotag.10X.vcf.gz.tbi",
-        "haplotag.10X.bam.bai", 
+        "phased.vcf.gz.tbi",
+        "phased.bam.bai", 
         "reference.fasta.fai",
-        vcf="haplotag.10X.vcf.gz",
-        aln="haplotag.10X.bam",
+        vcf ="phased.vcf.gz",
+        aln ="alignment.bam",
         ref = "reference.fasta"
     output:
-        "haplotag.10X.phased.bam"
+        "alignment.phased.bam"
     params:
         extra="" # optionally use --ignore-linked-read, --tag-supplementary, etc.
     log:

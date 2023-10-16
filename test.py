@@ -5909,7 +5909,7 @@ def test_whatshap_haplotag():
             "snakemake",
             "--cores",
             "1",
-            "haplotag.10X.phased.bam",
+            "alignment.phased.bam",
             "--use-conda",
             "-F",
         ],
