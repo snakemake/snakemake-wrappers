@@ -5,7 +5,7 @@ rule whatshap_haplotag:
         "reference.fasta.fai",
         vcf="haplotag.10X.vcf.gz",
         aln="haplotag.10X.bam",
-        ref = "reference.fasta",
+        ref = "reference.fasta"
     output:
         "haplotag.10X.phased.bam"
     params:
