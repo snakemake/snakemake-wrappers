@@ -1,7 +1,7 @@
 rule whatshap_haplotag:
     input:
         "phased.vcf.gz.tbi",
-        "phased.bam.bai", 
+        "alignment.bam.bai", 
         "reference.fasta.fai",
         vcf ="phased.vcf.gz",
         aln ="alignment.bam",
