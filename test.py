@@ -5900,3 +5900,17 @@ def test_barrnap():
             "-F",
         ],
     )
+
+@skip_if_not_modified
+def test_whatshap_haplotag():
+    run(
+        "bio/whatshap/haplotag",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "alignment.phased.bam",
+            "--use-conda",
+            "-F",
+        ],
+    )
