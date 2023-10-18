@@ -1,4 +1,4 @@
-rule cnvkit_antitargetl:
+rule cnvkit_antitarget:
     input:
         bed="test.bed",
     output:
@@ -6,7 +6,6 @@ rule cnvkit_antitargetl:
     log:
         "logs/test.target.log",
     params:
-        split = 500,
         extra = "" # optional
     wrapper:
         "master/bio/cnvkit/antitarget"

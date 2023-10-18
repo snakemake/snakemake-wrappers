@@ -7,11 +7,11 @@ from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-extra = snakemake.params.get('extra', '')
+extra = snakemake.params.get("extra", "")
 
 annotate = snakemake.input.get("annotate", "")
 if annotate:
-  annotate = f"--annotate {annotate}"
+    annotate = f"--annotate {annotate}"
 
 shell(
     f"(cnvkit.py target "
@@ -21,4 +21,3 @@ shell(
     f"{extra}) "
     "{log}"
 )
-        

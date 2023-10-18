@@ -7,7 +7,7 @@ from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-extra = snakemake.params.get('extra', '')
+extra = snakemake.params.get("extra", "")
 
 accessible = snakemake.input.get("accessible", "")
 if accessible:
@@ -21,4 +21,3 @@ shell(
     f"{extra}) "
     "{log}"
 )
-        
