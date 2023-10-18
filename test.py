@@ -1180,6 +1180,18 @@ def test_bwa_mapping_meta():
         ],
     )
 
+@skip_if_not_modified
+def test_cnvkit_call():
+    run(
+        "bio/cnvkit/call",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.call.cns",
+        ],
+    )
 
 @skip_if_not_modified
 def test_enhanced_volcano():
