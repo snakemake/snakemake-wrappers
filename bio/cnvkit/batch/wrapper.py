@@ -14,7 +14,6 @@ from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-
 input_bam_files = f"{snakemake.input.bam}"
 
 target = ""
@@ -58,14 +57,14 @@ with TemporaryDirectory() as tmpdirname:
         output_list = [value for key, value in snakemake.output.items()]
         output = f"-d {tmpdirname} "
     shell(
-        f"(cnvkit.py batch {input_bam_files} "
-        f"{reference_cnv} "
-        f"{method} "
-        f"{ref_fasta} "
-        f"{target} "
-        f"{antitarget} "
-        f"{output} "
-        f"{extra}) {log}"
+        "(cnvkit.py batch {input_bam_files} "
+        "{reference_cnv} "
+        "{method} "
+        "{ref_fasta} "
+        "{target} "
+        "{antitarget} "
+        "{output} "
+        "{extra}) {log}"
     )
 
     for output_file in output_list:
