@@ -29,7 +29,7 @@ pre_cmd = ""
 query = ""
 if in_ext == "BAM":
     # convert uBAM to fastq keeping all tags
-    pre_cmd = f"samtools fastq -T \"*\" {snakemake.input.query} |"
+    pre_cmd = f'samtools fastq -T "*" {snakemake.input.query} |'
     # tell minimap2 to parse tags from fastq header
     extra += " -y"
     query = "-"
