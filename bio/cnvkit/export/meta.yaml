@@ -1,0 +1,13 @@
+name: "cnvkit antitarget"
+description: >
+  Convert copy number ratio tables (.cnr files) or segments (.cns) to another format..
+url: https://cnvkit.readthedocs.io/en/stable/pipeline.html
+input:
+  - bed: bed file
+  - accessible: sequence-accessible coordinates in chromosomes from the given reference genome
+output:
+  - bed: bed file
+params:
+  - extra: additional parameters that will be forwarded to cnvkit antitarget
+authors:
+  - Patrik Smeds

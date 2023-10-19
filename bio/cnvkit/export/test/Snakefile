@@ -1,0 +1,11 @@
+rule cnvkit_export:
+    input:
+        bed="test.cns",
+    output:
+        bed="test.cns.seq",
+    log:
+        "logs/test.target.log",
+    params:
+        extra = "-show all -y" # optional
+    wrapper:
+        "master/bio/cnvkit/export"
