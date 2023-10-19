@@ -25,8 +25,8 @@ create_reference = snakemake.output.get("reference", False)
 if create_reference:
     input_bam_files = f"-n {input_bam_files}"
     ref_fasta = f"-f {snakemake.input.fasta}"
-    target = "-t f{snakemake.input.target}"
-    antitarget = "-a f{snakemake.input.antitarget}"
+    target = f"-t {snakemake.input.target}"
+    antitarget = f"-a {snakemake.input.antitarget}"
 
     if "mappability" in snakemake.input:
         mappability = f"-g {snakemake.input.mappability}"
