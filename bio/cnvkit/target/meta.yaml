@@ -1,7 +1,7 @@
 name: "cnvkit target"
 url: https://cnvkit.readthedocs.io/en/stable/pipeline.html#target
 description: >
- Prepare a BED file of baited regions for use with CNVkit. See documentation https://cnvkit.readthedocs.io/en/stable/pipeline.html
+ Prepare a BED file of baited regions for use with CNVkit.
 input:
   - bed: bed file
   - annotate: gene annotation databases, e.g. RefSeq or Ensembl, as a “flat” format (can be found at UCSC) (optional)
