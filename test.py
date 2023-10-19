@@ -1180,6 +1180,31 @@ def test_bwa_mapping_meta():
         ],
     )
 
+@skip_if_not_modified
+def test_cnvkit_antitarget():
+    run(
+        "bio/cnvkit/antitarget",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.antitarget.bed",
+        ],
+    )
+
+@skip_if_not_modified
+def test_cnvkit_target():
+    run(
+        "bio/cnvkit/target",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.target.bed",
+        ],
+    )
 
 @skip_if_not_modified
 def test_enhanced_volcano():
@@ -5941,6 +5966,20 @@ def test_barrnap():
             "--cores",
             "1",
             "mitochondria.gff",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+@skip_if_not_modified
+def test_whatshap_haplotag():
+    run(
+        "bio/whatshap/haplotag",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "alignment.phased.bam",
             "--use-conda",
             "-F",
         ],

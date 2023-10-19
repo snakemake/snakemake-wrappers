@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - umis =1.0.9
-  - samtools =1.17
+  - samtools =1.18
