@@ -1,0 +1,15 @@
+name: "whatshap haplotag"
+description: Phase BAM records by haplotype. For more information about whatshap see `whatshap documentation <https://whatshap.readthedocs.io/en/latest/guide.html#whatshap-haplotag>`_.
+url: https://github.com/whatshap/whatshap
+authors:
+  - Pavel Dimens
+input:
+  - vcf: Path to vcf.gz/bcf file of phased SNPs.
+  - Path to vcf index file (.tbi for vcf.gz, .csi for .bcf).
+  - aln: Path to alignments for the sample in BAM/CRAM format.
+  - Path to alignment index file in .bai/.crai format.
+  - ref: Path to FASTA reference used to create vcf file.
+  - Path to FASTA index file in .fai format
+output: Path to output phased BAM file.
+params:
+  - extra: additional program arguments (e.g. `--ignore-linked-read` to ignore BX tag, `--linked-read-distance-cutoff` to set distance after which to split molecules with same BX tag, `--ignore-read-groups`, `--sample SAMPLE` to only phase this sample, `--tag-supplementary` to also tag supplementary alignments.

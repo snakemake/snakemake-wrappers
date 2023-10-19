@@ -1192,6 +1192,19 @@ def test_cnvkit_batch_create_reference():
             "cnvkit/reference.cnn",
         ],
     )
+          
+@skip_if_not_modified
+def test_cnvkit_antitarget():
+    run(
+        "bio/cnvkit/antitarget",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.antitarget.bed",
+        ],
+    )
 
 @skip_if_not_modified
 def test_cnvkit_batch():
@@ -1208,6 +1221,19 @@ def test_cnvkit_batch():
             "cnvkit/a.cns",
             "cnvkit/a.call.cns",
             "cnvkit/a.targetcoverage.cnn",
+        ],
+    )
+
+@skip_if_not_modified
+def test_cnvkit_target():
+    run(
+        "bio/cnvkit/target",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.target.bed",
         ],
     )
 
@@ -5926,6 +5952,20 @@ def test_barrnap():
             "--cores",
             "1",
             "mitochondria.gff",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+@skip_if_not_modified
+def test_whatshap_haplotag():
+    run(
+        "bio/whatshap/haplotag",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "alignment.phased.bam",
             "--use-conda",
             "-F",
         ],
