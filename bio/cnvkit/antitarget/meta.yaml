@@ -2,7 +2,7 @@ name: "cnvkit antitarget"
 url: https://cnvkit.readthedocs.io/en/stable/pipeline.html#antitarget
 description: >
  Given a “target” BED file that lists the chromosomal coordinates of the tiled regions used for targeted resequencing, derive 
- a BED file off-target/”antitarget” regions. See documentation https://cnvkit.readthedocs.io/en/stable/pipeline.html
+ a BED file off-target/”antitarget” regions.
 input:
   - bed: bed file
   - accessible: sequence-accessible coordinates in chromosomes from the given reference genome
