@@ -1,7 +1,8 @@
 name: "cnvkit call"
 description: >
   Given segmented log2 ratio estimates (.cns), derive each segment’s absolute integer 
-  copy number. See documentation https://cnvkit.readthedocs.io/en/stable/pipeline.html
+  copy number. 
+url: See documentation https://cnvkit.readthedocs.io/en/stable/pipeline.html
 input:
   - segments: Copy ratios (.cnr or .cns)
   - vcf: VCF file name containing variants for calculation of b-allele frequencies

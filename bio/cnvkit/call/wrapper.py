@@ -26,12 +26,12 @@ if filter:
 extra = snakemake.params.get("extra", "")
 
 shell(
-    f"(cnvkit.py call {snakemake.input.segment} "
-    f"{vcf} "
-    f"-o {snakemake.output.segment} "
-    f"{purity} "
-    f"{ploidy} "
-    f"{filter} "
-    f"{extra}) "
+    "(cnvkit.py call {snakemake.input.segment} "
+    "{vcf} "
+    "-o {snakemake.output.segment} "
+    "{purity} "
+    "{ploidy} "
+    "{filter} "
+    "{extra}) "
     "{log}"
 )

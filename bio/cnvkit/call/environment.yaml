@@ -4,4 +4,3 @@ channels:
   - nodefaults
 dependencies:
   - cnvkit =0.9.9
-  - pandas =1.3.5
