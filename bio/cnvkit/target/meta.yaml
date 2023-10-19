@@ -4,7 +4,7 @@ description: >
  Prepare a BED file of baited regions for use with CNVkit. See documentation https://cnvkit.readthedocs.io/en/stable/pipeline.html
 input:
   - bed: bed file
-  - annotate: gene annotation databases, e.g. RefSeq or Ensembl, as a “flat” format (can be found at UCSC)
+  - annotate: gene annotation databases, e.g. RefSeq or Ensembl, as a “flat” format (can be found at UCSC) (optional)
 output:
   - bed: bed file
 params:
