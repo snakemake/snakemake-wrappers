@@ -1,11 +1,59 @@
-rule cnvkit_export:
+rule cnvkit_export_seg:
     input:
-        bed="test.cns",
+        ["test1.cns","test2.cns"],
     output:
-        bed="test.cns.seq",
+        "test.cns.seg",
     log:
         "logs/test.target.log",
     params:
-        extra = "-show all -y" # optional
+        extra = "" # optional
+    wrapper:
+        "master/bio/cnvkit/export"
+
+rule cnvkit_export_vcf:
+    input:
+        "test1.cns",
+    output:
+        "test.cns.vcf",
+    log:
+        "logs/test.target.log",
+    params:
+        extra = "-y -x female" # optional
+    wrapper:
+        "master/bio/cnvkit/export"
+
+rule cnvkit_export_cdt:
+    input:
+        ["test1.cnr", "test2.cnr"]
+    output:
+        "test.cns.cdt",
+    log:
+        "logs/test.target.log",
+    params:
+        extra = "" # optional
+    wrapper:
+        "master/bio/cnvkit/export"
+
+rule cnvkit_export_jtv:
+    input:
+        ["test1.cnr", "test2.cnr"]
+    output:
+        "test.cns.jtv",
+    log:
+        "logs/test.target.log",
+    params:
+        extra = "" # optional
+    wrapper:
+        "master/bio/cnvkit/export"
+
+rule cnvkit_export_bed:
+    input:
+        bed="test1.cns",
+    output:
+        "test.cns.bed",
+    log:
+        "logs/test.target.log",
+    params:
+        extra = "--show all -y" # optional
     wrapper:
         "master/bio/cnvkit/export"

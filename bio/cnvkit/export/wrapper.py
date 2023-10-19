@@ -10,10 +10,10 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 extra = snakemake.params.get("extra", "")
 
-file_name, file_extension = splitext(snakemake.output)
+file_extension = splitext(snakemake.output[0])[1][1:]
 
 shell(
-    "(cnvkit.py export {file_extenseion} "
+    "(cnvkit.py export {file_extension} "
     "{snakemake.input} "
     "-o {snakemake.output} "
     "{extra}) "
