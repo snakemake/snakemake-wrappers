@@ -1180,6 +1180,38 @@ def test_bwa_mapping_meta():
         ],
     )
 
+@skip_if_not_modified
+def test_bwa_mapping_meta():
+    run(
+        "bio/cnvkit/diagram",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cns.pdf",
+        ],
+    )
+    run(
+        "bio/cnvkit/diagram",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cnr.pdf",
+        ],
+    )
+    run(
+        "bio/cnvkit/diagram",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cnscnr.pdf",
+        ],
+    )
 
 @skip_if_not_modified
 def test_enhanced_volcano():
