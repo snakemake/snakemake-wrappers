@@ -14,10 +14,10 @@ if annotate:
     annotate = f"--annotate {annotate}"
 
 shell(
-    f"(cnvkit.py target "
-    f"{snakemake.input.bed} "
-    f"-o {snakemake.output.bed} "
-    f"{annotate} "
-    f"{extra}) "
+    "cnvkit.py target "
+    "{snakemake.input.bed} "
+    "-o {snakemake.output.bed} "
+    "{annotate} "
+    "{extra} "
     "{log}"
 )

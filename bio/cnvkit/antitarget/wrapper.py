@@ -14,10 +14,10 @@ if accessible:
     accessible = f"-g {accessible}"
 
 shell(
-    f"(cnvkit.py antitarget "
-    f"{snakemake.input.bed} "
-    f"-o {snakemake.output.bed} "
-    f"{accessible} "
-    f"{extra}) "
+    "cnvkit.py antitarget "
+    "{snakemake.input.bed} "
+    "-o {snakemake.output.bed} "
+    "{accessible} "
+    "{extra} "
     "{log}"
 )

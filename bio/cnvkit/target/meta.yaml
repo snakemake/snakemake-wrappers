@@ -1,4 +1,5 @@
 name: "cnvkit target"
+url: https://github.com/etal/cnvkit
 description: >
  Prepare a BED file of baited regions for use with CNVkit. See documentation https://cnvkit.readthedocs.io/en/stable/pipeline.html
 input:
