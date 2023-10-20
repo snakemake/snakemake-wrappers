@@ -17,7 +17,7 @@ if cns_file:
 
 if cnr_file:
     if len(cnr_file) > 1:
-        raise Exception(f"Expecting only one input cnr file {cns_file}")
+        raise Exception(f"Expecting only one input cnr/cnn file {cnr_file}")
     cnr_file = f"{cnr_file[0]}"
 
 extra = snakemake.params.get("extra", "")
