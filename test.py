@@ -1189,10 +1189,53 @@ def test_cnvkit_batch_create_reference():
             "--cores",
             "1",
             "--use-conda",
-            "cnvkit/reference.cnn",
+           "cnvkit/reference.cnn",
         ],
     )
-          
+
+@skip_if_not_modified
+def test_cnvkit_diagram():
+    run(
+        "bio/cnvkit/diagram",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cns.pdf",
+        ],
+    )
+    run(
+        "bio/cnvkit/diagram",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cnr.pdf",
+        ],
+    )
+    run(
+        "bio/cnvkit/diagram",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cnn.pdf",
+        ],
+    )
+    run(
+        "bio/cnvkit/diagram",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cnscnr.pdf",
+        ],
+    )    
+
 @skip_if_not_modified
 def test_cnvkit_antitarget():
     run(
