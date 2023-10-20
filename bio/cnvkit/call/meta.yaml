@@ -9,7 +9,7 @@ input:
 output:
   - segments: Output table file name (CNR-like table of segments, .cns)
 params:
-  - filter:  Merge segments flagged by the specified filter(s) with the adjacent segment(s), optional
+  - filter: Merge segments flagged by the specified filter(s) with the adjacent segment(s), optional
   - purity: purity value of the tumor
   - ploidy: Ploidy of the sample cells.
   - extra: additional parameters that will be forwarded to cnvkit call
