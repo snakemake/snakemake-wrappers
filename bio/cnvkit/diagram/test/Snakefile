@@ -1,0 +1,47 @@
+rule cnvkit_diagram_cns:
+    input:
+        "test.cns",
+    output:
+        "test.cns.pdf",
+    log:
+        "logs/test.cns.log",
+    params:
+        extra = "" # optional
+    wrapper:
+        "master/bio/cnvkit/diagram"
+
+rule cnvkit_diagram_cnr:
+    input:
+        "test.cnr",
+    output:
+        "test.cnr.pdf",
+    log:
+        "logs/test.cnr.log",
+    params:
+        extra = "" # optional
+    wrapper:
+        "master/bio/cnvkit/diagram"
+
+rule cnvkit_diagram_cnn:
+    input:
+        "test.cnn",
+    output:
+        "test.cnn.pdf",
+    log:
+        "logs/test.cnn.log",
+    params:
+        extra = "" # optional
+    wrapper:
+        "master/bio/cnvkit/diagram"
+
+rule cnvkit_diagram_cnscnr:
+    input:
+        ["test.cns", "test.cnr"]
+    output:
+        "test.cnscnr.pdf",
+    log:
+        "logs/test.cnscnr.log",
+    params:
+        extra = "" # optional
+    wrapper:
+        "master/bio/cnvkit/diagram"
