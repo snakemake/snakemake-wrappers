@@ -19,6 +19,7 @@ input_bam_files = f"{snakemake.input.bam}"
 target = ""
 antitarget = ""
 ref_fasta = ""
+reference_cnv = ""
 mappability = ""
 
 create_reference = snakemake.output.get("reference", False)
@@ -37,10 +38,7 @@ if create_reference:
             f"files defined as output: [{snakemake.output}]"
         )
         raise Exception(exception_message)
-
-
-reference_cnv = ""
-if not create_reference:
+else:
     reference_cnv = f"-r {snakemake.input.reference}"
 
 method = snakemake.params.get("method", "hybrid")
