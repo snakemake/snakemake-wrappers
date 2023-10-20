@@ -1181,7 +1181,7 @@ def test_bwa_mapping_meta():
     )
 
 @skip_if_not_modified
-def test_bwa_mapping_meta():
+def test_cnvkit_diagram():
     run(
         "bio/cnvkit/diagram",
         [
@@ -1220,6 +1220,32 @@ def test_bwa_mapping_meta():
             "1",
             "--use-conda",
             "test.cnscnr.pdf",
+        ],
+    )    
+
+@skip_if_not_modified
+def test_cnvkit_antitarget():
+    run(
+        "bio/cnvkit/antitarget",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.antitarget.bed",
+        ],
+    )
+
+@skip_if_not_modified
+def test_cnvkit_target():
+    run(
+        "bio/cnvkit/target",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.target.bed",
         ],
     )
 
