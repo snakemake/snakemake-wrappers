@@ -5,7 +5,7 @@ url: https://cnvkit.readthedocs.io/en/stable/importexport.html#export
 input:
   - cns: cns or cnr file(s)
 output:
-  - bed/vcf/cdt/seq file
+  - bed/vcf/vcf.gz/cdt/seq file
 params:
   - extra: additional parameters that will be forwarded to cnvkit export
 authors:
