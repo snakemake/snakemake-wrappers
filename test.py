@@ -1293,6 +1293,58 @@ def test_cnvkit_target():
         ],
     )
 
+def test_cnvkit_export():
+    run(
+        "bio/cnvkit/export",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cns.seg",
+        ],
+    )
+    run(
+        "bio/cnvkit/export",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cns.vcf",
+        ],
+    )
+    run(
+        "bio/cnvkit/export",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cns.vcf.gz",
+        ],
+    )
+    run(
+        "bio/cnvkit/export",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cns.cdt",
+        ],
+    )
+    run(
+        "bio/cnvkit/export",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cns.jtv",
+        ],
+    )
+
 @skip_if_not_modified
 def test_enhanced_volcano():
     run(
