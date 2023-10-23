@@ -1290,6 +1290,16 @@ def test_cnvkit_export():
             "--cores",
             "1",
             "--use-conda",
+            "test.cns.vcf.gz",
+        ],
+    )
+    run(
+        "bio/cnvkit/export",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
             "test.cns.cdt",
         ],
     )

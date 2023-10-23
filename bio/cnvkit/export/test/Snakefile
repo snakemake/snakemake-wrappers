@@ -22,6 +22,18 @@ rule cnvkit_export_vcf:
     wrapper:
         "master/bio/cnvkit/export"
 
+rule cnvkit_export_vcf_gz:
+    input:
+        "test1.cns",
+    output:
+        "test.cns.vcf.gz",
+    log:
+        "logs/test.target.log",
+    params:
+        extra = "-y -x female" # optional
+    wrapper:
+        "master/bio/cnvkit/export"
+
 rule cnvkit_export_cdt:
     input:
         ["test1.cnr", "test2.cnr"]
