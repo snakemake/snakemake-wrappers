@@ -1181,6 +1181,19 @@ def test_bwa_mapping_meta():
     )
 
 @skip_if_not_modified
+def test_cnvkit_batch_create_reference():
+    run(
+        "bio/cnvkit/batch",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+           "cnvkit/reference.cnn",
+        ],
+    )
+
+@skip_if_not_modified
 def test_cnvkit_call():
     run(
         "bio/cnvkit/call",
@@ -1246,6 +1259,24 @@ def test_cnvkit_antitarget():
             "1",
             "--use-conda",
             "test.antitarget.bed",
+        ],
+    )
+
+@skip_if_not_modified
+def test_cnvkit_batch():
+    run(
+        "bio/cnvkit/batch",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "cnvkit/a.antitargetcoverage.cnn",
+            "cnvkit/a.bintest.cns",
+            "cnvkit/a.cnr",
+            "cnvkit/a.cns",
+            "cnvkit/a.call.cns",
+            "cnvkit/a.targetcoverage.cnn",
         ],
     )
 

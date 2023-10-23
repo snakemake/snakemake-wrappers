@@ -1,0 +1,23 @@
+name: cnvkit batch
+description: >
+  Run the CNVkit pipeline on one or more BAM files to call cnv alterations.
+  Or use it to generate a new reference file
+url: https://cnvkit.readthedocs.io/en/stable/pipeline.html
+authors:
+  - Patrik Smeds
+input:
+  - bam: one or more bam files
+  - reference: copy reference file, when calling samples
+  - fasta: reference gneome, when building new reference
+  - antitarget: bed antitarget file, when building new reference
+  - target: bed target file, when building new reference
+  - mappability: mappability file, when building new reference
+output:
+  - >
+    a set of cnvkit generated files, multiple types of cns, cnr and cnn files
+  - or a new reference file
+params:
+  method: >
+    Optional, if no value is set cnvkits default value will be use
+  extra: Any additional arguments to pass
+notes:
