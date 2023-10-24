@@ -4269,7 +4269,7 @@ def test_gseapy_gsea():
             "1",
             "--use-conda",
             "-F",
-            "results_ssgsea"
+            "KEGG_2016"
         ]
     )
 
@@ -4281,7 +4281,7 @@ def test_gseapy_gsea():
             "1",
             "--use-conda",
             "-F",
-            "results_prerank"
+            "gsea.results.csv"
         ]
     )
 
@@ -4293,7 +4293,7 @@ def test_gseapy_gsea():
             "1",
             "--use-conda",
             "-F",
-            "results_gsea"
+            "ssgsea.results.csv"
         ]
     )
 
@@ -4305,7 +4305,7 @@ def test_gseapy_gsea():
             "1",
             "--use-conda",
             "-F",
-            "results_enrichr"
+            "prerank_results_dir"
         ]
     )
 
