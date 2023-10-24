@@ -50,7 +50,7 @@ rule index_genome:
     output:
         flag=touch("genome.indexed"),
     params:
-        command="randomreads.sh",
+        command="bbmap.sh",
         build= 1
     log:
         "logs/index/genome.log",
