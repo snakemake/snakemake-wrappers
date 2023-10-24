@@ -53,6 +53,9 @@ if report:
     extra += " --cytosine_report "
 
 
+if not snakemake.output.get("cpg"):
+    extra += " --noCpG "
+
 with TemporaryDirectory() as tempdir:
     shell(
         "MethylDackel extract "
@@ -64,14 +67,12 @@ with TemporaryDirectory() as tempdir:
         "{log} "
     )
 
-    shell(f"ls -lrth {tempdir} {log}")
-
     if report:
         shell(
             "mv --verbose {tempdir}/methyldackel_results.cytosine_report.txt {report} {log}"
         )
     else:
-        if "--noCpG" not in extra:
+        if snakemake.output.get("cpg"):
             shell(
                 "mv --verbose {tempdir}/methyldackel_results_CpG.{extension} {snakemake.output.cpg} {log}"
             )
