@@ -1293,6 +1293,7 @@ def test_cnvkit_target():
         ],
     )
 
+@skip_if_not_modified
 def test_cnvkit_export():
     run(
         "bio/cnvkit/export",
