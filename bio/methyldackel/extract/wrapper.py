@@ -53,7 +53,7 @@ if report:
     extra += " --cytosine_report "
 
 
-if not snakemake.output.get("cpg"):
+if not (snakemake.output.get("cpg") or report):
     extra += " --noCpG "
 
 with TemporaryDirectory() as tempdir:
