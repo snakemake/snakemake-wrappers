@@ -3,13 +3,14 @@ rule test_gseapy_enrichr:
         gene_list="genes_list.txt",
         # gmt="", Optional path to a GMT file
     output:
-        directory("results_enrichr"),
+        enrichr_dir=directory("KEGG_2016"),
     threads: 1
     params:
         extra={"cutoff": 1},
         gene_sets=["KEGG_2016"],  # Optional list of gene sets available on biomart
     log:
-        "logs/gseapy/enrichr.log",
+        wrapper="logs/gseapy/wrapper.enrichr.log",
+        gseapy="logs/gseapy/enrichr.log",
     wrapper:
         "master/bio/gseapy/gsea"
 
@@ -20,7 +21,8 @@ rule test_gseapy_gsea:
         cls="sample_class.cls",
         gmt="geneset.gmt",
     output:
-        directory("results_gsea"),
+        gmt="gene_sets.gmt",
+        csv="gsea.results.csv",
     threads: 1
     params:
         extra={
@@ -28,7 +30,8 @@ rule test_gseapy_gsea:
         },
         # gene_sets = [""] # Optional list of gene sets available on biomart
     log:
-        "logs/gseapy/gsea.log",
+        wrapper="logs/gseapy/wrapper.gsea.log",
+        gseapy="logs/gseapy/gsea.log",
     wrapper:
         "master/bio/gseapy/gsea"
 
@@ -38,7 +41,8 @@ rule test_gseapy_ssgsea:
         expr="genes_expr.tsv",
         gmt="geneset.gmt",
     output:
-        directory("results_ssgsea"),
+        gmt="gene_sets.gmt",
+        csv="ssgsea.results.csv",
     threads: 1
     params:
         extra={
@@ -46,7 +50,8 @@ rule test_gseapy_ssgsea:
         },
         # gene_sets = [""] # Optional list of gene sets available on biomart
     log:
-        "logs/gseapy/ssgsea.log",
+        wrapper="logs/gseapy/wrapper.ssgsea.log",
+        gseapy="logs/gseapy/ssgsea.log",
     wrapper:
         "master/bio/gseapy/gsea"
 
@@ -56,7 +61,9 @@ rule test_gseapy_prerank:
         rank="genes.rnk",
         gmt="geneset.gmt",
     output:
-        directory("results_prerank"),
+        gmt="gene_sets.gmt",
+        csv="prerank.results.csv",
+        prerank=directory("prerank_results_dir"),
     threads: 1
     params:
         extra={
@@ -64,6 +71,7 @@ rule test_gseapy_prerank:
         },
         # gene_sets = [""] # Optional list of gene sets available on biomart
     log:
-        "logs/gseapy/prerank.log",
+        wrapper="logs/gseapy/wrapper.prerank.log",
+        gseapy="logs/gseapy/prerank.log",
     wrapper:
         "master/bio/gseapy/gsea"
