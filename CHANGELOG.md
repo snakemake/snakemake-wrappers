@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.8.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.7.0...v2.8.0) (2023-10-26)
+
+
+### Features
+
+* methyldackel extract ([#1823](https://www.github.com/snakemake/snakemake-wrappers/issues/1823)) ([930d64e](https://www.github.com/snakemake/snakemake-wrappers/commit/930d64e7cfc07e52a0d872ace455a71bdabe7728))
+* Unified seqtk wrapper ([#1777](https://www.github.com/snakemake/snakemake-wrappers/issues/1777)) ([0e7fff5](https://www.github.com/snakemake/snakemake-wrappers/commit/0e7fff5e839d6c14e07ab0b84f84bd622c1b5110))
+
+
+### Bug Fixes
+
+* add readthedocs config file v2 ([#1902](https://www.github.com/snakemake/snakemake-wrappers/issues/1902)) ([bb29891](https://www.github.com/snakemake/snakemake-wrappers/commit/bb29891d6c396ea44af35b3b9cbee30d2755188a))
+
 ## [2.7.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.6.1...v2.7.0) (2023-10-23)
 
 
