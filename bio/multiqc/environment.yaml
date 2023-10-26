@@ -4,3 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - multiqc =1.17
+  - python =3.11 #pin until python-future package is compatible to python 3.12 (https://github.com/PythonCharmers/python-future/issues/625)
