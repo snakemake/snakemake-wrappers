@@ -1537,48 +1537,63 @@ def test_shovill():
 
 
 @skip_if_not_modified
-def test_seqtk_seq():
+def test_seqtk():
     run(
-        "bio/seqtk/seq",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.fasta"],
+        "bio/seqtk",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/fq2fas/a.fasta"],
     )
 
-
-@skip_if_not_modified
-def test_seqtk_mergepe():
     run(
-        "bio/seqtk/mergepe",
+        "bio/seqtk",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/convBQ/a.fasta"],
+    )
+
+    run(
+        "bio/seqtk",
         [
             "snakemake",
             "--cores",
             "1",
             "--use-conda",
             "-F",
-            "a.merged.fastq.gz",
+            "results/subseq_list/a.fq.gz",
         ],
     )
 
-
-@skip_if_not_modified
-def test_seqtk_subsample_se():
     run(
-        "bio/seqtk/subsample/se",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.subsampled.fastq.gz"],
-    )
-
-
-@skip_if_not_modified
-def test_seqtk_subsample_pe():
-    run(
-        "bio/seqtk/subsample/pe",
+        "bio/seqtk",
         [
             "snakemake",
             "--cores",
             "1",
             "--use-conda",
             "-F",
-            "a.1.subsampled.fastq.gz",
-            "a.2.subsampled.fastq.gz",
+            "results/mergepe/a.fastq.gz",
+        ],
+    )
+
+    run(
+        "bio/seqtk",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results/sample_se/a.fastq.gz",
+        ],
+    )
+
+    run(
+        "bio/seqtk",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results/sample_pe/a.1.fastq.gz",
+            "results/sample_pe/a.2.fastq.gz",
         ],
     )
 
@@ -1857,12 +1872,20 @@ def test_bedtools_sort():
         ],
     )
 
-    
+
 @skip_if_not_modified
 def test_bedtools_split():
     run(
         "bio/bedtools/split",
-        ["snakemake", "--cores", "1", "results/a.1-of-2.bed", "results/a.2-of-2.bed", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/a.1-of-2.bed",
+            "results/a.2-of-2.bed",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -3118,7 +3141,7 @@ def test_homer_makeTagDirectory():
 def test_immunedeconv():
     run(
         "bio/immunedeconv",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "deconv.csv"]
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "deconv.csv"],
     )
 
 
