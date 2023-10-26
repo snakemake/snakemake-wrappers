@@ -24,10 +24,10 @@ if snakemake.params.get("withmatecigar", False):
     tool = "MarkDuplicatesWithMateCigar"
 
 
-bams = snakemake.input.bams
-if isinstance(bams, str):
-    bams = [bams]
-bams = list(map("--INPUT {}".format, bams))
+alns = snakemake.input
+if isinstance(alns, str):
+    alns = [alns]
+alns = list(map("--INPUT {}".format, alns))
 
 
 output = snakemake.output.bam
@@ -50,7 +50,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         "(picard {tool}"  # Tool and its subcommand
         " {java_opts}"  # Automatic java option
         " {extra}"  # User defined parmeters
-        " {bams}"  # Input bam(s)
+        " {alns}"  # Input aln(s)
         " --TMP_DIR {tmpdir}"
         " --OUTPUT {output}"  # Output bam
         " --METRICS_FILE {snakemake.output.metrics}"  # Output metrics
