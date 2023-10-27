@@ -5,7 +5,7 @@ rule markduplicates_bam:
     # of marking duplicates on separate read groups for a sample
     # and then merging
     output:
-        bam="dedup_bam/{sample}.bam",
+        aln="dedup_bam/{sample}.bam",
         metrics="dedup_bam/{sample}.metrics.txt",
     log:
         "logs/dedup_bam/{sample}.log",
@@ -23,7 +23,7 @@ rule markduplicates_bam:
 
 use rule markduplicates_bam as markduplicateswithmatecigar_bam with:
     output:
-        bam="dedup_bam/{sample}.matecigar.bam",
+        aln="dedup_bam/{sample}.matecigar.bam",
         idx="dedup_bam/{sample}.mcigar.bai",
         metrics="dedup_bam/{sample}.matecigar.metrics.txt",
     log:
@@ -35,7 +35,7 @@ use rule markduplicates_bam as markduplicateswithmatecigar_bam with:
 
 use rule markduplicates_bam as markduplicates_sam with:
     output:
-        bam="dedup_sam/{sample}.sam",
+        aln="dedup_sam/{sample}.sam",
         metrics="dedup_sam/{sample}.metrics.txt",
     log:
         "logs/dedup_sam/{sample}.log",
@@ -45,10 +45,10 @@ use rule markduplicates_bam as markduplicates_sam with:
 
 use rule markduplicates_bam as markduplicates_cram with:
     input:
-        bams="mapped/{sample}.bam",
+        alns="mapped/{sample}.bam",
         ref="ref/genome.fasta",
     output:
-        bam="dedup_cram/{sample}.cram",
+        aln="dedup_cram/{sample}.cram",
         idx="dedup_cram/{sample}.cram.crai",
         metrics="dedup_cram/{sample}.metrics.txt",
     log:
