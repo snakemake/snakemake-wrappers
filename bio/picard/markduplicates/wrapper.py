@@ -30,7 +30,7 @@ if isinstance(alns, str):
 alns = list(map("--INPUT {}".format, alns))
 
 
-output = snakemake.output.bam
+output = snakemake.output.aln
 output_fmt = infer_out_format(output)
 convert = ""
 if output_fmt == "CRAM":
@@ -58,7 +58,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     )
 
 
-output_prefix = Path(snakemake.output.bam).with_suffix("")
+output_prefix = Path(snakemake.output.aln).with_suffix("")
 if snakemake.output.get("idx"):
     if output_fmt == "BAM" and snakemake.output.idx != str(output_prefix) + ".bai":
         shell("mv {output_prefix}.bai {snakemake.output.idx}")
