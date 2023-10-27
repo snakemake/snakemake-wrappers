@@ -24,7 +24,7 @@ if snakemake.params.get("withmatecigar", False):
     tool = "MarkDuplicatesWithMateCigar"
 
 
-alns = snakemake.input
+alns = snakemake.input.alns
 if isinstance(alns, str):
     alns = [alns]
 alns = list(map("--INPUT {}".format, alns))

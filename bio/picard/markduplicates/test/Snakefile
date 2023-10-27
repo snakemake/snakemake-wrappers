@@ -1,6 +1,6 @@
 rule markduplicates_bam:
     input:
-        "mapped/{sample}.bam",
+        alns="mapped/{sample}.bam",
     # optional to specify a list of BAMs; this has the same effect
     # of marking duplicates on separate read groups for a sample
     # and then merging
