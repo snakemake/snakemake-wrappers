@@ -4457,6 +4457,57 @@ def test_salmon_quant():
 
 
 @skip_if_not_modified
+def test_gseapy_gsea():
+    run(
+        "bio/gseapy/gsea",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "KEGG_2016"
+        ]
+    )
+
+    run(
+        "bio/gseapy/gsea",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "gsea.results.csv"
+        ]
+    )
+
+    run(
+        "bio/gseapy/gsea",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "ssgsea.results.csv"
+        ]
+    )
+
+    run(
+        "bio/gseapy/gsea",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "prerank_results_dir"
+        ]
+    )
+
+
+@skip_if_not_modified
 def test_sourmash_compute():
     run(
         "bio/sourmash/compute/",
