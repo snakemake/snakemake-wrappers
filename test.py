@@ -2114,11 +2114,43 @@ def test_bwa_index():
             "snakemake",
             "--cores",
             "1",
-            "genome.amb",
-            "genome.ann",
-            "genome.bwt",
-            "genome.pac",
-            "genome.sa",
+            "genome.bwtsw.amb",
+            "genome.bwtsw.ann",
+            "genome.bwtsw.bwt",
+            "genome.bwtsw.pac",
+            "genome.bwtsw.sa",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+    run(
+        "bio/bwa/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "genome.is.amb",
+            "genome.is.ann",
+            "genome.is.bwt",
+            "genome.is.pac",
+            "genome.is.sa",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+    run(
+        "bio/bwa/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "genome.rb2.amb",
+            "genome.rb2.ann",
+            "genome.rb2.bwt",
+            "genome.rb2.pac",
+            "genome.rb2.sa",
             "--use-conda",
             "-F",
         ],
