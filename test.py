@@ -6202,6 +6202,15 @@ def test_barrnap():
         ],
     )
 
+
+@skip_if_not_modified
+def test_encode_fastq_downloader():
+    run(
+        "bio/encode_fastq_downloader",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "ENCFF140TJA.fastq.gz"],
+    )
+
+
 @skip_if_not_modified
 def test_whatshap_haplotag():
     run(
