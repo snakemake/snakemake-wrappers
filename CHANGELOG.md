@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.8.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.8.0...v2.8.1) (2023-10-30)
+
+
+### Bug Fixes
+
+* moving to utils ([#1770](https://www.github.com/snakemake/snakemake-wrappers/issues/1770)) ([b5c0c01](https://www.github.com/snakemake/snakemake-wrappers/commit/b5c0c016b6a3c9c46672d5e5ee13bda934cbb970))
+
 ## [2.8.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.7.0...v2.8.0) (2023-10-26)
 
 
