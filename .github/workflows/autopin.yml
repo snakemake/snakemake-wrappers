@@ -1,9 +1,9 @@
-name: autobump
+name: autopin
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "50 0 * * 5"
+    - cron: "50 0 * * 6"
 
 concurrency:
   group: '${{ github.workflow }}'
@@ -26,11 +26,10 @@ jobs:
           app_id: ${{ secrets.SNAKEDEPLOY_BOT_APP_ID }}
           private_key: ${{ secrets.SNAKEDEPLOY_BOT_PRIVATE_KEY }}
 
-      - name: Update conda envs
+      - name: Pin conda envs
         uses: snakemake/snakedeploy-github-action@v1
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         with:
-          subcommand: update-conda-envs
-          args: "*/*/environment.yaml */*/*/environment.yaml --create-prs --warn-on-error --entity-regex '(?P<entity>.+)/environment.yaml' --pr-add-label --pin-envs"
-        
+          subcommand: pin-conda-envs
+          args: "*/${{ matrix.prefix }}*/environment.yaml */${{ matrix.prefix }}*/*/environment.yaml --create-prs --warn-on-error --entity-regex '(?P<entity>.+)/environment.yaml' --pr-add-label"
