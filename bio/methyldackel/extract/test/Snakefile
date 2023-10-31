@@ -1,0 +1,68 @@
+rule test_methyldackel_extract_fraction:
+    input:
+        ref="chgchh.fa",
+        aln="chgchh_aln.bam",
+        aln_bai="chgchh_aln.bam.bai",
+        bw="chgchh.bw",
+    output:
+        cpg="cpg.meth.bg",
+        chh="chh.meth.bg",
+        chg="chg.meth.bg",
+    log:
+        "logs/md_extract/meth.log",
+    params:
+        extra="--fraction",
+    wrapper:
+        "master/bio/methyldackel/extract"
+
+
+rule test_methyldackel_extract_count:
+    input:
+        ref="chgchh.fa",
+        aln="chgchh_aln.bam",
+        aln_bai="chgchh_aln.bam.bai",
+        bw="chgchh.bw",
+    output:
+        cpg="cpg.count.bg",
+        chh="chh.count.bg",
+        chg="chg.count.bg",
+    log:
+        "logs/md_extract/count.log",
+    params:
+        extra="--counts",
+    wrapper:
+        "master/bio/methyldackel/extract"
+
+
+rule test_methyldackel_extract_logit:
+    input:
+        ref="chgchh.fa",
+        aln="chgchh_aln.bam",
+        aln_bai="chgchh_aln.bam.bai",
+        bw="chgchh.bw",
+    output:
+        cpg="cpg.logit.bg",
+        chh="chh.logit.bg",
+        chg="chg.logit.bg",
+    log:
+        "logs/md_extract/logit.log",
+    params:
+        extra="--logit",
+    wrapper:
+        "master/bio/methyldackel/extract"
+
+
+rule test_methyldackel_extract_report:
+    input:
+        ref="chgchh.fa",
+        aln="chgchh_aln.bam",
+        aln_bai="chgchh_aln.bam.bai",
+        bw="chgchh.bw",
+    output:
+        cytosine_report="report.tsv",
+    log:
+        "logs/md_extract/report.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/methyldackel/extract"

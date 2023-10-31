@@ -1,5 +1,41 @@
 # Changelog
 
+## [2.9.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.8.0...v2.9.0) (2023-10-30)
+
+
+### Features
+
+* CNV Facets ([#1773](https://www.github.com/snakemake/snakemake-wrappers/issues/1773)) ([74f5e4a](https://www.github.com/snakemake/snakemake-wrappers/commit/74f5e4a72ebb3abed014380314e63ca3db9f36f4))
+* encode fastq downloader ([#1798](https://www.github.com/snakemake/snakemake-wrappers/issues/1798)) ([1cc3e00](https://www.github.com/snakemake/snakemake-wrappers/commit/1cc3e00c6bbb3761d1ffd07b26acd18a1caa746d))
+* for bwa, auto infer block size, extra tests, code cleanup and add docs ([#1774](https://www.github.com/snakemake/snakemake-wrappers/issues/1774)) ([66940e3](https://www.github.com/snakemake/snakemake-wrappers/commit/66940e3c69e1a06a6e9b771d10e29b9eb03d9f24))
+* Gseapy ([#1822](https://www.github.com/snakemake/snakemake-wrappers/issues/1822)) ([2a50eb0](https://www.github.com/snakemake/snakemake-wrappers/commit/2a50eb0b3567843f0082496f84999d1a9a08e2ab))
+* unaligned bam input support for minimap2 alignment ([#1863](https://www.github.com/snakemake/snakemake-wrappers/issues/1863)) ([76280a5](https://www.github.com/snakemake/snakemake-wrappers/commit/76280a592677e81dc092c66351bc6eb7801da172))
+
+
+### Bug Fixes
+
+* for nonpareil, use pigz and pbzip2 and auto infer of -X ([#1776](https://www.github.com/snakemake/snakemake-wrappers/issues/1776)) ([45860bf](https://www.github.com/snakemake/snakemake-wrappers/commit/45860bfc1a1509311182f7057f4b7a6210be0423))
+* moving to utils ([#1770](https://www.github.com/snakemake/snakemake-wrappers/issues/1770)) ([b5c0c01](https://www.github.com/snakemake/snakemake-wrappers/commit/b5c0c016b6a3c9c46672d5e5ee13bda934cbb970))
+
+
+### Performance Improvements
+
+* autopin bio/bwa/mem ([#1907](https://www.github.com/snakemake/snakemake-wrappers/issues/1907)) ([99e9f60](https://www.github.com/snakemake/snakemake-wrappers/commit/99e9f604eba4e77c4b3f69cad0e25114c72ff1fd))
+* autopin bio/multiqc ([#1906](https://www.github.com/snakemake/snakemake-wrappers/issues/1906)) ([6c67666](https://www.github.com/snakemake/snakemake-wrappers/commit/6c676668b49210d8e99bec6948003421528ac5c4))
+
+## [2.8.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.7.0...v2.8.0) (2023-10-26)
+
+
+### Features
+
+* methyldackel extract ([#1823](https://www.github.com/snakemake/snakemake-wrappers/issues/1823)) ([930d64e](https://www.github.com/snakemake/snakemake-wrappers/commit/930d64e7cfc07e52a0d872ace455a71bdabe7728))
+* Unified seqtk wrapper ([#1777](https://www.github.com/snakemake/snakemake-wrappers/issues/1777)) ([0e7fff5](https://www.github.com/snakemake/snakemake-wrappers/commit/0e7fff5e839d6c14e07ab0b84f84bd622c1b5110))
+
+
+### Bug Fixes
+
+* add readthedocs config file v2 ([#1902](https://www.github.com/snakemake/snakemake-wrappers/issues/1902)) ([bb29891](https://www.github.com/snakemake/snakemake-wrappers/commit/bb29891d6c396ea44af35b3b9cbee30d2755188a))
+
 ## [2.7.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.6.1...v2.7.0) (2023-10-23)
 
 

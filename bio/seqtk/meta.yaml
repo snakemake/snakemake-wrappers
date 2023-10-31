@@ -1,0 +1,15 @@
+name: seqtk 
+description: Toolkit for processing sequences in FASTA/Q formats
+url: https://github.com/lh3/seqtk
+authors:
+  - Filipe G. Vieira
+input:
+  - fastx file(s) (can be gzip bcompressed)
+output:
+  - fastn files (can be gzip bcompressed)
+params:
+  - n: number of reads after subsampling (for `sample`)
+  - extra: additional program options (e.g. `-s` for `sample` or `-b/-e` for `trimfq`)
+  - compress_lvl: compression level (see `gzip` manual for details)
+notes: |
+  * Multiple threads can be used during compression of the output file.
