@@ -32,5 +32,5 @@ jobs:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         with:
           subcommand: update-conda-envs
-          args: "*/*/environment.yaml */*/*/environment.yaml --create-prs --warn-on-error --entity-regex '(?P<entity>.+)/environment.yaml' --pr-add-label --pin-envs"
+          args: "*/${{ matrix.prefix }}*/environment.yaml */${{ matrix.prefix }}*/*/environment.yaml --create-prs --warn-on-error --entity-regex '(?P<entity>.+)/environment.yaml' --pr-add-label --pin-envs"
         
