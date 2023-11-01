@@ -47,7 +47,7 @@ rule chipseq_pipeline:
         "results/multiqc/broadPeak/multiqc_report.html",
     params:
         pipeline="nf-core/chipseq",
-        revision="1.2.1",
+        revision="2.0.0",
         profile=["test", "docker"],
         # any --<argname> pipeline arguments can be given here as <argname>=<value>
     handover: True
