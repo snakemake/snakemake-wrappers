@@ -3,6 +3,7 @@ description: |
   Strelka calls somatic and germline small variants from mapped sequencing reads
 authors:
   - Thibault Dayris
+  - Christopher Schröder
 input:
   - A tumor bam file, with its index.
   - A reference genome sequence in fasta format, with its index.

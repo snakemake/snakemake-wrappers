@@ -1,0 +1,5 @@
+wrappers:
+  - bio/salmon/decoys
+  - bio/salmon/index
+  - bio/salmon/quant
+  - bio/tximport

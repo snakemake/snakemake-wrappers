@@ -5,12 +5,10 @@ __license__ = "MIT"
 
 
 from snakemake.shell import shell
+from snakemake.io import Namedlist
 from snakemake_wrapper_utils.java import get_java_opts
 
-shell.executable("bash")
-
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
-
 extra_params = snakemake.params.get("extra", "")
 java_opts = get_java_opts(snakemake)
 
@@ -25,8 +23,12 @@ umi_input = snakemake.input.umi
 
 if umi_input is None:
     raise ValueError("Missing input file with UMIs")
-elif not isinstance(umi_input, str):
-    raise ValueError("Input UMIs-file should be a string: " + str(umi_input) + "!")
+elif not (isinstance(umi_input, str) or isinstance(umi_input, Namedlist)):
+    raise ValueError(
+        "Input UMIs-file should be a string or a snakemake io list: "
+        + str(umi_input)
+        + "!"
+    )
 
 if not len(snakemake.output) == 1:
     raise ValueError("Only one output value expected: " + str(snakemake.output) + "!")

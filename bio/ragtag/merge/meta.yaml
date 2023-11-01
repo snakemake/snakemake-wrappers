@@ -1,0 +1,17 @@
+name: ragtag-merge
+description: |
+  Scaffold merging.
+url: https://github.com/malonge/RagTag/wiki/merge
+authors:
+  - Curro Campuzano Jiménez
+input:
+  - ref: assembly fasta file (uncompressed or bgzipped).
+  - agps: scaffolding AGP files.
+  - bam: Optional. Hi-C alignments in BAM format.
+output:
+  - fasta: The merged scaffolds in FASTA format.
+  - agp: The merged scaffold results in AGP format.
+  - links: Optional. If Hi-C alignments in BAM format were given. 
+params:
+  - extra: additional parameters. Do not use with '-b', add the bam file to the input instead.
+notes: |

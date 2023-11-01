@@ -1,4 +1,6 @@
 name: hisat2 align
+description: Graph-based alignment of next generation sequencing reads to a population of genomes.
+url: http://daehwankimlab.github.io/hisat2
 authors:
   - Wibowo Arindrarto
 description: |

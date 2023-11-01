@@ -1,0 +1,20 @@
+name: Salmon Tximport
+url: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6178912.2/
+description: >
+  This meta-wrapper includes the following steps:
+
+    +----------------+----------+------------------------------------------------+
+    | Step           | Tool     | Reason                                         |
+    +================+==========+================================================+
+    | Indexation     | Bash     | Identify decoy sequences                       |
+    +----------------+----------+------------------------------------------------+
+    | Indexation     | Salmon   | Create decoy aware gentrome                    |
+    |                |          | (genome + trancriptome) index                  |
+    +----------------+----------+------------------------------------------------+
+    | Quantification | Salmon   | Quantify sequenced reads                       |
+    +----------------+----------+------------------------------------------------+
+    | Quantification | Tximport | Import counts and inferential replicates in R  |
+    |                |          | as a ready-to-use SummarizedExperiment object. |
+    +----------------+----------+------------------------------------------------+
+authors:
+  - Thibault Dayris

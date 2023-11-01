@@ -140,6 +140,308 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_galah():
+    run(
+        "bio/galah",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results.fas.tsv",
+            "results.fas.list",
+            "results.fas_list.tsv",
+            "results.fas_list.list",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_nonpareil():
+    run(
+        "bio/nonpareil/infer",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results/a.fa.npo",
+            "results/a.fas.bz2.npo",
+            "results/a.fasta.gz.npo",
+            "results/a.fq.npo",
+            "results/a.fq.bz2.npo",
+            "results/a.fastq.gz.npo",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_nonpareil_plot():
+    run(
+        "bio/nonpareil/plot",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results/a.pdf",
+            # Test disabled due to bug in nonpareil (#62)
+            #            "results/a.nomodel.pdf",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_indelqual():
+    run(
+        "bio/lofreq/indelqual",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/indelqual/a.uindel.bam",
+            "out/indelqual/a.dindel.bam",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_vsearch():
+    run(
+        "bio/vsearch",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "out/cluster_fast/a.profile",
+            "out/maskfasta/a.fasta",
+            "out/fastx_uniques/a.fastq",
+            "out/fastx_uniques/a.fastq.gz",
+            "out/fastx_uniques/a.fastq.bz2",
+            "out/fastq_convert/a.fastq",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_loglog():
+    run(
+        "bio/bbtools/loglog",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "logs/se/a.log",
+            "logs/pe/a.log",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_tadpole():
+    run(
+        "bio/bbtools/tadpole",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/correct_se/a.fastq.gz",
+            "out/correct_se/a.discarded.fastq.gz",
+            "out/correct_pe/a.1.fastq",
+            "out/correct_pe/a.2.fastq",
+            "out/correct_pe/a.discarded.fastq",
+            "out/extend_se/a.fastq.gz",
+            "out/extend_se/a.discarded.fastq.gz",
+            "out/extend_pe/a.1.fastq",
+            "out/extend_pe/a.2.fastq",
+            "out/extend_pe/a.discarded.fastq",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_seqkit_stats():
+    run(
+        "bio/seqkit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/stats/a.tsv",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_seqkit_rmdup():
+    run(
+        "bio/seqkit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/rmdup/name/a.fastq.gz",
+        ],
+    )
+    run(
+        "bio/seqkit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/rmdup/seq/a.fastq.gz",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_gffread():
+    run(
+        "bio/gffread",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "transcripts.fa"],
+    )
+
+
+@skip_if_not_modified
+def test_seqkit_fx2tab():
+    run(
+        "bio/seqkit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/fx2tab/a.tsv",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_seqkit_grep():
+    run(
+        "bio/seqkit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/grep/name/a.fastq.gz",
+        ],
+    )
+    run(
+        "bio/seqkit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/grep/seq/a.fastq.gz",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_seqkit_subseq():
+    run(
+        "bio/seqkit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/subseq/bed/a.fa.gz",
+        ],
+    )
+    run(
+        "bio/seqkit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/subseq/gtf/a.fa.gz",
+        ],
+    )
+    run(
+        "bio/seqkit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/subseq/region/a.fa.gz",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_seqkit_seq():
+    run(
+        "bio/seqkit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/seq/a.fa.gz",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_sickle_pe():
+    run(
+        "bio/sickle/pe",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "a.1.fastq",
+            "a.2.fastq",
+            "a.single.fastq",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_sickle_se():
+    run(
+        "bio/sickle/se",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "a.1.fastq",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_bwa_memx_index():
     run(
         "bio/bwa-memx/index",
@@ -175,6 +477,7 @@ def test_bwa_memx_index():
         ],
     )
 
+
 @skip_if_not_modified
 def test_bwa_memx_mem():
     run(
@@ -189,11 +492,12 @@ def test_bwa_memx_mem():
         ],
     )
 
+
 @skip_if_not_modified
 def test_purge_dups_calcuts():
     run(
         "bio/purge_dups/calcuts",
-        ["snakemake", "--cores", "1", "out/calcuts.cutoffs", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "out/calcuts.cutoffs", "--use-conda", "-F"],
     )
 
 
@@ -201,7 +505,7 @@ def test_purge_dups_calcuts():
 def test_purge_dups_get_seqs():
     run(
         "bio/purge_dups/get_seqs",
-        ["snakemake", "--cores", "1", "out/get_seqs.hap.fasta", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "out/get_seqs.hap.fasta", "--use-conda", "-F"],
     )
 
 
@@ -209,7 +513,7 @@ def test_purge_dups_get_seqs():
 def test_purge_dups_ngscstat():
     run(
         "bio/purge_dups/ngscstat",
-        ["snakemake", "--cores", "1", "out/ngscstat.cov", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "out/ngscstat.cov", "--use-conda", "-F"],
     )
 
 
@@ -217,7 +521,7 @@ def test_purge_dups_ngscstat():
 def test_purge_dups_pbcstat():
     run(
         "bio/purge_dups/pbcstat",
-        ["snakemake", "--cores", "1", "out/pbcstat.cov", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "out/pbcstat.cov", "--use-conda", "-F"],
     )
 
 
@@ -225,7 +529,7 @@ def test_purge_dups_pbcstat():
 def test_purge_dups_purge_dups():
     run(
         "bio/purge_dups/purge_dups",
-        ["snakemake", "--cores", "1", "out/purge_dups.bed", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "out/purge_dups.bed", "--use-conda", "-F"],
     )
 
 
@@ -233,7 +537,7 @@ def test_purge_dups_purge_dups():
 def test_purge_dups_split_fa():
     run(
         "bio/purge_dups/split_fa",
-        ["snakemake", "--cores", "1", "out/genome.split", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "out/genome.split", "--use-conda", "-F"],
     )
 
 
@@ -247,40 +551,22 @@ def test_quast():
 
 @skip_if_not_modified
 def test_gfatools():
-    run(
-        "bio/gfatools",
-        ["snakemake", "--cores", "1", "a.stat", "--use-conda", "-F"]
-    )
+    run("bio/gfatools", ["snakemake", "--cores", "1", "a.stat", "--use-conda", "-F"])
+
+    run("bio/gfatools", ["snakemake", "--cores", "1", "a.fas", "--use-conda", "-F"])
+
+    run("bio/gfatools", ["snakemake", "--cores", "1", "a.bed", "--use-conda", "-F"])
 
     run(
         "bio/gfatools",
-        ["snakemake", "--cores", "1", "a.fas", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "a.blacklist", "--use-conda", "-F"],
     )
 
-    run(
-        "bio/gfatools",
-        ["snakemake", "--cores", "1", "a.bed", "--use-conda", "-F"]
-    )
+    run("bio/gfatools", ["snakemake", "--cores", "1", "a.bubble", "--use-conda", "-F"])
 
-    run(
-        "bio/gfatools",
-        ["snakemake", "--cores", "1", "a.blacklist", "--use-conda", "-F"]
-    )
+    run("bio/gfatools", ["snakemake", "--cores", "1", "a.asm", "--use-conda", "-F"])
 
-    run(
-        "bio/gfatools",
-        ["snakemake", "--cores", "1", "a.bubble", "--use-conda", "-F"]
-    )
-
-    run(
-        "bio/gfatools",
-        ["snakemake", "--cores", "1", "a.asm", "--use-conda", "-F"]
-    )
-
-    run(
-        "bio/gfatools",
-        ["snakemake", "--cores", "1", "a.sql", "--use-conda", "-F"]
-    )
+    run("bio/gfatools", ["snakemake", "--cores", "1", "a.sql", "--use-conda", "-F"])
 
 
 @skip_if_not_modified
@@ -389,6 +675,22 @@ def test_salsa2():
 
 
 @skip_if_not_modified
+def test_merqury_haploid():
+    run(
+        "bio/merqury",
+        ["snakemake", "--cores", "1", "results/haploid/out.qv", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_merqury_diploid():
+    run(
+        "bio/merqury",
+        ["snakemake", "--cores", "1", "results/diploid/out.qv", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_mashmap():
     run(
         "bio/mashmap", ["snakemake", "--cores", "2", "mashmap.out", "--use-conda", "-F"]
@@ -444,11 +746,11 @@ def test_biobambam2_bamsormadup():
 def test_bustools_text():
     run(
         "bio/bustools/text",
-        ["snakemake", "--cores", "1", "file.tsv", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "file.tsv", "--use-conda", "-F"],
     )
     run(
         "bio/bustools/text",
-        ["snakemake", "--cores", "1", "file2.tsv", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "file2.tsv", "--use-conda", "-F"],
     )
 
 
@@ -459,18 +761,20 @@ def test_open_cravat_run():
         ["snakemake", "--cores", "1", "--use-conda"],
     )
 
+
 @skip_if_not_modified
 def test_bustools_count():
     run(
         "bio/bustools/count",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "buscount.mtx"]
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "buscount.mtx"],
     )
+
 
 @skip_if_not_modified
 def test_bustools_sort():
     run(
         "bio/bustools/sort",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "sorted.bus"]
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "sorted.bus"],
     )
 
 
@@ -479,6 +783,20 @@ def test_open_cravat_module():
     run(
         "bio/open-cravat/module",
         ["snakemake", "--cores", "1", "--use-conda"],
+    )
+
+
+@skip_if_not_modified
+def test_salmon_tximport_meta():
+    run(
+        "meta/bio/salmon_tximport",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "tximport/SummarizedExperimentObject.RDS",
+        ],
     )
 
 
@@ -740,11 +1058,110 @@ def test_dada2_add_species():
 
 
 @skip_if_not_modified
+def test_datavzrd():
+    run(
+        "utils/datavzrd",
+        ["snakemake", "--cores", "1", "--use-conda", "results/datavzrd-report/A"],
+    )
+
+
+@skip_if_not_modified
+def test_deseq2_deseqdataset():
+    # from HTSeqcount / Featurecount
+    run(
+        "bio/deseq2/deseqdataset",
+        ["snakemake", "--cores", "1", "--use-conda", "dds_htseq.RDS"],
+    )
+
+    # DDS import
+    run(
+        "bio/deseq2/deseqdataset",
+        ["snakemake", "--cores", "1", "--use-conda", "dds_minimal.RDS"],
+    )
+
+    # txi import
+    run(
+        "bio/deseq2/deseqdataset",
+        ["snakemake", "--cores", "1", "--use-conda", "dds_txi.RDS"],
+    )
+
+    # SE import
+    run(
+        "bio/deseq2/deseqdataset",
+        ["snakemake", "--cores", "1", "--use-conda", "dds_se.RDS"],
+    )
+
+    # R matrix import
+    run(
+        "bio/deseq2/deseqdataset",
+        ["snakemake", "--cores", "1", "--use-conda", "dds_rmatrix.RDS"],
+    )
+
+    # text matrix import
+    run(
+        "bio/deseq2/deseqdataset",
+        ["snakemake", "--cores", "1", "--use-conda", "dds_matrix.RDS"],
+    )
+
+
+@skip_if_not_modified
+def test_deseq2_wald():
+    run("bio/deseq2/wald", ["snakemake", "--cores", "1", "--use-conda", "dge.tsv"])
+
+
+@skip_if_not_modified
 def test_arriba_star_meta():
     run(
         "meta/bio/star_arriba",
         ["snakemake", "--cores", "1", "--use-conda", "results/arriba/a.fusions.tsv"],
     )
+
+
+@skip_if_not_modified
+def test_xsv():
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/split/0.csv"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/table.txt"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/stats.txt"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/split"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/sort.csv"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/slice.csv"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/select.csv"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/search.csv"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/sample.csv"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/join.csv"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/input.csv"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "table.csv.idx"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/headers_all.csv"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/headers.csv"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/frequency.csv"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/fmt.tsv"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/flatten.csv"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/fixlength.csv"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/count_csv.csv"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/count_tsv.csv"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/catrows.csv"])
+
+    run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/catcols.csv"])
 
 
 @skip_if_not_modified
@@ -757,6 +1174,207 @@ def test_bwa_mapping_meta():
             "1",
             "--use-conda",
             "mapped/a.bam.bai",
+        ],
+    )
+
+@skip_if_not_modified
+def test_cnvkit_batch_create_reference():
+    run(
+        "bio/cnvkit/batch",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+           "cnvkit/reference.cnn",
+        ],
+    )
+
+@skip_if_not_modified
+def test_cnvkit_call():
+    run(
+        "bio/cnvkit/call",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.call.cns",
+        ],
+    )
+
+@skip_if_not_modified
+def test_cnvkit_diagram():
+    run(
+        "bio/cnvkit/diagram",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cns.pdf",
+        ],
+    )
+    run(
+        "bio/cnvkit/diagram",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cnr.pdf",
+        ],
+    )
+    run(
+        "bio/cnvkit/diagram",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cnn.pdf",
+        ],
+    )
+    run(
+        "bio/cnvkit/diagram",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cnscnr.pdf",
+        ],
+    )    
+
+@skip_if_not_modified
+def test_cnvkit_antitarget():
+    run(
+        "bio/cnvkit/antitarget",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.antitarget.bed",
+        ],
+    )
+
+@skip_if_not_modified
+def test_cnvkit_batch():
+    run(
+        "bio/cnvkit/batch",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "cnvkit/a.antitargetcoverage.cnn",
+            "cnvkit/a.bintest.cns",
+            "cnvkit/a.cnr",
+            "cnvkit/a.cns",
+            "cnvkit/a.call.cns",
+            "cnvkit/a.targetcoverage.cnn",
+        ],
+    )
+
+@skip_if_not_modified
+def test_cnvkit_target():
+    run(
+        "bio/cnvkit/target",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.target.bed",
+        ],
+    )
+
+@skip_if_not_modified
+def test_cnvkit_export():
+    run(
+        "bio/cnvkit/export",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cns.seg",
+        ],
+    )
+    run(
+        "bio/cnvkit/export",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cns.vcf",
+        ],
+    )
+    run(
+        "bio/cnvkit/export",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cns.vcf.gz",
+        ],
+    )
+    run(
+        "bio/cnvkit/export",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cns.cdt",
+        ],
+    )
+    run(
+        "bio/cnvkit/export",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "test.cns.jtv",
+        ],
+    )
+
+@skip_if_not_modified
+def test_enhanced_volcano():
+    run(
+        "bio/enhancedvolcano",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "volcano_tsv.png",
+        ],
+    )
+
+    run(
+        "bio/enhancedvolcano",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "volcano_csv.svg",
+        ],
+    )
+
+    run(
+        "bio/enhancedvolcano",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "volcano_rds.svg",
         ],
     )
 
@@ -802,14 +1420,14 @@ def test_gridss_preprocess():
             "--use-conda",
             "--show-failed-logs",
             "working_dir/A.bam.gridss.working/A.bam.cigar_metrics",
+            "working_dir/A.bam.gridss.working/A.bam.computesamtags.changes.tsv",
             "working_dir/A.bam.gridss.working/A.bam.coverage.blacklist.bed",
             "working_dir/A.bam.gridss.working/A.bam.idsv_metrics",
             "working_dir/A.bam.gridss.working/A.bam.insert_size_histogram.pdf",
             "working_dir/A.bam.gridss.working/A.bam.insert_size_metrics",
             "working_dir/A.bam.gridss.working/A.bam.mapq_metrics",
             "working_dir/A.bam.gridss.working/A.bam.sv.bam",
-            "working_dir/A.bam.gridss.working/A.bam.sv.bam.bai",
-            "working_dir/A.bam.gridss.working/A.bam.sv_metrics",
+            "working_dir/A.bam.gridss.working/A.bam.sv.bam.csi",
             "working_dir/A.bam.gridss.working/A.bam.tag_metrics",
         ],
     )
@@ -825,8 +1443,13 @@ def test_gridss_setupreference():
             "1",
             "--use-conda",
             "--show-failed-logs",
-            "reference/genome.fasta.gridsscache",
-            "reference/genome.fasta.img",
+            "reference/genome.fasta.amb",
+            "reference/genome.fasta.ann",
+            "reference/genome.fasta.bwt",
+            "reference/genome.fasta.dict",
+            "reference/genome.fasta.fai",
+            "reference/genome.fasta.pac",
+            "reference/genome.fasta.sa",
         ],
     )
 
@@ -911,48 +1534,63 @@ def test_shovill():
 
 
 @skip_if_not_modified
-def test_seqtk_seq():
+def test_seqtk():
     run(
-        "bio/seqtk/seq",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.fasta"],
+        "bio/seqtk",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/fq2fas/a.fasta"],
     )
 
-
-@skip_if_not_modified
-def test_seqtk_mergepe():
     run(
-        "bio/seqtk/mergepe",
+        "bio/seqtk",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/convBQ/a.fasta"],
+    )
+
+    run(
+        "bio/seqtk",
         [
             "snakemake",
             "--cores",
             "1",
             "--use-conda",
             "-F",
-            "a.merged.fastq.gz",
+            "results/subseq_list/a.fq.gz",
         ],
     )
 
-
-@skip_if_not_modified
-def test_seqtk_subsample_se():
     run(
-        "bio/seqtk/subsample/se",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.subsampled.fastq.gz"],
-    )
-
-
-@skip_if_not_modified
-def test_seqtk_subsample_pe():
-    run(
-        "bio/seqtk/subsample/pe",
+        "bio/seqtk",
         [
             "snakemake",
             "--cores",
             "1",
             "--use-conda",
             "-F",
-            "a.1.subsampled.fastq.gz",
-            "a.2.subsampled.fastq.gz",
+            "results/mergepe/a.fastq.gz",
+        ],
+    )
+
+    run(
+        "bio/seqtk",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results/sample_se/a.fastq.gz",
+        ],
+    )
+
+    run(
+        "bio/seqtk",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results/sample_pe/a.1.fastq.gz",
+            "results/sample_pe/a.2.fastq.gz",
         ],
     )
 
@@ -983,6 +1621,48 @@ def test_art_profiler_illumina():
             "1",
             "profiles/a.1.txt",
             "profiles/a.2.txt",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_pyroe_id_to_name():
+    run(
+        "bio/pyroe/idtoname",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "id2name.gtf.tsv"],
+    )
+    run(
+        "bio/pyroe/idtoname",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "id2name.gff3.tsv"],
+    )
+
+
+@skip_if_not_modified
+def test_pyroe_makesplicedunspliced():
+    run(
+        "bio/pyroe/makeunspliceunspliced/",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "spliceu.fa",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_pyroe_makesplicedintronic():
+    run(
+        "bio/pyroe/makesplicedintronic",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "splici_full/spliced_intronic_sequences.fasta",
             "--use-conda",
             "-F",
         ],
@@ -1191,6 +1871,22 @@ def test_bedtools_sort():
 
 
 @skip_if_not_modified
+def test_bedtools_split():
+    run(
+        "bio/bedtools/split",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/a.1-of-2.bed",
+            "results/a.2-of-2.bed",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_bedtools_intersect():
     run(
         "bio/bedtools/intersect",
@@ -1299,7 +1995,22 @@ def test_blast_blastn():
 def test_bowtie2_align():
     run(
         "bio/bowtie2/align",
-        ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "2", "mapped_idx/a.cram", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/bowtie2/align",
+        ["snakemake", "--cores", "2", "mapped_idx/a.bam", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/bowtie2/align",
+        ["snakemake", "--cores", "2", "mapped/a.bam", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/bowtie2/align",
+        ["snakemake", "--cores", "2", "mapped_se_gz/a.bam", "--use-conda", "-F"],
     )
 
 
@@ -1403,11 +2114,43 @@ def test_bwa_index():
             "snakemake",
             "--cores",
             "1",
-            "genome.amb",
-            "genome.ann",
-            "genome.bwt",
-            "genome.pac",
-            "genome.sa",
+            "genome.bwtsw.amb",
+            "genome.bwtsw.ann",
+            "genome.bwtsw.bwt",
+            "genome.bwtsw.pac",
+            "genome.bwtsw.sa",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+    run(
+        "bio/bwa/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "genome.is.amb",
+            "genome.is.ann",
+            "genome.is.bwt",
+            "genome.is.pac",
+            "genome.is.sa",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+    run(
+        "bio/bwa/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "genome.rb2.amb",
+            "genome.rb2.ann",
+            "genome.rb2.bwt",
+            "genome.rb2.pac",
+            "genome.rb2.sa",
             "--use-conda",
             "-F",
         ],
@@ -1670,7 +2413,11 @@ def test_bwa_samse_sort_picard():
 def test_bwa_mem2_mem():
     run(
         "bio/bwa-mem2/mem",
-        ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "2", "mapped/a.bam", "--use-conda", "-F"],
+    )
+    run(
+        "bio/bwa-mem2/mem",
+        ["snakemake", "--cores", "2", "mapped/a.sam", "--use-conda", "-F"],
     )
 
 
@@ -1681,7 +2428,7 @@ def test_bwa_mem2_sort_samtools():
         [
             "snakemake",
             "--cores",
-            "1",
+            "2",
             "mapped/a.bam",
             "--use-conda",
             "-F",
@@ -1689,6 +2436,7 @@ def test_bwa_mem2_sort_samtools():
             "Snakefile_samtools",
         ],
     )
+
 
 @skip_if_not_modified
 def test_bwa_meme():
@@ -1712,7 +2460,7 @@ def test_bwa_mem2_sort_picard():
         [
             "snakemake",
             "--cores",
-            "1",
+            "2",
             "mapped/a.bam",
             "--use-conda",
             "-F",
@@ -1814,6 +2562,26 @@ def test_clustalo():
     run(
         "bio/clustalo",
         ["snakemake", "--cores", "1", "test.msa.fa", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_cnv_facets():
+    run(
+        "bio/cnv_facets",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "CNV_bam.vcf.gz"]
+    )
+    run(
+        "bio/cnv_facets",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "CNV_pileup.vcf.gz"]
+    )
+
+
+@skip_if_not_modified
+def test_coolpuppy():
+    run(
+        "bio/coolpuppy",
+        ["snakemake", "--cores", "1", "CN_1000000.clpy", "--use-conda", "-F"],
     )
 
 
@@ -1963,6 +2731,36 @@ def test_deeptools_computematrix():
 
 
 @skip_if_not_modified
+def test_deeptools_bamcoverage():
+    run(
+        "bio/deeptools/bamcoverage",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "a.coverage.bw",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_deeptools_alignmentsieve():
+    run(
+        "bio/deeptools/alignmentsieve",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "filtered.bam",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_deeptools_plotheatmap():
     run(
         "bio/deeptools/plotheatmap",
@@ -2007,6 +2805,21 @@ def test_deeptools_plotprofile():
             "plot_profile/plot.png",
             "plot_profile/regions.bed",
             "plot_profile/data.tab",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_deeptools_plotcoverage():
+    run(
+        "bio/deeptools/plotcoverage",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "coverage.png",
             "--use-conda",
             "-F",
         ],
@@ -2140,7 +2953,29 @@ def test_fasttree():
 def test_fgbio_annotate():
     run(
         "bio/fgbio/annotatebamwithumis",
-        ["snakemake", "--cores", "1", "mapped/a.annotated.bam", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.annotated.bam",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_fgbio_annotate_two_umi_fastqs():
+    run(
+        "bio/fgbio/annotatebamwithumis",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a-a.annotated.bam",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -2232,8 +3067,6 @@ def test_freebayes_bcf():
                 "calls/a.bcf",
                 "--use-conda",
                 "-F",
-                "-s",
-                "Snakefile_bcf",
             ],
         )
 
@@ -2247,11 +3080,9 @@ def test_freebayes_bed():
                 "snakemake",
                 "--cores",
                 str(c),
-                "calls/a.bcf",
+                "calls/a.vcf.gz",
                 "--use-conda",
                 "-F",
-                "-s",
-                "Snakefile_bed",
             ],
         )
 
@@ -2288,7 +3119,14 @@ def test_happy_prepy():
 def test_happy_prepy():
     run(
         "bio/hap.py/pre.py",
-        ["snakemake", "--cores", "1", "normalized/variants.vcf", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "normalized/variants.vcf.gz",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -2337,6 +3175,14 @@ def test_homer_makeTagDirectory():
     run(
         "bio/homer/makeTagDirectory",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "tagDir/a"],
+    )
+
+
+@skip_if_not_modified
+def test_immunedeconv():
+    run(
+        "bio/immunedeconv",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "deconv.csv"],
     )
 
 
@@ -2462,7 +3308,14 @@ def test_minimap2_aligner_sam():
 def test_minimap2_aligner_sam_sorted():
     run(
         "bio/minimap2/aligner",
-        ["snakemake", "--cores", "1", "aligned/genome_aln.sorted.sam", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "aligned/genome_aln.sorted.sam",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -2470,7 +3323,59 @@ def test_minimap2_aligner_sam_sorted():
 def test_minimap2_aligner_bam_sorted():
     run(
         "bio/minimap2/aligner",
-        ["snakemake", "--cores", "1", "aligned/genome_aln.sorted.bam", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "aligned/genome_aln.sorted.bam",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+@skip_if_not_modified
+def test_minimap2_aligner_ubam_paf():
+    run(
+        "bio/minimap2/aligner",
+        ["snakemake", "--cores", "1", "aligned/genome_aln.ubam.paf", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_minimap2_aligner_ubam_sam():
+    run(
+        "bio/minimap2/aligner",
+        ["snakemake", "--cores", "1", "aligned/genome_aln.ubam.sam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_minimap2_aligner_ubam_sam_sorted():
+    run(
+        "bio/minimap2/aligner",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "aligned/genome_aln.sorted.ubam.sam",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_minimap2_aligner_ubam_bam_sorted():
+    run(
+        "bio/minimap2/aligner",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "aligned/genome_aln.sorted.ubam.bam",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -2569,23 +3474,23 @@ def test_multiqc():
 def test_multiqc_a():
     run(
         "bio/multiqc",
-        ["snakemake", "--cores", "1", "qc/multiqc_a.html", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "qc/multiqc.a.html", "--use-conda", "-F"],
     )
 
 
 @skip_if_not_modified
-def test_muscle_clw():
+def test_muscle_super5():
     run(
         "bio/muscle",
-        ["snakemake", "--cores", "1", "test-proteins.clw", "--use-conda", "-F"],
+        ["snakemake", "--cores", "2", "test-proteins.super5.fas", "--use-conda", "-F"],
     )
 
 
 @skip_if_not_modified
-def test_muscle_fa():
+def test_muscle_fas():
     run(
         "bio/muscle",
-        ["snakemake", "--cores", "1", "test-proteins.afa", "--use-conda", "-F"],
+        ["snakemake", "--cores", "2", "test-proteins.fas", "--use-conda", "-F"],
     )
 
 
@@ -2646,10 +3551,34 @@ def test_picard_addorreplacegroups():
 
 
 @skip_if_not_modified
-def test_picard_markduplicates():
+def test_picard_markduplicates_bam():
     run(
         "bio/picard/markduplicates",
-        ["snakemake", "--cores", "1", "dedup/a.bam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "dedup_bam/a.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_picard_markduplicateswithmatecigar_bam():
+    run(
+        "bio/picard/markduplicates",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "dedup_bam/a.matecigar.bam",
+            "dedup_bam/a.mcigar.bai",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_picard_markduplicates_sam():
+    run(
+        "bio/picard/markduplicates",
+        ["snakemake", "--cores", "1", "dedup_sam/a.sam", "--use-conda", "-F"],
     )
 
 
@@ -2657,15 +3586,15 @@ def test_picard_markduplicates():
 def test_picard_markduplicates_cram():
     run(
         "bio/picard/markduplicates",
-        ["snakemake", "--cores", "1", "dedup/a.cram", "--use-conda", "-F"],
-    )
-
-
-@skip_if_not_modified
-def test_picard_markduplicateswithmatecigar():
-    run(
-        "bio/picard/markduplicateswithmatecigar",
-        ["snakemake", "--cores", "1", "dedup/a.bam", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "dedup_cram/a.cram",
+            "dedup_cram/a.cram.crai",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -3161,18 +4090,16 @@ def test_star_align():
     os.makedirs("bio/star/align/test/index", exist_ok=True)
     try:
         subprocess.check_call(
-            "conda env create " "--file bio/star/align/environment.yaml " "-n star-env",
+            "mamba env create --file bio/star/align/environment.yaml -n star-env",
             shell=True,
-            executable="/bin/bash",
         )
         subprocess.check_call(
-            "source activate star-env; STAR --genomeDir "
+            "bash -l -c 'source $(dirname $(dirname $(which mamba)))/bin/activate star-env; STAR --genomeDir "
             "bio/star/align/test/index "
             "--genomeFastaFiles bio/star/align/test/genome.fasta "
             "--runMode genomeGenerate "
-            "--genomeSAindexNbases 8",
+            "--genomeSAindexNbases 8'",
             shell=True,
-            executable="/bin/bash",
         )
     finally:
         shutil.rmtree("star-env", ignore_errors=True)
@@ -3196,7 +4123,15 @@ def test_star_index():
 def test_snpeff_annotate():
     run(
         "bio/snpeff/annotate",
-        ["snakemake", "--cores", "1", "snpeff/fake_KJ660346.vcf", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "snpeff/fake_KJ660346.vcf",
+            "snpeff_nostats/fake_KJ660346.vcf",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -3216,27 +4151,10 @@ def test_snpeff_download():
 
 
 @skip_if_not_modified
-def test_snpeff_nostats():
-    run(
-        "bio/snpeff/annotate",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "snpeff_nostats/fake_KJ660346.vcf",
-            "--use-conda",
-            "-F",
-            "-s",
-            "Snakefile_nostats",
-        ],
-    )
-
-
-@skip_if_not_modified
 def test_strelka_germline():
     run(
         "bio/strelka/germline",
-        ["snakemake", "--cores", "1", "strelka/a", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "strelka/a.vcf.gz", "--use-conda", "-F"],
     )
 
 
@@ -3261,7 +4179,15 @@ def test_subread_featurecounts():
 def test_trim_galore_pe():
     run(
         "bio/trim_galore/pe",
-        ["snakemake", "--cores", "1", "trimmed/a.1_val_1.fq.gz", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "trimmed/a_R1.fq.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_trim_galore_pe_uncompressed():
+    run(
+        "bio/trim_galore/pe",
+        ["snakemake", "--cores", "1", "trimmed/a_R2.fastq", "--use-conda", "-F"],
     )
 
 
@@ -3270,6 +4196,14 @@ def test_trim_galore_se():
     run(
         "bio/trim_galore/se",
         ["snakemake", "--cores", "1", "trimmed/a_trimmed.fq.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_trim_galore_se_uncompressed():
+    run(
+        "bio/trim_galore/se",
+        ["snakemake", "--cores", "1", "trimmed/a_trimmed.fastq", "--use-conda", "-F"],
     )
 
 
@@ -3440,7 +4374,10 @@ def test_delly():
 
 @skip_if_not_modified
 def test_delly():
-    run("bio/delly", ["snakemake", "--cores", "1", "sv/calls.vcf.gz", "--use-conda", "-F"])
+    run(
+        "bio/delly",
+        ["snakemake", "--cores", "1", "sv/calls.vcf.gz", "--use-conda", "-F"],
+    )
 
 
 @skip_if_not_modified
@@ -3479,7 +4416,7 @@ def test_trinity():
             "snakemake",
             "--cores",
             "1",
-            "trinity_out_dir/Trinity.fasta",
+            "trinity_out_dir.Trinity.fasta",
             "--use-conda",
             "-F",
         ],
@@ -3597,6 +4534,57 @@ def test_salmon_quant():
 
 
 @skip_if_not_modified
+def test_gseapy_gsea():
+    run(
+        "bio/gseapy/gsea",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "KEGG_2016"
+        ]
+    )
+
+    run(
+        "bio/gseapy/gsea",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "gsea.results.csv"
+        ]
+    )
+
+    run(
+        "bio/gseapy/gsea",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "ssgsea.results.csv"
+        ]
+    )
+
+    run(
+        "bio/gseapy/gsea",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "prerank_results_dir"
+        ]
+    )
+
+
+@skip_if_not_modified
 def test_sourmash_compute():
     run(
         "bio/sourmash/compute/",
@@ -3650,10 +4638,34 @@ def test_vcftoolsfilter():
 
 
 @skip_if_not_modified
+def test_gatk_callcopyrationsegments():
+    run(
+        "bio/gatk/callcopyratiosegments",
+        ["snakemake", "--cores", "1", "a.called.seg", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk_calculatecontamination():
+    run(
+        "bio/gatk/calculatecontamination",
+        ["snakemake", "--cores", "1", "contamination.table", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_gatk_scatterintervalsbyns():
     run(
         "bio/gatk/scatterintervalsbyns",
         ["snakemake", "--cores", "1", "genome.intervals", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk_splitintervals():
+    run(
+        "bio/gatk/splitintervals",
+        ["snakemake", "--cores", "1", "out/genome.00.bed", "--use-conda", "-F"],
     )
 
 
@@ -3706,17 +4718,43 @@ def test_gatk_baserecalibratorspark():
 
 
 @skip_if_not_modified
+def test_gatk_collectreadcounts():
+    run(
+        "bio/gatk/collectreadcounts",
+        ["snakemake", "--cores", "1", "a.counts.hdf5", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk_collectalleliccounts():
+    run(
+        "bio/gatk/collectalleliccounts",
+        ["snakemake", "--cores", "1", "a.counts.tsv", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_gatk_applybqsr():
     run(
         "bio/gatk/applybqsr",
         ["snakemake", "--cores", "1", "recal/a.bam", "--use-conda", "-F"],
     )
 
+
 @skip_if_not_modified
 def test_gatk_applybqsr_cram():
     run(
         "bio/gatk/applybqsr",
-        ["snakemake", "-s", "Snakefile_cram", "--cores", "1", "recal/a.cram", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "-s",
+            "Snakefile_cram",
+            "--cores",
+            "1",
+            "recal/a.cram",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -3727,12 +4765,39 @@ def test_gatk_applybqsrspark():
         ["snakemake", "--cores", "1", "recal/a.bam", "--use-conda", "-F"],
     )
 
+
 @skip_if_not_modified
 def test_gatk_applybqsrspark_cram():
     run(
         "bio/gatk/applybqsrspark",
-        ["snakemake", "-s", "Snakefile_cram", "--cores", "1", "recal/a.cram", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "-s",
+            "Snakefile_cram",
+            "--cores",
+            "1",
+            "recal/a.cram",
+            "--use-conda",
+            "-F",
+        ],
     )
+
+
+@skip_if_not_modified
+def test_gatk_denoisereadcounts():
+    run(
+        "bio/gatk/denoisereadcounts",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "a.standardizedCR.tsv",
+            "a.denoisedCR.tsv",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
 
 @skip_if_not_modified
 def test_gatk_haplotypecaller_vcf():
@@ -3747,6 +4812,14 @@ def test_gatk_haplotypecaller_gvcf():
     run(
         "bio/gatk/haplotypecaller",
         ["snakemake", "--cores", "1", "calls/a.g.vcf", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk_modelsegments():
+    run(
+        "bio/gatk/modelsegments",
+        ["snakemake", "--cores", "1", "a.den.modelFinal.seg", "--use-conda", "-F"],
     )
 
 
@@ -3766,6 +4839,14 @@ def test_gatk_variantrecalibrator():
             "-F",
         ],
         check_log=check_log,
+    )
+
+
+@skip_if_not_modified
+def test_gatk_variantstotable():
+    run(
+        "bio/gatk/variantstotable",
+        ["snakemake", "--cores", "1", "calls/snvs.tab", "--use-conda", "-F"],
     )
 
 
@@ -3869,6 +4950,38 @@ def test_gatk_cleansam():
 
 
 @skip_if_not_modified
+def test_gatk3_realignertargetcreator():
+    run(
+        "bio/gatk3/realignertargetcreator",
+        ["snakemake", "--cores", "1", "a.intervals", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk3_indelrealigner():
+    run(
+        "bio/gatk3/indelrealigner",
+        ["snakemake", "--cores", "1", "a.realigned.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk3_baserecalibrator():
+    run(
+        "bio/gatk3/baserecalibrator",
+        ["snakemake", "--cores", "1", "a.recal_data_table", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk3_printreads():
+    run(
+        "bio/gatk3/printreads",
+        ["snakemake", "--cores", "1", "a.bqsr.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_picard_mergevcfs():
     run(
         "bio/picard/mergevcfs",
@@ -3898,13 +5011,32 @@ def test_gatk_mutect():
         "bio/gatk/mutect",
         ["snakemake", "--cores", "1", "variant/a.vcf", "--use-conda", "-F"],
     )
+    run(
+        "bio/gatk/mutect",
+        ["snakemake", "--cores", "1", "variant_complete/a.vcf", "--use-conda", "-F"],
+    )
 
 
 @skip_if_not_modified
 def test_gatk_learn_read_orientation():
     run(
         "bio/gatk/learnreadorientationmodel",
-        ["snakemake", "--cores", "1", "--use-conda"]
+        ["snakemake", "--cores", "1", "--use-conda"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk_leftalignandtrimvariants():
+    run(
+        "bio/gatk/leftalignandtrimvariants",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "calls/split_multiallelics.vcf",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -3912,7 +5044,7 @@ def test_gatk_learn_read_orientation():
 def test_gatk_getpileupsummaries():
     run(
         "bio/gatk/getpileupsummaries",
-        ["snakemake", "--cores", "1", "summaries.table", "--use-conda", "-F"]
+        ["snakemake", "--cores", "1", "summaries.table", "--use-conda", "-F"],
     )
 
 
@@ -4379,11 +5511,64 @@ def test_bismark_deduplicate_bismark():
             "snakemake",
             "--cores",
             "1",
-            "bams/a_genome_pe.deduplicated.bam",
-            "bams/b_genome.deduplicated.bam",
+            "bams/a_pe.deduplicated.bam",
+            "bams/b.deduplicated.bam",
             "--use-conda",
             "-F",
         ],
+    )
+
+
+@skip_if_not_modified
+def test_methyldackel_extract():
+    run(
+        "bio/methyldackel/extract",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "-F",
+            "--use-conda",
+            "cpg.meth.bg"
+        ]
+    )
+
+
+    run(
+        "bio/methyldackel/extract",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "-F",
+            "--use-conda",
+            "cpg.count.bg"
+        ]
+    )
+
+
+    run(
+        "bio/methyldackel/extract",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "-F",
+            "--use-conda",
+            "cpg.logit.bg"
+        ]
+    )
+
+    run(
+        "bio/methyldackel/extract",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "-F",
+            "--use-conda",
+            "report.tsv"
+        ]
     )
 
 
@@ -4648,7 +5833,15 @@ def test_vep_plugins():
 def test_vep_annotate():
     run(
         "bio/vep/annotate",
-        ["snakemake", "--cores", "1", "variants.annotated.bcf", "--use-conda", "-F", "--verbose"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "variants.annotated.bcf",
+            "--use-conda",
+            "-F",
+            "--verbose",
+        ],
     )
 
 
@@ -4656,7 +5849,15 @@ def test_vep_annotate():
 def test_genefuse():
     run(
         "bio/genefuse",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "a_fusions.txt", "a_genefuse_report.html"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "a_fusions.txt",
+            "a_genefuse_report.html",
+        ],
     )
 
 
@@ -4839,12 +6040,14 @@ def test_qualimaprnaseq():
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )
 
+
 @skip_if_not_modified
 def test_qualimapbamqc():
     run(
         "bio/qualimap/bamqc",
         ["snakemake", "--cores", "1", "qc/a", "--use-conda", "-F"],
     )
+
 
 @skip_if_not_modified
 def test_collectrnaseqmetrics():
@@ -4886,10 +6089,15 @@ def test_collectgcbiasmetrics():
 
 
 @skip_if_not_modified
-def test_calculate_expression():
+def test_rsem_calculate_expression():
     run(
         "bio/rsem/calculate-expression",
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/rsem/calculate-expression",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "-s", "Snakefile_fastq"],
     )
 
 
@@ -4935,6 +6143,7 @@ def test_verifybamid2():
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )
 
+
 @skip_if_not_modified
 def test_collapse_reads_to_fragments_bam():
     run(
@@ -4947,8 +6156,31 @@ def test_collapse_reads_to_fragments_bam():
 def test_calc_consensus_reads():
     run(
         "meta/bio/calc_consensus_reads/",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/consensus/sampleA.bam"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results/consensus/sampleA.bam",
+        ],
     )
+
+
+@skip_if_not_modified
+def test_bowtie2_sambamba_meta():
+    run(
+        "meta/bio/bowtie2_sambamba",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "mapped/Sample1.rmdup.bam.bai",
+        ],
+    )
+
 
 @skip_if_not_modified
 def test_bazam_interleaved():
@@ -4957,9 +6189,115 @@ def test_bazam_interleaved():
         ["snakemake", "--cores", "1", "--use-conda", "-F", "results/reads/a.fastq.gz"],
     )
 
+
 @skip_if_not_modified
 def test_bazam_separated():
     run(
         "bio/bazam",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/reads/a.r1.fastq.gz"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results/reads/a.r1.fastq.gz",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_ragtag_correction():
+    run(
+        "bio/ragtag/correction",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "query_corrected_reference/ragtag.correct.fasta",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_ragtag_patch():
+    run(
+        "bio/ragtag/patch",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "query_reference.fasta",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_ragtag_scaffold():
+    run(
+        "bio/ragtag/scaffold",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "query_scaffold_reference/ragtag.scaffold.fasta",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_ragtag_merge():
+    run(
+        "bio/ragtag/merge",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "asm_merged.fasta",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_barrnap():
+    run(
+        "bio/barrnap",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mitochondria.gff",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_encode_fastq_downloader():
+    run(
+        "bio/encode_fastq_downloader",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "ENCFF140TJA.fastq.gz"],
+    )
+
+
+@skip_if_not_modified
+def test_whatshap_haplotag():
+    run(
+        "bio/whatshap/haplotag",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "alignment.phased.bam",
+            "--use-conda",
+            "-F",
+        ],
     )

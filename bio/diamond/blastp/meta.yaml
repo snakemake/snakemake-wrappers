@@ -1,5 +1,13 @@
 name: "diamond blastp"
-description: DIAMOND is a sequence aligner for protein and translated DNA searches, designed for high performance analysis of big sequence data. For documentation, see https://github.com/bbuchfink/diamond/wiki
+description: DIAMOND is a sequence aligner for protein and translated DNA searches, designed for high performance analysis of big sequence data.
+url: https://github.com/bbuchfink/diamond/wiki
 authors:
   - Nikos Tsardakas Renhuldt
   - Kim Philipp Jablonski
+input:
+  - fname_fasta: Path to query file (Fasta formatted)
+  - fname_db: Path to diamon database
+output:
+  - fname: Path to query results
+params:
+  - extra: Optional parameters, besides `--threads`, `--db`, `--query`, and `--out`. 

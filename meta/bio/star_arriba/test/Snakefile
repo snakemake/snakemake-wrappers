@@ -1,12 +1,13 @@
 rule star_index:
     input:
         fasta="resources/genome.fasta",
-        annotation="resources/genome.gtf",
+        gtf="resources/genome.gtf",
     output:
         directory("resources/star_genome"),
     threads: 4
     params:
-        extra="--sjdbGTFfile resources/genome.gtf --sjdbOverhang 100",
+        sjdbOverhang=100,
+        extra="--genomeSAindexNbases 2",
     log:
         "logs/star_index_genome.log",
     cache: True  # mark as eligible for between workflow caching
@@ -21,6 +22,7 @@ rule star_align:
         fq1="reads/{sample}_R1.1.fastq",
         fq2="reads/{sample}_R2.1.fastq",  #optional
         idx="resources/star_genome",
+        annotation="resources/genome.gtf",
     output:
         # see STAR manual for additional output files
         aln="star/{sample}/Aligned.out.bam",
@@ -29,7 +31,7 @@ rule star_align:
         "logs/star/{sample}.log",
     params:
         # specific parameters to work well with arriba
-        extra="--quantMode GeneCounts --sjdbGTFfile resources/genome.gtf"
+        extra=lambda wc, input: f"--quantMode GeneCounts --sjdbGTFfile {input.annotation}"
         " --outSAMtype BAM Unsorted --chimSegmentMin 10 --chimOutType WithinBAM SoftClip"
         " --chimJunctionOverhangMin 10 --chimScoreMin 1 --chimScoreDropMax 30 --chimScoreJunctionNonGTAG 0"
         " --chimScoreSeparation 1 --alignSJstitchMismatchNmax 5 -1 5 5 --chimSegmentReadGapMax 3",
@@ -40,16 +42,22 @@ rule star_align:
 
 rule arriba:
     input:
-        bam="star/{sample}/Aligned.out.bam",
+        bam=rules.star_align.output.aln,
         genome="resources/genome.fasta",
         annotation="resources/genome.gtf",
+        # optional: # A custom tsv containing identified artifacts, such as read-through fusions of neighbouring genes.
+        # default blacklists are selected via blacklist parameter
+        # see https://arriba.readthedocs.io/en/latest/input-files/#blacklist
+        custom_blacklist=[],
     output:
         fusions="results/arriba/{sample}.fusions.tsv",
         discarded="results/arriba/{sample}.fusions.discarded.tsv",
     params:
-        # A tsv containing identified artifacts, such as read-through fusions of neighbouring genes, see https://arriba.readthedocs.io/en/latest/input-files/#blacklist
-        blacklist="arriba_blacklist.tsv",
-        extra="-T -P -i 1,2",  # -i describes the wanted contigs, remove if you want to use all hg38 chromosomes
+        # required if blacklist or known_fusions is set
+        genome_build="GRCh38",
+        default_blacklist=False,
+        default_known_fusions=True,
+        extra="",
     log:
         "logs/arriba/{sample}.log",
     threads: 1

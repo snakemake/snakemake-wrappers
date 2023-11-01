@@ -1,0 +1,33 @@
+rule test_cnv_facets_bam:
+    input:
+        tumor="T.sample.bam",
+        normal="N.sample.bam",
+        vcf="common.sample.vcf.gz",
+    output:
+        vcf="CNV_bam.vcf.gz",
+        cnv="genome_bam.cnv.png",
+        hist="cnv_bam.hist.pdf",
+        spider="qc_bam.spider.pdf",
+    log:
+        "logs/cnv_facets_bam.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/cnv_facets"
+
+
+rule test_cnv_facets_pileup:
+    input:
+        pileup="pileup.csv.gz",
+        vcf="common.sample.vcf.gz",
+    output:
+        vcf="CNV_pileup.vcf.gz",
+        cnv="genome_pileup.cnv.png",
+        hist="cnv_pileup.hist.pdf",
+        spider="qc_pileup.spider.pdf",
+    log:
+        "logs/cnv_facets_bam.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/cnv_facets"

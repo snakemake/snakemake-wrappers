@@ -7,7 +7,7 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 # Optional parameters
-provider = snakemake.params.get("provider", "UCSC")
+provider = snakemake.params.get("provider", "ucsc").lower()
 
 # set options for plugins
 all_plugins = "blacklist,bowtie2,bwa,gmap,hisat2,minimap2,star"
@@ -40,6 +40,6 @@ shell(
 
     # install the genome
     genomepy install {snakemake.wildcards.assembly} \
-    {provider} {annotation} -g {genome_dir} >> {log} 2>&1
+    --provider {provider} {annotation} -g {genome_dir} >> {log} 2>&1
     """
 )

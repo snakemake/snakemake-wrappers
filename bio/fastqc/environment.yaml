@@ -3,4 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - fastqc =0.11.9
+  - fastqc =0.12.1
+  - snakemake-wrapper-utils =0.6.2

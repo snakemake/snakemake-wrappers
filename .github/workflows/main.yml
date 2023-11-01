@@ -34,14 +34,19 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
+      - name: Setup mamba
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: snakemake
+          channels: "conda-forge, bioconda"
+          miniforge-variant: Mambaforge
+          miniforge-version: latest
+
       - name: Setup Snakemake environment
+        shell: bash -el {0}
         run: |
-          # ensure that mamba is happy to write into the cache
-          sudo chown -R runner:docker /usr/share/miniconda/pkgs/cache
-          conda install -c conda-forge mamba --quiet
-          export PATH="/usr/share/miniconda/bin:$PATH"
-          mamba create -c bioconda -c conda-forge --quiet -y --name snakemake snakemake-minimal pytest
           conda config --set channel_priority strict
+          mamba install -n snakemake -y snakemake-minimal pytest pandas
 
       - name: Fetch master
         if: github.ref != 'refs/heads/master'
@@ -49,13 +54,10 @@ jobs:
           git fetch origin master
 
       - name: Run tests
+        shell: bash -el {0}
         env:
           DIFF_MASTER: ${{ github.event_name == 'pull_request' }}
           DIFF_LAST_COMMIT: ${{ github.ref == 'refs/heads/master' }}
         run: |
-          # activate conda env
-          export PATH="/usr/share/miniconda/bin:$PATH"
-          source activate snakemake
-
           # run tests
           pytest test.py -v
