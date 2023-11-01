@@ -49,6 +49,7 @@ rule chipseq_pipeline:
         pipeline="nf-core/chipseq",
         revision="2.0.0",
         profile=["test", "docker"],
+        outdir=lambda wildcards, output: str(Path(output).parents[-2]),
         # any --<argname> pipeline arguments can be given here as <argname>=<value>
     handover: True
     wrapper:
