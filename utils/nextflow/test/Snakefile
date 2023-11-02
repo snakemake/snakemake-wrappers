@@ -49,6 +49,9 @@ rule chipseq_pipeline:
         pipeline="nf-core/chipseq",
         revision="2.0.0",
         profile=["test", "docker"],
+        # The chosen pipeline expects an --outdir to be given.
+        # We infer this from the output file path. Since that file path can be changed
+        # e.g. in case of cloud storage, we use a lambda function to infer the outdir.
         outdir=lambda wildcards, output: str(Path(output[0]).parents[-2]),
         # any --<argname> pipeline arguments can be given here as <argname>=<value>
     handover: True
