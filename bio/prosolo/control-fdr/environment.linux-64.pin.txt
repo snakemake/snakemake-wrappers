@@ -1,0 +1,45 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: linux-64
+@EXPLICIT
+https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
+https://conda.anaconda.org/conda-forge/noarch/kernel-headers_linux-64-2.6.32-he073ed8_16.conda#7ca122655873935e02c91279c5b03c8c
+https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.40-h41732ed_0.conda#7aca3059a1729aa76c597603f10b0dd3
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-devel_linux-64-13.2.0-ha9c7c90_2.conda#401c5cf212e568dab47e0677a000d2a7
+https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-13.2.0-h7e041cc_2.conda#9172c297304f2a20134fc56c97fbe229
+https://conda.anaconda.org/conda-forge/linux-64/libgomp-13.2.0-h807b86a_2.conda#e2042154faafe61969556f28bade94b9
+https://conda.anaconda.org/conda-forge/noarch/sysroot_linux-64-2.12-he073ed8_16.conda#071ea8dceff4d30ac511f4a2f8437cd1
+https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
+https://conda.anaconda.org/conda-forge/linux-64/binutils_impl_linux-64-2.40-hf600244_0.conda#33084421a8c0af6aef1b439707f7662a
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-13.2.0-h807b86a_2.conda#c28003b0be0494f9a7664389146716ff
+https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-h7f98852_4.tar.bz2#a1fd65c7ccbf10880423d82bca54eb54
+https://conda.anaconda.org/conda-forge/linux-64/icu-73.2-h59595ed_0.conda#cc47e1facc155f91abd89b11e48e72ff
+https://conda.anaconda.org/conda-forge/linux-64/libgfortran5-13.2.0-ha4646dd_2.conda#78fdab09d9138851dde2b5fe2a11019e
+https://conda.anaconda.org/conda-forge/linux-64/libiconv-1.17-h166bdaf_0.tar.bz2#b62b52da46c39ee2bc3c162ac7f1804d
+https://conda.anaconda.org/conda-forge/linux-64/libsanitizer-13.2.0-h7e041cc_2.conda#aa27066e2dcef56db7bc674f2230b6c9
+https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.2.13-hd590300_5.conda#f36c115f1ee199da648e0597ec2047ad
+https://conda.anaconda.org/conda-forge/linux-64/xz-5.2.6-h166bdaf_0.tar.bz2#2161070d867d1b1204ea749c8eec4ef0
+https://conda.anaconda.org/conda-forge/linux-64/gcc_impl_linux-64-13.2.0-h338b0a0_2.conda#b4f2ab4faf22658cca303570fd9a7662
+https://conda.anaconda.org/conda-forge/linux-64/libgfortran-ng-13.2.0-h69a702a_2.conda#e75a75a6eaf6f318dae2631158c46575
+https://conda.anaconda.org/conda-forge/linux-64/libxml2-2.11.5-h232c23b_1.conda#f3858448893839820d4bcfb14ad3ecdf
+https://conda.anaconda.org/conda-forge/linux-64/zlib-1.2.13-hd590300_5.conda#68c34ec6149623be41a1933ab996a209
+https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.5-hfc55251_0.conda#04b88013080254850d6c01ed54810589
+https://conda.anaconda.org/conda-forge/linux-64/libllvm17-17.0.4-h5cf9203_0.conda#024f2a3bfa1ac8ab83308097a408fc32
+https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.24-pthreads_h413a1c8_0.conda#6e4ef6ca28655124dcde9bd500e44c32
+https://conda.anaconda.org/conda-forge/linux-64/libblas-3.9.0-19_linux64_openblas.conda#420f4e9be59d0dc9133a0f43f7bab3f3
+https://conda.anaconda.org/conda-forge/linux-64/libclang-cpp17-17.0.4-default_h1cdf331_0.conda#c9396ce7dd1afe3f701df3bcd5db6660
+https://conda.anaconda.org/conda-forge/linux-64/libclang13-17.0.4-default_h4d60ac6_0.conda#f68746e0c589e5487eca6039d77772c4
+https://conda.anaconda.org/conda-forge/linux-64/llvm-tools-17.0.4-h5cf9203_0.conda#721433722f603e28f13eeee7012cc72b
+https://conda.anaconda.org/conda-forge/linux-64/clang-17-17.0.4-default_h1cdf331_0.conda#327ce6320ddac79866abe222aa4ed71f
+https://conda.anaconda.org/conda-forge/linux-64/clang-format-17-17.0.4-default_h1cdf331_0.conda#bb2b297db2b4a04a1ac69236c270cff4
+https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.9.0-19_linux64_openblas.conda#d12374af44575413fbbd4a217d46ea33
+https://conda.anaconda.org/conda-forge/linux-64/libclang-17.0.4-default_h1cdf331_0.conda#ab602d30b0ae085b21aa3b129dff415c
+https://conda.anaconda.org/conda-forge/linux-64/libclang-cpp-17.0.4-default_h1cdf331_0.conda#bfd796ec7f8cfb27cd9663f634bafff6
+https://conda.anaconda.org/conda-forge/linux-64/llvmdev-17.0.4-h5cf9203_0.conda#7c7a0c8ae7fed3d2506ebce34f478f5d
+https://conda.anaconda.org/conda-forge/linux-64/clang-17.0.4-ha0738ec_0.conda#d1d87ce65eca1ab3a111a33b2aaea243
+https://conda.anaconda.org/conda-forge/linux-64/clang-format-17.0.4-default_h1cdf331_0.conda#53279645ff192c8bd231683b99e53487
+https://conda.anaconda.org/conda-forge/linux-64/gsl-2.6-he838d99_2.tar.bz2#d54a10784d331d7b13f8af19acf297b7
+https://conda.anaconda.org/conda-forge/linux-64/clang-tools-17.0.4-default_h1cdf331_0.conda#804fb081fd49d8fa152a66dff5886872
+https://conda.anaconda.org/conda-forge/linux-64/clangxx-17.0.4-default_h1cdf331_0.conda#a654e802cb7bbd1fc74651be2064e5cb
+https://conda.anaconda.org/conda-forge/linux-64/clangdev-17.0.4-default_h1cdf331_0.conda#5b09eb84344306ffdf2a38541b0169bf
+https://conda.anaconda.org/bioconda/linux-64/prosolo-0.6.1-hc7800f0_1.tar.bz2#72914903744e31412e7001bd074543ae
