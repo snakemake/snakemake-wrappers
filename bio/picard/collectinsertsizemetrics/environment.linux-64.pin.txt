@@ -24,7 +24,7 @@ https://conda.anaconda.org/conda-forge/noarch/fonts-conda-ecosystem-1-0.tar.bz2#
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-13.2.0-h807b86a_2.conda#c28003b0be0494f9a7664389146716ff
 https://conda.anaconda.org/conda-forge/linux-64/alsa-lib-1.2.10-hd590300_0.conda#75dae9a4201732aa78a530b826ee5fe0
 https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-h7f98852_4.tar.bz2#a1fd65c7ccbf10880423d82bca54eb54
-https://conda.anaconda.org/conda-forge/linux-64/c-ares-1.20.1-hd590300_1.conda#2facbaf5ee1a56967aecaee89799160e
+https://conda.anaconda.org/conda-forge/linux-64/c-ares-1.21.0-hd590300_0.conda#c06fa0440048270817b9e3142cc661bf
 https://conda.anaconda.org/conda-forge/linux-64/fribidi-1.0.10-h36c2ea0_0.tar.bz2#ac7bc6a654f8f41b352b38f4051135f8
 https://conda.anaconda.org/conda-forge/linux-64/gettext-0.21.1-h27087fc_0.tar.bz2#14947d8770185e5153fdd04d4673ed37
 https://conda.anaconda.org/conda-forge/linux-64/giflib-5.2.1-h0b41bf4_3.conda#96f3b11872ef6fad973eac856cd2624f
@@ -66,7 +66,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libedit-3.1.20191231-he28a2e2_2.
 https://conda.anaconda.org/conda-forge/linux-64/libgfortran-ng-13.2.0-h69a702a_2.conda#e75a75a6eaf6f318dae2631158c46575
 https://conda.anaconda.org/conda-forge/linux-64/libnghttp2-1.55.1-h47da74e_0.conda#a802251d1eaeeae041c867faf0f94fa8
 https://conda.anaconda.org/conda-forge/linux-64/libpng-1.6.39-h753d276_0.conda#e1c890aebdebbfbf87e2c917187b4416
-https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.43.2-h2797004_0.conda#4b441a1ee22397d5a27dc1126b849edd
+https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.44.0-h2797004_0.conda#b58e6816d137f3aabf77d341dd5d732b
 https://conda.anaconda.org/conda-forge/linux-64/libssh2-1.11.0-h0841786_0.conda#1f5a58e686b13bcfde88b93f547d23fe
 https://conda.anaconda.org/conda-forge/linux-64/libxcb-1.15-h0b41bf4_0.conda#33277193f5b92bad9fdd230eb700929c
 https://conda.anaconda.org/conda-forge/linux-64/pcre2-10.40-hc3806b6_0.tar.bz2#69e2c796349cd9b273890bee0febfe1b
@@ -108,5 +108,5 @@ https://conda.anaconda.org/conda-forge/linux-64/harfbuzz-8.2.1-h3d44ed6_0.conda#
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libxtst-1.2.3-h7f98852_1002.tar.bz2#a220b1a513e19d5cb56c1311d44f12e6
 https://conda.anaconda.org/conda-forge/linux-64/openjdk-21.0.1-haa376d0_0.conda#1fe8f87c19c388209f593377c6147684
 https://conda.anaconda.org/conda-forge/linux-64/pango-1.50.14-ha41ecd1_2.conda#1a66c10f6a0da3dbd2f3a68127e7f6a0
-https://conda.anaconda.org/conda-forge/linux-64/r-base-4.3.1-h93585b2_6.conda#c14cf30d4f7373dcf225c690b9583a8c
+https://conda.anaconda.org/conda-forge/linux-64/r-base-4.3.2-h93585b2_0.conda#9efb62cf547119df0449e1a8dc8c291c
 https://conda.anaconda.org/bioconda/noarch/picard-3.1.0-hdfd78af_0.tar.bz2#d63951e3aa4c71195edca0f82d61aa6d
