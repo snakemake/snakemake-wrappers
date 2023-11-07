@@ -1763,6 +1763,10 @@ def test_bcftools_reheader():
         "bio/bcftools/reheader",
         ["snakemake", "--cores", "1", "a.reheader.bcf", "--use-conda", "-F"],
     )
+    run(
+        "bio/bcftools/reheader",
+        ["snakemake", "--cores", "1", "a.reheader_map.bcf", "--use-conda", "-F"],
+    )
 
 
 @skip_if_not_modified
