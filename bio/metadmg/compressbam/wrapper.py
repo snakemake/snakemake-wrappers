@@ -14,12 +14,9 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 ref = snakemake.input.get("ref", "")
 if ref:
-    ref = f"-ref {ref}"
-
-
-out_fmt = Path(snakemake.input.aln).suffix.lstrip(".").lower()
+    ref = f"--ref {ref}"
 
 
 shell(
-    "compressbam -@ {snakemake.threads} -hts {snakemake.input.aln} {ref} {extra} -type {out_fmt} -out {snakemake.output[0]} {log}"
+    "compressbam --threads {snakemake.threads} --input {snakemake.input.aln} {ref} {extra} --output {snakemake.output[0]} {log}"
 )

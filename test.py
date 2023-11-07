@@ -151,7 +151,7 @@ def test_metadmg_getdamage():
             "-F",
             "results/getdamage/a.out.gz",
             "results/getdamage/a.dmg.gz",
-            "results/getdamage/a.tsv",
+            "stats/getdamage/a.tsv",
         ],
     )
 
@@ -168,8 +168,24 @@ def test_metadmg_lca():
             "-F",
             "results/lca/a.out.gz",
             "results/lca/a.lca.gz",
-            "results/lca/a.tsv",
-            "results/lca/a.log",
+            "stats/lca/a.tsv",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_metadmg_dfit():
+    run(
+        "bio/metadmg/dfit",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results/dfit/a.out.gz",
+            "stats/dfit/a.dfit.tsv.gz",
+            "stats/dfit/a.boot.tsv.gz",
         ],
     )
 

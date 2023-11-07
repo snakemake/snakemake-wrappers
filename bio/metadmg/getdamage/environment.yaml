@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - metadmg =0.3
+  - metadmg =0.4

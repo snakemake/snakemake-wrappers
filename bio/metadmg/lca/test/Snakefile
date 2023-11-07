@@ -8,12 +8,11 @@ rule metadmg_lca:
     output:
         res="results/lca/{sample}.out.gz",
         lca="results/lca/{sample}.lca.gz",
-        stats="results/lca/{sample}.tsv",
-        log="results/lca/{sample}.log",
+        stats="stats/lca/{sample}.tsv",
     log:
         "logs/lca/{sample}.log",
     params:
-        extra="-simscorelow 0.95 -simscorehigh 1.0 -minmapq 30 -howmany 30 -lca_rank genus -fix_ncbi 0",
+        extra="--sim_score_low 0.95 --sim_score_high 1.0 --min_mapq 30 --how_many 30 --lca_rank genus --fix_ncbi 0",
     threads: 4
     resources:
         mem_mb=1024,
