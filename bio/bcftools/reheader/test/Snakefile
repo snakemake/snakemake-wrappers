@@ -15,7 +15,7 @@ rule bcftools_reheader:
         view_extra="",  # optional parameters for bcftools view
     threads: 2
     wrapper:
-        "/bio/bcftools/reheader"
+        "master//bio/bcftools/reheader"
 
 
 use rule bcftools_reheader as bcftools_reheader_map with:
