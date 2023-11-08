@@ -6157,6 +6157,21 @@ def test_collapse_reads_to_fragments_bam():
 
 
 @skip_if_not_modified
+def test_gatk_mutect2_calling_meta():
+    run(
+        "meta/bio/gatk_mutect2_calling",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "variant/Sample1.filtered.vcf.gz.tbi",
+        ]
+    )
+
+
+@skip_if_not_modified
 def test_calc_consensus_reads():
     run(
         "meta/bio/calc_consensus_reads/",
