@@ -1,12 +1,10 @@
 
-wildcard_constraints:
-    buildnr="/d+",
 
 rule map_reads_with_bbmap:
     input:
         input=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
         # Unfortunately bbmap requires index to be stored in this folder
-        flag=directory("ref/genome/1")
+        flag=directory("ref/genome/1"),
     output:
         out="mapped/{sample}.sam",
     log:
@@ -14,10 +12,11 @@ rule map_reads_with_bbmap:
         stdout="logs/bbmap/{sample}.out",
     params:
         command="bbmap.sh",  # Define which bbmap command to use
-        build=1,  # All parameters are passed to the command
+        # All parameters are passed to the command
         machineout=True,
         overwrite=True,  # reccomended
         unpigz=True,
+        nodisk=True,  # Don't write a index
     threads: 12
     resources:
         mem_mb=1000,  # optional: bbmap normaly needs a lot of memory, e.g. 60GB
@@ -46,13 +45,12 @@ rule pileup:  # all rules use the same wrapper!!
         "master/bio/bbtools"
 
 
-
 rule index_genome:
     input:
         ref="genome.fasta",
     output:
         # Unfortunately bbmap requires an index to be stored in this folder
-        flag=temp(directory("ref/genome/1"))
+        flag=temp(directory("ref/genome/1")),
     params:
         command="bbmap.sh",
     log:
@@ -68,7 +66,7 @@ rule create_pe_reads:
         out=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
     params:
         command="randomreads.sh",
-        build = 1,
+        build=1,
         length=100,
         reads=10,
         paired=True,
@@ -87,7 +85,8 @@ rule create_se_reads:
         out="reads/se/{sample}.fastq.gz",
     params:
         command="randomreads.sh",
-        nodisk=True, # Don't use write a index
+        # use a different build to create reads
+        build=2,
         length=100,
         reads=10,
         overwrite=True,
