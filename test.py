@@ -1788,6 +1788,10 @@ def test_bcftools_reheader():
         "bio/bcftools/reheader",
         ["snakemake", "--cores", "1", "a.reheader.bcf", "--use-conda", "-F"],
     )
+    run(
+        "bio/bcftools/reheader",
+        ["snakemake", "--cores", "1", "a.reheader_map.bcf", "--use-conda", "-F"],
+    )
 
 
 @skip_if_not_modified
@@ -6158,6 +6162,21 @@ def test_collapse_reads_to_fragments_bam():
     run(
         "bio/rbt/collapse_reads_to_fragments-bam",
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_gatk_mutect2_calling_meta():
+    run(
+        "meta/bio/gatk_mutect2_calling",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "variant/Sample1.filtered.vcf.gz.tbi",
+        ]
     )
 
 
