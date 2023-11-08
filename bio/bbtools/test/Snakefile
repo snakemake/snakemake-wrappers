@@ -1,10 +1,12 @@
 
-
+wildcard_constraints:
+    buildnr="/d+",
 
 rule map_reads_with_bbmap:
     input:
         input=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
-        ref="genome.fasta",
+        # Unfortunately bbmap requires index to be stored in this folder
+        flag=directory("ref/genome/1")
     output:
         out="mapped/{sample}.sam",
     log:
@@ -12,9 +14,9 @@ rule map_reads_with_bbmap:
         stdout="logs/bbmap/{sample}.out",
     params:
         command="bbmap.sh",  # Define which bbmap command to use
-        nodisk=True,  # All parameters are passed to the command
+        build=1,  # All parameters are passed to the command
         machineout=True,
-        overwrite=True,  # Otherwise snakemake has problems
+        overwrite=True,  # reccomended
         unpigz=True,
     threads: 12
     resources:
@@ -44,14 +46,15 @@ rule pileup:  # all rules use the same wrapper!!
         "master/bio/bbtools"
 
 
+
 rule index_genome:
     input:
         ref="genome.fasta",
     output:
-        flag=touch("genome.indexed"),
+        # Unfortunately bbmap requires an index to be stored in this folder
+        flag=temp(directory("ref/genome/1"))
     params:
         command="bbmap.sh",
-        build= 1
     log:
         "logs/index/genome.log",
     wrapper:
@@ -60,12 +63,12 @@ rule index_genome:
 
 rule create_pe_reads:
     input:
-        ref="genome.fasta",
-        flag="genome.indexed",
+        flag="ref/genome/1",
     output:
         out=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
     params:
         command="randomreads.sh",
+        build = 1,
         length=100,
         reads=10,
         paired=True,
@@ -80,11 +83,11 @@ rule create_pe_reads:
 rule create_se_reads:
     input:
         ref="genome.fasta",
-        flag="genome.indexed",
     output:
         out="reads/se/{sample}.fastq.gz",
     params:
         command="randomreads.sh",
+        nodisk=True, # Don't use write a index
         length=100,
         reads=10,
         overwrite=True,
