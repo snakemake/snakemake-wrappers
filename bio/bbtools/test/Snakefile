@@ -84,28 +84,51 @@ rule create_reads:
         "master/bio/bbtools"
 
 
-rule bbduk:
+rule bbduk_pe:
     input:
-        reads=["reads/se/{sample}.fastq.gz"],
+        reads=expand(
+            "reads/raw/{{sample}}_{fraction}.fastq.gz", fraction=["R1", "R2"]
+        ),
         adapters="adapt.fas",
     output:
-        "trimmed/se/{sample}.fastq.gz",
-        outsingle="trimmed/se/{sample}.single.fastq.gz",
-        outmatch="trimmed/se/{sample}.discarded.fastq.gz",
-        stats="trimmed/se/{sample}.stats.txt",
+        out=expand(
+            "reads/trimmed/{{sample}}_{fraction}.fastq.gz", fraction=["R1", "R2"]
+        ),
+        outsingle="reads/trimmed/{sample}.single.fastq.gz",
+        outmatch="reads/trimmed/{sample}.discarded.fastq.gz",
+        stats="stats/trimming_stats/{sample}.txt",
     log:
-        "logs/bbduk/se/{sample}.log",
+        "logs/bbduk/{sample}.log",
     params:
         command="bbduk.sh",
-        # This is not reccomended, but I keep it from previous version
-        extra=lambda w, input: "ref={},adapters,artifacts ktrim=r k=23 mink=11 hdist=1 tpe tbo trimpolygright=10 minlen=25 maxns=30 entropy=0.5 entropywindow=50 entropyk=5".format(
-            input.adapters
-        ),
+        extra="tpe tbo ",
+        ref=lambda w, input: f"ref={input.adapters},adapters,artifacts",
+        ktrim="r",
+        k=23,
+        mink=11,
+        hdist=1,
+        trimpolygright=10,
+        minlen=25,
+        maxns=30,
+        entropy=0.5,
+        entropywindow=50,
+        entropyk=5,
     resources:
         mem_mb=4000,
     threads: 7
     wrapper:
         "master/bio/bbtools"
+
+
+use rule bbduk_pe as bbduk_se with:
+    input:
+        reads= "reads/raw/{sample}_se.fastq.gz"
+
+        adapters="adapt.fas",
+
+
+rule bbduk_se:
+
 
 
 #### Tadpole wrapper
@@ -251,27 +274,3 @@ rule loglog_pe:
 
 
 ## BBduck
-
-
-rule bbduk_pe:
-    input:
-        reads=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
-        adapters="adapt.fas",
-    output:
-        out=["trimmed/pe/{sample}.1.fastq.gz", "trimmed/pe/{sample}.2.fastq.gz"],
-        outsingle="trimmed/pe/{sample}.single.fastq.gz",
-        outmatch="trimmed/pe/{sample}.discarded.fastq.gz",
-        stats="trimmed/pe/{sample}.stats.txt",
-    log:
-        "logs/bbduk/pe/{sample}.log",
-    params:
-        command="bbduk.sh",
-        # This is not reccomended, but I keep it from previous version
-        extra=lambda w, input: "ref={},adapters,artifacts ktrim=r k=23 mink=11 hdist=1 tpe tbo trimpolygright=10 minlen=25 maxns=30 entropy=0.5 entropywindow=50 entropyk=5".format(
-            input.adapters
-        ),
-    resources:
-        mem_mb=4000,
-    threads: 7
-    wrapper:
-        "master/bio/bbtools"
