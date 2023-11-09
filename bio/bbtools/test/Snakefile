@@ -1,3 +1,11 @@
+def get_fractions():
+    if config.get("reads_are_paired", True):
+        fractions = ["R1", "R2"]
+    else:
+        fractions = "se"
+
+    return fractions
+
 
 rule index_genome:
     input:
@@ -14,7 +22,9 @@ rule index_genome:
 
 rule map_reads_with_bbmap:
     input:
-        input=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
+        input=expand(
+            "reads/QC/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()
+        ),
         path="path/to/indexes/genome/",  # path to the index base folder
     output:
         out="mapped/{sample}.sam",
@@ -56,11 +66,11 @@ rule pileup:  # all rules use the same wrapper!!
         "master/bio/bbtools"
 
 
-rule create_pe_reads:
+rule create_reads:
     input:
         path="path/to/indexes/genome/",
     output:
-        out=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
+        out=expand("reads/raw/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()),
     params:
         command="randomreads.sh",
         length=100,
@@ -74,22 +84,26 @@ rule create_pe_reads:
         "master/bio/bbtools"
 
 
-rule create_se_reads:
+rule bbduk:
     input:
-        ref="genome.fasta",
+        reads=["reads/se/{sample}.fastq.gz"],
+        adapters="adapt.fas",
     output:
-        out="reads/se/{sample}.fastq.gz",
-    params:
-        command="randomreads.sh",
-        # use a different build to create reads
-        # genome index is stored in 'ref/genome/{build}' and 'ref/index/{build}'
-        build=2,
-        length=100,
-        reads=10,
-        overwrite=True,
-        pigz=True,
+        "trimmed/se/{sample}.fastq.gz",
+        outsingle="trimmed/se/{sample}.single.fastq.gz",
+        outmatch="trimmed/se/{sample}.discarded.fastq.gz",
+        stats="trimmed/se/{sample}.stats.txt",
     log:
-        "logs/create_reads/{sample}.log",
+        "logs/bbduk/se/{sample}.log",
+    params:
+        command="bbduk.sh",
+        # This is not reccomended, but I keep it from previous version
+        extra=lambda w, input: "ref={},adapters,artifacts ktrim=r k=23 mink=11 hdist=1 tpe tbo trimpolygright=10 minlen=25 maxns=30 entropy=0.5 entropywindow=50 entropyk=5".format(
+            input.adapters
+        ),
+    resources:
+        mem_mb=4000,
+    threads: 7
     wrapper:
         "master/bio/bbtools"
 
@@ -237,30 +251,6 @@ rule loglog_pe:
 
 
 ## BBduck
-
-
-rule bbduk_se:
-    input:
-        reads=["reads/se/{sample}.fastq.gz"],
-        adapters="adapt.fas",
-    output:
-        "trimmed/se/{sample}.fastq.gz",
-        outsingle="trimmed/se/{sample}.single.fastq.gz",
-        outmatch="trimmed/se/{sample}.discarded.fastq.gz",
-        stats="trimmed/se/{sample}.stats.txt",
-    log:
-        "logs/bbduk/se/{sample}.log",
-    params:
-        command="bbduk.sh",
-        # This is not reccomended, but I keep it from previous version
-        extra=lambda w, input: "ref={},adapters,artifacts ktrim=r k=23 mink=11 hdist=1 tpe tbo trimpolygright=10 minlen=25 maxns=30 entropy=0.5 entropywindow=50 entropyk=5".format(
-            input.adapters
-        ),
-    resources:
-        mem_mb=4000,
-    threads: 7
-    wrapper:
-        "master/bio/bbtools"
 
 
 rule bbduk_pe:
