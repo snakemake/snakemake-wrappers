@@ -1,10 +1,21 @@
 
+rule index_genome:
+    input:
+        ref="genome.fasta",
+    output:
+        path=temp(directory("path/to/indexes/genome/")),
+    params:
+        command="bbmap.sh",
+    log:
+        "logs/index/genome.log",
+    wrapper:
+        "master/bio/bbtools"
+
 
 rule map_reads_with_bbmap:
     input:
         input=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
-        # Unfortunately bbmap requires index to be stored in this folder
-        flag=directory("ref/genome/1"),
+        path="path/to/indexes/genome/",  # path to the index base folder
     output:
         out="mapped/{sample}.sam",
     log:
@@ -45,28 +56,13 @@ rule pileup:  # all rules use the same wrapper!!
         "master/bio/bbtools"
 
 
-rule index_genome:
-    input:
-        ref="genome.fasta",
-    output:
-        # Unfortunately bbmap requires an index to be stored in this folder
-        flag=temp(directory("ref/genome/1")),
-    params:
-        command="bbmap.sh",
-    log:
-        "logs/index/genome.log",
-    wrapper:
-        "master/bio/bbtools"
-
-
 rule create_pe_reads:
     input:
-        flag="ref/genome/1",
+        path="path/to/indexes/genome/",
     output:
         out=["reads/pe/{sample}.1.fastq.gz", "reads/pe/{sample}.2.fastq.gz"],
     params:
         command="randomreads.sh",
-        build=1,
         length=100,
         reads=10,
         paired=True,
@@ -86,6 +82,7 @@ rule create_se_reads:
     params:
         command="randomreads.sh",
         # use a different build to create reads
+        # genome index is stored in 'ref/genome/{build}' and 'ref/index/{build}'
         build=2,
         length=100,
         reads=10,
