@@ -161,13 +161,15 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
+logger = logging.getLogger(__file__)
+
 
 def handle_exception(exc_type, exc_value, exc_traceback):
     if issubclass(exc_type, KeyboardInterrupt):
         sys.__excepthook__(exc_type, exc_value, exc_traceback)
         return
 
-    logging.error(
+    logger.error(
         "".join(
             [
                 "Uncaught exception: ",
@@ -180,9 +182,8 @@ def handle_exception(exc_type, exc_value, exc_traceback):
 # Install exception handler
 sys.excepthook = handle_exception
 
-logger = logging.getLogger(__file__)
 
-###################################### Beginning of logging ######################################
+###################################### Beginning of wrapper ######################################
 
 
 # global flags to check if input and output are parsed multiple times
@@ -404,9 +405,6 @@ def parse_bbtool(snakemake):
     command_with_parameters += f" {java_opts} {log}"
 
     return command_with_parameters
-
-
-###################################### beginn of wrapper
 
 
 from snakemake.shell import shell
