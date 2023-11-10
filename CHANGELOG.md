@@ -1,5 +1,36 @@
 # Changelog
 
+## [2.11.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.10.0...v2.11.0) (2023-11-10)
+
+
+### Features
+
+* Gatk short-variants-calling meta-wrapper ([#1778](https://www.github.com/snakemake/snakemake-wrappers/issues/1778)) ([4099e4b](https://www.github.com/snakemake/snakemake-wrappers/commit/4099e4bb17959efc5037d48c7557b5668e196acd))
+
+
+### Performance Improvements
+
+* autobump bio/gatk/applybqsr ([#2300](https://www.github.com/snakemake/snakemake-wrappers/issues/2300)) ([eb86cea](https://www.github.com/snakemake/snakemake-wrappers/commit/eb86cea6a11781b6461471e3b1deaffce06c42c6))
+* autobump bio/gatk/callcopyratiosegments ([#2303](https://www.github.com/snakemake/snakemake-wrappers/issues/2303)) ([a079efa](https://www.github.com/snakemake/snakemake-wrappers/commit/a079efaeccbb45437b96afab79a732a44407b080))
+* autobump bio/gatk/filtermutectcalls ([#2304](https://www.github.com/snakemake/snakemake-wrappers/issues/2304)) ([14cdc1f](https://www.github.com/snakemake/snakemake-wrappers/commit/14cdc1fd51517025114b88ee329c144fbb5bf86c))
+* autobump bio/gatk/haplotypecaller ([#2307](https://www.github.com/snakemake/snakemake-wrappers/issues/2307)) ([ff59451](https://www.github.com/snakemake/snakemake-wrappers/commit/ff594514fb4baa264a38383baca3835f5afd6e33))
+* autobump bio/gatk/leftalignandtrimvariants ([#2302](https://www.github.com/snakemake/snakemake-wrappers/issues/2302)) ([998385d](https://www.github.com/snakemake/snakemake-wrappers/commit/998385d95c5791d5759ad2a807862f4db4d158b0))
+* autobump bio/gatk/printreadsspark ([#2308](https://www.github.com/snakemake/snakemake-wrappers/issues/2308)) ([2aa9b79](https://www.github.com/snakemake/snakemake-wrappers/commit/2aa9b79149cf81be0c19fe3217b43ddf44d6ffce))
+* autobump bio/gatk/scatterintervalsbyns ([#2305](https://www.github.com/snakemake/snakemake-wrappers/issues/2305)) ([9ddace9](https://www.github.com/snakemake/snakemake-wrappers/commit/9ddace94c7341e488c69b6ca8024528ea6009839))
+* autobump bio/gatk/variantannotator ([#2306](https://www.github.com/snakemake/snakemake-wrappers/issues/2306)) ([2d43be9](https://www.github.com/snakemake/snakemake-wrappers/commit/2d43be90f73466c5e9b611a3c71eca454efc1b38))
+* autobump bio/gatk/varianteval ([#2301](https://www.github.com/snakemake/snakemake-wrappers/issues/2301)) ([a987c19](https://www.github.com/snakemake/snakemake-wrappers/commit/a987c19cb8027a98dd211620163fbe9afba45c2e))
+* autobump bio/genomepy ([#2299](https://www.github.com/snakemake/snakemake-wrappers/issues/2299)) ([cfc3db3](https://www.github.com/snakemake/snakemake-wrappers/commit/cfc3db3deae107764d910c3b650d9b358080a68d))
+* autobump bio/gridss/preprocess ([#2298](https://www.github.com/snakemake/snakemake-wrappers/issues/2298)) ([7cddab3](https://www.github.com/snakemake/snakemake-wrappers/commit/7cddab3f69e7c10dfb8453e6bccb429a287cfceb))
+* autobump bio/hifiasm ([#2309](https://www.github.com/snakemake/snakemake-wrappers/issues/2309)) ([2d52e06](https://www.github.com/snakemake/snakemake-wrappers/commit/2d52e065539759eebf6a470bc802649096e2d971))
+* autobump bio/kallisto/index ([#2246](https://www.github.com/snakemake/snakemake-wrappers/issues/2246)) ([29b1c32](https://www.github.com/snakemake/snakemake-wrappers/commit/29b1c32d24689084247611a09395e5b24109dc0c))
+* autobump bio/last/lastal ([#2310](https://www.github.com/snakemake/snakemake-wrappers/issues/2310)) ([0c4ff31](https://www.github.com/snakemake/snakemake-wrappers/commit/0c4ff31c0737a387e6908b5b149023c35bbc925b))
+* autobump bio/last/lastdb ([#2093](https://www.github.com/snakemake/snakemake-wrappers/issues/2093)) ([d055ba9](https://www.github.com/snakemake/snakemake-wrappers/commit/d055ba9ebc4e8863069a379dcc50ef25f41face2))
+* autobump bio/pbmm2/align ([#2313](https://www.github.com/snakemake/snakemake-wrappers/issues/2313)) ([d977038](https://www.github.com/snakemake/snakemake-wrappers/commit/d977038730e2e64aa69d210a5c6473bd37f5983a))
+* autobump bio/pbmm2/index ([#2312](https://www.github.com/snakemake/snakemake-wrappers/issues/2312)) ([8c714a6](https://www.github.com/snakemake/snakemake-wrappers/commit/8c714a635785f82ee26df1225844371785cd1c2f))
+* autobump bio/pyroe/makesplicedintronic ([#2314](https://www.github.com/snakemake/snakemake-wrappers/issues/2314)) ([dcb1810](https://www.github.com/snakemake/snakemake-wrappers/commit/dcb1810b6b667e1c4e5442927ae3585d8c681b1d))
+* autobump bio/pyroe/makeunspliceunspliced ([#2311](https://www.github.com/snakemake/snakemake-wrappers/issues/2311)) ([295df81](https://www.github.com/snakemake/snakemake-wrappers/commit/295df81e10435955afca1f81460c9f4b773dc823))
+* autobump bio/seqkit ([#2315](https://www.github.com/snakemake/snakemake-wrappers/issues/2315)) ([5d8cd40](https://www.github.com/snakemake/snakemake-wrappers/commit/5d8cd40df228e60f218e27eb70c830ddf5f17c77))
+
 ## [2.10.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.9.1...v2.10.0) (2023-11-08)
 
 
