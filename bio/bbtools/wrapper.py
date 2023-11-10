@@ -213,7 +213,7 @@ def get_java_opts(snakemake, java_mem_overhead_factor=0.15) -> str:
     if "-Xmx" in extra:
         sys.exit(java_mem_xmx_error("extra"))
 
-    " -Xmx{}M".format(round(get_mem(snakemake) * (1.0 - java_mem_overhead_factor)))
+    return " -Xmx{}M".format(round(get_mem(snakemake) * (1.0 - java_mem_overhead_factor)))
 
 
 def _parse_bbmap_in_out(input_or_output, values):
