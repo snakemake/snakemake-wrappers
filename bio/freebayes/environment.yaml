@@ -8,6 +8,6 @@ dependencies:
   - vcflib =1.0.9
   - htslib =1.18
   - parallel =20230922
-  - bedtools =2.31.0
+  - bedtools =2.31.1
   - sed =4.8
   - snakemake-wrapper-utils =0.6.2
