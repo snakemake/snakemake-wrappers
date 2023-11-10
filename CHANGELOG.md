@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.11.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.11.0...v2.11.1) (2023-11-10)
+
+
+### Performance Improvements
+
+* autobump utils/nextflow ([#2120](https://www.github.com/snakemake/snakemake-wrappers/issues/2120)) ([45ea105](https://www.github.com/snakemake/snakemake-wrappers/commit/45ea10591e835b4579031bea53399a2211ff76ec))
+
 ## [2.11.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.10.0...v2.11.0) (2023-11-10)
 
 
