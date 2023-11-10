@@ -213,7 +213,10 @@ def get_java_opts(snakemake, java_mem_overhead_factor=0.15) -> str:
     if "-Xmx" in extra:
         sys.exit(java_mem_xmx_error("extra"))
 
-    return " -Xmx{}M".format(round(get_mem(snakemake) * (1.0 - java_mem_overhead_factor)))
+    mem_mb = get_mem(snakemake)
+    logger.debug(f"Memory specified {mem_mb} MiB, use {(1.0 - java_mem_overhead_factor)*100}% of it for Java heap.")
+
+    return " -Xmx{}M".format(round(mem_mb * (1.0 - java_mem_overhead_factor)))
 
 
 def _parse_bbmap_in_out(input_or_output, values):
