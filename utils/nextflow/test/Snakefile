@@ -34,7 +34,7 @@ rule get_design:  # [hide]
     log:  # [hide]
         "logs/get-design.log",  # [hide]
     shell:  # [hide]
-        "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/design.csv > {output} 2> {log}"  # [hide]
+        "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/samplesheet/v2.0/samplesheet_test.csv > {output} 2> {log}"  # [hide]
 
 
 rule chipseq_pipeline:
