@@ -15,6 +15,8 @@ reads = snakemake.input.reads
 aligned = snakemake.output.get("aligned", None)
 other = snakemake.output.get("other", None)
 stats = snakemake.output.get("stats", None)
+mem_mb = snakemake.resources.get("mem_mb", 3072) # Default value
+
 if isinstance(ref, list):
     ref = " --ref ".join(ref)
 
@@ -53,6 +55,7 @@ with tempfile.TemporaryDirectory() as temp_workdir:
         " --reads {reads}"
         " --workdir {temp_workdir}"
         " --threads {snakemake.threads}"
+        " -m {mem_mb}"
         " --aligned {temp_workdir}/aligned_reads"
         " --other {temp_workdir}/other_reads"
         " {extra}"

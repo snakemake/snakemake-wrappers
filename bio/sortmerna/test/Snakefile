@@ -9,6 +9,8 @@ rule sortmerna_pe:
     params:
         extra="--idx-dir idx --paired_in --out2",
     threads: 1
+    resources:
+        mem_mb=1024,  # amount of memory for building the index
     log:
         "logs/sortmerna/reads_pe.log",
     wrapper:
@@ -26,6 +28,8 @@ rule sortmerna_se:
     params:
         extra="--idx-dir idx",
     threads: 1
+    resources:
+        mem_mb=1024,  # amount of memory for building the index
     log:
         "logs/sortmerna/reads_se.log",
     wrapper:
