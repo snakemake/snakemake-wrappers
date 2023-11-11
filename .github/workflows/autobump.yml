@@ -1,11 +1,21 @@
 name: autobump
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "50 0 * * 5"
 
+concurrency:
+  group: '${{ github.workflow }}'
+  cancel-in-progress: true
+
 jobs:
   autobump:
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        prefix: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -22,4 +32,5 @@ jobs:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         with:
           subcommand: update-conda-envs
-          args: "*/*/environment.yaml */*/*/environment.yaml --create-prs --warn-on-error --entity-regex '(?P<entity>.+)/environment.yaml' --pr-add-label"
+          args: "*/${{ matrix.prefix }}*/environment.yaml */${{ matrix.prefix }}*/*/environment.yaml --create-prs --warn-on-error --entity-regex '(?P<entity>.+)/environment.yaml' --pr-add-label --pin-envs"
+        

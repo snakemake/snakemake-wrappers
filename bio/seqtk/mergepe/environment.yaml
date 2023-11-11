@@ -1,7 +1,0 @@
-channels:
-  - conda-forge
-  - bioconda
-  - nodefaults
-dependencies:
-  - seqtk =1.3
-  - pigz =2.6

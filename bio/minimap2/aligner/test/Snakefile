@@ -64,3 +64,70 @@ rule minimap2_bam_sorted:
     threads: 3
     wrapper:
         "master/bio/minimap2/aligner"
+
+rule minimap2_ubam_paf:
+    input:
+        target="target/{input1}.mmi",  # can be either genome index or genome fasta
+        query="query/reads.bam",
+    output:
+        "aligned/{input1}_aln.ubam.paf",
+    log:
+        "logs/minimap2/{input1}.ubam.log",
+    params:
+        extra="-x map-pb",  # optional
+        sorting="coordinate",  # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
+        sort_extra="",  # optional: extra arguments for samtools/picard
+    threads: 3
+    wrapper:
+        "master/bio/minimap2/aligner"
+
+
+rule minimap2_ubam_sam:
+    input:
+        target="target/{input1}.mmi",  # can be either genome index or genome fasta
+        query="query/reads.bam",
+    output:
+        "aligned/{input1}_aln.ubam.sam",
+    log:
+        "logs/minimap2/{input1}.ubam.log",
+    params:
+        extra="-x map-pb",  # optional
+        sorting="none",  # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
+        sort_extra="",  # optional: extra arguments for samtools/picard
+    threads: 3
+    wrapper:
+        "master/bio/minimap2/aligner"
+
+
+rule minimap2_ubam_sam_sorted:
+    input:
+        target="target/{input1}.mmi",  # can be either genome index or genome fasta
+        query="query/reads.bam",
+    output:
+        "aligned/{input1}_aln.sorted.ubam.sam",
+    log:
+        "logs/minimap2/{input1}.ubam.log",
+    params:
+        extra="-x map-pb",  # optional
+        sorting="queryname",  # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
+        sort_extra="",  # optional: extra arguments for samtools/picard
+    threads: 3
+    wrapper:
+        "master/bio/minimap2/aligner"
+
+
+rule minimap2_ubam_bam_sorted:
+    input:
+        target="target/{input1}.mmi",  # can be either genome index or genome fasta
+        query="query/reads.bam",
+    output:
+        "aligned/{input1}_aln.sorted.ubam.bam",
+    log:
+        "logs/minimap2/{input1}.ubam.log",
+    params:
+        extra="-x map-pb",  # optional
+        sorting="coordinate",  # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
+        sort_extra="",  # optional: extra arguments for samtools/picard
+    threads: 3
+    wrapper:
+        "master/bio/minimap2/aligner"

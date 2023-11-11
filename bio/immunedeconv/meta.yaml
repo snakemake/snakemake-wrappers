@@ -1,0 +1,20 @@
+name: immunedeconv
+description: |
+  Perform immune deconvolution from human or mouse gene expression with immunedeconv
+url: https://github.com/omnideconv/immunedeconv/tree/master
+authors:
+  - Thibault Dayris
+input:
+  - expr: Path to gene expression matrix (RDS, CSV, or TSV formatted).
+  - signature: Optional path to custom cell-type signatures.
+  - cibersort_bin: Path to CIBERSORT binary, required for CIBERSORT deconvolution.
+  - cibersort_mat: Path to CIBERSORT signatures matrix, required for CIBERSORT deconvolution.
+output:
+  - Path to deconvolution result (RDS, CSV, or TSV formatted).
+params:
+  - method: Optional immunedeconv method to use, default = "deconvolute"
+  - extra: Optional parameters to provide to immunedeconv, besides `gene_expression_matrix`, and `signature_matrix`.
+note: |
+  * Input and output matrices cas be either `RDS`, `csv` or `tsv` formatted.
+  * Since CIBERSORT is not available through `conda`, binary must be provided.
+  * Warning: The `method` parameter is case sensitive.
