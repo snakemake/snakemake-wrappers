@@ -5678,3 +5678,30 @@ def test_barrnap():
             "-F",
         ],
     )
+
+@skip_if_not_modified
+def test_sortmerna_pe():
+    run(
+        "bio/sortmerna",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "aligned_1.fastq.gz",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+def test_sortmerna_se():
+    run(
+        "bio/sortmerna",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "unpaired.fastq",
+            "--use-conda",
+            "-F",
+        ],
+    )
