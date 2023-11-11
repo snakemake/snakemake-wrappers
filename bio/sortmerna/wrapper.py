@@ -15,7 +15,7 @@ reads = snakemake.input.reads
 aligned = snakemake.output.get("aligned", None)
 other = snakemake.output.get("other", None)
 stats = snakemake.output.get("stats", None)
-mem_mb = snakemake.resources.get("mem_mb", 3072) # Default value
+mem_mb = snakemake.resources.get("mem_mb", 3072)  # Default value
 
 if isinstance(ref, list):
     ref = " --ref ".join(ref)
@@ -47,7 +47,7 @@ if isinstance(reads, list):
 
 if stats:
     assert isinstance(stats, str), "stats must be a single file"
-    
+
 
 with tempfile.TemporaryDirectory() as temp_workdir:
     shell(
