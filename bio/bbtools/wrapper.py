@@ -8,7 +8,8 @@ import logging, traceback
 
 
 input_keys = ["input", "fastq", "sample", "reads"]
-output_keys = ["out", "output"]
+# keys that can be used with 1,2, as suffixes to indicate the paired end reads.
+paired_keys = ["in", "out", "outm", "outu"]
 
 single_threaded_scripts = [
     "pileup.sh",
@@ -72,6 +73,8 @@ single_threaded_scripts = [
 ]
 
 
+### Logging ####
+# Will be implemented in Snakemake https://github.com/snakemake/snakemake/pull/2474
 def infer_stdout_and_stderr(log) -> tuple:
     """
     If multiple log files are provided, try to infer which one is for stderr.
@@ -221,9 +224,9 @@ def get_java_opts(snakemake, java_mem_overhead_factor=0.15) -> str:
     return " -Xmx{}M".format(round(mem_mb * (1.0 - java_mem_overhead_factor)))
 
 
-def _parse_bbmap_in_out(input_or_output, values):
+def _parse_paired_keys(key, values):
     """
-    Parse input or output arguments.
+    Some keys in bbtools can be used with 1,2, as suffixes to indicate the paired end reads.
 
     Single files are parsed as:
 
@@ -240,22 +243,6 @@ def _parse_bbmap_in_out(input_or_output, values):
     the same applies to output arguments (out=).
 
     """
-
-    if input_or_output == "input":
-        key = "in"
-        global parsed_input
-        already_parsed = parsed_input
-    elif input_or_output == "output":
-        key = "out"
-        global parsed_output
-        already_parsed = parsed_output
-
-    else:
-        raise Exception("input_or_output should be 'input' or 'output'")
-
-    if already_parsed:
-        raise Exception(f"{input_or_output} should be defined only once!")
-
     if len(values) == 1 or isinstance(values, str):
         # single input file
         parsed_arg = f" {key}={values} "
@@ -271,16 +258,12 @@ def _parse_bbmap_in_out(input_or_output, values):
 
         parsed_arg = f" {key}=" + ",".join(values)
 
-    logger.info(f"parsed {input_or_output} argument: {parsed_arg}")
-
-    if input_or_output == "input":
-        parsed_input = True
-    else:
-        parsed_output = True
-
+    logger.info(f"parsed {key} argument: {parsed_arg}")
     return parsed_arg
 
 
+## Get positional arguments
+## Will be implemented in Snakemake https://github.com/snakemake/snakemake/pull/2509
 def _get_unnamed_arguments(parameter_list):
     """
     Get unnamed arguments of snakemake.input or snakemake.output.
@@ -306,6 +289,41 @@ def _get_unnamed_arguments(parameter_list):
         return [parameter_list[i] for i in range(n_unnamed_arguments)]
 
 
+def _parse_in_out(input_or_output, values):
+    """
+    Parse input or output arguments.
+
+    With global check that is not parsed multiple times.
+
+    """
+
+    if input_or_output == "input":
+        key = "in"
+        global parsed_input
+        already_parsed = parsed_input
+    elif input_or_output == "output":
+        key = "out"
+        global parsed_output
+        already_parsed = parsed_output
+
+    else:
+        raise Exception("input_or_output should be 'input' or 'output'")
+
+    if already_parsed:
+        raise Exception(f"{input_or_output} should be defined only once!")
+
+    logger.debug(f"parsed {input_or_output} argument: {parsed_arg}")
+
+    parsed_arg = _parse_paired_keys(key, values)
+
+    if input_or_output == "input":
+        parsed_input = True
+    else:
+        parsed_output = True
+
+    return parsed_arg
+
+
 def __parse_keywords_for_bbtool(parameter_list, section):
     """
     Parse rule input, output and params into a bbmap command.
@@ -319,17 +337,10 @@ def __parse_keywords_for_bbtool(parameter_list, section):
 
     logger.info(f"Parse {section} section of snamemake rule into bbmap command")
 
-    if section == "input":
-        special_keys = input_keys
-        ignore_keys = ["flag"]
-    elif section == "output":
-        special_keys = output_keys
-        ignore_keys = ["flag"]
-    elif section == "params":
-        special_keys = []
+    if section == "params":
         ignore_keys = ["command", "extra"]
     else:
-        raise Exception("section should be 'input', 'output' or 'params'")
+        ignore_keys = ["flag"]
 
     # command to be build
     command = ""
@@ -343,7 +354,7 @@ def __parse_keywords_for_bbtool(parameter_list, section):
         assert section in ["input", "output"]
         logger.info(f"Found unnamed arguments. parse them as {section}")
 
-        command += _parse_bbmap_in_out(section, unnamed_arguments)
+        command += _parse_in_out(section, unnamed_arguments)
 
     # parameters with keywords
     # transform to dict
@@ -355,12 +366,19 @@ def __parse_keywords_for_bbtool(parameter_list, section):
             logger.info(f"{k} argument detected, This is not passed to the bbtool.")
             pass
 
-        # INPUT/OUTPUT
-        elif k in special_keys:
-            assert section in ["input", "output"]
-            logger.info(f"Parsing it as {section}.")
-            command += _parse_bbmap_in_out(section, parameter_list[k])
+        # INPUT keys
+        elif (k in input_keys) and (section == "input"):
+            command += _parse_in_out(section, values=parameter_list[k])
 
+        ## OUTPUT keys that can be paired
+        elif k in paired_keys:
+            if k == "out":
+                command += _parse_in_out(section, values=parameter_list[k])
+            # Other keys that can be paired, e.g. outm
+            else:
+                command += _parse_paired_keys(k, parameter_list[k])
+
+        # other keys
         else:
             # bool conversions
             if type(parameter_list[k]) == bool:
