@@ -132,7 +132,7 @@ def multiple_log_fmt_shell(snakemake, append_stderr=False, append_stdout=False) 
             append=append_stderr or append_stdout, stdout=True, stderr=True
         )
     else:
-        # sucessfully inferred und stderr and stdout file
+        # successfully inferred und stderr and stdout file
 
         shell_log_fmt = (
             _log_shell_redirect(
@@ -193,7 +193,7 @@ sys.excepthook = handle_exception
 parsed_input, parsed_output = False, False
 
 import warnings
-from snakemake_wrapper_utils.snakemake import get_mem
+from snakemake_wrapper_utils.snakemake import get_java_opts as utils_get_java_opts
 
 
 import sys
@@ -202,26 +202,21 @@ import warnings
 
 def get_java_opts(snakemake, java_mem_overhead_factor=0.15) -> str:
     """Obtain mem from params, and handle resource definitions in resources.
-    This is a copy of the function in snakemake-utils.java
     As there was conflicts https://github.com/snakemake/snakemake-wrapper-utils/pull/37
     """
 
-    def java_mem_xmx_error(params_key):
-        return f"You have provided `-Xmx` in params.{params_key}. For Java memory specifications, please only use resources.mem_mb (for total memory reserved for the rule) and `params.java_mem_overhead_mb` (to specify any required non-heap overhead that needs to be set aside before determining the `-Xmx` value)."
+    all_java_opts = utils_get_java_opts(snakemake, java_mem_overhead_factor)
 
-    extra = snakemake.params.get("extra", "")
-    assert 0.0 <= java_mem_overhead_factor <= 1.0
+    # regex to extract only the "-Xmx" part
 
-    # Getting memory.
-    if "-Xmx" in extra:
-        sys.exit(java_mem_xmx_error("extra"))
+    import re
 
-    mem_mb = get_mem(snakemake)
-    logger.debug(
-        f"Memory specified {mem_mb} MiB, use {(1.0 - java_mem_overhead_factor)*100}% of it for Java heap."
-    )
+    regex = re.compile(r"-Xmx\d+")
+    memory_options = regex.findall(all_java_opts)[0]
 
-    return " -Xmx{}M".format(round(mem_mb * (1.0 - java_mem_overhead_factor)))
+    logger.info("Memory specification: " + memory_options)
+
+    return memory_options
 
 
 def _parse_paired_keys(key, values):
@@ -442,7 +437,7 @@ def parse_bbtool(snakemake):
         command_with_parameters += f" threads={snakemake.threads} "
 
     # memory
-    java_opts = get_java_opts(snakemake)
+    java_opts = get_java_opts(snakemake, java_mem_overhead_factor=0.15)
 
     # log
     log = multiple_log_fmt_shell(snakemake, append_stderr=True)
