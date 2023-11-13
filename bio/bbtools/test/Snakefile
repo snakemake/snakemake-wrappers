@@ -2,14 +2,15 @@ def get_fractions():
     if config.get("reads_are_paired", True):
         fractions = ["R1", "R2"]
     else:
-        fractions = "se"
+        fractions = ["se"]
 
     return fractions
 
 
 rule all:
     input:
-        expand("covstats/{sample}.tsv", sample=["A", "B"]),
+        expand("logs/loglog/{sample}.log", sample=["A"]),
+        expand("covstats/{sample}.tsv", sample=["A"]),
 
 
 rule create_reads:
@@ -20,7 +21,7 @@ rule create_reads:
     params:
         command="randomreads.sh",
         length=100,
-        reads=10,
+        reads=100,
         paired=True,
         overwrite=True,
         pigz=True,
@@ -40,7 +41,6 @@ rule loglog:
         stderr="logs/loglog/{sample}.err",  # Captures the error output of the command
     params:
         command="loglog.sh",
-        machineout=True,
         extra="buckets=2048 seed=1234",
     threads: 2
     resources:
@@ -50,16 +50,17 @@ rule loglog:
 
 
 # ########## Quality control of reads ##########
-rule bbduk:
+rule bbduk_pe:
     input:
-        reads=expand("reads/raw/{{sample}}_{fraction}.fastq.gz", get_fractions()),
+        expand("reads/raw/{{sample}}_{fraction}.fastq.gz", fraction=["R1", "R2"]),
         adapters="adapt.fas",
     output:
-        out=expand("reads/trimmed/{{sample}}_{fraction}.fastq.gz", get_fractions()),
-        #outsingle="reads/trimmed/{sample}.single.fastq.gz",
-        outmatch=expand(
-            "reads/discarded/{{sample}}_{fraction}.fastq.gz", get_fractions()
+        out=expand(
+            "reads/trimmed/{{sample}}_{fraction}.fastq.gz", fraction=["R1", "R2"]
         ),
+        outsingle="reads/discarded/{sample}_singletons.fastq.gz",
+        outmatch1="reads/discarded/{sample}_R1.fastq.gz",
+        outmatch2="reads/discarded/{sample}_R2.fastq.gz",
         stats="stats/trimming_stats/{sample}.txt",
     log:
         "logs/bbduk/{sample}.log",
@@ -86,14 +87,27 @@ rule bbduk:
         "master/bio/bbtools"
 
 
+use rule bbduk_pe as bbduk_se with:
+    input:
+        "reads/raw/{sample}_se.fastq.gz",
+        adapters="adapt.fas",
+    output:
+        out="reads/trimmed/{sample}_se.fastq.gz",
+        outmatch="reads/discarded/{sample}_se.fastq.gz",
+        stats="stats/trimming_stats/{sample}.txt",
+
+
 rule tadpole_correct:
     input:
-        expand("reads/trimmed/{{sample}}_{fraction}.fastq.gz", get_fractions()),
+        expand("reads/trimmed/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()),
     output:
-        out=expand("reads/corrected/{{sample}}_{fraction}.fastq.gz", get_fractions()),
-        outd=expand("reads/badquality/{{sample}}_{fraction}.fastq.gz", get_fractions()),
+        out=expand(
+            "reads/corrected/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()
+        ),
+        outd="reads/discarded/{sample}.fastq.gz",
     log:
-        "logs/correct/{sample}.log",
+        out="logs/correct/{sample}.log",
+        err="logs/correct/{sample}.err",
     params:
         command="tadpole.sh",
         mode="correct",
@@ -107,7 +121,9 @@ rule tadpole_correct:
 ##########  Assembly ##########
 rule tadpole_assemble:
     input:
-        expand("reads/corrected/{{sample}}_{fraction}.fastq.gz", get_fractions()),
+        expand(
+            "reads/corrected/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()
+        ),
     output:
         "assembly/{sample}.fasta.gz",
     log:
@@ -125,8 +141,10 @@ rule tadpole_assemble:
 ########## Map ##########
 rule index_assembly:
     input:
-        "assembly/{sample}.fasta.gz",
+        ref="assembly/{sample}.fasta.gz",
     output:
+        # path to the index base folder, The index is stored in {path}/ref/genome/{build} and {path}/ref/index/{build}
+        # With build by defualt 1 and path by default the working directory
         path=temp(directory("path/to/indexes/assembly/{sample}/")),
     params:
         command="bbmap.sh",
@@ -141,9 +159,9 @@ rule index_assembly:
 rule map_reads_with_bbmap:
     input:
         input=expand(
-            "reads/QC/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()
+            "reads/trimmed/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()
         ),
-        path=directory("path/to/indexes/assembly/{sample}/"),  # path to the index base folder
+        path="path/to/indexes/assembly/{sample}/",
     output:
         out="mapped/{sample}.bam",
     log:
