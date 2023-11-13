@@ -193,7 +193,7 @@ sys.excepthook = handle_exception
 parsed_input, parsed_output = False, False
 
 import warnings
-from snakemake_wrapper_utils.snakemake import get_java_opts as utils_get_java_opts
+from snakemake_wrapper_utils import java
 
 
 import sys
@@ -205,13 +205,13 @@ def get_java_opts(snakemake, java_mem_overhead_factor=0.15) -> str:
     As there was conflicts https://github.com/snakemake/snakemake-wrapper-utils/pull/37
     """
 
-    all_java_opts = utils_get_java_opts(snakemake, java_mem_overhead_factor)
+    all_java_opts = java.get_java_opts(snakemake, java_mem_overhead_factor)
 
     # regex to extract only the "-Xmx" part
 
     import re
 
-    regex = re.compile(r"-Xmx\d+")
+    regex = re.compile(r"-Xmx\d+[gGmM]")
     memory_options = regex.findall(all_java_opts)[0]
 
     logger.info("Memory specification: " + memory_options)

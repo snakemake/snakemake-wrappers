@@ -9,8 +9,8 @@ def get_fractions():
 
 rule all:
     input:
-        expand("logs/loglog/{sample}.log", sample=["A"]),
-        expand("covstats/{sample}.tsv", sample=["A"]),
+        expand("logs/loglog/{sample}.log", sample=["SampleA"]),
+        expand("covstats/{sample}.tsv", sample=["SampleA"]),
 
 
 rule index_genome:
