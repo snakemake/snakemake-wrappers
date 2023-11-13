@@ -1,10 +1,11 @@
 __author__ = "Silas Kieser"
-__copyright__ = "Copyright 2021, Filipe G. Vieira"
+__copyright__ = "Copyright 2023, Filipe G. Vieira"
 __license__ = "MIT"
 
 ### loging all exceptiuon to log file if available
 import sys
 import logging, traceback
+import warnings
 
 
 input_keys = ["input", "fastq", "sample", "reads"]
@@ -89,7 +90,6 @@ def infer_stdout_and_stderr(log) -> tuple:
 
 
     """
-    import warnings
 
     if len(log) == 0:
         return None, None
@@ -192,12 +192,9 @@ sys.excepthook = handle_exception
 # global flags to check if input and output are parsed multiple times
 parsed_input, parsed_output = False, False
 
-import warnings
+import re
 from snakemake_wrapper_utils import java
-
-
-import sys
-import warnings
+from snakemake.shell import shell
 
 
 def get_java_opts(snakemake, java_mem_overhead_factor=0.15) -> str:
@@ -208,8 +205,6 @@ def get_java_opts(snakemake, java_mem_overhead_factor=0.15) -> str:
     all_java_opts = java.get_java_opts(snakemake, java_mem_overhead_factor)
 
     # regex to extract only the "-Xmx" part
-
-    import re
 
     regex = re.compile(r"-Xmx\d+[gGmM]")
     memory_options = regex.findall(all_java_opts)[0]
@@ -445,9 +440,6 @@ def parse_bbtool(snakemake):
     command_with_parameters += f" {java_opts} {log}"
 
     return command_with_parameters
-
-
-from snakemake.shell import shell
 
 
 command = parse_bbtool(snakemake)
