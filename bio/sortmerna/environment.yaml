@@ -1,6 +1,6 @@
 channels:
-  - defaults
-  - bioconda
   - conda-forge
+  - bioconda
+  - nodefaults
 dependencies:
   - sortmerna =4.3.6
