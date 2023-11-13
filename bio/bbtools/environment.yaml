@@ -4,5 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - bbmap =39.01
-  - snakemake-wrapper-utils =0.5
+  - snakemake-wrapper-utils =0.6.2
   - pigz=2

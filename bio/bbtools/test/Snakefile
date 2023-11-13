@@ -16,6 +16,8 @@ rule index_genome:
         command="bbmap.sh",
     log:
         "logs/index/genome.log",
+    resources:
+        mem_mb=1000,
     wrapper:
         "master/bio/bbtools"
 
@@ -78,6 +80,8 @@ rule create_reads:
         paired=True,
         overwrite=True,
         pigz=True,
+    resources:
+        mem_mb=1000,
     log:
         "logs/create_reads/{sample}.log",
     wrapper:
@@ -100,6 +104,18 @@ rule bbduk_pe:
     log:
         "logs/bbduk/{sample}.log",
     params:
+        command="randomreads.sh",
+        # use a different build to create reads
+        # genome index is stored in 'ref/genome/{build}' and 'ref/index/{build}'
+        build=2,
+        length=100,
+        reads=10,
+        overwrite=True,
+        pigz=True,
+    resources:
+        mem_mb=1000,
+    log:
+        "logs/create_reads/{sample}.log",
         command="bbduk.sh",
         extra="tpe tbo ",
         ref=lambda w, input: f"ref={input.adapters},adapters,artifacts",

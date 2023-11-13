@@ -161,13 +161,15 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
+logger = logging.getLogger(__file__)
+
 
 def handle_exception(exc_type, exc_value, exc_traceback):
     if issubclass(exc_type, KeyboardInterrupt):
         sys.__excepthook__(exc_type, exc_value, exc_traceback)
         return
 
-    logging.error(
+    logger.error(
         "".join(
             [
                 "Uncaught exception: ",
@@ -180,16 +182,43 @@ def handle_exception(exc_type, exc_value, exc_traceback):
 # Install exception handler
 sys.excepthook = handle_exception
 
-logger = logging.getLogger(__file__)
 
-###################################### Beginning of logging ######################################
+###################################### Beginning of wrapper ######################################
 
 
 # global flags to check if input and output are parsed multiple times
 parsed_input, parsed_output = False, False
 
 import warnings
-from snakemake_wrapper_utils.java import get_java_opts
+from snakemake_wrapper_utils.snakemake import get_mem
+
+
+import sys
+import warnings
+
+
+def get_java_opts(snakemake, java_mem_overhead_factor=0.15) -> str:
+    """Obtain mem from params, and handle resource definitions in resources.
+    This is a copy of the function in snakemake-utils.java
+    As there was conflicts https://github.com/snakemake/snakemake-wrapper-utils/pull/37
+    """
+
+    def java_mem_xmx_error(params_key):
+        return f"You have provided `-Xmx` in params.{params_key}. For Java memory specifications, please only use resources.mem_mb (for total memory reserved for the rule) and `params.java_mem_overhead_mb` (to specify any required non-heap overhead that needs to be set aside before determining the `-Xmx` value)."
+
+    extra = snakemake.params.get("extra", "")
+    assert 0.0 <= java_mem_overhead_factor <= 1.0
+
+    # Getting memory.
+    if "-Xmx" in extra:
+        sys.exit(java_mem_xmx_error("extra"))
+
+    mem_mb = get_mem(snakemake)
+    logger.debug(
+        f"Memory specified {mem_mb} MiB, use {(1.0 - java_mem_overhead_factor)*100}% of it for Java heap."
+    )
+
+    return " -Xmx{}M".format(round(mem_mb * (1.0 - java_mem_overhead_factor)))
 
 
 def _parse_bbmap_in_out(input_or_output, values):
@@ -404,9 +433,6 @@ def parse_bbtool(snakemake):
     command_with_parameters += f" {java_opts} {log}"
 
     return command_with_parameters
-
-
-###################################### beginn of wrapper
 
 
 from snakemake.shell import shell
