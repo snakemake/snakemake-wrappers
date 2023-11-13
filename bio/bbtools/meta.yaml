@@ -1,7 +1,7 @@
 name: Generic
 url: https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/
 description: |
-  Generic wrapper for BBTools. One to run them all.
+  Generic wrapper for BBTools. One pattern to run them all.
 authors:
   - Silas Kieser
 input:
