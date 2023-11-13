@@ -9,7 +9,7 @@ import logging, traceback
 
 input_keys = ["input", "fastq", "sample", "reads"]
 # keys that can be used with 1,2, as suffixes to indicate the paired end reads.
-paired_keys = ["in", "out", "outm", "outu"]
+paired_keys = ["in", "out", "outm", "outu","outmatch"]
 
 single_threaded_scripts = [
     "pileup.sh",
@@ -312,9 +312,10 @@ def _parse_in_out(input_or_output, values):
     if already_parsed:
         raise Exception(f"{input_or_output} should be defined only once!")
 
+    parsed_arg = _parse_paired_keys(key, values)
     logger.debug(f"parsed {input_or_output} argument: {parsed_arg}")
 
-    parsed_arg = _parse_paired_keys(key, values)
+
 
     if input_or_output == "input":
         parsed_input = True

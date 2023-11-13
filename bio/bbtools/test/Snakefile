@@ -69,17 +69,18 @@ rule loglog:
 
 
 # ########## Quality control of reads ##########
-rule bbduk_pe:
+rule bbduk:
     input:
-        expand("reads/raw/{{sample}}_{fraction}.fastq.gz", fraction=["R1", "R2"]),
+        expand("reads/raw/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()),
         adapters="adapt.fas",
     output:
         out=expand(
-            "reads/trimmed/{{sample}}_{fraction}.fastq.gz", fraction=["R1", "R2"]
+            "reads/trimmed/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()
         ),
-        outsingle="reads/discarded/{sample}_singletons.fastq.gz",
-        outmatch1="reads/discarded/{sample}_R1.fastq.gz",
-        outmatch2="reads/discarded/{sample}_R2.fastq.gz",
+        outmatch=expand(
+            "reads/discarded/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()
+        ),
+        #outsingle="reads/discarded/{sample}_singletons.fastq.gz", # only for paired reads
         stats="stats/trimming_stats/{sample}.txt",
     log:
         "logs/bbduk/{sample}.log",
@@ -106,16 +107,6 @@ rule bbduk_pe:
         "master/bio/bbtools"
 
 
-use rule bbduk_pe as bbduk_se with:
-    input:
-        "reads/raw/{sample}_se.fastq.gz",
-        adapters="adapt.fas",
-    output:
-        out="reads/trimmed/{sample}_se.fastq.gz",
-        outmatch="reads/discarded/{sample}_se.fastq.gz",
-        stats="stats/trimming_stats/{sample}.txt",
-
-
 rule tadpole_correct:
     input:
         expand("reads/trimmed/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()),
@@ -125,8 +116,7 @@ rule tadpole_correct:
         ),
         outd="reads/discarded/{sample}.fastq.gz",
     log:
-        out="logs/correct/{sample}.log",
-        err="logs/correct/{sample}.err",
+        err="logs/correct/{sample}.log",
     params:
         command="tadpole.sh",
         mode="correct",
