@@ -230,7 +230,7 @@ def test_vsearch():
 
 
 @skip_if_not_modified
-def test_loglog():
+def test_bbtools_pe():
     run(
         "bio/bbtools",
         [
@@ -239,67 +239,20 @@ def test_loglog():
             "2",
             "--use-conda",
             "-F",
-            "logs/se/a.log",
-            "logs/pe/a.log",
         ],
     )
 
 
 @skip_if_not_modified
-def test_tadpole():
+def test_bbtools_se():
     run(
         "bio/bbtools",
         [
             "snakemake",
             "--cores",
             "2",
-            "--use-conda",
-            "-F",
-            "tadpole.done",
-        ],
-    )
-
-
-@skip_if_not_modified
-def test_bbmap():
-    run(
-        "bio/bbtools",
-        [
-            "snakemake",
-            "--cores",
-            "2",
-            "--use-conda",
-            "-F",
-            "covstats/sample1.tsv",
-            "covstats/sample2.tsv",
-        ],
-    )
-
-
-@skip_if_not_modified
-def test_bbduk_pe():
-    run(
-        "bio/bbtools",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trimmed/pe/a.stats.txt",
-            "--use-conda",
-            "-F",
-        ],
-    )
-
-
-@skip_if_not_modified
-def test_bbduk_se():
-    run(
-        "bio/bbtools",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trimmed/se/a.stats.txt",
+            "--config",
+            "reads_are_paired=False",
             "--use-conda",
             "-F",
         ],
