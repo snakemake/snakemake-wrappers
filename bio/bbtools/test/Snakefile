@@ -7,51 +7,12 @@ rule all:
         expand("covstats/{sample}.tsv", sample=["SampleA"]),
 
 
-rule index_genome:
-    input:
-        ref="genome.fasta",
-    output:
-        # path to the index base folder, The index is stored in {path}/ref/genome/{build} and {path}/ref/index/{build}
-        # With build by defualt 1 and path by default the working directory
-        path=temp(directory("path/to/indexes/genome/")),
-    params:
-        command="bbmap.sh",
-    log:
-        "logs/index_genome.log",
-    resources:
-        mem_mb=1000,
-    wrapper:
-        "master/bio/bbtools"
-
-
-# all rules use the same wrapper!!
-rule create_reads:
-    input:
-        path="path/to/indexes/genome/",
-    output:
-        out=expand("reads/raw/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()),
-    params:
-        command="randomreads.sh",  # Define which bbmap command to use
-        # All parameters are passed to the command
-        length=100,
-        reads=100,
-        paired=True,
-        overwrite=True,
-        pigz=True,
-    resources:
-        mem_mb=1000,
-    log:
-        "logs/create_reads/{sample}.log",
-    wrapper:
-        "master/bio/bbtools"
-
-
 rule loglog:
     input:
         expand("reads/raw/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()),
     log:
         stdout="logs/loglog/{sample}.log",
-        stderr="logs/loglog/{sample}.err",  # Captures the error output of the command
+        stderr="logs/loglog/{sample}.err",  # Captures the error output of the command and the log of the wrapper
     params:
         command="loglog.sh",
         extra="buckets=2048 seed=1234",
@@ -63,6 +24,9 @@ rule loglog:
 
 
 # ########## Quality control of reads ##########
+
+
+# all rules use the same wrapper!!
 rule bbduk:
     input:
         expand("reads/raw/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()),
@@ -184,5 +148,47 @@ rule pileup:
     threads: 4
     resources:
         mem_mb=1000,
+    wrapper:
+        "master/bio/bbtools"
+
+
+### Create reads
+
+
+rule index_genome:
+    input:
+        ref="genome.fasta",
+    output:
+        # path to the index base folder
+        # The index is actually stored in subfolders of the path {path}/ref/genome/{build} and {path}/ref/index/{build}
+        # Where build is by default 1
+        path=temp(directory("path/to/indexes/genome/")),
+    params:
+        command="bbmap.sh",
+    log:
+        "logs/index_genome.log",
+    resources:
+        mem_mb=1000,
+    wrapper:
+        "master/bio/bbtools"
+
+
+rule create_reads:
+    input:
+        path="path/to/indexes/genome/",
+    output:
+        out=expand("reads/raw/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()),
+    params:
+        command="randomreads.sh",  # Define which bbmap command to use
+        # All parameters are passed to the command
+        length=100,
+        reads=100,
+        paired=True,
+        overwrite=True,
+        pigz=True,
+    resources:
+        mem_mb=1000,
+    log:
+        "logs/create_reads/{sample}.log",
     wrapper:
         "master/bio/bbtools"
