@@ -13,13 +13,32 @@ rule all:
         expand("covstats/{sample}.tsv", sample=["A"]),
 
 
-rule create_reads:
+rule index_genome:
     input:
         ref="genome.fasta",
     output:
+        # path to the index base folder, The index is stored in {path}/ref/genome/{build} and {path}/ref/index/{build}
+        # With build by defualt 1 and path by default the working directory
+        path=temp(directory("path/to/indexes/genome/")),
+    params:
+        command="bbmap.sh",
+    log:
+        "logs/index_genome.log",
+    resources:
+        mem_mb=1000,
+    wrapper:
+        "master/bio/bbtools"
+
+
+# all rules use the same wrapper!!
+rule create_reads:
+    input:
+        path="path/to/indexes/genome/",
+    output:
         out=expand("reads/raw/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()),
     params:
-        command="randomreads.sh",
+        command="randomreads.sh",  # Define which bbmap command to use
+        # All parameters are passed to the command
         length=100,
         reads=100,
         paired=True,
@@ -139,21 +158,6 @@ rule tadpole_assemble:
 
 
 ########## Map ##########
-rule index_assembly:
-    input:
-        ref="assembly/{sample}.fasta.gz",
-    output:
-        # path to the index base folder, The index is stored in {path}/ref/genome/{build} and {path}/ref/index/{build}
-        # With build by defualt 1 and path by default the working directory
-        path=temp(directory("path/to/indexes/assembly/{sample}/")),
-    params:
-        command="bbmap.sh",
-    log:
-        "logs/index_assembly/{sample}.log",
-    resources:
-        mem_mb=1000,
-    wrapper:
-        "master/bio/bbtools"
 
 
 rule map_reads_with_bbmap:
@@ -161,15 +165,14 @@ rule map_reads_with_bbmap:
         input=expand(
             "reads/trimmed/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()
         ),
-        path="path/to/indexes/assembly/{sample}/",
+        ref="assembly/{sample}.fasta.gz",
     output:
         out="mapped/{sample}.bam",
     log:
         stderr="logs/bbmap/{sample}.log",  # Split stdout and stderr into separate files to have a nice log file
         stdout="logs/bbmap/{sample}.out",
     params:
-        command="bbmap.sh",  # Define which bbmap command to use
-        # All parameters are passed to the command
+        command="bbmap.sh",
         machineout=True,
         overwrite=True,  # reccomended
         unpigz=True,
@@ -181,7 +184,7 @@ rule map_reads_with_bbmap:
         "master/bio/bbtools"
 
 
-rule pileup:  # all rules use the same wrapper!!
+rule pileup:
     input:
         input="mapped/{sample}.bam",
         ref="genome.fasta",
