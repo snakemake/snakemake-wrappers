@@ -1,10 +1,4 @@
-def get_fractions():
-    if config.get("reads_are_paired", True):
-        fractions = ["R1", "R2"]
-    else:
-        fractions = ["se"]
-
-    return fractions
+include: "input_functions.smk"
 
 
 rule all:
@@ -87,9 +81,8 @@ rule bbduk:
     threads: 7
     params:
         command="bbduk.sh",
-        extra="tpe tbo ",
+        extra="tpe tbo ktrim='r' ",
         ref=lambda w, input: [input.adapters, "adapters", "artifacts"],
-        ktrim="r",
         k=23,
         mink=11,
         hdist=1,
