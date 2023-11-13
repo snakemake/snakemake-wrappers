@@ -6,7 +6,7 @@ authors:
   - Silas Kieser
 input:
   - input: All keywords in input are passed to the bbtool as key=value pairs. A special case is 'input' see in the notes.
-  - flag: The keyword 'flag' is ignored and allows to make input files that are not processed by the bbtool. All other input are passed to the bbtool as key=value pairs
+  - flag: The keyword 'flag' is ignored and allows to specify input files that are not processed by the bbtool that is used. All other inputs are passed to the bbtool as key=value pairs.
 output:
   - out: All keywords in output are passed to the bbtool as key=value pairs. A special case is 'out' see in the notes. All other outputs are passed to the bbtool as key=value pairs
 params:
