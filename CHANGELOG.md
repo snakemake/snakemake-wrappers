@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.13.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.12.0...v2.13.0) (2023-11-13)
+
+
+### Features
+
+* sortmerna wrapper ([#2320](https://www.github.com/snakemake/snakemake-wrappers/issues/2320)) ([599165b](https://www.github.com/snakemake/snakemake-wrappers/commit/599165bb5dd817585b1abea320d22b530b1d68cc))
+
 ## [2.12.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.11.1...v2.12.0) (2023-11-10)
 
 
