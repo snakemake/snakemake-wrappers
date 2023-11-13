@@ -5,10 +5,13 @@ description: |
 authors:
   - Silas Kieser
 input:
-  - input: All keywords in input are passed to the bbtool as key=value pairs. A special case is 'input' see in the notes.
-  - flag: The keyword 'flag' is ignored and allows to specify input files that are not processed by the bbtool that is used. All other inputs are passed to the bbtool as key=value pairs.
+  - input: All keywords in input are passed to the bbtool as key=value pairs. A special case is 'input', which is translated to 'in'. If exactly two files are provides for 'input' the wrapper parses them as in1, in2.
+  - flag: The keyword 'flag' is ignored and allows to specify input files that are not processed by the bbtool that is used.
 output:
-  - out: All keywords in output are passed to the bbtool as key=value pairs. A special case is 'out' see in the notes. All other outputs are passed to the bbtool as key=value pairs
+  - out: If exactly two files are provides for 'out' the wrapper parses them as out1, out2.
+  - outm: Same as 'out'
+  - outu: Same as 'out'
+  - flag: The keyword 'flag' is not passed to the command.
 params:
   - command: Required parameter defining the command to be used e.g. 'bbmap.sh'
   - extra: additional program arguments. All other parameters are passed to the bbtool as key=value pairs
@@ -17,21 +20,23 @@ notes: |
   **All keywords in input, output, params are passed as key value pairs to the command!**
   Take care that they are valid for the bbtool.
 
-  As it it not possible to define 'in' as a keyword, the keyword 'input' is used instead. Allowed aliases are 'sample' and 'reads', but we recommend to use 'input'.
-  If exactly two files are provides for 'input' or 'out' the wrapper parses them as in1, in2 or out1, out2, respectively.
+  As it is not possible to define 'in' as a keyword, the keyword 'input' is used instead. Allowed aliases are 'sample' and 'reads'.
+  ### Paired input/output files
 
+  If exactly two files are provides for 'input' the wrapper parses them as in1, in2.
+  The same holds for the output keywords 'out', 'outm', 'outu'.
   For all parameters, if more than two files are provided, the wrapper parses them as key=value1,value2,value3... 
 
-  Limitations:
-    - The wrapper cannot run bbwrap with paired + singleton files. But this is a rare use case.
-
-
-  Certainly! Here are three lists of shell scripts extracted from the provided information:
+  ### Logging
+  The wrapper makes a detailed log of how he parse the parameters. If you want to use the log of a bbtool, 
+  e.g. for parsing how many reads where processed, you have to specify a 'stdout', and 'stderr' log file. 
+  The wrapper will then write only to the stderr-log file.
 
   ### List of all the tools in the bbtools suite 39.01
 
   In theory all of them are sported by this wrapper, but we didn't test them all.
-  Scripts with different input/output might not supported by this wrapper.
+  Scripts with different input/output might not be supported by this wrapper.
+  If you find one that is not yet supported, please feel free to adjust this wrapper accordingly and include a test case.
 
   - bbmap.sh
   - removehuman.sh
