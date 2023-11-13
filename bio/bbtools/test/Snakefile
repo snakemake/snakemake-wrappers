@@ -7,15 +7,131 @@ def get_fractions():
     return fractions
 
 
-rule index_genome:
+rule all:
+    input:
+        expand("covstats/{sample}.tsv", sample=["A", "B"]),
+
+
+rule create_reads:
     input:
         ref="genome.fasta",
     output:
-        path=temp(directory("path/to/indexes/genome/")),
+        out=expand("reads/raw/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()),
+    params:
+        command="randomreads.sh",
+        length=100,
+        reads=10,
+        paired=True,
+        overwrite=True,
+        pigz=True,
+    resources:
+        mem_mb=1000,
+    log:
+        "logs/create_reads/{sample}.log",
+    wrapper:
+        "master/bio/bbtools"
+
+
+rule loglog:
+    input:
+        expand("reads/raw/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()),
+    log:
+        stdout="logs/loglog/{sample}.log",
+        stderr="logs/loglog/{sample}.err",  # Captures the error output of the command
+    params:
+        command="loglog.sh",
+        machineout=True,
+        extra="buckets=2048 seed=1234",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/bbtools"
+
+
+# ########## Quality control of reads ##########
+rule bbduk:
+    input:
+        reads=expand("reads/raw/{{sample}}_{fraction}.fastq.gz", get_fractions()),
+        adapters="adapt.fas",
+    output:
+        out=expand("reads/trimmed/{{sample}}_{fraction}.fastq.gz", get_fractions()),
+        #outsingle="reads/trimmed/{sample}.single.fastq.gz",
+        outmatch=expand(
+            "reads/discarded/{{sample}}_{fraction}.fastq.gz", get_fractions()
+        ),
+        stats="stats/trimming_stats/{sample}.txt",
+    log:
+        "logs/bbduk/{sample}.log",
+    threads: 7
+    params:
+        command="bbduk.sh",
+        extra="tpe tbo ",
+        ref=lambda w, input: [input.adapters, "adapters", "artifacts"],
+        ktrim="r",
+        k=23,
+        mink=11,
+        hdist=1,
+        trimpolygright=10,
+        minlen=25,
+        maxns=30,
+        entropy=0.5,
+        entropywindow=50,
+        entropyk=5,
+    resources:
+        mem_mb=4000,
+    log:
+        "logs/trim/{sample}.log",
+    wrapper:
+        "master/bio/bbtools"
+
+
+rule tadpole_correct:
+    input:
+        expand("reads/trimmed/{{sample}}_{fraction}.fastq.gz", get_fractions()),
+    output:
+        out=expand("reads/corrected/{{sample}}_{fraction}.fastq.gz", get_fractions()),
+        outd=expand("reads/badquality/{{sample}}_{fraction}.fastq.gz", get_fractions()),
+    log:
+        "logs/correct/{sample}.log",
+    params:
+        command="tadpole.sh",
+        mode="correct",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/bbtools"
+
+
+##########  Assembly ##########
+rule tadpole_assemble:
+    input:
+        expand("reads/corrected/{{sample}}_{fraction}.fastq.gz", get_fractions()),
+    output:
+        "assembly/{sample}.fasta.gz",
+    log:
+        "logs/assemble/{sample}.log",
+    params:
+        command="tadpole.sh",
+        mode="contig",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/bbtools"
+
+
+########## Map ##########
+rule index_assembly:
+    input:
+        "assembly/{sample}.fasta.gz",
+    output:
+        path=temp(directory("path/to/indexes/assembly/{sample}/")),
     params:
         command="bbmap.sh",
     log:
-        "logs/index/genome.log",
+        "logs/index_assembly/{sample}.log",
     resources:
         mem_mb=1000,
     wrapper:
@@ -27,9 +143,9 @@ rule map_reads_with_bbmap:
         input=expand(
             "reads/QC/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()
         ),
-        path="path/to/indexes/genome/",  # path to the index base folder
+        path=directory("path/to/indexes/assembly/{sample}/"),  # path to the index base folder
     output:
-        out="mapped/{sample}.sam",
+        out="mapped/{sample}.bam",
     log:
         stderr="logs/bbmap/{sample}.log",  # Split stdout and stderr into separate files to have a nice log file
         stdout="logs/bbmap/{sample}.out",
@@ -49,7 +165,7 @@ rule map_reads_with_bbmap:
 
 rule pileup:  # all rules use the same wrapper!!
     input:
-        input="mapped/{sample}.sam",
+        input="mapped/{sample}.bam",
         ref="genome.fasta",
     output:
         covstats="covstats/{sample}.tsv",
@@ -66,227 +182,3 @@ rule pileup:  # all rules use the same wrapper!!
         mem_mb=1000,
     wrapper:
         "master/bio/bbtools"
-
-
-rule create_reads:
-    input:
-        path="path/to/indexes/genome/",
-    output:
-        out=expand("reads/raw/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()),
-    params:
-        command="randomreads.sh",
-        length=100,
-        reads=10,
-        paired=True,
-        overwrite=True,
-        pigz=True,
-    resources:
-        mem_mb=1000,
-    log:
-        "logs/create_reads/{sample}.log",
-    wrapper:
-        "master/bio/bbtools"
-
-
-rule bbduk_pe:
-    input:
-        reads=expand(
-            "reads/raw/{{sample}}_{fraction}.fastq.gz", fraction=["R1", "R2"]
-        ),
-        adapters="adapt.fas",
-    output:
-        out=expand(
-            "reads/trimmed/{{sample}}_{fraction}.fastq.gz", fraction=["R1", "R2"]
-        ),
-        outsingle="reads/trimmed/{sample}.single.fastq.gz",
-        outmatch="reads/trimmed/{sample}.discarded.fastq.gz",
-        stats="stats/trimming_stats/{sample}.txt",
-    log:
-        "logs/bbduk/{sample}.log",
-    params:
-        command="randomreads.sh",
-        # use a different build to create reads
-        # genome index is stored in 'ref/genome/{build}' and 'ref/index/{build}'
-        build=2,
-        length=100,
-        reads=10,
-        overwrite=True,
-        pigz=True,
-    resources:
-        mem_mb=1000,
-    log:
-        "logs/create_reads/{sample}.log",
-        command="bbduk.sh",
-        extra="tpe tbo ",
-        ref=lambda w, input: f"ref={input.adapters},adapters,artifacts",
-        ktrim="r",
-        k=23,
-        mink=11,
-        hdist=1,
-        trimpolygright=10,
-        minlen=25,
-        maxns=30,
-        entropy=0.5,
-        entropywindow=50,
-        entropyk=5,
-    resources:
-        mem_mb=4000,
-    threads: 7
-    wrapper:
-        "master/bio/bbtools"
-
-
-use rule bbduk_pe as bbduk_se with:
-    input:
-        reads= "reads/raw/{sample}_se.fastq.gz"
-
-        adapters="adapt.fas",
-
-
-rule bbduk_se:
-
-
-
-#### Tadpole wrapper
-
-
-rule all_tadpole:
-    input:
-        "out/correct_se/a.fastq.gz",
-        "out/correct_pe/a.1.fastq.gz",
-        "out/correct_pe/a.2.fastq.gz",
-        "out/extend_se/a.fastq.gz",
-        "out/extend_pe/a.1.fastq.gz",
-        "out/extend_pe/a.2.fastq.gz",
-        "out/assembly/a.fasta.gz",
-    output:
-        touch("tadpole.done"),
-
-
-rule tadpole_correct_se:
-    input:
-        "reads/se/{sample}.fastq.gz",
-    output:
-        out="out/correct_se/{sample}.fastq.gz",
-    log:
-        "logs/correct_se/{sample}.log",
-    params:
-        command="tadpole.sh",
-        mode="correct",
-    threads: 2
-    resources:
-        mem_mb=1024,
-    wrapper:
-        "master/bio/bbtools"
-
-
-rule tadpole_correct_pe:
-    input:
-        "reads/pe/{sample}.1.fastq.gz",
-        "reads/pe/{sample}.2.fastq.gz",
-    output:
-        out=["out/correct_pe/{sample}.1.fastq.gz", "out/correct_pe/{sample}.2.fastq.gz"],
-        outd="out/correct_pe/{sample}.discarded.fastq.gz",
-    log:
-        "logs/correct_pe/{sample}.log",
-    params:
-        command="tadpole.sh",
-        mode="correct",
-    threads: 2
-    resources:
-        mem_mb=1024,
-    wrapper:
-        "master/bio/bbtools"
-
-
-rule tadpole_extend_se:
-    input:
-        "reads/se/{sample}.fastq.gz",
-        extra="reads/se/b.fastq.gz",  # This is a bbmap option, it passes as expected however you can no longer use the extra parameter in the wrapper
-    output:
-        out="out/extend_se/{sample}.fastq.gz",
-        outd="out/extend_se/{sample}.discarded.fastq.gz",
-    log:
-        "logs/extend_se/{sample}.log",
-    params:
-        command="tadpole.sh",
-        mode="extend",
-    threads: 2
-    resources:
-        mem_mb=1024,
-    wrapper:
-        "master/bio/bbtools"
-
-
-rule tadpole_extend_pe:
-    input:
-        "reads/pe/{sample}.1.fastq.gz",
-        "reads/pe/{sample}.2.fastq.gz",
-    output:
-        out=["out/extend_pe/{sample}.1.fastq.gz", "out/extend_pe/{sample}.2.fastq.gz"],
-        outd="out/extend_pe/{sample}.discarded.fastq.gz",
-    log:
-        "logs/extend_pe/{sample}.log",
-    params:
-        command="tadpole.sh",
-        mode="extend",
-    threads: 2
-    resources:
-        mem_mb=1024,
-    wrapper:
-        "master/bio/bbtools"
-
-
-rule tadpole_assemble_pe:
-    input:
-        "reads/pe/{sample}.1.fastq.gz",
-        "reads/pe/{sample}.2.fastq.gz",
-    output:
-        out="out/assembly/{sample}.fasta.gz",
-    log:
-        "logs/assemble_pe/{sample}.log",
-    params:
-        command="tadpole.sh",
-        mode="contig",
-    threads: 2
-    resources:
-        mem_mb=1024,
-    wrapper:
-        "master/bio/bbtools"
-
-
-## loglog
-
-
-rule loglog_se:
-    input:
-        "reads/se/{sample}.fastq.gz",
-    log:
-        "logs/se/{sample}.log",
-    params:
-        command="loglog.sh",
-        extra="buckets=2048 seed=1234",
-    threads: 2
-    resources:
-        mem_mb=1024,
-    wrapper:
-        "master/bio/bbtools"
-
-
-rule loglog_pe:
-    input:
-        "reads/pe/{sample}.1.fastq.gz",
-        "reads/pe/{sample}.2.fastq.gz",
-    log:
-        "logs/pe/{sample}.log",
-    params:
-        command="loglog.sh",
-        extra="buckets=2048 seed=1234",
-    threads: 2
-    resources:
-        mem_mb=1024,
-    wrapper:
-        "master/bio/bbtools"
-
-
-## BBduck
