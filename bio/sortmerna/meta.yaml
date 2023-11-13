@@ -9,4 +9,7 @@ input:
 output:
   - Aligned reads
   - Unaligned reads (other)
-notes: The kvdb (key value database) will be created in a temporary directory. Then, you don't have to prune it before each run. If you want to re-use the index, you can specify the idx-dir parameter. 
+params:
+  - extra: aditional program arguments
+notes: |
+  * The kvdb (key value database) will be created in a temporary directory. Then, you don't have to prune it before each run. If you want to re-use the index, you can specify the idx-dir parameter.
