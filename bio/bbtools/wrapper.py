@@ -215,8 +215,6 @@ def get_java_opts(snakemake, java_mem_overhead_factor=0.15) -> str:
     return memory_options
 
 
-
-
 ## Get positional arguments
 # TODO: replace with snakemake logging once it is implemented
 ## Will be implemented in Snakemake https://github.com/snakemake/snakemake/pull/2509
@@ -277,6 +275,7 @@ def _parse_in_out(input_or_output, values):
         parsed_output = True
 
     return parsed_arg
+
 
 def _parse_paired_keys(key, values):
     """
