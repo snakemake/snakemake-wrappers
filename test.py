@@ -230,41 +230,31 @@ def test_vsearch():
 
 
 @skip_if_not_modified
-def test_loglog():
+def test_bbtools_pe():
     run(
-        "bio/bbtools/loglog",
+        "bio/bbtools",
         [
             "snakemake",
             "--cores",
             "2",
             "--use-conda",
             "-F",
-            "logs/se/a.log",
-            "logs/pe/a.log",
         ],
     )
 
 
 @skip_if_not_modified
-def test_tadpole():
+def test_bbtools_se():
     run(
-        "bio/bbtools/tadpole",
+        "bio/bbtools",
         [
             "snakemake",
             "--cores",
             "2",
+            "--config",
+            "reads_are_paired=False",
             "--use-conda",
             "-F",
-            "out/correct_se/a.fastq.gz",
-            "out/correct_se/a.discarded.fastq.gz",
-            "out/correct_pe/a.1.fastq",
-            "out/correct_pe/a.2.fastq",
-            "out/correct_pe/a.discarded.fastq",
-            "out/extend_se/a.fastq.gz",
-            "out/extend_se/a.discarded.fastq.gz",
-            "out/extend_pe/a.1.fastq",
-            "out/extend_pe/a.2.fastq",
-            "out/extend_pe/a.discarded.fastq",
         ],
     )
 
@@ -2869,22 +2859,6 @@ def test_epic_peaks():
     run(
         "bio/epic/peaks",
         ["snakemake", "--cores", "1", "epic/enriched_regions.bed", "--use-conda", "-F"],
-    )
-
-
-@skip_if_not_modified
-def test_bbduk_pe():
-    run(
-        "bio/bbtools/bbduk",
-        ["snakemake", "--cores", "1", "trimmed/pe/a.stats.txt", "--use-conda", "-F"],
-    )
-
-
-@skip_if_not_modified
-def test_bbduk_se():
-    run(
-        "bio/bbtools/bbduk",
-        ["snakemake", "--cores", "1", "trimmed/se/a.stats.txt", "--use-conda", "-F"],
     )
 
 
