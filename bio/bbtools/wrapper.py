@@ -75,6 +75,7 @@ single_threaded_scripts = [
 
 
 ### Logging ####
+# TODO: replace with snakemake logging once it is implemented
 # Will be implemented in Snakemake https://github.com/snakemake/snakemake/pull/2474
 def infer_stdout_and_stderr(log) -> tuple:
     """
@@ -214,45 +215,10 @@ def get_java_opts(snakemake, java_mem_overhead_factor=0.15) -> str:
     return memory_options
 
 
-def _parse_paired_keys(key, values):
-    """
-    Some keys in bbtools can be used with 1,2, as suffixes to indicate the paired end reads.
-
-    Single files are parsed as:
-
-        in=values
-
-    Two files are parsed as:
-
-        in1=values[0] in2=values[1]
-
-    More than two files are parsed as:
-
-        in=values[0],values[1],values[2],...
-
-    the same applies to output arguments (out=).
-
-    """
-    if len(values) == 1 or isinstance(values, str):
-        # single input file
-        parsed_arg = f" {key}={values} "
-
-    elif len(values) == 2:
-        parsed_arg = f" {key}1={values[0]} {key}2={values[1]} "
-
-    else:
-        # multiple files
-        warnings.warn(
-            "More than 2 files provided, this case cannot be parsed unambigously! I parse it as a comma seperated list of files."
-        )
-
-        parsed_arg = f" {key}=" + ",".join(values)
-
-    logger.info(f"parsed {key} argument: {parsed_arg}")
-    return parsed_arg
 
 
 ## Get positional arguments
+# TODO: replace with snakemake logging once it is implemented
 ## Will be implemented in Snakemake https://github.com/snakemake/snakemake/pull/2509
 def _get_unnamed_arguments(parameter_list):
     """
@@ -312,13 +278,50 @@ def _parse_in_out(input_or_output, values):
 
     return parsed_arg
 
+def _parse_paired_keys(key, values):
+    """
+    Some keys in bbtools can be used with 1,2, as suffixes to indicate the paired end reads.
 
-def __parse_keywords_for_bbtool(parameter_list, section):
+    Single files are parsed as:
+
+        in=values
+
+    Two files are parsed as:
+
+        in1=values[0] in2=values[1]
+
+    More than two files are parsed as:
+
+        in=values[0],values[1],values[2],...
+
+    the same applies to output arguments (out=).
+
+    """
+    if len(values) == 1 or isinstance(values, str):
+        # single input file
+        parsed_arg = f" {key}={values} "
+
+    elif len(values) == 2:
+        parsed_arg = f" {key}1={values[0]} {key}2={values[1]} "
+
+    else:
+        # multiple files
+        warnings.warn(
+            "More than 2 files provided, this case cannot be parsed unambigously! I parse it as a comma seperated list of files."
+        )
+
+        parsed_arg = f" {key}=" + ",".join(values)
+
+    logger.info(f"parsed {key} argument: {parsed_arg}")
+    return parsed_arg
+
+
+def _parse_keywords_for_bbtool(parameter_list, section):
     """
     Parse rule input, output and params into a bbmap command.
 
     Run as.
-        __parse_keywords_for_bbtool(
+        _parse_keywords_for_bbtool(
         snakemake.input,"input")
 
 
@@ -418,9 +421,9 @@ def parse_bbtool(snakemake):
             logger.info(f"extra arguments: {extra} ")
             command_with_parameters += f" {extra} "
 
-    command_with_parameters += __parse_keywords_for_bbtool(snakemake.input, "input")
-    command_with_parameters += __parse_keywords_for_bbtool(snakemake.output, "output")
-    command_with_parameters += __parse_keywords_for_bbtool(snakemake.params, "params")
+    command_with_parameters += _parse_keywords_for_bbtool(snakemake.input, "input")
+    command_with_parameters += _parse_keywords_for_bbtool(snakemake.output, "output")
+    command_with_parameters += _parse_keywords_for_bbtool(snakemake.params, "params")
 
     # Add threads if not in single threaded scripts
     if command in single_threaded_scripts:
