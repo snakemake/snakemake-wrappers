@@ -46,7 +46,8 @@ rule bbduk:
     threads: 7
     params:
         command="bbduk.sh",
-        extra="tpe tbo ktrim='r' ",
+        extra="tpe tbo ",
+        ktrim="r ",
         ref=lambda w, input: [input.adapters, "adapters", "artifacts"],
         k=23,
         mink=11,
