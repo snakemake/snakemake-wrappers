@@ -1,3 +1,4 @@
+# Include snakefile with get_fractons function returning ["R1", "R2"] for paired reads or ["se"] for single reads
 include: "input_functions.smk"
 
 
