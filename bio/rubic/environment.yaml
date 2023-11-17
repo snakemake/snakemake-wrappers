@@ -6,7 +6,7 @@ dependencies:
   - r-base =4.3.2
   - r-rubic =1.0.3
   - r-data.table =1.14.8
-  - r-pracma =2.4.2
+  - r-pracma =2.4.4
   - r-ggplot2 =3.4.4
   - r-gtable =0.3.4
   - r-codetools =0.2_19
