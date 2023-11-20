@@ -5321,7 +5321,14 @@ def test_ensembl_sequence_old_release():
 def test_ensembl_sequence_chromosome():
     run(
         "bio/reference/ensembl-sequence",
-        ["snakemake", "--cores", "1", "refs/chr1.fasta", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "refs/chr2.fasta", "--use-conda", "-F"],
+    )
+
+
+def test_ensembl_sequence_chromosomes():
+    run(
+        "bio/reference/ensembl-sequence",
+        ["snakemake", "--cores", "1", "refs/chr1_and_chr2.fasta", "--use-conda", "-F"],
     )
 
 
