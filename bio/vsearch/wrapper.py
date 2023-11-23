@@ -6,7 +6,9 @@ from snakemake.shell import shell
 
 
 extra = snakemake.params.get("extra", "")
-log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+log = snakemake.log.get("verbose", "")
+if log:
+    log = f"--log {log}"
 
 
 # Parse input files
@@ -37,4 +39,6 @@ output = [
 ]
 
 
-shell("(vsearch --threads {snakemake.threads} {input} {extra} {output}) {log}")
+shell(
+    "(vsearch --threads {snakemake.threads} {log} {input} {extra} {output}) 2> {snakemake.log[0]}"
+)
