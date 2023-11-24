@@ -1,0 +1,29 @@
+name: GATK Variant calling best practice workflow
+url: https://gatk.broadinstitute.org/hc/en-us/sections/360007226651-Best-Practices-Workflows
+description: >
+  Call short variants (SNP+INDEL) with GATK's Mutect2:
+
+    +----------------+---------------------------+-------------------------------------------------------------+
+    | Step           | Tool                      | Reason                                                      |
+    +================+===========================+=============================================================+
+    +----------------+---------------------------+-------------------------------------------------------------+
+    | Indexing       | Picard                    | Create genome sequence dictionnary                          |
+    +----------------+---------------------------+-------------------------------------------------------------+
+    | Indexing       | Samtools                  | Index fasta genome sequence                                 |
+    +----------------+---------------------------+-------------------------------------------------------------+
+    | Grouping       | Picard                    | Add or replace possible missing read groups                 |
+    +----------------+---------------------------+-------------------------------------------------------------+
+    | Indexing       | Sambamba                  | Index re-grouped BAM-formatted alignments                   |
+    +----------------+---------------------------+-------------------------------------------------------------+
+    | Calling        | Mutect2                   | Call short variants with Mutect2                            |
+    +----------------+---------------------------+-------------------------------------------------------------+
+    | Contaminations | GetPileupSummaries        | Tabulates pileup metrics for inferring contamination        |
+    +----------------+---------------------------+-------------------------------------------------------------+
+    | Contaminations | CalculateContamination    | Estimate cross sample contamination                         |
+    +----------------+---------------------------+-------------------------------------------------------------+
+    | Orientation    | LearnReadOrientationModel | Search for sequencing artifacts based on read orientation   |
+    +----------------+---------------------------+-------------------------------------------------------------+
+    | Filtering      | FilterMutectCalls         | Use previously estimated biases and filter variants         |
+    +----------------+---------------------------+-------------------------------------------------------------+
+authors:
+  - Thibault Dayris

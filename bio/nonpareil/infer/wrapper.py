@@ -15,7 +15,11 @@ mem_mb = get_mem(snakemake, out_unit="MiB")
 uncomp = ""
 in_name, in_ext = path.splitext(snakemake.input[0])
 if in_ext in [".gz", ".bz2"]:
-    uncomp = "zcat" if in_ext == ".gz" else "bzcat"
+    uncomp = (
+        f"pigz --processes {snakemake.threads} --decompress --stdout"
+        if in_ext == ".gz"
+        else f"pbzip2 -p{snakemake.threads} --decompress --stdout"
+    )
     in_name, in_ext = path.splitext(in_name)
 
 # Infer output format
@@ -48,10 +52,27 @@ if out_log:
 
 
 with tempfile.NamedTemporaryFile() as tmp:
-    in_uncomp = snakemake.input[0]
     if uncomp:
         in_uncomp = tmp.name
-        shell("{uncomp} {snakemake.input[0]} > {in_uncomp}")
+        shell("{uncomp} {snakemake.input[0]} > {tmp.name}")
+    else:
+        in_uncomp = snakemake.input[0]
+
+    # Auto infer -X value
+    if snakemake.params.get("infer_X", True):
+        # Get total number of lines
+        total_n_lines = sum(1 for line in open(in_uncomp, "rb"))
+        # Get total number of reads (depends on format)
+        total_n_reads = total_n_lines / 4 if in_format == "fastq" else total_n_lines / 2
+        # Get total number of reads to sample
+        sample_n_reads = max(1, int(total_n_reads * 0.1) - 1)
+        # Get total number of reads to sample, depending on defaults
+        sample_n_reads = (
+            min(1000, sample_n_reads)
+            if snakemake.params.alg == "alignment"
+            else min(10000, sample_n_reads)
+        )
+        extra += f" -X {sample_n_reads}"
 
     shell(
         "nonpareil"

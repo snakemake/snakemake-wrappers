@@ -8,11 +8,22 @@ rule bcftools_reheader:
     output:
         "a.reheader.bcf",
     log:
-        "reheader.log",
+        "a.reheader.log",
     params:
         uncompressed_bcf=False,
         extra="",  # optional parameters for bcftools reheader
         view_extra="",  # optional parameters for bcftools view
     threads: 2
     wrapper:
-        "master/bio/bcftools/reheader"
+        "master//bio/bcftools/reheader"
+
+
+use rule bcftools_reheader as bcftools_reheader_map with:
+    input:
+        vcf="a.bcf",
+        header="header.txt",
+        samples="samples_map.tsv",
+    output:
+        "a.reheader_map.bcf",
+    log:
+        "a.reheader_map.log",

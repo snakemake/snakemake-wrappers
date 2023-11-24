@@ -1,0 +1,20 @@
+name: gseapy gsea
+url: https://github.com/zqfang/GSEApy
+description: GSEApy, Gene Set Enrichment Analysis in Python
+authors:
+  - Thibault Dayris
+input:
+  - gmt: Optional path to gene sets (GMT formatted). If no GMT file is provided, then a `gene_sets` value must be given in `params`.
+  - expr: Path to expression table, required for `gsea` and `ssgsea`. (RNK formatted)
+  - cls: Path to categorical class file, required for `gsea`. (CLS formatted)
+  - rank: Path to pre-ranked genes, required for `prerank`. (TSV/CSV formatted)
+  - gene_list: Path to gene list file, required for `enrichr`. (TXT/TSV/CSV formatted)
+  - background: Optional path to a background file for `enrichr`. (TXT/TSV/CSV formatted)
+output:
+  - outdir: Path to output directory
+  - pkl: Path to serialized results (Pickle)
+params:
+  - extra: Dictionnary of arguments given to GSEApy's subfunction, besides IO and threading options.
+  - gene_sets: Non-file gene set names from Biomart.
+notes: |
+  GSEApy's subfunctions are selected directly from input files.

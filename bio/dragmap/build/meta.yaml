@@ -5,8 +5,8 @@ url: https://github.com/Illumina/DRAGMAP
 authors:
   - Filipe G. Vieira
 input:
-  - FASTA reference
+  - ref: Path to reference genome sequence (Fasta formatted)
 output:
-  - reference hash table
-notes: |
-  * The `extra` param allows for additional program arguments.
+  - idx: Path to reference hash table
+params:
+  - extra: Optional parameters, besides `--ht-num-threads`, `--build-hash-table`, `--ht-reference`, and `--output-directory`

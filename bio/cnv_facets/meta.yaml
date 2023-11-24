@@ -1,0 +1,18 @@
+name: cnv_facets
+description: |
+  cnv_facets detects somatic copy number variants (CNVs)
+url: https://github.com/dariober/cnv_facets
+authors:
+  - Thibault Dayris
+input:
+  - tumor: Path to tumor aligned reads. (BAM, required if `pileup` is empty)
+  - normal: Path to normal aligned reads. (BAM, required if `pileup` is empty)
+  - vcf: Path to common, polymorphic SNPs. (pbgzip VCF)
+  - pileup: Path to pileup variants. (pbgzip CSV, replaces `tumor` and `normal`)
+output:
+  - vcf: Path to copy number variants. (pbgzip VCF)
+  - cnv: Path to a summary plot of CNVs across the genome. (PNG)
+  - hist: Path to histograms of the distribution of read depth across all the position in the tumour and normal sample, before and after filtering positions. (PDF)
+  - spider: Path to a diagnostic plot to check how well the copy number fits work (PDF)
+params:
+  - extra: Optional parameters given to `cnv_facets`, besides `-t`, `-n`, `-vcf` and `-o`.
