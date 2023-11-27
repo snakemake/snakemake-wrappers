@@ -1,0 +1,10 @@
+wrappers:
+  - bio/samtools/faidx
+  - bio/picard/createsequencedictionary
+  - bio/sambamba/index
+  - bio/picard/addorreplacereadgroups
+  - bio/gatk/mutect
+  - bio/gatk/getpileupsummaries
+  - bio/gatk/calculatecontamination
+  - bio/gatk/learnreadorientationmodel
+  - bio/gatk/filtermutectcalls

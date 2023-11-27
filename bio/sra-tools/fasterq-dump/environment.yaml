@@ -4,6 +4,6 @@ channels:
   - nodefaults
 dependencies:
   - sra-tools =3.0.8
-  - pigz =2.6
+  - pigz =2.8
   - pbzip2 =1.1.13
   - snakemake-wrapper-utils =0.6.2

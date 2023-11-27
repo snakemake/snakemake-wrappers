@@ -1,0 +1,36 @@
+rule sortmerna_pe:
+    input:
+        ref=["database1.fa", "database2.fa"],
+        reads=["reads_1.fq.gz", "reads_2.fq.gz"],
+    output:
+        aligned=["aligned_1.fastq.gz", "aligned_2.fastq.gz"],
+        other=["unpaired_1.fastq.gz", "unpaired_2.fastq.gz"],
+        stats="sortmerna_pe_stats.log",
+    params:
+        extra="--idx-dir idx --paired_in --out2",
+    threads: 16
+    resources:
+        mem_mb=3072,  # amount of memory for building the index
+    log:
+        "logs/sortmerna/reads_pe.log",
+    wrapper:
+        "master/bio/sortmerna"
+
+
+rule sortmerna_se:
+    input:
+        ref=["database1.fa", "database2.fa"],
+        reads="reads.fq",
+    output:
+        aligned="aligned.fastq",
+        other="unpaired.fastq",
+        stats="sortmerna_se_stats.log",
+    params:
+        extra="--idx-dir idx",
+    threads: 16
+    resources:
+        mem_mb=3072,  # amount of memory for building the index
+    log:
+        "logs/sortmerna/reads_se.log",
+    wrapper:
+        "master/bio/sortmerna"
