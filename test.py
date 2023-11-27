@@ -5325,6 +5325,7 @@ def test_ensembl_sequence_chromosome():
     )
 
 
+@skip_if_not_modified
 def test_ensembl_sequence_chromosomes():
     run(
         "bio/reference/ensembl-sequence",
