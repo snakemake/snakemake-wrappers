@@ -3,5 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bbmap =39.01
-  - snakemake-wrapper-utils =0.5.3
+  - sortmerna =4.3.6
