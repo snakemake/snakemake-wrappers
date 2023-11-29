@@ -1,5 +1,14 @@
 # Changelog
 
+### [3.0.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.0.0...v3.0.1) (2023-11-29)
+
+
+### Performance Improvements
+
+* autobump bio/qualimap/bamqc ([#2379](https://www.github.com/snakemake/snakemake-wrappers/issues/2379)) ([a3709f0](https://www.github.com/snakemake/snakemake-wrappers/commit/a3709f0ec08942a25ad85aab971ae2dd73591f96))
+* autobump bio/qualimap/rnaseq ([#2378](https://www.github.com/snakemake/snakemake-wrappers/issues/2378)) ([61b6658](https://www.github.com/snakemake/snakemake-wrappers/commit/61b665892e0aebf58cd0a2cf4549cef64f2fcb5d))
+* autobump bio/seqkit ([#2380](https://www.github.com/snakemake/snakemake-wrappers/issues/2380)) ([20c22b7](https://www.github.com/snakemake/snakemake-wrappers/commit/20c22b75e2af1d1d08ea6b74c236cd5685c3e904))
+
 ## [3.0.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v2.13.0...v3.0.0) (2023-11-23)
 
 
