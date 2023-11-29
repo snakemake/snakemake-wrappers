@@ -95,6 +95,11 @@ html_theme_options = {
     "secondary_color": "emerald",
     "dark_logo": "logo-snake.svg",
     "light_logo": "logo-snake.svg",
+    "navigation_style": "plain",
+    "sidebar_links": [
+        {"text": "Snakemake homepage", "alt": "Snakemake homepage", "href": "https://snakemake.github.io"},
+        {"text": "Snakemake documentation", "alt": "Snakemake documentation", "href": "https://snakemake.readthedocs.io"},
+    ]
 }
 html_css_files = ["theme.css"]
 
