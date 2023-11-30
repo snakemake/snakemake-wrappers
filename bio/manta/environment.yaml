@@ -5,4 +5,4 @@ channels:
 dependencies:
   - python =2.7
   - manta =1.6.0
-  - bcftools =1.17
+  - bcftools =1.18
