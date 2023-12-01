@@ -33,7 +33,7 @@ https://conda.anaconda.org/bioconda/linux-64/perl-list-moreutils-0.413-1.tar.bz2
 https://conda.anaconda.org/bioconda/linux-64/perl-xml-sax-0.99-0.tar.bz2#da103af523835e838e8f4c2bb552768b
 https://conda.anaconda.org/conda-forge/linux-64/alsa-lib-1.2.10-hd590300_0.conda#75dae9a4201732aa78a530b826ee5fe0
 https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hd590300_5.conda#69b8b6202a07720f448be700e300ccf4
-https://conda.anaconda.org/conda-forge/linux-64/c-ares-1.22.1-hd590300_0.conda#8430bd266c7b2cfbda403f7585d5ee86
+https://conda.anaconda.org/conda-forge/linux-64/c-ares-1.23.0-hd590300_0.conda#d459949bc10f64dee1595c176c2e6291
 https://conda.anaconda.org/conda-forge/linux-64/gettext-0.21.1-h27087fc_0.tar.bz2#14947d8770185e5153fdd04d4673ed37
 https://conda.anaconda.org/conda-forge/linux-64/giflib-5.2.1-h0b41bf4_3.conda#96f3b11872ef6fad973eac856cd2624f
 https://conda.anaconda.org/conda-forge/linux-64/graphite2-1.3.13-h58526e2_1001.tar.bz2#8c54672728e8ec6aa6db90cf2806d220
