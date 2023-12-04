@@ -3,7 +3,8 @@ rule test_nonpareil_plot:
         npo="{sample}.npo",
     output:
         pdf="results/{sample}.pdf",
-	model="results/{sample}.RData",
+        model="results/{sample}.RData",
+        json="results/{sample}.json",
     threads: 1
     log:
         "logs/{sample}.log",
@@ -24,7 +25,8 @@ use rule test_nonpareil_plot as test_nonpareil_plot_multiple with:
         npo=["a.npo", "b.npo"],
     output:
         pdf="results/samples.pdf",
-	model="results/samples.RData",
+        model="results/samples.RData",
+        json="results/samples.json",
     log:
         "logs/samples.log",
     params:
@@ -39,7 +41,8 @@ use rule test_nonpareil_plot as test_nonpareil_plot_multiple with:
 use rule test_nonpareil_plot as test_nonpareil_plot_nomodel with:
     output:
         pdf="results/{sample}.nomodel.pdf",
-	model="results/{sample}.RData",
+        model="results/{sample}.nomodel.RData",
+        json="results/{sample}.nomodel.json",
     log:
         "logs/{sample}.nomodel.log",
     params:

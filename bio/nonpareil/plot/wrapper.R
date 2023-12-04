@@ -110,6 +110,37 @@ base::message("Nonpareil plot saved")
 dev.off()
 
 
+# Save JSON
+if ("json" %in% base::names(snakemake@output)) {
+  base::library("jsonlite")
+  base::message("Exporting model as JSON")
+
+  export_curve <- function(object){
+    # Extract variables
+    n <- names(attributes(object))[c(1:12,21:29)]
+    x <- sapply(n, function(v) attr(object,v))
+    names(x) <- n
+    # Extract vectors
+    n <- names(attributes(object))[13:20]
+    y <- lapply(n, function(v) attr(object,v))
+    names(y) <- n
+
+    append(x, y)
+  }
+
+  export_set <- function(object){
+    y <- lapply(object$np.curves, "export_curve")
+    names(y) <- sapply(object$np.curves, function(n) n$label)
+    jsonlite::prettify(toJSON(y, auto_unbox=TRUE))
+  }
+
+  y <- export_set(curves)
+  write(y, snakemake@output[["json"]])
+  base::message("JSON file saved")
+}
+
+
+
 # Proper syntax to close the connection for the log file
 # but could be optional for Snakemake wrapper
 base::sink(type = "message")
