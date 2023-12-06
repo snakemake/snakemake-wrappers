@@ -17,5 +17,5 @@ params:
   - skip_model: Skip model estimation.
   - plot_observed: Plot observed values?
   - plot_model: Plot infered model?
-  - plot_dispersion: Plot dispersion around curve (options: "sd", "ci95", "ci90", "ci50", "iq")?
+  - plot_dispersion: Plot dispersion around curve (options: `sd`, `ci95`, `ci90`, `ci50`, `iq`)?
   - plot_diversity: Plot diversity (bottom arrow)?
