@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bioconductor-enhancedvolcano =1.18.0
+  - bioconductor-enhancedvolcano =1.20.0
