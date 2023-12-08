@@ -1,5 +1,23 @@
 # Changelog
 
+### [3.0.5](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.0.4...v3.0.5) (2023-12-08)
+
+
+### Performance Improvements
+
+* autobump bio/cutadapt/pe ([#2395](https://www.github.com/snakemake/snakemake-wrappers/issues/2395)) ([1e23b52](https://www.github.com/snakemake/snakemake-wrappers/commit/1e23b52dd5c8b752d24675eb072d5cbe5eb5938b))
+* autobump bio/cutadapt/se ([#2396](https://www.github.com/snakemake/snakemake-wrappers/issues/2396)) ([948d27e](https://www.github.com/snakemake/snakemake-wrappers/commit/948d27e0a3c689e1cc45c714b8b4fbc0574fcb50))
+* autobump bio/enhancedvolcano ([#2398](https://www.github.com/snakemake/snakemake-wrappers/issues/2398)) ([8bf91e8](https://www.github.com/snakemake/snakemake-wrappers/commit/8bf91e8430d14cb85a6551de00362f71e641f57b))
+* autobump bio/gdc-api/bam-slicing ([#2399](https://www.github.com/snakemake/snakemake-wrappers/issues/2399)) ([5826e30](https://www.github.com/snakemake/snakemake-wrappers/commit/5826e303bc5df2f0188922ac3512ac063769c9cb))
+* autobump bio/last/lastal ([#2400](https://www.github.com/snakemake/snakemake-wrappers/issues/2400)) ([c705bda](https://www.github.com/snakemake/snakemake-wrappers/commit/c705bda526870282c95adc9dfe54f8462ffbb40f))
+* autobump bio/last/lastdb ([#2401](https://www.github.com/snakemake/snakemake-wrappers/issues/2401)) ([5315ac4](https://www.github.com/snakemake/snakemake-wrappers/commit/5315ac42a5791bba09b8f1b050006858ed296880))
+* autobump bio/vg/construct ([#2403](https://www.github.com/snakemake/snakemake-wrappers/issues/2403)) ([fb600b4](https://www.github.com/snakemake/snakemake-wrappers/commit/fb600b48111711c2464b91293127243f4f1d3f57))
+* autobump bio/vg/ids ([#2406](https://www.github.com/snakemake/snakemake-wrappers/issues/2406)) ([a00c987](https://www.github.com/snakemake/snakemake-wrappers/commit/a00c987d8c72764f37fc9ce992f67fb08fa29c64))
+* autobump bio/vg/kmers ([#2407](https://www.github.com/snakemake/snakemake-wrappers/issues/2407)) ([561ccaf](https://www.github.com/snakemake/snakemake-wrappers/commit/561ccafb6ba90cf7a3ae782076c90e5cd262a6a8))
+* autobump bio/vg/merge ([#2404](https://www.github.com/snakemake/snakemake-wrappers/issues/2404)) ([49d66d3](https://www.github.com/snakemake/snakemake-wrappers/commit/49d66d36564773b4641a095b1cc9e94bc3b8fe2f))
+* autobump bio/vg/prune ([#2402](https://www.github.com/snakemake/snakemake-wrappers/issues/2402)) ([51102d9](https://www.github.com/snakemake/snakemake-wrappers/commit/51102d9683fecb79981d57e67941081a41f22a4d))
+* autobump bio/vg/sim ([#2405](https://www.github.com/snakemake/snakemake-wrappers/issues/2405)) ([5710671](https://www.github.com/snakemake/snakemake-wrappers/commit/571067139f010cdf0b4f2509fbc483b046bba0d2))
+
 ### [3.0.4](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.0.3...v3.0.4) (2023-12-07)
 
 
