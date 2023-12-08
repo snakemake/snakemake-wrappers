@@ -39,10 +39,10 @@ https://conda.anaconda.org/conda-forge/linux-64/freetype-2.12.1-h267a509_2.conda
 https://conda.anaconda.org/conda-forge/linux-64/libtiff-4.6.0-ha9c0a0a_2.conda#55ed21669b2015f77c180feb1dd41930
 https://conda.anaconda.org/conda-forge/linux-64/parallel-20231122-ha770c72_0.conda#e314851fc2694f1b7a1b6d7f3624cd70
 https://conda.anaconda.org/conda-forge/linux-64/python-3.12.0-hab00c5b_0_cpython.conda#7f97faab5bebcc2580f4f299285323da
-https://conda.anaconda.org/conda-forge/linux-64/lcms2-2.15-hb7c19ff_3.conda#e96637dd92c5f340215c753a5c9a22d7
+https://conda.anaconda.org/conda-forge/linux-64/lcms2-2.16-hb7c19ff_0.conda#51bb7010fc86f70eee639b4bb7a894f5
 https://conda.anaconda.org/conda-forge/linux-64/openjpeg-2.5.0-h488ebb8_3.conda#128c25b7fe6a25286a48f3a6a9b5b6f3
 https://conda.anaconda.org/conda-forge/noarch/setuptools-68.2.2-pyhd8ed1ab_0.conda#fc2166155db840c634a1291a5c35a709
 https://conda.anaconda.org/conda-forge/noarch/wheel-0.42.0-pyhd8ed1ab_0.conda#1cdea58981c5cbc17b51973bcaddcea7
 https://conda.anaconda.org/conda-forge/linux-64/pillow-10.1.0-py312hf3581a9_0.conda#c04d3de9d831a69a5fdfab1413ec2fb6
 https://conda.anaconda.org/conda-forge/noarch/pip-23.3.1-pyhd8ed1ab_0.conda#2400c0b86889f43aa52067161e1fb108
-https://conda.anaconda.org/bioconda/linux-64/last-1517-h43eeafb_0.tar.bz2#717d0480584c3e601cff6fa85e14fad8
+https://conda.anaconda.org/bioconda/linux-64/last-1519-h43eeafb_0.tar.bz2#11543db948c72d757d995fc0896c355c
