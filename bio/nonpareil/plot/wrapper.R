@@ -134,6 +134,7 @@ if ("json" %in% base::names(snakemake@output)) {
     y <- lapply(n, function(v) attr(object,v))
     names(y) <- n
     # Add model
+    # https://github.com/lmrodriguezr/nonpareil/blob/162f1697ab1a21128e1857dd87fa93011e30c1ba/utils/Nonpareil/R/Nonpareil.R#L330-L332
     x_min <- 1e3
     x_max <- signif(tail(attr(curves$np.curves[[1]],"x.adj"), n=1)*10, 1)
     x.model <- exp(seq(log(x_min), log(x_max), length.out=1e3))
