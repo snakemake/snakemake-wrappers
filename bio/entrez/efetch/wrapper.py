@@ -20,4 +20,4 @@ add_param("id", required=True)
 for param in ["db", "format", "mode"]:
     add_param(param)
 
-sp.run(cmd, stdout=sp.STDERR, stderr=sys.stderr)
+sp.run(cmd, stderr=sp.STDOUT, stdout=sys.stderr)
