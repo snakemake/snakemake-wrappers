@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.2.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.1.0...v3.2.0) (2023-12-14)
+
+
+### Features
+
+* add entrez/efetch wrapper ([#2411](https://www.github.com/snakemake/snakemake-wrappers/issues/2411)) ([9f0ad09](https://www.github.com/snakemake/snakemake-wrappers/commit/9f0ad092e7dfe2a43a2d13d5f55225cea1dc6c1a))
+
+
+### Bug Fixes
+
+* Add json output to Nonpareil and extra plot options ([#2393](https://www.github.com/snakemake/snakemake-wrappers/issues/2393)) ([c43af99](https://www.github.com/snakemake/snakemake-wrappers/commit/c43af995f0d26892cd7331b03a1d2934ae371239))
+
 ## [3.1.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.0.4...v3.1.0) (2023-12-11)
 
 
