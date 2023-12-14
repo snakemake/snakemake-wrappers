@@ -1,8 +1,8 @@
 rule get_fasta:
     output:
-        "test.fasta"
+        "test.fasta",
     log:
-        "logs/get_fasta.log"
+        "logs/get_fasta.log",
     params:
         id="KY785484",
         db="nuccore",
