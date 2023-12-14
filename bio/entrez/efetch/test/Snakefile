@@ -1,0 +1,11 @@
+rule get_fasta:
+    output:
+        "test.fasta"
+    params:
+        id="KY785484",
+        db="nuccore",
+        format="fasta",
+        # optional mode
+        mode=None,
+    wrapper:
+        "master/bio/entrez/efetch"
