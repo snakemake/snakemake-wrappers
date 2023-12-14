@@ -20,4 +20,5 @@ add_param("id", required=True)
 for param in ["db", "format", "mode"]:
     add_param(param)
 
-sp.run(cmd, stderr=sp.STDOUT, stdout=sys.stderr)
+with open(snakemake.output[0], "w") as out:
+    sp.run(cmd, stderr=sp.STDOUT, stdout=out)
