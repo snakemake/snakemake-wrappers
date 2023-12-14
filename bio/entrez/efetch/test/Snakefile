@@ -1,0 +1,13 @@
+rule get_fasta:
+    output:
+        "test.fasta",
+    log:
+        "logs/get_fasta.log",
+    params:
+        id="KY785484",
+        db="nuccore",
+        format="fasta",
+        # optional mode
+        mode=None,
+    wrapper:
+        "master/bio/entrez/efetch"

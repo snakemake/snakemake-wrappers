@@ -5302,6 +5302,14 @@ def test_ucsc_twobittofa():
 
 
 @skip_if_not_modified
+def test_entrez_efetch():
+    run(
+        "bio/entrez/efetch",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_ensembl_sequence():
     run(
         "bio/reference/ensembl-sequence",
