@@ -5,7 +5,7 @@ channels:
 dependencies:
   - r-base =4.3.2
   - r-rubic =1.0.3
-  - r-data.table =1.14.8
+  - r-data.table =1.14.10
   - r-pracma =2.4.4
   - r-ggplot2 =3.4.4
   - r-gtable =0.3.4
