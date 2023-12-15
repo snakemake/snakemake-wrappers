@@ -10,7 +10,7 @@ if snakemake.log:
 
 fileid = snakemake.params.fileid
 
-fmt = Path(snakemake.output).suffix[1:].upper()
+fmt = Path(snakemake.output[0]).suffix[1:].upper()
 
 extra_pyega3 = shlex.split(snakemake.params.get("extra_pyega3", ""))
 extra_fetch = shlex.split(snakemake.params.get("extra_fetch", ""))
