@@ -4,5 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - bowtie2 =2.5.2
-  - samtools =1.18
+  - samtools =1.19
   - snakemake-wrapper-utils =0.6.2
