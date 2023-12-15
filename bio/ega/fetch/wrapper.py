@@ -28,7 +28,8 @@ with tempfile.TemporaryDirectory() as tmpdir:
         stderr=sp.STDOUT,
         check=True,
     )
-    # obtain path to the downloaded file (it should be the only file with that extension in the temp dir)
+    # obtain path to the downloaded file (it should be the only file with that
+    # extension in the temp dir)
     glob_res = list(Path(tmpdir).glob(f"*.{fmt.lower()}"))
     assert (
         len(glob_res) == 1
