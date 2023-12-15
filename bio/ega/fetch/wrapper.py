@@ -28,6 +28,11 @@ with tempfile.TemporaryDirectory() as tmpdir:
         stderr=sp.STDOUT,
         check=True,
     )
+    # obtain path to the downloaded file (it should be the only file with that extension in the temp dir)
+    glob_res = list(Path(tmpdir).glob(f"*.{fmt.lower()}"))
+    assert (
+        len(glob_res) == 1
+    ), "bug: more than one file with desired extension downloaded by pyega3"
 
     # Move the file to the output
-    shutil.move(Path(tmpdir).glob(f"*.{fmt.lower()}"), snakemake.output[0])
+    shutil.move(glob_res[0], snakemake.output[0])
