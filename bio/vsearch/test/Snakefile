@@ -12,7 +12,7 @@ rule vsearch_cluster_fast:
         "master/bio/vsearch"
 
 
-use rule vsearch_cluster_fast as vsearch_maskfasta with:
+rule vsearch_maskfasta:
     input:
         maskfasta="reads/{sample}.fasta",
     output:
@@ -22,9 +22,12 @@ use rule vsearch_cluster_fast as vsearch_maskfasta with:
         verbose="out/maskfasta/{sample}.log",
     params:
         extra="--hardmask",
+    threads: 1
+    wrapper:
+        "master/bio/vsearch"
 
 
-use rule vsearch_cluster_fast as vsearch_fastx_uniques with:
+rule vsearch_fastx_uniques:
     input:
         fastx_uniques="reads/{sample}.fastq",
     output:
@@ -34,9 +37,12 @@ use rule vsearch_cluster_fast as vsearch_fastx_uniques with:
         verbose="out/fastx_uniques/{sample}.log",
     params:
         extra="--strand both --minseqlength 5",
+    threads: 1
+    wrapper:
+        "master/bio/vsearch"
 
 
-use rule vsearch_cluster_fast as vsearch_fastx_uniques_gzip with:
+rule vsearch_fastx_uniques_gzip:
     input:
         fastx_uniques="reads/{sample}.fastq",
     output:
@@ -47,9 +53,11 @@ use rule vsearch_cluster_fast as vsearch_fastx_uniques_gzip with:
     params:
         extra="--strand both --minseqlength 5",
     threads: 2
+    wrapper:
+        "master/bio/vsearch"
 
 
-use rule vsearch_cluster_fast as vsearch_fastx_uniques_bzip2 with:
+rule vsearch_fastx_uniques_bzip2:
     input:
         fastx_uniques="reads/{sample}.fastq",
     output:
@@ -60,9 +68,11 @@ use rule vsearch_cluster_fast as vsearch_fastx_uniques_bzip2 with:
     params:
         extra="--strand both --minseqlength 5",
     threads: 2
+    wrapper:
+        "master/bio/vsearch"
 
 
-use rule vsearch_cluster_fast as vsearch_fastq_convert with:
+rule vsearch_fastq_convert:
     input:
         fastq_convert="reads/{sample}.fastq",
     output:
@@ -73,3 +83,5 @@ use rule vsearch_cluster_fast as vsearch_fastq_convert with:
     params:
         extra="--fastq_ascii 33 --fastq_asciiout 64",
     threads: 2
+    wrapper:
+        "master/bio/vsearch"
