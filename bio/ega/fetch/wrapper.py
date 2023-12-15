@@ -30,7 +30,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     )
     # obtain path to the downloaded file (it should be the only file with that
     # extension in the temp dir)
-    glob_res = list(Path(tmpdir).glob(f"*.{fmt.lower()}"))
+    glob_res = list((Path(tmpdir) / fileid).glob(f"*.{fmt.lower()}"))
     assert (
         len(glob_res) == 1
     ), "bug: more than one file with desired extension downloaded by pyega3"
