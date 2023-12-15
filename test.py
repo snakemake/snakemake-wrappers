@@ -5424,6 +5424,21 @@ def test_ensembl_variation_with_contig_lengths():
 
 
 @skip_if_not_modified
+def test_ega_fetch():
+    run(
+        "bio/ega/fetch",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "data/EGAF00007243774.cram"
+        ]
+    )
+
+
+@skip_if_not_modified
 def test_infernal_cmpress():
     run(
         "bio/infernal/cmpress",
