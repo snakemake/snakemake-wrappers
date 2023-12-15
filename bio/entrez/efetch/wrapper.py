@@ -21,4 +21,4 @@ for param in ["db", "format", "mode"]:
     add_param(param)
 
 with open(snakemake.output[0], "w") as out:
-    sp.run(cmd, stderr=sp.STDOUT, stdout=out)
+    sp.run(cmd, stderr=sp.STDOUT, stdout=out, check=True)

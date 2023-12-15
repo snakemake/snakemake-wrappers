@@ -4,4 +4,4 @@ url: https://www.ncbi.nlm.nih.gov/books/NBK179288/
 authors:
   - Johannes Köster
 output:
-  - Any format support by efetch
+  - Any format supported by efetch
