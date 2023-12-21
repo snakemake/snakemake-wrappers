@@ -1,4 +1,4 @@
-name: RGA fetch
+name: EGA fetch
 description: Fetch files from EGA with pyega3.
 url: https://github.com/EGA-archive/ega-download-client
 authors:
