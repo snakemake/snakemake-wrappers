@@ -1,5 +1,13 @@
 # Changelog
 
+### [3.3.2](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.3.1...v3.3.2) (2023-12-21)
+
+
+### Bug Fixes
+
+* fix title in ega/fetch metadata ([c8305af](https://www.github.com/snakemake/snakemake-wrappers/commit/c8305afe1afa7fcfa9dc13005d6f2b6bf5741a9a))
+* for vsearch, fixed bug with bz2 output and added general log ([#1775](https://www.github.com/snakemake/snakemake-wrappers/issues/1775)) ([28e76d0](https://www.github.com/snakemake/snakemake-wrappers/commit/28e76d06362caf61ab033f2259a94fb65e788bd0))
+
 ### [3.3.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.3.0...v3.3.1) (2023-12-15)
 
 
