@@ -44,5 +44,5 @@ https://conda.anaconda.org/conda-forge/linux-64/openjpeg-2.5.0-h488ebb8_3.conda#
 https://conda.anaconda.org/conda-forge/noarch/setuptools-68.2.2-pyhd8ed1ab_0.conda#fc2166155db840c634a1291a5c35a709
 https://conda.anaconda.org/conda-forge/noarch/wheel-0.42.0-pyhd8ed1ab_0.conda#1cdea58981c5cbc17b51973bcaddcea7
 https://conda.anaconda.org/conda-forge/linux-64/pillow-10.1.0-py312hf3581a9_0.conda#c04d3de9d831a69a5fdfab1413ec2fb6
-https://conda.anaconda.org/conda-forge/noarch/pip-23.3.1-pyhd8ed1ab_0.conda#2400c0b86889f43aa52067161e1fb108
-https://conda.anaconda.org/bioconda/linux-64/last-1519-h43eeafb_0.tar.bz2#11543db948c72d757d995fc0896c355c
+https://conda.anaconda.org/conda-forge/noarch/pip-23.3.2-pyhd8ed1ab_0.conda#8591c748f98dcc02253003533bc2e4b1
+https://conda.anaconda.org/bioconda/linux-64/last-1521-h43eeafb_0.tar.bz2#e138ba91acda4eb6e07e7f5e02cb95b0
