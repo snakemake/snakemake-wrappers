@@ -1,0 +1,15 @@
+rule collectreadcounts:
+    input:
+        bam=["mapped/a.bam"],
+        intervals=["a.interval_list"],
+    output:
+        counts="a.counts.hdf5",
+    log:
+        "logs/gatk/collectreadcounts.log",
+    params:
+        extra="",  # optional
+        java_opts="",  # optional
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/gatk/collectreadcounts"

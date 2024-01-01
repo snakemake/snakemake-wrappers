@@ -1,0 +1,12 @@
+rule test_deeptools_alignment_sieve:
+    input:
+        aln="a.bam",
+    output:
+        "filtered.bam",
+    threads: 1
+    log:
+        "logs/deeptools.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/deeptools/alignmentsieve"

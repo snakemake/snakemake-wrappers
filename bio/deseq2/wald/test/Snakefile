@@ -1,0 +1,19 @@
+rule test_deseq2_wald:
+    input:
+        dds="dds.RDS",
+    output:
+        wald_rds="wald.RDS",
+        wald_tsv="dge.tsv",
+        deseq2_result_dir=directory("deseq_results"),
+        normalized_counts_table="counts.tsv",
+        normalized_counts_rds="counts.RDS",
+    params:
+        deseq_extra="",
+        shrink_extra="",
+        results_extra="",
+        contrast=["condition", "A", "B"],
+    threads: 1
+    log:
+        "logs/deseq2.log",
+    wrapper:
+        "master/bio/deseq2/wald"

@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - trinity =2.13.2
+  - trinity =2.15.1

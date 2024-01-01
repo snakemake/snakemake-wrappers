@@ -1,4 +1,14 @@
 name: chm-eval
-description: Evaluate given VCF file with chm-eval (https://github.com/lh3/CHM-eval) for benchmarking variant calling.
+description: Evaluate given VCF file with chm-eval for benchmarking variant calling.
+url: https://github.com/lh3/CHM-eval
 authors:
   - Johannes Köster
+input:
+  - kit: Path to annotation directory
+  - vcf: Path to VCF to evaluate (can be gzipped)
+output:
+  - summary: Path to statistics and evaluations
+  - bed: Path to list of errors (BED formatted)
+params:
+  - build: Genome build. Either `37` or `38`.
+  - extra: Optional parameters besides `-g`

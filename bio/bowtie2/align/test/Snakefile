@@ -1,4 +1,50 @@
-rule bowtie2:
+rule test_bowtie2:
+    input:
+        sample=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        idx=multiext(
+            "index/genome",
+            ".1.bt2",
+            ".2.bt2",
+            ".3.bt2",
+            ".4.bt2",
+            ".rev.1.bt2",
+            ".rev.2.bt2",
+        ),
+        # ref="genome.fasta", #Required for CRAM output
+    output:
+        "mapped/{sample}.bam",
+        # idx="",
+        # metrics="",
+        # unaligned="",
+        # unpaired="",
+        # unconcordant="",
+        # concordant="",
+    log:
+        "logs/bowtie2/{sample}.log",
+    params:
+        extra="",  # optional parameters
+    threads: 8  # Use at least two threads
+    wrapper:
+        "master/bio/bowtie2/align"
+
+
+use rule test_bowtie2 as test_bowtie2_se_gz with:
+    input:
+        sample=["reads/{sample}.1.fastq.gz"],
+        idx=multiext(
+            "index/genome",
+            ".1.bt2",
+            ".2.bt2",
+            ".3.bt2",
+            ".4.bt2",
+            ".rev.1.bt2",
+            ".rev.2.bt2",
+        ),
+    output:
+        "mapped_se_gz/{sample}.bam",
+
+
+rule test_bowtie2_index:
     input:
         sample=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
         idx=multiext(
@@ -11,7 +57,43 @@ rule bowtie2:
             ".rev.2.bt2",
         ),
     output:
-        "mapped/{sample}.bam",
+        "mapped_idx/{sample}.bam",
+        idx="mapped_idx/{sample}.bam.bai",
+        metrics="mapped_idx/{sample}.metrics.txt",
+        unaligned="mapped_idx/{sample}.unaligned.sam",
+        unpaired="mapped_idx/{sample}.unpaired.sam",
+        # unconcordant="",
+        # concordant="",
+    log:
+        "logs/bowtie2/{sample}.log",
+    params:
+        extra="",  # optional parameters
+    threads: 8  # Use at least two threads
+    wrapper:
+        "master/bio/bowtie2/align"
+
+
+rule test_bowtie2_cram:
+    input:
+        sample=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        idx=multiext(
+            "index/genome",
+            ".1.bt2",
+            ".2.bt2",
+            ".3.bt2",
+            ".4.bt2",
+            ".rev.1.bt2",
+            ".rev.2.bt2",
+        ),
+        ref="genome.fasta",
+    output:
+        "mapped_idx/{sample}.cram",
+        # idx="",
+        # metrics="",
+        # unaligned="",
+        # unpaired="",
+        # unconcordant="",
+        # concordant="",
     log:
         "logs/bowtie2/{sample}.log",
     params:

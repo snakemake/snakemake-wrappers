@@ -1,6 +1,7 @@
 name: fastqc
 description: |
   Generate fastq qc statistics using fastqc.
+url: https://github.com/s-andrews/FastQC
 authors:
   - Julian de Ruiter
 input:
