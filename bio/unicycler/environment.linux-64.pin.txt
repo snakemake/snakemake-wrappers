@@ -107,7 +107,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libblas-3.9.0-20_linux64_openbla
 https://conda.anaconda.org/conda-forge/linux-64/libcups-2.3.3-h4637d8d_4.conda#d4529f4dff3057982a7617c7ac58fde3
 https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.5.0-hca28451_0.conda#7144d5a828e2cae218e0e3c98d8a0aeb
 https://conda.anaconda.org/bioconda/linux-64/racon-1.5.0-h21ec9f0_2.tar.bz2#3fee7bdb3ecfb9064a38d49fc81e8faf
-https://conda.anaconda.org/conda-forge/noarch/setuptools-68.2.2-pyhd8ed1ab_0.conda#fc2166155db840c634a1291a5c35a709
+https://conda.anaconda.org/conda-forge/noarch/setuptools-69.0.3-pyhd8ed1ab_0.conda#40695fdfd15a92121ed2922900d0308b
 https://conda.anaconda.org/bioconda/linux-64/spades-3.15.5-h95f258a_1.tar.bz2#62ab35497479905dce6860525262104f
 https://conda.anaconda.org/conda-forge/linux-64/tbb-2021.11.0-h00ab1b0_0.conda#fde515afbbe6e36eb4564965c20b1058
 https://conda.anaconda.org/conda-forge/noarch/wheel-0.42.0-pyhd8ed1ab_0.conda#1cdea58981c5cbc17b51973bcaddcea7
