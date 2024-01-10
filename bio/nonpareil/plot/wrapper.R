@@ -70,7 +70,7 @@ curves <- Nonpareil.set(in_files,
                         weights.exp = params[["weights_exp"]],
                         skip.model = params[["skip_model"]],
                         plot = FALSE
-		       )
+                       )
 
 lapply(curves$np.curves, plot,
        col = params[["col"]],
