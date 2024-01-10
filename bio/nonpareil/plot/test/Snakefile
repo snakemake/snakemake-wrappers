@@ -26,7 +26,7 @@ rule test_nonpareil_plot:
 
 use rule test_nonpareil_plot as test_nonpareil_plot_multiple with:
     input:
-        npo=["a.npo", "b.npo"],
+        npo=["a.npo", "b.npo", "c.npo"],
     output:
         pdf="results/samples.pdf",
         model="results/samples.RData",
@@ -34,7 +34,7 @@ use rule test_nonpareil_plot as test_nonpareil_plot_multiple with:
     log:
         "logs/samples.log",
     params:
-        labels=["Model A","Model B"],
+        labels=["Model A","Model B", "Model C"],
         col=["blue","red"],
         enforce_consistency=True,
         star=95,
