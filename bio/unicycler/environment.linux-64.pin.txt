@@ -33,7 +33,7 @@ https://conda.anaconda.org/bioconda/linux-64/perl-list-moreutils-0.413-1.tar.bz2
 https://conda.anaconda.org/bioconda/linux-64/perl-xml-sax-0.99-0.tar.bz2#da103af523835e838e8f4c2bb552768b
 https://conda.anaconda.org/conda-forge/linux-64/alsa-lib-1.2.10-hd590300_0.conda#75dae9a4201732aa78a530b826ee5fe0
 https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hd590300_5.conda#69b8b6202a07720f448be700e300ccf4
-https://conda.anaconda.org/conda-forge/linux-64/c-ares-1.24.0-hd590300_0.conda#f5842b88e9cbfa177abfaeacd457a45d
+https://conda.anaconda.org/conda-forge/linux-64/c-ares-1.25.0-hd590300_0.conda#89e40af02dd3a0846c0c1131c5126706
 https://conda.anaconda.org/conda-forge/linux-64/gettext-0.21.1-h27087fc_0.tar.bz2#14947d8770185e5153fdd04d4673ed37
 https://conda.anaconda.org/conda-forge/linux-64/giflib-5.2.1-h0b41bf4_3.conda#96f3b11872ef6fad973eac856cd2624f
 https://conda.anaconda.org/conda-forge/linux-64/graphite2-1.3.13-h58526e2_1001.tar.bz2#8c54672728e8ec6aa6db90cf2806d220
@@ -59,7 +59,7 @@ https://conda.anaconda.org/conda-forge/linux-64/openssl-3.2.0-hd590300_1.conda#6
 https://conda.anaconda.org/conda-forge/linux-64/ossuuid-1.6.2-hf484d3e_1000.tar.bz2#0ca24876ead80a9290d3936aea5fefb1
 https://conda.anaconda.org/conda-forge/linux-64/pcre-8.45-h9c3ff4c_0.tar.bz2#c05d1820a6d34ff07aaaab7a9b7eddaa
 https://conda.anaconda.org/bioconda/linux-64/perl-json-2.90-1.tar.bz2#72bc53bd06c145a1b88b1a909322323f
-https://conda.anaconda.org/conda-forge/linux-64/pixman-0.42.2-h59595ed_0.conda#700edd63ccd5fc66b70b1c028cea9a68
+https://conda.anaconda.org/conda-forge/linux-64/pixman-0.43.0-h59595ed_0.conda#6b4b43013628634b6cfdee6b74fd696b
 https://conda.anaconda.org/conda-forge/linux-64/pthread-stubs-0.4-h36c2ea0_1001.tar.bz2#22dad4df6e8630e8dff2428f6f6a7036
 https://conda.anaconda.org/conda-forge/linux-64/xorg-inputproto-2.3.2-h7f98852_1002.tar.bz2#bcd1b3396ec6960cbc1d2855a9e60b2b
 https://conda.anaconda.org/conda-forge/linux-64/xorg-kbproto-1.0.7-h7f98852_1002.tar.bz2#4b230e8381279d76131116660f5a241a
