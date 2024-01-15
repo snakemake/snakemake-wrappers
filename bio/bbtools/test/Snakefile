@@ -12,11 +12,11 @@ rule loglog:
     input:
         expand("reads/raw/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()),
     log:
-        stdout="logs/loglog/{sample}.log",
-        stderr="logs/loglog/{sample}.err",  # Captures the error output of the command and the log of the wrapper
+        "logs/loglog/{sample}.log",  # Captures the error output of the command and the log of the wrapper
     params:
         command="loglog.sh",
-        extra="buckets=2048 seed=1234",
+        buckets=2048,
+        seed=1234,
     threads: 2
     resources:
         mem_mb=1024,
@@ -75,7 +75,7 @@ rule tadpole_correct:
         ),
         outd="reads/discarded/{sample}.fastq.gz",
     log:
-        err="logs/correct/{sample}.log",
+        "logs/correct/{sample}.log",
     params:
         command="tadpole.sh",
         mode="correct",
@@ -118,12 +118,11 @@ rule map_reads_with_bbmap:
     output:
         out="mapped/{sample}.bam",
     log:
-        stderr="logs/bbmap/{sample}.log",  # Split stdout and stderr into separate files to have a nice log file
-        stdout="logs/bbmap/{sample}.out",
+        "logs/bbmap/{sample}.log",
     params:
         command="bbmap.sh",
         machineout=True,
-        overwrite=True,  # reccomended
+        overwrite=True,  # recommended
         unpigz=True,
         nodisk=True,  # Don't write a index
     threads: 12
@@ -141,8 +140,7 @@ rule pileup:
         covstats="covstats/{sample}.tsv",
         basecov="basecov/{sample}.tsv",
     log:
-        stderr="logs/pileup/{sample}.log",
-        stdout="logs/pileup/{sample}.out",
+        "logs/pileup/{sample}.log",
     params:
         command="pileup.sh",
         nzo=True,
