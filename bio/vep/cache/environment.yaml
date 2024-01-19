@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - python =3.12.1
-  - ensembl-vep =110.1
+  - ensembl-vep =111.0
