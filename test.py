@@ -188,8 +188,12 @@ def test_nonpareil_plot():
             "--use-conda",
             "-F",
             "results/a.pdf",
-            # Test disabled due to bug in nonpareil (#62)
-            #            "results/a.nomodel.pdf",
+            "results/b.pdf",
+            "results/c.pdf",
+            "results/a.nomodel.pdf",
+            "results/b.nomodel.pdf",
+            "results/c.nomodel.pdf",
+            "results/samples.pdf",
         ],
     )
 
