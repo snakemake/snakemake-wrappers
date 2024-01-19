@@ -19,7 +19,7 @@ https://conda.anaconda.org/conda-forge/linux-64/binutils_linux-64-2.39-h5fc0e48_
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-13.2.0-h807b86a_3.conda#23fdf1fef05baeb7eadc2aed5fb0011f
 https://conda.anaconda.org/conda-forge/linux-64/argtable2-2.13-h14c3975_1001.tar.bz2#b9e0ac5d747ceab0c8b85a470358e1a6
 https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hd590300_5.conda#69b8b6202a07720f448be700e300ccf4
-https://conda.anaconda.org/conda-forge/linux-64/c-ares-1.24.0-hd590300_0.conda#f5842b88e9cbfa177abfaeacd457a45d
+https://conda.anaconda.org/conda-forge/linux-64/c-ares-1.25.0-hd590300_0.conda#89e40af02dd3a0846c0c1131c5126706
 https://conda.anaconda.org/bioconda/linux-64/clustalw-2.1-h4ac6f70_9.tar.bz2#919194f6f7d733afff4d3c6f54e08d07
 https://conda.anaconda.org/conda-forge/linux-64/gettext-0.21.1-h27087fc_0.tar.bz2#14947d8770185e5153fdd04d4673ed37
 https://conda.anaconda.org/conda-forge/linux-64/gmp-6.3.0-h59595ed_0.conda#0e33ef437202db431aa5a928248cf2e8
@@ -146,7 +146,7 @@ https://conda.anaconda.org/conda-forge/noarch/perl-text-diff-1.45-pl5321hd8ed1ab
 https://conda.anaconda.org/bioconda/noarch/perl-tree-dag_node-1.32-pl5321hdfd78af_0.tar.bz2#09b05f575f3ae5f4a87003c857e3ad5d
 https://conda.anaconda.org/bioconda/noarch/perl-types-serialiser-1.01-pl5321hdfd78af_0.tar.bz2#cfc65753e827bbef80c00eaa395f6ae7
 https://conda.anaconda.org/conda-forge/noarch/perl-xml-namespacesupport-1.12-pl5321hd8ed1ab_0.tar.bz2#f4ce684ba66b3228bfffb09892235930
-https://conda.anaconda.org/conda-forge/noarch/setuptools-68.2.2-pyhd8ed1ab_0.conda#fc2166155db840c634a1291a5c35a709
+https://conda.anaconda.org/conda-forge/noarch/setuptools-69.0.3-pyhd8ed1ab_0.conda#40695fdfd15a92121ed2922900d0308b
 https://conda.anaconda.org/conda-forge/noarch/wheel-0.42.0-pyhd8ed1ab_0.conda#1cdea58981c5cbc17b51973bcaddcea7
 https://conda.anaconda.org/conda-forge/linux-64/curl-8.5.0-hca28451_0.conda#e5e83fb15e752dbc8f54c4ac7da7d0f1
 https://conda.anaconda.org/bioconda/linux-64/htslib-1.19-h81da01d_0.tar.bz2#70a467e903079d86316ed9ecff262582
@@ -201,4 +201,4 @@ https://conda.anaconda.org/bioconda/noarch/perl-bio-featureio-1.6.905-pl5321hdfd
 https://conda.anaconda.org/bioconda/noarch/perl-bio-tools-run-alignment-tcoffee-1.7.4-pl5321hdfd78af_5.tar.bz2#932416c9ba6a9af43609e04ec5952574
 https://conda.anaconda.org/bioconda/noarch/perl-bioperl-1.7.8-hdfd78af_1.tar.bz2#a693939710e572d0f85f6058b534e319
 https://conda.anaconda.org/bioconda/linux-64/perl-bio-db-hts-3.01-pl5321h6141fd1_8.tar.bz2#9bd60dd669288d8b6fbcc06dd6c8f3e5
-https://conda.anaconda.org/bioconda/noarch/ensembl-vep-110.1-pl5321h2a3209d_0.tar.bz2#2dcd35e98bc9428650142776b8cfb334
+https://conda.anaconda.org/bioconda/noarch/ensembl-vep-111.0-pl5321h2a3209d_0.tar.bz2#18a2cedc60ea453a12006ca10aac9a61
