@@ -1,0 +1,7 @@
+name: EGA fetch
+description: Fetch files from EGA with pyega3.
+url: https://github.com/EGA-archive/ega-download-client
+authors:
+  - Johannes Köster
+output:
+  - File formats supported by EGA (BAM, CRAM, VCF, BCF)

@@ -3,6 +3,6 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - vsearch =2.25.0
-  - gzip
-  - bzip2
+  - vsearch =2.27.0
+  - pigz
+  - pbzip2

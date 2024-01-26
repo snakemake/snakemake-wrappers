@@ -188,8 +188,12 @@ def test_nonpareil_plot():
             "--use-conda",
             "-F",
             "results/a.pdf",
-            # Test disabled due to bug in nonpareil (#62)
-            #            "results/a.nomodel.pdf",
+            "results/b.pdf",
+            "results/c.pdf",
+            "results/a.nomodel.pdf",
+            "results/b.nomodel.pdf",
+            "results/c.nomodel.pdf",
+            "results/samples.pdf",
         ],
     )
 
@@ -5302,6 +5306,14 @@ def test_ucsc_twobittofa():
 
 
 @skip_if_not_modified
+def test_entrez_efetch():
+    run(
+        "bio/entrez/efetch",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_ensembl_sequence():
     run(
         "bio/reference/ensembl-sequence",
@@ -5412,6 +5424,21 @@ def test_ensembl_variation_with_contig_lengths():
             "--use-conda",
             "-F",
         ],
+    )
+
+
+@skip_if_not_modified
+def test_ega_fetch():
+    run(
+        "bio/ega/fetch",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "data/EGAF00007243774.cram"
+        ]
     )
 
 

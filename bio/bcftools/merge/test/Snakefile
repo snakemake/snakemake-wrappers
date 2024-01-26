@@ -1,10 +1,11 @@
 rule bcftools_merge:
     input:
         calls=["a.bcf", "b.bcf"],
+        idx=["a.bcf.csi", "b.bcf.csi"],
     output:
         "all.bcf",
     log:
-        "all.log"
+        "all.log",
     params:
         uncompressed_bcf=False,
         extra="",  # optional parameters for bcftools concat (except -o)

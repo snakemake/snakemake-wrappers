@@ -20,6 +20,7 @@
 import os
 import sys
 import subprocess
+from sphinxawesome_theme.postprocess import Icons
 
 sys.path.insert(0, os.path.abspath("."))
 
@@ -38,10 +39,8 @@ extensions = [
     "sphinx.ext.todo",
     "generate_docs",
     "sphinx_copybutton",
+    "myst_parser",
 ]
-
-# Snakemake theme (made by SciAni).
-html_css_files = ["theme.css"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -83,9 +82,6 @@ language = None
 # This patterns also effect to html_static_path and html_extra_path
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
-# The name of the Pygments (syntax highlighting) style to use.
-pygments_style = "sphinx"
-
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
 
@@ -95,7 +91,22 @@ todo_include_todos = True
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "sphinx_rtd_theme"
+pygments_style = "sphinx"
+html_theme = "sphinxawesome_theme"
+html_theme_options = {
+    "logo_light": "logo-snake.svg",
+    "logo_dark": "logo-snake.svg",
+    "main_nav_links": {
+        "Homepage": "https://snakemake.github.io",
+        "Plugin catalog": "https://snakemake.github.io/snakemake-plugin-catalog",
+        "Workflow catalog": "https://snakemake.github.io/snakemake-workflow-catalog",
+    },
+    "awesome_external_links": True,
+    "awesome_headerlinks": True,
+    "show_prev_next": False,
+}
+html_permalinks_icon = Icons.permalinks_icon
+html_css_files = ["custom.css"]
 
 
 # Theme options are theme-specific and customize the look and feel of a theme
@@ -109,70 +120,4 @@ html_theme = "sphinx_rtd_theme"
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
 
-
-# -- Options for HTMLHelp output ------------------------------------------
-
-# Output file base name for HTML help builder.
-htmlhelp_basename = "SnakemakeWrappersdoc"
-
-
-# -- Options for LaTeX output ---------------------------------------------
-
-latex_elements = {
-    # The paper size ('letterpaper' or 'a4paper').
-    #
-    # 'papersize': 'letterpaper',
-    # The font size ('10pt', '11pt' or '12pt').
-    #
-    # 'pointsize': '10pt',
-    # Additional stuff for the LaTeX preamble.
-    #
-    # 'preamble': '',
-    # Latex figure (float) alignment
-    #
-    # 'figure_align': 'htbp',
-}
-
-# Grouping the document tree into LaTeX files. List of tuples
-# (source start file, target name, title,
-#  author, documentclass [howto, manual, or own class]).
-latex_documents = [
-    (
-        master_doc,
-        "SnakemakeWrappers.tex",
-        "Snakemake Wrappers Documentation",
-        "The Snakemake team",
-        "manual",
-    ),
-]
-
-
-# -- Options for manual page output ---------------------------------------
-
-# One entry per manual page. List of tuples
-# (source start file, name, description, authors, manual section).
-man_pages = [
-    (master_doc, "snakemakewrappers", "Snakemake Wrappers Documentation", [author], 1)
-]
-
-
-# -- Options for Texinfo output -------------------------------------------
-
-# Grouping the document tree into Texinfo files. List of tuples
-# (source start file, target name, title, author,
-#  dir menu entry, description, category)
-texinfo_documents = [
-    (
-        master_doc,
-        "SnakemakeWrappers",
-        "Snakemake Wrappers Documentation",
-        author,
-        "SnakemakeWrappers",
-        "One line description of project.",
-        "Miscellaneous",
-    ),
-]
-
-
-# Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {"https://docs.python.org/": None}
+html_title = "Snakemake wrappers"
