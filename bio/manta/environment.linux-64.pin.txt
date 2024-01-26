@@ -13,7 +13,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-13.2.0-h807b86a_3.cond
 https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hd590300_5.conda#69b8b6202a07720f448be700e300ccf4
 https://conda.anaconda.org/conda-forge/linux-64/c-ares-1.25.0-hd590300_0.conda#89e40af02dd3a0846c0c1131c5126706
 https://conda.anaconda.org/conda-forge/linux-64/keyutils-1.6.1-h166bdaf_0.tar.bz2#30186d27e2c9fa62b45fb1476b7200e3
-https://conda.anaconda.org/conda-forge/linux-64/libdeflate-1.19-hd590300_0.conda#1635570038840ee3f9c71d22aa5b8b6d
+https://conda.anaconda.org/conda-forge/linux-64/libdeflate-1.18-h0b41bf4_0.conda#6aa9c9de5542ecb07fdda9ca626252d8
 https://conda.anaconda.org/conda-forge/linux-64/libev-4.33-hd590300_2.conda#172bf1cd1ff8629f2b1179945ed45055
 https://conda.anaconda.org/conda-forge/linux-64/libgfortran5-13.2.0-ha4646dd_3.conda#c714d905cdfa0e70200f68b80cc04764
 https://conda.anaconda.org/conda-forge/linux-64/libxcrypt-4.4.36-hd590300_1.conda#5aa797f8787fe7a17d1b0821485b5adc
@@ -28,10 +28,10 @@ https://conda.anaconda.org/conda-forge/linux-64/libssh2-1.11.0-h0841786_0.conda#
 https://conda.anaconda.org/conda-forge/linux-64/perl-5.32.1-7_hd590300_perl5.conda#f2cfec9406850991f4e3d960cc9e3321
 https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.5-hfc55251_0.conda#04b88013080254850d6c01ed54810589
 https://conda.anaconda.org/conda-forge/linux-64/krb5-1.21.2-h659d440_0.conda#cd95826dbd331ed1be26bdf401432844
-https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.25-pthreads_h413a1c8_0.conda#d172b34a443b95f86089e8229ddc9a17
-https://conda.anaconda.org/conda-forge/linux-64/libblas-3.9.0-20_linux64_openblas.conda#2b7bb4f7562c8cf334fc2e20c2d28abc
+https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.26-pthreads_h413a1c8_0.conda#760ae35415f5ba8b15d09df5afe8b23a
+https://conda.anaconda.org/conda-forge/linux-64/libblas-3.9.0-21_linux64_openblas.conda#0ac9f44fc096772b0aa092119b00c3ca
 https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.5.0-hca28451_0.conda#7144d5a828e2cae218e0e3c98d8a0aeb
-https://conda.anaconda.org/bioconda/linux-64/htslib-1.19-h81da01d_0.tar.bz2#70a467e903079d86316ed9ecff262582
-https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.9.0-20_linux64_openblas.conda#36d486d72ab64ffea932329a1d3729a3
+https://conda.anaconda.org/bioconda/linux-64/htslib-1.19.1-h81da01d_0.tar.bz2#a2b558d267544e66aef5551728b3960a
+https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.9.0-21_linux64_openblas.conda#4a3816d06451c4946e2db26b86472cb6
 https://conda.anaconda.org/conda-forge/linux-64/gsl-2.7-he838d99_0.tar.bz2#fec079ba39c9cca093bf4c00001825de
 https://conda.anaconda.org/bioconda/linux-64/bcftools-1.19-h8b25389_0.tar.bz2#6049549bf4b2ace1dc858f8d06a71123
