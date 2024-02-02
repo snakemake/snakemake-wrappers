@@ -1,4 +1,5 @@
 """Snakemake wrapper for Bismark indexes preparing using bismark_genome_preparation."""
+
 # https://github.com/FelixKrueger/Bismark/blob/master/bismark_genome_preparation
 
 __author__ = "Roman Chernyatchik"
