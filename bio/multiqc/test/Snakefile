@@ -3,9 +3,9 @@ rule multiqc_dir:
         expand("samtools_stats/{sample}.txt", sample=["a", "b"]),
     output:
         "qc/multiqc.html",
-        directory("qc/multiqc_data"),
+        directory("qc_data/multiqc_data"),
     params:
-        extra="--data-dir",  # Optional: extra parameters for multiqc.
+        extra="--verbose",  # Optional: extra parameters for multiqc.
     log:
         "logs/multiqc.log",
     wrapper:
@@ -17,9 +17,9 @@ rule multiqc_file:
         expand("samtools_stats/{sample}.txt", sample=["a"]),
     output:
         "qc/multiqc.a.html",
-        "qc/multiqc.a_data.zip",
+        "qc_data/multiqc.a_data.zip",
     params:
-        extra="--zip-data-dir",  # Optional: extra parameters for multiqc.
+        extra="--verbose",  # Optional: extra parameters for multiqc.
         use_input_files_only=True,  # Optional, use only a.txt and don't search folder samtools_stats for files
     log:
         "logs/multiqc.log",
