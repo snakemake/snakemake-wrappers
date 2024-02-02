@@ -1,4 +1,5 @@
 """Snakemake wrapper for *.bedGraph to *.bw conversion using UCSC bedGraphToBigWig tool."""
+
 # http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/FOOTER.txt
 
 __author__ = "Roman Chernyatchik"

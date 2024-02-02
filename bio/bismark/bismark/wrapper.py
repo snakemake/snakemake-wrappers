@@ -1,4 +1,5 @@
 """Snakemake wrapper for aligning methylation BS-Seq data using Bismark."""
+
 # https://github.com/FelixKrueger/Bismark/blob/master/bismark
 
 __author__ = "Roman Chernyatchik"
