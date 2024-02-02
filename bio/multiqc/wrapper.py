@@ -37,7 +37,7 @@ for output in snakemake.output:
         extra += " --zip-data-dir"
 if no_report:
     extra += " --no-report"
-if not is_arg("--data-dir", extra) and not is_arg("--zip-data-dir", extra):
+if not is_arg("--data-dir", extra) and not is_arg("-z", extra) and not is_arg("--zip-data-dir", extra):
     extra += " --no-data-dir"
 
 # Specify output dir and file name, since they are stored in the JSON file
