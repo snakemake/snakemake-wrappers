@@ -1,0 +1,7 @@
+name: orthanq candidates hla
+description: |
+  Orthanq candidates hla subcommand generates candidate variants required for HLA quantification.
+  All required input is downloaded by following the instructions here: https://orthanq.github.io/docs/usage.html#preparation
+url: https://github.com/orthanq/orthanq
+authors:
+  - Hamdiye Uzuner
