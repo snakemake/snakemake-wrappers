@@ -1,0 +1,12 @@
+rule orthanq_candidates_hla:
+    input:
+        allele_freq="allele_freq.csv",
+        alleles="hla_alleles.fasta",
+        genome="genome.fasta",
+        xml="hla.xml"
+    output:
+        "candidates.vcf",
+    log:
+        "logs/orthanq_candidates/candidates_hla.log",
+    wrapper:
+        "master/bio/orthanq/hla/candidates"
