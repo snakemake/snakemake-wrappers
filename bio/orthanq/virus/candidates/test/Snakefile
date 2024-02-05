@@ -1,0 +1,7 @@
+rule orthanq_candidates_virus:
+    output:
+        directory("viral_candidates"),
+    log:
+        "logs/orthanq_candidates/candidates_virus.log",
+    wrapper:
+        "master/bio/orthanq/virus/candidates"
