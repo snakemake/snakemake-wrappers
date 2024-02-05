@@ -1,1 +1,6 @@
-
+name: orthanq candidates virus
+description: |
+  Orthanq candidates virus subcommand generates candidate variants required for viral lineage quantification.
+url: https://github.com/orthanq/orthanq
+authors:
+  - Hamdiye Uzuner
