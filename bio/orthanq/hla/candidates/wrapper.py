@@ -10,5 +10,5 @@ shell("datavzrd {snakemake.input.config} {extra} --output {snakemake.output[0]} 
 shell(
     "orthanq candidates hla --allele-freq {snakemake.input.allele_freq} "
     " --alleles {snakemake.input.alleles} --genome {snakemake.input.genome} "
-    " --xml {snakemake.input.xml} --output {snakemake.output[0]} {gene_map} {log}"
+    " --xml {snakemake.input.xml} --output {snakemake.output[0]} {log}"
 )
