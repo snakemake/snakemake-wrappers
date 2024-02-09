@@ -3,11 +3,11 @@
 # platform: linux-64
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
-https://conda.anaconda.org/conda-forge/linux-64/ca-certificates-2023.11.17-hbcca054_0.conda#01ffc8d36f9eba0ce0b3c1955fa780ee
+https://conda.anaconda.org/conda-forge/linux-64/ca-certificates-2024.2.2-hbcca054_0.conda#2f4327a1cbe7f022401b236e915a5fef
 https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.40-h41732ed_0.conda#7aca3059a1729aa76c597603f10b0dd3
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-13.2.0-h7e041cc_5.conda#f6f6600d18a4047b54f803cf708b868a
 https://conda.anaconda.org/conda-forge/linux-64/python_abi-3.12-4_cp312.conda#dccc2d142812964fcc6abdc97b672dff
-https://conda.anaconda.org/conda-forge/noarch/tzdata-2023d-h0c530f3_0.conda#8dee24b8be2d9ff81e7bd4d7d97ff1b0
+https://conda.anaconda.org/conda-forge/noarch/tzdata-2024a-h0c530f3_0.conda#161081fc7cec0bfda0d86d7cb595f8d8
 https://conda.anaconda.org/conda-forge/linux-64/libgomp-13.2.0-h807b86a_5.conda#d211c42b9ce49aee3734fdc828731689
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-13.2.0-h807b86a_5.conda#d4ff227c46917d3b4565302a2bbb276b
@@ -45,5 +45,5 @@ https://conda.anaconda.org/conda-forge/linux-64/openjpeg-2.5.0-h488ebb8_3.conda#
 https://conda.anaconda.org/conda-forge/noarch/setuptools-69.0.3-pyhd8ed1ab_0.conda#40695fdfd15a92121ed2922900d0308b
 https://conda.anaconda.org/conda-forge/noarch/wheel-0.42.0-pyhd8ed1ab_0.conda#1cdea58981c5cbc17b51973bcaddcea7
 https://conda.anaconda.org/conda-forge/linux-64/pillow-10.2.0-py312hf3581a9_0.conda#f35cb852483290b40b5a47e117e80a1d
-https://conda.anaconda.org/conda-forge/noarch/pip-23.3.2-pyhd8ed1ab_0.conda#8591c748f98dcc02253003533bc2e4b1
-https://conda.anaconda.org/bioconda/linux-64/last-1540-h43eeafb_0.tar.bz2#88035d6d4fb43aa3fae29c21ce8ebdaf
+https://conda.anaconda.org/conda-forge/noarch/pip-24.0-pyhd8ed1ab_0.conda#f586ac1e56c8638b64f9c8122a7b8a67
+https://conda.anaconda.org/bioconda/linux-64/last-1541-h43eeafb_0.tar.bz2#301356f48d23c09c443a876f8175daa4
