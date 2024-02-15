@@ -9,6 +9,7 @@ from snakemake.shell import shell
 
 
 extra = snakemake.params.get("extra", "")
+protocol = snakemake.params.get("protocol", "ftp")
 
 try:
     release = int(snakemake.params.release)
@@ -24,7 +25,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     )
     log = snakemake.log_fmt_shell(stdout=True, stderr=True)
     shell(
-        "curl -L ftp://ftp.ensembl.org/pub/release-{snakemake.params.release}/"
+        "curl -L {protocol}://ftp.ensembl.org/pub/release-{snakemake.params.release}/"
         "variation/{vep_dir}/{cache_tarball} "
         "-o {tmpdir}/{cache_tarball} {log}"
     )

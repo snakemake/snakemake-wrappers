@@ -11,6 +11,7 @@ from snakemake.shell import shell
 species = snakemake.params.species.lower()
 release = int(snakemake.params.release)
 build = snakemake.params.build
+protocol = snakemake.params.get("protocol", "ftp")
 
 branch = ""
 if release >= 81 and build == "GRCh37":
@@ -51,7 +52,7 @@ if chromosome:
         )
 
 spec = spec.format(build=build, release=release)
-url_prefix = f"ftp://ftp.ensembl.org/pub/{branch}release-{release}/fasta/{species}/{datatype}/{species.capitalize()}.{spec}"
+url_prefix = f"{protocol}://ftp.ensembl.org/pub/{branch}release-{release}/fasta/{species}/{datatype}/{species.capitalize()}.{spec}"
 
 success = False
 for suffix in suffixes:
