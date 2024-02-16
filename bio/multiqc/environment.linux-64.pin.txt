@@ -88,7 +88,7 @@ https://conda.anaconda.org/conda-forge/noarch/typing_extensions-4.9.0-pyha770c72
 https://conda.anaconda.org/conda-forge/noarch/wheel-0.42.0-pyhd8ed1ab_0.conda#1cdea58981c5cbc17b51973bcaddcea7
 https://conda.anaconda.org/conda-forge/noarch/zipp-3.17.0-pyhd8ed1ab_0.conda#2e4d6bc0b14e10f895fc6791a7d9b26a
 https://conda.anaconda.org/conda-forge/noarch/coloredlogs-15.0.1-pyhd8ed1ab_3.tar.bz2#7b4fc18b7f66382257c45424eaf81935
-https://conda.anaconda.org/conda-forge/linux-64/fonttools-4.48.1-py311h459d7ec_0.conda#36363685b6e56682b1b256eb0ad503f6
+https://conda.anaconda.org/conda-forge/linux-64/fonttools-4.49.0-py311h459d7ec_0.conda#d66c9e36ab104f94e35b015c86c2fcb4
 https://conda.anaconda.org/conda-forge/noarch/importlib-metadata-7.0.1-pyha770c72_0.conda#746623a787e06191d80a2133e5daff17
 https://conda.anaconda.org/conda-forge/noarch/jinja2-3.1.3-pyhd8ed1ab_0.conda#e7d8df6509ba635247ff9aea31134262
 https://conda.anaconda.org/conda-forge/linux-64/kaleido-core-0.2.1-h3644ca4_0.tar.bz2#b3723b235b0758abaae8c82ce4d80146
@@ -98,7 +98,7 @@ https://conda.anaconda.org/conda-forge/noarch/lzstring-1.0.4-py_1001.tar.bz2#08f
 https://conda.anaconda.org/conda-forge/noarch/markdown-it-py-3.0.0-pyhd8ed1ab_0.conda#93a8e71256479c62074356ef6ebf501b
 https://conda.anaconda.org/conda-forge/linux-64/pillow-10.2.0-py311ha6c5da5_0.conda#a5ccd7f2271f28b7d2de0b02b64e3796
 https://conda.anaconda.org/conda-forge/noarch/pip-24.0-pyhd8ed1ab_0.conda#f586ac1e56c8638b64f9c8122a7b8a67
-https://conda.anaconda.org/conda-forge/noarch/plotly-5.18.0-pyhd8ed1ab_0.conda#9f6a8664f1fe752f79473eeb9bf33a60
+https://conda.anaconda.org/conda-forge/noarch/plotly-5.19.0-pyhd8ed1ab_0.conda#669cd7065794633b9e64e6a9612ec700
 https://conda.anaconda.org/conda-forge/noarch/pyaml-env-1.1.0-pyhd8ed1ab_0.tar.bz2#a3bc37e2d4399db27f25ef7a44315df0
 https://conda.anaconda.org/conda-forge/noarch/python-dateutil-2.8.2-pyhd8ed1ab_0.tar.bz2#dd999d1cc9f79e67dbb855c8924c7984
 https://conda.anaconda.org/conda-forge/noarch/urllib3-2.2.0-pyhd8ed1ab_0.conda#6a7e0694921f668a030d52f0c47baebd
@@ -110,6 +110,6 @@ https://conda.anaconda.org/conda-forge/noarch/rich-13.7.0-pyhd8ed1ab_0.conda#d7a
 https://conda.anaconda.org/conda-forge/noarch/colormath-3.0.0-py_2.tar.bz2#724c323d724ab98bca84f88d03cff543
 https://conda.anaconda.org/conda-forge/linux-64/contourpy-1.2.0-py311h9547e67_0.conda#40828c5b36ef52433e21f89943e09f33
 https://conda.anaconda.org/conda-forge/noarch/rich-click-1.7.3-pyhd8ed1ab_0.conda#dc858795a3dcc70135ae2c61b75a251a
-https://conda.anaconda.org/conda-forge/linux-64/matplotlib-base-3.8.2-py311h54ef318_0.conda#9f80753bc008bfc9b95f39d9ff9f1694
+https://conda.anaconda.org/conda-forge/linux-64/matplotlib-base-3.8.3-py311h54ef318_0.conda#014c115be880802d2372ac6ed665f526
 https://conda.anaconda.org/conda-forge/noarch/spectra-0.0.11-py_1.tar.bz2#3979401f3b9bcebf0adba6d091d390e3
-https://conda.anaconda.org/bioconda/noarch/multiqc-1.20-pyhdfd78af_0.tar.bz2#e7272900c02ab33e6a48700a1e611bb0
+https://conda.anaconda.org/bioconda/noarch/multiqc-1.20-pyhdfd78af_1.tar.bz2#f50a476bddaa7e58e870de5afa63e9a5
