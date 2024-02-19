@@ -6,7 +6,7 @@ rule get_variation_http_protocol:
         release="98",
         build="R64-1-1",
         type="all",
-        protocol="http"
+        protocol="http",
     log:
         "logs/get_variation.log",
     wrapper:

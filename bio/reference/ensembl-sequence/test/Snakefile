@@ -29,6 +29,7 @@ rule get_single_chromosome:
     wrapper:
         "master/bio/reference/ensembl-sequence"
 
+
 rule get_multiple_chromosome:
     output:
         "refs/chr1_and_chr2.fasta",
@@ -44,6 +45,7 @@ rule get_multiple_chromosome:
     cache: "omit-software"  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-sequence"
+
 
 rule get_genome_http_protocol:
     output:

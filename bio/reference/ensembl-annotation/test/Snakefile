@@ -29,6 +29,7 @@ rule get_annotation_gz:
     wrapper:
         "master/bio/reference/ensembl-annotation"
 
+
 rule get_annotation_http_protocol:
     output:
         "refs/annotation.gtf",
