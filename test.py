@@ -1113,6 +1113,8 @@ def test_arriba_star_meta():
 
 @skip_if_not_modified
 def test_csvtk():
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/uniq.txt"])
+
     run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/stats.txt"])
 
     run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/split"])

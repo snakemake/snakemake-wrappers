@@ -126,7 +126,7 @@ use rule test_csvtk_summary as test_csvtk_split with:
         extra="-f gene_id",
 
 
-### Stat subcommand ###
+### Stats subcommand ###
 use rule test_csvtk_summary as test_csvtk_stats with:
     output:
         "csvtk/stats.txt",
@@ -134,3 +134,14 @@ use rule test_csvtk_summary as test_csvtk_stats with:
         "logs/stats.log",
     params:
         subcommand="stats",
+
+
+### Uniq subcommand ###
+use rule test_csvtk_summary as test_csvtk_uniq with:
+    output:
+        "csvtk/uniq.txt",
+    log:
+        "logs/uniq.log",
+    params:
+        subcommand="uniq",
+        extra="-f gene_id",
