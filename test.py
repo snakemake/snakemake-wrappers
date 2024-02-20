@@ -1112,6 +1112,33 @@ def test_arriba_star_meta():
 
 
 @skip_if_not_modified
+def test_csvtk():
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/stats.txt"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/split"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/sort.csv"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/cut.csv"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/grep.csv"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/sample.csv"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/join.csv"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/headers.csv"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/frequency.csv"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/summary.csv"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/summary_tsv.csv"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/cat.csv"])
+
+
+@skip_if_not_modified
 def test_xsv():
     run("utils/xsv", ["snakemake", "--cores", "1", "--use-conda", "xsv/split/0.csv"])
 
