@@ -1,12 +1,14 @@
-rule get_vep_cache:
+rule get_genome_http_protocol:
     output:
-        directory("resources/vep/cache"),
+        "refs/genome.fasta",
     params:
         species="saccharomyces_cerevisiae",
+        datatype="dna",
         build="R64-1-1",
         release="98",
+        protocol="http",
     log:
-        "logs/vep/cache.log",
+        "logs/get_genome.log",
     cache: "omit-software"  # save space and time with between workflow caching (see docs)
     wrapper:
-        "master/bio/vep/cache"
+        "master/bio/reference/ensembl-sequence"

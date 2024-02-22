@@ -28,19 +28,3 @@ rule get_annotation_gz:
     cache: "omit-software"  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-annotation"
-
-
-rule get_annotation_http_protocol:
-    output:
-        "refs/annotation.gtf",
-    params:
-        species="homo_sapiens",
-        release="105",
-        build="GRCh37",
-        flavor="",
-        protocol="http",
-    log:
-        "logs/get_annotation.log",
-    cache: "omit-software"  # save space and time with between workflow caching (see docs)
-    wrapper:
-        "master/bio/reference/ensembl-annotation"

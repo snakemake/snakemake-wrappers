@@ -5330,6 +5330,22 @@ def test_ensembl_sequence_old_release():
 
 
 @skip_if_not_modified
+def test_ensembl_sequence_https():
+    run(
+        "bio/reference/ensembl-sequence",
+        [
+            "snakemake",
+            "-s",
+            "ensembl_sequence_https.smk",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_ensembl_sequence_chromosome():
     run(
         "bio/reference/ensembl-sequence",
@@ -5374,7 +5390,16 @@ def test_ensembl_annotation_gtf():
 def test_ensembl_annotation_gtf_gz():
     run(
         "bio/reference/ensembl-annotation",
-        ["snakemake", "--cores", "1", "refs/annotation.gtf.gz", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "refs/annotation.gtf.gz",
+            "--use-conda",
+            "-F",
+            "-s",
+            "ensembl_annotation_https.smk",
+        ],
     )
 
 
@@ -5428,17 +5453,26 @@ def test_ensembl_variation_with_contig_lengths():
 
 
 @skip_if_not_modified
-def test_ega_fetch():
+def test_ensembl_variation_old_release():
     run(
-        "bio/ega/fetch",
+        "bio/reference/ensembl-variation",
         [
             "snakemake",
+            "-s",
+            "ensembl_variation_https.smk",
             "--cores",
             "1",
             "--use-conda",
             "-F",
-            "data/EGAF00007243774.cram"
-        ]
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_ega_fetch():
+    run(
+        "bio/ega/fetch",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "data/EGAF00007243774.cram"],
     )
 
 
@@ -5802,10 +5836,27 @@ def test_vep_cache():
 
 
 @skip_if_not_modified
+def test_vep_cache_https_protocol():
+    run(
+        "bio/vep/cache",
+        ["snakemake", "--cores", "1", "resources/vep/cache", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_vep_plugins():
     run(
         "bio/vep/plugins",
-        ["snakemake", "--cores", "1", "resources/vep/plugins", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/vep/plugins",
+            "--use-conda",
+            "-F",
+            "-s",
+            "vep_cache_https.smk",
+        ],
     )
 
 
