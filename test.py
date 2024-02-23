@@ -5390,6 +5390,14 @@ def test_ensembl_annotation_gtf():
 def test_ensembl_annotation_gtf_gz():
     run(
         "bio/reference/ensembl-annotation",
+        ["snakemake", "--cores", "1", "refs/annotation.gtf.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_ensembl_annotation_gtf_https_gz():
+    run(
+        "bio/reference/ensembl-annotation",
         [
             "snakemake",
             "--cores",

@@ -1,6 +1,6 @@
-rule get_annotation_https_protocol:
+rule get_annotation_https_protocol_gz:
     output:
-        "refs/annotation.gtf",
+        "refs/annotation.gtf.gz",
     params:
         species="homo_sapiens",
         release="105",
