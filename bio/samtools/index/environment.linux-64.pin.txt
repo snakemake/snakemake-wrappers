@@ -9,9 +9,9 @@ https://conda.anaconda.org/conda-forge/linux-64/libgomp-13.2.0-h807b86a_3.conda#
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-13.2.0-h807b86a_3.conda#23fdf1fef05baeb7eadc2aed5fb0011f
 https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hd590300_5.conda#69b8b6202a07720f448be700e300ccf4
-https://conda.anaconda.org/conda-forge/linux-64/c-ares-1.23.0-hd590300_0.conda#d459949bc10f64dee1595c176c2e6291
+https://conda.anaconda.org/conda-forge/linux-64/c-ares-1.25.0-hd590300_0.conda#89e40af02dd3a0846c0c1131c5126706
 https://conda.anaconda.org/conda-forge/linux-64/keyutils-1.6.1-h166bdaf_0.tar.bz2#30186d27e2c9fa62b45fb1476b7200e3
-https://conda.anaconda.org/conda-forge/linux-64/libdeflate-1.19-hd590300_0.conda#1635570038840ee3f9c71d22aa5b8b6d
+https://conda.anaconda.org/conda-forge/linux-64/libdeflate-1.18-h0b41bf4_0.conda#6aa9c9de5542ecb07fdda9ca626252d8
 https://conda.anaconda.org/conda-forge/linux-64/libev-4.33-hd590300_2.conda#172bf1cd1ff8629f2b1179945ed45055
 https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.2.13-hd590300_5.conda#f36c115f1ee199da648e0597ec2047ad
 https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.4-h59595ed_2.conda#7dbaa197d7ba6032caf7ae7f32c1efa0
@@ -23,5 +23,5 @@ https://conda.anaconda.org/conda-forge/linux-64/libssh2-1.11.0-h0841786_0.conda#
 https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.5-hfc55251_0.conda#04b88013080254850d6c01ed54810589
 https://conda.anaconda.org/conda-forge/linux-64/krb5-1.21.2-h659d440_0.conda#cd95826dbd331ed1be26bdf401432844
 https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.5.0-hca28451_0.conda#7144d5a828e2cae218e0e3c98d8a0aeb
-https://conda.anaconda.org/bioconda/linux-64/htslib-1.19-h81da01d_0.tar.bz2#70a467e903079d86316ed9ecff262582
-https://conda.anaconda.org/bioconda/linux-64/samtools-1.19-h50ea8bc_0.tar.bz2#5c9f97a74ce507ce33d0f17d81a92fb3
+https://conda.anaconda.org/bioconda/linux-64/htslib-1.19.1-h81da01d_0.tar.bz2#a2b558d267544e66aef5551728b3960a
+https://conda.anaconda.org/bioconda/linux-64/samtools-1.19.2-h50ea8bc_0.tar.bz2#0150123d5e95c24ba378bf2ab645831b

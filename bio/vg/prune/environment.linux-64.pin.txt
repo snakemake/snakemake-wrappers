@@ -2,4 +2,4 @@
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
 @EXPLICIT
-https://conda.anaconda.org/bioconda/linux-64/vg-1.53.0-h9ee0642_0.tar.bz2#e8fc05767878555d78d832ef28f85763
+https://conda.anaconda.org/bioconda/linux-64/vg-1.54.0-h9ee0642_0.tar.bz2#85d122b619a0023150d162b7b081ba43
