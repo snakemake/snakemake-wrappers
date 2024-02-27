@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.4.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.3.7...v3.4.0) (2024-02-27)
+
+
+### Features
+
+* Add csvtk wrapper ([#2681](https://www.github.com/snakemake/snakemake-wrappers/issues/2681)) ([495053e](https://www.github.com/snakemake/snakemake-wrappers/commit/495053e85732d8c44ef1171447a35eac6fac77b4))
+* MultiQC temp folder, specify outdir/filename, infer options, and bump version ([#2639](https://www.github.com/snakemake/snakemake-wrappers/issues/2639)) ([1edbead](https://www.github.com/snakemake/snakemake-wrappers/commit/1edbeadc1513bdd50ccf94309e14a73d4d0345d0))
+
 ### [3.3.7](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.3.6...v3.3.7) (2024-02-27)
 
 
