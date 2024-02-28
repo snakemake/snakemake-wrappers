@@ -21,7 +21,7 @@ rule get_single_chromosome:
         datatype="dna",
         build="R64-1-1",
         release="101",
-        chromosome="II",  # optional: restrict to one or multiple chromosomes, for multiple see below
+        chromosome=["II"],  # optional: restrict to one or multiple chromosomes, for multiple see below
         # branch="plants",  # optional: specify branch
     log:
         "logs/get_genome.log",

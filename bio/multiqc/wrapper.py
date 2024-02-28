@@ -6,9 +6,11 @@ __email__ = "julianderuiter@gmail.com"
 __license__ = "MIT"
 
 
-import tempfile
+# No need for explicit temp folder, since MultiQC already uses TMPDIR (https://multiqc.info/docs/usage/troubleshooting/#no-space-left-on-device)
+
 from pathlib import Path
 from snakemake.shell import shell
+from snakemake_wrapper_utils.snakemake import is_arg
 
 
 extra = snakemake.params.get("extra", "")
@@ -24,21 +26,48 @@ else:
     input_data = set(snakemake.input)
 
 
-with tempfile.TemporaryDirectory() as tmpdir:
-    shell(
-        "multiqc"
-        " {extra}"
-        " --outdir {tmpdir}"
-        " --filename out"
-        " {input_data}"
-        " {log}"
-    )
+# Add extra options depending on output files
+no_report = True
+for output in snakemake.output:
+    if output.endswith(".html"):
+        no_report = False
+    if output.endswith("_data"):
+        extra += " --data-dir"
+    if output.endswith(".zip"):
+        extra += " --zip-data-dir"
+if no_report:
+    extra += " --no-report"
+if (
+    not is_arg("--data-dir", extra)
+    and not is_arg("-z", extra)
+    and not is_arg("--zip-data-dir", extra)
+):
+    extra += " --no-data-dir"
 
-    for output in snakemake.output:
-        if output.endswith("_data"):
-            ext = "_data"
-        elif output.endswith(".zip"):
-            ext = "_data.zip"
-        else:
-            ext = Path(output).suffix
-        shell("mv {tmpdir}/out{ext} {output}")
+# Specify output dir and file name, since they are stored in the JSON file
+out_dir = Path(snakemake.output[0]).parent
+file_name = Path(snakemake.output[0]).with_suffix("").name
+
+
+shell(
+    "multiqc"
+    " {extra}"
+    " --outdir {out_dir}"
+    " --filename {file_name}"
+    " {input_data}"
+    " {log}"
+)
+
+
+# Move files to another destination (if needed)
+for output in snakemake.output:
+    if output.endswith("_data"):
+        ext = "_data"
+    elif output.endswith(".zip"):
+        ext = "_data.zip"
+    else:
+        ext = Path(output).suffix
+
+    default_dest = f"{out_dir}/{file_name}{ext}"
+    if default_dest != output:
+        shell("mv {default_dest} {output}")

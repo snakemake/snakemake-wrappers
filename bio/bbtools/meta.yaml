@@ -1,7 +1,7 @@
-name: Generic
+name: BBmap-suite
 url: https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/
 description: |
-  Generic wrapper for BBTools. One pattern to run them all.
+  Wrapper for all tools in the BBmap suite. One pattern to run them all.
 authors:
   - Silas Kieser
 input:
@@ -19,120 +19,14 @@ notes: |
   This wrapper allows to run any of the bbtools. The command is defined by the 'command' parameter, which is required.
   **All keywords in input, output, params are passed as key value pairs to the command!**
   Take care that they are valid for the bbtool.
-
-  As it is not possible to define 'in' as a keyword, the keyword 'input' is used instead. Allowed aliases are 'sample' and 'reads'.
-  ### Paired input/output files
-
-  If exactly two files are provides for 'input' the wrapper parses them as in1, in2.
-  The same holds for the output keywords 'out', 'outm', 'outu'.
-  For all parameters, if more than two files are provided, the wrapper parses them as key=value1,value2,value3... 
-
-  ### Logging
-  The wrapper makes a detailed log of how he parse the parameters. If you want to use the log of a bbtool, 
-  e.g. for parsing how many reads where processed, you have to specify a 'stdout', and 'stderr' log file. 
-  The wrapper will then write only to the stderr-log file.
-
-  ### List of all the tools in the bbtools suite 39.01
-
-  In theory all of them are sported by this wrapper, but we didn't test them all.
+  In theory all of the tools in the bbmap-suite v39.01 are sported by this wrapper, but we didn't test them all.
   Scripts with different input/output might not be supported by this wrapper.
   If you find one that is not yet supported, please feel free to adjust this wrapper accordingly and include a test case.
 
-  - bbmap.sh
-  - removehuman.sh
-  - removehuman2.sh
-  - mapnt.sh
-  - mapPacBio.sh
-  - bbmapskimmer.sh
-  - bbsplit.sh
-  - bbwrap.sh
-  - pileup.sh
-  - summarizescafstats.sh
-  - filterbycoverage.sh
-  - mergeOTUs.sh
-  - bbest.sh
-  - postfilter.sh
-  - bbduk.sh
-  - bbduk2.sh
-  - seal.sh
-  - summarizeseal.sh
-  - loglog.sh
-  - kmercountexact.sh
-  - bbnorm.sh
-  - ecc.sh
-  - khist.sh
-  - bbcountunique.sh
-  - commonkmers.sh
-  - kmercoverage.sh
-  - callpeaks.sh
-  - tadpole.sh
-  - tadwrapper.sh
-  - kcompress.sh
-  - stats.sh
-  - statswrapper.sh
-  - countgc.sh
-  - fungalrelease.sh
-  - filterbytaxa.sh
-  - gi2taxid.sh
-  - gitable.sh
-  - sortbytaxa.sh
-  - splitbytaxa.sh
-  - taxonomy.sh
-  - taxtree.sh
-  - reducesilva.sh
-  - synthmda.sh
-  - crosscontaminate.sh
-  - decontaminate.sh
-  - crossblock.sh
-  - dedupe.sh
-  - dedupe2.sh
-  - dedupebymapping.sh
-  - clumpify.sh
-  - bbmerge.sh
-  - bbmerge-auto.sh
-  - bbmergegapped.sh
-  - randomreads.sh
-  - bbfakereads.sh
-  - gradesam.sh
-  - samtoroc.sh
-  - addadapters.sh
-  - grademerge.sh
-  - printtime.sh
-  - msa.sh
-  - cutprimers.sh
-  - idmatrix.sh
-  - matrixtocolumns.sh
-  - countbarcodes.sh
-  - filterbarcodes.sh
-  - mergebarcodes.sh
-  - removebadbarcodes.sh
-  - demuxbyname.sh
-  - filterbysequence.sh
-  - filterbyname.sh
-  - filtersubs.sh
-  - getreads.sh
-  - estherfilter.sh
-  - bbqc.sh
-  - rqcfilter.sh
-  - shred.sh
-  - fuse.sh
-  - shuffle.sh
-  - calcmem.sh
-  - textfile.sh
-  - countsharedlines.sh
-  - filterlines.sh
-  - a_sample_mt.sh
-  - bbmask.sh
-  - calctruequality.sh
-  - makechimeras.sh
-  - phylip2fasta.sh
-  - readlength.sh
-  - reformat.sh
-  - removesmartbell.sh
-  - rename.sh
-  - repair.sh
-  - bbsplitpairs.sh
-  - splitnextera.sh
-  - splitsam.sh
-  - testformat.sh
-  - translate6frames.sh
+  **Paired input/output files**
+
+  As it is not possible to define 'in' as a keyword, the keyword 'input' is used instead. Allowed aliases are 'sample' and 'reads'.
+  If exactly two files are provides for 'input' the wrapper parses them as in1, in2.
+  The same holds for the output keywords 'out', 'outm', 'outu'.
+  For all parameters, if more than two files are provided, the wrapper parses them as key=value1,value2,value3... 
+  The wrapper makes a detailed log of how he parsed the parameters in the log file.

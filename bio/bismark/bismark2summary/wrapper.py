@@ -1,4 +1,5 @@
 """Snakemake wrapper to generate summary graphical HTML report from several Bismark text report files."""
+
 # https://github.com/FelixKrueger/Bismark/blob/master/bismark2summary
 
 __author__ = "Roman Chernyatchik"

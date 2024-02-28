@@ -188,8 +188,12 @@ def test_nonpareil_plot():
             "--use-conda",
             "-F",
             "results/a.pdf",
-            # Test disabled due to bug in nonpareil (#62)
-            #            "results/a.nomodel.pdf",
+            "results/b.pdf",
+            "results/c.pdf",
+            "results/a.nomodel.pdf",
+            "results/b.nomodel.pdf",
+            "results/c.nomodel.pdf",
+            "results/samples.pdf",
         ],
     )
 
@@ -1105,6 +1109,35 @@ def test_arriba_star_meta():
         "meta/bio/star_arriba",
         ["snakemake", "--cores", "1", "--use-conda", "results/arriba/a.fusions.tsv"],
     )
+
+
+@skip_if_not_modified
+def test_csvtk():
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/uniq.txt"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/stats.txt"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/split"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/sort.csv"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/cut.csv"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/grep.csv"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/sample.csv"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/join.csv"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/headers.csv"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/frequency.csv"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/summary.csv"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/summary_tsv.csv"])
+
+    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/cat.csv"])
 
 
 @skip_if_not_modified
@@ -5302,6 +5335,14 @@ def test_ucsc_twobittofa():
 
 
 @skip_if_not_modified
+def test_entrez_efetch():
+    run(
+        "bio/entrez/efetch",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_ensembl_sequence():
     run(
         "bio/reference/ensembl-sequence",
@@ -5325,6 +5366,7 @@ def test_ensembl_sequence_chromosome():
     )
 
 
+@skip_if_not_modified
 def test_ensembl_sequence_chromosomes():
     run(
         "bio/reference/ensembl-sequence",
@@ -5411,6 +5453,21 @@ def test_ensembl_variation_with_contig_lengths():
             "--use-conda",
             "-F",
         ],
+    )
+
+
+@skip_if_not_modified
+def test_ega_fetch():
+    run(
+        "bio/ega/fetch",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "data/EGAF00007243774.cram"
+        ]
     )
 
 

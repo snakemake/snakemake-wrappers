@@ -1,8 +1,6 @@
 <!-- Ensure that the PR title follows conventional commit style (<type>: <description>)-->
 <!-- Possible types are here: https://github.com/commitizen/conventional-commit-types/blob/master/index.json -->
 
-### Description
-
 <!-- Add a description of your PR here-->
 
 ### QC
@@ -17,6 +15,7 @@ For all wrappers added by this PR,
 * either the wrapper can only use a single core, or the example rule contains a `threads: x` statement with `x` being a reasonable default,
 * rule names in the test case are in [snake_case](https://en.wikipedia.org/wiki/Snake_case) and somehow tell what the rule is about or match the tools purpose or name (e.g., `map_reads` for a step that maps reads),
 * all `environment.yaml` specifications follow [the respective best practices](https://stackoverflow.com/a/64594513/2352071),
+* the `environment.yaml` pinning has been updated by running `snakedeploy pin-conda-envs environment.yaml` on a linux machine,
 * wherever possible, command line arguments are inferred and set automatically (e.g. based on file extensions in `input:` or `output:`),
 * all fields of the example rules in the `Snakefile`s and their entries are explained via comments (`input:`/`output:`/`params:` etc.),
 * `stderr` and/or `stdout` are logged correctly (`log:`), depending on the wrapped tool,

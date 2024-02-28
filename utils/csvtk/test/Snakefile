@@ -1,0 +1,147 @@
+### Concatenation subcommand ###
+rule test_csvtk_cat:
+    input:
+        table=["table.csv", "right.csv"],
+    output:
+        "csvtk/cat.csv",
+    log:
+        "logs/cat.log",
+    params:
+        subcommand="cat",
+        extra="",
+    threads: 1
+    wrapper:
+        "master/utils/csvtk"
+
+
+### Summary subcommand ###
+rule test_csvtk_summary:
+    input:
+        table="table.csv",
+    output:
+        "csvtk/summary.csv",
+    log:
+        "logs/summary_csv.log",
+    params:
+        subcommand="summary",
+        extra="--fields s1,s3",
+    threads: 1
+    wrapper:
+        "master/utils/csvtk"
+
+
+use rule test_csvtk_summary as test_csvtk_summary_tsv_input with:
+    input:
+        table="table.tsv",
+    output:
+        "csvtk/summary_tsv.csv",
+    log:
+        "logs/summary_tsv.log",
+
+
+### Frequency subcommand ###
+use rule test_csvtk_summary as test_csvtk_frequency with:
+    output:
+        "csvtk/frequency.csv",
+    log:
+        "logs/frequency.log",
+    params:
+        subcommand="freq",
+
+
+### Headers subcommand ###
+use rule test_csvtk_summary as test_csvtk_headers with:
+    output:
+        "csvtk/headers.csv",
+    log:
+        "logs/headers.log",
+    params:
+        subcommand="headers",
+
+
+### Join subcommand ###
+use rule test_csvtk_cat as test_csvtk_join with:
+    output:
+        "csvtk/join.csv",
+    log:
+        "logs/join.log",
+    params:
+        subcommand="join",
+        col1="gene_id",
+        col2="gene_id",
+
+
+### Sample subcommand ###
+use rule test_csvtk_summary as test_csvtk_sample with:
+    output:
+        "csvtk/sample.csv",
+    log:
+        "logs/sample.log",
+    params:
+        subcommand="sample",
+        extra="-s 123 -p 0.5",
+
+
+### Grep subcommand ###
+use rule test_csvtk_summary as test_csvtk_grep with:
+    output:
+        "csvtk/grep.csv",
+    log:
+        "logs/grep.log",
+    params:
+        subcommand="grep",
+        extra="--fields gene_id --pattern ENSG[0-9]+",
+
+
+### Cut subcommand ###
+use rule test_csvtk_summary as test_csvtk_cut with:
+    output:
+        "csvtk/cut.csv",
+    log:
+        "logs/cut.log",
+    params:
+        subcommand="cut",
+        extra="-f 2",
+
+
+### Sort subcommand ###
+use rule test_csvtk_summary as test_csvtk_sort with:
+    output:
+        "csvtk/sort.csv",
+    log:
+        "logs/sort.log",
+    params:
+        subcommand="sort",
+        extra="--keys 1",
+
+
+### Split subcommand ###
+use rule test_csvtk_summary as test_csvtk_split with:
+    output:
+        directory("csvtk/split"),
+    log:
+        "logs/split.log",
+    params:
+        subcommand="split",
+        extra="-f gene_id",
+
+
+### Stats subcommand ###
+use rule test_csvtk_summary as test_csvtk_stats with:
+    output:
+        "csvtk/stats.txt",
+    log:
+        "logs/stats.log",
+    params:
+        subcommand="stats",
+
+
+### Uniq subcommand ###
+use rule test_csvtk_summary as test_csvtk_uniq with:
+    output:
+        "csvtk/uniq.txt",
+    log:
+        "logs/uniq.log",
+    params:
+        subcommand="uniq",
+        extra="-f gene_id",
