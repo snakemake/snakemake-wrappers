@@ -78,3 +78,4 @@ If you want to contribute refer to the :ref:`contributing guide <contributing>`.
     :hidden:
 
     contributing
+    changelog

@@ -4,5 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - salmon =1.10.2
-  - gzip =1.12
+  - gzip =1.13
   - bzip2 =1.0.8

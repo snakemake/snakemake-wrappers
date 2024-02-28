@@ -1,0 +1,91 @@
+rule seqtk_seq_fq2fas:
+    input:
+        "reads/{prefix}.fastq",
+    output:
+        "results/fq2fas/{prefix}.fasta",
+    log:
+        "logs/fq2fas/{prefix}.log",
+    params:
+        command="seq",
+        extra="-A",
+    wrapper:
+        "master/bio/seqtk"
+
+
+rule seqtk_seq_convBQ:
+    input:
+        "reads/{prefix}.fastq",
+    output:
+        "results/convBQ/{prefix}.fasta",
+    log:
+        "logs/convBQ/{prefix}.log",
+    params:
+        command="seq",
+        extra="-aQ 64 -q 20 -n N",
+    wrapper:
+        "master/bio/seqtk"
+
+
+rule seqtk_subseq_list:
+    input:
+        "reads/{prefix}.fastq",
+        "reads/id.list",
+    output:
+        "results/subseq_list/{prefix}.fq.gz",
+    log:
+        "logs/subseq_list/{prefix}.log",
+    params:
+        command="subseq",
+        extra="",
+    wrapper:
+        "master/bio/seqtk"
+
+
+rule seqtk_mergepe:
+    input:
+        r1="reads/{sample}.1.fastq.gz",
+        r2="reads/{sample}.2.fastq.gz",
+    output:
+        merged="results/mergepe/{sample}.fastq.gz",
+    log:
+        "logs/mergepe/{sample}.log",
+    params:
+        command="mergepe",
+        compress_lvl=9,
+    threads: 2
+    wrapper:
+        "master/bio/seqtk"
+
+
+rule seqtk_sample_se:
+    input:
+        "reads/{sample}.fastq.gz",
+    output:
+        "results/sample_se/{sample}.fastq.gz",
+    log:
+        "logs/sample_se/{sample}.log",
+    params:
+        command="sample",
+        n=3,
+        extra="-s 12345",
+    threads: 1
+    wrapper:
+        "master/bio/seqtk"
+
+
+rule seqtk_sample_pe:
+    input:
+        f1="reads/{sample}.1.fastq.gz",
+        f2="reads/{sample}.2.fastq.gz",
+    output:
+        f1="results/sample_pe/{sample}.1.fastq.gz",
+        f2="results/sample_pe/{sample}.2.fastq.gz",
+    log:
+        "logs/sample_pe/{sample}.log",
+    params:
+        command="sample",
+        n=3,
+        extra="-s 12345",
+    threads: 1
+    wrapper:
+        "master/bio/seqtk"

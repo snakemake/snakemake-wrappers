@@ -8,7 +8,6 @@ input:
 output:
   - PDF file with plot
 params:
-  - label: Plot title.
   - labels: Curve labels.
   - col: Curve colors.
   - enforce_consistency: Fails verbosely on insufficient data, otherwise it warns about the inconsistencies and attempts the estimations.
@@ -16,3 +15,7 @@ params:
   - correction_factor: Apply overlap-dependent correction factor, otherwise redundancy is assumed to equal coverage.
   - weights_exp: Vector of values to be tested as exponent of the weights distribution.
   - skip_model: Skip model estimation.
+  - plot_observed: Plot observed values?
+  - plot_model: Plot infered model?
+  - plot_dispersion: Plot dispersion around curve (one of `sd`, `ci95`, `ci90`, `ci50`, or `iq`)?
+  - plot_diversity: Plot diversity (bottom arrow)?
