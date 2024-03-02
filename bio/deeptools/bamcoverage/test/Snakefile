@@ -15,7 +15,7 @@ rule test_deeptools_bamcoverage:
         "master/bio/deeptools/bamcoverage"
 
 
-rule test_deeptools_bamcoverage_coded_length:
+rule test_deeptools_bamcoverage_default_eff_len:
     input:
         bam="a.sorted.bam",
         bai="a.sorted.bam.bai",
@@ -25,6 +25,6 @@ rule test_deeptools_bamcoverage_coded_length:
         genome="GRCm39",
         read_length=100,
     log:
-        "logs/coverage_coded.log",
+        "logs/coverage_efault_eff_len.log",
     wrapper:
         "master/bio/deeptools/bamcoverage"

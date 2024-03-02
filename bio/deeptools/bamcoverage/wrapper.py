@@ -74,7 +74,9 @@ if not effective_genome_size:
     read_length = snakemake.params.get("read_length")
     if genome and read_length:
         effective_genome_size = "--effectiveGenomeSize "
-        effective_genome_size += str(default_effective_genome_size[genome][str(read_length)])
+        effective_genome_size += str(
+            default_effective_genome_size[genome][str(read_length)]
+        )
 else:
     effective_genome_size = "--effectiveGenomeSize " + str(effective_genome_size)
 
