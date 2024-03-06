@@ -30,9 +30,11 @@ else:
 # in input. For other ways to provide configuration to
 # multiqc, see: https://multiqc.info/docs/getting_started/config/
 mqc_config = snakemake.input.get("config", "")
-if mqc_config:
+if isinstance(mqc_config, list):
     for fp in mqc_config:
-        extra += " --config {fp} "
+        extra += f" --config {fp} "
+else:
+    extra += f" --config {mqc_config} "
 
 
 # Add extra options depending on output files
