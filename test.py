@@ -3198,7 +3198,7 @@ def test_pandora_index():
 def test_pcaexplorer_pcaplot():
     run(
         "bio/pcaexplorer/pcaplot",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "pca.png"],
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "pca.svg"],
     )
 
 

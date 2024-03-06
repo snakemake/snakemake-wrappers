@@ -2,9 +2,7 @@ rule test_pcaexplorer_pcaplot:
     input:
         "dst.RDS",
     output:
-        png="pca.png",
-        pdf="pca.pdf",
-        svg="pca.svg",
+        "pca.svg",
     params:
         extra="",
     log:

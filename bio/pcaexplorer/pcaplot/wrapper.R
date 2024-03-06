@@ -49,50 +49,18 @@ if ("width" %in% base::names(snakemake@params)) {
     height <- base::as.numeric(x = snakemake@params[["height"]])
 }
 
-if ("png" %in% base::names(snakemake@output)) {
-    base::message("Saving PCA as PNG")
-    grDevices::png(
-        filename = snakemake@output[["png"]],
-        width = width,
-        height = height
-    )
+grDevices::svg(
+    filename = snakemake@output[[1]],
+    width = width,
+    height = height
+)
 
-    # Running PCA explorer pcaplot:
-    base::eval(base::parse(text = cmd))
+# Running PCA explorer pcaplot:
+base::eval(base::parse(text = cmd))
 
-    # Saving results
-    grDevices::dev.off()
-}
+# Saving results
+grDevices::dev.off()
 
-if ("svg" %in% base::names(snakemake@output)) {
-    base::message("Saving PCA as SVG")
-    grDevices::svg(
-        filename = snakemake@output[["svg"]],
-        width = width,
-        height = height
-    )
-
-    # Running PCA explorer pcaplot:
-    base::eval(base::parse(text = cmd))
-
-    # Saving results
-    grDevices::dev.off()
-}
-
-if ("pdf" %in% base::names(snakemake@output)) {
-    base::message("Saving PCA as PDF")
-    grDevices::pdf(
-        file = snakemake@output[["pdf"]],
-        width = width,
-        height = height
-    )
-
-    # Running PCA explorer pcaplot:
-    base::eval(base::parse(text = cmd))
-
-    # Saving results
-    grDevices::dev.off()
-}
 base::message("Process over")
 
 # Proper syntax to close the connection for the log file
