@@ -48,17 +48,48 @@ height <- 480
 if ("width" %in% base::names(snakemake@params)) {
     height <- base::as.numeric(x = snakemake@params[["height"]])
 }
-grDevices::png(
-    filename = snakemake@output[[1]],
-    width = width,
-    height = height
-)
 
-# Running PCA explorer pcaplot:
-base::eval(base::parse(text = cmd))
+if ("png" %in% base::names(snakemake@output)) {
+    grDevices::png(
+        filename = snakemake@output[["png"]],
+        width = width,
+        height = height
+    )
 
-# Saving results
-grDevices::dev.off()
+    # Running PCA explorer pcaplot:
+    base::eval(base::parse(text = cmd))
+
+    # Saving results
+    grDevices::dev.off()
+}
+
+if ("svg" %in% base::names(snakemake@output)) {
+    grDevices::svg(
+        filename = snakemake@output[["svg"]],
+        width = width,
+        height = height
+    )
+
+    # Running PCA explorer pcaplot:
+    base::eval(base::parse(text = cmd))
+
+    # Saving results
+    grDevices::dev.off()
+}
+
+if ("pdf" %in% base::names(snakemake@output)) {
+    grDevices::pdf(
+        file = snakemake@output[["pdf"]],
+        width = width,
+        height = height
+    )
+
+    # Running PCA explorer pcaplot:
+    base::eval(base::parse(text = cmd))
+
+    # Saving results
+    grDevices::dev.off()
+}
 base::message("Process over")
 
 # Proper syntax to close the connection for the log file
