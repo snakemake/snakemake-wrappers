@@ -32,9 +32,9 @@ else:
 mqc_config = snakemake.input.get("config", "")
 if isinstance(mqc_config, list):
     for fp in mqc_config:
-        extra += f" --config {fp} "
+        extra += f" --config {fp}"
 elif mqc_config:
-    extra += f" --config {mqc_config} "
+    extra += f" --config {mqc_config}"
 
 
 # Add extra options depending on output files
