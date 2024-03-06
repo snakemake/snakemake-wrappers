@@ -6125,6 +6125,13 @@ def test_generate_data_matrix():
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )
 
+@skip_if_not_modified
+def test_rseqc_infer_experiment():
+    run(
+        "bio/rseqc/infer_experiment",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.experiment.txt"],
+    )
+
 
 @skip_if_not_modified
 def test_metaspades():
