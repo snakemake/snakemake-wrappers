@@ -29,10 +29,10 @@ else:
 # Automatically detect configuration files when provided
 # in input. For other ways to provide configuration to
 # multiqc, see: https://multiqc.info/docs/getting_started/config/
-mqc_config = ""
-for fp in set(snakemake.input):
-    if str(fp).lower().endswith("multiqc_config.yaml"):
-        mqc_config = f" --config {fp} "
+mqc_config = snakemake.input.get("config", "")
+if mqc_config:
+    for fp in mqc_config:
+        extra += " --config {fp} "
 
 
 # Add extra options depending on output files
@@ -60,7 +60,7 @@ file_name = Path(snakemake.output[0]).with_suffix("").name
 
 shell(
     "multiqc"
-    " {extra} {mqc_config}"
+    " {extra}"
     " --outdir {out_dir}"
     " --filename {file_name}"
     " {input_data}"
