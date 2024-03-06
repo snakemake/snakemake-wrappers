@@ -1,4 +1,4 @@
-"""Snakemake wrapper for trimming paired-end reads using cutadapt."""
+"""Snakemake wrapper for MultiQC"""
 
 __author__ = "Julian de Ruiter"
 __copyright__ = "Copyright 2017, Julian de Ruiter"
@@ -26,6 +26,15 @@ else:
     input_data = set(snakemake.input)
 
 
+# Automatically detect configuration files when provided
+# in input. For other ways to provide configuration to
+# multiqc, see: https://multiqc.info/docs/getting_started/config/
+mqc_config = ""
+for fp in set(snakemake.input):
+    if str(fp).lower().endswith("multiqc_config.yaml"):
+        mqc_config = f" --config {fp} "
+
+
 # Add extra options depending on output files
 no_report = True
 for output in snakemake.output:
@@ -51,7 +60,7 @@ file_name = Path(snakemake.output[0]).with_suffix("").name
 
 shell(
     "multiqc"
-    " {extra}"
+    " {extra} {mqc_config}"
     " --outdir {out_dir}"
     " --filename {file_name}"
     " {input_data}"
