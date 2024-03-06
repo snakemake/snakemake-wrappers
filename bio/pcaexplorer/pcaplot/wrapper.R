@@ -50,6 +50,7 @@ if ("width" %in% base::names(snakemake@params)) {
 }
 
 if ("png" %in% base::names(snakemake@output)) {
+    base::message("Saving PCA as PNG")
     grDevices::png(
         filename = snakemake@output[["png"]],
         width = width,
@@ -64,6 +65,7 @@ if ("png" %in% base::names(snakemake@output)) {
 }
 
 if ("svg" %in% base::names(snakemake@output)) {
+    base::message("Saving PCA as SVG")
     grDevices::svg(
         filename = snakemake@output[["svg"]],
         width = width,
@@ -78,6 +80,7 @@ if ("svg" %in% base::names(snakemake@output)) {
 }
 
 if ("pdf" %in% base::names(snakemake@output)) {
+    base::message("Saving PCA as PDF")
     grDevices::pdf(
         file = snakemake@output[["pdf"]],
         width = width,

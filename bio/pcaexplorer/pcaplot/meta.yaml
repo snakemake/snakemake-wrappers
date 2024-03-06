@@ -6,7 +6,9 @@ authors:
 input:
   - dst: Path to DESeqTransform object, such as rlog or vst transformed data
 output:
-  - png: Path to PCA plot (PNG formatted)
+  - png: Optional path to PCA plot (PNG formatted)
+  - pdf: Optional path to PCA plot (PDF formatted)
+  - svg: Optional path to PCA plot (SVG formatted)
 params:
   - extra: Optional parameters, besides `x`.
 notes: |
