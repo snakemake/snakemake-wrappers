@@ -5,9 +5,10 @@ authors:
   - Christopher Schröder
   - Johannes Köster
   - Julian de Ruiter
+  - Thibault Dayris
 input:
-  - FASTQ file(s)
-  - reference genome
+  - reads: List of path(s) to FASTQ file(s)
+  - idx: List of paths to indexed reference genome files
 output:
   - SAM/BAM/CRAM file
 notes: |

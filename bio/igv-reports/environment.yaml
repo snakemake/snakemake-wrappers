@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - igv-reports =1.7.0
+  - igv-reports =1.12.0

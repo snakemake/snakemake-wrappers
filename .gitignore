@@ -5,3 +5,5 @@ __pycache__
 .cache
 .idea
 *~
+docs/_build
+docs/meta-wrappers

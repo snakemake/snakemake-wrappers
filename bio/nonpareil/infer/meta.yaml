@@ -12,6 +12,7 @@ output:
   - log: log of internal Nonpareil processing.
 params:
   - alg: nonpareil algorithm, either `kmer` or `alignment` (mandatory).
-  - extra: additional program arguments
+  - infer_X: automatically infer value of `-X` (couple of minutes slower to count number of reads)
+  - extra: additional program arguments (not `-X` if infer_X == True)
 notes: |
   * For a PDF version of the manual, see https://nonpareil.readthedocs.io/_/downloads/en/latest/pdf/
