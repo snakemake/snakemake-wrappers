@@ -2,5 +2,5 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - datavzrd =2.36.2
+  - datavzrd =2.36.4
 
