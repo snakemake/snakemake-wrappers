@@ -1,0 +1,11 @@
+rule test_rseqc_bam_stat:
+    input:
+        "a.bam",
+    output:
+        "a.bam_stat.txt",
+    log:
+        "rseqc/bam_stat.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/rseqc/bamstat"

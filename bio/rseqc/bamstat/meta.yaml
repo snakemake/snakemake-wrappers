@@ -1,0 +1,13 @@
+name: bam_stat
+description: Summarizing mapping statistics of a BAM or SAM file.
+url: https://rseqc.sourceforge.net/#bam-stat-py
+authors:
+  - "Thibault Dayris"
+input:
+  - Path to a BAM/SAM file
+output:
+  - Path to statistics (TXT formatted)
+params:
+  - extra: Optional parameters for `bam_stat.py`
+notes: |
+  This tool does not handle multi-threading.

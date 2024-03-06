@@ -6127,6 +6127,13 @@ def test_generate_data_matrix():
 
 
 @skip_if_not_modified
+def test_rseqc_bamstat():
+    run(
+        "bio/rseqc/bamstat",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.bam_stat.txt"]
+    )
+
+@skip_if_not_modified
 def test_metaspades():
     run(
         "bio/spades/metaspades",
