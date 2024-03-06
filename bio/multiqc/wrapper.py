@@ -22,9 +22,9 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 mqc_config = snakemake.input.pop("config", "")
 if isinstance(mqc_config, list):
     for fp in mqc_config:
-        extra += f" --config {fp} "
+        extra += f" --config {fp}"
 elif mqc_config:
-    extra += f" --config {mqc_config} "
+    extra += f" --config {mqc_config}"
 
 
 # Set this to False if multiqc should use the actual input directly
