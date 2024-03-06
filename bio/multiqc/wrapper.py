@@ -33,7 +33,7 @@ mqc_config = snakemake.input.get("config", "")
 if isinstance(mqc_config, list):
     for fp in mqc_config:
         extra += f" --config {fp} "
-else:
+elif mqc_config:
     extra += f" --config {mqc_config} "
 
 
