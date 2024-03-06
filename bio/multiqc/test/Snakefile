@@ -30,7 +30,7 @@ rule test_multiqc_file:
 rule test_multiqc_config:
     input:
         expand("samtools_stats/{sample}.txt", sample=["a", "b"]),
-        "config/multiqc_config.yaml",
+        config="config/multiqc_config.yaml",
     output:
         "qc/multiqc.config.html",
         "qc_data/multiqc.config_data.zip",
