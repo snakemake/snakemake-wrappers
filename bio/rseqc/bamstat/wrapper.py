@@ -12,4 +12,8 @@ from snakemake import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell("bam_stat.py --input-file {snakemake.input[0]} > {snakemake.output} {log}")
+shell(
+    "bam_stat.py "
+    "--input-file {snakemake.input[0]} "
+    "> {snakemake.output} {log}"
+)
