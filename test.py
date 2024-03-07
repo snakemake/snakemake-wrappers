@@ -139,6 +139,22 @@ def run(wrapper, cmd, check_log=None):
             os.chdir(origdir)
 
 
+def test_aria2c():
+    run(
+        "utils/aria2c",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "results/file.fas.gz",
+            "results/file_md5.fas.gz",
+            "results/file_md5file.fas.gz",
+        ],
+    )
+
+
 @skip_if_not_modified
 def test_taxonkit():
     run(
