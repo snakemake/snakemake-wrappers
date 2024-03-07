@@ -1,0 +1,15 @@
+name: aria2
+url: https://github.com/aria2/aria2/
+description: >
+  aria2 is a lightweight multi-protocol & multi-source, cross platform download utility operated in command-line. It supports HTTP/HTTPS, FTP, SFTP, BitTorrent and Metalink.
+authors:
+  - Filipe G. Vieira
+input:
+  - file with checksum (optional)
+output:
+  - Path to downloaded file
+params:
+  - url: URL to download from.
+  - extra: Optional arguments for `aria2`.
+notes: |
+  * Checksum input only supported for single-file downloads (type infered from extension).

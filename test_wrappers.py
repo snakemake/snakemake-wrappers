@@ -134,6 +134,24 @@ def run(tmp_test_dir):
     return _run
 
 
+@skip_if_not_modified
+def test_aria2c(run):
+    run(
+        "utils/aria2c",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "results/file.fas.gz",
+            "results/file_md5.fas.gz",
+            "results/file_md5file.fas.gz",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_taxonkit(run):
     run(
         "bio/taxonkit",
