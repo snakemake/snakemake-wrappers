@@ -7,7 +7,7 @@ rule test_rseqc_read_duplication:
         plot_r="script.a_plot.R",
         pdf="a.pdf",
     log:
-        "rseqc.log"
+        "rseqc.log",
     params:
         extra="",
     wrapper:
