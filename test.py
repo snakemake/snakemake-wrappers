@@ -6127,6 +6127,14 @@ def test_generate_data_matrix():
 
 
 @skip_if_not_modified
+def test_rseqc_read_duplication():
+    run(
+        "bio/rseqc/read_duplication",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_metaspades():
     run(
         "bio/spades/metaspades",
