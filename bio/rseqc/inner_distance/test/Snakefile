@@ -1,0 +1,15 @@
+rule test_rseqc_inner_distance:
+    input:
+        aln="A.bam",
+        refgene="annotation.bed",
+    output:
+        txt="a.txt",
+        freq="feqt.txt",
+        pdf="a.pdf",
+        plot_r="script.a.r",
+    log:
+        "rseqc.log"
+    params:
+        extra="",
+    wrapper:
+        "master/bio/rseqc/inner_distance"
