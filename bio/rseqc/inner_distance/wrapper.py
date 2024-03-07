@@ -32,7 +32,7 @@ with TemporaryDirectory() as tempdir:
     if "pdf" in snakemake.output.keys():
         shell(
             "mv --verbose "
-            "{tempdir}/out.inner_distance.pdf "
+            "{tempdir}/out.inner_distance_plot.pdf "
             "{snakemake.output.pdf} {log}"
         )
 
@@ -43,7 +43,7 @@ with TemporaryDirectory() as tempdir:
             "{snakemake.output.freq} {log}"
         )
 
-    if "plot_r" in snakemake.output.key():
+    if "plot_r" in snakemake.output.keys():
         shell(
             "mv --verbose "
             "{tempdir}/out.inner_distance_plot.r "
