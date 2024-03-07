@@ -8,7 +8,7 @@ rule test_rseqc_inner_distance:
         pdf="a.pdf",
         plot_r="script.a.r",
     log:
-        "rseqc.log"
+        "rseqc.log",
     params:
         extra="",
     wrapper:
