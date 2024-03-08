@@ -3513,6 +3513,13 @@ def test_multiqc_a():
         ["snakemake", "--cores", "1", "qc/multiqc.a.html", "--use-conda", "-F"],
     )
 
+@skip_if_not_modified
+def test_multiqc_config():
+    run(
+        "bio/multiqc",
+        ["snakemake", "--cores", "1", "qc/multiqc.config.html", "--use-conda", "-F"],
+    )
+
 
 @skip_if_not_modified
 def test_muscle_super5():

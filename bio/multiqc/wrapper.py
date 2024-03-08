@@ -1,4 +1,4 @@
-"""Snakemake wrapper for trimming paired-end reads using cutadapt."""
+"""Snakemake wrapper for MultiQC"""
 
 __author__ = "Julian de Ruiter"
 __copyright__ = "Copyright 2017, Julian de Ruiter"
@@ -16,14 +16,24 @@ from snakemake_wrapper_utils.snakemake import is_arg
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
+# Automatically detect configuration files when provided
+# in input. For other ways to provide configuration to
+# multiqc, see: https://multiqc.info/docs/getting_started/config/
+mqc_config = snakemake.input.get("config", "")
+if isinstance(mqc_config, list):
+    for fp in mqc_config:
+        extra += f" --config {fp}"
+elif mqc_config:
+    extra += f" --config {mqc_config}"
+
 
 # Set this to False if multiqc should use the actual input directly
 # instead of parsing the folders where the provided files are located
 use_input_files_only = snakemake.params.get("use_input_files_only", False)
 if not use_input_files_only:
-    input_data = set(Path(fp).parent for fp in snakemake.input)
+    input_data = set(Path(fp).parent for fp in snakemake.input if fp not in mqc_config)
 else:
-    input_data = set(snakemake.input)
+    input_data = set(fp for fp in snakemake.input if fp not in mqc_config)
 
 
 # Add extra options depending on output files
