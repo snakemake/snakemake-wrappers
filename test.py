@@ -3548,6 +3548,45 @@ def test_nanosimh():
 
 
 @skip_if_not_modified
+def test_ngsderive():
+    run(
+        "bio/ngsderive",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "A.readlen.tsv"],
+    )
+    run(
+        "bio/ngsderive",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "A.instrument.tsv"],
+    )
+    run(
+        "bio/ngsderive",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "A.strandedness.tsv"],
+    )
+    run(
+        "bio/ngsderive",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "A.encoding.tsv"],
+    )
+    run(
+        "bio/ngsderive",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "A.junctions.tsv"],
+    )
+    run(
+        "bio/ngsderive",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "A.endedness.tsv"],
+    )
+
+@skip_if_not_modified
+
+@skip_if_not_modified
+
+@skip_if_not_modified
+
+@skip_if_not_modified
+
+@skip_if_not_modified
+
+@skip_if_not_modified
+
+@skip_if_not_modified
 def test_ngs_disambiguate():
     run(
         "bio/ngs-disambiguate",
