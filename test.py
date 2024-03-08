@@ -3574,17 +3574,6 @@ def test_ngsderive():
         ["snakemake", "--cores", "1", "--use-conda", "-F", "A.endedness.tsv"],
     )
 
-@skip_if_not_modified
-
-@skip_if_not_modified
-
-@skip_if_not_modified
-
-@skip_if_not_modified
-
-@skip_if_not_modified
-
-@skip_if_not_modified
 
 @skip_if_not_modified
 def test_ngs_disambiguate():

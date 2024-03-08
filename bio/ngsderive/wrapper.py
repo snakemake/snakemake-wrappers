@@ -8,7 +8,7 @@ __license__ = "MIT"
 from snakemake import shell
 
 extra = snakemake.params.get("extra", "")
-log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 gene_model = snakemake.input.get("gene_model", "")
 if gene_model:
