@@ -16,7 +16,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 
 with TemporaryDirectory() as tempdir:
     shell(
-        "read_duplication.py {extra}"
+        "read_duplication.py {extra} "
         "--input-file {snakemake.input} "
         "--out-prefix {tempdir}/out "
         "{log} "
