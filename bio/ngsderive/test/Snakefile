@@ -2,14 +2,15 @@ rule test_ngsderive_endedness:
     input:
         ngs="A.rg.bam",
     output:
-        tsv="A.endedness.tsv"
+        tsv="A.endedness.tsv",
     log:
-        "ngsderive/endedness.log"
+        "ngsderive/endedness.log",
     params:
         subcommand="endedness",
         extra="-n 2 --lenient",
     wrapper:
         "master/bio/ngsderive"
+
 
 rule test_ngsderive_junction_annotation:
     input:
@@ -19,12 +20,13 @@ rule test_ngsderive_junction_annotation:
         tsv="A.junctions.tsv",
         junction_dir=directory("junctions"),
     log:
-        "ngsderive/junctions.log"
+        "ngsderive/junctions.log",
     params:
         subcommand="junction-annotation",
-        extra="-i 2 -c"
+        extra="-i 2 -c",
     wrapper:
         "master/bio/ngsderive"
+
 
 rule test_ngsderive_strandeness:
     input:
@@ -40,18 +42,20 @@ rule test_ngsderive_strandeness:
     wrapper:
         "master/bio/ngsderive"
 
+
 rule test_ngsderive_encoding:
     input:
         ngs="A.rg.bam",
     output:
         tsv="A.encoding.tsv",
     log:
-        "ngsderive/encoding.log"
+        "ngsderive/encoding.log",
     params:
         subcommand="encoding",
         extra="-n 2",
     wrapper:
         "master/bio/ngsderive"
+
 
 rule test_ngsderive_instrument:
     input:
@@ -59,12 +63,13 @@ rule test_ngsderive_instrument:
     output:
         tsv="A.instrument.tsv",
     log:
-        "ngsderive/instrument.log"
+        "ngsderive/instrument.log",
     params:
         subcommand="instrument",
         extra="-n 2 -v",
     wrapper:
         "master/bio/ngsderive"
+
 
 rule test_ngsderive_readlen:
     input:
@@ -72,7 +77,7 @@ rule test_ngsderive_readlen:
     output:
         tsv="A.readlen.tsv",
     log:
-        "ngsderive/readlen.log"
+        "ngsderive/readlen.log",
     params:
         subcommand="readlen",
         extra="-c 0.1 -n 2",
