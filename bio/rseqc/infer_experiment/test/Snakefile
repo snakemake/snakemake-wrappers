@@ -7,6 +7,6 @@ rule test_rseqc_infer_experiment:
     log:
         "rseqc/infer_experiment.log",
     params:
-        extra="",
+        extra="-s 4 -q 3",
     wrapper:
         "master/bio/rseqc/infer_experiment"

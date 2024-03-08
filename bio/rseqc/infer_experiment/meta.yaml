@@ -9,4 +9,5 @@ input:
 output:
   - Path to text formated results
 params:
-  - extra: Optional parameters for `infer_experiment.py`
+  - extra: Optional parameters for `infer_experiment.py` other than `-i` or `-r`
+  
