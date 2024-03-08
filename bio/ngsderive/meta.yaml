@@ -7,7 +7,7 @@ input:
   - ngs: "Path to BAM/SAM/Fastq file. SAM/BAM files should be indexed."
   - gene_model: "Path to sorted GTF/GFF file. Should be tabix indexed."
 output:
-  - out: Path to output file
+  - tsv: Path to output file
   - junctions: Optional path to junction directory
 params:
   - subcommand: Name of the `ngsderive` subcommand
