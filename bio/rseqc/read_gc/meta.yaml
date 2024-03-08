@@ -1,0 +1,13 @@
+name: "read_gc"
+description: "GC content distribution of reads."
+url: "https://rseqc.sourceforge.net/#read-gc-py"
+authors:
+  - "Thibault Dayris"
+input:
+  - Path to SAM/BAM file
+output:
+  - xls: Optional path to gc percent table
+  - plot_r: Optional path to R script
+  - pdf: Optional path to PDF-formatted graph
+params:
+  - extra: Optional parameters for `read_gc.py`
