@@ -11,4 +11,4 @@ output:
   - plot_r: Optional path to R script
   - pdf: Optional path to pdf-formatted graph
 params:
-  - extra: Optional parameters for `read_duplication.py`
+  - extra: Optional parameters for `read_duplication.py` besides `-i` and `-o`.

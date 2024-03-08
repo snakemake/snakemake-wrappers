@@ -9,6 +9,6 @@ rule test_rseqc_read_duplication:
     log:
         "rseqc.log",
     params:
-        extra="",
+        extra="-q 10",
     wrapper:
         "master/bio/rseqc/read_duplication"
