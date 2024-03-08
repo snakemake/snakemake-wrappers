@@ -18,7 +18,7 @@ rule test_ngsderive_junction_annotation:
         gene_model="annotation.sorted.gtf.gz",
     output:
         tsv="A.junctions.tsv",
-        junction_dir=directory("junctions"),
+        junction_files_dir=directory("junctions"),
     log:
         "ngsderive/junctions.log",
     params:
@@ -26,6 +26,22 @@ rule test_ngsderive_junction_annotation:
         extra="-i 2 -c",
     wrapper:
         "master/bio/ngsderive"
+
+
+rule test_ngsderive_junction_annotation_list:
+    input:
+        ngs="A.rg.bam",
+        gene_model="annotation.sorted.gtf.gz",
+    output:
+        tsv="A.junctions_list.tsv",
+        junction_files_dir=["junctions/A.rg.bam.junctions.tsv"],
+    log:
+        "ngsderive/junctions.log",
+    params:
+        subcommand="junction-annotation",
+        extra="-i 2 -c",
+    wrapper:
+        "master/bio/ngsderive"        
 
 
 rule test_ngsderive_strandeness:

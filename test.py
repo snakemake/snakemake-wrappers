@@ -1129,13 +1129,23 @@ def test_csvtk():
 
     run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/join.csv"])
 
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/headers.csv"])
+    run(
+        "utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/headers.csv"]
+    )
 
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/frequency.csv"])
+    run(
+        "utils/csvtk",
+        ["snakemake", "--cores", "1", "--use-conda", "csvtk/frequency.csv"],
+    )
 
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/summary.csv"])
+    run(
+        "utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/summary.csv"]
+    )
 
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/summary_tsv.csv"])
+    run(
+        "utils/csvtk",
+        ["snakemake", "--cores", "1", "--use-conda", "csvtk/summary_tsv.csv"],
+    )
 
     run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/cat.csv"])
 
@@ -3513,6 +3523,7 @@ def test_multiqc_a():
         ["snakemake", "--cores", "1", "qc/multiqc.a.html", "--use-conda", "-F"],
     )
 
+
 @skip_if_not_modified
 def test_multiqc_config():
     run(
@@ -3575,6 +3586,17 @@ def test_ngsderive():
     run(
         "bio/ngsderive",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "A.junctions.tsv"],
+    )
+    run(
+        "bio/ngsderive",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "junctions/A.rg.bam.junctions.tsv",
+        ],
     )
     run(
         "bio/ngsderive",
@@ -5344,6 +5366,7 @@ def test_ucsc_genepredtobed():
         ["snakemake", "--cores", "1", "annotation.bed", "--use-conda", "-F"],
     )
 
+
 @skip_if_not_modified
 def test_ucsc_fatotwobit():
     run(
@@ -5502,14 +5525,7 @@ def test_ensembl_variation_with_contig_lengths():
 def test_ega_fetch():
     run(
         "bio/ega/fetch",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "--use-conda",
-            "-F",
-            "data/EGAF00007243774.cram"
-        ]
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "data/EGAF00007243774.cram"],
     )
 
 
@@ -6166,6 +6182,7 @@ def test_generate_data_matrix():
         "bio/rsem/generate-data-matrix",
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )
+
 
 @skip_if_not_modified
 def test_rseqc_infer_experiment():
