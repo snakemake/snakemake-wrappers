@@ -1,14 +1,14 @@
-rule get_variation_with_contig_lengths:
-    input:
-        fai="refs/genome.fasta.fai",
+rule get_variation_https_protocol:
     output:
         vcf="refs/variation.vcf.gz",
     params:
         species="saccharomyces_cerevisiae",
         release="98",
         build="R64-1-1",
-        type="all",  # one of "all", "somatic", "structural_variation"
+        type="all",
+        protocol="https",
     log:
         "logs/get_variation.log",
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-variation"

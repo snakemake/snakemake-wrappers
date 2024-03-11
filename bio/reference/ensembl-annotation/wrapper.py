@@ -19,6 +19,7 @@ gtf_release = release
 out_fmt = Path(snakemake.output[0]).suffixes
 out_gz = (out_fmt.pop() and True) if out_fmt[-1] == ".gz" else False
 out_fmt = out_fmt.pop().lstrip(".")
+protocol = snakemake.params.get("protocol", "ftp")
 
 
 branch = ""
@@ -48,7 +49,7 @@ else:
     )
 
 
-url = "ftp://ftp.ensembl.org/pub/{branch}release-{release}/{out_fmt}/{species}/{species_cap}.{build}.{gtf_release}.{flavor}{suffix}".format(
+url = "{protocol}://ftp.ensembl.org/pub/{branch}release-{release}/{out_fmt}/{species}/{species_cap}.{build}.{gtf_release}.{flavor}{suffix}".format(
     release=release,
     gtf_release=gtf_release,
     build=build,
@@ -58,6 +59,7 @@ url = "ftp://ftp.ensembl.org/pub/{branch}release-{release}/{out_fmt}/{species}/{
     suffix=suffix,
     flavor=flavor,
     branch=branch,
+    protocol=protocol,
 )
 
 
