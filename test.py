@@ -5030,6 +5030,11 @@ def test_gatk_mutect():
         "bio/gatk/mutect",
         ["snakemake", "--cores", "1", "variant_complete/a.vcf", "--use-conda", "-F"],
     )
+    run(
+        "bio/gatk/mutect",
+        ["snakemake", "--cores", "1", "variant_list/a_b.vcf", "--use-conda", "-F"],
+    )
+    
 
 
 @skip_if_not_modified
