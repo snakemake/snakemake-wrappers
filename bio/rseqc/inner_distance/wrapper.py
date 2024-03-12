@@ -22,28 +22,28 @@ with TemporaryDirectory() as tempdir:
         "{log} "
     )
 
-    if "txt" in snakemake.output.keys():
+    if snakemake.output.get("txt"):
         shell(
             "mv --verbose "
             "{tempdir}/out.inner_distance.txt "
             "{snakemake.output.txt} {log}"
         )
 
-    if "pdf" in snakemake.output.keys():
+    if snakemake.output.get("pdf"):
         shell(
             "mv --verbose "
             "{tempdir}/out.inner_distance_plot.pdf "
             "{snakemake.output.pdf} {log}"
         )
 
-    if "freq" in snakemake.output.keys():
+    if snakemake.output.get("freq"):
         shell(
             "mv --verbose "
             "{tempdir}/out.inner_distance_freq.txt "
             "{snakemake.output.freq} {log}"
         )
 
-    if "plot_r" in snakemake.output.keys():
+    if snakemake.output.get("plot_r"):
         shell(
             "mv --verbose "
             "{tempdir}/out.inner_distance_plot.r "
