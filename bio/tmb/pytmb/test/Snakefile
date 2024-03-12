@@ -1,0 +1,13 @@
+rule test_pytmb:
+    input:
+        vcf="sample.vcf.gz",
+        db_config="dbconfig.yaml",
+        var_config="varconfig.yaml",
+    output:
+        "tmb.txt",
+    log:
+        "pytmb.log",
+    params:
+        extra="--verbose --effGenomeSize 33958083",
+    wrapper:
+        "master/bio/tmb/pytmb"

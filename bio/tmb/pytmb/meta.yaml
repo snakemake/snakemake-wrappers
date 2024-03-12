@@ -1,0 +1,17 @@
+name: "pyTMB.py"
+description: Calculate a Tumor Mutational Burden (TMB) score from a VCF file
+url: "https://github.com/bioinfo-pf-curie/TMB?tab=readme-ov-file#tumor-mutational-burden"
+authors:
+  - "Thibault Dayris"
+input:
+  - vcf: Path to input variants (`vcf`, `vcf.gz`, or `bcf` formatted)
+  - db_config: Path to database config file (`yaml` formatted)
+  - var_config: Path to variant config file (`yaml` formatted)
+output:
+  - res: Path to TMB results
+  - vcf: Optional path to variants considered for TMB calculation
+params:
+  - extra: Optional parameters provided to `pyTMB.py`, besides `-i`, `--dbConfig`, `--varConfig`, `--bed`, or `--export`
+notes: |
+  `output.vcf` creates a temporary file which prefix is equal to the prefix on the input vcf file. Use `shallow` option to
+  make sure no collision is possible when exporting vcf with `pyTMB.py`.
