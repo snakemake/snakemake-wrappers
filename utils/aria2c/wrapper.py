@@ -22,7 +22,6 @@ if len(snakemake.input) > 0:
         names=["checksum", "file_name"],
         engine="python",
     )
-    print(df)
     hash = df[df.index.str.endswith(Path(snakemake.params.url).name, na=False)][
         "checksum"
     ].item()
