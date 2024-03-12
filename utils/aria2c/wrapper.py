@@ -19,11 +19,12 @@ if len(snakemake.input) > 0:
         sep="  ",
         index_col="file_name",
         header=None,
-        names=["md5sum", "file_name"],
+        names=["checksum", "file_name"],
         engine="python",
     )
-    hash = df[df.index.str.endswith("/" + Path(snakemake.params.url).name, na=False)][
-        "md5sum"
+    print(df)
+    hash = df[df.index.str.endswith(Path(snakemake.params.url).name, na=False)][
+        "checksum"
     ].item()
     checksum = f"--checksum {algorithm}={hash}"
 
