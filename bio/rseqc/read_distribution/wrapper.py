@@ -10,7 +10,7 @@ from snakemake import shell
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
-    "read_distribution.py {extra} "
+    "read_distribution.py "
     "--input-file {snakemake.input.aln} "
     "--refgene {snakemake.input.refgene} "
     "> {snakemake.output} {log} "
