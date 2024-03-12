@@ -50,6 +50,6 @@ with TemporaryDirectory() as tempdir:
     # and/or chromosomes present in the fasta index
     if snakemake.output.get("html"):
         # Not create automatically by Snakemake
-        shell("mkdir --parents --verbose {snakemake.output.html} {log}")
+        # shell("mkdir --parents --verbose {snakemake.output.html} {log}")
 
         shell("mv --verbose {tempdir}/out/* {snakemake.output.html} {log}")
