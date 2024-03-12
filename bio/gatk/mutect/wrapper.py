@@ -43,7 +43,7 @@ if pon:
     pon = f"--panel-of-normals {pon}"
 
 
-aln = snakemake.input["map"]
+aln = snakemake.input.map
 # If aln is a string, then no change are done
 if isinstance(aln, list):
     # Do not add the first `--input` since it will
