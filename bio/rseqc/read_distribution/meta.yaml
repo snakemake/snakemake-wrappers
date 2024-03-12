@@ -1,0 +1,12 @@
+name: read_distribution
+description: calculate how mapped reads were distributed over genome feature
+url: "https://rseqc.sourceforge.net/#read-distribution-py"
+authors:
+  - "Thibault Dayris"
+input:
+  - aln: Path to SAM/BAM input file
+  - refgene: Path to refgene model (BED)
+output:
+  - Path to read distribution (txt)
+note: |
+  No optional parameters available. I/O is handled.
