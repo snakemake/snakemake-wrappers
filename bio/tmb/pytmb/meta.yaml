@@ -13,5 +13,5 @@ output:
 params:
   - extra: Optional parameters provided to `pyTMB.py`, besides `-i`, `--dbConfig`, `--varConfig`, `--bed`, or `--export`
 notes: |
-  `output.vcf` creates a temporary file which prefix is equal to the prefix on the input vcf file. Use `shallow` option to
-  make sure no collision is possible when exporting vcf with `pyTMB.py`.
+  `output.vcf` creates a temporary file, which prefix is equal to the prefix of the input vcf file. Use `shadow` option
+  to the Snakefile to  make sure no collision is possible when exporting vcf with `pyTMB.py`.
