@@ -8,5 +8,5 @@ input:
   - refgene: Path to refgene model (BED)
 output:
   - Path to read distribution (txt)
-params:
-  - extra: Optional parameters for `read_distribution.py`
+note: |
+  No optional parameters available. I/O is handled.

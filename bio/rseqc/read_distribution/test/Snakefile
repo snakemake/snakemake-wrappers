@@ -6,7 +6,5 @@ rule test_rseqc_read_distribution:
         "a.read_distribution.txt",
     log:
         "rseqc.log",
-    params:
-        extra="",
     wrapper:
         "master/bio/rseqc/read_distribution"
