@@ -10,6 +10,6 @@ rule test_rseqc_inner_distance:
     log:
         "rseqc.log",
     params:
-        extra="",
+        extra="-k3 -q2",
     wrapper:
         "master/bio/rseqc/inner_distance"

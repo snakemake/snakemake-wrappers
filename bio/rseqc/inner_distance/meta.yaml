@@ -12,4 +12,4 @@ output:
   - plot_r: Optional Path to R script
   - freq: Optional path to inner distance frequence
 params:
-  - extra: Optional parameters for `inner_distance.py`
+  - extra: Optional parameters for `inner_distance.py`, besides `-i`, `-r`, or `-o`
