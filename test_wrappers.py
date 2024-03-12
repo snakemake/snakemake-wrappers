@@ -145,8 +145,13 @@ def test_aria2c(run):
             "--use-conda",
             "-F",
             "results/file.fas.gz",
-            "results/file_md5.fas.gz",
-            "results/file_md5file.fas.gz",
+            "results/file.md5.fas.gz",
+            "results/file.md5file.fas.gz",
+            "results/file.sha-1file.fas.gz",
+            "results/file.sha-224file.fas.gz",
+            "results/file.sha-256file.fas.gz",
+            "results/file.sha-384file.fas.gz",
+            "results/file.sha-512file.fas.gz",
         ],
     )
 
