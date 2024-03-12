@@ -21,7 +21,7 @@ with TemporaryDirectory() as tempdir:
         "{log} "
     )
 
-    if "ped" in snakemake.output.keys():
+    if snakemake.output.get("ped"):
         shell(
             "mv --verbose "
             "{tempdir}/out/out-indexcov.ped "
@@ -29,7 +29,7 @@ with TemporaryDirectory() as tempdir:
             "{log} "
         )
 
-    if "roc" in snakemake.output.keys():
+    if snakemake.output.get("roc"):
         shell(
             "mv --verbose "
             "{tempdir}/out/out-indexcov.roc "
@@ -37,7 +37,7 @@ with TemporaryDirectory() as tempdir:
             "{log} "
         )
 
-    if "bed" in snakemake.output.keys():
+    if snakemake.output.get("bed"):
         shell(
             "mv --verbose "
             "{tempdir}/out/out-indexcov.bed.gz "
@@ -48,7 +48,7 @@ with TemporaryDirectory() as tempdir:
     # Number of files withing tempdir output
     # is defined by user command line parameters
     # and/or chromosomes present in the fasta index
-    if "html" in snakemake.output.keys():
+    if snakemake.output.get("html"):
         # Not create automatically by Snakemake
         shell("mkdir --parents --verbose {snakemake.output.html} {log}")
 
