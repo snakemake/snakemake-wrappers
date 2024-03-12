@@ -6,7 +6,7 @@ rule test_ngsderive_endedness:
     log:
         "ngsderive/endedness.log",
     params:
-        subcommand="endedness",
+        command="endedness",
         extra="-n 2 --lenient",
     wrapper:
         "master/bio/ngsderive"
@@ -18,11 +18,11 @@ rule test_ngsderive_junction_annotation:
         gene_model="annotation.sorted.gtf.gz",
     output:
         tsv="A.junctions.tsv",
-        junction_files_dir=directory("junctions"),
+        junction_dir=directory("junctions"),
     log:
         "ngsderive/junctions.log",
     params:
-        subcommand="junction-annotation",
+        command="junction-annotation",
         extra="-i 2 -c",
     wrapper:
         "master/bio/ngsderive"
@@ -34,11 +34,11 @@ rule test_ngsderive_junction_annotation_list:
         gene_model="annotation.sorted.gtf.gz",
     output:
         tsv="A.junctions_list.tsv",
-        junction_files_dir=["junctions/A.rg.bam.junctions.tsv"],
+        junction_dir=["junctions/A.rg.bam.junctions.tsv"],
     log:
         "ngsderive/junctions.log",
     params:
-        subcommand="junction-annotation",
+        command="junction-annotation",
         extra="-i 2 -c",
     wrapper:
         "master/bio/ngsderive"        
@@ -53,7 +53,7 @@ rule test_ngsderive_strandeness:
     log:
         "ngsderive/strand.log",
     params:
-        subcommand="strandedness",
+        command="strandedness",
         extra="--verbose -m 2 -n 1",
     wrapper:
         "master/bio/ngsderive"
@@ -67,7 +67,7 @@ rule test_ngsderive_encoding:
     log:
         "ngsderive/encoding.log",
     params:
-        subcommand="encoding",
+        command="encoding",
         extra="-n 2",
     wrapper:
         "master/bio/ngsderive"
@@ -81,7 +81,7 @@ rule test_ngsderive_instrument:
     log:
         "ngsderive/instrument.log",
     params:
-        subcommand="instrument",
+        command="instrument",
         extra="-n 2 -v",
     wrapper:
         "master/bio/ngsderive"
@@ -95,7 +95,7 @@ rule test_ngsderive_readlen:
     log:
         "ngsderive/readlen.log",
     params:
-        subcommand="readlen",
+        command="readlen",
         extra="-c 0.1 -n 2",
     wrapper:
         "master/bio/ngsderive"

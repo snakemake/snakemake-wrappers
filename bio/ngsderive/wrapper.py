@@ -17,7 +17,7 @@ if gene_model:
     gene_model = f"--gene-model {gene_model}"
 
 
-junction_dir = snakemake.output.get("junction_files_dir", "")
+junction_dir = snakemake.output.get("junction_dir", "")
 if isinstance(junction_dir, list):
     junction_dir = commonprefix([dirname(fp) for fp in junction_dir])
     if not junction_dir:
@@ -32,7 +32,7 @@ if junction_dir:
 
 
 shell(
-    "ngsderive {snakemake.params.subcommand} "
+    "ngsderive {snakemake.params.command} "
     "{extra} {gene_model} {junction_dir} "
     "{snakemake.input.ngs} "
     "--outfile {snakemake.output.tsv} "
