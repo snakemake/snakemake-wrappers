@@ -11,6 +11,6 @@ output:
   - junctions: Optional path to junction directory, or list of paths to junction files with a common prefix
 params:
   - subcommand: Name of the `ngsderive` subcommand
-  - extra: Optional paramters provided to the subcommand, besides `-o`, `-g`
+  - extra: Optional parameters, besides `-o`, `-g`
 notes: |
   GTF/GFF will be automatically sorted and tabix-indexed by `ngsderive` if needed.
