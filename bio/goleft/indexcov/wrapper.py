@@ -49,7 +49,7 @@ with TemporaryDirectory() as tempdir:
     # is defined by user command line parameters
     # and/or chromosomes present in the fasta index
     if snakemake.output.get("html"):
-        # Not create automatically by Snakemake
-        # shell("mkdir --parents --verbose {snakemake.output.html} {log}")
+        # Not created automatically by Snakemake
+        shell("mkdir --parents --verbose {snakemake.output.html} {log}")
 
         shell("mv --verbose {tempdir}/out/* {snakemake.output.html} {log}")
