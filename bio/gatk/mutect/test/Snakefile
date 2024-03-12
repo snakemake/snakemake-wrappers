@@ -64,6 +64,6 @@ rule mutect2_list:
     log:
         "logs/mutect2_list.log",
     params:
-        extra="--tumor-sample a --normal-sample b",
+        extra="--tumor-sample a_normal --normal-sample b_normal",
     wrapper:
         "master/bio/gatk/mutect"
