@@ -28,14 +28,13 @@ if bed:
 
 out_vcf = snakemake.output.get("vcf", "")
 if out_vcf:
-    extra = f"--export"
+    extra += " --export"
 
 shell(
     "pyTMB.py {extra} "
-    "{db_config} {var_config} "
-    "{bed} {out_vcf} "
+    "{db_config} {var_config} {bed} "
     "--vcf {snakemake.input.vcf} "
-    "> {snakemake.output} "
+    "> {snakemake.output.res} "
     "{log} "
 )
 
@@ -43,6 +42,6 @@ shell(
 # with no option to control its prefix (other than the
 # input vcf file prefix)
 if out_vcf:
-    prefix = sub("\.(v|b)cf(.gz)?", "", out_vcf)
+    prefix = sub("\.(v|b)cf(.gz)?", "", snakemake.input.vcf)
     log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
     shell("mv --verbose {prefix}_export.vcf {out_vcf} {log}")

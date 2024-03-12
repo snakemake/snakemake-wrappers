@@ -4,7 +4,8 @@ rule test_pytmb:
         db_config="dbconfig.yaml",
         var_config="varconfig.yaml",
     output:
-        "tmb.txt",
+        res="tmb.txt",
+        vcf="tmp.vcf",
     log:
         "pytmb.log",
     params:
