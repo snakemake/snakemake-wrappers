@@ -7,11 +7,12 @@ input:
   - vcf: Path to input variants (`vcf`, `vcf.gz`, or `bcf` formatted)
   - db_config: Path to database config file (`yaml` formatted)
   - var_config: Path to variant config file (`yaml` formatted)
+  - bed: Path to intervals file to compute effective genome size (`bed` formatted)
 output:
   - res: Path to TMB results
   - vcf: Optional path to variants considered for TMB calculation
 params:
   - extra: Optional parameters provided to `pyTMB.py`, besides `-i`, `--dbConfig`, `--varConfig`, `--bed`, or `--export`
-notes: |
-  `output.vcf` creates a temporary file, which prefix is equal to the prefix of the input vcf file. Use `shadow` option
-  to the Snakefile to  make sure no collision is possible when exporting vcf with `pyTMB.py`.
+note: |
+  This wrapper executes the whole command in a temporary directory. The use of `shadow` directive
+  in the Snakemake rule would be redundant.

@@ -7,8 +7,6 @@ rule test_pytmb:
     output:
         res="tmb.txt",
         vcf="tmp.vcf",
-    shadow:
-        "shallow"
     log:
         "pytmb.log",
     params:
