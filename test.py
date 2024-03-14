@@ -5080,6 +5080,11 @@ def test_gatk_mutect():
         "bio/gatk/mutect",
         ["snakemake", "--cores", "1", "variant_complete/a.vcf", "--use-conda", "-F"],
     )
+    run(
+        "bio/gatk/mutect",
+        ["snakemake", "--cores", "1", "variant_list/a_b.vcf", "--use-conda", "-F"],
+    )
+    
 
 
 @skip_if_not_modified
@@ -6204,6 +6209,14 @@ def test_rseqc_read_gc():
 def test_rseqc_read_duplication():
     run(
         "bio/rseqc/read_duplication",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_rseqc_read_distribution():
+    run(
+        "bio/rseqc/read_distribution",
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )
 
