@@ -1,6 +1,6 @@
 channels:
   - conda-forge
+  - bioconda
   - nodefaults
 dependencies:
-  - datavzrd =2.36.8
-
+  - ucsc-genepredtobed=447

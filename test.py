@@ -1129,13 +1129,23 @@ def test_csvtk():
 
     run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/join.csv"])
 
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/headers.csv"])
+    run(
+        "utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/headers.csv"]
+    )
 
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/frequency.csv"])
+    run(
+        "utils/csvtk",
+        ["snakemake", "--cores", "1", "--use-conda", "csvtk/frequency.csv"],
+    )
 
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/summary.csv"])
+    run(
+        "utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/summary.csv"]
+    )
 
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/summary_tsv.csv"])
+    run(
+        "utils/csvtk",
+        ["snakemake", "--cores", "1", "--use-conda", "csvtk/summary_tsv.csv"],
+    )
 
     run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/cat.csv"])
 
@@ -3513,6 +3523,13 @@ def test_multiqc_a():
         ["snakemake", "--cores", "1", "qc/multiqc.a.html", "--use-conda", "-F"],
     )
 
+@skip_if_not_modified
+def test_multiqc_config():
+    run(
+        "bio/multiqc",
+        ["snakemake", "--cores", "1", "qc/multiqc.config.html", "--use-conda", "-F"],
+    )
+
 
 @skip_if_not_modified
 def test_muscle_super5():
@@ -5023,6 +5040,11 @@ def test_gatk_mutect():
         "bio/gatk/mutect",
         ["snakemake", "--cores", "1", "variant_complete/a.vcf", "--use-conda", "-F"],
     )
+    run(
+        "bio/gatk/mutect",
+        ["snakemake", "--cores", "1", "variant_list/a_b.vcf", "--use-conda", "-F"],
+    )
+    
 
 
 @skip_if_not_modified
@@ -5303,6 +5325,13 @@ def test_ucsc_bedgraphtobigwig():
 
 
 @skip_if_not_modified
+def test_ucsc_genepredtobed():
+    run(
+        "bio/ucsc/genePredToBed",
+        ["snakemake", "--cores", "1", "annotation.bed", "--use-conda", "-F"],
+    )
+
+@skip_if_not_modified
 def test_ucsc_fatotwobit():
     run(
         "bio/ucsc/faToTwoBit",
@@ -5460,14 +5489,7 @@ def test_ensembl_variation_with_contig_lengths():
 def test_ega_fetch():
     run(
         "bio/ega/fetch",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "--use-conda",
-            "-F",
-            "data/EGAF00007243774.cram"
-        ]
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "data/EGAF00007243774.cram"],
     )
 
 
@@ -6122,6 +6144,37 @@ def test_rsem_prepare_reference():
 def test_generate_data_matrix():
     run(
         "bio/rsem/generate-data-matrix",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
+@skip_if_not_modified
+def test_rseqc_infer_experiment():
+    run(
+        "bio/rseqc/infer_experiment",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.experiment.txt"],
+    )
+
+
+@skip_if_not_modified
+def test_rseqc_read_gc():
+    run(
+        "bio/rseqc/read_gc",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_rseqc_read_duplication():
+    run(
+        "bio/rseqc/read_duplication",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_rseqc_read_distribution():
+    run(
+        "bio/rseqc/read_distribution",
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )
 
