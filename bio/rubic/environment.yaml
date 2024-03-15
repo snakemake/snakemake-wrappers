@@ -10,4 +10,4 @@ dependencies:
   - r-ggplot2 =3.5.0
   - r-gtable =0.3.4
   - r-codetools =0.2_19
-  - r-digest =0.6.34
+  - r-digest =0.6.35
