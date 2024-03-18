@@ -1,5 +1,12 @@
 # Changelog
 
+### [3.5.2](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.5.1...v3.5.2) (2024-03-18)
+
+
+### Bug Fixes
+
+* output file handling in ensembl-variation wrapper in combination with remote storage or absolute output file paths ([#2753](https://www.github.com/snakemake/snakemake-wrappers/issues/2753)) ([5bbb7b2](https://www.github.com/snakemake/snakemake-wrappers/commit/5bbb7b2751b8e1eb194e9729209becea00240917))
+
 ### [3.5.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.5.0...v3.5.1) (2024-03-15)
 
 
