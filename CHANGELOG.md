@@ -1,5 +1,23 @@
 # Changelog
 
+### [3.5.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.5.0...v3.5.1) (2024-03-15)
+
+
+### Performance Improvements
+
+* autobump bio/deeptools/alignmentsieve ([#2741](https://www.github.com/snakemake/snakemake-wrappers/issues/2741)) ([ce63735](https://www.github.com/snakemake/snakemake-wrappers/commit/ce63735a1f6e70e14a5217d7e5c5bcc71f62a188))
+* autobump bio/deeptools/computematrix ([#2740](https://www.github.com/snakemake/snakemake-wrappers/issues/2740)) ([c3416a0](https://www.github.com/snakemake/snakemake-wrappers/commit/c3416a077b5912f8ba558fbdb239462655d15c68))
+* autobump bio/deeptools/plotcoverage ([#2742](https://www.github.com/snakemake/snakemake-wrappers/issues/2742)) ([ec1b4e3](https://www.github.com/snakemake/snakemake-wrappers/commit/ec1b4e3cbeb41b9093e05dffb9349cf255ca1267))
+* autobump bio/deeptools/plotprofile ([#2743](https://www.github.com/snakemake/snakemake-wrappers/issues/2743)) ([1773265](https://www.github.com/snakemake/snakemake-wrappers/commit/17732650991fca92c5ce951256633aea42e78f29))
+* autobump bio/entrez/efetch ([#2745](https://www.github.com/snakemake/snakemake-wrappers/issues/2745)) ([43deba3](https://www.github.com/snakemake/snakemake-wrappers/commit/43deba38c7a435248a90520be123a07f7b5b52de))
+* autobump bio/fgbio/setmateinformation ([#2746](https://www.github.com/snakemake/snakemake-wrappers/issues/2746)) ([6768125](https://www.github.com/snakemake/snakemake-wrappers/commit/67681250618c1d87473ca78189661a1c4ec4ae3f))
+* autobump bio/gatk/genotypegvcfs ([#2747](https://www.github.com/snakemake/snakemake-wrappers/issues/2747)) ([37c7361](https://www.github.com/snakemake/snakemake-wrappers/commit/37c7361b9ba43b47cc8e9b48926eeb5eabf9990e))
+* autobump bio/minimap2/aligner ([#2748](https://www.github.com/snakemake/snakemake-wrappers/issues/2748)) ([04eca33](https://www.github.com/snakemake/snakemake-wrappers/commit/04eca331209859bbf37ccb603432a4927664866b))
+* autobump bio/minimap2/index ([#2749](https://www.github.com/snakemake/snakemake-wrappers/issues/2749)) ([60aac91](https://www.github.com/snakemake/snakemake-wrappers/commit/60aac91acb6a02940a9f7b2ea982ecc10194548a))
+* autobump bio/rseqc/read_duplication ([#2750](https://www.github.com/snakemake/snakemake-wrappers/issues/2750)) ([78f15d1](https://www.github.com/snakemake/snakemake-wrappers/commit/78f15d197aa2085f9b3360379bfc3122bf284745))
+* autobump bio/seqkit ([#2751](https://www.github.com/snakemake/snakemake-wrappers/issues/2751)) ([5a4705e](https://www.github.com/snakemake/snakemake-wrappers/commit/5a4705eeaba0d68ea52152c83ff788cb58cb70d9))
+* autobump bio/ucsc/genePredToBed ([#2752](https://www.github.com/snakemake/snakemake-wrappers/issues/2752)) ([72ea812](https://www.github.com/snakemake/snakemake-wrappers/commit/72ea81202dd3981294d01710166aa009f424c9af))
+
 ## [3.5.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.4.1...v3.5.0) (2024-03-13)
 
 
