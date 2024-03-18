@@ -11,10 +11,11 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
 input = snakemake.input.get("input", "")
-
+print(f"Processing input files: {input}")
 
 in_taxdump = snakemake.input.get("taxdump", "")
 if in_taxdump:
+    print(f"Using taxdump in: {in_taxdump}")
     in_taxdump = Path(in_taxdump[0]).parent
     in_taxdump = f"--data-dir {in_taxdump}"
 
@@ -22,8 +23,10 @@ if in_taxdump:
 out_taxdump = snakemake.output.get("taxdump", "")
 if out_taxdump:
     out_taxdump = Path(out_taxdump[0]).parent
+    print(f"Dumping taxdump to: {out_taxdump}")
     extra += f" --out-dir {out_taxdump}"
 else:
+    print(f"Saving output to file: {snakemake.output}")
     if snakemake.output[0].endswith("json"):
         extra += " --json"
     extra += f" --out-file {snakemake.output}"
