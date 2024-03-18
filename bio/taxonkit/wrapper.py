@@ -10,7 +10,7 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
-input = "" if snakemake.params.command == "list" else snakemake.input[0]
+input = snakemake.input.get("input", "")
 
 
 in_taxdump = snakemake.input.get("taxdump", "")

@@ -44,7 +44,7 @@ rule taxonkit_list_json:
 
 rule taxonkit_lineage:
     input:
-        "taxon_ids.txt",
+        input="taxon_ids.txt",
         taxdump=multiext(
             "test-taxdump/",
             "taxid.map",
@@ -67,7 +67,7 @@ rule taxonkit_lineage:
 
 rule taxonkit_reformat:
     input:
-        "taxon_ids.txt",
+        input="taxon_ids.txt",
         taxdump=multiext(
             "test-taxdump/",
             "taxid.map",
@@ -90,7 +90,7 @@ rule taxonkit_reformat:
 
 rule taxonkit_name2taxid:
     input:
-        "taxon_name.txt",
+        input="taxon_name.txt",
         taxdump=multiext(
             "test-taxdump/",
             "taxid.map",
@@ -113,7 +113,7 @@ rule taxonkit_name2taxid:
 
 rule taxonkit_filter:
     input:
-        "taxon_ids.txt",
+        input="taxon_ids.txt",
         taxdump=multiext(
             "test-taxdump/",
             "taxid.map",
@@ -136,7 +136,7 @@ rule taxonkit_filter:
 
 rule taxonkit_lca:
     input:
-        "taxon_ids.txt",
+        input="taxon_ids.txt",
         taxdump=multiext(
             "test-taxdump/",
             "taxid.map",
@@ -159,7 +159,7 @@ rule taxonkit_lca:
 
 rule taxonkit_create_taxdump:
     input:
-        "lineages.txt",
+        input=["lineages1.txt", "lineages2.txt"],
     output:
         taxdump=multiext(
             "out/create-taxdump/{sample}/",
@@ -181,7 +181,7 @@ rule taxonkit_create_taxdump:
 
 rule taxonkit_profile2cami:
     input:
-        "abundance.tsv",
+        input="abundance.tsv",
         taxdump=multiext(
             "test-taxdump/",
             "taxid.map",
@@ -204,7 +204,7 @@ rule taxonkit_profile2cami:
 
 rule taxonkit_cami_filter:
     input:
-        rules.taxonkit_profile2cami.output[0],
+        input=rules.taxonkit_profile2cami.output[0],
         taxdump=multiext(
             "test-taxdump/",
             "taxid.map",
