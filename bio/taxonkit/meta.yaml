@@ -1,0 +1,16 @@
+name: TaxonKit generic wrapper
+url: https://bioinf.shenwei.me/taxonkit/
+description: |
+  Run TaxonKit.
+authors:
+  - Filipe G. Vieira
+input:
+  - input file(s)
+output:
+  - output file(s)
+params:
+  - command: TaxonKit command to use.
+  - extra: Optional parameters.
+notes: |
+  * First `input` and `output` file is considered to be the main one.
+  * Keys for extra `input` and `output` files need to match `taxonkit` arguments without the `-dir` suffix (if present).
