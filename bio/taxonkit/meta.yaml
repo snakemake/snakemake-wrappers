@@ -5,12 +5,10 @@ description: |
 authors:
   - Filipe G. Vieira
 input:
-  - input file(s)
+  - input: input file(s)
+  - taxdump: taxdump files
 output:
-  - output file(s)
+  - taxdump: output taxdump files
 params:
   - command: TaxonKit command to use.
   - extra: Optional parameters.
-notes: |
-  * First `input` and `output` file is considered to be the main one.
-  * Keys for extra `input` and `output` files need to match `taxonkit` arguments without the `-dir` suffix (if present).
