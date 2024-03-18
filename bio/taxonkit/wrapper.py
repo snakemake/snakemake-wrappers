@@ -13,13 +13,13 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 input = "" if snakemake.params.command == "list" else snakemake.input[0]
 
 
-in_taxdump = snakemake.input.get("data", "")
+in_taxdump = snakemake.input.get("taxdump", "")
 if in_taxdump:
     in_taxdump = Path(in_taxdump[0]).parent
     in_taxdump = f"--data-dir {in_taxdump}"
 
 
-out_taxdump = snakemake.output.get("data", "")
+out_taxdump = snakemake.output.get("taxdump", "")
 if out_taxdump:
     out_taxdump = Path(out_taxdump[0]).parent
     extra += f" --out-dir {out_taxdump}"

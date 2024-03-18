@@ -1,6 +1,6 @@
 rule taxonkit_list_txt:
     input:
-        data=multiext(
+        taxdump=multiext(
             "test-taxdump/",
             "taxid.map",
             "nodes.dmp",
@@ -22,7 +22,7 @@ rule taxonkit_list_txt:
 
 rule taxonkit_list_json:
     input:
-        data=multiext(
+        taxdump=multiext(
             "test-taxdump/",
             "taxid.map",
             "nodes.dmp",
@@ -45,7 +45,7 @@ rule taxonkit_list_json:
 rule taxonkit_lineage:
     input:
         "taxon_ids.txt",
-        data=multiext(
+        taxdump=multiext(
             "test-taxdump/",
             "taxid.map",
             "nodes.dmp",
@@ -68,7 +68,7 @@ rule taxonkit_lineage:
 rule taxonkit_reformat:
     input:
         "taxon_ids.txt",
-        data=multiext(
+        taxdump=multiext(
             "test-taxdump/",
             "taxid.map",
             "nodes.dmp",
@@ -91,7 +91,7 @@ rule taxonkit_reformat:
 rule taxonkit_name2taxid:
     input:
         "taxon_name.txt",
-        data=multiext(
+        taxdump=multiext(
             "test-taxdump/",
             "taxid.map",
             "nodes.dmp",
@@ -114,7 +114,7 @@ rule taxonkit_name2taxid:
 rule taxonkit_filter:
     input:
         "taxon_ids.txt",
-        data=multiext(
+        taxdump=multiext(
             "test-taxdump/",
             "taxid.map",
             "nodes.dmp",
@@ -137,7 +137,7 @@ rule taxonkit_filter:
 rule taxonkit_lca:
     input:
         "taxon_ids.txt",
-        data=multiext(
+        taxdump=multiext(
             "test-taxdump/",
             "taxid.map",
             "nodes.dmp",
@@ -161,7 +161,7 @@ rule taxonkit_create_taxdump:
     input:
         "lineages.txt",
     output:
-        data=multiext(
+        taxdump=multiext(
             "out/create-taxdump/{sample}/",
             "taxid.map",
             "nodes.dmp",
@@ -182,7 +182,7 @@ rule taxonkit_create_taxdump:
 rule taxonkit_profile2cami:
     input:
         "abundance.tsv",
-        data=multiext(
+        taxdump=multiext(
             "test-taxdump/",
             "taxid.map",
             "nodes.dmp",
@@ -205,7 +205,7 @@ rule taxonkit_profile2cami:
 rule taxonkit_cami_filter:
     input:
         rules.taxonkit_profile2cami.output[0],
-        data=multiext(
+        taxdump=multiext(
             "test-taxdump/",
             "taxid.map",
             "nodes.dmp",
