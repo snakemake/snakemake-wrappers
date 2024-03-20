@@ -2793,6 +2793,21 @@ def test_deeptools_bamcoverage():
 
 
 @skip_if_not_modified
+def test_deeptools_bamcoverage_eff():
+    run(
+        "bio/deeptools/bamcoverage",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "a.coverage_code.bw",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_deeptools_alignmentsieve():
     run(
         "bio/deeptools/alignmentsieve",
@@ -3522,6 +3537,7 @@ def test_multiqc_a():
         "bio/multiqc",
         ["snakemake", "--cores", "1", "qc/multiqc.a.html", "--use-conda", "-F"],
     )
+
 
 @skip_if_not_modified
 def test_multiqc_config():
@@ -5044,7 +5060,6 @@ def test_gatk_mutect():
         "bio/gatk/mutect",
         ["snakemake", "--cores", "1", "variant_list/a_b.vcf", "--use-conda", "-F"],
     )
-    
 
 
 @skip_if_not_modified
@@ -5330,6 +5345,7 @@ def test_ucsc_genepredtobed():
         "bio/ucsc/genePredToBed",
         ["snakemake", "--cores", "1", "annotation.bed", "--use-conda", "-F"],
     )
+
 
 @skip_if_not_modified
 def test_ucsc_fatotwobit():
@@ -6146,6 +6162,7 @@ def test_generate_data_matrix():
         "bio/rsem/generate-data-matrix",
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )
+
 
 @skip_if_not_modified
 def test_rseqc_infer_experiment():
