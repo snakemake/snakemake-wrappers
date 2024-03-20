@@ -1,0 +1,12 @@
+rule test_rseqc_infer_experiment:
+    input:
+        aln="a.bam",
+        refgene="genes.bed",
+    output:
+        "a.experiment.txt",
+    log:
+        "rseqc/infer_experiment.log",
+    params:
+        extra="-s 4 -q 3",
+    wrapper:
+        "master/bio/rseqc/infer_experiment"

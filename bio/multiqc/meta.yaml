@@ -5,6 +5,7 @@ url: https://multiqc.info/
 authors:
   - Julian de Ruiter
   - Filipe G. Vieira
+  - Thibault Dayris
 input:
   - input directory containing qc files, default behaviour is to extract folder path from the provided files or parent folder if a folder is provided.
 output:
@@ -14,4 +15,4 @@ params:
   - extra: additional program arguments.
   - use_input_files_only: if this variable is set to True input will be used as it is, i.e no folder will be extract from provided file names
 notes: |
-  * options `--data-dir`, `--no-data-dir`, `--zip-data-dir`, and `--no-report` are automaticall inferred.
+  * options `--data-dir`, `--no-data-dir`, `--zip-data-dir`, `--no-report`, and `--config` are automaticall inferred.
