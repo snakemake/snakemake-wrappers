@@ -1,6 +1,5 @@
 channels:
   - bioconda
-  - conda-forge
   - nodefaults
 dependencies:
   - aria2 =1.34.0
