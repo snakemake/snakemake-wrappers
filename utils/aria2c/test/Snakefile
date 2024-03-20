@@ -51,7 +51,9 @@ rule test_aria2_file:
 
 rule test_aria2_file_with_hash:
     input:
-        "GCF_000869925.1_ViralProj17181.md5",
+        storage.http(
+            "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/869/925/GCF_000869925.1_ViralProj17181/md5checksums.txt"
+        ),
     output:
         "results/file.md5fileH.fas.gz",
     log:
