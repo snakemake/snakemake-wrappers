@@ -9,10 +9,12 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 
 
-checksum = ""
 if len(snakemake.input) > 0:
-    # Get algorithm
-    algorithm = Path(snakemake.input[0].removesuffix(".gz")).suffix.lstrip(".").lower()
+    # Get hash function
+    hash_function = snakemake.params.get(
+        "hash_function",
+        Path(snakemake.input[0].removesuffix(".gz")).suffix.lstrip(".").lower(),
+    )
     # Get hash
     df = pd.read_csv(
         snakemake.input[0],
@@ -25,9 +27,9 @@ if len(snakemake.input) > 0:
     hash = df[df.index.str.endswith(Path(snakemake.params.url).name, na=False)][
         "checksum"
     ].item()
-    checksum = f"--checksum {algorithm}={hash}"
+    extra += f" --checksum {hash_function}={hash}"
 
 
 shell(
-    "aria2c --max-concurrent-downloads {snakemake.threads} {extra} --log {snakemake.log} {checksum} --out {snakemake.output[0]} {snakemake.params.url} > /dev/null"
+    "aria2c --max-concurrent-downloads {snakemake.threads} {extra} --log {snakemake.log} --out {snakemake.output[0]} {snakemake.params.url} > /dev/null"
 )
