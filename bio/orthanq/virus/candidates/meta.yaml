@@ -1,6 +1,7 @@
 name: orthanq candidates virus
 description: |
   Orthanq candidates virus subcommand generates candidate variants required for viral lineage quantification.
+output: The folder that the output file candidates.vcf is created with the associated temporary files used for debugging.
 url: https://github.com/orthanq/orthanq
 authors:
   - Hamdiye Uzuner
