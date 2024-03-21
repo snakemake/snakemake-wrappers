@@ -2,6 +2,13 @@ name: orthanq candidates hla
 description: |
   Orthanq candidates hla subcommand generates candidate variants required for HLA quantification.
   All required input is downloaded by following the instructions here: https://orthanq.github.io/docs/usage.html#preparation
+input:
+  - allele_freqs: This should be downloaded following the instructions in https://orthanq.github.io/docs/usage.html#preparation
+  - xml: This should be downloaded following the instructions in https://orthanq.github.io/docs/usage.html#preparation
+  - alleles: This should be downloaded following the instructions in https://orthanq.github.io/docs/usage.html#preparation
+  - genome: Reference genome in FASTA format.
+output:
+  - Path to output folder to store candidate variants.
 url: https://github.com/orthanq/orthanq
 authors:
   - Hamdiye Uzuner
