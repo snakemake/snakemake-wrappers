@@ -1,0 +1,15 @@
+
+rule compressbam:
+    input:
+        aln="{sample}.bam",
+    output:
+        "results/compressbam/{sample}.bam",
+    log:
+        "logs/compressbam/{sample}.log",
+    params:
+        extra="",  # optional
+    threads: 4
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/metadmg/compressbam"

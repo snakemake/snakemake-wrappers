@@ -1,0 +1,17 @@
+
+rule metadmg_getdamage:
+    input:
+        aln="{sample}.bam",
+    output:
+        res="results/getdamage/{sample}.out.gz",
+        dmg="results/getdamage/{sample}.dmg.gz",
+        stats="stats/getdamage/{sample}.tsv",
+    log:
+        "logs/getdamage/{sample}.log",
+    params:
+        extra="--min_length 30 --print_length 30 --run_mode 1",
+    threads: 4
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/metadmg/getdamage"

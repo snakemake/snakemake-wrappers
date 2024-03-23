@@ -1,0 +1,19 @@
+name: metaDMG lca
+url: https://github.com/metaDMG-dev/metaDMG-cpp
+description: metaDMG-cpp is a fast and efficient method for estimating mutation and damage rates in ancient DNA data
+authors:
+  - Filipe G. Vieira
+input:
+  - aln: SAM/BAM/CRAM file
+  - names: taxonomy file "names.dmp"
+  - nodes: taxonomy file "nodes.dmp"
+  - acc2taxid: TSV with correspondence between accesions and taxa IDs
+output:
+  - dmg: path to TSV file containing counts of mismatchs conditional on strand and cycle.
+  - lca: path to TSV file with LCA results.
+  - stat: path to TSV file with general stats.
+params:
+  - extra: additional program arguments.
+notes: |
+  * Input BAM file has to be sorted by read name.
+  * More information about output formats in https://github.com/metaDMG-dev/metaDMG-cpp/blob/master/doc/formats.pdf

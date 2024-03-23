@@ -1,0 +1,17 @@
+name: metaDMG getdamage
+url: https://github.com/metaDMG-dev/metaDMG-cpp
+description: metaDMG-cpp is a fast and efficient method for estimating mutation and damage rates in ancient DNA data
+authors:
+  - Filipe G. Vieira
+input:
+  - aln: SAM/BAM/CRAM file
+  - ref: reference file in FASTA format (mandatory if CRAM input)
+output:
+  - dmg: path to TSV file containing counts of mismatchs conditional on strand and cycle.
+  - res: path to TSV file with estimates of damage.
+  - stat: path to TSV file with general stats.
+params:
+  - extra: additional program arguments.
+notes: |
+  * Input BAM file has to be sorted by read name.
+  * More information about output formats in https://github.com/metaDMG-dev/metaDMG-cpp/blob/master/doc/formats.pdf

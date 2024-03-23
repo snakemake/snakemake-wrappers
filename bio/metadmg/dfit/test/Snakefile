@@ -1,0 +1,20 @@
+
+rule metadmg_dfit:
+    input:
+        dmg="{sample}.bam",
+        names="names.dmp.gz",
+        nodes="nodes.dmp.gz",
+        lca_stats="{sample}.stat",
+    output:
+        dfit="results/dfit/{sample}.out.gz",
+        stats_dfit="stats/dfit/{sample}.dfit.tsv.gz",
+        stats_boot="stats/dfit/{sample}.boot.tsv.gz",
+    log:
+        "logs/dfit/{sample}.log",
+    params:
+        extra="--nopt 10 --doboot 1 --nbootstrap 20 --showfits 2 --lib ds",
+    threads: 1
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/metadmg/dfit"

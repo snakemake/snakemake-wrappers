@@ -140,6 +140,72 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_metadmg_getdamage():
+    run(
+        "bio/metadmg/getdamage",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results/getdamage/a.out.gz",
+            "results/getdamage/a.dmg.gz",
+            "stats/getdamage/a.tsv",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_metadmg_lca():
+    run(
+        "bio/metadmg/lca",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results/lca/a.out.gz",
+            "results/lca/a.lca.gz",
+            "stats/lca/a.tsv",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_metadmg_dfit():
+    run(
+        "bio/metadmg/dfit",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results/dfit/a.out.gz",
+            "stats/dfit/a.dfit.tsv.gz",
+            "stats/dfit/a.boot.tsv.gz",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_metadmg_compressbam():
+    run(
+        "bio/metadmg/compressbam",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results/compressbam/a.bam",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_galah():
     run(
         "bio/galah",

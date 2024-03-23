@@ -1,0 +1,20 @@
+
+rule metadmg_lca:
+    input:
+        aln="{sample}.bam",
+        names="names.dmp.gz",
+        nodes="nodes.dmp.gz",
+        acc2taxid="acc2taxid.tsv",
+    output:
+        res="results/lca/{sample}.out.gz",
+        lca="results/lca/{sample}.lca.gz",
+        stats="stats/lca/{sample}.tsv",
+    log:
+        "logs/lca/{sample}.log",
+    params:
+        extra="--sim_score_low 0.95 --sim_score_high 1.0 --min_mapq 30 --how_many 30 --lca_rank genus --fix_ncbi 0",
+    threads: 4
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/metadmg/lca"
