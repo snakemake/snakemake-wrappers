@@ -140,6 +140,38 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_ngsngs():
+    run(
+        "bio/ngsngs",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "results/genome.SE.fq.gz",
+            "results/genome_R1.fq.gz",
+            "results/genome_R2.fq.gz",
+            "results/genome.SE.bam",
+            "results/genome.PE.bam",
+        ],
+    )
+
+    run(
+        "bio/ngsngs",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "results/genome.randvar.pos",
+            "results/genome.randref.fas"
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_galah():
     run(
         "bio/galah",
