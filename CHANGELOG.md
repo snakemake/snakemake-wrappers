@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.6.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.5.3...v3.6.0) (2024-03-26)
+
+
+### Features
+
+* Taxonkit wrapper ([#2755](https://www.github.com/snakemake/snakemake-wrappers/issues/2755)) ([576ddb9](https://www.github.com/snakemake/snakemake-wrappers/commit/576ddb92927ad39c94a4e98d272455046b86d8dd))
+
 ### [3.5.3](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.5.2...v3.5.3) (2024-03-22)
 
 
