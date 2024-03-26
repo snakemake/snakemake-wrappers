@@ -1,5 +1,23 @@
 # Changelog
 
+### [3.5.3](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.5.2...v3.5.3) (2024-03-22)
+
+
+### Performance Improvements
+
+* autobump bio/busco ([#2760](https://www.github.com/snakemake/snakemake-wrappers/issues/2760)) ([96a5ee7](https://www.github.com/snakemake/snakemake-wrappers/commit/96a5ee7520a11cdcd12ba207d185e9c8b96d08bd))
+* autobump bio/cutadapt/pe ([#2762](https://www.github.com/snakemake/snakemake-wrappers/issues/2762)) ([7326a2b](https://www.github.com/snakemake/snakemake-wrappers/commit/7326a2bf33c043d6aee7da32800379ee17dc597d))
+* autobump bio/cutadapt/se ([#2761](https://www.github.com/snakemake/snakemake-wrappers/issues/2761)) ([2df0403](https://www.github.com/snakemake/snakemake-wrappers/commit/2df0403bab61cf8f1d2af89f69143f9b6bf026a2))
+* autobump bio/mapdamage2 ([#2765](https://www.github.com/snakemake/snakemake-wrappers/issues/2765)) ([03e2812](https://www.github.com/snakemake/snakemake-wrappers/commit/03e2812979b5b76671bf1beb88c2d79e0b93442c))
+* autobump bio/mosdepth ([#2764](https://www.github.com/snakemake/snakemake-wrappers/issues/2764)) ([b8b54ee](https://www.github.com/snakemake/snakemake-wrappers/commit/b8b54eed879416d52dd3b0c6875529559b79c075))
+* autobump bio/rseqc/infer_experiment ([#2767](https://www.github.com/snakemake/snakemake-wrappers/issues/2767)) ([dfd6ce4](https://www.github.com/snakemake/snakemake-wrappers/commit/dfd6ce4c25ab9d03dcb130293554aeb1bc6f1351))
+* autobump bio/rseqc/read_distribution ([#2766](https://www.github.com/snakemake/snakemake-wrappers/issues/2766)) ([7f32bdf](https://www.github.com/snakemake/snakemake-wrappers/commit/7f32bdfad7987613c74a9bbae03a4821eaf508f0))
+* autobump bio/salmon/index ([#2769](https://www.github.com/snakemake/snakemake-wrappers/issues/2769)) ([f27e290](https://www.github.com/snakemake/snakemake-wrappers/commit/f27e290cb6f75dc35216ec8af1799a50f6ec2061))
+* autobump bio/salmon/quant ([#2768](https://www.github.com/snakemake/snakemake-wrappers/issues/2768)) ([74e93c2](https://www.github.com/snakemake/snakemake-wrappers/commit/74e93c2393bc25d4ef2a1200878e719d1f9061fb))
+* autobump bio/sourmash/compute ([#2770](https://www.github.com/snakemake/snakemake-wrappers/issues/2770)) ([19a8a84](https://www.github.com/snakemake/snakemake-wrappers/commit/19a8a84eb4d79f843e509ec563a353e1e1d82d14))
+* autobump utils/csvtk ([#2763](https://www.github.com/snakemake/snakemake-wrappers/issues/2763)) ([d3fc9d3](https://www.github.com/snakemake/snakemake-wrappers/commit/d3fc9d32dff0c140129d4898784e9b3dbf921e33))
+* Update Datavzrd to 2.36.9 ([#2758](https://www.github.com/snakemake/snakemake-wrappers/issues/2758)) ([efb4337](https://www.github.com/snakemake/snakemake-wrappers/commit/efb4337cc03ed1a1e1f118a526f484895c08c37f))
+
 ### [3.5.2](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.5.1...v3.5.2) (2024-03-18)
 
 
