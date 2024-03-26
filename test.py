@@ -140,6 +140,30 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_taxonkit():
+    run(
+        "bio/taxonkit",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "out/list/a.txt",
+            "out/list/a.json",
+            "out/lineage/a.txt",
+            "out/reformat/a.txt",
+            "out/name2taxid/a.txt",
+            "out/filter/a.txt",
+            "out/lca/a.txt",
+            "out/create-taxdump/a/taxid.map",
+            "out/profile2cami/a.txt",
+            "out/cami_filter/a.tsv",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_galah():
     run(
         "bio/galah",
