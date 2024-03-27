@@ -87,6 +87,8 @@ with tempfile.TemporaryDirectory() as tmpdir:
         shell("cat {tmpdir}/Log.progress.out > {snakemake.output.log_progress:q}")
     if snakemake.output.get("log_final"):
         shell("cat {tmpdir}/Log.final.out > {snakemake.output.log_final:q}")
+    if snakemake.output.get("TranscriptomeSAM"):
+        shell("cat {tmpdir}/Aligned.toTranscriptome.out.bam > {snakemake.output.TranscriptomeSAM:q}")
     unmapped = snakemake.output.get("unmapped")
     if unmapped:
         # SE
