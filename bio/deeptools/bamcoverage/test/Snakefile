@@ -22,8 +22,8 @@ rule test_deeptools_bamcoverage_default_eff_len:
     output:
         "a.coverage_code.bw",
     params:
-        genome="GRCm39",
-        read_length=100,
+        genome="GRCm38",
+        read_length=200,
     log:
         "logs/coverage_efault_eff_len.log",
     wrapper:
