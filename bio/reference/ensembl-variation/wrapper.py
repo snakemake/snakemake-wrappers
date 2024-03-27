@@ -78,9 +78,9 @@ try:
     gather = "curl {urls}".format(urls=" ".join(map("-O {}".format, urls)))
     workdir = os.getcwd()
     out = os.path.abspath(snakemake.output[0])
-    fai = os.path.abspath(snakemake.input.fai)
     with tempfile.TemporaryDirectory() as tmpdir:
         if snakemake.input.get("fai"):
+            fai = os.path.abspath(snakemake.input.fai)
             shell(
                 "(cd {tmpdir}; {gather} && "
                 "bcftools concat -Oz --naive {names} > concat.vcf.gz && "
