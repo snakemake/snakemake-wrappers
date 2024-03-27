@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.7.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.6.0...v3.7.0) (2024-03-27)
+
+
+### Features
+
+* pyTMB ([#2739](https://www.github.com/snakemake/snakemake-wrappers/issues/2739)) ([0ffbed9](https://www.github.com/snakemake/snakemake-wrappers/commit/0ffbed9fd49d575b94961eb9e34eb79a47b1fd6f))
+
+
+### Bug Fixes
+
+* path of .fai file in ensembl-variation wrapper ([#2773](https://www.github.com/snakemake/snakemake-wrappers/issues/2773)) ([af63b5b](https://www.github.com/snakemake/snakemake-wrappers/commit/af63b5b42ca974b2ad00d538d72c23763a7c7407))
+
 ## [3.6.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.5.3...v3.6.0) (2024-03-26)
 
 
