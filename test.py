@@ -6432,3 +6432,10 @@ def test_sortmerna_se():
             "-F",
         ],
     )
+
+@skip_if_not_modified
+def test_tmb_pytmb():
+    run(
+        "bio/tmb/pytmb",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
