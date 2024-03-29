@@ -25,6 +25,6 @@ https://conda.anaconda.org/conda-forge/linux-64/libssh2-1.11.0-h0841786_0.conda#
 https://conda.anaconda.org/conda-forge/linux-64/zlib-1.2.13-hd590300_5.conda#68c34ec6149623be41a1933ab996a209
 https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.5-hfc55251_0.conda#04b88013080254850d6c01ed54810589
 https://conda.anaconda.org/conda-forge/linux-64/krb5-1.21.2-h659d440_0.conda#cd95826dbd331ed1be26bdf401432844
-https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.6.0-hca28451_0.conda#704739398d858872cb91610f49f0ef29
+https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.7.1-hca28451_0.conda#755c7f876815003337d2c61ff5d047e5
 https://conda.anaconda.org/conda-forge/linux-64/hdf5-1.12.2-nompi_h4df4325_101.conda#162a25904af6586b234b2dd52ee99c61
 https://conda.anaconda.org/bioconda/linux-64/kallisto-0.50.1-hc877fd6_1.tar.bz2#8e057c6e91d7ddffa77a674c0f8770bc
