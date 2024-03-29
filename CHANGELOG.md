@@ -1,5 +1,21 @@
 # Changelog
 
+### [3.7.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.7.0...v3.7.1) (2024-03-29)
+
+
+### Performance Improvements
+
+* autobump bio/deeptools/plotfingerprint ([#2776](https://www.github.com/snakemake/snakemake-wrappers/issues/2776)) ([214ea28](https://www.github.com/snakemake/snakemake-wrappers/commit/214ea28825991192f4f5f25b25f554eadfb15ec9))
+* autobump bio/freebayes ([#1850](https://www.github.com/snakemake/snakemake-wrappers/issues/1850)) ([795e778](https://www.github.com/snakemake/snakemake-wrappers/commit/795e7781331c4e4bba56f055bc9c27d2b2167955))
+* autobump bio/gdc-api/bam-slicing ([#2778](https://www.github.com/snakemake/snakemake-wrappers/issues/2778)) ([9375ca8](https://www.github.com/snakemake/snakemake-wrappers/commit/9375ca8c718faf4b789633c5db768d247b59e93a))
+* autobump bio/minimap2/aligner ([#2780](https://www.github.com/snakemake/snakemake-wrappers/issues/2780)) ([23fd5a3](https://www.github.com/snakemake/snakemake-wrappers/commit/23fd5a325964c7121ddeb218bad64630675e04db))
+* autobump bio/minimap2/index ([#2779](https://www.github.com/snakemake/snakemake-wrappers/issues/2779)) ([8f5d611](https://www.github.com/snakemake/snakemake-wrappers/commit/8f5d61190bb7a711bba55e0c4591a8829e659964))
+* autobump bio/rseqc/read_gc ([#2781](https://www.github.com/snakemake/snakemake-wrappers/issues/2781)) ([842998d](https://www.github.com/snakemake/snakemake-wrappers/commit/842998dee3c213a4db315c472a98f5781734b394))
+* autobump bio/ucsc/gtfToGenePred ([#2782](https://www.github.com/snakemake/snakemake-wrappers/issues/2782)) ([4e8c925](https://www.github.com/snakemake/snakemake-wrappers/commit/4e8c9252995e7ab3773c6dff6aee5e881bb2192f))
+* autobump bio/unicycler ([#2316](https://www.github.com/snakemake/snakemake-wrappers/issues/2316)) ([0d1486b](https://www.github.com/snakemake/snakemake-wrappers/commit/0d1486b0b88b0f0077faf7533dc5d8b422e3af4d))
+* autobump bio/vembrane/filter ([#2783](https://www.github.com/snakemake/snakemake-wrappers/issues/2783)) ([bb271ab](https://www.github.com/snakemake/snakemake-wrappers/commit/bb271abf6dbce49a9e86b5d299b2be8b0fca6df6))
+* autobump bio/vembrane/table ([#2784](https://www.github.com/snakemake/snakemake-wrappers/issues/2784)) ([491d5b6](https://www.github.com/snakemake/snakemake-wrappers/commit/491d5b6273d8b341c1c9a898253ab196598a8b0a))
+
 ## [3.7.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.6.0...v3.7.0) (2024-03-27)
 
 
