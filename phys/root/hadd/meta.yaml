@@ -1,0 +1,4 @@
+name: "hadd"
+description: Combine ntuples using the ROOT hadd command line tool
+authors:
+  - Jamie Gooding
