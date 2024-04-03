@@ -8,6 +8,4 @@ from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell()
 
-shell(
-    "(hadd {snakemake.output} {snakemake.input}) {log}"
-)
+shell("(hadd {snakemake.output} {snakemake.input}) {log}")
