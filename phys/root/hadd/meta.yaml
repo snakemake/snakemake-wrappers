@@ -1,4 +1,12 @@
 name: "hadd"
 description: Combine ntuples using the ROOT hadd command line tool
+url: https://root.cern/doc/master/hadd_8cxx.html
 authors:
   - Jamie Gooding
+input:
+  - ROOT files to be combined.
+output:
+  - >
+    single ROOT file containing contents of input files.
+params:
+  - parameters of hadd defined in the ROOT documentation, e.g. -j N for multiple cores, -f[0-9] for compression levels
