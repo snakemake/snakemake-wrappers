@@ -4,7 +4,7 @@ rule hadd:
     log:
         "logs/hadd/hadd.log",
     params:
-        extra="",
+        extra="-f5",
     threads: 2
     output:
         "ntuple.root",
