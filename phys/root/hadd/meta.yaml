@@ -9,4 +9,4 @@ output:
   - >
     single ROOT file containing contents of input files.
 params:
-  - parameters of hadd defined in the ROOT documentation, e.g. -j N for multiple cores, -f[0-9] for compression levels
+  - extra: extra parameters to `hadd` (see ROOT documentation, e.g. `-f[0-9]` for compression levels)
