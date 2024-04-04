@@ -9,4 +9,4 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell()
 
-shell("(hadd {snakemake.params} {snakemake.output} {snakemake.input}) {log}")
+shell("hadd -j {snakemake.threads} {extra} {snakemake.output} {snakemake.input} {log}")
