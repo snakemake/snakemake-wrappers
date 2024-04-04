@@ -6439,3 +6439,10 @@ def test_tmb_pytmb():
         "bio/tmb/pytmb",
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )
+
+@skip_if_not_modified
+def test_root_hadd():
+    run(
+        "phys/root/hadd",
+        ["snakemake", "--cores", "2", "--use-conda", "-F"],
+    )
