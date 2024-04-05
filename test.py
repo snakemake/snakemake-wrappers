@@ -5678,3 +5678,33 @@ def test_barrnap():
             "-F",
         ],
     )
+
+@skip_if_not_modified
+def test_emu_abundance():
+    run(
+        "bio/emu/abundance",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "sample_rel-abundance.tsv",
+            "sample_emu_alignments.sam",
+            "sample_unclassified.fa",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+@skip_if_not_modified
+def test_emu_abundance_paired():
+    run(
+        "bio/emu/abundance",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "short_read_rel-abundance_paired.tsv",
+            "--use-conda",
+            "-F",
+        ],
+    )

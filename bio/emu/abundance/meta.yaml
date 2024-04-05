@@ -1,0 +1,14 @@
+name: emu abundance
+description: Generate relative abundance estimates from ONT, Pac-Bio or short 16S reads using emu.
+url: https://github.com/treangenlab/emu
+authors:
+  - Curro Campuzano
+input:
+  - Nucleotide sequence file(s) (either a single ONT or Pac-Bio fasta file, a single fastq file or paired fastq files)
+  - Optional. A emu database (i.e. a directory that contains at least the files "taxonomy.tsv" and "species_taxid.fasta", check documentation for pre-built databases and how to build them).
+output:
+  - A TSV with relative (and optionally, absolute abundances).
+  - An optional SAM file with the alignments.
+  - An optional FASTA file with unclassified sequences.
+params:
+  extra: Any optimal parameter such as --type (sequencer) or --min-abundance. Optional flags involving output are handled automatically (e.g. --output-dir, --output-basename ...)
