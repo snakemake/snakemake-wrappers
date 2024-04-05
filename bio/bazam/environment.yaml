@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - bazam =1.0.1
-  - snakemake-wrapper-utils =0.5.3
+  - snakemake-wrapper-utils =0.6.2

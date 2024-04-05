@@ -1,0 +1,8 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - bbmap =39.06
+  - snakemake-wrapper-utils =0.6.2
+  - pigz =2.8

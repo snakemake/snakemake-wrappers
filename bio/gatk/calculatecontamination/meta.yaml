@@ -1,0 +1,14 @@
+name: gatk CalculateContamination
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360036888972-CalculateContamination
+description: |
+  Calculate the fraction of reads coming from cross-sample contamination
+authors:
+  - Thibault Dayris
+input:
+  - tumor: Path to pileup table from GATK GetPileupSummaries
+  - normal: Optional path to noram pileup table
+output:
+  - Path to contamination table
+params:
+  - java_opts: param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  - extra: param allows for additional program arguments.

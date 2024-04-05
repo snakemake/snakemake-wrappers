@@ -7,7 +7,7 @@ rule datavzrd:
     input:
         config="resources/{sample}.datavzrd.yaml",
         # optional files required for rendering the given config
-        table="data/A.tsv",
+        table="data/{sample}.tsv",
     params:
         extra="",
     output:

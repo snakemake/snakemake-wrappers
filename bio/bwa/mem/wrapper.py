@@ -17,7 +17,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 sort = snakemake.params.get("sorting", "none")
 sort_order = snakemake.params.get("sort_order", "coordinate")
 sort_extra = snakemake.params.get("sort_extra", "")
-samtools_opts = get_samtools_opts(snakemake)
+samtools_opts = get_samtools_opts(snakemake, param_name="sort_extra")
 java_opts = get_java_opts(snakemake)
 
 

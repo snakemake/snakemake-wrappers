@@ -34,7 +34,7 @@ rule get_design:  # [hide]
     log:  # [hide]
         "logs/get-design.log",  # [hide]
     shell:  # [hide]
-        "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/design.csv > {output} 2> {log}"  # [hide]
+        "curl -L https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/samplesheet/v2.0/samplesheet_test.csv > {output} 2> {log}"  # [hide]
 
 
 rule chipseq_pipeline:
@@ -47,8 +47,12 @@ rule chipseq_pipeline:
         "results/multiqc/broadPeak/multiqc_report.html",
     params:
         pipeline="nf-core/chipseq",
-        revision="1.2.1",
+        revision="2.0.0",
         profile=["test", "docker"],
+        # The chosen pipeline expects an --outdir to be given.
+        # We infer this from the output file path. Since that file path can be changed
+        # e.g. in case of cloud storage, we use a lambda function to infer the outdir.
+        outdir=lambda wildcards, output: str(Path(output[0]).parents[-2]),
         # any --<argname> pipeline arguments can be given here as <argname>=<value>
     handover: True
     wrapper:

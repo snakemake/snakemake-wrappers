@@ -23,14 +23,14 @@ rule bwa_mem_write_index:
         idx=multiext("genome", ".amb", ".ann", ".bwt", ".pac", ".sa"),
     output:
         "mapped_with_index/{sample}.bam",
-        "mapped_with_index/{sample}.bam.csi",
+        idx="mapped_with_index/{sample}.bam.csi",
     log:
         "logs/bwa_mem/{sample}.log",
     params:
         extra=r"-R '@RG\tID:{sample}\tSM:{sample}'",
         sorting="samtools",  # Can be 'none', 'samtools' or 'picard'.
         sort_order="coordinate",  # Can be 'queryname' or 'coordinate'.
-        sort_extra="--write-index",  # Extra args for samtools/picard.
+        sort_extra="",  # Extra args for samtools/picard.
         tmp_dir="/tmp/",  # Path to temp dir. (optional)
     threads: 8
     wrapper:

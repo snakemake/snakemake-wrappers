@@ -6,10 +6,17 @@ authors:
   - Tessa Pierce
   - Filipe G. Vieira
 input:
-  - assembly fasta
+  - Path to assembly fasta
 output:
-  - annotation quality files
+  - out_dir: Path to annotation quality files
+  - dataset_dir: Optional path to dataset directory
+  - short_txt: Optional path to plain text results summary. Requires parameter `lineage`.
+  - short_json: Optional path to json formatted results summary. Requires parameter `lineage`.
+  - full_table: Optional path to TSV formatted results. Requires parameter `lineage`.
+  - miss_list: Contains a list of missing BUSCOs. Requires parameter `lineage`.
+params:
+  - lineage: Assembly lineage.
+  - mode: Either `genome`, `transcriptome`, and `proteins`
+  - extra: Optional parameters besides `mode` `--lineage`, `--cpu` and IO files.
 notes: |
-  * The `mode` parameter sets the assessment mode (mandatory), and only allows for arguments: "genome", "transcriptome", and "proteins".
   * The `lineage` parameter sets the lineage dataset ot use (optional). In `auto-lineage` mode, `output` or `dataset` folders need to be retrieved as a whole, since it is not possible to infer the output file names (they depend on the best lineage match).
-  * The `extra` param allows for additional program arguments.

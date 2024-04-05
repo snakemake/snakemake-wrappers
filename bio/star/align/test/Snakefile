@@ -12,6 +12,7 @@ rule star_pe_multi:
         aln="star/pe/{sample}/pe_aligned.sam",
         log="logs/pe/{sample}/Log.out",
         sj="star/pe/{sample}/SJ.out.tab",
+        unmapped=["star/pe/{sample}/unmapped.1.fastq.gz","star/pe/{sample}/unmapped.2.fastq.gz"],
     log:
         "logs/pe/{sample}.log",
     params:
@@ -32,6 +33,7 @@ rule star_se:
         aln="star/se/{sample}/se_aligned.bam",
         log="logs/se/{sample}/Log.out",
         log_final="logs/se/{sample}/Log.final.out",
+        unmapped="star/se/{sample}/unmapped.fastq",
     log:
         "logs/se/{sample}.log",
     params:

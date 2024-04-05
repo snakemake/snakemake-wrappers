@@ -5,6 +5,7 @@ authors:
   - Johannes Köster
   - Tomás Di Domenico
   - Filipe G. Vieira
+  - Kashyap Chhatbar
 notes: |
   * The `extra` param allows for additional program arguments.
   * It is advisable to consider updating the limits setting before running STAR,

@@ -1,0 +1,242 @@
+### Concatenation subcommand ###
+rule test_xsv_cat_rows:
+    input:
+        table=["table.csv", "right.csv"],
+    output:
+        "xsv/catrows.csv",
+    log:
+        "logs/catrow.log",
+    params:
+        subcommand="cat rows",
+        extra="",
+    threads: 1
+    wrapper:
+        "master/utils/xsv"
+
+
+use rule test_xsv_cat_rows as test_xsv_cat_cols with:
+    output:
+        "xsv/catcols.csv",
+    log:
+        "logs/catcol.log",
+    params:
+        subcommand="cat columns",
+
+
+### Count subcommand ###
+rule test_xsv_count:
+    input:
+        table="table.csv",
+    output:
+        "xsv/count_csv.csv",
+    log:
+        "logs/count_csv.log",
+    params:
+        subcommand="count",
+        extra="",
+    threads: 1
+    wrapper:
+        "master/utils/xsv"
+
+
+use rule test_xsv_count as test_xsv_count_tsv_input with:
+    input:
+        table="table.tsv",
+    output:
+        "xsv/count_tsv.csv",
+    log:
+        "logs/count_tsv.log",
+
+
+### Fix lengths subcommand ###
+use rule test_xsv_count as test_xsv_fixlength with:
+    output:
+        "xsv/fixlength.csv",
+    log:
+        "logs/fixlength.log",
+    params:
+        subcommand="fixlengths",
+        extra="--length 20",
+
+
+### Flatten subcommand ###
+use rule test_xsv_count as test_xsv_flatten with:
+    output:
+        "xsv/flatten.csv",
+    log:
+        "logs/flatten.log",
+    params:
+        subcommand="flatten",
+
+
+### Format subcommand ###
+use rule test_xsv_count as test_xsv_fmt with:
+    output:
+        "xsv/fmt.tsv",
+    log:
+        "logs/fmt.log",
+    params:
+        subcommand="fmt",
+
+
+### Frequency subcommand ###
+use rule test_xsv_count as test_xsv_frequency with:
+    output:
+        "xsv/frequency.csv",
+    log:
+        "logs/frequency.log",
+    params:
+        subcommand="frequency",
+
+
+### Headers subcommand ###
+use rule test_xsv_count as test_xsv_headers with:
+    output:
+        "xsv/headers.csv",
+    log:
+        "logs/headers.log",
+    params:
+        subcommand="headers",
+
+
+use rule test_xsv_cat_rows as test_xsv_headers_list with:
+    output:
+        "xsv/headers_all.csv",
+    log:
+        "logs/headers_all.log",
+    params:
+        subcommand="headers",
+        extra="--intersect",
+
+
+### Index subcommand ###
+use rule test_xsv_count as test_xsv_index with:
+    output:
+        "table.csv.idx",
+    log:
+        "logs/index.log",
+    params:
+        subcommand="index",
+
+
+### Input subcommand ###
+use rule test_xsv_count as test_xsv_input with:
+    output:
+        "xsv/input.csv",
+    log:
+        "logs/input.log",
+    params:
+        subcommand="input",
+
+
+### Join subcommand ###
+use rule test_xsv_cat_rows as test_xsv_join with:
+    output:
+        "xsv/join.csv",
+    log:
+        "logs/join.log",
+    params:
+        subcommand="join",
+        col1="gene_id",
+        col2="gene_id",
+
+
+### Sample subcommand ###
+use rule test_xsv_count as test_xsv_sample with:
+    output:
+        "xsv/sample.csv",
+    log:
+        "logs/sample.log",
+    params:
+        subcommand="sample",
+        extra="1",
+
+
+### Search subcommand ###
+use rule test_xsv_count as test_xsv_search with:
+    output:
+        "xsv/search.csv",
+    log:
+        "logs/search.log",
+    params:
+        subcommand="search",
+        extra="--select gene_id ENSG[0-9]+",
+
+
+### Select subcommand ###
+use rule test_xsv_count as test_xsv_select with:
+    output:
+        "xsv/select.csv",
+    log:
+        "logs/select.log",
+    params:
+        subcommand="select",
+        extra="3-",
+
+
+### Slice subcommand ###
+use rule test_xsv_count as test_xsv_slice with:
+    output:
+        "xsv/slice.csv",
+    log:
+        "logs/slice.log",
+    params:
+        subcommand="slice",
+        extra="-i 2",
+
+
+### Sort subcommand ###
+use rule test_xsv_count as test_xsv_sort with:
+    output:
+        "xsv/sort.csv",
+    log:
+        "logs/sort.log",
+    params:
+        subcommand="sort",
+
+
+### Split subcommand ###
+use rule test_xsv_count as test_xsv_split with:
+    output:
+        directory("xsv/split"),
+    log:
+        "logs/split.log",
+    params:
+        subcommand="split",
+        extra="-s 2",
+
+
+use rule test_xsv_count as test_xsv_split_list with:
+    output:
+        expand("xsv/split/{nb}.csv", nb=["0", "1"]),
+    log:
+        "logs/split.log",
+    params:
+        subcommand="split",
+        extra="-s 1",
+
+
+### Stat subcommand ###
+use rule test_xsv_count as test_xsv_stats with:
+    output:
+        "xsv/stats.txt",
+    log:
+        "logs/stats.log",
+    params:
+        subcommand="stats",
+
+
+### Table subcommand ###
+rule test_xsv_table:
+    input:
+        table="right.csv",
+    output:
+        "xsv/table.txt",
+    log:
+        "logs/table.log",
+    params:
+        subcommand="table",
+        extra="",
+    threads: 1
+    wrapper:
+        "master/utils/xsv"
