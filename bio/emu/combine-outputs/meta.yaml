@@ -4,11 +4,12 @@ url: https://github.com/treangenlab/emu
 authors:
   - Curro Campuzano
 input:
-  - A list of TSV files obtained with emu abundance. They should contain 'rel-abundance' in the filename. 
+  - A list of TSV files obtained with emu abundance. 
 output:
-  - A TSV output file collapsed at the desired taxonomic rank.
+  - A TSV containing either both abundances and taxonomy or only the abundances.
+  - Optionally, a TSV containing the taxonomy (if splitting the previous file in two).
 params:
-  rank: Accepted ranks are 'species', 'genus', 'family', 'order', 'class', 'phylum' and 'superkingdom'
+  rank: Accepted ranks are 'species', 'genus', 'family', 'order', 'class', 'phylum' and 'superkingdom'. If no agglomeration is desired, use "tax_id". 
   counts: An optional boolean. If true, counts, rather than relative abundances are produced. It will fail if input files do not contain the column 'estimated counts'.
-note: The sample columns in the final table will be the finale without the extension. If file ends with "_rel-abundance.tsv", the word '_rel-abundance' will be removed to (for consistency with the program). 
+note: The sample columns in the final table will be each filename without extension. If file ends with "_rel-abundance.tsv", the word '_rel-abundance' will be removed to (for consistency with the program). 
 

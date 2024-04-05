@@ -6,7 +6,7 @@ authors:
 input:
   - A TSV output file generated with emu.
 output:
-  - Another TSV output file collapsed at the desired taxonomic rank.
+  - A TSV output file collapsed at the desired taxonomic rank.
 params:
   rank: Accepted ranks are 'species', 'genus', 'family', 'order', 'class', 'phylum' and 'superkingdom'
 
