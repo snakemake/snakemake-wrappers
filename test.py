@@ -5708,3 +5708,17 @@ def test_emu_abundance_paired():
             "-F",
         ],
     )
+
+@skip_if_not_modified
+def test_emu_collapse_taxonomy():
+    run(
+        "bio/emu/collapse-taxonomy",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "full_length_rel-abundance_collapsed.tsv",
+            "--use-conda",
+            "-F",
+        ],
+    )
