@@ -1,32 +1,27 @@
 rule combine_outputs:
     input:
-      expand(
-        "{sample}_rel-abundance.tsv",
-        sample = ["sample1", "sample2"]
-      )
+        expand("{sample}_rel-abundance.tsv", sample=["sample1", "sample2"]),
     output:
-      "combined_abundances.tsv"
+        "combined_abundances.tsv",
     log:
-        "logs/emu/combined_abundances.log"
+        "logs/emu/combined_abundances.log",
     params:
-      rank="tax_id",
-      counts=False
+        rank="tax_id",
+        counts=False,
     wrapper:
         "master/bio/emu/combine-outputs"
 
+
 rule combine_outputs_split:
     input:
-      expand(
-        "{sample}_rel-abundance.tsv",
-        sample = ["sample1", "sample2"]
-      )
+        expand("{sample}_rel-abundance.tsv", sample=["sample1", "sample2"]),
     output:
-      abundance = "counts.tsv",
-      taxonomy = "taxonomy.tsv",
+        abundance="counts.tsv",
+        taxonomy="taxonomy.tsv",
     log:
-        "logs/emu/combined_split.log"
+        "logs/emu/combined_split.log",
     params:
-      rank="genus",
-      counts=True
+        rank="genus",
+        counts=True,
     wrapper:
         "master/bio/emu/combine-outputs"
