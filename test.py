@@ -5722,3 +5722,32 @@ def test_emu_collapse_taxonomy():
             "-F",
         ],
     )
+
+@skip_if_not_modified
+def test_emu_combine_output():
+    run(
+        "bio/emu/combine-outputs",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "combined_abundances.tsv",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+@skip_if_not_modified
+def test_emu_combine_output_split():
+    run(
+        "bio/emu/combine-outputs",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "counts.tsv",
+            "taxonomy.tsv",
+            "--use-conda",
+            "-F",
+        ],
+    )
