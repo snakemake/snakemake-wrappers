@@ -11,15 +11,7 @@ import os
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 input_file = snakemake.input[0]
-if not isinstance(input_file, str) and len(snakemake.input) != 1:
-    raise ValueError(
-        "Input should be one TSV file generated with emu: " + str(input_file) + "!"
-    )
-
 output_file = snakemake.output[0]
-if not isinstance(output_file, str) and len(snakemake.output) != 1:
-    raise ValueError("Output should be one file: " + str(output_file) + "!")
-
 rank = snakemake.params.get("rank", "species")
 
 with tempfile.TemporaryDirectory() as tmpdir:
