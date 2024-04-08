@@ -21,8 +21,8 @@ https://conda.anaconda.org/conda-forge/linux-64/libnsl-2.0.1-hd590300_0.conda#30
 https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.38.1-h0b41bf4_0.conda#40b61aab5c7ba9ff276c41cfffe6b80b
 https://conda.anaconda.org/conda-forge/linux-64/libxcrypt-4.4.36-hd590300_1.conda#5aa797f8787fe7a17d1b0821485b5adc
 https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.2.13-hd590300_5.conda#f36c115f1ee199da648e0597ec2047ad
-https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.4-h59595ed_2.conda#7dbaa197d7ba6032caf7ae7f32c1efa0
-https://conda.anaconda.org/conda-forge/linux-64/openssl-3.2.1-hd590300_0.conda#51a753e64a3027bd7e23a189b1f6e91e
+https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.4.20240210-h59595ed_0.conda#97da8860a0da5413c7c98a3b3838a645
+https://conda.anaconda.org/conda-forge/linux-64/openssl-3.2.1-hd590300_1.conda#9d731343cff6ee2e5a25c4a091bf8e2a
 https://conda.anaconda.org/conda-forge/linux-64/xz-5.2.6-h166bdaf_0.tar.bz2#2161070d867d1b1204ea749c8eec4ef0
 https://conda.anaconda.org/conda-forge/linux-64/libedit-3.1.20191231-he28a2e2_2.tar.bz2#4d331e44109e3f0e19b4cb8f9b82f3e1
 https://conda.anaconda.org/conda-forge/linux-64/libnghttp2-1.58.0-h47da74e_1.conda#700ac6ea6d53d5510591c4344d5c989a
@@ -35,11 +35,11 @@ https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.5-hfc55251_0.conda#04b8
 https://conda.anaconda.org/bioconda/linux-64/k8-0.2.5-hdcf5f25_4.tar.bz2#d3c49a96ae45864706037702775ca7c2
 https://conda.anaconda.org/conda-forge/linux-64/krb5-1.21.2-h659d440_0.conda#cd95826dbd331ed1be26bdf401432844
 https://conda.anaconda.org/conda-forge/linux-64/python-3.12.2-hab00c5b_0_cpython.conda#ad7b68400f3a6ebe72b00be093c7f301
-https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.5.0-hca28451_0.conda#7144d5a828e2cae218e0e3c98d8a0aeb
-https://conda.anaconda.org/bioconda/linux-64/minimap2-2.27-he4a0461_1.tar.bz2#a1e8cecaf9b53428e8ec517cb5beb9aa
+https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.7.1-hca28451_0.conda#755c7f876815003337d2c61ff5d047e5
+https://conda.anaconda.org/bioconda/linux-64/minimap2-2.28-he4a0461_0.tar.bz2#27d83cfe6bca3eb50aaeb6334371122d
 https://conda.anaconda.org/conda-forge/noarch/setuptools-69.2.0-pyhd8ed1ab_0.conda#da214ecd521a720a9d521c68047682dc
 https://conda.anaconda.org/bioconda/noarch/snakemake-wrapper-utils-0.6.2-pyhdfd78af_0.tar.bz2#fd8759bbd04116eace828c4fab906096
-https://conda.anaconda.org/conda-forge/noarch/wheel-0.42.0-pyhd8ed1ab_0.conda#1cdea58981c5cbc17b51973bcaddcea7
+https://conda.anaconda.org/conda-forge/noarch/wheel-0.43.0-pyhd8ed1ab_1.conda#0b5293a157c2b5cd513dd1b03d8d3aae
 https://conda.anaconda.org/bioconda/linux-64/htslib-1.19.1-h81da01d_2.tar.bz2#ad57eedd99d6722b2f00a8f7d0d71e2a
 https://conda.anaconda.org/conda-forge/noarch/pip-24.0-pyhd8ed1ab_0.conda#f586ac1e56c8638b64f9c8122a7b8a67
 https://conda.anaconda.org/bioconda/linux-64/samtools-1.19.2-h50ea8bc_1.tar.bz2#446e85653117e24527bc4ba6d3841d8b
