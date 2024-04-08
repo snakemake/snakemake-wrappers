@@ -8,5 +8,5 @@ input:
 output:
   - A TSV output file collapsed at the desired taxonomic rank.
 params:
-  rank: Accepted ranks are 'species', 'genus', 'family', 'order', 'class', 'phylum' and 'superkingdom'
+  rank: Accepted ranks are 'species', 'genus', 'family', 'order', 'class', 'phylum' and 'superkingdom'. If ommited, agglomeration will be done at the species level. 
 
