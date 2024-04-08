@@ -20,9 +20,7 @@ output_file = snakemake.output[0]
 if not isinstance(output_file, str) and len(snakemake.output) != 1:
     raise ValueError("Output should be one file: " + str(output_file) + "!")
 
-if not snakemake.params.get("rank"):
-    raise ValueError("Please provide a rank parameter")
-rank = snakemake.params.get("rank")
+rank = snakemake.params.get("rank", "species")
 
 with tempfile.TemporaryDirectory() as tmpdir:
     # Resolve the symbolic link and get the actual path of the input file
