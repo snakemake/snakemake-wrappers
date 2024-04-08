@@ -11,7 +11,7 @@ import os
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 # Check database (optional)
-if db:= snakemake.input.get("db"):
+if db := snakemake.input.get("db"):
     db = f"--db {db}"
 
 with tempfile.TemporaryDirectory() as tmpdir:
