@@ -1,7 +1,7 @@
 rule abundance:
     input:
         reads="{sample}.fa",
-        database_dir="database",
+        db="database",
     output:
         abundances="{sample}_rel-abundance.tsv",
         alignments="{sample}_emu_alignments.sam",
@@ -18,7 +18,7 @@ rule abundance:
 rule abundance_paired:
     input:
         reads=["{sample}_R1.fq", "{sample}_R2.fq"],
-        database_dir="database",
+        db="database",
     output:
         abundances="{sample}_rel-abundance_paired.tsv",
     log:
