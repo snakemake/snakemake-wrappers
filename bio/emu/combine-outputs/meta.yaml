@@ -9,7 +9,7 @@ output:
   - A TSV containing either both abundances and taxonomy or only the abundances.
   - Optionally, a TSV containing the taxonomy (if splitting the previous file in two).
 params:
-  rank: Accepted ranks are 'species', 'genus', 'family', 'order', 'class', 'phylum' and 'superkingdom'. If no agglomeration is desired, use "tax_id". 
-  counts: An optional boolean. If true, counts, rather than relative abundances are produced. It will fail if input files do not contain the column 'estimated counts'.
+  rank: Accepted ranks are 'tax_id', 'species', 'genus', 'family', 'order', 'class', 'phylum' and 'superkingdom'. If ommited, no agglomeration will be done (that is, the default is 'tax_id'). 
+  extra: Extra arguments (such as '--counts'). 
 note: The sample columns in the final table will be each filename without extension. If file ends with "_rel-abundance.tsv", the word '_rel-abundance' will be removed to (for consistency with the program). 
 

@@ -5,9 +5,6 @@ rule combine_outputs:
         "combined_abundances.tsv",
     log:
         "logs/emu/combined_abundances.log",
-    params:
-        rank="tax_id",
-        counts=False,
     wrapper:
         "master/bio/emu/combine-outputs"
 
@@ -22,6 +19,6 @@ rule combine_outputs_split:
         "logs/emu/combined_split.log",
     params:
         rank="genus",
-        counts=True,
+        extra="--counts",
     wrapper:
         "master/bio/emu/combine-outputs"
