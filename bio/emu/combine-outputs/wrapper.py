@@ -15,14 +15,13 @@ input_files = snakemake.input
 if not isinstance(input_files, list):
     raise ValueError("Input should be a list of files: " + str(input_files) + "!")
 
-if snakemake.output.get("abundance") and snakemake.output.get("taxonomy"):
+if snakemake.output.get("abundances") and snakemake.output.get("taxonomy"):
     split = True
     extra += " --split-tables"
     taxonomy = snakemake.output.get("taxonomy")
-    abundances = snakemake.output.get("abundance")
-elif isinstance(snakemake.output[0], str):
+    abundances = snakemake.output.get("abundances")
+elif table := snakemake.output.get("abundances"):
     split = False
-    table = snakemake.output[0]
 else:
     raise ValueError(
         "Please provide either one TSV file, or two named TSV files (abundances and taxonomy)"
