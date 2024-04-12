@@ -10,7 +10,7 @@ import os
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
-db = snakemake.input.get("db", ""):
+db = snakemake.input.get("db", "")
 if db:
     db = f"--db {db}"
 

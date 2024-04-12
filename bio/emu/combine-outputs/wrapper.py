@@ -16,7 +16,7 @@ abundances = snakemake.output.get("abundances", "")
 if taxonomy and abundances:
     split = True
     extra += " --split-tables"
-elise:
+else:
     split = False
 
 rank = snakemake.params.get("rank", "tax_id")
