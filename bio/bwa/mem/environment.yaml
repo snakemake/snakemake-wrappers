@@ -4,6 +4,7 @@ channels:
   - nodefaults
 dependencies:
   - bwa =0.7.17
+  - fgbio-minimal =2.2
   - samtools =1.19.2
   - picard-slim =3.1.1
   - snakemake-wrapper-utils =0.6.2
