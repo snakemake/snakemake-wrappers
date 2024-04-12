@@ -19,9 +19,6 @@ if taxonomy and abundances:
 elise:
     split = False
 
-if "--split-tables" in extra and not split:
-    raise ValueError("You cannot use --split-tables and produce a single output.")
-
 rank = snakemake.params.get("rank", "tax_id")
 counts = "--counts" in extra
 
