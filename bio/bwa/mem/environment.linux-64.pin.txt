@@ -92,3 +92,4 @@ https://conda.anaconda.org/bioconda/linux-64/samtools-1.19.2-h50ea8bc_0.tar.bz2#
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libxtst-1.2.3-h7f98852_1002.tar.bz2#a220b1a513e19d5cb56c1311d44f12e6
 https://conda.anaconda.org/conda-forge/linux-64/openjdk-20.0.2-hfea2f88_1.conda#3954914fc7a3b0b8f706d243fa532946
 https://conda.anaconda.org/bioconda/noarch/picard-slim-3.1.1-hdfd78af_0.tar.bz2#093941b035b9052072190f1a3cc50cfc
+https://conda.anaconda.org/bioconda/noarch/fgbio-minimal-2.2.1-hdfd78af_0.tar.bz2#baed6bfb163c27c118bbbea2ece183bb

@@ -2145,6 +2145,23 @@ def test_bwa_mem_sort_samtools_write_index():
 
 
 @skip_if_not_modified
+def test_bwa_mem_sort_fgbio():
+    run(
+        "bio/bwa/mem",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.bam",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_fgbio",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_bwa_mem_sort_picard():
     run(
         "bio/bwa/mem",
