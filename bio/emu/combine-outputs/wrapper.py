@@ -11,10 +11,6 @@ import os
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
-input_files = snakemake.input
-if not isinstance(input_files, list):
-    raise ValueError("Input should be a list of files: " + str(input_files) + "!")
-
 if snakemake.output.get("abundances") and snakemake.output.get("taxonomy"):
     split = True
     extra += " --split-tables"
