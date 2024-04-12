@@ -11,17 +11,13 @@ import os
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
-if snakemake.output.get("abundances") and snakemake.output.get("taxonomy"):
+taxonomy = snakemake.output.get("taxonomy", "")
+abundances = snakemake.output.get("abundances", "")
+if taxonomy and abundances:
     split = True
     extra += " --split-tables"
-    taxonomy = snakemake.output.get("taxonomy")
-    abundances = snakemake.output.get("abundances")
-elif table := snakemake.output.get("abundances"):
+elise:
     split = False
-else:
-    raise ValueError(
-        "Please provide either one TSV file, or two named TSV files (abundances and taxonomy)"
-    )
 
 if "--split-tables" in extra and not split:
     raise ValueError("You cannot use --split-tables and produce a single output.")
