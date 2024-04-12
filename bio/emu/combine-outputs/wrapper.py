@@ -41,6 +41,6 @@ with tempfile.TemporaryDirectory() as tmpdir:
         shell("mv {tmpdir}/emu-combined-taxonomy-{rank}.tsv {taxonomy}")
         shell("mv {tmpdir}/emu-combined-abundance-{rank}.tsv {abundances}")
     elif not split and counts:
-        shell("mv {tmpdir}/emu-combined-{rank}-counts.tsv {table}")
+        shell("mv {tmpdir}/emu-combined-{rank}-counts.tsv {abundances}")
     elif not split and not counts:
-        shell("mv {tmpdir}/emu-combined-{rank}.tsv {table}")
+        shell("mv {tmpdir}/emu-combined-{rank}.tsv {abundances}")
