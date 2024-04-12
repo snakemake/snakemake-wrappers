@@ -6,8 +6,8 @@ authors:
 input:
   - A list of TSV files obtained with emu abundance. 
 output:
-  - Abundances. A TSV containing either the abundance of different taxa. 
-  - Taxonomy. If specified, a separate TSV containing the taxonomy. Otherwise, taxonomy will be included in the abundance table. 
+  - abundances: TSV file containing the abundance of different taxa. 
+  - taxonomy:  TSV file containing the taxonomy (optional; otherwise, taxonomy will be included in the abundance table).
 params:
   rank: Accepted ranks are 'tax_id', 'species', 'genus', 'family', 'order', 'class', 'phylum' and 'superkingdom'. If ommited, no agglomeration will be done (that is, the default is 'tax_id'). 
   extra: Extra arguments (such as '--counts'). 
