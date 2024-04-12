@@ -20,6 +20,7 @@
 import os
 import sys
 import subprocess
+from sphinxawesome_theme.postprocess import Icons
 
 sys.path.insert(0, os.path.abspath("."))
 
@@ -90,19 +91,22 @@ todo_include_todos = True
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "lutra"
+pygments_style = "sphinx"
+html_theme = "sphinxawesome_theme"
 html_theme_options = {
-    "primary_color": "emerald",
-    "secondary_color": "emerald",
-    "dark_logo": "logo-snake.svg",
-    "light_logo": "logo-snake.svg",
-    "navigation_style": "plain",
-    "sidebar_links": [
-        {"text": "Snakemake homepage", "alt": "Snakemake homepage", "href": "https://snakemake.github.io"},
-        {"text": "Snakemake documentation", "alt": "Snakemake documentation", "href": "https://snakemake.readthedocs.io"},
-    ]
+    "logo_light": "logo-snake.svg",
+    "logo_dark": "logo-snake.svg",
+    "main_nav_links": {
+        "Homepage": "https://snakemake.github.io",
+        "Plugin catalog": "https://snakemake.github.io/snakemake-plugin-catalog",
+        "Workflow catalog": "https://snakemake.github.io/snakemake-workflow-catalog",
+    },
+    "awesome_external_links": True,
+    "awesome_headerlinks": True,
+    "show_prev_next": False,
 }
-html_css_files = ["theme.css"]
+html_permalinks_icon = Icons.permalinks_icon
+html_css_files = ["custom.css"]
 
 
 # Theme options are theme-specific and customize the look and feel of a theme

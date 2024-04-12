@@ -3,6 +3,6 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - delly =1.1.8
-  - bcftools =1.18
+  - delly =1.2.6
+  - bcftools =1.19
   - snakemake-wrapper-utils =0.6.2

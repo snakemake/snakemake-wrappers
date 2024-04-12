@@ -2,4 +2,4 @@
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
 @EXPLICIT
-https://conda.anaconda.org/bioconda/linux-64/seqkit-2.6.1-h9ee0642_0.tar.bz2#436c35f59d296b4ea9d70846529c8344
+https://conda.anaconda.org/bioconda/linux-64/seqkit-2.8.1-h9ee0642_0.tar.bz2#ad5ff56e35cfd6ba3e53c7f711457fcf

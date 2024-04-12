@@ -22,9 +22,6 @@ in_files = snakemake@input[["npo"]]
 out_pdf = snakemake@output[[1]]
 base::message("Input files: ")
 base::print(in_files)
-base::message("Saving plot to file: ")
-base::print(out_pdf)
-
 
 # Set parameters
 params <- list("in_files" = in_files,
@@ -65,15 +62,15 @@ utils::str(params)
 ##################
 pdf(out_pdf)
 curves <- Nonpareil.set(in_files,
-                                labels = params[["labels"]],
-                                col = params[["col"]],
-                                enforce.consistency = params[["enforce_consistency"]],
-                                star = params[["star"]],
-                                correction.factor = params[["correction_factor"]],
-                                weights.exp = params[["weights_exp"]],
-                                skip.model = params[["skip_model"]],
-                                plot = FALSE
-                                )
+                        labels = params[["labels"]],
+                        col = params[["col"]],
+                        enforce.consistency = params[["enforce_consistency"]],
+                        star = params[["star"]],
+                        correction.factor = params[["correction_factor"]],
+                        weights.exp = params[["weights_exp"]],
+                        skip.model = params[["skip_model"]],
+                        plot = FALSE
+                       )
 
 lapply(curves$np.curves, plot,
        col = params[["col"]],
@@ -93,16 +90,6 @@ base::message("Nonpareil plot saved")
 stats <- summary(curves)
 # Fix names
 colnames(stats) <- c("Redundancy", "Avg. coverage", "Seq. effort", "Model correlation", "Required seq. effort", "Diversity")
-
-# If model not infered, set its values to NA
-stats[,4] <- sapply(stats[,4], function(x){if(length(x) == 0){NA} else {x}})
-stats[,5] <- sapply(stats[,5], function(x){if(length(x) == 0){NA} else {x}})
-
-# Convert to Gb
-stats[,3] <- stats[,3] / 1e9
-stats[,5] <- stats[,5] / 1e9
-# Round
-stats <- round(stats, digits = 2)
 # Print stats to log
 base::print(stats)
 
@@ -133,14 +120,21 @@ if ("json" %in% base::names(snakemake@output)) {
     n <- names(attributes(object))[13:20]
     y <- lapply(n, function(v) attr(object,v))
     names(y) <- n
-    # Add model
-    # https://github.com/lmrodriguezr/nonpareil/blob/162f1697ab1a21128e1857dd87fa93011e30c1ba/utils/Nonpareil/R/Nonpareil.R#L330-L332
-    x_min <- 1e3
-    x_max <- signif(tail(attr(curves$np.curves[[1]],"x.adj"), n=1)*10, 1)
-    x.model <- exp(seq(log(x_min), log(x_max), length.out=1e3))
-    y.model <- predict(object, lr=x.model)
+    curve_json <- c(x, y)
 
-    c(x, y, list(x.model=x.model), list(y.model=y.model))
+    # Add model
+    if (object$has.model) {
+      # https://github.com/lmrodriguezr/nonpareil/blob/162f1697ab1a21128e1857dd87fa93011e30c1ba/utils/Nonpareil/R/Nonpareil.R#L330-L332
+      x_min <- 1e3
+      x_max <- signif(tail(attr(object,"x.adj"), n=1)*10, 1)
+      x.model <- exp(seq(log(x_min), log(x_max), length.out=1e3))
+      y.model <- predict(object, lr=x.model)
+      curve_json <- append(curve_json, list(x.model=x.model))
+      curve_json <- append(curve_json, list(y.model=y.model))
+    }
+
+    base::print(curve_json)
+    curve_json
   }
 
   export_set <- function(object){
