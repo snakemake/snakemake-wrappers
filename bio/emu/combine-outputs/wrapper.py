@@ -31,7 +31,7 @@ counts = "--counts" in extra
 
 
 with tempfile.TemporaryDirectory() as tmpdir:
-    for infile in input_files:
+    for infile in snakemake.input:
         # Files has to end in tsv, and contain rel_abundances
         temp = os.path.join(tmpdir, os.path.basename(infile))
         if not temp.endswith("rel_abundances.tsv"):
