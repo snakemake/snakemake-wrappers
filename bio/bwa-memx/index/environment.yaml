@@ -3,6 +3,6 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bwa =0.7.17
+  - bwa =0.7.18
   - bwa-mem2 =2.2.1
   - bwa-meme =1.0.6
