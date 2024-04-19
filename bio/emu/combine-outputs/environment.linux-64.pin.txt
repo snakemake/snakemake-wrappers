@@ -28,7 +28,7 @@ https://conda.anaconda.org/conda-forge/linux-64/xz-5.2.6-h166bdaf_0.tar.bz2#2161
 https://conda.anaconda.org/conda-forge/linux-64/libedit-3.1.20191231-he28a2e2_2.tar.bz2#4d331e44109e3f0e19b4cb8f9b82f3e1
 https://conda.anaconda.org/conda-forge/linux-64/libgfortran-ng-13.2.0-h69a702a_5.conda#e73e9cfd1191783392131e6238bdb3e9
 https://conda.anaconda.org/conda-forge/linux-64/libnghttp2-1.58.0-h47da74e_1.conda#700ac6ea6d53d5510591c4344d5c989a
-https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.45.2-h2797004_0.conda#866983a220e27a80cb75e85cb30466a1
+https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.45.3-h2797004_0.conda#b3316cbe90249da4f8e84cd66e1cc55b
 https://conda.anaconda.org/conda-forge/linux-64/libssh2-1.11.0-h0841786_0.conda#1f5a58e686b13bcfde88b93f547d23fe
 https://conda.anaconda.org/conda-forge/linux-64/readline-8.2-h8228510_1.conda#47d31b792659ce70f470b5c82fdfb7a4
 https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_h4845f30_101.conda#d453b98d9c83e71da0741bb0ff4d76bc
@@ -44,7 +44,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.7.1-hca28451_0.conda#7
 https://conda.anaconda.org/bioconda/linux-64/minimap2-2.28-he4a0461_0.tar.bz2#27d83cfe6bca3eb50aaeb6334371122d
 https://conda.anaconda.org/conda-forge/noarch/python-tzdata-2024.1-pyhd8ed1ab_0.conda#98206ea9954216ee7540f0c773f2104d
 https://conda.anaconda.org/conda-forge/noarch/pytz-2024.1-pyhd8ed1ab_0.conda#3eeeeb9e4827ace8c0c1419c85d590ad
-https://conda.anaconda.org/conda-forge/noarch/setuptools-69.2.0-pyhd8ed1ab_0.conda#da214ecd521a720a9d521c68047682dc
+https://conda.anaconda.org/conda-forge/noarch/setuptools-69.5.1-pyhd8ed1ab_0.conda#7462280d81f639363e6e63c81276bd9e
 https://conda.anaconda.org/conda-forge/noarch/six-1.16.0-pyh6c4a22f_0.tar.bz2#e5f25f8dbc060e9a8d912e432202afc2
 https://conda.anaconda.org/conda-forge/noarch/wheel-0.43.0-pyhd8ed1ab_1.conda#0b5293a157c2b5cd513dd1b03d8d3aae
 https://conda.anaconda.org/conda-forge/noarch/zipp-3.17.0-pyhd8ed1ab_0.conda#2e4d6bc0b14e10f895fc6791a7d9b26a
@@ -58,5 +58,5 @@ https://conda.anaconda.org/conda-forge/noarch/python-dateutil-2.9.0-pyhd8ed1ab_0
 https://conda.anaconda.org/conda-forge/noarch/flatten-dict-0.4.2-pyhd8ed1ab_1.tar.bz2#ccfb30b92adfeb283d4dcae3d0b6441b
 https://conda.anaconda.org/conda-forge/linux-64/numpy-1.26.4-py310hb13e2d6_0.conda#6593de64c935768b6bad3e19b3e978be
 https://conda.anaconda.org/conda-forge/linux-64/biopython-1.83-py310h2372a71_0.conda#0128595946cebfaaf212cc45d4b9cd3c
-https://conda.anaconda.org/conda-forge/linux-64/pandas-2.2.1-py310hcc13569_0.conda#cf5d315e3601a6a2931f63aa9a84dc40
+https://conda.anaconda.org/conda-forge/linux-64/pandas-2.2.2-py310hcc13569_0.conda#96910063174ce34fc15609081efc3e5d
 https://conda.anaconda.org/bioconda/noarch/emu-3.4.5-hdfd78af_0.tar.bz2#34b067c6f82c3796a40e1b0ecaf094d3
