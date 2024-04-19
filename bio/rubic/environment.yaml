@@ -9,5 +9,5 @@ dependencies:
   - r-pracma =2.4.4
   - r-ggplot2 =3.5.0
   - r-gtable =0.3.4
-  - r-codetools =0.2_19
+  - r-codetools =0.2_20
   - r-digest =0.6.35
