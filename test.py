@@ -2834,6 +2834,21 @@ def test_deeptools_bamcoverage():
 
 
 @skip_if_not_modified
+def test_deeptools_bamcoverage_eff():
+    run(
+        "bio/deeptools/bamcoverage",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "a.coverage_code.bw",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_deeptools_alignmentsieve():
     run(
         "bio/deeptools/alignmentsieve",
