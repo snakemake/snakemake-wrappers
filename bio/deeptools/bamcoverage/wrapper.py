@@ -115,7 +115,7 @@ if not effective_genome_size:
                 )
             )
 else:
-    effective_genome_size = f"--effectiveGenomeSize {str(effective_genome_size)}"
+    effective_genome_size = f"--effectiveGenomeSize {effective_genome_size}"
 
 
 output_format = ""
