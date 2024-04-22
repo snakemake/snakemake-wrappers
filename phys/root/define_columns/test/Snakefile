@@ -1,0 +1,16 @@
+rule define_columns:
+    input:
+        expand("ntuple{n}.root", n=range(3)),
+    output:
+        expand("ntuple_output{n}.root", n=range(3)),
+    params:
+        input_tree_name="TestTree",
+        output_tree_name="TestTree",
+        branches=[
+            ["p2", "px * px + py * py + pz * pz"],
+            ["pt", "sqrt(px * px + py * py)"],
+        ],
+        redefine=["pt"],
+    threads: 2
+    wrapper:
+        "master/phys/root/define_columns"
