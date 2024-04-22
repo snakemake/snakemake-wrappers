@@ -3,6 +3,8 @@ rule define_columns:
         expand("ntuple{n}.root", n=range(3)),
     output:
         expand("ntuple_output{n}.root", n=range(3)),
+    log:
+        "logs/define_columns/define_columns.log",
     params:
         input_tree_name="TestTree",
         output_tree_name="TestTree",
