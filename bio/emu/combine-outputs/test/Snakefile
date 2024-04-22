@@ -11,7 +11,7 @@ rule combine_outputs:
 
 rule combine_outputs_split:
     input:
-        expand("{sample}_rel-abundance.txt", sample=["sample1", "sample2"]),
+        expand("{sample}.txt", sample=["sample1", "sample2"]),
     output:
         abundances="counts.tsv",
         taxonomy="taxonomy.tsv",
