@@ -23,9 +23,9 @@ for i in range(len(snakemake.input)):
             df = df.Define(branch_name, branch_definition)
     if branches_to_save is not None:
         df.Snapshot(
-            output_tree_name,
+            snakemake.params.output_tree_name,
             snakemake.output[i],
             branches_to_save,
         )
     else:
-        df.Snapshot(output_tree_name, snakemake.output[i])
+        df.Snapshot(snakemake.params.output_tree_name, snakemake.output[i])
