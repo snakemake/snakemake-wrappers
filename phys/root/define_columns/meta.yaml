@@ -4,13 +4,12 @@ url: https://root.cern/doc/master/classROOT_1_1RDataFrame.html
 authors:
   - Anfeng Li
 input:
-  - single ROOT file containing the TTree to be processed.
+  - TTree ROOT file
 output:
-  - single ROOT file containing the TTree with the newly defined columns saved.
+  - TTree ROOT file
 params:
   - input_tree_name: name of the input TTree
   - output_tree_name: name of the output TTree
-  - branches: branches to be defined, specified in the format of [["branch_name1", "definition_expression1"], ["branch_name2", "definition_expression2"]]. (optional)
-      If not specified, no branch will be defined, i.e. just save the TTree.
-  - redefine: list of branch names to be redefined. If a branch has already been defined in the input TTree, its name must be in this redefine list. (optional)
+  - branches: branches to be defined, specified in the format of [["branch_name1", "definition_expression1"], ["branch_name2", "definition_expression2"]]. If not specified, no branch will be defined, i.e. just save the TTree.  (optional)
+  - redefine: list of branch names to be redefined. It must be defined in `params.branch` also. (optional)
   - branches_to_save: list of branch names to be saved. If not specified, all branches of the input TTree will be saved. (optional)
