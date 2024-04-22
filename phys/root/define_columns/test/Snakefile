@@ -1,8 +1,8 @@
 rule define_columns:
     input:
-        expand("ntuple{n}.root", n=range(3)),
+        "ntuple0.root",
     output:
-        expand("ntuple_output{n}.root", n=range(3)),
+        "ntuple0_output.root",
     log:
         "logs/define_columns/define_columns.log",
     params:
