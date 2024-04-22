@@ -6,11 +6,7 @@ authors:
 input:
   - ROOT files containing TTree to be processed.
 output:
-  - |
-    ROOT files with the newly defined columns saved.
-
-    NOTE: If "input" is a list of ROOT filenames, then "output" must have the same number of filenames, 
-    and one output file corresponds to one input file in order.
+  - ROOT files containing TTree with the newly defined columns saved.
 params:
   - input_tree_name: name of the input TTree
   - output_tree_name: name of the output TTree
@@ -18,3 +14,4 @@ params:
     If not specified, no branch will be defined, i.e. just save the TTree.
   - redefine: list of branch name to be redefined. If a branch has already been defined in the input TTree, its name must be in this redefine list. (optional)
   - branches_to_save: list of branch names to be saved. If not specified, all branches of the input TTree will be saved. (optional)
+notes: If "input" is a list of ROOT filenames, then "output" must have the same number of filenames, and the output files must correspond to the input files one by one in order.
