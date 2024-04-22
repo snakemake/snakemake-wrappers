@@ -15,7 +15,7 @@ branches = snakemake.params.get("branches", [])
 branches_to_save = snakemake.params.get("branches_to_save", None)
 
 for i in range(len(snakemake.input)):
-    df = ROOT.RDataFrame(input_tree_name, snakemake.input[i])
+    df = ROOT.RDataFrame(snakemake.params.input_tree_name, snakemake.input[i])
     for branch_name, branch_definition in branches:
         if branch_name in redefine_list:
             df = df.Redefine(branch_name, branch_definition)
