@@ -6485,6 +6485,14 @@ def test_root_hadd():
 
 
 @skip_if_not_modified
+def test_root_define_columns():
+    run(
+        "phys/root/define_columns",
+        ["snakemake", "--cores", "2", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_emu_abundance():
     run(
         "bio/emu/abundance",
