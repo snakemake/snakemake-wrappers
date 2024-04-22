@@ -9,8 +9,6 @@ import ROOT
 ROOT.EnableImplicitMT(snakemake.threads)
 
 redefine_list = snakemake.params.get("redefine", [])
-input_tree_name = snakemake.params.get("input_tree_name", "")
-output_tree_name = snakemake.params.get("output_tree_name", "")
 branches = snakemake.params.get("branches", [])
 branches_to_save = snakemake.params.get("branches_to_save", None)
 
