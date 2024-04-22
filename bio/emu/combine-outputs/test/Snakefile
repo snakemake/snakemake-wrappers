@@ -2,7 +2,7 @@ rule combine_outputs:
     input:
         expand("{sample}_rel-abundance.tsv", sample=["sample1", "sample2"]),
     output:
-        abundances="combined_abundances.tsv",
+        abundances=ensure("combined_abundances.tsv", non_empty=True),
     log:
         "logs/emu/combined_abundances.log",
     wrapper:
@@ -11,10 +11,10 @@ rule combine_outputs:
 
 rule combine_outputs_split:
     input:
-        expand("{sample}_rel-abundance.txt", sample=["sample1", "sample2"]),
+        expand("{sample}.txt", sample=["sample1", "sample2"]),
     output:
-        abundances="counts.tsv",
-        taxonomy="taxonomy.tsv",
+        abundances = ensure("counts.tsv", non_empty=True),
+        taxonomy = ensure("taxonomy.tsv", non_empty=True),
     log:
         "logs/emu/combined_split.log",
     params:

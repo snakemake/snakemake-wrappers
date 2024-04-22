@@ -26,10 +26,11 @@ counts = "--counts" in extra
 with tempfile.TemporaryDirectory() as tmpdir:
     for infile in snakemake.input:
         # Files has to end in tsv, and contain rel_abundances
-        temp = os.path.join(tmpdir, os.path.basename(infile))
-        if not temp.endswith("rel_abundances.tsv"):
-            temp = os.path.splitext(infile)[0] + "-rel_abundances.tsv"
-        os.symlink(infile, temp)
+        temp_basename = os.path.basename(infile)
+        if not temp_basename.endswith("_rel-abundance.tsv"):
+            temp_basename = os.path.splitext(infile)[0] + "_rel-abundance.tsv"
+        temp = os.path.join(tmpdir, temp_basename)
+        os.link(infile, temp)
     shell("emu combine-outputs {tmpdir} {rank} {extra} {log}")
     if split and counts:
         shell("mv {tmpdir}/emu-combined-taxonomy-{rank}.tsv {taxonomy}")
