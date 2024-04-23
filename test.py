@@ -6493,6 +6493,14 @@ def test_root_define_columns():
 
 
 @skip_if_not_modified
+def test_root_filter():
+    run(
+        "phys/root/filter",
+        ["snakemake", "--cores", "2", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_emu_abundance():
     run(
         "bio/emu/abundance",
