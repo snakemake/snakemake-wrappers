@@ -9,7 +9,7 @@ rule define_columns:
         input_tree_name="TestTree",
         output_tree_name="TestTree",
         criteria="pt > 1400",
-        brancher_to_save=["pz", "pt", "p"],
+        branches_to_save=["pz", "pt", "p"],
     threads: 2
     wrapper:
         "master/phys/root/filter"
