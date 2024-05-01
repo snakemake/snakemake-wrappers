@@ -3,6 +3,6 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bowtie2 =2.5.2
+  - bowtie2 =2.5.3
   - bismark =0.24.2
-  - samtools =1.18
+  - samtools =1.20

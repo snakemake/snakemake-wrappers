@@ -1,5 +1,7 @@
 sphinx
+sphinxawesome-theme
 sphinx_rtd_theme
 docutils
 pyyaml
 sphinx-copybutton
+myst-parser

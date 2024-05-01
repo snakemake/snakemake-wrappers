@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bcftools =1.17
+  - bcftools =1.20
   - curl

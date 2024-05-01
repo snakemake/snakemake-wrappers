@@ -1,0 +1,32 @@
+name: BBmap-suite
+url: https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/
+description: |
+  Wrapper for all tools in the BBmap suite. One pattern to run them all.
+authors:
+  - Silas Kieser
+input:
+  - input: All keywords in input are passed to the bbtool as key=value pairs. A special case is 'input', which is translated to 'in'. If exactly two files are provides for 'input' the wrapper parses them as in1, in2.
+  - flag: The keyword 'flag' is ignored and allows to specify input files that are not processed by the bbtool that is used.
+output:
+  - out: If exactly two files are provides for 'out' the wrapper parses them as out1, out2.
+  - outm: Same as 'out'
+  - outu: Same as 'out'
+  - flag: The keyword 'flag' is not passed to the command.
+params:
+  - command: Required parameter defining the command to be used e.g. 'bbmap.sh'
+  - extra: additional program arguments. All other parameters are passed to the bbtool as key=value pairs
+notes: |
+  This wrapper allows to run any of the bbtools. The command is defined by the 'command' parameter, which is required.
+  **All keywords in input, output, params are passed as key value pairs to the command!**
+  Take care that they are valid for the bbtool.
+  In theory all of the tools in the bbmap-suite v39.01 are sported by this wrapper, but we didn't test them all.
+  Scripts with different input/output might not be supported by this wrapper.
+  If you find one that is not yet supported, please feel free to adjust this wrapper accordingly and include a test case.
+
+  **Paired input/output files**
+
+  As it is not possible to define 'in' as a keyword, the keyword 'input' is used instead. Allowed aliases are 'sample' and 'reads'.
+  If exactly two files are provides for 'input' the wrapper parses them as in1, in2.
+  The same holds for the output keywords 'out', 'outm', 'outu'.
+  For all parameters, if more than two files are provided, the wrapper parses them as key=value1,value2,value3... 
+  The wrapper makes a detailed log of how he parsed the parameters in the log file.

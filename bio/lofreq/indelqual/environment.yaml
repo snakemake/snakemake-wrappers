@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - samtools =1.17
+  - samtools =1.20
   - lofreq =2.1.5

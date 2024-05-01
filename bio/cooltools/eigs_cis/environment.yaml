@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - ucsc-bedgraphtobigwig
-  - cooltools =0.5.4
+  - cooltools =0.7.0
