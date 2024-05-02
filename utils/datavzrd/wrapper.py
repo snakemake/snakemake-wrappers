@@ -18,7 +18,11 @@ with tempfile.NamedTemporaryFile(mode="w") as processed, open(
     process_yaml(
         f,
         outfile=processed,
-        variables={"params": snakemake.params, "wildcards": snakemake.wildcards},
+        variables={
+            "params": snakemake.params,
+            "wildcards": snakemake.wildcards,
+            "input": snakemake.input,
+        },
         require_use_yte=True,
     )
     processed.flush()
