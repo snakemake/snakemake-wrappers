@@ -11,13 +11,15 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 extra = snakemake.params.get("extra", "")
 
-with tempfile.NamedTemporaryFile() as processed, open(snakemake.input.config) as f:
+with tempfile.NamedTemporaryFile(mode="wb") as processed, open(
+    snakemake.input.config, "rb"
+) as f:
     # support templating in the config file
     process_yaml(
         f,
         outfile=processed,
         variables={"params": snakemake.params, "wildcards": snakemake.wildcards},
-        require_use_yte=True
+        require_use_yte=True,
     )
     processed.flush()
 
