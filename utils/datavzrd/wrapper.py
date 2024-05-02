@@ -12,7 +12,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
 with tempfile.NamedTemporaryFile(mode="w") as processed, open(
-    snakemake.input.config, "r"
+    snakemake.input.config
 ) as f:
     # support templating in the config file
     process_yaml(
