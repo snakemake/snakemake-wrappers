@@ -1,5 +1,31 @@
 # Changelog
 
+## [3.10.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.9.0...v3.10.0) (2024-05-02)
+
+
+### Features
+
+* Add wrapper for filtering TTree in ROOT ([#2900](https://www.github.com/snakemake/snakemake-wrappers/issues/2900)) ([c294552](https://www.github.com/snakemake/snakemake-wrappers/commit/c294552aa6b19b2cbdda4c650af47f1b83733b32))
+* enable YTE templating in datavzrd config file ([#2916](https://www.github.com/snakemake/snakemake-wrappers/issues/2916)) ([97262a5](https://www.github.com/snakemake/snakemake-wrappers/commit/97262a50efe2293b473f02b6761c4f95e0aa35a3))
+
+
+### Performance Improvements
+
+* autobump bio/cooltools/dots ([#2908](https://www.github.com/snakemake/snakemake-wrappers/issues/2908)) ([7f53f54](https://www.github.com/snakemake/snakemake-wrappers/commit/7f53f54a96802e6ef1a401bbb5b4c25bc9611491))
+* autobump bio/cooltools/eigs_cis ([#2904](https://www.github.com/snakemake/snakemake-wrappers/issues/2904)) ([efe1887](https://www.github.com/snakemake/snakemake-wrappers/commit/efe18871eea04b55f8c921fb0ff19ef896c0dfb2))
+* autobump bio/cooltools/eigs_trans ([#2903](https://www.github.com/snakemake/snakemake-wrappers/issues/2903)) ([843e331](https://www.github.com/snakemake/snakemake-wrappers/commit/843e331b929bcf72d7be161c457f8541a6cd66d2))
+* autobump bio/cooltools/expected_cis ([#2902](https://www.github.com/snakemake/snakemake-wrappers/issues/2902)) ([c9ef619](https://www.github.com/snakemake/snakemake-wrappers/commit/c9ef619b858f59d4532e0df16fd9a6909019ea7c))
+* autobump bio/cooltools/expected_trans ([#2909](https://www.github.com/snakemake/snakemake-wrappers/issues/2909)) ([91d92d1](https://www.github.com/snakemake/snakemake-wrappers/commit/91d92d1b9dc0016fecf1dbd03615de116e388cc1))
+* autobump bio/cooltools/insulation ([#2906](https://www.github.com/snakemake/snakemake-wrappers/issues/2906)) ([f51323a](https://www.github.com/snakemake/snakemake-wrappers/commit/f51323afd11f6a3310862cee1542fb6776272f98))
+* autobump bio/cooltools/pileup ([#2905](https://www.github.com/snakemake/snakemake-wrappers/issues/2905)) ([6aa0897](https://www.github.com/snakemake/snakemake-wrappers/commit/6aa089798d3e8e4b80ce96d8e1f3ccc349c20b46))
+* autobump bio/cooltools/saddle ([#2907](https://www.github.com/snakemake/snakemake-wrappers/issues/2907)) ([925f413](https://www.github.com/snakemake/snakemake-wrappers/commit/925f413403ba2d970f003cd8d6ddfdbf29d6c624))
+* autobump bio/gatk/applybqsrspark ([#2911](https://www.github.com/snakemake/snakemake-wrappers/issues/2911)) ([cbe905b](https://www.github.com/snakemake/snakemake-wrappers/commit/cbe905b271568c52bbaa687ee101d15b29ef4164))
+* autobump bio/gatk3/indelrealigner ([#2910](https://www.github.com/snakemake/snakemake-wrappers/issues/2910)) ([40aa8f1](https://www.github.com/snakemake/snakemake-wrappers/commit/40aa8f1794a46b9285cf88d93451be88d83c67e6))
+* autobump bio/mapdamage2 ([#2912](https://www.github.com/snakemake/snakemake-wrappers/issues/2912)) ([ea1bfbd](https://www.github.com/snakemake/snakemake-wrappers/commit/ea1bfbd33ba026022a7364903aaa42983b03f3ab))
+* autobump bio/open-cravat/module ([#2913](https://www.github.com/snakemake/snakemake-wrappers/issues/2913)) ([593839d](https://www.github.com/snakemake/snakemake-wrappers/commit/593839d30d39f9c08721ac373d22721a8017b66a))
+* autobump bio/open-cravat/run ([#2914](https://www.github.com/snakemake/snakemake-wrappers/issues/2914)) ([476823b](https://www.github.com/snakemake/snakemake-wrappers/commit/476823bfb83184116639be0a62bc47540255f6b3))
+* Update Datavzrd to 2.36.10 ([#2915](https://www.github.com/snakemake/snakemake-wrappers/issues/2915)) ([c0a7ddf](https://www.github.com/snakemake/snakemake-wrappers/commit/c0a7ddff4bd0cc827e7c143e7e0dbf5f13f2e148))
+
 ## [3.9.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.8.0...v3.9.0) (2024-04-22)
 
 
