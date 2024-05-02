@@ -1,5 +1,12 @@
 # Changelog
 
+### [3.10.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.10.0...v3.10.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* allow input access in config rendering for datavzrd ([#2917](https://www.github.com/snakemake/snakemake-wrappers/issues/2917)) ([167ed76](https://www.github.com/snakemake/snakemake-wrappers/commit/167ed764a5f5f5751bf84f91866994b74fbee56b))
+
 ## [3.10.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.9.0...v3.10.0) (2024-05-02)
 
 
