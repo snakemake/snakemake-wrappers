@@ -4,7 +4,7 @@ channels:
   - nodefaults
 dependencies:
   - bwa-meme =1.0.6
-  - samtools =1.19.2
+  - samtools =1.20
   - samblaster =0.1.26
   - mbuffer =20160228
   - picard-slim =3.1.1

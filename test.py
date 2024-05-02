@@ -140,6 +140,30 @@ def run(wrapper, cmd, check_log=None):
 
 
 @skip_if_not_modified
+def test_taxonkit():
+    run(
+        "bio/taxonkit",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "out/list/a.txt",
+            "out/list/a.json",
+            "out/lineage/a.txt",
+            "out/reformat/a.txt",
+            "out/name2taxid/a.txt",
+            "out/filter/a.txt",
+            "out/lca/a.txt",
+            "out/create-taxdump/a/taxid.map",
+            "out/profile2cami/a.txt",
+            "out/cami_filter/a.tsv",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_galah():
     run(
         "bio/galah",
@@ -2121,6 +2145,23 @@ def test_bwa_mem_sort_samtools_write_index():
 
 
 @skip_if_not_modified
+def test_bwa_mem_sort_fgbio():
+    run(
+        "bio/bwa/mem",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped/a.bam",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_fgbio",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_bwa_mem_sort_picard():
     run(
         "bio/bwa/mem",
@@ -2786,6 +2827,21 @@ def test_deeptools_bamcoverage():
             "--cores",
             "1",
             "a.coverage.bw",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_deeptools_bamcoverage_eff():
+    run(
+        "bio/deeptools/bamcoverage",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "a.coverage_code.bw",
             "--use-conda",
             "-F",
         ],
@@ -3522,6 +3578,7 @@ def test_multiqc_a():
         "bio/multiqc",
         ["snakemake", "--cores", "1", "qc/multiqc.a.html", "--use-conda", "-F"],
     )
+
 
 @skip_if_not_modified
 def test_multiqc_config():
@@ -5044,7 +5101,6 @@ def test_gatk_mutect():
         "bio/gatk/mutect",
         ["snakemake", "--cores", "1", "variant_list/a_b.vcf", "--use-conda", "-F"],
     )
-    
 
 
 @skip_if_not_modified
@@ -5330,6 +5386,7 @@ def test_ucsc_genepredtobed():
         "bio/ucsc/genePredToBed",
         ["snakemake", "--cores", "1", "annotation.bed", "--use-conda", "-F"],
     )
+
 
 @skip_if_not_modified
 def test_ucsc_fatotwobit():
@@ -6147,6 +6204,7 @@ def test_generate_data_matrix():
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
     )
 
+
 @skip_if_not_modified
 def test_rseqc_infer_experiment():
     run(
@@ -6404,6 +6462,116 @@ def test_sortmerna_se():
             "--cores",
             "1",
             "unpaired.fastq",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_tmb_pytmb():
+    run(
+        "bio/tmb/pytmb",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_root_hadd():
+    run(
+        "phys/root/hadd",
+        ["snakemake", "--cores", "2", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_root_define_columns():
+    run(
+        "phys/root/define_columns",
+        ["snakemake", "--cores", "2", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_root_filter():
+    run(
+        "phys/root/filter",
+        ["snakemake", "--cores", "2", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_emu_abundance():
+    run(
+        "bio/emu/abundance",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "sample_rel-abundance.tsv",
+            "sample_emu_alignments.sam",
+            "sample_unclassified.fa",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_emu_abundance_paired():
+    run(
+        "bio/emu/abundance",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "short_read_rel-abundance_paired.tsv",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_emu_collapse_taxonomy():
+    run(
+        "bio/emu/collapse-taxonomy",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "full_length_rel-abundance_collapsed.tsv",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_emu_combine_output():
+    run(
+        "bio/emu/combine-outputs",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "combined_abundances.tsv",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_emu_combine_output_split():
+    run(
+        "bio/emu/combine-outputs",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "counts.tsv",
+            "taxonomy.tsv",
             "--use-conda",
             "-F",
         ],
