@@ -1,5 +1,15 @@
 # Changelog
 
+### [3.10.2](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.10.1...v3.10.2) (2024-05-03)
+
+
+### Performance Improvements
+
+* autobump bio/gatk3/baserecalibrator ([#2919](https://www.github.com/snakemake/snakemake-wrappers/issues/2919)) ([aae9a13](https://www.github.com/snakemake/snakemake-wrappers/commit/aae9a137a117fb920a6b0817b8bf03016004abc8))
+* autobump bio/mosdepth ([#2921](https://www.github.com/snakemake/snakemake-wrappers/issues/2921)) ([57c47b1](https://www.github.com/snakemake/snakemake-wrappers/commit/57c47b1b0f40a78f40f598f6475cb672e1d49192))
+* autobump bio/ucsc/gtfToGenePred ([#2922](https://www.github.com/snakemake/snakemake-wrappers/issues/2922)) ([739ce2a](https://www.github.com/snakemake/snakemake-wrappers/commit/739ce2a4033f8c025f4db31eb3f8da2b4841b632))
+* autobump bio/vsearch ([#2923](https://www.github.com/snakemake/snakemake-wrappers/issues/2923)) ([e3beaeb](https://www.github.com/snakemake/snakemake-wrappers/commit/e3beaeba734be08f3be28d80ebc00e34ca9a6b7d))
+
 ### [3.10.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.10.0...v3.10.1) (2024-05-02)
 
 
