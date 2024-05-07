@@ -23,10 +23,9 @@ with tempfile.TemporaryDirectory() as tmpdir:
         f"{snakemake.params.species}_vep_{release}_{snakemake.params.build}.tar.gz"
     )
     log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+    url = snakemake.params.get("url", "ftp://ftp.ensembl.org/pub")
     shell(
-        "curl -L ftp://ftp.ensembl.org/pub/release-{snakemake.params.release}/"
-        "variation/{vep_dir}/{cache_tarball} "
-        "-o {tmpdir}/{cache_tarball} {log}"
+        "curl -L {url}/release-{snakemake.params.release}/variation/{vep_dir}/{cache_tarball} -o {tmpdir}/{cache_tarball} {log}"
     )
 
     log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
