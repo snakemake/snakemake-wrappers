@@ -5915,6 +5915,11 @@ def test_vep_cache():
         ["snakemake", "--cores", "1", "resources/vep/cache", "--use-conda", "-F"],
     )
 
+    run(
+        "bio/vep/cache",
+        ["snakemake", "--cores", "1", "resources/vep/cache_ebi", "--use-conda", "-F"],
+    )
+
 
 @skip_if_not_modified
 def test_vep_plugins():
