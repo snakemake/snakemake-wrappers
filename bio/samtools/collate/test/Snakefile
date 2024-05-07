@@ -2,9 +2,9 @@ rule samtools_collate:
     input:
         "mapped/{sample}.bam",
     output:
-        "mapped/{sample}.collated.bam",
+        "{sample}.collated.bam",
     log:
-        "{sample}.log",
+        "logs/{sample}.log",
     params:
         extra="-f",
     threads: 2
