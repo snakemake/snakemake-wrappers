@@ -1,0 +1,18 @@
+name: "pyTMB.py"
+description: Calculate a Tumor Mutational Burden (TMB) score from a VCF file
+url: "https://github.com/bioinfo-pf-curie/TMB?tab=readme-ov-file#tumor-mutational-burden"
+authors:
+  - "Thibault Dayris"
+input:
+  - vcf: Path to input variants (`vcf`, `vcf.gz`, or `bcf` formatted)
+  - db_config: Path to database config file (`yaml` formatted)
+  - var_config: Path to variant config file (`yaml` formatted)
+  - bed: Path to intervals file to compute effective genome size (`bed` formatted)
+output:
+  - res: Path to TMB results
+  - vcf: Optional path to variants considered for TMB calculation
+params:
+  - extra: Optional parameters provided to `pyTMB.py`, besides `-i`, `--dbConfig`, `--varConfig`, `--bed`, or `--export`
+note: |
+  This wrapper executes the whole command in a temporary directory. The use of `shadow` directive
+  in the Snakemake rule would be redundant.

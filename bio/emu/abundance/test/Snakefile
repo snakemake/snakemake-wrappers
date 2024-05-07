@@ -1,0 +1,30 @@
+rule abundance:
+    input:
+        reads="{sample}.fa",
+        db="database",
+    output:
+        abundances="{sample}_rel-abundance.tsv",
+        alignments="{sample}_emu_alignments.sam",
+        unclassified="{sample}_unclassified.fa",
+    log:
+        "logs/emu/{sample}_abundance.log",
+    params:
+        extra="--type map-ont --keep-counts",
+    threads: 3  # optional, defaults to 1
+    wrapper:
+        "master/bio/emu/abundance"
+
+
+rule abundance_paired:
+    input:
+        reads=["{sample}_R1.fq", "{sample}_R2.fq"],
+        db="database",
+    output:
+        abundances="{sample}_rel-abundance_paired.tsv",
+    log:
+        "logs/emu/{sample}_abundance_paired.log",
+    params:
+        extra="--type sr --keep-counts",
+    threads: 3  # optional, defaults to 1
+    wrapper:
+        "master/bio/emu/abundance"

@@ -5,4 +5,4 @@ channels:
 dependencies:
   - gatk4 =4.5.0.0
   - snakemake-wrapper-utils =0.6.2
-  - samtools =1.19.2
+  - samtools =1.20

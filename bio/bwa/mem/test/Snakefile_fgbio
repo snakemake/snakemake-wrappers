@@ -1,0 +1,16 @@
+rule bwa_mem:
+    input:
+        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        idx=multiext("genome", ".amb", ".ann", ".bwt", ".pac", ".sa"),
+    output:
+        "mapped/{sample}.bam",
+    log:
+        "logs/bwa_mem/{sample}.log",
+    params:
+        extra=r"-R '@RG\tID:{sample}\tSM:{sample}'",
+        sort="fgbio",  # Can be 'none', 'samtools' or 'picard'.
+        sort_order="queryname",  # Can be 'queryname' or 'coordinate'.
+        sort_extra="",  # Extra args for samtools/fgbio/picard.
+    threads: 8
+    wrapper:
+        "master/bio/bwa/mem"
