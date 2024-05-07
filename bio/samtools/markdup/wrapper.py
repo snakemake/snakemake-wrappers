@@ -4,6 +4,7 @@ __license__ = "MIT"
 
 
 import tempfile
+from pathlib import Path
 from snakemake.shell import shell
 from snakemake_wrapper_utils.samtools import get_samtools_opts
 
