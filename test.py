@@ -1447,6 +1447,13 @@ def test_enhanced_volcano():
 
 
 @skip_if_not_modified
+def test_goleft_indexcov():
+    run(
+        "bio/goleft/indexcov",
+        ["snakemake", "--cores", "1", "--use-conda", "-Fp"],
+    )
+
+@skip_if_not_modified
 def test_gridss_call():
     run(
         "bio/gridss/call",
