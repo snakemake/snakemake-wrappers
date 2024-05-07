@@ -9,4 +9,4 @@ output:
   - SAM/BAM/CRAM file
   - SAM/BAM/CRAM index file (optional)
 params:
-  - extra: additional program arguments (not `-@/--threads`, `--write-index`, `-m`, `-o` or `-O/--output-fmt`).
+  - extra: additional program arguments (not `-@/--threads`, `--write-index`, `-m`, `-T`, `-f`, `-o` or `-O/--output-fmt`).

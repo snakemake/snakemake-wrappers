@@ -7,7 +7,7 @@ import tempfile
 from snakemake.shell import shell
 from snakemake_wrapper_utils.samtools import get_samtools_opts
 
-samtools_opts = get_samtools_opts(snakemake, parse_reference=False)
+samtools_opts = get_samtools_opts(snakemake, parse_ref=False)
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
