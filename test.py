@@ -4060,6 +4060,14 @@ def test_samtools_mpileup():
 
 
 @skip_if_not_modified
+def test_samtools_mpileup():
+    run(
+        "bio/samtools/markdup",
+        ["snakemake", "--cores", "1", "a.markdup.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_samtools_stats():
     run(
         "bio/samtools/stats",
