@@ -5,6 +5,7 @@ __mail__ = "thibault.dayris@gustaveroussy.fr"
 __copyright__ = "Copyright 2024, Thibault Dayris"
 __license__ = "MIT"
 
+from pathlib import Path
 from tempfile import TemporaryDirectory
 from snakemake import shell
 
@@ -50,6 +51,5 @@ with TemporaryDirectory() as tempdir:
     # and/or chromosomes present in the fasta index
     if snakemake.output.get("html"):
         # Not created automatically by Snakemake
-        from pathlib import Path
         Path(snakemake.output.html).mkdir(parents=True, exist_ok=True)
         shell("mv --verbose {tempdir}/out/* {snakemake.output.html} {log}")
