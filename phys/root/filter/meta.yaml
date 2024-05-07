@@ -1,0 +1,14 @@
+name: "filter"
+description: filter a TTree using RDataFrame
+url: https://root.cern/doc/master/classROOT_1_1RDataFrame.html
+authors:
+  - Anfeng Li
+input:
+  - ROOT file
+output:
+  - ROOT file
+params:
+  - input_tree_name: name of the input TTree
+  - output_tree_name: name of the output TTree
+  - criteria: filtering criteria, e.g. "(abs(Dp_MM - 1968.34) < 50)". If not specified, no entries will be filtered, i.e. just save the TTree. (optional)
+  - branches_to_save: list of branch names to be saved. If not specified, all branches of the input TTree will be saved. (optional)

@@ -2,4 +2,4 @@
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
 @EXPLICIT
-https://conda.anaconda.org/bioconda/linux-64/csvtk-0.29.0-h9ee0642_0.tar.bz2#3524147f82edc377c613ef53bc830985
+https://conda.anaconda.org/bioconda/linux-64/csvtk-0.30.0-h9ee0642_0.tar.bz2#2e1864ed7c3738d4927d83a8c6ef3efd

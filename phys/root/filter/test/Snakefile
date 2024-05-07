@@ -1,0 +1,15 @@
+rule define_columns:
+    input:
+        "ntuple0.root",
+    output:
+        "ntuple0_output.root",
+    log:
+        "logs/filter/filter.log",
+    params:
+        input_tree_name="TestTree",
+        output_tree_name="TestTree",
+        criteria="pt > 1400",
+        branches_to_save=["pz", "pt", "p"],
+    threads: 2
+    wrapper:
+        "master/phys/root/filter"
