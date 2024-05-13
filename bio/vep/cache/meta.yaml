@@ -6,7 +6,7 @@ authors:
 output:
   - directory to store the VEP cache
 params:
-  - url: URL from where to download cache data (optional; by default is ``ftp://ftp.ensembl.org/pub/``)
+  - url: URL from where to download cache data (optional; by default is ``ftp://ftp.ensembl.org/pub``)
   - species: species to download cache data
   - build: build to download cache data
   - release: release to download cache data

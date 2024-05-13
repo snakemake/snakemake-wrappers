@@ -62,16 +62,12 @@ else:
 
 species_filename = species if release >= 91 else species.capitalize()
 
+url = snakemake.params.get("url", "ftp://ftp.ensembl.org/pub")
 urls = [
-    "ftp://ftp.ensembl.org/pub/{branch}release-{release}/variation/vcf/{species}/{species_filename}{suffix}.vcf.gz".format(
-        release=release,
-        species=species,
-        suffix=suffix,
-        species_filename=species_filename,
-        branch=branch,
-    )
+    f"{url}/{branch}release-{release}/variation/vcf/{species}/{species_filename}{suffix}.vcf.gz"
     for suffix in suffixes
 ]
+
 names = [os.path.basename(url) for url in urls]
 
 try:
