@@ -49,7 +49,7 @@ else:
 
 
 url = snakemake.params.get("url", "ftp://ftp.ensembl.org/pub")
-url = f"{url}/{branch}release-{release}/{out_fmt}/{species}/{species_cap}.{build}.{gtf_release}.{flavor}{suffix}"
+url = f"{url}/{branch}release-{release}/{out_fmt}/{species}/{species.capitalize()}.{build}.{gtf_release}.{flavor}{suffix}"
 
 
 try:
