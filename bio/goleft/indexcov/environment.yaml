@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - goleft=0.2.4
+  - goleft =0.2.6
