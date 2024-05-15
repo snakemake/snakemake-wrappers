@@ -28,11 +28,13 @@ if region or regions:
 else:
     fai = snakemake.output.get("fai", "")
     gzi = snakemake.output.get("gzi", "")
-    
+
 if fai:
     fai = f"--fai-idx {fai}"
 if gzi:
     gzi = f"--gzi-idx {gzi}"
 
 
-shell("samtools faidx {fai} {gzi} {regions} {samtools_opts} {extra} {snakemake.input[0]} {region} {log}")
+shell(
+    "samtools faidx {fai} {gzi} {regions} {samtools_opts} {extra} {snakemake.input[0]} {region} {log}"
+)

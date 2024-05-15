@@ -1453,6 +1453,7 @@ def test_goleft_indexcov():
         ["snakemake", "--cores", "1", "--use-conda", "-Fp"],
     )
 
+
 @skip_if_not_modified
 def test_gridss_call():
     run(
@@ -4163,7 +4164,19 @@ def test_samtools_fastq_separate():
 def test_samtools_faidx():
     run(
         "bio/samtools/faidx",
-        ["snakemake", "--cores", "1", "out/genome.fa.fai", "out/genome.named.fa.fai", "out/genome.fas.bgz.fai", "out/genome.fas.bgz.gzi", "out/genome.fas", "out/genome.bgz.fas", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "out/genome.fa.fai",
+            "out/genome.named.fa.fai",
+            "out/genome.fas.bgz.fai",
+            "out/genome.fas.bgz.gzi",
+            "out/genome.fas",
+            "out/genome.bgz.fas",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 

@@ -43,7 +43,7 @@ rule samtools_faidx_region:
         "{sample}.fa",
         fai="idx/{sample}.fa.fai",
     output:
-        "out/{sample}.fas"
+        "out/{sample}.fas",
     log:
         "{sample}.region.log",
     params:
@@ -59,7 +59,7 @@ rule samtools_faidx_bgzip_region:
         fai="idx/{sample}.fa.bgz.fai",
         gzi="idx/{sample}.fa.bgz.gzi",
     output:
-        "out/{sample}.bgz.fas"
+        "out/{sample}.bgz.fas",
     log:
         "{sample}.bgzip_region.log",
     params:
