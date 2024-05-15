@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - whatshap =2.2
+  - whatshap =2.3
