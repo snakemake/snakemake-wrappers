@@ -36,5 +36,5 @@ if gzi:
 
 
 shell(
-    "samtools faidx {fai} {gzi} {regions} {samtools_opts} {extra} {snakemake.input[0]} {region} {log}"
+    "samtools faidx {fai} {gzi} {regions} {samtools_opts} {extra} {snakemake.input[0]} {region:q} {log}"
 )
