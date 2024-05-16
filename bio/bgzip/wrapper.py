@@ -12,4 +12,6 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 if snakemake.input[0].endswith(".gz"):
     extra += " --decompress"
 
-shell("bgzip --threads {snakemake.threads} --stdout {extra} {snakemake.input[0]} > {snakemake.output[0]} {log}")
+shell(
+    "bgzip --threads {snakemake.threads} --stdout {extra} {snakemake.input[0]} > {snakemake.output[0]} {log}"
+)
