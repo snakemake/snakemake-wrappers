@@ -4042,6 +4042,14 @@ def test_samtools_calmd():
 
 
 @skip_if_not_modified
+def test_samtools_collate():
+    run(
+        "bio/samtools/collate",
+        ["snakemake", "--cores", "1", "a.collated.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_samtools_fixmate():
     run(
         "bio/samtools/fixmate",

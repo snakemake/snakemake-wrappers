@@ -4,7 +4,7 @@ rule samtools_sort:
     output:
         "mapped/{sample}.sorted.bam",
     log:
-        "{sample}.log",
+        "logs/{sample}.log",
     params:
         extra="-m 4G",
     threads: 8
