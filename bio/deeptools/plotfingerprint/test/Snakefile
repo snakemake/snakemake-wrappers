@@ -15,7 +15,7 @@ rule plot_fingerprint:
         "logs/deeptools/plot_fingerprint.log",
     params:
         # optional parameters
-        "--numberOfSamples 200 ",
+        extra="--numberOfSamples 200",
     threads: 8
     wrapper:
         "master/bio/deeptools/plotfingerprint"
