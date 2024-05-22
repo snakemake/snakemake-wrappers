@@ -8,6 +8,7 @@ import re
 from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+extra = snakemake.params.get("extra", "")
 
 jsd_sample = snakemake.input.get("jsd_sample")
 out_counts = snakemake.output.get("counts")
@@ -31,5 +32,5 @@ shell(
     "{optional_output} "
     "--numberOfProcessors {snakemake.threads} "
     "{jsd} "
-    "{snakemake.params}) {log}"
+    "{extra}) {log}"
 )
