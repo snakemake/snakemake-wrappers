@@ -1,0 +1,13 @@
+rule samtools_markdup:
+    input:
+        aln="{sample}.bam",
+    output:
+        bam="{sample}.markdup.bam",
+        idx="{sample}.markdup.bam.csi",
+    log:
+        "{sample}.markdup.log",
+    params:
+        extra="-c --no-PG",
+    threads: 2
+    wrapper:
+        "master/bio/samtools/markdup"
