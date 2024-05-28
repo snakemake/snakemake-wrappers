@@ -50,8 +50,9 @@ if chromosome:
             "invalid datatype, to select a single chromosome the datatype must be dna"
         )
 
+url = snakemake.params.get("url", "ftp://ftp.ensembl.org/pub")
 spec = spec.format(build=build, release=release)
-url_prefix = f"ftp://ftp.ensembl.org/pub/{branch}release-{release}/fasta/{species}/{datatype}/{species.capitalize()}.{spec}"
+url_prefix = f"{url}/{branch}release-{release}/fasta/{species}/{datatype}/{species.capitalize()}.{spec}"
 
 success = False
 for suffix in suffixes:
