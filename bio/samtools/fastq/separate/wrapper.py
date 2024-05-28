@@ -21,22 +21,18 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 # before allowing additional threads through samtools sort -@
 threads = 0 if snakemake.threads <= 2 else snakemake.threads - 2
 
-with tempfile.TemporaryDirectory() as tmpdir:
-    tmp_prefix = Path(tmpdir) / "samtools_fastq.collate"
-
-    shell(
-        "(samtools collate -u -O"
-        " --threads {threads}"
-        " -T {tmp_prefix}"
-        " {params_collate}"
-        " {snakemake.input[0]} | "
-        "samtools fastq"
-        " {params_fastq}"
-        " -1 {snakemake.output[0]}"
-        " -2 {snakemake.output[1]}"
-        " -0 /dev/null"
-        " -s /dev/null"
-        " -F 0x900"
-        " - "
-        ") {log}"
-    )
+shell(
+    "(samtools collate -u -O"
+    " --threads {threads}"
+    " {params_collate}"
+    " {snakemake.input[0]} | "
+    "samtools fastq"
+    " {params_fastq}"
+    " -1 {snakemake.output[0]}"
+    " -2 {snakemake.output[1]}"
+    " -0 /dev/null"
+    " -s /dev/null"
+    " -F 0x900"
+    " - "
+    ") {log}"
+)
