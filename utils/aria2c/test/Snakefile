@@ -1,5 +1,5 @@
 
-import common.smk
+include: "common.smk"
 
 
 rule test_aria2:
@@ -15,7 +15,7 @@ rule test_aria2:
         mem_mb=1024,
         runtime=30,
     wrapper:
-        "master/utils/aria2c"
+        "wrapper/utils/aria2c"
 
 
 rule test_aria2_md5:
@@ -31,7 +31,7 @@ rule test_aria2_md5:
         mem_mb=1024,
         runtime=30,
     wrapper:
-        "master/utils/aria2c"
+        "wrapper/utils/aria2c"
 
 
 rule test_aria2_file:
@@ -55,7 +55,7 @@ rule test_aria2_file:
         mem_mb=1024,
         runtime=30,
     wrapper:
-        "master/utils/aria2c"
+        "wrapper/utils/aria2c"
 
 
 ### Disabled until there is a way to install 'snakemake-storage-plugin-http' in the test environment
@@ -77,4 +77,4 @@ rule test_aria2_file:
 #         mem_mb=1024,
 #         runtime=30,
 #     wrapper:
-#         "master/utils/aria2c"
+#         "wrapper/utils/aria2c"
