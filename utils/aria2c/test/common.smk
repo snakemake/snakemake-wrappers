@@ -3,7 +3,7 @@ def extract_checksum(infile, **kwargs):
 
     return (
         pd.read_csv(infile, sep="  ", index_col=1, header=None, engine="python")
-        .filter(like=kwargs["file"], axis=0)
+        .filter(like=kwargs.get("file"), axis=0)
         .iloc[0]
         .item()
     )
