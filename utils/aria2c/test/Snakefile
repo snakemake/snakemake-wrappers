@@ -1,6 +1,3 @@
-import polars as pl
-import polars.selectors as cs
-
 
 def parse_input(input_item, parser=None, **kwargs):
     def inner(wildcards, input_item):
@@ -14,6 +11,8 @@ def parse_input(input_item, parser=None, **kwargs):
 
 
 def extract_checksum(infile, **kwargs):
+    import polars as pl
+    import polars.selectors as cs
     return (
         pl.read_csv(infile, separator=" ", has_header=False)
         .filter(cs.by_index(1).str.ends_with(kwargs["file"]))
