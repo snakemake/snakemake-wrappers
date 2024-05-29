@@ -1,26 +1,25 @@
-
 import polars as pl
 import polars.selectors as cs
 
 
 def parse_input(input_item, parser=None, **kwargs):
-    def inner(wildcards, input):
+    def inner(wildcards, input_item):
         with open(input.get(input_item), "r") as infile:
             if parser is None:
                 return infile.read().strip()
             else:
                 return parser(infile, kwargs)
+
     return inner
 
 
 def extract_checksum(infile, **kwargs):
-    return pl.read_csv(
-        infile,
-        separator=" ",
-        has_header=False
-    ).filter(
-        cs.by_index(1).str.ends_with(kwargs["file"]
-    ).select(cs.by_index(0)).item()
+    return (
+        pl.read_csv(infile, separator=" ", has_header=False)
+        .filter(cs.by_index(1).str.ends_with(kwargs["file"]))
+        .select(cs.by_index(0))
+        .item()
+    )
 
 
 rule test_aria2:
@@ -64,8 +63,12 @@ rule test_aria2_file:
         "logs/aria2.{type}file.log",
     params:
         url="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/869/925/GCF_000869925.1_ViralProj17181/GCF_000869925.1_ViralProj17181_genomic.fna.gz",
-	hash_function=lambda w: w.type,
-	checksum=parse_input("checksum", parser=extract_checksum, file="GCF_000869925.1_ViralProj17181_genomic.fna.gz"),
+        hash_function=lambda w: w.type,
+        checksum=parse_input(
+            "checksum",
+            parser=extract_checksum,
+            file="GCF_000869925.1_ViralProj17181_genomic.fna.gz",
+        ),
         extra="--file-allocation none --retry-wait 5 --console-log-level warn --log-level notice",
     threads: 2
     resources:
