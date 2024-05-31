@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - ngsderive=3.3.2
+  - ngsderive =3.3.2
