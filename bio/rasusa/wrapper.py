@@ -6,12 +6,12 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
-
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
 bases = snakemake.params.get("bases")
 if bases:
-    extra += f" -b {bases}"
+    extra += f" --bases {bases}"
 else:
     covg = snakemake.params.get("coverage")
     gsize = snakemake.params.get("genome_size")
@@ -19,7 +19,7 @@ else:
         raise ValueError(
             "If `bases` is not given, then `coverage` and `genome_size` must be"
         )
-    extra += f" -g {gsize} -c {covg}"
+    extra += f" --genome-size {gsize} --coverage {covg}"
 
-shell("rasusa reads -i {snakemake.input} {extra} -o {snakemake.output} 2> {snakemake.log}")
+shell("rasusa reads {extra} --output {snakemake.output[0]} --output {snakemake.output[1]} {snakemake.input} {log}")
 
