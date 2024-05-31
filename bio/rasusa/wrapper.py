@@ -21,5 +21,6 @@ else:
         )
     extra += f" --genome-size {gsize} --coverage {covg}"
 
-shell("rasusa reads {extra} --output {snakemake.output[0]} --output {snakemake.output[1]} {snakemake.input} {log}")
-
+shell(
+    "rasusa reads {extra} --output {snakemake.output[0]} --output {snakemake.output[1]} {snakemake.input} {log}"
+)
