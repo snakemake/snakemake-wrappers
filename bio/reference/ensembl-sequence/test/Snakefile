@@ -22,11 +22,8 @@ rule get_single_chromosome:
         build="R64-1-1",
         release="101",
         chromosome=["II"],  # optional: restrict to one or multiple chromosomes, for multiple see below
-        # branch="plants",  # optional: specify branch
     log:
         "logs/get_genome.log",
-    params:
-        url="http://ftp.ensembl.org/pub",
     cache: "omit-software"  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-sequence"
@@ -40,8 +37,24 @@ rule get_multiple_chromosome:
         build="R64-1-1",
         release="101",
         chromosome=["I", "II"],  # optional: restrict to one or multiple chromosomes
-        # branch="bacteria",  # optional: specify branch
-        # collection="bacteria_0_collection", # optional: specify collection
+    log:
+        "logs/get_genome.log",
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/reference/ensembl-sequence"
+
+
+rule get_off_branch_genome:
+    output:
+        "refs/genome.fasta",
+    params:
+        species="bacillus_subtilis_subsp_subtilis_str_168_gca_000009045",
+        datatype="dna",
+        build="ASM904v1",
+        release="59", # note latest release varies with url
+        branch="bacteria", # optional for off branch genomes
+        url="ftp://ftp.ensemblgenomes.org/pub/", # optional set ftp server source
+        collection="bacteria_0_collection", # optional set collection source for genome
     log:
         "logs/get_genome.log",
     cache: "omit-software"  # save space and time with between workflow caching (see docs)
