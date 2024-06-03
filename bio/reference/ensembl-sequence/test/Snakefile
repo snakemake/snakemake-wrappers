@@ -46,7 +46,7 @@ rule get_multiple_chromosome:
 
 rule get_off_branch_genome:
     output:
-        "refs/genome.fasta",
+        "refs/off_branch_genome.fasta",
     params:
         species="bacillus_subtilis_subsp_subtilis_str_168_gca_000009045",
         datatype="dna",

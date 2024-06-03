@@ -5565,6 +5565,14 @@ def test_ensembl_sequence_chromosomes():
 
 
 @skip_if_not_modified
+def test_ensembl_sequence_off_branch():
+    run(
+        "bio/reference/ensembl-sequence",
+        ["snakemake", "--cores", "1", "refs/off_branch_genome.fasta", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_ensembl_sequence_chromosome_old_release():
     run(
         "bio/reference/ensembl-sequence",
@@ -5594,6 +5602,14 @@ def test_ensembl_annotation_gtf_gz():
     run(
         "bio/reference/ensembl-annotation",
         ["snakemake", "--cores", "1", "refs/annotation.gtf.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_ensembl_off_branch_annotation_gtf():
+    run(
+        "bio/reference/ensembl-annotation",
+        ["snakemake", "--cores", "1", "refs/off_branch_annotation.gtf", "--use-conda", "-F"],
     )
 
 

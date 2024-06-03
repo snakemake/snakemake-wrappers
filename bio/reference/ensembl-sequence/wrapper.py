@@ -25,7 +25,7 @@ if snakemake.params.get("collection"):
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-if branch=="" or branch == "grch37/":
+if branch == "" or branch == "grch37/":
     spec = ("{build}" if int(release) > 75 else "{build}.{release}").format(
         build=build, release=release
     )

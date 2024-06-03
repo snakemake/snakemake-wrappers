@@ -30,7 +30,7 @@ rule get_annotation_gz:
 
 rule get_off_branch_annotation:
     output:
-        "refs/annotation.gtf",
+        "refs/off_branch_annotation.gtf",
     params:
         species="bacillus_subtilis_subsp_subtilis_str_168_gca_000009045",
         release="59", # note latest release varies with url
