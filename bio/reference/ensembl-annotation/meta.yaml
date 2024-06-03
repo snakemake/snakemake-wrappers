@@ -6,3 +6,5 @@ output:
   - Ensemble GTF or GFF3 anotation file
 params:
   - url: URL from where to download cache data (optional; by default is ``ftp://ftp.ensembl.org/pub``)
+  - branch: branch of ftp server to download cache data if required (optional; e.g. "plants")
+  - collection: collection of ftp server to download cache data if required (optional; e.g. "bacteria_0_collection")
