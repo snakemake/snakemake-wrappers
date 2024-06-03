@@ -31,6 +31,9 @@ if build == "GRCh37":
 elif snakemake.params.get("branch"):
     branch = snakemake.params.branch + "/"
 
+collection = ""
+if snakemake.params.get("collection"):
+    collection = snakemake.params.collection + "/"
 
 flavor = snakemake.params.get("flavor", "")
 if flavor:
@@ -49,7 +52,7 @@ else:
 
 
 url = snakemake.params.get("url", "ftp://ftp.ensembl.org/pub")
-url = f"{url}/{branch}release-{release}/{out_fmt}/{species}/{species.capitalize()}.{build}.{gtf_release}.{flavor}{suffix}"
+url = f"{url}/{branch}release-{release}/{out_fmt}/{collection}{species}/{species.capitalize()}.{build}.{gtf_release}.{flavor}{suffix}"
 
 
 try:

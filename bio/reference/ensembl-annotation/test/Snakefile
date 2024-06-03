@@ -22,7 +22,8 @@ rule get_annotation_gz:
         release="105",
         build="GRCh37",
         flavor="",  # optional, e.g. chr_patch_hapl_scaff, see Ensembl FTP.
-        # branch="plants",  # optional: specify branch
+        # branch="plants" or "bacteria",  # optional: specify branch
+        # collection="bacteria_0_collection", # optional: specify collection
     log:
         "logs/get_annotation.log",
     params:

@@ -40,7 +40,8 @@ rule get_multiple_chromosome:
         build="R64-1-1",
         release="101",
         chromosome=["I", "II"],  # optional: restrict to one or multiple chromosomes
-        # branch="plants",  # optional: specify branch
+        # branch="bacteria",  # optional: specify branch
+        # collection="bacteria_0_collection", # optional: specify collection
     log:
         "logs/get_genome.log",
     cache: "omit-software"  # save space and time with between workflow caching (see docs)
