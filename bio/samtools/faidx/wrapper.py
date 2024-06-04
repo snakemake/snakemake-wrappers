@@ -20,8 +20,7 @@ if regions:
     regions = f"--region-file {regions}"
 
 region = snakemake.params.get("region", "")
-if region and isinstance(region, list):
-    region = " ".join(region)
+
 
 # Get FAI and GZI files
 if region or regions:
