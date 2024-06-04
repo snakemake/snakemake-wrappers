@@ -38,16 +38,31 @@ rule samtools_faidx_bgzip:
         "master/bio/samtools/faidx"
 
 
-rule samtools_faidx_region:
+rule samtools_faidx_region_file:
+    input:
+        "{sample}.fa",
+        fai="idx/{sample}.fa.fai",
+        regions="{sample}.regions",
+    output:
+        "out/{sample}.region_file.fas",
+    log:
+        "{sample}.region_file.log",
+    params:
+        extra="--length 5",
+    wrapper:
+        "master/bio/samtools/faidx"
+
+
+rule samtools_faidx_region_array:
     input:
         "{sample}.fa",
         fai="idx/{sample}.fa.fai",
     output:
-        "out/{sample}.fas",
+        "out/{sample}.region_array.fas",
     log:
-        "{sample}.region.log",
+        "{sample}.region_array.log",
     params:
-        region="ref",
+        region=["ref", "ref2"],
         extra="--length 5",
     wrapper:
         "master/bio/samtools/faidx"
@@ -59,9 +74,9 @@ rule samtools_faidx_bgzip_region:
         fai="idx/{sample}.fa.bgz.fai",
         gzi="idx/{sample}.fa.bgz.gzi",
     output:
-        "out/{sample}.bgz.fas",
+        "out/{sample}.region_bgz.fas",
     log:
-        "{sample}.bgzip_region.log",
+        "{sample}.region_bgz.log",
     params:
         region="ref",
         extra="--length 5",
