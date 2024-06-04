@@ -17,9 +17,10 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 # Get regions (if present)
 regions = snakemake.input.get("regions", "")
 if regions:
-    regions = f"--regions-file {regions}"
+    regions = f"--region-file {regions}"
 
 region = snakemake.params.get("region", "")
+
 
 # Get FAI and GZI files
 if region or regions:
