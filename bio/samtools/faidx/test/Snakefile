@@ -74,9 +74,9 @@ rule samtools_faidx_bgzip_region:
         fai="idx/{sample}.fa.bgz.fai",
         gzi="idx/{sample}.fa.bgz.gzi",
     output:
-        "out/{sample}.region_bgz.fas",
+        "out/{sample}.region_bgzip.fas",
     log:
-        "{sample}.region_bgz.log",
+        "{sample}.region_bgzip.log",
     params:
         region="ref",
         extra="--length 5",

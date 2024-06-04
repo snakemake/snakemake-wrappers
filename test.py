@@ -4244,7 +4244,7 @@ def test_samtools_faidx():
             "out/genome.fas.bgz.gzi",
             "out/genome.region_file.fas",
             "out/genome.region_array.fas",
-            "out/genome.region_bgz.fas",
+            "out/genome.region_bgzip.fas",
             "--use-conda",
             "-F",
         ],
