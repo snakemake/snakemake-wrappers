@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - sortmerna =4.3.6
+  - sortmerna =4.3.7
