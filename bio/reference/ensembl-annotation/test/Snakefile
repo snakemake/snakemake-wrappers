@@ -22,7 +22,7 @@ rule get_annotation_gz:
         build="GRCh37",
         flavor="",  # optional, e.g. chr_patch_hapl_scaff, see Ensembl FTP.
     log:
-        "logs/get_annotation.log",
+        "logs/get_annotation_gz.log",
     cache: "omit-software"  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-annotation"
