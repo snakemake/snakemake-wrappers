@@ -23,7 +23,7 @@ rule get_single_chromosome:
         release="101",
         chromosome=["II"],  # optional: restrict to one or multiple chromosomes, for multiple see below
     log:
-        "logs/get_genome.log",
+        "logs/get_single_genome.log",
     cache: "omit-software"  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-sequence"
