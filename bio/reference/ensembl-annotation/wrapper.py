@@ -31,9 +31,9 @@ if build == "GRCh37":
 elif snakemake.params.get("branch"):
     branch = snakemake.params.branch + "/"
 
-collection = ""
-if snakemake.params.get("collection"):
-    collection = snakemake.params.collection + "/"
+collection = snakemake.params.get("collection". "")
+if collection:
+    collection = f"{collection}/"
 
 flavor = snakemake.params.get("flavor", "")
 if flavor:
