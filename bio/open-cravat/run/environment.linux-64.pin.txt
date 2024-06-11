@@ -3,8 +3,8 @@
 # platform: linux-64
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
-https://conda.anaconda.org/conda-forge/linux-64/ca-certificates-2024.2.2-hbcca054_0.conda#2f4327a1cbe7f022401b236e915a5fef
-https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.40-hf3520f5_1.conda#33b7851c39c25da14f6a233a8ccbeeca
+https://conda.anaconda.org/conda-forge/linux-64/ca-certificates-2024.6.2-hbcca054_0.conda#847c3c2905cc467cea52c24f9cfa8080
+https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.40-hf3520f5_2.conda#61b0bd5219ce7192b4e3633521a78975
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-13.2.0-hc0a3c3a_7.conda#53ebd4c833fa01cb2c6353e99f905406
 https://conda.anaconda.org/conda-forge/linux-64/python_abi-3.12-4_cp312.conda#dccc2d142812964fcc6abdc97b672dff
 https://conda.anaconda.org/conda-forge/noarch/tzdata-2024a-h0c530f3_0.conda#161081fc7cec0bfda0d86d7cb595f8d8
@@ -18,9 +18,9 @@ https://conda.anaconda.org/conda-forge/linux-64/libgfortran5-13.2.0-hca663fb_7.c
 https://conda.anaconda.org/conda-forge/linux-64/libnsl-2.0.1-hd590300_0.conda#30fd6e37fe21f86f4bd26d6ee73eeec7
 https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.38.1-h0b41bf4_0.conda#40b61aab5c7ba9ff276c41cfffe6b80b
 https://conda.anaconda.org/conda-forge/linux-64/libxcrypt-4.4.36-hd590300_1.conda#5aa797f8787fe7a17d1b0821485b5adc
-https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.2.13-h4ab18f5_6.conda#27329162c0dc732bcf67a4e0cd488125
+https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.1-h4ab18f5_1.conda#57d7dc60e9325e3de37ff8dffd18e814
 https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.5-h59595ed_0.conda#fcea371545eda051b6deafb24889fc69
-https://conda.anaconda.org/conda-forge/linux-64/openssl-3.3.0-h4ab18f5_3.conda#12ea6d0d4ed54530eaed18e4835c1f7c
+https://conda.anaconda.org/conda-forge/linux-64/openssl-3.3.1-h4ab18f5_0.conda#a41fa0e391cc9e0d6b78ac69ca047a6c
 https://conda.anaconda.org/conda-forge/linux-64/xz-5.2.6-h166bdaf_0.tar.bz2#2161070d867d1b1204ea749c8eec4ef0
 https://conda.anaconda.org/conda-forge/linux-64/yaml-0.2.5-h7f98852_2.tar.bz2#4cb3ad778ec2d5a7acbdf254eb1c42ae
 https://conda.anaconda.org/conda-forge/linux-64/libgfortran-ng-13.2.0-h69a702a_7.conda#1b84f26d9f4f6026e179e7805d5a15cd
@@ -49,7 +49,7 @@ https://conda.anaconda.org/conda-forge/linux-64/pyyaml-6.0.1-py312h98912ed_1.con
 https://conda.anaconda.org/conda-forge/noarch/setuptools-70.0.0-pyhd8ed1ab_0.conda#c8ddb4f34a208df4dd42509a0f6a1c89
 https://conda.anaconda.org/conda-forge/noarch/sortedcontainers-2.4.0-pyhd8ed1ab_0.tar.bz2#6d6552722448103793743dabfbda532d
 https://conda.anaconda.org/bioconda/noarch/twobitreader-3.1.7-pyh864c0ab_1.tar.bz2#5ec5a0c9b2b017d0fa99060d6b97639d
-https://conda.anaconda.org/conda-forge/noarch/typing_extensions-4.11.0-pyha770c72_0.conda#6ef2fc37559256cf682d8b3375e89b80
+https://conda.anaconda.org/conda-forge/noarch/typing_extensions-4.12.1-pyha770c72_0.conda#26d7ee34132362115093717c706c384c
 https://conda.anaconda.org/conda-forge/linux-64/websockets-12.0-py312h98912ed_0.conda#2cec07e0561fe5fd143589fcfbcb6499
 https://conda.anaconda.org/conda-forge/noarch/wheel-0.43.0-pyhd8ed1ab_1.conda#0b5293a157c2b5cd513dd1b03d8d3aae
 https://conda.anaconda.org/conda-forge/noarch/xlsxwriter-3.1.9-pyhd8ed1ab_0.conda#70e533db62a710ae216fdaccc4a983c8
@@ -62,7 +62,7 @@ https://conda.anaconda.org/conda-forge/linux-64/liblapack-3.9.0-22_linux64_openb
 https://conda.anaconda.org/conda-forge/linux-64/openpyxl-3.1.2-py312h98912ed_1.conda#7f4e257ea4714e9166a93b733b26c2da
 https://conda.anaconda.org/conda-forge/noarch/oyaml-1.0-pyhd8ed1ab_0.tar.bz2#98c4dd307dbff3b69a2277dc1a55fd8d
 https://conda.anaconda.org/conda-forge/noarch/pip-24.0-pyhd8ed1ab_0.conda#f586ac1e56c8638b64f9c8122a7b8a67
-https://conda.anaconda.org/conda-forge/noarch/typing-extensions-4.11.0-hd8ed1ab_0.conda#471e3988f8ca5e9eb3ce6be7eac3bcee
+https://conda.anaconda.org/conda-forge/noarch/typing-extensions-4.12.1-hd8ed1ab_0.conda#474ea8ffc0a68a93dd5fcb23f7e09e5d
 https://conda.anaconda.org/conda-forge/noarch/urllib3-2.2.1-pyhd8ed1ab_0.conda#08807a87fa7af10754d46f63b368e016
 https://conda.anaconda.org/conda-forge/linux-64/yarl-1.9.4-py312h98912ed_0.conda#ec3eb4803df33e90a41bc216a68d02f1
 https://conda.anaconda.org/conda-forge/linux-64/aiohttp-3.9.5-py312h98912ed_0.conda#edc01db954d139fe398a5f378f96ab4d
@@ -72,4 +72,4 @@ https://conda.anaconda.org/conda-forge/linux-64/numpy-1.26.4-py312heda63a1_0.con
 https://conda.anaconda.org/conda-forge/noarch/requests-2.32.3-pyhd8ed1ab_0.conda#5ede4753180c7a550a443c430dc8ab52
 https://conda.anaconda.org/conda-forge/linux-64/biopython-1.83-py312h98912ed_0.conda#53e12da7730d109fddca08aef28a4a50
 https://conda.anaconda.org/conda-forge/noarch/requests-toolbelt-1.0.0-pyhd8ed1ab_0.conda#99c98318c8646b08cc764f90ce98906e
-https://conda.anaconda.org/bioconda/noarch/open-cravat-2.6.1-pyhdfd78af_0.tar.bz2#b53e50da0f8796571eef7c39fbfd3545
+https://conda.anaconda.org/bioconda/noarch/open-cravat-2.7.1-pyhdfd78af_0.tar.bz2#371c1cad05c9817e1fd3909b862cbf17
