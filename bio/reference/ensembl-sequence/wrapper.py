@@ -19,9 +19,9 @@ if release >= 81 and build == "GRCh37":
 elif snakemake.params.get("branch"):
     branch = snakemake.params.branch + "/"
 
-collection = ""
-if snakemake.params.get("collection"):
-    collection = snakemake.params.collection + "/"
+collection = snakemake.params.get("collection". "")
+if collection:
+    collection = f"{collection}/"
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
