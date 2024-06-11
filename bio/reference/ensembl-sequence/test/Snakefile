@@ -56,7 +56,7 @@ rule get_off_branch_genome:
         url="ftp://ftp.ensemblgenomes.org/pub/", # optional set ftp server source
         collection="bacteria_0_collection", # optional set collection source for genome
     log:
-        "logs/get_genome.log",
+        "logs/get_off_branch_genome.log",
     cache: "omit-software"  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-sequence"
