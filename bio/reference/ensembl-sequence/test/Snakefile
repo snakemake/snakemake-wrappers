@@ -38,7 +38,7 @@ rule get_multiple_chromosome:
         release="101",
         chromosome=["I", "II"],  # optional: restrict to one or multiple chromosomes
     log:
-        "logs/get_genome.log",
+        "logs/get_multiple_chromosome.log",
     cache: "omit-software"  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-sequence"
