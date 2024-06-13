@@ -1,0 +1,4 @@
+name: inphared-db
+description: Download sequence file from the Inphared database (https://github.com/RyanCook94/inphared/blob/main/README.md), and store them in a single .fasta file. Please check the current database available at the above link and adjust the config file. 
+authors:
+  - Noriko A. Cassman
