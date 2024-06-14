@@ -7,7 +7,7 @@ rule test_ngsderive_endedness:
         "ngsderive/endedness.log",
     params:
         command="endedness",
-        extra="-n 2 --lenient",
+        extra="--n-reads 2 --lenient",
     wrapper:
         "master/bio/ngsderive"
 
@@ -23,7 +23,7 @@ rule test_ngsderive_junction_annotation:
         "ngsderive/junctions.log",
     params:
         command="junction-annotation",
-        extra="-i 2 -c",
+        extra="--min-intron 2 --consider-unannotated-references-novel",
     wrapper:
         "master/bio/ngsderive"
 
@@ -39,7 +39,7 @@ rule test_ngsderive_junction_annotation_list:
         "ngsderive/junctions.log",
     params:
         command="junction-annotation",
-        extra="-i 2 -c",
+        extra="--min-intron 2 --consider-unannotated-references-novel",
     wrapper:
         "master/bio/ngsderive"        
 
@@ -54,7 +54,7 @@ rule test_ngsderive_strandeness:
         "ngsderive/strand.log",
     params:
         command="strandedness",
-        extra="--verbose -m 2 -n 1",
+        extra="--verbose --minimum-reads-per-gene 2 --n-genes 1",
     wrapper:
         "master/bio/ngsderive"
 
@@ -68,7 +68,7 @@ rule test_ngsderive_encoding:
         "ngsderive/encoding.log",
     params:
         command="encoding",
-        extra="-n 2",
+        extra="--n-reads 2",
     wrapper:
         "master/bio/ngsderive"
 
@@ -82,7 +82,7 @@ rule test_ngsderive_instrument:
         "ngsderive/instrument.log",
     params:
         command="instrument",
-        extra="-n 2 -v",
+        extra="--n-reads 2 --verbose",
     wrapper:
         "master/bio/ngsderive"
 
@@ -96,6 +96,6 @@ rule test_ngsderive_readlen:
         "ngsderive/readlen.log",
     params:
         command="readlen",
-        extra="-c 0.1 -n 2",
+        extra="--majority-vote-cutoff 10 --n-reads 2",
     wrapper:
         "master/bio/ngsderive"
