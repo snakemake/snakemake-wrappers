@@ -1,0 +1,5 @@
+channels:
+  - bioconda
+  - nodefaults
+dependencies:
+  - taxonkit =0.16.0

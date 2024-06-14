@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - pyega3 =5.1.0
+  - pyega3 =5.2.0

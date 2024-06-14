@@ -1,0 +1,12 @@
+name: emu collapse-taxonomy
+description: Collapse a TSV output file generated with emu at the desired taxonomic rank.
+url: https://github.com/treangenlab/emu
+authors:
+  - Curro Campuzano
+input:
+  - A TSV output file generated with emu.
+output:
+  - A TSV output file collapsed at the desired taxonomic rank.
+params:
+  rank: Accepted ranks are 'species', 'genus', 'family', 'order', 'class', 'phylum' and 'superkingdom'. If ommited, agglomeration will be done at the species level. 
+

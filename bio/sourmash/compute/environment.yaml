@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - sourmash =4.8.6
+  - sourmash =4.8.9
