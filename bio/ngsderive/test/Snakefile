@@ -7,7 +7,7 @@ rule test_ngsderive_endedness:
         "ngsderive/endedness.log",
     params:
         command="endedness",
-        extra="--n-reads 2 --lenient",
+        extra="--n-reads 2",
     wrapper:
         "master/bio/ngsderive"
 
