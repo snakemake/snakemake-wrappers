@@ -46,7 +46,7 @@ script = Path(snakemake.input.get("script"))
 report = snakemake.output.get("report", None)
 
 
-# Build params
+# Build params to be passed to Quarto params (-P flag)
 params = []
 for name, value in snakemake.input.items():
     if name not in {"renv", "script"}:
@@ -58,6 +58,10 @@ for name, value in snakemake.params.items():
 for name, value in snakemake.output.items():
     if name not in {"report"}:
         add_parameter(name, value, params)
+
+# Resolve the logfile path and set the log_fmt_shell
+# This is required as we may change the working directory
+# to the renv folder for execution of quarto.
 logfile = snakemake.log
 if logfile:
     snakemake.log = str(Path(str(logfile)).resolve())
@@ -67,14 +71,23 @@ args = " ".join(params)
 
 with tempfile.TemporaryDirectory() as temp_output:
     if report is None:
+        # In case no report output is specified,
+        # the output is created in a temporary folder
         out_report = Path(temp_output) / script.name
         out_report_rendered = out_report
         report_path = f"{out_report}.tmp"
     else:
+        # In case an output is specified, 
+        # the output is created in the target folder.
         report_path = Path(report).resolve()
+        # The report to-be-rendered is namespaced
+        # to prevent clashes.
         out_report = (
-            report_path.parent / f"{report_path.stem}_temp_{report_path.suffix[1:]}.qmd"
+            report_path.parent / f"{report_path.stem}_{report_path.suffix[1:]}.qmd"
         )
+        # The rendered report is named as the final report with the correct suffix
+        # Note that in addition ot the target report file, also a folder `*_files/`
+        # is created, which contains the images and other files linked in the html report.
         out_report_rendered = out_report.with_suffix(report_path.suffix)
         if report_path.suffix == ".pdf":
             warnings.warn(
