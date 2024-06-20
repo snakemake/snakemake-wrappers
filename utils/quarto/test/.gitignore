@@ -1,0 +1,9 @@
+example_proj*
+logs/
+env/renv_test
+*_files/
+*_input.txt
+*_output.txt
+*.docx
+*.html
+output/

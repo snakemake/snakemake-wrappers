@@ -1,0 +1,12 @@
+---
+title: "Quarto example with additional package dependency"
+author: "Vito Zanotelli, University Children's Hospital Zurich"
+format: html
+---
+
+This quarto mardown demonstrates how an extra
+dependency can be installed either via conda or renv.
+
+```{r, Try to load data table}
+library(data.table)
+```

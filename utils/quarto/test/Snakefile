@@ -1,0 +1,147 @@
+import os
+
+
+rule all:  # [hide]
+    input:  # [hide]
+        "output/simple.html",  # [hide]
+        "output/simple.docx",  # [hide]
+        "output/example_proj_full.html",  # [hide]
+        "output/example_proj_noreport.txt",  # [hide]
+        "output/extra_datatable_conda.html",  # [hide]
+        "output/extra_datatable_renv.html",  # [hide]
+
+
+rule testfile:
+    output:
+        touch("{project}_input.txt"),
+
+
+rule render_quarto_full:
+    input:
+        script="full.qmd",
+        input_txt="{project}_input.txt",
+    output:
+        report="{project}_full.html",
+        output_txt="{project}_output.txt",
+    params:
+        project=lambda wc: wc.project,
+    log:
+        "logs/{project}_html.log",
+    wrapper:
+        "master/utils/quarto"
+
+
+rule render_html:
+    input:
+        script="simple.qmd",
+    output:
+        report="output/simple.html",
+    log:
+        "logs/simple_html.log",
+    wrapper:
+        "master/utils/quarto"
+
+
+rule render_docx:
+    input:
+        script="simple.qmd",
+    output:
+        report="output/simple.docx",
+    log:
+        "logs/simple_docx.log",
+    wrapper:
+        "master/utils/quarto"
+
+
+rule render_quarto_noreport:
+    input:
+        script="full.qmd",
+        input_txt="{project}_input.txt",
+    output:
+        output_txt="{project}_noreport.txt",
+    log:
+        "logs/{project}_noreport.log",
+    wrapper:
+        "master/utils/quarto"
+
+
+rule render_quarto_extra_conda:
+    conda:
+        "env/extra.yaml"
+    input:
+        script="extra_datatable.qmd",
+    output:
+        report="output/extra_datatable_conda.html",
+    log:
+        "logs/conda.log",
+    wrapper:
+        "master/utils/quarto"
+
+
+# Rules for a example using renv
+wildcard_constraints:
+    # Allows renv_dir also to be the empty (=root dir)
+    renv_dir=".*",
+
+
+# The `renv_lock` on renv rules is an artificial resource to prevent multiple
+# renv operations at the same time, which may cause issues..
+# In such cases restrict it via the
+# resources CLI flag: --resources renv_lock=1
+
+
+rule renv_example_init:
+    conda:
+        "../environment.yaml"
+    output:
+        rprofile="{renv_dir}/.Rprofile",
+        lockfile="{renv_dir}/renv.lock",
+    params:
+        dependencies="'quarto','data.table'",
+    resources:
+        renv_lock=1,
+    log:
+        "logs/renv/{renv_dir}_init.log",
+    shell:
+        """
+        DIRNAME="{wildcards.renv_dir}"
+        mkdir -p $DIRNAME
+        cd $DIRNAME
+        Rscript -e "renv::init();"
+        # somehow the lockfile needs to be removed
+        # otherwise renv::install wont work with `Error: package 'data.table' is not available'
+        rm $(basename {output.lockfile})
+        Rscript -e "renv::install(c('data.table', 'quarto'));\
+        renv::snapshot(type='all')"
+        """
+
+
+rule restore_renv:
+    conda:
+        "../environment.yaml"
+    input:
+        rprofile="{renv_dir}.Rprofile",
+        lock="{renv_dir}renv.lock",
+    output:
+        restored="{renv_dir}restored.Rprofile",
+    resources:
+        renv_lock=1,
+    log:
+        "logs/renv/{renv_dir}_restore.log",
+    shell:
+        """
+        R -e 'source("{input.rprofile}", chdir=TRUE);renv::restore()'
+        echo 'source("{input.rprofile}", chdir=TRUE)' > {output.restored}
+        """
+
+
+rule render_quarto_renv:
+    input:
+        script="extra_datatable.qmd",
+        renv="env/renv_test/restored.Rprofile",
+    output:
+        report="output/extra_datatable_renv.html",
+    log:
+        "logs/renv.log",
+    wrapper:
+        "master/utils/quarto"
