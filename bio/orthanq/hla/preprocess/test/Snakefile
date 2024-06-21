@@ -1,0 +1,12 @@
+rule orthanq_preprocess_hla:
+    input:
+        genome="genome.fasta",
+        haplotype_variants="haplotype_variants.vcf",
+        vg_index="hprc_prebuilt.xg",
+        reads=["reads_1.fq", "reads_2.fq"]
+    output:
+        "calls.bcf",
+    log:
+        "logs/orthanq_preprocess/preprocess_hla.log",
+    wrapper:
+        "master/bio/orthanq/hla/preprocess"

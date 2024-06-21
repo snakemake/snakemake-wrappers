@@ -1,0 +1,13 @@
+name: orthanq preprocess hla
+description: |
+  Orthanq preprocess hla subcommand preprocess raw reads and outputs variant calls to a BCF file.
+input:
+  - genome: Reference genome in FASTA format.
+  - haplotype_variants: Haplotype variants that are generated with `orthanq candidates hla` subcommand.
+  - reads: Input raw reads in FASTQ format.
+  - vg_index: A prebuilt pangenome index has to be downloaded following the instructions in https://orthanq.github.io/docs/usage.html#preparation.
+output:
+  - BCF file
+url: https://github.com/orthanq/orthanq
+authors:
+  - Hamdiye Uzuner

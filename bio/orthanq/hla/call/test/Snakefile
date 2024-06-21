@@ -1,0 +1,12 @@
+rule orthanq_call_hla:
+    input:
+        haplotype_calls="haplotype_calls.bcf",
+        haplotype_variants="haplotype_variants.vcf",
+        xml="hla.xml"
+    output:
+        "calls.csv",
+    params: prior="diploid"
+    log:
+        "logs/orthanq_call/call_hla.log",
+    wrapper:
+        "master/bio/orthanq/hla/call"
