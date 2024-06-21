@@ -19,11 +19,16 @@ if release >= 81 and build == "GRCh37":
 elif snakemake.params.get("branch"):
     branch = snakemake.params.branch + "/"
 
+collection = snakemake.params.get("collection". "")
+if collection:
+    collection = f"{collection}/"
+
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-spec = ("{build}" if int(release) > 75 else "{build}.{release}").format(
-    build=build, release=release
-)
+if branch == "" or branch == "grch37/":
+    spec = f"{build}" if int(release) > 75 else f"{build}.{release}"
+else:
+    spec = f"{build}" if int(release) > 30 else f"{build}.{release}"
 
 suffixes = ""
 datatype = snakemake.params.get("datatype", "")
@@ -52,7 +57,7 @@ if chromosome:
 
 url = snakemake.params.get("url", "ftp://ftp.ensembl.org/pub")
 spec = spec.format(build=build, release=release)
-url_prefix = f"{url}/{branch}release-{release}/fasta/{species}/{datatype}/{species.capitalize()}.{spec}"
+url_prefix = f"{url}/{branch}release-{release}/fasta/{collection}{species}/{datatype}/{species.capitalize()}.{spec}"
 
 success = False
 for suffix in suffixes:
