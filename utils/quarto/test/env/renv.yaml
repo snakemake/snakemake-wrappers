@@ -2,4 +2,5 @@ channels:
     - conda-forge
     - nodefaults
 dependencies:
-    - r-renv
+    - r-base=4.3.3
+    - r-renv=1.0.7

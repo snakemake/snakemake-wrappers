@@ -1,6 +1,6 @@
 channels:
     - conda-forge
 dependencies:
-    - r-quarto
-    - r-data.table
+    - r-quarto=1.4
+    - r-data.table=1.15.4
    
