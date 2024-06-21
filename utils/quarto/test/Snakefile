@@ -112,7 +112,7 @@ rule renv_example_init:
 
 rule restore_renv:
     conda:
-        "../environment.yaml"
+        "env/renv.yaml"
     input:
         rprofile="{renv_dir}.Rprofile",
         lock="{renv_dir}renv.lock",
