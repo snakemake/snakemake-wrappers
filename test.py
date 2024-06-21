@@ -6691,7 +6691,7 @@ def test_emu_combine_output_split():
 @skip_if_not_modified
 def test_quarto_simple_html():
     run(
-        "bio/emu/combine-outputs",
+        "utils/quarto",
         [
             "snakemake",
             "--cores",
@@ -6701,25 +6701,12 @@ def test_quarto_simple_html():
         ],
     )
 
-
-@skip_if_not_modified
-def test_quarto_simple_html():
-    run(
-        "bio/emu/combine-outputs",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "output/simple.html",
-            "--use-conda",
-        ],
-    )
 
 
 @skip_if_not_modified
 def test_quarto_simple_docx():
     run(
-        "bio/emu/combine-outputs",
+        "utils/quarto",
         [
             "snakemake",
             "--cores",
@@ -6733,7 +6720,7 @@ def test_quarto_simple_docx():
 @skip_if_not_modified
 def test_quarto_simple_parameters():
     run(
-        "bio/emu/combine-outputs",
+        "utils/quarto",
         [
             "snakemake",
             "--cores",
@@ -6747,7 +6734,7 @@ def test_quarto_simple_parameters():
 @skip_if_not_modified
 def test_quarto_simple_noreport():
     run(
-        "bio/emu/combine-outputs",
+        "utils/quarto",
         [
             "snakemake",
             "--cores",
@@ -6761,7 +6748,7 @@ def test_quarto_simple_noreport():
 @skip_if_not_modified
 def test_quarto_simple_extra_conda_deps():
     run(
-        "bio/emu/combine-outputs",
+        "utils/quarto",
         [
             "snakemake",
             "--cores",
@@ -6775,7 +6762,7 @@ def test_quarto_simple_extra_conda_deps():
 @skip_if_not_modified
 def test_quarto_simple_extra_renv_deps():
     run(
-        "bio/emu/combine-outputs",
+        "utils/quarto",
         [
             "snakemake",
             "--cores",
