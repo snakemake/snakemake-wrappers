@@ -2,7 +2,7 @@ rule plot_fingerprint:
     input:
         bam_files=expand("samples/{sample}.bam", sample=["a", "b"]),
         bam_idx=expand("samples/{sample}.bam.bai", sample=["a", "b"]),
-        jsd_sample="samples/b.bam" # optional, requires qc_metrics output
+        jsd_sample="samples/b.bam",  # optional, requires qc_metrics output
     output:
         # Please note that --plotFile and --outRawCounts are exclusively defined via output files.
         # Usable output variables, their extensions and which option they implicitly call are listed here:
@@ -10,13 +10,12 @@ rule plot_fingerprint:
         fingerprint="plot_fingerprint/plot_fingerprint.png",  # required
         # optional output
         counts="plot_fingerprint/raw_counts.tab",
-        qc_metrics="plot_fingerprint/qc_metrics.txt"
+        qc_metrics="plot_fingerprint/qc_metrics.txt",
     log:
-        "logs/deeptools/plot_fingerprint.log"
+        "logs/deeptools/plot_fingerprint.log",
     params:
         # optional parameters
-        "--numberOfSamples 200 "
-    threads:
-        8
+        extra="--numberOfSamples 200",
+    threads: 8
     wrapper:
         "master/bio/deeptools/plotfingerprint"

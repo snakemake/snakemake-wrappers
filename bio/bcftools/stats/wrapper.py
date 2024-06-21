@@ -12,7 +12,7 @@ bcftools_opts = get_bcftools_opts(
     snakemake, parse_output=False, parse_output_format=False, parse_memory=False
 )
 extra = snakemake.params.get("extra", "")
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 
 shell(

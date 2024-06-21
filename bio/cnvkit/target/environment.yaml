@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - cnvkit =0.9.10
+  - cnvkit =0.9.11
