@@ -77,7 +77,7 @@ with tempfile.TemporaryDirectory() as temp_output:
         out_report_rendered = out_report
         report_path = f"{out_report}.tmp"
     else:
-        # In case an output is specified, 
+        # In case an output is specified,
         # the output is created in the target folder.
         report_path = Path(report).resolve()
         # The report to-be-rendered is namespaced
@@ -95,7 +95,8 @@ with tempfile.TemporaryDirectory() as temp_output:
                 " via conda: https://github.com/conda-forge/quarto-feedstock/issues/26"
             )
         args += f" --to={report_path.suffix[1:]}"
-    shell("""
+    shell(
+        """
         # copy the input script to prevent name clashes
         cp {script} {out_report}
         WD=$(pwd)
@@ -107,4 +108,5 @@ with tempfile.TemporaryDirectory() as temp_output:
           {log}
         # move the output to the final destination
         mv {out_report_rendered} {report_path}
-        """)
+        """
+    )

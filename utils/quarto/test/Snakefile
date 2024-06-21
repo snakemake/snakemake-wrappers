@@ -87,32 +87,26 @@ wildcard_constraints:
 # The `renv_lock` on renv rules is an artificial resource to prevent multiple
 # renv operations at the same time, which may cause issues..
 # In such cases restrict it via the
-# resources CLI flag: --resources renv_lock=1
+# resources CLI flag: --resources renv_lock=1 --set-resource-scopes renv_lock=global
 
 
 rule renv_example_init:
     conda:
-        "../environment.yaml"
+        "env/renv.yaml"
+    input:
+        lockfile="env/renv_dt.lock",
     output:
         rprofile="{renv_dir}/.Rprofile",
         lockfile="{renv_dir}/renv.lock",
-    params:
-        dependencies="'quarto','data.table'",
     resources:
         renv_lock=1,
     log:
         "logs/renv/{renv_dir}_init.log",
     shell:
         """
-        DIRNAME="{wildcards.renv_dir}"
-        mkdir -p $DIRNAME
-        cd $DIRNAME
-        Rscript -e "renv::init();"
-        # somehow the lockfile needs to be removed
-        # otherwise renv::install wont work with `Error: package 'data.table' is not available'
-        rm $(basename {output.lockfile})
-        Rscript -e "renv::install(c('data.table', 'quarto'));\
-        renv::snapshot(type='all')"
+        Rscript -e "renv::init(project='{wildcards.renv_dir}', bare=T); \
+                    renv::restore(project='{wildcards.renv_dir}', lockfile='$(realpath {input.lockfile})');\
+                    renv::snapshot(type='all')"
         """
 
 
