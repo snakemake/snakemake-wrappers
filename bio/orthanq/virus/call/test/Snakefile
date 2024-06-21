@@ -1,0 +1,11 @@
+rule orthanq_call_virus:
+    input:
+        haplotype_calls="haplotype_calls.bcf",
+        candidates_folder="candidates",
+    output:
+        "calls.csv",
+    params: prior="uniform"
+    log:
+        "logs/orthanq_call/call_virus.log",
+    wrapper:
+        "master/bio/orthanq/virus/call"

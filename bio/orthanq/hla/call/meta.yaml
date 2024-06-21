@@ -1,6 +1,6 @@
 name: orthanq call hla
 description: |
-  Orthanq call hla quantifies HLA haplotypes given calls.bcf that's produced with orthanq preprocess hla and outputs to a TSV file.
+  Orthanq call hla quantifies HLA haplotypes given calls.bcf that's produced with orthanq preprocess hla and outputs to a CSV file.
 input:
   - haplotype_variants: Haplotype variants that are generated with `orthanq candidates hla`.
   - haplotype_calls: Haplotype calls that are generated with `orthanq preprocess hla`.
@@ -8,7 +8,7 @@ input:
 params:
   - prior: Prior used in Bayesian model. It can be uniform or diploid (diploid highly recommended for HLA typing)
 output:
-  - Tabular file (CSV) with quantified HLA haplotypes.
+  - Tabular file with quantified HLA haplotypes.
 url: https://github.com/orthanq/orthanq
 authors:
   - Hamdiye Uzuner

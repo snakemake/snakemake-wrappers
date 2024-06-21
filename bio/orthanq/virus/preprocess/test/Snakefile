@@ -1,0 +1,10 @@
+rule orthanq_preprocess_virus:
+    input:
+        candidates_folder="candidates",
+        reads=["reads_1.fq", "reads_2.fq"]
+    output:
+        "calls.bcf",
+    log:
+        "logs/orthanq_preprocess/preprocess_virus.log",
+    wrapper:
+        "master/bio/orthanq/virus/preprocess"
