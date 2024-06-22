@@ -66,6 +66,8 @@ logfile = snakemake.log
 if logfile:
     snakemake.log = str(Path(str(logfile)).resolve())
     log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+else:
+    log = ""
 
 args = " ".join(params)
 
