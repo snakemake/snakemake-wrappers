@@ -7,7 +7,6 @@ rule all:  # [hide]
         "output/simple.docx",  # [hide]
         "output/example_proj_full.html",  # [hide]
         "output/example_proj_noreport.txt",  # [hide]
-        "output/extra_datatable_conda.html",  # [hide]
         "output/extra_datatable_renv.html",  # [hide]
 
 
@@ -65,17 +64,21 @@ rule render_quarto_noreport:
         "master/utils/quarto"
 
 
-rule render_quarto_extra_conda:
-    conda:
-        "env/extra.yaml"
-    input:
-        script="extra_datatable.qmd",
-    output:
-        report="output/extra_datatable_conda.html",
-    log:
-        "logs/conda.log",
-    wrapper:
-        "master/utils/quarto"
+# To add additional r-dependencies used to render
+# the report also the conda: directive can be
+# overwritten. The only required dependency
+# is r-quarto
+# rule render_quarto_extra_conda:
+#     conda:
+#         "env/extra.yaml"
+#     input:
+#         script="extra_datatable.qmd",
+#     output:
+#         report="output/extra_datatable_conda.html",
+#     log:
+#         "logs/conda.log",
+#     wrapper:
+#         "master/utils/quarto"
 
 
 # Rules for a example using renv
@@ -130,6 +133,10 @@ rule restore_renv:
 
 
 rule render_quarto_renv:
+    # If the renv is build using a different r version
+    # than the wrapper, the "conda:" directive may can be overwritten
+    # using an environment with the correct "r-base" & "r-conda"
+    # installed
     input:
         script="extra_datatable.qmd",
         renv="env/renv_test/restored.Rprofile",

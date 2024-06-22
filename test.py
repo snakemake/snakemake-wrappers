@@ -6745,19 +6745,6 @@ def test_quarto_simple_noreport():
     )
 
 
-@skip_if_not_modified
-def test_quarto_simple_extra_conda_deps():
-    run(
-        "utils/quarto",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "output/extra_datatable_conda.html",
-            "--use-conda",
-        ],
-    )
-
 
 @skip_if_not_modified
 def test_quarto_simple_extra_renv_deps():

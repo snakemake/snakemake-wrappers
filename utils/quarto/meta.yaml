@@ -46,6 +46,12 @@ params:
       ```
       will be passed to quarto render as `-P project=project -P threads=threads -P mem=mem`
 notes: |
-  This wrapper runs quarto to render markdown .qmd notebooks. It supports r-package management via conda and renv, as illustrated
-  in the examples.
-  PDF rendering is currently not working.
+  This wrapper runs quarto to render markdown .qmd notebooks.
+  It supports r-package management via `conda` and `renv`:
+  - For `conda` overwrite the conda environment from the `conda:` directive of the rule with an environement with
+  the r dependencies as well as `r-quarto` installed.
+  - For `renv` restore an environment before and point the `input.renv`
+  to the environment folder or a file within (eg `.Rprofile`). The r-version needs used to build the `renv` needs to match
+  the one of the wrapper or the environment of the wrapper needs to be overwritten with via `conda:` with a matching `r-base`
+  installation.
+  PDF rendering is currently not working as tinytex is not properly supported in `conda`.
