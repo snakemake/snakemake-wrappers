@@ -1,13 +1,13 @@
 rule get_regulatory_features_gff3_gz:
     output:
-        "resources/regulatory_features.gff3.gz",  # presence of .gz determines if downloaded is kept compressed
+        "resources/regulatory_features.gff3.gz", # presence of .gz determines if downloaded is kept compressed
     params:
-        species="homo_sapiens",  # for available species, release and build, search via "Regulation (GFF)" column at: https://www.ensembl.org/info/data/ftp/index.html
+        species="homo_sapiens", # for available species, release and build, search via "Regulation (GFF)" column at: https://www.ensembl.org/info/data/ftp/index.html
         release="112",
         build="GRCh38",
     log:
         "logs/get_regulatory_features.log",
-    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    cache: "omit-software"  # save space and time with between workflow caching (see docs); for data downloads, software does not affect the resulting data
     wrapper:
         "master/bio/reference/ensembl-regulation"
 
@@ -21,7 +21,7 @@ rule get_regulatory_features_grch37_gff:
         build="GRCh37",
     log:
         "logs/get_regulatory_features.log",
-    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    cache: "omit-software"  # save space and time with between workflow caching (see docs); for data downloads, software does not affect the resulting data
     wrapper:
         "master/bio/reference/ensembl-regulation"
 
@@ -35,6 +35,6 @@ rule get_regulatory_features_mouse_gff_gz:
         build="GRCm39",
     log:
         "logs/get_regulatory_features.log",
-    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    cache: "omit-software"  # save space and time with between workflow caching (see docs); for data downloads, software does not affect the resulting data
     wrapper:
         "master/bio/reference/ensembl-regulation"
