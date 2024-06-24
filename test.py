@@ -5599,6 +5599,30 @@ def test_ensembl_annotation_gtf_gz():
 
 
 @skip_if_not_modified
+def test_ensembl_regulatory_gff3_gz():
+    run(
+        "bio/reference/ensembl-regulation",
+        ["snakemake", "--cores", "1", "resources/regulatory_features.gff3.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_ensembl_regulatory_features_grch37_gff():
+    run(
+        "bio/reference/ensembl-regulation",
+        ["snakemake", "--cores", "1", "resources/regulatory_features.gff", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_ensembl_regulatory_features_mouse_gff_gz():
+    run(
+        "bio/reference/ensembl-regulation",
+        ["snakemake", "--cores", "1", "resources/regulatory_features.mouse.gff.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_ensembl_variation():
     run(
         "bio/reference/ensembl-variation",
