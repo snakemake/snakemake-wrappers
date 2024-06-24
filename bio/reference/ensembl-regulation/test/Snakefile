@@ -1,8 +1,8 @@
 rule get_regulatory_features_gff3_gz:
     output:
-        "resources/regulatory_features.gff3.gz", # presence of .gz determines if downloaded is kept compressed
+        "resources/regulatory_features.gff3.gz",  # presence of .gz determines if downloaded is kept compressed
     params:
-        species="homo_sapiens", # for available species, release and build, search via "Regulation (GFF)" column at: https://www.ensembl.org/info/data/ftp/index.html
+        species="homo_sapiens",  # for available species, release and build, search via "Regulation (GFF)" column at: https://www.ensembl.org/info/data/ftp/index.html
         release="112",
         build="GRCh38",
     log:
