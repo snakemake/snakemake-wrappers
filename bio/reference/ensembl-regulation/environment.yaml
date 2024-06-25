@@ -1,6 +1,5 @@
 channels:
   - conda-forge
-  - bioconda
   - nodefaults
 dependencies:
-  - ensembl-vep =112.0
+  - wget =1
