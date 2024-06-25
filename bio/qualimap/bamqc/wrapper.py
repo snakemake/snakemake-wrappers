@@ -1,4 +1,4 @@
-__author__ = "Fritjof Lammers"
+__author__ = "Fritjof Lammers, Christopher Schröder"
 __copyright__ = "Copyright 2022, Fritjof Lammers"
 __email__ = "f.lammers@dkfz.de"
 
@@ -22,9 +22,13 @@ if os.environ.get("DISPLAY"):
     del os.environ["DISPLAY"]
 
 extra = snakemake.params.get("extra", "")
+if target := snakemake.params.get("target"):
+    extra = f"{extra} --feature-file {target}"
+
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 shell(
     "{java_opts_str} qualimap bamqc {extra} "
+    "-nt {snakemake.threads} "
     "-bam {snakemake.input.bam} "
     "-outdir {snakemake.output} "
     "{log}"
