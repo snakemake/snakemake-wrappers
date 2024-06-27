@@ -5,7 +5,6 @@ __license__ = "MIT"
 
 
 import os
-import json
 import subprocess as sp
 from snakemake.shell import shell
 
@@ -31,9 +30,10 @@ if default_blacklist or default_known_fusions:
         raise ValueError(
             "Please provide a genome build when using blacklist- or known_fusion-filtering"
         )
-    command = "arriba -h | grep -e 'Arriba ' -e '^Version: ' | grep -om1 '[0-9.]\+$'"
-    arriba_vers = sp.run(command).stdout.strip()
-
+    command = "arriba -h | grep -e 'Arriba ' -e '^Version: ' | grep -om1 '[0-9.]\\+$'"
+    arriba_vers = sp.run(
+        command, shell=True, capture_output=True, text=True
+    ).stdout.strip()
 
 if blacklist_input and not default_blacklist:
     blacklist_cmd = "-b " + blacklist_input
