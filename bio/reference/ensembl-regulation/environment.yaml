@@ -2,5 +2,4 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - datavzrd =2.38.1
-  - yte =1.5.4
+  - wget =1
