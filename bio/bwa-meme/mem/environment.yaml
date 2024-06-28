@@ -7,4 +7,4 @@ dependencies:
   - samtools =1.20
   - samblaster =0.1.26
   - mbuffer =20160228
-  - picard-slim =3.1.1
+  - picard-slim =3.2.0
