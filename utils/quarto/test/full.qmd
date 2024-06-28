@@ -1,0 +1,15 @@
+---
+title: "Full Quarto example: `r params$project`"
+author: "Vito Zanotelli, University Children's Hospital Zurich"
+format: html
+params:
+  input_txt: '../results/test.txt'
+  output_txt: '../results/test_copy.txt'
+  project: 'Test'
+---
+
+
+```{r}
+#| label: copy example file
+file.copy(params$input_txt, params$output_txt)
+```

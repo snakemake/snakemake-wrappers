@@ -1,0 +1,15 @@
+---
+title: "Quarto example with additional package dependency"
+author: "Vito Zanotelli, University Children's Hospital Zurich"
+format: html
+---
+
+This quarto markdown is used to demonstrate how an extra
+dependency - 'data.table' can be installed either via conda or renv.
+
+As 'data.table' is not available in the base environment, building
+this report fails if it has not been additionally installed.
+
+```{r, Try to load data table}
+library(data.table)
+```

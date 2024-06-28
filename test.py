@@ -6710,3 +6710,75 @@ def test_emu_combine_output_split():
             "-F",
         ],
     )
+
+
+@skip_if_not_modified
+def test_quarto_simple_html():
+    run(
+        "utils/quarto",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "output/simple.html",
+            "--use-conda",
+        ],
+    )
+
+
+
+@skip_if_not_modified
+def test_quarto_simple_docx():
+    run(
+        "utils/quarto",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "output/simple.docx",
+            "--use-conda",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_quarto_simple_parameters():
+    run(
+        "utils/quarto",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "output/example_proj_full.html",
+            "--use-conda",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_quarto_simple_noreport():
+    run(
+        "utils/quarto",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "output/example_proj_noreport.txt",
+            "--use-conda",
+        ],
+    )
+
+
+
+@skip_if_not_modified
+def test_quarto_simple_extra_renv_deps():
+    run(
+        "utils/quarto",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "output/extra_datatable_renv.html",
+            "--use-conda",
+        ],
+    )
