@@ -1,0 +1,22 @@
+
+rule vcf_fix_iupac_alleles_vcf:
+    input:
+        "{file}.vcf.gz",
+    output:
+        vcf="results/{file}.vcf.gz",
+    log:
+        "logs/{file}.vcf.log",
+    params:
+        extra="",
+    threads: 1
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/rbt/vcf_fix_iupac_alleles"
+
+
+use rule vcf_fix_iupac_alleles_vcf as vcf_fix_iupac_alleles_bcf with:
+    output:
+        bcf="results/{file}.bcf",
+    log:
+        "logs/{file}.bcf.log",
