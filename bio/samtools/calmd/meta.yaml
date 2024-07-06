@@ -1,7 +1,12 @@
 name: samtools calmd
 description: Calculates MD and NM tags.
+url: http://www.htslib.org/doc/samtools-calmd.html
 authors:
   - Filipe G. Vieira
-notes: |
-  * The `extra` param allows for additional program arguments (not `-@/--threads` or `-O/--output-fmt`).
-  * For more information see, http://www.htslib.org/doc/samtools-calmd.html
+input:
+  - SAM/BAM/CRAM file
+output:
+  - SAM/BAM/CRAM file
+  - SAM/BAM/CRAM index file (optional)
+params:
+  - extra: additional program arguments (not `-@/--threads`, `--write-index`, `-m`, `-o` or `-O/--output-fmt`).

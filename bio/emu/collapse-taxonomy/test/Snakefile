@@ -1,0 +1,11 @@
+rule collapse_taxonomy:
+    input:
+        "full_length_rel-abundance.tsv",
+    output:
+        "full_length_rel-abundance_collapsed.tsv",
+    log:
+        "logs/emu/full_length_collapsed.log",
+    params:
+        rank="genus",
+    wrapper:
+        "master/bio/emu/collapse-taxonomy"

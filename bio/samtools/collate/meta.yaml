@@ -1,0 +1,11 @@
+name: samtools collate
+description: Shuffles and groups reads together by their names.
+url: http://www.htslib.org/doc/samtools-collate.html
+authors:
+  - Filipe G. Vieira
+input:
+  - SAM/BAM/CRAM file
+output:
+  - SAM/BAM/CRAM file
+params:
+  - extra: additional program arguments (not `-@/--threads`, `--reference`, `-o` or `-O/--output-fmt`).
