@@ -1,5 +1,12 @@
 # Changelog
 
+### [3.13.6](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.13.5...v3.13.6) (2024-07-08)
+
+
+### Performance Improvements
+
+* Update datavzrd wrapper ([#3060](https://www.github.com/snakemake/snakemake-wrappers/issues/3060)) ([567937f](https://www.github.com/snakemake/snakemake-wrappers/commit/567937fa188b52cf3f152834ce3d9c5ee01893ca))
+
 ### [3.13.5](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.13.4...v3.13.5) (2024-07-05)
 
 
