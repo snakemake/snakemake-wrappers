@@ -4,6 +4,7 @@ import os
 rule all:  # [hide]
     input:  # [hide]
         "output/simple.html",  # [hide]
+        "output/resources.html",  # [hide]
         "output/simple.docx",  # [hide]
         "output/example_proj_full.html",  # [hide]
         "output/example_proj_noreport.txt",  # [hide]
@@ -60,6 +61,30 @@ rule render_quarto_noreport:
         output_txt="{project}_noreport.txt",
     log:
         "logs/{project}_noreport.log",
+    wrapper:
+        "master/utils/quarto"
+
+
+rule pass_custom_resources:
+    input:
+        script="resources_custom.qmd",
+    output:
+        report="output/resources_custom.html",
+    resources:
+        custom_resource=1,
+    log:
+        "logs/pass_custom_resources.log",
+    wrapper:
+        "master/utils/quarto"
+
+
+rule pass_threads:
+    input:
+        script="resources_threads.qmd",
+    output:
+        report="output/resources_threads.html",
+    log:
+        "logs/pass_threads.log",
     wrapper:
         "master/utils/quarto"
 

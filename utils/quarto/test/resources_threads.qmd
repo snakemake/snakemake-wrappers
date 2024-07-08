@@ -1,0 +1,16 @@
+---
+title: "Quarto resource passing example"
+author: "Vito Zanotelli, University Children's Hospital Zurich"
+format: html
+params:
+  resources_threads: NULL
+---
+
+
+```{r}
+#| label: Verify that threads are passed
+if (is.null(params$resources_threads)){
+  stop('resource "threads" not passed to report')
+}
+```
+

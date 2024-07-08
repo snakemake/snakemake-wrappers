@@ -5602,7 +5602,14 @@ def test_ensembl_annotation_gtf_gz():
 def test_ensembl_regulatory_gff3_gz():
     run(
         "bio/reference/ensembl-regulation",
-        ["snakemake", "--cores", "1", "resources/regulatory_features.gff3.gz", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/regulatory_features.gff3.gz",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -5610,7 +5617,14 @@ def test_ensembl_regulatory_gff3_gz():
 def test_ensembl_regulatory_features_grch37_gff():
     run(
         "bio/reference/ensembl-regulation",
-        ["snakemake", "--cores", "1", "resources/regulatory_features.gff", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/regulatory_features.gff",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -5618,7 +5632,14 @@ def test_ensembl_regulatory_features_grch37_gff():
 def test_ensembl_regulatory_features_mouse_gff_gz():
     run(
         "bio/reference/ensembl-regulation",
-        ["snakemake", "--cores", "1", "resources/regulatory_features.mouse.gff.gz", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/regulatory_features.mouse.gff.gz",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -6726,7 +6747,6 @@ def test_quarto_simple_html():
     )
 
 
-
 @skip_if_not_modified
 def test_quarto_simple_docx():
     run(
@@ -6769,7 +6789,6 @@ def test_quarto_simple_noreport():
     )
 
 
-
 @skip_if_not_modified
 def test_quarto_simple_extra_renv_deps():
     run(
@@ -6779,6 +6798,34 @@ def test_quarto_simple_extra_renv_deps():
             "--cores",
             "1",
             "output/extra_datatable_renv.html",
+            "--use-conda",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_quarto_pass_resources():
+    run(
+        "utils/quarto",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "output/resources_custom.html",
+            "--use-conda",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_quarto_pass_threads():
+    run(
+        "utils/quarto",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "output/resources_threads.html",
             "--use-conda",
         ],
     )
