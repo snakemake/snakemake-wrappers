@@ -1,0 +1,10 @@
+name: orthanq preprocess virus
+description: |
+  Orthanq preprocess virus preprocesses raw reads and outputs them to a BCF file.
+input:
+  - candidates_folder: Folder that is used to generate candidate variants with `orthanq candidates virus`.
+  - reads: Raw reads in FASTQ format.
+output: BCF file format
+url: https://github.com/orthanq/orthanq
+authors:
+  - Hamdiye Uzuner
