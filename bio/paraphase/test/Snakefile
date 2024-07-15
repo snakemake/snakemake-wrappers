@@ -1,0 +1,29 @@
+
+# Set the custom wrapper prefix for the entire workflow
+
+rule paraphase:
+    input:
+        bam="test_data/PDPK1.bam",
+        fasta="test_data/chr16s.fa",
+        faidx="test_data/homo_sapiens.fa.fai",
+    output:
+        bam = "PDPK1_realigned.paraphase.bam",
+        bai = "PDPK1_realigned.paraphase.bam.bai",
+        merged_vcf = "Sample1_paraphase.vcf.gz",
+        vcf_header = "vcf_chromosome_header.vcf",
+    params:
+        genome="--genome 38",
+        extra="-g PDPK1",
+        outfolder=directory("paraphase/"),
+    log:
+        "PDPK1_realigned.vcf.log",
+    threads: 1
+    resources:
+        mem_mb=1024,
+    message:
+        "{rule}: Calls paraphase on {input.bam} with paraphase to resolve SNVs in gene families"
+    wrapper:
+        "ppp/bio/paraphase"
+
+
+
