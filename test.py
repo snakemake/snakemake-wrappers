@@ -3740,7 +3740,7 @@ def test_picard_addorreplacegroups():
 def test_picard_markduplicates_bam():
     run(
         "bio/picard/markduplicates",
-        ["snakemake", "--cores", "1", "dedup_bam/a.bam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "dedup/a.bam", "--use-conda", "-F"],
     )
 
 
@@ -3752,8 +3752,8 @@ def test_picard_markduplicateswithmatecigar_bam():
             "snakemake",
             "--cores",
             "1",
-            "dedup_bam/a.matecigar.bam",
-            "dedup_bam/a.mcigar.bai",
+            "dedup/a.matecigar.bam",
+            "dedup/a.matecigar.bai",
             "--use-conda",
             "-F",
         ],
@@ -3764,7 +3764,7 @@ def test_picard_markduplicateswithmatecigar_bam():
 def test_picard_markduplicates_sam():
     run(
         "bio/picard/markduplicates",
-        ["snakemake", "--cores", "1", "dedup_sam/a.sam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "dedup/a.sam", "--use-conda", "-F"],
     )
 
 
@@ -3776,8 +3776,8 @@ def test_picard_markduplicates_cram():
             "snakemake",
             "--cores",
             "1",
-            "dedup_cram/a.cram",
-            "dedup_cram/a.cram.crai",
+            "dedup/a.cram",
+            "dedup/a.cram.crai",
             "--use-conda",
             "-F",
         ],
@@ -5595,6 +5595,30 @@ def test_ensembl_annotation_gtf_gz():
     run(
         "bio/reference/ensembl-annotation",
         ["snakemake", "--cores", "1", "refs/annotation.gtf.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_ensembl_regulatory_gff3_gz():
+    run(
+        "bio/reference/ensembl-regulation",
+        ["snakemake", "--cores", "1", "resources/regulatory_features.gff3.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_ensembl_regulatory_features_grch37_gff():
+    run(
+        "bio/reference/ensembl-regulation",
+        ["snakemake", "--cores", "1", "resources/regulatory_features.gff", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_ensembl_regulatory_features_mouse_gff_gz():
+    run(
+        "bio/reference/ensembl-regulation",
+        ["snakemake", "--cores", "1", "resources/regulatory_features.mouse.gff.gz", "--use-conda", "-F"],
     )
 
 

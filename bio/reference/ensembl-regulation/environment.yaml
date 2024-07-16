@@ -1,6 +1,5 @@
 channels:
   - conda-forge
-  - bioconda
   - nodefaults
 dependencies:
-  - cutadapt =4.9
+  - wget =1.21.4
