@@ -2,4 +2,4 @@
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
 @EXPLICIT
-https://conda.anaconda.org/bioconda/linux-64/pbmm2-1.13.1-h9ee0642_0.tar.bz2#a08e8c59971e28fd650d934be744669a
+https://conda.anaconda.org/bioconda/linux-64/pbmm2-1.14.99-h9ee0642_0.tar.bz2#229f68d8b2ef1c77f6fd66fd8b90ef91
