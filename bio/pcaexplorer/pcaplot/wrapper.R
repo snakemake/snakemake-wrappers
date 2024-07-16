@@ -45,7 +45,7 @@ if ("width" %in% base::names(snakemake@params)) {
 }
 
 height <- 480
-if ("width" %in% base::names(snakemake@params)) {
+if ("high" %in% base::names(snakemake@params)) {
     height <- base::as.numeric(x = snakemake@params[["height"]])
 }
 

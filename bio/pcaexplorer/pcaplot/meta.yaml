@@ -4,7 +4,7 @@ url: https://www.bioconductor.org/packages/release/bioc/vignettes/pcaExplorer/in
 authors:
   - Thibault Dayris
 input:
-  - dst: Path to DESeqTransform object, such as rlog or vst transformed data
+  - Path to DESeqTransform object, such as rlog or vst transformed data
 output:
   - Path to PCA plot (SVG formatted)
 params:
