@@ -5,6 +5,8 @@ rule test_pcaexplorer_pcaplot:
         "pca.svg",
     params:
         extra="",
+        #width=480,
+        #height=480,
     log:
         "logs/pca.log",
     wrapper:
