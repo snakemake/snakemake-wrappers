@@ -3,3 +3,10 @@ description: Download VEP cache for given species, build and release.
 url: http://www.ensembl.org/info/docs/tools/vep/index.html
 authors:
   - Johannes Köster
+output:
+  - directory to store the VEP cache
+params:
+  - url: URL from where to download cache data (optional; by default is ``ftp://ftp.ensembl.org/pub``)
+  - species: species to download cache data
+  - build: build to download cache data
+  - release: release to download cache data

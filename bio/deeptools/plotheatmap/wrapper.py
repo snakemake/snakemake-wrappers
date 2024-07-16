@@ -6,6 +6,7 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+extra = snakemake.params.get("extra", "")
 
 out_region = snakemake.output.get("regions")
 out_matrix = snakemake.output.get("heatmap_matrix")
@@ -27,5 +28,5 @@ shell(
     "-m {snakemake.input[0]} "
     "-o {snakemake.output.heatmap_img} "
     "{optional_output} "
-    "{snakemake.params}) {log}"
+    "{extra}) {log}"
 )

@@ -100,7 +100,7 @@ default_effective_genome_size = {
     },
 }
 
-effective_genome_size = snakemake.params.get("effective_genome_size")
+effective_genome_size = snakemake.params.get("effective_genome_size", "")
 if not effective_genome_size:
     genome = snakemake.params.get("genome")
     read_length = snakemake.params.get("read_length")

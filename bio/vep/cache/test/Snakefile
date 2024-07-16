@@ -10,3 +10,18 @@ rule get_vep_cache:
     cache: "omit-software"  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/vep/cache"
+
+
+rule get_vep_cache_ebi:
+    output:
+        directory("resources/vep/cache_ebi"),
+    params:
+        url="ftp://ftp.ebi.ac.uk/ensemblgenomes/pub/plants",
+        species="cyanidioschyzon_merolae",
+        build="ASM9120v1",
+        release="58",
+    log:
+        "logs/vep/cache_ebi.log",
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/vep/cache"

@@ -1447,6 +1447,14 @@ def test_enhanced_volcano():
 
 
 @skip_if_not_modified
+def test_goleft_indexcov():
+    run(
+        "bio/goleft/indexcov",
+        ["snakemake", "--cores", "1", "--use-conda", "-Fp"],
+    )
+
+
+@skip_if_not_modified
 def test_gridss_call():
     run(
         "bio/gridss/call",
@@ -2134,8 +2142,22 @@ def test_bwa_mem_sort_samtools_write_index():
             "snakemake",
             "--cores",
             "1",
-            "mapped_with_index/a.bam",
-            "mapped_with_index/a.bam.csi",
+            "mapped_with_index_csi/a.bam",
+            "mapped_with_index_csi/a.bam.csi",
+            "--use-conda",
+            "-F",
+            "-s",
+            "Snakefile_samtools",
+        ],
+    )
+    run(
+        "bio/bwa/mem",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "mapped_with_index_bai/a.bam",
+            "mapped_with_index_bai/a.bam.bai",
             "--use-conda",
             "-F",
             "-s",
@@ -2842,6 +2864,21 @@ def test_deeptools_bamcoverage_eff():
             "--cores",
             "1",
             "a.coverage_code.bw",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_deeptools_bamcoverage_no_params():
+    run(
+        "bio/deeptools/bamcoverage",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "a.coverage_no_params.bw",
             "--use-conda",
             "-F",
         ],
@@ -3622,6 +3659,45 @@ def test_nanosimh():
 
 
 @skip_if_not_modified
+def test_ngsderive():
+    run(
+        "bio/ngsderive",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "A.readlen.tsv"],
+    )
+    run(
+        "bio/ngsderive",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "A.instrument.tsv"],
+    )
+    run(
+        "bio/ngsderive",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "A.strandedness.tsv"],
+    )
+    run(
+        "bio/ngsderive",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "A.encoding.tsv"],
+    )
+    run(
+        "bio/ngsderive",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "A.junctions.tsv"],
+    )
+    run(
+        "bio/ngsderive",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "junctions/A.rg.bam.junctions.tsv",
+        ],
+    )
+    run(
+        "bio/ngsderive",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "A.endedness.tsv"],
+    )
+
+
+@skip_if_not_modified
 def test_ngs_disambiguate():
     run(
         "bio/ngs-disambiguate",
@@ -3672,7 +3748,7 @@ def test_picard_addorreplacegroups():
 def test_picard_markduplicates_bam():
     run(
         "bio/picard/markduplicates",
-        ["snakemake", "--cores", "1", "dedup_bam/a.bam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "dedup/a.bam", "--use-conda", "-F"],
     )
 
 
@@ -3684,8 +3760,8 @@ def test_picard_markduplicateswithmatecigar_bam():
             "snakemake",
             "--cores",
             "1",
-            "dedup_bam/a.matecigar.bam",
-            "dedup_bam/a.mcigar.bai",
+            "dedup/a.matecigar.bam",
+            "dedup/a.matecigar.bai",
             "--use-conda",
             "-F",
         ],
@@ -3696,7 +3772,7 @@ def test_picard_markduplicateswithmatecigar_bam():
 def test_picard_markduplicates_sam():
     run(
         "bio/picard/markduplicates",
-        ["snakemake", "--cores", "1", "dedup_sam/a.sam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "dedup/a.sam", "--use-conda", "-F"],
     )
 
 
@@ -3708,8 +3784,8 @@ def test_picard_markduplicates_cram():
             "snakemake",
             "--cores",
             "1",
-            "dedup_cram/a.cram",
-            "dedup_cram/a.cram.crai",
+            "dedup/a.cram",
+            "dedup/a.cram.crai",
             "--use-conda",
             "-F",
         ],
@@ -4029,6 +4105,14 @@ def test_samtools_calmd():
 
 
 @skip_if_not_modified
+def test_samtools_collate():
+    run(
+        "bio/samtools/collate",
+        ["snakemake", "--cores", "1", "a.collated.bam", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_samtools_fixmate():
     run(
         "bio/samtools/fixmate",
@@ -4057,6 +4141,14 @@ def test_samtools_mpileup():
     run(
         "bio/samtools/mpileup",
         ["snakemake", "--cores", "1", "mpileup/a.mpileup.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_samtools_mpileup():
+    run(
+        "bio/samtools/markdup",
+        ["snakemake", "--cores", "1", "a.markdup.bam", "--use-conda", "-F"],
     )
 
 
@@ -4150,7 +4242,20 @@ def test_samtools_fastq_separate():
 def test_samtools_faidx():
     run(
         "bio/samtools/faidx",
-        ["snakemake", "--cores", "1", "genome.fa.fai", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "out/genome.fa.fai",
+            "out/genome.named.fa.fai",
+            "out/genome.fas.bgz.fai",
+            "out/genome.fas.bgz.gzi",
+            "out/genome.region_file.fas",
+            "out/genome.region_array.fas",
+            "out/genome.region_bgzip.fas",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -5502,6 +5607,30 @@ def test_ensembl_annotation_gtf_gz():
 
 
 @skip_if_not_modified
+def test_ensembl_regulatory_gff3_gz():
+    run(
+        "bio/reference/ensembl-regulation",
+        ["snakemake", "--cores", "1", "resources/regulatory_features.gff3.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_ensembl_regulatory_features_grch37_gff():
+    run(
+        "bio/reference/ensembl-regulation",
+        ["snakemake", "--cores", "1", "resources/regulatory_features.gff", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_ensembl_regulatory_features_mouse_gff_gz():
+    run(
+        "bio/reference/ensembl-regulation",
+        ["snakemake", "--cores", "1", "resources/regulatory_features.mouse.gff.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_ensembl_variation():
     run(
         "bio/reference/ensembl-variation",
@@ -5914,6 +6043,11 @@ def test_vep_cache():
     run(
         "bio/vep/cache",
         ["snakemake", "--cores", "1", "resources/vep/cache", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/vep/cache",
+        ["snakemake", "--cores", "1", "resources/vep/cache_ebi", "--use-conda", "-F"],
     )
 
 
