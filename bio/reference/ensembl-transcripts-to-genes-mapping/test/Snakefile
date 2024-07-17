@@ -1,6 +1,6 @@
 rule create_transcripts_to_genes_mapping:
     output:
-        mapping="refs/ensembl_transcripts_to_genes_mapping.tsv.gz",  # .gz extension is optional, but recommended
+        mapping="resources/ensembl_transcripts_to_genes_mapping.tsv.gz",  # .gz extension is optional, but recommended
     params:
         species="homo_sapiens",
         build="GRCh38",
