@@ -1,11 +1,11 @@
 rule create_transcripts_to_genes_mapping:
     output:
-        mapping="refs/ensembl_transcripts_to_genes_mapping.tsv.gz", # .gz extension is optional, but recommended
+        mapping="refs/ensembl_transcripts_to_genes_mapping.tsv.gz",  # .gz extension is optional, but recommended
     params:
         species="homo_sapiens",
         build="GRCh38",
         release="112",
-        extra_columns=["external_gene_name", "genecards"] # optional: request columns beyond ensembl_transcript_id and ensembl_gene_id
+        extra_columns=["external_gene_name", "genecards"],  # optional: request columns beyond ensembl_transcript_id and ensembl_gene_id
         # chromosom="22" # optional: restrict to single chromosome
     log:
         "logs/create_transcripts_to_genes_mapping.log",
