@@ -1,0 +1,19 @@
+name: ensembl-transcripts-to-genes-mapping
+description: >
+    Create a mapping of Ensembl transcript IDs to Ensembl gene IDs via the
+    bioconductor-biomart, optionally adding in additional columns (for example
+    HGNC gene symbols and genecards IDs for the human reference). For
+    reference, have a look at the Ensembl biomart online
+    (``https://www.ensembl.org/biomart/martview``) or at the documentation for
+    bioconductor-biomart
+    (``https://bioconductor.org/packages/devel/bioc/vignettes/biomaRt/inst/doc/accessing_ensembl.html``).
+authors:
+  - David Lähnemann
+output:
+  - tab-separated values (TSV) file, with columns ensembl_transcript_id and ensembl_gene_id, plus optional columns (can be gzipped)
+params:
+  - extra_columns: optional list of extra columns available for the combination of species, build and release
+  - species: "species that has a 'genes' dataset available via the Ensembl BioMart (for example, 'homo_sapiens'), see: ``https://www.ensembl.org/info/about/species.html``"
+  - build: build available for the selected species, for example 'GRCh38'
+  - release: release from which the species and build are available, for example '112'
+  - chromosome: optional, will restrict the download and output to a single chromosome (usually for testing purposes)
