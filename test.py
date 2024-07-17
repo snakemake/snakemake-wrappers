@@ -5623,6 +5623,14 @@ def test_ensembl_regulatory_features_mouse_gff_gz():
 
 
 @skip_if_not_modified
+def test_ensembl_transcripts_to_genes_mapping():
+    run(
+        "bio/reference/ensembl-transcripts-to-genes-mapping",
+        ["snakemake", "--cores", "1", "resources/ensembl_transcripts_to_genes_mapping.tsv.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_ensembl_variation():
     run(
         "bio/reference/ensembl-variation",
