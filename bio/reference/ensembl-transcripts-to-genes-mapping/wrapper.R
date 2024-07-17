@@ -13,7 +13,13 @@ library("cli")
 
 library("biomaRt")
 
-wanted_species <- snakemake@params[["species"]]
+# bioconductor-biomart needs the species as something like `hsapiens` instead
+# of `homo_sapiens`
+wanted_species <- str_replace(
+  snakemake@params[["species"]],
+  "^(\\w)\\w+_(\\w+)$",
+  "\\1\\2"
+)
 wanted_release <- snakemake@params[["release"]]
 wanted_build <- snakemake@params[["build"]]
 
