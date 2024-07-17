@@ -1,7 +1,7 @@
-__author__ = "David Lähnemann"
-__copyright__ = "Copyright 2024, David Lähnemann"
-__email__ = "david.laehnemann@hhu.de"
-__license__ = "MIT"
+# __author__ = "David Lähnemann"
+# __copyright__ = "Copyright 2024, David Lähnemann"
+# __email__ = "david.laehnemann@hhu.de"
+# __license__ = "MIT"
 
 log <- file(snakemake@log[[1]], open="wt")
 sink(log)
