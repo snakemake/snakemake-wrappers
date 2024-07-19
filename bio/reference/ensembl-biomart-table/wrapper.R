@@ -13,6 +13,7 @@ library("cli")
 
 library("biomaRt")
 
+wanted_biomart <- snakemake@params[["biomart"]]
 # bioconductor-biomart needs the species as something like `hsapiens` instead
 # of `homo_sapiens`
 wanted_species <- str_replace(
@@ -25,7 +26,7 @@ wanted_build <- snakemake@params[["build"]]
 
 wanted_chromosome <- snakemake@params[["chromosome"]]
 
-wanted_extra_columns <- snakemake@params[["extra_columns"]]
+wanted_columns <- snakemake@params[["columns"]]
 
 if (wanted_build == "GRCh37") {
   grch <- "37"
@@ -39,9 +40,9 @@ if (wanted_build == "GRCh37") {
   version <- wanted_release
 }
 
-get_mart <- function(species, build, version, grch, dataset) {
+get_mart <- function(biomart, species, build, version, grch, dataset) {
   mart <- useEnsembl(
-    biomart = "genes",
+    biomart = biomart,
     dataset = str_c(species, "_", dataset),
     version = version,
     GRCh = grch
@@ -66,29 +67,23 @@ get_mart <- function(species, build, version, grch, dataset) {
   mart
 }
 
-gene_ensembl <- get_mart(wanted_species, wanted_build, version, grch, "gene_ensembl")
-
-wanted_attributes <- c(
-  "ensembl_transcript_id",
-  "ensembl_gene_id",
-  wanted_extra_columns
-)
+gene_ensembl <- get_mart(wanted_biomart, wanted_species, wanted_build, version, grch, "gene_ensembl")
 
 if ( !is.null(wanted_chromosome) ) {
-  mapping <- getBM(
-    attributes = wanted_attributes,
+  table <- getBM(
+    attributes = wanted_columns,
     filters = 'chromosome_name',
     values = wanted_chromosome,
     mart = gene_ensembl
   ) |> as_tibble()
 } else {
-  mapping <- getBM(
-    attributes = wanted_attributes,
+  table <- getBM(
+    attributes = wanted_columns,
     mart = gene_ensembl
   ) |> as_tibble()
 }
 
 write_tsv(
-  mapping,
-  file = snakemake@output[["mapping"]]
+  table,
+  file = snakemake@output[["table"]]
 )
