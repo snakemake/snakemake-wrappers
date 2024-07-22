@@ -6,7 +6,12 @@ rule create_transcripts_to_genes_mapping:
         species="homo_sapiens",
         build="GRCh38",
         release="112",
-        columns=["ensembl_transcript_id", "ensembl_gene_id", "external_gene_name", "genecards"],
+        columns=[
+            "ensembl_transcript_id",
+            "ensembl_gene_id",
+            "external_gene_name",
+            "genecards",
+        ],
         # chromosome="22" # optional: restrict to single chromosome
     log:
         "logs/create_transcripts_to_genes_mapping.log",
