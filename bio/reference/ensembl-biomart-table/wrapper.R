@@ -94,7 +94,7 @@ if ( str_detect(output_filename, "tsv(\\.(gz|bz2|xz))?$") ) {
     x = table,
     file = output_filename
   )
-} else if str_detect(output_filename, "\\.parquet") {
+} else if ( str_detect(output_filename, "\\.parquet") ) {
   last_ext <- path_ext(output_filename)
   compression <- case_match(
     last_ext,
