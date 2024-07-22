@@ -103,7 +103,7 @@ if ( str_detect(output_filename, "tsv(\\.(gz|bz2|xz))?$") ) {
     "zst" ~ "zstd",
     "sz" ~ "snappy"
   )
-  if is.na(compression) {
+  if ( is.na(compression) ) {
     cli_abort(
             "File extension '{last_ext}' not supported for writing with the used nanoparquet version.",
       "x" = "Cannot write to a file '{output_filename}', because the version of the package",
