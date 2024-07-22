@@ -101,14 +101,16 @@ if ( str_detect(output_filename, "tsv(\\.(gz|bz2|xz))?$") ) {
     "parquet" ~ "uncompressed",
     "gz" ~ "gzip",
     "zst" ~ "zstd",
-    "sz" ~ "snappy",
-    .default = cli_abort(
+    "sz" ~ "snappy"
+  )
+  if is.na(compression) {
+    cli_abort(
             "File extension '{last_ext}' not supported for writing with the used nanoparquet version.",
       "x" = "Cannot write to a file '{output_filename}', because the version of the package",
             "nanoparquet used does not support writing files of type '{last_ext}'.",
       "i" = "For supported file types, see: https://r-lib.github.io/nanoparquet/reference/write_parquet.html"
     )
-  )
+  }
   write_parquet(
     x = table,
     file = output_filename, 
