@@ -6,10 +6,10 @@ input:
   - fasta: genome fasta file 
   - faidx: fasta .fai index for the genome fasta file
 output:
-  - vcf:  vcf file
-  - bam = bam file with realigned reads
-  - bai = bai file with realigned reads 
-  - merged_vcf = VCF file containing all newly discovered variants, phased by gene copy and haplotype  
+  vcf:  vcf file
+  bam: bam file with realigned reads
+  bai: bai file with realigned reads 
+  merged_vcf: VCF file containing all newly discovered variants, phased by gene copy and haplotype  
 params:
   - extra: additional parameters that will be forwarded to paraphasse target
 authors:
