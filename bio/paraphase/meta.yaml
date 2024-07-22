@@ -2,9 +2,9 @@ name: "paraphase"
 description:  Run paraphase, organise and merge the outputfiles.
 url: https://github.com/PacificBiosciences/paraphase
 input:
-  - bam: bam file
-  - fasta: genome fasta file 
-  - faidx: fasta .fai index for the genome fasta file
+  bam: bam file
+  fasta: genome fasta file 
+  faidx: fasta .fai index for the genome fasta file
 output:
   vcf:  vcf file
   bam: bam file with realigned reads
