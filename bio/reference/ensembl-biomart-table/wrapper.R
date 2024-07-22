@@ -119,7 +119,7 @@ if ( str_detect(output_filename, "tsv(\\.(gz|bz2|xz))?$") ) {
     "Unsupported file format in output file '{output_filename}'.",
     "x" = "Only '.tsv' and '.parquet' files are supported, with certain compression variants each.",
     "i" = "For supported compression extensions, see:",
-    "*" = "tsv: https://readr.tidyverse.org/reference/write_delim.html#output"
+    "*" = "tsv: https://readr.tidyverse.org/reference/write_delim.html#output",
     "*" = "parquet: https://r-lib.github.io/nanoparquet/reference/write_parquet.html#arguments"
   ))
 }
