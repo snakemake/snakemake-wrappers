@@ -11,7 +11,7 @@ output:
   bai: bai file with realigned reads 
   merged_vcf: VCF file containing all newly discovered variants, phased by gene copy and haplotype  
 params:
-  - extra: additional parameters that will be forwarded to paraphasse target
+  extra: additional parameters that will be forwarded to paraphasse target
 authors:
   - Patrik Smeds
 notes: paraphase resolves SNVs in gene families for PacBio longreads from whole genomes
