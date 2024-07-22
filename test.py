@@ -5631,6 +5631,14 @@ def test_ensembl_transcripts_to_genes_mapping():
 
 
 @skip_if_not_modified
+def test_ensembl_transcripts_to_genes_mapping_parquet():
+    run(
+        "bio/reference/ensembl-biomart-table",
+        ["snakemake", "--cores", "1", "resources/ensembl_transcripts_to_genes_mapping.parquet.gz", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_ensembl_variation():
     run(
         "bio/reference/ensembl-variation",

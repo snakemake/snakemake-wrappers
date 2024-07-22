@@ -7,9 +7,26 @@ rule create_transcripts_to_genes_mapping:
         build="GRCh38",
         release="112",
         columns=["ensembl_transcript_id", "ensembl_gene_id", "external_gene_name", "genecards"],
-        # chromosom="22" # optional: restrict to single chromosome
+        # chromosome="22" # optional: restrict to single chromosome
     log:
         "logs/create_transcripts_to_genes_mapping.log",
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/reference/ensembl-biomart-table"
+
+
+rule create_transcripts_to_genes_mapping_parquet:
+    output:
+        table="resources/ensembl_transcripts_to_genes_mapping.parquet.gz",  # .gz extension is optional, but recommended
+    params:
+        biomart="genes",
+        species="mus_musculus",
+        build="GRCm39",
+        release="112",
+        columns=["ensembl_transcript_id", "ensembl_gene_id"],
+        # chromosome="22" # optional: restrict to single chromosome
+    log:
+        "logs/create_transcripts_to_genes_mapping_parquet.log",
     cache: "omit-software"  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-biomart-table"

@@ -10,7 +10,8 @@ description: >
 authors:
   - David Lähnemann
 output:
-  - tab-separated values (TSV) file, with columns ensembl_transcript_id and ensembl_gene_id, plus optional columns (can be gzipped)
+  - "tab-separated values (.tsv), for supported compression extensions, see: ``https://readr.tidyverse.org/reference/write_delim.html#output``"
+  - "parquet (.parquet) file, for supported compression algorithms, see: ``https://r-lib.github.io/nanoparquet/reference/write_parquet.html#arguments``"
 params:
   - biomart: for example, 'genes' (see ``https://bioconductor.org/packages/devel/bioc/vignettes/biomaRt/inst/doc/accessing_ensembl.html#step1-identifying-the-database-you-need``)
   - species: "species that has a 'genes' dataset available via the Ensembl BioMart (for example, 'homo_sapiens'), see: ``https://www.ensembl.org/info/about/species.html``"
