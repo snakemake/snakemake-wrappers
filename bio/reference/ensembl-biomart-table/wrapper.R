@@ -17,12 +17,31 @@ library("biomaRt")
 
 wanted_biomart <- snakemake@params[["biomart"]]
 # bioconductor-biomart needs the species as something like `hsapiens` instead
-# of `homo_sapiens`
-wanted_species <- str_replace(
-  snakemake@params[["species"]],
-  "^(\\w)\\w+_(\\w+)$",
-  "\\1\\2"
-)
+# of `homo_sapiens`, and `chyarkandensis` instead of `cervus_hanglu_yarkandensis`
+species_name_components <- str_split(snakemake@params[["species"]], "_")[[1]]
+if (length(species_name_components) == 2) {
+  wanted_species <- str_c(
+    str_sub(species_name_components[1], 1, 1),
+    species_name_components[2]
+  )
+} else if (length(species_name_components) == 3) {
+  wanted_species <- str_c(
+    str_sub(species_name_components[1], 1, 1),
+    str_sub(species_name_components[2], 1, 1),
+    species_name_components[3]
+  )
+} else {
+  cli_abort(c(
+          "Unsupported species name '{snakemake@params[['species']]}'.",
+    "x" = "Splitting on underscores led to unexpected number of name components: {length(species_name_components)}.",
+    "i" = "Expected species name with 2 (e.g. `homo_sapiens`) or 3 (e.g. `cervus_hanglu_yarkandensis`) components.",
+          "Anything else either does not exist in Ensembl, or we don't yet handle it properly.",
+          "In case you are sure the species you specified is correct and exists in Ensembl, please",
+          "file a bug report as an issue on GitHub, referencing this file: ",
+          "https://github.com/snakemake/snakemake-wrappers/blob/master/bio/reference/ensembl-biomart-table/wrapper.R"
+  ))
+}
+
 wanted_release <- snakemake@params[["release"]]
 wanted_build <- snakemake@params[["build"]]
 
