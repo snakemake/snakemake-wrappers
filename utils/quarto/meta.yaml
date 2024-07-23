@@ -9,6 +9,9 @@ input:
       - The script must follow the following rules:
         - If parameters are used (extra arguments in `input`, `output`, `params`)
           they must be defined in the quarto header as params: https://quarto.org/docs/computations/parameters.html#knitr
+        - resources passed to the script must be defined in the quarto header as `resources_` followed by the resource name.
+          Eg `resources_mem` entry in the quarto header would cause the `sm.resources.mem` passed to the quarto script.
+          Threads will be passed if a parameter `resources_threads` is defined in the quarto header.
         - All dependencies used in the script must either be:
           - installed in the `renv` declared as `input.renv` (see `input.renv` documentation)
           - installed in the conda environment used to run this wrapper. If this is customized, use
@@ -23,7 +26,7 @@ input:
       appropriate conda environment.
       Default: the project root directory
   - additional_inputs: >
-      Additional input files. These the paths will be passed as `params:<additional_inputs>` to the quarto script
+      Additional input files. These the paths will be passed as `-P <additional_inputs>:<value>` to the quarto script
       and need to be defined in the quarto header as params: https://quarto.org/docs/computations/parameters.html#knitr
 output:
   - report: >
@@ -32,23 +35,14 @@ output:
       PDF rendering is currently not supported due to the lack of support of tinytex in conda-forge.
       If not provided, the report will be rendered in a temporary directory and no output will be returned.
   - additional_outputs: >
-      Additional output files. These the paths will be passed as `params:<additional_outputs>` to the quarto script
+      Additional output files. These the paths will be passed as `-P <additional_outputs>:<value>` to the quarto script
       and need to be defined in the quarto header as params: https://quarto.org/docs/computations/parameters.html#knitr
 params:
   - additional_params: >
-      Additional parameters to be passed to the quarto script. These the paths will be passed as `params:<additional_params>` to the quarto script
+      Additional parameters to be passed to the quarto script. These the paths will be passed as `-P <additional_params>:<value>` to the quarto script
       and need to be defined in the quarto header as params: https://quarto.org/docs/computations/parameters.html#knitr
-      If wildcards/threads should be passed to the `quarto` script, use a function to pass it in params:
-      ```
-      params:
-        project: lambda wc: wc.project
-        threads: lambda wc, threads: threads
-        mem: lambda wc, resources: resources.mem
-      ```
-      will be passed to quarto render as `-P project=project -P threads=threads -P mem=mem`
-notes: |
   This wrapper runs quarto to render markdown .qmd notebooks.
-  It supports r-package management via `conda` and `renv`:
+  The wrapper supports r-package management via `conda` and `renv`:
   - For `conda` overwrite the conda environment from the `conda:` directive of the rule with an environement with
   the r dependencies as well as `r-quarto` installed.
   - For `renv` restore an environment before and point the `input.renv`

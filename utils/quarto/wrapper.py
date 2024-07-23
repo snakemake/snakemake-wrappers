@@ -6,6 +6,7 @@ __license__ = "MIT"
 import tempfile
 from pathlib import Path
 import warnings
+import yaml
 from snakemake.shell import shell
 
 
@@ -23,6 +24,31 @@ def parse_renv(renv_path: Path) -> str:
     if renv_path.is_file():
         renv_path = renv_path.parent
     return str(renv_path.resolve())
+
+
+def parse_qmd_header(fn_script):
+    """Parse the yml header of the a
+    quarto markdown file
+
+    Args:
+        fn_script (path): Path to the qmd script
+
+    Raises:
+        ValueError: qmd has not valid header
+
+    Returns:
+        dict: parsed header
+    """
+    with open(fn_script, mode="r") as f:
+        first = f.readline()
+        if first != "---\n":
+            raise ValueError(".qmd file has no valid yaml header.")
+        line = f.readline()
+        yml_lines = []
+        while line != "---\n":
+            yml_lines.append(line)
+            line = f.readline()
+    return yaml.safe_load("".join(yml_lines))
 
 
 def add_parameter(name: str, value, param_list: list[str]) -> None:
@@ -58,6 +84,25 @@ for name, value in snakemake.params.items():
 for name, value in snakemake.output.items():
     if name not in {"report"}:
         add_parameter(name, value, params)
+
+
+# Get the snakemake resources that correspond to
+# Params in the qmd header that are prefixed with the resource prefix
+# RESOURCE_PARAMS_PREFIX.
+# eg resources_mem -> snakemake.resources.mem
+RESOURCE_PARAMS_PREFIX = "resources_"
+params_header = parse_qmd_header(script)["params"]
+resources = {**snakemake.resources}
+resources["threads"] = snakemake.threads
+passed_resource_params = {
+    f"{RESOURCE_PARAMS_PREFIX}{k}": v
+    for k, v in resources.items()
+    if f"{RESOURCE_PARAMS_PREFIX}{k}" in params_header.keys()
+}
+
+for name, value in passed_resource_params.items():
+    add_parameter(name, value, params)
+
 
 # Resolve the logfile path and set the log_fmt_shell
 # This is required as we may change the working directory
