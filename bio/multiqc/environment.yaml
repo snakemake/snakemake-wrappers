@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - multiqc =1.22.2
+  - multiqc =1.23
   - snakemake-wrapper-utils =0.6.2
