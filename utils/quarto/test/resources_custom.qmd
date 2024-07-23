@@ -1,0 +1,15 @@
+---
+title: "Quarto resource passing example"
+author: "Vito Zanotelli, University Children's Hospital Zurich"
+format: html
+params:
+  resources_custom_resource: NULL
+---
+
+
+```{r}
+#| label: Verify that resource custom_resource is passed
+if (is.null(params$resources_custom_resource)){
+  stop('resource "custom_resource" not passed to report')
+}
+```

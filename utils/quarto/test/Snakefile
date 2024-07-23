@@ -1,0 +1,173 @@
+import os
+
+
+rule all:  # [hide]
+    input:  # [hide]
+        "output/simple.html",  # [hide]
+        "output/resources.html",  # [hide]
+        "output/simple.docx",  # [hide]
+        "output/example_proj_full.html",  # [hide]
+        "output/example_proj_noreport.txt",  # [hide]
+        "output/extra_datatable_renv.html",  # [hide]
+
+
+rule testfile:
+    output:
+        touch("{project}_input.txt"),
+
+
+rule render_quarto_full:
+    input:
+        script="full.qmd",
+        input_txt="{project}_input.txt",
+    output:
+        report="{project}_full.html",
+        output_txt="{project}_output.txt",
+    params:
+        project=lambda wc: wc.project,
+    log:
+        "logs/{project}_html.log",
+    wrapper:
+        "master/utils/quarto"
+
+
+rule render_html:
+    input:
+        script="simple.qmd",
+    output:
+        report="output/simple.html",
+    log:
+        "logs/simple_html.log",
+    wrapper:
+        "master/utils/quarto"
+
+
+rule render_docx:
+    input:
+        script="simple.qmd",
+    output:
+        report="output/simple.docx",
+    log:
+        "logs/simple_docx.log",
+    wrapper:
+        "master/utils/quarto"
+
+
+rule render_quarto_noreport:
+    input:
+        script="full.qmd",
+        input_txt="{project}_input.txt",
+    output:
+        output_txt="{project}_noreport.txt",
+    log:
+        "logs/{project}_noreport.log",
+    wrapper:
+        "master/utils/quarto"
+
+
+rule pass_custom_resources:
+    input:
+        script="resources_custom.qmd",
+    output:
+        report="output/resources_custom.html",
+    resources:
+        custom_resource=1,
+    log:
+        "logs/pass_custom_resources.log",
+    wrapper:
+        "master/utils/quarto"
+
+
+rule pass_threads:
+    input:
+        script="resources_threads.qmd",
+    output:
+        report="output/resources_threads.html",
+    log:
+        "logs/pass_threads.log",
+    wrapper:
+        "master/utils/quarto"
+
+
+# To add additional r-dependencies used to render
+# the report also the conda: directive can be
+# overwritten. The only required dependency
+# is r-quarto
+# rule render_quarto_extra_conda:
+#     conda:
+#         "env/extra.yaml"
+#     input:
+#         script="extra_datatable.qmd",
+#     output:
+#         report="output/extra_datatable_conda.html",
+#     log:
+#         "logs/conda.log",
+#     wrapper:
+#         "master/utils/quarto"
+
+
+# Rules for a example using renv
+wildcard_constraints:
+    # Allows renv_dir also to be the empty (=root dir)
+    renv_dir=".*",
+
+
+# The `renv_lock` on renv rules is an artificial resource to prevent multiple
+# renv operations at the same time, which may cause issues..
+# In such cases restrict it via the
+# resources CLI flag: --resources renv_lock=1 --set-resource-scopes renv_lock=global
+
+
+rule renv_example_init:
+    conda:
+        "env/renv.yaml"
+    input:
+        lockfile="env/renv_dt.lock",
+    output:
+        rprofile="{renv_dir}/.Rprofile",
+        lockfile="{renv_dir}/renv.lock",
+    resources:
+        renv_lock=1,
+    log:
+        "logs/renv/{renv_dir}_init.log",
+    shell:
+        """
+        Rscript -e "renv::init(project='{wildcards.renv_dir}', bare=T); \
+                    renv::restore(project='{wildcards.renv_dir}', lockfile='$(realpath {input.lockfile})');\
+                    renv::snapshot(type='all')"
+        """
+
+
+rule restore_renv:
+    conda:
+        "env/renv.yaml"
+    input:
+        rprofile="{renv_dir}.Rprofile",
+        lock="{renv_dir}renv.lock",
+    output:
+        restored="{renv_dir}restored.Rprofile",
+    resources:
+        renv_lock=1,
+    log:
+        "logs/renv/{renv_dir}_restore.log",
+    shell:
+        """
+        R -e 'source("{input.rprofile}", chdir=TRUE);renv::restore()'
+        echo 'source("{input.rprofile}", chdir=TRUE)' > {output.restored}
+        """
+
+
+rule render_quarto_renv:
+    # If the renv is build using a different r version
+    # than the wrapper, the "conda:" directive may can be overwritten
+    # using an environment with the correct "r-base" & "r-conda"
+    # installed
+    input:
+        script="extra_datatable.qmd",
+        renv="env/renv_test/restored.Rprofile",
+    output:
+        report="output/extra_datatable_renv.html",
+    log:
+        "logs/renv.log",
+    wrapper:
+        "master/utils/quarto"
