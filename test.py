@@ -5602,7 +5602,14 @@ def test_ensembl_annotation_gtf_gz():
 def test_ensembl_regulatory_gff3_gz():
     run(
         "bio/reference/ensembl-regulation",
-        ["snakemake", "--cores", "1", "resources/regulatory_features.gff3.gz", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/regulatory_features.gff3.gz",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -5610,7 +5617,14 @@ def test_ensembl_regulatory_gff3_gz():
 def test_ensembl_regulatory_features_grch37_gff():
     run(
         "bio/reference/ensembl-regulation",
-        ["snakemake", "--cores", "1", "resources/regulatory_features.gff", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/regulatory_features.gff",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -5618,7 +5632,44 @@ def test_ensembl_regulatory_features_grch37_gff():
 def test_ensembl_regulatory_features_mouse_gff_gz():
     run(
         "bio/reference/ensembl-regulation",
-        ["snakemake", "--cores", "1", "resources/regulatory_features.mouse.gff.gz", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/regulatory_features.mouse.gff.gz",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_ensembl_transcripts_to_genes_mapping():
+    run(
+        "bio/reference/ensembl-biomart-table",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/ensembl_transcripts_to_genes_mapping.tsv.gz",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_ensembl_transcripts_to_genes_mapping_parquet():
+    run(
+        "bio/reference/ensembl-biomart-table",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/ensembl_transcripts_to_genes_mapping.parquet.gz",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
