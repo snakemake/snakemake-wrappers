@@ -113,7 +113,7 @@ can install all dependencies with |mamba|_ (or |conda|_). `Install miniconda wit
 channels as described for bioconda <https://bioconda.github.io/#using-bioconda>`_ and
 set up an environment with the necessary dependencies and activate it::
 
-  mamba create -n test-snakemake-wrappers snakemake pytest conda snakefmt black
+  mamba create -n test-snakemake-wrappers snakemake pytest conda snakefmt black mamba
   conda activate test-snakemake-wrappers
 
 Afterwards, from the main directory of the repo, you can run the test(s) for your
