@@ -11,8 +11,9 @@ rule create_transcripts_to_genes_mapping:
             "ensembl_gene_id",
             "external_gene_name",
             "genecards",
+            "chromosome_name",
         ],
-        filters={ "chromosome_name": ["22", "non_existing_chromosome"] }, # optional: restrict output by using filters
+        filters={ "chromosome_name": ["22", "X"] }, # optional: restrict output by using filters
     log:
         "logs/create_transcripts_to_genes_mapping.log",
     cache: "omit-software"  # save space and time with between workflow caching (see docs)
