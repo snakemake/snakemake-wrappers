@@ -171,6 +171,7 @@ Examples of this are:
 
 1. The command line argument parsing for a software tool like ``samtools`` where you create one wrapper each for a number of different subcommands that share the main arguments. See the `samtools.py <https://github.com/snakemake/snakemake-wrapper-utils/blob/master/snakemake_wrapper_utils/samtools.py>`_ utility functions for the respective functionality.
 2. The handling of recurring Java options, for example things like memory handling. See `java.py <https://github.com/snakemake/snakemake-wrapper-utils/blob/master/snakemake_wrapper_utils/java.py>`_ for the respective functionality.
+
 To use ``snakemake-wrapper-utils``, you have to include them as a depenency in your :ref:`environment` definition file and import the respective function(s) in your :ref:`wrapper` script (for example ``from snakemake_wrapper_utils.java import get_java_opts``).
 
 
