@@ -19,12 +19,15 @@ In general, always take inspiration from existing wrappers.
 And then, contributions should:
 
 * provide the following files:
+
   * ``meta.yaml`` (wrapper description), see :ref:`meta`
   * ``environment.yaml`` (required software), see :ref:`environment`
   * ``wrapper.py`` or ``wrapper.R`` (actual wrapper code), see :ref:`wrapper`
   * ``test/Snakefile`` (minimal test cases and copy-pasteable examples), see :ref:`Snakefile`
+
 * amend ``test.py`` to call all of the testing rules provided in ``test/Snakefile``, see :ref:`test`
 * ensure consistent:
+
   * `formatting`_ of Python files
   * `linting`_ of Snakefiles
 
@@ -154,6 +157,7 @@ This is the actual code that the wrapper executes.
 It is handled like an `external script in snakemake <https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#external-scripts>`_, so you have the respective `snakemake` objects available.
 
 Please ensure that the wrapper:
+
 * can deal with arbitrary ``input:`` and ``output:`` paths and filenames
 * redirects `stdout` and `stderr` to log files specified by the `log:` directive (typical boilerplate code can for example be found in `this knowledge base <https://koesterlab.github.io/data-science-for-bioinfo/workflows/snakemake.html#language-specific-debugging>`_)
 * automatically infers command line arguments wherever possible (for example based on file extensions in ``input:`` and ``output:``)
@@ -164,6 +168,7 @@ Please ensure that the wrapper:
 For repeatedly needed functionality you can use the `snakemake-wrapper-utils <https://github.com/snakemake/snakemake-wrapper-utils>`_.
 Use what is available or create new functionality there, whenever you start repeating functions across wrappers.
 Examples of this are:
+
 1. The command line argument parsing for a software tool like ``samtools`` where you create one wrapper each for a number of different subcommands that share the main arguments. See the `samtools.py <https://github.com/snakemake/snakemake-wrapper-utils/blob/master/snakemake_wrapper_utils/samtools.py>`_ utility functions for the respective functionality.
 2. The handling of recurring Java options, for example things like memory handling. See `java.py <https://github.com/snakemake/snakemake-wrapper-utils/blob/master/snakemake_wrapper_utils/java.py>`_ for the respective functionality.
 To use ``snakemake-wrapper-utils``, you have to include them as a depenency in your :ref:`environment` definition file and import the respective function(s) in your :ref:`wrapper` script (for example ``from snakemake_wrapper_utils.java import get_java_opts``).
@@ -179,6 +184,7 @@ These examples should comprehensively showcase the available functionality of th
 If these rules need any input data, you can also include minimal (small) testing data in the ``test/`` folder (also check existing wrappers for suitable data).
 
 When writing the ``Snakefile``, please ensure that:
+
 * rule names in the examples are in `snake_case <https://en.wikipedia.org/wiki/Snake_case>`_ and descriptive (they should explain what the rule is does, or match the tool's purpose or name; for example ``map_reads`` for a step that maps reads)
 * it is formatted correctly by running `snakefmt <https://github.com/snakemake/snakefmt>`_ (``snakefmt Snakefile``)
 * it also passes linting, see :ref:`linting`
