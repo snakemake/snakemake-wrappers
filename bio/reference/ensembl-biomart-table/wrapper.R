@@ -47,7 +47,7 @@ wanted_build <- snakemake@params[["build"]]
 
 wanted_filters <- snakemake@params[["filters"]]
 
-wanted_columns <- snakemake@params[["columns"]]
+wanted_columns <- snakemake@params[["attributes"]]
 
 output_filename <- snakemake@output[["table"]]
 
