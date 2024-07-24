@@ -45,7 +45,7 @@ if (length(species_name_components) == 2) {
 wanted_release <- snakemake@params[["release"]]
 wanted_build <- snakemake@params[["build"]]
 
-wanted_chromosome <- snakemake@params[["chromosome"]]
+wanted_filters <- snakemake@params[["filters"]]
 
 wanted_columns <- snakemake@params[["columns"]]
 
@@ -92,11 +92,11 @@ get_mart <- function(biomart, species, build, version, grch, dataset) {
 
 gene_ensembl <- get_mart(wanted_biomart, wanted_species, wanted_build, version, grch, "gene_ensembl")
 
-if ( !is.null(wanted_chromosome) ) {
+if ( !is.null(wanted_filters) ) {
   table <- getBM(
     attributes = wanted_columns,
-    filters = 'chromosome_name',
-    values = wanted_chromosome,
+    filters = names(wanted_filters),
+    values = unname(wanted_filters),
     mart = gene_ensembl
   ) |> as_tibble()
 } else {
