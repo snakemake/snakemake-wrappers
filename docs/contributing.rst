@@ -37,8 +37,10 @@ Contributions should follow the coding style of the already present examples, i.
 ``meta.yaml`` file
 -------------------
 
-The following fields are available to use in the wrapper ``meta.yaml`` file. All, except
-those marked optional, should be provided.
+The following fields are available to use in the wrapper ``meta.yaml`` file.
+All, except those marked optional, should be provided.
+The general file syntax is `YAML`_.
+Text / strings as values in a `YAML`_ `mapping`_ or `sequence`_, can use `reStructuredText`_ syntax.
 
 * **name**: The name of the wrapper.
 * **description**: a description of what the wrapper does.
@@ -77,9 +79,10 @@ Example
     notes: Multiple threads can be used during compression of the output file with ``pigz``.
 
 
-
-.. _sequence: https://yaml.org/spec/1.2/spec.html#id2759963
-.. _mapping: https://yaml.org/spec/1.2/spec.html#id2759963
+.. _YAML: https://yaml.org/spec/1.2.2/
+.. _sequence: https://yaml.org/spec/1.2.2/#21-collections
+.. _mapping: https://yaml.org/spec/1.2.2/#21-collections
+.. _reStructuredText: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
 
 .. _formatting:
 
