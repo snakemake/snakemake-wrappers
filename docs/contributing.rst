@@ -36,14 +36,15 @@ And then, contributions should:
 
 To have all the tools you need for developing and testing wrappers in one single ``conda``/``mamba`` environment:
 
-1. `Install miniconda with the channels as described for bioconda <https://bioconda.github.io/#using-bioconda>`_.
-2. Create an environment with the necessary dependencies:
+1. `Install miniforge <https://github.com/conda-forge/miniforge?tab=readme-ov-file#install>`_.
+2. Set up the channels as `described for bioconda <https://bioconda.github.io/#using-bioconda>`_.
+3. Create an environment with the necessary dependencies:
 
 .. code-block:: bash
 
   mamba create -n snakemake-wrappers-development -c conda-forge -c bioconda snakemake snakefmt snakedeploy black mamba pytest
 
-3. Activate the environment with:
+4. Activate the environment with:
 
 .. code-block:: bash
 
@@ -183,7 +184,7 @@ When writing the ``Snakefile``, please ensure that:
 * it also passes linting, see :ref:`linting`
 * all example rules in your ``test/Snakefile`` have an invocation as a test case in ``test.py``, see :ref:`test`
 * wherever you can do this with a short comment, explain possible settings for all keywords like ``input:``, ``output:``, ``params:``, ``threads:``, etc. (provide longer explanations in the :ref:`meta` file)
-
+* provide a sensible default for ``threads:``, if more than one thread can be used by the wrapper
 
 .. _test:
 
