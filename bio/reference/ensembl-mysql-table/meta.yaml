@@ -1,12 +1,13 @@
-name: ensembl-biomart-table
+name: ensembl-mysql-table
 description: >
-    Create a table of annotations available via the ``bioconductor-biomart``,
-    with one column per specified annotation (for example ``ensembl_gene_id``,
-    ``ensembl_transcript_id``, ``ext_gene``, ... for the human reference). For
-    reference, have a look at the
-    `Ensembl biomart online <https://www.ensembl.org/biomart/martview>`_
-    or at the ``biomaRt`` package documentation linked in the ``URL`` field.
-url: https://bioconductor.org/packages/deveol/bioc/vignettes/biomaRt/inst/doc/accessing_ensembl.html
+    Create a table of annotations available via one of the versioned ensembl mysql databases,
+    with rows determined by mysql database tables specified under 'features' and the 
+    annotation columns beyond those tables determined by the mysql tables specified
+    under 'annotations'. All 'features' tables must share some ensembl id and should
+    contain similar columns, all 'annotations' tables have to have one column specified
+    by which they will be 'left_join()'ed onto the features tables. The main documentation
+    for the Ensembl mysql databases, including 'Database schemas', is here:
+    ``https://www.ensembl.org/info/docs/api/index.html``
 authors:
   - David Lähnemann
 output:
