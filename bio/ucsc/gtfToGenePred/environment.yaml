@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - ucsc-gtftogenepred =447
-  - csvkit =2.0.0
+  - csvkit =2.0.1
