@@ -1,0 +1,13 @@
+rule test_pcaexplorer_pcaplot:
+    input:
+        "dst.RDS",
+    output:
+        "pca.svg",
+    params:
+        extra="",
+        #width=480,
+        #height=480,
+    log:
+        "logs/pca.log",
+    wrapper:
+        "master/bio/pcaexplorer/pcaplot"

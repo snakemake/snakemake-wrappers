@@ -1,0 +1,13 @@
+name: "PCA-Explorer PCA-plot"
+description: Plots the results of PCA on a 2-dimensional space
+url: https://www.bioconductor.org/packages/release/bioc/vignettes/pcaExplorer/inst/doc/pcaExplorer.html#91_pcaplot
+authors:
+  - Thibault Dayris
+input:
+  - Path to DESeqTransform object, such as rlog or vst transformed data
+output:
+  - Path to PCA plot (SVG formatted)
+params:
+  - extra: Optional parameters, besides `x`.
+notes: |
+  This tool does not handle multi threading.
