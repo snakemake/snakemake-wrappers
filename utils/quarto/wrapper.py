@@ -91,7 +91,7 @@ for name, value in snakemake.output.items():
 # RESOURCE_PARAMS_PREFIX.
 # eg resources_mem -> snakemake.resources.mem
 RESOURCE_PARAMS_PREFIX = "resources_"
-params_header = parse_qmd_header(script)["params"]
+params_header = parse_qmd_header(script).get("params", {})
 resources = {**snakemake.resources}
 resources["threads"] = snakemake.threads
 passed_resource_params = {
