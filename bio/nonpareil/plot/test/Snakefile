@@ -10,9 +10,6 @@ rule test_nonpareil_plot:
         "logs/{sample}.log",
     params:
         extra=lambda w: f"--labels {w.sample} --col blue",
-        star=95,
-        weights_exp=[-1.1, -1.2, -0.9, -1.3, -1],
-        plot_dispersion="ci95",
     wrapper:
         "master/bio/nonpareil/plot"
 
@@ -28,7 +25,6 @@ use rule test_nonpareil_plot as test_nonpareil_plot_multiple with:
         "logs/samples.log",
     params:
         extra="--labels 'Model A,Model B,Model C' --col blue,red,green",
-        plot_dispersion="sd",
 
 
 use rule test_nonpareil_plot as test_nonpareil_plot_nomodel with:
@@ -40,4 +36,3 @@ use rule test_nonpareil_plot as test_nonpareil_plot_nomodel with:
         "logs/{sample}.nomodel.log",
     params:
         extra=lambda w: f"--labels {w.sample} --col blue --no-model",
-        plot_dispersion="iq",
