@@ -34,7 +34,7 @@ use rule test_nonpareil_plot as test_nonpareil_plot_multiple with:
 use rule test_nonpareil_plot as test_nonpareil_plot_nomodel with:
     output:
         pdf="results/{sample}.nomodel.pdf",
-        model="results/{sample}.nomodel.RData",
+        tsv="results/{sample}.nomodel.tsv",
         json="results/{sample}.nomodel.json",
     log:
         "logs/{sample}.nomodel.log",
