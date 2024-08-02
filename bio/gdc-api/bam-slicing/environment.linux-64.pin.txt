@@ -19,5 +19,5 @@ https://conda.anaconda.org/conda-forge/linux-64/libnghttp2-1.58.0-h47da74e_1.con
 https://conda.anaconda.org/conda-forge/linux-64/libssh2-1.11.0-h0841786_0.conda#1f5a58e686b13bcfde88b93f547d23fe
 https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.6-ha6fb4c9_0.conda#4d056880988120e29d75bfff282e0f45
 https://conda.anaconda.org/conda-forge/linux-64/krb5-1.21.3-h659f571_0.conda#3f43953b7d3fb3aaa1d0d0723d91e368
-https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.9.0-hdb1bdb2_0.conda#5badfbdb2688d8aaca7bd3c98d557b97
-https://conda.anaconda.org/conda-forge/linux-64/curl-8.9.0-h18eb788_0.conda#cb385c8a955ad49c3342b23cd1a26c11
+https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.9.1-hdb1bdb2_0.conda#7da1d242ca3591e174a3c7d82230d3c0
+https://conda.anaconda.org/conda-forge/linux-64/curl-8.9.1-h18eb788_0.conda#2e7dedf73dfbfcee662e2a0f6175e4bb
