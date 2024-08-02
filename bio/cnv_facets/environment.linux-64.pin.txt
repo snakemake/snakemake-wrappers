@@ -100,7 +100,7 @@ https://conda.anaconda.org/conda-forge/linux-64/cairo-1.16.0-h6cf1ce9_1008.tar.b
 https://conda.anaconda.org/conda-forge/linux-64/curl-7.86.0-h2283fc2_1.tar.bz2#9d4149760567cb232691cce2d8ccc21f
 https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.9.0-23_linux64_openblas.conda#eede29b40efa878cbe5bdcb767e97310
 https://conda.anaconda.org/conda-forge/linux-64/liblapack-3.9.0-23_linux64_openblas.conda#2af0879961951987e464722fd00ec1e0
-https://conda.anaconda.org/conda-forge/noarch/pip-24.0-pyhd8ed1ab_0.conda#f586ac1e56c8638b64f9c8122a7b8a67
+https://conda.anaconda.org/conda-forge/noarch/pip-24.2-pyhd8ed1ab_0.conda#6721aef6bfe5937abe70181545dd2c51
 https://conda.anaconda.org/bioconda/linux-64/bcftools-1.8-h4da6232_3.tar.bz2#b8333b9715c78e2d137ae51d478d9c61
 https://conda.anaconda.org/conda-forge/linux-64/gsl-2.6-he838d99_2.tar.bz2#d54a10784d331d7b13f8af19acf297b7
 https://conda.anaconda.org/conda-forge/linux-64/harfbuzz-3.1.1-h83ec7ef_0.tar.bz2#ca8faaee04a83e3c4d6f708a35ac2ec3
