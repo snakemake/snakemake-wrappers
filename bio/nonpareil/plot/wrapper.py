@@ -11,7 +11,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
 for output in snakemake.output:
-    ext = Path(output).suffix
+    ext = Path(output).suffix.lstrip(".")
     if ext in ["json", "tsv", "pdf"]:
         extra += f" --{ext} {output}"
 
