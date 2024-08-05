@@ -22,7 +22,7 @@ try:
             tmpdirname=tmpdirname  # Pass tmpdirname to the shell environment
         )
         shell ("""
-            touch {snakemake.output.vcf_header} {snakemake.output.merged_vcf} {snakemake.output.vcf_header} {snakemake.output.bam} {snakemake.output.bai}
+            touch {snakemake.output}
             """
         )
 
