@@ -2,16 +2,16 @@ name: "paraphase"
 description:  Run paraphase, organise and merge the outputfiles.
 url: https://github.com/PacificBiosciences/paraphase
 input:
-  bam: bam file
-  fasta: genome fasta file 
+  bam: Path to bam file with aligned genomic reads
+  fasta: genome fasta file for target genome
   faidx: fasta .fai index for the genome fasta file
 output:
-  vcf:  vcf file
+  vcf: vcf file with resulting phased variants
   bam: bam file with realigned reads
-  bai: bai file with realigned reads 
+  bai: bai index file for the realigned reads 
   merged_vcf: VCF file containing all newly discovered variants, phased by gene copy and haplotype  
 params:
-  extra: additional parameters that will be forwarded to paraphasse target
+  extra: additional parameters that will be forwarded to paraphase
 authors:
   - Patrik Smeds
 notes: paraphase resolves SNVs in gene families for PacBio longreads from whole genomes
