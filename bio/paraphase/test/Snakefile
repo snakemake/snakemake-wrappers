@@ -22,7 +22,7 @@ rule paraphase:
     message:
         "{rule}: Calls paraphase on {input.bam} with paraphase to resolve SNVs in gene families"
     wrapper:
-        "ppp/bio/paraphase"
+        "master/bio/paraphase"
 
 
 
