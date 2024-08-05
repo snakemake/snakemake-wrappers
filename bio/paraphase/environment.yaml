@@ -5,5 +5,6 @@ channels:
 dependencies:
   - minimap2=2.28
   - paraphase=3.1.1
+  - htslib =1.20
   - samtools =1.20
   - bcftools =1.20
