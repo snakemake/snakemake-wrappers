@@ -12,8 +12,7 @@ rule paraphase:
         merged_vcf = "Sample1_paraphase.vcf.gz",
         vcf_header = "vcf_chromosome_header.vcf",
     params:
-        genome="--genome 38",
-        extra="-g PDPK1",
+        extra="-g PDPK1 --genome 38",
         outfolder=directory("paraphase/"),
     log:
         "PDPK1_realigned.vcf.log",
