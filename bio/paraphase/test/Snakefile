@@ -20,10 +20,8 @@ rule paraphase:
     threads: 1
     resources:
         mem_mb=1024,
-    message:
-        "{rule}: Calls paraphase on {input.bam} with paraphase to resolve SNVs in gene families"
     wrapper:
-        "my-new-snakemake-wrapper-paraphrase/bio/paraphase"
+        "master/bio/paraphase"
 
 
 
