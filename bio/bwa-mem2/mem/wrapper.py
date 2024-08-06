@@ -27,7 +27,7 @@ java_opts = get_java_opts(snakemake)
 bwa_threads = snakemake.threads
 samtools_threads = snakemake.threads - 1
 
-idx = snakemake.input.get("idx", "")
+idx = snakemake.input.idx
 if isinstance(idx, str):
     index = path.splitext(idx)[0]
 else:
