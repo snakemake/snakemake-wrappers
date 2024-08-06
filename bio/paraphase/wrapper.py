@@ -76,9 +76,6 @@ try:
             print("No output VCF or BAM files were produced by paraphase, I hope this is what you were expecting, human?")
             shell(f"touch {snakemake.output.merged_vcf}")
 
-except Exception as e:
-    print(f"Error running paraphase: {e}")
-    sys.exit(1)
 
 
 """ Slut """
