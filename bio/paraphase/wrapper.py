@@ -9,7 +9,7 @@ extra = snakemake.params.get("extra", "")
 
 try:
     with TemporaryDirectory() as tmpdirname:
-        
+
         ### Run paraphase
         shell(
             f"""
@@ -19,9 +19,10 @@ try:
             {snakemake.params.genome} \
             {extra}) {log}
             """,
-            tmpdirname=tmpdirname  # Pass tmpdirname to the shell environment
+            tmpdirname=tmpdirname,  # Pass tmpdirname to the shell environment
         )
-        shell ("""
+        shell(
+            """
             touch {snakemake.output}
             """
         )
@@ -33,12 +34,12 @@ try:
         output_vcf_header = snakemake.output.vcf_header
 
         # Open the .fai index file and read lines
-        with open(input_faidx, 'r') as fai_file:
+        with open(input_faidx, "r") as fai_file:
             lines = fai_file.readlines()
         fai_file.close()
 
         # Open the output file and write formatted header lines
-        with open(output_vcf_header, 'w') as output:
+        with open(output_vcf_header, "w") as output:
             for line in lines:
                 contig_id, length = line.split()[:2]  # Assuming the first two elements are ID and length
                 output.write(f"##contig=<ID={contig_id},length={length}>\n")
@@ -61,11 +62,11 @@ try:
                 f"bcftools sort -Oz -o {snakemake.output.merged_vcf}"
             )
             print(f"Merged, reheadered, and sorted VCF file created: {snakemake.output.merged_vcf}")
-            
+
             # Copy out bam and bai files
             bam_res = glob.glob(f"{tmpdirname}/*.bam")
             bai_res = glob.glob(f"{tmpdirname}/*.bai")
-            #print("BAM RES: ", bam_res, bai_res)
+            # print("BAM RES: ", bam_res, bai_res)
             shell(
                 f"""
                 cp -pr {' '.join(bam_res)} {snakemake.output.bam};
@@ -76,13 +77,6 @@ try:
             print("No output VCF or BAM files were produced by paraphase, I hope this is what you were expecting, human?")
             shell(f"touch {snakemake.output.merged_vcf}")
 
-
 except Exception as e:
     print(f"Error running paraphase: {e}")
     sys.exit(1)
-
-    
-""" Slut """
-
-
-

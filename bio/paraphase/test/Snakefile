@@ -1,5 +1,5 @@
-
 # Set the custom wrapper prefix for the entire workflow
+
 
 rule paraphase:
     input:
@@ -7,10 +7,10 @@ rule paraphase:
         fasta="test_data/chr16s.fa",
         faidx="test_data/homo_sapiens.fa.fai",
     output:
-        bam = "PDPK1_realigned.paraphase.bam",
-        bai = "PDPK1_realigned.paraphase.bam.bai",
-        merged_vcf = "Sample1_paraphase.vcf.gz",
-        vcf_header = "vcf_chromosome_header.vcf",
+        bam="PDPK1_realigned.paraphase.bam",
+        bai="PDPK1_realigned.paraphase.bam.bai",
+        merged_vcf="Sample1_paraphase.vcf.gz",
+        vcf_header="vcf_chromosome_header.vcf",
     params:
         outfolder=directory("paraphase/"),
         genome=config.get("paraphase", {}).get("genome", ""),
@@ -22,6 +22,3 @@ rule paraphase:
         mem_mb=1024,
     wrapper:
         "my-new-snakemake-wrapper-paraphrase/bio/paraphase"
-
-
-
