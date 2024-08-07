@@ -53,7 +53,7 @@ get_and_check_db_name <- function(connection, species, database, release, wanted
   dbname_prefix <- str_c(
     species,
     database,
-    release
+    release,
     collapse ="_"
   )
   dbname <- dbGetQuery(connection, "SHOW DATABASES") |> filter(str_starts(Database, dbname_prefix))
