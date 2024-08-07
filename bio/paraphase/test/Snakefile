@@ -12,7 +12,6 @@ rule paraphase:
         merged_vcf="paraphase/PDK1_paraphase.vcf.gz",
         vcf_header="paraphase/vcf_chromosome_header.vcf",
     params:
-        #outfolder=directory("paraphase/"),
         extra="-g PDPK1 --genome 38",
     log:
         "paraphase/PDPK1_realigned.vcf.log",
@@ -22,4 +21,4 @@ rule paraphase:
     resources:
         mem_mb=1024,
     wrapper:
-        "my-new-snakemake-wrapper-paraphrase/bio/paraphase"
+        "main/bio/paraphase"
