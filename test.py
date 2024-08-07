@@ -6120,6 +6120,11 @@ def test_vep_cache():
 
     run(
         "bio/vep/cache",
+        ["snakemake", "--cores", "1", "resources/vep/indexed_cache", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/vep/cache",
         ["snakemake", "--cores", "1", "resources/vep/cache_ebi", "--use-conda", "-F"],
     )
 
