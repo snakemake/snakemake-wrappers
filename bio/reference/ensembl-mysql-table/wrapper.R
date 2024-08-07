@@ -13,104 +13,156 @@ rlang::global_entrace()
 library("fs")
 library("cli")
 
-library("biomaRt")
+library("dbplyr")
+library("RMariaDB")
 
-wanted_biomart <- snakemake@params[["biomart"]]
-# bioconductor-biomart needs the species as something like `hsapiens` instead
-# of `homo_sapiens`, and `chyarkandensis` instead of `cervus_hanglu_yarkandensis`
-species_name_components <- str_split(snakemake@params[["species"]], "_")[[1]]
-if (length(species_name_components) == 2) {
-  wanted_species <- str_c(
-    str_sub(species_name_components[1], 1, 1),
-    species_name_components[2]
-  )
-} else if (length(species_name_components) == 3) {
-  wanted_species <- str_c(
-    str_sub(species_name_components[1], 1, 1),
-    str_sub(species_name_components[2], 1, 1),
-    species_name_components[3]
-  )
-} else {
-  cli_abort(c(
-          "Unsupported species name '{snakemake@params[['species']]}'.",
-    "x" = "Splitting on underscores led to unexpected number of name components: {length(species_name_components)}.",
-    "i" = "Expected species name with 2 (e.g. `homo_sapiens`) or 3 (e.g. `cervus_hanglu_yarkandensis`) components.",
-          "Anything else either does not exist in Ensembl, or we don't yet handle it properly.",
-          "In case you are sure the species you specified is correct and exists in Ensembl, please",
-          "file a bug report as an issue on GitHub, referencing this file: ",
-          "https://github.com/snakemake/snakemake-wrappers/blob/master/bio/reference/ensembl-biomart-table/wrapper.R"
-  ))
-}
-
+wanted_species <- snakemake@params[["species"]]
 wanted_release <- snakemake@params[["release"]]
 wanted_build <- snakemake@params[["build"]]
 
-wanted_filters <- snakemake@params[["filters"]]
-
-wanted_columns <- snakemake@params[["attributes"]]
+main_tables <- snakemake@params[["main_tables"]]
+join_tables <- snakemake@params[["join_tables"]]
 
 output_filename <- snakemake@output[["table"]]
 
 if (wanted_build == "GRCh37") {
-  grch <- "37"
-  version <- NULL
-  cli_warn(c(
-    "As you specified build 'GRCH37' in your configuration yaml, biomart forces",
-    "us to ignore the release you specified ('{release}')."
-  ))
-} else {
-  grch <- NULL
-  version <- wanted_release
-}
-
-get_mart <- function(biomart, species, build, version, grch, dataset) {
-  mart <- useEnsembl(
-    biomart = biomart,
-    dataset = str_c(species, "_", dataset),
-    version = version,
-    GRCh = grch
-  )
-  
-  if (build == "GRCh37") {
-    retrieved_build <- str_remove(listDatasets(mart)$version, "\\..*")
-  } else {
-    retrieved_build <- str_remove(searchDatasets(mart, species)$version, "\\..*")
-  }
-  
-  if (retrieved_build != build) {
+  port <- 3337
+} else if (wanted_build == "GRCm38") {
+  if (wanted_release > 99) {
     cli_abort(c(
-            "The Ensembl release and genome build number you specified are not compatible.",
-      "x" = "Genome build '{build}' not available via biomart for Ensembl release '{release}'.",
-      "i" = "Ensembl release '{release}' only provides build '{retrieved_build}'.",
-      " " = "Please fix your configuration yaml file's reference entry, you have two options:",
-      "*" = "Change the build entry to '{retrieved_build}'.",
-      "*" = "Change the release entry to one that provides build '{build}'. You have to determine this from biomart by yourself."
+            "From Ensembl release 100 and upwards, genome build GRCm38 is not available any more.",
+      "i" = "Please choose a release of 99 or lower, or choose a newer mouse genome build.",
     ))
   }
-  mart
-}
-
-gene_ensembl <- get_mart(wanted_biomart, wanted_species, wanted_build, version, grch, "gene_ensembl")
-
-if ( !is.null(wanted_filters) ) {
-  table <- getBM(
-    attributes = wanted_columns,
-    filters = names(wanted_filters),
-    values = unname(wanted_filters),
-    mart = gene_ensembl
-  ) |> as_tibble()
+  port <- 3337
 } else {
-  table <- getBM(
-    attributes = wanted_columns,
-    mart = gene_ensembl
-  ) |> as_tibble()
+  port <- 3306
 }
 
+# general connection to ensembl databases
+ensembl_connection <- dbConnect(
+  MariaDB(),
+  host = "ensembldb.ensembl.org", 
+  user = "anonymous",
+  port = port,
+  password = ""
+)
 
-  
+get_and_check_db_name <- function(connection, species, database, release, wanted_build) {
+  dbname_prefix <- str_c(
+    species,
+    database,
+    release
+    collapse ="_"
+  )
+  dbname <- dbGetQuery(connection, "SHOW DATABASES") |> filter(str_starts(Database, dbname_prefix))
+
+  if ( length(dbname) == 1 ) {
+    retrieved_build_num <- dbname |> first() |> str_split("_") |> first() |> last()
+    # Canonicalize the build number to a single number as used in the mysql
+    # database names. At the time of writing, this code fails for 20 species,
+    # but build/assembly name numbers in those have no systematic relationship
+    # with the build numbers used in the respective mysql databases. Thus, we
+    # throw an error in those cases and ask users to check up the correct
+    # matchup manually.
+    wanted_build_num <- wanted_build |>
+      # remove patch suffixes like ".p14" in "GRCh38.p14", although usually
+      # we expect users of the wrapper to only specify "GRCh38" as the build
+      str_replace("\\.p\\d+$", "") |>
+      # look for trailing combinations of digits and dots
+      str_extract("[\\d\\.]+$") |>
+      # remove all dots, as mysql database numbers contain no dots
+      str_replace_all( "\\.", "") |>
+      # remove leading zeros, for example from "PKINGS_0.1"
+      str_replace( "^0+", "") |>
+      # remove trailing zeros, as this is needed for the vast majority of such
+      # cases (but in some cases this causes a mismatch, but there is no
+      # systematic way of resolving when)
+      str_replace("0$", "")
+
+    if (retrieved_build_num != wanted_build_num) {
+      # Systematic extraction didn't match up. We'll try matching up by downloading
+      # the releases species summary file from the FTP servers. ¯\_(ツ)_/¯
+      species_file_address <- str_c(
+        "https://ftp.ensembl.org/pub/release-",
+        release,
+        "/species_EnsemblVertebrates.txt"
+      )
+      species_summary <- read_tsv(species_file_address) |>
+        filter( str_starts(core_db, species) ) |>
+        select(assembly, core_db)
+      assembly <- species_summary |> pull(assembly) |> first()
+      summary_build_num <- species_summary |> pull(core_db) |> first() |> str_split("_") |> first() |> last()
+      if ( (! str_starts(wanted_build, assembly)) & (summary_build_num != wanted_build_num) ) {
+        cli_abort(c(
+                "The build we could retrieve for the specified combination of species, database, and release does",
+                " not match the build you specified.",
+          "x" = "Genome build '{wanted_build}' requested for species '{species}' at Ensembl release '{release}', but",
+          " " = "only found build with number '{retrieved_build_num}'. This does not match the build number we",
+          " " = "systematically extracted from '{wanted_build}', which is '{wanted_build_num}'. We also checked",
+          " " = "against the Ensembl species summary file at:",
+          " " = "{species_file_address}",
+          " " = "It listed the following info, which doesn't match the wanted build specification:",
+          "*" = "build / assembly : '{assembly}'",
+          "*" = "build number for core_db: '{summary_build_num}'",
+          "i" = "Please ensure that you specify an existing combination of species, build and release.",
+          " " = "The above listed species summary file is a good starting point."
+        ))
+      }
+    }
+    dbname |> pull(Database) |> first()
+  } else {
+    cli_abort(c(
+            "Could not retrieve a (unique?) database name for the specified combination of species, database, release, and build.",
+      "x" = "You requested species '{species}', database '{database}', Ensembl release '{release}', and",
+      " " = "genome build '{wanted_build}'. As builds are simple numbers in the mysql database names, we",
+      " " = "looked for a database with prefix '{dbname_prefix}'. Here's what we found (can be empty):",
+      " " = "{dbname}",
+      "i" = "Please ensure that you specify an existing and unique combination of species, database, release, and build.",
+      " " = "The following species summary file can be a good starting point:",
+      " " = "https://ftp.ensembl.org/pub/release-{release}/species_EnsemblVertebrates.txt"
+    ))
+  }
+}
+
+get_table <- function(dbname, port, table_name) {
+  table_connection <- dbConnect(
+    MariaDB(),
+    dbname = dbname,
+    host = "ensembldb.ensembl.org", 
+    user = "anonymous",
+    port = port,
+    password = "",
+    timeout=45
+  )
+  table <- tbl(table_connection, table_name) |> as_tibble()
+  table
+}
+
+main_table <- tibble()
+for (table in names(main_tables)) {
+  main_table_db_name <- get_and_check_db_name(ensembl_connection, wanted_species, names(main_table), wanted_release, wanted_build)
+  main_table <- main_table |>
+    bind_rows(
+      get_table(main_table_db_name, port, unname(main_table))
+    )
+}
+
+if ( !is.null(join_tables) ) {
+  for (table in names(join_tables)) {
+    table_db_name <- get_and_check_db_name(ensembl_connection, wanted_species, table, wanted_release, wanted_build)
+    tbl <- get_table(table_db_name, port, names(join_tables[[table]]))
+    main_table <- main_table |>
+      left_join(
+        tbl,
+        by = unname(join_tables[[table]])
+      )
+  }
+}
+
 if ( str_detect(output_filename, "tsv(\\.(gz|bz2|xz))?$") ) {
   write_tsv(
-    x = table,
+    x = main_table,
     file = output_filename
   )
 } else if ( str_detect(output_filename, "\\.parquet") ) {
@@ -131,7 +183,7 @@ if ( str_detect(output_filename, "tsv(\\.(gz|bz2|xz))?$") ) {
     )
   }
   write_parquet(
-    x = table,
+    x = main_table,
     file = output_filename, 
     compression = compression
   )

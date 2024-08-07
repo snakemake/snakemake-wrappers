@@ -1,38 +1,42 @@
-rule create_transcripts_to_genes_mapping:
+rule create_repeat_annotations:
     output:
-        table="resources/ensembl_transcripts_to_genes_mapping.tsv.gz",  # .gz extension is optional, but recommended
+        table="resources/ensembl_repeat_annotations.tsv.gz",  # .gz extension is optional, but recommended
     params:
-        biomart="genes",
         species="homo_sapiens",
-        build="GRCh38",
-        release="112",
-        attributes=[
-            "ensembl_transcript_id",
-            "ensembl_gene_id",
-            "external_gene_name",
-            "genecards",
-            "chromosome_name",
-        ],
-        filters={ "chromosome_name": ["22", "X"] }, # optional: restrict output by using filters
+        build="GRCh37",
+        release="105",
+        main_tables={"core": "repeat_feature"},  # choose the main table to retrieve, specifying { database : table }
+        join_tables={
+            "core": {"seq_region": "seq_region_id"},
+            "core": {"repeat_consensus": "repeat_consensus_id"},
+        },
+        # optional: add tables to join in for further annotations, specifying { database : { table : join-column } }
     log:
-        "logs/create_transcripts_to_genes_mapping.log",
+        "logs/create_repeat_annotations.log",
     cache: "omit-software"  # save space and time with between workflow caching (see docs)
     wrapper:
-        "master/bio/reference/ensembl-biomart-table"
+        "master/bio/reference/ensembl-mysql-table"
 
 
-rule create_transcripts_to_genes_mapping_parquet:
+rule create_regulatory_annotations_parquet:
     output:
-        table="resources/ensembl_transcripts_to_genes_mapping.parquet.gz",  # .gz extension is optional, but recommended
+        table="resources/ensembl_regulatory_annotations.parquet.gz",  # .gz extension is optional, but recommended
     params:
-        biomart="genes",
         species="mus_musculus",
         build="GRCm39",
         release="112",
-        attributes=["ensembl_transcript_id", "ensembl_gene_id"],
-        # filters={ "chromosome_name": "19"}, # optional: restrict output by using filters
+        main_tables={
+            "funcgen": "regulatory_feature",
+            "funcgen": "mirna_target_feature",
+        },
+        # choose the main table to retrieve, specifying { database : table }
+        join_tables={
+            "core": {"seq_region": "seq_region_id"},
+            "funcgen": {"feature_type": "feature_type_id"},
+        },
+        # optional: add tables to join in for further annotations, specifying { database : { table : join-column } }
     log:
-        "logs/create_transcripts_to_genes_mapping_parquet.log",
+        "logs/create_regulatory_annotations_parquet.log",
     cache: "omit-software"  # save space and time with between workflow caching (see docs)
     wrapper:
-        "master/bio/reference/ensembl-biomart-table"
+        "master/bio/reference/ensembl-mysql-table"
