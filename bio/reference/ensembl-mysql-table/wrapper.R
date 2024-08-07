@@ -45,7 +45,8 @@ ensembl_connection <- dbConnect(
   host = "ensembldb.ensembl.org", 
   user = "anonymous",
   port = port,
-  password = ""
+  password = "",
+  timeout=45
 )
 
 get_and_check_db_name <- function(connection, species, database, release, wanted_build) {
