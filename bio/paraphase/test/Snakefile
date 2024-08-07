@@ -23,4 +23,4 @@ rule paraphase:
     resources:
         mem_mb=1024,
     wrapper:
-        "my-new-snakemake-wrapper-paraphrase/bio/paraphase"
+        "main/bio/paraphase"
