@@ -1,3 +1,4 @@
+import os
 import glob
 import sys
 from snakemake.shell import shell
@@ -6,6 +7,10 @@ import shutil
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
+
+
+#out_prefix = os.path.commonprefix(snakemake.output).rstrip(".")
+
 
 try:
     with TemporaryDirectory() as tmpdirname:
