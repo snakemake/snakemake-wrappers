@@ -142,10 +142,10 @@ get_table <- function(dbname, port, table_name) {
 
 main_table <- tibble()
 for (table in names(main_tables)) {
-  main_table_db_name <- get_and_check_db_name(ensembl_connection, wanted_species, names(main_table), wanted_release, wanted_build)
+  main_table_db_name <- get_and_check_db_name(ensembl_connection, wanted_species, names(main_tables), wanted_release, wanted_build)
   main_table <- main_table |>
     bind_rows(
-      get_table(main_table_db_name, port, unname(main_table))
+      get_table(main_table_db_name, port, unname(main_tables))
     )
 }
 
