@@ -1,0 +1,80 @@
+
+include: "common.smk"
+
+
+rule test_aria2:
+    output:
+        "results/file.fas.gz",
+    log:
+        "logs/aria2.log",
+    params:
+        url="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/869/925/GCF_000869925.1_ViralProj17181/GCF_000869925.1_ViralProj17181_genomic.fna.gz",
+        extra="--file-allocation none --retry-wait 5 --console-log-level warn --log-level notice",
+    threads: 2
+    resources:
+        mem_mb=1024,
+        runtime=30,
+    wrapper:
+        "master/utils/aria2c"
+
+
+rule test_aria2_md5:
+    output:
+        "results/file.md5.fas.gz",
+    log:
+        "logs/aria2.md5.log",
+    params:
+        url="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/869/925/GCF_000869925.1_ViralProj17181/GCF_000869925.1_ViralProj17181_genomic.fna.gz",
+        extra="--file-allocation none --retry-wait 5 --console-log-level warn --log-level notice --checksum md5=42aa93c5bfdba6ac09a4822a4407b572",
+    threads: 2
+    resources:
+        mem_mb=1024,
+        runtime=30,
+    wrapper:
+        "master/utils/aria2c"
+
+
+rule test_aria2_file:
+    input:
+        checksum="GCF_000869925.1_ViralProj17181.{type}",
+    output:
+        "results/file.{type}file.fas.gz",
+    log:
+        "logs/aria2.{type}file.log",
+    params:
+        url="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/869/925/GCF_000869925.1_ViralProj17181/GCF_000869925.1_ViralProj17181_genomic.fna.gz",
+        hash_function=lambda w: w.type,
+        checksum=parse_input(
+            "checksum",
+            parser=extract_checksum,
+            file="GCF_000869925.1_ViralProj17181_genomic.fna.gz",
+        ),
+        extra="--file-allocation none --retry-wait 5 --console-log-level warn --log-level notice",
+    threads: 2
+    resources:
+        mem_mb=1024,
+        runtime=30,
+    wrapper:
+        "master/utils/aria2c"
+
+
+### Disabled until there is a way to install 'snakemake-storage-plugin-http' in the test environment
+# rule test_aria2_file_with_hash:
+#     input:
+#         storage.http(
+#             "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/869/925/GCF_000869925.1_ViralProj17181/md5checksums.txt"
+#         ),
+#     output:
+#         "results/file.md5fileH.fas.gz",
+#     log:
+#         "logs/aria2.md5fileH.log",
+#     params:
+#         url="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/869/925/GCF_000869925.1_ViralProj17181/GCF_000869925.1_ViralProj17181_genomic.fna.gz",
+#         hash_function="md5",
+#         extra="--file-allocation none --retry-wait 5 --console-log-level warn --log-level notice",
+#     threads: 2
+#     resources:
+#         mem_mb=1024,
+#         runtime=30,
+#     wrapper:
+#         "master/utils/aria2c"
