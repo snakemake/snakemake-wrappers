@@ -54,7 +54,7 @@ get_and_check_db_name <- function(connection, species, database, release, wanted
     species,
     database,
     release,
-    collapse ="_"
+    sep ="_"
   )
   dbname <- dbGetQuery(connection, "SHOW DATABASES") |> filter(str_starts(Database, dbname_prefix))
 
