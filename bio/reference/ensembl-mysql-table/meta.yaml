@@ -27,7 +27,7 @@ params:
   - release: release from which the species and build are available, for example '112'
   - main_tables: >
       A list of wanted ``main_tables``. You have to specify them as a dictionary in the
-      format ``{ database : table_name }``. You can find available tables in the
+      format ``{ table_name : database }``. You can find available tables in the
       ``Database schema``s in the Ensembl documentation:
       https://mart.ensembl.org/info/docs/api/index.html
       Available ``database`` names at the time of writing are ``core``, ``cdna``,
@@ -38,7 +38,7 @@ params:
   - join_tables: >
       (optional) A list of ``join_tables`` to add further annotation columns. You have
       to specify them as a nested dictionary in the format:
-      ``{ database : { table : join_column_name} }``
+      ``{ table_name : { "database": database,  "join_column": join_column_name } }``
       As for ``main_tables``, most info can be found in the ``Database schema``s:
       https://mart.ensembl.org/info/docs/api/index.html
       And for more detailed infos, you'll have to interactively explore the mysql databases:

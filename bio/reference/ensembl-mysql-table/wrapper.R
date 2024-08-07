@@ -142,21 +142,21 @@ get_table <- function(dbname, port, table_name) {
 
 main_table <- tibble()
 for (table in names(main_tables)) {
-  main_table_db_name <- get_and_check_db_name(ensembl_connection, wanted_species, names(main_tables), wanted_release, wanted_build)
+  main_table_db_name <- get_and_check_db_name(ensembl_connection, wanted_species, main_tables[[table]], wanted_release, wanted_build)
   main_table <- main_table |>
     bind_rows(
-      get_table(main_table_db_name, port, unname(main_tables))
+      get_table(main_table_db_name, port, table)
     )
 }
 
 if ( !is.null(join_tables) ) {
   for (table in names(join_tables)) {
-    table_db_name <- get_and_check_db_name(ensembl_connection, wanted_species, table, wanted_release, wanted_build)
-    tbl <- get_table(table_db_name, port, names(join_tables[[table]]))
+    table_db_name <- get_and_check_db_name(ensembl_connection, wanted_species, join_tables[[table]][["database"]], wanted_release, wanted_build)
+    tbl <- get_table(table_db_name, port, table)
     main_table <- main_table |>
       left_join(
         tbl,
-        by = unname(join_tables[[table]])
+        by = join_tables[[table]][["join_column"]]
       )
   }
 }
