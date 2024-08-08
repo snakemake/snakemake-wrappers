@@ -136,7 +136,7 @@ get_table <- function(dbname, port, table_name) {
     password = "",
     timeout=45
   )
-  table <- tbl(table_connection, table_name) |> as_tibble()
+  table <- tbl(table_connection, table_name) |> collect()
   table
 }
 
