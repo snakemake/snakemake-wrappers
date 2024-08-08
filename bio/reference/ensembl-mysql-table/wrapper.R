@@ -136,6 +136,10 @@ get_table <- function(dbname, port, table_name) {
     password = "",
     timeout=45
   )
+  # TODO: This is where we could do filtering, to reduce the amount of actual
+  # downloading at the earliest possible point. But this would need extra
+  # params-based syntax, but I'm not sure whether that's really necessary, or
+  # if most use cases will be about dumping (and joining) full tables.
   table <- tbl(table_connection, table_name) |> collect()
   table
 }
