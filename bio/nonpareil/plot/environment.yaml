@@ -4,4 +4,3 @@ channels:
   - nodefaults
 dependencies:
   - nonpareil =3.5.5
-  - r-jsonlite
