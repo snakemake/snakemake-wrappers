@@ -1,0 +1,9 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - r-nanoparquet =0.3
+  - r-tidyverse =2.0
+  - r-dbplyr =2.5
+  - r-rmariadb =1.2
