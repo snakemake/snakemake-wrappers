@@ -2856,6 +2856,32 @@ def test_deeptools_bamcoverage():
 
 
 @skip_if_not_modified
+def test_deeptools_multibigwigsummary():
+    run(
+        "bio/deeptools/multibigwigsummary",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "bins.npz",
+        ],
+    )
+    run(
+        "bio/deeptools/multibigwigsummary",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "bed.npz",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_deeptools_bamcoverage_eff():
     run(
         "bio/deeptools/bamcoverage",
