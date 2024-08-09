@@ -27,11 +27,11 @@ java_opts = get_java_opts(snakemake)
 bwa_threads = snakemake.threads
 samtools_threads = snakemake.threads - 1
 
-index = snakemake.input.get("index", "")
-if isinstance(index, str):
-    index = path.splitext(snakemake.input.idx)[0]
+idx = snakemake.input.get("idx", "")
+if isinstance(idx, str):
+    index = path.splitext(idx)[0]
 else:
-    index = path.splitext(snakemake.input.idx[0])[0]
+    index = path.splitext(idx[0])[0]
 
 
 # Check inputs/arguments.
