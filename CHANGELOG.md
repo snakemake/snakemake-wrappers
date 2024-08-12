@@ -1,5 +1,29 @@
 # Changelog
 
+### [3.14.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.14.0...v3.14.1) (2024-08-09)
+
+
+### Bug Fixes
+
+* add missing raw string in REGEX_RULES ([#3104](https://www.github.com/snakemake/snakemake-wrappers/issues/3104)) ([74a3269](https://www.github.com/snakemake/snakemake-wrappers/commit/74a3269fe7152464e8134d7560a32540e4197977))
+* download already indexed vep cache tarball ([#3102](https://www.github.com/snakemake/snakemake-wrappers/issues/3102)) ([13c6ef7](https://www.github.com/snakemake/snakemake-wrappers/commit/13c6ef74db8f6c4608c87f6209bab69b3e9ed16a))
+
+
+### Performance Improvements
+
+* autobump bio/encode_fastq_downloader ([#3105](https://www.github.com/snakemake/snakemake-wrappers/issues/3105)) ([695ab1b](https://www.github.com/snakemake/snakemake-wrappers/commit/695ab1b1e39ec2a9693ef5f721bc564e50f716e2))
+* autobump bio/gatk3/indelrealigner ([#3106](https://www.github.com/snakemake/snakemake-wrappers/issues/3106)) ([09d6e0b](https://www.github.com/snakemake/snakemake-wrappers/commit/09d6e0b0d0857c88f6f2c81aec3d7714eb9fb738))
+* autobump bio/gdc-api/bam-slicing ([#3096](https://www.github.com/snakemake/snakemake-wrappers/issues/3096)) ([248b611](https://www.github.com/snakemake/snakemake-wrappers/commit/248b611f33ce879ad40eef4b78ad2d84cda43948))
+* autobump bio/last/lastal ([#3108](https://www.github.com/snakemake/snakemake-wrappers/issues/3108)) ([9f7a264](https://www.github.com/snakemake/snakemake-wrappers/commit/9f7a264c5ceb560008945a4520960e219f470827))
+* autobump bio/last/lastdb ([#3107](https://www.github.com/snakemake/snakemake-wrappers/issues/3107)) ([b1c3334](https://www.github.com/snakemake/snakemake-wrappers/commit/b1c333462d4540a4ed995af2a190bdab0f43e66a))
+* autobump bio/mapdamage2 ([#3109](https://www.github.com/snakemake/snakemake-wrappers/issues/3109)) ([a870b8e](https://www.github.com/snakemake/snakemake-wrappers/commit/a870b8ef9bc89a18b093dc6303048b5e1202f740))
+* autobump bio/sourmash/compute ([#3098](https://www.github.com/snakemake/snakemake-wrappers/issues/3098)) ([5796bc6](https://www.github.com/snakemake/snakemake-wrappers/commit/5796bc6fe0908c4922bb8bfc93183df72afa04b2))
+* autobump bio/spades/metaspades ([#3110](https://www.github.com/snakemake/snakemake-wrappers/issues/3110)) ([e7fb075](https://www.github.com/snakemake/snakemake-wrappers/commit/e7fb075ad006c26c407927f37fe6c0e40b15336e))
+* autobump bio/unicycler ([#3099](https://www.github.com/snakemake/snakemake-wrappers/issues/3099)) ([a09832a](https://www.github.com/snakemake/snakemake-wrappers/commit/a09832ae1ada3771d130087bc6dec5656b635643))
+* autobump bio/vembrane/filter ([#3111](https://www.github.com/snakemake/snakemake-wrappers/issues/3111)) ([5ec4df5](https://www.github.com/snakemake/snakemake-wrappers/commit/5ec4df572af0fed2589579cd4bc7be8749d55886))
+* autobump bio/vembrane/table ([#3112](https://www.github.com/snakemake/snakemake-wrappers/issues/3112)) ([9411cc9](https://www.github.com/snakemake/snakemake-wrappers/commit/9411cc94ed21493c62cc4fcd27307a87fe205e34))
+* autobump bio/vep/plugins ([#3113](https://www.github.com/snakemake/snakemake-wrappers/issues/3113)) ([4e7d29b](https://www.github.com/snakemake/snakemake-wrappers/commit/4e7d29b0aba8e20b2df8754d551de81a4c83fb53))
+
 ## [3.14.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.13.8...v3.14.0) (2024-07-31)
 
 
