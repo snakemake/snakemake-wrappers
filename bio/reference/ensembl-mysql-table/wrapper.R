@@ -175,7 +175,7 @@ get_and_check_db_name <- function(connection, species, database, release, wanted
       " " = "{dbname}",
       " " = "",
       "i" = "Please ensure that you specify an existing and unique combination of species, database, release, and build.",
-      " " = "The following species summary{dbname} file can be a good starting point:",
+      " " = "The following species summary file can be a good starting point:",
       " " = "https://ftp.ensembl.org/pub/release-{release}/species_EnsemblVertebrates.txt"
     ))
   }
