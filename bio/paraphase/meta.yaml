@@ -1,6 +1,8 @@
 name: "paraphase"
-description:  Run paraphase, organise and merge the outputfiles.
+name: paraphase
 url: https://github.com/PacificBiosciences/paraphase
+description: paraphase resolves SNVs in gene families for PacBio longreads from whole genomes
+authors: Magdalena
 input:
   bam: Path to bam file with aligned genomic reads
   fasta: genome fasta file for target genome
@@ -12,6 +14,3 @@ output:
   merged_vcf: VCF file containing all newly discovered variants, phased by gene copy and haplotype  
 params:
   extra: additional parameters that will be forwarded to paraphase
-authors:
-  - Patrik Smeds
-notes: paraphase resolves SNVs in gene families for PacBio longreads from whole genomes
