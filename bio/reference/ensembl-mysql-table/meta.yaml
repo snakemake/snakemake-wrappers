@@ -3,7 +3,7 @@ description: >
     Create a table of annotations available via the versioned ensembl mysql databases.
     Rows of the resulting table are generated from the mysql database tables specified
     under 'main_tables'. If you specify multiple `main_tables`, they should share some
-    or most of the columns, as they will by stacked on top of each other with
+    or most of the columns, as they will be stacked on top of each other with
     `bind_rows()`. Additional annotation columns beyond those tables can then be given
     as mysql tables under 'join_tables'. They have to share a column with all of the
     `main_tables`, to allow for `left_join'ing their columns onto them. 
