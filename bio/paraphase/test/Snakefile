@@ -16,7 +16,7 @@ rule paraphase:
     log:
         "paraphase/PDPK1_realigned.vcf.log",
     benchmark:
-        repeat("paraphase/PDPK1_paraphase.vcf.benchmark.tsv", 1)
+        "paraphase/PDPK1_paraphase.vcf.benchmark.tsv"
     threads: 1
     resources:
         mem_mb=1024,
