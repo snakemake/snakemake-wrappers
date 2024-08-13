@@ -6,7 +6,7 @@ description: >
     or most of the columns, as they will by stacked on top of each other with
     `bind_rows()`. Additional annotation columns beyond those tables can then be given
     as mysql tables under 'join_tables'. They have to share a column with all of the
-    `main_tables`, to allow for `left_join'ing their columns onto them. 
+    `main_tables`, to allow for `left_join'ing their columns onto them.
     The main documentation for the Ensembl mysql databases, including
     'Database schemas', is here:
     https://www.ensembl.org/info/docs/api/index.html
