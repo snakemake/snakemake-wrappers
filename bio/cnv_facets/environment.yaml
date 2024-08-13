@@ -3,5 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - cnv_facets =0.15.0
-  - python =3.12.3
+  - cnv_facets =0.16.0
