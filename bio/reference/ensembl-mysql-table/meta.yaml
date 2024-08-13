@@ -25,7 +25,7 @@ params:
       Species that is available via the Ensembl mysql databases. For a quick
       check, see the
       `Ensembl species list <https://www.ensembl.org/info/about/species.html>`_.
-      For full valid species names, consults the respective table for the
+      For full valid species names, consult the respective table for the
       `release` you specify, for example for '112' this is at:
       https://ftp.ensembl.org/pub/release-112/species_EnsemblVertebrates.txt
   - build: build available for the selected species, for example 'GRCh38'
