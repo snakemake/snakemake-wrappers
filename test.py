@@ -5674,6 +5674,36 @@ def test_ensembl_transcripts_to_genes_mapping_parquet():
 
 
 @skip_if_not_modified
+def test_ensembl_mysql_create_repeat_annotations():
+    run(
+        "bio/reference/ensembl-mysql-table",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/ensembl_repeat_annotations.tsv.gz",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_ensembl_mysql_create_regulatory_annotations_parquet():
+    run(
+        "bio/reference/ensembl-mysql-table",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/ensembl_regulatory_annotations.parquet.gz",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_ensembl_variation():
     run(
         "bio/reference/ensembl-variation",
