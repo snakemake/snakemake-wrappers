@@ -12,6 +12,9 @@ from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 from snakemake_wrapper_utils.samtools import get_samtools_opts
 
+# All idx required by bwa-mem2
+REQUIRED_IDX = {".0123", ".amb", ".ann", ".bwt.2bit.64", ".pac"}
+
 
 # Extract arguments.
 extra = snakemake.params.get("extra", "")
@@ -27,12 +30,18 @@ java_opts = get_java_opts(snakemake)
 bwa_threads = snakemake.threads
 samtools_threads = snakemake.threads - 1
 
-idx = snakemake.input.idx
-if isinstance(idx, str):
-    index = path.splitext(idx)[0]
-else:
-    index = path.splitext(idx[0])[0]
+# Extract index from input
+# and check that all required indices are declared
+idx_base, idx_ext = zip(*(path.splitext(index) for index in snakemake.input.idx))
 
+missing_idx = REQUIRED_IDX - set(idx_ext)
+if len(missing_idx) > 0:
+    raise ValueError(f"Missing required indices: {missing_idx} declarad as input.idx")
+
+if len(set(idx_base)) > 1:
+    raise ValueError("All indices must belong to the same reference.")
+
+index = idx_base[0]
 
 # Check inputs/arguments.
 if not isinstance(snakemake.input.reads, str) and len(snakemake.input.reads) not in {
