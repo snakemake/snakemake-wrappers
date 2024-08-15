@@ -6,6 +6,7 @@ __email__ = "christopher.schroeder@tu-dortmund.de koester@jimmy.harvard.edu, jul
 __license__ = "MIT"
 
 
+import itertools
 import tempfile
 from os import path
 from snakemake.shell import shell
@@ -30,18 +31,45 @@ java_opts = get_java_opts(snakemake)
 bwa_threads = snakemake.threads
 samtools_threads = snakemake.threads - 1
 
+
+def get_common_prefix(strings: list[str]) -> str:
+    """Get the longest common prefix for a list of strings.
+
+    Args:
+        strings (list[str]): list of strings
+    Return:
+        common_prefix (str): longest common prefix
+    Examples:
+        >>> get_common_prefix(["a.fasta.0123", "a.fasta.bwt.2bit.64"."])
+        "a.fasta."
+    """
+
+    def all_same(x):
+        return all(x[0] == y for y in x)
+
+    char_tuples = zip(*strings)
+    prefix_tuples = itertools.takewhile(all_same, char_tuples)
+    return "".join(x[0] for x in prefix_tuples)
+
+
 # Extract index from input
 # and check that all required indices are declared
-idx_base, idx_ext = zip(*(path.splitext(index) for index in snakemake.input.idx))
+index = get_common_prefix(snakemake.input.idx)[:-1]
 
-missing_idx = REQUIRED_IDX - set(idx_ext)
+if len(index) == 0:
+    raise ValueError(
+        "Could not determine common prefix of index files.\n"
+        "Please make sure that the index files are named correctly."
+    )
+
+index_extensions = [idx[len(index) :] for idx in snakemake.input.idx]
+missing_idx = REQUIRED_IDX - set(index_extensions)
 if len(missing_idx) > 0:
-    raise ValueError(f"Missing required indices: {missing_idx} declarad as input.idx")
+    raise ValueError(
+        f"Missing required indices: {missing_idx} declarad as input.idx.\n"
+        f"Identified reference file is {index} with extensions {index_extensions}"
+    )
 
-if len(set(idx_base)) > 1:
-    raise ValueError("All indices must belong to the same reference.")
-
-index = idx_base[0]
 
 # Check inputs/arguments.
 if not isinstance(snakemake.input.reads, str) and len(snakemake.input.reads) not in {
