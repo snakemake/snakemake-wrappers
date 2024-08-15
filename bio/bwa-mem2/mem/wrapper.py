@@ -6,7 +6,6 @@ __email__ = "christopher.schroeder@tu-dortmund.de koester@jimmy.harvard.edu, jul
 __license__ = "MIT"
 
 
-import itertools
 import tempfile
 from os import path
 from snakemake.shell import shell
@@ -32,35 +31,12 @@ bwa_threads = snakemake.threads
 samtools_threads = snakemake.threads - 1
 
 
-def get_common_prefix(strings: list[str]) -> str:
-    """Get the longest common prefix for a list of strings.
-
-    Args:
-        strings (list[str]): list of strings
-    Return:
-        common_prefix (str): longest common prefix
-    Examples:
-        >>> get_common_prefix(["a.fasta.0123", "a.fasta.bwt.2bit.64"."])
-        "a.fasta."
-    """
-
-    def all_same(x):
-        return all(x[0] == y for y in x)
-
-    char_tuples = zip(*strings)
-    prefix_tuples = itertools.takewhile(all_same, char_tuples)
-    return "".join(x[0] for x in prefix_tuples)
-
-
 # Extract index from input
 # and check that all required indices are declared
-index = get_common_prefix(snakemake.input.idx)[:-1]
+index = path.commonprefix(snakemake.input.idx)[:-1]
 
 if len(index) == 0:
-    raise ValueError(
-        "Could not determine common prefix of index files.\n"
-        "Please make sure that the index files are named correctly."
-    )
+    raise ValueError("Could not determine common prefix of inputs.idx files.")
 
 index_extensions = [idx[len(index) :] for idx in snakemake.input.idx]
 missing_idx = REQUIRED_IDX - set(index_extensions)
