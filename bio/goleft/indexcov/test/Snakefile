@@ -1,0 +1,15 @@
+rule test_goleft_indexcov:
+    input:
+        aln="sample.bam",
+        fai="genome.fai",
+    output:
+        bed="regions.bed.gz",
+        ped="indexcov.ped",
+        roc="indexcov.roc",
+        html=directory("report"),
+    log:
+        "indexcov.log",
+    params:
+        extra="-e",
+    wrapper:
+        "master/bio/goleft/indexcov"

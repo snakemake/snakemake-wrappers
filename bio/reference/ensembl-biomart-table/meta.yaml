@@ -1,0 +1,41 @@
+name: ensembl-biomart-table
+description: >
+    Create a table of annotations available via the ``bioconductor-biomart``,
+    with one column per specified annotation (for example ``ensembl_gene_id``,
+    ``ensembl_transcript_id``, ``ext_gene``, ... for the human reference). For
+    reference, have a look at the
+    `Ensembl biomart online <https://www.ensembl.org/biomart/martview>`_
+    or at the ``biomaRt`` package documentation linked in the ``URL`` field.
+url: https://bioconductor.org/packages/deveol/bioc/vignettes/biomaRt/inst/doc/accessing_ensembl.html
+authors:
+  - David Lähnemann
+output:
+  - >
+    tab-separated values (``.tsv``); for supported compression extensions, see
+    `the write_tsv documentation page <https://readr.tidyverse.org/reference/write_delim.html#output>`_
+  - >
+    parquet (``.parquet``) file; for supported compression algorithms, see
+    `the write_parquet documentation page <https://r-lib.github.io/nanoparquet/reference/write_parquet.html#arguments>`_
+params:
+  - biomart: >
+      for example, 'genes'; for options, see
+      `the documentation on identifying databases <https://bioconductor.org/packages/devel/bioc/vignettes/biomaRt/inst/doc/accessing_ensembl.html#step1-identifying-the-database-you-need>`_
+  - species: >
+      species that has a 'genes' database / dataset available via the Ensembl
+      BioMart (for example, 'homo_sapiens'), for example check the
+      `Ensembl species list <https://www.ensembl.org/info/about/species.html>`_
+  - build: build available for the selected species, for example 'GRCh38'
+  - release: release from which the species and build are available, for example '112'
+  - attributes: >
+      A list of wanted annotation columns ("database attributes"). For
+      finding available attributes, see the
+      `instructions in the biomaRt documentation <https://bioconductor.org/packages/release/bioc/vignettes/biomaRt/inst/doc/accessing_ensembl.html#how-to-build-a-biomart-query>`_.
+      Note that these need to be available for the combination of species,
+      build and release from the specified biomart database.
+  - filters: >
+      (optional) This will restrict the download and output to the filters you
+      specify. The format is a dictionary, for example
+      ``{"chromosome_name": ["X", "Y"]}``. Note that non-existing filter values
+      (for example a ``chromosomes_name`` of ``"Z"``) will simply be ignored
+      without error or warning. For finding available filters, see the
+      `instructions in the biomaRt documentation <https://bioconductor.org/packages/release/bioc/vignettes/biomaRt/inst/doc/accessing_ensembl.html#how-to-build-a-biomart-query>`_.

@@ -12,3 +12,4 @@ params:
   - extra: additional program arguments
 notes: |
   * Keys for `input` and `output` files need to match `vsearch` arguments, (e.g. input) `uchime_denovo`, `cluster_fast`, `fastx_uniques`, `maskfasta`, `fastq_convert`, `fastq_mergepairs`, or (e.g. output) `chimeras`, `fastaout`, `fastqout`, `output`.
+  * An extra `log` file (named `vsearch`) can be specified that will be passed to `vsearch` option `--log`.

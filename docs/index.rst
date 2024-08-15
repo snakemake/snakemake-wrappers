@@ -55,6 +55,16 @@ For the above example, the explicit GitHub URL to specify would need to be the `
             "https://github.com/snakemake/snakemake-wrappers/raw/0.2.0/bio/samtools/sort"
 
 
+Maintainers
+-----------
+
+- Johannes Köster (`johanneskoester <https://github.com/johanneskoester>`_)
+- Filipe G. Vieira (`fgvieira <https://github.com/fgvieira>`_)
+- Thibault Dayris (`tdayris <https://github.com/tdayris>`_)
+- Felix Mölder (`FelixMoelder <https://github.com/FelixMoelder>`_)
+- David Laehnemann (`dlaehnemann <https://github.com/dlaehnemann>`_)
+
+
 Contributing
 ------------
 
@@ -78,3 +88,4 @@ If you want to contribute refer to the :ref:`contributing guide <contributing>`.
     :hidden:
 
     contributing
+    changelog

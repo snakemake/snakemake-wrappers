@@ -3,7 +3,7 @@
 # platform: linux-64
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
-https://conda.anaconda.org/conda-forge/linux-64/libgomp-13.2.0-h807b86a_2.conda#e2042154faafe61969556f28bade94b9
+https://conda.anaconda.org/conda-forge/linux-64/libgomp-13.2.0-h77fa898_7.conda#abf3fec87c2563697defa759dec3d639
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
-https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-13.2.0-h807b86a_2.conda#c28003b0be0494f9a7664389146716ff
-https://conda.anaconda.org/bioconda/linux-64/rasusa-0.7.1-h031d066_2.tar.bz2#5451a16f92085d52129a03f7c8754ae5
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-13.2.0-h77fa898_7.conda#72ec1b1b04c4d15d4204ece1ecea5978
+https://conda.anaconda.org/bioconda/linux-64/rasusa-2.0.0-h031d066_0.tar.bz2#59ca5054e6ec09ee5e7ec23c8b010a14

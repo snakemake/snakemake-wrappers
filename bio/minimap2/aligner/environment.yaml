@@ -3,6 +3,6 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - minimap2 =2.26
-  - samtools =1.18
+  - minimap2 =2.28
+  - samtools =1.20
   - snakemake-wrapper-utils =0.6.2

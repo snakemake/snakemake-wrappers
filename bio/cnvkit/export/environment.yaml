@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - cnvkit =0.9.10
-  - htslib =1.18
+  - cnvkit =0.9.11
+  - htslib =1.20
