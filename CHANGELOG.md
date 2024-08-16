@@ -1,5 +1,21 @@
 # Changelog
 
+### [4.0.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.0.0...v4.0.1) (2024-08-16)
+
+
+### Bug Fixes
+
+* Correctly handle non str index list for bwa-mem2/mem ([#3101](https://www.github.com/snakemake/snakemake-wrappers/issues/3101)) ([6f46508](https://www.github.com/snakemake/snakemake-wrappers/commit/6f46508aa99663930e70c82114205929aee2dfcb))
+
+
+### Performance Improvements
+
+* autobump bio/gatk3/baserecalibrator ([#3119](https://www.github.com/snakemake/snakemake-wrappers/issues/3119)) ([6c2bdfd](https://www.github.com/snakemake/snakemake-wrappers/commit/6c2bdfdca79c7037448bc601a4aeb3d578ea0980))
+* autobump bio/gatk3/realignertargetcreator ([#3118](https://www.github.com/snakemake/snakemake-wrappers/issues/3118)) ([ba219e7](https://www.github.com/snakemake/snakemake-wrappers/commit/ba219e7698eb078fe22c703a9662c8cb6deee0eb))
+* autobump bio/genomescope ([#3117](https://www.github.com/snakemake/snakemake-wrappers/issues/3117)) ([6292229](https://www.github.com/snakemake/snakemake-wrappers/commit/62922298404397c7b23dc5b8fb01bc33e445e97f))
+* autobump bio/igv-reports ([#3120](https://www.github.com/snakemake/snakemake-wrappers/issues/3120)) ([fe33c2c](https://www.github.com/snakemake/snakemake-wrappers/commit/fe33c2c27328212c528e94f995fd0bc26d7fde39))
+* autobump bio/trinity ([#3121](https://www.github.com/snakemake/snakemake-wrappers/issues/3121)) ([62b0231](https://www.github.com/snakemake/snakemake-wrappers/commit/62b0231c99920200e3fa6794f87578869cc35bd5))
+
 ## [4.0.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v3.14.2...v4.0.0) (2024-08-14)
 
 
