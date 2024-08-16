@@ -4,3 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - gdc-client =2.0
+  - python =3.12.4
