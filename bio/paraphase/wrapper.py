@@ -42,7 +42,9 @@ try:
         # Open the output file and write formatted header lines
         with open(output_vcf_header, "w") as output:
             for line in lines:
-                contig_id, length = line.split()[:2]  # Assuming the first two elements are ID and length
+                contig_id, length = line.split()[
+                    :2
+                ]  # Assuming the first two elements are ID and length
                 output.write(f"##contig=<ID={contig_id},length={length}>\n")
         output.close()
 
@@ -62,7 +64,9 @@ try:
                 f"bcftools annotate --header-lines {snakemake.output.vcf_header} | "
                 f"bcftools sort -Oz -o {snakemake.output.merged_vcf}"
             )
-            print(f"Merged, reheadered, and sorted VCF file created: {snakemake.output.merged_vcf}")
+            print(
+                f"Merged, reheadered, and sorted VCF file created: {snakemake.output.merged_vcf}"
+            )
 
             # Copy out bam and bai files
             bam_res = glob.glob(f"{tmpdirname}/*.bam")
@@ -75,7 +79,9 @@ try:
                 """
             )
         else:
-            print("No output VCF or BAM files were produced by paraphase, I hope this is what you were expecting, human?")
+            print(
+                "No output VCF or BAM files were produced by paraphase, I hope this is what you were expecting, human?"
+            )
             shell(f"touch {snakemake.output.merged_vcf}")
 
 except Exception as e:
