@@ -1,9 +1,7 @@
-import os
 import glob
 import sys
 from snakemake.shell import shell
 from tempfile import TemporaryDirectory
-import shutil
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
