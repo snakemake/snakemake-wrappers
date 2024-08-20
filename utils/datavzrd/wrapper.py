@@ -6,10 +6,12 @@ __license__ = "MIT"
 import tempfile
 from yte import process_yaml
 from snakemake.shell import shell
+import shutil
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 extra = snakemake.params.get("extra", "")
+output_config = snakemake.params.get("output_config", False)
 
 with tempfile.NamedTemporaryFile(mode="w") as processed, open(
     snakemake.input.config
@@ -27,4 +29,6 @@ with tempfile.NamedTemporaryFile(mode="w") as processed, open(
     )
     processed.flush()
 
+    if output_config:
+        shutil.copy(processed.name, snakemake.output[1])
     shell("datavzrd {processed.name} {extra} --output {snakemake.output[0]} {log}")
