@@ -37,7 +37,6 @@ try:
         # Open the .fai index file and read lines
         with open(input_faidx, "r") as fai_file:
             lines = fai_file.readlines()
-        fai_file.close()
 
         # Open the output file and write formatted header lines
         with open(output_vcf_header, "w") as output:
