@@ -10,7 +10,7 @@ input:
 output:
   vcf: vcf file with resulting phased variants
   bam: bam file with realigned reads
-  bai: bai index file for the realigned reads 
-  merged_vcf: VCF file containing all newly discovered variants, phased by gene copy and haplotype  
+  bai: bai index file for the realigned reads
+  merged_vcf: VCF file containing all newly discovered variants, phased by gene copy and haplotype
 params:
   extra: additional parameters that will be forwarded to paraphase
