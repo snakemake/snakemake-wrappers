@@ -28,6 +28,6 @@ with tempfile.NamedTemporaryFile(mode="w") as processed, open(
     )
     processed.flush()
 
-    if snakemake.output.config:
+    if "config" in snakemake.output:
         shutil.copy(processed.name, snakemake.output.config)
     shell("datavzrd {processed.name} {extra} --output {snakemake.output[0]} {log}")
