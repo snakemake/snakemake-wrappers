@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.1.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.1.0...v4.1.1) (2024-08-21)
+
+
+### Bug Fixes
+
+* Fix datavzrd wrapper ([#3125](https://www.github.com/snakemake/snakemake-wrappers/issues/3125)) ([5bd032c](https://www.github.com/snakemake/snakemake-wrappers/commit/5bd032cfa2a24eaa66cb7e24f5b3439fae939886))
+
 ## [4.1.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.0.0...v4.1.0) (2024-08-21)
 
 
