@@ -22,7 +22,7 @@ rule datavzrd:
             # for additional options like caption, categories and labels
         ),
         # optionally output the rendered config
-        config = logs/datavzrd_report/{sample}/rendered_config.yaml
+        config = "logs/datavzrd_report/{sample}/rendered_config.yaml"
     log:
         "logs/datavzrd_report/{sample}.log",
     wrapper:
