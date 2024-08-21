@@ -1,5 +1,4 @@
-name: "paraphase"
-name: paraphase
+name: poraphrase
 url: https://github.com/PacificBiosciences/paraphase
 description: paraphase resolves SNVs in gene families for PacBio longreads from whole genomes
 authors: Magdalena
