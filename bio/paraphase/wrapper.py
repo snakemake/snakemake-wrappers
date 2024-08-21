@@ -43,7 +43,6 @@ with TemporaryDirectory() as tmpdirname:
 		    :2
 		]  # Assuming the first two elements are ID and length
 		output.write(f"##contig=<ID={contig_id},length={length}>\n")
-	output.close()
 
 	### Concatenating, reheadering, and sorting the zipped and indexed VCF files, and copy the remapped reads
 	vcf_res = glob.glob(f"{tmpdirname}/*_vcfs/*vcf")
