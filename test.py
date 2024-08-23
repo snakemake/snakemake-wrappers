@@ -3729,6 +3729,14 @@ def test_pandora_index():
 
 
 @skip_if_not_modified
+def test_pcaexplorer_pcaplot():
+    run(
+        "bio/pcaexplorer/pcaplot",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "pca.svg"],
+    )
+
+
+@skip_if_not_modified
 def test_picard_addorreplacegroups():
     run(
         "bio/picard/addorreplacereadgroups",
