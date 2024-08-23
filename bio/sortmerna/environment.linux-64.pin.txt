@@ -5,7 +5,7 @@
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
 https://conda.anaconda.org/conda-forge/linux-64/ca-certificates-2024.7.4-hbcca054_0.conda#23ab7665c5f63cfb9f1f6195256daac6
 https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.40-hf3520f5_7.conda#b80f2f396ca2c28b8c14c437a4ed1e74
-https://conda.anaconda.org/conda-forge/linux-64/python_abi-3.12-4_cp312.conda#dccc2d142812964fcc6abdc97b672dff
+https://conda.anaconda.org/conda-forge/linux-64/python_abi-3.12-5_cp312.conda#0424ae29b104430108f5218a66db7260
 https://conda.anaconda.org/conda-forge/noarch/tzdata-2024a-h0c530f3_0.conda#161081fc7cec0bfda0d86d7cb595f8d8
 https://conda.anaconda.org/conda-forge/linux-64/libgomp-14.1.0-h77fa898_0.conda#ae061a5ed5f05818acdf9adab72c146d
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
@@ -37,7 +37,7 @@ https://conda.anaconda.org/conda-forge/linux-64/markupsafe-2.1.5-py312h98912ed_0
 https://conda.anaconda.org/conda-forge/noarch/pycparser-2.22-pyhd8ed1ab_0.conda#844d9eb3b43095b031874477f7d70088
 https://conda.anaconda.org/conda-forge/noarch/pysocks-1.7.1-pyha2e5f31_6.tar.bz2#2a7de29fb590ca14b5243c4c812c8025
 https://conda.anaconda.org/conda-forge/linux-64/pyyaml-6.0.2-py312h41a817b_0.conda#1779c9cbd9006415ab7bb9e12747e9d1
-https://conda.anaconda.org/conda-forge/noarch/setuptools-72.1.0-pyhd8ed1ab_0.conda#e06d4c26df4f958a8d38696f2c344d15
+https://conda.anaconda.org/conda-forge/noarch/setuptools-72.2.0-pyhd8ed1ab_0.conda#1462aa8b243aad09ef5d0841c745eb89
 https://conda.anaconda.org/conda-forge/noarch/wheel-0.44.0-pyhd8ed1ab_0.conda#d44e3b085abcaef02983c6305b84b584
 https://conda.anaconda.org/conda-forge/linux-64/cffi-1.17.0-py312h1671c18_0.conda#33dee889f41b0ba6dbe5ddbe70ebf263
 https://conda.anaconda.org/conda-forge/noarch/h2-4.1.0-pyhd8ed1ab_0.tar.bz2#b748fbf7060927a6e82df7cb5ee8f097
