@@ -1,5 +1,17 @@
 # Changelog
 
+### [4.1.2](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.1.1...v4.1.2) (2024-08-23)
+
+
+### Performance Improvements
+
+* autobump bio/bbtools ([#3127](https://www.github.com/snakemake/snakemake-wrappers/issues/3127)) ([a9bd6df](https://www.github.com/snakemake/snakemake-wrappers/commit/a9bd6dfdeee5692c76507148e12e81547c0c0906))
+* autobump bio/gatk3/printreads ([#3129](https://www.github.com/snakemake/snakemake-wrappers/issues/3129)) ([97b2c9d](https://www.github.com/snakemake/snakemake-wrappers/commit/97b2c9d218b120cda5991303f7b1b3d5b854bf2f))
+* autobump bio/last/lastal ([#3131](https://www.github.com/snakemake/snakemake-wrappers/issues/3131)) ([2c13329](https://www.github.com/snakemake/snakemake-wrappers/commit/2c1332948b3082438fd2021087592b47a48c8a5c))
+* autobump bio/last/lastdb ([#3130](https://www.github.com/snakemake/snakemake-wrappers/issues/3130)) ([ce9dfd4](https://www.github.com/snakemake/snakemake-wrappers/commit/ce9dfd459862a86fa0cb960708e232d21894bd60))
+* autobump bio/multiqc ([#3132](https://www.github.com/snakemake/snakemake-wrappers/issues/3132)) ([b5bb552](https://www.github.com/snakemake/snakemake-wrappers/commit/b5bb55238100f1f4c520d173323ce4c84e035cbb))
+* autobump bio/reference/ensembl-mysql-table ([#3133](https://www.github.com/snakemake/snakemake-wrappers/issues/3133)) ([065d45e](https://www.github.com/snakemake/snakemake-wrappers/commit/065d45eba68db3375213095ecf2332705b333cf0))
+
 ### [4.1.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.1.0...v4.1.1) (2024-08-21)
 
 
