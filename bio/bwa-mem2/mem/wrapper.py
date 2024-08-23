@@ -12,6 +12,9 @@ from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 from snakemake_wrapper_utils.samtools import get_samtools_opts
 
+# All idx required by bwa-mem2
+REQUIRED_IDX = {".0123", ".amb", ".ann", ".bwt.2bit.64", ".pac"}
+
 
 # Extract arguments.
 extra = snakemake.params.get("extra", "")
@@ -27,11 +30,21 @@ java_opts = get_java_opts(snakemake)
 bwa_threads = snakemake.threads
 samtools_threads = snakemake.threads - 1
 
-index = snakemake.input.get("index", "")
-if isinstance(index, str):
-    index = path.splitext(snakemake.input.idx)[0]
-else:
-    index = path.splitext(snakemake.input.idx[0])[0]
+
+# Extract index from input
+# and check that all required indices are declared
+index = path.commonprefix(snakemake.input.idx)[:-1]
+
+if len(index) == 0:
+    raise ValueError("Could not determine common prefix of inputs.idx files.")
+
+index_extensions = [idx[len(index) :] for idx in snakemake.input.idx]
+missing_idx = REQUIRED_IDX - set(index_extensions)
+if len(missing_idx) > 0:
+    raise ValueError(
+        f"Missing required indices: {missing_idx} declarad as input.idx.\n"
+        f"Identified reference file is {index} with extensions {index_extensions}"
+    )
 
 
 # Check inputs/arguments.
