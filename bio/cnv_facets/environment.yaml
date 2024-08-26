@@ -4,4 +4,3 @@ channels:
   - nodefaults
 dependencies:
   - cnv_facets =0.16.0
-  - python =3.8.15

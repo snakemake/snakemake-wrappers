@@ -3755,6 +3755,14 @@ def test_pandora_index():
 
 
 @skip_if_not_modified
+def test_pcaexplorer_pcaplot():
+    run(
+        "bio/pcaexplorer/pcaplot",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "pca.svg"],
+    )
+
+
+@skip_if_not_modified
 def test_picard_addorreplacegroups():
     run(
         "bio/picard/addorreplacereadgroups",
@@ -5628,7 +5636,14 @@ def test_ensembl_annotation_gtf_gz():
 def test_ensembl_regulatory_gff3_gz():
     run(
         "bio/reference/ensembl-regulation",
-        ["snakemake", "--cores", "1", "resources/regulatory_features.gff3.gz", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/regulatory_features.gff3.gz",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -5636,7 +5651,14 @@ def test_ensembl_regulatory_gff3_gz():
 def test_ensembl_regulatory_features_grch37_gff():
     run(
         "bio/reference/ensembl-regulation",
-        ["snakemake", "--cores", "1", "resources/regulatory_features.gff", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/regulatory_features.gff",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -5644,7 +5666,74 @@ def test_ensembl_regulatory_features_grch37_gff():
 def test_ensembl_regulatory_features_mouse_gff_gz():
     run(
         "bio/reference/ensembl-regulation",
-        ["snakemake", "--cores", "1", "resources/regulatory_features.mouse.gff.gz", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/regulatory_features.mouse.gff.gz",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_ensembl_transcripts_to_genes_mapping():
+    run(
+        "bio/reference/ensembl-biomart-table",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/ensembl_transcripts_to_genes_mapping.tsv.gz",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_ensembl_transcripts_to_genes_mapping_parquet():
+    run(
+        "bio/reference/ensembl-biomart-table",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/ensembl_transcripts_to_genes_mapping.parquet.gz",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_ensembl_mysql_create_repeat_annotations():
+    run(
+        "bio/reference/ensembl-mysql-table",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/ensembl_repeat_annotations.tsv.gz",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_ensembl_mysql_create_regulatory_annotations_parquet():
+    run(
+        "bio/reference/ensembl-mysql-table",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/ensembl_regulatory_annotations.parquet.gz",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -6061,6 +6150,11 @@ def test_vep_cache():
     run(
         "bio/vep/cache",
         ["snakemake", "--cores", "1", "resources/vep/cache", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/vep/cache",
+        ["snakemake", "--cores", "1", "resources/vep/indexed_cache", "--use-conda", "-F"],
     )
 
     run(
