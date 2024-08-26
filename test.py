@@ -2848,7 +2848,7 @@ def test_deeptools_plotcorrelation():
             "snakemake",
             "--cores",
             "1",
-            "heatmap.svg",
+            "bins.svg",
             "--use-conda",
             "-F"
         ],

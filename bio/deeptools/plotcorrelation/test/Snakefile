@@ -2,7 +2,7 @@ rule test_deeptools_plot_correlation:
     input:
         "bins.npz",
     output:
-        plot="heatmap.svg",
+        plot="bins.svg",
         counts="counts.tsv",  # Optional output file
     threads: 1
     params:
