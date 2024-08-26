@@ -1,5 +1,4 @@
 import glob
-import sys
 from snakemake.shell import shell
 from tempfile import TemporaryDirectory
 
