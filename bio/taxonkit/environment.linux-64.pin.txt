@@ -2,4 +2,4 @@
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
 @EXPLICIT
-https://conda.anaconda.org/bioconda/linux-64/taxonkit-0.16.0-h9ee0642_0.tar.bz2#d58328deecfbc00948320e07d5a885c4
+https://conda.anaconda.org/bioconda/linux-64/taxonkit-0.17.0-h9ee0642_1.tar.bz2#9dba2510a7b88599a1be245c1d2684e3

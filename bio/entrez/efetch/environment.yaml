@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - entrez-direct =22.1
+  - entrez-direct =22.4
