@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - last =1571
+  - bioconductor-pcaexplorer=2.28.0
