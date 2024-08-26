@@ -11,7 +11,7 @@ output:
   - matrix: Optional path to pairwise correlation values (TSV)
 params:
   - extra: Optional parameters except IO and `--plotFileFormat`.
-  - corrleation: Either `spearman`, or `pearson`. No default is set in DeepTools. This wrapper considers `spearman` as default value.
+  - correlation: Either `spearman`, or `pearson`. No default is set in DeepTools. This wrapper considers `spearman` as default value.
   - plot: Either `heatmap`, or `scatterplot`. No default is set in DeepTools. This wrapper considers `heatmap` as default value.
 notes: |
   Plot file format is automatically inferred from plot file extension.
