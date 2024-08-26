@@ -25,7 +25,12 @@ with tempfile.TemporaryDirectory() as tmpdir:
     cache_tarball = (
         f"{snakemake.params.species}_vep_{release}_{snakemake.params.build}.tar.gz"
     )
-    vep_dir = "vep" if snakemake.params.get("url") or release >= 97 else "VEP"
+    if snakemake.params.get("indexed"):
+        vep_dir = "indexed_vep_cache"
+        convert = ""
+    else:
+        vep_dir = "vep" if snakemake.params.get("url") or release >= 97 else "VEP"
+        convert = "--CONVERT "
     shell(
         "curl -L {cache_url}/release-{release}/variation/{vep_dir}/{cache_tarball} -o {tmpdir}/{cache_tarball} {log}"
     )
@@ -38,7 +43,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         "--CACHE_VERSION {release} "
         "--CACHEURL {tmpdir} "
         "--CACHEDIR {snakemake.output} "
-        "--CONVERT "
+        "{convert}"
         "--NO_UPDATE "
         "{extra} {log}"
     )
