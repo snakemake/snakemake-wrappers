@@ -3,13 +3,13 @@ rule test_deeptools_plot_correlation:
         "bins.npz",
     output:
         plot="heatmap.svg",
-        counts="counts.tsv", # Optional output file
+        counts="counts.tsv",  # Optional output file
     threads: 1
     params:
-        extra="--skipZeros", # Any optional parameters besides IO and --plotFileFormat
-        correlation="spearman", # either spearman or pearson
-        plot="heatmap", # either heatmap or scatterplot
+        extra="--skipZeros",  # Any optional parameters besides IO and --plotFileFormat
+        correlation="spearman",  # either spearman or pearson
+        plot="heatmap",  # either heatmap or scatterplot
     log:
-        "corr.log"
+        "corr.log",
     wrapper:
         "master/bio/deeptools/plotcorrelation"
