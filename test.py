@@ -6478,7 +6478,7 @@ def test_generate_data_matrix():
 def test_rseqc_inner_distance():
     run(
         "bio/rseqc/inner_distance",
-        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.pdf"],
     )
 
 
