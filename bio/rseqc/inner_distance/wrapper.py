@@ -11,7 +11,7 @@ from tempfile import TemporaryDirectory
 from snakemake import shell
 
 extra = snakemake.params.get("extra", "")
-log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=False)
+log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 
 with TemporaryDirectory() as tempdir:
     shell(
