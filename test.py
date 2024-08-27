@@ -6503,6 +6503,13 @@ def test_rseqc_infer_experiment():
         ["snakemake", "--cores", "1", "--use-conda", "-F", "a.experiment.txt"],
     )
 
+@skip_if_not_modified
+def test_rseqc_bam_stat():
+    run(
+        "bio/rseqc/bam_stat",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.stats"],
+    )
+
 
 @skip_if_not_modified
 def test_rseqc_read_gc():
