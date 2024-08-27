@@ -2841,6 +2841,21 @@ def test_deeptools_computematrix():
 
 
 @skip_if_not_modified
+def test_deeptools_plotcorrelation():
+    run(
+        "bio/deeptools/plotcorrelation",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "bins.svg",
+            "--use-conda",
+            "-F"
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_deeptools_bamcoverage():
     run(
         "bio/deeptools/bamcoverage",
@@ -2851,6 +2866,32 @@ def test_deeptools_bamcoverage():
             "a.coverage.bw",
             "--use-conda",
             "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_deeptools_multibigwigsummary():
+    run(
+        "bio/deeptools/multibigwigsummary",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "bins.npz",
+        ],
+    )
+    run(
+        "bio/deeptools/multibigwigsummary",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "bed.npz",
         ],
     )
 
