@@ -7,7 +7,7 @@ input:
   - aln: Path to SAM/BAM input
   - refgene: Path to refgene model
 output:
-  - txt: Optional path to txt output
+  - reads_inner_distance: Optional path to txt output
   - pdf: Optional path to pdf graph
   - plot_r: Optional Path to R script
   - freq: Optional path to inner distance frequence
