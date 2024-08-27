@@ -4,7 +4,7 @@ rule test_rseqc_inner_distance:
         refgene="annotation.bed",
     output:
         txt="a.txt",
-        freq="feqt.txt",
+        freq="freq.txt",
         pdf="a.pdf",
         plot_r="script.a.r",
     log:
