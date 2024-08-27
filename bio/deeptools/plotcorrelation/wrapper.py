@@ -30,5 +30,6 @@ shell(
     "--corMethod {cor_method} "
     "--whatToPlot {what_to_plot} "
     "--plotFile {snakemake.output.plot} "
+    "--plotFileFormat {fmt} "
     "{extra} {log}"
 )
