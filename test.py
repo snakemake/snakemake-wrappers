@@ -6489,6 +6489,14 @@ def test_generate_data_matrix():
 
 
 @skip_if_not_modified
+def test_rseqc_inner_distance():
+    run(
+        "bio/rseqc/inner_distance",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.pdf"],
+    )
+
+
+@skip_if_not_modified
 def test_rseqc_infer_experiment():
     run(
         "bio/rseqc/infer_experiment",
