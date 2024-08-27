@@ -2940,6 +2940,20 @@ def test_deeptools_alignmentsieve():
         ],
     )
 
+@skip_if_not_modified
+def test_deeptools_plot_pca():
+    run(
+        "bio/deeptools/plotpca",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "pca.svg",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
 
 @skip_if_not_modified
 def test_deeptools_plotheatmap():
