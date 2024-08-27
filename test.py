@@ -2940,6 +2940,20 @@ def test_deeptools_alignmentsieve():
         ],
     )
 
+@skip_if_not_modified
+def test_deeptools_plot_pca():
+    run(
+        "bio/deeptools/plotpca",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "pca.svg",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
 
 @skip_if_not_modified
 def test_deeptools_plotheatmap():
@@ -6471,6 +6485,14 @@ def test_generate_data_matrix():
     run(
         "bio/rsem/generate-data-matrix",
         ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_rseqc_inner_distance():
+    run(
+        "bio/rseqc/inner_distance",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.pdf"],
     )
 
 
