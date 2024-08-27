@@ -1,0 +1,14 @@
+rule test_deeptools_plot_pca:
+    input:
+        "bins.npz",
+    output:
+        plot="pca.svg",
+        matrix="pca.tab", # Optional
+    threads: 1
+    params:
+        extra="--ntop 5",
+    log:
+        "pca.log"
+    wrapper:
+        "master/bio/deeptools/plotpca"
+
