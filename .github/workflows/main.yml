@@ -46,7 +46,7 @@ jobs:
         shell: bash -el {0}
         run: |
           conda config --set channel_priority strict
-          mamba install -n snakemake -y snakemake-minimal pytest pandas
+          mamba install -n snakemake -y snakemake-minimal snakemake-storage-plugin-http pytest pandas
 
       - name: Fetch master
         if: github.ref != 'refs/heads/master'

@@ -2,3 +2,7 @@ name: ensembl-variation
 description: Download known genomic variants from ENSEMBL FTP servers, and store them in a single .vcf.gz file.
 authors:
   - Johannes Köster
+output:
+  - VCF file
+params:
+  - url: URL from where to download cache data (optional; by default is ``ftp://ftp.ensembl.org/pub``)

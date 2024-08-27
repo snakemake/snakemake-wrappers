@@ -1,0 +1,38 @@
+rule create_transcripts_to_genes_mapping:
+    output:
+        table="resources/ensembl_transcripts_to_genes_mapping.tsv.gz",  # .gz extension is optional, but recommended
+    params:
+        biomart="genes",
+        species="homo_sapiens",
+        build="GRCh38",
+        release="112",
+        attributes=[
+            "ensembl_transcript_id",
+            "ensembl_gene_id",
+            "external_gene_name",
+            "genecards",
+            "chromosome_name",
+        ],
+        filters={ "chromosome_name": ["22", "X"] }, # optional: restrict output by using filters
+    log:
+        "logs/create_transcripts_to_genes_mapping.log",
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/reference/ensembl-biomart-table"
+
+
+rule create_transcripts_to_genes_mapping_parquet:
+    output:
+        table="resources/ensembl_transcripts_to_genes_mapping.parquet.gz",  # .gz extension is optional, but recommended
+    params:
+        biomart="genes",
+        species="mus_musculus",
+        build="GRCm39",
+        release="112",
+        attributes=["ensembl_transcript_id", "ensembl_gene_id"],
+        # filters={ "chromosome_name": "19"}, # optional: restrict output by using filters
+    log:
+        "logs/create_transcripts_to_genes_mapping_parquet.log",
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/reference/ensembl-biomart-table"

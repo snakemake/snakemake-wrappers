@@ -5,6 +5,10 @@ rule all:  # [hide]
 
 rule datavzrd:
     input:
+        # the config file may be a yte template, with access to input, params and wildcards
+        # analogous to Snakemake's generic template support:
+        # https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#template-rendering-integration
+        # For template processing, __use_yte__: true has to be stated in the config file
         config="resources/{sample}.datavzrd.yaml",
         # optional files required for rendering the given config
         table="data/{sample}.tsv",
@@ -17,6 +21,8 @@ rule datavzrd:
             # see https://snakemake.readthedocs.io/en/stable/snakefiles/reporting.html
             # for additional options like caption, categories and labels
         ),
+        # optionally output the rendered config
+        config = "resources/datavzrd/{sample}.rendered_config.yaml"
     log:
         "logs/datavzrd_report/{sample}.log",
     wrapper:
