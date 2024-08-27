@@ -1,0 +1,16 @@
+name: bwa-meth index
+url: https://github.com/brentp/bwa-meth?tab=readme-ov-file#index
+description: >
+  Index a reference sequence for future BS-Seq mapping.
+authors:
+  - Thibault Dayris
+input:
+  - Path to reference fasta file.
+output:
+  - List of paths to index files.
+params:
+  - use_bwa_mem_2: Either `True` (use bwa-mem2) or `False` (use bwa-mem, default behaviour).
+notes: >
+  While bwa-meth explicitely writes the index alongside the reference file, this wrapper lets user freely chose the output directory.
+
+  No optional arguments allowed while indexing.

@@ -458,6 +458,31 @@ def test_sickle_se():
         ],
     )
 
+@skip_if_not_modified
+def test_bwameth_index():
+    run(
+        "bio/bwameth/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "genome.fasta.bwameth.c2t.sa",
+        ],
+    )
+    run(
+        "bio/bwameth/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "genome.fasta.bwameth.c2t.0123",
+        ],
+    )
+
 
 @skip_if_not_modified
 def test_bwa_memx_index():
