@@ -3,12 +3,11 @@ rule test_deeptools_plot_pca:
         "bins.npz",
     output:
         plot="pca.svg",
-        matrix="pca.tab", # Optional
+        matrix="pca.tab",  # Optional
     threads: 1
     params:
         extra="--ntop 5",
     log:
-        "pca.log"
+        "pca.log",
     wrapper:
         "master/bio/deeptools/plotpca"
-

@@ -1,4 +1,3 @@
-
 # coding: utf-8
 
 __author__ = "Thibault Dayris"
@@ -29,4 +28,3 @@ shell(
     "--plotFileFormat {fmt} "
     "{extra} {log}"
 )
-
