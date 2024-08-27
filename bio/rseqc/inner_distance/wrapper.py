@@ -22,11 +22,11 @@ with TemporaryDirectory() as tempdir:
         "{log} "
     )
 
-    if snakemake.output.get("txt"):
+    if snakemake.output.get("reads_inner_distance"):
         shell(
             "mv --verbose "
             "{tempdir}/out.inner_distance.txt "
-            "{snakemake.output.txt} {log}"
+            "{snakemake.output.reads_inner_distance} {log}"
         )
 
     if snakemake.output.get("pdf"):
