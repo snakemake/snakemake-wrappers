@@ -1,0 +1,17 @@
+name: deeptools multi bigwig summary
+url: https://deeptools.readthedocs.io/en/develop/content/tools/multiBigwigSummary.html
+description: >
+  Compute the average scores for each of the files in every genomic region.
+authors:
+  - Thibault Dayris
+input:
+  - bw: Path to a bigwig file, or a list of bigwig files.
+  - blacklist: Optional path to a BED file covering regions to exclude.
+  - bed: Path to a bed file to limit the analysis of regions. This triggers the subcommand `BED-file`. Leave empty to run the `bins` subcommand.
+output:
+  - npz: Path to the compressed matrix file.
+  - counts: Path to average scores per region for each bigwig.
+params:
+  - extra: Optional arguments for `multiBigwigSummary` besides IO and processor.
+notes: |
+  Subcomand is automatically inferred from the presence of `input.bed` (optional) key.

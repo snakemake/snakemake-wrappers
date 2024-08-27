@@ -1,0 +1,8 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - bioconductor-biomart =2.58
+  - r-nanoparquet =0.3
+  - r-tidyverse = 2.0

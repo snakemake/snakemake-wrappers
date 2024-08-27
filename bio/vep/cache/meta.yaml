@@ -10,3 +10,4 @@ params:
   - species: species to download cache data
   - build: build to download cache data
   - release: release to download cache data
+  - indexed: whether to download an already indexed cache
