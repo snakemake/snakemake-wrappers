@@ -160,7 +160,7 @@ rule seqkit_common:
         fastas=[
             "data/{sample1}.fa",
             "data/{sample2}.fa",
-        ]
+        ],
     output:
         fasta="out/common/{sample1}_{sample2}.fa.gz",
     log:
@@ -178,7 +178,7 @@ rule seqkit_concat:
         fastas=[
             "data/{sample1}.fa",
             "data/{sample2}.fa",
-        ]
+        ],
     output:
         fasta="out/concat/{sample1}_{sample2}.fa.gz",
     log:
