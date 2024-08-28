@@ -430,6 +430,36 @@ def test_seqkit_seq():
 
 
 @skip_if_not_modified
+def test_seqkit_common():
+    run(
+        "bio/seqkit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/common/a_b.fa.gz",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_seqkit_concat():
+    run(
+        "bio/seqkit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/concat/a_b.fa.gz",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_sickle_pe():
     run(
         "bio/sickle/pe",
