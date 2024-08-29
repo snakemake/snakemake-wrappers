@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.3.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.2.0...v4.3.0) (2024-08-28)
+
+
+### Features
+
+* add support for multiple input file subcommands in seqkit wrapper (subcommands "common" and "concat") ([#3142](https://www.github.com/snakemake/snakemake-wrappers/issues/3142)) ([3b5391f](https://www.github.com/snakemake/snakemake-wrappers/commit/3b5391f619b38334829c06b8bd0526a16e19c732))
+* Deeptools multibigwig summary ([#3135](https://www.github.com/snakemake/snakemake-wrappers/issues/3135)) ([df7e2bf](https://www.github.com/snakemake/snakemake-wrappers/commit/df7e2bffdd61690e56380bb1b49ca663e58a477c))
+* Deeptools plot correlation ([#3137](https://www.github.com/snakemake/snakemake-wrappers/issues/3137)) ([a965bd6](https://www.github.com/snakemake/snakemake-wrappers/commit/a965bd62f13bb62722daf08201a00b1f26bef38d))
+* Deeptools plot pca ([#3138](https://www.github.com/snakemake/snakemake-wrappers/issues/3138)) ([0d9862b](https://www.github.com/snakemake/snakemake-wrappers/commit/0d9862b0f91e74bb90993eb7ecb938dec80d779b))
+* Rseqc bamstat ([#3139](https://www.github.com/snakemake/snakemake-wrappers/issues/3139)) ([b4267e6](https://www.github.com/snakemake/snakemake-wrappers/commit/b4267e6a0244071a96efc8a91fd6ba982a738cb5))
+* Rseqc inner distance ([#3140](https://www.github.com/snakemake/snakemake-wrappers/issues/3140)) ([8ca10f3](https://www.github.com/snakemake/snakemake-wrappers/commit/8ca10f3949ca6fb1ed9f9d046c89ca10a7c32c8c))
+
 ## [4.2.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.1.1...v4.2.0) (2024-08-23)
 
 
