@@ -5,12 +5,13 @@ rule nanosimh:
     output:
         reads = "{sample}.simulated.fa",
         log = "{sample}.simulated.log",
-        errors = "{sample}.simulated.errors.txt"
+        errors = "{sample}.simulated.errors.txt",
     params:
         extra = "",
         num_reads = 10,
         perfect_reads = True,
         min_read_len = 10,
+        max_read_len = 100000,
     log:
         "logs/nanosim-h/test/{sample}.log"
     wrapper:
