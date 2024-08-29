@@ -1,6 +1,7 @@
 rule nanosimh:
     input:
-        "{sample}.fa"
+        fasta="{sample}.fa",
+        #profile_dir="profile/" optional: you can train your own profiles with nanosim-h-train
     output:
         reads = "{sample}.simulated.fa",
         log = "{sample}.simulated.log",

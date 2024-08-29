@@ -35,6 +35,8 @@ profile = snakemake.params.get("profile", "ecoli_R9_2D")
 perfect_reads = snakemake.params.get("perfect_reads", False)
 min_read_len = snakemake.params.get("min_read_len", 50)
 max_read_len = snakemake.params.get("max_read_len", 0)
+input_fasta = snakemake.input.get("fasta", "")
+input_profile_dir = snakemake.input.get("profile_dir", "")
 
 # need to do this as the default read length of infinity can cause nanosim-h to
 # hang if the reference is short
@@ -55,5 +57,5 @@ shell(
     "--profile {profile} "
     "--number {num_reads} "
     "--out-pref {prefix} "
-    "{snakemake.input} {log}"
+    "{input_fasta} {input_profile_dir} {log}"
 )
