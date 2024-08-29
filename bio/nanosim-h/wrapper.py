@@ -29,7 +29,7 @@ def get_length_of_longest_sequence(fh):
 
 # Placeholder for optional parameters
 extra = snakemake.params.get("extra", "")
-prefix = snakemake.params.get("prefix", snakemake.output.reads.rpartition(".")[0])
+prefix = snakemake.params.get("prefix", snakemake.output.reads.removesuffix("simulated.fa"))
 num_reads = snakemake.params.get("num_reads", 10000)
 profile = snakemake.params.get("profile", "ecoli_R9_2D")
 perfect_reads = snakemake.params.get("perfect_reads", False)
