@@ -430,6 +430,36 @@ def test_seqkit_seq():
 
 
 @skip_if_not_modified
+def test_seqkit_common():
+    run(
+        "bio/seqkit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/common/a_b.fa.gz",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_seqkit_concat():
+    run(
+        "bio/seqkit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/concat/a_b.fa.gz",
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_sickle_pe():
     run(
         "bio/sickle/pe",
@@ -2866,6 +2896,21 @@ def test_deeptools_computematrix():
 
 
 @skip_if_not_modified
+def test_deeptools_plotcorrelation():
+    run(
+        "bio/deeptools/plotcorrelation",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "bins.svg",
+            "--use-conda",
+            "-F"
+        ],
+    )
+
+
+@skip_if_not_modified
 def test_deeptools_bamcoverage():
     run(
         "bio/deeptools/bamcoverage",
@@ -2876,6 +2921,32 @@ def test_deeptools_bamcoverage():
             "a.coverage.bw",
             "--use-conda",
             "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_deeptools_multibigwigsummary():
+    run(
+        "bio/deeptools/multibigwigsummary",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "bins.npz",
+        ],
+    )
+    run(
+        "bio/deeptools/multibigwigsummary",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "bed.npz",
         ],
     )
 
@@ -2919,6 +2990,20 @@ def test_deeptools_alignmentsieve():
             "--cores",
             "1",
             "filtered.bam",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+@skip_if_not_modified
+def test_deeptools_plot_pca():
+    run(
+        "bio/deeptools/plotpca",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "pca.svg",
             "--use-conda",
             "-F",
         ],
@@ -6459,10 +6544,25 @@ def test_generate_data_matrix():
 
 
 @skip_if_not_modified
+def test_rseqc_inner_distance():
+    run(
+        "bio/rseqc/inner_distance",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.pdf"],
+    )
+
+
+@skip_if_not_modified
 def test_rseqc_infer_experiment():
     run(
         "bio/rseqc/infer_experiment",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "a.experiment.txt"],
+    )
+
+@skip_if_not_modified
+def test_rseqc_bam_stat():
+    run(
+        "bio/rseqc/bam_stat",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "a.stats"],
     )
 
 
