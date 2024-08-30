@@ -1,5 +1,5 @@
 name: bwa-meth index
-url: https://github.com/brentp/bwa-meth?tab=readme-ov-file#index
+url: https://github.com/brentp/bwa-meth
 description: >
   Index a reference sequence for future BS-Seq mapping.
 authors:
