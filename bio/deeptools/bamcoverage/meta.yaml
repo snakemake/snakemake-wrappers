@@ -13,5 +13,5 @@ output:
 params:
   - effective_genome_size: Optional effective genome size value
   - genome: Optional parameter used to fill effective genome size with pre-computed parameters. Can only be one of `GRCm37`, `GRCm38`, `GRCm39`, `GRCh37`, `GRCh38`, `dm3`, `dm6`, `WBcel235`, or `GRCz10`.
-  - read_length: Optional parameter used to fill effective genome size with pre-computed parameters. Can only be one of `50`, `75`, `100`, `150`, or `200`.
+  - read_length: Optional parameter used to fill effective genome size with pre-computed parameters. Can only be one of `50`, `75`, `100`, `150`, `200`, or `250`.
   - extra: Optional parameters to be given to deepTools bamcoverage
