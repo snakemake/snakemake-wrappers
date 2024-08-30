@@ -17,7 +17,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 
 # Automatic detection of aligner based on one output file
 subcommand = "index"
-if any(str(outfile).endswith(".0123"):
+if any(str(outfile).endswith(".0123") for outfile in snakemake.output):
        subcommand = "index-mem2"
 
 with TemporaryDirectory() as tempdir:
