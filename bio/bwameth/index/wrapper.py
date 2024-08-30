@@ -27,8 +27,8 @@ with TemporaryDirectory() as tempdir:
     os.symlink(os.path.abspath(snakemake.input[0]), os.path.join(tempdir, ref_basename))
 
     # Find user-defined reference directory
-    prefix = os.path.commonprefix([os.path.abspath(f) for f in snakemake.output])
-    out_dir = os.path.dirname(prefix)
+    prefix = os.path.commonprefix(snakemake.output)
+    out_dir = os.path.dirname(prefix) or "./"
 
     # Run bwameth index command
     shell("bwameth.py {subcommand} {used_reference} {log}")
