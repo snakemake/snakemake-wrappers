@@ -18,7 +18,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 # Automatic detection of aligner based on one output file
 subcommand = "index"
 if any(str(outfile).endswith(".0123") for outfile in snakemake.output):
-       subcommand = "index-mem2"
+    subcommand = "index-mem2"
 
 with TemporaryDirectory() as tempdir:
     # Create symlink to avoid bwa-meth index to be written next to the input reference file
