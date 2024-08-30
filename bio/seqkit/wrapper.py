@@ -8,6 +8,11 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
+# subcommands concat and common use multiple input files
+if snakemake.params.command in ["concat", "common"]:
+    input = " ".join(snakemake.input)
+else:
+    input = snakemake.input[0]
 
 extra_input = " ".join(
     [
@@ -39,6 +44,6 @@ shell(
     " {extra_output}"
     " {extra}"
     " --out-file {snakemake.output[0]}"
-    " {snakemake.input[0]}"
+    " {input}"
     " {log}"
 )

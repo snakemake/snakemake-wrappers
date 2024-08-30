@@ -153,3 +153,39 @@ rule seqkit_stats:
     threads: 2
     wrapper:
         "master/bio/seqkit"
+
+
+rule seqkit_common:
+    input:
+        fastas=[
+            "data/{sample1}.fa",
+            "data/{sample2}.fa",
+        ],
+    output:
+        fasta="out/common/{sample1}_{sample2}.fa.gz",
+    log:
+        "logs/common/{sample1}_{sample2}.log",
+    params:
+        command="common",
+        extra="",
+    threads: 2
+    wrapper:
+        "master/bio/seqkit"
+
+
+rule seqkit_concat:
+    input:
+        fastas=[
+            "data/{sample1}.fa",
+            "data/{sample2}.fa",
+        ],
+    output:
+        fasta="out/concat/{sample1}_{sample2}.fa.gz",
+    log:
+        "logs/concat/{sample1}_{sample2}.log",
+    params:
+        command="concat",
+        extra="",
+    threads: 2
+    wrapper:
+        "master/bio/seqkit"
