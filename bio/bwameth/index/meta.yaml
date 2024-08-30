@@ -9,8 +9,7 @@ input:
 output:
   - List of paths to index files.
 params:
-  - use_bwa_mem_2: Either `True` (use bwa-mem2) or `False` (use bwa-mem, default behaviour).
+  No optional argument used, everything is handled by the wrapper.
 notes: >
   While bwa-meth explicitely writes the index alongside the reference file, this wrapper lets user freely chose the output directory.
 
-  No optional arguments allowed while indexing.

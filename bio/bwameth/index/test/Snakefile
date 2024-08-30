@@ -13,8 +13,6 @@ rule test_bwameth_index_mem:
         ),
     cache: True  # save space and time with between workflow caching (see docs)
     threads: 1
-    params:
-        subcommand="index",
     log:
         "bwameth_index.log",
     wrapper:
@@ -36,8 +34,6 @@ rule test_bwameth_index_mem2:
         ),
     cache: True  # save space and time with between workflow caching (see docs)
     threads: 1
-    params:
-        subcommand="index-mem2",
     log:
         "bwameth_index.log",
     wrapper:
