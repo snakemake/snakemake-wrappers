@@ -1,0 +1,124 @@
+# include rules for downloading existing models for the different #[hide]
+# simulator.py subcommands, as these are needed for testing #[hide]
+include: "download_models.smk" #[hide]
+
+rule nanosim_genome:
+    input:
+        reference_genome="resources/{sample}.genome.fa",
+        model=multiext(
+            "resources/{model}",
+            "_aligned_reads.pkl",
+            "_aligned_region.pkl",
+            "_chimeric_info",
+            "_error_markov_model",
+            "_error_rate.tsv",
+            "_first_match.hist",
+            "_gap_length.pkl",
+            "_ht_length.pkl",
+            "_ht_ratio.pkl",
+            "_match_markov_model",
+            "_model_profile",
+            "_reads_alignment_rate",
+            "_strandness_rate",
+            "_unaligned_length.pkl",
+        ),
+    output:
+        reads="results/nanosim/genome/{sample}.{model}.simulated_reads.fq",  # fastq output requires specification of a --basecaller
+        errors="results/nanosim/genome/{sample}.{model}.simulated_errors.txt",
+        unaligned_reads="results/nanosim/genome/{sample}.{model}.simulated_reads.unaligned.fq",  # asking for unaligned_reads implicitly turns off --perfect
+    log:
+        "logs/nanosim/genome/{sample}.{model}.log",
+    params:
+        extra="--number 5 --basecaller guppy -dna_type circular",
+    threads: 4
+    wrapper:
+        "master/bio/nanosim/simulator"
+
+
+rule nanosim_transcriptome:
+    input:
+        reference_transcriptome="resources/{sample}.transcriptome.fa",
+        expression_profile="{sample}.expression_abundance.tsv",
+        # reference_genome="resources/{sample}.genome.fa",  # optional, without it the wrapper will set --no_model_ir; NOTE: with this enabled, we sometimes get infinitely running simulations
+        model=multiext(
+            "resources/{model}",
+            "_added_intron_final.gff3",
+            "_aligned_reads.pkl",
+            "_aligned_region_2d.pkl",
+            "_aligned_region.pkl",
+            "_error_markov_model",
+            "_error_rate.tsv",
+            "_first_match.hist",
+            "_ht_length.pkl",
+            "_ht_ratio.pkl",
+            "_IR_markov_model",
+            "_match_markov_model",
+            "_model_profile",
+            "_reads_alignment_rate",
+            "_strandness_rate",
+            "_unaligned_length.pkl",
+        ),
+    output:
+        reads="results/nanosim/transcriptome/{sample}.{model}.simulated.fq",  # fastq output requires specification of a --basecaller and --read_type
+        errors="results/nanosim/transcriptome/{sample}.{model}.simulated.errors.txt",
+        unaligned_reads="results/nanosim/transcriptome/{sample}.{model}.simulated_reads.unaligned.fq",  
+    log:
+        "logs/nanosim/transcriptome/{sample}.{model}.log",
+    params:
+        extra="--number 5 --basecaller albacore --read_type cDNA_1D",
+    threads: 4
+    wrapper:
+        "master/bio/nanosim/simulator"
+
+
+rule nanosim_metagenome:
+    input:
+        reference_genomes=multiext(
+            "resources/{refs_prefix}.",
+            "genome.fa",
+            "genome2.fa",
+        ),
+        sample_abundances="config/{sample}.abundances.tsv",
+        model=multiext(
+            "resources/{model}",
+            "_aligned_reads.pkl",
+            "_aligned_region.pkl",
+            "_chimeric_info",
+            "_error_markov_model",
+            "_error_rate.tsv",
+            "_first_match.hist",
+            "_gap_length.pkl",
+            "_ht_length.pkl",
+            "_ht_ratio.pkl",
+            "_match_markov_model",
+            "_model_profile",
+            "_reads_alignment_rate",
+            "_strandness_rate",
+            "_unaligned_length.pkl",
+        ),
+    output:
+        abundance_list_tsv="results/nanosim/metagenome/{refs_prefix}.{model}/config/{sample}.abundances.tsv",
+        dna_type_list_tsv="results/nanosim/metagenome/{refs_prefix}.{model}/config/{sample}.dna_type_list.tsv",
+        reference_genomes_list_tsv="results/nanosim/metagenome/{refs_prefix}.{model}/config/{sample}.reference_genomes_list.tsv",
+        reads="results/nanosim/metagenome/{refs_prefix}.{model}/simulated/{sample}.simulated_reads.fa",
+        errors="results/nanosim/metagenome/{refs_prefix}.{model}/simulated/{sample}.simulated_errors.txt",
+        #unaligned_reads="results/nanosim/metagenome/{refs_prefix}.{model}/simulated/{sample}.simulated_reads_unaligned.fq",  # not asking for unaligned reads sets the flag --perfect
+    log:
+        "logs/nanosim/metagenome/{refs_prefix}.{model}/{sample}.log",
+    params:
+        extra="",
+        species={
+            "human BRCA2": {
+                "chromosome" : "NC_000013.11|:32306558-32408787 Homo sapiens chromosome 13",
+                "dna_type" : "circular",
+                "ref_suffix": "genome.fa",
+            },
+            "mouse BRCA2": {
+                "chromosome" : "NC_000071.7|:150440974-150498397 Mus musculus strain C57BL/6J chromosome 5",
+                "dna_type" : "linear",
+                "ref_suffix": "genome2.fa",
+            },
+        },
+    threads: 4
+    wrapper:
+        "master/bio/nanosim/simulator"
