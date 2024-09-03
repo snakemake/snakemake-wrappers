@@ -9,11 +9,13 @@ import tempfile
 from os import path
 
 from snakemake.shell import shell
+
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
 # Placeholder for optional parameters
 extra = snakemake.params.get("extra", "")
+
 
 def message_input_missing_for_subcommand(input_provided, subcommand, input_required):
     return (
@@ -22,7 +24,8 @@ def message_input_missing_for_subcommand(input_provided, subcommand, input_requi
         f"'input: {input_required}' that this subcommand requires."
     )
 
-sample_infix=""
+
+sample_infix = ""
 
 if "reference_genomes" in snakemake.input.keys():
     subcommand = "metagenome"
@@ -30,7 +33,9 @@ if "reference_genomes" in snakemake.input.keys():
     # it to output only one single sample, to sanely handle output
     sample_infix = "sample0_"
 
-    with open(snakemake.output.abundance_list_tsv, "w") as abun_out, open(snakemake.input.sample_abundances, "r") as abun_in:
+    with open(snakemake.output.abundance_list_tsv, "w") as abun_out, open(
+        snakemake.input.sample_abundances, "r"
+    ) as abun_in:
         abundances_dict = dict()
         for line in abun_in:
             (k, v) = line.rstrip().split("\t")
@@ -53,14 +58,12 @@ if "reference_genomes" in snakemake.input.keys():
     with open(snakemake.output.reference_genomes_list_tsv, "w") as genomes_list:
         for spec in snakemake.params.species:
             filename = [
-                f for f in snakemake.input.reference_genomes
-                if f.endswith(snakemake.params.species[spec]['ref_suffix'])
+                f
+                for f in snakemake.input.reference_genomes
+                if f.endswith(snakemake.params.species[spec]["ref_suffix"])
             ]
             if len(filename) == 1:
-                genomes_list.write(
-                    f"{spec}\t"
-                    f"{filename[0]}\n"
-                )
+                genomes_list.write(f"{spec}\t" f"{filename[0]}\n")
             elif len(filename) == 0:
                 ValueError(
                     f"The params: species='{spec}' 'ref_suffix' you specified is: {snakemake.params.species[spec]['ref_suffix']}\n"
@@ -85,7 +88,9 @@ elif "reference_transcriptome" in snakemake.input.keys():
     subcommand = "transcriptome"
     if "expression_profile" not in snakemake.input.keys():
         raise KeyError(
-            message_input_missing_for_subcommand("reference_transcriptome", subcommand, "expression_profile")
+            message_input_missing_for_subcommand(
+                "reference_transcriptome", subcommand, "expression_profile"
+            )
         )
     if "reference_genome" in snakemake.input.keys():
         genome = f"--ref_g {snakemake.input.reference_genome}"
@@ -114,8 +119,8 @@ if "model" not in snakemake.input.keys():
         "'input: model='."
     )
 else:
-    model_prefix=path.commonprefix(snakemake.input.model).rstrip("_")
-    model=f"--model_prefix {model_prefix}"
+    model_prefix = path.commonprefix(snakemake.input.model).rstrip("_")
+    model = f"--model_prefix {model_prefix}"
 
 if "--perfect" in snakemake.params.extra:
     raise ValueError(
@@ -125,22 +130,22 @@ if "--perfect" in snakemake.params.extra:
     )
 
 if path.splitext(snakemake.output.reads)[1] in [".fastq", ".fq"]:
-    fq="--fastq"
-    extension=".fastq"
+    fq = "--fastq"
+    extension = ".fastq"
 else:
-    fq=""
-    extension=".fasta"
+    fq = ""
+    extension = ".fasta"
 
 with tempfile.TemporaryDirectory() as tempdir:
     prefix = f"{tempdir}/simulated"
 
     if "unaligned_reads" in snakemake.output.keys():
-        perfect=""
-        mv_unaligned_reads=f" mv {prefix}_{sample_infix}unaligned_reads{extension} {snakemake.output.unaligned_reads}; "
+        perfect = ""
+        mv_unaligned_reads = f" mv {prefix}_{sample_infix}unaligned_reads{extension} {snakemake.output.unaligned_reads}; "
     else:
-        perfect="--perfect"
-        mv_unaligned_reads=""
-    
+        perfect = "--perfect"
+        mv_unaligned_reads = ""
+
     # Executed shell command
     shell(
         "(simulator.py {subcommand} "
