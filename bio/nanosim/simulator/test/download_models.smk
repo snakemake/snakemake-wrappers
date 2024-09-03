@@ -17,6 +17,7 @@ rule download_nanosim_genome_model:
             "_strandness_rate",
             "_unaligned_length.pkl",
         ),
+    log: "logs/human_NA12878_DNA_FAB49712_guppy/training_download.log",
     shell:
         "cd resources/; "
         "wget https://github.com/bcgsc/NanoSim/raw/master/pre-trained_models/human_NA12878_DNA_FAB49712_guppy.tar.gz; "
@@ -43,6 +44,7 @@ rule download_nanosim_transcriptome_model:
             "_strandness_rate",
             "_unaligned_length.pkl",
         ),
+    log: "logs/human_NA12878_cDNA_Bham1_albacore/training_download.log",
     shell:
         "cd resources/; "
         "wget https://github.com/bcgsc/NanoSim/raw/master/pre-trained_models/human_NA12878_cDNA_Bham1_albacore.tar.gz; "
@@ -68,6 +70,7 @@ rule download_nanosim_metagenome_model:
             "_strandness_rate",
             "_unaligned_length.pkl",
         ),
+    log: "logs/metagenome_ERR3152364_Even/training_download.log",
     shell:
         "cd resources/; "
         "wget https://github.com/bcgsc/NanoSim/raw/master/pre-trained_models/metagenome_ERR3152364_Even.tar.gz; "
