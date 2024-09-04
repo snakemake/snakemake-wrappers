@@ -21,7 +21,7 @@ rule download_nanosim_genome_model:
     log: "logs/human_NA12878_DNA_FAB49712_guppy/training_download.log",
     shell:
         "cd resources/; "
-        "wget https://github.com/bcgsc/NanoSim/raw/master/pre-trained_models/human_NA12878_DNA_FAB49712_guppy.tar.gz; "
+        "wget https://github.com/bcgsc/NanoSim/raw/v3.1.0/pre-trained_models/human_NA12878_DNA_FAB49712_guppy.tar.gz; "
         "tar xzf human_NA12878_DNA_FAB49712_guppy.tar.gz; "
 
 
@@ -49,7 +49,7 @@ rule download_nanosim_transcriptome_model:
     log: "logs/human_NA12878_cDNA_Bham1_albacore/training_download.log",
     shell:
         "cd resources/; "
-        "wget https://github.com/bcgsc/NanoSim/raw/master/pre-trained_models/human_NA12878_cDNA_Bham1_albacore.tar.gz; "
+        "wget https://github.com/bcgsc/NanoSim/raw/v3.1.0/pre-trained_models/human_NA12878_cDNA_Bham1_albacore.tar.gz; "
         "tar xzf human_NA12878_cDNA_Bham1_albacore.tar.gz; "
 
 
@@ -76,5 +76,5 @@ rule download_nanosim_metagenome_model:
     log: "logs/metagenome_ERR3152364_Even/training_download.log",
     shell:
         "cd resources/; "
-        "wget https://github.com/bcgsc/NanoSim/raw/master/pre-trained_models/metagenome_ERR3152364_Even.tar.gz; "
+        "wget https://github.com/bcgsc/NanoSim/raw/v3.1.0/pre-trained_models/metagenome_ERR3152364_Even.tar.gz; "
         "tar xzf metagenome_ERR3152364_Even.tar.gz; "
