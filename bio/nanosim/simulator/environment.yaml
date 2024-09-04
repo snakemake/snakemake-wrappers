@@ -4,7 +4,7 @@ channels:
   - nodefaults
 dependencies:
   # bioconda recipe needs patching to work with pretrained models, but the
-  # patch only applies to versions <= 3.1:
+  # patch has only been applied to versions <= 3.1:
   # https://github.com/bioconda/bioconda-recipes/pull/40449/files
   # TODO: update to latest version, if this gets resolved
   - nanosim =3.1
