@@ -3752,23 +3752,6 @@ def test_muscle_fas():
 
 
 @skip_if_not_modified
-def test_nanosimh():
-    run(
-        "bio/nanosim-h",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "test.simulated.fa",
-            "test.simulated.log",
-            "test.simulated.errors.txt",
-            "--use-conda",
-            "-F",
-        ],
-    )
-
-
-@skip_if_not_modified
 def test_ngsderive():
     run(
         "bio/ngsderive",
