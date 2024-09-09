@@ -488,6 +488,31 @@ def test_sickle_se():
         ],
     )
 
+@skip_if_not_modified
+def test_bwameth_index():
+    run(
+        "bio/bwameth/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "genome.fasta.bwameth.c2t.sa",
+        ],
+    )
+    run(
+        "bio/bwameth/index",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "genome.fasta.bwameth.c2t.0123",
+        ],
+    )
+
 
 @skip_if_not_modified
 def test_bwa_memx_index():
@@ -3726,7 +3751,6 @@ def test_muscle_fas():
     )
 
 
-@skip_if_not_modified
 def test_nanosim_genome():
     run(
         "bio/nanosim/simulator",
@@ -3773,23 +3797,6 @@ def test_nanosim_metagenome():
             "results/nanosim/metagenome/brca2.metagenome_ERR3152364_Even/training/config/sample_x.reference_genomes_list.tsv",
             "results/nanosim/metagenome/brca2.metagenome_ERR3152364_Even/training/simulated/sample_x.simulated_errors.txt",
             "results/nanosim/metagenome/brca2.metagenome_ERR3152364_Even/training/simulated/sample_x.simulated_reads.fa",
-            "--use-conda",
-            "-F",
-        ],
-    )
-
-
-@skip_if_not_modified
-def test_nanosimh():
-    run(
-        "bio/nanosim-h",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "test.simulated.fa",
-            "test.simulated.log",
-            "test.simulated.errors.txt",
             "--use-conda",
             "-F",
         ],

@@ -3,4 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - nanosim-h =1.1.0.4
+  - bwameth =0.2.7
+  - bwa-mem2 =2.2.1
