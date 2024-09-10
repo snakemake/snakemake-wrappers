@@ -7,7 +7,7 @@ from snakemake.shell import shell
 from pathlib import Path
 
 input_path = Path(snakemake.input[0])
-if input_path.suffix in [".fastq", ".fastq.gz", ".fasta"]:
+if input_path.suffix in [".fastq", ".fastq.gz", ".fasta", ".fasta.gz"]:
     input_flag = "--fastq "
 elif input_path.suffix == ".bam":
     input_flag = "--bam "
