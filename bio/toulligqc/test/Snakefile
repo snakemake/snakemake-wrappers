@@ -1,0 +1,11 @@
+rule toulligqc:
+    input:
+        "demodata/sequencing_summary.txt",
+    output:
+        "toulligqc_demo/report.html",
+    log:
+        "merged.log",
+    params:
+        extra="",  # optional additional parameters as string
+    wrapper:
+        "master/bio/toulligqc"

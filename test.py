@@ -6912,3 +6912,16 @@ def test_emu_combine_output_split():
             "-F",
         ],
     )
+
+@skip_if_not_modified
+def test_toulligqc():
+    run(
+        "bio/toulligqc",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "toulligqc_demo/report.html", 
+            "--use-conda", 
+            "-F"],
+    )
