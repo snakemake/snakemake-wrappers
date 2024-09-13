@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - cnvkit =0.9.11
-  - htslib =1.20
+  - htslib =1.21
