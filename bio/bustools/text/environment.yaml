@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bustools =0.43.2
+  - bustools =0.44.0
