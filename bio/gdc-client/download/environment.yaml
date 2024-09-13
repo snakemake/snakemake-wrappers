@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - gdc-client =2.0
+  - gdc-client =2.3
