@@ -6853,6 +6853,14 @@ def test_root_filter_dict():
 
 
 @skip_if_not_modified
+def test_root_rootcp():
+    run(
+        "phys/root/rootcp",
+        ["snakemake", "--cores", "2", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_emu_abundance():
     run(
         "bio/emu/abundance",
