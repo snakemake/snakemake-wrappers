@@ -7,15 +7,15 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
-log = snakemake.log_fmt_shell()
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 object_in = snakemake.params.get("input_object_name", "")
 if object_in:
-    object_in = ":" + object_in
+    object_in = f":{object_in}"
 
 object_out = snakemake.params.get("output_object_name", "")
 if object_out:
-    object_out = ":" + object_out
+    object_out = f":{object_out}"
 
 shell(
     "rootcp {extra} {snakemake.input}{object_in} {snakemake.output}{object_out} {log}"
