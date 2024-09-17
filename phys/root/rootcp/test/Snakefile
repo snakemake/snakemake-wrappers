@@ -1,0 +1,12 @@
+rule rootcp:
+    input:
+        "ntuple0.root",
+    log:
+        "logs/rootcp/rootcp.log",
+    params:
+        extra="--recreate",
+    threads: 1
+    output:
+        "ntuple0_copy.root",
+    wrapper:
+        "master/phys/root/rootcp"

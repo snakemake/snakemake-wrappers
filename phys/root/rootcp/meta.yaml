@@ -1,0 +1,12 @@
+name: "rootcp"
+description: Copy ROOT using the ROOT rootcp command line tool
+url: https://github.com/root-project/root/blob/master/main/python/rootcp.py
+authors:
+  - Jamie Gooding
+input:
+  - ROOT file/object(s) target (to be copied) and destination.
+output:
+  - >
+    single ROOT file containing copied target object(s).
+params:
+  - extra: extra parameters to `rootcp` (see ROOT documentation, e.g. `-c` for compression levels)
