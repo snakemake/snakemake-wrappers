@@ -4,6 +4,7 @@ rule rootcp:
     log:
         "logs/rootcp/rootcp.log",
     params:
+        input_object_name="TestTree",
         extra="--recreate",
     threads: 1
     output:
