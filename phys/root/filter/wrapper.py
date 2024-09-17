@@ -12,7 +12,7 @@ else:
     ROOT.DisableImplicitMT()
 
 # Parse criteria
-_smk_criteria = snakemake.params.get("criteria", "true")
+_smk_criteria = snakemake.params.criteria
 if isinstance(_smk_criteria, str):
     criteria = [_smk_criteria]
     labels = [_smk_criteria]
