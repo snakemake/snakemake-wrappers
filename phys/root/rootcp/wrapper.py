@@ -17,4 +17,6 @@ object_out = snakemake.params.get("output_object_name", "")
 if object_out:
     object_out = ":" + object_out
 
-shell("rootcp {extra} {snakemake.input}{object_in} {snakemake.output}{object_out} {log}")
+shell(
+    "rootcp {extra} {snakemake.input}{object_in} {snakemake.output}{object_out} {log}"
+)
