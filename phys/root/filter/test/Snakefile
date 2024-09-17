@@ -47,6 +47,6 @@ rule filter_dict:
         },
         branches_to_save=["pz", "pt", "p"],
         verbose=True
-    threads: 2
+    threads: 1
     wrapper:
         "master/phys/root/filter"

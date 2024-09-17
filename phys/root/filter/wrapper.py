@@ -6,7 +6,10 @@ __license__ = "MIT"
 from typing import Dict, List
 import ROOT
 
-ROOT.EnableImplicitMT(snakemake.threads)
+if snakemake.threads > 1:
+    ROOT.EnableImplicitMT(snakemake.threads)
+else:
+    ROOT.DisableImplicitMT()
 
 # Parse criteria
 _smk_criteria = snakemake.params.get("criteria", "true")
@@ -17,7 +20,8 @@ elif isinstance(_smk_criteria, List):
     criteria = _smk_criteria
     labels = _smk_criteria
 elif isinstance(_smk_criteria, Dict):
-    labels, criteria = _smk_criteria.items()
+    criteria = _smk_criteria.values()
+    labels = _smk_criteria.keys()
 else:
     raise TypeError("Parameter 'criteria' should be type of 'str', 'list' or 'dict'")
 
@@ -27,6 +31,8 @@ df = ROOT.RDataFrame(snakemake.params.input_tree_name, snakemake.input[0])
 for criterion, label in zip(criteria, labels):
     df = df.Filter(criterion, label)
 
+if snakemake.params.get("verbose", False):
+    report = df.Report()
 
 if branches_to_save is not None:
     df.Snapshot(
@@ -37,7 +43,5 @@ if branches_to_save is not None:
 else:
     df.Snapshot(snakemake.params.output_tree_name, snakemake.output[0])
 
-
 if snakemake.params.get("verbose", False):
-    report = df.Report()
     report.Print()
