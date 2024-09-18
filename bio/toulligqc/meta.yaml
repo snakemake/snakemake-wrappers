@@ -2,8 +2,8 @@ name: "toulligqc"
 description: "A post sequencing QC tool for Oxford Nanopore sequencers."
 url: "https://github.com/GenomiqueENS/toulligQC"
 authors:
-  - "Ali Hamraoui"
-  - "Salomé Brunon"
+  - Ali Hamraoui
+  - Salomé Brunon
 input:
   - path to input data. Can be either a sequencing summary file, fastq file (uncompressed/ compressed) or bam file.
 output:
