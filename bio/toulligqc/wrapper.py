@@ -22,4 +22,4 @@ else:
 
 outdir = Path(snakemake.output[0]).parent
 
-shell("toulligqc {extra} {input_flag} {snakemake.input} -n {outdir} {log}")
+shell("toulligqc {input_flag} {snakemake.input[0]} {extra} -n {outdir} {log}")
