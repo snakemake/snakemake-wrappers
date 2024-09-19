@@ -6829,9 +6829,33 @@ def test_root_define_columns():
 
 
 @skip_if_not_modified
-def test_root_filter():
+def test_root_filter_str():
     run(
         "phys/root/filter",
+        ["snakemake", "--cores", "2", "--use-conda", "-F", "ntuple0_str_output.root"],
+    )
+
+
+@skip_if_not_modified
+def test_root_filter_list():
+    run(
+        "phys/root/filter",
+        ["snakemake", "--cores", "2", "--use-conda", "-F", "ntuple0_list_output.root"],
+    )
+
+
+@skip_if_not_modified
+def test_root_filter_dict():
+    run(
+        "phys/root/filter",
+        ["snakemake", "--cores", "2", "--use-conda", "-F", "ntuple0_dict_output.root"],
+    )
+
+
+@skip_if_not_modified
+def test_root_rootcp():
+    run(
+        "phys/root/rootcp",
         ["snakemake", "--cores", "2", "--use-conda", "-F"],
     )
 
