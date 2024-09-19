@@ -1,6 +1,6 @@
-name: "toulligqc"
-description: "A post sequencing QC tool for Oxford Nanopore sequencers."
-url: "https://github.com/GenomiqueENS/toulligQC"
+name: toulligqc
+description: A post sequencing QC tool for Oxford Nanopore sequencers.
+url: https://github.com/GenomiqueENS/toulligQC
 authors:
   - Ali Hamraoui
   - Salomé Brunon
