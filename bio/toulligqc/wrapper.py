@@ -6,8 +6,12 @@ __license__ = "CECILL-2.1"
 from snakemake.shell import shell
 from pathlib import Path
 
-input_path = Path(snakemake.input[0])
-if input_path.suffix in [".fastq", ".fastq.gz", ".fasta", ".fasta.gz"]:
+if snakemake.input[0].endswith(".gz"):
+    input_path = Path(snakemake.input[0].removesuffix(".gz"))
+else:
+    input_path = Path(snakemake.input[0])
+
+if input_path.suffix in [".fastq", ".fastq", ".fas", ".fq"]:
     input_flag = "--fastq "
 elif input_path.suffix == ".bam":
     input_flag = "--bam "
