@@ -3,7 +3,6 @@ __copyright__ = "Copyright 2024, Salomé Brunon"
 __email__ = "salome.brunon@gmail.com"
 __license__ = "CECILL-2.1"
 
-import os
 from snakemake.shell import shell
 from pathlib import Path
 
