@@ -6921,7 +6921,7 @@ def test_toulligqc():
             "snakemake", 
             "--cores", 
             "1", 
-            "toulligqc_demo/report.html", 
+            "toulligqc_sequencing_summary/report.html", 
             "--use-conda", 
             "-F"],
     )
