@@ -19,7 +19,7 @@ elif len(snakemake.input.reads) == 2:
 else:
     raise ValueError("invalid number of input files")
 
-if db := snakemake.input.get("db", "")
+if db := snakemake.input.get("db", ""):
     db = f"--db {db}"
 
 with tempfile.TemporaryDirectory() as tmpdir:
