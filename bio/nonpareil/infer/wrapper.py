@@ -5,14 +5,21 @@ __license__ = "MIT"
 from os import path
 import tempfile
 from snakemake.shell import shell
+from snakemake_wrapper_utils.snakemake import get_mem
+
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
+mem_mb = get_mem(snakemake, out_unit="MiB")
 
 uncomp = ""
 in_name, in_ext = path.splitext(snakemake.input[0])
 if in_ext in [".gz", ".bz2"]:
-    uncomp = "zcat" if in_ext == ".gz" else "bzcat"
+    uncomp = (
+        f"pbzip2 -p{snakemake.threads} --decompress --stdout"
+        if in_ext == ".bz2"
+        else ""
+    )
     in_name, in_ext = path.splitext(in_name)
 
 # Infer output format
@@ -26,39 +33,38 @@ else:
 # Redundancy summary
 redund_sum = snakemake.output.get("redund_sum", "")
 if redund_sum:
-    redund_sum = f"-o {redund_sum}"
+    extra += f" -o {redund_sum}"
 
 # Redundancy values
 redund_val = snakemake.output.get("redund_val", "")
 if redund_val:
-    redund_val = f"-a {redund_val}"
+    extra += f" -a {redund_val}"
 
 # Mate distribution
 mate_distr = snakemake.output.get("mate_distr", "")
 if mate_distr:
-    mate_distr = f"-C {mate_distr}"
+    extra += f" -C {mate_distr}"
 
 # Log
 out_log = snakemake.output.get("log", "")
 if out_log:
-    out_log = f"-l {out_log}"
+    extra += f" -l {out_log}"
 
 
 with tempfile.NamedTemporaryFile() as tmp:
-    in_uncomp = snakemake.input[0]
     if uncomp:
         in_uncomp = tmp.name
-        shell("{uncomp} {snakemake.input[0]} > {in_uncomp}")
+        shell("{uncomp} {snakemake.input[0]} > {tmp.name}")
+    else:
+        in_uncomp = snakemake.input[0]
 
     shell(
         "nonpareil"
+        " -t {snakemake.threads}"
+        " -R {mem_mb}"
         " -T {snakemake.params.alg}"
         " -s {in_uncomp}"
         " -f {in_format}"
         " {extra}"
-        " {redund_sum}"
-        " {redund_val}"
-        " {mate_distr}"
-        " {out_log}"
         " {log}"
     )

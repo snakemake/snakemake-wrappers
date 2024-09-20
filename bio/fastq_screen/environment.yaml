@@ -4,5 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - fastq-screen =0.15.3
-  - bowtie2 =2.5.1
+  - bowtie2 =2.5.4
   - bowtie =1.3.1

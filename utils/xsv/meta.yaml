@@ -1,0 +1,15 @@
+name: xsv
+url: https://github.com/BurntSushi/xsv
+description: >
+  Perform various operations over CSV/TSV tables.
+authors:
+  - Thibault Dayris
+input:
+  - table: Path to CSV/TSV table.
+output:
+  - Path the result file / directory
+params:
+  - extra: Optional arguments for `xsv`. For TSV files, `--delimiter` is automatically set to a tabulation.
+  - subcommand: xsv subcommand among `cat`, `count`, `fixlengths`, `flatten`, `fmt`, `frequency`, `headers`, `index`, `input`, `join`, `sample`, `search`, `select`, `slice`, `sort`, `split`, `stats`, or `table`
+notes: |
+  Adding table(s) index(es) to the input file list makes many subcommands faster.

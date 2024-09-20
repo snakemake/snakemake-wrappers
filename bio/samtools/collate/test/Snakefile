@@ -1,0 +1,12 @@
+rule samtools_collate:
+    input:
+        "mapped/{sample}.bam",
+    output:
+        "{sample}.collated.bam",
+    log:
+        "logs/{sample}.log",
+    params:
+        extra="-f",
+    threads: 2
+    wrapper:
+        "master/bio/samtools/collate"

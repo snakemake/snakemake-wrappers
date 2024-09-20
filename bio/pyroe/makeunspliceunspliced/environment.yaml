@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - pyroe =0.9.2
-  - bedtools =2.31.0
+  - pyroe =0.9.3
+  - bedtools =2.31.1

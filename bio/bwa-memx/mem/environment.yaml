@@ -3,10 +3,10 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bwa =0.7.17
+  - bwa =0.7.18
   - bwa-mem2 =2.2.1
   - bwa-meme =1.0.6
-  - samtools =1.17
+  - samtools =1.21
   - samblaster =0.1.26
   - mbuffer =20160228
-  - picard-slim =3.0.0
+  - picard-slim =3.2.0

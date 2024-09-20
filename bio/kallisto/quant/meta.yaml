@@ -1,4 +1,12 @@
 name: "kallisto quant"
 description: Pseudoalign reads and quantify transcripts using kallisto.
+url: https://github.com/pachterlab/kallisto
 authors:
   - Joël Simoneau
+input:
+  - fastq: FASTQ file(s)
+  - index: indexed file
+output:
+  - directory with results
+params:
+  - extra: Additional parameters

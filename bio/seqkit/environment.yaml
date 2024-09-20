@@ -1,6 +1,5 @@
 channels:
-  - conda-forge
   - bioconda
   - nodefaults
 dependencies:
-  - seqkit =2.4.0
+  - seqkit =2.8.2

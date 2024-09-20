@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bowtie2 =2.5.1
+  - bowtie2 =2.5.4

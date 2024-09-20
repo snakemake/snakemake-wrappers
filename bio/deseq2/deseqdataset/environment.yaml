@@ -3,7 +3,7 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bioconductor-tximport =1.26.0
-  - r-readr =2.1.4
-  - r-jsonlite =1.8.5
-  - bioconductor-deseq2 =1.38.0
+  - bioconductor-tximport =1.30.0
+  - r-readr =2.1.5
+  - r-jsonlite =1.8.8
+  - bioconductor-deseq2 =1.42.0
