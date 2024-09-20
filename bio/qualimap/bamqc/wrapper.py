@@ -23,7 +23,7 @@ else:
 if os.environ.get("DISPLAY"):
     del os.environ["DISPLAY"]
 
-if target := snakemake.input.get("target"):
+if target := snakemake.input.get("target", ""):
     target = f"--feature-file {target}"
 
 shell(
