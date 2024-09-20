@@ -12,12 +12,9 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
 # Infer format of input file
-if len(snakemake.input.reads) == 1:
-    in_fmt = "fasta"
-elif len(snakemake.input.reads) == 2:
+in_fmt = "fasta"
+if isinstance(snakemake.input.reads, list) and len(snakemake.input.reads) == 2:
     in_fmt = "fastq"
-else:
-    raise ValueError("invalid number of input files")
 
 if db := snakemake.input.get("db", ""):
     db = f"--db {db}"
