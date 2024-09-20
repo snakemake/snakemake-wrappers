@@ -27,5 +27,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         shell("mv {tmpdir}/output_rel-abundance.tsv {out_tsv}")
     if out_sam := snakemake.output.get("alignments"):
         shell("mv {tmpdir}/output_emu_alignments.sam {out_sam}")
-    if out_fa := snakemake.output.get("unclassified"):
-        shell("mv {tmpdir}/output_unclassified.fa {out_fa}")
+    if out_unclassified_fa := snakemake.output.get("unclassified"):
+        shell("mv {tmpdir}/output_mapped_unclassified.fa {out_unclassified_fa}")
+    if out_unmapped_fa := snakemake.output.get("unmapped"):
+        shell("mv {tmpdir}/output_unmapped.fa {out_unmaped_fa}")

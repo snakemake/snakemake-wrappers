@@ -10,5 +10,6 @@ output:
   - abundances: TSV with relative (and optionally, absolute abundances).
   - alignments: SAM file with the alignments (optional).
   - unclassified: FASTA file with unclassified sequences (optional).
+  - unmapped: FASTA file with unmapped sequences (optional).
 params:
   extra: Any optimal parameter such as --type (sequencer) or --min-abundance. Optional flags involving output are handled automatically (e.g. --output-dir, --output-basename ...)
