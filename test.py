@@ -6870,7 +6870,7 @@ def test_emu_abundance():
             "1",
             "sample_rel-abundance.tsv",
             "sample_emu_alignments.sam",
-            "sample_unclassified.fa",
+            "sample_unclassified.fq",
             "--use-conda",
             "-F",
         ],
