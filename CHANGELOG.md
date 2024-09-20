@@ -1,5 +1,37 @@
 # Changelog
 
+## [4.5.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.4.0...v4.5.0) (2024-09-20)
+
+
+### Features
+
+* Add wrappers for ROOT rootcp CLI tool ([#3251](https://www.github.com/snakemake/snakemake-wrappers/issues/3251)) ([0be5d56](https://www.github.com/snakemake/snakemake-wrappers/commit/0be5d566f4767b7cd2ea9ba78b0d83a6f79a4803))
+* Bump meryl version ([#3266](https://www.github.com/snakemake/snakemake-wrappers/issues/3266)) ([448a1cb](https://www.github.com/snakemake/snakemake-wrappers/commit/448a1cb793d04f7bd280c36bc4dd37d2d06aa104))
+* Enhance phys/root/filter functionality ([#3250](https://www.github.com/snakemake/snakemake-wrappers/issues/3250)) ([4797d76](https://www.github.com/snakemake/snakemake-wrappers/commit/4797d76630b0cc6ea05778a49727f7917b7874dc))
+* Parse threads ([#3249](https://www.github.com/snakemake/snakemake-wrappers/issues/3249)) ([9e63554](https://www.github.com/snakemake/snakemake-wrappers/commit/9e63554b0cf19b2a22513566a576105c39f47e3b))
+
+
+### Bug Fixes
+
+* name of bamqc ([#1464](https://www.github.com/snakemake/snakemake-wrappers/issues/1464)) ([ee04ec2](https://www.github.com/snakemake/snakemake-wrappers/commit/ee04ec22b24c8d380ef98f5cee677f4ff4730ad3))
+
+
+### Performance Improvements
+
+* autobump bio/cnv_facets ([#3253](https://www.github.com/snakemake/snakemake-wrappers/issues/3253)) ([c5c8ddd](https://www.github.com/snakemake/snakemake-wrappers/commit/c5c8ddded41ba96fd8bbc69790e1e17998551734))
+* autobump bio/emu/abundance ([#3256](https://www.github.com/snakemake/snakemake-wrappers/issues/3256)) ([6e42aef](https://www.github.com/snakemake/snakemake-wrappers/commit/6e42aef12570e7708dedd4ed24a7406a69356d81))
+* autobump bio/emu/collapse-taxonomy ([#3255](https://www.github.com/snakemake/snakemake-wrappers/issues/3255)) ([969067e](https://www.github.com/snakemake/snakemake-wrappers/commit/969067e8a94210d99bb67dfb3525c076f7731d02))
+* autobump bio/emu/combine-outputs ([#3254](https://www.github.com/snakemake/snakemake-wrappers/issues/3254)) ([de2a1be](https://www.github.com/snakemake/snakemake-wrappers/commit/de2a1bef7e9d330c4d6484bf0f1f250d7ad6c0c9))
+* autobump bio/freebayes ([#3257](https://www.github.com/snakemake/snakemake-wrappers/issues/3257)) ([80630dd](https://www.github.com/snakemake/snakemake-wrappers/commit/80630dd19aa113ea94dd55f89f596b83e81ebc34))
+* autobump bio/galah ([#3258](https://www.github.com/snakemake/snakemake-wrappers/issues/3258)) ([285d57a](https://www.github.com/snakemake/snakemake-wrappers/commit/285d57a8dd082fb515250fdc370cca11142fff44))
+* autobump bio/gdc-api/bam-slicing ([#3259](https://www.github.com/snakemake/snakemake-wrappers/issues/3259)) ([27b6958](https://www.github.com/snakemake/snakemake-wrappers/commit/27b695863bc123ba93fff53a130a0d7a06b4b2c1))
+* autobump bio/igv-reports ([#3260](https://www.github.com/snakemake/snakemake-wrappers/issues/3260)) ([a7d57ba](https://www.github.com/snakemake/snakemake-wrappers/commit/a7d57ba191bb59060dc82b9009a11c78dbaba86e))
+* autobump bio/lofreq/call ([#3262](https://www.github.com/snakemake/snakemake-wrappers/issues/3262)) ([13626f0](https://www.github.com/snakemake/snakemake-wrappers/commit/13626f0b9d3d25bafd04a3253f37b6bfd91414bc))
+* autobump bio/lofreq/indelqual ([#3261](https://www.github.com/snakemake/snakemake-wrappers/issues/3261)) ([76c854e](https://www.github.com/snakemake/snakemake-wrappers/commit/76c854e127cd792b5f74f8dc357f09fddb07998c))
+* autobump bio/multiqc ([#3263](https://www.github.com/snakemake/snakemake-wrappers/issues/3263)) ([d4d1475](https://www.github.com/snakemake/snakemake-wrappers/commit/d4d14750f10aa5f10fd5b20f560e13985a0f758f))
+* autobump bio/tabix/index ([#3264](https://www.github.com/snakemake/snakemake-wrappers/issues/3264)) ([e39e97e](https://www.github.com/snakemake/snakemake-wrappers/commit/e39e97e96fa26ab40e34a207ed62410453d28bae))
+* autobump bio/vep/annotate ([#3265](https://www.github.com/snakemake/snakemake-wrappers/issues/3265)) ([7f0b02a](https://www.github.com/snakemake/snakemake-wrappers/commit/7f0b02ac64b40a5aca8bd08c90f8b7df80ea4bed))
+
 ## [4.4.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.3.0...v4.4.0) (2024-09-17)
 
 
