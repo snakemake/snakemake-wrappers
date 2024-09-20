@@ -1,4 +1,4 @@
-name: qualimap rnaseq
+name: qualimap bamqc
 description: |
         Run qualimap bamqc to create a QC report for aligned NGS data data. It can be
         used for WGS, WES, RNA, ChIP-Seq, etc.
