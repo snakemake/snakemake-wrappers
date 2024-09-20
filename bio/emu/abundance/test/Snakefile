@@ -5,8 +5,8 @@ rule abundance:
     output:
         abundances="{sample}_rel-abundance.tsv",
         alignments="{sample}_emu_alignments.sam",
-        unclassified="{sample}_unclassified.fa",
-        unmapped="{sample}_unmapped.fa",
+        unclassified="{sample}_unclassified.fq",
+        unmapped="{sample}_unmapped.fq",
     log:
         "logs/emu/{sample}_abundance.log",
     params:
@@ -23,8 +23,8 @@ rule abundance_paired:
     output:
         abundances="{sample}_rel-abundance_paired.tsv",
         alignments="{sample}_emu_alignments_paired.sam",
-        unclassified="{sample}_unclassified_paired.fa",
-        unmapped="{sample}_unmapped_paired.fa",
+        unclassified="{sample}_unclassified_paired.fq",
+        unmapped="{sample}_unmapped_paired.fq",
     log:
         "logs/emu/{sample}_abundance_paired.log",
     params:
