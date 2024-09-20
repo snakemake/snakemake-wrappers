@@ -30,4 +30,4 @@ with tempfile.TemporaryDirectory() as tmpdir:
     if out_unclassified_fq := snakemake.output.get("unclassified"):
         shell("mv {tmpdir}/output_unclassified_mapped.fastq {out_unclassified_fq}")
     if out_unmapped_fq := snakemake.output.get("unmapped"):
-        shell("mv {tmpdir}/output_unmapped.fastq {out_unmaped_fq}")
+        shell("mv {tmpdir}/output_unmapped.fastq {out_unmapped_fq}")
