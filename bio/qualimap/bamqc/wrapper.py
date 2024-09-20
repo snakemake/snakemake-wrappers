@@ -22,7 +22,7 @@ if os.environ.get("DISPLAY"):
     del os.environ["DISPLAY"]
 
 extra = snakemake.params.get("extra", "")
-if target := snakemake.params.get("target"):
+if target := snakemake.input.get("target"):
     extra = f"{extra} --feature-file {target}"
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
