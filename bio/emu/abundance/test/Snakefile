@@ -5,8 +5,8 @@ rule abundance:
     output:
         abundances="{sample}_rel-abundance.tsv",
         alignments="{sample}_emu_alignments.sam",
-        unclassified="{sample}_unclassified.fq",
-        unmapped="{sample}_unmapped.fq",
+        unclassified="{sample}_unclassified.fas",
+        unmapped="{sample}_unmapped.fas",
     log:
         "logs/emu/{sample}_abundance.log",
     params:
