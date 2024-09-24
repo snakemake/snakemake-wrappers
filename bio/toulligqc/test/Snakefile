@@ -16,7 +16,7 @@ rule toulligqc_bam:
     output:
         "toulligqc_bam/report.html",
     log:
-        "merged.log",
+        "toulligqc_bam/merged.log",
     params:
         extra="",  # optional additional parameters as string
     wrapper:
