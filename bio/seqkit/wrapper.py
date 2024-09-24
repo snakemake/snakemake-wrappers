@@ -36,10 +36,6 @@ extra_output = " ".join(
     ][1:]
 )
 
-# Set bgzip output
-pipe_bgzip = ""
-if snakemake.params.get("out_bgzip") and Path(snakemake.output[0]).suffix == ".gz":
-    pipe_bgzip = f" | bgzip --threads {snakemake.threads}"
 
 if snakemake.params.get("out_bgzip"):
     shell(
@@ -49,7 +45,8 @@ if snakemake.params.get("out_bgzip"):
         " {extra_output}"
         " {extra}"
         " {input}"
-        "{pipe_bgzip} > {snakemake.output[0]}"
+        " | bgzip --threads {snakemake.threads}"
+        " > {snakemake.output[0]}"
         ") {log}"
     )
 else:
