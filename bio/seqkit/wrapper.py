@@ -3,7 +3,7 @@ __copyright__ = "Copyright 2023, Filipe G. Vieira"
 __license__ = "MIT"
 
 from snakemake.shell import shell
-from pathlib import Path
+
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
