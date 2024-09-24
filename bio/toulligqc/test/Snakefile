@@ -28,7 +28,7 @@ rule toulligqc_fastq:
     output:
         "toulligqc_fastq/report.html",
     log:
-        "merged.log",
+        "toulligqc_fastq/merged.log",
     params:
         extra="",  # optional additional parameters as string
     wrapper:
