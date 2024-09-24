@@ -4,7 +4,7 @@ rule toulligqc_sequencing_summary:
     output:
         "toulligqc_sequencing_summary/report.html",
     log:
-        "merged.log",
+        "toulligqc_sequencing_summary/merged.log",
     params:
         extra="",  # optional additional parameters as string
     wrapper:
