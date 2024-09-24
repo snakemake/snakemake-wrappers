@@ -3,10 +3,10 @@ __copyright__ = "Copyright 2023, Filipe G. Vieira"
 __license__ = "MIT"
 
 from snakemake.shell import shell
-
+from pathlib import Path
 
 extra = snakemake.params.get("extra", "")
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 # subcommands concat and common use multiple input files
 if snakemake.params.command in ["concat", "common"]:
@@ -36,14 +36,30 @@ extra_output = " ".join(
     ][1:]
 )
 
+# Set bgzip output
+pipe_bgzip = ""
+if snakemake.params.get("out_bgzip") and Path(snakemake.output[0]).suffix == ".gz":
+    pipe_bgzip = f" | bgzip --threads {snakemake.threads}"
 
-shell(
-    "seqkit {snakemake.params.command}"
-    " --threads {snakemake.threads}"
-    " {extra_input}"
-    " {extra_output}"
-    " {extra}"
-    " --out-file {snakemake.output[0]}"
-    " {input}"
-    " {log}"
-)
+if snakemake.params.get("out_bgzip"):
+    shell(
+        "(seqkit {snakemake.params.command}"
+        " --threads {snakemake.threads}"
+        " {extra_input}"
+        " {extra_output}"
+        " {extra}"
+        " {input}"
+        "{pipe_bgzip} > {snakemake.output[0]}"
+        ") {log}"
+    )
+else:
+    shell(
+        "seqkit {snakemake.params.command}"
+        " --threads {snakemake.threads}"
+        " {extra_input}"
+        " {extra_output}"
+        " {extra}"
+        " --out-file {snakemake.output[0]}"
+        " {input}"
+        " {log}"
+    )

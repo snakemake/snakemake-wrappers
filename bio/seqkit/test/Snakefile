@@ -186,6 +186,7 @@ rule seqkit_concat:
     params:
         command="concat",
         extra="",
+	out_bgzip=True,
     threads: 2
     wrapper:
         "master/bio/seqkit"
