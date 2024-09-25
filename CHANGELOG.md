@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.6.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.5.0...v4.6.0) (2024-09-25)
+
+
+### Features
+
+* add toulligqc wrapper ([#3171](https://www.github.com/snakemake/snakemake-wrappers/issues/3171)) ([874c84e](https://www.github.com/snakemake/snakemake-wrappers/commit/874c84e8488a9f04e3c1805553aaa03c580e732c))
+
+
+### Performance Improvements
+
+* bump datavzrd wrapper ([#3271](https://www.github.com/snakemake/snakemake-wrappers/issues/3271)) ([a08e006](https://www.github.com/snakemake/snakemake-wrappers/commit/a08e006e8da99c9d06032170684dc943d13f4665))
+* bump vembrane wrappers to latest version ([#3269](https://www.github.com/snakemake/snakemake-wrappers/issues/3269)) ([2a36586](https://www.github.com/snakemake/snakemake-wrappers/commit/2a36586024da42cb538f53c958c6ffc6207cb3ac))
+
 ## [4.5.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.4.0...v4.5.0) (2024-09-20)
 
 
