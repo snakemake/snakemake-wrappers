@@ -1,5 +1,21 @@
 # Changelog
 
+### [4.6.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.6.0...v4.6.1) (2024-09-27)
+
+
+### Performance Improvements
+
+* autobump bio/bbtools ([#3272](https://www.github.com/snakemake/snakemake-wrappers/issues/3272)) ([51a5fee](https://www.github.com/snakemake/snakemake-wrappers/commit/51a5feeb4bc7c15bc6bd8442f9ba13e39e77f33b))
+* autobump bio/delly ([#3274](https://www.github.com/snakemake/snakemake-wrappers/issues/3274)) ([f432006](https://www.github.com/snakemake/snakemake-wrappers/commit/f4320069f90c781308ba1cf5134c92ed91c3548f))
+* autobump bio/deseq2/deseqdataset ([#3275](https://www.github.com/snakemake/snakemake-wrappers/issues/3275)) ([e311359](https://www.github.com/snakemake/snakemake-wrappers/commit/e31135953256857f1169a6e80a4336878b452659))
+* autobump bio/encode_fastq_downloader ([#3276](https://www.github.com/snakemake/snakemake-wrappers/issues/3276)) ([29a80c6](https://www.github.com/snakemake/snakemake-wrappers/commit/29a80c6c2de3e343cf6fd2f0e37e16fa9f1ff11a))
+* autobump bio/fastq_screen ([#3277](https://www.github.com/snakemake/snakemake-wrappers/issues/3277)) ([fead377](https://www.github.com/snakemake/snakemake-wrappers/commit/fead37750da2c1b8787a2b976375258394e1b29d))
+* autobump bio/freebayes ([#3278](https://www.github.com/snakemake/snakemake-wrappers/issues/3278)) ([bf6a162](https://www.github.com/snakemake/snakemake-wrappers/commit/bf6a16248108351e111f104b82f44ddf74416502))
+* autobump bio/gatk3/baserecalibrator ([#3281](https://www.github.com/snakemake/snakemake-wrappers/issues/3281)) ([9e32e0f](https://www.github.com/snakemake/snakemake-wrappers/commit/9e32e0f4ed0a4b14eaec19814ea82564f5b2e316))
+* autobump bio/gatk3/indelrealigner ([#3279](https://www.github.com/snakemake/snakemake-wrappers/issues/3279)) ([26d23ed](https://www.github.com/snakemake/snakemake-wrappers/commit/26d23ed369ca461fca64368dfc7798dd5c9c82de))
+* autobump bio/gatk3/printreads ([#3282](https://www.github.com/snakemake/snakemake-wrappers/issues/3282)) ([1d621b7](https://www.github.com/snakemake/snakemake-wrappers/commit/1d621b7a137885b8ea13ce056af10c9d523c335a))
+* autobump bio/gatk3/realignertargetcreator ([#3280](https://www.github.com/snakemake/snakemake-wrappers/issues/3280)) ([90c78fd](https://www.github.com/snakemake/snakemake-wrappers/commit/90c78fd9f1d638823a3c241d1bebdb7e5627681c))
+
 ## [4.6.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.5.0...v4.6.0) (2024-09-25)
 
 
