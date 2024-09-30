@@ -38,25 +38,16 @@ extra_output = " ".join(
 
 
 if snakemake.params.get("out_bgzip"):
-    shell(
-        "(seqkit {snakemake.params.command}"
-        " --threads {snakemake.threads}"
-        " {extra_input}"
-        " {extra_output}"
-        " {extra}"
-        " {input}"
-        " | bgzip --threads {snakemake.threads}"
-        " > {snakemake.output[0]}"
-        ") {log}"
-    )
+    input = input + " | bgzip --threads {snakemake.threads} > {snakemake.output[0]}"
 else:
-    shell(
-        "seqkit {snakemake.params.command}"
-        " --threads {snakemake.threads}"
-        " {extra_input}"
-        " {extra_output}"
-        " {extra}"
-        " --out-file {snakemake.output[0]}"
-        " {input}"
-        " {log}"
-    )
+    input = "--out-file {snakemake.output[0]} " + input
+
+shell(
+    "(seqkit {snakemake.params.command}"
+    " --threads {snakemake.threads}"
+    " {extra_input}"
+    " {extra_output}"
+    " {extra}"
+    " {input}"
+    ") {log}"
+)
