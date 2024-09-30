@@ -3,6 +3,7 @@ __copyright__ = "Copyright 2023, Filipe G. Vieira"
 __license__ = "MIT"
 
 from snakemake.shell import shell
+from pathlib import Path
 
 
 extra = snakemake.params.get("extra", "")
@@ -38,7 +39,11 @@ extra_output = " ".join(
 
 
 if snakemake.params.get("out_bgzip"):
-    assert Path(snakemake.output[0]).suffix in [".gz", ".bgz", ".bgzip"], "invalid output file extension"
+    assert Path(snakemake.output[0]).suffix in [
+        ".gz",
+        ".bgz",
+        ".bgzip",
+    ], "invalid output file extension"
     input = input + f" | bgzip --threads {snakemake.threads} > {snakemake.output[0]}"
 else:
     input = f"--out-file {snakemake.output[0]} " + input
