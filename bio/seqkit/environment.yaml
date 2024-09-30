@@ -1,5 +1,7 @@
 channels:
+  - conda-forge
   - bioconda
   - nodefaults
 dependencies:
   - seqkit =2.8.2
+  - htslib =1.21
