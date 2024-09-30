@@ -38,9 +38,9 @@ extra_output = " ".join(
 
 
 if snakemake.params.get("out_bgzip"):
-    input = input + " | bgzip --threads {snakemake.threads} > {snakemake.output[0]}"
+    input = input + f" | bgzip --threads {snakemake.threads} > {snakemake.output[0]}"
 else:
-    input = "--out-file {snakemake.output[0]} " + input
+    input = f"--out-file {snakemake.output[0]} " + input
 
 shell(
     "(seqkit {snakemake.params.command}"
