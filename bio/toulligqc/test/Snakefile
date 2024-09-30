@@ -1,0 +1,35 @@
+rule toulligqc_sequencing_summary:
+    input:
+        "demodata/sequencing_summary.txt",
+    output:
+        "toulligqc_sequencing_summary/report.html",
+    log:
+        "toulligqc_sequencing_summary/merged.log",
+    params:
+        extra="",  # optional additional parameters as string
+    wrapper:
+        "master/bio/toulligqc"
+
+rule toulligqc_bam:
+    input:
+        "demodata/test.sorted.bam",
+    output:
+        "toulligqc_bam/report.html",
+    log:
+        "toulligqc_bam/merged.log",
+    params:
+        extra="",  # optional additional parameters as string
+    wrapper:
+        "master/bio/toulligqc"
+
+rule toulligqc_fastq:
+    input:
+        "demodata/test.fastq.gz",
+    output:
+        "toulligqc_fastq/report.html",
+    log:
+        "toulligqc_fastq/merged.log",
+    params:
+        extra="",  # optional additional parameters as string
+    wrapper:
+        "master/bio/toulligqc"
