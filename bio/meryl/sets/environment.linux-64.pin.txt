@@ -6,7 +6,4 @@ https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.ta
 https://conda.anaconda.org/conda-forge/linux-64/libgomp-14.1.0-h77fa898_1.conda#23c255b008c4f2ae008f81edcabaca89
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-14.1.0-h77fa898_1.conda#002ef4463dd1e2b44a94a4ace468f5d2
-https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-14.1.0-h69a702a_1.conda#1efc0ad219877a73ef977af7dbb51f17
-https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-14.1.0-hc0a3c3a_1.conda#9dbb9699ea467983ba8a4ba89b08b066
-https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-14.1.0-h4852527_1.conda#bd2598399a70bb86d8218e95548d735e
-https://conda.anaconda.org/bioconda/linux-64/meryl-1.4.1-h4ac6f70_0.tar.bz2#9430cef06492fea5b862a83873705512
+https://conda.anaconda.org/bioconda/linux-64/meryl-2013-0.tar.bz2#562aa140dceaa867a520e0e3f115a230
