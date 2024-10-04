@@ -17,7 +17,7 @@ aln = snakemake.input.get("aln", "")
 if aln:
     aln = f"--input {aln}"
 
-contamination = snakemake.input.get("contemination_table", "")
+contamination = snakemake.input.get("contamination_table", "")
 if contamination:
     contamination = f"--contamination-table {contamination}"
 
