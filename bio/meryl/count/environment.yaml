@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - meryl =1.4.1
+  - meryl =2013
   - snakemake-wrapper-utils =0.6.2
