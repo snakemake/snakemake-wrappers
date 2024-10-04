@@ -3339,6 +3339,10 @@ def test_gdc_download():
         "bio/gdc-client/download",
         ["snakemake", "--cores", "1", "raw/testing_sample.maf.gz", "--use-conda", "-F"],
     )
+    run(
+        "bio/gdc-client/download",
+        ["snakemake", "--cores", "1", "raw/testing_sample.bam", "--use-conda", "-F"],
+    )
 
 
 @skip_if_not_modified
