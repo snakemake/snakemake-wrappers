@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.7.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.7.0...v4.7.1) (2024-10-09)
+
+
+### Performance Improvements
+
+* bump datavzrd to latest release ([#3297](https://www.github.com/snakemake/snakemake-wrappers/issues/3297)) ([a1a9b59](https://www.github.com/snakemake/snakemake-wrappers/commit/a1a9b590dc02b0c97b8c6f6652dde24f19bdb28f))
+
 ## [4.7.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.6.0...v4.7.0) (2024-10-04)
 
 
