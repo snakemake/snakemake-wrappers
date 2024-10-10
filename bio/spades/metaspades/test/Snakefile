@@ -3,23 +3,22 @@ container: "docker://continuumio/miniconda3:4.4.10"
 
 rule run_metaspades:
     input:
-        reads=["test_reads/sample1_R1.fastq.gz", "test_reads/sample1_R2.fastq.gz"],
+        reads=["test_reads/sample1_R1.fastq.gz", "test_reads/sample1_R2.fastq.gz"]
     output:
         contigs="assembly/contigs.fasta",
         scaffolds="assembly/scaffolds.fasta",
-        dir=directory("assembly/intermediate_files"),
+        dir=directory("assembly/intermediate_files")
     benchmark:
         "logs/benchmarks/assembly/spades.txt"
     params:
         # all parameters are optional
         k="auto",
-        extra="--only-assembler",
+        extra="--only-assembler"
     log:
-        "log/spades.log",
+        "log/spades.log"
     threads: 8
     resources:
-        mem_mem=250000,
-        time=60 * 24,
+        mem_mb=250000,
     wrapper:
         "master/bio/spades/metaspades"
 
