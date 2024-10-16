@@ -1,5 +1,17 @@
 # Changelog
 
+### [4.7.2](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.7.1...v4.7.2) (2024-10-16)
+
+
+### Bug Fixes
+
+* typo, remove unused time call ([#3300](https://www.github.com/snakemake/snakemake-wrappers/issues/3300)) ([a8541f6](https://www.github.com/snakemake/snakemake-wrappers/commit/a8541f6d767ef313d624b2f77e67c4c482a3e980))
+
+
+### Performance Improvements
+
+* update to latest datavzrd ([#3299](https://www.github.com/snakemake/snakemake-wrappers/issues/3299)) ([ef50340](https://www.github.com/snakemake/snakemake-wrappers/commit/ef503400da364d272ed080bb9c4feb5456e1e4a1))
+
 ### [4.7.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.7.0...v4.7.1) (2024-10-09)
 
 
