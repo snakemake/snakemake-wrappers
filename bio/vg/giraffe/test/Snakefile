@@ -1,7 +1,7 @@
 rule bwa_mem:
     input:
         reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
-        ref="vg_index.xg",
+        graph="vg_index.xg",  # Cam be 'xg', 'gbz' or 'gbwt' format
     output:
         "mapped/{sample}.bam",
     log:

@@ -21,7 +21,25 @@ samtools_opts = get_samtools_opts(snakemake, param_name="sort_extra")
 java_opts = get_java_opts(snakemake)
 
 
-ref = snakemake.input.ref
+input_cmd = ""
+graph = snakemake.input.graph
+graph_ext = path.splitext(graph)[-1]
+if graph_ext == ".gbz":
+    input_cmd += f"-Z {graph} "
+elif graph_ext == ".xg":
+    input_cmd += f"-x {graph} "
+elif graph_ext == ".gbwt":
+    input_cmd += f"-g {graph} "
+else:
+    raise ValueError("Unexpected file extension for reference graph")
+
+dist_index = snakemake.input.get("dist", None)
+if dist_index:
+    input_cmd += f"-d {dist_index} "
+
+minimizer = snakemake.input.get("minimizer", None)
+if minimizer:
+    input_cmd += f"-m {minimizer}"
 
 
 # Check inputs/arguments.
@@ -45,32 +63,28 @@ if sort_order not in {"coordinate", "queryname"}:
 if sort == "none":
     # Simply convert to bam using samtools view.
     pipe_cmd = "samtools view {samtools_opts}"
-
 elif sort == "samtools":
     # Add name flag if needed.
     if sort_order == "queryname":
         sort_extra += " -n"
-
     # Sort alignments using samtools sort.
     pipe_cmd = "samtools sort {samtools_opts} {sort_extra} -T {tmpdir}"
-
 elif sort == "fgbio":
     if sort_order == "queryname":
         sort_extra += " -s Queryname"
     pipe_cmd = "fgbio SortBam -i /dev/stdin -o {snakemake.output[0]} {sort_extra}"
-
 elif sort == "picard":
     # Sort alignments using picard SortSam.
     pipe_cmd = "picard SortSam {java_opts} {sort_extra} --INPUT /dev/stdin --TMP_DIR {tmpdir} --SORT_ORDER {sort_order} --OUTPUT {snakemake.output[0]}"
-
 else:
     raise ValueError(f"Unexpected value for params.sort ({sort})")
+
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "(vg giraffe"
         " -t {snakemake.threads}"
-        " -x {ref}"
+        " {input_cmd}"
         " -f {reads}"
         " --output-format BAM"
         " {extra}"
