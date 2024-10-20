@@ -38,7 +38,6 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.todo",
     "generate_docs",
-    "sphinx_copybutton",
     "myst_parser",
 ]
 
