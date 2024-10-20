@@ -1,0 +1,47 @@
+name: nanosim simulator
+description: >
+  NanoSim is a simulator of Oxford Nanopore reads that captures the
+  technology-specific features of ONT data, and allows for adjustments upon
+  improvement of Nanopore sequencing technology.
+authors:
+  - David Lähnemann
+url: https://github.com/bcgsc/NanoSim
+params:
+  extra: >
+    Any further command line arguments you might want to add can be provided
+    verbatim via this field, for example: ``--del-rate 0.8``
+notes: |
+  * Depending on the named inputs you specified, the wrapper automatically
+    chooses the correct subcommand.
+  * If the file extension of ``output: reads=`` is either ``fq`` or ``fastq``,
+    the wrapper will automatically set the ``--fastq`` flag. As fastq output
+    generates basecalling quality values, you then also have to specify the
+    ``--basecaller`` to use via ``params: extra=``.
+  * If you do not request an ``output: unaligned_reads=`` file, the wrapper
+    will set the ``--perfect`` flag. Thus, if you want your simulated reads to
+    contain simulated errors, make sure to specify a file to save the reads
+    that contain too many errors to be aligned. Vice-versa, the wrapper will
+    complain if you specify the ``--perfect`` flag, as this flag is implicitly
+    set as described above.
+  * All subcommands require a model as input, with slightly differing numbers of files
+    for the different subcommands. You will have to either
+    `download a pre-trained model <https://github.com/bcgsc/NanoSim#downloads>`_
+    and extract it to match the named ``input: model=`` file path and names; or
+    train a model based on Nanopore data yourself. For details, see the
+    `NanoSim documentation for model training <https://github.com/bcgsc/NanoSim?tab=readme-ov-file#1-characterization-stage>`_. 
+  * If the ``input:`` for a ``transcriptome`` mode simulator run does not
+    contain a ``reference_genome=`` entry, the wrapper will automatically set
+    the ``--no_model_ir`` option. This skips intron retention events during
+    simulation, which would need the reference genome. Please note that the
+    if you do provide a ``reference_genome=``, it has to match the genome
+    and transcriptome used for training the model. Otherwise, the simulation
+    process will run inifinitely.
+  * For the ``metagenome`` mode simulator, we restrict the wrapper to
+    simulating a single (multi-species / multi-reference) sample, to be able to
+    sanely handle output files. If you need multiple samples, simply generate
+    one ``sample_abundances=`` file for each sample and have your snakemake
+    workflow execute the wrapper once for each sample you want. Please specify
+    the species abundances in a simple tab-separated values (TSV) file, with
+    one line per sample and the format "sample<tab>abundance". Please specify
+    the species information needed for the various nanosim-specific files
+    via the ``params: species=`` dictionary.
