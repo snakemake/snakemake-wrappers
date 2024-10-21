@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.7.3](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.7.2...v4.7.3) (2024-10-21)
+
+
+### Bug Fixes
+
+* bwa-memx-index rule uses correct suffixarray path; fixes [#1334](https://www.github.com/snakemake/snakemake-wrappers/issues/1334) ([#3303](https://www.github.com/snakemake/snakemake-wrappers/issues/3303)) ([2256246](https://www.github.com/snakemake/snakemake-wrappers/commit/2256246fc6fab81444253119a06c273bd86ee325))
+
 ### [4.7.2](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.7.1...v4.7.2) (2024-10-16)
 
 
