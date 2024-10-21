@@ -27,12 +27,13 @@ prefix = snakemake.params.get("prefix", "")
 assert "/" not in prefix, "params 'prefix' should be a filename prefix, not a path (do not include '/')."
 
 # make output directory
-os.makedirs(snakemake.output, exist_ok=True)
+outdir = snakemake.output[0]
+os.makedirs(outdir, exist_ok=True)
 
 shell(
     "hisat2-build {extra} "
     "-p {snakemake.threads} "
     "{input_seq} "
-    "{snakemake.output}/{prefix} "
+    "{outdir}/{prefix} "
     "{log}"
 )
