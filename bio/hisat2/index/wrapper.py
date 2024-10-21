@@ -22,14 +22,17 @@ if not "." in fasta:
     input_seq += "-c "
 input_seq += ",".join(fasta) if isinstance(fasta, list) else fasta
 
-hisat_dir = snakemake.params.get("prefix", "")
-if hisat_dir:
-    os.makedirs(hisat_dir)
+# check that file prefix is not a path
+prefix = snakemake.params.get("prefix", "")
+assert "/" not in prefix, "params 'prefix' should be a filename prefix, not a path (do not include '/')."
+
+# make output directory
+os.makedirs(snakemake.output, exist_ok=True)
 
 shell(
     "hisat2-build {extra} "
     "-p {snakemake.threads} "
     "{input_seq} "
-    "{snakemake.params.prefix} "
+    "{snakemake.output}/{prefix} "
     "{log}"
 )

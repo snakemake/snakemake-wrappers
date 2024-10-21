@@ -4,7 +4,7 @@ rule hisat2_index:
     output:
         directory("index_{genome}")
     params:
-        prefix = "index_{genome}/"
+        prefix = "{genome}"
     log:
         "logs/hisat2_index_{genome}.log"
     threads: 2

@@ -8,5 +8,5 @@ input:
 output:
   - Directory of the hisat2 custom index.
 params:
-  - prefix: prefix of index file path (required). Must be related to output
+  - prefix: prefix for the index file names (required). Output files will be named with this prefix, inside the directory specified in the output directive.
   - extra: additional parameters
