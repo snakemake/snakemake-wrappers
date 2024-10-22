@@ -2,9 +2,19 @@ rule hisat2_index:
     input:
         fasta = "{genome}.fasta"
     output:
-        directory("index_{genome}")
+        multiext(
+            "hisat2_index/{genome}",
+            ".1.ht2",
+            ".2.ht2",
+            ".3.ht2",
+            ".4.ht2",
+            ".5.ht2",
+            ".6.ht2",
+            ".7.ht2",
+            ".8.ht2",
+        )
     params:
-        prefix = "{genome}"
+        extra = ""
     log:
         "logs/hisat2_index_{genome}.log"
     threads: 2
