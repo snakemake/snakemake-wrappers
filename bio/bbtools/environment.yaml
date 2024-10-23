@@ -3,6 +3,6 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bbmap =39.09
+  - bbmap =39.10
   - snakemake-wrapper-utils =0.6.2
   - pigz =2.8
