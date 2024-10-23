@@ -3368,7 +3368,14 @@ def test_happy_prepy():
 def test_hisat2_index():
     run(
         "bio/hisat2/index",
-        ["snakemake", "--cores", "1", "index_genome", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            *[f"hisat2_index/genome.{i}.ht2" for i in range(1, 9)],
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
