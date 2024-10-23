@@ -25,10 +25,4 @@ input_seq += ",".join(fasta) if isinstance(fasta, list) else fasta
 # get common prefix
 prefix = os.path.commonprefix(snakemake.output).rstrip(".")
 
-shell(
-    "hisat2-build {extra}"
-    " -p {snakemake.threads}"
-    " {input_seq}"
-    " {prefix}"
-    " {log}"
-)
+shell("hisat2-build --threads {snakemake.threads} {input_seq} {extra} {prefix} {log}")
