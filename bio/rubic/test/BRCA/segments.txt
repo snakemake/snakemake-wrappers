@@ -1,4 +1,4 @@
-sample	chromosome	start	end	num_probes	log.ratio
+Sample	Chromosome	Start	End	Num_Probes	Segment_Mean
 N4-020	1	750000	20950000	928	-0.016342
 N4-020	1	20970000	29530000	423	-0.327231
 N4-020	1	31290000	46830000	648	0.362215
