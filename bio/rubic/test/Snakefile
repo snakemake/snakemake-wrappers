@@ -8,7 +8,7 @@ rule rubic:
         out_losses="{samples}/losses.txt",
         out_plots=directory("{samples}/plots") #only possible to provide output directory for plots
     log:
-        "logs/rubic.log"
+        "logs/{samples}/rubic.log"
     params:
         fdr=0.2,
     wrapper:
