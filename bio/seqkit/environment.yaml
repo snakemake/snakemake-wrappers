@@ -3,4 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - seqkit =2.5.0
+  - seqkit =2.8.2
+  - htslib =1.21

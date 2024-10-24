@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - cairosvg =2.7.0
+  - cairosvg =2.7.1

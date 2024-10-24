@@ -3,6 +3,6 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bwa =0.7.17
-  - sambamba =1.0
+  - bwa =0.7.18
+  - sambamba =1.0.1
   - samblaster =0.1.26

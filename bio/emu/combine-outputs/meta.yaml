@@ -1,0 +1,15 @@
+name: emu combine-outputs
+description: Collapse individual abundance tables TSV into a single TSV at the desired taxonomic rank.
+url: https://github.com/treangenlab/emu
+authors:
+  - Curro Campuzano
+input:
+  - A list of TSV files obtained with emu abundance. 
+output:
+  - abundances: TSV file containing the abundance of different taxa. 
+  - taxonomy:  TSV file containing the taxonomy (optional; otherwise, taxonomy will be included in the abundance table).
+params:
+  rank: Accepted ranks are 'tax_id', 'species', 'genus', 'family', 'order', 'class', 'phylum' and 'superkingdom'. If ommited, no agglomeration will be done (that is, the default is 'tax_id'). 
+  extra: Extra arguments (such as '--counts'). 
+note: The sample columns in the final table will be each filename without extension. If file ends with "_rel-abundance.tsv", the word '_rel-abundance' will be removed to (for consistency with the program). 
+

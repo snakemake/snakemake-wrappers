@@ -3,7 +3,6 @@ __copyright__ = "Copyright 2022, Ilya Flyamer"
 __email__ = "flyamer@gmail.com"
 __license__ = "MIT"
 
-import sndhdr
 from snakemake.shell import shell
 
 ## Extract arguments

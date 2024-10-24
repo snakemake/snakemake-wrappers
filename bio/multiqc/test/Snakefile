@@ -1,24 +1,42 @@
-rule multiqc_dir:
+rule test_multiqc_dir:
     input:
-        expand("samtools_stats/{sample}.txt", sample=["a", "b"])
+        expand("samtools_stats/{sample}.txt", sample=["a", "b"]),
     output:
-        "qc/multiqc.html"
+        "qc/multiqc.html",
+        directory("qc_data/multiqc_data"),
     params:
-        extra=""  # Optional: extra parameters for multiqc.
+        extra="--verbose",  # Optional: extra parameters for multiqc.
     log:
-        "logs/multiqc.log"
+        "logs/multiqc.log",
     wrapper:
         "master/bio/multiqc"
 
-rule multiqc_file:
+
+rule test_multiqc_file:
     input:
-        expand("samtools_stats/{sample}.txt", sample=["a"])
+        expand("samtools_stats/{sample}.txt", sample=["a"]),
     output:
-        "qc/multiqc_a.html"
+        "qc/multiqc.a.html",
+        "qc_data/multiqc.a_data.zip",
     params:
-        extra="",  # Optional: extra parameters for multiqc.
-        use_input_files_only=True, # Optional, use only a.txt and don't search folder samtools_stats for files
+        extra="--verbose",  # Optional: extra parameters for multiqc.
+        use_input_files_only=True,  # Optional, use only a.txt and don't search folder samtools_stats for files
     log:
-        "logs/multiqc.log"
+        "logs/multiqc.log",
+    wrapper:
+        "master/bio/multiqc"
+
+
+rule test_multiqc_config:
+    input:
+        expand("samtools_stats/{sample}.txt", sample=["a", "b"]),
+        config="config/multiqc_config.yaml",
+    output:
+        "qc/multiqc.config.html",
+        "qc_data/multiqc.config_data.zip",
+    params:
+        extra="--verbose",
+    log:
+        "logs/multiqc.log",
     wrapper:
         "master/bio/multiqc"

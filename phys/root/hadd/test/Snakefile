@@ -1,0 +1,12 @@
+rule hadd:
+    input:
+        expand("ntuple{n}.root", n=range(3)),
+    log:
+        "logs/hadd/hadd.log",
+    params:
+        extra="-f5",
+    threads: 2
+    output:
+        "ntuple.root",
+    wrapper:
+        "master/phys/root/hadd"

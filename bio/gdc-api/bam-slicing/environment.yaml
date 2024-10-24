@@ -2,4 +2,4 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - curl =8.2.1
+  - curl =8.10.1

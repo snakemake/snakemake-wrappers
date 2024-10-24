@@ -1,0 +1,14 @@
+name: RSeQC bam_stat.py
+url: https://rseqc.sourceforge.net/#bam-stat-py
+description: >
+  Summarizing mapping statistics of a BAM or SAM file.
+authors:
+  - Thibault Dayris
+input:
+  - Path to BAM/SAM file(s) to summarize.
+output:
+  - Path to summary
+params:
+  - extra: Optional argument basides `--input-file`
+notes: >
+  Only mapping quality can be provided as optional parameters, since `--help` and `--version` do not produce summary.

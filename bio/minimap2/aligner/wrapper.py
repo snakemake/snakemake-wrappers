@@ -18,6 +18,24 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 sort = snakemake.params.get("sorting", "none")
 sort_extra = snakemake.params.get("sort_extra", "")
 
+if isinstance(snakemake.input.query, list):
+    in_ext = infer_out_format(snakemake.input.query[0])
+    if in_ext == "BAM" and len(snakemake.input.query) > 1:
+        raise ValueError(f"uBAM input mode only supports a single uBAM file")
+else:
+    in_ext = infer_out_format(snakemake.input.query)
+
+pre_cmd = ""
+query = ""
+if in_ext == "BAM":
+    # convert uBAM to fastq keeping all tags
+    pre_cmd = f'samtools fastq -T "*" {snakemake.input.query} |'
+    # tell minimap2 to parse tags from fastq header
+    extra += " -y"
+    query = "-"
+else:
+    query = snakemake.input.query
+
 out_ext = infer_out_format(snakemake.output[0])
 
 pipe_cmd = ""
@@ -42,13 +60,13 @@ if out_ext != "PAF":
     else:
         raise ValueError(f"Unexpected value for params.sort: {sort}")
 
-
 shell(
-    "(minimap2"
+    "({pre_cmd}"
+    " minimap2"
     " -t {snakemake.threads}"
     " {extra} "
     " {snakemake.input.target}"
-    " {snakemake.input.query}"
+    " {query}"
     " {pipe_cmd}"
     " > {snakemake.output[0]}"
     ") {log}"
