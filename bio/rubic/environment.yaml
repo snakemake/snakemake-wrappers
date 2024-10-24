@@ -4,3 +4,6 @@ channels:
   - nodefaults
 dependencies:
   - r-rubic =1.0.3
+  # Needed until r-rubic >1.0.3
+  - libgfortran =3.0.0
+  - r-data.table =1.11.4
