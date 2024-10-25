@@ -29,7 +29,7 @@ rule test_gffread_gff:
         records="proteins.fa",
     threads: 1
     log:
-        "logs/gffread.log",
+        "logs/gffread_gff.log",
     params:
         out_flag="-y",
         extra="-S",
