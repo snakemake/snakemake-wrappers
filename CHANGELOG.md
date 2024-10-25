@@ -1,5 +1,16 @@
 # Changelog
 
+### [4.7.6](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.7.5...v4.7.6) (2024-10-25)
+
+
+### Performance Improvements
+
+* autobump bio/kallisto/quant ([#3090](https://www.github.com/snakemake/snakemake-wrappers/issues/3090)) ([a9b8030](https://www.github.com/snakemake/snakemake-wrappers/commit/a9b80301d09711893d74fdba1d0d17b651ced80a))
+* autobump bio/last/lastal ([#3363](https://www.github.com/snakemake/snakemake-wrappers/issues/3363)) ([9cd89b2](https://www.github.com/snakemake/snakemake-wrappers/commit/9cd89b29dbb9ab07e41a427c10c688ff029017f3))
+* autobump bio/last/lastdb ([#3362](https://www.github.com/snakemake/snakemake-wrappers/issues/3362)) ([0181ce5](https://www.github.com/snakemake/snakemake-wrappers/commit/0181ce5238aee173040723b2e265b7a0301490a6))
+* autobump bio/rubic ([#631](https://www.github.com/snakemake/snakemake-wrappers/issues/631)) ([9aca229](https://www.github.com/snakemake/snakemake-wrappers/commit/9aca2298fbe98cc0bd09b58f18272e5dd6656387))
+* autobump bio/vsearch ([#3365](https://www.github.com/snakemake/snakemake-wrappers/issues/3365)) ([0a02cd4](https://www.github.com/snakemake/snakemake-wrappers/commit/0a02cd45fdbe204b27ade23969744d12aec2318e))
+
 ### [4.7.5](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.7.4...v4.7.5) (2024-10-23)
 
 
