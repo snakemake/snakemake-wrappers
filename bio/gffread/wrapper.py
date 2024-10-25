@@ -35,7 +35,9 @@ elif records.endswith(".tlf"):
 elif records.endswith((".fasta", ".fa", ".fna")):
     # Fasta output must be specified with -w
     if out_flag.strip() not in ["-w", "-x", "-y"]:
-        raise ValueError("For fasta output, the out_flag parameter must be -w, -x, or -y")
+        raise ValueError(
+            "For fasta output, the out_flag parameter must be -w, -x, or -y"
+        )
 else:
     raise ValueError("Unknown records format")
 
