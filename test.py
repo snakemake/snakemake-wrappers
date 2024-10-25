@@ -329,10 +329,18 @@ def test_seqkit_rmdup():
 
 
 @skip_if_not_modified
-def test_gffread():
+def test_gffread_gtf():
     run(
         "bio/gffread",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "transcripts.fa"],
+    )
+
+
+@skip_if_not_modified
+def test_gffread_gff():
+    run(
+        "bio/gffread",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "proteins.fa"],
     )
 
 

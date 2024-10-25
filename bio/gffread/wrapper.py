@@ -17,13 +17,13 @@ if annotation.endswith(".bed"):
     extra += " --in-bed "
 elif annotation.endswith(".tlf"):
     extra += " --in-tlf "
-elif annotation.endswith(".gtf"):
+elif annotation.endswith((".gtf", ".gff", ".gff3")):
     pass
 else:
     raise ValueError("Unknown annotation format")
 
 # In most cases, output can be specified with -o
-out_flag = " -o "
+out_flag = snakemake.params.get("out_flag", " -o ")
 
 # Output format control
 if records.endswith((".gtf", ".gff", ".gff3")):
@@ -34,7 +34,8 @@ elif records.endswith(".tlf"):
     extra += " --tlf "
 elif records.endswith((".fasta", ".fa", ".fna")):
     # Fasta output must be specified with -w
-    out_flag = " -w "
+    if out_flag.strip() not in ["-w", "-x", "-y"]:
+        raise ValueError("For fasta output, the out_flag parameter must be -w, -x, or -y")
 else:
     raise ValueError("Unknown records format")
 

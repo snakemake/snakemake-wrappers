@@ -1,4 +1,4 @@
-rule test_gffread:
+rule test_gffread_gtf:
     input:
         fasta="genome.fasta",
         annotation="annotation.gtf",
@@ -15,6 +15,23 @@ rule test_gffread:
     log:
         "logs/gffread.log",
     params:
+        out_flag="-w",
         extra="",
+    wrapper:
+        "master/bio/gffread"
+
+
+rule test_gffread_gff:
+    input:
+        fasta="genome.fasta",
+        annotation="annotation.gff3",
+    output:
+        records="proteins.fa",
+    threads: 1
+    log:
+        "logs/gffread.log",
+    params:
+        out_flag="-y",
+        extra="-S",
     wrapper:
         "master/bio/gffread"
