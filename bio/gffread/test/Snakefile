@@ -13,7 +13,7 @@ rule test_gffread_gtf:
         # dupinfo="",  # Optional path to clustering/merging information
     threads: 1
     log:
-        "logs/gffread.log",
+        "logs/gffread_gtf.log",
     params:
         out_flag="-w",
         extra="",
