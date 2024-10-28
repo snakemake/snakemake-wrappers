@@ -15,7 +15,7 @@ rule test_gffread_gtf:
     log:
         "logs/gffread_gtf.log",
     params:
-        out_flag="-w",
+        fasta_flag="-w",
         extra="",
     wrapper:
         "master/bio/gffread"
@@ -31,7 +31,7 @@ rule test_gffread_gff:
     log:
         "logs/gffread_gff.log",
     params:
-        out_flag="-y",
+        fasta_flag="-y",
         extra="-S",
     wrapper:
         "master/bio/gffread"
