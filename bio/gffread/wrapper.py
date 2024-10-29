@@ -34,7 +34,7 @@ elif records.endswith(".tlf"):
     extra += " --tlf "
 elif records.endswith((".fasta", ".fa", ".fna")):
     # Fasta output must be specified with -w
-    if out_flag.strip() not in ["-w", "-x", "-y"]:
+    if out_flag not in ["-w", "-x", "-y"]:
         raise ValueError(
             "For fasta output, the fasta_flag parameter must be -w, -x, or -y"
         )
