@@ -18,5 +18,6 @@ output:
   - dupinfo: Optional path to clustering/merging information
 params:
   - fasta_flag: Must be specified for FASTA outputs. Use `-w`, `-x`, or `-y` for transcript, CDS or protein sequences respectively, see gffread documentation for details.
+  - extra: additional program arguments (except for `--in-bed`, `--in-tlf`, `-T`, `--bed`, `--tlf`, `-o`, `-w`, `-x`, `-y`, `--ids`, `--nids`, `-s`, `--sort-by`, `--attrs`, `-m`, `-d`, or `-g`).
 notes: |
   With the exception of FASTA files, input/output formats are detected from their file extension.
