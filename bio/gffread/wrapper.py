@@ -88,4 +88,4 @@ if chr_replace:
     extra += f" -m {chr_replace} "
 
 
-shell("gffread {extra} " "-g {snakemake.input.fasta} " "{annotation} " "{log} ")
+shell("gffread {extra} -g {snakemake.input.fasta} {annotation} {log}")
