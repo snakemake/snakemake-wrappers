@@ -18,7 +18,7 @@ output:
   - transcript_fasta: FASTA containing `-w` output (optional).
   - cds_fasta: FASTA containing `-x` output (optional).
   - protein_fasta: FASTA containing `-y` output (optional).
-  - dupinfo: Optional path to clustering/merging information
+  - dupinfo: Clustering/merging information (optional).
 params:
   - extra: additional program arguments (except for `--in-bed`, `--in-tlf`, `-T`, `--bed`, `--tlf`, `-o`, `-w`, `-x`, `-y`, `--ids`, `--nids`, `-s`, `--sort-by`, `--attrs`, `-m`, `-d`, or `-g`).
 notes: |
