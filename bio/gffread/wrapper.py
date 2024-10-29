@@ -14,19 +14,23 @@ annotation = snakemake.input.annotation
 # Output files
 records = snakemake.output.get("records", "")
 if records:
-    extra += f" -o {records} "
+    extra += f" -o {records}"
+
 dupinfo = snakemake.output.get("dupinfo", "")
 if dupinfo:
-    extra += f" -d {dupinfo} "
+    extra += f" -d {dupinfo}"
+
 transcript_fasta = snakemake.output.get("transcript_fasta", "")
 if transcript_fasta:
-    extra += f" -w {transcript_fasta} "
+    extra += f" -w {transcript_fasta}"
+
 cds_fasta = snakemake.output.get("cds_fasta", "")
 if cds_fasta:
-    extra += f" -x {cds_fasta} "
+    extra += f" -x {cds_fasta}"
+
 protein_fasta = snakemake.output.get("protein_fasta", "")
 if protein_fasta:
-    extra += f" -y {protein_fasta} "
+    extra += f" -y {protein_fasta}"
 
 
 # Input format control
