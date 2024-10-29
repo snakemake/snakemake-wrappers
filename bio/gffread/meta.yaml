@@ -14,10 +14,12 @@ input:
   - attr: Optional text file containing comma-separated list of annotation attributes to keep.
   - chr_replace: Optional path to a TSV-formatted text file containing `<original_ref_ID> <new_ref_ID>`.
 output:
-  - records: Path to genome sequence/annotation in the requested format, containing the requested information.
+  - records: Path to genome annotation in the requested format, containing the requested information.
+  - transcript_fasta: Path to FASTA containing gffread `-w` output.
+  - cds_fasta: Path to FASTA containing gffread `-x` output.
+  - protein_fasta: Path to FASTA containing gffread `-y` output.
   - dupinfo: Optional path to clustering/merging information
 params:
-  - fasta_flag: Must be specified for FASTA outputs. Use `-w`, `-x`, or `-y` for transcript, CDS or protein sequences respectively, see gffread documentation for details.
   - extra: additional program arguments (except for `--in-bed`, `--in-tlf`, `-T`, `--bed`, `--tlf`, `-o`, `-w`, `-x`, `-y`, `--ids`, `--nids`, `-s`, `--sort-by`, `--attrs`, `-m`, `-d`, or `-g`).
 notes: |
-  With the exception of FASTA files, input/output formats are detected from their file extension.
+  Input/output formats are detected from their file extension.
