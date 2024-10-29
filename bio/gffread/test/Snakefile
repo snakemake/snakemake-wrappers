@@ -11,8 +11,8 @@ rule test_gffread_gtf:
     output:
         # All optional, select based on desired output
         records="annotation.gff",
-        transcript_fasta="transcripts.fa", # Path containing gffread -w output
-        cds_fasta="cds.fa", # Path containing gffread -x output
+        transcript_fasta="transcripts.fa",  # Path containing gffread -w output
+        cds_fasta="cds.fa",  # Path containing gffread -x output
         # dupinfo="",  # Path to clustering/merging information
     threads: 1
     log:
@@ -29,7 +29,7 @@ rule test_gffread_gff:
         fasta="genome.fasta",
         annotation="annotation.gff3",
     output:
-        protein_fasta="proteins.fa", # Path containing gffread -y output
+        protein_fasta="proteins.fa",  # Path containing gffread -y output
     threads: 1
     log:
         "logs/gffread_gff.log",
