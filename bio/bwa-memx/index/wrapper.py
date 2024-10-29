@@ -74,7 +74,7 @@ if len(prefixes) != 1:
     raise ValueError("Output files must share common prefix up to their file endings.")
 (prefix,) = prefixes
 
-suffixarray = snakemake.input[0] + ".suffixarray_uint64"
+suffixarray = f"{prefix}.suffixarray_uint64"
 dirname = path.dirname(suffixarray)
 basename = path.basename(suffixarray)
 num_models = snakemake.params.get("num_models", 268435456)  # change only for testing!
