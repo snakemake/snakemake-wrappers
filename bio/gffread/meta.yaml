@@ -14,10 +14,10 @@ input:
   - attr: Optional text file containing comma-separated list of annotation attributes to keep.
   - chr_replace: Optional path to a TSV-formatted text file containing `<original_ref_ID> <new_ref_ID>`.
 output:
-  - records: Path to genome annotation in the requested format, containing the requested information.
-  - transcript_fasta: Path to FASTA containing gffread `-w` output.
-  - cds_fasta: Path to FASTA containing gffread `-x` output.
-  - protein_fasta: Path to FASTA containing gffread `-y` output.
+  - records: Genome annotation (optional).
+  - transcript_fasta: FASTA containing `-w` output (optional).
+  - cds_fasta: FASTA containing `-x` output (optional).
+  - protein_fasta: FASTA containing `-y` output (optional).
   - dupinfo: Optional path to clustering/merging information
 params:
   - extra: additional program arguments (except for `--in-bed`, `--in-tlf`, `-T`, `--bed`, `--tlf`, `-o`, `-w`, `-x`, `-y`, `--ids`, `--nids`, `-s`, `--sort-by`, `--attrs`, `-m`, `-d`, or `-g`).
