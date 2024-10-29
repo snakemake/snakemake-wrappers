@@ -23,7 +23,7 @@ else:
     raise ValueError("Unknown annotation format")
 
 # In most cases, output can be specified with -o
-out_flag = snakemake.params.get("fasta_flag", " -o ")
+out_flag = snakemake.params.get("fasta_flag", "-o").strip()
 
 # Output format control
 if records.endswith((".gtf", ".gff", ".gff3")):
