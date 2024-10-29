@@ -11,8 +11,8 @@ input:
   - nids: Optional path to records/transcripts to discard.
   - seq_info: Optional path to sequence information, a TSV formatted text file containing `<seq-name> <seq-length> <seq-description>`
   - sort_by: Optional path to a text file containing the ordered list of reference sequences.
-  - attr: Optional text file containing comma-separated list of annotation attributes to keep.
-  - chr_replace: Optional path to a TSV-formatted text file containing `<original_ref_ID> <new_ref_ID>`.
+  - attr: Text file containing comma-separated list of annotation attributes to keep (optional).
+  - chr_replace: TSV-formatted text file containing `<original_ref_ID> <new_ref_ID>` (optional).
 output:
   - records: Genome annotation (optional).
   - transcript_fasta: FASTA containing `-w` output (optional).
