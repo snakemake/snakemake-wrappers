@@ -1,13 +1,12 @@
 name: hisat2 index
+description: Create index files for `hisat2`.
+url: http://daehwankimlab.github.io/hisat2/manual/
 authors:
   - Joël Simoneau
   - Hugo Tavares
-description: |
-  Create index files for `hisat2`.
 input:
   - sequence: list of FASTA files to index
 output:
   - List of output index file paths. The `hisat2-build` command generates 8 files with `.ht2` extension for small genomes and `.ht2l` for large genomes (greater than ~4 Gbp). This is usually handled automatically, but you must use the correct output file extension (`.ht2` or `.ht2l`) to match your genome size. If needed, you can force the creation of a large index by adding the parameter `extra = "--large-index"`, and use `.ht2l` as the output file extension.
 params:
   - extra: additional parameters that will be passed to `hisat2-build`.
-url: http://daehwankimlab.github.io/hisat2/manual/

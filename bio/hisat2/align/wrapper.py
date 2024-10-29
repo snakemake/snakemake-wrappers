@@ -5,7 +5,6 @@ __license__ = "BSD"
 
 
 import os
-from pathlib import Path
 from snakemake.shell import shell
 
 # Placeholder for optional parameters
@@ -27,7 +26,7 @@ else:
     )
 
 # Index path
-idx_prefix = Path(os.path.commonprefix(snakemake.input.idx)).parent
+idx_prefix = os.path.commonprefix(snakemake.input.idx).rstrip(".")
 
 # Executed shell command
 shell(
