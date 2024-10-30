@@ -626,7 +626,7 @@ def test_purge_dups_split_fa():
 def test_quast():
     run(
         "bio/quast",
-        ["snakemake", "--cores", "1", "a/quast.log", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "a/treport.tsv", "--use-conda", "-F"],
     )
 
 
