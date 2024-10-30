@@ -4,11 +4,15 @@ __license__ = "MIT"
 
 
 import os
+import tempfile
+from pathlib import Path
 from snakemake.shell import shell
 
 
 extra = snakemake.params.get("extra", "")
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+log = snakemake.log.get("std")
+if log:
+    log = f"> {log} 2>&1"
 
 
 ref = snakemake.input.get("ref", "")
@@ -67,9 +71,61 @@ if sv_bedpe:
     sv_bedpe = f"--sv-bedpe {sv_bedpe}"
 
 
-output_dir = os.path.commonpath(snakemake.output)
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "quast --threads {snakemake.threads} {ref} {gff} {pe1} {pe2} {pe12} {mp1} {mp2} {mp12} {single} {pacbio} {nanopore} {ref_bam} {ref_sam} {bam} {sam} {sv_bedpe} {extra} -o {tmpdir} {snakemake.input.fasta} {log}"
+    )
 
+    ### Copy files to final destination
+    def save_output(src_prefix, ext, dest):
+        if not dest:
+            return 0
+        shell("cat {src_prefix}{ext} > {dest}")
 
-shell(
-    "quast --threads {snakemake.threads} {ref} {gff} {pe1} {pe2} {pe12} {mp1} {mp2} {mp12} {single} {pacbio} {nanopore} {ref_bam} {ref_sam} {bam} {sam} {sv_bedpe} {extra} -o {output_dir} {snakemake.input.fasta} {log}"
-)
+    ### Saving LOG files
+    save_output(f"{tmpdir}/quast.log", snakemake.log.get("quast"))
+    for ext in ["out", "err"]:
+        save_output(
+            f"{tmpdir}/contigs_reports/contigs_report_genome.std{ext}",
+            snakemake.log.get(f"contigs_{ext}"),
+        )
+
+    ### Saving OUTPUT files
+    # Report files
+    for ext in ["html", "pdf", "tex", "txt", "tsv"]:
+        save_output(f"{tmpdir}/report." + ext, snakemake.output.get(f"report_{ext}"))
+        save_output(
+            f"{tmpdir}/transposed_report." + ext, snakemake.output.get(f"report_{ext}")
+        )
+    # Stats files
+    save_output(
+        f"{tmpdir}/basic_stats/cumulative_plot.pdf", snakemake.output.get("stats_cum")
+    )
+    save_output(
+        f"{tmpdir}/basic_stats/GC_content_plot.pdf",
+        snakemake.output.get("stats_gc_plot"),
+    )
+    save_output(
+        f"{tmpdir}/basic_stats/gc.icarus.txt", snakemake.output.get("stats_gc_icarus")
+    )
+    save_output(
+        f"{tmpdir}/basic_stats/genome_GC_content_plot.pdf",
+        snakemake.output.get("stats_gc_genome"),
+    )
+    save_output(f"{tmpdir}/basic_stats/NGx_plot.pdf", snakemake.output.get("stats_ngx"))
+    save_output(f"{tmpdir}/basic_stats/Nx_plot.pdf", snakemake.output.get("stats_ng"))
+    # Contig reports
+    save_output(
+        f"{tmpdir}/contigs_reports/all_alignments_genome.tsv",
+        snakemake.output.get("contigs"),
+    )
+    save_output(
+        f"{tmpdir}/contigs_reports/contigs_report_genome.mis_contigs.info",
+        snakemake.output.get("contigs_mis"),
+    )
+    # Icarus
+    save_output(f"{tmpdir}/icarus.html", snakemake.output.get("icarus"))
+    save_output(
+        f"{tmpdir}/icarus_viewers/contig_size_viewer.html",
+        snakemake.output.get("icarus_viewer"),
+    )
