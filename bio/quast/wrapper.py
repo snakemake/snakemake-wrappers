@@ -95,7 +95,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     for ext in ["html", "pdf", "tex", "txt", "tsv"]:
         save_output(f"{tmpdir}/report." + ext, snakemake.output.get(f"report_{ext}"))
         save_output(
-            f"{tmpdir}/transposed_report." + ext, snakemake.output.get(f"report_{ext}")
+            f"{tmpdir}/transposed_report." + ext, snakemake.output.get(f"treport_{ext}")
         )
     # Stats files
     save_output(
