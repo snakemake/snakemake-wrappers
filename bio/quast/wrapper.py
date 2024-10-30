@@ -76,9 +76,10 @@ with tempfile.TemporaryDirectory() as tmpdir:
     )
 
     ### Copy files to final destination
-    def save_output(src, dest):
+    def save_output(src, dst, wd=Path(".")):
         if not dest:
             return 0
+        dest = wd / dst
         shell("cat {src} > {dest}")
 
     ### Saving LOG files
