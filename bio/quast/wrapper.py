@@ -78,7 +78,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
 
     ### Copy files to final destination
     def save_output(src, dst, wd=Path(".")):
-        if not dest:
+        if not dst:
             return 0
         dest = wd / dst
         shell("cat {src} > {dest}")
@@ -114,7 +114,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         snakemake.output.get("stats_gc_genome"),
     )
     save_output(f"{tmpdir}/basic_stats/NGx_plot.pdf", snakemake.output.get("stats_ngx"))
-    save_output(f"{tmpdir}/basic_stats/Nx_plot.pdf", snakemake.output.get("stats_ng"))
+    save_output(f"{tmpdir}/basic_stats/Nx_plot.pdf", snakemake.output.get("stats_nx"))
     # Contig reports
     save_output(
         f"{tmpdir}/contigs_reports/all_alignments_genome.tsv",

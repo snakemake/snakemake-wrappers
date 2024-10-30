@@ -31,7 +31,7 @@ rule quast:
         stats_gc_icarus="{sample}/stats/gc.icarus.txt",
         stats_gc_genome="{sample}/stats/gc_genome.pdf",
         stats_ngx="{sample}/stats/NGx.pdf",
-        #stats_nx="{sample}/stats/Nx.pdf",
+        stats_nx="{sample}/stats/Nx.pdf",
         contigs="{sample}/contigs.all_alignments.tsv",
         contigs_mis="{sample}/contigs.mis_contigs.info",
         icarus="{sample}/icarus.html",
