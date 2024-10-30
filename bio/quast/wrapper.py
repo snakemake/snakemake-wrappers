@@ -77,10 +77,10 @@ with tempfile.TemporaryDirectory() as tmpdir:
     )
 
     ### Copy files to final destination
-    def save_output(src_prefix, ext, dest):
+    def save_output(src, dest):
         if not dest:
             return 0
-        shell("cat {src_prefix}{ext} > {dest}")
+        shell("cat {src} > {dest}")
 
     ### Saving LOG files
     save_output(f"{tmpdir}/quast.log", snakemake.log.get("quast"))
