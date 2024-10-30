@@ -8,9 +8,8 @@ import tempfile
 from pathlib import Path
 from snakemake.shell import shell
 
-meryldb_parents = snakemake.input.get("meryldb_parents", "")
+
 out_prefix = "out"
-log_tmp = "__LOG__.tmp"
 
 
 def save_output(out_prefix, ext, cwd, file):
@@ -23,25 +22,32 @@ def save_output(out_prefix, ext, cwd, file):
 
 with tempfile.TemporaryDirectory() as tmpdir:
     cwd = Path.cwd()
-    # Create symlinks for input files
-    for in_file in snakemake.input:
-        src = Path(in_file)
-        dst = Path(tmpdir) / src.parent
-        dst.mkdir(parents=True, exist_ok=True)
-        (dst / src.name).symlink_to(src.resolve(), target_is_directory=src.is_dir())
+    # MerylDBs
+    meryldb = Path(snakemake.input.meryldb).resolve()
+    meryldb_parents = snakemake.input.get("meryldb_parents", "")
+    if meryldb_parents:
+        meryldb_parents = Path(meryldb_parents).resolve()
+    # FASTA
+    fasta = snakemake.input.fasta
+    if isinstance(fasta, str):
+        fasta = [fasta]
+    fasta = [Path(f).resolve() for f in fasta]
+    # LOG
+    log = snakemake.log.get("std")
+    if log:
+        log = f"> {Path(log).resolve()} 2>&1"
     os.chdir(tmpdir)
 
     shell(
         "merqury.sh"
-        " {snakemake.input.meryldb}"
+        " {meryldb}"
         " {meryldb_parents}"
-        " {snakemake.input.fasta}"
+        " {fasta}"
         " {out_prefix}"
-        " > {log_tmp} 2>&1"
+        " {log}"
     )
 
     ### Saving LOG files
-    save_output(log_tmp, "", cwd, snakemake.log.get("std"))
     for type in ["spectra_cn"]:
         save_output(
             f"logs/{out_prefix}",
