@@ -39,16 +39,18 @@ with tempfile.TemporaryDirectory() as tmpdir:
     )
 
     ### Copy files to final destination
-    def save_output(src, dst):
+    def save_output(src, dst, wd="."):
         if not dst:
             return 0
-        shell("cat {src} > {dst}")
+        dest = wd / dst
+        shell("cat {src} > {dest}")
 
     ### Saving LOG files
     for type in ["spectra_cn"]:
         save_output(
             f"logs/{out_prefix}." + type.replace("_", "-") + ".log",
-            cwd / snakemake.log.get(type),
+            snakemake.log.get(type),
+            cwd,
         )
 
     ### Saving OUTPUT files
@@ -56,7 +58,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     meryldb = Path(snakemake.input.meryldb.rstrip("/")).stem
     for type in ["filt", "hist", "hist_ploidy"]:
         save_output(
-            f"{meryldb}." + type.replace("_", "."), cwd / snakemake.output.get(type)
+            f"{meryldb}." + type.replace("_", "."), snakemake.output.get(type), cwd
         )
 
     # EXT: replace last "_" with "."
@@ -70,7 +72,8 @@ with tempfile.TemporaryDirectory() as tmpdir:
     ]:
         save_output(
             f"{out_prefix}." + type[::-1].replace("_", ".", 1)[::-1],
-            cwd / snakemake.output.get(type),
+            snakemake.output.get(type),
+            cwd,
         )
 
     # EXT: replace first "_" with "-", and remaining with "."
@@ -86,7 +89,8 @@ with tempfile.TemporaryDirectory() as tmpdir:
     ]:
         save_output(
             f"{out_prefix}." + type.replace("_", ".").replace(".", "-", 1),
-            cwd / snakemake.output.get(type),
+            snakemake.output.get(type),
+            cwd,
         )
 
     input_fas = snakemake.input.fasta
@@ -100,14 +104,16 @@ with tempfile.TemporaryDirectory() as tmpdir:
         for type in [f"fas{fas}_only_bed", f"fas{fas}_only_wig"]:
             save_output(
                 prefix + type[type.find("_") :][::-1].replace("_", ".", 1)[::-1],
-                cwd / snakemake.output.get(type),
+                snakemake.output.get(type),
+                cwd,
             )
 
         # EXT: remove everything until first "_" and replace all "_" with "."
         for type in [f"fas{fas}_only_hist", f"fas{fas}_qv"]:
             save_output(
                 f"{out_prefix}.{prefix}" + type[type.find("_") :].replace("_", "."),
-                cwd / snakemake.output.get(type),
+                snakemake.output.get(type),
+                cwd,
             )
 
         # EXT: remove everything until first "_", replace first "_" with "-", and remaining with "."
@@ -120,5 +126,6 @@ with tempfile.TemporaryDirectory() as tmpdir:
             save_output(
                 f"{out_prefix}.{prefix}."
                 + type[type.find("_") + 1 :].replace("_", ".").replace(".", "-", 1),
-                cwd / snakemake.output.get(type),
+                snakemake.output.get(type),
+                cwd,
             )
