@@ -24,11 +24,11 @@ def save_output(out_prefix, ext, cwd, file):
 with tempfile.TemporaryDirectory() as tmpdir:
     cwd = Path.cwd()
     # Create symlinks for input files
-    for input in snakemake.input:
-        src = Path(input)
-        dst = Path(tmpdir) / input
-        src = Path(os.path.relpath(src.resolve(), dst.resolve().parent))
-        dst.symlink_to(src)
+    for in_file in snakemake.input:
+        src = Path(in_file)
+        dst = Path(tmpdir) / src.parent
+        dst.mkdir(parents=True, exist_ok=True)
+        (dst / src.name).symlink_to(src.resolve(), target_is_directory=src.is_dir())
     os.chdir(tmpdir)
 
     shell(
