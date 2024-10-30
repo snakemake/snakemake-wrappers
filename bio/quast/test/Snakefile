@@ -37,10 +37,7 @@ rule quast:
         icarus="{sample}/icarus.html",
         icarus_viewer="{sample}/icarus_viewer.html",
     log:
-        std="logs/{sample}.log",
-        quast="logs/{sample}.quast.log",
-        contigs_out="logs/{sample}/contigs.stdout",
-        contigs_err="logs/{sample}/contigs.stderr",
+        "logs/{sample}.log",
     params:
         extra="--min-contig 5 --min-identity 95.0",
     wrapper:

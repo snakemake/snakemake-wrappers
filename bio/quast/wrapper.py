@@ -10,9 +10,7 @@ from snakemake.shell import shell
 
 
 extra = snakemake.params.get("extra", "")
-log = snakemake.log.get("std")
-if log:
-    log = f"> {log} 2>&1"
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
 ref = snakemake.input.get("ref", "")
@@ -82,14 +80,6 @@ with tempfile.TemporaryDirectory() as tmpdir:
             return 0
         dest = wd / dst
         shell("cat {src} > {dest}")
-
-    ### Saving LOG files
-    save_output(f"{tmpdir}/quast.log", snakemake.log.get("quast"))
-    for ext in ["out", "err"]:
-        save_output(
-            f"{tmpdir}/contigs_reports/contigs_report_genome.std{ext}",
-            snakemake.log.get(f"contigs_{ext}"),
-        )
 
     ### Saving OUTPUT files
     # Report files
