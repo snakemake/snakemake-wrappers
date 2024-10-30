@@ -39,7 +39,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     )
 
     ### Copy files to final destination
-    def save_output(src, dst, wd="."):
+    def save_output(src, dst, wd=Path(".")):
         if not dst:
             return 0
         dest = wd / dst
