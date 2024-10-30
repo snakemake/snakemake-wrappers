@@ -11,15 +11,6 @@ from snakemake.shell import shell
 
 out_prefix = "out"
 
-
-def save_output(out_prefix, ext, cwd, file):
-    if file is None:
-        return 0
-    src = f"{out_prefix}{ext}"
-    dest = cwd / file
-    shell("cat {src} > {dest}")
-
-
 with tempfile.TemporaryDirectory() as tmpdir:
     cwd = Path.cwd()
     # MerylDBs
@@ -46,6 +37,14 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " {out_prefix}"
         " {log}"
     )
+
+    ### Copy files to final destination
+    def save_output(out_prefix, ext, cwd, file):
+        if file is None:
+            return 0
+        src = f"{out_prefix}{ext}"
+        dest = cwd / file
+        shell("cat {src} > {dest}")
 
     ### Saving LOG files
     for type in ["spectra_cn"]:
