@@ -102,7 +102,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     )
     save_output(
         f"{tmpdir}/basic_stats/{fasta_name}_GC_content_plot.pdf",
-        snakemake.output.get("stats_gc_ref"),
+        snakemake.output.get("stats_gc_fasta"),
     )
     save_output(f"{tmpdir}/basic_stats/NGx_plot.pdf", snakemake.output.get("stats_ngx"))
     save_output(f"{tmpdir}/basic_stats/Nx_plot.pdf", snakemake.output.get("stats_nx"))
