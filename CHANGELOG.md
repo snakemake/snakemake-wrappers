@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.8.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.7.8...v4.8.0) (2024-10-31)
+
+
+### Features
+
+* create nanosim wrapper for all three modes of simulator.py ([#3165](https://www.github.com/snakemake/snakemake-wrappers/issues/3165)) ([d533df5](https://www.github.com/snakemake/snakemake-wrappers/commit/d533df57ddace846cb0e224193a04c32b45d66dd))
+
 ### [4.7.8](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.7.7...v4.7.8) (2024-10-31)
 
 
