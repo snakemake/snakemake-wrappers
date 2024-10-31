@@ -1,5 +1,14 @@
 # Changelog
 
+### [4.7.8](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.7.7...v4.7.8) (2024-10-31)
+
+
+### Bug Fixes
+
+* add support for ht2l indexes in hisat wrapper ([#3371](https://www.github.com/snakemake/snakemake-wrappers/issues/3371)) ([b373a33](https://www.github.com/snakemake/snakemake-wrappers/commit/b373a3393d0aa742ff3614f155c72cba8eaa4cc7))
+* allow for arbitrary output files in quast wrapper ([#3373](https://www.github.com/snakemake/snakemake-wrappers/issues/3373)) ([aff7c02](https://www.github.com/snakemake/snakemake-wrappers/commit/aff7c0286ade238a8fb7d1f051ceecd465889aef))
+* issue when input files are in subfolders in merqury wrapper ([#3372](https://www.github.com/snakemake/snakemake-wrappers/issues/3372)) ([9b354fc](https://www.github.com/snakemake/snakemake-wrappers/commit/9b354fcf9bd156348816de453a317f1d69e684a4))
+
 ### [4.7.7](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.7.6...v4.7.7) (2024-10-31)
 
 
