@@ -4,6 +4,7 @@ description: >
   Validate, filter, convert and perform various other operations on GFF/GTF files with Gffread
 author:
   - Thibault Dayris
+input:
   - fasta: FASTA genome file.
   - annotation: GTF/GTF/BED genome annotation.
   - ids: Records/transcript to keep (optional).
