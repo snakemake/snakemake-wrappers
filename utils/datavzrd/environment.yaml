@@ -4,3 +4,6 @@ channels:
 dependencies:
   - datavzrd =2.44.1
   - yte =1.5.4
+  - numpy
+  - pandas
+  - polars
