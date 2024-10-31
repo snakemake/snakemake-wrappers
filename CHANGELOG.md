@@ -1,5 +1,13 @@
 # Changelog
 
+### [4.7.7](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.7.6...v4.7.7) (2024-10-31)
+
+
+### Bug Fixes
+
+* Add additional dependencies to Datavzrd wrapper ([#3374](https://www.github.com/snakemake/snakemake-wrappers/issues/3374)) ([fa4e13f](https://www.github.com/snakemake/snakemake-wrappers/commit/fa4e13ff2d220bd17bd3e33cfa41a50e00d4c6f3))
+* gffread issue with reading gff files, writing fasta files ([#3367](https://www.github.com/snakemake/snakemake-wrappers/issues/3367)) ([e72fca0](https://www.github.com/snakemake/snakemake-wrappers/commit/e72fca0ce7e1849f6887a3dea5ade6ea0b22c45d))
+
 ### [4.7.6](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.7.5...v4.7.6) (2024-10-25)
 
 
