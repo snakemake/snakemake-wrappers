@@ -626,7 +626,7 @@ def test_purge_dups_split_fa():
 def test_quast():
     run(
         "bio/quast",
-        ["snakemake", "--cores", "1", "a/quast.log", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "a/treport.tsv", "--use-conda", "-F"],
     )
 
 
@@ -3381,6 +3381,7 @@ def test_hisat2_index():
             "--cores",
             "1",
             *[f"hisat2_index/genome.{i}.ht2" for i in range(1, 9)],
+            *[f"hisat2_index/genome.{i}.ht2l" for i in range(1, 9)],
             "--use-conda",
             "-F",
         ],
