@@ -1,14 +1,14 @@
 name: Merqury
-description: |
- Evaluate genome assemblies with k-mers and more.
+description: Evaluate genome assemblies with k-mers and more.
 url: https://github.com/marbl/merqury
 authors:
   - Filipe G. Vieira
 input:
-  - one on two assembly fasta file(s)
-  - meryl database
+  - fasta: one on two assembly fasta file(s)
+  - meryldb: meryl database
+  - meryldb_parents: meryl database of parents (for trio analysis)
 output:
-  - annotation quality files
+  - annotation quality files (depends on running mode)
 notes: |
   * `Merqury` does not return non-zero exit code when it fails, so always include (at least) one PNG file in your rule's output.
   * `Merqury` does not allow for extra params.
