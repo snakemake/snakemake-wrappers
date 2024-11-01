@@ -1,12 +1,46 @@
 rule hisat2_index:
     input:
-        fasta = "{genome}.fasta"
+        fasta="{genome}.fasta",
     output:
-        directory("index_{genome}")
+        multiext(
+            "hisat2_index/{genome}",
+            ".1.ht2",
+            ".2.ht2",
+            ".3.ht2",
+            ".4.ht2",
+            ".5.ht2",
+            ".6.ht2",
+            ".7.ht2",
+            ".8.ht2",
+        ),
     params:
-        prefix = "index_{genome}/"
+        extra="",
     log:
-        "logs/hisat2_index_{genome}.log"
+        "logs/hisat2_index_{genome}.log",
+    threads: 2
+    wrapper:
+        "master/bio/hisat2/index"
+
+
+rule hisat2_indexL:
+    input:
+        fasta="{genome}.fasta",
+    output:
+        multiext(
+            "hisat2_index/{genome}",
+            ".1.ht2l",
+            ".2.ht2l",
+            ".3.ht2l",
+            ".4.ht2l",
+            ".5.ht2l",
+            ".6.ht2l",
+            ".7.ht2l",
+            ".8.ht2l",
+        ),
+    params:
+        extra="--large-index",
+    log:
+        "logs/hisat2_indexL_{genome}.log",
     threads: 2
     wrapper:
         "master/bio/hisat2/index"
