@@ -21,7 +21,7 @@ jobs:
         shell: bash -el {0}
         run: |
           conda config --set channel_priority strict
-          mamba install -n fmt -y black snakefmt
+          conda install -n fmt -y black snakefmt
 
       - name: Check Python formatting
         shell: bash -el {0}
@@ -51,7 +51,7 @@ jobs:
         shell: bash -el {0}
         run: |
           conda config --set channel_priority strict
-          mamba install -n snakemake -y snakemake-minimal snakemake
+          conda install -n snakemake -y snakemake-minimal snakemake
 
       - name: Fetch master
         run: |
