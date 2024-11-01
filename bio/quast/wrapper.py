@@ -3,7 +3,6 @@ __copyright__ = "Copyright 2022, Filipe G. Vieira"
 __license__ = "MIT"
 
 
-import os
 import tempfile
 from pathlib import Path
 from snakemake.shell import shell
@@ -74,6 +73,8 @@ with tempfile.TemporaryDirectory() as tmpdir:
         "quast --threads {snakemake.threads} {ref} {gff} {pe1} {pe2} {pe12} {mp1} {mp2} {mp12} {single} {pacbio} {nanopore} {ref_bam} {ref_sam} {bam} {sam} {sv_bedpe} {extra} -o {tmpdir} {snakemake.input.fasta} {log}"
     )
 
+    fasta_name = Path(snakemake.input.fasta).with_suffix("").name
+
     ### Copy files to final destination
     def save_output(src, dst, wd=Path(".")):
         if not dst:
@@ -100,18 +101,18 @@ with tempfile.TemporaryDirectory() as tmpdir:
         f"{tmpdir}/basic_stats/gc.icarus.txt", snakemake.output.get("stats_gc_icarus")
     )
     save_output(
-        f"{tmpdir}/basic_stats/genome_GC_content_plot.pdf",
-        snakemake.output.get("stats_gc_genome"),
+        f"{tmpdir}/basic_stats/{fasta_name}_GC_content_plot.pdf",
+        snakemake.output.get("stats_gc_fasta"),
     )
     save_output(f"{tmpdir}/basic_stats/NGx_plot.pdf", snakemake.output.get("stats_ngx"))
     save_output(f"{tmpdir}/basic_stats/Nx_plot.pdf", snakemake.output.get("stats_nx"))
     # Contig reports
     save_output(
-        f"{tmpdir}/contigs_reports/all_alignments_genome.tsv",
+        f"{tmpdir}/contigs_reports/all_alignments_{fasta_name}.tsv",
         snakemake.output.get("contigs"),
     )
     save_output(
-        f"{tmpdir}/contigs_reports/contigs_report_genome.mis_contigs.info",
+        f"{tmpdir}/contigs_reports/contigs_report_{fasta_name}.mis_contigs.info",
         snakemake.output.get("contigs_mis"),
     )
     # Icarus
