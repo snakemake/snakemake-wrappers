@@ -1,6 +1,6 @@
 channels:
   - conda-forge
-  - bioconda
   - nodefaults
 dependencies:
-  - ucsc-fatotwobit =472
+  - wget =1.21
+  - tar =1.34
