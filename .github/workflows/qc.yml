@@ -15,7 +15,6 @@ jobs:
         with:
           activate-environment: fmt
           channels: "conda-forge, bioconda"
-          miniforge-variant: Mambaforge
           miniforge-version: latest
 
       - name: Setup environment
@@ -46,7 +45,6 @@ jobs:
         with:
           activate-environment: snakemake
           channels: "conda-forge, bioconda"
-          miniforge-variant: Mambaforge
           miniforge-version: latest
 
       - name: Setup Snakemake environment
