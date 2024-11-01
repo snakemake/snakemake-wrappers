@@ -329,10 +329,18 @@ def test_seqkit_rmdup():
 
 
 @skip_if_not_modified
-def test_gffread():
+def test_gffread_gtf():
     run(
         "bio/gffread",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "transcripts.fa"],
+    )
+
+
+@skip_if_not_modified
+def test_gffread_gff():
+    run(
+        "bio/gffread",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "proteins.fa"],
     )
 
 
@@ -618,7 +626,7 @@ def test_purge_dups_split_fa():
 def test_quast():
     run(
         "bio/quast",
-        ["snakemake", "--cores", "1", "a/quast.log", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "a/treport.tsv", "--use-conda", "-F"],
     )
 
 
@@ -3373,6 +3381,7 @@ def test_hisat2_index():
             "--cores",
             "1",
             *[f"hisat2_index/genome.{i}.ht2" for i in range(1, 9)],
+            *[f"hisat2_index/genome.{i}.ht2l" for i in range(1, 9)],
             "--use-conda",
             "-F",
         ],
@@ -3755,6 +3764,59 @@ def test_muscle_fas():
     run(
         "bio/muscle",
         ["snakemake", "--cores", "2", "test-proteins.fas", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
+def test_nanosim_genome():
+    run(
+        "bio/nanosim/simulator",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/nanosim/genome/brca2.human_NA12878_DNA_FAB49712_guppy/training.simulated_reads.fq",
+            "results/nanosim/genome/brca2.human_NA12878_DNA_FAB49712_guppy/training.simulated_errors.txt",
+            "results/nanosim/genome/brca2.human_NA12878_DNA_FAB49712_guppy/training.simulated_reads.unaligned.fq",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_nanosim_transcriptome():
+    run(
+        "bio/nanosim/simulator",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/nanosim/transcriptome/brca2.human_NA12878_cDNA_Bham1_albacore/training.simulated.fq",
+            "results/nanosim/transcriptome/brca2.human_NA12878_cDNA_Bham1_albacore/training.simulated.errors.txt",
+            "results/nanosim/transcriptome/brca2.human_NA12878_cDNA_Bham1_albacore/training.simulated_reads.unaligned.fq",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+@skip_if_not_modified
+def test_nanosim_metagenome():
+    run(
+        "bio/nanosim/simulator",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/nanosim/metagenome/brca2.metagenome_ERR3152364_Even/training/config/sample_x.abundances.tsv",
+            "results/nanosim/metagenome/brca2.metagenome_ERR3152364_Even/training/config/sample_x.dna_type_list.tsv",
+            "results/nanosim/metagenome/brca2.metagenome_ERR3152364_Even/training/config/sample_x.reference_genomes_list.tsv",
+            "results/nanosim/metagenome/brca2.metagenome_ERR3152364_Even/training/simulated/sample_x.simulated_errors.txt",
+            "results/nanosim/metagenome/brca2.metagenome_ERR3152364_Even/training/simulated/sample_x.simulated_reads.fa",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -4686,7 +4748,7 @@ def test_rasusa():
 def test_rubic():
     run(
         "bio/rubic",
-        ["snakemake", "--cores", "1", "BRCA/gains.txt", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "out/BRCA/gains.txt", "--use-conda", "-F"],
     )
 
 

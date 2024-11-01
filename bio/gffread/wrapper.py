@@ -10,31 +10,48 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 annotation = snakemake.input.annotation
-records = snakemake.output.records
+
+# Output files
+records = snakemake.output.get("records", "")
+if records:
+    extra += f" -o {records}"
+
+dupinfo = snakemake.output.get("dupinfo", "")
+if dupinfo:
+    extra += f" -d {dupinfo}"
+
+transcript_fasta = snakemake.output.get("transcript_fasta", "")
+if transcript_fasta:
+    extra += f" -w {transcript_fasta}"
+
+cds_fasta = snakemake.output.get("cds_fasta", "")
+if cds_fasta:
+    extra += f" -x {cds_fasta}"
+
+protein_fasta = snakemake.output.get("protein_fasta", "")
+if protein_fasta:
+    extra += f" -y {protein_fasta}"
+
 
 # Input format control
 if annotation.endswith(".bed"):
     extra += " --in-bed "
 elif annotation.endswith(".tlf"):
     extra += " --in-tlf "
-elif annotation.endswith(".gtf"):
+elif annotation.endswith((".gtf", ".gff", ".gff3")):
     pass
 else:
     raise ValueError("Unknown annotation format")
 
-# In most cases, output can be specified with -o
-out_flag = " -o "
-
 # Output format control
-if records.endswith((".gtf", ".gff", ".gff3")):
+if not records:
+    pass
+elif records.endswith((".gtf", ".gff", ".gff3")):
     extra += " -T "
 elif records.endswith(".bed"):
     extra += " --bed "
 elif records.endswith(".tlf"):
     extra += " --tlf "
-elif records.endswith((".fasta", ".fa", ".fna")):
-    # Fasta output must be specified with -w
-    out_flag = " -w "
 else:
     raise ValueError("Unknown records format")
 
@@ -75,16 +92,4 @@ if chr_replace:
     extra += f" -m {chr_replace} "
 
 
-# Optional output files
-dupinfo = snakemake.output.get("dupinfo", "")
-if dupinfo:
-    extra += f" -d {dupinfo} "
-
-
-shell(
-    "gffread {extra} "
-    "{out_flag} {records} "
-    "-g {snakemake.input.fasta} "
-    "{annotation} "
-    "{log} "
-)
+shell("gffread {extra} -g {snakemake.input.fasta} {annotation} {log}")

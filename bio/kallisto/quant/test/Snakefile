@@ -4,10 +4,10 @@ rule kallisto_quant:
         index="index/transcriptome.idx",
     output:
         directory("quant_results_{exp}"),
-    params:
-        extra="",
     log:
         "logs/kallisto_quant_{exp}.log",
+    params:
+        extra="--verbose",
     threads: 1
     wrapper:
         "master/bio/kallisto/quant"
