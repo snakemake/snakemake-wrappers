@@ -3767,6 +3767,7 @@ def test_muscle_fas():
     )
 
 
+@skip_if_not_modified
 def test_nanosim_genome():
     run(
         "bio/nanosim/simulator",
