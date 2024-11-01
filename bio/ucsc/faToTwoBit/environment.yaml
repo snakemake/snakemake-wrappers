@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - ucsc-fatotwobit =469
+  - ucsc-fatotwobit =472
