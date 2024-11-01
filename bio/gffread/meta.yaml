@@ -11,10 +11,15 @@ input:
   - nids: Optional path to records/transcripts to discard.
   - seq_info: Optional path to sequence information, a TSV formatted text file containing `<seq-name> <seq-length> <seq-description>`
   - sort_by: Optional path to a text file containing the ordered list of reference sequences.
-  - attr: Optional text file containing comma-separated list of annotation attributes to keep.
-  - chr_replace: Optional path to a TSV-formatted text file containing `<original_ref_ID> <new_ref_ID>`.
+  - attr: Text file containing comma-separated list of annotation attributes to keep (optional).
+  - chr_replace: TSV-formatted text file containing `<original_ref_ID> <new_ref_ID>` (optional).
 output:
-  - records: Path to genome sequence/annotation in the requested format, containing the requested information.
-  - dupinfo: Optional path to clustering/merging information
+  - records: Genome annotation (optional).
+  - transcript_fasta: FASTA containing `-w` output (optional).
+  - cds_fasta: FASTA containing `-x` output (optional).
+  - protein_fasta: FASTA containing `-y` output (optional).
+  - dupinfo: Clustering/merging information (optional).
+params:
+  - extra: additional program arguments (except for `--in-bed`, `--in-tlf`, `-T`, `--bed`, `--tlf`, `-o`, `-w`, `-x`, `-y`, `--ids`, `--nids`, `-s`, `--sort-by`, `--attrs`, `-m`, `-d`, or `-g`).
 notes: |
-  Input/output formats are automatically detected from their file extension.
+  Input/output formats are detected from their file extension.

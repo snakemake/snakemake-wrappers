@@ -3,10 +3,11 @@ __copyright__ = "Copyright 2023, Filipe G. Vieira"
 __license__ = "MIT"
 
 from snakemake.shell import shell
+from pathlib import Path
 
 
 extra = snakemake.params.get("extra", "")
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 # subcommands concat and common use multiple input files
 if snakemake.params.command in ["concat", "common"]:
@@ -37,13 +38,22 @@ extra_output = " ".join(
 )
 
 
+if snakemake.params.get("out_bgzip"):
+    assert Path(snakemake.output[0]).suffix in [
+        ".gz",
+        ".bgz",
+        ".bgzip",
+    ], "invalid output file extension"
+    input = input + f" | bgzip --threads {snakemake.threads} > {snakemake.output[0]}"
+else:
+    input = f"--out-file {snakemake.output[0]} " + input
+
 shell(
-    "seqkit {snakemake.params.command}"
+    "(seqkit {snakemake.params.command}"
     " --threads {snakemake.threads}"
     " {extra_input}"
     " {extra_output}"
     " {extra}"
-    " --out-file {snakemake.output[0]}"
     " {input}"
-    " {log}"
+    ") {log}"
 )
