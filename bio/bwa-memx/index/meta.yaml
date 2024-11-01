@@ -3,3 +3,10 @@ description: "Creates a bwa-mem, bwa-mem2 or bwa-meme index."
 authors:
   - Christopher Schröder
   - Patrik Smeds
+input:
+  - fasta file
+output:
+  - BWA index files, which should all share a common prefix. Note that this prefix can include an output directory path, for example "myindex/prefix".
+params:
+  - bwa: 'the type of BWA index you want to build: "bwa-mem", "bwa-mem2", "bwa-meme"'
+  - num_models: 'for BWA-MEME, the number of models for the P-RMI training step (default: 268435456)'

@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - galah =0.4.0
+  - galah =0.4.2

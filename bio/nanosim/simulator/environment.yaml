@@ -1,0 +1,12 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  # bioconda recipe needs patching to work with pretrained models, but the
+  # patch has only been applied to versions <= 3.1:
+  # https://github.com/bioconda/bioconda-recipes/pull/40449/files
+  # TODO: update to latest version, if this gets resolved
+  - nanosim =3.1
+  # work around deprecation of numpy.float in numpy 1.20
+  - numpy <1.20
