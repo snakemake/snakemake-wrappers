@@ -3,6 +3,6 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - picard =2.27.4
-  - samtools =1.16.1
-  - snakemake-wrapper-utils =0.5.2
+  - picard =3.3.0
+  - samtools =1.21
+  - snakemake-wrapper-utils =0.6.2

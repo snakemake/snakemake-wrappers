@@ -4,16 +4,19 @@ rule strelka_germline:
         bam="mapped/{sample}.bam",
         # path to reference genome fasta and index
         fasta="genome.fasta",
-        fasta_index="genome.fasta.fai"
+        fasta_index="genome.fasta.fai",
     output:
         # Strelka results - either use directory or complete file path
-        directory("strelka/{sample}")
+        variants="strelka/{sample}.vcf.gz",
+        variants_index="strelka/{sample}.vcf.gz.tbi",
+        sample_genomes=["strelka/{sample}.genome.vcf.gz"],
+        sample_genomes_indices=["strelka/{sample}.genome.vcf.gz.tbi"],
     log:
-        "logs/strelka/germline/{sample}.log"
+        "logs/strelka/germline/{sample}.log",
     params:
         # optional parameters
         config_extra="",
-        run_extra=""
+        run_extra="",
     threads: 8
     wrapper:
         "master/bio/strelka/germline"

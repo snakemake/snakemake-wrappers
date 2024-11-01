@@ -1,0 +1,12 @@
+rule cnvkit_targetl:
+    input:
+        bed="test.bed",
+        annotate="refflat-mini.txt",
+    output:
+        bed="test.target.bed",
+    log:
+        "logs/test.target.log",
+    params:
+        extra = "--split" # optional
+    wrapper:
+        "master/bio/cnvkit/target"

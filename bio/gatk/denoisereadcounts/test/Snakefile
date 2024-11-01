@@ -1,0 +1,15 @@
+rule denoisereadcounts:
+    input:
+        hdf5=["a.counts.hdf5"],
+    output:
+        std_copy_ratio="a.standardizedCR.tsv",
+        denoised_copy_ratio="a.denoisedCR.tsv",
+    log:
+        "logs/gatk/denoisereadcounts.log",
+    params:
+        extra="",  # optional
+        java_opts="",  # optional
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/gatk/denoisereadcounts"

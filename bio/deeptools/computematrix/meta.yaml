@@ -1,4 +1,5 @@
 name: deepTools computeMatrix
+url: https://deeptools.readthedocs.io/en/develop/content/tools/computeMatrix.html
 description: >
   ``deepTools computeMatrix`` calculates scores per genomic region.
   The matrix file can be used as input for other tools or for the generation of a ``deepTools plotHeatmap`` or ``deepTools plotProfiles``.
@@ -27,10 +28,16 @@ description: >
 
 authors:
   - Antonie Vietor
+  - Thibault Dayris
 input:
-  - BED or GTF files (.bed or .gtf) AND
-  - bigWig files (.bw)
+  - bed: Path to BED or GTF files (.bed or .gtf) AND
+  - bigwig: Path to bigWig files (.bw)
 output:
-  - gzipped matrix file (.gz) AND/OR
-  - tab-separated table of matrix file (.tab) AND/OR
-  - BED matrix file with sorted regions after skiping zeros or min/max threshold values (.bed)
+  - matrix_gz: gzipped matrix file (.gz) AND/OR
+  - matrix_tab: tab-separated table of matrix file (.tab) AND/OR
+  - matrix_bed: BED matrix file with sorted regions after skiping zeros or min/max threshold values (.bed)
+params:
+  - command: Either `scale-regions` or `reference-point`
+  - extra: Optional parameters given to computeMatrix
+notes:
+  - Bigwig DeepBlue URL, if any, should be given in `params.extra`, or downloaded separately.

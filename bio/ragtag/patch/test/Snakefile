@@ -1,0 +1,20 @@
+rule patch:
+    input:
+        query="fasta/{query}.fasta",
+        ref="fasta/{reference}.fasta",
+    output:
+        agp="{query}_{reference}.agp",
+        fasta="{query}_{reference}.fasta",
+        rename_agp="{query}_{reference}.rename.agp",
+        rename_fasta="{query}_{reference}.rename.fasta",
+        ctg_agp="{query}_{reference}.ctg.agp",
+        ctg_fasta="{query}_{reference}.ctg.fasta",
+        comps_fasta="{query}_{reference}.comps.fasta",
+        asm_dir=directory("{query}_{reference}_asm"),  # Assembly alignment files
+    params:
+        extra="",
+    threads: 16
+    log:
+        "logs/ragtag/{query}_patch_{reference}.log",
+    wrapper:
+        "master/bio/ragtag/patch"

@@ -3,9 +3,9 @@ description: Map paired-end reads with either bwa samse or sampe.
 authors:
   - Filipe G. Vieira
 input:
-  - FASTQ file(s)
-  - SAI file(s)
-  - reference genome
+  - fastq: FASTQ file(s)
+  - sai: SAI file(s)
+  - idx: BWA reference genome index
 output:
   - SAM/BAM alignment file
 notes: |

@@ -1,4 +1,11 @@
 name: "kallisto index"
 description: Index a transcriptome using kallisto.
+url: https://github.com/pachterlab/kallisto
 authors:
   - Joël Simoneau
+input:
+  - fasta: FASTA file to index
+output:
+  - index: indexed file
+params:
+  - extra: Additional parameters

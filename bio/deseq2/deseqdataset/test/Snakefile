@@ -1,0 +1,116 @@
+rule test_DESeqDataSet_filtering:
+    input:
+        dds="dataset/dds.RDS",
+    output:
+        "dds_minimal.RDS",
+    threads: 1
+    log:
+        "logs/DESeqDataSet/txi.log",
+    params:
+        formula="~condition",  # Required R statistical formula
+        factor="condition",  # Optionally used for relevel
+        reference_level="A",  # Optionally used for relevel
+        tested_level="B",  # Optionally used for relevel
+        min_counts=0,  # Optionally used to filter low counts
+        extra="",  # Optional parameters provided to import function
+    wrapper:
+        "master/bio/deseq2/deseqdataset"
+
+
+rule test_DESeqDataSet_from_tximport:
+    input:
+        txi="dataset/txi.RDS",
+        colData="coldata.tsv",
+    output:
+        "dds_txi.RDS",
+    threads: 1
+    log:
+        "logs/DESeqDataSet/txi.log",
+    params:
+        formula="~condition",  # Required R statistical formula
+        # factor="condition", # Optionally used for relevel
+        # reference_level="A", # Optionally used for relevel
+        # tested_level="B", # Optionally used for relevel
+        # min_counts=0, # Optionally used to filter low counts
+        # extra="", # Optional parameters provided to import function
+    wrapper:
+        "master/bio/deseq2/deseqdataset"
+
+
+rule test_DESeqDataSet_from_ranged_se:
+    input:
+        se="dataset/se.RDS",
+    output:
+        "dds_se.RDS",
+    threads: 1
+    log:
+        "logs/DESeqDataSet/se.log",
+    params:
+        formula="~condition",  # Required R statistical formula
+        # factor="condition", # Optionally used for relevel
+        # reference_level="A", # Optionally used for relevel
+        # tested_level="B", # Optionally used for relevel
+        # min_counts=0, # Optionally used to filter low counts
+        # extra="", # Optional parameters provided to import function
+    wrapper:
+        "master/bio/deseq2/deseqdataset"
+
+
+rule test_DESeqDataSet_from_r_matrix:
+    input:
+        matrix="dataset/matrix.RDS",
+        colData="coldata.tsv",
+    output:
+        "dds_rmatrix.RDS",
+    threads: 1
+    log:
+        "logs/DESeqDataSet/r_matrix.log",
+    params:
+        formula="~condition",  # Required R statistical formula
+        # factor="condition", # Optionally used for relevel
+        # reference_level="A", # Optionally used for relevel
+        # tested_level="B", # Optionally used for relevel
+        # min_counts=0, # Optionally used to filter low counts
+        # extra="", # Optional parameters provided to import function
+    wrapper:
+        "master/bio/deseq2/deseqdataset"
+
+
+rule test_DESeqDataSet_from_tsv_matrix:
+    input:
+        counts="dataset/counts.tsv",
+        colData="coldata.tsv",
+    output:
+        "dds_matrix.RDS",
+    threads: 1
+    log:
+        "logs/DESeqDataSet/txt_matrix.log",
+    params:
+        formula="~condition",  # Required R statistical formula
+        # factor="condition", # Optionally used for relevel
+        # reference_level="A", # Optionally used for relevel
+        # tested_level="B", # Optionally used for relevel
+        # min_counts=0, # Optionally used to filter low counts
+        # extra="", # Optional parameters provided to import function
+    wrapper:
+        "master/bio/deseq2/deseqdataset"
+
+
+rule test_DESeqDataSet_from_htseqcount:
+    input:
+        htseq_dir="dataset/htseq_dir",
+        sample_table="sample_table.tsv",
+    output:
+        "dds_htseq.RDS",
+    threads: 1
+    log:
+        "logs/DESeqDataSet/txt_matrix.log",
+    params:
+        formula="~condition",  # Required R statistical formula
+        # factor="condition", # Optionally used for relevel
+        # reference_level="A", # Optionally used for relevel
+        # tested_level="B", # Optionally used for relevel
+        # min_counts=0, # Optionally used to filter low counts
+        # extra="", # Optional parameters provided to import function
+    wrapper:
+        "master/bio/deseq2/deseqdataset"

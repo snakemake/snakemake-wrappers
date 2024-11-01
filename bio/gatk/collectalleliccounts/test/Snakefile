@@ -1,0 +1,16 @@
+rule collectalleliccounts:
+    input:
+        bam=["mapped/a.bam"],
+        intervals=["a.interval_list"],
+        ref="ref/genome.fasta"
+    output:
+        counts="a.counts.tsv",
+    log:
+        "logs/gatk/collectalleliccounts.log",
+    params:
+        extra="",  # optional
+        java_opts="",  # optional
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/gatk/collectalleliccounts"

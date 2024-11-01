@@ -1,0 +1,15 @@
+name: deepTools plotCoverage
+url: https://deeptools.readthedocs.io/en/develop/content/tools/plotCoverage.html
+description: >
+  ``deepTools plotCoverage`` assess the sequencing depth of given samples.
+  For more information about ``deepTools``, also see the `source code <https://github.com/deeptools/deepTools>`_.
+authors:
+  - Thibault Dayris
+input:
+  - bams: Path to alignment (BAM)
+  - bed: Path to region file (BED)
+  - blacklist: Path to blacklisted regions (BED)
+output:
+  - raw_counts: Raw coverage plot
+  - metrics: Raw coverage metrics
+  - plot: Path to image

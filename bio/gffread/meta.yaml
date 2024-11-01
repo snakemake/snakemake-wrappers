@@ -1,0 +1,25 @@
+name: gffread
+url: http://ccb.jhu.edu/software/stringtie/gff.shtml
+description: >
+  Validate, filter, convert and perform various other operations on GFF/GTF files with Gffread
+author:
+  - Thibault Dayris
+input:
+  - fasta: FASTA genome file.
+  - annotation: GTF/GTF/BED genome annotation.
+  - ids: Records/transcript to keep (optional).
+  - nids: Records/transcripts to discard (optional).
+  - seq_info: Sequence information, a TSV formatted text file containing `<seq-name> <seq-length> <seq-description>` (optional).
+  - sort_by: Text file containing the ordered list of reference sequences (optional).
+  - attr: Text file containing comma-separated list of annotation attributes to keep (optional).
+  - chr_replace: TSV-formatted text file containing `<original_ref_ID> <new_ref_ID>` (optional).
+output:
+  - records: Genome annotation (optional).
+  - transcript_fasta: FASTA containing `-w` output (optional).
+  - cds_fasta: FASTA containing `-x` output (optional).
+  - protein_fasta: FASTA containing `-y` output (optional).
+  - dupinfo: Clustering/merging information (optional).
+params:
+  - extra: additional program arguments (except for `--in-bed`, `--in-tlf`, `-T`, `--bed`, `--tlf`, `-o`, `-w`, `-x`, `-y`, `--ids`, `--nids`, `-s`, `--sort-by`, `--attrs`, `-m`, `-d`, or `-g`).
+notes: |
+  Input/output formats are detected from their file extension.

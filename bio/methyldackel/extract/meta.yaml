@@ -1,0 +1,15 @@
+name: methyldackel extract
+description: |
+  Calculate per-base CpG metrics with MethylDackel
+url: https://github.com/dpryan79/MethylDackel
+authors:
+  - Thibault Dayris
+input:
+  - ref: Path to reference genome (Fasta)
+  - aln: Path to aligned reads (BAM)
+output:
+  - cpg: Path to CpG metrics (BedGraph)
+  - chg: Optional path to CHG metrics (BedGraph)
+  - chh: Optional path to CHH metrics (BedGraph)
+params:
+  - extra: Optional parameters provided to `MethylDackel extract`

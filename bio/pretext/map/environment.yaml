@@ -4,5 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - pretextmap =0.1.9
-  - samtools =1.16.1
-  - snakemake-wrapper-utils =0.5.2
+  - samtools =1.21
+  - snakemake-wrapper-utils =0.6.2

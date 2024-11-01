@@ -1,0 +1,20 @@
+name: ragtag-path
+description: Homology-based assembly patching.
+url: https://github.com/malonge/RagTag/wiki/patch
+authors:
+  - Curro Campuzano Jiménez
+input:
+  - ref: reference fasta file (uncompressed or bgzipped)
+  - query: query fasta file (uncompressed or bgzipped)
+output:
+  - fasta: The final FASTA file containing the patched assembly
+  - agp: The final AGP file defining how ragtag.patch.fasta is built.
+  - rename_agp: Optional. An AGP file defining the new names for query sequences
+  - rename_fasta: Optional. A FASTA file with the original query sequence, but with new names.
+  - comps_fasta: Optional. The split target assembly and the renamed query assembly combined into one FASTA file.
+  - ctg_agp: Optional. An AGP file defining how the target assembly was split at gaps
+  - ctg_fasta: Optional. The target assembly split at gaps
+  - asm_dir: Optional. A directory containing Assembly alignment files.
+params:
+  - extra: additional parameters
+notes: Multiple threads can be used during Minimap/Unimap alignment.

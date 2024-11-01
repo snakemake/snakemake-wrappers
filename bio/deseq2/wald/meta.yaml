@@ -1,0 +1,25 @@
+name: deseq2
+description: |
+  Call differentially expressed genes with DESeq2
+url: https://bioconductor.org/packages/3.16/bioc/html/DESeq2.html
+authors:
+  - Thibault Dayris
+input:
+  - dds: Path to RDS-formatted DESeq2-object
+output:
+  - wald_rds: Optional path to wald test results (RDS formatted)
+  - wald_tsv: Optional path to wald test results (TSV formatted). Required optional parameter `contrast` (see below)
+  - deseq2_result_dir: Optional path to a directory that shall contain all DESeq2 results for each comparison (each file is TSV formatted)
+  - normalized_counts_table: Optional path to normalized counts (TSV formatted)
+  - normalized_counts_rds: Optional path to normalized counts (RDS formatted)
+params:
+  - deseq_extra: Optional parameters provided to the function `DESeq()`
+  - schrink_extra: Optional parameters provided to the function `lfSchrink()`
+  - results_extra: Optional parameters provided to the function `result()`
+  - contrast: List of characters. See notes below.
+note: |
+  * About `contrast` parameter. DESeq2 defines the following: this argument specifies what comparison to extract from the object to build a results table. one of either:
+    * a character list with exactly 3 elements: (1) the name of a factor in the design formula, (2) the name of the numerator level for the fold change (aka, tested condition), and (3) the name of the denominator level for the fold change (aka, reference condition).
+    * a character list with exactly 2 elements: (1) the list of level names of the fold changes for the numerator (aka, tested condition), and (2) the list of level names of the fold changes for the denominator (aka, reference condition). these names should be elements of resultsNames(object). More general case, can be to combine interaction terms and main effects
+    * a numeric contrast vector with one element for each element in `resultsNames(object)`. Most general case
+  In case `contrast` optional parameter is not a list of strings of length 3 as described above, then it is *not* possible to save a single `wald_tsv` result. Please use `deseq2_result_dir` output to access you result in the given directory in such case.

@@ -36,6 +36,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "gatk --java-options '{java_opts}' GenomicsDBImport"
+        " --reader-threads {snakemake.threads}"
         " {gvcfs}"
         " --intervals {intervals}"
         " {extra}"

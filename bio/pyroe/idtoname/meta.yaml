@@ -1,0 +1,14 @@
+name: pyroe id-to-name
+url: https://pyroe.readthedocs.io/en/latest/geneid_to_name.html
+description: >
+  Create a 2-column tab-separated file mapping IDs to names
+author:
+  - Thibault Dayris
+input:
+  - Path to genome annotation (GTF or GFF3)
+output:
+  - Path to gene id <-> gene names mapping 
+params:
+  - extra: Optional parameters to be passed to pyroe
+notes: |
+  Format is automatically inferred from input files.

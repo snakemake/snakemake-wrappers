@@ -4,7 +4,15 @@ url: https://github.com/ssadedin/bazam
 authors:
   - Christopher Schröder
 input:
-  - BAM/CRAM file
-  - reference genome
+  - bam: Path to mapping file (BAM/CRAM formatted)
+  - reference: Optional path to reference genome sequence (FASTA formatted). Required for CRAM input.
 output:
-  - fastq file
+  - reads: Path to realigned reads (single-ended or interleaved) (FASTQ formatted) *OR*
+  - r1: Path to upstream reads (FASTQ formatted) *AND*
+  - r2: Path to downstream reads (FASTQ formatted)
+params:
+  - extra: Optional parameters passed to `bazam`
+note: |
+  * Output files include either paths to both `r1` and `r2`, or a single path to `reads`.
+  * This wrapper/tool does not handle multithreading.
+  * The `java_opts` param allows for additional arguments to be passed to the java compiler (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
