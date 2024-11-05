@@ -1,5 +1,12 @@
 # Changelog
 
+### [5.0.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v5.0.0...v5.0.1) (2024-11-05)
+
+
+### Bug Fixes
+
+* fixed datavzrd environment pinning to include numpy, pandas and polars ([#3426](https://www.github.com/snakemake/snakemake-wrappers/issues/3426)) ([5d3b18b](https://www.github.com/snakemake/snakemake-wrappers/commit/5d3b18b00df067d4c42ca62d1a1cd481d48c6a77))
+
 ## [5.0.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v4.8.0...v5.0.0) (2024-11-01)
 
 
