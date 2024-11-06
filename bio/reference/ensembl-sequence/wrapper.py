@@ -31,7 +31,6 @@ chromosome = snakemake.params.get("chromosome", "")
 if datatype == "dna":
     if chromosome:
         suffixes = [f"dna.chromosome.{chrom}.fa.gz" for chrom in chromosome]
-        print(suffixes)
     else:
         suffixes = ["dna.primary_assembly.fa.gz", "dna.toplevel.fa.gz"]
 elif datatype == "cdna":
@@ -56,15 +55,14 @@ spec = spec.format(build=build, release=release)
 url_prefix = f"{url}/{branch}release-{release}/fasta/{species}/{datatype}/{species.capitalize()}.{spec}"
 
 success = False
-print(suffixes)
 for suffix in suffixes:
     url = f"{url_prefix}.{suffix}"
-    print(url)
+
     try:
         shell("curl -sSf {url} > /dev/null 2> /dev/null")
     except sp.CalledProcessError:
         continue
-    
+
     shell("(curl -L {url} | gzip -d >> {snakemake.output[0]}) {log}")
     success = True
     if not chromosome:
