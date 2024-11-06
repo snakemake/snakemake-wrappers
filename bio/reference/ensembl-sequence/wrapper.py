@@ -54,8 +54,8 @@ url = snakemake.params.get("url", "ftp://ftp.ensembl.org/pub")
 spec = spec.format(build=build, release=release)
 url_prefix = f"{url}/{branch}release-{release}/fasta/{species}/{datatype}/{species.capitalize()}.{spec}"
 
-success = False
 for suffix in suffixes:
+    success = False
     url = f"{url_prefix}.{suffix}"
 
     try:
