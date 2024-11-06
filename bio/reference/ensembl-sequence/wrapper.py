@@ -58,12 +58,12 @@ url_prefix = f"{url}/{branch}release-{release}/fasta/{species}/{datatype}/{speci
 success = False
 for suffix in suffixes:
     url = f"{url_prefix}.{suffix}"
-
+    print(url)
     try:
         shell("curl -sSf {url} > /dev/null 2> /dev/null")
     except sp.CalledProcessError:
         continue
-    print(url)
+    
     shell("(curl -L {url} | gzip -d >> {snakemake.output[0]}) {log}")
     success = True
     break
