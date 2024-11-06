@@ -31,6 +31,7 @@ chromosome = snakemake.params.get("chromosome", "")
 if datatype == "dna":
     if chromosome:
         suffixes = [f"dna.chromosome.{chrom}.fa.gz" for chrom in chromosome]
+        print(suffixes)
     else:
         suffixes = ["dna.primary_assembly.fa.gz", "dna.toplevel.fa.gz"]
 elif datatype == "cdna":
@@ -62,7 +63,7 @@ for suffix in suffixes:
         shell("curl -sSf {url} > /dev/null 2> /dev/null")
     except sp.CalledProcessError:
         continue
-
+    print(url)
     shell("(curl -L {url} | gzip -d >> {snakemake.output[0]}) {log}")
     success = True
     break
