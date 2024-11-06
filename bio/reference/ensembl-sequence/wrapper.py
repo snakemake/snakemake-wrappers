@@ -48,7 +48,7 @@ else:
 if chromosome:
     if not datatype == "dna":
         raise ValueError(
-            "invalid datatype, to select a single chromosome the datatype must be dna"
+            "Invalid datatype. To select individual chromosomes, the datatype must be dna."
         )
 
 url = snakemake.params.get("url", "ftp://ftp.ensembl.org/pub")
@@ -56,6 +56,7 @@ spec = spec.format(build=build, release=release)
 url_prefix = f"{url}/{branch}release-{release}/fasta/{species}/{datatype}/{species.capitalize()}.{spec}"
 
 success = False
+print(suffixes)
 for suffix in suffixes:
     url = f"{url_prefix}.{suffix}"
     print(url)
@@ -66,7 +67,8 @@ for suffix in suffixes:
     
     shell("(curl -L {url} | gzip -d >> {snakemake.output[0]}) {log}")
     success = True
-    break
+    if not chromosome:
+        break
 
 if not success:
     if len(suffixes) > 1:
