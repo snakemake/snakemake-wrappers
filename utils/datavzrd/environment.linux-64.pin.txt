@@ -46,6 +46,6 @@ https://conda.anaconda.org/conda-forge/linux-64/numpy-2.1.3-py312h58c1407_0.cond
 https://conda.anaconda.org/conda-forge/noarch/pip-24.3.1-pyh8b19718_0.conda#5dd546fe99b44fda83963d15f84263b7
 https://conda.anaconda.org/conda-forge/noarch/python-dateutil-2.9.0-pyhd8ed1ab_0.conda#2cf4264fffb9e6eff6031c5b6884d61c
 https://conda.anaconda.org/conda-forge/noarch/yte-1.5.4-pyha770c72_0.conda#f4d2f4a372be452baebf8dbdcd9892ed
-https://conda.anaconda.org/conda-forge/linux-64/datavzrd-2.44.1-py312haefdf13_0.conda#9e783ad187d80f136102862865f94eb2
+https://conda.anaconda.org/conda-forge/linux-64/datavzrd-2.44.2-py312hfb744d2_0.conda#d1be64932a8b36004c4687ace22c670e
 https://conda.anaconda.org/conda-forge/linux-64/pandas-2.2.3-py312hf9745cd_1.conda#8bce4f6caaf8c5448c7ac86d87e26b4b
 https://conda.anaconda.org/conda-forge/linux-64/polars-1.12.0-py312hfe7c9be_0.conda#47b6df7e8b629d1257a6f971b88c15de
