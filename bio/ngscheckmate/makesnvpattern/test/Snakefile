@@ -1,0 +1,27 @@
+rule text_ngscheckmate_makesnvpattern:
+    input:
+        fasta="genome.fasta",
+        bed="variants.bed",
+        bowtie=multiext(
+            "genome_bwt",
+            ".1.ebwt",
+            ".2.ebwt",
+            ".3.ebwt",
+            ".4.ebwt",
+            ".rev.1.ebwt",
+            ".rev.2.ebwt",
+        ),
+    output:
+        pattern="genome.pt",
+        pattern_text=temp("genome.txt"),
+        fasta=temp("genome.pt.fasta"),
+        bowtie=temp("genome.pt.bowtie"),
+        ntm=temp("genome.pt.ntm"),
+        uniq=temp("genome.pt.ntm.uniq"),
+        txt_sorted=temp("genome.txt.sorted"),
+        pattern_sorted=temp("genome.pt.txt.sorted"),
+    threads: 4
+    log:
+        "makesnvpattern.log",
+    wrapper:
+        "master/bio/ngscheckmate/makesnvpattern"
