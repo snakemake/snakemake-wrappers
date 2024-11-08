@@ -1,0 +1,10 @@
+name: rbt vcf-fix-iupac-alleles
+description: |
+  Convert any IUPAC codes in alleles into Ns (in order to comply with VCF 4 specs).
+url: https://github.com/rust-bio/rust-bio-tools
+authors:
+  - Filipe G. Vieira
+input:
+  - VCF
+output:
+  - VCF/BCF
