@@ -1,4 +1,5 @@
 name: "GDC Data Transfer Tool data download"
 description: Download GDC data files with the gdc-client.
+url: https://gdc.cancer.gov/access-data/gdc-data-transfer-tool
 authors:
   - David Lähnemann
