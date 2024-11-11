@@ -1,5 +1,36 @@
 # Changelog
 
+### [5.0.2](https://www.github.com/snakemake/snakemake-wrappers/compare/v5.0.1...v5.0.2) (2024-11-11)
+
+
+### Bug Fixes
+
+* in seqkit wrapper, allow multiple inputs for stats ([#3430](https://www.github.com/snakemake/snakemake-wrappers/issues/3430)) ([65ed4ed](https://www.github.com/snakemake/snakemake-wrappers/commit/65ed4ed724958439c8cc1af505c36edd02a027ea))
+
+
+### Performance Improvements
+
+* autobump bio/bbtools ([#3434](https://www.github.com/snakemake/snakemake-wrappers/issues/3434)) ([dfa761d](https://www.github.com/snakemake/snakemake-wrappers/commit/dfa761d3c8fe44a3ae88bacf2e77b3031ef12ed3))
+* autobump bio/bwa/mem ([#3433](https://www.github.com/snakemake/snakemake-wrappers/issues/3433)) ([943d1d4](https://www.github.com/snakemake/snakemake-wrappers/commit/943d1d41bb9f7555b9668dcd9468d6f3e2b33765))
+* autobump bio/fgbio/annotatebamwithumis ([#3439](https://www.github.com/snakemake/snakemake-wrappers/issues/3439)) ([1b32c6a](https://www.github.com/snakemake/snakemake-wrappers/commit/1b32c6a14401922a22ba24048dd5e8203550a516))
+* autobump bio/fgbio/callmolecularconsensusreads ([#3441](https://www.github.com/snakemake/snakemake-wrappers/issues/3441)) ([997e474](https://www.github.com/snakemake/snakemake-wrappers/commit/997e474b535a747180a63304fb817fc88aa7e6f5))
+* autobump bio/fgbio/collectduplexseqmetrics ([#3442](https://www.github.com/snakemake/snakemake-wrappers/issues/3442)) ([a3134e7](https://www.github.com/snakemake/snakemake-wrappers/commit/a3134e7a66995f066d316f8f13f8a0fe9fbea975))
+* autobump bio/fgbio/filterconsensusreads ([#3438](https://www.github.com/snakemake/snakemake-wrappers/issues/3438)) ([3dfceb7](https://www.github.com/snakemake/snakemake-wrappers/commit/3dfceb7f65a70e2a0bc69e5a25b2ef228c1dc232))
+* autobump bio/fgbio/groupreadsbyumi ([#3440](https://www.github.com/snakemake/snakemake-wrappers/issues/3440)) ([6d5bdda](https://www.github.com/snakemake/snakemake-wrappers/commit/6d5bddabf3118e4425918cc0908f78b3c5ed5d24))
+* autobump bio/fgbio/setmateinformation ([#3437](https://www.github.com/snakemake/snakemake-wrappers/issues/3437)) ([3014a61](https://www.github.com/snakemake/snakemake-wrappers/commit/3014a61029dee2d33e48ecb3163d4e62c2550b23))
+* autobump bio/muscle ([#3443](https://www.github.com/snakemake/snakemake-wrappers/issues/3443)) ([8e4a88b](https://www.github.com/snakemake/snakemake-wrappers/commit/8e4a88bd46d7ff9468f3e5b726b18baebe8ae8a0))
+* autobump bio/seqkit ([#3444](https://www.github.com/snakemake/snakemake-wrappers/issues/3444)) ([c918cad](https://www.github.com/snakemake/snakemake-wrappers/commit/c918cad62e241d2afc4d21eb25d84629c67de811))
+* autobump bio/vg/construct ([#3448](https://www.github.com/snakemake/snakemake-wrappers/issues/3448)) ([5f48818](https://www.github.com/snakemake/snakemake-wrappers/commit/5f4881896cefe8846fb94896a59623d8d5b68229))
+* autobump bio/vg/ids ([#3449](https://www.github.com/snakemake/snakemake-wrappers/issues/3449)) ([1cfad9a](https://www.github.com/snakemake/snakemake-wrappers/commit/1cfad9a9d7ae171794a399445334dddbab004755))
+* autobump bio/vg/kmers ([#3446](https://www.github.com/snakemake/snakemake-wrappers/issues/3446)) ([a7e82db](https://www.github.com/snakemake/snakemake-wrappers/commit/a7e82db16ca9e9d5ecd649f9319f7fae8e2589ff))
+* autobump bio/vg/merge ([#3445](https://www.github.com/snakemake/snakemake-wrappers/issues/3445)) ([179c910](https://www.github.com/snakemake/snakemake-wrappers/commit/179c910e970070c309e9d50a8391c4b46cbff56d))
+* autobump bio/vg/prune ([#3450](https://www.github.com/snakemake/snakemake-wrappers/issues/3450)) ([6be07b6](https://www.github.com/snakemake/snakemake-wrappers/commit/6be07b6921588cf0df3f0082ff2741a6549e457a))
+* autobump bio/vg/sim ([#3447](https://www.github.com/snakemake/snakemake-wrappers/issues/3447)) ([fc34542](https://www.github.com/snakemake/snakemake-wrappers/commit/fc34542b6fa5573e1ff6e0bb86cd5952ffceb784))
+* autobump utils/csvtk ([#3435](https://www.github.com/snakemake/snakemake-wrappers/issues/3435)) ([b90e63f](https://www.github.com/snakemake/snakemake-wrappers/commit/b90e63f3dcea0478bb2d960601dffa0e62c40523))
+* autobump utils/datavzrd ([#3436](https://www.github.com/snakemake/snakemake-wrappers/issues/3436)) ([1ccdea5](https://www.github.com/snakemake/snakemake-wrappers/commit/1ccdea5ebae7a184ded266a1d3d3c79566b55fe5))
+* Update datavzrd wrapper ([#3428](https://www.github.com/snakemake/snakemake-wrappers/issues/3428)) ([34a454a](https://www.github.com/snakemake/snakemake-wrappers/commit/34a454a9b4e5e9adaf0ec222f77d7b0bf9fd578b))
+* Update datavzrd wrapper ([#3431](https://www.github.com/snakemake/snakemake-wrappers/issues/3431)) ([0f16111](https://www.github.com/snakemake/snakemake-wrappers/commit/0f16111b7a646de879e2d3ba067be38e87b2fd2b))
+
 ### [5.0.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v5.0.0...v5.0.1) (2024-11-05)
 
 
