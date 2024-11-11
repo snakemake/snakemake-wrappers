@@ -10,7 +10,7 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 # subcommands concat and common use multiple input files
-if snakemake.params.command in ["concat", "common"]:
+if snakemake.params.command in ["concat", "common", "stats"]:
     input = " ".join(snakemake.input)
 else:
     input = snakemake.input[0]
