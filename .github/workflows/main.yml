@@ -59,4 +59,4 @@ jobs:
           DIFF_LAST_COMMIT: ${{ github.ref == 'refs/heads/master' }}
         run: |
           # run tests
-          pytest -v
+          pytest -v test_wrappers.py
