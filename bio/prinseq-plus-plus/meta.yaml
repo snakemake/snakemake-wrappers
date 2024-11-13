@@ -4,12 +4,17 @@ url: https://github.com/Adrian-Cantu/PRINSEQ-plus-plus
 authors:
   - Filipe G. Vieira
 input:
-  - fastx file(s) (can be gzip compressed)
+  - fastx file(s)
 output:
-  - fastn files (can be gzip compressed)
+  - r1: fastx file
+  - r2: fastx file (if PE)
+  - r1_single: fastx file (if PE)
+  - r2_single: fastx file (if PE)
+  - r1_bad: fastx file
+  - r2_bad: fastx file (if PE)
 params:
-  - n: number of reads after subsampling (for `sample`)
-  - extra: additional program options (e.g. `-s` for `sample` or `-b/-e` for `trimfq`)
-  - compress_lvl: compression level (see `gzip` manual for details)
+  - extra: additional program options.
 notes: |
   * Multiple threads can be used during compression of the output file.
+  * Both input and output files can be gzipped
+  * Output files are optional but must have the same format.
