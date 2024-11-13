@@ -5,4 +5,4 @@ channels:
 dependencies:
   - bioconductor-tximport =1.30.0
   - r-readr =2.1.5
-  - r-jsonlite =1.8.8
+  - r-jsonlite =1.8.9
