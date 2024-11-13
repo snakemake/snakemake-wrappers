@@ -1,7 +1,6 @@
 rule vg_autoindex:  # [hide]
     input:  # [hide]
         ref="{genome}.fasta",  # [hide]
-        vcf="",  # [hide]
     output:  # [hide]
         multiext("resources/{genome}", ".giraffe.gbz", ".min", ".dist"),  # [hide]
     log:  # [hide]
@@ -18,7 +17,7 @@ rule bwa_mem:
         reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
         graph=f"resources/genome.giraffe.gbz",
         dist=f"resources/genome.dist",
-        minimizer=f"resources/pangenome_name.min",
+        minimizer=f"resources/genome.min",
     output:
         "mapped/{sample}.bam",
     log:

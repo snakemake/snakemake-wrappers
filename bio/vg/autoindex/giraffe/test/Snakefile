@@ -1,7 +1,7 @@
 rule vg_autoindex:
     input:
         ref="{genome}.fasta",
-        vcf="",
+        #vcf="",
     output:
         multiext("resources/{genome}", ".giraffe.gbz", ".min", ".dist"),
     log:
