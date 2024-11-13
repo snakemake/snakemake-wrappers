@@ -5,7 +5,7 @@ rule vg_autoindex:
     output:
         multiext("resources/{genome}", ".giraffe.gbz", ".min", ".dist"),
     log:
-        "logs/vg_giraffe/{sample}.log",
+        "logs/autoindex/{genome}.log",
     params:
         extra=r"",
     threads: 8
