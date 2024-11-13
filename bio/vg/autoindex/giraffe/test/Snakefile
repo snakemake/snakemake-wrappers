@@ -10,4 +10,4 @@ rule vg_autoindex:
         extra=r"",
     threads: 8
     wrapper:
-        "file:///media/HDD/workspace/snakemake-wrappers/bio/vg/autoindex/giraffe"
+        "master/bio/vg/autoindex/giraffe"
