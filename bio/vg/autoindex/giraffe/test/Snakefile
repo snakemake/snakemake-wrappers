@@ -1,0 +1,13 @@
+rule vg_autoindex:
+    input:
+        ref="{genome}.fasta",
+        vcf="",
+    output:
+        multiext("resources/{genome}", ".giraffe.gbz", ".min", ".dist"),
+    log:
+        "logs/vg_giraffe/{sample}.log",
+    params:
+        extra=r"",
+    threads: 8
+    wrapper:
+        "master/bio/vg/autoindex/giraffe"

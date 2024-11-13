@@ -1,7 +1,24 @@
+rule vg_autoindex:  # [hide]
+    input:  # [hide]
+        ref="{genome}.fasta",  # [hide]
+        vcf="",  # [hide]
+    output:  # [hide]
+        multiext("resources/{genome}", ".giraffe.gbz", ".min", ".dist"),  # [hide]
+    log:  # [hide]
+        "logs/vg_giraffe/{sample}.log",  # [hide]
+    params:  # [hide]
+        extra=r"",  # [hide]
+    threads: 8  # [hide]
+    wrapper:  # [hide]
+        "master/bio/vg/autoindex/giraffe"  # [hide]
+
+
 rule bwa_mem:
     input:
         reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
-        graph="vg_index.xg",  # Cam be 'xg', 'gbz' or 'gbwt' format
+        graph=f"resources/genome.giraffe.gbz",
+        dist=f"resources/genome.dist",
+        minimizer=f"resources/pangenome_name.min",
     output:
         "mapped/{sample}.bam",
     log:

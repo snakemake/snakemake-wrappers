@@ -1,4 +1,4 @@
-name: "vg girrafe"
+name: "vg giraffe"
 description: Map reads using vg giraffe, with optional sorting using
   samtools or picard.
 url: https://github.com/vgteam/vg
