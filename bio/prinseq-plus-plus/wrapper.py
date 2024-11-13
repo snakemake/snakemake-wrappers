@@ -18,11 +18,13 @@ input_pe = len(snakemake.input) == 2
 file2 = f"-fastq2 {snakemake.input[1]}" if input_pe else ""
 
 
+ext_fq = [".fq", ".fastq"]
+ext_fas = [".fas", ".fna", ".fasta"]
 # Input format
 in_fmt = Path(snakemake.input[0].removesuffix(".gz")).suffix
-if in_fmt in [".fq", ".fastq"]:
+if in_fmt in ext_fq:
     pass
-elif in_fmt in [".fas", ".fna", ".fasta"]:
+elif in_fmt in ext_fas:
     extra += " -FASTA"
 else:
     raise ValueError("Invalid input file format")
@@ -35,10 +37,10 @@ if out_fmt == ".gz":
     extra += " -out_gz"
     out_suffix = out_fmt
     out_fmt = Path(snakemake.output[0].removesuffix(".gz")).suffix
-if out_fmt in [".fq", ".fastq"]:
+if out_fmt in ext_fq:
     extra += " -out_format 0"
     out_suffix = f".fastq{out_suffix}"
-elif out_fmt in [".fas", ".fna", ".fasta"]:
+elif out_fmt in ext_fas:
     extra += " -out_format 1"
     out_suffix = f".fasta{out_suffix}"
 else:
