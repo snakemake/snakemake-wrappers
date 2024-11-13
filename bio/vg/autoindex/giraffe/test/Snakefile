@@ -3,11 +3,11 @@ rule vg_autoindex:
         ref="{genome}.fasta",
         #vcf="",
     output:
-        multiext("resources/{genome}", ".giraffe.gbz", ".min", ".dist"),
+        multiext("resources/{genome}", ".dist", ".min", ".giraffe.gbz"),
     log:
         "logs/autoindex/{genome}.log",
     params:
         extra=r"",
     threads: 8
     wrapper:
-        "master/bio/vg/autoindex/giraffe"
+        "file:///media/HDD/workspace/snakemake-wrappers/bio/vg/autoindex/giraffe"
