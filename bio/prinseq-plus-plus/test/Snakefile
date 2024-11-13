@@ -1,0 +1,78 @@
+rule prinseq_plus_plus_fas2fq:
+    input:
+        "reads/{prefix}.fas",
+    output:
+        r1="results/{prefix}.fq",
+        r1_bad="results/{prefix}.bad.fq",
+    log:
+        "logs/fas2fq/{prefix}.log",
+    params:
+        extra="-min_len 2",
+    threads: 2
+    wrapper:
+        "master/bio/prinseq-plus-plus"
+
+
+rule prinseq_plus_plus_fas2fqgz:
+    input:
+        "reads/{prefix}.fas",
+    output:
+        r1="results/{prefix}.fq.gz",
+        r1_bad="results/{prefix}.bad.fq.gz",
+    log:
+        "logs/fas2fqgz/{prefix}.log",
+    params:
+        extra="-min_len 2",
+    threads: 2
+    wrapper:
+        "master/bio/prinseq-plus-plus"
+
+
+rule prinseq_plus_plus_fqgz2fas:
+    input:
+        "reads/{prefix}.fastq.gz",
+    output:
+        r1="results/{prefix}.fasta",
+        r1_bad="results/{prefix}.bad.fasta",
+    log:
+        "logs/fqgz2fas/{prefix}.log",
+    params:
+        extra="-min_len 2",
+    threads: 2
+    wrapper:
+        "master/bio/prinseq-plus-plus"
+
+
+rule prinseq_plus_plus_fq2fasgz:
+    input:
+        "reads/{prefix}.fastq",
+    output:
+        r1="results/{prefix}.fas.gz",
+        r1_bad="results/{prefix}.bad.fas.gz",
+    log:
+        "logs/fq2fasgz/{prefix}.log",
+    params:
+        extra="-min_len 2",
+    threads: 2
+    wrapper:
+        "master/bio/prinseq-plus-plus"
+
+
+rule prinseq_plus_plus_fqpe:
+    input:
+        "reads/{prefix}.1.fastq.gz",
+        "reads/{prefix}.2.fastq.gz",
+    output:
+        r1="results/{prefix}.R1.fq.gz",
+        r2="results/{prefix}.R2.fq.gz",
+        r1_single="results/{prefix}.single.R1.fq.gz",
+        r2_single="results/{prefix}.single.R2.fq.gz",
+        r1_bad="results/{prefix}.bad.R1.fq.gz",
+        r2_bad="results/{prefix}.bad.R2.fq.gz",
+    log:
+        "logs/fqpe/{prefix}.log",
+    params:
+        extra="-min_len 2",
+    threads: 2
+    wrapper:
+        "master/bio/prinseq-plus-plus"

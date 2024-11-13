@@ -1,6 +1,6 @@
-name: seqtk 
-description: Toolkit for processing sequences in FASTA/Q formats
-url: https://github.com/lh3/seqtk
+name: Prinseq++ 
+description: C++ implementation of the prinseq-lite.pl program. It can be used to filter, reformat or trim genomic and metagenomic sequence data.
+url: https://github.com/Adrian-Cantu/PRINSEQ-plus-plus
 authors:
   - Filipe G. Vieira
 input:

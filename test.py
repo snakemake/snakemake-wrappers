@@ -496,6 +496,7 @@ def test_sickle_se():
         ],
     )
 
+
 @skip_if_not_modified
 def test_bwameth_index():
     run(
@@ -1668,6 +1669,34 @@ def test_shovill():
             "--use-conda",
             "-F",
         ],
+    )
+
+
+@skip_if_not_modified
+def test_prinseq_plus_plus():
+    run(
+        "bio/prinseq-plus-plus",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/a.fq"],
+    )
+
+    run(
+        "bio/prinseq-plus-plus",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/a.fq.gz"],
+    )
+
+    run(
+        "bio/prinseq-plus-plus",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/a.fasta"],
+    )
+
+    run(
+        "bio/prinseq-plus-plus",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/a.fas.gz"],
+    )
+
+    run(
+        "bio/prinseq-plus-plus",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "results/a.R1.fq.gz"],
     )
 
 
@@ -2907,14 +2936,7 @@ def test_deeptools_computematrix():
 def test_deeptools_plotcorrelation():
     run(
         "bio/deeptools/plotcorrelation",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "bins.svg",
-            "--use-conda",
-            "-F"
-        ],
+        ["snakemake", "--cores", "1", "bins.svg", "--use-conda", "-F"],
     )
 
 
@@ -3002,6 +3024,7 @@ def test_deeptools_alignmentsieve():
             "-F",
         ],
     )
+
 
 @skip_if_not_modified
 def test_deeptools_plot_pca():
@@ -6290,7 +6313,14 @@ def test_vep_cache():
 
     run(
         "bio/vep/cache",
-        ["snakemake", "--cores", "1", "resources/vep/indexed_cache", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/vep/indexed_cache",
+            "--use-conda",
+            "-F",
+        ],
     )
 
     run(
@@ -6609,6 +6639,7 @@ def test_rseqc_infer_experiment():
         "bio/rseqc/infer_experiment",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "a.experiment.txt"],
     )
+
 
 @skip_if_not_modified
 def test_rseqc_bam_stat():
@@ -7010,41 +7041,40 @@ def test_emu_combine_output_split():
         ],
     )
 
+
 @skip_if_not_modified
 def test_toulligqc_sequencing_summary():
     run(
         "bio/toulligqc",
         [
-            "snakemake", 
-            "--cores", 
-            "1", 
-            "toulligqc_sequencing_summary/report.html", 
-            "--use-conda", 
-            "-F"],
+            "snakemake",
+            "--cores",
+            "1",
+            "toulligqc_sequencing_summary/report.html",
+            "--use-conda",
+            "-F",
+        ],
     )
+
 
 @skip_if_not_modified
 def test_toulligqc_bam():
     run(
         "bio/toulligqc",
-        [
-            "snakemake", 
-            "--cores", 
-            "1", 
-            "toulligqc_bam/report.html", 
-            "--use-conda", 
-            "-F"],
+        ["snakemake", "--cores", "1", "toulligqc_bam/report.html", "--use-conda", "-F"],
     )
+
 
 @skip_if_not_modified
 def test_toulligqc_fastq():
     run(
         "bio/toulligqc",
         [
-            "snakemake", 
-            "--cores", 
-            "1", 
+            "snakemake",
+            "--cores",
+            "1",
             "toulligqc_fastq/report.html",
-            "--use-conda", 
-            "-F"],
+            "--use-conda",
+            "-F",
+        ],
     )
