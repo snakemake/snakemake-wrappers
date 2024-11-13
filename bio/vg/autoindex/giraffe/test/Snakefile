@@ -1,6 +1,7 @@
 rule vg_autoindex:
     input:
         ref="{genome}.fasta",
+        # Optional vcf file containing haplotypes for graph creation
         #vcf="",
     output:
         multiext("resources/{genome}", ".dist", ".min", ".giraffe.gbz"),
