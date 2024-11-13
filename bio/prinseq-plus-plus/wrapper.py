@@ -32,7 +32,7 @@ else:
 
 # Output files
 for key, value in snakemake.output.items():
-    extras += f" -out_{key} {value}"
+    extra += f" -out_{key} {value}"
 
 
 # Output format
