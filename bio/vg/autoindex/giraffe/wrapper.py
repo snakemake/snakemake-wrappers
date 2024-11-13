@@ -11,7 +11,7 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 prefix_path = path.splitext(snakemake.output[0])[0]
-vcf_cmd = "-v {snakemake.input['vcf']}" if snakemake.input.get("vcf", None) else ""
+vcf_cmd = f"-v {snakemake.input.vcf}" if snakemake.input.get("vcf") else ""
 shell(
     "(vg autoindex -w giraffe"
     " -p {prefix_path}"
