@@ -40,7 +40,7 @@ def tmp_test_dir():
 
         # cleanup environments to save disk space
         subprocess.check_call(
-            "for env in `conda env list | grep -P '\.snakemake/conda' | "
+            f"for env in `conda env list | grep -P '{d}' | "
             "cut -f1 | tr -d ' '`; do conda env remove --prefix $env; done",
             shell=True,
         )
@@ -49,8 +49,10 @@ def tmp_test_dir():
 @pytest.fixture
 def run(tmp_test_dir):
     def _run(wrapper, cmd, check_log=None):
+
+        tmp_test_subdir = tempfile.mkdtemp(dir=tmp_test_dir)
         origdir = os.getcwd()
-        dst = os.path.join(tmp_test_dir, "master")
+        dst = os.path.join(tmp_test_subdir, "master")
         os.makedirs(dst, exist_ok=True)
 
         def copy(pth, src):
@@ -92,7 +94,7 @@ def run(tmp_test_dir):
         ):
             raise Skipped("wrapper blacklisted")
 
-        testdir = os.path.join(tmp_test_dir, "test")
+        testdir = os.path.join(tmp_test_subdir, "test")
         # pkgdir = os.path.join(d, "pkgs")
         shutil.copytree(os.path.join(wrapper, "test"), testdir)
         # switch to test directory
@@ -101,7 +103,7 @@ def run(tmp_test_dir):
             shutil.rmtree(".snakemake")
         cmd = cmd + [
             "--wrapper-prefix",
-            "file://{}/".format(tmp_test_dir),
+            f"file://{tmp_test_subdir}/",
             "--conda-cleanup-pkgs",
             "--printshellcmds",
             "--show-failed-logs",
@@ -144,6 +146,7 @@ def run(tmp_test_dir):
         finally:
             # go back to original directory
             os.chdir(origdir)
+        return tmp_test_subdir
 
     return _run
 
