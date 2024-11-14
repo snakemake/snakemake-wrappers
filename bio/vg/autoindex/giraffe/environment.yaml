@@ -4,4 +4,3 @@ channels:
   - nodefaults
 dependencies:
   - vg =1.61
-  - snakemake-wrapper-utils =0.6.2

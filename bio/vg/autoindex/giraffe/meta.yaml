@@ -4,8 +4,8 @@ url: https://github.com/vgteam/vg
 authors:
   - Felix Mölder
 input:
-  - FASTA reference
-  - optional haplotypes in vcf format
+  - ref: FASTA reference
+  - vcf: haplotypes in vcf format (optional)
 output:
   - .giraffe.gbz, .dist and .min-file
 notes: |
