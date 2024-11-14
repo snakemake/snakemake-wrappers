@@ -1,0 +1,14 @@
+rule vg_autoindex:
+    input:
+        ref="{genome}.fasta",
+        # Optional vcf file containing haplotypes for graph creation
+        #vcf="",
+    output:
+        multiext("resources/{genome}", ".dist", ".min", ".giraffe.gbz"),
+    log:
+        "logs/autoindex/{genome}.log",
+    params:
+        extra=r"",
+    threads: 8
+    wrapper:
+        "master/bio/vg/autoindex/giraffe"
