@@ -6403,6 +6403,14 @@ def test_unicycler():
 
 
 @skip_if_not_modified
+def test_vg_autoindex_giraffe():
+    run(
+        "bio/vg/autoindex/giraffe",
+        ["snakemake", "--cores", "1", "resources/genome.dist", "--use-conda", "-F"],
+    )
+
+
+@skip_if_not_modified
 def test_vg_construct():
     run(
         "bio/vg/construct",
