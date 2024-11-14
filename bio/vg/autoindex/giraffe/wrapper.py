@@ -10,7 +10,7 @@ from os import path
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-prefix_path = path.splitext(snakemake.output[0])[0]
+prefix_path = path.commonprefix(snakemake.output).rstrip(".")
 vcf_cmd = f"-v {snakemake.input.vcf}" if snakemake.input.get("vcf") else ""
 shell(
     "(vg autoindex -w giraffe"
