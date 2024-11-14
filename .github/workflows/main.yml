@@ -31,7 +31,7 @@ jobs:
   testing:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
           fetch-depth: 0
@@ -61,4 +61,4 @@ jobs:
           DIFF_LAST_COMMIT: ${{ github.ref == 'refs/heads/master' }}
         run: |
           # run tests
-          pytest test.py -v
+          pytest -v test_wrappers.py
