@@ -6548,7 +6548,22 @@ def test_toulligqc_fastq(run):
     )
 
 
-def test_varlociraptor(run):
+def test_varlociraptor_alignment_properties(run):
+    run(
+        "bio/varlociraptor/estimate-alignment-properties",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/alignment-properties/NA12878.json",
+            "--sdm",
+            "conda",
+            "-F",
+        ],
+    )
+
+
+def test_varlociraptor_preprocess(run):
     run(
         "bio/varlociraptor/preprocess-variants",
         [
