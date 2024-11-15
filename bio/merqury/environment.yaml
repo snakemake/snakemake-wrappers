@@ -4,5 +4,3 @@ channels:
   - nodefaults
 dependencies:
   - merqury =1.3
-  # Needed until further merqury updates
-  - r-ggplot2 =3.3.6
