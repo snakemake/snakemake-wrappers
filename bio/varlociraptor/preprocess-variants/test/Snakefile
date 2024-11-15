@@ -1,0 +1,24 @@
+rule varlociraptor_alignment_properties:
+    input:
+        ref="resources/genome.fasta",
+        alignments="results/alignments/{sample}.bam",
+    output:
+        "results/alignment-properties/{sample}.json"
+    log:
+        "logs/varlociraptor/alignment-properties/{sample}.log"
+    wrapper:
+        "master/bio/varlociraptor/alignment-properties"
+
+
+rule varlociraptor_preprocess:
+    input:
+        ref="resources/genome.fasta",
+        alignment_properties="results/alignment-properties/{sample}.json",
+        alignments="results/alignments/{sample}.bam",
+        candidate_variants="results/candidate-variants/{sample}.bcf",
+    output:
+        "results/observations/{sample}.bcf"
+    log:
+        "logs/varlociraptor/preprocess/{sample}.log"
+    wrapper:
+        "master/bio/varlociraptor/preprocess-variants"

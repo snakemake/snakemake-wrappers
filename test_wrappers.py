@@ -6516,3 +6516,18 @@ def test_toulligqc_fastq(run):
             "-F",
         ],
     )
+
+
+def test_varlociraptor(run):
+    run(
+        "bio/varlociraptor/preprocess-variants",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/observations/NA12878.bcf",
+            "--sdm",
+            "conda"
+            "-F",
+        ],
+    )
