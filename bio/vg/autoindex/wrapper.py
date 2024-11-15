@@ -21,7 +21,7 @@ def contains_ext(extensions):
     )
 
 
-if any(lambda x: "giraffe" in x, snakemake.output):
+if any(map(lambda x: "giraffe" in x, snakemake.output)):
     workflow_cmd = "giraffe"
 elif contains_ext([".xg", ".gcsa.lcp", ".gcsa"]):
     workflow_cmd = "map"
