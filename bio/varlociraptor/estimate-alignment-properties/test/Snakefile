@@ -7,4 +7,4 @@ rule varlociraptor_alignment_properties:
     log:
         "logs/varlociraptor/alignment-properties/{sample}.log"
     wrapper:
-        "master/bio/varlociraptor/alignment-properties"
+        "master/bio/varlociraptor/estimate-alignment-properties"

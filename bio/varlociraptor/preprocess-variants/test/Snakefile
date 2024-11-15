@@ -1,13 +1,13 @@
-rule varlociraptor_alignment_properties:
-    input:
-        ref="resources/genome.fasta",
-        alignments="results/alignments/{sample}.bam",
-    output:
-        "results/alignment-properties/{sample}.json"
-    log:
-        "logs/varlociraptor/alignment-properties/{sample}.log"
-    wrapper:
-        "master/bio/varlociraptor/estimate-alignment-properties"
+rule varlociraptor_alignment_properties: # [hide]
+    input: # [hide]
+        ref="resources/genome.fasta", # [hide]
+        alignments="results/alignments/{sample}.bam", # [hide]
+    output: # [hide]
+        "results/alignment-properties/{sample}.json" # [hide]
+    log: # [hide]
+        "logs/varlociraptor/alignment-properties/{sample}.log" # [hide]
+    wrapper: # [hide]
+        "master/bio/varlociraptor/estimate-alignment-properties" # [hide]
 
 
 rule varlociraptor_preprocess:
