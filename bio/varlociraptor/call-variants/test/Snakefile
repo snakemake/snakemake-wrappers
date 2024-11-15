@@ -1,0 +1,45 @@
+rule varlociraptor_alignment_properties: # [hide]
+    input: # [hide]
+        ref="resources/genome.fasta", # [hide]
+        alignments="results/alignments/{sample}.bam", # [hide]
+        ref_idx="resources/genome.fasta.fai", # [hide]
+        aln_idx="results/alignments/{sample}.bam.bai", # [hide]
+    output: # [hide]
+        "results/alignment-properties/{sample}.json" # [hide]
+    log: # [hide]
+        "logs/varlociraptor/alignment-properties/{sample}.log" # [hide]
+    wrapper: # [hide]
+        "master/bio/varlociraptor/estimate-alignment-properties" # [hide]
+
+
+rule varlociraptor_preprocess: # [hide]
+    input: # [hide]
+        ref="resources/genome.fasta", # [hide]
+        alignment_properties="results/alignment-properties/{sample}.json", # [hide]
+        alignments="results/alignments/{sample}.bam", # [hide]
+        candidate_variants="results/candidate-variants/{sample}.vcf", # [hide]
+    output: # [hide]
+        "results/observations/{sample}.bcf" # [hide]
+    log: # [hide]
+        "logs/varlociraptor/preprocess/{sample}.log" # [hide]
+    wrapper: # [hide]
+        "master/bio/varlociraptor/preprocess-variants" # [hide]
+
+
+def get_group_samples(wildcards): # [hide]
+    return ["NA12878"] # [hide]
+
+
+rule varlociraptor_call:
+    input:
+        # collect preprocessed observations for the considered sample group
+        # the function get_group_samples is a placeholder for something that returns
+        # the samples that belong to the group
+        observations=collect("results/observations/{sample}.bcf", sample=get_group_samples)
+        scenario="resources/scenarios/{sample_group}.yaml",
+    output:
+        "results/variant-calls/{sample_group}.bcf",
+    params:
+        samples=get_group_samples,
+    wrapper:
+        "master/bio/varlociraptor/call-variants"

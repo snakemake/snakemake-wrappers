@@ -8,7 +8,7 @@ sp.run(
     f"--alignment-properties {snakemake.input.alignment_properties} "
     f"--candidates {snakemake.input.candidate_vars} "
     f"--bam {snakemake.input.alignments} "
-    f"--output {snakemake.output.observations} {log}",
+    f"--output {snakemake.output[0]} {log}",
     check=True,
     shell=True,
 )

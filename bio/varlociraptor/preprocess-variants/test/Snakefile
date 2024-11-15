@@ -1,6 +1,7 @@
 rule varlociraptor_alignment_properties: # [hide]
     input: # [hide]
         ref="resources/genome.fasta", # [hide]
+        idx="resources/genome.fasta.fai", # [hide]
         alignments="results/alignments/{sample}.bam", # [hide]
     output: # [hide]
         "results/alignment-properties/{sample}.json" # [hide]

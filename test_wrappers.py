@@ -6563,7 +6563,7 @@ def test_varlociraptor_alignment_properties(run):
     )
 
 
-def test_varlociraptor_preprocess(run):
+def test_varlociraptor_preprocess_variants(run):
     run(
         "bio/varlociraptor/preprocess-variants",
         [
