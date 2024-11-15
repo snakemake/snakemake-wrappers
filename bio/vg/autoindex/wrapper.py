@@ -15,7 +15,10 @@ vcf_cmd = f"-v {snakemake.input.vcf}" if snakemake.input.get("vcf") else ""
 
 
 def contains_ext(extensions):
-    return all(any(out_file.endswith(ext) for out_file in snakemake.output) for ext in extensions)
+    return all(
+        any(out_file.endswith(ext) for out_file in snakemake.output)
+        for ext in extensions
+    )
 
 
 if any(lambda x: "giraffe" in x, snakemake.output):
@@ -23,7 +26,9 @@ if any(lambda x: "giraffe" in x, snakemake.output):
 elif contains_ext([".xg", ".gcsa.lcp", ".gcsa"]):
     workflow_cmd = "map"
 else:
-    raise ValueError("Output files do not match any supported indexing workflows. Currently only map and giraffe are supported.")
+    raise ValueError(
+        "Output files do not match any supported indexing workflows. Currently only map and giraffe are supported."
+    )
 
 shell(
     "(vg autoindex"
