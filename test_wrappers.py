@@ -6576,3 +6576,18 @@ def test_varlociraptor_preprocess_variants(run):
             "-F",
         ],
     )
+
+
+def test_varlociraptor_call_variants(run):
+    run(
+        "bio/varlociraptor/call-variants",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/variant-calls/dummy-group.bcf",
+            "--sdm",
+            "conda",
+            "-F",
+        ],
+    )
