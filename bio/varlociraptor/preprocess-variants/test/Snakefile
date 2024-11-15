@@ -1,14 +1,14 @@
-rule varlociraptor_alignment_properties: # [hide]
-    input: # [hide]
-        ref="resources/genome.fasta", # [hide]
-        idx="resources/genome.fasta.fai", # [hide]
-        alignments="results/alignments/{sample}.bam", # [hide]
-    output: # [hide]
-        "results/alignment-properties/{sample}.json" # [hide]
-    log: # [hide]
-        "logs/varlociraptor/alignment-properties/{sample}.log" # [hide]
-    wrapper: # [hide]
-        "master/bio/varlociraptor/estimate-alignment-properties" # [hide]
+rule varlociraptor_alignment_properties:  # [hide]
+    input:  # [hide]
+        ref="resources/genome.fasta",  # [hide]
+        idx="resources/genome.fasta.fai",  # [hide]
+        alignments="results/alignments/{sample}.bam",  # [hide]
+    output:  # [hide]
+        "results/alignment-properties/{sample}.json",  # [hide]
+    log:  # [hide]
+        "logs/varlociraptor/alignment-properties/{sample}.log",  # [hide]
+    wrapper:  # [hide]
+        "master/bio/varlociraptor/estimate-alignment-properties"  # [hide]
 
 
 rule varlociraptor_preprocess:
@@ -16,10 +16,10 @@ rule varlociraptor_preprocess:
         ref="resources/genome.fasta",
         alignment_properties="results/alignment-properties/{sample}.json",
         alignments="results/alignments/{sample}.bam",
-        candidate_variants="results/candidate-variants/{sample}.vcf", # vcf or bcf supported
+        candidate_variants="results/candidate-variants/{sample}.vcf",  # vcf or bcf supported
     output:
-        "results/observations/{sample}.bcf"
+        "results/observations/{sample}.bcf",
     log:
-        "logs/varlociraptor/preprocess/{sample}.log"
+        "logs/varlociraptor/preprocess/{sample}.log",
     wrapper:
         "master/bio/varlociraptor/preprocess-variants"
