@@ -1,4 +1,4 @@
-rule vg_autoindex:
+rule vg_autoindex_giraffe:
     input:
         ref="{genome}.fasta",
         # Optional vcf file containing haplotypes for graph creation
@@ -11,4 +11,4 @@ rule vg_autoindex:
         extra=r"",
     threads: 8
     wrapper:
-        "master/bio/vg/autoindex/giraffe"
+        "master/bio/vg/autoindex"
