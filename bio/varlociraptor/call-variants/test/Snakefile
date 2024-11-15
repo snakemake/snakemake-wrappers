@@ -35,10 +35,12 @@ rule varlociraptor_call:
         # collect preprocessed observations for the considered sample group
         # the function get_group_samples is a placeholder for something that returns
         # the samples that belong to the group
-        observations=collect("results/observations/{sample}.bcf", sample=get_group_samples)
+        observations=collect("results/observations/{sample}.bcf", sample=get_group_samples),
         scenario="resources/scenarios/{sample_group}.yaml",
     output:
         "results/variant-calls/{sample_group}.bcf",
+    log:
+        "logs/varlociraptor/call-variants/{sample_group}.log",
     params:
         samples=get_group_samples,
     wrapper:
