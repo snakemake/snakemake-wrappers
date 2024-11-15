@@ -8,7 +8,23 @@ rule vg_autoindex_giraffe:
     log:
         "logs/autoindex/{genome}.log",
     params:
-        extra=r"",
+        extra="",
+    threads: 8
+    wrapper:
+        "master/bio/vg/autoindex"
+
+
+rule vg_autoindex_map:
+    input:
+        ref="{genome}.fasta",
+        # Optional vcf file containing haplotypes for graph creation
+        #vcf="",
+    output:
+        multiext("resources/{genome}", ".xg", ".gcsa", ".gcsa.lcp"),
+    log:
+        "logs/autoindex/{genome}.log",
+    params:
+        extra="",
     threads: 8
     wrapper:
         "master/bio/vg/autoindex"
