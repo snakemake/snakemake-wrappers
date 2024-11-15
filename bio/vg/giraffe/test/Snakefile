@@ -9,7 +9,7 @@ rule vg_autoindex:  # [hide]
         extra=r"",  # [hide]
     threads: 8  # [hide]
     wrapper:  # [hide]
-        "master/bio/vg/autoindex/giraffe"  # [hide]
+        "master/bio/vg/autoindex"  # [hide]
 
 
 rule bwa_mem:
