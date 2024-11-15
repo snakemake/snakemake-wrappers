@@ -1,0 +1,20 @@
+name: Prinseq++ 
+description: C++ implementation of the prinseq-lite.pl program. It can be used to filter, reformat or trim genomic and metagenomic sequence data.
+url: https://github.com/Adrian-Cantu/PRINSEQ-plus-plus
+authors:
+  - Filipe G. Vieira
+input:
+  - fastx file(s)
+output:
+  - r1: fastx file
+  - r2: fastx file (if PE)
+  - r1_single: fastx file (if PE)
+  - r2_single: fastx file (if PE)
+  - r1_bad: fastx file
+  - r2_bad: fastx file (if PE)
+params:
+  - extra: additional program options.
+notes: |
+  * Multiple threads can be used during compression of the output file.
+  * Both input and output files can be gzipped
+  * Output files are optional but must have the same format.

@@ -3,4 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - quast =5.3.0
+  - prinseq-plus-plus =1.2.4
+  - htslib =1.21
