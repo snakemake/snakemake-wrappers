@@ -15,7 +15,7 @@ rule varlociraptor_preprocess:
         ref="resources/genome.fasta",
         alignment_properties="results/alignment-properties/{sample}.json",
         alignments="results/alignments/{sample}.bam",
-        candidate_variants="results/candidate-variants/{sample}.bcf",
+        candidate_variants="results/candidate-variants/{sample}.vcf", # vcf or bcf supported
     output:
         "results/observations/{sample}.bcf"
     log:

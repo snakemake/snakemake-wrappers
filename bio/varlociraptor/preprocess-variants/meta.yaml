@@ -1,0 +1,13 @@
+name: varlociraptor preprocess variants
+description: |
+  Peprocess candidate variants for variant calling with Varlociraptor
+url: https://varlociraptor.github.io
+authors:
+  - Johannes Köster
+input:
+  - reference genome
+  - read alignments
+  - varlociraptor alignment properties
+  - candidate variaants
+output:
+  - preprocessed variants

@@ -41,7 +41,7 @@ def tmp_test_dir():
         # cleanup environments to save disk space
         subprocess.check_call(
             f"for env in `conda env list | grep -P '{d}' | "
-            "cut -f1 | tr -d ' '`; do conda env remove --prefix $env; done",
+            "cut -f1 | tr -d ' '`; do conda env remove --yes --prefix $env; done",
             shell=True,
         )
 
@@ -6557,7 +6557,7 @@ def test_varlociraptor(run):
             "1",
             "results/observations/NA12878.bcf",
             "--sdm",
-            "conda"
+            "conda",
             "-F",
         ],
     )
