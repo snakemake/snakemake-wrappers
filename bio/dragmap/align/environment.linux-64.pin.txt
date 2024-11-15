@@ -1,7 +1,7 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
-# created-by: conda 24.9.0
+# created-by: conda 24.9.2
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
 https://conda.anaconda.org/conda-forge/noarch/_r-mutex-1.0.1-anacondar_1.tar.bz2#19f9db5f4f1b7f5ef5f6d67207f25f38
@@ -23,13 +23,13 @@ https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#
 https://conda.anaconda.org/conda-forge/linux-64/binutils_impl_linux-64-2.43-h4bf12b8_2.conda#cf0c5521ac2a20dfa6c662a4009eeef6
 https://conda.anaconda.org/conda-forge/noarch/fonts-conda-ecosystem-1-0.tar.bz2#fee5683a3f04bd15cbd8318b096a27ab
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-14.2.0-h77fa898_1.conda#3cb76c3f10d3bc7f1105b2fc9db984df
-https://conda.anaconda.org/conda-forge/linux-64/c-ares-1.34.2-heb4867d_0.conda#2b780c0338fc0ffa678ac82c54af51fd
+https://conda.anaconda.org/conda-forge/linux-64/c-ares-1.34.3-heb4867d_0.conda#09a6c610d002e54e18353c06ef61a253
 https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.6.4-h5888daf_0.conda#db833e03127376d461e1e13e76f09b6c
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-14.2.0-h69a702a_1.conda#e39480b9ca41323497b05492a63bc35b
 https://conda.anaconda.org/conda-forge/linux-64/libgfortran5-14.2.0-hd5240d6_1.conda#9822b874ea29af082e5d36098d25427d
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-14.2.0-hc0a3c3a_1.conda#234a5554c53625688d51062645337328
 https://conda.anaconda.org/conda-forge/linux-64/make-4.4.1-hb9d3cd8_2.conda#33405d2a66b1411db9f7242c8b97c9e7
-https://conda.anaconda.org/conda-forge/linux-64/openssl-3.3.2-hb9d3cd8_0.conda#4d638782050ab6faa27275bed57e9b4e
+https://conda.anaconda.org/conda-forge/linux-64/openssl-3.4.0-hb9d3cd8_0.conda#23cc74f77eb99315c0360ec3533147a9
 https://conda.anaconda.org/conda-forge/linux-64/pthread-stubs-0.4-hb9d3cd8_1002.conda#b3c17d95b5a10c6e64a21fa17573e70e
 https://conda.anaconda.org/conda-forge/linux-64/xorg-inputproto-2.3.2-hb9d3cd8_1003.conda#32623b33f2047dbc9ae2f2e8fd3880e9
 https://conda.anaconda.org/conda-forge/linux-64/xorg-kbproto-1.0.7-hb9d3cd8_1003.conda#e87bfacb110d85e1eb6099c9ed8e7236
@@ -106,7 +106,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.8.0-hca28451_1.conda#b
 https://conda.anaconda.org/conda-forge/linux-64/liblapack-3.9.0-25_linux64_openblas.conda#4dc03a53fc69371a6158d0ed37214cd3
 https://conda.anaconda.org/conda-forge/noarch/setuptools-75.3.0-pyhd8ed1ab_0.conda#2ce9825396daf72baabaade36cee16da
 https://conda.anaconda.org/bioconda/noarch/snakemake-wrapper-utils-0.6.2-pyhdfd78af_0.tar.bz2#fd8759bbd04116eace828c4fab906096
-https://conda.anaconda.org/conda-forge/noarch/wheel-0.44.0-pyhd8ed1ab_0.conda#d44e3b085abcaef02983c6305b84b584
+https://conda.anaconda.org/conda-forge/noarch/wheel-0.45.0-pyhd8ed1ab_0.conda#f9751d7c71df27b2d29f5cab3378982e
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libxi-1.7.10-h4bc722e_1.conda#749baebe7e2ff3360630e069175e528b
 https://conda.anaconda.org/conda-forge/linux-64/cairo-1.18.0-h3faef2a_0.conda#f907bb958910dc404647326ca80c263e
 https://conda.anaconda.org/conda-forge/linux-64/curl-8.8.0-he654da7_1.conda#78678b2ddfd9bd7c7861b8d2e3b7473b
