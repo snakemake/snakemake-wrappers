@@ -5972,7 +5972,6 @@ def test_vg_construct(run):
         ["snakemake", "--cores", "1", "graph/c.vg", "--use-conda", "-F"],
     )
 
-@skip_if_not_modified
 def test_vg_giraffe():
     run(
         "bio/vg/giraffe",
