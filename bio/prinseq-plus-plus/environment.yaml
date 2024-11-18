@@ -3,4 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - merqury =1.3
+  - prinseq-plus-plus =1.2.4
+  - htslib =1.21

@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v5.0.2...v5.1.0) (2024-11-14)
+
+
+### Features
+
+* add vg autoindex giraffe ([#3452](https://www.github.com/snakemake/snakemake-wrappers/issues/3452)) ([01de466](https://www.github.com/snakemake/snakemake-wrappers/commit/01de466bb3c59b474f8274e8007ae80f57f518c0))
+
 ### [5.0.2](https://www.github.com/snakemake/snakemake-wrappers/compare/v5.0.1...v5.0.2) (2024-11-11)
 
 
