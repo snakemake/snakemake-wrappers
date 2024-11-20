@@ -1,0 +1,11 @@
+rule test_sexdeterrmine:
+    input:
+        depth="samples.depth.tsv",
+    output:
+        tsv="results.tsv",
+        json="results.json",
+    threads: 1
+    log:
+        "sexdeterrmine.log"
+    wrapper:
+        "master/bio/sexdeterrmine"
