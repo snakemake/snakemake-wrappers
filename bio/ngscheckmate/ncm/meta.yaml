@@ -1,0 +1,23 @@
+name: ngs checkmate
+url: https://github.com/parklab/NGSCheckMate
+description: Identify BAM/VCF/Fastq files that belongs to the same individuals.
+authors:
+  - Thibault Dayris
+input:
+  samples: Either a path to a list-file, or list of paths to alignment (BAM/SAM) files, or list of paths to variants files (VCF/BCF), or list of paths to FastQ files.
+  bed: Path to a interval (BED) file, required for VCF/BAM input.
+  pt: Path to a pattern file, required for Fastq input
+output:
+  pdf: Path to plot file (PDF formatted)
+  matched: Path to matched samples table
+  txt: Path to samples description
+  matrix: Path to samples matrix (metrics)
+  rscript: Path to the rscript used to produce the PDF plot
+  list_file: Path to the temporary list_file build for internal NGS-Checkmate processing. 
+params:
+  extra: Optional parameters besides IO and threading.
+notes: |
+  See a description of the list-file in the official documentation.
+  Pattern-file can be build with Snakemake-wrapper `ngscheckmate/makesnvpattern`.
+
+  Rememver, the pattern file is required for `fastq` input files. The BED intervals are required for BAM/VCF input files.
