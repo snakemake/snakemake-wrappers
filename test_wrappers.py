@@ -64,6 +64,16 @@ def run(tmp_test_dir):
 
         os.symlink(origdir, dst)
 
+        used_wrappers = []
+        wrapper_file = "used_wrappers.yaml"
+        if os.path.exists(os.path.join(wrapper, wrapper_file)):
+            # is meta wrapper
+            with open(os.path.join(wrapper, wrapper_file), "r") as wf:
+                wf = yaml.load(wf, Loader=yaml.BaseLoader)
+                used_wrappers = wf["wrappers"]
+        else:
+            used_wrappers.append(wrapper)
+
         if (DIFF_MASTER or DIFF_LAST_COMMIT) and not any(
             any(f.startswith(w) for f in DIFF_FILES)
             for w in chain(used_wrappers, [wrapper])
