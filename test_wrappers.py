@@ -33,9 +33,6 @@ pytestmark = pytest.mark.xfail(raises=Skipped)
 @pytest.fixture
 def tmp_test_dir():
     with tempfile.TemporaryDirectory() as d:
-        dst = os.path.join(d, "master")
-        os.makedirs(dst, exist_ok=True)
-
         yield d
 
         # cleanup environments to save disk space
@@ -52,33 +49,20 @@ def run(tmp_test_dir):
 
         tmp_test_subdir = tempfile.mkdtemp(dir=tmp_test_dir)
         origdir = os.getcwd()
+
+        meta_path = os.path.join(wrapper, "meta.yaml")
+        try:
+            with open(meta_path) as f:
+                meta = yaml.load(f, Loader=yaml.BaseLoader)
+        except Exception:
+            raise ValueError(f"Unable to load or parse {meta_path}.")
+        
+        if meta.get("blacklisted"):
+            raise Skipped("wrapper blacklisted")
+        
         dst = os.path.join(tmp_test_subdir, "master")
-        os.makedirs(dst, exist_ok=True)
 
-        def copy(pth, src):
-            shutil.copy(os.path.join(pth, src), os.path.join(dst, pth))
-
-        used_wrappers = []
-        wrapper_file = "used_wrappers.yaml"
-        if os.path.exists(os.path.join(wrapper, wrapper_file)):
-            # is meta wrapper
-            with open(os.path.join(wrapper, wrapper_file), "r") as wf:
-                wf = yaml.load(wf, Loader=yaml.BaseLoader)
-                used_wrappers = wf["wrappers"]
-        else:
-            used_wrappers.append(wrapper)
-
-        for w in used_wrappers:
-            success = False
-            for ext in ("py", "R", "Rmd"):
-                script = "wrapper." + ext
-                if os.path.exists(os.path.join(w, script)):
-                    os.makedirs(os.path.join(dst, w), exist_ok=True)
-                    copy(w, script)
-                    success = True
-                    break
-            assert success, "No wrapper script found for {}".format(w)
-            copy(w, "environment.yaml")
+        os.symlink(origdir, dst)
 
         if (DIFF_MASTER or DIFF_LAST_COMMIT) and not any(
             any(f.startswith(w) for f in DIFF_FILES)
@@ -86,17 +70,9 @@ def run(tmp_test_dir):
         ):
             raise Skipped("wrappers not modified")
 
-        if any(
-            yaml.load(open(os.path.join(w, "meta.yaml")), Loader=yaml.BaseLoader).get(
-                "blacklisted"
-            )
-            for w in used_wrappers
-        ):
-            raise Skipped("wrapper blacklisted")
-
         testdir = os.path.join(tmp_test_subdir, "test")
-        # pkgdir = os.path.join(d, "pkgs")
         shutil.copytree(os.path.join(wrapper, "test"), testdir)
+
         # switch to test directory
         os.chdir(testdir)
         if os.path.exists(".snakemake"):
