@@ -1,0 +1,10 @@
+species:
+  heterozygosity: 0.001
+  ploidy: 2
+
+samples:
+  NA12878:
+    sex: female
+
+events:
+  present: "NA12878:0.5 | NA12878:1.0"
