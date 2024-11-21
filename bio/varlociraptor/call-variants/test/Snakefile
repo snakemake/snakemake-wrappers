@@ -26,25 +26,22 @@ rule varlociraptor_preprocess:  # [hide]
         "master/bio/varlociraptor/preprocess-variants"  # [hide]
 
 
-def get_group_samples(wildcards):  # [hide]
-    return ["NA12878"]  # [hide]
-
-
 rule varlociraptor_call:
     input:
         # collect preprocessed observations for the considered sample group
-        # the function get_group_samples is a placeholder for something that returns
-        # the samples that belong to the group
-        observations=collect(
-            "results/observations/{sample}.bcf", sample=get_group_samples
-        ),
+        # Use lookup or a custom function to obtain the list of samples 
+        # for the given sample group here
+        # and below in the params specification.
+        # Example: lookup(query="group == '{sample_group}'", cols=["sample"], within=samples)
+        # assuming that samples in a pandas dataframe.
+        observations=collect("results/observations/{sample}.bcf", sample=["NA12878"]),
         scenario="resources/scenarios/{sample_group}.yaml",
     output:
         "results/variant-calls/{sample_group}.bcf",
     log:
         "logs/varlociraptor/call-variants/{sample_group}.log",
     params:
-        samples=get_group_samples,
+        samples=["NA12878"],
         extra="",  # optional additional parameters
     wrapper:
         "master/bio/varlociraptor/call-variants"
