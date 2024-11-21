@@ -5,6 +5,8 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 # Validate inputs
 samples = snakemake.params.samples
 observations = snakemake.input.observations
+if not isinstance(observations, list):
+    observations = [observations]
 if len(samples) != len(observations):
     raise ValueError("Number of samples must match number of observations")
 if not samples:

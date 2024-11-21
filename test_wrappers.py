@@ -6567,3 +6567,18 @@ def test_varlociraptor_call_variants(run):
             "-F",
         ],
     )
+
+
+def test_varlociraptor_control_fdr(run):
+    run(
+        "bio/varlociraptor/control-fdr",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/variant-calls/dummy-group.fdr-controlled.bcf",
+            "--sdm",
+            "conda",
+            "-F",
+        ],
+    )

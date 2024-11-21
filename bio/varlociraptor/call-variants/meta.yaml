@@ -1,7 +1,7 @@
 name: varlociraptor call variants
 description: |
   Call variants with Varlociraptor using a given scenario
-url: https://varlociraptor.github.io
+url: https://varlociraptor.github.io/docs/calling/
 authors:
   - Johannes Köster
 input:

@@ -1,7 +1,7 @@
 name: varlociraptor control fdr
 description: |
   Control false discovery rate of Varlociraptor calls
-url: https://varlociraptor.github.io
+url: https://varlociraptor.github.io/docs/filtering/
 authors:
   - Johannes Köster
 input:
