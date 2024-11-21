@@ -21,5 +21,7 @@ rule varlociraptor_preprocess:
         "results/observations/{sample}.bcf",
     log:
         "logs/varlociraptor/preprocess/{sample}.log",
+    params:
+        extra="",  # optional additional parameters
     wrapper:
         "master/bio/varlociraptor/preprocess-variants"

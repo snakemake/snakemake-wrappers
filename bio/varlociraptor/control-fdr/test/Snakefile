@@ -29,7 +29,7 @@ rule varlociraptor_preprocess:  # [hide]
 rule varlociraptor_call:  # [hide]
     input:  # [hide]
         observations="results/observations/NA12878.bcf",  # [hide]
-        scenario="resources/scenarios/{sample_group}.yaml"  # [hide]
+        scenario="resources/scenarios/{sample_group}.yaml",  # [hide]
     output:  # [hide]
         "results/variant-calls/{sample_group}.bcf",  # [hide]
     log:  # [hide]
@@ -50,6 +50,6 @@ rule varlociraptor_control_fdr:
     params:
         fdr=0.05,
         mode="local-smart",
-        events=["present"], # list of event names that occur in BCF (case-insensitive)
+        events=["present"],  # list of event names that occur in BCF (case-insensitive)
     wrapper:
         "master/bio/varlociraptor/control-fdr"

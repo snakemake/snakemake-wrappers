@@ -8,5 +8,7 @@ rule varlociraptor_alignment_properties:
         "results/alignment-properties/{sample}.json",
     log:
         "logs/varlociraptor/alignment-properties/{sample}.log",
+    params:
+        extra="",  # optional additional parameters
     wrapper:
         "master/bio/varlociraptor/estimate-alignment-properties"

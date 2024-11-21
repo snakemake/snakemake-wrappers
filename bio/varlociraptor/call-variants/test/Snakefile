@@ -45,5 +45,6 @@ rule varlociraptor_call:
         "logs/varlociraptor/call-variants/{sample_group}.log",
     params:
         samples=get_group_samples,
+        extra="",  # optional additional parameters
     wrapper:
         "master/bio/varlociraptor/call-variants"
