@@ -56,10 +56,10 @@ def run(tmp_test_dir):
                 meta = yaml.load(f, Loader=yaml.BaseLoader)
         except Exception:
             raise ValueError(f"Unable to load or parse {meta_path}.")
-        
+
         if meta.get("blacklisted"):
             raise Skipped("wrapper blacklisted")
-        
+
         dst = os.path.join(tmp_test_subdir, "master")
 
         os.symlink(origdir, dst)
