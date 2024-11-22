@@ -12,7 +12,7 @@ rule vg_autoindex:  # [hide]
         "master/bio/vg/autoindex"  # [hide]
 
 
-rule bwa_mem:
+rule vg_giraffe_map:
     input:
         reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
         graph=f"resources/genome.giraffe.gbz",
