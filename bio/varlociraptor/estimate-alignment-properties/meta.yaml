@@ -1,0 +1,11 @@
+name: varlociraptor estimate alignment properties
+description: |
+  Estimate alignment properties for variant calling with varlociraptor
+url: https://varlociraptor.github.io/docs/estimating/
+authors:
+  - Johannes Köster
+input:
+  - reference genome
+  - read alignments
+output:
+  - varlociraptor alignment properties
