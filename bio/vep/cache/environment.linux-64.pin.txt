@@ -131,7 +131,7 @@ https://conda.anaconda.org/conda-forge/linux-64/perl-compress-raw-zlib-2.202-pl5
 https://conda.anaconda.org/conda-forge/noarch/perl-constant-1.33-pl5321hd8ed1ab_0.tar.bz2#7f9fc9cfa08a3fe36ffcff820c65c3ac
 https://conda.anaconda.org/conda-forge/linux-64/perl-data-dumper-2.183-pl5321hd590300_0.conda#6c80615de4bc8df1d033b52ec8f0042a
 https://conda.anaconda.org/conda-forge/linux-64/perl-db_file-1.858-pl5321h166bdaf_0.tar.bz2#73e039a6ab8fbaa8b574097b4fcdd599
-https://conda.anaconda.org/conda-forge/linux-64/perl-dbi-1.643-pl5321h166bdaf_0.tar.bz2#e401fa27281cb8427bb93bc3aeead8c9
+https://conda.anaconda.org/conda-forge/linux-64/perl-dbi-1.643-pl5321hb9d3cd8_1.conda#c1d15791b3043baba1a31eccf1762125
 https://conda.anaconda.org/conda-forge/linux-64/perl-devel-stacktrace-2.04-pl5321ha770c72_0.conda#66856471d98bc726af849694a7f6ea0f
 https://conda.anaconda.org/bioconda/noarch/perl-digest-hmac-1.04-pl5321hdfd78af_0.tar.bz2#872d481415766335aea1abc5b4b0a16d
 https://conda.anaconda.org/conda-forge/linux-64/perl-digest-md5-2.58-pl5321h166bdaf_0.tar.bz2#734f1242a0410c2b849656295d6a909d
@@ -233,7 +233,7 @@ https://conda.anaconda.org/bioconda/noarch/perl-bio-searchio-hmmer-1.7.3-pl5321h
 https://conda.anaconda.org/conda-forge/noarch/perl-business-isbn-data-20210112.006-pl5321hd8ed1ab_0.tar.bz2#a70f08650ec3919ee5e599834f1349d3
 https://conda.anaconda.org/bioconda/linux-64/perl-dbd-mysql-4.050-pl5321h4ac6f70_1.tar.bz2#ad59097f8fd0c5dd42be5d1e5ebddbcb
 https://conda.anaconda.org/bioconda/noarch/perl-encode-locale-1.05-pl5321hdfd78af_7.tar.bz2#b431fde1d115040cf39bb54280a03dc8
-https://conda.anaconda.org/bioconda/linux-64/perl-io-compress-2.201-pl5321hdbdd923_2.tar.bz2#f40f599ce37ad75715bab686baa08197
+https://conda.anaconda.org/bioconda/linux-64/perl-io-compress-2.201-pl5321hdbdd923_3.tar.bz2#662bd269a5747376f23807e1f3fe70c8
 https://conda.anaconda.org/conda-forge/noarch/perl-io-socket-ssl-2.075-pl5321hd8ed1ab_0.tar.bz2#766504bbe99de2151648d98312b09c2b
 https://conda.anaconda.org/bioconda/linux-64/perl-json-xs-4.03-pl5321h4ac6f70_3.tar.bz2#7916cbb7315bc05abbaa0c383d379964
 https://conda.anaconda.org/bioconda/noarch/perl-lwp-mediatypes-6.04-pl5321hdfd78af_1.tar.bz2#386b035f45e9389e6e9b1a367fdd19bb
