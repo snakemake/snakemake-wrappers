@@ -11,11 +11,24 @@ from snakemake.shell import shell
 from tempfile import TemporaryDirectory
 
 log = snakemake.log_fmt_shell(
-    stdout=False,
+    stdout=True,
     stderr=True,
-    append=True,
 )
 extra = snakemake.params.get("extra", "")
+ref = snakemake.input.get("ref")
+if ref:
+    extra += f" -ref {ref} "
 
-shell("SampleCorrelation ")
+roi = snakemake.input.get("roi")
+if roi:
+    extra += f" -roi {roi} "
 
+input_files = snakemake.input.get("samples")
+if all(str(i).endswith(("vcf", "vcf.gz")) for i in input_files):
+    extra += " -mode vcf "
+elif str(str(i).endswith(("sam", "bam", "cram")) for i in input_files):
+    extra += " -mode bam "
+else:
+    extra += " -mode gsvar "
+
+shell("SampleSimilarity {extra} -in {input_files} -out {snakemake.output} {log}")
