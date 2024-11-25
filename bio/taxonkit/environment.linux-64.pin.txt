@@ -1,5 +1,6 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
+# created-by: conda 24.9.2
 @EXPLICIT
-https://conda.anaconda.org/bioconda/linux-64/taxonkit-0.17.0-h9ee0642_1.tar.bz2#9dba2510a7b88599a1be245c1d2684e3
+https://conda.anaconda.org/bioconda/linux-64/taxonkit-0.18.0-h9ee0642_0.tar.bz2#cae66f7ff6e44fce533a6a5235406987
