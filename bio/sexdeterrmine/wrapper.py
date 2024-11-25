@@ -16,7 +16,7 @@ import os.path
 log = snakemake.log_fmt_shell(
     stdout=False,
     stderr=True,
-    append=True,
+    append=False,
 )
 extra = snakemake.params.get("extra", "")
 
@@ -24,7 +24,7 @@ with TemporaryDirectory() as tempdir:
     old_path = os.getcwd()
     depth_path = os.path.realpath(snakemake.input.depth)
     os.chdir(tempdir)
-    shell(f"sexdeterrmine --Input {depth_path} > out.tsv 2> sexdeterrmine.log")
+    shell(f"sexdeterrmine --Input {depth_path} {extra} > out.tsv 2> sexdeterrmine.log")
 
     log = snakemake.log_fmt_shell(
         stdout=True,
