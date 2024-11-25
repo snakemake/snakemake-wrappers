@@ -4189,7 +4189,6 @@ def test_star_align(run):
     )
 
 
-@skip_if_not_modified
 def test_ngscheckmate_ncm(run):
     run(
         "bio/ngscheckmate/ncm",
@@ -4213,7 +4212,6 @@ def test_ngscheckmate_ncm(run):
 
 
 
-@skip_if_not_modified
 def test_star_index(run):
     run("bio/star/index", ["snakemake", "--cores", "1", "genome", "--use-conda", "-F"])
 
