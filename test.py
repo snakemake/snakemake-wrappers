@@ -4500,7 +4500,7 @@ def test_star_align():
 
 
 @skip_if_not_modified
-def test_ngscheckmate_ncm():
+def test_ngscheckmate_ncm(run):
     run(
         "bio/ngscheckmate/ncm",
         ["snakemake", "--cores", "1", "bam_matrix.txt", "--use-conda", "-F"],
