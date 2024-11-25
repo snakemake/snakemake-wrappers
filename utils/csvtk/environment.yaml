@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - csvtk =0.30.0
+  - csvtk =0.31.0
