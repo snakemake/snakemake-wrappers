@@ -21,6 +21,7 @@ rule test_ngschekmate_fastq_pair_ended:
     wrapper:
         "master/bio/ngscheckmate/ncm"
 
+
 rule test_ngschekmate_fastq_single_ended:
     input:
         samples=expand("{i}.small.fastq.gz", i=("a", "b")),

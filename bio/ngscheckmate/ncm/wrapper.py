@@ -107,7 +107,7 @@ with TemporaryDirectory() as tempdir:
     )
     shell("echo '{cmd}' {log}")
     shell(cmd)
-    
+
     shell("tree -srhf {tempdir} {log} ")
 
     pdf = snakemake.output.get("pdf")
@@ -134,4 +134,3 @@ with TemporaryDirectory() as tempdir:
     out_list_file = snakemake.output.get("list_file")
     if out_list_file:
         shell("mv --verbose {list_file} {out_list_file} {log}")
-
