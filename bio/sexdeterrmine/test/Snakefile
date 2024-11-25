@@ -6,6 +6,6 @@ rule test_sexdeterrmine:
         json="results.json",
     threads: 1
     log:
-        "sexdeterrmine.log"
+        "sexdeterrmine.log",
     wrapper:
         "master/bio/sexdeterrmine"

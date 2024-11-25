@@ -31,7 +31,7 @@ with TemporaryDirectory() as tempdir:
         stderr=True,
         append=True,
     )
-    
+
     os.chdir(old_path)
     os.replace(f"{tempdir}/sexdeterrmine.log", str(snakemake.log))
 
