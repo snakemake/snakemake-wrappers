@@ -27,7 +27,7 @@ with TemporaryDirectory() as tempdir:
     shell(f"sexdeterrmine --Input {depth_path} > out.tsv 2> sexdeterrmine.log")
 
     log = snakemake.log_fmt_shell(
-        stdout=False,
+        stdout=True,
         stderr=True,
         append=True,
     )
