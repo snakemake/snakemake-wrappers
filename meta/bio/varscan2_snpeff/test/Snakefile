@@ -12,7 +12,10 @@ rule get_genome_fasta:
 
 rule samtools_mpileup:
     input:
-        bam=expand("{sample}.sorted.bam", sample=("a", "b"),),
+        bam=expand(
+            "{sample}.sorted.bam",
+            sample=("a", "b"),
+        ),
         reference_genome="genome.fasta",
     output:
         "samtools/mpileup.gz",
@@ -23,6 +26,7 @@ rule samtools_mpileup:
         extra=" --count-orphans ",
     wrapper:
         "master/bio/samtools/mpileup"
+
 
 rule varscan2_somatic:
     input:
@@ -38,9 +42,10 @@ rule varscan2_somatic:
     wrapper:
         "master/bio/varscan/somatic"
 
+
 rule snpeff_download:
     output:
-        directory("resources/snpeff/R64-1-1.105")
+        directory("resources/snpeff/R64-1-1.105"),
     threads: 1
     log:
         "logs/snpeff_download.log",
@@ -48,6 +53,7 @@ rule snpeff_download:
         reference="R64-1-1.105",
     wrapper:
         "master/bio/snpeff/download"
+
 
 rule snpeff_annotate:
     input:
