@@ -1,6 +1,9 @@
 rule get_genome_fasta:
     output:
         "genome.fasta",
+    threads: 1
+    log:
+        "logs/get_genome_fasta.log",
     params:
         species="saccharomyces_cerevisiae",
         datatype="dna",
@@ -63,6 +66,7 @@ rule snpeff_annotate:
         calls="snpeff/annotated.vcf",
         stats="snpeff/annotated.html",
         csvstats="snpeff/annotated.csv",
+    threads: 1
     log:
         "logs/snpeff_annotate.log",
     params:
