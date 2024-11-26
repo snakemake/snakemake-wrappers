@@ -25,7 +25,7 @@ if roi:
 input_files = snakemake.input.get("samples")
 if all(str(i).endswith(("vcf", "vcf.gz")) for i in input_files):
     extra += " -mode vcf "
-elif str(str(i).endswith(("sam", "bam", "cram")) for i in input_files):
+elif all(str(i).endswith(("sam", "bam", "cram")) for i in input_files):
     extra += " -mode bam "
 else:
     extra += " -mode gsvar "
