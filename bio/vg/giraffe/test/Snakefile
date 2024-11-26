@@ -12,7 +12,7 @@ rule vg_autoindex:  # [hide]
         "master/bio/vg/autoindex"  # [hide]
 
 
-rule vg_giraffe:
+rule vg_giraffe_map:
     input:
         reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
         index=multiext("resources/genome", ".dist", ".min", ".giraffe.gbz")

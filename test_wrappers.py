@@ -33,15 +33,12 @@ pytestmark = pytest.mark.xfail(raises=Skipped)
 @pytest.fixture
 def tmp_test_dir():
     with tempfile.TemporaryDirectory() as d:
-        dst = os.path.join(d, "master")
-        os.makedirs(dst, exist_ok=True)
-
         yield d
 
         # cleanup environments to save disk space
         subprocess.check_call(
             f"for env in `conda env list | grep -P '{d}' | "
-            "cut -f1 | tr -d ' '`; do conda env remove --prefix $env; done",
+            "cut -f1 | tr -d ' '`; do conda env remove --yes --prefix $env; done",
             shell=True,
         )
 
@@ -52,11 +49,20 @@ def run(tmp_test_dir):
 
         tmp_test_subdir = tempfile.mkdtemp(dir=tmp_test_dir)
         origdir = os.getcwd()
-        dst = os.path.join(tmp_test_subdir, "master")
-        os.makedirs(dst, exist_ok=True)
 
-        def copy(pth, src):
-            shutil.copy(os.path.join(pth, src), os.path.join(dst, pth))
+        meta_path = os.path.join(wrapper, "meta.yaml")
+        try:
+            with open(meta_path) as f:
+                meta = yaml.load(f, Loader=yaml.BaseLoader)
+        except Exception:
+            raise ValueError(f"Unable to load or parse {meta_path}.")
+
+        if meta.get("blacklisted"):
+            raise Skipped("wrapper blacklisted")
+
+        dst = os.path.join(tmp_test_subdir, "master")
+
+        os.symlink(origdir, dst)
 
         used_wrappers = []
         wrapper_file = "used_wrappers.yaml"
@@ -68,35 +74,15 @@ def run(tmp_test_dir):
         else:
             used_wrappers.append(wrapper)
 
-        for w in used_wrappers:
-            success = False
-            for ext in ("py", "R", "Rmd"):
-                script = "wrapper." + ext
-                if os.path.exists(os.path.join(w, script)):
-                    os.makedirs(os.path.join(dst, w), exist_ok=True)
-                    copy(w, script)
-                    success = True
-                    break
-            assert success, "No wrapper script found for {}".format(w)
-            copy(w, "environment.yaml")
-
         if (DIFF_MASTER or DIFF_LAST_COMMIT) and not any(
             any(f.startswith(w) for f in DIFF_FILES)
             for w in chain(used_wrappers, [wrapper])
         ):
             raise Skipped("wrappers not modified")
 
-        if any(
-            yaml.load(open(os.path.join(w, "meta.yaml")), Loader=yaml.BaseLoader).get(
-                "blacklisted"
-            )
-            for w in used_wrappers
-        ):
-            raise Skipped("wrapper blacklisted")
-
         testdir = os.path.join(tmp_test_subdir, "test")
-        # pkgdir = os.path.join(d, "pkgs")
         shutil.copytree(os.path.join(wrapper, "test"), testdir)
+
         # switch to test directory
         os.chdir(testdir)
         if os.path.exists(".snakemake"):
@@ -6553,6 +6539,66 @@ def test_toulligqc_fastq(run):
             "1",
             "toulligqc_fastq/report.html",
             "--use-conda",
+            "-F",
+        ],
+    )
+
+
+def test_varlociraptor_alignment_properties(run):
+    run(
+        "bio/varlociraptor/estimate-alignment-properties",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/alignment-properties/NA12878.json",
+            "--sdm",
+            "conda",
+            "-F",
+        ],
+    )
+
+
+def test_varlociraptor_preprocess_variants(run):
+    run(
+        "bio/varlociraptor/preprocess-variants",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/observations/NA12878.bcf",
+            "--sdm",
+            "conda",
+            "-F",
+        ],
+    )
+
+
+def test_varlociraptor_call_variants(run):
+    run(
+        "bio/varlociraptor/call-variants",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/variant-calls/dummy-group.bcf",
+            "--sdm",
+            "conda",
+            "-F",
+        ],
+    )
+
+
+def test_varlociraptor_control_fdr(run):
+    run(
+        "bio/varlociraptor/control-fdr",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/variant-calls/dummy-group.fdr-controlled.bcf",
+            "--sdm",
+            "conda",
             "-F",
         ],
     )
