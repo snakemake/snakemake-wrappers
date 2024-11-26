@@ -24,38 +24,19 @@ with TemporaryDirectory() as tempdir:
     )
 
     # Ensure user can name each file according to their need
-    bowtieout = snakemake.output.get("bowtie")
-    if bowtieout:
-        shell("mv --verbose '{tempdir}/snake_out.bowtieout' {bowtieout} {log}")
+    output_mapping = {
+        "bowtie": f"'{tempdir}/snake_out.bowtieout'",
+        "fasta": f"'{tempdir}/snake_out.fasta'",
+        "ntm": f"'{tempdir}/snake_out.ntm'",
+        "pattern": f"'{tempdir}/snake_out.pt'",
+        "pattern_text": f"'{tempdir}/snake_out.pt-txt'",
+        "pattern_sorted": f"'{tempdir}/snake_out.pt-txt.sorted'",
+        "text": f"'{tempdir}/snake_out.txt'",
+        "uniq": f"'{tempdir}/snake_out.uniq.txt'",
+        "txt_sorted": f"'{tempdir}/snake_out.uniq.txt.sorted'",
+    }
 
-    fasta = snakemake.output.get("fasta")
-    if fasta:
-        shell("mv --verbose '{tempdir}/snake_out.fasta' {fasta} {log}")
-
-    ntm = snakemake.output.get("ntm")
-    if ntm:
-        shell("mv --verbose '{tempdir}/snake_out.ntm' {ntm} {log}")
-
-    pattern = snakemake.output.get("pattern")
-    if pattern:
-        shell("mv --verbose '{tempdir}/snake_out.pt' {pattern} {log}")
-
-    pattern_text = snakemake.output.get("pattern_text")
-    if pattern_text:
-        shell("mv --verbose '{tempdir}/snake_out.pt-txt' {pattern_text} {log}")
-
-    pattern_sorted = snakemake.output.get("pattern_sorted")
-    if pattern_sorted:
-        shell("mv --verbose '{tempdir}/snake_out.pt-txt.sorted' {pattern_sorted} {log}")
-
-    text = snakemake.output.get("text")
-    if text:
-        shell("mv --verbose '{tempdir}/snake_out.txt' {text} {log}")
-
-    uniq = snakemake.output.get("uniq")
-    if uniq:
-        shell("mv --verbose '{tempdir}/snake_out.uniq.txt' {uniq} {log}")
-
-    txt_sorted = snakemake.output.get("txt_sorted")
-    if txt_sorted:
-        shell("mv --verbose '{tempdir}/snake_out.uniq.txt.sorted' {txt_sorted} {log}")
+    for output_key, temp_file in output_mapping.items():
+        output_path = snakemake.output.get(output_key)
+        if output_path:
+            shell("mv --verbose '{temp_file}' '{output_path}' {log}")

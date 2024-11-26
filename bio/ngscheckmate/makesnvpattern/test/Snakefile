@@ -1,4 +1,4 @@
-rule text_ngscheckmate_makesnvpattern:
+rule test_ngscheckmate_makesnvpattern:
     input:
         fasta="genome.fasta",
         bed="variants.bed",
