@@ -30,4 +30,9 @@ elif all(str(i).endswith(("sam", "bam", "cram")) for i in input_files):
 else:
     extra += " -mode gsvar "
 
-shell("SampleSimilarity {extra} -in {input_files} -out {snakemake.output} {log}")
+shell(
+    "SampleSimilarity {extra} "
+    "-in {input_files} "
+    "-out '{snakemake.output}' "
+    "{log}"
+)
