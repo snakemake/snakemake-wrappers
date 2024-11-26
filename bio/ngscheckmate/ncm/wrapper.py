@@ -81,7 +81,7 @@ with TemporaryDirectory() as tempdir:
             extra += f"--VCF --bedfile {snakemake.input.bed} "
             make_list_file_for_bam_vcf(paths=samples, output=list_file)
         elif all(
-            sample.lower().endswith((".fastq", ".fq", ".fastq.gz", ".fq.fq"))
+            sample.lower().endswith((".fastq", ".fq", ".fastq.gz", ".fq.gz"))
             for sample in samples
         ):
             launcher = "ncm_fastq.py"
