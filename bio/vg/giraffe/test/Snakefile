@@ -6,24 +6,22 @@ rule vg_autoindex:  # [hide]
     log:  # [hide]
         "logs/vg_autoindex/{genome}.log",  # [hide]
     params:  # [hide]
-        extra=r"",  # [hide]
+        extra="",  # [hide]
     threads: 8  # [hide]
     wrapper:  # [hide]
         "master/bio/vg/autoindex"  # [hide]
 
 
-rule bwa_mem:
+rule vg_giraffe:
     input:
         reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
-        graph=f"resources/genome.giraffe.gbz",
-        dist=f"resources/genome.dist",
-        minimizer=f"resources/genome.min",
+        index=multiext("resources/genome", ".dist", ".min", ".giraffe.gbz")
     output:
         "mapped/{sample}.bam",
     log:
         "logs/vg_giraffe/{sample}.log",
     params:
-        extra=r"",
+        extra="",
         sorting="none",  # Can be 'none', 'samtools' or 'picard'.
         sort_order="queryname",  # Can be 'queryname' or 'coordinate'.
         sort_extra="",  # Extra args for samtools/picard.

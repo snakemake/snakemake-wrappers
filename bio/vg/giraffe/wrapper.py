@@ -21,25 +21,14 @@ samtools_opts = get_samtools_opts(snakemake, param_name="sort_extra")
 java_opts = get_java_opts(snakemake)
 
 
+expected_files = {".dist": "-d", ".min": "-m", ".giraffe.gbz": "-Z"}
+
 input_cmd = ""
-graph = snakemake.input.graph
-graph_ext = path.splitext(graph)[-1]
-if graph_ext == ".gbz":
-    input_cmd += f"-Z {graph} "
-elif graph_ext == ".xg":
-    input_cmd += f"-x {graph} "
-elif graph_ext == ".gbwt":
-    input_cmd += f"-g {graph} "
-else:
-    raise ValueError("Unexpected file extension for reference graph")
-
-dist_index = snakemake.input.get("dist", None)
-if dist_index:
-    input_cmd += f"-d {dist_index} "
-
-minimizer = snakemake.input.get("minimizer", None)
-if minimizer:
-    input_cmd += f"-m {minimizer}"
+for ext, param in expected_files.items():
+    matching_files = [file for file in snakemake.input.index if file.endswith(ext)]
+    if not matching_files:
+        raise ValueError(f"Missing required file with extension: {ext}")
+    input_cmd += f" {param} {matching_files[0]}"
 
 
 # Check inputs/arguments.
