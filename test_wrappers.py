@@ -5981,6 +5981,11 @@ def test_vg_construct(run):
         ["snakemake", "--cores", "1", "graph/c.vg", "--use-conda", "-F"],
     )
 
+def test_vg_giraffe(run):
+    run(
+        "bio/vg/giraffe",
+        ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
+    )
 
 def test_vg_merge(run):
     run(
