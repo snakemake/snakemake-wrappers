@@ -198,7 +198,7 @@ When writing the ``Snakefile``, please ensure that:
 .. _test:
 
 ``test_wrappers.py`` tests file
-----------------------
+-------------------------------
 
 Every example rule listed in a :ref:`snakefile`, should be included as a test case in ``test.py``.
 The easiest way is usually to duplicate an existing test and adapt it to your newly added example rule.
