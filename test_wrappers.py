@@ -3424,6 +3424,13 @@ def test_minimap2_index(run):
     )
 
 
+def test_mtnucratiocalculator(run):
+    run(
+        "bio/mtnucratio",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "ratio.txt"],
+    )
+
+
 def test_mosdepth(run):
     run(
         "bio/mosdepth",
