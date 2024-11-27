@@ -3417,6 +3417,13 @@ def test_minimap2_index(run):
     )
 
 
+def test_mtnucratiocalculator(run):
+    run(
+        "bio/mtnucratio",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "ratio.txt"],
+    )
+
+
 def test_mosdepth(run):
     run(
         "bio/mosdepth",
@@ -5958,6 +5965,11 @@ def test_vg_construct(run):
         ["snakemake", "--cores", "1", "graph/c.vg", "--use-conda", "-F"],
     )
 
+def test_vg_giraffe(run):
+    run(
+        "bio/vg/giraffe",
+        ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
+    )
 
 def test_vg_merge(run):
     run(
