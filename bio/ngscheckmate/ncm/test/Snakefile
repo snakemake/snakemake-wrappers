@@ -1,4 +1,4 @@
-rule test_ngschekmate_fastq_pair_ended:
+rule test_ngscheckmate_fastq_pair_ended:
     input:
         samples=expand("{i}.small.fastq.gz", i=("a", "b", "b", "a")),
         fasta="small_genome.fasta",
@@ -7,7 +7,7 @@ rule test_ngschekmate_fastq_pair_ended:
         pdf="fastq_paired.pdf",
         match="fastq_paired_matched.txt",
         txt="fastq_paired_all.txt",
-        r="bam_paired_rscript.R",
+        r="fastq_rscript.R",
     threads: 1
     params:
         # Optional parameters besides IO and threading
@@ -17,12 +17,12 @@ rule test_ngschekmate_fastq_pair_ended:
         # Used only for FastQ input files.
         paired=True,
     log:
-        "test_ngschekmate_fastq_paired.log",
+        "test_ngscheckmate_fastq_paired.log",
     wrapper:
         "master/bio/ngscheckmate/ncm"
 
 
-rule test_ngschekmate_fastq_single_ended:
+rule test_ngscheckmate_fastq_single_ended:
     input:
         samples=expand("{i}.small.fastq.gz", i=("a", "b")),
         fasta="small_genome.fasta",
@@ -31,7 +31,7 @@ rule test_ngschekmate_fastq_single_ended:
         pdf="fastq.pdf",
         match="fastq_matched.txt",
         txt="fastq_all.txt",
-        r="bam_rscript.R",
+        r="fastq_rscript.R",
     threads: 1
     params:
         # Optional parameters besides IO and threading
@@ -41,12 +41,12 @@ rule test_ngschekmate_fastq_single_ended:
         # Used only for FastQ input files.
         paired=False,
     log:
-        "test_ngschekmate_fastq.log",
+        "test_ngscheckmate_fastq.log",
     wrapper:
         "master/bio/ngscheckmate/ncm"
 
 
-rule test_ngschekmate_bam:
+rule test_ngscheckmate_bam:
     input:
         samples=expand("{i}.small.bam", i=("a", "b")),
         bed="small.bed",
@@ -59,7 +59,7 @@ rule test_ngschekmate_bam:
         r="bam_rscript.R",
     threads: 1
     log:
-        "test_ngschekmate_bam.log",
+        "test_ngscheckmate_bam.log",
     params:
         # Optional parameters besides IO and threading
         extra="--nonzero",
@@ -67,7 +67,7 @@ rule test_ngschekmate_bam:
         "master/bio/ngscheckmate/ncm"
 
 
-rule test_ngschekmate_vcf:
+rule test_ngscheckmate_vcf:
     input:
         samples=expand("{i}.small.vcf", i=("a", "b")),
         bed="small.bed",
@@ -80,7 +80,7 @@ rule test_ngschekmate_vcf:
         r="vcf_rscript.R",
     threads: 1
     log:
-        "test_ngschekmate_vcf.log",
+        "test_ngscheckmate_vcf.log",
     params:
         # Optional parameters besides IO and threading
         extra="--nonzero",

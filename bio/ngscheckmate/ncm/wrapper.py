@@ -4,7 +4,7 @@
 
 from snakemake.shell import shell
 from tempfile import TemporaryDirectory
-from os.path import isdir, basename
+from os.path import basename
 
 
 def make_list_file_for_bam_vcf(paths, output):
