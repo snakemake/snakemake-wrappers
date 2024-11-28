@@ -200,7 +200,7 @@ When writing the ``Snakefile``, please ensure that:
 ``test_wrappers.py`` tests file
 -------------------------------
 
-Every example rule listed in a :ref:`snakefile`, should be included as a test case in ``test.py``.
+Every example rule listed in a :ref:`snakefile`, should be included as a test case in ``test_wrappers.py``.
 The easiest way is usually to duplicate an existing test and adapt it to your newly added example rule.
 
 When done editing, make sure that ``test.py`` :ref:`formatting` still follows |black|_ standards.
