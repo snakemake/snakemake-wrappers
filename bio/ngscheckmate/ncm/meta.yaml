@@ -1,6 +1,6 @@
-name: ngs checkmate
+name: NGS-Checkmate
 url: https://github.com/parklab/NGSCheckMate
-description: Identify BAM/VCF/Fastq files that belongs to the same individuals.
+description: Identify BAM/VCF/Fastq files that belong to the same individuals.
 authors:
   - Thibault Dayris
 input:
