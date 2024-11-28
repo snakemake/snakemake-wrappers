@@ -26,7 +26,7 @@ And then, contributions should:
   * ``wrapper.py`` or ``wrapper.R`` (actual wrapper code), see :ref:`wrapper`
   * ``test/Snakefile`` (minimal test cases and copy-pasteable examples), see :ref:`Snakefile`
 
-* amend ``test.py`` to call all of the testing rules provided in ``test/Snakefile``, see :ref:`test`
+* amend ``test_wrappers.py`` to call all of the testing rules provided in ``test/Snakefile``, see :ref:`test`
 * ensure consistent:
 
   * `formatting`_ of Python files
@@ -193,13 +193,14 @@ When writing the ``Snakefile``, please ensure that:
 * all example rules in your ``test/Snakefile`` have an invocation as a test case in ``test.py``, see :ref:`test`
 * wherever you can do this with a short comment, explain possible settings for all keywords like ``input:``, ``output:``, ``params:``, ``threads:``, etc. (provide longer explanations in the :ref:`meta` file)
 * provide a sensible default for ``threads:``, if more than one thread can be used by the wrapper
+* use the `# [hide]` to hide lines from the final documentation and keep it in the tests
 
 .. _test:
 
-``test.py`` tests file
-----------------------
+``test_wrappers.py`` tests file
+-------------------------------
 
-Every example rule listed in a :ref:`snakefile`, should be included as a test case in ``test.py``.
+Every example rule listed in a :ref:`snakefile`, should be included as a test case in ``test_wrappers.py``.
 The easiest way is usually to duplicate an existing test and adapt it to your newly added example rule.
 
 When done editing, make sure that ``test.py`` :ref:`formatting` still follows |black|_ standards.
@@ -209,8 +210,7 @@ Example
 
 .. code-block:: python
 
-    @skip_if_not_modified
-    def test_bcftools_sort():
+    def test_bcftools_sort(run):
         run(
             "bio/bcftools/sort",
             ["snakemake", "--cores", "1", "--use-conda", "-F", "a.sorted.bcf"],
@@ -224,7 +224,7 @@ Example
 Formatting
 ----------
 
-Please ensure Python files such as ``test.py`` and ``wrapper.py`` are formatted with
+Please ensure Python files such as ``test_wrappers.py`` and ``wrapper.py`` are formatted with
 |black|_. Additionally, please format your test ``Snakefile`` with |snakefmt|_.
 
 .. |black| replace:: ``black``
@@ -254,7 +254,7 @@ that matches the name(s) of your test(s) via the ``-k`` option of ``pytest``:
 
 .. code-block:: bash
 
-  pytest test.py -v -k your_test
+  pytest test_wrappers.py -v -k your_test
 
 
 If you also want to test the docs generation locally, create another environment
