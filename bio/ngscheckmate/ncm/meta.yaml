@@ -20,4 +20,4 @@ notes: |
   See a description of the list-file in the official documentation.
   Pattern-file can be build with Snakemake-wrapper `ngscheckmate/makesnvpattern`.
 
-  Rememver, the pattern file is required for `fastq` input files. The BED intervals are required for BAM/VCF input files.
+  Remember, the pattern file is required for `fastq` input files. The BED intervals are required for BAM/VCF input files.
