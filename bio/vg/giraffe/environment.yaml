@@ -3,8 +3,8 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - vg =1.60
-  - fgbio-minimal =2.3.0
+  - vg =1.61.0
+  - fgbio-minimal =2.4.0
   - samtools =1.21
-  - picard-slim =3.2.0
+  - picard-slim =3.3.0
   - snakemake-wrapper-utils =0.6.2
