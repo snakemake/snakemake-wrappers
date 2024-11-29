@@ -1,7 +1,7 @@
 rule test_ngsbits_samplesimilarity:
     input:
         # ref="", # Optional path to fasta.fai file
-        # roi="", # Optional path to regions of interest (bed)
+        # regions="", # Optional path to regions of interest (bed)
         samples=expand("{sample}.vcf", sample=("a", "b")),
     output:
         "similarity.tsv",
