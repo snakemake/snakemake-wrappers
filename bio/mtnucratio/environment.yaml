@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - mtnucratio=0.7.1
+  - mtnucratio =0.7.1
