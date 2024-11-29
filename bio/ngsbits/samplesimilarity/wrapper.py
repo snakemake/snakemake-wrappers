@@ -16,11 +16,11 @@ log = snakemake.log_fmt_shell(
 extra = snakemake.params.get("extra", "")
 ref = snakemake.input.get("ref")
 if ref:
-    extra += f" -ref '{ref}' "
+    extra += f" -ref {ref:q} "
 
-roi = snakemake.input.get("roi")
+roi = snakemake.input.get("regions")
 if roi:
-    extra += f" -roi '{roi}' "
+    extra += f" -roi {roi:q} "
 
 input_files = snakemake.input.get("samples")
 if all(str(i).endswith(("vcf", "vcf.gz")) for i in input_files):

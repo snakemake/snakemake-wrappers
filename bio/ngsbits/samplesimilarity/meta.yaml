@@ -5,7 +5,7 @@ authors:
 input:
   - samples: list of paths to vcf/vcf.gz files, or list of paths to bam/sam/cram files
   - ref: Optional path to reference genome index file (FAI). Required for CRAM input.
-  - roi: Optional path to regions of interest (BED).
+  - regions: Optional path to regions of interest (BED).
 output:
   - Path to output TSV results
 params:
