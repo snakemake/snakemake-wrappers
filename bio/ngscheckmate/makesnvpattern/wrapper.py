@@ -11,7 +11,6 @@ from os.path import commonprefix
 
 # Optional parameters
 log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
-extra = snakemake.params.get("extra", "")
 
 index = commonprefix(snakemake.input.bowtie).rstrip(".")
 
