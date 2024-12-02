@@ -1,4 +1,5 @@
 name: NGS-bits SampleSimilarity
+description: Calculate several metrics that measure sample similarity.
 url: https://github.com/imgag/ngs-bits/blob/master/doc/tools/SampleSimilarity/index.md
 authors:
   - Thibault Dayris
