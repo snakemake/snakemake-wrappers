@@ -1,6 +1,6 @@
 channels:
-  - conda-forge
   - bioconda
+  - conda-forge
   - nodefaults
 dependencies:
-  - mtnucratio =0.7.1
+  - sexdeterrmine =1.1.2

@@ -4629,6 +4629,12 @@ def test_gseapy_gsea(run):
     )
 
 
+def test_sexdeterrmine(run):
+    run(
+        "bio/sexdeterrmine",
+        ["snakemake", "--cores", "1", "results.tsv", "-F", "--use-conda"],
+    )
+
 def test_sourmash_compute(run):
     run(
         "bio/sourmash/compute/",

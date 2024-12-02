@@ -1,0 +1,13 @@
+name: Sex.detERRmine
+description: |
+  calculate the relative coverage of X and Y chromosomes, and their associated error bars, out of capture data.
+authors:
+  - Thibault Dayris
+input:
+  - depth: Path to samtools depths file accross multiple samples with a header line giving sample names.
+output:
+  - Path to result table
+params:
+  - No extra parameters handled.
+notes: |
+  See depth header format at: https://github.com/TCLamnidis/Sex.DetERRmine/tree/master?tab=readme-ov-file#instructions

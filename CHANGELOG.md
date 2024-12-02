@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.3.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v5.2.1...v5.3.0) (2024-11-27)
+
+
+### Features
+
+* Add vg giraffe ([#3302](https://www.github.com/snakemake/snakemake-wrappers/issues/3302)) ([fbf806d](https://www.github.com/snakemake/snakemake-wrappers/commit/fbf806d97336b23caa443b9063b0042e97712d28))
+* MtNucRatioCalculator ([#3496](https://www.github.com/snakemake/snakemake-wrappers/issues/3496)) ([b221057](https://www.github.com/snakemake/snakemake-wrappers/commit/b2210576f75be6a90569b676688b476c4aaba7a8))
+
 ### [5.2.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v5.2.0...v5.2.1) (2024-11-22)
 
 
