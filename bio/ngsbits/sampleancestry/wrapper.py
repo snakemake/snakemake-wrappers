@@ -16,8 +16,8 @@ log = snakemake.log_fmt_shell(
 extra = snakemake.params.get("extra", "")
 
 shell(
-    "SampleAncestry {extra} "
-    "-in {snakemake.input} "
-    "-out '{snakemake.output}' "
-    "{log}"
+    "SampleAncestry {extra}"
+    " -in {snakemake.input}"
+    " -out {snakemake.output:q}"
+    " {log}"
 )
