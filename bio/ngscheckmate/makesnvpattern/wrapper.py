@@ -39,4 +39,4 @@ with TemporaryDirectory() as tempdir:
     for output_key, temp_file in output_mapping.items():
         output_path = snakemake.output.get(output_key)
         if output_path:
-            shell("mv --verbose {temp_file:q} {output_path:q} {log}")
+            shell(f"mv --verbose {temp_file:q} {output_path:q} {log}")
