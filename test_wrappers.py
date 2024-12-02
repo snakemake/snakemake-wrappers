@@ -4213,11 +4213,6 @@ def test_ngscheckmate_ncm(run):
         "bio/ngscheckmate/ncm",
         ["snakemake", "--cores", "1", "fastq_paired_matched.txt", "--use-conda", "-F"],
     )
-    
-    
-    
-
-
 
 def test_star_index(run):
     run("bio/star/index", ["snakemake", "--cores", "1", "genome", "--use-conda", "-F"])
