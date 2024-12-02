@@ -25,18 +25,18 @@ with TemporaryDirectory() as tempdir:
 
     # Ensure user can name each file according to their need
     output_mapping = {
-        "bowtie": f"'{tempdir}/snake_out.bowtieout'",
-        "fasta": f"'{tempdir}/snake_out.fasta'",
-        "ntm": f"'{tempdir}/snake_out.ntm'",
-        "pattern": f"'{tempdir}/snake_out.pt'",
-        "pattern_text": f"'{tempdir}/snake_out.pt-txt'",
-        "pattern_sorted": f"'{tempdir}/snake_out.pt-txt.sorted'",
-        "text": f"'{tempdir}/snake_out.txt'",
-        "uniq": f"'{tempdir}/snake_out.uniq.txt'",
-        "txt_sorted": f"'{tempdir}/snake_out.uniq.txt.sorted'",
+        "bowtie": f"{tempdir}/snake_out.bowtieout",
+        "fasta": f"{tempdir}/snake_out.fasta",
+        "ntm": f"{tempdir}/snake_out.ntm",
+        "pattern": f"{tempdir}/snake_out.pt",
+        "pattern_text": f"{tempdir}/snake_out.pt-txt",
+        "pattern_sorted": f"{tempdir}/snake_out.pt-txt.sorted",
+        "text": f"{tempdir}/snake_out.txt",
+        "uniq": f"{tempdir}/snake_out.uniq.txt",
+        "txt_sorted": f"{tempdir}/snake_out.uniq.txt.sorted",
     }
 
     for output_key, temp_file in output_mapping.items():
         output_path = snakemake.output.get(output_key)
         if output_path:
-            shell(f"mv --verbose {temp_file:q} {output_path:q} {log}")
+            shell("mv --verbose {temp_file:q} {output_path:q} {log}")
