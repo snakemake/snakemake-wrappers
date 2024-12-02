@@ -108,8 +108,6 @@ with TemporaryDirectory() as tempdir:
     shell("echo '{cmd}' {log}")
     shell(cmd)
 
-    shell("tree -srhf {tempdir} {log} ")
-
     pdf = snakemake.output.get("pdf")
     if pdf:
         # Warning: A PDF file is produced only when more that one sample is provided
