@@ -3579,6 +3579,20 @@ def test_nanosim_metagenome(run):
     )
 
 
+def test_ngsbits_sampleancestry(run):
+    run(
+        "bio/ngsbits/sampleancestry",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "ancestry.tsv",
+        ],
+    )
+
+
 def test_ngsderive(run):
     run(
         "bio/ngsderive",
@@ -5959,11 +5973,13 @@ def test_vg_autoindex_giraffe(run):
         ["snakemake", "--cores", "1", "resources/genome.dist", "--use-conda", "-F"],
     )
 
+
 def test_vg_autoindex_map(run):
     run(
         "bio/vg/autoindex",
         ["snakemake", "--cores", "1", "resources/genome.xg", "--use-conda", "-F"],
     )
+
 
 def test_vg_construct(run):
     run(
