@@ -196,6 +196,21 @@ def test_nonpareil(run):
     )
 
 
+
+def test_ngsbits_samplesimilarity(run):
+    run(
+        "bio/ngsbits/samplesimilarity",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "similarity.tsv",
+        ],
+    )
+
+
 def test_nonpareil_plot(run):
     run(
         "bio/nonpareil/plot",
