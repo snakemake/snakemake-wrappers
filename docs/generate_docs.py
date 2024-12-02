@@ -25,7 +25,7 @@ BLACKLIST = {
     "README.md",
     ".cache",
     "__init__.py",
-    "test.py",
+    "test_wrappers.py",
     ".pytest_cache",
 } | SCRIPTS
 TAG = subprocess.check_output(["git", "describe", "--tags"]).decode().strip()
