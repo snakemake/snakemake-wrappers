@@ -26,5 +26,4 @@ params:
   - sort_order: choose between `coordinate`(default) or `queryname`.
 notes: |
   * The `extra` param allows for additional arguments for bowtie2.
-  * The `sort` param allows to enable sorting, and can be either 'none', 'samtools' or 'picard'.
   * This wrapper uses an inner pipe. Make sure to use at least two threads in your Snakefile.
