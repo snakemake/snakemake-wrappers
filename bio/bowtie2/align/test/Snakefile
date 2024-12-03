@@ -108,10 +108,11 @@ for order in ["coordinate", "queryname"]:
         for program in ["none", "samtools", "picard"]:
 
             rule:
-                name: f"bowtie2_align_{program}_{order}_{extension}"
+                name:
+                    f"bowtie2_align_{program}_{order}_{extension}"
                 input:
-                    sample = ["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
-                    idx = multiext(
+                    sample=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+                    idx=multiext(
                         "index/genome",
                         ".1.bt2",
                         ".2.bt2",
