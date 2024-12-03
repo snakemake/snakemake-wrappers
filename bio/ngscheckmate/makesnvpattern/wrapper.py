@@ -9,7 +9,6 @@ from snakemake.shell import shell
 from tempfile import TemporaryDirectory
 from os.path import commonprefix
 
-# Optional parameters
 log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 
 index = commonprefix(snakemake.input.bowtie).rstrip(".")
@@ -24,15 +23,9 @@ with TemporaryDirectory() as tempdir:
 
     # Ensure user can name each file according to their need
     output_mapping = {
-        "bowtie": f"{tempdir}/snake_out.bowtieout",
         "fasta": f"{tempdir}/snake_out.fasta",
-        "ntm": f"{tempdir}/snake_out.ntm",
         "pattern": f"{tempdir}/snake_out.pt",
-        "pattern_text": f"{tempdir}/snake_out.pt-txt",
-        "pattern_sorted": f"{tempdir}/snake_out.pt-txt.sorted",
-        "text": f"{tempdir}/snake_out.txt",
-        "uniq": f"{tempdir}/snake_out.uniq.txt",
-        "txt_sorted": f"{tempdir}/snake_out.uniq.txt.sorted",
+        "txt_uncompressed": f"{tempdir}/snake_out.uniq.txt.sorted",
     }
 
     for output_key, temp_file in output_mapping.items():

@@ -6,16 +6,10 @@ authors:
 input:
   - bed: Path to bed intervals
   - fasta: Path to fasta genome sequence
-  - bowtie: List of paths to bowtie index files
+  - index: List of paths to `bowtie` index files
 output:
-  - pattern: Path to binary pattern file. Main output file.
-  - pattern_text: Path to genomic regions extracted from bed intervals
-  - fasta: Path to fasta-formatted regions extracted from bed intervals
-  - bowtieout: Path to bowtie aligned extracted regions
-  - ntm: Path to parsed bowtie output
-  - uniq: Path to filtered bowtie output (used for internal patterns checks only)
-  - txt_sorted: Path to sorted filtered bowtie output (used for internal patterns checks only)
-  - pattern_text: Path to extracted patterns (used for internal patterns checks only)
-  - pattern_sorted: Path to sorted extracted patterns (used for internal patterns checks only)
+  - fasta: Path to fasta-formatted regions extracted from bed intervals. Unique numeric names are given to each region.
+  - pattern_uncompressed: Path to uncompressed patterns, used for internal patterns checks only. Col1 = Sequence, Col2 = reference max count, Col3 = variant max count.
+  - pattern: Path to compressed (binary) pattern file. Main output file.
 notes: |
   This script uses 4 threads while running bowtie and does not allow user to change this value.

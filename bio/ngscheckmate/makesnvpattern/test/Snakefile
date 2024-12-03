@@ -2,7 +2,7 @@ rule test_ngscheckmate_makesnvpattern:
     input:
         fasta="genome.fasta",
         bed="variants.bed",
-        bowtie=multiext(
+        index=multiext(
             "genome_bwt",
             ".1.ebwt",
             ".2.ebwt",
@@ -13,13 +13,8 @@ rule test_ngscheckmate_makesnvpattern:
         ),
     output:
         pattern="genome.pt",
-        pattern_text=temp("genome.txt"),
         fasta=temp("genome.pt.fasta"),
-        bowtie=temp("genome.pt.bowtie"),
-        ntm=temp("genome.pt.ntm"),
-        uniq=temp("genome.pt.ntm.uniq"),
-        txt_sorted=temp("genome.txt.sorted"),
-        pattern_sorted=temp("genome.pt.txt.sorted"),
+        pattern_uncompressed=temp("genome.pt.txt.sorted"),
     threads: 4
     log:
         "makesnvpattern.log",
