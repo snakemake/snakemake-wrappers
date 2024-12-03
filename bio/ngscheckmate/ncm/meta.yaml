@@ -12,8 +12,6 @@ output:
   matched: Path to matched samples table
   txt: Path to samples description
   matrix: Path to samples matrix (metrics)
-  rscript: Path to the rscript used to produce the PDF plot
-  list_file: Path to the temporary list_file build for internal NGS-Checkmate processing. 
 params:
   extra: Optional parameters besides IO and threading.
 notes: |

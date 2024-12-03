@@ -73,17 +73,21 @@ with TemporaryDirectory() as tempdir:
             samples = list(map(str, samples))
 
         if all(sample.lower().endswith((".bam", "sam")) for sample in samples):
+            # Then user provides on BAM file, or a list of BAM.
             extra += f" --BAM --bedfile {snakemake.input.bed} "
             make_list_file_for_bam_vcf(paths=samples, output=list_file)
         elif all(
             sample.lower().endswith((".vcf", ".bcf", ".vcf.gz")) for sample in samples
         ):
+            # Then user provides on VCF file, or a list of VCF.
             extra += f"--VCF --bedfile {snakemake.input.bed} "
             make_list_file_for_bam_vcf(paths=samples, output=list_file)
         elif all(
             sample.lower().endswith((".fastq", ".fq", ".fastq.gz", ".fq.gz"))
             for sample in samples
         ):
+            # Then user provides on fastq file, or a list of fastq files.
+            # the launcher and CLI are not the same
             launcher = "ncm_fastq.py"
             extra += f" --pt {snakemake.input.pattern} "
             make_list_file_for_fastq(
@@ -94,13 +98,18 @@ with TemporaryDirectory() as tempdir:
 
             # Only ncm_fastq.py handles multithreading
             extra += f" --maxthread {snakemake.threads} "
+        elif len(samples) == 1:
+            # If user provides only one input, and that input is not a FastQ/BAM/VCF
+            # Then it's a list file
+            list_file = samples[0]
         else:
             raise ValueError("Mixed BAM/VCF/Fastq. Please provide only one file type.")
 
-    list_file = snakemake.input.get("list_file", list_file)
     extra += f" --list {list_file} "
 
-    shell("export NCM_REF={snakemake.input.fasta:q} && {launcher} {extra} --outdir {tempdir} -N snake_out {log}")
+    shell(
+        "export NCM_REF={snakemake.input.fasta:q} && {launcher} {extra} --outdir {tempdir} -N snake_out {log}"
+    )
 
     pdf = snakemake.output.get("pdf")
     if pdf:
@@ -117,12 +126,6 @@ with TemporaryDirectory() as tempdir:
 
     matrix = snakemake.output.get("matrix")
     if matrix:
-        shell("mv --verbose {tempdir}/snake_out_output_corr_matrix.txt {matrix} {log}")
-
-    rscript = snakemake.output.get("r")
-    if rscript:
-        shell("mv --verbose {tempdir}/r_script.r {rscript} {log}")
-
-    out_list_file = snakemake.output.get("list_file")
-    if out_list_file:
-        shell("mv --verbose {list_file} {out_list_file} {log}")
+        shell(
+            "mv --verbose {tempdir}/snake_out_output_corr_matrix.txt {matrix:q} {log}"
+        )
