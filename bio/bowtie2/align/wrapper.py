@@ -103,8 +103,6 @@ else:
     raise ValueError(f"Unexpected value for params.sort ({sort})")
 
 
-
-
 def get_format(path: str) -> str:
     """
     Return file format since Bowtie2 reads files that
@@ -113,7 +111,6 @@ def get_format(path: str) -> str:
     if path.endswith((".gz", ".bz2")):
         return path.split(".")[-2].lower()
     return path.split(".")[-1].lower()
-
 
 
 n = len(snakemake.input.sample)
@@ -169,7 +166,6 @@ if concordant:
 
 
 index = path.commonprefix(snakemake.input.idx).rstrip(".")
-
 
 
 with tempfile.TemporaryDirectory() as tmpdir:
