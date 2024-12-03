@@ -25,7 +25,7 @@ with TemporaryDirectory() as tempdir:
     output_mapping = {
         "fasta": f"{tempdir}/snake_out.fasta",
         "pattern": f"{tempdir}/snake_out.pt",
-        "txt_uncompressed": f"{tempdir}/snake_out.uniq.txt.sorted",
+        "pattern_uncompressed": f"{tempdir}/snake_out.uniq.txt.sorted",
     }
 
     for output_key, temp_file in output_mapping.items():
