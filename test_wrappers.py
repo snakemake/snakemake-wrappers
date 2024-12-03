@@ -579,6 +579,13 @@ def test_purge_dups_get_seqs(run):
     )
 
 
+def test_ngscheckmate_makesnvpattern(run):
+    run(
+        "bio/ngscheckmate/makesnvpattern",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "genome.pt"],
+    )
+
+
 def test_purge_dups_ngscstat(run):
     run(
         "bio/purge_dups/ngscstat",
