@@ -134,11 +134,9 @@ for order in ["coordinate", "queryname"]:
                     sort_program=program,
                     sort_order=order,
                     sort_extra="",
-                    extra="",
+                    extra="",  # optional parameters
                 log:
                     f"logs/bowtie2/{{sample}}.{program}_{order}_{extension}.log",
-                params:
-                    extra="",  # optional parameters
                 threads: 8  # Use at least two threads
                 wrapper:
                     "master/bio/bowtie2/align"
