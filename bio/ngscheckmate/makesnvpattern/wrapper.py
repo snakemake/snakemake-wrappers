@@ -11,7 +11,7 @@ from os.path import commonprefix
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 
-index = commonprefix(snakemake.input.bowtie).rstrip(".")
+index = commonprefix(snakemake.input.index).rstrip(".")
 
 with TemporaryDirectory() as tempdir:
     shell(
