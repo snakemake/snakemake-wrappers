@@ -100,7 +100,7 @@ elif sort_program == "picard":
     )
 
 else:
-    raise ValueError(f"Unexpected value for params.sort ({sort})")
+    raise ValueError(f"Unexpected value for params.sort ({sort_program})")
 
 
 def get_format(path: str) -> str:
