@@ -21,5 +21,10 @@ output:
 params:
   - extra: additional program arguments (except for `-x`, `-U`, `-1`, `-2`, `--interleaved`, `-b`, `--met-file`, `--un`, `--al`, `--un-conc`, `--al-conc`, `-f`, `--tab6`, `--tab5`, `-q`, or `-p/--threads`)
   - interleaved: Input `sample` contains interleaved paired-end FASTQ/FASTA reads. `False`(default) or `True`.
+  - sort_program: program to sort the output. `none`(default), `samtools`, or `picard`.
+  - sort_extra: additional arguments for samtools or picard when sorting.
+  - sort_order: choose between `coordinate`(default) or `queryname`.
 notes: |
+  * The `extra` param allows for additional arguments for bowtie2.
+  * The `sort` param allows to enable sorting, and can be either 'none', 'samtools' or 'picard'.
   * This wrapper uses an inner pipe. Make sure to use at least two threads in your Snakefile.
