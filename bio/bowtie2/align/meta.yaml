@@ -5,6 +5,7 @@ authors:
   - Johannes Köster
   - Filipe G. Vieira
   - Thibault Dayris
+  - Jorge Langa
 input:
   - sample: FASTQ file(s)
   - idx: Bowtie2 indexed reference index
