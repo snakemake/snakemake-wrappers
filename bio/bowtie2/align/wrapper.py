@@ -26,6 +26,8 @@ samtools_opts = get_samtools_opts(
 java_opts = get_java_opts(snakemake)
 
 bowtie2_threads = snakemake.threads
+if bowtie2_threads < 2:
+    raise ValueError("This wrapper requires at least 2 threads")
 samtools_threads = snakemake.threads - 1
 
 
