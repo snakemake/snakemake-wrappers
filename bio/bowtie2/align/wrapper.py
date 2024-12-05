@@ -1,4 +1,4 @@
-__author__ = "Johannes Köster"
+__author__ = "Johannes Köster, Jorge Langa"
 __copyright__ = "Copyright 2016, Johannes Köster"
 __email__ = "koester@jimmy.harvard.edu"
 __license__ = "MIT"
