@@ -11,6 +11,7 @@ from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 from snakemake_wrapper_utils.samtools import get_samtools_opts
 
+
 # helpers
 def get_extension(filename: str) -> str:
     """
@@ -27,7 +28,10 @@ SAMPLE = snakemake.input.sample
 
 N_SAMPLE = len(SAMPLE)
 
-if not isinstance(SAMPLE, str) and N_SAMPLE not in {1, 2, }:
+if not isinstance(SAMPLE, str) and N_SAMPLE not in {
+    1,
+    2,
+}:
     raise ValueError("input must have 1 (single-end) or 2 (paired-end) elements")
 
 # input.idx
@@ -73,8 +77,6 @@ bowtie2_threads = snakemake.threads
 sort_threads = snakemake.threads - 1
 
 
-
-
 # params
 extra = snakemake.params.get("extra", "")
 interleaved = snakemake.params.get("interleaved", False)
@@ -102,18 +104,18 @@ if sort_program not in {"none", "samtools", "picard"}:
     )
 
 
-
 # shell
 
 # shell.sample
 
 
-if bam_extension == "cram":
-    if REF is None or REF_FAI is None:
-        raise ValueError(
-            "Reference file and index are required for CRAM output."
-            "Please specify them as input.ref and input.ref_fai."
-        )
+if bam_extension == "cram" and (REF is None or REF_FAI is None):
+    raise ValueError(
+        "Reference file and index are required for CRAM output."
+        "Please specify them as input.ref and input.ref_fai\n"
+        f"input.ref: {REF}\n"
+        f"input.ref_fai: {REF_FAI}"
+    )
 
 
 CMD_INPUT = ""
@@ -135,9 +137,7 @@ elif all(get_extension(sample) == "tab5" for sample in SAMPLE):
     extra += " --tab5 "
 elif all(get_extension(sample) == "tab6" for sample in SAMPLE):
     extra += " --tab6 "
-elif all(
-    get_extension(sample) in ("fa", "mfa", "fasta") for sample in SAMPLE
-):
+elif all(get_extension(sample) in ("fa", "mfa", "fasta") for sample in SAMPLE):
     extra += " -f "
 
 
@@ -171,8 +171,12 @@ match sort_program:
         if sort_order == "queryname":
             sort_extra += " -n"
         # Sort alignments using samtools sort.
+        if bam_extension == "cram":
+            samtools_opts += f" --reference {REF} "
         PIPE_CMD = " | samtools sort {samtools_opts} {sort_extra} -T {tmpdir} > {BAM}"
     case "picard":
+        if bam_extension == "cram":
+            picard_opts = f" REFERENCE_SEQUENCE={REF} "
         PIPE_CMD = (
             " | picard SortSam {java_opts} {sort_extra} "
             "--INPUT /dev/stdin "
@@ -195,7 +199,6 @@ if concordant:
 
 
 index = path.commonprefix(snakemake.input.idx).rstrip(".")
-
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
