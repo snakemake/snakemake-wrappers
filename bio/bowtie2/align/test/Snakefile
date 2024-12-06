@@ -86,7 +86,6 @@ rule test_bowtie2_cram:
             ".rev.2.bt2",
         ),
         ref="genome.fasta",
-        ref_fai="genome.fasta.fai",
     output:
         "mapped_idx/{sample}.cram",
         # idx="",
@@ -123,20 +122,13 @@ for order in ["coordinate", "queryname"]:
                         ".rev.2.bt2",
                     ),
                     ref="genome.fasta",
-                    ref_fai="genome.fasta.fai",
                 output:
                     f"mapped_idx/{{sample}}.{program}_{order}.{extension}",
-                    # idx="",
-                    # metrics="",
-                    # unaligned="",
-                    # unpaired="",
-                    # unconcordant="",
-                    # concordant="",
                 params:
                     sort_program=program,
                     sort_order=order,
                     sort_extra="",
-                    extra="",  # optional parameters
+                    extra="",
                 log:
                     f"logs/bowtie2/{{sample}}.{program}_{order}_{extension}.log",
                 threads: 8  # Use at least two threads
