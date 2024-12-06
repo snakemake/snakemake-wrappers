@@ -46,7 +46,7 @@ index_extensions = [idx[len(index) :] for idx in snakemake.input.idx]
 missing_idx = REQUIRED_IDX - set(index_extensions)
 if len(missing_idx) > 0:
     raise ValueError(
-        f"Missing required indices: {missing_idx} declarad as input.idx.\n"
+        f"Missing required indices: {missing_idx} declared as input.idx.\n"
         f"Identified reference file is {index} with extensions {index_extensions}"
     )
 
