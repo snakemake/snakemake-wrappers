@@ -11,6 +11,16 @@ from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 from snakemake_wrapper_utils.samtools import get_samtools_opts
 
+# helpers
+def get_extension(filename: str) -> str:
+    """
+    Return file format since Bowtie2 reads files that
+    could be gzip'ed (extension: .gz) or bzip2'ed (extension: .bz2).
+    """
+    if filename.endswith((".gz", ".bz2")):
+        return filename.split(".")[-2].lower()
+    return filename.split(".")[-1].lower()
+
 
 # input.sample
 SAMPLE = snakemake.input.sample
@@ -51,6 +61,8 @@ unaligned = snakemake.output.get("unaligned", None)
 unpaired = snakemake.output.get("unpaired", None)
 unconcordant = snakemake.output.get("unconcordant", None)
 concordant = snakemake.output.get("concordant", None)
+
+bam_extension = get_extension(BAM)
 
 
 # log
@@ -94,14 +106,14 @@ if sort_program not in {"none", "samtools", "picard"}:
 # shell
 
 # shell.sample
-def get_extension(filename: str) -> str:
-    """
-    Return file format since Bowtie2 reads files that
-    could be gzip'ed (extension: .gz) or bzip2'ed (extension: .bz2).
-    """
-    if filename.endswith((".gz", ".bz2")):
-        return filename.split(".")[-2].lower()
-    return filename.split(".")[-1].lower()
+
+
+if bam_extension == "cram":
+    if REF is None or REF_FAI is None:
+        raise ValueError(
+            "Reference file and index are required for CRAM output."
+            "Please specify them as input.ref and input.ref_fai."
+        )
 
 
 CMD_INPUT = ""
