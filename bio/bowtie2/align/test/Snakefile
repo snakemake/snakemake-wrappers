@@ -86,6 +86,7 @@ rule test_bowtie2_cram:
             ".rev.2.bt2",
         ),
         ref="genome.fasta",
+        ref_fai="genome.fasta.fai",
     output:
         "mapped_idx/{sample}.cram",
         # idx="",
@@ -122,6 +123,7 @@ for order in ["coordinate", "queryname"]:
                         ".rev.2.bt2",
                     ),
                     ref="genome.fasta",
+                    ref_fai="genome.fasta.fai",
                 output:
                     f"mapped_idx/{{sample}}.{program}_{order}.{extension}",
                     # idx="",
