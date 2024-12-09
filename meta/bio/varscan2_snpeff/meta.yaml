@@ -5,7 +5,7 @@ description: >
     +----------------+----------+------------------------------------------------+
     | Step           | Tool     | Reason                                         |
     +================+==========+================================================+
-    | Call variants  | Shell    | Acquire genome sequence                        |
+    | Get reference  | Ensembl | Acquire genome sequence                        |
     +----------------+----------+------------------------------------------------+
     | Call variants  | Samtools | Acquire a list of potential variants           |
     +----------------+----------+------------------------------------------------+
