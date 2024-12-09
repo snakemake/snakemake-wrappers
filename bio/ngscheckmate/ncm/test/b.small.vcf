@@ -1,0 +1,139 @@
+##fileformat=VCFv4.2
+##FILTER=<ID=PASS,Description="All filters passed">
+##samtoolsVersion=1.6+htslib-1.6
+##samtoolsCommand=samtools mpileup -u -f small_genome.fasta b.small.bam
+##reference=file://small_genome.fasta
+##contig=<ID=21,length=630>
+##ALT=<ID=*,Description="Represents allele(s) other than observed.">
+##INFO=<ID=INDEL,Number=0,Type=Flag,Description="Indicates that the variant is an INDEL.">
+##INFO=<ID=IDV,Number=1,Type=Integer,Description="Maximum number of reads supporting an indel">
+##INFO=<ID=IMF,Number=1,Type=Float,Description="Maximum fraction of reads supporting an indel">
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Raw read depth">
+##INFO=<ID=VDB,Number=1,Type=Float,Description="Variant Distance Bias for filtering splice-site artefacts in RNA-seq data (bigger is better)",Version="3">
+##INFO=<ID=RPB,Number=1,Type=Float,Description="Mann-Whitney U test of Read Position Bias (bigger is better)">
+##INFO=<ID=MQB,Number=1,Type=Float,Description="Mann-Whitney U test of Mapping Quality Bias (bigger is better)">
+##INFO=<ID=BQB,Number=1,Type=Float,Description="Mann-Whitney U test of Base Quality Bias (bigger is better)">
+##INFO=<ID=MQSB,Number=1,Type=Float,Description="Mann-Whitney U test of Mapping Quality vs Strand Bias (bigger is better)">
+##INFO=<ID=SGB,Number=1,Type=Float,Description="Segregation based metric.">
+##INFO=<ID=MQ0F,Number=1,Type=Float,Description="Fraction of MQ0 reads (smaller is better)">
+##FORMAT=<ID=PL,Number=G,Type=Integer,Description="List of Phred-scaled genotype likelihoods">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##INFO=<ID=AF1,Number=1,Type=Float,Description="Max-likelihood estimate of the first ALT allele frequency (assuming HWE)">
+##INFO=<ID=AF2,Number=1,Type=Float,Description="Max-likelihood estimate of the first and second group ALT allele frequency (assuming HWE)">
+##INFO=<ID=AC1,Number=1,Type=Float,Description="Max-likelihood estimate of the first ALT allele count (no HWE assumption)">
+##INFO=<ID=MQ,Number=1,Type=Integer,Description="Root-mean-square mapping quality of covering reads">
+##INFO=<ID=FQ,Number=1,Type=Float,Description="Phred probability of all samples being the same">
+##INFO=<ID=PV4,Number=4,Type=Float,Description="P-values for strand bias, baseQ bias, mapQ bias and tail distance bias">
+##INFO=<ID=G3,Number=3,Type=Float,Description="ML estimate of genotype frequencies">
+##INFO=<ID=HWE,Number=1,Type=Float,Description="Chi^2 based HWE test P-value based on G3">
+##INFO=<ID=DP4,Number=4,Type=Integer,Description="Number of high-quality ref-forward , ref-reverse, alt-forward and alt-reverse bases">
+##bcftools_callVersion=1.12+htslib-1.12
+##bcftools_callCommand=call -c; Date=Fri Nov  8 11:55:33 2024
+##bcftools_viewVersion=1.12+htslib-1.12
+##bcftools_viewCommand=view --output b.small.vcf.gz --output-type z --threads 5; Date=Fri Nov  8 11:55:33 2024
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	b.small.bam
+21	13	.	G	.	32.953	.	DP=1;MQ0F=0;AF1=0;AC1=0;DP4=1,0,0,0;MQ=20;FQ=-30.0333	GT:PL	0/0:0
+21	14	.	A	.	32.953	.	DP=1;MQ0F=0;AF1=0;AC1=0;DP4=1,0,0,0;MQ=20;FQ=-30.0333	GT:PL	0/0:0
+21	15	.	G	.	32.953	.	DP=1;MQ0F=0;AF1=0;AC1=0;DP4=1,0,0,0;MQ=20;FQ=-30.0333	GT:PL	0/0:0
+21	16	.	G	.	32.953	.	DP=1;MQ0F=0;AF1=0;AC1=0;DP4=1,0,0,0;MQ=20;FQ=-30.0333	GT:PL	0/0:0
+21	17	.	T	.	32.953	.	DP=1;MQ0F=0;AF1=0;AC1=0;DP4=1,0,0,0;MQ=20;FQ=-30.0333	GT:PL	0/0:0
+21	18	.	A	.	35.9929	.	DP=2;MQ0F=0;AF1=0;AC1=0;DP4=2,0,0,0;MQ=20;FQ=-32.989	GT:PL	0/0:0
+21	19	.	G	.	35.9929	.	DP=2;MQ0F=0;AF1=0;AC1=0;DP4=2,0,0,0;MQ=20;FQ=-32.989	GT:PL	0/0:0
+21	20	.	A	.	35.9929	.	DP=2;MQ0F=0;AF1=0;AC1=0;DP4=2,0,0,0;MQ=20;FQ=-32.989	GT:PL	0/0:0
+21	21	.	T	.	35.9929	.	DP=2;MQ0F=0;AF1=0;AC1=0;DP4=2,0,0,0;MQ=20;FQ=-32.989	GT:PL	0/0:0
+21	22	.	C	.	35.9929	.	DP=2;MQ0F=0;AF1=0;AC1=0;DP4=2,0,0,0;MQ=20;FQ=-32.989	GT:PL	0/0:0
+21	23	.	A	.	38.9943	.	DP=3;MQ0F=0;AF1=0;AC1=0;DP4=3,0,0,0;MQ=20;FQ=-35.987	GT:PL	0/0:0
+21	24	.	T	.	38.9943	.	DP=3;MQ0F=0;AF1=0;AC1=0;DP4=3,0,0,0;MQ=20;FQ=-35.987	GT:PL	0/0:0
+21	25	.	C	.	38.9943	.	DP=3;MQ0F=0;AF1=0;AC1=0;DP4=3,0,0,0;MQ=20;FQ=-35.987	GT:PL	0/0:0
+21	26	.	T	.	38.9943	.	DP=3;MQ0F=0;AF1=0;AC1=0;DP4=3,0,0,0;MQ=20;FQ=-35.987	GT:PL	0/0:0
+21	27	.	T	.	38.9943	.	DP=3;MQ0F=0;AF1=0;AC1=0;DP4=3,0,0,0;MQ=20;FQ=-35.987	GT:PL	0/0:0
+21	28	.	G	.	41.9943	.	DP=4;MQ0F=0;AF1=0;AC1=0;DP4=4,0,0,0;MQ=20;FQ=-38.9864	GT:PL	0/0:0
+21	29	.	G	.	41.9943	.	DP=4;MQ0F=0;AF1=0;AC1=0;DP4=4,0,0,0;MQ=20;FQ=-38.9864	GT:PL	0/0:0
+21	30	.	T	.	41.9943	.	DP=4;MQ0F=0;AF1=0;AC1=0;DP4=4,0,0,0;MQ=20;FQ=-38.9864	GT:PL	0/0:0
+21	31	.	C	.	41.9943	.	DP=4;MQ0F=0;AF1=0;AC1=0;DP4=4,0,0,0;MQ=20;FQ=-38.9864	GT:PL	0/0:0
+21	32	.	C	.	41.9943	.	DP=4;MQ0F=0;AF1=0;AC1=0;DP4=4,0,0,0;MQ=20;FQ=-38.9864	GT:PL	0/0:0
+21	33	.	A	.	44.9942	.	DP=5;MQ0F=0;AF1=0;AC1=0;DP4=5,0,0,0;MQ=20;FQ=-41.9862	GT:PL	0/0:0
+21	34	.	A	.	44.9942	.	DP=5;MQ0F=0;AF1=0;AC1=0;DP4=5,0,0,0;MQ=20;FQ=-41.9862	GT:PL	0/0:0
+21	35	.	T	.	44.9942	.	DP=5;MQ0F=0;AF1=0;AC1=0;DP4=5,0,0,0;MQ=20;FQ=-41.9862	GT:PL	0/0:0
+21	36	.	C	.	44.9942	.	DP=5;MQ0F=0;AF1=0;AC1=0;DP4=5,0,0,0;MQ=20;FQ=-41.9862	GT:PL	0/0:0
+21	37	.	A	.	44.9942	.	DP=5;MQ0F=0;AF1=0;AC1=0;DP4=5,0,0,0;MQ=20;FQ=-41.9862	GT:PL	0/0:0
+21	38	.	G	.	47.9942	.	DP=6;MQ0F=0;AF1=0;AC1=0;DP4=6,0,0,0;MQ=20;FQ=-44.9861	GT:PL	0/0:0
+21	39	.	A	.	47.9942	.	DP=6;MQ0F=0;AF1=0;AC1=0;DP4=6,0,0,0;MQ=20;FQ=-44.9861	GT:PL	0/0:0
+21	40	.	C	.	47.9942	.	DP=6;MQ0F=0;AF1=0;AC1=0;DP4=6,0,0,0;MQ=20;FQ=-44.9861	GT:PL	0/0:0
+21	41	.	T	.	47.9942	.	DP=6;MQ0F=0;AF1=0;AC1=0;DP4=6,0,0,0;MQ=20;FQ=-44.9861	GT:PL	0/0:0
+21	42	.	G	.	47.9942	.	DP=6;MQ0F=0;AF1=0;AC1=0;DP4=6,0,0,0;MQ=20;FQ=-44.9861	GT:PL	0/0:0
+21	43	.	A	.	50.9942	.	DP=7;MQ0F=0;AF1=0;AC1=0;DP4=7,0,0,0;MQ=20;FQ=-47.986	GT:PL	0/0:0
+21	44	.	A	.	50.9942	.	DP=7;MQ0F=0;AF1=0;AC1=0;DP4=7,0,0,0;MQ=20;FQ=-47.986	GT:PL	0/0:0
+21	45	.	A	.	50.9942	.	DP=7;MQ0F=0;AF1=0;AC1=0;DP4=7,0,0,0;MQ=20;FQ=-47.986	GT:PL	0/0:0
+21	46	.	T	.	50.9942	.	DP=7;MQ0F=0;AF1=0;AC1=0;DP4=7,0,0,0;MQ=20;FQ=-47.986	GT:PL	0/0:0
+21	47	.	G	.	50.9942	.	DP=7;MQ0F=0;AF1=0;AC1=0;DP4=7,0,0,0;MQ=20;FQ=-47.986	GT:PL	0/0:0
+21	48	.	C	.	53.9942	.	DP=8;MQ0F=0;AF1=0;AC1=0;DP4=8,0,0,0;MQ=20;FQ=-50.986	GT:PL	0/0:0
+21	49	.	C	.	53.9942	.	DP=8;MQ0F=0;AF1=0;AC1=0;DP4=8,0,0,0;MQ=20;FQ=-50.986	GT:PL	0/0:0
+21	50	.	T	.	53.9942	.	DP=8;MQ0F=0;AF1=0;AC1=0;DP4=8,0,0,0;MQ=20;FQ=-50.986	GT:PL	0/0:0
+21	51	.	T	.	53.9942	.	DP=8;MQ0F=0;AF1=0;AC1=0;DP4=8,0,0,0;MQ=20;FQ=-50.986	GT:PL	0/0:0
+21	52	.	G	.	53.9942	.	DP=8;MQ0F=0;AF1=0;AC1=0;DP4=8,0,0,0;MQ=20;FQ=-50.986	GT:PL	0/0:0
+21	53	.	A	.	56.9942	.	DP=9;MQ0F=0;AF1=0;AC1=0;DP4=9,0,0,0;MQ=20;FQ=-53.9861	GT:PL	0/0:0
+21	54	.	G	.	56.9942	.	DP=9;MQ0F=0;AF1=0;AC1=0;DP4=9,0,0,0;MQ=20;FQ=-53.9861	GT:PL	0/0:0
+21	55	.	G	.	56.9942	.	DP=9;MQ0F=0;AF1=0;AC1=0;DP4=9,0,0,0;MQ=20;FQ=-53.9861	GT:PL	0/0:0
+21	56	.	C	.	56.9942	.	DP=9;MQ0F=0;AF1=0;AC1=0;DP4=9,0,0,0;MQ=20;FQ=-53.9861	GT:PL	0/0:0
+21	57	.	T	.	56.9942	.	DP=9;MQ0F=0;AF1=0;AC1=0;DP4=9,0,0,0;MQ=20;FQ=-53.9861	GT:PL	0/0:0
+21	58	.	A	.	59.9942	.	DP=10;MQ0F=0;AF1=0;AC1=0;DP4=10,0,0,0;MQ=20;FQ=-56.9861	GT:PL	0/0:0
+21	59	.	G	.	59.9942	.	DP=10;MQ0F=0;AF1=0;AC1=0;DP4=10,0,0,0;MQ=20;FQ=-56.9861	GT:PL	0/0:0
+21	60	.	A	.	59.9942	.	DP=10;MQ0F=0;AF1=0;AC1=0;DP4=10,0,0,0;MQ=20;FQ=-56.9861	GT:PL	0/0:0
+21	61	.	T	.	59.9942	.	DP=10;MQ0F=0;AF1=0;AC1=0;DP4=10,0,0,0;MQ=20;FQ=-56.9861	GT:PL	0/0:0
+21	62	.	T	.	59.9942	.	DP=10;MQ0F=0;AF1=0;AC1=0;DP4=10,0,0,0;MQ=20;FQ=-56.9861	GT:PL	0/0:0
+21	63	.	T	.	59.9942	.	DP=10;MQ0F=0;AF1=0;AC1=0;DP4=10,0,0,0;MQ=20;FQ=-56.9861	GT:PL	0/0:0
+21	64	.	C	.	59.9942	.	DP=10;MQ0F=0;AF1=0;AC1=0;DP4=10,0,0,0;MQ=20;FQ=-56.9861	GT:PL	0/0:0
+21	65	.	A	.	59.9942	.	DP=10;MQ0F=0;AF1=0;AC1=0;DP4=10,0,0,0;MQ=20;FQ=-56.9861	GT:PL	0/0:0
+21	66	.	G	.	59.9942	.	DP=10;MQ0F=0;AF1=0;AC1=0;DP4=10,0,0,0;MQ=20;FQ=-56.9861	GT:PL	0/0:0
+21	67	.	T	.	59.9942	.	DP=10;MQ0F=0;AF1=0;AC1=0;DP4=10,0,0,0;MQ=20;FQ=-56.9861	GT:PL	0/0:0
+21	68	.	C	.	59.9942	.	DP=10;MQ0F=0;AF1=0;AC1=0;DP4=10,0,0,0;MQ=20;FQ=-56.9861	GT:PL	0/0:0
+21	69	.	T	.	59.9942	.	DP=10;MQ0F=0;AF1=0;AC1=0;DP4=10,0,0,0;MQ=20;FQ=-56.9861	GT:PL	0/0:0
+21	70	.	T	.	59.9942	.	DP=10;MQ0F=0;AF1=0;AC1=0;DP4=10,0,0,0;MQ=20;FQ=-56.9861	GT:PL	0/0:0
+21	71	.	T	.	59.9942	.	DP=10;MQ0F=0;AF1=0;AC1=0;DP4=10,0,0,0;MQ=20;FQ=-56.9861	GT:PL	0/0:0
+21	72	.	G	.	59.9942	.	DP=10;MQ0F=0;AF1=0;AC1=0;DP4=10,0,0,0;MQ=20;FQ=-56.9861	GT:PL	0/0:0
+21	73	.	T	.	56.9942	.	DP=9;MQ0F=0;AF1=0;AC1=0;DP4=9,0,0,0;MQ=20;FQ=-53.9861	GT:PL	0/0:0
+21	74	.	G	.	56.9942	.	DP=9;MQ0F=0;AF1=0;AC1=0;DP4=9,0,0,0;MQ=20;FQ=-53.9861	GT:PL	0/0:0
+21	75	.	G	.	56.9942	.	DP=9;MQ0F=0;AF1=0;AC1=0;DP4=9,0,0,0;MQ=20;FQ=-53.9861	GT:PL	0/0:0
+21	76	.	C	.	56.9942	.	DP=9;MQ0F=0;AF1=0;AC1=0;DP4=9,0,0,0;MQ=20;FQ=-53.9861	GT:PL	0/0:0
+21	77	.	A	.	56.9942	.	DP=9;MQ0F=0;AF1=0;AC1=0;DP4=9,0,0,0;MQ=20;FQ=-53.9861	GT:PL	0/0:0
+21	78	.	G	.	53.9942	.	DP=8;MQ0F=0;AF1=0;AC1=0;DP4=8,0,0,0;MQ=20;FQ=-50.986	GT:PL	0/0:0
+21	79	.	C	.	53.9942	.	DP=8;MQ0F=0;AF1=0;AC1=0;DP4=8,0,0,0;MQ=20;FQ=-50.986	GT:PL	0/0:0
+21	80	.	T	.	53.9942	.	DP=8;MQ0F=0;AF1=0;AC1=0;DP4=8,0,0,0;MQ=20;FQ=-50.986	GT:PL	0/0:0
+21	81	.	G	.	53.9942	.	DP=8;MQ0F=0;AF1=0;AC1=0;DP4=8,0,0,0;MQ=20;FQ=-50.986	GT:PL	0/0:0
+21	82	.	G	.	53.9942	.	DP=8;MQ0F=0;AF1=0;AC1=0;DP4=8,0,0,0;MQ=20;FQ=-50.986	GT:PL	0/0:0
+21	83	.	T	.	50.9942	.	DP=7;MQ0F=0;AF1=0;AC1=0;DP4=7,0,0,0;MQ=20;FQ=-47.986	GT:PL	0/0:0
+21	84	.	G	.	50.9942	.	DP=7;MQ0F=0;AF1=0;AC1=0;DP4=7,0,0,0;MQ=20;FQ=-47.986	GT:PL	0/0:0
+21	85	.	A	.	50.9942	.	DP=7;MQ0F=0;AF1=0;AC1=0;DP4=7,0,0,0;MQ=20;FQ=-47.986	GT:PL	0/0:0
+21	86	.	A	.	50.9942	.	DP=7;MQ0F=0;AF1=0;AC1=0;DP4=7,0,0,0;MQ=20;FQ=-47.986	GT:PL	0/0:0
+21	87	.	T	.	50.9942	.	DP=7;MQ0F=0;AF1=0;AC1=0;DP4=7,0,0,0;MQ=20;FQ=-47.986	GT:PL	0/0:0
+21	88	.	T	.	47.9942	.	DP=6;MQ0F=0;AF1=0;AC1=0;DP4=6,0,0,0;MQ=20;FQ=-44.9861	GT:PL	0/0:0
+21	89	.	T	.	47.9942	.	DP=6;MQ0F=0;AF1=0;AC1=0;DP4=6,0,0,0;MQ=20;FQ=-44.9861	GT:PL	0/0:0
+21	90	.	C	.	47.9942	.	DP=6;MQ0F=0;AF1=0;AC1=0;DP4=6,0,0,0;MQ=20;FQ=-44.9861	GT:PL	0/0:0
+21	91	.	T	.	47.9942	.	DP=6;MQ0F=0;AF1=0;AC1=0;DP4=6,0,0,0;MQ=20;FQ=-44.9861	GT:PL	0/0:0
+21	92	.	A	.	47.9942	.	DP=6;MQ0F=0;AF1=0;AC1=0;DP4=6,0,0,0;MQ=20;FQ=-44.9861	GT:PL	0/0:0
+21	93	.	G	.	44.9942	.	DP=5;MQ0F=0;AF1=0;AC1=0;DP4=5,0,0,0;MQ=20;FQ=-41.9862	GT:PL	0/0:0
+21	94	.	T	.	44.9942	.	DP=5;MQ0F=0;AF1=0;AC1=0;DP4=5,0,0,0;MQ=20;FQ=-41.9862	GT:PL	0/0:0
+21	95	.	T	.	44.9942	.	DP=5;MQ0F=0;AF1=0;AC1=0;DP4=5,0,0,0;MQ=20;FQ=-41.9862	GT:PL	0/0:0
+21	96	.	T	.	44.9942	.	DP=5;MQ0F=0;AF1=0;AC1=0;DP4=5,0,0,0;MQ=20;FQ=-41.9862	GT:PL	0/0:0
+21	97	.	G	.	44.9942	.	DP=5;MQ0F=0;AF1=0;AC1=0;DP4=5,0,0,0;MQ=20;FQ=-41.9862	GT:PL	0/0:0
+21	98	.	C	.	41.9943	.	DP=4;MQ0F=0;AF1=0;AC1=0;DP4=4,0,0,0;MQ=20;FQ=-38.9864	GT:PL	0/0:0
+21	99	.	C	.	41.9943	.	DP=4;MQ0F=0;AF1=0;AC1=0;DP4=4,0,0,0;MQ=20;FQ=-38.9864	GT:PL	0/0:0
+21	100	.	T	.	41.9943	.	DP=4;MQ0F=0;AF1=0;AC1=0;DP4=4,0,0,0;MQ=20;FQ=-38.9864	GT:PL	0/0:0
+21	101	.	T	.	41.9943	.	DP=4;MQ0F=0;AF1=0;AC1=0;DP4=4,0,0,0;MQ=20;FQ=-38.9864	GT:PL	0/0:0
+21	102	.	T	.	41.9943	.	DP=4;MQ0F=0;AF1=0;AC1=0;DP4=4,0,0,0;MQ=20;FQ=-38.9864	GT:PL	0/0:0
+21	103	.	T	.	38.9943	.	DP=3;MQ0F=0;AF1=0;AC1=0;DP4=3,0,0,0;MQ=20;FQ=-35.987	GT:PL	0/0:0
+21	104	.	C	.	38.9943	.	DP=3;MQ0F=0;AF1=0;AC1=0;DP4=3,0,0,0;MQ=20;FQ=-35.987	GT:PL	0/0:0
+21	105	.	A	.	38.9943	.	DP=3;MQ0F=0;AF1=0;AC1=0;DP4=3,0,0,0;MQ=20;FQ=-35.987	GT:PL	0/0:0
+21	106	.	G	.	38.9943	.	DP=3;MQ0F=0;AF1=0;AC1=0;DP4=3,0,0,0;MQ=20;FQ=-35.987	GT:PL	0/0:0
+21	107	.	C	.	38.9943	.	DP=3;MQ0F=0;AF1=0;AC1=0;DP4=3,0,0,0;MQ=20;FQ=-35.987	GT:PL	0/0:0
+21	108	.	T	.	35.9929	.	DP=2;MQ0F=0;AF1=0;AC1=0;DP4=2,0,0,0;MQ=20;FQ=-32.989	GT:PL	0/0:0
+21	109	.	A	.	35.9929	.	DP=2;MQ0F=0;AF1=0;AC1=0;DP4=2,0,0,0;MQ=20;FQ=-32.989	GT:PL	0/0:0
+21	110	.	G	.	35.9929	.	DP=2;MQ0F=0;AF1=0;AC1=0;DP4=2,0,0,0;MQ=20;FQ=-32.989	GT:PL	0/0:0
+21	111	.	G	.	35.9929	.	DP=2;MQ0F=0;AF1=0;AC1=0;DP4=2,0,0,0;MQ=20;FQ=-32.989	GT:PL	0/0:0
+21	112	.	G	.	35.9929	.	DP=2;MQ0F=0;AF1=0;AC1=0;DP4=2,0,0,0;MQ=20;FQ=-32.989	GT:PL	0/0:0
+21	113	.	A	.	32.953	.	DP=1;MQ0F=0;AF1=0;AC1=0;DP4=1,0,0,0;MQ=20;FQ=-30.0333	GT:PL	0/0:0
+21	114	.	T	.	32.953	.	DP=1;MQ0F=0;AF1=0;AC1=0;DP4=1,0,0,0;MQ=20;FQ=-30.0333	GT:PL	0/0:0
+21	115	.	T	.	32.953	.	DP=1;MQ0F=0;AF1=0;AC1=0;DP4=1,0,0,0;MQ=20;FQ=-30.0333	GT:PL	0/0:0
+21	116	.	A	.	32.953	.	DP=1;MQ0F=0;AF1=0;AC1=0;DP4=1,0,0,0;MQ=20;FQ=-30.0333	GT:PL	0/0:0
+21	117	.	G	.	32.953	.	DP=1;MQ0F=0;AF1=0;AC1=0;DP4=1,0,0,0;MQ=20;FQ=-30.0333	GT:PL	0/0:0
