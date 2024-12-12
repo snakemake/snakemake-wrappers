@@ -23,18 +23,19 @@ def get_extension(filename: str) -> str:
     return filename.split(".")[-1].lower()
 
 
-# input.sample
+# input
 SAMPLE = snakemake.input.sample
+INDEX = snakemake.input.idx
+REF = snakemake.input.get("ref", None)
+REF_FAI = snakemake.input.get("ref_fai", None)
 
-N_SAMPLE = len(SAMPLE)
 
-if not isinstance(SAMPLE, str) and N_SAMPLE not in {
-    1,
-    2,
-}:
-    raise ValueError("input must have 1 (single-end) or 2 (paired-end) elements")
 
 # input.idx
+
+if not isinstance(SAMPLE, str) and len(SAMPLE) not in [1, 2]:
+    raise ValueError("input must have 1 (single-end) or 2 (paired-end) elements")
+
 REQUIRED_IDX = {".1.bt2", ".2.bt2", ".3.bt2", ".4.bt2", ".rev.1.bt2", ".rev.2.bt2"}
 
 index = path.commonprefix(snakemake.input.idx)[:-1]
@@ -51,20 +52,16 @@ if len(missing_idx) > 0:
     )
 
 
-# input.ref
-REF = snakemake.input.get("ref", None)
 
-# input.ref_fai
-REF_FAI = snakemake.input.get("ref_fai", None)
 
 
 # output
 BAM = str(snakemake.output[0])
-metrics = snakemake.output.get("metrics", None)
-unaligned = snakemake.output.get("unaligned", None)
-unpaired = snakemake.output.get("unpaired", None)
-unconcordant = snakemake.output.get("unconcordant", None)
-concordant = snakemake.output.get("concordant", None)
+METRICS = snakemake.output.get("metrics", None)
+UNALIGNED = snakemake.output.get("unaligned", None)
+UNPAIRED = snakemake.output.get("unpaired", None)
+UNCONCORDANT = snakemake.output.get("unconcordant", None)
+CONCORDANT = snakemake.output.get("concordant", None)
 
 bam_extension = get_extension(BAM)
 
@@ -119,7 +116,7 @@ if bam_extension == "cram" and (REF is None or REF_FAI is None):
 
 
 CMD_INPUT = ""
-if N_SAMPLE == 1:
+if len(SAMPLE) == 1:
     if get_extension(SAMPLE[0]) in ("bam", "sam"):
         CMD_INPUT = f"-b {SAMPLE}"
     else:
@@ -186,16 +183,16 @@ match sort_program:
         )
 
 
-if metrics:
-    extra += f" --met-file {metrics} "
-if unaligned:
-    extra += f" --un {unaligned} "
-if unpaired:
-    extra += f" --al {unpaired} "
-if unconcordant:
-    extra += f" --un-conc {unconcordant} "
-if concordant:
-    extra += f" --al-conc {concordant} "
+if METRICS:
+    extra += f" --met-file {METRICS} "
+if UNALIGNED:
+    extra += f" --un {UNALIGNED} "
+if UNPAIRED:
+    extra += f" --al {UNPAIRED} "
+if UNCONCORDANT:
+    extra += f" --un-conc {UNCONCORDANT} "
+if CONCORDANT:
+    extra += f" --al-conc {CONCORDANT} "
 
 
 index = path.commonprefix(snakemake.input.idx).rstrip(".")
