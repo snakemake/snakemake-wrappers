@@ -1,6 +1,7 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
+# created-by: conda 24.9.2
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
 https://conda.anaconda.org/conda-forge/linux-64/ca-certificates-2024.8.30-hbcca054_0.conda#c27d1c142233b5bc9ca570c6e2e0c244
@@ -43,6 +44,6 @@ https://conda.anaconda.org/conda-forge/noarch/six-1.17.0-pyhd8ed1ab_0.conda#a451
 https://conda.anaconda.org/conda-forge/linux-64/numpy-2.2.0-py313hb30382a_0.conda#5aa2240f061c27ddabaa2a4924c1a066
 https://conda.anaconda.org/conda-forge/noarch/python-dateutil-2.9.0.post0-pyhff2d567_1.conda#5ba79d7c71f03c678c8ead841f347d6e
 https://conda.anaconda.org/conda-forge/noarch/yte-1.5.5-pyha770c72_0.conda#af37e29d2c9a37396b3fd5a65dae5c23
-https://conda.anaconda.org/conda-forge/linux-64/datavzrd-2.44.4-py313h2f9c43f_0.conda#a9d49274d0697423bf400a9bed76cd78
+https://conda.anaconda.org/conda-forge/linux-64/datavzrd-2.45.0-py313h26affdb_0.conda#2baf0369d7c1d633bc7b341639ac8586
 https://conda.anaconda.org/conda-forge/linux-64/pandas-2.2.3-py313ha87cce1_1.conda#c5d63dd501db554b84a30dea33824164
 https://conda.anaconda.org/conda-forge/linux-64/polars-1.17.1-py313hae41bca_0.conda#ee6fe8aba7963d1229645a3f831e3744
