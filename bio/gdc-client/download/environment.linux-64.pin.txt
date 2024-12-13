@@ -19,7 +19,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libffi-3.4.2-h7f98852_5.tar.bz2#
 https://conda.anaconda.org/conda-forge/linux-64/libiconv-1.17-hd590300_2.conda#d66573916ffcf376178462f1b61c941e
 https://conda.anaconda.org/conda-forge/linux-64/liblzma-devel-5.6.3-hb9d3cd8_1.conda#cc4687e1814ed459f3bd6d8e05251ab2
 https://conda.anaconda.org/conda-forge/linux-64/libnsl-2.0.1-hd590300_0.conda#30fd6e37fe21f86f4bd26d6ee73eeec7
-https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.47.0-hadc24fc_1.conda#b6f02b52a174e612e89548f4663ce56a
+https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.47.2-hee588c1_0.conda#b58da17db24b6e08bcbf8fed2fb8c915
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-14.2.0-h4852527_1.conda#8371ac6457591af2cf6159439c1fd051
 https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.5-he02047a_1.conda#70caf8bb6cf39a0b6b7efc885f51c0fe
 https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_h4845f30_101.conda#d453b98d9c83e71da0741bb0ff4d76bc
@@ -30,7 +30,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libxml2-2.13.5-h0d44e9d_1.conda#
 https://conda.anaconda.org/conda-forge/linux-64/readline-8.2-h8228510_1.conda#47d31b792659ce70f470b5c82fdfb7a4
 https://conda.anaconda.org/conda-forge/linux-64/xz-5.6.3-hbcc6ac9_1.conda#62aae173382a8aae284726353c6a6a24
 https://conda.anaconda.org/conda-forge/linux-64/libxslt-1.1.39-h76b75d6_0.conda#e71f31f8cfb0a91439f2086fc8aa0461
-https://conda.anaconda.org/conda-forge/linux-64/sqlite-3.47.0-h9eae976_1.conda#53abf1ef70b9ae213b22caa5350f97a9
+https://conda.anaconda.org/conda-forge/linux-64/sqlite-3.47.2-h9eae976_0.conda#64a954de15d114281535a26fd4d1f294
 https://conda.anaconda.org/conda-forge/linux-64/python-3.7.12-hf930737_100_cpython.tar.bz2#416558a6f46b7a1fa8db7d0e98aff56a
 https://conda.anaconda.org/conda-forge/noarch/attrs-24.2.0-pyh71513ae_0.conda#6732fa52eb8e66e5afeb32db8701a791
 https://conda.anaconda.org/conda-forge/linux-64/brotli-python-1.0.9-py37hd23a5d3_7.tar.bz2#f330e49790eb1af580c0d710e63c8cb0
