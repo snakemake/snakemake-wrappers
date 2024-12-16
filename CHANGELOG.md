@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.5.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v5.4.0...v5.5.0) (2024-12-10)
+
+
+### Features
+
+* NGSCheckMate ([#3498](https://www.github.com/snakemake/snakemake-wrappers/issues/3498)) ([df7fe5b](https://www.github.com/snakemake/snakemake-wrappers/commit/df7fe5bcb5fe737e4d4bd958caec4445ce1f6748))
+
+
+### Performance Improvements
+
+* Update datavzrd wrapper to latest yte version ([#3537](https://www.github.com/snakemake/snakemake-wrappers/issues/3537)) ([336079b](https://www.github.com/snakemake/snakemake-wrappers/commit/336079be7c46dad737227dd02bc6e3b498af87f5))
+
 ## [5.4.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v5.3.0...v5.4.0) (2024-12-06)
 
 
