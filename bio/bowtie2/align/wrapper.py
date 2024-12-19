@@ -168,8 +168,8 @@ elif all(get_extension(sample) in ("fa", "mfa", "fasta") for sample in SAMPLE):
 
 # Determine which pipe command to use for converting to bam or sorting.
 match SORT_PROGRAM:
+
     case "samtools":
-        # Correctly assign number of threads according to user request
         if sort_threads >= 1:
             SAMTOOLS_OPTS += f"--threads {sort_threads} "
         if BAI:
