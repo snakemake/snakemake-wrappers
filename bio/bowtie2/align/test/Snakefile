@@ -71,6 +71,7 @@ use rule test_bowtie2_sam as test_bowtie2_cram with:
     log:
         "logs/bowtie2/samtools_cram_{sample}.log",
 
+
 use rule test_bowtie2_sam as test_bowtie2_sort_samtools with:
     output:
         "mapped_samtools/{sample}.bam",
