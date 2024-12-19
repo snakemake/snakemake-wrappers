@@ -59,7 +59,7 @@ SAMTOOLS_OPTS = (
 JAVA_OPTS = get_java_opts(snakemake)
 
 
-# check
+# checks
 
 # check inputs
 if not isinstance(SAMPLE, str) and len(SAMPLE) not in [1, 2]:
@@ -79,6 +79,23 @@ if len(missing_idx) > 0:
     raise ValueError(
         f"Missing required indices: {missing_idx} declared as input.idx.\n"
         f"Identified reference file is {index_prefix} with extensions {index_extensions}"
+    )
+
+
+# check ouptuts
+bam_extension = get_extension(BAM)
+bai_extension = get_extension(BAI) if BAI else None
+
+if bam_extension.lower() not in {"sam", "bam", "cram"}:
+    raise ValueError(
+        f"Unrecognized extension for output file: {bam_extension}."
+        "Valid extensions are 'sam', 'bam' or 'cram'"
+    )
+
+if bai_extension not in {None, "bai", "crai"}:
+    raise ValueError(
+        f"Unrecognized extension for index file: {bai_extension}."
+        "Valid extensions are 'bai' or 'crai'"
     )
 
 
@@ -104,8 +121,8 @@ if SORT_PROGRAM != "none" and THREADS <= 1:
         "one for bowtie2 and one for samtools/picard."
     )
 
+
 # check input - output compatibility
-bam_extension = get_extension(BAM)
 
 if bam_extension == "cram" and (REF is None or REF_FAI is None):
     raise ValueError(
