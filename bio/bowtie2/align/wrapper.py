@@ -29,10 +29,40 @@ INDEX = snakemake.input.idx
 REF = snakemake.input.get("ref", None)
 REF_FAI = snakemake.input.get("ref_fai", None)
 
+# output
+BAM = str(snakemake.output[0])
+METRICS = snakemake.output.get("metrics", None)
+UNALIGNED = snakemake.output.get("unaligned", None)
+UNPAIRED = snakemake.output.get("unpaired", None)
+UNCONCORDANT = snakemake.output.get("unconcordant", None)
+CONCORDANT = snakemake.output.get("concordant", None)
 
 
-# input.idx
 
+# log
+LOG = snakemake.log_fmt_shell(stdout=False, stderr=True)
+
+# threads
+THREADS = snakemake.threads
+sort_threads = snakemake.threads - 1
+
+
+# params
+EXTRA = snakemake.params.get("extra", "")
+IS_INTERLEAVED = snakemake.params.get("interleaved", False)
+SORT_PROGRAM = snakemake.params.get("sort_program", "none")
+SORT_ORDER = snakemake.params.get("sort_order", "coordinate")
+SORT_EXTRA = snakemake.params.get("sort_extra", "")
+SAMTOOLS_OPTS = get_samtools_opts(
+    snakemake, parse_threads=False, param_name="sort_extra"
+)
+JAVA_OPTS = get_java_opts(snakemake)
+
+
+
+# check
+
+# check inputs
 if not isinstance(SAMPLE, str) and len(SAMPLE) not in [1, 2]:
     raise ValueError("input must have 1 (single-end) or 2 (paired-end) elements")
 
@@ -51,57 +81,25 @@ if len(missing_idx) > 0:
         f"Identified reference file is {index} with extensions {index_extensions}"
     )
 
-
-
-
-
-# output
-BAM = str(snakemake.output[0])
-METRICS = snakemake.output.get("metrics", None)
-UNALIGNED = snakemake.output.get("unaligned", None)
-UNPAIRED = snakemake.output.get("unpaired", None)
-UNCONCORDANT = snakemake.output.get("unconcordant", None)
-CONCORDANT = snakemake.output.get("concordant", None)
-
+# check outputs
 bam_extension = get_extension(BAM)
 
-
-# log
-LOG = snakemake.log_fmt_shell(stdout=False, stderr=True)
-
-# threads
-bowtie2_threads = snakemake.threads
-sort_threads = snakemake.threads - 1
-
-
-# params
-extra = snakemake.params.get("extra", "")
-interleaved = snakemake.params.get("interleaved", False)
-sort_program = snakemake.params.get("sort_program", "none")
-sort_order = snakemake.params.get("sort_order", "coordinate")
-sort_extra = snakemake.params.get("sort_extra", "")
-samtools_opts = get_samtools_opts(
-    snakemake, parse_threads=False, param_name="sort_extra"
-)
-java_opts = get_java_opts(snakemake)
-
-if not isinstance(interleaved, bool):
+# check params
+if not isinstance(IS_INTERLEAVED, bool):
     raise ValueError("params.interleaved must be a boolean")
 
-if sort_order not in {"coordinate", "queryname"}:
+if SORT_ORDER not in {"coordinate", "queryname"}:
     raise ValueError(
-        f"Unexpected value for sort_order ({sort_order})"
+        f"Unexpected value for sort_order ({SORT_ORDER})"
         "Valid values are 'coordinate' or 'queryname'"
     )
 
-if sort_program not in {"none", "samtools", "picard"}:
+if SORT_PROGRAM not in {"none", "samtools", "picard"}:
     raise ValueError(
-        f"Unexpected value for sort_program ({sort_program})"
+        f"Unexpected value for sort_program ({SORT_PROGRAM})"
         "Valid values are 'none', 'samtools' or 'picard'"
     )
 
-
-# shell
 
 # shell.sample
 
@@ -120,26 +118,26 @@ if len(SAMPLE) == 1:
     if get_extension(SAMPLE[0]) in ("bam", "sam"):
         CMD_INPUT = f"-b {SAMPLE}"
     else:
-        if interleaved:
+        if IS_INTERLEAVED:
             CMD_INPUT = f"--interleaved {SAMPLE}"
         else:
             CMD_INPUT = f"-U {SAMPLE}"
 else:
     CMD_INPUT = f"-1 {SAMPLE[0]} -2 {SAMPLE[1]}"
 
-
+cmd_extra = EXTRA
 if all(get_extension(sample) in ("fastq", "fq") for sample in SAMPLE):
-    extra += " -q "
+    cmd_extra += " -q "
 elif all(get_extension(sample) == "tab5" for sample in SAMPLE):
-    extra += " --tab5 "
+    cmd_extra += " --tab5 "
 elif all(get_extension(sample) == "tab6" for sample in SAMPLE):
-    extra += " --tab6 "
+    cmd_extra += " --tab6 "
 elif all(get_extension(sample) in ("fa", "mfa", "fasta") for sample in SAMPLE):
-    extra += " -f "
+    cmd_extra += " -f "
 
 
 # shell.threads
-if sort_program != "none" and bowtie2_threads <= 1:
+if SORT_PROGRAM != "none" and THREADS <= 1:
     raise ValueError(
         "Not enough threads requested. This wrapper requires at least two threads: "
         "one for bowtie2 and one for samtools/picard."
@@ -149,60 +147,60 @@ if sort_program != "none" and bowtie2_threads <= 1:
 # shell.sort
 
 # Determine which pipe command to use for converting to bam or sorting.
-match sort_program:
+match SORT_PROGRAM:
     case "none":
         # Correctly assign number of threads according to user request
         if sort_threads >= 1:
-            samtools_opts += f" --threads {sort_threads} "
+            SAMTOOLS_OPTS += f" --threads {sort_threads} "
         if BAM.lower().endswith(("bam", "cram")):
             # Simply convert to bam using samtools view.
-            PIPE_CMD = f" | samtools view {samtools_opts} > {BAM} "
+            PIPE_CMD = f" | samtools view {SAMTOOLS_OPTS} > {BAM} "
         else:
             # Do not perform any sort nor compression, output raw sam
             PIPE_CMD = " > {BAM} "
     case "samtools":
         # Correctly assign number of threads according to user request
         if sort_threads >= 1:
-            samtools_opts += f" --threads {sort_threads} "
+            SAMTOOLS_OPTS += f" --threads {sort_threads} "
         # Add name flag if needed.
-        if sort_order == "queryname":
-            sort_extra += " -n"
+        if SORT_ORDER == "queryname":
+            SORT_EXTRA += " -n"
         # Sort alignments using samtools sort.
         if bam_extension == "cram":
-            samtools_opts += f" --reference {REF} "
-        PIPE_CMD = " | samtools sort {samtools_opts} {sort_extra} -T {tmpdir} > {BAM}"
+            SAMTOOLS_OPTS += f" --reference {REF} "
+        PIPE_CMD = " | samtools sort {SAMTOOLS_OPTS} {SORT_EXTRA} -T {TMPDIR} > {BAM}"
     case "picard":
         if bam_extension == "cram":
-            picard_opts = f" REFERENCE_SEQUENCE={REF} "
+            PICARD_OPTS = f" REFERENCE_SEQUENCE={REF} "
         PIPE_CMD = (
-            " | picard SortSam {java_opts} {sort_extra} "
+            " | picard SortSam {JAVA_OPTS} {SORT_EXTRA} "
             "--INPUT /dev/stdin "
-            "--TMP_DIR {tmpdir} "
-            "--SORT_ORDER {sort_order} "
+            "--TMP_DIR {TMPDIR} "
+            "--SORT_ORDER {SORT_ORDER} "
             "--OUTPUT {BAM} "
         )
 
 
 if METRICS:
-    extra += f" --met-file {METRICS} "
+    cmd_extra += f" --met-file {METRICS} "
 if UNALIGNED:
-    extra += f" --un {UNALIGNED} "
+    cmd_extra += f" --un {UNALIGNED} "
 if UNPAIRED:
-    extra += f" --al {UNPAIRED} "
+    cmd_extra += f" --al {UNPAIRED} "
 if UNCONCORDANT:
-    extra += f" --un-conc {UNCONCORDANT} "
+    cmd_extra += f" --un-conc {UNCONCORDANT} "
 if CONCORDANT:
-    extra += f" --al-conc {CONCORDANT} "
+    cmd_extra += f" --al-conc {CONCORDANT} "
 
 
 index = path.commonprefix(snakemake.input.idx).rstrip(".")
 
-with tempfile.TemporaryDirectory() as tmpdir:
+with tempfile.TemporaryDirectory() as TMPDIR:
     shell(
         "( bowtie2"
-        " --threads {bowtie2_threads}"
+        " --threads {THREADS}"
         " {CMD_INPUT} "
         " -x {index}"
-        " {extra}"
+        " {cmd_extra}"
         " " + PIPE_CMD + ") {LOG}"
     )
