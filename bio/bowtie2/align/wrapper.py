@@ -36,7 +36,7 @@ UNALIGNED = snakemake.output.get("unaligned", None)
 UNPAIRED = snakemake.output.get("unpaired", None)
 UNCONCORDANT = snakemake.output.get("unconcordant", None)
 CONCORDANT = snakemake.output.get("concordant", None)
-
+BAI = snakemake.output.get("idx", None)
 
 
 # log
@@ -55,7 +55,7 @@ SORT_ORDER = snakemake.params.get("sort_order", "coordinate")
 SORT_EXTRA = snakemake.params.get("sort_extra", "")
 SAMTOOLS_OPTS = get_samtools_opts(
     snakemake, parse_threads=False, param_name="sort_extra"
-)
+) + " "
 JAVA_OPTS = get_java_opts(snakemake)
 
 
@@ -68,17 +68,18 @@ if not isinstance(SAMPLE, str) and len(SAMPLE) not in [1, 2]:
 
 REQUIRED_IDX = {".1.bt2", ".2.bt2", ".3.bt2", ".4.bt2", ".rev.1.bt2", ".rev.2.bt2"}
 
-index = path.commonprefix(snakemake.input.idx)[:-1]
+index_prefix = path.commonprefix(snakemake.input.idx).rstrip(".")
 
-if len(index) == 0:
+
+if len(index_prefix) == 0:
     raise ValueError("Could not determine common prefix of inputs.idx files.")
 
-index_extensions = [idx[len(index) :] for idx in snakemake.input.idx]
+index_extensions = [idx[len(index_prefix) :] for idx in snakemake.input.idx]
 missing_idx = REQUIRED_IDX - set(index_extensions)
 if len(missing_idx) > 0:
     raise ValueError(
         f"Missing required indices: {missing_idx} declared as input.idx.\n"
-        f"Identified reference file is {index} with extensions {index_extensions}"
+        f"Identified reference file is {index_prefix} with extensions {index_extensions}"
     )
 
 # check outputs
@@ -100,10 +101,13 @@ if SORT_PROGRAM not in {"none", "samtools", "picard"}:
         "Valid values are 'none', 'samtools' or 'picard'"
     )
 
+if SORT_PROGRAM != "none" and THREADS <= 1:
+    raise ValueError(
+        "Not enough threads requested. This wrapper requires at least two threads: "
+        "one for bowtie2 and one for samtools/picard."
+    )
 
-# shell.sample
-
-
+# check input - output compatibility
 if bam_extension == "cram" and (REF is None or REF_FAI is None):
     raise ValueError(
         "Reference file and index are required for CRAM output."
@@ -112,19 +116,33 @@ if bam_extension == "cram" and (REF is None or REF_FAI is None):
         f"input.ref_fai: {REF_FAI}"
     )
 
+if BAI is not None and SORT_PROGRAM == "none":
+    raise ValueError(
+        "Index file is requested but no sort program is specified."
+        "Please specify a sort program to generate the index file."
+    )
 
-CMD_INPUT = ""
+
+# compose shell command
+
+# input part
+cmd_input = ""
 if len(SAMPLE) == 1:
     if get_extension(SAMPLE[0]) in ("bam", "sam"):
-        CMD_INPUT = f"-b {SAMPLE}"
+        cmd_input = f"-b {SAMPLE}"
     else:
         if IS_INTERLEAVED:
-            CMD_INPUT = f"--interleaved {SAMPLE}"
+            cmd_input = f"--interleaved {SAMPLE}"
         else:
-            CMD_INPUT = f"-U {SAMPLE}"
+            cmd_input = f"-U {SAMPLE}"
 else:
-    CMD_INPUT = f"-1 {SAMPLE[0]} -2 {SAMPLE[1]}"
+    cmd_input = f"-1 {SAMPLE[0]} -2 {SAMPLE[1]}"
 
+cmd_index = index_prefix
+cmd_threads = THREADS
+
+
+# extra part
 cmd_extra = EXTRA
 if all(get_extension(sample) in ("fastq", "fq") for sample in SAMPLE):
     cmd_extra += " -q "
@@ -134,52 +152,6 @@ elif all(get_extension(sample) == "tab6" for sample in SAMPLE):
     cmd_extra += " --tab6 "
 elif all(get_extension(sample) in ("fa", "mfa", "fasta") for sample in SAMPLE):
     cmd_extra += " -f "
-
-
-# shell.threads
-if SORT_PROGRAM != "none" and THREADS <= 1:
-    raise ValueError(
-        "Not enough threads requested. This wrapper requires at least two threads: "
-        "one for bowtie2 and one for samtools/picard."
-    )
-
-
-# shell.sort
-
-# Determine which pipe command to use for converting to bam or sorting.
-match SORT_PROGRAM:
-    case "none":
-        # Correctly assign number of threads according to user request
-        if sort_threads >= 1:
-            SAMTOOLS_OPTS += f" --threads {sort_threads} "
-        if BAM.lower().endswith(("bam", "cram")):
-            # Simply convert to bam using samtools view.
-            PIPE_CMD = f" | samtools view {SAMTOOLS_OPTS} > {BAM} "
-        else:
-            # Do not perform any sort nor compression, output raw sam
-            PIPE_CMD = " > {BAM} "
-    case "samtools":
-        # Correctly assign number of threads according to user request
-        if sort_threads >= 1:
-            SAMTOOLS_OPTS += f" --threads {sort_threads} "
-        # Add name flag if needed.
-        if SORT_ORDER == "queryname":
-            SORT_EXTRA += " -n"
-        # Sort alignments using samtools sort.
-        if bam_extension == "cram":
-            SAMTOOLS_OPTS += f" --reference {REF} "
-        PIPE_CMD = " | samtools sort {SAMTOOLS_OPTS} {SORT_EXTRA} -T {TMPDIR} > {BAM}"
-    case "picard":
-        if bam_extension == "cram":
-            PICARD_OPTS = f" REFERENCE_SEQUENCE={REF} "
-        PIPE_CMD = (
-            " | picard SortSam {JAVA_OPTS} {SORT_EXTRA} "
-            "--INPUT /dev/stdin "
-            "--TMP_DIR {TMPDIR} "
-            "--SORT_ORDER {SORT_ORDER} "
-            "--OUTPUT {BAM} "
-        )
-
 
 if METRICS:
     cmd_extra += f" --met-file {METRICS} "
@@ -193,14 +165,65 @@ if CONCORDANT:
     cmd_extra += f" --al-conc {CONCORDANT} "
 
 
-index = path.commonprefix(snakemake.input.idx).rstrip(".")
+# shell.sort
 
+# Determine which pipe command to use for converting to bam or sorting.
+match SORT_PROGRAM:
+    case "samtools":
+        # Correctly assign number of threads according to user request
+        if sort_threads >= 1:
+            SAMTOOLS_OPTS += f"--threads {sort_threads} "
+        if BAI:
+            bam = f"{BAM}##idx##{BAI}"
+            SAMTOOLS_OPTS += f"--write-index "
+        else:
+            bam = BAM
+        if SORT_ORDER == "queryname":
+            SORT_EXTRA += "-n "
+        if bam_extension == "cram":
+            SAMTOOLS_OPTS += f"--reference {REF} --output-fmt CRAM "
+        cmd_output = (
+            "| samtools sort "
+            "{SAMTOOLS_OPTS} "
+            "{SORT_EXTRA} "
+            "-T {TMPDIR} "
+            "-o {bam} "
+        )
+    
+    case "picard":
+        PICARD_OPTS = ""
+        if bam_extension == "cram":
+            PICARD_OPTS += f"--REFERENCE_SEQUENCE {REF} "
+        if BAI:
+            PICARD_OPTS += f"--CREATE_INDEX true "
+        cmd_output = (
+            "| picard SortSam {JAVA_OPTS} {SORT_EXTRA} "
+            "--INPUT /dev/stdin "
+            "--TMP_DIR {TMPDIR} "
+            "--SORT_ORDER {SORT_ORDER} "
+            "--OUTPUT {BAM} "
+        )
+    
+    case _:
+        # Correctly assign number of threads according to user request
+        if sort_threads >= 1:
+            SAMTOOLS_OPTS += f"--threads {sort_threads} "
+        if bam_extension == "bam":
+            cmd_output = f"| samtools view {SAMTOOLS_OPTS} --output {BAM}"
+        elif bam_extension == "cram":
+            cmd_output = f"| samtools view {SAMTOOLS_OPTS} --output {BAM} --output-fmt CRAM --reference {REF}"
+        else:
+            cmd_output = "> {BAM} "
+
+
+# let's rock!
 with tempfile.TemporaryDirectory() as TMPDIR:
     shell(
-        "( bowtie2"
-        " --threads {THREADS}"
-        " {CMD_INPUT} "
-        " -x {index}"
-        " {cmd_extra}"
-        " " + PIPE_CMD + ") {LOG}"
+        "( bowtie2 "
+        "--threads {THREADS} "
+        "{cmd_input} "
+        "-x {cmd_index} "
+        "{cmd_extra} " 
+        + cmd_output 
+        + " ) {LOG}"
     )
