@@ -100,13 +100,6 @@ if bai_extension not in {None, "bai", "crai"}:
         "Valid extensions are 'bai' or 'crai'"
     )
 
-# check threads
-if THREADS == 1 and SORT_PROGRAM != "none":
-    raise ValueError(
-        "Not enough threads requested. This wrapper requires at least two threads: "
-        "one for bowtie2 and one for samtools/picard."
-    )
-
 
 # check params
 if not isinstance(IS_INTERLEAVED, bool):
@@ -124,7 +117,7 @@ if SORT_PROGRAM not in {"none", "samtools", "picard"}:
         "Valid values are: 'none', 'samtools' or 'picard'"
     )
 
-if SORT_PROGRAM != "none" and THREADS <= 1:
+if SORT_PROGRAM != "none" and THREADS < 2:
     raise ValueError(
         "Not enough threads requested. This wrapper requires at least two threads: "
         "one for bowtie2 and one for samtools/picard."
@@ -194,8 +187,7 @@ elif all(get_extension(sample) in ("fa", "mfa", "fasta") for sample in SAMPLE):
 match SORT_PROGRAM:
 
     case "samtools":
-        if sort_threads >= 1:
-            SAMTOOLS_OPTS += f"--threads {sort_threads} "
+        SAMTOOLS_OPTS += f"--threads {sort_threads} "
         if BAI:
             bam = f"{BAM}##idx##{BAI}"
             SAMTOOLS_OPTS += "--write-index "
@@ -233,7 +225,12 @@ match SORT_PROGRAM:
         if bam_extension == "bam":
             cmd_output = f"| samtools view {SAMTOOLS_OPTS} --output {BAM}"
         elif bam_extension == "cram":
-            cmd_output = f"| samtools view {SAMTOOLS_OPTS} --output {BAM} --output-fmt CRAM --reference {REF}"
+            cmd_output = (
+                f"| samtools view {SAMTOOLS_OPTS} "
+                f"--output {BAM} "
+                "--output-fmt CRAM "
+                f"--reference {REF}"
+            )
         else:
             cmd_output = "> {BAM} "
 
