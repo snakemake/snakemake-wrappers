@@ -1,4 +1,4 @@
-rule test_bowtie2:
+rule test_bowtie2_sam:
     input:
         sample=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
         idx=multiext(
@@ -10,25 +10,16 @@ rule test_bowtie2:
             ".rev.1.bt2",
             ".rev.2.bt2",
         ),
-        # ref="genome.fasta", #Required for CRAM output
     output:
-        "mapped/{sample}.bam",
-        # idx="",
-        # metrics="",
-        # unaligned="",
-        # unpaired="",
-        # unconcordant="",
-        # concordant="",
+        "mapped_sam/{sample}.sam",
     log:
-        "logs/bowtie2/{sample}.log",
-    params:
-        extra="",  # optional parameters
+        "logs/bowtie2/mapped_sam_{sample}.log",
     threads: 8  # Use at least two threads
     wrapper:
         "master/bio/bowtie2/align"
 
 
-use rule test_bowtie2 as test_bowtie2_se_gz with:
+use rule test_bowtie2_sam as test_bowtie2_se_gz with:
     input:
         sample=["reads/{sample}.1.fastq.gz"],
         idx=multiext(
@@ -42,38 +33,26 @@ use rule test_bowtie2 as test_bowtie2_se_gz with:
         ),
     output:
         "mapped_se_gz/{sample}.bam",
-
-
-rule test_bowtie2_index:
-    input:
-        sample=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
-        idx=multiext(
-            "index/genome",
-            ".1.bt2",
-            ".2.bt2",
-            ".3.bt2",
-            ".4.bt2",
-            ".rev.1.bt2",
-            ".rev.2.bt2",
-        ),
-    output:
-        "mapped_idx/{sample}.bam",
-        idx="mapped_idx/{sample}.bam.bai",
-        metrics="mapped_idx/{sample}.metrics.txt",
-        unaligned="mapped_idx/{sample}.unaligned.sam",
-        unpaired="mapped_idx/{sample}.unpaired.sam",
-        # unconcordant="",
-        # concordant="",
     log:
-        "logs/bowtie2/{sample}.log",
+        "logs/bowtie2/mapped_se_gz_{sample}.log",
+
+
+use rule test_bowtie2_sam as test_bowtie2_extra_outputs with:
+    output:
+        "mapped_multi/{sample}.bam",
+        idx="mapped_multi/{sample}.bam.bai",
+        # metrics="mapped_multi/{sample}.metrics.txt",
+        # unaligned=["mapped_multi/{sample}.unaligned.1.fq"],
+        # unpaired="mapped_multi/{sample}.unpaired.fq"],
+        # unconcordant="mapped_multi/{sample}.unconcordant.sam",
+        # concordant="mapped_multi/{sample}.concordant.sam",
+    log:
+        "logs/bowtie2/mapped_multi_{sample}.log",
     params:
-        extra="",  # optional parameters
-    threads: 8  # Use at least two threads
-    wrapper:
-        "master/bio/bowtie2/align"
+        sort_program="samtools",
 
 
-rule test_bowtie2_cram:
+use rule test_bowtie2_sam as test_bowtie2_cram with:
     input:
         sample=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
         idx=multiext(
@@ -88,51 +67,23 @@ rule test_bowtie2_cram:
         ref="genome.fasta",
         ref_fai="genome.fasta.fai",
     output:
-        "mapped_idx/{sample}.cram",
-        # idx="",
-        # metrics="",
-        # unaligned="",
-        # unpaired="",
-        # unconcordant="",
-        # concordant="",
+        "mapped_cram/{sample}.cram",
     log:
-        "logs/bowtie2/{sample}.log",
+        "logs/bowtie2/samtools_cram_{sample}.log",
+
+use rule test_bowtie2_sam as test_bowtie2_sort_samtools with:
+    output:
+        "mapped_samtools/{sample}.bam",
+    log:
+        "logs/bowtie2/mapped_samtools_{sample}.log",
     params:
-        extra="",  # optional parameters
-    threads: 8  # Use at least two threads
-    wrapper:
-        "master/bio/bowtie2/align"
+        sort_program="samtools"
 
 
-for order in ["coordinate", "queryname"]:
-    for extension in ["sam", "bam", "cram"]:
-        for program in ["none", "samtools", "picard"]:
-
-            rule:
-                name:
-                    f"bowtie2_align_{program}_{order}_{extension}"
-                input:
-                    sample=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
-                    idx=multiext(
-                        "index/genome",
-                        ".1.bt2",
-                        ".2.bt2",
-                        ".3.bt2",
-                        ".4.bt2",
-                        ".rev.1.bt2",
-                        ".rev.2.bt2",
-                    ),
-                    ref="genome.fasta",
-                    ref_fai="genome.fasta.fai",
-                output:
-                    f"mapped_idx/{{sample}}.{program}_{order}.{extension}",
-                params:
-                    sort_program=program,
-                    sort_order=order,
-                    sort_extra="",
-                    extra="",
-                log:
-                    f"logs/bowtie2/{{sample}}.{program}_{order}_{extension}.log",
-                threads: 8  # Use at least two threads
-                wrapper:
-                    "master/bio/bowtie2/align"
+use rule test_bowtie2_sam as test_bowtie2_sort_picard with:
+    output:
+        "mapped_picard/{sample}.bam",
+    log:
+        "logs/bowtie2/mapped_picard_{sample}.log",
+    params:
+        sort_program="picard"

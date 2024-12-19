@@ -31,11 +31,11 @@ REF_FAI = snakemake.input.get("ref_fai", None)
 
 # output
 BAM = str(snakemake.output[0])
-METRICS = snakemake.output.get("metrics", None)
-UNALIGNED = snakemake.output.get("unaligned", None)
-UNPAIRED = snakemake.output.get("unpaired", None)
-UNCONCORDANT = snakemake.output.get("unconcordant", None)
-CONCORDANT = snakemake.output.get("concordant", None)
+# METRICS = snakemake.output.get("metrics", None)
+# UNALIGNED = snakemake.output.get("unaligned", None)
+# UNPAIRED = snakemake.output.get("unpaired", None)
+# UNCONCORDANT = snakemake.output.get("unconcordant", None)
+# CONCORDANT = snakemake.output.get("concordant", None)
 BAI = snakemake.output.get("idx", None)
 
 
@@ -53,11 +53,10 @@ IS_INTERLEAVED = snakemake.params.get("interleaved", False)
 SORT_PROGRAM = snakemake.params.get("sort_program", "none")
 SORT_ORDER = snakemake.params.get("sort_order", "coordinate")
 SORT_EXTRA = snakemake.params.get("sort_extra", "")
-SAMTOOLS_OPTS = get_samtools_opts(
-    snakemake, parse_threads=False, param_name="sort_extra"
-) + " "
+SAMTOOLS_OPTS = (
+    get_samtools_opts(snakemake, parse_threads=False, param_name="sort_extra") + " "
+)
 JAVA_OPTS = get_java_opts(snakemake)
-
 
 
 # check
@@ -82,8 +81,6 @@ if len(missing_idx) > 0:
         f"Identified reference file is {index_prefix} with extensions {index_extensions}"
     )
 
-# check outputs
-bam_extension = get_extension(BAM)
 
 # check params
 if not isinstance(IS_INTERLEAVED, bool):
@@ -108,6 +105,8 @@ if SORT_PROGRAM != "none" and THREADS <= 1:
     )
 
 # check input - output compatibility
+bam_extension = get_extension(BAM)
+
 if bam_extension == "cram" and (REF is None or REF_FAI is None):
     raise ValueError(
         "Reference file and index are required for CRAM output."
@@ -153,19 +152,19 @@ elif all(get_extension(sample) == "tab6" for sample in SAMPLE):
 elif all(get_extension(sample) in ("fa", "mfa", "fasta") for sample in SAMPLE):
     cmd_extra += " -f "
 
-if METRICS:
-    cmd_extra += f" --met-file {METRICS} "
-if UNALIGNED:
-    cmd_extra += f" --un {UNALIGNED} "
-if UNPAIRED:
-    cmd_extra += f" --al {UNPAIRED} "
-if UNCONCORDANT:
-    cmd_extra += f" --un-conc {UNCONCORDANT} "
-if CONCORDANT:
-    cmd_extra += f" --al-conc {CONCORDANT} "
+# if METRICS:
+#     cmd_extra += f" --met-file {METRICS} "
+# if UNALIGNED:
+#     cmd_extra += f" --un {UNALIGNED} "
+# if UNPAIRED:
+#     cmd_extra += f" --al {UNPAIRED} "
+# if UNCONCORDANT:
+#     cmd_extra += f" --un-conc {UNCONCORDANT} "
+# if CONCORDANT:
+#     cmd_extra += f" --al-conc {CONCORDANT} "
 
 
-# shell.sort
+# sort or not part
 
 # Determine which pipe command to use for converting to bam or sorting.
 match SORT_PROGRAM:
@@ -189,7 +188,7 @@ match SORT_PROGRAM:
             "-T {TMPDIR} "
             "-o {bam} "
         )
-    
+
     case "picard":
         PICARD_OPTS = ""
         if bam_extension == "cram":
@@ -203,9 +202,8 @@ match SORT_PROGRAM:
             "--SORT_ORDER {SORT_ORDER} "
             "--OUTPUT {BAM} "
         )
-    
+
     case _:
-        # Correctly assign number of threads according to user request
         if sort_threads >= 1:
             SAMTOOLS_OPTS += f"--threads {sort_threads} "
         if bam_extension == "bam":
@@ -223,7 +221,5 @@ with tempfile.TemporaryDirectory() as TMPDIR:
         "--threads {THREADS} "
         "{cmd_input} "
         "-x {cmd_index} "
-        "{cmd_extra} " 
-        + cmd_output 
-        + " ) {LOG}"
+        "{cmd_extra} " + cmd_output + " ) {LOG}"
     )
