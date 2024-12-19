@@ -44,7 +44,6 @@ LOG = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 # threads
 THREADS = snakemake.threads
-sort_threads = snakemake.threads - 1
 
 
 # params
@@ -96,6 +95,13 @@ if bai_extension not in {None, "bai", "crai"}:
     raise ValueError(
         f"Unrecognized extension for index file: {bai_extension}."
         "Valid extensions are 'bai' or 'crai'"
+    )
+
+# check threads
+if THREADS == 1 and SORT_PROGRAM != "none":
+    raise ValueError(
+        "Not enough threads requested. This wrapper requires at least two threads: "
+        "one for bowtie2 and one for samtools/picard."
     )
 
 
@@ -156,6 +162,7 @@ else:
 
 cmd_index = index_prefix
 cmd_threads = THREADS
+sort_threads = snakemake.threads - 1
 
 
 # extra part
