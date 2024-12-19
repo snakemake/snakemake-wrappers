@@ -191,7 +191,7 @@ match SORT_PROGRAM:
             SAMTOOLS_OPTS += f"--threads {sort_threads} "
         if BAI:
             bam = f"{BAM}##idx##{BAI}"
-            SAMTOOLS_OPTS += f"--write-index "
+            SAMTOOLS_OPTS += "--write-index "
         else:
             bam = BAM
         if SORT_ORDER == "queryname":
@@ -211,7 +211,7 @@ match SORT_PROGRAM:
         if bam_extension == "cram":
             PICARD_OPTS += f"--REFERENCE_SEQUENCE {REF} "
         if BAI:
-            PICARD_OPTS += f"--CREATE_INDEX true "
+            PICARD_OPTS += "--CREATE_INDEX true "
         cmd_output = (
             "| picard SortSam {JAVA_OPTS} {SORT_EXTRA} "
             "--INPUT /dev/stdin "
