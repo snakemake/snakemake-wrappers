@@ -62,7 +62,10 @@ JAVA_OPTS = get_java_opts(snakemake)
 
 # check inputs
 if not isinstance(SAMPLE, str) and len(SAMPLE) not in [1, 2]:
-    raise ValueError("input must have 1 (single-end) or 2 (paired-end) elements")
+    raise ValueError(
+        "Input must have 1 (single-end) or 2 (paired-end) elements, "
+        f"got {len(SAMPLE)} elements"
+    )
 
 REQUIRED_IDX = {".1.bt2", ".2.bt2", ".3.bt2", ".4.bt2", ".rev.1.bt2", ".rev.2.bt2"}
 
@@ -117,8 +120,8 @@ if SORT_ORDER not in {"coordinate", "queryname"}:
 
 if SORT_PROGRAM not in {"none", "samtools", "picard"}:
     raise ValueError(
-        f"Unexpected value for sort_program ({SORT_PROGRAM})"
-        "Valid values are 'none', 'samtools' or 'picard'"
+        f"Invalid sort_program '{SORT_PROGRAM}'. "
+        "Valid values are: 'none', 'samtools' or 'picard'"
     )
 
 if SORT_PROGRAM != "none" and THREADS <= 1:
@@ -153,10 +156,7 @@ if len(SAMPLE) == 1:
     if get_extension(SAMPLE[0]) in ("bam", "sam"):
         cmd_input = f"-b {SAMPLE}"
     else:
-        if IS_INTERLEAVED:
-            cmd_input = f"--interleaved {SAMPLE}"
-        else:
-            cmd_input = f"-U {SAMPLE}"
+        cmd_input = f"--interleaved {SAMPLE}" if IS_INTERLEAVED else f"-U {SAMPLE}"
 else:
     cmd_input = f"-1 {SAMPLE[0]} -2 {SAMPLE[1]}"
 
