@@ -4,6 +4,6 @@ channels:
   - nodefaults
 dependencies:
   - bowtie2 =2.5
-  - picard-slim =3.3
+  - picard-slim =3.3.0
   - samtools =1.21
   - snakemake-wrapper-utils =0.6
