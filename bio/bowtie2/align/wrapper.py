@@ -223,10 +223,18 @@ match SORT_PROGRAM:
         if sort_threads >= 1:
             SAMTOOLS_OPTS += f"--threads {sort_threads} "
         if bam_extension == "bam":
-            cmd_output = f"| samtools view {SAMTOOLS_OPTS} --output {BAM}"
+            cmd_output = (
+                f"| samtools view "
+                "--with-header "
+                f"{SAMTOOLS_OPTS} "
+                "--output-fmt BAM "
+                f"--output {BAM}"
+            )
         elif bam_extension == "cram":
             cmd_output = (
-                f"| samtools view {SAMTOOLS_OPTS} "
+                "| samtools view "
+                "--with-header "
+                f"{SAMTOOLS_OPTS} "
                 f"--output {BAM} "
                 "--output-fmt CRAM "
                 f"--reference {REF}"
