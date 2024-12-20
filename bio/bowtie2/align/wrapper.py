@@ -18,9 +18,11 @@ def get_extension(filename: str) -> str:
     Return file format since Bowtie2 reads files that
     could be gzip'ed (extension: .gz) or bzip2'ed (extension: .bz2).
     """
-    if filename.endswith((".gz", ".bz2")):
-        return filename.split(".")[-2].lower()
-    return filename.split(".")[-1].lower()
+    filename = filename.lower()
+    base, ext = path.splitext(filename)
+    if ext in (".gz", ".bz2"):
+        return path.splitext(base)[1][1:]  # Remove leading dot
+    return ext[1:]  # Remove leading dot
 
 
 # input
@@ -31,6 +33,8 @@ REF_FAI = snakemake.input.get("ref_fai", None)
 
 # output
 BAM = str(snakemake.output[0])
+# TODO: These outputs are temporarily disabled due to complexity with SE/PE handling
+# They can be re-enabled once we implement proper SE/PE output handling
 # METRICS = snakemake.output.get("metrics", None)
 # UNALIGNED = snakemake.output.get("unaligned", None)
 # UNPAIRED = snakemake.output.get("unpaired", None)
@@ -64,7 +68,7 @@ JAVA_OPTS = get_java_opts(snakemake)
 if not isinstance(SAMPLE, str) and len(SAMPLE) not in [1, 2]:
     raise ValueError(
         "Input must have 1 (single-end) or 2 (paired-end) elements, "
-        f"got {len(SAMPLE)} elements"
+        f"got {len(SAMPLE)} elements: {SAMPLE}"
     )
 
 REQUIRED_IDX = {".1.bt2", ".2.bt2", ".3.bt2", ".4.bt2", ".rev.1.bt2", ".rev.2.bt2"}
@@ -90,14 +94,14 @@ bai_extension = get_extension(BAI) if BAI else None
 
 if bam_extension.lower() not in {"sam", "bam", "cram"}:
     raise ValueError(
-        f"Unrecognized extension for output file: {bam_extension}."
-        "Valid extensions are 'sam', 'bam' or 'cram'"
+        f"Unrecognized extension for output file: {bam_extension}. "
+        "Valid extensions are: 'sam', 'bam' or 'cram'"
     )
 
 if bai_extension not in {None, "bai", "crai"}:
     raise ValueError(
-        f"Unrecognized extension for index file: {bai_extension}."
-        "Valid extensions are 'bai' or 'crai'"
+        f"Unrecognized extension for index file: {bai_extension}. "
+        "Valid extensions are: 'bai' or 'crai'"
     )
 
 
@@ -225,18 +229,18 @@ match SORT_PROGRAM:
         if bam_extension == "bam":
             cmd_output = (
                 f"| samtools view "
-                "--with-header "
+                f"--with-header "
                 f"{SAMTOOLS_OPTS} "
-                "--output-fmt BAM "
+                f"--output-fmt BAM "
                 f"--output {BAM}"
             )
         elif bam_extension == "cram":
             cmd_output = (
-                "| samtools view "
-                "--with-header "
+                f"| samtools view "
+                f"--with-header "
                 f"{SAMTOOLS_OPTS} "
                 f"--output {BAM} "
-                "--output-fmt CRAM "
+                f"--output-fmt CRAM "
                 f"--reference {REF}"
             )
         else:
