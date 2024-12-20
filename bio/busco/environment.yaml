@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - busco =5.8.1
+  - busco =5.8.2
