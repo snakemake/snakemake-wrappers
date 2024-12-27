@@ -3,6 +3,6 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bioconductor-biomart =2.58.0
+  - bioconductor-biomart =2.62.0
   - r-nanoparquet =0.3.1
   - r-tidyverse =2.0.0
