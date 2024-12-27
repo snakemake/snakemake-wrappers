@@ -42,8 +42,8 @@ https://conda.anaconda.org/conda-forge/noarch/pysocks-1.7.1-pyha55dd90_7.conda#4
 https://conda.anaconda.org/conda-forge/linux-64/pyyaml-6.0.2-py313h536fd9c_1.conda#3789f360de131c345e96fbfc955ca80b
 https://conda.anaconda.org/conda-forge/linux-64/cffi-1.17.1-py313hfab6e84_0.conda#ce6386a5892ef686d6d680c345c40ad1
 https://conda.anaconda.org/conda-forge/noarch/h2-4.1.0-pyhd8ed1ab_1.conda#825927dc7b0f287ef8d4d0011bb113b1
-https://conda.anaconda.org/conda-forge/noarch/jinja2-3.1.4-pyhd8ed1ab_1.conda#08cce3151bde4ecad7885bd9fb647532
+https://conda.anaconda.org/conda-forge/noarch/jinja2-3.1.5-pyhd8ed1ab_0.conda#2752a6ed44105bfb18c9bef1177d9dcd
 https://conda.anaconda.org/conda-forge/linux-64/zstandard-0.23.0-py313h80202fe_1.conda#c178558ff516cd507763ffee230c20b2
-https://conda.anaconda.org/conda-forge/noarch/urllib3-2.2.3-pyhd8ed1ab_1.conda#4a2d8ef7c37b8808c5b9b750501fffce
+https://conda.anaconda.org/conda-forge/noarch/urllib3-2.3.0-pyhd8ed1ab_0.conda#32674f8dbfb7b26410ed580dd3c10a29
 https://conda.anaconda.org/conda-forge/noarch/requests-2.32.3-pyhd8ed1ab_1.conda#a9b9368f3701a417eac9edbcae7cb737
 https://conda.anaconda.org/bioconda/linux-64/sortmerna-4.3.7-hdbdd923_1.tar.bz2#91f649d2b6ad30775bbac15328c60fc5
