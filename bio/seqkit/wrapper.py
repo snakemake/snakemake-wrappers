@@ -17,7 +17,6 @@ if snakemake.params.command in ["concat", "common", "stats"]:
     input = " ".join(snakemake.input)
 # Subcommands with a single input file (if more than one provided, concat'em all)
 elif snakemake.params.command in [
-    "stats",
     "sum",
     "rmdup",
     "split",

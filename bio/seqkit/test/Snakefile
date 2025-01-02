@@ -205,7 +205,6 @@ rule seqkit_split2_part:
     params:
         command="split2",
         extra="--by-part 2",
-        out_bgzip=True,
     threads: 2
     wrapper:
         "master/bio/seqkit"
