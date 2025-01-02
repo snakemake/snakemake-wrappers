@@ -16,7 +16,15 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 if snakemake.params.command in ["concat", "common", "stats"]:
     input = " ".join(snakemake.input)
 # Subcommands with a single input file (if more than one provided, concat'em all)
-elif snakemake.params.command in ["stats", "sum", "rmdup", "split", "split2", "sample", "sort"]:
+elif snakemake.params.command in [
+    "stats",
+    "sum",
+    "rmdup",
+    "split",
+    "split2",
+    "sample",
+    "sort",
+]:
     input = "<(cat " + " ".join(snakemake.input) + ")"
 else:
     input = snakemake.input[0]
@@ -69,11 +77,10 @@ else:
             ".gz",
             ".bgz",
             ".bgzip",
-    ], "invalid output file extension"
+        ], "invalid output file extension"
         output = f"| bgzip --threads {snakemake.threads} > {snakemake.output[0]}"
     else:
         output = f"--out-file {snakemake.output[0]}"
-
 
 
 shell(

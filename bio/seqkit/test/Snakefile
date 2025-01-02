@@ -196,7 +196,10 @@ rule seqkit_split2_part:
     input:
         fasta="data/{sample}.fa",
     output:
-        fasta=["out/split2/part/{sample}.1-of-2.fas", "out/split2/part/{sample}.2-of-2.fas"],
+        fasta=[
+            "out/split2/part/{sample}.1-of-2.fas",
+            "out/split2/part/{sample}.2-of-2.fas",
+        ],
     log:
         "logs/split/part/{sample}.log",
     params:
