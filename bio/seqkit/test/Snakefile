@@ -190,3 +190,19 @@ rule seqkit_concat:
     threads: 2
     wrapper:
         "master/bio/seqkit"
+
+
+rule seqkit_split2_part:
+    input:
+        fasta="data/{sample}.fa",
+    output:
+        fasta=["out/split2/part/{sample}.1-of-2.fas", "out/split2/part/{sample}.2-of-2.fas"],
+    log:
+        "logs/split/part/{sample}.log",
+    params:
+        command="split2",
+        extra="--by-part 2",
+        out_bgzip=True,
+    threads: 2
+    wrapper:
+        "master/bio/seqkit"
