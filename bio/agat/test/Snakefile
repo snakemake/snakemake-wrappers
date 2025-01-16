@@ -1,0 +1,994 @@
+storage:
+    provider="http"
+
+
+rule test_agat_config:
+    output:
+        "agat_config.yaml",
+    threads: 1
+    log:
+        "test_agat_config.log"
+    params:
+        command="config",
+    wrapper:
+        "master/bio/agat"
+
+
+use rule test_agat_config as test_agat_levels with:
+    output:
+        "agat_levels.yaml",
+    log:
+        "test_agat_levels.log"
+    params:
+        command="levels",
+
+
+use rule test_agat_config as test_agat_convert_bed2gff with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        bed=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/test.bed"),
+    output:
+        # The key here will be used as argument name in the final command line
+        gff="test_agat_convert_bed2gff.gff",
+    log:
+        "test_agat_convert_bed2gff.log"
+    params:
+        command="agat_convert_bed2gff.pl",
+        extra="", # Anything besides IO
+
+
+use rule test_agat_config as test_agat_convert_embl2gff with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        embl=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/agat_convert_embl2gff_1.embl"),
+    output:
+        # The key here will be used as argument name in the final command line
+        gff="test_agat_convert_embl2gff.gff"
+    log:
+        "test_agat_convert_embl2gff.log"
+    params:
+        command="agat_convert_embl2gff.pl",
+        extra="", # Anything besides IO
+
+
+use rule test_agat_config as test_agat_convert_genscan2gff with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        genscan=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/test.genscan"),
+    output:
+        # The key here will be used as argument name in the final command line
+        gff="test_agat_convert_genscan2gff.gff",
+    log:
+        "test_agat_convert_genscan2gff.log",
+    params:
+        command="agat_convert_genscan2gff.pl",
+        extra="", # Anything besides IO
+
+
+use rule test_agat_config as test_agat_convert_mfannot2gff with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        mfannot=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/test.mfannot"),
+    output:
+        # The key here will be used as argument name in the final command line
+        gff="test_agat_convert_mfannot2gff.gff",
+    log:
+        "agat_convert_mfannot2gff.log",
+    params:
+        # No optional non-file parameters with this subcommand.
+        command="agat_convert_mfannot2gff.pl",
+        
+
+use rule test_agat_config as test_agat_convert_minimap2_bam2gff_bam with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        i=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/test_minimap2.bam"),
+    output:
+        # The key here will be used as argument name in the final command line
+        out="test_agat_convert_minimap2_bam2gff_bam.gff",
+    log:
+        "agat_convert_minimap2_bam2gff_bam.log",
+    params:
+        # All non-file parameters are auto detected.
+        command="agat_convert_minimap2_bam2gff.pl",
+        
+            
+use rule test_agat_config as test_agat_convert_minimap2_bam2gff_sam with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        i=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/test_minimap2.sam"),
+    output:
+        # The key here will be used as argument name in the final command line
+        out="test_agat_convert_minimap2_bam2gff_sam.gff",
+    log:
+        "agat_convert_minimap2_bam2gff_sam.log",
+    params:
+        # All non-file parameters are auto detected.
+        command="agat_convert_minimap2_bam2gff.pl",
+        
+
+use rule test_agat_config as test_agat_convert_sp_gff2bed with: 
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line
+        out="test_agat_convert_sp_gff2bed.bed",
+    log:
+        "agat_convert_sp_gff2bed.log",
+    params:
+        command="agat_convert_sp_gff2bed.pl",
+        extra="", # Non file arguments (`--nc` or `--sub`).
+
+
+use rule test_agat_config as test_agat_convert_sp_gff2gtf with: 
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line
+        out="test_agat_convert_sp_gff2gtf.gtf",
+    log:
+        "agat_convert_sp_gff2gtf.log",
+    params:
+        command="agat_convert_sp_gff2gtf.pl",
+        extra="", # Non file arguments (`--gtf_version`).
+
+        
+use rule test_agat_config as test_agat_convert_sp_gff2tsv with: 
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line
+        out="test_agat_convert_sp_gff2tsv.tsv",
+    log:
+        "agat_convert_sp_gff2tsv.log",
+    params:
+        # No non-file parameters for this command
+        command="agat_convert_sp_gff2tsv.pl",
+
+
+use rule test_agat_config as test_agat_convert_sp_gff2zff with: 
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+        fasta=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fasta"),
+    output:
+        # The key here will be used as argument name in the final command line
+        out="test_agat_convert_sp_gff2zff.zff",
+    log:
+        "agat_convert_sp_gff2zff.log",
+    params:
+        # No non-file parameters for this command
+        command="agat_convert_sp_gff2zff.pl",
+
+
+use rule test_agat_config as test_agat_convert_sp_gxf2gxf with: 
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/test_kraken.gtf"),
+    output:
+        # The key here will be used as argument name in the final command line
+        out="test_agat_convert_sp_gxf2gxf.gff",
+    log:
+        "agat_convert_sp_gxf2gfx.log",
+    params:
+        command="agat_convert_sp_gxf2gxf.pl",
+        extra="", # Non file arguments (`-v`).
+
+
+use rule test_agat_config as test_agat_sp_Prokka_inferNameFromAttributes with: 
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/agat_sp_compare_two_annotations/file1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line
+        out="test_agat_sp_Prokka_inferNameFromAttributes.gff",
+    log:
+        "agat_sp_Prokka_inferNameFromAttributes.log",
+    params:
+        command="agat_sp_Prokka_inferNameFromAttributes.pl",
+        extra="", # Non file arguments (`--force`).
+
+
+use rule test_agat_config as test_agat_sp_add_intergenic_regions with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line
+        out="test_agat_sp_add_intergenic_regions.gff",
+    log:
+        "test_agat_sp_add_intergenic_regions.log",
+    params:
+        command="agat_sp_add_intergenic_regions.pl",
+        extra="", # Non file arguments (`--verbose`).
+
+
+use rule test_agat_config as test_agat_sp_add_introns with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line
+        out="test_agat_sp_add_introns.gff",
+    log:
+        "test_agat_sp_add_introns.log",
+    params:
+        # No non-file arguments.
+        command="agat_sp_add_introns.pl",
+
+
+use rule test_agat_config as test_agat_sp_add_splice_sites with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line
+        out="test_agat_sp_add_splice_sites.gff",
+    log:
+        "test_agat_sp_add_splice_sites.log",
+    params:
+        # No non-file arguments.
+        command="agat_sp_add_splice_sites.pl",
+
+
+use rule test_agat_config as test_agat_sp_add_start_and_stop with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+        fasta=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fa"),
+    output:
+        # The key here will be used as argument name in the final command line
+        out="test_agat_sp_add_start_and_stop.gff",
+    log:
+        "test_agat_sp_add_start_and_stop.log",
+    params:
+        extra="", # Non-file arguments (e.g. `--codon`, `--extend`, `-v`, or `--na`)
+        command="agat_sp_add_start_and_stop.pl",
+
+
+use rule test_agat_config as test_agat_sp_alignment_output_style with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line
+        out="test_agat_sp_alignment_output_style.gff",
+    log:
+        "test_agat_sp_alignment_output_style.log",
+    params:
+        extra="", # Non-file arguments (e.g. `--ct`, or `-v`)
+        command="agat_sp_alignment_output_style.pl",
+
+
+use rule test_agat_config as test_agat_sp_clipN_seqExtremities_and_fixCoordinates with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+        fasta=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fa"),
+    output:
+        # The key here will be used as argument name in the final command line
+        og="test_agat_sp_clipN_seqExtremities_and_fixCoordinates.gff",
+        of="test_agat_sp_clipN_seqExtremities_and_fixCoordinates.fasta",
+    log:
+        "test_agat_sp_clipN_seqExtremities_and_fixCoordinates.log",
+    params:
+        extra="", # Non-file arguments (e.g. `--of`, or `--og`)
+        command="agat_sp_clipN_seqExtremities_and_fixCoordinates.pl",
+
+
+use rule test_agat_config as test_agat_sp_compare_two_annotations with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff1=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/agat_sp_compare_two_annotations/file1.gff"),
+        gff2=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/agat_sp_compare_two_annotations/file2.gff"),
+    output:
+        # The key here will be used as argument name in the final command line
+        # This subcommand returns a file per case, which names are build based
+        # on the comparison result as well as a report.
+        out=directory("test_agat_sp_compare_two_annotation"),
+    log:
+        "test_agat_sp_compare_two_annotations.log",
+    params:
+        extra="", # Non-file arguments (`-v`)
+        command="agat_sp_compare_two_annotations.pl",
+
+
+use rule test_agat_config as test_agat_sp_complement_annotations with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        ref=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/agat_sp_merge_annotations/file1.gff"),
+        add=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/agat_sp_merge_annotations/file2.gff"),
+    output:
+        # The key here will be used as argument name in the final command line
+        out="test_agat_sp_complement_annotations.gff",
+    log:
+        "test_agat_sp_complement_annotations.log",
+    params:
+        extra="", # Non-file arguments (`--size_min`)
+        command="agat_sp_complement_annotations.pl",
+
+
+use rule test_agat_config as test_agat_sp_ensembl_output_style with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line
+        o="test_agat_sp_ensembl_output_style.gff",
+    log:
+        "test_agat_sp_ensembl_output_style.log",
+    params:
+        extra="", # Non-file arguments (`--ct`, or `-v`)
+        command="agat_sp_ensembl_output_style.pl",
+
+
+use rule test_agat_config as test_agat_sp_extract_attributes with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line
+        Parent="test_agat_sp_extract_attributes_Parent.txt",
+        ID="test_agat_sp_extract_attributes_ID.txt",
+    log:
+        "test_agat_sp_extract_attributes.log",
+    params:
+        # Non-file arguments besides `--att` (e.g. `-p`, `--merge`, or `-d`)
+        extra="-d",
+        command="agat_sp_extract_attributes.pl",
+
+
+use rule test_agat_config as test_agat_sp_extract_sequences with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+        fasta=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fa"),
+    output:
+        # The key here will be used as argument name in the final command line
+        o="test_agat_sp_extract_sequences.fasta",
+    log:
+        "test_agat_sp_extract_attributes.log",
+    params:
+        # Non-file arguments (e.g. `--asc`, `--cdna`, `--cfs`, ...)
+        extra="-p -t cds",
+        command="agat_sp_extract_sequences.pl",
+
+
+use rule test_agat_config as test_agat_sp_filter_by_ORF_size with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # Matched = ORF size satisfying `--test` and `--size` criteria
+        matched="test_agat_sp_filter_by_ORF_size_matched.gff",
+        # Unmatched = ORF size *NOT* satisfying `--test` and `--size` criteria
+        unmatched="test_agat_sp_filter_by_ORF_size_unmatched.gff",
+    log:
+        "test_agat_sp_filter_by_ORF_size.log",
+    params:
+        # Non-file arguments (e.g. `--size`, `--test`, or `-v`)
+        extra="",
+        command="agat_sp_filter_by_ORF_size.pl",
+
+
+use rule test_agat_config as test_agat_sp_filter_by_locus_distance with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line
+        outfile="test_agat_sp_filter_by_locus_distance.gff",
+    log:
+        "test_agat_sp_filter_by_locus_distance.log",
+    params:
+        # Non-file arguments (e.g. `-d`, or `--add_flag`)
+        extra="",
+        command="agat_sp_filter_by_locus_distance.pl",
+
+use rule test_agat_config as test_agat_sp_filter_feature_by_attribute_presence with:
+    input: 
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line
+        o="test_agat_sp_filter_feature_by_attribute_presence.gff",
+    log:
+        "test_agat_sp_filter_feature_by_attribute_presence.log",
+    params:
+        # Non-file arguments (`--type`, `--flip` or `--att`)
+        extra="--type gene --att Parent",
+        command="agat_sp_filter_feature_by_attribute_presence.pl",
+
+use rule test_agat_config as test_agat_sp_filter_feature_by_attribute_value with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line
+        o="test_agat_sp_filter_feature_by_attribute_value.gff",
+    log:
+        "test_agat_sp_filter_feature_by_attribute_value.log",
+    params:
+        # Non-file arguments (e.g. `--type`, `--value`, `--value_insensitive`...)
+        extra="--type exon --attribute constitutive --value 1",
+        command="agat_sp_filter_feature_by_attribute_value.pl",
+
+
+use rule test_agat_config as test_agat_sp_filter_feature_from_keep_list with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+        keep_list=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/keep_list.txt"),
+    output:
+        # The key here will be used as argument name in the final command line
+        o="test_agat_sp_filter_feature_from_keep_list.gff",
+    log:
+        "test_agat_sp_filter_feature_from_keep_list.log",
+    params:
+        # Non-file arguments (`--type`, or `-v`)
+        extra="-v",
+        command="agat_sp_filter_feature_from_keep_list.pl",
+
+
+use rule test_agat_config as test_agat_sp_filter_feature_from_kill_list with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+        kill_list=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/kill_list.txt"),
+    output:
+        # The key here will be used as argument name in the final command line
+        o="test_agat_sp_filter_feature_from_kill_list.gff",
+    log:
+        "test_agat_sp_filter_feature_from_kill_list.log",
+    params:
+        # Non-file arguments (`--type`, or `-v`)
+        extra="-v",
+        command="agat_sp_filter_feature_from_kill_list.pl",
+
+
+use rule test_agat_config as test_agat_sp_filter_gene_by_intron_numbers with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line
+        o="test_agat_sp_filter_gene_by_intron_numbers.gff",
+    log:
+        "test_agat_sp_filter_gene_by_intron_numbers.log",
+    params:
+        # Non-file arguments (`--number`, `-v`, or `--test`)
+        extra="--test '>=' --nb 3",
+        command="agat_sp_filter_gene_by_intron_numbers.pl",
+
+
+use rule test_agat_config as test_agat_sp_filter_gene_by_length with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line
+        o="test_agat_sp_filter_gene_by_length.gff",
+    log:
+        "test_agat_sp_filter_gene_by_length.log",
+    params:
+        # Non-file arguments (`--size`, `-v`, or `--test`)
+        extra="--test '>=' --size 3",
+        command="agat_sp_filter_gene_by_length.pl",
+
+
+use rule test_agat_config as test_agat_sp_filter_incomplete_gene_coding_models with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+        fasta=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fa"),
+    output:
+        # The key here will be used as argument name in the final command line
+        outfile="test_agat_sp_filter_incomplete_gene_coding_models.gff",
+    log:
+        "test_agat_sp_filter_incomplete_gene_coding_models.log",
+    params:
+        # Non-file arguments (e.g. `--codon`, `--add_flag`, `--skip_start_check`, ...)
+        extra="-v",
+        command="agat_sp_filter_incomplete_gene_coding_models.pl",
+
+
+use rule test_agat_config as test_agat_sp_filter_record_by_coordinates with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+        coordinates=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/coordinates.tsv"),
+    output:
+        # The key here will be used as argument name in the final command line.
+        # The directory contains a file per interval (if any record exists within),
+        # a GFF with records belonging to none of the intervald given in coordinates,
+        # and a text report.
+        o=directory("test_agat_sp_filter_record_by_coordinates"),
+    log:
+        "test_agat_sp_filter_record_by_coordinates.log",
+    params:
+        # Non-file arguments (`--exclude` or `-v`)
+        extra="-v",
+        command="agat_sp_filter_record_by_coordinates.pl",
+
+
+use rule test_agat_config as test_agat_sp_fix_cds_phases with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+        fasta=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fa"),
+    output:
+        # The key here will be used as argument name in the final command line.
+        o="test_agat_sp_fix_cds_phases.gff",
+    log:
+        "test_agat_sp_fix_cds_phases.log",
+    params:
+        # Non-file arguments (`-v`)
+        extra="",
+        command="agat_sp_fix_cds_phases.pl",
+
+
+use rule test_agat_config as test_agat_sp_fix_features_locations_duplicated with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line.
+        outfile="test_agat_sp_fix_features_locations_duplicated.gff",
+    log:
+        "test_agat_sp_fix_features_locations_duplicated.log",
+    params:
+        # Non-file arguments (`-v`, or `--model`)
+        extra="",
+        command="agat_sp_fix_features_locations_duplicated.pl",
+
+
+use rule test_agat_config as test_agat_sp_fix_fusion with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+        fasta=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fa"),
+    output:
+        # Optional file contains all features in the GFF
+        all="test_agat_sp_fix_fusion_all.gff",
+        # Optional file only contains features that were modified by agat
+        only_modified="test_agat_sp_fix_fusion_modified.gff",
+        # Optional file only contains features that were *NOT* modified by agat
+        intact="test_agat_sp_fix_fusion_intact.gff",
+        # An optional report over the number of modified/intact features
+        report="test_agat_sp_fix_fusion_report.txt",
+    log:
+        "test_agat_sp_fix_fusion.log",
+    params:
+        # Non-file arguments (`--codon`, `--threshold`, `--stranded`, or `-v`)
+        extra="",
+        command="agat_sp_fix_fusion.pl",
+
+
+use rule test_agat_config as test_agat_sp_fix_longest_ORF with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+        fasta=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fa"),
+    output:
+        # Optional file contains all features in the GFF
+        all="test_agat_sp_fix_longest_ORF_all.gff",
+        # Optional file only contains features that were modified by agat
+        only_modified="test_agat_sp_fix_longest_ORF_modified.gff",
+        # Optional file only contains features that were *NOT* modified by agat
+        intact="test_agat_sp_fix_longest_ORF_intact.gff",
+        # An optional report over the number of modified/intact features
+        report="test_agat_sp_fix_longest_ORF_report.txt",
+    log:
+        "test_agat_sp_fix_longest_ORF.log",
+    params:
+        # Non-file arguments (`--codon`, `--split`, `--stranded`, or `-v`)
+        extra="",
+        command="agat_sp_fix_longest_ORF.pl",
+
+
+use rule test_agat_config as test_agat_sp_fix_overlaping_genes with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line.
+        outfile="test_agat_sp_fix_overlaping_genes.gff",
+    log:
+        "test_agat_sp_fix_overlaping_genes.log",
+    params:
+        # Non-file arguments (`--merge` or `--verbose`)
+        extra="",
+        command="agat_sp_fix_overlaping_genes.pl",
+
+
+use rule test_agat_config as test_agat_sp_fix_small_exon_from_extremities with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+        fasta=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fa"),
+    output:
+        # The key here will be used as argument name in the final command line.
+        outfile="test_agat_sp_fix_small_exon_from_extremities.gff",
+    log:
+        "test_agat_sp_fix_small_exon_from_extremities.log",
+    params:
+        # Non-file arguments (`--merge`, `--size`, `--codon`, or `-v`)
+        extra="",
+        command="agat_sp_fix_small_exon_from_extremities.pl",
+
+
+use rule test_agat_config as test_agat_sp_flag_premature_stop_codons with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+        fasta=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fa"),
+    output:
+        # The key here will be used as argument name in the final command line.
+        out="test_agat_sp_flag_premature_stop_codons.gff",
+    log:
+        "test_agat_sp_flag_premature_stop_codons.log",
+    params:
+        extra="", # Non-file argument: `--codon`
+        command="agat_sp_flag_premature_stop_codons.pl",
+
+
+use rule test_agat_config as test_agat_sp_flag_short_introns with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line.
+        out="test_agat_sp_flag_short_introns.gff",
+    log:
+        "test_agat_sp_flag_short_introns.log",
+    params:
+        # Non-file parameters (`--intron_size` or `-v`)
+        extra="",
+        command="agat_sp_flag_short_introns.pl",
+
+
+use rule test_agat_config as test_agat_sp_functional_statistics with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line.
+        # This directory contains sub-directory for each type of features available
+        # in the GFF/GTF file, as long as a report
+        o=directory("test_agat_sp_functional_statistics"),
+    log:
+        "test_agat_sp_functional_statistics.log",
+    params:
+        # Non-file parameters (`--gs`)
+        extra="",
+        command="agat_sp_functional_statistics.pl",
+
+
+use rule test_agat_config as test_agat_sp_keep_longest_isoform with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line.
+        o="test_agat_sp_keep_longest_isoform.gff",
+    log:
+        "test_agat_sp_keep_longest_isoform.log",
+    params:
+        # No non-file parameters allowed
+        command="agat_sp_keep_longest_isoform.pl",
+
+
+use rule test_agat_config as test_agat_sp_kraken_assess_liftover with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gtf=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/test_kraken.gtf"),
+    output:
+        # The key here will be used as argument name in the final command line.
+        out="test_agat_sp_kraken_assess_liftover.gff",
+    log:
+        "test_agat_sp_kraken_assess_liftover.log",
+    params:
+        # Non-file parameters (`--threshold` or `--verbose`)
+        extra="",
+        command="agat_sp_kraken_assess_liftover.pl",
+
+
+use rule test_agat_config as test_agat_sp_list_short_introns with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line.
+        out="test_agat_sp_list_short_introns.gff",
+    log:
+        "test_agat_sp_list_short_introns.log",
+    params:
+        # Non-file parameter: `--size`
+        extra="",
+        command="agat_sp_list_short_introns.pl",
+
+
+use rule test_agat_config as test_agat_sp_manage_IDs with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line.
+        out="test_agat_sp_manage_IDs.gff",
+    log:
+        "test_agat_sp_manage_IDs.log",
+    params:
+        # Non-file parameters (e.g. `--gap`, `--ensembl`, `--prefix`, ...)
+        extra="",
+        command="agat_sp_manage_IDs.pl",
+
+
+use rule test_agat_config as test_agat_sp_manage_UTRs with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # Optional path to PDF histogram of 5'UTR with at least <n> exons
+        five_prime_utr_overORequal="test_agat_sp_manage_UTRs_five_prime_utr_overORequal.pdf",
+        # Optional path to PDF histogram of 5'UTR with less than <n> exons
+        five_prime_utr_under="test_agat_sp_manage_UTRs_five_prime_utr_under.pdf",
+        # Optional path to PDF histogram of 3'UTR with at least <n> exons
+        three_prime_utr_overORequal="test_agat_sp_manage_UTRs_three_prime_utr_overORequal.pdf",
+        # Optional path to PDF histogram of 3'UTR with at least <n> exons
+        three_prime_utr_under="test_agat_sp_manage_UTRs_three_prime_utr_under.pdf",
+        # Optional path to PDF histogram of both 3/5'UTR with at least <n> exons
+        both_utr_overORequal="test_agat_sp_manage_UTRs_both_utr_overORequal.pdf",
+        # Optional path to PDF histogram of both 3/5'UTR with at least <n> exons
+        both_utr_under="test_agat_sp_manage_UTRs_both_utr_under.pdf",
+        # Optional path to analysis report
+        report="test_agat_sp_manage_UTRs_report.txt",
+    log:
+        "test_agat_sp_manage_UTRs.log",
+    params:
+        # Non-file parameters (e.g. `--number`, `--three`, `--five`, or `--both`)
+        # The parameter `--plot` is automatically inferred
+        extra="--three --five -n 6",
+        command="agat_sp_manage_UTRs.pl",
+
+
+use rule test_agat_config as test_agat_sp_manage_attributes with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line.
+        out="test_agat_sp_manage_attributes.gff",
+    log:
+        "test_agat_sp_manage_attributes.log",
+    params:
+        # Non-file parameters (`--type`, `--tag`, `--add`, `--cp`, or `--overwrite`)
+        extra="--att biotype",
+        command="agat_sp_manage_attributes.pl",
+
+
+use rule test_agat_config as test_agat_sp_manage_functional_annotation with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/refs/heads/master/t/scripts_output/in/agat_sp_manage_functional_annotation/02413F.gff"),
+        # Optional path to blast, interpro, and reference fasta
+        blast=storage("https://raw.githubusercontent.com/NBISweden/AGAT/refs/heads/master/t/scripts_output/in/agat_sp_manage_functional_annotation/02413F_blast.out"),
+        db=storage("https://raw.githubusercontent.com/NBISweden/AGAT/refs/heads/master/t/scripts_output/in/agat_sp_manage_functional_annotation/uniprot_sprot_test.fasta"),
+        interpro=storage("https://raw.githubusercontent.com/NBISweden/AGAT/refs/heads/master/t/scripts_output/in/agat_sp_manage_functional_annotation/02413F_interpro.tsv"),
+    output:
+        # The key here will be used as argument name in the final command line.
+        gff="test_agat_sp_manage_functional_annotation.gff",
+        # Global text report
+        report="test_agat_sp_manage_functional_annotation.report.txt",
+        # Warnings and non-blocking format errors
+        error="test_agat_sp_manage_functional_annotation.error.txt",
+        # Duplicates blast sequences, requires blast and db
+        duplicates="test_agat_sp_manage_functional_annotation.duplicates.tsv",
+        # Conserved protein domains database terms, requires all optional input
+        cdd="test_agat_sp_manage_functional_annotation.cdd.tsv",
+        # Gene onthology database terms, requires all optional input
+        go="test_agat_sp_manage_functional_annotation.go.tsv",
+        # Interpro domain database terms, requires all optional input
+        interpro="test_agat_sp_manage_functional_annotation.interpro.tsv",
+        # MobiDB Lite database terms, requires all optional input
+        mobidb="test_agat_sp_manage_functional_annotation.mobidblite.tsv",
+        # Panther database terms, requires all optional input
+        panther="test_agat_sp_manage_functional_annotation.panther.tsv",
+        # Superfamily database terms, requires all optional input
+        superfamily="test_agat_sp_manage_functional_annotation.superfamily.tsv",
+    log:
+        "test_agat_sp_manage_functional_annotation.log",
+    params:
+        # Non-file parameters (e.g. `--blast_evalue`, `--pe`, `--clean_ontology`, ...)
+        # The parameter `--plot` is automatically inferred.
+        extra="",
+        command="agat_sp_manage_functional_annotation.pl",
+
+
+use rule test_agat_config as test_agat_sp_manage_introns with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # Optional path to intron report
+        report="test_agat_sp_manage_introns_report.txt",
+        # Optional path to cds histogram (triggers the `--plot` argument)
+        cds_pdf="test_agat_sp_manage_introns_cds.pdf",
+        # Optional path to exon histogram (triggers the `--plot` argument)
+        exon_pdf="test_agat_sp_manage_introns_exons.pdf",
+        # Optional path to 5'UTR histogram (triggers the `--plot` argument)
+        five_prime_utr_pdf="test_agat_sp_manage_introns_exons_5p.pdf",
+        # Optional path to 3'UTR histogram (triggers the `--plot` argument)
+        three_prime_utr_pdf="test_agat_sp_manage_introns_exons_3p.pdf",
+    log:
+        "test_agat_sp_manage_introns.log",
+    params:
+        # Non-file parameters (`--p`, `--window`)
+        # The parameter `--plot` is automatically inferred.
+        extra="",
+        command="agat_sp_manage_introns.pl",
+
+
+use rule test_agat_config as test_agat_sp_merge_annotations with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=[
+            storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+            storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/0.gff"),
+        ]
+    output:
+        # The key here will be used as argument name in the final command line.
+        out="test_agat_sp_merge_annotations.gff",
+    log:
+        "test_agat_sp_merge_annotations.log",
+    params:
+        # No non-file parameters
+        command="agat_sp_merge_annotations.pl",
+
+
+use rule test_agat_config as test_agat_sp_move_attributes_within_records with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line.
+        out="test_agat_sp_move_attributes_within_records.gff",
+    log:
+        "test_agat_sp_move_attributes_within_records.log",
+    params:
+        # Non-file parameters (`--fp`, `--fc`, `--attribute`, or `-v`)
+        extra="--feature_copy mRNA  --feature_paste CDS",
+        command="agat_sp_move_attributes_within_records.pl",
+
+
+use rule test_agat_config as test_agat_sp_prokka_fix_fragmented_gene_annotations with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/prokka_fragmented_genes.gff"),
+        fasta=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/prokka_cav_10DC88.fa"),
+        db=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/prokka_bacteria_sprot.fa"),
+    output:
+        # The key here will be used as argument name in the final command line.
+        # The output directory contains a `report.txt` and additional files
+        # depending on the content of input file(s).
+        out=directory("test_agat_sp_prokka_fix_fragmented_gene_annotations"),
+    log:
+        "test_agat_sp_prokka_fix_fragmented_gene_annotations.log",
+    params:
+        # Non-file parameters:
+        # `--frags`, `--pseudo`, `--hmap_size`, `--ct`, `--skip_hmap`, or `-v`
+        extra="--skip_hamap", # To speed up tests
+        command="agat_sp_prokka_fix_fragmented_gene_annotations.pl",
+
+
+use rule test_agat_config as test_agat_sp_sensitivity_specificity with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff1=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/0.gff"),
+        gff2=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+    output:
+        # The key here will be used as argument name in the final command line.
+        outfile="test_agat_sp_sensitivity_specificity.txt",
+    log:
+        "test_agat_sp_sensitivity_specificity.log",
+    params:
+        # Non-file parameters (`-v`)
+        extra="",
+        command="agat_sp_sensitivity_specificity.pl",
+
+
+use rule test_agat_config as test_agat_sp_separate_by_record_type with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/0.gff"),
+    output:
+        # The key here will be used as argument name in the final command line.
+        # The output directory contains up to one file per record type among the
+        # huge list of records available in `agat levels`.
+        o=directory("test_agat_sp_separate_by_record_type"),
+    log:
+        "test_agat_sp_separate_by_record_type.log",
+    params:
+        # No non-file parameters
+        command="agat_sp_separate_by_record_type.pl",
+
+
+use rule test_agat_config as test_agat_sp_statistics with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/0.gff"),
+    output:
+        # Optional Path to text report
+        report="test_agat_sp_statistics.txt",
+        # Optional path to yaml report (triggers the `--yaml` argument)
+        yaml="test_agat_sp_statistics.yaml",
+        # Optional path to directory containing multiple plots, corresponding
+        # to each level present in the input GFF file and described by the
+        # `agat levels` command. Triggers `-p` argument.
+        plot=directory("test_agat_sp_statistics_plots"),
+    log:
+        "test_agat_sp_statistics.log",
+    params:
+        # Non-file parameters: `--gs`, or `--verbose`)
+        # All other non-file parameters are automatically inferred
+        extra="--gs 432709230",
+        command="agat_sp_statistics.pl",
+

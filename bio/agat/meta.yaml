@@ -1,0 +1,15 @@
+name: "Agat"
+description: "Another GTF/GFF Analysis Toolkit"
+url: https://agat.readthedocs.io/en/stable/index.html
+authors:
+  - Thibault Dayris
+input:
+  - Named input files. Names will be used as argument values in the final command line.
+output:
+  - Named input files. Names will be used as argument values in the final command line.
+params:
+  - command: Agat command used
+  - extra: Any non file parameter.
+notes: |
+  Remember that `input` and `output` are reserved key-words in Snakemake. Use alternate
+  command line argument names to avoid Workflow errors.

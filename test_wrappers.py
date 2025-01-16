@@ -137,6 +137,771 @@ def run(tmp_test_dir):
     return _run
 
 
+def test_agat_config(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "agat_config.yaml",
+        ],
+    )
+
+
+def test_agat_levels(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "agat_levels.yaml",
+        ],
+    )
+
+
+def test_agat_convert_bed2gff(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_convert_bed2gff.gff",
+        ],
+    )
+
+def test_agat_converter_embl2gff(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_convert_embl2gff.gff"
+        ],
+    )
+
+def test_agat_convert_genscan2gff(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_convert_genscan2gff.gff",
+        ],
+    )
+
+
+def test_agat_convert_mfannot2gff(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_convert_mfannot2gff.gff",
+        ],
+    )
+
+
+def test_agat_convert_minimap2_bam2gff(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_convert_minimap2_bam2gff_bam.gff",
+        ],
+    )
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_convert_minimap2_bam2gff_sam.gff",
+        ],
+    )
+
+def test_agat_convert_sp_gff2bed(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_convert_sp_gff2bed.bed",
+        ],
+    )
+
+def test_agat_convert_sp_gff2gtf(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_convert_sp_gff2gtf.gtf",
+        ],
+    )
+
+
+def test_agat_convert_sp_gff2tsv(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_convert_sp_gff2tsv.tsv",
+        ],
+    )
+
+def test_agat_convert_sp_gxf2gxf(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_convert_sp_gxf2gxf.gff",
+        ],
+    )
+
+def test_agat_sp_Prokka_inferNameFromAttributes(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_Prokka_inferNameFromAttributes.gff",
+        ],
+    )
+
+def test_agat_sp_add_intergenic_regions(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_add_intergenic_regions.gff",
+        ],
+    )
+
+
+def test_agat_sp_add_introns(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_add_introns.gff",
+        ],
+    )
+
+
+def test_agat_sp_add_start_and_stop(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_add_start_and_stop.gff",
+        ],
+    )
+
+
+def test_agat_sp_alignment_output_style(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_alignment_output_style.gff",
+        ],
+    )
+
+def test_agat_sp_clipN_seqExtremities_and_fixCoordinates(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_clipN_seqExtremities_and_fixCoordinates.gff",
+        ],
+    )
+
+
+def test_agat_sp_compare_two_annotations(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_compare_two_annotations",
+        ],
+    )
+
+
+def test_agat_sp_complement_annotations(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_complement_annotations.gff",
+        ],
+    )
+
+
+def test_agat_sp_ensembl_output_style(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_ensembl_output_style.gff",
+        ],
+    )
+
+def test_agat_sp_extract_attributes(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_extract_attributes_ID.txt",
+        ],
+    )
+
+
+def test_agat_sp_extract_sequences(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_extract_sequences.fasta",
+        ],
+    )
+
+
+def test_agat_sp_filter_by_ORF_size(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_filter_by_ORF_size_matched.gff",
+        ],
+    )
+
+
+
+def test_agat_sp_filter_by_locus_distance(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_filter_by_locus_distance.gff",
+        ],
+    )
+
+
+def test_agat_sp_filter_feature_by_attribute_presence(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_filter_feature_by_attribute_presence.gff",
+        ],
+    )
+
+
+def test_agat_sp_filter_feature_by_attribute_value(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_filter_feature_by_attribute_value.gff",
+        ],
+    )
+
+
+def test_agat_sp_filter_feature_from_keep_list(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_filter_feature_from_keep_list.gff",
+        ],
+    )
+
+
+def test_agat_sp_filter_feature_from_kill_list(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_filter_feature_from_kill_list.gff",
+        ],
+    )
+
+
+def test_agat_sp_filter_gene_by_intron_numbers(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_filter_gene_by_intron_numbers.gff",
+        ],
+    )
+
+
+def test_agat_sp_filter_gene_by_length(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_filter_gene_by_length.gff",
+        ],
+    )
+
+
+
+def test_agat_sp_filter_incomplete_gene_coding_models(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_filter_incomplete_gene_coding_models.gff",
+        ],
+    )
+
+
+def test_agat_sp_filter_record_by_coordinates(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_filter_record_by_coordinates",
+        ],
+    )
+
+
+def test_agat_sp_fix_cds_phases(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_fix_cds_phases.gff",
+        ],
+    )
+
+
+def test_agat_sp_fix_features_locations_duplicated(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_fix_features_locations_duplicated.gff",
+        ],
+    )
+
+
+def test_agat_sp_fix_fusion(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_fix_fusion_all.gff",
+        ],
+    )
+
+def test_agat_sp_fix_longest_ORF(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_fix_longest_ORF_all.gff",
+        ],
+    )
+
+
+def test_agat_sp_fix_overlaping_genes(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_fix_overlaping_genes.gff",
+        ],
+    )
+
+
+def test_agat_sp_fix_small_exon_from_extremities(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_fix_small_exon_from_extremities.gff",
+        ],
+    )
+
+
+def test_agat_sp_flag_premature_stop_codons(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_flag_premature_stop_codons.gff",
+        ],
+    )
+
+
+def test_agat_sp_flag_short_introns(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_flag_short_introns.gff",
+        ],
+    )
+
+
+def test_agat_sp_functional_statistics(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_functional_statistics",
+        ],
+    )
+
+
+def test_agat_sp_keep_longest_isoform(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_keep_longest_isoform.gff",
+        ],
+    )
+
+
+def test_agat_sp_kraken_assess_liftover(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_kraken_assess_liftover.gff",
+        ],
+    )
+
+
+def test_agat_sp_list_short_introns(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_list_short_introns.gff",
+        ],
+    )
+
+
+def test_agat_sp_manage_UTRs(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_manage_UTRs_report.txt",
+        ],
+    )
+
+
+
+def test_agat_sp_manage_attributes(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_manage_attributes.gff",
+        ],
+    )
+
+
+def test_agat_sp_manage_functional_annotation(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_manage_functional_annotation.gff",
+        ],
+    )
+
+
+
+def test_agat_sp_manage_introns(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_manage_introns_report.txt",
+        ],
+    )
+
+
+def test_agat_sp_merge_annotations(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_merge_annotations.gff",
+        ],
+    )
+
+
+def test_agat_sp_move_attributes_within_records(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_move_attributes_within_records.gff",
+        ],
+    )
+
+
+def test_agat_sp_prokka_fix_fragmented_gene_annotations(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_prokka_fix_fragmented_gene_annotations",
+        ],
+    )
+
+
+def test_agat_sp_sensitivity_specificity(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_sensitivity_specificity.txt",
+        ],
+    )
+
+
+def test_agat_sp_separate_by_record_type(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_separate_by_record_type",
+        ],
+    )
+
+
+def test_agat_sp_statistics(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "test_agat_sp_statistics.txt",
+        ],
+    )
+
+
+
+
+
+
 def test_taxonkit(run):
     run(
         "bio/taxonkit",
