@@ -196,16 +196,15 @@ def test_nonpareil(run):
     )
 
 
-
 def test_ngsbits_samplesimilarity(run):
     run(
         "bio/ngsbits/samplesimilarity",
         [
-            "snakemake", 
-            "--cores", 
-            "1", 
-            "--use-conda", 
-            "-F", 
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
             "similarity.tsv",
         ],
     )
@@ -2043,22 +2042,32 @@ def test_blast_blastn(run):
 def test_bowtie2_align(run):
     run(
         "bio/bowtie2/align",
-        ["snakemake", "--cores", "2", "mapped_idx/a.cram", "--use-conda", "-F"],
-    )
-
-    run(
-        "bio/bowtie2/align",
-        ["snakemake", "--cores", "2", "mapped_idx/a.bam", "--use-conda", "-F"],
-    )
-
-    run(
-        "bio/bowtie2/align",
-        ["snakemake", "--cores", "2", "mapped/a.bam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "mapped_sam/a.sam", "--use-conda", "-F"],
     )
 
     run(
         "bio/bowtie2/align",
         ["snakemake", "--cores", "2", "mapped_se_gz/a.bam", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/bowtie2/align",
+        ["snakemake", "--cores", "2", "mapped_multi/a.bam", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/bowtie2/align",
+        ["snakemake", "--cores", "2", "mapped_cram/a.cram", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/bowtie2/align",
+        ["snakemake", "--cores", "2", "mapped_samtools/a.bam", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/bowtie2/align",
+        ["snakemake", "--cores", "2", "mapped_picard/a.bam", "--use-conda", "-F"],
     )
 
 
@@ -4675,6 +4684,7 @@ def test_sexdeterrmine(run):
         ["snakemake", "--cores", "1", "results.tsv", "-F", "--use-conda"],
     )
 
+
 def test_sourmash_compute(run):
     run(
         "bio/sourmash/compute/",
@@ -6027,11 +6037,13 @@ def test_vg_construct(run):
         ["snakemake", "--cores", "1", "graph/c.vg", "--use-conda", "-F"],
     )
 
+
 def test_vg_giraffe(run):
     run(
         "bio/vg/giraffe",
         ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
     )
+
 
 def test_vg_merge(run):
     run(
