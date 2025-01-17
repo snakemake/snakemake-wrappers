@@ -21,4 +21,4 @@ https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.28-pthreads_h94d
 https://conda.anaconda.org/conda-forge/linux-64/libblas-3.9.0-26_linux64_openblas.conda#ac52800af2e0c0e7dac770b435ce768a
 https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.9.0-26_linux64_openblas.conda#ebcc5f37a435aa3c19640533c82f8d76
 https://conda.anaconda.org/conda-forge/linux-64/gsl-2.7-he838d99_0.tar.bz2#fec079ba39c9cca093bf4c00001825de
-https://conda.anaconda.org/bioconda/linux-64/varlociraptor-8.5.1-ha8ac579_0.tar.bz2#9feb389d915cf867c6656baa7d347f37
+https://conda.anaconda.org/bioconda/linux-64/varlociraptor-8.6.0-ha8ac579_0.tar.bz2#571f777f35713761959a0720cc6cb192
