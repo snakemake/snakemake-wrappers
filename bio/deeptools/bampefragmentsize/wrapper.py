@@ -21,32 +21,31 @@ if not sample_label:
     sample_label = [os.path.basename(bam.replace(".bam", "")) for bam in bam_files]
 
 # Check if the number of labels is equal to the number of bam files
-assert len(sample_label) == len(bam_files), "Number of labels must be equal to the number of bam files"
+assert len(sample_label) == len(
+    bam_files
+), "Number of labels must be equal to the number of bam files"
 
 out_file = snakemake.output.get("hist")
 
 # Check output format
 out_format = out_file.split(".")[-1]
 if not out_format in ["png", "pdf", "svg", "eps", "plotly"]:
-    raise ValueError("Output format must be either 'png', 'pdf', 'svg', 'eps', or 'plotly'")
+    raise ValueError(
+        "Output format must be either 'png', 'pdf', 'svg', 'eps', or 'plotly'"
+    )
 
 # Optional output
 out_raw = snakemake.output.get("raw", "")
 if out_raw:
-    optional_output = " --outFileNameMatrix {out_tab} ".format(out_tab=out_raw)
-    
+    optional_output = " --outRawFragmentLengths {out_tab} ".format(out_tab=out_raw)
+
 # Parameters
 extra = snakemake.params.get("extra", "")
-title = snakemake.params.get("title", "")
 
 shell(
-    "bamPEFragmentSize"
-    "{snakemake.params.command} "
-    "{snakemake.params.extra} "
+    "bamPEFragmentSize "
     "--numberOfProcessors {snakemake.threads} "
     "-b {bam_files} "
-    "-T {title} "
     "-o {out_file} "
     "{blacklist} {optional_output} {extra} {log}"
 )
-
