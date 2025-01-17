@@ -1,5 +1,25 @@
 # Changelog
 
+### [5.5.2](https://www.github.com/snakemake/snakemake-wrappers/compare/v5.5.1...v5.5.2) (2025-01-17)
+
+
+### Performance Improvements
+
+* autobump bio/bbtools ([#3581](https://www.github.com/snakemake/snakemake-wrappers/issues/3581)) ([38301dd](https://www.github.com/snakemake/snakemake-wrappers/commit/38301dd4ed16465fab98221955f9564fd40cafa4))
+* autobump bio/delly ([#3583](https://www.github.com/snakemake/snakemake-wrappers/issues/3583)) ([ea05ca4](https://www.github.com/snakemake/snakemake-wrappers/commit/ea05ca49c1f68ad91bf696d3d2424caf61191ae2))
+* autobump bio/homer/annotatePeaks ([#3587](https://www.github.com/snakemake/snakemake-wrappers/issues/3587)) ([a42b7c5](https://www.github.com/snakemake/snakemake-wrappers/commit/a42b7c549c69b9270ac759c96d3aced77f48ee2b))
+* autobump bio/homer/findPeaks ([#3589](https://www.github.com/snakemake/snakemake-wrappers/issues/3589)) ([070d08f](https://www.github.com/snakemake/snakemake-wrappers/commit/070d08f1ac2bb47d86b6308231fb171276f13f15))
+* autobump bio/homer/getDifferentialPeaks ([#3588](https://www.github.com/snakemake/snakemake-wrappers/issues/3588)) ([8c1b169](https://www.github.com/snakemake/snakemake-wrappers/commit/8c1b1692c1b3752c1beaab3fb54ccc94187a22c5))
+* autobump bio/homer/makeTagDirectory ([#3586](https://www.github.com/snakemake/snakemake-wrappers/issues/3586)) ([f888ec0](https://www.github.com/snakemake/snakemake-wrappers/commit/f888ec09c383ee024237bd765c8d7f056085d7fc))
+* autobump bio/homer/mergePeaks ([#3585](https://www.github.com/snakemake/snakemake-wrappers/issues/3585)) ([6a4c189](https://www.github.com/snakemake/snakemake-wrappers/commit/6a4c18910e098fe596548f89d86506e3a660c67a))
+* autobump bio/last/lastal ([#3591](https://www.github.com/snakemake/snakemake-wrappers/issues/3591)) ([56e8599](https://www.github.com/snakemake/snakemake-wrappers/commit/56e85998c37b3fe296041e0f087367042080f75e))
+* autobump bio/last/lastdb ([#3590](https://www.github.com/snakemake/snakemake-wrappers/issues/3590)) ([e22bbb8](https://www.github.com/snakemake/snakemake-wrappers/commit/e22bbb83436692635cb6d63144a0cb230ac9e3e9))
+* autobump bio/sourmash/compute ([#3592](https://www.github.com/snakemake/snakemake-wrappers/issues/3592)) ([f81c5ed](https://www.github.com/snakemake/snakemake-wrappers/commit/f81c5ed80ff9847395340585fa645e700d444c3b))
+* autobump bio/varlociraptor/call-variants ([#3595](https://www.github.com/snakemake/snakemake-wrappers/issues/3595)) ([917ba7b](https://www.github.com/snakemake/snakemake-wrappers/commit/917ba7b6f2f3c50021a7aabc44e2b117b4f60d84))
+* autobump bio/varlociraptor/control-fdr ([#3593](https://www.github.com/snakemake/snakemake-wrappers/issues/3593)) ([1e41c98](https://www.github.com/snakemake/snakemake-wrappers/commit/1e41c98b0432afee79f47df0f32046e407d8a782))
+* autobump bio/varlociraptor/preprocess-variants ([#3594](https://www.github.com/snakemake/snakemake-wrappers/issues/3594)) ([49be17d](https://www.github.com/snakemake/snakemake-wrappers/commit/49be17d2cbbd9f73a2b9816746c608bef8ffcb52))
+* autobump utils/datavzrd ([#3584](https://www.github.com/snakemake/snakemake-wrappers/issues/3584)) ([beceba8](https://www.github.com/snakemake/snakemake-wrappers/commit/beceba87adcd070617658b208797e334950c3791))
+
 ### [5.5.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v5.5.0...v5.5.1) (2025-01-10)
 
 
