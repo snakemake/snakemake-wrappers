@@ -2780,7 +2780,7 @@ def test_deeptools_bamcoverage(run):
 def test_deeptools_bampe_fragmentsize(run):
     run(
         "bio/deeptools/bampefragmentsize",
-        ["snakemake", "--cores", "1", "a.bam", "b.bam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "results/histogram.png", "--use-conda", "-F"],
     )
 
 
