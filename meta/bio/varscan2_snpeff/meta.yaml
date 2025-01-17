@@ -1,0 +1,21 @@
+name: Varscan2 - SnpEff
+description: >
+  This meta-wrapper includes the following steps:
+
+    +----------------+----------+------------------------------------------------+
+    | Step           | Tool     | Reason                                         |
+    +================+==========+================================================+
+    | Get reference  | Ensembl | Acquire genome sequence                        |
+    +----------------+----------+------------------------------------------------+
+    | Call variants  | Samtools | Acquire a list of potential variants           |
+    +----------------+----------+------------------------------------------------+
+    | Call variants  | Varscan2 | Call variants with Varscan2                    |
+    +----------------+----------+------------------------------------------------+
+    | Annotate calls | SnpEff   | Download variants database                     |
+    +----------------+----------+------------------------------------------------+
+    | Annotate calls | SnpEff   | Annotate variants with downloaded database     |
+    +----------------+----------+------------------------------------------------+
+
+authors:
+  - Thibault Dayris
+
