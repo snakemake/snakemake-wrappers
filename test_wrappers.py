@@ -2777,6 +2777,13 @@ def test_deeptools_bamcoverage(run):
     )
 
 
+def test_deeptools_bampe_fragmentsize(run):
+    run(
+        "bio/deeptools/bampefragmentsize",
+        ["snakemake", "--cores", "1", "a.bam", "b.bam", "--use-conda", "-F"],
+    )
+
+
 def test_deeptools_multibigwigsummary(run):
     run(
         "bio/deeptools/multibigwigsummary",
