@@ -1,0 +1,34 @@
+name: deepTools computeMatrix
+url: https://deeptools.readthedocs.io/en/latest/content/tools/bamPEFragmentSize.html
+description: >
+  ``deepTools bamPEFragmentSize`` calculates the fragment sizes for read pairs given a BAM file from paired-end sequencing.
+  For usage information about ``deepTools bamPEFragmentSize``, please see the `documentation <https://deeptools.readthedocs.io/en/latest/content/tools/bamPEFragmentSize.html>`_.
+  For more information about ``deepTools``, also see the `source code <https://github.com/deeptools/deepTools>`_.
+
+    +----------------------------+-----------------------------+---------------------+-------------+
+    | bamPEFragmentSize          | Output format               | Name of output      | Recommended |
+    |                            |                             |                     |             |
+    |                            |                             | variable to be used | extension   |
+    +============================+=============================+=====================+=============+
+    | --histogram, -hist, -o     | gzipped matrix file         | hist                | ".png"      |
+    |                            |                             |                     |             |
+    |                            |                             | (required)          |             |
+    +----------------------------+-----------------------------+---------------------+-------------+
+    | --outRawFragmentLengths    | tab-separated table of      | raw                 | ".tab"      |
+    |                            |                             |                     |             |
+    |                            | fragments lengths and       |                     |             |
+    |                            |                             |                     |             |
+    |                            | occurances                  |                     |             |
+    +----------------------------+-----------------------------+---------------------+-------------+
+
+authors:
+  - Niek Wit
+input:
+  - bams: List of BAM files (.bam)
+  - blacklist: Optional BED file with regions to skip (.bed)
+output:
+  - hist: Fragment size histogram (.png)
+  - raw: Raw fragment lengths (.tab) (optional)
+params:
+  - title: Title of the plot
+  - extra: Optional parameters given to computeMatrix

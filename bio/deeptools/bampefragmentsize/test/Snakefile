@@ -1,0 +1,23 @@
+rule bampe_fragmentsize:
+    input:
+        bams=expand("{sample}.bam", sample=["a", "b"]),
+        # Optional blacklist file
+        # blacklist="",
+    output:
+        # Please note that -o/hist/--histogram and --outRawFragmentLengths are exclusively defined via output files.
+        # Usable output variables, their extensions and which option they implicitly call are listed here:
+        # https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/deeptools/bamPEFragmentSize.html.
+        # Required
+        hist="results/histogram.png",
+        # Optional output files
+        raw="results/raw.tab",
+    log:
+        "logs/deeptools/bampe_fragmentsize.log",
+    threads: 4
+    params:
+        # Optional parameters
+        title="TITLE",
+        labels=["a", "b"],  # can be changed to anything
+        extra="--logScale",
+    wrapper:
+        "master/bio/deeptools/bampefragmentsize"
