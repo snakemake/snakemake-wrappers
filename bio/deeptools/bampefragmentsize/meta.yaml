@@ -1,4 +1,4 @@
-name: deepTools computeMatrix
+name: deepTools bamPEFragmentSize
 url: https://deeptools.readthedocs.io/en/latest/content/tools/bamPEFragmentSize.html
 description: >
   ``deepTools bamPEFragmentSize`` calculates the fragment sizes for read pairs given a BAM file from paired-end sequencing.
