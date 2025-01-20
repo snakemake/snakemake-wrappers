@@ -36,6 +36,7 @@ if not out_format in ["png", "pdf", "svg", "eps", "plotly"]:
 
 # Optional output
 out_raw = snakemake.output.get("raw", "")
+optional_output = ""
 if out_raw:
     optional_output = " --outRawFragmentLengths {out_tab} ".format(out_tab=out_raw)
 
