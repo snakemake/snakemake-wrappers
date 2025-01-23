@@ -20,9 +20,7 @@ with tempfile.NamedTemporaryFile(mode="w") as processed, open(
         f,
         outfile=processed,
         variables={
-            "params": snakemake.params,
-            "wildcards": snakemake.wildcards,
-            "input": snakemake.input,
+            "snakemake": snakemake,
         },
         require_use_yte=True,
     )
