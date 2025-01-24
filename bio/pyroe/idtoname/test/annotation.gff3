@@ -1,0 +1,9 @@
+##gff-version 3
+#description: evidence-based annotation of the human genome (GRCh38), version 43 (Ensembl 109)
+#provider: GENCODE
+#contact: gencode-help@ebi.ac.uk
+#format: gff3
+#date: 2022-11-29
+##sequence-region chr1 1 248956422
+chr1	HAVANA	gene	11869	14409	.	+	.	ID=ENSG00000290825.1;gene_id=ENSG00000290825.1;gene_type=lncRNA;gene_name=DDX11L2;level=2;tag=overlaps_pseudogene
+chr1	HAVANA	transcript	11869	14409	.	+	.	ID=ENST00000456328.2;Parent=ENSG00000290825.1;gene_id=ENSG00000290825.1;transcript_id=ENST00000456328.2;gene_type=lncRNA;gene_name=DDX11L2;transcript_type=lncRNA;transcript_name=DDX11L2-202;level=2;transcript_support_level=1;tag=basic,Ensembl_canonical;havana_transcript=OTTHUMT00000362751.1

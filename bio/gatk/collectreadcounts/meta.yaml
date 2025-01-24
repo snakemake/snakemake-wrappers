@@ -1,0 +1,15 @@
+name: gatk CollectReadCounts
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360037592671-CollectReadCounts
+description: |
+  Collects read counts at specified intervals. The count for each interval is calculated by counting the number of read starts that lie in the interval. 
+authors:
+  - Patrik Smeds
+input:
+  - bam: BAM/SAM/CRAM file containing reads
+  - intervals: one or more genomic intervals over which to operate
+params:
+  - mergingRule: interval merging rule for abutting intervals (default, OVERLAPPING_ONLY)
+  - java_opts: additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  - extra: additional program arguments.
+output:
+  - counts: output file for read counts, `tsv` or `hdf5`

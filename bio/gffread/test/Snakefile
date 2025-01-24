@@ -1,0 +1,39 @@
+rule test_gffread_gtf:
+    input:
+        fasta="genome.fasta",
+        annotation="annotation.gtf",
+        # ids="",  # Optional path to records to keep
+        # nids="",  # Optional path to records to drop
+        # seq_info="",  # Optional path to sequence information
+        # sort_by="",  # Optional path to the ordered list of reference sequences
+        # attr="",  # Optional annotation attributes to keep.
+        # chr_replace="",  # Optional path to <original_ref_ID> <new_ref_ID>
+    output:
+        # All optional, select based on desired output
+        records="annotation.gff",
+        transcript_fasta="transcripts.fa",  # Path containing gffread -w output
+        cds_fasta="cds.fa",  # Path containing gffread -x output
+        # dupinfo="",  # Path to clustering/merging information
+    threads: 1
+    log:
+        "logs/gffread_gtf.log",
+    params:
+        fasta_flag="-w",
+        extra="",
+    wrapper:
+        "master/bio/gffread"
+
+
+rule test_gffread_gff:
+    input:
+        fasta="genome.fasta",
+        annotation="annotation.gff3",
+    output:
+        protein_fasta="proteins.fa",  # Path containing gffread -y output
+    threads: 1
+    log:
+        "logs/gffread_gff.log",
+    params:
+        extra="-S",
+    wrapper:
+        "master/bio/gffread"

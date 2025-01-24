@@ -1,0 +1,17 @@
+rule modelsegments_denoise_input:
+    input:
+        denoised_copy_ratios="a.denoisedCR.tsv",
+    output:
+        "a.den.modelFinal.seg",
+        "a.n.cr.seg",
+    log:
+        "logs/gatk/modelsegments_denoise.log",
+    params:
+        #prefix="a.den.test",
+        extra="",  # optional
+        java_opts="",  # optional
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/gatk/modelsegments"
+

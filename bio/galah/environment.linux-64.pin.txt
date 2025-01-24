@@ -1,0 +1,23 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: linux-64
+@EXPLICIT
+https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
+https://conda.anaconda.org/conda-forge/linux-64/libgomp-14.1.0-h77fa898_1.conda#23c255b008c4f2ae008f81edcabaca89
+https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-14.1.0-h77fa898_1.conda#002ef4463dd1e2b44a94a4ace468f5d2
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-14.1.0-h69a702a_1.conda#1efc0ad219877a73ef977af7dbb51f17
+https://conda.anaconda.org/conda-forge/linux-64/libgfortran5-14.1.0-hc5f4f2c_1.conda#10a0cef64b784d6ab6da50ebca4e984d
+https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-14.1.0-hc0a3c3a_1.conda#9dbb9699ea467983ba8a4ba89b08b066
+https://conda.anaconda.org/conda-forge/linux-64/libgfortran-14.1.0-h69a702a_1.conda#591e631bc1ae62c64f2ab4f66178c097
+https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-14.1.0-h4852527_1.conda#bd2598399a70bb86d8218e95548d735e
+https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.2.13-h4ab18f5_6.conda#27329162c0dc732bcf67a4e0cd488125
+https://conda.anaconda.org/conda-forge/linux-64/libgfortran-ng-14.1.0-h69a702a_1.conda#16cec94c5992d7f42ae3f9fa8b25df8d
+https://conda.anaconda.org/conda-forge/linux-64/zlib-1.2.13-h4ab18f5_6.conda#559d338a4234c2ad6e676f460a093e67
+https://conda.anaconda.org/bioconda/linux-64/dashing-0.4.0-h735f0e5_3.tar.bz2#d7fc6881f3b78152b9f003bed26cdbda
+https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.27-pthreads_hac2b453_1.conda#ae05ece66d3924ac3d48b4aa3fa96cec
+https://conda.anaconda.org/conda-forge/linux-64/libblas-3.9.0-24_linux64_openblas.conda#80aea6603a6813b16ec119d00382b772
+https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.9.0-24_linux64_openblas.conda#f5b8822297c9c790cec0795ca1fc9be6
+https://conda.anaconda.org/conda-forge/linux-64/gsl-2.7-he838d99_0.tar.bz2#fec079ba39c9cca093bf4c00001825de
+https://conda.anaconda.org/bioconda/linux-64/fastani-1.34-h4dfc31f_3.tar.bz2#d423032b27e11e0e799a5e764b696258
+https://conda.anaconda.org/bioconda/linux-64/galah-0.4.2-h031d066_0.tar.bz2#75ebb239854377cce4f50499bb93874b

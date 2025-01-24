@@ -1,11 +1,84 @@
-rule samtools_index:
+rule samtools_faidx:
     input:
         "{sample}.fa",
     output:
-        "{sample}.fa.fai",
+        "out/{sample}.fa.fai",
     log:
         "{sample}.log",
     params:
-        extra="",  # optional params string
+        extra="",
+    wrapper:
+        "master/bio/samtools/faidx"
+
+
+rule samtools_faidx_named:
+    input:
+        "{sample}.fa",
+    output:
+        fai="out/{sample}.named.fa.fai",
+    log:
+        "{sample}.named.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/samtools/faidx"
+
+
+rule samtools_faidx_bgzip:
+    input:
+        "{sample}.fa.bgz",
+    output:
+        fai="out/{sample}.fas.bgz.fai",
+        gzi="out/{sample}.fas.bgz.gzi",
+    log:
+        "{sample}.bzgip.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/samtools/faidx"
+
+
+rule samtools_faidx_region_file:
+    input:
+        "{sample}.fa",
+        fai="idx/{sample}.fa.fai",
+        regions="{sample}.regions",
+    output:
+        "out/{sample}.region_file.fas",
+    log:
+        "{sample}.region_file.log",
+    params:
+        extra="--length 5",
+    wrapper:
+        "master/bio/samtools/faidx"
+
+
+rule samtools_faidx_region_array:
+    input:
+        "{sample}.fa",
+        fai="idx/{sample}.fa.fai",
+    output:
+        "out/{sample}.region_array.fas",
+    log:
+        "{sample}.region_array.log",
+    params:
+        region=["ref", "ref2"],
+        extra="--length 5",
+    wrapper:
+        "master/bio/samtools/faidx"
+
+
+rule samtools_faidx_bgzip_region:
+    input:
+        "{sample}.fa.bgz",
+        fai="idx/{sample}.fa.bgz.fai",
+        gzi="idx/{sample}.fa.bgz.gzi",
+    output:
+        "out/{sample}.region_bgzip.fas",
+    log:
+        "{sample}.region_bgzip.log",
+    params:
+        region="ref",
+        extra="--length 5",
     wrapper:
         "master/bio/samtools/faidx"

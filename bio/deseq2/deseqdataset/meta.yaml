@@ -1,0 +1,37 @@
+name: DESeqDataSet
+url: https://bioconductor.org/packages/3.16/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#input-data
+description: |
+  Create a `DESeqDataSet` object from either, a `tximport` `SummarizedExperiment`, a directory containing `HTSeq` counts, a sample table containing paths to count matrices, or a `RangedSummarizedExperiment` object. 
+  Then optionally run `DESeq2` pre-filtering.
+authors:
+  - Thibault Dayris
+input:
+  - colData: Path to the file describing the experiment design (TSV formatted file). First column contains sample names.
+  - dds: Path to the DESeqDataSet object (RDS formatted file) *OR*
+  - txi: Path to the tximport/tximeta SummarizedExperiment object (RDS formatted file) *OR*
+  - se: Path to the RangedSummarizedExperiment object (RDS formatted file) *OR*
+  - matrix: Path to the R `matrix(...) ` containing counts. Sample names must be in rownames. (RDS formatted file) *OR*
+  - counts: Path to the text matrix containing counts. Sample names should be in the first column. (TSV formatted file) *OR*
+  - htseq_dir: Path to the directory containing HTSeq/FeatureCount count matrices *AND*
+  - sample_table: Path to the table containing sample names and path to HTSeq/FeatureCount count matrices
+output:
+  - Path to the DESeqDataSet object (RDS formatted file)
+params:
+  - formula: Required.
+  - reference_level: Optional reference level name, in case relevel is needed
+  - tested_level: Optional tested level name, in case relevel is needed
+  - factor: Factor of interest, in case relevel is needed
+  - min_count: Minimum number of counted/estimated reads threshold (do not filter by default)
+  - extra: Optional argument passed to DESeq2, apart from `txi`, `colData`, `design`, `htseq`, `directory`, `se`, `sampleTable`, or `tidy`.
+note: |
+  * `dds` input is here to enable filters on already existing `DESeqDataSet` objects.
+  * User should provide either:
+    * `dds`
+    * `txi` and `colData`
+    * `se`
+    * `matrix` and `colData`
+    * `counts` and `colData`
+    * `htseq_dir` and `sample_table`
+  * According to `DESeq2` documentation, a `sample_table` should be a TSV file with at least two columns: `sampleName` and `fileName`. Other columns may contain factors and levels information.
+  * According to `DESeq2` documentation, a `colData` table should be a TSV file with sample names on the first column. Other columns may contain factors and levels information.
+  

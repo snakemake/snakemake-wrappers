@@ -1,0 +1,14 @@
+name: read_duplication
+description: Estimate read duplication rate
+url: "https://rseqc.sourceforge.net/#read-duplication-py"
+authors:
+  - "Thibault Dayris"
+input:
+  - Path to SAM/BAM file
+output:
+  - pos: Optional path to read duplication rate determined from mapping position of read
+  - seq: Optional path to read duplication rate determined from sequence of read
+  - plot_r: Optional path to R script
+  - pdf: Optional path to pdf-formatted graph
+params:
+  - extra: Optional parameters for `read_duplication.py` besides `-i` and `-o`.

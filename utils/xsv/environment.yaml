@@ -1,0 +1,5 @@
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - xsv =0.13.0

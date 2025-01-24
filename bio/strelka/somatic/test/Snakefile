@@ -4,19 +4,18 @@ rule strelka:
         # are optional input
         # normal = "data/b.bam",
         # normal_index = "data/b.bam.bai"
-        tumor = "data/{tumor}.bam",
-        tumor_index = "data/{tumor}.bam.bai",
-        fasta = "data/genome.fasta",
-        fasta_index = "data/genome.fasta.fai"
+        tumor="data/{tumor}.bam",
+        tumor_index="data/{tumor}.bam.bai",
+        fasta="data/genome.fasta",
+        fasta_index="data/genome.fasta.fai",
     output:
         # Strelka output - can be directory or full file path
-        directory("{tumor}_vcf")
-    threads:
-        1
+        directory("{tumor}_vcf"),
+    threads: 1
     params:
-        run_extra = "",
-        config_extra = ""
+        run_extra="",
+        config_extra="",
     log:
-        "logs/strelka_{tumor}.log"
+        "logs/strelka_{tumor}.log",
     wrapper:
         "master/bio/strelka/somatic"

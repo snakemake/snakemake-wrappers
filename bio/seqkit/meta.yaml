@@ -1,0 +1,16 @@
+name: SeqKit generic wrapper
+url: https://bioinf.shenwei.me/seqkit/
+description: |
+  Run SeqKit.
+authors:
+  - Filipe G. Vieira
+input:
+  - input file(s)
+output:
+  - output file(s)
+params:
+  - command: SeqKit command to use.
+  - extra: Optional parameters.
+notes: |
+  * First `input` and `output` file is considered to be the main one (except for commands `concat`, `common`, and `stats` that take all input files).
+  * Keys for extra `input` and `output` files need to match `seqkit` arguments without the `-file` suffix (if present).

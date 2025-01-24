@@ -1,0 +1,14 @@
+rule correction:
+    input:
+        query="fasta/{query}.fasta",
+        ref="fasta/{reference}.fasta",
+    output:
+        fasta="{query}_corrected_{reference}/ragtag.correct.fasta",
+        agp="{query}_corrected_{reference}/ragtag.correct.agp",
+    params:
+        extra="",
+    threads: 16
+    log:
+        "logs/ragtag/{query}_{reference}.log",
+    wrapper:
+        "master/bio/ragtag/correction"

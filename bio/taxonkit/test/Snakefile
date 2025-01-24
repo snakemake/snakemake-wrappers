@@ -1,0 +1,225 @@
+rule taxonkit_list_txt:
+    input:
+        taxdump=multiext(
+            "test-taxdump/",
+            "taxid.map",
+            "nodes.dmp",
+            "names.dmp",
+            "merged.dmp",
+            "delnodes.dmp",
+        ),
+    output:
+        "out/list/{sample}.txt",
+    log:
+        "logs/list/{sample}.log",
+    params:
+        command="list",
+        extra="--ids 36846609 --indent '\t' --show-name --show-rank",
+    threads: 2
+    wrapper:
+        "master/bio/taxonkit"
+
+
+rule taxonkit_list_json:
+    input:
+        taxdump=multiext(
+            "test-taxdump/",
+            "taxid.map",
+            "nodes.dmp",
+            "names.dmp",
+            "merged.dmp",
+            "delnodes.dmp",
+        ),
+    output:
+        "out/list/{sample}.json",
+    log:
+        "logs/list/{sample}.log",
+    params:
+        command="list",
+        extra="--ids 36846609 --show-name --show-rank",
+    threads: 2
+    wrapper:
+        "master/bio/taxonkit"
+
+
+rule taxonkit_lineage:
+    input:
+        input="taxon_ids.txt",
+        taxdump=multiext(
+            "test-taxdump/",
+            "taxid.map",
+            "nodes.dmp",
+            "names.dmp",
+            "merged.dmp",
+            "delnodes.dmp",
+        ),
+    output:
+        "out/lineage/{sample}.txt",
+    log:
+        "logs/lineage/{sample}.log",
+    params:
+        command="lineage",
+        extra="--show-status-code",
+    threads: 2
+    wrapper:
+        "master/bio/taxonkit"
+
+
+rule taxonkit_reformat:
+    input:
+        input="taxon_ids.txt",
+        taxdump=multiext(
+            "test-taxdump/",
+            "taxid.map",
+            "nodes.dmp",
+            "names.dmp",
+            "merged.dmp",
+            "delnodes.dmp",
+        ),
+    output:
+        "out/reformat/{sample}.txt",
+    log:
+        "logs/reformat/{sample}.log",
+    params:
+        command="reformat",
+        extra="--taxid-field 1",
+    threads: 2
+    wrapper:
+        "master/bio/taxonkit"
+
+
+rule taxonkit_name2taxid:
+    input:
+        input="taxon_name.txt",
+        taxdump=multiext(
+            "test-taxdump/",
+            "taxid.map",
+            "nodes.dmp",
+            "names.dmp",
+            "merged.dmp",
+            "delnodes.dmp",
+        ),
+    output:
+        "out/name2taxid/{sample}.txt",
+    log:
+        "logs/name2taxid/{sample}.log",
+    params:
+        command="name2taxid",
+        extra="--show-rank",
+    threads: 2
+    wrapper:
+        "master/bio/taxonkit"
+
+
+rule taxonkit_filter:
+    input:
+        input="taxon_ids.txt",
+        taxdump=multiext(
+            "test-taxdump/",
+            "taxid.map",
+            "nodes.dmp",
+            "names.dmp",
+            "merged.dmp",
+            "delnodes.dmp",
+        ),
+    output:
+        "out/filter/{sample}.txt",
+    log:
+        "logs/filter/{sample}.log",
+    params:
+        command="filter",
+        extra="--equal-to species",
+    threads: 2
+    wrapper:
+        "master/bio/taxonkit"
+
+
+rule taxonkit_lca:
+    input:
+        input="taxon_ids.txt",
+        taxdump=multiext(
+            "test-taxdump/",
+            "taxid.map",
+            "nodes.dmp",
+            "names.dmp",
+            "merged.dmp",
+            "delnodes.dmp",
+        ),
+    output:
+        "out/lca/{sample}.txt",
+    log:
+        "logs/lca/{sample}.log",
+    params:
+        command="lca",
+        extra="--separator ','",
+    threads: 2
+    wrapper:
+        "master/bio/taxonkit"
+
+
+rule taxonkit_create_taxdump:
+    input:
+        input=["lineages1.txt", "lineages2.txt"],
+    output:
+        taxdump=multiext(
+            "out/create-taxdump/{sample}/",
+            "taxid.map",
+            "nodes.dmp",
+            "names.dmp",
+            "merged.dmp",
+            "delnodes.dmp",
+        ),
+    log:
+        "logs/create-taxdump/{sample}.log",
+    params:
+        command="create-taxdump",
+        extra="--field-accession 1 --rank-names 'superkingdom,phylum,class,order,family,genus,species'",
+    threads: 2
+    wrapper:
+        "master/bio/taxonkit"
+
+
+rule taxonkit_profile2cami:
+    input:
+        input="abundance.tsv",
+        taxdump=multiext(
+            "test-taxdump/",
+            "taxid.map",
+            "nodes.dmp",
+            "names.dmp",
+            "merged.dmp",
+            "delnodes.dmp",
+        ),
+    output:
+        "out/profile2cami/{sample}.txt",
+    log:
+        "logs/profile2cami/{sample}.log",
+    params:
+        command="profile2cami",
+        extra="--sample-id sample1 --taxonomy-id 2021-10-01",
+    threads: 2
+    wrapper:
+        "master/bio/taxonkit"
+
+
+rule taxonkit_cami_filter:
+    input:
+        input=rules.taxonkit_profile2cami.output[0],
+        taxdump=multiext(
+            "test-taxdump/",
+            "taxid.map",
+            "nodes.dmp",
+            "names.dmp",
+            "merged.dmp",
+            "delnodes.dmp",
+        ),
+    output:
+        "out/cami_filter/{sample}.tsv",
+    log:
+        "logs/cami_filter/{sample}.log",
+    params:
+        command="cami-filter",
+        extra="--taxids 2759",
+    threads: 2
+    wrapper:
+        "master/bio/taxonkit"

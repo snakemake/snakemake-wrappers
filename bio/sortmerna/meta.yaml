@@ -1,0 +1,15 @@
+name: SortMeRNA
+description: SortMeRNA is a local sequence alignment tool for filtering, mapping and OTU clustering.
+url: https://sortmerna.readthedocs.io/
+authors:
+  - Curro Campuzano Jiménez
+input:
+  - Reference FASTA files (one or more)
+  - Query FASTA file (single or paired-end)
+output:
+  - Aligned reads
+  - Unaligned reads (other)
+params:
+  - extra: aditional program arguments
+notes: |
+  * The kvdb (key value database) will be created in a temporary directory. Then, you don't have to prune it before each run. If you want to re-use the index, you can specify the idx-dir parameter.

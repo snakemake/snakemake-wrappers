@@ -1,0 +1,11 @@
+rule cnvkit_antitarget:
+    input:
+        bed="test.bed",
+    output:
+        bed="test.antitarget.bed",
+    log:
+        "logs/test.target.log",
+    params:
+        extra = "" # optional
+    wrapper:
+        "master/bio/cnvkit/antitarget"

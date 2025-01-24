@@ -1,0 +1,2 @@
+seq	test	CDS	5	8	.	.	.	gene_id "A"; transcript_id "";
+seq	test	CDS	5	8	.	-	.	gene_id "B"; transcript_id "";

@@ -12,7 +12,9 @@ jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Sphinx environment
         run: |
@@ -29,7 +31,7 @@ jobs:
   testing:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
           fetch-depth: 0
@@ -39,14 +41,13 @@ jobs:
         with:
           activate-environment: snakemake
           channels: "conda-forge, bioconda"
-          miniforge-variant: Mambaforge
           miniforge-version: latest
 
       - name: Setup Snakemake environment
         shell: bash -el {0}
         run: |
           conda config --set channel_priority strict
-          mamba install -n snakemake -y snakemake-minimal pytest
+          conda install -n snakemake -y snakemake-minimal snakemake-storage-plugin-http pytest pandas
 
       - name: Fetch master
         if: github.ref != 'refs/heads/master'
@@ -60,4 +61,4 @@ jobs:
           DIFF_LAST_COMMIT: ${{ github.ref == 'refs/heads/master' }}
         run: |
           # run tests
-          pytest test.py -v
+          pytest -v test_wrappers.py

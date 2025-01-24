@@ -4,6 +4,12 @@ url: http://www.htslib.org/doc/bcftools.html#mpileup
 authors:
   - Michael Hall
   - Filipe G. Vieira
-notes: |
-  * The `uncompressed_bcf` param allows to specify that a BCF output should be uncompressed (ignored otherwise).
-  * The `extra` param allows for additional program arguments (not `--threads`, `-f/--fasta-ref`, `-o/--output`, or `-O/--output-type`).
+input:
+  - alignments: SAM/BAM/CRAM file(s)
+  - ref: reference genome
+  - reference genome index
+output:
+  - pileup file
+params:
+  - uncompressed_bcf: uncompressed BCF (ignored otherwise)
+  - extra: additional program arguments

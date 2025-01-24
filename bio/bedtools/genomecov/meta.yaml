@@ -7,5 +7,13 @@ authors:
 input:
   - BED/GFF/VCF files grouped by chromosome and genome file (`genome file format <https://bedtools.readthedocs.io/en/latest/content/general-usage.html#genome-file-format>`_) OR
   - BAM files sorted by position.
+  - ref: Path to genome file, this must come after the other files
 output:
   - genomecov (.genomecov)
+params:
+  - extra: additional program arguments
+note: |
+  * If user provides a BAM file, then no need to provide a reference genome file
+  * If user provides a BED file, then reference genome file is required
+  * BAM/GFF/VCF/BED files *must* come first. Input file order matters in this wrapper.
+  * This program/wrapper does not handle multi-threading.

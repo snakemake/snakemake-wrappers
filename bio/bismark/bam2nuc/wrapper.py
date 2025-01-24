@@ -1,5 +1,6 @@
 """Snakemake wrapper for bam2nuc tool that calculates mono- and di-nucleotide coverage of the reads and compares them with average genomic sequence
 composition."""
+
 # https://github.com/FelixKrueger/Bismark/blob/master/bam2nuc
 
 __author__ = "Roman Chernyatchik"

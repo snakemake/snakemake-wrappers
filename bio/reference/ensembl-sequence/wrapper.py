@@ -30,7 +30,7 @@ datatype = snakemake.params.get("datatype", "")
 chromosome = snakemake.params.get("chromosome", "")
 if datatype == "dna":
     if chromosome:
-        suffixes = ["dna.chromosome.{}.fa.gz".format(chromosome)]
+        suffixes = [f"dna.chromosome.{chrom}.fa.gz" for chrom in chromosome]
     else:
         suffixes = ["dna.primary_assembly.fa.gz", "dna.toplevel.fa.gz"]
 elif datatype == "cdna":
@@ -50,8 +50,9 @@ if chromosome:
             "invalid datatype, to select a single chromosome the datatype must be dna"
         )
 
+url = snakemake.params.get("url", "ftp://ftp.ensembl.org/pub")
 spec = spec.format(build=build, release=release)
-url_prefix = f"ftp://ftp.ensembl.org/pub/{branch}release-{release}/fasta/{species}/{datatype}/{species.capitalize()}.{spec}"
+url_prefix = f"{url}/{branch}release-{release}/fasta/{species}/{datatype}/{species.capitalize()}.{spec}"
 
 success = False
 for suffix in suffixes:
@@ -62,7 +63,7 @@ for suffix in suffixes:
     except sp.CalledProcessError:
         continue
 
-    shell("(curl -L {url} | gzip -d > {snakemake.output[0]}) {log}")
+    shell("(curl -L {url} | gzip -d >> {snakemake.output[0]}) {log}")
     success = True
     break
 

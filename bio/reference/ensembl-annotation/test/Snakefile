@@ -3,7 +3,7 @@ rule get_annotation:
         "refs/annotation.gtf",
     params:
         species="homo_sapiens",
-        release="87",
+        release="105",
         build="GRCh37",
         flavor="",  # optional, e.g. chr_patch_hapl_scaff, see Ensembl FTP.
         # branch="plants",  # optional: specify branch
@@ -19,12 +19,14 @@ rule get_annotation_gz:
         "refs/annotation.gtf.gz",
     params:
         species="homo_sapiens",
-        release="87",
+        release="105",
         build="GRCh37",
         flavor="",  # optional, e.g. chr_patch_hapl_scaff, see Ensembl FTP.
         # branch="plants",  # optional: specify branch
     log:
         "logs/get_annotation.log",
+    params:
+        url="http://ftp.ensembl.org/pub",
     cache: "omit-software"  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-annotation"

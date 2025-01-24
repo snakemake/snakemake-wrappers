@@ -1,0 +1,5 @@
+##fileformat=VCFv4.2
+##contig=<ID=15,length=101991189>
+##varlociraptor_observation_format_version=11
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+15	1295	.	ATTTTTTTTTCTACA	ATTTTTTTTTTCTACA	.	.	.

@@ -1,0 +1,15 @@
+name: Deeptools Plot Correlation
+url: https://deeptools.readthedocs.io/en/develop/content/tools/plotPCA.html
+description: >
+  Generate a principal component analysis (PCA) plot from multiBamSummary or multiBigwigSummary output.
+authors:
+  - Thibault Dayris
+input:
+  - Path to compressed matrix file
+output:
+  - plot: Path to PCA plot. The available options are `.png`, `.eps`, `.pdf` and `.svg`.
+  - matrix: Optional path to the data underlying the plot.
+params:
+  - extra: Optional parameters besides IO and `--plotFileFormat`
+notes: >
+  Plot file format is automatically inferred from `output.plot` extension.

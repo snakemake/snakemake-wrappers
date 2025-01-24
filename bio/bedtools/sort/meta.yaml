@@ -5,8 +5,12 @@ url: https://bedtools.readthedocs.io/en/latest/content/tools/sort.html
 authors:
   - Antonie Vietor
 input:
-  - BED/GFF/VCF files
-  - optional a tab separating file that determines the sorting order and contains the chromosome names in the first column
-  - optional a fasta index file
+  - in_file: Path to interval file (BED/GFF/VCF formatted)
+  - genome: optional a tab separating file that determines the sorting order and contains the chromosome names in the first column
+  - faidx: optional a fasta index file
 output:
-  - sorted BED/GFF/VCF file
+  - Path to the sorted interval file (BED/GFF/VCF formatted)
+params:
+  - extra: additional program arguments (except for `-i`, `-g`, or `--faidx`)
+notes: |
+  * This program/wrapper does not handle multi-threading.
