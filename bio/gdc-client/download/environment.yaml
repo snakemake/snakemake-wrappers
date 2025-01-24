@@ -3,6 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - python >3.8
-  - pyopenssl > 20
   - gdc-client =2.3
