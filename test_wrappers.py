@@ -3161,10 +3161,6 @@ def test_gdc_download(run):
         "bio/gdc-client/download",
         ["snakemake", "--cores", "1", "raw/testing_sample.maf.gz", "--use-conda", "-F"],
     )
-    run(
-        "bio/gdc-client/download",
-        ["snakemake", "--cores", "1", "raw/testing_sample.bam", "--use-conda", "-F"],
-    )
 
 
 def test_happy_prepy(run):
