@@ -6,6 +6,6 @@ authors:
   - Johannes Köster
 input:
   - reference genome
-  - read alignments
+  - read alignments (may be multiple bams)
 output:
   - varlociraptor alignment properties
