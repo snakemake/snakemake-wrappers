@@ -1,0 +1,13 @@
+rule test_ngsbits_sampleancestry:
+    input:
+        # Either a single VCF or a list of VCF files
+        "sample.vcf",
+    output:
+        "ancestry.tsv",
+    threads: 1
+    log:
+        "ancestry.log",
+    params:
+        extra="-min_snps 4 -build hg19",
+    wrapper:
+        "master/bio/ngsbits/sampleancestry"

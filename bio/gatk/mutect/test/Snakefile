@@ -51,3 +51,19 @@ rule mutect2_complete:
         "logs/mutect_{sample}.log",
     wrapper:
         "master/bio/gatk/mutect"
+
+rule mutect2_list:
+    input:
+        fasta="genome/genome.fasta",
+        map=expand("mapped/{sample}.bam", sample=["a", "b"]),
+    output:
+        vcf="variant_list/a_b.vcf",
+    threads: 1
+    resources:
+        mem_mb=1024,
+    log:
+        "logs/mutect2_list.log",
+    params:
+        extra="--tumor-sample a_normal --normal-sample b_normal",
+    wrapper:
+        "master/bio/gatk/mutect"

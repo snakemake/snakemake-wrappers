@@ -1,7 +1,7 @@
 rule run_merqury_haploid:
     input:
-        fasta="hap1.fasta",
-        meryldb="meryldb",
+        fasta="in_files/hap1.fasta",
+        meryldb="in_files/meryldb",
     output:
         # meryldb output
         filt="results/haploid/meryldb.filt",
@@ -30,8 +30,8 @@ rule run_merqury_haploid:
 
 rule run_merqury_diploid:
     input:
-        fasta=["hap1.fasta", "hap2.fasta"],
-        meryldb="meryldb",
+        fasta=["in_files/hap1.fasta", "in_files/hap2.fasta"],
+        meryldb="in_files/meryldb",
     output:
         # meryldb output
         filt="results/diploid/meryldb.filt",

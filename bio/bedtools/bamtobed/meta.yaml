@@ -5,8 +5,10 @@ url: https://bedtools.readthedocs.io/en/latest/content/tools/bamtobed.html
 authors:
   - Filipe G. Vieira
 input:
-  - BAM file
+  - BAM file, this must be the first file in the input file list
 output:
-  - BED file
+  - BED file, this must be the first file in the output file list
+params:
+  - extra: additional program arguments (except `-i`)
 notes: |
-  * The `extra` param allows for additional program arguments.
+  * This program/wrapper does not handle multi-threading.

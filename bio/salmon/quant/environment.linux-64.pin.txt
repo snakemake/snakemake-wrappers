@@ -1,0 +1,22 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: linux-64
+@EXPLICIT
+https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
+https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-13.2.0-h7e041cc_5.conda#f6f6600d18a4047b54f803cf708b868a
+https://conda.anaconda.org/conda-forge/linux-64/libgomp-13.2.0-h807b86a_5.conda#d211c42b9ce49aee3734fdc828731689
+https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-13.2.0-h807b86a_5.conda#d4ff227c46917d3b4565302a2bbb276b
+https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hd590300_5.conda#69b8b6202a07720f448be700e300ccf4
+https://conda.anaconda.org/conda-forge/linux-64/gzip-1.13-hd590300_0.conda#cb8143aa2e59e9684c41dfdf74af38ac
+https://conda.anaconda.org/conda-forge/linux-64/icu-70.1-h27087fc_0.tar.bz2#87473a15119779e021c314249d4b4aed
+https://conda.anaconda.org/conda-forge/linux-64/libiconv-1.17-hd590300_2.conda#d66573916ffcf376178462f1b61c941e
+https://conda.anaconda.org/conda-forge/linux-64/libjemalloc-5.3.0-hcb278e6_0.conda#9b46c6ff895b50a4c45d38b4e66e5752
+https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.2.13-hd590300_5.conda#f36c115f1ee199da648e0597ec2047ad
+https://conda.anaconda.org/conda-forge/linux-64/xz-5.2.6-h166bdaf_0.tar.bz2#2161070d867d1b1204ea749c8eec4ef0
+https://conda.anaconda.org/conda-forge/linux-64/libxml2-2.10.3-hca2bb57_4.conda#bb808b654bdc3c783deaf107a2ffb503
+https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.5-hfc55251_0.conda#04b88013080254850d6c01ed54810589
+https://conda.anaconda.org/conda-forge/linux-64/boost-cpp-1.78.0-h5adbc97_2.conda#09be6b4c66c7881e2b24214c6f6841c9
+https://conda.anaconda.org/conda-forge/linux-64/libhwloc-2.9.1-hd6dc26d_0.conda#a3ede1b8e47f993ff1fe3908b23bb307
+https://conda.anaconda.org/conda-forge/linux-64/tbb-2021.9.0-hf52228f_0.conda#f495e42d3d2020b025705625edf35490
+https://conda.anaconda.org/bioconda/linux-64/salmon-1.10.3-hecfa306_0.tar.bz2#5eb552c165b5799992ebb6ad44cbb5b8

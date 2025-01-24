@@ -1,5 +1,6 @@
-name: "freebayes"
+name: freebayes
 description: Call small genomic variants with freebayes.
+url: https://github.com/freebayes/freebayes
 authors:
   - Johannes Köster
   - Felix Mölder
@@ -9,9 +10,7 @@ input:
   - reference genome
 output:
   - VCF/VCF.gz/BCF file
-notes: |
-  * The `extra` param allows for additional arguments for freebayes.
-  * The `uncompressed_bcf`param allows for uncompressed BCF output.
-  * The optional `normalize` param allows to use `bcftools norm` to normalize indels. When set one of the following params must be passed: -a, -f, -m, -D or -d
-  * The `chunkzise` param allows setting reference genome chunk size for parallelization (default: 100000)
-  * For more inforamtion see, https://github.com/freebayes/freebayes
+params:
+  - extra: additional arguments for freebayes
+  - normalize: use `bcftools norm` to normalize indels (one of `-a`, `-f`, `-m`, `-D` or `-d` must be used)
+  - chunkzise: reference genome chunk size for parallelization (default `100000`)

@@ -3,11 +3,11 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bowtie2 =2.5.1
-  - bcftools =1.16
-  - spades =3.15.5
-  - samtools =1.16.1
+  - bowtie2 =2.5.4
+  - bcftools =1.21
+  - spades =4.0.0
+  - samtools =1.21
   - pilon =1.24
   - racon =1.5.0
-  - blast =2.13.0
-  - unicycler =0.5.0
+  - blast =2.16.0
+  - unicycler =0.5.1

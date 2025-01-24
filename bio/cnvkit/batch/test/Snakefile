@@ -1,0 +1,40 @@
+rule cnvkit_batch_build_reference:
+    input:
+        bam=["mapped/a.bam"],
+        bai=["mapped/a.bam.bai"],
+        fasta="ref/ref.fa",
+        antitarget="ref/a.antitarget.bed",
+        target="ref/a.target.bed",
+    output:
+        reference="cnvkit/reference.cnn",
+    log:
+        "cnvkit/a.reference.cnn.log",
+    params:
+        method='hybrid',  # optional
+        extra="--target-avg-size 10",  # optional
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/cnvkit/batch"
+
+rule cnvkit_batch:
+    input:
+        bam=["mapped/a.bam"],
+        bai=["mapped/a.bam.bai"],
+        reference="ref/reference.cnn",
+    output:
+        antitarget_coverage="cnvkit/a.antitargetcoverage.cnn",
+        bins="cnvkit/a.bintest.cns",
+        regions="cnvkit/a.cnr",
+        segments="cnvkit/a.cns",
+        segments_called="cnvkit/a.call.cns",
+        target_coverage="cnvkit/a.targetcoverage.cnn",
+    log:
+        "cnvkit/a.antitargetcoverage.cnn.log",
+    params:
+        method='hybrid',  # optional
+        extra="",  # optional
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/cnvkit/batch"

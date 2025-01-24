@@ -19,7 +19,7 @@ java_opts = get_java_opts(snakemake)
 f1r2 = "--input "
 if isinstance(snakemake.input["f1r2"], list):
     # Case user provided a list of archives
-    f1r2 += "--input ".join(snakemake.input["f1r2"])
+    f1r2 += " --input ".join(snakemake.input["f1r2"])
 else:
     # Case user provided a single archive as a string
     f1r2 += snakemake.input["f1r2"]

@@ -1,0 +1,15 @@
+name: deeptools alignment-sieve
+url: https://deeptools.readthedocs.io/en/develop/content/tools/alignmentSieve.html
+description: >
+  filters/shift alignments in a BAM/CRAM file according the the specified parameters. 
+  It can optionally output to BEDPE format.
+authors:
+  - Thibault Dayris
+input:
+  - aln: Path to BAM/CRAM formatted alignments. Bam filesm ust be indexed.
+output:
+  - Path to filtered bam alignments or bedpe intervals.
+params:
+  - extra: Optional arguments for `alignmentSieve.py`
+notes: |
+  Input/output formats are automatically detected.

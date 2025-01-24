@@ -1,0 +1,16 @@
+name: "vg giraffe"
+description: Map reads using vg giraffe, with optional sorting using
+  samtools or picard.
+url: https://github.com/vgteam/vg
+authors:
+  - Felix Mölder
+input:
+  - FASTQ file(s)
+  - reference graph
+output:
+  - BAM/SAM or CRAM file
+notes: |
+  * The `extra` param allows for additional arguments for vg giraffe.
+  * The `sort_order` params allows sorting by `queryname` or `coordinate`
+  * The `sorting` param allows to enable sorting, and can be either 'none', 'samtools', 'fgbio' or 'picard'.
+  * The `sort_extra` allows for extra arguments for samtools/picard

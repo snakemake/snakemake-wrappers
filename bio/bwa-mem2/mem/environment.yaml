@@ -4,6 +4,6 @@ channels:
   - nodefaults
 dependencies:
   - bwa-mem2 =2.2.1
-  - samtools =1.16.1
-  - picard-slim =3.0.0
-  - snakemake-wrapper-utils =0.5.2
+  - samtools =1.21
+  - picard-slim =3.3.0
+  - snakemake-wrapper-utils =0.6.2

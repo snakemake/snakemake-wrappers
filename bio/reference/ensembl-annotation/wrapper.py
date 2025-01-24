@@ -15,15 +15,19 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 species = snakemake.params.species.lower()
 build = snakemake.params.build
 release = int(snakemake.params.release)
+gtf_release = release
 out_fmt = Path(snakemake.output[0]).suffixes
 out_gz = (out_fmt.pop() and True) if out_fmt[-1] == ".gz" else False
 out_fmt = out_fmt.pop().lstrip(".")
 
 
 branch = ""
-if release >= 81 and build == "GRCh37":
-    # use the special grch37 branch for new releases
-    branch = "grch37/"
+if build == "GRCh37":
+    if release >= 81:
+        # use the special grch37 branch for new releases
+        branch = "grch37/"
+    if release > 87:
+        gtf_release = 87
 elif snakemake.params.get("branch"):
     branch = snakemake.params.branch + "/"
 
@@ -44,16 +48,8 @@ else:
     )
 
 
-url = "ftp://ftp.ensembl.org/pub/{branch}release-{release}/{out_fmt}/{species}/{species_cap}.{build}.{release}.{flavor}{suffix}".format(
-    release=release,
-    build=build,
-    species=species,
-    out_fmt=out_fmt,
-    species_cap=species.capitalize(),
-    suffix=suffix,
-    flavor=flavor,
-    branch=branch,
-)
+url = snakemake.params.get("url", "ftp://ftp.ensembl.org/pub")
+url = f"{url}/{branch}release-{release}/{out_fmt}/{species}/{species.capitalize()}.{build}.{gtf_release}.{flavor}{suffix}"
 
 
 try:

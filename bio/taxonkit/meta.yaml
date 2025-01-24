@@ -1,0 +1,14 @@
+name: TaxonKit generic wrapper
+url: https://bioinf.shenwei.me/taxonkit/
+description: |
+  Run TaxonKit.
+authors:
+  - Filipe G. Vieira
+input:
+  - input: input file(s)
+  - taxdump: taxdump files
+output:
+  - taxdump: output taxdump files
+params:
+  - command: TaxonKit command to use.
+  - extra: Optional parameters.

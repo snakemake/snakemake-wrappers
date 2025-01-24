@@ -1,0 +1,14 @@
+name: gatk CallCopyRationSegments
+url: https://gatk.broadinstitute.org/hc/en-us/articles/13832751795227-CallCopyRatioSegments
+description: |
+  Calls copy-ratio segments as amplified, deleted, or copy-number neutral
+authors:
+  - Patrik Smeds
+input:
+  - copy_ratio_seg: cr.seq file from ModelSegments
+output:
+  - copy_ratio_seg: called copy ratio segments file
+  - igv_seg: CBS formatted igv.seg file, optional
+params:
+  - java_opts: param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
+  - extra: param allows for additional program arguments.

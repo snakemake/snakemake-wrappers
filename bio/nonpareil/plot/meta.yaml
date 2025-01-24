@@ -1,0 +1,13 @@
+name: nonpareil plot
+description: Plot Nonpareil results.
+url: https://nonpareil.readthedocs.io/en/latest/
+authors:
+  - Filipe G. Vieira
+input:
+  - NPO file(s)
+output:
+  - PDF file with plot (optional)
+  - TSV file with summary stats (optional)
+  - JSON file with detailed info (optional)
+params:
+  - extra: additional program arguments (not `--pdf`, `--tsv`, or `--json`).

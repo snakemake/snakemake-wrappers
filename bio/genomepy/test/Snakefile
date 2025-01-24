@@ -6,13 +6,13 @@ rule genomepy:
             ".fa.fai",
             ".fa.sizes",
             ".gaps.bed",
-            ".annotation.gtf.gz",
+            ".annotation.gtf",
             ".blacklist.bed",
         ),
     log:
         "logs/genomepy_{assembly}.log",
     params:
-        provider="UCSC",  # optional, defaults to ucsc. Choose from ucsc, ensembl, and ncbi
+        provider="ucsc",  # optional, defaults to ucsc. Choose from ucsc, ensembl, and ncbi
     cache: "omit-software"  # mark as eligible for between workflow caching
     wrapper:
         "master/bio/genomepy"

@@ -1,0 +1,13 @@
+name: MTNucRatioCalculator
+url: "https://github.com/apeltzer/MTNucRatioCalculator"
+authors:
+  - Thibault Dayris
+input:
+  - Path to a bam file
+output:
+  - json: Optional path to json-formatted results
+  - txt: Optional path to text-formatted results
+params:
+  - chrom: Name of the mithocondrial chromosome
+notes: |
+  No optional parameters basides `chrom`, the name of the mitochondrial chromosome.

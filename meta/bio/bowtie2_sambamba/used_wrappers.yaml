@@ -1,0 +1,7 @@
+wrappers:
+  - bio/bowtie2/build
+  - bio/bowtie2/align
+  - bio/sambamba/sort
+  - bio/sambamba/view
+  - bio/sambamba/markdup
+  - bio/sambamba/index

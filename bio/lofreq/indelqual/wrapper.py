@@ -17,7 +17,7 @@ if "--dindel" in extra and not ref:
     raise ValueError("Reference required if --dindel option specified")
 
 if ref:
-    ref = "--ref {ref}"
+    ref = f"--ref {ref}"
 
 shell(
     "lofreq indelqual "

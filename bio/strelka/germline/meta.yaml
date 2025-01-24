@@ -2,3 +2,4 @@ name: "Strelka germline"
 description: Call germline variants with Strelka.
 authors:
   - Jan Forster
+  - Christopher Schröder

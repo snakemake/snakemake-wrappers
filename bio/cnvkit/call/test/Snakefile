@@ -1,0 +1,12 @@
+rule cnvkit_call:
+    input:
+        segment="test.cns",
+        vcf="test.vcf",
+    output:
+        segment="test.call.cns",
+    log:
+        "logs/test.call.cns.log",
+    params:
+        extra = "" # optional
+    wrapper:
+        "master/bio/cnvkit/call"

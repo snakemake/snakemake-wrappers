@@ -1,0 +1,15 @@
+rule test_gatk_calculate_contamination:
+    input:
+        tumor="pileups.table",
+        # normal="normal.pileups.table",
+    output:
+        "contamination.table",
+    threads: 1
+    resources:
+        mem_mb=1024,
+    log:
+        "logs/gatk/contamination.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/gatk/calculatecontamination"

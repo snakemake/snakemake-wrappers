@@ -1,0 +1,7 @@
+sampleName	fileName	condition
+sample1	sample1.count.tsv	A
+sample2	sample2.count.tsv	A
+sample3	sample3.count.tsv	A
+sample4	sample4.count.tsv	B
+sample5	sample5.count.tsv	B
+sample6	sample6.count.tsv	B

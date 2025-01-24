@@ -1,10 +1,13 @@
 name: blast makeblastdb for FASTA files
+url: https://blast.ncbi.nlm.nih.gov/
 description: >
   Makeblastdb produces local `BLAST <https://blast.ncbi.nlm.nih.gov/Blast.cgi>`_ databases from nucleotide or protein FASTA files.
   For more information please see `BLAST documentation <https://www.ncbi.nlm.nih.gov/books/NBK279690/>`_.
 author:
   - Antonie Vietor
 input:
-  - FASTA file
+  - fasta: Path to FASTA file
 output:
-  - multiple files with different extensions (e.g. .nin, .nsq, .nhr for nucleotides or .pin, .psq, .phr for proteins)
+  - Path to database multiple files with different extensions (e.g. .nin, .nsq, .nhr for nucleotides or .pin, .psq, .phr for proteins)
+params:
+  - Optional parameters basides `-in`, `-dtype`, and `-out`

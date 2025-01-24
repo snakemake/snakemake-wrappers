@@ -10,7 +10,9 @@ from snakemake.shell import shell
 from snakemake_wrapper_utils.bcftools import get_bcftools_opts
 
 
-bcftools_opts = get_bcftools_opts(snakemake, parse_ref=False, parse_memory=False)
+bcftools_opts = get_bcftools_opts(
+    snakemake, parse_ref=False, parse_samples=False, parse_memory=False
+)
 extra = snakemake.params.get("extra", "")
 view_extra = snakemake.params.get("view_extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
@@ -19,11 +21,11 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 ## Extract arguments
 header = snakemake.input.get("header", "")
 if header:
-    header = f"-h {header}"
+    header = f"--header {header}"
 
 samples = snakemake.input.get("samples", "")
 if samples:
-    samples = f"-s {samples}"
+    samples = f"--samples {samples}"
 
 
 with tempfile.TemporaryDirectory() as tmpdir:

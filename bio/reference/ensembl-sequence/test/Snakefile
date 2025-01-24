@@ -13,15 +13,33 @@ rule get_genome:
         "master/bio/reference/ensembl-sequence"
 
 
-rule get_chromosome:
+rule get_single_chromosome:
     output:
-        "refs/chr1.fasta",
+        "refs/chr2.fasta",
     params:
         species="saccharomyces_cerevisiae",
         datatype="dna",
         build="R64-1-1",
         release="101",
-        chromosome="I",  # optional: restrict to chromosome
+        chromosome=["II"],  # optional: restrict to one or multiple chromosomes, for multiple see below
+        # branch="plants",  # optional: specify branch
+    log:
+        "logs/get_genome.log",
+    params:
+        url="http://ftp.ensembl.org/pub",
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/reference/ensembl-sequence"
+
+rule get_multiple_chromosome:
+    output:
+        "refs/chr1_and_chr2.fasta",
+    params:
+        species="saccharomyces_cerevisiae",
+        datatype="dna",
+        build="R64-1-1",
+        release="101",
+        chromosome=["I", "II"],  # optional: restrict to one or multiple chromosomes
         # branch="plants",  # optional: specify branch
     log:
         "logs/get_genome.log",

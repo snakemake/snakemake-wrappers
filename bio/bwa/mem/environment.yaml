@@ -3,7 +3,8 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bwa =0.7.17
-  - samtools =1.16.1
-  - picard-slim =2.27.4
-  - snakemake-wrapper-utils =0.5.2
+  - bwa =0.7.18
+  - fgbio-minimal =2.4.0
+  - samtools =1.21
+  - picard-slim =3.3.0
+  - snakemake-wrapper-utils =0.6.2

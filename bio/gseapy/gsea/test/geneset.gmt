@@ -1,0 +1,3 @@
+PosGS	PositiveGeneSet	SCARA3	CLIC6	TACSTD2
+NegGS	NegativeGeneSet	TINAGL1	PTX3	Gene12	CTLA2B
+MisGS	FilteredOutGeneSet	Gene145	Gene39

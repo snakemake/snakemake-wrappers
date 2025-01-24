@@ -158,12 +158,13 @@ description: >
     +-------------+-----------------------------------------------------------------------------+
     | qcovus      | Query Coverage Per Unique Subject (blastn only)                             |
     +-------------+-----------------------------------------------------------------------------+
-
+url: https://blast.ncbi.nlm.nih.gov/
 author:
   - Antonie Vietor
 input:
-  - FASTA file OR
-  - bare sequence file (`more information <https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=BlastHelp>`_) OR
-  - identifiers (`more information <https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=BlastHelp>`_)
+  - query: FASTA file OR bare sequence file (`more information <https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=BlastHelp>`_) OR identifiers (`more information <https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=BlastHelp>`_)
+  - blastdb: Path to blast database
 output:
-  - depending on the formatting option, different output files can be generated (see tables above)
+  - Path to result file depending on the formatting option, different output files can be generated (see tables above)
+params:
+  - extra: Optional parameters besides `-query`, `-db`, `-num_threads` and `-out`.

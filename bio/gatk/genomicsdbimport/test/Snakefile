@@ -10,6 +10,7 @@ rule genomics_db_import:
         db_action="create",  # optional
         extra="",  # optional
         java_opts="",  # optional
+    threads: 2
     resources:
         mem_mb=lambda wildcards, input: max([input.size_mb * 1.6, 200]),
     wrapper:
