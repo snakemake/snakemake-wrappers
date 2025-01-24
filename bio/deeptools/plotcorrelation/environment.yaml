@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - deeptools =3.5.5
+  - deeptools =3.5.6
