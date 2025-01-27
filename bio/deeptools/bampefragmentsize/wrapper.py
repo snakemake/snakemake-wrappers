@@ -29,21 +29,23 @@ out_file = snakemake.output.get("hist")
 
 # Check output format
 out_format = out_file.split(".")[-1]
-if not out_format in ["png", "pdf", "svg", "eps", "plotly"]:
+VALID_FORMATS = {"png", "pdf", "svg", "eps", "plotly"}
+if not out_format in VALID_FORMATS:
     raise ValueError(
-        "Output format must be either 'png', 'pdf', 'svg', 'eps', or 'plotly'"
+        f"Invalid output format '{out_format}'. Must be one of: {', '.join(sorted(VALID_FORMATS))}"
     )
 
 # Optional output
 out_raw = snakemake.output.get("raw", "")
 optional_output = ""
 if out_raw:
-    optional_output = " --outRawFragmentLengths {out_tab} ".format(out_tab=out_raw)
+    optional_output = f" --outRawFragmentLengths {out_raw} "
 
 # Parameters
 extra = snakemake.params.get("extra", "")
 
 shell(
+    "set -e; "  # Exit on error
     "bamPEFragmentSize "
     "--numberOfProcessors {snakemake.threads} "
     "-b {bam_files} "

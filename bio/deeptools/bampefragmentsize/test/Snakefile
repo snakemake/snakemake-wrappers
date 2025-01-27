@@ -2,7 +2,7 @@ rule deeptools_bampe_fragmentsize:
     input:
         # Input BAM file(s)
         bams=["a.bam", "b.bam"],
-        # Optional blacklist file
+        # Optional blacklist file in BED format to exclude specific regions from analysis
         # blacklist="",
     output:
         # Please note that -o/hist/--histogram and --outRawFragmentLengths are exclusively defined via output files.
@@ -19,7 +19,11 @@ rule deeptools_bampe_fragmentsize:
         # Labels can be changed to anything
         # If left empty, the sample name will be used 
         # (without path and .bam extension)
-        labels="",  
+        # Format: comma-separated list matching the number of input BAMs
+        # Example: "sample1,sample2" or "" for automatic labels
+        labels="",
+        # Additional parameters for deeptools bamPEFragmentSize
+       # Example: --maxFragmentLength 1000 --binSize 10
         extra="--logScale",
     wrapper:
         "master/bio/deeptools/bampefragmentsize"
