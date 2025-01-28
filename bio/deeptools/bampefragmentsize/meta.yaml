@@ -5,15 +5,19 @@ description: >
   For usage information about ``deepTools bamPEFragmentSize``, please see the `documentation <https://deeptools.readthedocs.io/en/latest/content/tools/bamPEFragmentSize.html>`_.
   For more information about ``deepTools``, also see the `source code <https://github.com/deeptools/deepTools>`_.
 
-    +------------------------+-------------------------+-------------------+-----------+
-    | bamPEFragmentSize      | Output format           | Output variable   | Extension |
-    +========================+=========================+===================+===========+
-    | --histogram, -hist, -o | gzipped matrix file     | hist (required)  | ".png"    |
-    +------------------------+-------------------------+-------------------+-----------+
-    | --outRawFragmentLengths| tab-separated table of  | raw             | ".tab"    |
-    |                        | fragment lengths and    |                 |           |
-    |                        | occurrences            |                 |           |
-    +------------------------+-------------------------+-------------------+-----------+
+options:
+  histogram:
+    flags: ["--histogram", "-hist", "-o"]
+    format: "gzipped matrix file"
+    variable: "hist"
+    extension: ".png"
+    required: true
+  raw_lengths:
+    flag: "--outRawFragmentLengths"
+    format: "tab-separated table of fragment lengths and occurrences"
+    variable: "raw"
+    extension: ".tab"
+    required: false
 
 authors:
   - Niek Wit
@@ -26,4 +30,3 @@ output:
 params:
   - title: Title of the plot
   - extra: Optional parameters given to bamPEFragmentSize
-  
