@@ -29,3 +29,4 @@ output:
 params:
   - title: Title of the plot
   - extra: Optional parameters given to bamPEFragmentSize
+
