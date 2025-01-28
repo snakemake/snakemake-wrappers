@@ -5,6 +5,7 @@ import shutil
 import pytest
 import sys
 import yaml
+import filecmp
 from itertools import chain
 
 DIFF_MASTER = os.environ.get("DIFF_MASTER", "false") == "true"
@@ -5728,11 +5729,12 @@ def test_ensembl_sequence_chromosome():
 
 
 @skip_if_not_modified
-def test_ensembl_sequence_chromosomes():
+def test_ensembl_sequence_multiple_chromosomes():
     run(
         "bio/reference/ensembl-sequence",
-        ["snakemake", "--cores", "1", "refs/chr1_and_chr2.fasta", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "refs/chr6_and_chr1.fasta", "--use-conda", "-F"],
     )
+    assert(filecmp.cmp("refs/chr6_and_chr1.fasta", "expected/chr6_and_chr1.fasta" , shallow=False))
 
 
 @skip_if_not_modified
