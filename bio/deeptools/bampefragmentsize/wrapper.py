@@ -9,7 +9,8 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 # Get input files
-bam_files = snakemake.input.get("bams", "")
+# Let Snakemake handle the error if bams are missing
+bam_files = snakemake.input.get("bams")
 blacklist = snakemake.input.get("blacklist", "")
 if blacklist:
     blacklist = f"--blackListFileName {blacklist}"
