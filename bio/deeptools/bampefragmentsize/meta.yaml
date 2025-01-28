@@ -1,9 +1,8 @@
 name: deepTools bamPEFragmentSize
 url: https://deeptools.readthedocs.io/en/latest/content/tools/bamPEFragmentSize.html
 description: >
-  ``deepTools bamPEFragmentSize`` calculates the fragment sizes for read pairs given a BAM file from paired-end sequencing.
-  For usage information about ``deepTools bamPEFragmentSize``, please see the `documentation <https://deeptools.readthedocs.io/en/latest/content/tools/bamPEFragmentSize.html>`_.
-  For more information about ``deepTools``, also see the `source code <https://github.com/deeptools/deepTools>`_.
+  For usage information about ``deepTools bamPEFragmentSize``, please see the [documentation](https://deeptools.readthedocs.io/en/latest/content/tools/bamPEFragmentSize.html).
+  For more information about ``deepTools``, also see the [source code](https://github.com/deeptools/deepTools).
 
 options:
   histogram:
