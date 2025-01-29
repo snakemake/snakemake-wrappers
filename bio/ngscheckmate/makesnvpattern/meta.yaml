@@ -1,0 +1,15 @@
+name: NGSCheckMate MakeSNVPattern
+url: https://github.com/parklab/NGSCheckMate?tab=readme-ov-file#1-patterngenerator
+description: Generate SNP pattern file
+authors:
+  - Thibault Dayris
+input:
+  - bed: Path to bed intervals
+  - fasta: Path to fasta genome sequence
+  - index: List of paths to `bowtie` index files
+output:
+  - fasta: Path to fasta-formatted regions extracted from bed intervals. Unique numeric names are given to each region.
+  - pattern_uncompressed: Path to uncompressed patterns, used for internal patterns checks only. Col1 = Sequence, Col2 = reference max count, Col3 = variant max count.
+  - pattern: Path to compressed (binary) pattern file. Main output file.
+notes: |
+  This script uses 4 threads while running bowtie and does not allow user to change this value.

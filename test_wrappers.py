@@ -200,6 +200,21 @@ def test_nonpareil(run):
     )
 
 
+
+def test_ngsbits_samplesimilarity(run):
+    run(
+        "bio/ngsbits/samplesimilarity",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "--use-conda", 
+            "-F", 
+            "similarity.tsv",
+        ],
+    )
+
+
 def test_nonpareil_plot(run):
     run(
         "bio/nonpareil/plot",
@@ -565,6 +580,13 @@ def test_purge_dups_get_seqs(run):
     run(
         "bio/purge_dups/get_seqs",
         ["snakemake", "--cores", "1", "out/get_seqs.hap.fasta", "--use-conda", "-F"],
+    )
+
+
+def test_ngscheckmate_makesnvpattern(run):
+    run(
+        "bio/ngscheckmate/makesnvpattern",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "genome.pt"],
     )
 
 
@@ -3421,6 +3443,13 @@ def test_minimap2_index(run):
     )
 
 
+def test_mtnucratiocalculator(run):
+    run(
+        "bio/mtnucratio",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "ratio.txt"],
+    )
+
+
 def test_mosdepth(run):
     run(
         "bio/mosdepth",
@@ -3572,6 +3601,20 @@ def test_nanosim_metagenome(run):
             "results/nanosim/metagenome/brca2.metagenome_ERR3152364_Even/training/simulated/sample_x.simulated_reads.fa",
             "--use-conda",
             "-F",
+        ],
+    )
+
+
+def test_ngsbits_sampleancestry(run):
+    run(
+        "bio/ngsbits/sampleancestry",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "ancestry.tsv",
         ],
     )
 
@@ -4193,6 +4236,24 @@ def test_star_align(run):
     )
 
 
+def test_ngscheckmate_ncm(run):
+    run(
+        "bio/ngscheckmate/ncm",
+        ["snakemake", "--cores", "1", "bam_matrix.txt", "--use-conda", "-F"],
+    )
+    run(
+        "bio/ngscheckmate/ncm",
+        ["snakemake", "--cores", "1", "vcf_matrix.txt", "--use-conda", "-F"],
+    )
+    run(
+        "bio/ngscheckmate/ncm",
+        ["snakemake", "--cores", "1", "fastq_matched.txt", "--use-conda", "-F"],
+    )
+    run(
+        "bio/ngscheckmate/ncm",
+        ["snakemake", "--cores", "1", "fastq_paired_matched.txt", "--use-conda", "-F"],
+    )
+
 def test_star_index(run):
     run("bio/star/index", ["snakemake", "--cores", "1", "genome", "--use-conda", "-F"])
 
@@ -4611,6 +4672,12 @@ def test_gseapy_gsea(run):
         ["snakemake", "--cores", "1", "--use-conda", "-F", "prerank_results_dir"],
     )
 
+
+def test_sexdeterrmine(run):
+    run(
+        "bio/sexdeterrmine",
+        ["snakemake", "--cores", "1", "results.tsv", "-F", "--use-conda"],
+    )
 
 def test_sourmash_compute(run):
     run(
@@ -5953,11 +6020,13 @@ def test_vg_autoindex_giraffe(run):
         ["snakemake", "--cores", "1", "resources/genome.dist", "--use-conda", "-F"],
     )
 
+
 def test_vg_autoindex_map(run):
     run(
         "bio/vg/autoindex",
         ["snakemake", "--cores", "1", "resources/genome.xg", "--use-conda", "-F"],
     )
+
 
 def test_vg_construct(run):
     run(
@@ -5965,6 +6034,11 @@ def test_vg_construct(run):
         ["snakemake", "--cores", "1", "graph/c.vg", "--use-conda", "-F"],
     )
 
+def test_vg_giraffe(run):
+    run(
+        "bio/vg/giraffe",
+        ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
+    )
 
 def test_vg_merge(run):
     run(

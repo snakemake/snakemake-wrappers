@@ -7,7 +7,7 @@ dependencies:
   - bcftools =1.21
   - vcflib =1.0.10
   - htslib =1.21
-  - parallel =20240922
+  - parallel =20241222
   - bedtools =2.31.1
   - sed =4.8
   - snakemake-wrapper-utils =0.6.2
