@@ -5386,7 +5386,7 @@ def test_ensembl_sequence_chromosome(run):
 
 
 def test_ensembl_sequence_multiple_chromosomes(run):
-    tmp_test_dir = run(
+    run(
         "bio/reference/ensembl-sequence",
         ["snakemake", "--cores", "1", "refs/chr6_and_chr1.fasta", "--use-conda", "-F"],
         expected_comparisons={
