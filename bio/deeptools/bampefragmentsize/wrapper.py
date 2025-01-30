@@ -28,7 +28,7 @@ assert len(sample_label) == len(
 ), "Number of labels must be equal to the number of bam files"
 
 # Check output format
-out_format = Path(snakemake.output.get("hist")).suffix
+out_format = Path(snakemake.output.hist).suffix
 VALID_FORMATS = {"png", "pdf", "svg", "eps", "plotly"}
 if not out_format in VALID_FORMATS:
     raise ValueError(
