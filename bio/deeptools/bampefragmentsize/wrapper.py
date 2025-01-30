@@ -4,13 +4,14 @@ __email__ = "niekwit@gmail.com"
 __license__ = "MIT"
 
 import os
+from pathlib import Path
 from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 # Get input files
 # Let Snakemake handle the error if bams are missing
-bam_files = snakemake.input.get("bams")
+bam_files = snakemake.input.bams
 blacklist = snakemake.input.get("blacklist", "")
 if blacklist:
     blacklist = f"--blackListFileName {blacklist}"
@@ -26,10 +27,8 @@ assert len(sample_label) == len(
     bam_files
 ), "Number of labels must be equal to the number of bam files"
 
-out_file = snakemake.output.get("hist")
-
 # Check output format
-out_format = out_file.split(".")[-1]
+out_format = Path(snakemake.output.get("hist")).suffix
 VALID_FORMATS = {"png", "pdf", "svg", "eps", "plotly"}
 if not out_format in VALID_FORMATS:
     raise ValueError(
@@ -38,18 +37,16 @@ if not out_format in VALID_FORMATS:
 
 # Optional output
 out_raw = snakemake.output.get("raw", "")
-optional_output = ""
 if out_raw:
-    optional_output = f" --outRawFragmentLengths {out_raw} "
+    out_raw = f" --outRawFragmentLengths {out_raw} "
 
 # Parameters
 extra = snakemake.params.get("extra", "")
 
 shell(
-    "set -e; "  # Exit on error
     "bamPEFragmentSize "
     "--numberOfProcessors {snakemake.threads} "
     "-b {bam_files} "
-    "-o {out_file} "
-    "{blacklist} {optional_output} {extra} {log}"
+    "-o {snakemake.output.hist} "
+    "{blacklist} {out_raw} {extra} {log}"
 )
