@@ -20,7 +20,11 @@ if blacklist:
 # If no labels are provided, use the basename of the bam file
 sample_label = snakemake.params.get("labels", "")
 if not sample_label:
-    sample_label = [os.path.basename(bam.replace(".bam", "")) for bam in bam_files]
+    sample_label = [
+        Path(bam).name.removesuffix(".bam")
+        for bam in bam_files
+        if Path(bam).suffix == ".bam"
+    ]
 
 # Check if the number of labels is equal to the number of bam files
 assert len(sample_label) == len(
