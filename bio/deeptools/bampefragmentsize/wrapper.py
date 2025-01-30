@@ -42,7 +42,7 @@ if not out_format in VALID_FORMATS:
 # Optional output
 out_raw = snakemake.output.get("raw", "")
 if out_raw:
-    out_raw = f" --outRawFragmentLengths {out_raw} "
+    out_raw = f"--outRawFragmentLengths {out_raw}"
 
 # Parameters
 extra = snakemake.params.get("extra", "")
