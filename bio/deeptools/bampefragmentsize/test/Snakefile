@@ -19,11 +19,11 @@ rule deeptools_bampe_fragmentsize:
         # Labels can be changed to anything
         # If left empty, the sample name will be used 
         # (without path and .bam extension)
-        # Format: comma-separated list matching the number of input BAMs
-        # Example: "sample1,sample2" or "" for automatic labels
+        # Format: list matching the number of input BAMs
+        # Example: ["sample1", "sample2"] or "" for automatic labels
         labels="",
         # Additional parameters for deeptools bamPEFragmentSize
-       # Example: --maxFragmentLength 1000 --binSize 10
+        # Example: --maxFragmentLength 1000 --binSize 10
         extra="--logScale",
     wrapper:
         "master/bio/deeptools/bampefragmentsize"

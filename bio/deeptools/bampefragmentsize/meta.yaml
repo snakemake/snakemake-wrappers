@@ -29,6 +29,6 @@ output:
   - hist: Fragment size histogram (.png)
   - raw: Raw fragment lengths (.tab) (optional)
 params:
-  - title: Title of the plot
+  - label: Labels for plotting (list of string or "" for automatic labelling)
   - extra: Optional parameters given to bamPEFragmentSize
 
