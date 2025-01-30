@@ -196,16 +196,15 @@ def test_nonpareil(run):
     )
 
 
-
 def test_ngsbits_samplesimilarity(run):
     run(
         "bio/ngsbits/samplesimilarity",
         [
-            "snakemake", 
-            "--cores", 
-            "1", 
-            "--use-conda", 
-            "-F", 
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
             "similarity.tsv",
         ],
     )
@@ -2777,6 +2776,42 @@ def test_deeptools_bamcoverage(run):
     )
 
 
+def test_deeptools_bampe_fragmentsize(run):
+    # Test basic functionality
+    run(
+        "bio/deeptools/bampefragmentsize",
+        ["snakemake", "--cores", "1", "results/histogram.png", "--use-conda", "-F"],
+    )
+    # Test with multiple BAMs and custom labels
+    run(
+        "bio/deeptools/bampefragmentsize",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/histogram.png",
+            "--config",
+            "labels='sample1,sample2'",
+            "--use-conda",
+            "-F",
+        ],
+    )
+    # Test with blacklist
+    run(
+        "bio/deeptools/bampefragmentsize",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/histogram.png",
+            "--config",
+            "blacklist='regions.bed'",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_deeptools_multibigwigsummary(run):
     run(
         "bio/deeptools/multibigwigsummary",
@@ -4250,6 +4285,7 @@ def test_ngscheckmate_ncm(run):
         ["snakemake", "--cores", "1", "fastq_paired_matched.txt", "--use-conda", "-F"],
     )
 
+
 def test_star_index(run):
     run("bio/star/index", ["snakemake", "--cores", "1", "genome", "--use-conda", "-F"])
 
@@ -4674,6 +4710,7 @@ def test_sexdeterrmine(run):
         "bio/sexdeterrmine",
         ["snakemake", "--cores", "1", "results.tsv", "-F", "--use-conda"],
     )
+
 
 def test_sourmash_compute(run):
     run(
@@ -6027,11 +6064,13 @@ def test_vg_construct(run):
         ["snakemake", "--cores", "1", "graph/c.vg", "--use-conda", "-F"],
     )
 
+
 def test_vg_giraffe(run):
     run(
         "bio/vg/giraffe",
         ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
     )
+
 
 def test_vg_merge(run):
     run(
