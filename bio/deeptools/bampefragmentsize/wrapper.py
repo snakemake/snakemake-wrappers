@@ -29,7 +29,7 @@ assert len(sample_label) == len(
 
 # Check output format
 out_format = Path(snakemake.output.get("hist")).suffix
-VALID_FORMATS = {"png", "pdf", "svg", "eps", "plotly"}
+VALID_FORMATS = {".png", ".pdf", ".svg", ".eps", ".plotly"}
 if not out_format in VALID_FORMATS:
     raise ValueError(
         f"Invalid output format '{out_format}'. Must be one of: {', '.join(sorted(VALID_FORMATS))}"
