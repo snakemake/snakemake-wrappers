@@ -7,6 +7,7 @@ import subprocess as sp
 import sys
 from itertools import product
 from snakemake.shell import shell
+from snakemake.logging import logger
 
 species = snakemake.params.species.lower()
 release = int(snakemake.params.release)
@@ -62,9 +63,8 @@ for suffix in suffixes:
         shell("curl -sSf {url} > /dev/null 2> /dev/null")
     except sp.CalledProcessError:
         if chromosome:
-            print(
+            logger.error(
                 f"Unable to download the requested chromosome sequence from Ensembl at: {url_prefix}.{suffix}.",
-                file=sys.stderr,
             )
             break
         else:
@@ -81,13 +81,11 @@ if not success:
             url = f"{url_prefix}.[{'|'.join(suffixes)}]"
         else:
             url = f"{url_prefix}.{suffixes[0]}"
-        print(
+        logger.error(
             f"Unable to download the requested reference sequence data from Ensembl at: {url}.",
-            file=sys.stderr,
         )
-    print(
-        "Please check whether above URL is currently available (might be a temporal server issue). "
+    logger.error(
+        "Please check whether above URL is currently available (might be a temporal server issue). \n"
         "Apart from that, did you check that this combination of species, build, and release is actually provided?",
-        file=sys.stderr,
     )
     exit(1)
