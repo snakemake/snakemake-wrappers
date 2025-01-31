@@ -46,7 +46,7 @@ def tmp_test_dir():
 
 @pytest.fixture
 def run(tmp_test_dir):
-    def _run(wrapper, cmd, check_log=None, expected_comparisons=None):
+    def _run(wrapper, cmd, check_log=None, compare_results_with_expected=None):
 
         tmp_test_subdir = tempfile.mkdtemp(dir=tmp_test_dir)
         origdir = os.getcwd()
@@ -111,8 +111,8 @@ def run(tmp_test_dir):
 
         try:
             subprocess.check_call(cmd)
-            if expected_comparisons:
-                for generated, expected in expected_comparisons.items():
+            if compare_results_with_expected:
+                for generated, expected in compare_results_with_expected.items():
                     assert(filecmp.cmp(generated, expected, shallow=False))
         except Exception as e:
             # go back to original directory
@@ -5389,7 +5389,7 @@ def test_ensembl_sequence_multiple_chromosomes(run):
     run(
         "bio/reference/ensembl-sequence",
         ["snakemake", "--cores", "1", "refs/chr6_and_chr1.fasta", "--use-conda", "-F"],
-        expected_comparisons={
+        compare_results_with_expected={
             "refs/chr6_and_chr1.fasta": "expected/chr6_and_chr1.fasta"
         }
     )
