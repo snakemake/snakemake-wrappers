@@ -3,5 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - nonpareil =3.4.1
-  - r-jsonlite
+  - nonpareil =3.5.5

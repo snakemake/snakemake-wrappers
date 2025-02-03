@@ -42,6 +42,14 @@ default_effective_genome_size = {
         "200": 2520868989,
         "250": 2538590322,
     },
+    "GRCm39": {
+        "50": 2309746861,
+        "75": 2410055689,
+        "100": 2468088461,
+        "150": 2495461690,
+        "200": 2521902382,
+        "250": 2538633971,
+    },
     "GRCz10": {
         "50": 1195445541,
         "75": 1251132611,
@@ -100,7 +108,7 @@ default_effective_genome_size = {
     },
 }
 
-effective_genome_size = snakemake.params.get("effective_genome_size")
+effective_genome_size = snakemake.params.get("effective_genome_size", "")
 if not effective_genome_size:
     genome = snakemake.params.get("genome")
     read_length = snakemake.params.get("read_length")

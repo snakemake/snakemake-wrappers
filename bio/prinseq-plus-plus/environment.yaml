@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - prinseq-plus-plus =1.2.4
+  - htslib =1.21

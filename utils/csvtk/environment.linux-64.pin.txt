@@ -1,5 +1,6 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
+# created-by: conda 24.9.2
 @EXPLICIT
-https://conda.anaconda.org/bioconda/linux-64/csvtk-0.30.0-h9ee0642_0.tar.bz2#2e1864ed7c3738d4927d83a8c6ef3efd
+https://conda.anaconda.org/conda-forge/linux-64/csvtk-0.32.0-h9ec0b34_0.conda#08dfdbafaab9931e4075a49cf68da3b6

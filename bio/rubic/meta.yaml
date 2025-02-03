@@ -2,15 +2,15 @@ name: RUBIC
 authors:
   - Beatrice F. Tan
 description: |
-  `RUBIC <http://ccb.nki.nl/software/rubic/doc/>`_
-  detects recurrent copy number alterations using copy number breaks.
+  RUBIC detects recurrent copy number alterations using copy number breaks.
+url: https://github.com/NKI-CCB/RUBIC
 input:
   seg: segmentation file containing copy number profiles from multiple tumor samples
   markers: file with marker positions
+  genefile: file path to use custom gene file (optional, do note specify to use default file)
 output:
   out_gains: file with recurrent gains
   out_losses: file with recurrent losses
   out_plots: directory with plots per chromosome (possibly causes problems for the worklfow due to the time stamp)
 params:
   fdr: false discovery rate (optional, leave empty to use default value of 0.25)
-  genefile: file path to use custom gene file (optional, leave empty to use default file)

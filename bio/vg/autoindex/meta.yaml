@@ -1,0 +1,15 @@
+name: "vg autoindex giraffe"
+description: Creates index files for mapping reads via `vg giraffe`.
+url: https://github.com/vgteam/vg
+authors:
+  - Felix Mölder
+input:
+  - ref: FASTA reference
+  - vcf: haplotypes in vcf format (optional)
+output:
+  - GBZ graph (.giraffe.gbz)
+  - Distance index (.dist)
+  - Minimizer index (.shortread.withzip.min)
+  - Zipcodes (.shortread.zipcodes)
+notes: |
+  * The `extra` param allows for additional arguments for vg autoindex.

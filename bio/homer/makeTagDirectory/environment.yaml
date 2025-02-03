@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - homer =4.11
-  - samtools =1.20
+  - homer =5.1
+  - samtools =1.21
