@@ -464,6 +464,20 @@ def test_seqkit_concat(run):
         ],
     )
 
+def test_seqkit_split2_part(run):
+    run(
+        "bio/seqkit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/split2/part/a.1-of-2.fas",
+            "out/split2/part/a.2-of-2.fas",
+        ],
+    )
+
 
 def test_sickle_pe(run):
     run(
