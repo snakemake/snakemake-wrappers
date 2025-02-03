@@ -853,6 +853,20 @@ def test_open_cravat_module(run):
     )
 
 
+def test_varscan2_snpeff_meta(run):
+    run(
+        "meta/bio/varscan2_snpeff",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "snpeff/annotated.vcf",
+        ],
+    )
+
+
 def test_salmon_tximport_meta(run):
     run(
         "meta/bio/salmon_tximport",
