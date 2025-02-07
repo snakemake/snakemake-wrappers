@@ -11,3 +11,18 @@ rule bedtools_merge:
         "logs/intersect/A_B.log"
     wrapper:
         "master/bio/bedtools/intersect"
+
+
+rule bedtools_merge_zip:
+    input:
+        left="A.bed",
+        right="B.bed"
+    output:
+        "A_B.intersected.bed.gz"
+    params:
+        ## Add optional parameters 
+        extra="-wa -wb" ## In this example, we want to write original entries in A and B for each overlap.
+    log:
+        "logs/intersect/A_B.log"
+    wrapper:
+        "master/bio/bedtools/intersect"

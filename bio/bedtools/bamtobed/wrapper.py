@@ -9,11 +9,18 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
 
+if snakemake.output[0].endswith(".gz"):
+    compress = "| gzip"
+else:
+    compress = ""
+    
+
 
 shell(
     "(bamToBed"
     " {extra}"
     " -i {snakemake.input[0]}"
+    " {compress}"
     " > {snakemake.output[0]}"
     ") {log}"
 )

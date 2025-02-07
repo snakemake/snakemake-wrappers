@@ -9,6 +9,13 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+
+if snakemake.output[0].endswith(".gz"):
+    compress = "| gzip"
+else:
+    compress = ""
+    
+
 if len(snakemake.input) > 1:
     if all(f.endswith(".gz") for f in snakemake.input):
         cat = "zcat"
@@ -20,7 +27,9 @@ if len(snakemake.input) > 1:
         "({cat} {snakemake.input} | "
         "sort -k1,1 -k2,2n | "
         "bedtools merge {extra} "
-        "-i stdin > {snakemake.output}) "
+        " -i stdin "
+        " {compress}"
+        "> {snakemake.output[0]}) "
         " {log}"
     )
 else:
@@ -28,6 +37,7 @@ else:
         "( bedtools merge"
         " {extra}"
         " -i {snakemake.input}"
-        " > {snakemake.output})"
+        " {compress}"
+        " > {snakemake.output[0]})"
         " {log}"
     )
