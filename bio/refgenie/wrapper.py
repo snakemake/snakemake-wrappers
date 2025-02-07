@@ -18,13 +18,13 @@ conf_path = os.environ["REFGENIE"]
 try:
     rgc = refgenconf.RefGenConf(conf_path, writable=True)
 except RefgenconfError:
-    # If read lock timeout, attempt to skip the read lock
+    # Read lock timeouts on the config file can occur when multiple refgenie commands are run concurrently.
     rgc = refgenconf.RefGenConf(
         conf_path, writable=True, skip_read_lock=True, genome_exact=False
     )
 # pull asset if necessary
 gat, archive_data, server_url = rgc.pull(
-    genome, asset, tag, force=False, force_large=True
+    genome, asset, tag, force=False, force_large=snakemake.params.get("force_large", False)
 )
 
 for seek_key, out in snakemake.output.items():

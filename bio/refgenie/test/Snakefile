@@ -8,7 +8,7 @@ rule obtain_asset:
         asset="fasta",
         tag="default",
     log:
-        "logs/refgenie/obtain_large_asset.log",
+        "logs/refgenie/obtain_asset.log",
     wrapper:
         "master/bio/refgenie"
 
@@ -19,6 +19,7 @@ rule obtain_large_asset:
         genome="hg38",
         asset="star_index",
         tag="default",
+        force_large=True,
     log:
         "logs/refgenie/obtain_large_asset.log",
     wrapper:

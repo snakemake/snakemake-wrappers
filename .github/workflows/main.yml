@@ -10,7 +10,7 @@ on:
 
 jobs:
   docs:
-    runs-on: [self-hosted, Linux, python-3.10]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
 
@@ -27,26 +27,21 @@ jobs:
           make html
 
   testing:
-    runs-on: [self-hosted, Linux, python-3.10]
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         with:
           submodules: recursive
           fetch-depth: 0
-      # This is a hybrid of things, might need some tweaking
-      - name: create environment with mamba
+
+      - name: Setup mamba
         uses: conda-incubator/setup-miniconda@v2
-        env:
-          CONDA: "/usr/bin/conda"
         with:
-          mamba-version: "*"
-          # ?miniforge-variant: Mambaforge
-          # ?miniforge-version: latest
-          channels: conda-forge, bioconda
-          auto-activate-base: true
           activate-environment: snakemake
-          use-only-tar-bz2: true  # IMPORTANT: This needs to be set for caching to work properly!
-          auto-update-conda: true
+          channels: "conda-forge, bioconda"
+          miniforge-variant: Mambaforge
+          miniforge-version: latest
+
       - name: Setup Snakemake environment
         shell: bash -el {0}
         run: |
