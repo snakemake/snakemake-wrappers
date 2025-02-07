@@ -46,7 +46,7 @@ if sort_order not in {"coordinate", "queryname"}:
 # Determine which pipe command to use for converting to bam or sorting.
 if sort == "none":
     # Simply convert to bam using samtools view.
-    pipe_cmd = f"samtools view {samtools_opts}"
+    pipe_cmd = "samtools view {samtools_opts}"
 elif sort == "samtools":
     # Add name flag if needed.
     if sort_order == "queryname":
