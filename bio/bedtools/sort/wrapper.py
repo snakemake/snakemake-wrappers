@@ -11,6 +11,8 @@ faidx = snakemake.input.get("faidx", "")
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
+compress = "| gzip" if snakemake.output[0].endswith(".gz") else ""
+
 if genome:
     extra += " -g {}".format(genome)
 elif faidx:
@@ -20,6 +22,7 @@ shell(
     "(bedtools sort"
     " {extra}"
     " -i {snakemake.input.in_file}"
+    " {compress}"
     " > {snakemake.output[0]})"
     " {log}"
 )

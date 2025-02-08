@@ -1993,6 +1993,10 @@ def test_bedtools_intersect(run):
             "--use-conda",
              "-F"
         r],
+         compare_results_with_expected={
+            "A_B.intersected.bed": "expected/A_B.intersected.bed",
+            "A_B.intersected.bed.gz": "expected/A_B.intersected.bed.gz",
+        }
     )
 
 

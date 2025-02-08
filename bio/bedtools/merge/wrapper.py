@@ -10,11 +10,7 @@ extra = snakemake.params.get("extra", "")
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-if snakemake.output[0].endswith(".gz"):
-    compress = "| gzip"
-else:
-    compress = ""
-    
+compress = "| gzip" if snakemake.output[0].endswith(".gz") else ""
 
 if len(snakemake.input) > 1:
     if all(f.endswith(".gz") for f in snakemake.input):

@@ -10,11 +10,14 @@ extra = snakemake.params.get("extra", "")
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
+compress = "| gzip" if snakemake.output[0].endswith(".gz") else ""
+
 shell(
     "(bedtools slop"
     " {extra}"
     " -i {snakemake.input[0]}"
     " -g {snakemake.params.genome}"
+    " {compress}"
     " > {snakemake.output})"
     " {log}"
 )

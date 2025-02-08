@@ -17,12 +17,7 @@ input_b = snakemake.input.b
 
 output_file = snakemake.output[0]
 
-if output_file.endswith(".gz"):
-    compress = "| gzip"
-else:
-    compress = ""
-    
-
+compress = "| gzip" if snakemake.output[0].endswith(".gz") else ""
 
 if not isinstance(output_file, str) and len(snakemake.output) != 1:
     raise ValueError("Output should be one file: " + str(output_file) + "!")
