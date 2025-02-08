@@ -1,8 +1,21 @@
+
 rule bamtobed:
     input:
         "{sample}.bam",
     output:
         "{sample}.bed",
+    log:
+        "logs/bamtobed/{sample}.log",
+    params:
+        extra="-bedpe",  # optional parameters
+    wrapper:
+        "master/bio/bedtools/bamtobed"
+
+rule bamtobed_gz:
+    input:
+        "{sample}.bam",
+    output:
+        "{sample}.bed.gz",
     log:
         "logs/bamtobed/{sample}.log",
     params:

@@ -1909,7 +1909,7 @@ def test_bcftools_view_uncompressed_bcf(run):
 def test_bedtools_bamtobed(run):
     run(
         "bio/bedtools/bamtobed",
-        ["snakemake", "--cores", "1", "a.bed", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "a.bed", "a.bed.gz", "--use-conda", "-F"],
     )
 
 
@@ -1936,10 +1936,16 @@ def test_bedtools_complement(run):
             "--cores",
             "1",
             "results/bed-complement/a.complement.bed",
+            "results/bed-complement/a.complement.bed.gz",
             "results/vcf-complement/a.complement.vcf",
             "--use-conda",
             "-F",
         ],
+        compare_results_with_expected={
+            "results/bed-complement/a.complement.bed": "expected/bed-complement/a.complement.bed",
+            "results/bed-complement/a.complement.bed.gz": "expected/bed-complement/a.complement.bed.gz",
+            "results/vcf-complement/a.complement.vcf": "expectedvcf-complement/a.complement.vcf"
+        }
     )
 
 
@@ -1978,13 +1984,15 @@ def test_bedtools_split(run):
 def test_bedtools_intersect(run):
     run(
         "bio/bedtools/intersect",
-        ["snakemake", "--cores", "1", "A_B.intersected.bed", "--use-conda", "-F"],
-    )
-
-def test_bedtools_intersect_gzip(run):
-    run(
-        "bio/bedtools/intersect",
-        ["snakemake", "--cores", "1", "A_B.intersected.bed.gz", "--use-conda", "-F"],
+        [ 
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "A_B.intersected.bed",
+            "A_B.intersected.bed.gz",
+            "--use-conda",
+             "-F"
+        r],
     )
 
 

@@ -3,15 +3,11 @@ __copyright__ = "Copyright 2020, Antonie Vietor"
 __email__ = "antonie.v@gmx.de"
 __license__ = "MIT"
 
-from snakemake.shell import shell
+from snakemake.shell import shell # type: ignore
 
 extra = snakemake.params.get("extra", "")
 
-if snakemake.output[0].endswith(".gz"):
-    compress = "| gzip"
-else:
-    compress = ""
-    
+compress = "| gzip" if snakemake.output[0].endswith(".gz") else ""
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
