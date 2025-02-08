@@ -3,7 +3,7 @@ __copyright__ = "Copyright 2020, Antonie Vietor"
 __email__ = "antonie.v@gmx.de"
 __license__ = "MIT"
 
-from snakemake.shell import shell # type: ignore
+from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 
