@@ -1,5 +1,21 @@
 # Changelog
 
+## [5.7.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v5.6.1...v5.7.0) (2025-02-07)
+
+
+### Features
+
+* refactor vg giraffe ([#3644](https://www.github.com/snakemake/snakemake-wrappers/issues/3644)) ([0df1d3b](https://www.github.com/snakemake/snakemake-wrappers/commit/0df1d3b4b5e44827a315ff07aaff746bcd7a28ca))
+
+
+### Performance Improvements
+
+* autobump bio/gseapy/gsea ([#3640](https://www.github.com/snakemake/snakemake-wrappers/issues/3640)) ([a3a6a9e](https://www.github.com/snakemake/snakemake-wrappers/commit/a3a6a9e8cc8eb62acdf5cb27a7a98e6e14acec45))
+* autobump bio/mapdamage2 ([#3641](https://www.github.com/snakemake/snakemake-wrappers/issues/3641)) ([b84196c](https://www.github.com/snakemake/snakemake-wrappers/commit/b84196cb6fb8116890b432fc900a23e1cdff4b36))
+* autobump bio/vsearch ([#3643](https://www.github.com/snakemake/snakemake-wrappers/issues/3643)) ([e36c29e](https://www.github.com/snakemake/snakemake-wrappers/commit/e36c29e65f8b6ccb292e9e87f6ae2c41d6d7cd1b))
+* autobump utils/datavzrd ([#3639](https://www.github.com/snakemake/snakemake-wrappers/issues/3639)) ([42c5b94](https://www.github.com/snakemake/snakemake-wrappers/commit/42c5b94b5b9e38f7d91e3983d387405224ec9ddb))
+* Update datavzrd wrapper to 2.50.2 ([#3637](https://www.github.com/snakemake/snakemake-wrappers/issues/3637)) ([60c23ed](https://www.github.com/snakemake/snakemake-wrappers/commit/60c23ed069f5d7a62e6790f5a9dc0ee5e0916e2f))
+
 ### [5.6.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v5.6.0...v5.6.1) (2025-02-04)
 
 
