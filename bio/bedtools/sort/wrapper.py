@@ -11,7 +11,7 @@ faidx = snakemake.input.get("faidx", "")
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-compress = "| gzip" if snakemake.output[0].endswith(".gz") else ""
+compress = "| bgzip" if snakemake.output[0].endswith(".gz") else ""
 
 if genome:
     extra += " -g {}".format(genome)

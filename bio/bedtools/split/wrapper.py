@@ -10,7 +10,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 n_subfiles = len(snakemake.output)
 
-compress = "| gzip" if snakemake.output[0].endswith(".gz") else ""
+compress = "| bgzip" if snakemake.output[0].endswith(".gz") else ""
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
