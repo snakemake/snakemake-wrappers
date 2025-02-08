@@ -8,7 +8,7 @@ from snakemake.shell import shell # type: ignore
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
 
-compress = "| gzip" if snakemake.output[0].endswith(".gz") else ""
+compress = "| bgzip" if snakemake.output[0].endswith(".gz") else ""
 
 shell(
     "(bamToBed"
