@@ -1944,7 +1944,7 @@ def test_bedtools_complement(run):
         compare_results_with_expected={
             "results/bed-complement/a.complement.bed": "expected/bed-complement/a.complement.bed",
             "results/bed-complement/a.complement.bed.gz": "expected/bed-complement/a.complement.bed.gz",
-            "results/vcf-complement/a.complement.vcf": "expectedvcf-complement/a.complement.vcf"
+            "results/vcf-complement/a.complement.vcf": "expected/vcf-complement/a.complement.vcf"
         }
     )
 
@@ -1992,7 +1992,7 @@ def test_bedtools_intersect(run):
             "A_B.intersected.bed.gz",
             "--use-conda",
              "-F"
-        r],
+        ],
          compare_results_with_expected={
             "A_B.intersected.bed": "expected/A_B.intersected.bed",
             "A_B.intersected.bed.gz": "expected/A_B.intersected.bed.gz",

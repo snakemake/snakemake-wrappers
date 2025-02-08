@@ -17,7 +17,7 @@ rule bamtobed_gz:
     output:
         "{sample}.bed.gz",
     log:
-        "logs/bamtobed/{sample}.log",
+        "logs/bamtobed/{sample}.gz.log",
     params:
         extra="-bedpe",  # optional parameters
     wrapper:
