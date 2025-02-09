@@ -4,3 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - bedtools =2.31.1
+  - htslib =1.21

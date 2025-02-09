@@ -3,7 +3,6 @@ __copyright__ = "Copyright 2019, Patrik Smeds"
 __email__ = "patrik.smeds@gmail.com"
 __license__ = "MIT"
 
-import snakemake
 from snakemake.shell import shell
 
 shell.executable("bash")
