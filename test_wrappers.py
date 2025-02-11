@@ -5,6 +5,7 @@ import shutil
 import pytest
 import sys
 import yaml
+import filecmp
 from itertools import chain
 
 DIFF_MASTER = os.environ.get("DIFF_MASTER", "false") == "true"
@@ -45,7 +46,7 @@ def tmp_test_dir():
 
 @pytest.fixture
 def run(tmp_test_dir):
-    def _run(wrapper, cmd, check_log=None):
+    def _run(wrapper, cmd, check_log=None, compare_results_with_expected=None):
 
         tmp_test_subdir = tempfile.mkdtemp(dir=tmp_test_dir)
         origdir = os.getcwd()
@@ -110,6 +111,9 @@ def run(tmp_test_dir):
 
         try:
             subprocess.check_call(cmd)
+            if compare_results_with_expected:
+                for generated, expected in compare_results_with_expected.items():
+                    assert(filecmp.cmp(generated, expected, shallow=False))
         except Exception as e:
             # go back to original directory
             os.chdir(origdir)
@@ -196,16 +200,15 @@ def test_nonpareil(run):
     )
 
 
-
 def test_ngsbits_samplesimilarity(run):
     run(
         "bio/ngsbits/samplesimilarity",
         [
-            "snakemake", 
-            "--cores", 
-            "1", 
-            "--use-conda", 
-            "-F", 
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
             "similarity.tsv",
         ],
     )
@@ -458,6 +461,20 @@ def test_seqkit_concat(run):
             "--use-conda",
             "-F",
             "out/concat/a_b.fa.gz",
+        ],
+    )
+
+def test_seqkit_split2_part(run):
+    run(
+        "bio/seqkit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/split2/part/a.1-of-2.fas",
+            "out/split2/part/a.2-of-2.fas",
         ],
     )
 
@@ -833,6 +850,20 @@ def test_open_cravat_module(run):
     run(
         "bio/open-cravat/module",
         ["snakemake", "--cores", "1", "--use-conda"],
+    )
+
+
+def test_varscan2_snpeff_meta(run):
+    run(
+        "meta/bio/varscan2_snpeff",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "snpeff/annotated.vcf",
+        ],
     )
 
 
@@ -2777,6 +2808,42 @@ def test_deeptools_bamcoverage(run):
     )
 
 
+def test_deeptools_bampe_fragmentsize(run):
+    # Test basic functionality
+    run(
+        "bio/deeptools/bampefragmentsize",
+        ["snakemake", "--cores", "1", "results/histogram.png", "--use-conda", "-F"],
+    )
+    # Test with multiple BAMs and custom labels
+    run(
+        "bio/deeptools/bampefragmentsize",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/histogram.png",
+            "--config",
+            "labels='sample1,sample2'",
+            "--use-conda",
+            "-F",
+        ],
+    )
+    # Test with blacklist
+    run(
+        "bio/deeptools/bampefragmentsize",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/histogram.png",
+            "--config",
+            "blacklist='regions.bed'",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_deeptools_multibigwigsummary(run):
     run(
         "bio/deeptools/multibigwigsummary",
@@ -4250,6 +4317,7 @@ def test_ngscheckmate_ncm(run):
         ["snakemake", "--cores", "1", "fastq_paired_matched.txt", "--use-conda", "-F"],
     )
 
+
 def test_star_index(run):
     run("bio/star/index", ["snakemake", "--cores", "1", "genome", "--use-conda", "-F"])
 
@@ -4674,6 +4742,7 @@ def test_sexdeterrmine(run):
         "bio/sexdeterrmine",
         ["snakemake", "--cores", "1", "results.tsv", "-F", "--use-conda"],
     )
+
 
 def test_sourmash_compute(run):
     run(
@@ -5381,10 +5450,13 @@ def test_ensembl_sequence_chromosome(run):
     )
 
 
-def test_ensembl_sequence_chromosomes(run):
+def test_ensembl_sequence_multiple_chromosomes(run):
     run(
         "bio/reference/ensembl-sequence",
-        ["snakemake", "--cores", "1", "refs/chr1_and_chr2.fasta", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "refs/chr6_and_chr1.fasta", "--use-conda", "-F"],
+        compare_results_with_expected={
+            "refs/chr6_and_chr1.fasta": "expected/chr6_and_chr1.fasta"
+        }
     )
 
 
@@ -6027,11 +6099,13 @@ def test_vg_construct(run):
         ["snakemake", "--cores", "1", "graph/c.vg", "--use-conda", "-F"],
     )
 
+
 def test_vg_giraffe(run):
     run(
         "bio/vg/giraffe",
         ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
     )
+
 
 def test_vg_merge(run):
     run(

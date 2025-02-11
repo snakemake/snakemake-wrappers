@@ -7,6 +7,9 @@ input:
   - ref: FASTA reference
   - vcf: haplotypes in vcf format (optional)
 output:
-  - .giraffe.gbz, .dist and .min-file
+  - GBZ graph (.giraffe.gbz)
+  - Distance index (.dist)
+  - Minimizer index (.shortread.withzip.min)
+  - Zipcodes (.shortread.zipcodes)
 notes: |
   * The `extra` param allows for additional arguments for vg autoindex.

@@ -7,6 +7,7 @@ import subprocess as sp
 import sys
 from itertools import product
 from snakemake.shell import shell
+from snakemake.logging import logger
 
 species = snakemake.params.species.lower()
 release = int(snakemake.params.release)
@@ -47,35 +48,44 @@ else:
 if chromosome:
     if not datatype == "dna":
         raise ValueError(
-            "invalid datatype, to select a single chromosome the datatype must be dna"
+            "Invalid datatype. To select individual chromosomes, the datatype must be dna."
         )
 
 url = snakemake.params.get("url", "ftp://ftp.ensembl.org/pub")
 spec = spec.format(build=build, release=release)
 url_prefix = f"{url}/{branch}release-{release}/fasta/{species}/{datatype}/{species.capitalize()}.{spec}"
 
-success = False
 for suffix in suffixes:
+    success = False
     url = f"{url_prefix}.{suffix}"
 
     try:
         shell("curl -sSf {url} > /dev/null 2> /dev/null")
     except sp.CalledProcessError:
-        continue
+        if chromosome:
+            logger.error(
+                f"Unable to download the requested chromosome sequence from Ensembl at: {url_prefix}.{suffix}.",
+            )
+            break
+        else:
+            continue
 
     shell("(curl -L {url} | gzip -d >> {snakemake.output[0]}) {log}")
     success = True
-    break
+    if not chromosome:
+        break
 
 if not success:
-    if len(suffixes) > 1:
-        url = f"{url_prefix}.[{'|'.join(suffixes)}]"
-    else:
-        url = f"{url_prefix}.{suffixes[0]}"
-    print(
-        f"Unable to download requested sequence data from Ensembl ({url}). "
-        "Please check whether above URL is currently available (might be a temporal server issue). "
+    if not chromosome:
+        if len(suffixes) > 1:
+            url = f"{url_prefix}.[{'|'.join(suffixes)}]"
+        else:
+            url = f"{url_prefix}.{suffixes[0]}"
+        logger.error(
+            f"Unable to download the requested reference sequence data from Ensembl at: {url}.",
+        )
+    logger.error(
+        "Please check whether above URL is currently available (might be a temporal server issue). \n"
         "Apart from that, did you check that this combination of species, build, and release is actually provided?",
-        file=sys.stderr,
     )
     exit(1)
