@@ -3,14 +3,15 @@
 include: "download_models.smk"  #[hide]
 
 wildcard_constraints:
-    sample="^[^/]+$",
+    model="^[^/]+$",
     refs_prefix="^[^/]+$",
+    sample="^[^/]+$",
 
 rule nanosim_genome:
     input:
         reference_genome="resources/{sample}.genome.fa",
         model=multiext(
-            "resources/{model}",
+            "resources/{model}/training",
             "_aligned_reads.pkl",
             "_aligned_region.pkl",
             "_base_qualities_model_parameters.tsv",
@@ -52,7 +53,7 @@ rule nanosim_transcriptome:
         expression_profile="{sample}.expression_abundance.tsv",
         # reference_genome="resources/{sample}.genome.fa",  # optional, without it the wrapper will set --no_model_ir; NOTE: with this enabled, we sometimes get infinitely running simulations
         model=multiext(
-            "resources/{model}",
+            "resources/{model}/training",
             "_added_intron_final.gff3",
             "_aligned_reads.pkl",
             "_aligned_region_2d.pkl",
@@ -104,7 +105,7 @@ rule nanosim_metagenome:
         ),
         sample_abundances="config/{sample}.abundances.tsv",
         model=multiext(
-            "resources/{model}",
+            "resources/{model}/training",
             "_aligned_reads.pkl",
             "_aligned_region.pkl",
             "_base_qualities_model_parameters.tsv",
