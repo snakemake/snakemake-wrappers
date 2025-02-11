@@ -68,7 +68,7 @@ rule download_nanosim_transcriptome_model:
     log: "logs/human_NA12878_cDNA-rel2_guppy_v3.2.2/training_download.log",
     shell:
         "cd resources/; "
-        "wget https://zenodo.org/records/14042983/files/human_NA12878_cDNA-rel2_guppy_v3.2.2.tar.gz?download=1; "
+        "wget https://zenodo.org/records/14042983/files/human_NA12878_cDNA-rel2_guppy_v3.2.2.tar.gz; "
         "tar xzf human_NA12878_cDNA-rel2_guppy_v3.2.2.tar.gz; "
 
 
