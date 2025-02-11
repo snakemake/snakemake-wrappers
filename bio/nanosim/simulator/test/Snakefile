@@ -2,6 +2,8 @@
 # simulator.py subcommands, as these are needed for testing #[hide]
 include: "download_models.smk"  #[hide]
 
+wildcard_constraints:
+    model="^[^/]$",
 
 rule nanosim_genome:
     input:
