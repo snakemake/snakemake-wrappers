@@ -3,9 +3,9 @@
 include: "download_models.smk"  #[hide]
 
 wildcard_constraints:
-    model="^[^/]+$",
-    refs_prefix="^[^/]+$",
-    sample="^[^/]+$",
+    model="[^/]+",
+    refs_prefix="[^/]+",
+    sample="[^/]+",
 
 rule nanosim_genome:
     input:
