@@ -15,10 +15,10 @@ java_opts = get_java_opts(snakemake)
 
 if snakemake.threads == 1:
     pass
-if snakemake.threads == 2:
+elif snakemake.threads == 2:
     extra += " --USE_THREADING"
 else:
-    raise valueError(
+    raise ValueError(
         "Picard can use, at most, one extra thread for compression/decompression."
     )
 
