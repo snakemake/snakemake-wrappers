@@ -41,7 +41,7 @@ rule nanosim_genome:
     log:
         "logs/nanosim/genome/{sample}.{model}.log",
     params:
-        extra="--number 5 --basecaller guppy -dna_type circular",
+        extra="--number 5 -dna_type circular",
     threads: 4
     wrapper:
         "master/bio/nanosim/simulator"
