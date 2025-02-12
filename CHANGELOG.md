@@ -1,5 +1,22 @@
 # Changelog
 
+## [5.8.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v5.7.0...v5.8.0) (2025-02-12)
+
+
+### Features
+
+* Add threading support ([#3649](https://www.github.com/snakemake/snakemake-wrappers/issues/3649)) ([d607878](https://www.github.com/snakemake/snakemake-wrappers/commit/d607878b357098fa45ce895226bb66a742533aa1))
+
+
+### Bug Fixes
+
+* remove nanosim TODO by using new pre-trained models and latest version of nanosim in the wrapper ([#3648](https://www.github.com/snakemake/snakemake-wrappers/issues/3648)) ([01c4cb4](https://www.github.com/snakemake/snakemake-wrappers/commit/01c4cb45b9bb99254bb41cbe4c997d6f1119a695))
+
+
+### Performance Improvements
+
+* Update datavzrd wrapper to 2.50.5 ([#3646](https://www.github.com/snakemake/snakemake-wrappers/issues/3646)) ([c4d0692](https://www.github.com/snakemake/snakemake-wrappers/commit/c4d0692629542bf7214b14c19fc2936a9678281b))
+
 ## [5.7.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v5.6.1...v5.7.0) (2025-02-07)
 
 
