@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - vg =1.61.0
+  - vg =1.63.1
