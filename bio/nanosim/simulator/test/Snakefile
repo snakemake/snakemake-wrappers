@@ -50,7 +50,7 @@ rule nanosim_genome:
 rule nanosim_transcriptome:
     input:
         reference_transcriptome="resources/{sample}.transcriptome.fa",
-        expression_profile="{sample}.expression_abundance.tsv",
+        expression_profile="config/{sample}.expression_abundance.tsv",
         # reference_genome="resources/{sample}.genome.fa",  # optional, without it the wrapper will set --no_model_ir; NOTE: with this enabled, we sometimes get infinitely running simulations
         model=multiext(
             "resources/{model}/training",
