@@ -1,5 +1,12 @@
 # Changelog
 
+### [5.8.1](https://www.github.com/snakemake/snakemake-wrappers/compare/v5.8.0...v5.8.1) (2025-02-13)
+
+
+### Bug Fixes
+
+* update nanosim conda pinnings to install proper version ([#3651](https://www.github.com/snakemake/snakemake-wrappers/issues/3651)) ([9f1aaa4](https://www.github.com/snakemake/snakemake-wrappers/commit/9f1aaa444ccf1657468d883d41d713cba304246d))
+
 ## [5.8.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v5.7.0...v5.8.0) (2025-02-12)
 
 
