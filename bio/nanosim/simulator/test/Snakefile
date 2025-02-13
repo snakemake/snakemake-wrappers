@@ -35,13 +35,13 @@ rule nanosim_genome:
             "_unaligned_length.pkl",
         ),
     output:
-        reads="results/nanosim/genome/{sample}/{model}.simulated_reads.fq",  # fastq output requires specification of a --basecaller
+        reads="results/nanosim/genome/{sample}/{model}.simulated_reads.fq",
         errors="results/nanosim/genome/{sample}/{model}.simulated_errors.txt",
         unaligned_reads="results/nanosim/genome/{sample}/{model}.simulated_reads.unaligned.fq",  # asking for unaligned_reads implicitly turns off --perfect
     log:
         "logs/nanosim/genome/{sample}.{model}.log",
     params:
-        extra="--number 5 --basecaller guppy -dna_type circular",
+        extra="--number 5 -dna_type circular",
     threads: 4
     wrapper:
         "master/bio/nanosim/simulator"
@@ -84,13 +84,13 @@ rule nanosim_transcriptome:
 
         ),
     output:
-        reads="results/nanosim/transcriptome/{sample}/{model}.simulated.fq",  # fastq output requires specification of a --basecaller and --read_type
+        reads="results/nanosim/transcriptome/{sample}/{model}.simulated.fq",  # fastq output requires specification of a --basecaller
         errors="results/nanosim/transcriptome/{sample}/{model}.simulated.errors.txt",
         unaligned_reads="results/nanosim/transcriptome/{sample}/{model}.simulated_reads.unaligned.fq",
     log:
         "logs/nanosim/transcriptome/{sample}.{model}.log",
     params:
-        extra="--number 5 --basecaller albacore --read_type cDNA_1D",
+        extra="--number 5 --basecaller guppy",
     threads: 4
     wrapper:
         "master/bio/nanosim/simulator"
