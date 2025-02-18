@@ -44,7 +44,7 @@ https://conda.anaconda.org/conda-forge/linux-64/tbb-2021.13.0-hceb3a55_1.conda#b
 https://conda.anaconda.org/conda-forge/linux-64/mkl-2024.2.2-ha957f24_16.conda#1459379c79dda834673426504d52b319
 https://conda.anaconda.org/conda-forge/noarch/python-dateutil-2.9.0.post0-pyhff2d567_1.conda#5ba79d7c71f03c678c8ead841f347d6e
 https://conda.anaconda.org/conda-forge/noarch/yte-1.5.7-pyha770c72_0.conda#38a0e72805d007e01da01113a8c3bccb
-https://conda.anaconda.org/conda-forge/linux-64/datavzrd-2.51.0-py313h26affdb_0.conda#f9e1534d002a9f83070acce2fdcbec6b
+https://conda.anaconda.org/conda-forge/linux-64/datavzrd-2.52.0-py313h26affdb_0.conda#297daf8fd4bf73da03ac6e7a48b3ca8c
 https://conda.anaconda.org/conda-forge/linux-64/libblas-3.9.0-30_h59b9bed_openblas.conda#0ea863eeebb367d82716fc8f83d11eb5
 https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.9.0-30_he106b2a_openblas.conda#d57f230608417264fb1daaddc5f05cca
 https://conda.anaconda.org/conda-forge/linux-64/liblapack-3.9.0-30_h7ac8fdf_openblas.conda#cf25476fc9c6aab3c59a70e4080962d5
