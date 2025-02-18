@@ -1,14 +1,15 @@
 name: picard MergeSamFiles
 description: |
   Merge sam/bam files using picard tools.
+url: https://broadinstitute.github.io/picard/command-line-overview.html#MergeSamFiles
 authors:
   - Julian de Ruiter
 input:
   - sam/bam files
 output:
   - merged sam/bam file
+params:
+  - java_opts: additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically)
+  - extra: additional program arguments
 notes: |
-  * The `java_opts` param allows for additional arguments to be passed to the java compiler, e.g. "-XX:ParallelGCThreads=10" (not for `-XmX` or `-Djava.io.tmpdir`, since they are handled automatically).
-  * The `extra` param allows for additional program arguments.
   * `--TMP_DIR` is automatically set by `resources.tmpdir`
-  * For more information see, https://broadinstitute.github.io/picard/command-line-overview.html#MergeSamFiles
