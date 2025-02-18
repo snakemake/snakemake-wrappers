@@ -1984,10 +1984,10 @@ def test_bedtools_split(run):
 def test_bedtools_intersect(run):
     run(
         "bio/bedtools/intersect",
-        [ 
-            "snakemake", 
-            "--cores", 
-            "1", 
+        [
+            "snakemake",
+            "--cores",
+            "1",
             "A_B.intersected.bed",
             "A_B.intersected.bed.gz",
             "--use-conda",
