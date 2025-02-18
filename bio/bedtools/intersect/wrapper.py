@@ -3,8 +3,7 @@ __copyright__ = "Copyright 2019, Jan Forster"
 __email__ = "j.forster@dkfz.de"
 __license__ = "MIT"
 
-import snakemake  # type: ignore
-from snakemake.shell import shell  # type: ignore
+from snakemake.shell import shell
 
 ## Extract arguments
 extra = snakemake.params.get("extra", "")
