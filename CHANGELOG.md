@@ -1,5 +1,26 @@
 # Changelog
 
+## [5.8.2](https://github.com/snakemake/snakemake-wrappers/compare/v5.8.1...v5.8.2) (2025-02-18)
+
+
+### Performance Improvements
+
+* Update datavzrd wrapper to 2.52.0 ([#3657](https://github.com/snakemake/snakemake-wrappers/issues/3657)) ([53abd72](https://github.com/snakemake/snakemake-wrappers/commit/53abd72c915267eb731073f97d77ded1ea7bd5f1))
+
+## [5.8.1](https://github.com/snakemake/snakemake-wrappers/compare/v5.8.0...v5.8.1) (2025-02-18)
+
+
+### Bug Fixes
+
+* try to get release-please.yml PRs to run tests ([#3653](https://github.com/snakemake/snakemake-wrappers/issues/3653)) ([14a9f3e](https://github.com/snakemake/snakemake-wrappers/commit/14a9f3e08266616e6c8dba5afe78245a328b9f59))
+* update nanosim conda pinnings to install proper version ([#3651](https://github.com/snakemake/snakemake-wrappers/issues/3651)) ([9f1aaa4](https://github.com/snakemake/snakemake-wrappers/commit/9f1aaa444ccf1657468d883d41d713cba304246d))
+
+
+### Performance Improvements
+
+* autobump bio/multiqc ([#3655](https://github.com/snakemake/snakemake-wrappers/issues/3655)) ([915ba34](https://github.com/snakemake/snakemake-wrappers/commit/915ba34632f77c9b9a789e9e796c5b841f339498))
+* Update datavzrd wrapper to 2.51.0 ([#3656](https://github.com/snakemake/snakemake-wrappers/issues/3656)) ([d4c0b57](https://github.com/snakemake/snakemake-wrappers/commit/d4c0b57d751d46e53264c95865dbdcd1842e9f51))
+
 ## [5.8.0](https://www.github.com/snakemake/snakemake-wrappers/compare/v5.7.0...v5.8.0) (2025-02-12)
 
 
