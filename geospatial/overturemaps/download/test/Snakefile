@@ -9,8 +9,8 @@ rule download:
         type="division_boundary",
         # bounding box in "west,south,east,north" format
         bbox=[15.87, -19.02, 28.88, -9.66],  # optional
-        # optional parameters
-        extra="-i 1,2",
     threads: 1
+    log:
+        "logs/overturemaps/download.log"
     wrapper:
         "master/geospatial/overturemaps/download"

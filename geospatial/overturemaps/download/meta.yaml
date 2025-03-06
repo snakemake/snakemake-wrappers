@@ -11,5 +11,6 @@ params:
   - bbox: >
       Optional. West, south, east, north longitude and latitude coordinates.
       When omitted the entire dataset will be downloaded.
+  - extra: Optional. Additional program arguments for future-proofing.
 notes: |
   Read https://docs.overturemaps.org/ for data schema information of the downloaded datasets.
