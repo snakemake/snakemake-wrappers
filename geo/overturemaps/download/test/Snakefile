@@ -13,4 +13,4 @@ rule download:
     log:
         "logs/overturemaps/download.log"
     wrapper:
-        "master/geospatial/overturemaps/download"
+        "master/geo/overturemaps/download"

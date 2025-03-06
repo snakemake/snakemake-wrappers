@@ -6749,7 +6749,7 @@ def test_varlociraptor_control_fdr(run):
 
 def test_overturemaps_download(run):
     run(
-        "geospatial/overturemaps/download",
+        "geo/overturemaps/download",
         [
             "snakemake",
             "--cores",
