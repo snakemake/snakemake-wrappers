@@ -1,0 +1,5 @@
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - overturemaps=0.12.0

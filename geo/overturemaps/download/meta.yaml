@@ -1,0 +1,16 @@
+name: overturemaps-py
+url: https://github.com/overturemaps/overturemaps-py
+description: Command-line tool of the Overture Maps Foundation open geospatial map data
+authors:
+  - Ivan Ruiz Manuel
+output:
+  - path: Location of the output file.
+params:
+  - format: format of the output file. See overture maps website for avialable formats.
+  - type: data type to download. See overture maps website for available data types.
+  - bbox: >
+      Optional. West, south, east, north longitude and latitude coordinates.
+      When omitted the entire dataset will be downloaded.
+  - extra: Optional. Additional program arguments for future-proofing.
+notes: |
+  Read https://docs.overturemaps.org/ for data schema information of the downloaded datasets.
