@@ -6745,3 +6745,17 @@ def test_varlociraptor_control_fdr(run):
             "-F",
         ],
     )
+
+
+def test_overturemaps_download(run):
+    run(
+        "geospatial/overturemaps/download",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "results/division_boundary.parquet",
+        ],
+    )
