@@ -75,7 +75,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libnghttp2-1.64.0-h161d5f1_0.con
 https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.29-pthreads_h94d23a6_0.conda#0a4d0252248ef9a0f88f2ba8b8a08e12
 https://conda.anaconda.org/conda-forge/linux-64/pcre2-10.44-hba22ea6_2.conda#df359c09c41cd186fffb93a2d87aa6f5
 https://conda.anaconda.org/conda-forge/linux-64/perl-5.32.1-7_hd590300_perl5.conda#f2cfec9406850991f4e3d960cc9e3321
-https://conda.anaconda.org/conda-forge/linux-64/python-3.12.9-h9e4cc4f_0_cpython.conda#5665f0079432f8848079c811cdb537d5
+https://conda.anaconda.org/conda-forge/linux-64/python-3.12.9-h9e4cc4f_1_cpython.conda#d82342192dfc9145185190e651065aa9
 https://conda.anaconda.org/conda-forge/linux-64/tktable-2.10-h8bc8fbc_6.conda#dff3627fec2c0584ded391205295abf0
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libsm-1.2.5-he73a12e_0.conda#4c3e9fab69804ec6077697922d70c6e2
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libx11-1.8.11-h4f16b4b_0.conda#b6eb6d0cb323179af168df8fe16fb0a1
@@ -100,11 +100,11 @@ https://conda.anaconda.org/conda-forge/linux-64/libhwloc-2.11.2-default_h0d58e46
 https://conda.anaconda.org/conda-forge/linux-64/liblapack-3.9.0-31_h7ac8fdf_openblas.conda#452b98eafe050ecff932f0ec832dd03f
 https://conda.anaconda.org/conda-forge/noarch/pip-25.0.1-pyh8b19718_0.conda#79b5c1440aedc5010f687048d9103628
 https://conda.anaconda.org/conda-forge/linux-64/gsl-2.7-he838d99_0.tar.bz2#fec079ba39c9cca093bf4c00001825de
-https://conda.anaconda.org/conda-forge/linux-64/harfbuzz-10.3.0-h76408a6_0.conda#0a06f278e5d9242057673b1358a75e8f
+https://conda.anaconda.org/conda-forge/linux-64/harfbuzz-10.4.0-h76408a6_0.conda#81f137b4153cf111ff8e3188b6fb8e73
 https://conda.anaconda.org/bioconda/linux-64/samtools-1.21-h96c455f_1.tar.bz2#0ff9d5d48561198378ad3cb34ce830bf
 https://conda.anaconda.org/conda-forge/linux-64/tbb-2022.0.0-hceb3a55_0.conda#79f0161f3ca73804315ca980f65d9c60
 https://conda.anaconda.org/bioconda/linux-64/bcftools-1.21-h3a4d415_1.tar.bz2#450dd12e649521429696cc62a30f7dce
 https://conda.anaconda.org/bioconda/linux-64/bowtie-1.3.1-py312hf8dbd9f_10.tar.bz2#75b4f2ab20e8a4ff848ed6736d91fbdb
 https://conda.anaconda.org/conda-forge/linux-64/pango-1.56.1-h861ebed_0.conda#59e660508a4de9401543303d5f576aeb
-https://conda.anaconda.org/conda-forge/linux-64/r-base-4.4.2-hc737e89_2.conda#b178cc2de979e27acafdf878b23c68ea
-https://conda.anaconda.org/bioconda/linux-64/ngscheckmate-1.0.1-py312pl5321h577a1d6_3.tar.bz2#e488d6289bc3b3112e5788d34f27eafb
+https://conda.anaconda.org/conda-forge/linux-64/r-base-4.4.3-h9c32bc2_0.conda#31dd67d1bf75b5c7aee264e921f812a8
+https://conda.anaconda.org/bioconda/linux-64/ngscheckmate-1.0.1-py312pl5321h577a1d6_4.tar.bz2#395b2c2dbc328d1dfef69e940bc6b1b7
