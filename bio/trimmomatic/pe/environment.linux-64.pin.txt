@@ -72,7 +72,7 @@ https://conda.anaconda.org/conda-forge/linux-64/cairo-1.18.2-h3394656_1.conda#b3
 https://conda.anaconda.org/conda-forge/linux-64/lcms2-2.17-h717163a_0.conda#000e85703f0fd9594c81710dd5066471
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libxi-1.8.2-hb9d3cd8_0.conda#17dcc85db3c7886650b8908b183d6876
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libxrandr-1.5.4-hb9d3cd8_0.conda#2de7f99d6581a4a7adbff607b5c278ca
-https://conda.anaconda.org/conda-forge/linux-64/harfbuzz-10.3.0-h76408a6_0.conda#0a06f278e5d9242057673b1358a75e8f
+https://conda.anaconda.org/conda-forge/linux-64/harfbuzz-10.4.0-h76408a6_0.conda#81f137b4153cf111ff8e3188b6fb8e73
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libxtst-1.2.5-hb9d3cd8_3.conda#7bbe9a0cc0df0ac5f5a8ad6d6a11af2f
-https://conda.anaconda.org/conda-forge/linux-64/openjdk-23.0.2-h68779a4_0.conda#a32abf2adc6e8dfabee20ac39c72ec7a
+https://conda.anaconda.org/conda-forge/linux-64/openjdk-23.0.2-h68779a4_1.conda#64f73cc54c693c6be95518d6f186e657
 https://conda.anaconda.org/bioconda/noarch/trimmomatic-0.39-hdfd78af_2.tar.bz2#42a827a3e09b4207a89f0d22f77163d3
