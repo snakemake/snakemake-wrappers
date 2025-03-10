@@ -4,7 +4,6 @@ __email__ = "i.ruizmanuel@tudelft.nl"
 __license__ = "MIT"
 
 from pathlib import Path
-
 from pygadm import Items
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
