@@ -6759,3 +6759,16 @@ def test_overturemaps_download(run):
             "results/division_boundary.parquet",
         ],
     )
+
+def test_pygadm_item(run):
+    run(
+        "geo/pygadm/item",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "results/mexico.parquet"
+        ]
+    )
