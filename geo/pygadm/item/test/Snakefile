@@ -9,6 +9,6 @@ rule download:
         content_level=1
     threads: 1
     log:
-        "logs/overturemaps/download.log"
+        "logs/pygadm/item.log"
     wrapper:
-        "master/geo/overturemaps/download"
+        "master/geo/pygadm/item"
