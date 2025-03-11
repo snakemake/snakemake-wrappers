@@ -2,7 +2,9 @@ name: Code quality
 
 on:
   pull_request:
-    branches_ignore: []
+    branches-ignore: []
+    paths-ignore:
+      - 'CHANGELOG.md'
 
 jobs:
   formatting:
