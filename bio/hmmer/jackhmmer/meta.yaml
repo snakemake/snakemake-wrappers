@@ -1,0 +1,11 @@
+name: jackhmmer
+description: "search profile(s) against a sequence database"
+authors:
+  - Thomas Mulvaney
+input:
+  - query file in FASTA format
+  - database file in FASTA format.
+output:
+  - A multiple sequence alignment (MSA) in Stockholm format
+citations:
+  - "`Johnson, L.S., Eddy, S.R. & Portugaly, E. Hidden Markov model speed heuristic and iterative HMM search procedure. BMC Bioinformatics 11, 431 (2010). <https://doi.org/10.1186/1471-2105-11-431>`_"

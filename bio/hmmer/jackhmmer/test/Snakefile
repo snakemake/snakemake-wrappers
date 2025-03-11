@@ -1,0 +1,30 @@
+rule jackhmmer:
+    input:
+        database_file="test-protein.fa",
+        query_file="query.fa"
+    output:
+        tblout="test-prot-tbl.txt", # save parseable table of per-sequence hits to file <f>
+        domtblout="test-prot-domtbl.txt", # save parseable table of per-domain hits to file <f>
+        alignment_hits="test-prot-alignment-hits.sto", # Save a multiple alignment of all significant hits (those satisfying inclusion thresholds) to the file <f>
+        outfile="test-prot-out1.txt", # Direct the main human-readable output to a file <f> instead of the default stdout. 
+    log:
+        "logs/jackhmmer.log"
+    params:
+        # One can optionally set an evalue_threshold or tvalue_threshold.
+	# Setting both will raise an error.
+        evalue_threshold=0.0001,
+        # tvalue_threshold=0.00001,
+
+        # One can optionally set an inclusion_evalue or inclusion_tvalue.
+        # Setting both will raise an error.
+        inclusion_evalue=0.0001,
+        # inclusion_tvalue=0.0001,
+
+	# There are three filter parameters to tuned.  Not setting these will use the
+	# defaults of jackhmmer
+        filter1=0.0005,
+        filter2=0.00005,
+        filter3=0.0000005
+    threads: 4
+    wrapper:
+        "master/bio/hmmer/jackhmmer"
