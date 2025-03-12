@@ -113,7 +113,7 @@ def run(tmp_test_dir):
             subprocess.check_call(cmd)
             if compare_results_with_expected:
                 for generated, expected in compare_results_with_expected.items():
-                    assert(filecmp.cmp(generated, expected, shallow=False))
+                    assert filecmp.cmp(generated, expected, shallow=False)
         except Exception as e:
             # go back to original directory
             os.chdir(origdir)
@@ -463,6 +463,7 @@ def test_seqkit_concat(run):
             "out/concat/a_b.fa.gz",
         ],
     )
+
 
 def test_seqkit_split2_part(run):
     run(
@@ -5358,6 +5359,13 @@ def test_hmmsearch(run):
     )
 
 
+def test_jackhmmer(run):
+    run(
+        "bio/hmmer/jackhmmer",
+        ["snakemake", "--cores", "1", "test-prot-tbl.txt", "--use-conda", "-F"],
+    )
+
+
 def test_paladin_index(run):
     run(
         "bio/paladin/index",
@@ -5456,7 +5464,7 @@ def test_ensembl_sequence_multiple_chromosomes(run):
         ["snakemake", "--cores", "1", "refs/chr6_and_chr1.fasta", "--use-conda", "-F"],
         compare_results_with_expected={
             "refs/chr6_and_chr1.fasta": "expected/chr6_and_chr1.fasta"
-        }
+        },
     )
 
 
@@ -6760,15 +6768,9 @@ def test_overturemaps_download(run):
         ],
     )
 
+
 def test_pygadm_item(run):
     run(
         "geo/pygadm/item",
-        [
-            "snakemake",
-            "--cores",
-            "2",
-            "--use-conda",
-            "-F",
-            "results/mexico.parquet"
-        ]
+        ["snakemake", "--cores", "2", "--use-conda", "-F", "results/mexico.parquet"],
     )
