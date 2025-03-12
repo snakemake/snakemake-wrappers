@@ -4,8 +4,8 @@ url: http://hmmer.org/
 authors:
   - Thomas Mulvaney
 input:
-  - query file in FASTA format
-  - database file in FASTA format.
+  - query: query file in FASTA format
+  - db: database file in FASTA format.
 output:
   - A multiple sequence alignment (MSA) in Stockholm format
 citations:
