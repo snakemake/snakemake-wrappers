@@ -1,5 +1,6 @@
 name: jackhmmer
 description: "search profile(s) against a sequence database"
+url: http://hmmer.org/
 authors:
   - Thomas Mulvaney
 input:
