@@ -15,13 +15,13 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 # Output must be set even if its not desired.  Default to '/dev/null'
 out_cmd = f" -o {snakemake.output.get('summary', '/dev/null')}"
 
-if snakemake.output.get("tblout") is not None:
+if snakemake.output.get("hits_tbl") is not None:
     out_cmd += f" --tblout {snakemake.output.get('hits_tbl')}"
 
-if snakemake.output.get("domtblout") is not None:
+if snakemake.output.get("dom_tbl") is not None:
     out_cmd += f" --domtblout {snakemake.output.get('dom_tbl')}"
 
-if snakemake.output.get("alignment_hits") is not None:
+if snakemake.output.get("hits_aln") is not None:
     out_cmd += f" -A {snakemake.output.get('hits_aln')}"
 
 shell(
