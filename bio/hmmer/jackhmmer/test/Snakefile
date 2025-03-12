@@ -3,11 +3,10 @@ rule jackhmmer:
         db="test-protein.fa",
         query="query.fa"
     output:
-        # Each of the following outputs is optional, and are described below as an example.
-        tblout="test-prot-tbl.txt", # save parseable table of per-sequence hits to file <f>
-        domtblout="test-prot-domtbl.txt", # save parseable table of per-domain hits to file <f>
-        alignment_hits="test-prot-alignment-hits.sto", # Save a multiple alignment of all significant hits (those satisfying inclusion thresholds) to the file <f>
-        outfile="test-prot-out1.txt", # Direct the main human-readable output to a file <f> instead of the default stdout. 
+        hits_tbl="test-prot-tbl.txt",
+        hits_aln="test-prot-alignment-hits.sto",
+        dom_tbl="test-prot-domtbl.txt",
+        summary="test-prot-out1.txt",
     log:
         "logs/jackhmmer.log"
     params:
