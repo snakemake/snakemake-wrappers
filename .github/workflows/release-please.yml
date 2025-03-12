@@ -14,5 +14,3 @@ jobs:
         with:
           release-type: simple
           token: ${{ secrets.RELEASE_PLEASE_PR_CI_TOKEN }}
-          package-name: ${{env.ACTION_NAME}}
-          
