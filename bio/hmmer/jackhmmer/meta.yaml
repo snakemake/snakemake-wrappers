@@ -7,6 +7,9 @@ input:
   - query: query file in FASTA format
   - db: database file in FASTA format.
 output:
-  - A multiple sequence alignment (MSA) in Stockholm format
+  - hits_tbl: table of per-sequence hits (optional)
+  - hits_aln: multiple sequence alignment (MSA) in Stockholm format of all significant hits (optional)
+  - dom_tbl: table of per-domain hits (optional)
+  - summary: human-readable output (optional)
 citations:
   - "`Johnson, L.S., Eddy, S.R. & Portugaly, E. Hidden Markov model speed heuristic and iterative HMM search procedure. BMC Bioinformatics 11, 431 (2010). <https://doi.org/10.1186/1471-2105-11-431>`_"
