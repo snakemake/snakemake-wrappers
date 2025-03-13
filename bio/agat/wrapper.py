@@ -63,8 +63,9 @@ def move_multiple_files(
     expected_files: Dict[str, str], snakemake_output: Dict[str, str]
 ) -> Generator[str, None, None]:
     """
-    For each expected file in expected_files mapping, search if user
-    expects them in snakemake.output. It so, yield shell_rename.
+    For each key/value (arg/path) in expected_files dictionary, 
+    search if user expects them in snakemake.output. 
+    If so, yield shell_rename.
     """
     for key, path in expected_files.items():
         snake_out = snakemake_output.get(key)
@@ -75,7 +76,6 @@ def move_multiple_files(
 def get_gff_basename(snake_input) -> str:
     """
     Search the GFF/GTF input file name among the list of possible
-
     """
     # One of the output file is build on the GFF/GTF input file
     gff_basename = ""
@@ -434,5 +434,13 @@ else:
     # IO arguments will be acquired from snakemake rule IO keys.
     io = {**snakemake.input, **snakemake.output}
     extra += parse_args(io)
+
+    # Special case of agat_sq_add_attributes_from_tsv.pl in
+    # which TSV/CSV format is not auto-detected and therefore
+    # an extra parameter shall be added.
+    # Here, we use input file extension to fill command line argument.
+    if command == "agat_sq_add_attributes_from_tsv.pl":
+        if str(snakemake.input.tsv).endswith("csv"):
+            extra += " --csv "
 
     shell("{command} {extra} {log}")

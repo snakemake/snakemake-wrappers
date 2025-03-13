@@ -992,3 +992,67 @@ use rule test_agat_config as test_agat_sp_statistics with:
         extra="--gs 432709230",
         command="agat_sp_statistics.pl",
 
+use rule test_agat_config as test_agat_sq_add_attributes_from_tsv with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/agat_sq_add_attributes_from_tsv.gff"),
+        tsv=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/agat_sq_add_attributes_from_tsv.tsv"),
+    output:
+        # Optional Path to text report
+        o="test_agat_sq_add_attributes_from_tsv.gff",
+    log:
+        "test_agat_sq_add_attributes_from_tsv.log",
+    params:
+        # Non-file parameters: `--vebose`
+        # All other parameters are automatically included
+        extra="",
+        command="agat_sq_add_attributes_from_tsv.pl",
+
+
+use rule test_agat_config as test_agat_sq_add_hash_tag with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/agat_sq_add_attributes_from_tsv.gff"),
+    output:
+        # Optional Path to text report
+        o="test_agat_sq_add_hash_tag.gff",
+    log:
+        "test_agat_sq_add_hash_tag.log",
+    params:
+        extra="--interval 1",
+        command="agat_sq_add_hash_tag.pl",
+
+
+use rule test_agat_config as test_agat_sq_add_locus_tag with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/agat_sq_add_attributes_from_tsv.gff"),
+    output:
+        # Optional Path to text report
+        o="test_agat_sq_add_locus_tag.gff",
+    log:
+        "test_agat_sq_add_locus_tag.log",
+    params:
+        # Non-file parameters, eg: `--type`, `--lo`, `--li`, `--of` or `--quiet`
+        extra="",
+        command="agat_sq_add_locus_tag.pl",
+
+
+use rule test_agat_config as test_agat_sq_filter_feature_from_fasta with:
+    input:
+        # The key here will be used as argument name in the final command line
+        # config="", # Optional path to configuration file
+        gff=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"),
+        fasta=storage("https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fa"),
+    output:
+        # Optional Path to text report
+        o="test_agat_sq_filter_feature_from_fasta.gff",
+    log:
+        "test_agat_sq_filter_feature_from_fasta.log",
+    params:
+        extra="--verbose",
+        command="agat_sq_filter_feature_from_fasta.pl",
+
