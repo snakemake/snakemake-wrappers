@@ -73,13 +73,20 @@ If you want to contribute refer to the :ref:`contributing guide <contributing>`.
 
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 2
    :glob:
    :hidden:
-   :caption: Wrappers and Meta-Wrappers
+   :caption: Wrappers
       
-   wrappers
-   meta-wrappers
+   wrappers/*
+
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :hidden:
+   :caption: Meta-Wrappers
+
+   meta-wrappers/*
 
 
 .. toctree::
