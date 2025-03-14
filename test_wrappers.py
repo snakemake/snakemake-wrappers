@@ -2068,22 +2068,32 @@ def test_blast_blastn(run):
 def test_bowtie2_align(run):
     run(
         "bio/bowtie2/align",
-        ["snakemake", "--cores", "2", "mapped_idx/a.cram", "--use-conda", "-F"],
-    )
-
-    run(
-        "bio/bowtie2/align",
-        ["snakemake", "--cores", "2", "mapped_idx/a.bam", "--use-conda", "-F"],
-    )
-
-    run(
-        "bio/bowtie2/align",
-        ["snakemake", "--cores", "2", "mapped/a.bam", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "mapped_sam/a.sam", "--use-conda", "-F"],
     )
 
     run(
         "bio/bowtie2/align",
         ["snakemake", "--cores", "2", "mapped_se_gz/a.bam", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/bowtie2/align",
+        ["snakemake", "--cores", "2", "mapped_multi/a.bam", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/bowtie2/align",
+        ["snakemake", "--cores", "2", "mapped_cram/a.cram", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/bowtie2/align",
+        ["snakemake", "--cores", "2", "mapped_samtools/a.bam", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/bowtie2/align",
+        ["snakemake", "--cores", "2", "mapped_picard/a.bam", "--use-conda", "-F"],
     )
 
 
