@@ -19,10 +19,13 @@ if len(snakemake.input) > 1:
         input_file = "-i " + snakemake.input.get("bed")
         genome = "-g " + snakemake.input.get("ref")
 
+compress = "| bgzip" if snakemake.output[0].endswith(".gz") else ""
+
 shell(
     "(genomeCoverageBed"
     " {snakemake.params}"
     " {input_file}"
     " {genome}"
+    " {compress}"
     " > {snakemake.output[0]}) {log}"
 )
