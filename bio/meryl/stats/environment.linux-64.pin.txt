@@ -1,9 +1,11 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
+# created-by: conda 25.1.1
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
-https://conda.anaconda.org/conda-forge/linux-64/libgomp-14.1.0-h77fa898_1.conda#23c255b008c4f2ae008f81edcabaca89
+https://conda.anaconda.org/conda-forge/linux-64/libgomp-14.2.0-h767d61c_2.conda#06d02030237f4d5b3d9a7e7d348fe3c6
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
-https://conda.anaconda.org/conda-forge/linux-64/libgcc-14.1.0-h77fa898_1.conda#002ef4463dd1e2b44a94a4ace468f5d2
-https://conda.anaconda.org/bioconda/linux-64/meryl-2013-0.tar.bz2#562aa140dceaa867a520e0e3f115a230
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-14.2.0-h767d61c_2.conda#ef504d1acbd74b7cc6849ef8af47dd03
+https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-14.2.0-h8f9b012_2.conda#a78c856b6dc6bf4ea8daeb9beaaa3fb0
+https://conda.anaconda.org/bioconda/linux-64/meryl-1.4.1-h9948957_2.tar.bz2#8cc7bac18cd292cd438ac65222963646
