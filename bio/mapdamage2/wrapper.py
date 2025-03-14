@@ -18,7 +18,7 @@ if not output_folder:
 
 rescaled_bam = snakemake.output.get("rescaled_bam", "")
 if rescaled_bam:
-    rescaled_bam = "--rescale-out " + rescaled_bam
+    rescaled_bam = "--rescale --rescale-out " + rescaled_bam
 
 
 shell(
