@@ -68,7 +68,7 @@ https://conda.anaconda.org/conda-forge/linux-64/perl-test-fatal-0.016-pl5321ha77
 https://conda.anaconda.org/conda-forge/noarch/perl-xml-namespacesupport-1.12-pl5321hd8ed1ab_0.tar.bz2#f4ce684ba66b3228bfffb09892235930
 https://conda.anaconda.org/conda-forge/noarch/perl-business-isbn-data-20210112.006-pl5321hd8ed1ab_0.tar.bz2#a70f08650ec3919ee5e599834f1349d3
 https://conda.anaconda.org/conda-forge/noarch/perl-file-temp-0.2304-pl5321hd8ed1ab_0.tar.bz2#0a039c4fc36748942287ee10d0431515
-https://conda.anaconda.org/conda-forge/linux-64/perl-pathtools-3.75-pl5321hb9d3cd8_1.conda#f45662d4b9e9f16aef30702e463a9299
+https://conda.anaconda.org/conda-forge/linux-64/perl-pathtools-3.75-pl5321hb9d3cd8_2.conda#03d88c89dfac8a26adcdeff242f94007
 https://conda.anaconda.org/conda-forge/noarch/perl-sub-info-0.002-pl5321hd8ed1ab_0.tar.bz2#5b48dcf7df9e4e01d45de2c1f494d830
 https://conda.anaconda.org/bioconda/noarch/perl-term-table-0.024-pl5321hdfd78af_0.tar.bz2#a1a7fa5cdba18a5409274e7b40f59c4f
 https://conda.anaconda.org/conda-forge/noarch/perl-business-isbn-3.007-pl5321hd8ed1ab_0.tar.bz2#a7a3d7614e1a73b8d9c20030651d6006
