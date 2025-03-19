@@ -1,0 +1,98 @@
+rule test_bwameth_mem:
+    input:
+        ref="mem/genome.fasta",
+        idx=multiext(
+            "mem/genome.fasta.bwameth",
+            ".c2t",
+            ".c2t.amb",
+            ".c2t.ann",
+            ".c2t.bwt",
+            ".c2t.pac",
+            ".c2t.sa",
+        ),
+        fq=["A.fastq"],
+    output:
+        "A.mem.bam",
+    threads: 2
+    params:
+        extra="",  # Optional parameters for bwameth.py, besides IO and threading
+        sort="none",  # Either `none` (default), `samtools`, or `picard`
+        sort_order="coordinate",  # Either `coordinate` (default) or `queryname`
+        sort_extra="",  # Optional parameters for sambamba/samtools/picard. Ignored if `sort` is equal to `none`.
+    wrapper:
+        "master/bio/bwameth/memx"
+
+
+rule test_bwameth_mem2:
+    input:
+        ref="mem2/genome.fasta",
+        idx=multiext(
+            "mem2/genome.fasta.bwameth",
+            ".c2t",
+            ".c2t.amb",
+            ".c2t.ann",
+            ".c2t.bwt.2bit.64",
+            ".c2t.pac",
+            ".c2t.0123",
+        ),
+        fq=["A.fastq"],
+    output:
+        "A.mem2.bam",
+    threads: 2
+    params:
+        extra="",  # Optional parameters for bwameth.py, besides IO and threading
+        sort="none",  # Either `none` (default), `samtools`, or `picard`
+        sort_order="coordinate",  # Either `coordinate` (default) or `queryname`
+        sort_extra="",  # Optional parameters for sambamba/samtools/picard. Ignored if `sort` is equal to `none`.
+    wrapper:
+        "master/bio/bwameth/memx"
+
+
+rule test_bwameth_mem_sort_picard:
+    input:
+        ref="mem/genome.fasta",
+        idx=multiext(
+            "mem/genome.fasta.bwameth",
+            ".c2t",
+            ".c2t.amb",
+            ".c2t.ann",
+            ".c2t.bwt",
+            ".c2t.pac",
+            ".c2t.sa",
+        ),
+        fq=["A.fastq"],
+    output:
+        "A.picard_sort.bam",
+    threads: 2
+    params:
+        extra="",  # Optional parameters for bwameth.py, besides IO and threading
+        sort="picard",  # Either `none` (default), `samtools`, or `picard`
+        sort_order="coordinate",  # Either `coordinate` (default) or `queryname`
+        sort_extra="",  # Optional parameters for sambamba/samtools/picard. Ignored if `sort` is equal to `none`.
+    wrapper:
+        "master/bio/bwameth/memx"
+
+
+rule test_bwameth_mem_sort_samtools:
+    input:
+        ref="mem2/genome.fasta",
+        idx=multiext(
+            "mem/genome.fasta.bwameth",
+            ".c2t",
+            ".c2t.amb",
+            ".c2t.ann",
+            ".c2t.bwt",
+            ".c2t.pac",
+            ".c2t.sa",
+        ),
+        fq=["A.fastq"],
+    output:
+        "A.samtools_sort.bam",
+    threads: 2
+    params:
+        extra="",  # Optional parameters for bwameth.py, besides IO and threading
+        sort="samtools",  # Either `none` (default), `samtools`, or `picard`
+        sort_order="coordinate",  # Either `coordinate` (default) or `queryname`
+        sort_extra="",  # Optional parameters for sambamba/samtools/picard. Ignored if `sort` is equal to `none`.
+    wrapper:
+        "master/bio/bwameth/memx"

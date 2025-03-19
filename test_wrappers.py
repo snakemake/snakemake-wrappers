@@ -508,6 +508,53 @@ def test_sickle_se(run):
     )
 
 
+def test_bwameth_mem(run):
+    run(
+        "bio/bwameth/memx",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "A.mem.bam",
+        ],
+    )
+    run(
+        "bio/bwameth/memx",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "A.mem2.bam",
+        ],
+    )
+    run(
+        "bio/bwameth/memx",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "A.picard_sort.bam",
+        ],
+    )
+    run(
+        "bio/bwameth/memx",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "A.samtools_sort.bam",
+        ],
+    )
+
+
 def test_bwameth_index(run):
     run(
         "bio/bwameth/index",
