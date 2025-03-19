@@ -19,6 +19,8 @@ rule test_bwameth_mem:
         sort="none",  # Either `none` (default), `samtools`, or `picard`
         sort_order="coordinate",  # Either `coordinate` (default) or `queryname`
         sort_extra="",  # Optional parameters for sambamba/samtools/picard. Ignored if `sort` is equal to `none`.
+    log:
+        "test_bwameth_mem.log"
     wrapper:
         "master/bio/bwameth/memx"
 
@@ -44,6 +46,8 @@ rule test_bwameth_mem2:
         sort="none",  # Either `none` (default), `samtools`, or `picard`
         sort_order="coordinate",  # Either `coordinate` (default) or `queryname`
         sort_extra="",  # Optional parameters for sambamba/samtools/picard. Ignored if `sort` is equal to `none`.
+    log:
+        "test_bwameth_mem2.log"
     wrapper:
         "master/bio/bwameth/memx"
 
@@ -69,6 +73,8 @@ rule test_bwameth_mem_sort_picard:
         sort="picard",  # Either `none` (default), `samtools`, or `picard`
         sort_order="coordinate",  # Either `coordinate` (default) or `queryname`
         sort_extra="",  # Optional parameters for sambamba/samtools/picard. Ignored if `sort` is equal to `none`.
+    log:
+        "test_bwameth_mem_sort_picard.log"
     wrapper:
         "master/bio/bwameth/memx"
 
@@ -94,5 +100,7 @@ rule test_bwameth_mem_sort_samtools:
         sort="samtools",  # Either `none` (default), `samtools`, or `picard`
         sort_order="coordinate",  # Either `coordinate` (default) or `queryname`
         sort_extra="",  # Optional parameters for sambamba/samtools/picard. Ignored if `sort` is equal to `none`.
+    log:
+        "test_bwameth_mem_sort_samtools.log"
     wrapper:
         "master/bio/bwameth/memx"
