@@ -81,7 +81,7 @@ rule test_bwameth_mem_sort_picard:
 
 rule test_bwameth_mem_sort_samtools:
     input:
-        ref="mem2/genome.fasta",
+        ref="mem/genome.fasta",
         idx=multiext(
             "mem/genome.fasta.bwameth",
             ".c2t",

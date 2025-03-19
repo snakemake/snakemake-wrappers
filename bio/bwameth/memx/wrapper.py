@@ -146,6 +146,6 @@ else:
 with TemporaryDirectory() as tmpdir:
     shell(
         "(bwameth.py --threads {snakemake.threads} "
-        " {extra} --reference {snakemake.input.ref} {fastq_files} "
+        " {extra} --reference {snakemake.input.ref} "
         " {fastq_files} " + pipe_cmd + " ) {log}"
     )
