@@ -6,4 +6,4 @@ dependencies:
   - sra-tools =3.2.0
   - pigz =2.8
   - pbzip2 =1.1.13
-  - snakemake-wrapper-utils =0.6.2
+  - snakemake-wrapper-utils =0.7.0
