@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - multiqc =1.27.1
-  - snakemake-wrapper-utils =0.6.2
+  - snakemake-wrapper-utils =0.7.0
