@@ -7,4 +7,4 @@ dependencies:
   - fgbio-minimal =2.5.0
   - samtools =1.21
   - picard-slim =3.3.0
-  - snakemake-wrapper-utils =0.6.2
+  - snakemake-wrapper-utils =0.7.0
