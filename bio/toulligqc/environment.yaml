@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - toulligqc =2.7.1
-  - snakemake-wrapper-utils =0.6.2
+  - snakemake-wrapper-utils =0.7.0
