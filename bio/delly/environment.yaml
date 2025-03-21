@@ -5,4 +5,4 @@ channels:
 dependencies:
   - delly =1.3.3
   - bcftools =1.21
-  - snakemake-wrapper-utils =0.6.2
+  - snakemake-wrapper-utils =0.7.0
