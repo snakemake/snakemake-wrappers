@@ -24,13 +24,6 @@ if DIFF_MASTER or DIFF_LAST_COMMIT:
 CONTAINERIZED = os.environ.get("CONTAINERIZED", "false") == "true"
 
 
-class Skipped(Exception):
-    pass
-
-
-pytestmark = pytest.mark.xfail(raises=Skipped)
-
-
 @pytest.fixture
 def tmp_test_dir():
     with tempfile.TemporaryDirectory() as d:
@@ -59,7 +52,7 @@ def run(tmp_test_dir):
             raise ValueError(f"Unable to load or parse {meta_path}.")
 
         if meta.get("blacklisted"):
-            raise Skipped("wrapper blacklisted")
+            pytest.skip("wrapper blacklisted")
 
         dst = os.path.join(tmp_test_subdir, "master")
 
@@ -79,7 +72,7 @@ def run(tmp_test_dir):
             any(f.startswith(w) for f in DIFF_FILES)
             for w in chain(used_wrappers, [wrapper])
         ):
-            raise Skipped("wrappers not modified")
+            pytest.skip("wrappers not modified")
 
         testdir = os.path.join(tmp_test_subdir, "test")
         shutil.copytree(os.path.join(wrapper, "test"), testdir)

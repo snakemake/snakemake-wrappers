@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - qualimap =2.3
-  - snakemake-wrapper-utils =0.6.2
+  - snakemake-wrapper-utils =0.7.0

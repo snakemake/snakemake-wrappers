@@ -6,4 +6,4 @@ dependencies:
   - nonpareil =3.5.5
   - pigz
   - pbzip2
-  - snakemake-wrapper-utils =0.6.2
+  - snakemake-wrapper-utils =0.7.0

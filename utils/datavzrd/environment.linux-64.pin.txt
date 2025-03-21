@@ -42,7 +42,7 @@ https://conda.anaconda.org/conda-forge/noarch/six-1.17.0-pyhd8ed1ab_0.conda#a451
 https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.9.0-31_he106b2a_openblas.conda#abb32c727da370c481a1c206f5159ce9
 https://conda.anaconda.org/conda-forge/linux-64/liblapack-3.9.0-31_h7ac8fdf_openblas.conda#452b98eafe050ecff932f0ec832dd03f
 https://conda.anaconda.org/conda-forge/noarch/python-dateutil-2.9.0.post0-pyhff2d567_1.conda#5ba79d7c71f03c678c8ead841f347d6e
-https://conda.anaconda.org/conda-forge/noarch/yte-1.5.7-pyha770c72_0.conda#38a0e72805d007e01da01113a8c3bccb
+https://conda.anaconda.org/conda-forge/noarch/yte-1.7.0-pyha770c72_1.conda#5f105e6a378b1cb0023f1d6e3c79f6f8
 https://conda.anaconda.org/conda-forge/linux-64/datavzrd-2.52.1-py313h26affdb_0.conda#9831adda6c143a24ce3f919cdd882d64
 https://conda.anaconda.org/conda-forge/linux-64/numpy-2.2.3-py313h17eae1a_0.conda#35e7b988e4ce49e6c402d1997c1c326f
 https://conda.anaconda.org/conda-forge/linux-64/pandas-2.2.3-py313ha87cce1_1.conda#c5d63dd501db554b84a30dea33824164

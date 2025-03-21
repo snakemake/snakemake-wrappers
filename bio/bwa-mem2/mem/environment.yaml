@@ -6,4 +6,4 @@ dependencies:
   - bwa-mem2 =2.2.1
   - samtools =1.21
   - picard-slim =3.3.0
-  - snakemake-wrapper-utils =0.6.2
+  - snakemake-wrapper-utils =0.7.0

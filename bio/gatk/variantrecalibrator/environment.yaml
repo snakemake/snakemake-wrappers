@@ -4,6 +4,6 @@ channels:
   - nodefaults
 dependencies:
   - gatk4 =4.6.1.0
-  - snakemake-wrapper-utils =0.6.2
+  - snakemake-wrapper-utils =0.7.0
   - google-cloud-sdk
   - google-crc32c
