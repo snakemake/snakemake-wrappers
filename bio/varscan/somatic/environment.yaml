@@ -4,5 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - varscan =2.4.6
-  - snakemake-wrapper-utils =0.6.2
+  - snakemake-wrapper-utils =0.7.0
 name: varscan
