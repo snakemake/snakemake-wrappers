@@ -10,4 +10,4 @@ dependencies:
   - parallel =20250222
   - bedtools =2.31.1
   - sed =4.8
-  - snakemake-wrapper-utils =0.6.2
+  - snakemake-wrapper-utils =0.7.0
