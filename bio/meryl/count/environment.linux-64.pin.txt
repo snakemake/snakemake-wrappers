@@ -1,7 +1,7 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
-# created-by: conda 25.1.1
+# created-by: conda 24.9.2
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
 https://conda.anaconda.org/conda-forge/linux-64/ca-certificates-2025.1.31-hbcca054_0.conda#19f3a56f68d2fd06c516076bff482c52
@@ -21,11 +21,11 @@ https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.5-h2d0b736_3.conda#47e
 https://conda.anaconda.org/conda-forge/linux-64/openssl-3.4.1-h7b32b05_0.conda#41adf927e746dc75ecf0ef841c454e48
 https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-h4bc722e_7.conda#62ee74e96c5ebb0af99386de58cf9553
 https://conda.anaconda.org/conda-forge/linux-64/libmpdec-4.0.0-h4bc722e_0.conda#aeb98fdeb2e8f25d43ef71fbacbeec80
-https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.49.1-hee588c1_1.conda#73cea06049cc4174578b432320a003b8
+https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.49.1-hee588c1_2.conda#962d6ac93c30b1dfc54c9cccafd1003e
 https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.38.1-h0b41bf4_0.conda#40b61aab5c7ba9ff276c41cfffe6b80b
 https://conda.anaconda.org/bioconda/linux-64/meryl-1.4.1-h9948957_2.tar.bz2#8cc7bac18cd292cd438ac65222963646
 https://conda.anaconda.org/conda-forge/linux-64/readline-8.2-h8c095d6_2.conda#283b96675859b20a825f8fa30f311446
 https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_h4845f30_101.conda#d453b98d9c83e71da0741bb0ff4d76bc
 https://conda.anaconda.org/conda-forge/linux-64/python-3.13.2-hf636f53_101_cp313.conda#a7902a3611fe773da3921cbbf7bc2c5c
 https://conda.anaconda.org/conda-forge/noarch/pip-25.0.1-pyh145f28c_0.conda#9ba21d75dc722c29827988a575a65707
-https://conda.anaconda.org/bioconda/noarch/snakemake-wrapper-utils-0.6.2-pyhdfd78af_0.tar.bz2#fd8759bbd04116eace828c4fab906096
+https://conda.anaconda.org/bioconda/noarch/snakemake-wrapper-utils-0.7.0-pyhdfd78af_0.tar.bz2#ec089170e6e57742c7b01fc7bac034ce
