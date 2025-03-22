@@ -12,30 +12,17 @@ samtools_opts = get_samtools_opts(
 )
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-
-
-# Get regions (if present)
-regions = snakemake.input.get("regions", "")
-if regions:
-    regions = f"--region-file {regions}"
-
 region = snakemake.params.get("region", "")
 
-
 # Get FAI and GZI files
-if region or regions:
-    fai = snakemake.input.get("fai", "")
-    gzi = snakemake.input.get("gzi", "")
-else:
-    fai = snakemake.output.get("fai", "")
-    gzi = snakemake.output.get("gzi", "")
-
+fai = snakemake.input.get("fai", snakemake.output.get("fai", ""))
 if fai:
     fai = f"--fai-idx {fai}"
+gzi = snakemake.input.get("gzi", snakemake.output.get("gzi", ""))
 if gzi:
     gzi = f"--gzi-idx {gzi}"
 
 
 shell(
-    "samtools faidx {fai} {gzi} {regions} {samtools_opts} {extra} {snakemake.input[0]} {region:q} {log}"
+    "samtools faidx {fai} {gzi} {samtools_opts} {extra} {snakemake.input[0]} {region:q} {log}"
 )
