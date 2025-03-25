@@ -25,7 +25,7 @@ rule test_aria2_md5:
         "logs/aria2.md5.log",
     params:
         url="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/869/925/GCF_000869925.1_ViralProj17181/GCF_000869925.1_ViralProj17181_genomic.fna.gz",
-        md5=42aa93c5bfdba6ac09a4822a4407b572,
+        md5="42aa93c5bfdba6ac09a4822a4407b572",
         extra="--file-allocation none --retry-wait 5 --console-log-level warn --log-level notice",
     threads: 2
     resources:
@@ -70,7 +70,7 @@ rule test_aria2_file_with_hash:
         "logs/aria2.md5fileH.log",
     params:
         url="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/869/925/GCF_000869925.1_ViralProj17181/GCF_000869925.1_ViralProj17181_genomic.fna.gz",
-	md5=parse_input(input[0], parser=extract_checksum),
+        md5=parse_input(input[0], parser=extract_checksum),
         extra="--file-allocation none --retry-wait 5 --console-log-level warn --log-level notice",
     threads: 2
     resources:
