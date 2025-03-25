@@ -134,7 +134,6 @@ def run(tmp_test_dir):
     return _run
 
 
-@skip_if_not_modified
 def test_aria2c(run):
     run(
         "utils/aria2c",
@@ -157,7 +156,6 @@ def test_aria2c(run):
     )
 
 
-@skip_if_not_modified
 def test_taxonkit(run):
     run(
         "bio/taxonkit",
