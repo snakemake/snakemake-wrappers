@@ -2,8 +2,11 @@ __author__ = "Filipe G. Vieira"
 __copyright__ = "Copyright 2023, Filipe G. Vieira"
 __license__ = "MIT"
 
-snakemake.utils.min_version("9.0.0")
 from snakemake.shell import shell
+from snakemake.utils import min_version
+
+min_version("9.0.0")
+
 
 extra = snakemake.params.get("extra", "")
 

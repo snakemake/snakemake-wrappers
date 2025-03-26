@@ -44,13 +44,14 @@ rule test_aria2_file:
         "logs/aria2.{type}file.log",
     params:
         url="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/869/925/GCF_000869925.1_ViralProj17181/GCF_000869925.1_ViralProj17181_genomic.fna.gz",
-        hash_function=lambda w: w.type,
-        checksum=parse_input(
-            "checksum",
-            parser=extract_checksum,
-            file="GCF_000869925.1_ViralProj17181_genomic.fna.gz",
+        extra=lambda w, input: "--file-allocation none --retry-wait 5 --console-log-level warn --log-level notice --checksum {type}={digest}".format(
+            w.type,
+            parse_input(
+                input[0],
+                parser=extract_checksum,
+                file="GCF_000869925.1_ViralProj17181_genomic.fna.gz",
+            ),
         ),
-        extra="--file-allocation none --retry-wait 5 --console-log-level warn --log-level notice",
     threads: 2
     resources:
         mem_mb=1024,
@@ -70,7 +71,11 @@ rule test_aria2_file_with_hash:
         "logs/aria2.md5fileH.log",
     params:
         url="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/869/925/GCF_000869925.1_ViralProj17181/GCF_000869925.1_ViralProj17181_genomic.fna.gz",
-        md5=parse_input(input[0], parser=extract_checksum),
+        md5=parse_input(
+            input[0],
+            parser=extract_checksum,
+            file="GCF_000869925.1_ViralProj17181_genomic.fna.gz",
+        ),
         extra="--file-allocation none --retry-wait 5 --console-log-level warn --log-level notice",
     threads: 2
     resources:
