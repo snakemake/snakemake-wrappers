@@ -44,7 +44,7 @@ rule test_aria2_file:
         "logs/aria2.{type}file.log",
     params:
         url="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/869/925/GCF_000869925.1_ViralProj17181/GCF_000869925.1_ViralProj17181_genomic.fna.gz",
-        extra=lambda w, input: "--file-allocation none --retry-wait 5 --console-log-level warn --log-level notice --checksum {type}={digest}".format(
+        extra=lambda w, input: "--file-allocation none --retry-wait 5 --console-log-level warn --log-level notice --checksum {}={}".format(
             w.type,
             parse_input(
                 input[0],
