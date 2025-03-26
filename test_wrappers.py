@@ -143,6 +143,7 @@ def test_miller(run):
             "2",
             "--use-conda",
             "-F",
+            "miller/cat.tsv",
             "miller/summary.tsv",
             "miller/summary.csv",
             "miller/histogram.tsv",
