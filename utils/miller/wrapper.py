@@ -57,7 +57,7 @@ for in_format in io_formats:
 
 ### OUTPUT
 out_file = Path(snakemake.output[0])
-output = f"> snakemake.output[0]"
+output = f"> {snakemake.output[0]}"
 # Compressed
 for ext, prog in compress_formats.items():
     if out_file.suffix == ext:
