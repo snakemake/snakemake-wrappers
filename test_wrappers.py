@@ -136,7 +136,7 @@ def run(tmp_test_dir):
 
 def test_miller(run):
     run(
-        "bio/taxonkit",
+        "utils/miller",
         [
             "snakemake",
             "--cores",
