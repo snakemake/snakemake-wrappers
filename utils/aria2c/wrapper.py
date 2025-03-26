@@ -5,11 +5,9 @@ __license__ = "MIT"
 from snakemake.shell import shell
 from snakemake.utils import min_version
 
-min_version("9.0.0")
-
+min_version("9.1.2")
 
 extra = snakemake.params.get("extra", "")
-
 
 for hash_function, digest in snakemake.params.items():
     if hash_function in [
@@ -24,7 +22,12 @@ for hash_function, digest in snakemake.params.items():
         extra += f" --checksum {hash_function}={digest}"
         break
 
-
 shell(
-    "aria2c --max-concurrent-downloads {snakemake.threads} {extra} --log {snakemake.log} --out {snakemake.output[0]} {snakemake.params.url} > /dev/null"
+    "aria2c"
+    " --max-concurrent-downloads {snakemake.threads}"
+    " {extra}"
+    " --log {snakemake.log}"
+    " --out {snakemake.output[0]}"
+    " {snakemake.params.url}"
+    " > /dev/null"
 )

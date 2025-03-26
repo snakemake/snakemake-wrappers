@@ -1,5 +1,4 @@
-
-include: "common.smk"
+from snakemake.ioutils.input import parse_input, extract_checksum
 
 
 rule test_aria2:
@@ -82,4 +81,4 @@ rule test_aria2_file_with_hash:
         mem_mb=1024,
         runtime=30,
     wrapper:
-        "master/utils/aria2c"
+        "utils/aria2c"
