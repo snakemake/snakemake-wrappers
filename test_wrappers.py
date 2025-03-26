@@ -134,6 +134,45 @@ def run(tmp_test_dir):
     return _run
 
 
+def test_miller(run):
+    run(
+        "bio/taxonkit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "miller/summary.tsv",
+            "miller/summary.csv",
+            "miller/histogram.tsv",
+            "miller/join.csv",
+            "miller/sample.csv",
+            "miller/grep.csv",
+            "miller/cut.csv",
+            "miller/sort.csv",
+            "miller/split_1.csv",
+            "miller/split_2.csv",
+            "miller/uniq.tsv",
+            "miller/pipe.tsv",
+        ],
+        compare_results_with_expected={
+            "miller/summary.tsv": "expected/summary.tsv",
+            "miller/summary.csv": "expected/summary.csv",
+            "miller/histogram.tsv": "expected/histogram.tsv",
+            "miller/join.csv": "expected/join.csv",
+            "miller/sample.csv": "expected/sample.csv",
+            "miller/grep.csv": "expected/grep.csv",
+            "miller/cut.csv": "expected/cut.csv",
+            "miller/sort.csv": "expected/sort.csv",
+            "miller/split_1.csv": "expected/split_1.csv",
+            "miller/split_2.csv": "expected/split_2.csv",
+            "miller/uniq.tsv": "expected/uniq.tsv",
+            "miller/pipe.tsv": "expected/pipe.tsv",
+        }
+    )
+
+
 def test_taxonkit(run):
     run(
         "bio/taxonkit",

@@ -1,0 +1,164 @@
+### Summary ###
+rule test_miller_summary_csv:
+    input:
+        table="table.csv",
+    output:
+        "miller/summary.tsv",
+    log:
+        "logs/summary_csv.log",
+    params:
+        extra="summary",
+    threads: 2
+    wrapper:
+        "master/utils/miller"
+
+
+rule test_miller_summary_tsv:
+    input:
+        table="table.tsv",
+    output:
+        "miller/summary.csv",
+    log:
+        "logs/summary_tsv.log",
+    params:
+        extra="summary",
+    threads: 2
+    wrapper:
+        "master/utils/miller"
+
+
+### Histogram ###
+rule test_miller_histogram:
+    input:
+        table="table.csv",
+    output:
+        "miller/histogram.tsv",
+    log:
+        "logs/histogram.log",
+    params:
+        extra="histogram -f s1,s2 --auto --nbins 3",
+    threads: 2
+    wrapper:
+        "master/utils/miller"
+
+
+### Join ###
+rule test_miller_join:
+    input:
+        csv1="right.csv",
+        csv2="table.csv",
+    output:
+        "miller/join.csv",
+    log:
+        "logs/join.log",
+    params:
+        extra=lambda w, input: f"join -f {input.csv2} -u -j gene_id",
+    threads: 2
+    wrapper:
+        "master/utils/miller"
+
+
+### Sample ###
+rule test_miller_sample:
+    input:
+        table="table.csv",
+    output:
+        "miller/sample.csv",
+    log:
+        "logs/sample.log",
+    params:
+        extra="sample -k 3",
+    threads: 2
+    wrapper:
+        "master/utils/miller"
+
+
+### Grep ###
+rule test_miller_grep:
+    input:
+        table="table.csv",
+    output:
+        "miller/grep.csv",
+    log:
+        "logs/grep.log",
+    params:
+        extra="grep -i gene_id=ENSG01",
+    threads: 2
+    wrapper:
+        "master/utils/miller"
+
+
+### Cut ###
+rule test_miller_cut:
+    input:
+        table="table.csv",
+    output:
+        "miller/cut.csv",
+    log:
+        "logs/cut.log",
+    params:
+        extra="cut -f gene_id",
+    threads: 2
+    wrapper:
+        "master/utils/miller"
+
+
+### Sort ###
+rule test_miller_sort:
+    input:
+        table="table.csv",
+    output:
+        "miller/sort.csv",
+    log:
+        "logs/sort.log",
+    params:
+        extra="sort -r gene_id",
+    threads: 2
+    wrapper:
+        "master/utils/miller"
+
+
+### Split ###
+rule test_miller_split:
+    input:
+        table="table.csv",
+    output:
+        "miller/split_1.csv",
+        "miller/split_2.csv",
+    log:
+        "logs/split.log",
+    params:
+        extra=lambda w, output: f"split -m {len(output)}",
+    threads: 2
+    wrapper:
+        "master/utils/miller"
+
+
+### Uniq ###
+rule test_miller_uniq:
+    input:
+        table="table.csv",
+    output:
+        "miller/uniq.tsv",
+    log:
+        "logs/uniq.log",
+    params:
+        extra="uniq -g gene_id",
+    threads: 2
+    wrapper:
+        "master/utils/miller"
+
+
+### Pipe ###
+rule test_miller_pipe:
+    input:
+        table="table.csv",
+    output:
+        "miller/pipe.tsv",
+    log:
+        "logs/pipe.log",
+    params:
+        extra="summary then sort -nr max",
+    threads: 2
+    wrapper:
+        "master/utils/miller"

@@ -1,0 +1,5 @@
+field_name	field_type	count	null_count	distinct_count	mean	min	max
+gene_id	string	2	0	2		ENSG01	ENSG02
+s1	float-int	2	0	2	13.25	12	14.5
+s2	int	2	0	2	36	15	57
+s3	int-float	2	0	2	37.6	0.2	75

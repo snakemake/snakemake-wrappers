@@ -1,0 +1,12 @@
+name: miller
+url: https://miller.readthedocs.io/en/6.13.0/
+description: >
+  Miller is like awk, sed, cut, join, and sort for name-indexed data such as CSV, TSV, and tabular JSON. You get to work with your data using named fields, without needing to count positional column indices.
+authors:
+  - Filipe G. Vieira
+input:
+  - Path to CSV/TSV file.
+output:
+  - Path the result file / directory
+params:
+  - extra: Optional arguments for `miller`.

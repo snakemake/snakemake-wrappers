@@ -1,0 +1,4 @@
+bin_lo	bin_hi	s1_count	s2_count
+12	27	2	1
+27	42	0	0
+42	57	0	1
