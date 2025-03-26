@@ -157,6 +157,7 @@ def test_miller(run):
             "miller/pipe.tsv",
         ],
         compare_results_with_expected={
+            "miller/cat.tsv": "expected/cat.tsv",
             "miller/summary.tsv": "expected/summary.tsv",
             "miller/summary.csv": "expected/summary.csv",
             "miller/histogram.tsv": "expected/histogram.tsv",

@@ -1,3 +1,19 @@
+### Cat ###
+rule test_miller_cat:
+    input:
+        "table.csv",
+        "table2.csv",
+    output:
+        "miller/cat.tsv",
+    log:
+        "logs/cat.log",
+    params:
+        extra="cat",
+    threads: 2
+    wrapper:
+        "master/utils/miller"
+
+
 ### Summary ###
 rule test_miller_summary_csv:
     input:

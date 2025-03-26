@@ -40,7 +40,7 @@ io_formats = [
 
 io_opts = ""
 ### INPUT
-in_file = Path(snakemake.input[0])
+input = in_file = Path(snakemake.input[0])
 # Compressed
 for ext, prog in compress_formats.items():
     if in_file.suffix == ext:
@@ -57,8 +57,8 @@ for in_format in io_formats:
 
 ### OUTPUT
 out_file = Path(snakemake.output[0])
-# Compressed
 output = f"> snakemake.output[0]"
+# Compressed
 for ext, prog in compress_formats.items():
     if out_file.suffix == ext:
         output = f" | {prog} {output}"
@@ -71,11 +71,12 @@ for out_format in io_formats:
         io_opts += f" --o{out_format}"
         break
 
-if is_arg("split", extra):
+
+if is_arg("cat", extra):
+    input = snakemake.input
+elif is_arg("split", extra):
     extra += f" --prefix {os.path.commonprefix(snakemake.output).rstrip('_')}"
     output = ""
 
 
-shell(
-    "GOMAXPROCS={snakemake.threads} mlr {io_opts} {extra} {snakemake.input[0]} {output} {log}"
-)
+shell("GOMAXPROCS={snakemake.threads} mlr {io_opts} {extra} {input} {output} {log}")

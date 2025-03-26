@@ -5,8 +5,8 @@ description: >
 authors:
   - Filipe G. Vieira
 input:
-  - Path to CSV/TSV file.
+  - Path to input file(s).
 output:
-  - Path the result file / directory
+  - Path to output file.
 params:
   - extra: Optional arguments for `miller`.
