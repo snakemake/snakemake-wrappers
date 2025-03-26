@@ -12,12 +12,30 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
 
 
-compress_formats = {".gz": "gzip",
-                    ".bgz": "gzip",
-                    ".bz2": "bzip2",
-                    ".xz": "xz",
+compress_formats = {
+    ".gz": "gzip",
+    ".bgz": "gzip",
+    ".bz2": "bzip2",
+    ".xz": "xz",
 }
-io_formats = ["asv", "asvlite", "csv", "csvlite", "tsv", "tsvlite", "json", "jsonl", "md", "markdown", "nidx", "pprint", "usv", "usvlite", "xtab", "dkvp"]
+io_formats = [
+    "asv",
+    "asvlite",
+    "csv",
+    "csvlite",
+    "tsv",
+    "tsvlite",
+    "json",
+    "jsonl",
+    "md",
+    "markdown",
+    "nidx",
+    "pprint",
+    "usv",
+    "usvlite",
+    "xtab",
+    "dkvp",
+]
 
 
 io_opts = ""
