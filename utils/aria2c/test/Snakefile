@@ -71,7 +71,7 @@ rule test_aria2_file_with_hash:
         "logs/aria2.md5fileH.log",
     params:
         url="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/869/925/GCF_000869925.1_ViralProj17181/GCF_000869925.1_ViralProj17181_genomic.fna.gz",
-        md5=parse_input(
+        md5=lambda w, input: parse_input(
             input[0],
             parser=extract_checksum,
             file="GCF_000869925.1_ViralProj17181_genomic.fna.gz",
