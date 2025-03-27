@@ -8,6 +8,7 @@ import sys
 from itertools import product
 from snakemake.shell import shell
 from snakemake.logging import logger
+from os import path
 
 species = snakemake.params.species.lower()
 release = int(snakemake.params.release)
@@ -25,6 +26,11 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 spec = ("{build}" if int(release) > 75 else "{build}.{release}").format(
     build=build, release=release
 )
+
+if path.splitetxt(snakemake.output[0])[1] == ".gz":
+    decompress = ""
+else:
+    decompress = " | gzip -d"
 
 suffixes = ""
 datatype = snakemake.params.get("datatype", "")
@@ -83,9 +89,9 @@ for suffix in suffixes:
             use_https = True
 
     if use_https:
-        shell("(curl -L {url_https} | gzip -d >> {snakemake.output[0]}) {log}")
+        shell("(curl -L {url_https} {decompress} >> {snakemake.output[0]}) {log}")
     else:
-        shell("(curl -L {url} | gzip -d >> {snakemake.output[0]}) {log}")
+        shell("(curl -L {url} {decompress} >> {snakemake.output[0]}) {log}")
     success = True
     if not chromosome:
         break

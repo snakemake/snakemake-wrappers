@@ -5443,6 +5443,12 @@ def test_ensembl_sequence_old_release(run):
         ["snakemake", "-s", "old_release.smk", "--cores", "1", "--use-conda", "-F"],
     )
 
+def test_ensembl_sequence_gzipped(run):
+    run(
+        "bio/reference/ensembl-sequence",
+        ["snakemake", "--cores", "1", "refs/genome.fa.gz", "--use-conda", "-F"],
+    )
+
 
 def test_ensembl_sequence_chromosome(run):
     run(
@@ -5459,6 +5465,13 @@ def test_ensembl_sequence_multiple_chromosomes(run):
             "refs/chr6_and_chr1.fasta": "expected/chr6_and_chr1.fasta"
         },
     )
+
+def test_ensembl_sequence_multiple_chromosomes_gzipped(run):
+    run(
+        "bio/reference/ensembl-sequence",
+        ["snakemake", "--cores", "1", "refs/chr6_and_chr1.fa.gz", "--use-conda", "-F"],
+    )
+
 
 
 def test_ensembl_sequence_chromosome_old_release(run):
