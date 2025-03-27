@@ -4,3 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - csvtk =0.33.0
+  - snakemake-wrapper-utils =0.7.2
