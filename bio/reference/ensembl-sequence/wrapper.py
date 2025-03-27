@@ -57,39 +57,39 @@ if chromosome:
             "Invalid datatype. To select individual chromosomes, the datatype must be dna."
         )
 
-url = snakemake.params.get("url", "ftp://ftp.ensembl.org/pub")
+url = snakemake.params.get("url", "https://ftp.ensembl.org/pub")
 spec = spec.format(build=build, release=release)
 url_prefix = f"{url}/{branch}release-{release}/fasta/{species}/{datatype}/{species.capitalize()}.{spec}"
 
 for suffix in suffixes:
     success = False
-    use_https = False
+    use_ftp = False
     url = f"{url_prefix}.{suffix}"
     # https works as a fallback, in case FTP connections are blocked
-    url_https = url.replace("ftp://", "https://")
+    url_ftp = url.replace("https://", "ftp://")
 
     try:
         # --location follows redirects, --head only gets the header without any download,
-        # Content-Length is only there if the file exists, for both ftp:// and https://
+        # Content-Length is only there if the file exists, for both https:// and ftp://
         shell("curl --location --head {url} | grep 'Content-Length'")
     except sp.CalledProcessError:
         try:
-            shell("curl --location --head {url_https} | grep 'Content-Length'")
+            shell("curl --location --head {url_ftp} | grep 'Content-Length'")
         except sp.CalledProcessError:
             if chromosome:
                 logger.error(
                     f"Unable to download the requested chromosome sequence from Ensembl at either of: \n"
                     f"* {url}\n"
-                    f"* {url_https}",
+                    f"* {url_ftp}",
                 )
                 break
             else:
                 continue
         else:
-            use_https = True
+            use_ftp = True
 
-    if use_https:
-        shell("(curl -L {url_https} {decompress} >> {snakemake.output[0]}) {log}")
+    if use_ftp:
+        shell("(curl -L {url_ftp} {decompress} >> {snakemake.output[0]}) {log}")
     else:
         shell("(curl -L {url} {decompress} >> {snakemake.output[0]}) {log}")
     success = True
