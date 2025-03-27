@@ -5,7 +5,7 @@ __license__ = "MIT"
 import os
 from pathlib import Path
 from snakemake.shell import shell
-from snakemake_wrapper_utils.snakemake import is_arg
+from snakemake_wrapper_utils.snakemake import get_format, is_arg
 
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
@@ -40,34 +40,31 @@ io_formats = [
 
 io_opts = ""
 ### INPUT
-input = in_file = Path(snakemake.input[0])
+input = Path(snakemake.input[0])
 # Compressed
 for ext, prog in compress_formats.items():
-    if in_file.suffix == ext:
+    if input.suffix == ext:
         io_opts += f" --prepipe {prog}"
-        in_file = in_file.with_suffix("")
         break
 
 # Delimiter
 for in_format in io_formats:
-    if in_file.suffix == f".{in_format}":
+    if get_format(input) == in_format:
         io_opts += f" --i{in_format}"
         break
 
 
 ### OUTPUT
-out_file = Path(snakemake.output[0])
 output = f"> {snakemake.output[0]}"
 # Compressed
 for ext, prog in compress_formats.items():
-    if out_file.suffix == ext:
+    if Path(snakemake.output[0]).suffix == ext:
         output = f" | {prog} {output}"
-        out_file = out_file.with_suffix("")
         break
 
 # Delimiter
 for out_format in io_formats:
-    if out_file.suffix == f".{out_format}":
+    if get_format(snakemake.output[0]) == out_format:
         io_opts += f" --o{out_format}"
         break
 
