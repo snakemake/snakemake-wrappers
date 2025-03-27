@@ -12,14 +12,14 @@ extra = snakemake.params.get("extra", "")
 
 
 # Input file delimiter
-in_files = [snakemake.input[0]] if len(snakemake.input) == 1 else snakemake.input
-if all(get_format(in_file) == "tsv" for in_file in in_files):
+in_files = [Path(snakemake.input[0])] if len(snakemake.input) == 1 else [Path(in_file) for in_file in snakemake.input]
+if all(get_format(in_file) == "tsv" for in_file in in_files if in_file.suffix):
     extra += " --tabs"
 
 
 # Output file delimiter
-out_files = [snakemake.output[0]] if len(snakemake.output) == 1 else snakemake.output
-if all(get_format(out_file) == "tsv" for out_file in out_files):
+out_files = [Path(snakemake.output[0])] if len(snakemake.output) == 1 else [Path(out_file) for out_file in snakemake.output]
+if all(get_format(out_file) == "tsv" for out_file in out_files if out_file.suffix):
     extra += " --out-tabs"
 
 
