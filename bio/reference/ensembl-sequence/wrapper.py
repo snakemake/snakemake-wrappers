@@ -57,20 +57,35 @@ url_prefix = f"{url}/{branch}release-{release}/fasta/{species}/{datatype}/{speci
 
 for suffix in suffixes:
     success = False
+    use_https = False
     url = f"{url_prefix}.{suffix}"
+    # https works as a fallback, in case FTP connections are blocked
+    url_https = url.replace("ftp://", "https://")
 
     try:
-        shell("curl -sSf {url} > /dev/null 2> /dev/null")
+        # --location follows redirects, --head only gets the header without any download,
+        # Content-Length is only there if the file exists, for both ftp:// and https://
+        shell("curl --location --head {url} | grep 'Content-Length'")
     except sp.CalledProcessError:
-        if chromosome:
-            logger.error(
-                f"Unable to download the requested chromosome sequence from Ensembl at: {url_prefix}.{suffix}.",
-            )
-            break
+        try:
+            shell("curl --location --head {url_https} | grep 'Content-Length'")
+        except sp.CalledProcessError:
+            if chromosome:
+                logger.error(
+                    f"Unable to download the requested chromosome sequence from Ensembl at either of: \n"
+                    f"* {url}\n"
+                    f"* {url_https}",
+                )
+                break
+            else:
+                continue
         else:
-            continue
+            use_https = True
 
-    shell("(curl -L {url} | gzip -d >> {snakemake.output[0]}) {log}")
+    if use_https:
+        shell("(curl -L {url_https} | gzip -d >> {snakemake.output[0]}) {log}")
+    else:
+        shell("(curl -L {url} | gzip -d >> {snakemake.output[0]}) {log}")
     success = True
     if not chromosome:
         break
