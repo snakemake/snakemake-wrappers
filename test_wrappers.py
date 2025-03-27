@@ -5470,6 +5470,9 @@ def test_ensembl_sequence_multiple_chromosomes_gzipped(run):
     run(
         "bio/reference/ensembl-sequence",
         ["snakemake", "--cores", "1", "refs/chr6_and_chr1.fa.gz", "--use-conda", "-F"],
+        compare_results_with_expected={
+            "refs/chr6_and_chr1.fa.gz": "expected/chr6_and_chr1.fa.gz"
+        },
     )
 
 
