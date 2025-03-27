@@ -19,7 +19,7 @@ rule test_csvtk_summary_csv:
     input:
         table="table.csv",
     output:
-        "csvtk/summary.csv",
+        "csvtk/summary_csv.csv",
     log:
         "logs/summary_csv.log",
     params:
