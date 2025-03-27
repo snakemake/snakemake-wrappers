@@ -27,7 +27,7 @@ spec = ("{build}" if int(release) > 75 else "{build}.{release}").format(
     build=build, release=release
 )
 
-if path.splitetxt(snakemake.output[0])[1] == ".gz":
+if path.splitext(snakemake.output[0])[1] == ".gz":
     decompress = ""
 else:
     decompress = " | gzip -d"
