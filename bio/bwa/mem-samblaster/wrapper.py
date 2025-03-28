@@ -16,9 +16,9 @@ samblaster_extra = snakemake.params.get("samblaster_extra", "")
 
 index = snakemake.input.get("idx", "")
 if isinstance(index, str):
-    index = index.stem
+    index = Path(index).stem
 elif isinstance(index, list):
-    index = index[0].stem
+    index = Path(index[0]).stem
 
 
 # Check inputs/arguments.
