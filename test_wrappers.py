@@ -5667,12 +5667,16 @@ def test_bismark_genome_preparation(run):
         [
             "snakemake",
             "--cores",
-            "1",
-            "indexes/genome/Bisulfite_Genome",
-            "indexes/genome_gz/Bisulfite_Genome",
+            "2",
+            "resources/genome/bismark",
+            "resources/genome_gz/Bisulfite_Genome",
             "--use-conda",
             "-F",
         ],
+        compare_results_with_expected={
+            "resources/genome/bismark/GA_conversion/genome_mfa.GA_conversion.fa": "expected/genome/bismark/genome_mfa.GA_conversion.fa",
+            "resources/genome_gz/Bisulfite_Genome/CT_conversion/genome_mfa.CT_conversion.fa": "expected/genome_gz/Bisulfite_Genome/genome_mfa.CT_conversion.fa",
+        },
     )
 
 
