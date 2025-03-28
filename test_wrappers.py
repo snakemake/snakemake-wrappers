@@ -134,6 +134,47 @@ def run(tmp_test_dir):
     return _run
 
 
+def test_miller(run):
+    run(
+        "utils/miller",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "miller/cat.tsv",
+            "miller/summary.tsv",
+            "miller/summary.csv",
+            "miller/histogram.tsv",
+            "miller/join.csv",
+            "miller/sample.csv",
+            "miller/grep.csv",
+            "miller/cut.csv",
+            "miller/sort.csv",
+            "miller/split_1.csv",
+            "miller/split_2.csv",
+            "miller/uniq.tsv",
+            "miller/pipe.tsv",
+        ],
+        compare_results_with_expected={
+            "miller/cat.tsv": "expected/cat.tsv",
+            "miller/summary.tsv": "expected/summary.tsv",
+            "miller/summary.csv": "expected/summary.csv",
+            "miller/histogram.tsv": "expected/histogram.tsv",
+            "miller/join.csv": "expected/join.csv",
+            "miller/sample.csv": "expected/sample.csv",
+            "miller/grep.csv": "expected/grep.csv",
+            "miller/cut.csv": "expected/cut.csv",
+            "miller/sort.csv": "expected/sort.csv",
+            "miller/split_1.csv": "expected/split_1.csv",
+            "miller/split_2.csv": "expected/split_2.csv",
+            "miller/uniq.tsv": "expected/uniq.tsv",
+            "miller/pipe.tsv": "expected/pipe.tsv",
+        }
+    )
+
+
 def test_taxonkit(run):
     run(
         "bio/taxonkit",
@@ -5443,6 +5484,12 @@ def test_ensembl_sequence_old_release(run):
         ["snakemake", "-s", "old_release.smk", "--cores", "1", "--use-conda", "-F"],
     )
 
+def test_ensembl_sequence_gzipped(run):
+    run(
+        "bio/reference/ensembl-sequence",
+        ["snakemake", "--cores", "1", "refs/genome.fa.gz", "--use-conda", "-F"],
+    )
+
 
 def test_ensembl_sequence_chromosome(run):
     run(
@@ -5459,6 +5506,16 @@ def test_ensembl_sequence_multiple_chromosomes(run):
             "refs/chr6_and_chr1.fasta": "expected/chr6_and_chr1.fasta"
         },
     )
+
+def test_ensembl_sequence_multiple_chromosomes_gzipped(run):
+    run(
+        "bio/reference/ensembl-sequence",
+        ["snakemake", "--cores", "1", "refs/chr6_and_chr1.fa.gz", "--use-conda", "-F"],
+        compare_results_with_expected={
+            "refs/chr6_and_chr1.fa.gz": "expected/chr6_and_chr1.fa.gz"
+        },
+    )
+
 
 
 def test_ensembl_sequence_chromosome_old_release(run):
