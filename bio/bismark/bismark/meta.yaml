@@ -3,6 +3,8 @@ description: |
   Align BS-Seq reads using Bismark (see https://github.com/FelixKrueger/Bismark/blob/master/bismark).
 authors:
   - Roman Cherniatchik
+  - David Lähnemann
+url: https://felixkrueger.github.io/Bismark/bismark/alignment/
 input:
   - In SE mode one reads file with keay 'fq=...'
   - In PE mode two reads files with keys 'fq_1=...', 'fq_2=...'
