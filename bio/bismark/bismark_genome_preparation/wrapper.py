@@ -30,7 +30,7 @@ if threads < 2:
         "Otherwise, this rule will always fail with this error.\n"
     )
 
-threads = max(floor(threads/2), 1)
+threads = max(floor(threads / 2), 1)
 parallel = ""
 if threads > 1:
     parallel = f"--parallel {threads}"
