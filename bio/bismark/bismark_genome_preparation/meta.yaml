@@ -4,6 +4,7 @@ description: |
 authors:
   - Roman Cherniatchik
   - David Lähnemann
+url: https://felixkrueger.github.io/Bismark/bismark/genome_preparation/
 input:
   genome: path to genome \*.fa (or \*.fasta, \*.fa.gz, \*.fasta.gz) file
 output:
