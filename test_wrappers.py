@@ -134,6 +134,28 @@ def run(tmp_test_dir):
     return _run
 
 
+def test_aria2c(run):
+    run(
+        "utils/aria2c",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "results/file.fas.gz",
+            "results/file.md5.fas.gz",
+            "results/file.md5file.fas.gz",
+            "results/file.sha-1file.fas.gz",
+            "results/file.sha-224file.fas.gz",
+            "results/file.sha-256file.fas.gz",
+            "results/file.sha-384file.fas.gz",
+            "results/file.sha-512file.fas.gz",
+            "results/file.md5fileH.fas.gz",
+        ],
+    )
+
+
 def test_taxonkit(run):
     run(
         "bio/taxonkit",
