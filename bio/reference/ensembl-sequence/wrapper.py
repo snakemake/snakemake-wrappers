@@ -65,7 +65,7 @@ for suffix in suffixes:
     success = False
     use_ftp = False
     url = f"{url_prefix}.{suffix}"
-    # https works as a fallback, in case FTP connections are blocked
+    # FTP works as a fallback, in case an HTTPS connection doesn't succeed
     url_ftp = url.replace("https://", "ftp://")
 
     try:
