@@ -15,7 +15,8 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 output_dir = snakemake.output["bismark_genome_dir"]
-fasta_dir = path.dirname(output_dir)
+
+fasta_out = f"{output_dir}/{path.basename(snakemake.input["genome"])}"
 
 threads = snakemake.threads
 
@@ -34,18 +35,11 @@ parallel = ""
 if threads > 1:
     parallel = f"--parallel {threads}"
 
-# we also want to allow using the standard bismark folder name with
-# no mv required
-
-rename_output_dir = f"mv {fasta_dir}/Bisulfite_Genome {output_dir}"
-if f"{fasta_dir}/Bisulfite_Genome" == output_dir:
-    rename_output_dir = ""
-
 params_extra = snakemake.params.get("extra", "")
 
 shell(
-    f'( if [ ! -f {snakemake.input["genome"]} ]; then ln -s {snakemake.input["genome"]} {{fasta_dir}}/; fi;'
-    "  bismark_genome_preparation --verbose --bowtie2 {parallel} {params_extra} {fasta_dir};"
-    f"  {rename_output_dir} "
+    f'( mkdir {output_dir}/Bisulfite_Genome; '
+    f'  if [ ! -f {fasta_out} ]; then ln -s {snakemake.input["genome"]} {fasta_out}; fi; '
+    f"  bismark_genome_preparation --verbose --bowtie2 {parallel} {params_extra} {output_dir};"
     ") {log}"
 )

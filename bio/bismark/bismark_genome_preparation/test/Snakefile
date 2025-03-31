@@ -3,7 +3,7 @@ rule bismark_genome_preparation_fa:
     input:
         genome="resources/{genome}/{genome}.fa",
     output:
-        bismark_genome_dir=directory("resources/{genome}/bismark"),
+        bismark_genome_dir=directory("resources/{genome}/bismark/"),
     log:
         "logs/resources/{genome}/bismark_genome_preparation.log",
     params:
@@ -18,7 +18,7 @@ rule bismark_genome_preparation_fa_gz:
     input:
         genome="resources/{genome}/{genome}.fa.gz",
     output:
-        bismark_genome_dir=directory("resources/{genome}/Bisulfite_Genome"),
+        bismark_genome_dir=directory("resources/{genome}/bismark/"),
     log:
         "logs/resources/{genome}/bismark_genome_preparation.log",
     params:
