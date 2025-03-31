@@ -15,7 +15,7 @@ rule bismark_pe:
     log:
         "logs/bismark/{sample}_{genome}.log",
     params:
-        # optional params string, e.g: -L32 -N0 -X400 --gzip
+        # optional params string, e.g: "-L32 -N0 -X400"
         # Useful options to tune:
         # (for bowtie2)
         # -N: The maximum number of mismatches permitted in the "seed", i.e. the first L base pairs
@@ -25,11 +25,6 @@ rule bismark_pe:
         # PE reads)
         # -X: The maximum insert size for valid paired-end alignments. ~ max fragment size filter (for
         # PE reads)
-        # --gzip: Gzip intermediate fastq files
-        # --ambiguous --unmapped
-        # -p: bowtie2 parallel execution
-        # --multicore: bismark parallel execution
-        # --temp_dir: tmp dir for intermediate files instead of output directory
         extra="",
     threads: 4  # bismark in pe mode will run parallel with a minimum of 4 threads, no matter what - please ensure your workflow provides at least --cores 4
     wrapper:
