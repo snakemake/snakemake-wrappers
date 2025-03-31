@@ -1,21 +1,21 @@
-# Example: Pair-ended reads
+# Example: Pair-end reads
 rule bismark_pe:
     input:
         fq_1="reads/{sample}.1.fastq",
         fq_2="reads/{sample}.2.fastq",
-        genome="indexes/{genome}/{genome}.fa",
-        bismark_indexes_dir="indexes/{genome}/Bisulfite_Genome",
+        genome="resources/{genome}/{genome}.fa",
+        bismark_indexes_dir="resources/{genome}/",
         genomic_freq="indexes/{genome}/genomic_nucleotide_frequencies.txt"
     output:
-        bam="bams/{sample}_{genome}_pe.bam",
-        report="bams/{sample}_{genome}_PE_report.txt",
-        nucleotide_stats="bams/{sample}_{genome}_pe.nucleotide_stats.txt",
-        bam_unmapped_1="bams/{sample}_{genome}_unmapped_reads_1.fq.gz",
-        bam_unmapped_2="bams/{sample}_{genome}_unmapped_reads_2.fq.gz",
-        ambiguous_1="bams/{sample}_{genome}_ambiguous_reads_1.fq.gz",
-        ambiguous_2="bams/{sample}_{genome}_ambiguous_reads_2.fq.gz"
+        bam="results/bismark/{sample}_{genome}_pe.bam",
+        report="results/bismark/{sample}_{genome}_PE_report.txt",
+        nucleotide_stats="results/bismark/{sample}_{genome}_pe.nucleotide_stats.txt",
+        bam_unmapped_1="results/bismark/{sample}_{genome}_unmapped_reads_1.fq.gz",
+        bam_unmapped_2="results/bismark/{sample}_{genome}_unmapped_reads_2.fq.gz",
+        ambiguous_1="results/bismark/{sample}_{genome}_ambiguous_reads_1.fq.gz",
+        ambiguous_2="results/bismark/{sample}_{genome}_ambiguous_reads_2.fq.gz"
     log:
-        "logs/bams/{sample}_{genome}.log"
+        "logs/bismark/{sample}_{genome}.log"
     params:
         # optional params string, e.g: -L32 -N0 -X400 --gzip
         # Useful options to tune:
@@ -34,27 +34,30 @@ rule bismark_pe:
         # --temp_dir: tmp dir for intermediate files instead of output directory
         extra=' --ambiguous --unmapped --nucleotide_coverage',
         basename='{sample}_{genome}'
+    threads: 4 # bismark in pe mode will run parallel with a minimum of 4 threads, no matter what - please ensure your workflow provides at least --cores 4
     wrapper:
         "master/bio/bismark/bismark"
 
-# Example: Single-ended reads
+# Example: Single-end reads
 rule bismark_se:
     input:
         fq="reads/{sample}.fq.gz",
-        genome="indexes/{genome}/{genome}.fa",
-        bismark_indexes_dir="indexes/{genome}/Bisulfite_Genome",
-        genomic_freq="indexes/{genome}/genomic_nucleotide_frequencies.txt"
+        genome="resources/{genome}/{genome}.fa",
+        bismark_indexes_dir="resources/{genome}/Bisulfite_Genome",
+        genomic_freq="resources/{genome}/genomic_nucleotide_frequencies.txt"
     output:
-        bam="bams/{sample}_{genome}.bam",
-        report="bams/{sample}_{genome}_SE_report.txt",
-        nucleotide_stats="bams/{sample}_{genome}.nucleotide_stats.txt",
-        bam_unmapped="bams/{sample}_{genome}_unmapped_reads.fq.gz",
-        ambiguous="bams/{sample}_{genome}_ambiguous_reads.fq.gz"
+        bam="results/bismark/{sample}_{genome}.bam",
+        report="results/bismark/{sample}_{genome}_SE_report.txt",
+        nucleotide_stats="results/bismark/{sample}_{genome}.nucleotide_stats.txt", # optional: implicitly activates --nucleotide_coverage
+        fq_unmapped="results/bismark/{sample}_{genome}_unmapped_reads.fq.gz", # optional: implicitly activates --unmapped
+        fq_ambiguous="results/bismark/{sample}_{genome}_ambiguous_reads.fq.gz" # optional: implicitly activates --ambiguous
+        bam_ambiguous="results/bismark/{sample}_{genome}_ambiguous_reads.bam" # optional: implicitly activates --ambig_bam
     log:
-        "logs/bams/{sample}_{genome}.log",
+        "logs/bismark/{sample}_{genome}.log",
     params:
         # optional params string
         extra=' --ambiguous --unmapped --nucleotide_coverage',
         basename='{sample}_{genome}'
+    threads: 2 # bismark in se mode will run parallel with a minimum of 2 threads, no matter what - please ensure your workflow provides at least --cores 2
     wrapper:
         "master/bio/bismark/bismark"
