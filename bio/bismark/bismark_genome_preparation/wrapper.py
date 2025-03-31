@@ -10,7 +10,6 @@ __license__ = "MIT"
 
 from os import path
 from math import floor
-from warnings import warn
 from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
