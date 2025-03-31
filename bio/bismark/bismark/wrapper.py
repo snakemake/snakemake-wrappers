@@ -35,9 +35,9 @@ genome_indexes_dir = os.path.dirname(snakemake.input.bismark_indexes_dir)
 cmdline_args.append("{genome_indexes_dir}")
 
 if not snakemake.output.get("bam", None):
-    raise ValueError("bismark/bismark: Error 'bam' output file isn't specified.")
+    raise ValueError("bismark: Error 'bam' output file isn't specified.")
 if not snakemake.output.get("report", None):
-    raise ValueError("bismark/bismark: Error 'report' output file isn't specified.")
+    raise ValueError("bismark: Error 'report' output file isn't specified.")
 
 # basename
 if snakemake.params.get("basename", None):
