@@ -11,6 +11,7 @@ import os
 
 from snakemake.shell import shell
 from tempfile import TemporaryDirectory
+from os import path
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
@@ -53,22 +54,14 @@ if any(s in extra for s in automatic_command_line_args):
 # to the location requested under output
 move_dict = dict()
 
-extra_implicit_args = " "
+args = []
 
-
-def handle_optional_output_explicit(output_name, flag, file_suffix, args, mv_dict):
-    output = snakemake.output[output_name]
+def handle_optional_output(output_name, flag, file_suffix, extra_implicit_args = args, mv_dict = move_dict):
+    output = snakemake.output.get(output_name)
     if output:
-        if flag not in args:
-            args += f" {flag} "
+        if flag not in extra_implicit_args:
+            extra_implicit_args.append(flag)
         mv_dict[file_suffix] = output
-
-
-def handle_optional_output(output_name, flag, file_suffix):
-    handle_optional_output_explicit(
-        output_name, flag, file_suffix, args=extra_implicit_args, mv_dict=move_dict
-    )
-
 
 # check whether report is specified
 report = snakemake.output.get("report", None)
@@ -76,7 +69,6 @@ if not report:
     raise ValueError("The named output `report=` has to be specified.")
 
 # determine the output format by checking named outputs
-format = ""
 sam = snakemake.output.get("sam", None)
 bam = snakemake.output.get("bam", None)
 cram = snakemake.output.get("cram", None)
@@ -99,7 +91,7 @@ nt_stats = snakemake.output.get("nucleotide_stats")
 if sam and nt_stats:
     raise ValueError(
         "Named output `nucleotide_stats=` and the respective command line argument\n"
-        "`--nucleotide_stats` are not compatible with output type `sam=`.\n"
+        "`--nucleotide_coverage` are not compatible with output type `sam=`.\n"
     )
 
 genome_stats = snakemake.input.get("genomic_freq")
@@ -117,101 +109,129 @@ single_end_fq = snakemake.input.get("fq", None)
 fq_1 = snakemake.input.get("fq_1", None)
 fq_2 = snakemake.input.get("fq_2", None)
 
-if single_end_fq and not (fq_1 or fq_2):
-    input_files = f"--se {single_end_fq:q}"
+threads = snakemake.threads
 
-    move_dict["_SE_report.txt"] = report
+def get_auto_prefix(file_path):
+    (pref, ext) = path.splitext(
+        path.basename(file_path)
+    )
+    if ext == ".gz":
+        (pref, _) = path.splitext(pref)
+    return pref
+
+if single_end_fq and not (fq_1 or fq_2):
+    input_files = f"--se {single_end_fq}"
+    auto_prefix = get_auto_prefix(single_end_fq)
+    se_basename = path.basename(single_end_fq)
+
+    move_dict[f".{auto_prefix}_bismark_bt2_SE_report.txt"] = report
+
+    threads = max( (threads - 3) // 2, 1)
 
     # main output
     handle_optional_output(
         output_name="sam",
         flag="--sam",
-        file_suffix=".sam",
+        file_suffix=f".{auto_prefix}_bismark_bt2.sam",
     )
     handle_optional_output(
         output_name="cram",
         flag="--cram",
-        file_suffix=".cram",
+        file_suffix=f".{auto_prefix}_bismark_bt2.cram",
     )
     handle_optional_output(
         output_name="bam",
         flag="",
-        file_suffix=".bam",
+        file_suffix=f".{auto_prefix}_bismark_bt2.bam",
     )
 
     # optional outputs that set command line arguments
     handle_optional_output(
         output_name="fq_unmapped",
         flag="--unmapped",
-        file_suffix="_unmapped_reads.fq.gz",
+        file_suffix=f".{se_basename}_unmapped_reads.fq.gz",
     )
     handle_optional_output(
         output_name="fq_ambiguous",
         flag="--ambiguous",
-        file_suffix="_ambiguous_reads.fq.gz",
+        file_suffix=f".{se_basename}_ambiguous_reads.fq.gz",
     )
+
+    ambig_suffix = f".{se_basename}_bismark_bt2.ambig.bam"
+    if threads == 1:
+        ambig_suffix = f".{auto_prefix}_bismark_bt2.ambig.bam"
     handle_optional_output(
         output_name="bam_ambiguous",
-        flag="--bam_ambig",
-        file_suffix=".ambig.bam",
+        flag="--ambig_bam",
+        file_suffix=ambig_suffix,
     )
     handle_optional_output(
         output_name="nucleotide_stats",
-        flag="--nucleotide_stats",
-        file_suffix=".nucleotide_stats.txt",
+        flag="--nucleotide_coverage",
+        file_suffix=f".{auto_prefix}_bismark_bt2.nucleotide_stats.txt",
     )
 elif fq_1 and fq_2:
-    input_files = f"-1 {fq_1:q} -2 {fq_2:q}"
+    input_files = f"-1 {fq_1} -2 {fq_2}"
 
-    move_dict["_PE_report.txt"] = report
+    auto_prefix_1 = get_auto_prefix(fq_1)
+    fq_1_basename = path.basename(fq_1)
+    fq_2_basename = path.basename(fq_2)
+
+    move_dict[f".{auto_prefix_1}_bismark_bt2_PE_report.txt"] = report
+
+    threads = max( (threads - 5) // 4, 1)
 
     # main output
     handle_optional_output(
         output_name="sam",
         flag="--sam",
-        file_suffix="_pe.sam",
+        file_suffix=f".{auto_prefix_1}_bismark_bt2_pe.sam",
     )
     handle_optional_output(
         output_name="cram",
         flag="--cram",
-        file_suffix="_pe.cram",
+        file_suffix=f".{auto_prefix_1}_bismark_bt2_pe.cram",
     )
     handle_optional_output(
         output_name="bam",
         flag="",
-        file_suffix="_pe.bam",
+        file_suffix=f".{auto_prefix_1}_bismark_bt2_pe.bam",
     )
 
     # optional outputs that set command line arguments
     handle_optional_output(
         output_name="fq_unmapped_1",
         flag="--unmapped",
-        file_suffix="_unmapped_reads_1.fq.gz",
+        file_suffix=f".{fq_1_basename}_unmapped_reads_1.fq.gz",
     )
     handle_optional_output(
         output_name="fq_unmapped_2",
         flag="--unmapped",
-        file_suffix="_unmapped_reads_2.fq.gz",
+        file_suffix=f".{fq_2_basename}_unmapped_reads_2.fq.gz",
     )
     handle_optional_output(
         output_name="fq_ambiguous_1",
         flag="--ambiguous",
-        file_suffix="_ambiguous_reads_1.fq.gz",
+        file_suffix=f".{fq_1_basename}_ambiguous_reads_1.fq.gz",
     )
     handle_optional_output(
         output_name="fq_ambiguous_2",
         flag="--ambiguous",
-        file_suffix="_ambiguous_reads_2.fq.gz",
+        file_suffix=f".{fq_2_basename}_ambiguous_reads_2.fq.gz",
     )
+
+    ambig_suffix_1 = f".{fq_1_basename}_bismark_bt2_pe.ambig.bam"
+    if threads == 1:
+        ambig_suffix_1 = f".{auto_prefix_1}_bismark_bt2_pe.ambig.bam"
     handle_optional_output(
         output_name="bam_ambiguous",
-        flag="--bam_ambig",
-        file_suffix="_pe.ambig.bam",
+        flag="--ambig_bam",
+        file_suffix=ambig_suffix_1,
     )
     handle_optional_output(
         output_name="nucleotide_stats",
-        flag="--nucleotide_stats",
-        file_suffix="_pe.nucleotide_stats.txt",
+        flag="--nucleotide_coverage",
+        file_suffix=f".{auto_prefix_1}_bismark_bt2_pe.nucleotide_stats.txt",
     )
 else:
     ValueError(
@@ -220,27 +240,30 @@ else:
         "2. Both the named inputs `fq_1=` and `fq_2` for paired end read data.\n"
     )
 
+args.append(f"--parallel {threads}")
+
 if genome_stats:
     stats_file_fixed_location = (
         f"{snakemake.input['bismark_indexes_dir']}/genomic_nucleotide_frequencies.txt"
     )
     shell(
         f"if [ ! -f {stats_file_fixed_location} ]; "
-        f"then ln -s {genome_stats} {stats_file_fixed_location}; "
+        f"then ln -sr {genome_stats} {stats_file_fixed_location}; "
         "fi; "
     )
 
 with TemporaryDirectory() as temp_dir:
     bismark_command = (
-        f"bismark {extra} --bowtie2 {format} "
+        f"bismark {extra} --bowtie2 "
+        f' {" ".join(args)} '
         f'--genome_folder {snakemake.input["bismark_indexes_dir"]} '
         f"--output_dir {temp_dir} "
-        f"--basename temp_file "
+        f"--prefix temp_file "
         f" {input_files} "
     )
     move_commands = "; ".join(
         f"mv {temp_dir}/temp_file{suffix} {output_name}"
-        for suffix, output_name in move_dict
+        for suffix, output_name in move_dict.items()
     )
     shell(
         # run bismark
