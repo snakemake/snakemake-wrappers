@@ -9,7 +9,6 @@ __license__ = "MIT"
 
 
 from os import path
-from math import floor
 from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -30,7 +29,7 @@ if threads < 2:
         "Otherwise, this rule will always fail with this error.\n"
     )
 
-threads = max(floor(threads / 2), 1)
+threads = max(threads // 2, 1)
 parallel = ""
 if threads > 1:
     parallel = f"--parallel {threads}"
