@@ -21,6 +21,8 @@ automatic_command_line_args = [
     "-2",
     "--se",
     "--single_end",
+    "--parallel",
+    "--multicore",
     "-un",
     "--unmapped",
     "--ambiguous",
