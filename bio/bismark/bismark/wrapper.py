@@ -56,12 +56,16 @@ move_dict = dict()
 
 args = []
 
-def handle_optional_output(output_name, flag, file_suffix, extra_implicit_args = args, mv_dict = move_dict):
+
+def handle_optional_output(
+    output_name, flag, file_suffix, extra_implicit_args=args, mv_dict=move_dict
+):
     output = snakemake.output.get(output_name)
     if output:
         if flag not in extra_implicit_args:
             extra_implicit_args.append(flag)
         mv_dict[file_suffix] = output
+
 
 # check whether report is specified
 report = snakemake.output.get("report", None)
@@ -111,13 +115,13 @@ fq_2 = snakemake.input.get("fq_2", None)
 
 threads = snakemake.threads
 
+
 def get_auto_prefix(file_path):
-    (pref, ext) = path.splitext(
-        path.basename(file_path)
-    )
+    (pref, ext) = path.splitext(path.basename(file_path))
     if ext == ".gz":
         (pref, _) = path.splitext(pref)
     return pref
+
 
 if single_end_fq and not (fq_1 or fq_2):
     input_files = f"--se {single_end_fq}"
@@ -126,7 +130,7 @@ if single_end_fq and not (fq_1 or fq_2):
 
     move_dict[f".{auto_prefix}_bismark_bt2_SE_report.txt"] = report
 
-    threads = max( (threads - 3) // 2, 1)
+    threads = max((threads - 3) // 2, 1)
 
     # main output
     handle_optional_output(
@@ -179,7 +183,7 @@ elif fq_1 and fq_2:
 
     move_dict[f".{auto_prefix_1}_bismark_bt2_PE_report.txt"] = report
 
-    threads = max( (threads - 5) // 4, 1)
+    threads = max((threads - 5) // 4, 1)
 
     # main output
     handle_optional_output(
