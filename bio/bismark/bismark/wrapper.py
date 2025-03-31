@@ -48,10 +48,11 @@ if any(s in extra for s in automatic_command_line_args):
     )
 
 # this dict will be used for moving named outputs from the temporary directory
-# to the location requested under output 
+# to the location requested under output
 move_dict = dict()
 
 extra_implicit_args = " "
+
 
 def handle_optional_output_explicit(output_name, flag, file_suffix, args, mv_dict):
     output = snakemake.output[output_name]
@@ -60,11 +61,15 @@ def handle_optional_output_explicit(output_name, flag, file_suffix, args, mv_dic
             args += f" {flag} "
         mv_dict[file_suffix] = output
 
+
 def handle_optional_output(output_name, flag, file_suffix):
-    handle_optional_output_explicit(output_name, flag, file_suffix, args=extra_implicit_args, mv_dict=move_dict)
+    handle_optional_output_explicit(
+        output_name, flag, file_suffix, args=extra_implicit_args, mv_dict=move_dict
+    )
+
 
 # check whether report is specified
-report = snakemake.output.get("report", None) 
+report = snakemake.output.get("report", None)
 if not report:
     raise ValueError("The named output `report=` has to be specified.")
 
@@ -81,7 +86,7 @@ if n_out == 0:
         "Exactly one of the named outputs `sam=`, `bam=` or `cram=` must be specified.\n"
         "You specified none."
     )
-else if n_out > 1:
+elif n_out > 1:
     raise ValueError(
         "Exactly one of the named outputs `sam=`, `bam=` or `cram=` must be specified.\n"
         f"You specified more than one, namely: {[sam, bam, cram]}"
@@ -153,8 +158,8 @@ if single_end_fq and not (fq_1 or fq_2):
         flag="--nucleotide_stats",
         file_suffix=".nucleotide_stats.txt",
     )
-else if fq_1 and fq_2:
-    input_files f"-1 {fq_1:q} -2 {fq_2:q}"
+elif fq_1 and fq_2:
+    input_files = f"-1 {fq_1:q} -2 {fq_2:q}"
 
     move_dict["_PE_report.txt"] = report
 
@@ -214,7 +219,9 @@ else:
     )
 
 if genome_stats:
-    stats_file_fixed_location = f"snakemake.input['bismark_indexes_dir']}/genomic_nucleotide_frequencies.txt"
+    stats_file_fixed_location = (
+        f"{snakemake.input['bismark_indexes_dir']}/genomic_nucleotide_frequencies.txt"
+    )
     shell(
         f"if [ ! -f {stats_file_fixed_location} ]; "
         f"then ln -s {genome_stats} {stats_file_fixed_location}; "
@@ -222,12 +229,17 @@ if genome_stats:
     )
 
 with TemporaryDirectory() as temp_dir:
-    bismark_command = f"bismark {extra} --bowtie2 {format} "
-        f"--genome_folder {snakemake.input['bismark_indexes_dir']} "
+    bismark_command = (
+        f"bismark {extra} --bowtie2 {format} "
+        f'--genome_folder {snakemake.input["bismark_indexes_dir"]} '
         f"--output_dir {temp_dir} "
         f"--basename temp_file "
         f" {input_files} "
-    move_commands = "; ".join(f"mv {temp_dir}/temp_file{suffix} {output_name}" for suffix, output_name in move_dict)
+    )
+    move_commands = "; ".join(
+        f"mv {temp_dir}/temp_file{suffix} {output_name}"
+        for suffix, output_name in move_dict
+    )
     shell(
         # run bismark
         f"( {bismark_command}; "
