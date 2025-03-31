@@ -31,7 +31,6 @@ rule bismark_pe:
         # --multicore: bismark parallel execution
         # --temp_dir: tmp dir for intermediate files instead of output directory
         extra="",
-        basename="{sample}_{genome}",
     threads: 4  # bismark in pe mode will run parallel with a minimum of 4 threads, no matter what - please ensure your workflow provides at least --cores 4
     wrapper:
         "master/bio/bismark/bismark"
