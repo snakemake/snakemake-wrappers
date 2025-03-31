@@ -37,7 +37,7 @@ if threads > 1:
 params_extra = snakemake.params.get("extra", "")
 
 shell(
-    f"( mkdir {output_dir}/Bisulfite_Genome; "
+    f"( mkdir -p {output_dir}/Bisulfite_Genome; "
     f'  if [ ! -f {fasta_out} ]; then ln -s {snakemake.input["genome"]} {fasta_out}; fi; '
     f"  bismark_genome_preparation --verbose --bowtie2 {parallel} {params_extra} {output_dir};"
     ") {log}"
