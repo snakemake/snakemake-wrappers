@@ -5,15 +5,13 @@ rule bismark_pe:
         fq_2="reads/{sample}.2.fastq",
         genome="resources/{genome}/{genome}.fa",
         bismark_indexes_dir="resources/{genome}/",
-        genomic_freq="indexes/{genome}/genomic_nucleotide_frequencies.txt"
     output:
         bam="results/bismark/{sample}_{genome}_pe.bam",
         report="results/bismark/{sample}_{genome}_PE_report.txt",
-        nucleotide_stats="results/bismark/{sample}_{genome}_pe.nucleotide_stats.txt",
-        bam_unmapped_1="results/bismark/{sample}_{genome}_unmapped_reads_1.fq.gz",
-        bam_unmapped_2="results/bismark/{sample}_{genome}_unmapped_reads_2.fq.gz",
-        ambiguous_1="results/bismark/{sample}_{genome}_ambiguous_reads_1.fq.gz",
-        ambiguous_2="results/bismark/{sample}_{genome}_ambiguous_reads_2.fq.gz"
+        fq_unmapped_1="results/bismark/{sample}_{genome}_unmapped_reads_1.fq.gz", # optional: implicitly activates --unmapped
+        fq_unmapped_2="results/bismark/{sample}_{genome}_unmapped_reads_2.fq.gz", # optional: implicitly activates --unmapped
+        fq_ambiguous_1="results/bismark/{sample}_{genome}_ambiguous_reads_1.fq.gz", # optional: implicitly activates --ambiguous
+        fq_ambiguous_2="results/bismark/{sample}_{genome}_ambiguous_reads_2.fq.gz", # optional: implicitly activates --ambiguous
     log:
         "logs/bismark/{sample}_{genome}.log"
     params:
@@ -32,7 +30,7 @@ rule bismark_pe:
         # -p: bowtie2 parallel execution
         # --multicore: bismark parallel execution
         # --temp_dir: tmp dir for intermediate files instead of output directory
-        extra=' --ambiguous --unmapped --nucleotide_coverage',
+        extra='',
         basename='{sample}_{genome}'
     threads: 4 # bismark in pe mode will run parallel with a minimum of 4 threads, no matter what - please ensure your workflow provides at least --cores 4
     wrapper:
@@ -43,21 +41,19 @@ rule bismark_se:
     input:
         fq="reads/{sample}.fq.gz",
         genome="resources/{genome}/{genome}.fa",
-        bismark_indexes_dir="resources/{genome}/Bisulfite_Genome",
-        genomic_freq="resources/{genome}/genomic_nucleotide_frequencies.txt"
+        bismark_indexes_dir="resources/{genome}/",
+        genomic_freq="resources/{genome}/genomic_nucleotide_frequencies.txt", # only required for nucleotide_stats output, to avoid race conditions; generate with bam2nuc wrapper
     output:
-        bam="results/bismark/{sample}_{genome}.bam",
+        cram="results/bismark/{sample}_{genome}.cram",
         report="results/bismark/{sample}_{genome}_SE_report.txt",
         nucleotide_stats="results/bismark/{sample}_{genome}.nucleotide_stats.txt", # optional: implicitly activates --nucleotide_coverage
         fq_unmapped="results/bismark/{sample}_{genome}_unmapped_reads.fq.gz", # optional: implicitly activates --unmapped
-        fq_ambiguous="results/bismark/{sample}_{genome}_ambiguous_reads.fq.gz" # optional: implicitly activates --ambiguous
-        bam_ambiguous="results/bismark/{sample}_{genome}_ambiguous_reads.bam" # optional: implicitly activates --ambig_bam
+        fq_ambiguous="results/bismark/{sample}_{genome}_ambiguous_reads.fq.gz", # optional: implicitly activates --ambiguous
+        bam_ambiguous="results/bismark/{sample}_{genome}_ambiguous_reads.bam", # optional: implicitly activates --ambig_bam
     log:
         "logs/bismark/{sample}_{genome}.log",
     params:
-        # optional params string
-        extra=' --ambiguous --unmapped --nucleotide_coverage',
-        basename='{sample}_{genome}'
+        extra='',
     threads: 2 # bismark in se mode will run parallel with a minimum of 2 threads, no matter what - please ensure your workflow provides at least --cores 2
     wrapper:
         "master/bio/bismark/bismark"
