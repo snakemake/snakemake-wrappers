@@ -5760,6 +5760,9 @@ def test_bismark_bismark(run):
             "--use-conda",
             "-F",
         ],
+        compare_results_with_expected={
+            "results/bismark/b_genome.nucleotide_stats.txt": "expected/b_genome.nucleotide_stats.txt",
+        }
     )
 
 
