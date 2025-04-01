@@ -238,11 +238,13 @@ elif fq_1 and fq_2:
         file_suffix=f".{auto_prefix_1}_bismark_bt2_pe.nucleotide_stats.txt",
     )
 else:
-    ValueError(
-        "As named fastq input files, please speciy either of these two options:\n"
-        "1. Only the named input `fq=` for single end read data.\n"
-        "2. Both the named inputs `fq_1=` and `fq_2` for paired end read data.\n"
-    )
+ else:
+-    ValueError(
++    raise ValueError(
+         "As named fastq input files, please speciy either of these two options:\n"
+         "1. Only the named input `fq=` for single end read data.\n"
+         "2. Both the named inputs `fq_1=` and `fq_2` for paired end read data.\n"
+     )
 
 args.append(f"--parallel {threads}")
 
