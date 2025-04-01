@@ -130,7 +130,7 @@ if single_end_fq and not (fq_1 or fq_2):
 
     move_dict[f".{auto_prefix}_bismark_bt2_SE_report.txt"] = report
 
-    threads = max((threads - 3) // 2, 1)
+    threads = max((threads - 1) // 2, 1)
 
     # main output
     handle_optional_output(
@@ -183,7 +183,7 @@ elif fq_1 and fq_2:
 
     move_dict[f".{auto_prefix_1}_bismark_bt2_PE_report.txt"] = report
 
-    threads = max((threads - 5) // 4, 1)
+    threads = max((threads - 1) // 4, 1)
 
     # main output
     handle_optional_output(
