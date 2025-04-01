@@ -43,7 +43,7 @@ automatic_command_line_args = [
 ]
 
 if any(s in extra for s in automatic_command_line_args):
-    ValueError(
+    raise ValueError(
         "Please do not use any of the following command-line arguments under "
         "`params: extra=''`, as setting them is either determined automatically "
         "or is not possible with this wrapper:\n"
