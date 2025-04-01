@@ -13,9 +13,8 @@ from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-output_dir = snakemake.output["bismark_genome_dir"]
-
-fasta_out = f'{output_dir}/{path.basename(snakemake.input["genome"])}'
+output_dir = snakemake.output.bismark_genome_dir
+fasta_out = f"{output_dir}/{path.basename(snakemake.input.genome)}"
 
 threads = snakemake.threads
 
