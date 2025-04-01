@@ -237,7 +237,7 @@ elif fq_1 and fq_2:
     )
 else:
     raise ValueError(
-        "As named fastq input files, please speciy either of these two options:\n"
+        "As named fastq input files, please specify either of these two options:\n"
         "1. Only the named input `fq=` for single end read data.\n"
         "2. Both the named inputs `fq_1=` and `fq_2` for paired end read data.\n"
     )
