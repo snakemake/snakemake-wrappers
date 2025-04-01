@@ -7,8 +7,8 @@ authors:
 url: https://felixkrueger.github.io/Bismark/bismark/alignment/
 input:
   - For single end data, provide one read file with the names `fq=...`.
-  - For pairead end data, provide two read files with the names `fq_1=...` and `fq_2=...`/
-  - bismark_indexes_dir: The path to the folder that containes the `Bisulfite_Genome` created by the `bismark_genome_preparation` script, e.g. 'resources/hg19/bismark'
+  - For paired end data, provide two read files with the names `fq_1=...` and `fq_2=...`/
+  - bismark_indexes_dir: The path to the folder that contains the `Bisulfite_Genome` created by the `bismark_genome_preparation` script, e.g. 'resources/hg19/bismark'
   - genomic_freqs (optional): When requesting the optional output `nucleotide_stats`, please include a `genomic_nucleotide_frequencies.txt` file for this input (precomputed with `bam2nuc`).
 params:
   - extra: Any additional args, but none that get automatically determined by the wrapper (the wrapper will complain with a complete list).
