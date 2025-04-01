@@ -7,8 +7,6 @@ __copyright__ = "Copyright (c) 2019 JetBrains, DKTK Essen Düsseldorf"
 __email__ = "roman.chernyatchik@jetbrains.com"
 __license__ = "MIT"
 
-import os
-
 from snakemake.shell import shell
 from tempfile import TemporaryDirectory
 from os import path
