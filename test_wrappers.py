@@ -5759,11 +5759,14 @@ def test_bismark_bismark(run):
             "snakemake",
             "--cores",
             "1",
-            "bams/a_genome_pe.bam",
-            "bams/b_genome.bam",
+            "results/bismark/a_genome_pe.bam",
+            "results/bismark/b_genome.cram",
             "--use-conda",
             "-F",
         ],
+        compare_results_with_expected={
+            "results/bismark/b_genome.nucleotide_stats.txt": "expected/b_genome.nucleotide_stats.txt",
+        }
     )
 
 
