@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - fgbio =2.4.0
+  - fgbio =2.5.0
   - snakemake-wrapper-utils =0.6.2

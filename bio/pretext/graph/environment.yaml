@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - pretextgraph =0.0.7
+  - pretextgraph =0.0.8

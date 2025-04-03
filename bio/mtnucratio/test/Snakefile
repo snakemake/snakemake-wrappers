@@ -1,0 +1,13 @@
+rule test_mtnucratio:
+    input:
+        "a.bam",
+    output:
+        txt="ratio.txt",
+        json="ratio.json",
+    threads: 1
+    log:
+        "mtnucratio.log",
+    params:
+        chrom="ref2",
+    wrapper:
+        "master/bio/mtnucratio"

@@ -1,0 +1,11 @@
+##fileformat=VCFv4.0
+##INFO=<ID=AF_AFR,Number=1,Type=String,Description="no description available">
+##INFO=<ID=AF_EAS,Number=1,Type=String,Description="no description available">
+##INFO=<ID=AF_EUR,Number=1,Type=String,Description="no description available">
+##INFO=<ID=AF_SAS,Number=1,Type=String,Description="no description available">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	Sample1
+chr1	69270	.	A	G	.	.	AF_AFR=0.360;AF_EAS=0.998;AF_EUR=0.911;AF_SAS=0.902	GT	1/1
+chr1	69897	.	T	C	.	.	AF_AFR=0.312;AF_EAS=0.777;AF_EUR=0.844;AF_SAS=0.805	GT	0/1
+chr1	325155	.	C	A	.	.	AF_AFR=0.653;AF_EAS=0.971;AF_EUR=0.769;AF_SAS=0.497	GT	1/1
+chr1	881627	.	G	A	.	.	AF_AFR=0.130;AF_EAS=0.658;AF_EUR=0.636;AF_SAS=0.565	GT	0/1
+chr1	914852	.	G	C	.	.	AF_AFR=0.249;AF_EAS=0.722;AF_EUR=0.596;AF_SAS=0.622	GT	1/1

@@ -5,6 +5,7 @@ import shutil
 import pytest
 import sys
 import yaml
+import filecmp
 from itertools import chain
 
 DIFF_MASTER = os.environ.get("DIFF_MASTER", "false") == "true"
@@ -23,13 +24,6 @@ if DIFF_MASTER or DIFF_LAST_COMMIT:
 CONTAINERIZED = os.environ.get("CONTAINERIZED", "false") == "true"
 
 
-class Skipped(Exception):
-    pass
-
-
-pytestmark = pytest.mark.xfail(raises=Skipped)
-
-
 @pytest.fixture
 def tmp_test_dir():
     with tempfile.TemporaryDirectory() as d:
@@ -45,7 +39,7 @@ def tmp_test_dir():
 
 @pytest.fixture
 def run(tmp_test_dir):
-    def _run(wrapper, cmd, check_log=None):
+    def _run(wrapper, cmd, check_log=None, compare_results_with_expected=None):
 
         tmp_test_subdir = tempfile.mkdtemp(dir=tmp_test_dir)
         origdir = os.getcwd()
@@ -58,7 +52,7 @@ def run(tmp_test_dir):
             raise ValueError(f"Unable to load or parse {meta_path}.")
 
         if meta.get("blacklisted"):
-            raise Skipped("wrapper blacklisted")
+            pytest.skip("wrapper blacklisted")
 
         dst = os.path.join(tmp_test_subdir, "master")
 
@@ -78,7 +72,7 @@ def run(tmp_test_dir):
             any(f.startswith(w) for f in DIFF_FILES)
             for w in chain(used_wrappers, [wrapper])
         ):
-            raise Skipped("wrappers not modified")
+            pytest.skip("wrappers not modified")
 
         testdir = os.path.join(tmp_test_subdir, "test")
         shutil.copytree(os.path.join(wrapper, "test"), testdir)
@@ -110,6 +104,9 @@ def run(tmp_test_dir):
 
         try:
             subprocess.check_call(cmd)
+            if compare_results_with_expected:
+                for generated, expected in compare_results_with_expected.items():
+                    assert filecmp.cmp(generated, expected, shallow=False)
         except Exception as e:
             # go back to original directory
             os.chdir(origdir)
@@ -192,6 +189,20 @@ def test_nonpareil(run):
             "results/a.fq.npo",
             "results/a.fq.bz2.npo",
             "results/a.fastq.gz.npo",
+        ],
+    )
+
+
+def test_ngsbits_samplesimilarity(run):
+    run(
+        "bio/ngsbits/samplesimilarity",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "similarity.tsv",
         ],
     )
 
@@ -447,6 +458,21 @@ def test_seqkit_concat(run):
     )
 
 
+def test_seqkit_split2_part(run):
+    run(
+        "bio/seqkit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/split2/part/a.1-of-2.fas",
+            "out/split2/part/a.2-of-2.fas",
+        ],
+    )
+
+
 def test_sickle_pe(run):
     run(
         "bio/sickle/pe",
@@ -561,6 +587,13 @@ def test_purge_dups_get_seqs(run):
     run(
         "bio/purge_dups/get_seqs",
         ["snakemake", "--cores", "1", "out/get_seqs.hap.fasta", "--use-conda", "-F"],
+    )
+
+
+def test_ngscheckmate_makesnvpattern(run):
+    run(
+        "bio/ngscheckmate/makesnvpattern",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "genome.pt"],
     )
 
 
@@ -811,6 +844,20 @@ def test_open_cravat_module(run):
     run(
         "bio/open-cravat/module",
         ["snakemake", "--cores", "1", "--use-conda"],
+    )
+
+
+def test_varscan2_snpeff_meta(run):
+    run(
+        "meta/bio/varscan2_snpeff",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "snpeff/annotated.vcf",
+        ],
     )
 
 
@@ -2755,6 +2802,42 @@ def test_deeptools_bamcoverage(run):
     )
 
 
+def test_deeptools_bampe_fragmentsize(run):
+    # Test basic functionality
+    run(
+        "bio/deeptools/bampefragmentsize",
+        ["snakemake", "--cores", "1", "results/histogram.png", "--use-conda", "-F"],
+    )
+    # Test with multiple BAMs and custom labels
+    run(
+        "bio/deeptools/bampefragmentsize",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/histogram.png",
+            "--config",
+            "labels='sample1,sample2'",
+            "--use-conda",
+            "-F",
+        ],
+    )
+    # Test with blacklist
+    run(
+        "bio/deeptools/bampefragmentsize",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/histogram.png",
+            "--config",
+            "blacklist='regions.bed'",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_deeptools_multibigwigsummary(run):
     run(
         "bio/deeptools/multibigwigsummary",
@@ -3417,6 +3500,13 @@ def test_minimap2_index(run):
     )
 
 
+def test_mtnucratiocalculator(run):
+    run(
+        "bio/mtnucratio",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "ratio.txt"],
+    )
+
+
 def test_mosdepth(run):
     run(
         "bio/mosdepth",
@@ -3529,9 +3619,9 @@ def test_nanosim_genome(run):
             "snakemake",
             "--cores",
             "1",
-            "results/nanosim/genome/brca2.human_NA12878_DNA_FAB49712_guppy/training.simulated_reads.fq",
-            "results/nanosim/genome/brca2.human_NA12878_DNA_FAB49712_guppy/training.simulated_errors.txt",
-            "results/nanosim/genome/brca2.human_NA12878_DNA_FAB49712_guppy/training.simulated_reads.unaligned.fq",
+            "results/nanosim/genome/brca2/human_giab_hg002_sub1M_kitv14_dorado_v3.2.1.simulated_reads.fq",
+            "results/nanosim/genome/brca2/human_giab_hg002_sub1M_kitv14_dorado_v3.2.1.simulated_errors.txt",
+            "results/nanosim/genome/brca2/human_giab_hg002_sub1M_kitv14_dorado_v3.2.1.simulated_reads.unaligned.fq",
             "--use-conda",
             "-F",
         ],
@@ -3545,9 +3635,9 @@ def test_nanosim_transcriptome(run):
             "snakemake",
             "--cores",
             "1",
-            "results/nanosim/transcriptome/brca2.human_NA12878_cDNA_Bham1_albacore/training.simulated.fq",
-            "results/nanosim/transcriptome/brca2.human_NA12878_cDNA_Bham1_albacore/training.simulated.errors.txt",
-            "results/nanosim/transcriptome/brca2.human_NA12878_cDNA_Bham1_albacore/training.simulated_reads.unaligned.fq",
+            "results/nanosim/transcriptome/brca2/human_NA12878_cDNA-rel2_guppy_v3.2.2.simulated.fq",
+            "results/nanosim/transcriptome/brca2/human_NA12878_cDNA-rel2_guppy_v3.2.2.simulated.errors.txt",
+            "results/nanosim/transcriptome/brca2/human_NA12878_cDNA-rel2_guppy_v3.2.2.simulated_reads.unaligned.fq",
             "--use-conda",
             "-F",
         ],
@@ -3561,13 +3651,27 @@ def test_nanosim_metagenome(run):
             "snakemake",
             "--cores",
             "1",
-            "results/nanosim/metagenome/brca2.metagenome_ERR3152364_Even/training/config/sample_x.abundances.tsv",
-            "results/nanosim/metagenome/brca2.metagenome_ERR3152364_Even/training/config/sample_x.dna_type_list.tsv",
-            "results/nanosim/metagenome/brca2.metagenome_ERR3152364_Even/training/config/sample_x.reference_genomes_list.tsv",
-            "results/nanosim/metagenome/brca2.metagenome_ERR3152364_Even/training/simulated/sample_x.simulated_errors.txt",
-            "results/nanosim/metagenome/brca2.metagenome_ERR3152364_Even/training/simulated/sample_x.simulated_reads.fa",
+            "results/nanosim/metagenome/brca2/metagenome_ERR3152366_Log_v3.2.2/config/sample_x.abundances.tsv",
+            "results/nanosim/metagenome/brca2/metagenome_ERR3152366_Log_v3.2.2/config/sample_x.dna_type_list.tsv",
+            "results/nanosim/metagenome/brca2/metagenome_ERR3152366_Log_v3.2.2/config/sample_x.reference_genomes_list.tsv",
+            "results/nanosim/metagenome/brca2/metagenome_ERR3152366_Log_v3.2.2/simulated/sample_x.simulated_errors.txt",
+            "results/nanosim/metagenome/brca2/metagenome_ERR3152366_Log_v3.2.2/simulated/sample_x.simulated_reads.fa",
             "--use-conda",
             "-F",
+        ],
+    )
+
+
+def test_ngsbits_sampleancestry(run):
+    run(
+        "bio/ngsbits/sampleancestry",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "ancestry.tsv",
         ],
     )
 
@@ -4189,6 +4293,25 @@ def test_star_align(run):
     )
 
 
+def test_ngscheckmate_ncm(run):
+    run(
+        "bio/ngscheckmate/ncm",
+        ["snakemake", "--cores", "1", "bam_matrix.txt", "--use-conda", "-F"],
+    )
+    run(
+        "bio/ngscheckmate/ncm",
+        ["snakemake", "--cores", "1", "vcf_matrix.txt", "--use-conda", "-F"],
+    )
+    run(
+        "bio/ngscheckmate/ncm",
+        ["snakemake", "--cores", "1", "fastq_matched.txt", "--use-conda", "-F"],
+    )
+    run(
+        "bio/ngscheckmate/ncm",
+        ["snakemake", "--cores", "1", "fastq_paired_matched.txt", "--use-conda", "-F"],
+    )
+
+
 def test_star_index(run):
     run("bio/star/index", ["snakemake", "--cores", "1", "genome", "--use-conda", "-F"])
 
@@ -4605,6 +4728,13 @@ def test_gseapy_gsea(run):
     run(
         "bio/gseapy/gsea",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "prerank_results_dir"],
+    )
+
+
+def test_sexdeterrmine(run):
+    run(
+        "bio/sexdeterrmine",
+        ["snakemake", "--cores", "1", "results.tsv", "-F", "--use-conda"],
     )
 
 
@@ -5222,6 +5352,13 @@ def test_hmmsearch(run):
     )
 
 
+def test_jackhmmer(run):
+    run(
+        "bio/hmmer/jackhmmer",
+        ["snakemake", "--cores", "1", "test-prot-tbl.txt", "--use-conda", "-F"],
+    )
+
+
 def test_paladin_index(run):
     run(
         "bio/paladin/index",
@@ -5314,10 +5451,13 @@ def test_ensembl_sequence_chromosome(run):
     )
 
 
-def test_ensembl_sequence_chromosomes(run):
+def test_ensembl_sequence_multiple_chromosomes(run):
     run(
         "bio/reference/ensembl-sequence",
-        ["snakemake", "--cores", "1", "refs/chr1_and_chr2.fasta", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "refs/chr6_and_chr1.fasta", "--use-conda", "-F"],
+        compare_results_with_expected={
+            "refs/chr6_and_chr1.fasta": "expected/chr6_and_chr1.fasta"
+        },
     )
 
 
@@ -5946,16 +6086,25 @@ def test_vg_autoindex_giraffe(run):
         ["snakemake", "--cores", "1", "resources/genome.dist", "--use-conda", "-F"],
     )
 
+
 def test_vg_autoindex_map(run):
     run(
         "bio/vg/autoindex",
         ["snakemake", "--cores", "1", "resources/genome.xg", "--use-conda", "-F"],
     )
 
+
 def test_vg_construct(run):
     run(
         "bio/vg/construct",
         ["snakemake", "--cores", "1", "graph/c.vg", "--use-conda", "-F"],
+    )
+
+
+def test_vg_giraffe(run):
+    run(
+        "bio/vg/giraffe",
+        ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
     )
 
 
@@ -6596,4 +6745,25 @@ def test_varlociraptor_control_fdr(run):
             "conda",
             "-F",
         ],
+    )
+
+
+def test_overturemaps_download(run):
+    run(
+        "geo/overturemaps/download",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "results/division_boundary.parquet",
+        ],
+    )
+
+
+def test_pygadm_item(run):
+    run(
+        "geo/pygadm/item",
+        ["snakemake", "--cores", "2", "--use-conda", "-F", "results/mexico.parquet"],
     )

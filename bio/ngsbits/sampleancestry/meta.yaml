@@ -1,0 +1,13 @@
+name: NGS-bits SampleAncestry
+url: https://github.com/imgag/ngs-bits/blob/master/doc/tools/SampleAncestry/index.md
+description: Estimates the ancestry of a sample based on variants.
+authors:
+  - Thibault Dayris
+input:
+  - Path to one or multiple VCF file(s).
+output:
+  - Path to results table (TSV)
+params:
+  - extra: Optional parameters besides IO
+notes: |
+  To estimate ancestry, the input VCF file must have enough variants AND variants that overlaps known human variants ancestry.

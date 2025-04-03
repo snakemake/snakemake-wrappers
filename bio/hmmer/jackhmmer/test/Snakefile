@@ -1,0 +1,17 @@
+rule jackhmmer:
+    input:
+        db="test-protein.fa",
+        query="query.fa"
+    output:
+        hits_tbl="test-prot-tbl.txt",
+        hits_aln="test-prot-alignment-hits.sto",
+        dom_tbl="test-prot-domtbl.txt",
+        summary="test-prot-out1.txt",
+    log:
+        "logs/jackhmmer.log"
+    params:
+       # Additional flags can be set using extra, for example:
+       extra="-E 0.001 --F1=0.005"
+    threads: 4
+    wrapper:
+        "master/bio/hmmer/jackhmmer"
