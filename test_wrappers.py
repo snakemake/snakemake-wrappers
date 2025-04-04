@@ -134,6 +134,39 @@ def run(tmp_test_dir):
     return _run
 
 
+def test_mmseqs2(run):
+    run(
+        "bio/mmseqs2",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/search/a.fas",
+            "out/cluster/a_b_cluster.tsv",
+            "out/linclust/a_b_cluster.tsv",
+            "out/taxonomy/a_lca.tsv",
+            "out/rbh/a.fas",
+        ],
+        compare_results_with_expected={
+            "out/search/a.fas": "expected/search/a.fas",
+            "out/cluster/a_b_cluster.tsv": "expected/cluster/a_b_cluster.tsv",
+            "out/cluster/a_b_rep_seq.fasta": "expected/cluster/a_b_rep_seq.fasta",
+            "out/cluster/a_b_all_seqs.fasta": "expected/cluster/a_b_all_seqs.fasta",
+            "out/cluster/a_b_cluster.tsv": "expected/cluster/a_b_cluster.tsv",
+            "out/linclust/a_b_rep_seq.fasta": "expected/linclust/a_b_rep_seq.fasta",
+            "out/linclust/a_b_all_seqs.fasta": "expected/linclust/a_b_all_seqs.fasta",
+            "out/linclust/a_b_cluster.tsv": "expected/linclust/a_b_cluster.tsv",
+            "out/taxonomy/a_tophit_report": "expected/taxonomy/a_tophit_report",
+            "out/taxonomy/a_tophit_aln": "expected/taxonomy/a_tophit_aln",
+            "out/taxonomy/a_report": "expected/taxonomy/a_report",
+            "out/taxonomy/a_lca.tsv": "expected/taxonomy/a_lca.tsv",
+            "out/rbh/a.fas": "expected/rbh/a.fas",
+        },
+    )
+
+
 def test_miller(run):
     run(
         "utils/miller",
@@ -171,7 +204,7 @@ def test_miller(run):
             "miller/split_2.csv": "expected/split_2.csv",
             "miller/uniq.tsv": "expected/uniq.tsv",
             "miller/pipe.tsv": "expected/pipe.tsv",
-        }
+        },
     )
 
 
@@ -5484,6 +5517,7 @@ def test_ensembl_sequence_old_release(run):
         ["snakemake", "-s", "old_release.smk", "--cores", "1", "--use-conda", "-F"],
     )
 
+
 def test_ensembl_sequence_gzipped(run):
     run(
         "bio/reference/ensembl-sequence",
@@ -5507,6 +5541,7 @@ def test_ensembl_sequence_multiple_chromosomes(run):
         },
     )
 
+
 def test_ensembl_sequence_multiple_chromosomes_gzipped(run):
     run(
         "bio/reference/ensembl-sequence",
@@ -5515,7 +5550,6 @@ def test_ensembl_sequence_multiple_chromosomes_gzipped(run):
             "refs/chr6_and_chr1.fa.gz": "expected/chr6_and_chr1.fa.gz"
         },
     )
-
 
 
 def test_ensembl_sequence_chromosome_old_release(run):
@@ -5766,7 +5800,7 @@ def test_bismark_bismark(run):
         ],
         compare_results_with_expected={
             "results/bismark/b_genome.nucleotide_stats.txt": "expected/b_genome.nucleotide_stats.txt",
-        }
+        },
     )
 
 
