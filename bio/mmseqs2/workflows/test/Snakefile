@@ -18,7 +18,7 @@ rule mmseqs2_workflow_cluster:
     input:
         query=["seqs/nucl.a.fas.gz", "seqs/nucl.b.fas.gz"],
     output:
-        prefix=multiext(
+        cluster=multiext(
             "out/cluster/a_b", "_all_seqs.fasta", "_cluster.tsv", "_rep_seq.fasta"
         ),
     log:
@@ -35,7 +35,7 @@ rule mmseqs2_workflow_linclust:
     input:
         query=["seqs/nucl.a.fas.gz", "seqs/nucl.b.fas.gz"],
     output:
-        prefix=multiext(
+        cluster=multiext(
             "out/linclust/a_b", "_all_seqs.fasta", "_cluster.tsv", "_rep_seq.fasta"
         ),
     log:

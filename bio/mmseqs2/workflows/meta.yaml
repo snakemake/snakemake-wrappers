@@ -5,10 +5,10 @@ description: |
 authors:
   - Filipe G. Vieira
 input:
-  - input file(s)
+  - query: input query FAS file(s)
+  - target: input target FAS file(s) or DB
 output:
-  - output file(s)
+  - output: FAS, cluster or DB file(s)
 params:
+  - module: workflow to use
   - extra: additional program arguments
-notes: |
-  * Keys for `input` and `output` files need to match `vsearch` arguments, (e.g. input) `uchime_denovo`, `cluster_fast`, `fastx_uniques`, `maskfasta`, `fastq_convert`, `fastq_mergepairs`, or (e.g. output) `chimeras`, `fastaout`, `fastqout`, `output`.

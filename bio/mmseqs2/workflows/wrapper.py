@@ -14,24 +14,13 @@ target = snakemake.input.get("target", "")
 if isinstance(target, list):
     target = os.path.commonprefix(snakemake.input.target)
 
-# TODO: arbitrary output names
-module = snakemake.params.module
-if snakemake.params.module == "easy-taxonomy":
-    out = snakemake.output.report
-elif module in ["easy-cluster", "easy-linclust"]:
-    out = snakemake.output.prefix
-elif module in ["easy-search", "easy-rbh"]:
-    out = snakemake.output.aln
-else:
-    raise ValueError(f"Workflow {module} not suported.")
+# TODO: arbitrary output file names
+out = snakemake.output
 if isinstance(out, list):
     out = os.path.commonprefix(out).rstrip("_")
 
 
 with tempfile.TemporaryDirectory() as tmpdir:
-    print(
-        f"mmseqs {module} {snakemake.input.query} {target} {out} {tmpdir} --threads {snakemake.threads} {extra} {log}"
-    )
     shell(
-        "mmseqs {module} {snakemake.input.query} {target} {out} {tmpdir} --threads {snakemake.threads} {extra} {log}"
+        "mmseqs {snakemake.params.module} {snakemake.input.query} {target} {out} {tmpdir} --threads {snakemake.threads} {extra} {log}"
     )

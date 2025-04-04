@@ -136,7 +136,7 @@ def run(tmp_test_dir):
 
 def test_mmseqs2(run):
     run(
-        "bio/mmseqs2",
+        "bio/mmseqs2/workflows",
         [
             "snakemake",
             "--cores",
