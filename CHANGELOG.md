@@ -1,5 +1,26 @@
 # Changelog
 
+## [6.0.0](https://github.com/snakemake/snakemake-wrappers/compare/v5.10.0...v6.0.0) (2025-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* bismark main alignment wrapper to best practices ([#3974](https://github.com/snakemake/snakemake-wrappers/issues/3974))
+* handle all the bismark_genome_preparation cli quirks ([#3973](https://github.com/snakemake/snakemake-wrappers/issues/3973))
+
+### Bug Fixes
+
+* bismark main alignment wrapper to best practices ([#3974](https://github.com/snakemake/snakemake-wrappers/issues/3974)) ([b368e93](https://github.com/snakemake/snakemake-wrappers/commit/b368e93f604d5cf7b168caa8690010b894158280))
+* handle all the bismark_genome_preparation cli quirks ([#3973](https://github.com/snakemake/snakemake-wrappers/issues/3973)) ([628d21c](https://github.com/snakemake/snakemake-wrappers/commit/628d21c9124b2909f70af8a98ba06a459b525b7b))
+
+
+### Performance Improvements
+
+* autobump bio/deseq2/deseqdataset ([#3977](https://github.com/snakemake/snakemake-wrappers/issues/3977)) ([9988759](https://github.com/snakemake/snakemake-wrappers/commit/9988759cc839d25e2c17592b6e97ea3922315e38))
+* autobump bio/gdc-api/bam-slicing ([#3979](https://github.com/snakemake/snakemake-wrappers/issues/3979)) ([c32b1a8](https://github.com/snakemake/snakemake-wrappers/commit/c32b1a86a556d4d1c2c6da8348f077a1a5b08ab5))
+* autobump bio/whatshap/haplotag ([#3980](https://github.com/snakemake/snakemake-wrappers/issues/3980)) ([65b5db1](https://github.com/snakemake/snakemake-wrappers/commit/65b5db1f75ad10f1e3ea88b8abf61f502ff76127))
+* autobump utils/datavzrd ([#3978](https://github.com/snakemake/snakemake-wrappers/issues/3978)) ([1240480](https://github.com/snakemake/snakemake-wrappers/commit/12404802630400326f57da2fd49837a52cfea94e))
+
 ## [5.10.0](https://github.com/snakemake/snakemake-wrappers/compare/v5.9.0...v5.10.0) (2025-03-28)
 
 
