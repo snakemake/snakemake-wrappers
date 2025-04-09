@@ -166,6 +166,33 @@ def test_mmseqs2(run):
         },
     )
 
+    run(
+        "bio/mmseqs2/db",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "out/databases/a",
+            "out/createdb/a",
+        ],
+        compare_results_with_expected={
+            "out/databases/a.dbtype": "expected/databases/a.dbtype",
+            "out/databases/a_h.dbtype": "expected/databases/a_h.dbtype",
+            "out/databases/a.source": "expected/databases/a.source",
+            "out/databases/a.version": "expected/databases/a.version",
+            "out/createdb/a": "expected/createdb/a",
+            "out/createdb/a.dbtype": "expected/createdb/a.dbtype",
+            "out/createdb/a_h": "expected/createdb/a_h",
+            "out/createdb/a_h.dbtype": "expected/createdb/a_h.dbtype",
+            "out/createdb/a_h.index": "expected/createdb/a_h.index",
+            "out/createdb/a.index": "expected/createdb/a.index",
+            "out/createdb/a.lookup": "expected/createdb/a.lookup",
+            "out/createdb/a.source": "expected/createdb/a.source",
+        },
+    )
+
 
 def test_miller(run):
     run(
