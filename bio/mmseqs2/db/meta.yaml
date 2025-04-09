@@ -1,14 +1,13 @@
-name: MMseqs2 createdb
+name: MMseqs2 db
 url: https://github.com/soedinglab/mmseqs2
 description: |
   ultra fast and sensitive sequence search and clustering suite
 authors:
   - Filipe G. Vieira
 input:
-  - input file(s)
+  - input FAS file
 output:
-  - output file(s)
+  - output: DB files
 params:
+  - module: workflow to use
   - extra: additional program arguments
-notes: |
-  * Keys for `input` and `output` files need to match `vsearch` arguments, (e.g. input) `uchime_denovo`, `cluster_fast`, `fastx_uniques`, `maskfasta`, `fastq_convert`, `fastq_mergepairs`, or (e.g. output) `chimeras`, `fastaout`, `fastqout`, `output`.
