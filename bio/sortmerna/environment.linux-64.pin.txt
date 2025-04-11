@@ -14,11 +14,11 @@ https://conda.anaconda.org/conda-forge/linux-64/libgcc-14.2.0-h767d61c_2.conda#e
 https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.7.0-h5888daf_0.conda#db0bfbe7dd197b68ad5f30333bae6ce0
 https://conda.anaconda.org/conda-forge/linux-64/libffi-3.4.6-h2dba641_1.conda#ede4673863426c0883c0063d853bbd85
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-14.2.0-h69a702a_2.conda#a2222a6ada71fb478682efe483ce0f92
-https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.6.4-hb9d3cd8_0.conda#42d5b6a0f30d3c10cd88cb8584fda1cb
+https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.1-hb9d3cd8_0.conda#0e87378639676987af32fee53ba32258
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-14.2.0-h8f9b012_2.conda#a78c856b6dc6bf4ea8daeb9beaaa3fb0
 https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.1-hb9d3cd8_2.conda#edb0dca6bc32e4f4789199455a1dbeb8
 https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.5-h2d0b736_3.conda#47e340acb35de30501a76c7c799c41d7
-https://conda.anaconda.org/conda-forge/linux-64/openssl-3.4.1-h7b32b05_0.conda#41adf927e746dc75ecf0ef841c454e48
+https://conda.anaconda.org/conda-forge/linux-64/openssl-3.5.0-h7b32b05_0.conda#bb539841f2a3fde210f387d00ed4bb9d
 https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-h4bc722e_7.conda#62ee74e96c5ebb0af99386de58cf9553
 https://conda.anaconda.org/conda-forge/linux-64/libnsl-2.0.1-hd590300_0.conda#30fd6e37fe21f86f4bd26d6ee73eeec7
 https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.49.1-hee588c1_2.conda#962d6ac93c30b1dfc54c9cccafd1003e
@@ -27,8 +27,8 @@ https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.38.1-h0b41bf4_0.conda#
 https://conda.anaconda.org/conda-forge/linux-64/libxcrypt-4.4.36-hd590300_1.conda#5aa797f8787fe7a17d1b0821485b5adc
 https://conda.anaconda.org/conda-forge/linux-64/readline-8.2-h8c095d6_2.conda#283b96675859b20a825f8fa30f311446
 https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_h4845f30_101.conda#d453b98d9c83e71da0741bb0ff4d76bc
-https://conda.anaconda.org/conda-forge/linux-64/python-3.12.9-h9e4cc4f_1_cpython.conda#d82342192dfc9145185190e651065aa9
-https://conda.anaconda.org/conda-forge/noarch/setuptools-75.8.2-pyhff2d567_0.conda#9bddfdbf4e061821a1a443f93223be61
+https://conda.anaconda.org/conda-forge/linux-64/python-3.12.10-h9e4cc4f_0_cpython.conda#a41d26cd4d47092d683915d058380dec
+https://conda.anaconda.org/conda-forge/noarch/setuptools-78.1.0-pyhff2d567_0.conda#a42da9837e46c53494df0044c3eb1f53
 https://conda.anaconda.org/conda-forge/linux-64/sortmerna-4.3.7-py312h8ced662_0.conda#31b897651154fd70aaf432595d41e90b
 https://conda.anaconda.org/conda-forge/noarch/wheel-0.45.1-pyhd8ed1ab_1.conda#75cb7132eb58d97896e173ef12ac9986
 https://conda.anaconda.org/conda-forge/noarch/pip-25.0.1-pyh8b19718_0.conda#79b5c1440aedc5010f687048d9103628
