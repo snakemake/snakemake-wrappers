@@ -1,5 +1,38 @@
 # Changelog
 
+## [6.0.1](https://github.com/snakemake/snakemake-wrappers/compare/v6.0.0...v6.0.1) (2025-04-18)
+
+
+### Performance Improvements
+
+* autobump bio/bwa-mem2/mem ([#4011](https://github.com/snakemake/snakemake-wrappers/issues/4011)) ([26427cf](https://github.com/snakemake/snakemake-wrappers/commit/26427cf6e4e96122bbddc1303d8645bf5de1dc30))
+* autobump bio/bwa-meme/mem ([#4010](https://github.com/snakemake/snakemake-wrappers/issues/4010)) ([9b29136](https://github.com/snakemake/snakemake-wrappers/commit/9b2913694c51e80d6ff0e4aac34eedad3fcc78dd))
+* autobump bio/bwa-memx/mem ([#4015](https://github.com/snakemake/snakemake-wrappers/issues/4015)) ([a3f052f](https://github.com/snakemake/snakemake-wrappers/commit/a3f052f06f4955a65d8059e5354581c277bf4593))
+* autobump bio/bwa/mem ([#4014](https://github.com/snakemake/snakemake-wrappers/issues/4014)) ([9893f31](https://github.com/snakemake/snakemake-wrappers/commit/9893f31c8fe56896ceccc20cf8c556fc3c915b31))
+* autobump bio/bwa/sampe ([#4012](https://github.com/snakemake/snakemake-wrappers/issues/4012)) ([20a4ea0](https://github.com/snakemake/snakemake-wrappers/commit/20a4ea0b7180bd0caa03600a1beb56c87526adac))
+* autobump bio/bwa/samse ([#4013](https://github.com/snakemake/snakemake-wrappers/issues/4013)) ([460e426](https://github.com/snakemake/snakemake-wrappers/commit/460e4267368259112a20a82ee754225f4d5955f4))
+* autobump bio/bwa/samxe ([#4009](https://github.com/snakemake/snakemake-wrappers/issues/4009)) ([f8357cd](https://github.com/snakemake/snakemake-wrappers/commit/f8357cd2179a836ace7e023999f01791e1990f74))
+* autobump bio/fastp ([#4016](https://github.com/snakemake/snakemake-wrappers/issues/4016)) ([32fb271](https://github.com/snakemake/snakemake-wrappers/commit/32fb2717e2aea48a3cd46a997d26d74b9824bc07))
+* autobump bio/picard/addorreplacereadgroups ([#4027](https://github.com/snakemake/snakemake-wrappers/issues/4027)) ([48b9bfb](https://github.com/snakemake/snakemake-wrappers/commit/48b9bfb06792c84d6a474f1368d7638c03b0b01f))
+* autobump bio/picard/bedtointervallist ([#4029](https://github.com/snakemake/snakemake-wrappers/issues/4029)) ([a49cf4d](https://github.com/snakemake/snakemake-wrappers/commit/a49cf4d0ce2d73eafefc74b99bc55bbcb1b79011))
+* autobump bio/picard/collectalignmentsummarymetrics ([#4032](https://github.com/snakemake/snakemake-wrappers/issues/4032)) ([4282aa2](https://github.com/snakemake/snakemake-wrappers/commit/4282aa27a45e8b75740f1b54b4596eb2007a8981))
+* autobump bio/picard/collectgcbiasmetrics ([#4031](https://github.com/snakemake/snakemake-wrappers/issues/4031)) ([c4de167](https://github.com/snakemake/snakemake-wrappers/commit/c4de167363beb8dbaaf8c7ed5da2fbed42192729))
+* autobump bio/picard/collecthsmetrics ([#4021](https://github.com/snakemake/snakemake-wrappers/issues/4021)) ([82ed4fe](https://github.com/snakemake/snakemake-wrappers/commit/82ed4fe789623763115a56c2a3ea8ccbf056fa05))
+* autobump bio/picard/collectinsertsizemetrics ([#4020](https://github.com/snakemake/snakemake-wrappers/issues/4020)) ([9e30fc8](https://github.com/snakemake/snakemake-wrappers/commit/9e30fc8af0270d2efa25d3bca65333c10c9ab131))
+* autobump bio/picard/collectmultiplemetrics ([#4019](https://github.com/snakemake/snakemake-wrappers/issues/4019)) ([bdd6f41](https://github.com/snakemake/snakemake-wrappers/commit/bdd6f417148e5d7ef88bdfbbe2cc7e7b421373c3))
+* autobump bio/picard/collectrnaseqmetrics ([#4023](https://github.com/snakemake/snakemake-wrappers/issues/4023)) ([ce66ef8](https://github.com/snakemake/snakemake-wrappers/commit/ce66ef8f98da29f4084d63cf8b484d10241ea3d4))
+* autobump bio/picard/collecttargetedpcrmetrics ([#4018](https://github.com/snakemake/snakemake-wrappers/issues/4018)) ([caa5ea3](https://github.com/snakemake/snakemake-wrappers/commit/caa5ea3fed077c02a4ac0c9dc7138830393f8029))
+* autobump bio/picard/createsequencedictionary ([#4028](https://github.com/snakemake/snakemake-wrappers/issues/4028)) ([bb47247](https://github.com/snakemake/snakemake-wrappers/commit/bb472470b9656f625f39c258b60c625c0640187a))
+* autobump bio/picard/markduplicates ([#4025](https://github.com/snakemake/snakemake-wrappers/issues/4025)) ([fe41f5a](https://github.com/snakemake/snakemake-wrappers/commit/fe41f5a17ec4a634c6ddc4b09daffab2d80a488c))
+* autobump bio/picard/mergesamfiles ([#4026](https://github.com/snakemake/snakemake-wrappers/issues/4026)) ([e55dc7e](https://github.com/snakemake/snakemake-wrappers/commit/e55dc7e0372a1665f030bdc54bd06d7221927fef))
+* autobump bio/picard/mergevcfs ([#4024](https://github.com/snakemake/snakemake-wrappers/issues/4024)) ([eda2889](https://github.com/snakemake/snakemake-wrappers/commit/eda28899dc2a6ebb9356c9d47b5d84f1faf0db43))
+* autobump bio/picard/revertsam ([#4022](https://github.com/snakemake/snakemake-wrappers/issues/4022)) ([7f9382b](https://github.com/snakemake/snakemake-wrappers/commit/7f9382b4fb164d2ac71a54e5fb1b92b301ca79dd))
+* autobump bio/picard/samtofastq ([#4030](https://github.com/snakemake/snakemake-wrappers/issues/4030)) ([ee1a07b](https://github.com/snakemake/snakemake-wrappers/commit/ee1a07b1b0e81646e50b9bbf905e548fa8a309e2))
+* autobump bio/picard/sortsam ([#4017](https://github.com/snakemake/snakemake-wrappers/issues/4017)) ([c987d49](https://github.com/snakemake/snakemake-wrappers/commit/c987d491355d1b20c905c1ccb01d340acb482b61))
+* autobump bio/vg/giraffe ([#4033](https://github.com/snakemake/snakemake-wrappers/issues/4033)) ([f6560f0](https://github.com/snakemake/snakemake-wrappers/commit/f6560f0592e951c94836a9293a120c46e507ab2c))
+* autobump bio/whatshap/haplotag ([#4034](https://github.com/snakemake/snakemake-wrappers/issues/4034)) ([f6b55be](https://github.com/snakemake/snakemake-wrappers/commit/f6b55bebe246d98d267379147d769d2374771af5))
+* Update datavzrd wrapper to 2.53.1 ([#4007](https://github.com/snakemake/snakemake-wrappers/issues/4007)) ([c7672a8](https://github.com/snakemake/snakemake-wrappers/commit/c7672a8cd261a8499a19ead797650ba73434bd3b))
+
 ## [6.0.0](https://github.com/snakemake/snakemake-wrappers/compare/v5.10.0...v6.0.0) (2025-04-11)
 
 
