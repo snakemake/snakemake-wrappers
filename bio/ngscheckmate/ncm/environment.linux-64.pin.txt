@@ -100,7 +100,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libhwloc-2.11.2-default_h0d58e46
 https://conda.anaconda.org/conda-forge/linux-64/liblapack-3.9.0-31_h7ac8fdf_openblas.conda#452b98eafe050ecff932f0ec832dd03f
 https://conda.anaconda.org/conda-forge/noarch/pip-25.0.1-pyh8b19718_0.conda#79b5c1440aedc5010f687048d9103628
 https://conda.anaconda.org/conda-forge/linux-64/gsl-2.7-he838d99_0.tar.bz2#fec079ba39c9cca093bf4c00001825de
-https://conda.anaconda.org/conda-forge/linux-64/harfbuzz-11.0.1-h2c12942_0.conda#c90105cecb8bf8248f6666f1f5a40bbb
+https://conda.anaconda.org/conda-forge/linux-64/harfbuzz-11.1.0-h3beb420_0.conda#95e3bb97f9cdc251c0c68640e9c10ed3
 https://conda.anaconda.org/bioconda/linux-64/samtools-1.21-h96c455f_1.tar.bz2#0ff9d5d48561198378ad3cb34ce830bf
 https://conda.anaconda.org/conda-forge/linux-64/tbb-2022.1.0-h4ce085d_0.conda#f0afd0c7509f6c1b8d77ee64d7ba64b8
 https://conda.anaconda.org/bioconda/linux-64/bcftools-1.21-h3a4d415_1.tar.bz2#450dd12e649521429696cc62a30f7dce
