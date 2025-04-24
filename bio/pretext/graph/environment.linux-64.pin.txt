@@ -8,4 +8,4 @@ https://conda.anaconda.org/conda-forge/linux-64/libgomp-14.2.0-h767d61c_2.conda#
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-14.2.0-h767d61c_2.conda#ef504d1acbd74b7cc6849ef8af47dd03
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-14.2.0-h8f9b012_2.conda#a78c856b6dc6bf4ea8daeb9beaaa3fb0
-https://conda.anaconda.org/bioconda/linux-64/pretextgraph-0.0.8-h9948957_0.tar.bz2#1c7f196c579b37bc70de4d090bc55773
+https://conda.anaconda.org/bioconda/linux-64/pretextgraph-0.0.9-h9948957_1.tar.bz2#55aaed56560f97e5f46febc566f5f696
