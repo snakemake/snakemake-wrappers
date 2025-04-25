@@ -32,7 +32,7 @@ rule test_aria2_md5:
         "master/utils/aria2c"
 
 
-rule test_aria2_file:
+rule test_aria2_input_lambda:
     input:
         checksum="GCF_000869925.1_ViralProj17181.{type}",
     output:
@@ -57,7 +57,7 @@ rule test_aria2_file:
         "master/utils/aria2c"
 
 
-rule test_aria2_file_with_hash:
+rule test_aria2_input:
     input:
         storage.http(
             "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/869/925/GCF_000869925.1_ViralProj17181/md5checksums.txt"
