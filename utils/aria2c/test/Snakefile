@@ -32,32 +32,7 @@ rule test_aria2_md5:
         "master/utils/aria2c"
 
 
-rule test_aria2_input_lambda:
-    input:
-        checksum="GCF_000869925.1_ViralProj17181.{type}",
-    output:
-        "results/file.{type}file.fas.gz",
-    log:
-        "logs/aria2.{type}file.log",
-    params:
-        url="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/869/925/GCF_000869925.1_ViralProj17181/GCF_000869925.1_ViralProj17181_genomic.fna.gz",
-        extra=lambda w, input: "--file-allocation none --retry-wait 5 --console-log-level warn --log-level notice --checksum {}={}".format(
-            w.type,
-            parse_input(
-                input[0],
-                parser=extract_checksum,
-                file="GCF_000869925.1_ViralProj17181_genomic.fna.gz",
-            ),
-        ),
-    threads: 2
-    resources:
-        mem_mb=1024,
-        runtime=30,
-    wrapper:
-        "master/utils/aria2c"
-
-
-rule test_aria2_input:
+rule test_aria2_md5fileH:
     input:
         storage.http(
             "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/869/925/GCF_000869925.1_ViralProj17181/md5checksums.txt"
@@ -80,3 +55,63 @@ rule test_aria2_input:
         runtime=30,
     wrapper:
         "master/utils/aria2c"
+
+
+rule test_aria2_md5file_lambda:
+    input:
+        checksum="GCF_000869925.1_ViralProj17181.md5",
+    output:
+        "results/file.md5file.fas.gz",
+    log:
+        "logs/aria2.md5file.log",
+    params:
+        url="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/869/925/GCF_000869925.1_ViralProj17181/GCF_000869925.1_ViralProj17181_genomic.fna.gz",
+        extra="--file-allocation none --retry-wait 5 --console-log-level warn --log-level notice",
+        md5=parse_input(
+                input[0],
+                parser=extract_checksum,
+                file="GCF_000869925.1_ViralProj17181_genomic.fna.gz",
+            ),
+        ),
+    threads: 2
+    resources:
+        mem_mb=1024,
+        runtime=30,
+    wrapper:
+        "master/utils/aria2c"
+
+
+use rule test_aria2_md5file_lambda as test_aria2_sha1file_lambda with:
+    input:
+        checksum="GCF_000869925.1_ViralProj17181.sha-1",
+    output:
+        "results/file.sha-1file.fas.gz",
+    log:
+        "logs/aria2.sha-1file.log",
+    params:
+        url="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/869/925/GCF_000869925.1_ViralProj17181/GCF_000869925.1_ViralProj17181_genomic.fna.gz",
+        extra="--file-allocation none --retry-wait 5 --console-log-level warn --log-level notice",
+        sha-1=parse_input(
+                input[0],
+                parser=extract_checksum,
+                file="GCF_000869925.1_ViralProj17181_genomic.fna.gz",
+            ),
+        ),
+
+
+use rule test_aria2_md5file_lambda as test_aria2_sha224file_lambda with:
+    input:
+        checksum="GCF_000869925.1_ViralProj17181.sha-224",
+    output:
+        "results/file.sha-224file.fas.gz",
+    log:
+        "logs/aria2.sha-224file.log",
+    params:
+        url="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/869/925/GCF_000869925.1_ViralProj17181/GCF_000869925.1_ViralProj17181_genomic.fna.gz",
+        extra="--file-allocation none --retry-wait 5 --console-log-level warn --log-level notice",
+        sha-224=parse_input(
+                input[0],
+                parser=extract_checksum,
+                file="GCF_000869925.1_ViralProj17181_genomic.fna.gz",
+            ),
+        ),
