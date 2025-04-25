@@ -3,9 +3,6 @@ __copyright__ = "Copyright 2023, Filipe G. Vieira"
 __license__ = "MIT"
 
 from snakemake.shell import shell
-from snakemake.utils import min_version
-
-min_version("9.1.3")
 
 extra = snakemake.params.get("extra", "")
 
