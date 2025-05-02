@@ -4,7 +4,7 @@
 # created-by: conda 24.9.2
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
-https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.1.31-hbd8a1cb_1.conda#e74273d9fc5ab633d613cde474b55157
+https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.4.26-hbd8a1cb_0.conda#95db94f75ba080a22eb623590993167b
 https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.43-h712a8e2_4.conda#01f8d123c96816249efd255a31ad7712
 https://conda.anaconda.org/conda-forge/linux-64/libgomp-14.2.0-h767d61c_2.conda#06d02030237f4d5b3d9a7e7d348fe3c6
 https://conda.anaconda.org/conda-forge/noarch/python_abi-3.13-7_cp313.conda#e84b44e6300f1703cb25d29120c5b1d8
@@ -25,5 +25,5 @@ https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.38.1-h0b41bf4_0.conda#
 https://conda.anaconda.org/conda-forge/linux-64/readline-8.2-h8c095d6_2.conda#283b96675859b20a825f8fa30f311446
 https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_h4845f30_101.conda#d453b98d9c83e71da0741bb0ff4d76bc
 https://conda.anaconda.org/conda-forge/linux-64/python-3.13.3-hf636f53_101_cp313.conda#10622e12d649154af0bd76bcf33a7c5c
-https://conda.anaconda.org/conda-forge/noarch/pip-25.0.1-pyh145f28c_0.conda#9ba21d75dc722c29827988a575a65707
+https://conda.anaconda.org/conda-forge/noarch/pip-25.1-pyh145f28c_0.conda#4627e20c39e7340febed674c3bf05b16
 https://conda.anaconda.org/bioconda/noarch/pyfastaq-3.18.0-pyhdfd78af_0.tar.bz2#3b009c832acd828e64cce3b15d2fd93f
