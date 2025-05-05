@@ -134,6 +134,27 @@ def run(tmp_test_dir):
     return _run
 
 
+def test_aria2c(run):
+    run(
+        "utils/aria2c",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "results/file.fas.gz",
+            "results/file.md5.fas.gz",
+            "results/file.md5file.fas.gz",
+            "results/file.sha1file.fas.gz",
+            "results/file.sha224file.fas.gz",
+            "results/file.sha256file.fas.gz",
+            "results/file.sha384file.fas.gz",
+            "results/file.sha512file.fas.gz",
+            "results/file.md5fileH.fas.gz",
+        ],
+    )
+
 def test_miller(run):
     run(
         "utils/miller",
