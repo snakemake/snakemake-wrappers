@@ -8,14 +8,16 @@ extra = snakemake.params.get("extra", "")
 
 for hash_function, digest in snakemake.params.items():
     if hash_function in [
-        "sha-1",
-        "sha-224",
-        "sha-256",
-        "sha-384",
-        "sha-512",
+        "sha1",
+        "sha224",
+        "sha256",
+        "sha384",
+        "sha512",
         "md5",
         "adler32",
     ]:
+        if hash_function.startswith("sha"):
+            hash_function = hash_function.replace("sha", "sha-")
         extra += f" --checksum {hash_function}={digest}"
         break
 
