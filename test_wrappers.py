@@ -1205,41 +1205,44 @@ def test_arriba_star_meta(run):
 
 
 def test_csvtk(run):
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/uniq.txt"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/stats.txt"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/split"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/sort.csv"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/cut.csv"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/grep.csv"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/sample.csv"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/join.csv"])
-
-    run(
-        "utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/headers.csv"]
-    )
-
     run(
         "utils/csvtk",
-        ["snakemake", "--cores", "1", "--use-conda", "csvtk/frequency.csv"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "csvtk/cat.csv",
+            "csvtk/summary_tsv.csv",
+            "csvtk/summary_csv.csv",
+            "csvtk/frequency.csv",
+            "csvtk/headers.csv",
+            "csvtk/join.csv",
+            "csvtk/sample.csv",
+            "csvtk/grep.csv",
+            "csvtk/cut.csv",
+            "csvtk/sort.csv",
+            "csvtk/split",
+            "csvtk/stats.txt",
+            "csvtk/uniq.txt",
+        ],
+        compare_results_with_expected={
+            "csvtk/cat.csv": "expected/cat.csv",
+            "csvtk/summary_tsv.csv": "expected/summary_tsv.csv",
+            "csvtk/summary_csv.csv": "expected/summary_csv.csv",
+            "csvtk/frequency.csv": "expected/frequency.csv",
+            "csvtk/headers.csv": "csvtk/headers.csv",
+            "csvtk/join.csv": "expected/join.csv",
+            "csvtk/sample.csv": "expected/sample.csv",
+            "csvtk/grep.csv": "expected/grep.csv",
+            "csvtk/cut.csv": "expected/cut.csv",
+            "csvtk/sort.csv": "expected/sort.csv",
+            "csvtk/split/table-ENSG02.csv": "expected/split/table-ENSG02.csv",
+            "csvtk/split/table-ENSG01.csv": "expected/split/table-ENSG01.csv",
+            "csvtk/stats.txt": "expected/stats.txt",
+            "csvtk/uniq.txt": "expected/uniq.txt",
+        },
     )
-
-    run(
-        "utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/summary.csv"]
-    )
-
-    run(
-        "utils/csvtk",
-        ["snakemake", "--cores", "1", "--use-conda", "csvtk/summary_tsv.csv"],
-    )
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/cat.csv"])
 
 
 def test_xsv(run):
