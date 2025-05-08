@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.1.0](https://github.com/snakemake/snakemake-wrappers/compare/v6.0.2...v6.1.0) (2025-05-08)
+
+
+### Features
+
+* update vg girrafe to 1.65.0 ([#4085](https://github.com/snakemake/snakemake-wrappers/issues/4085)) ([69d61af](https://github.com/snakemake/snakemake-wrappers/commit/69d61af861c703f6e6acd04f40447521155a31c5))
+
+
+### Bug Fixes
+
+* Fix doctest errors and build failure caused by snowballstemmer ([#4086](https://github.com/snakemake/snakemake-wrappers/issues/4086)) ([00412e1](https://github.com/snakemake/snakemake-wrappers/commit/00412e1920b72132963f48d938f5025f0ea197af))
+
 ## [6.0.2](https://github.com/snakemake/snakemake-wrappers/compare/v6.0.1...v6.0.2) (2025-05-02)
 
 
