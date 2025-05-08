@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - spades =4.1.0
-  - python =3.13.2
+  - python =3.13.3
