@@ -7,6 +7,8 @@ from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 
+compress = "| bgzip" if snakemake.output[0].endswith(".gz") else ""
+
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 shell(
@@ -14,6 +16,7 @@ shell(
     " {extra}"
     " -i {snakemake.input.in_file}"
     " -g {snakemake.input.genome}"
+    " {compress}"
     " > {snakemake.output[0]})"
     " {log}"
 )
