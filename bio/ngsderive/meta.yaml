@@ -1,0 +1,16 @@
+name: ngsderive
+description: Backwards computing information from next-generation sequencing data and annotating splice junctions
+url: "https://github.com/stjudecloud/ngsderive"
+authors:
+  - "Thibault Dayris"
+input:
+  - ngs: "Path to BAM/SAM/Fastq file. SAM/BAM files should be indexed."
+  - gene_model: "Path to sorted GTF/GFF file. Should be tabix indexed."
+output:
+  - tsv: Path to output file
+  - junctions: Optional path to junction directory, or list of paths to junction files with a common prefix
+params:
+  - subcommand: Name of the `ngsderive` subcommand
+  - extra: Optional parameters, besides `-o`, `-g`
+notes: |
+  GTF/GFF will be automatically sorted and tabix-indexed by `ngsderive` if needed.

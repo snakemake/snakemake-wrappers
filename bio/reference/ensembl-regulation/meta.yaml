@@ -1,0 +1,15 @@
+name: ensembl-regulation
+description: >
+  Download annotation of regulatory features (e.g. promotors) for genomes from ENSEMBL FTP servers, and store them in a single .gff or .gff3 file.
+  The output file can be gzipped, which will save space and avoid unzipping during the download.
+  From release 112 onwards, gff3 files are available and the wrapper will require this file extension.
+  For older releases (>=87), only gff files with a different file path are available and the wrapper will require this extension.
+  For the available species (human and mouse as of writing), see the "Regulation (GFF)" column on the FTP download site:
+  ``https://www.ensembl.org/info/data/ftp/index.html``
+authors:
+  - Johannes Köster
+  - David Lähnemann
+output:
+  - Ensembl GFF anotation file for regulatory features.
+params:
+  - url: Base URL from where to download cache data (optional; by default is ``ftp://ftp.ensembl.org/pub``).

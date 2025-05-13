@@ -1,0 +1,24 @@
+rule combine_outputs:
+    input:
+        expand("{sample}_rel-abundance.tsv", sample=["sample1", "sample2"]),
+    output:
+        abundances=ensure("combined_abundances.tsv", non_empty=True),
+    log:
+        "logs/emu/combined_abundances.log",
+    wrapper:
+        "master/bio/emu/combine-outputs"
+
+
+rule combine_outputs_split:
+    input:
+        expand("{sample}.txt", sample=["sample1", "sample2"]),
+    output:
+        abundances = ensure("counts.tsv", non_empty=True),
+        taxonomy = ensure("taxonomy.tsv", non_empty=True),
+    log:
+        "logs/emu/combined_split.log",
+    params:
+        rank="genus",
+        extra="--counts",
+    wrapper:
+        "master/bio/emu/combine-outputs"

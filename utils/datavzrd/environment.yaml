@@ -2,4 +2,8 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - datavzrd =2.22.0
+  - datavzrd =2.56.1
+  - yte =1.7.0
+  - numpy
+  - pandas
+  - polars

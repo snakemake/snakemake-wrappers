@@ -13,5 +13,5 @@ output:
   - SAM/BAM/CRAM file
 notes: |
   * The `extra` param allows for additional arguments for bwa-mem.
-  * The `sorting` param allows to enable sorting, and can be either 'none', 'samtools' or 'picard'.
+  * The `sorting` param allows to enable sorting, and can be either 'none', 'samtools', 'fgbio' or 'picard'.
   * The `sort_extra` allows for extra arguments for samtools/picard

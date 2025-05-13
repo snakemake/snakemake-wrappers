@@ -15,9 +15,6 @@ rule plot_profile:
         "logs/deeptools/plot_profile.log"
     params:
         # optional parameters
-        "--plotType=fill "
-        "--perGroup "
-        "--colors red yellow blue "
-        "--dpi 150 "
+        extra="--plotType=fill --perGroup --colors red yellow blue --dpi 150"
     wrapper:
         "master/bio/deeptools/plotprofile"

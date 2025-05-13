@@ -5,9 +5,13 @@ authors:
   - Christopher Schröder
   - Johannes Köster
   - Julian de Ruiter
+  - Thibault Dayris
 input:
-  - FASTQ file(s)
-  - reference genome
+  - reads: List of path(s) to FASTQ file(s)
+  - idx: |
+     List of paths to indexed reference genome files.
+     All index files required need to be declared:
+     ".0123", ".amb", ".ann", ".bwt.2bit.64", ".pac"
 output:
   - SAM/BAM/CRAM file
 notes: |

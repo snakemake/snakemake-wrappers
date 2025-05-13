@@ -25,6 +25,8 @@ rule get_annotation_gz:
         # branch="plants",  # optional: specify branch
     log:
         "logs/get_annotation.log",
+    params:
+        url="http://ftp.ensembl.org/pub",
     cache: "omit-software"  # save space and time with between workflow caching (see docs)
     wrapper:
         "master/bio/reference/ensembl-annotation"

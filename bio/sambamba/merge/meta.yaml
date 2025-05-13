@@ -1,5 +1,6 @@
 name: sambamba merge
-description: merge multiple BAM files into one using `sambamba https://lomereiter.github.io/sambamba/docs/sambamba-merge.html`_
+description: merge multiple BAM files into one using sambamba.
+url: https://lomereiter.github.io/sambamba/docs/sambamba-merge.html
 authors:
   - Jan Forster
 input:

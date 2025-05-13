@@ -1,0 +1,50 @@
+name: ensembl-mysql-table
+description: >
+    Create a table of annotations available via the versioned ensembl mysql databases.
+    Rows of the resulting table are generated from the mysql database tables specified
+    under 'main_tables'. If you specify multiple `main_tables`, they should share some
+    or most of the columns, as they will be stacked on top of each other with
+    `bind_rows()`. Additional annotation columns beyond those tables can then be given
+    as mysql tables under 'join_tables'. They have to share a column with all of the
+    `main_tables`, to allow for `left_join'ing their columns onto them.
+    The main documentation for the Ensembl mysql databases, including
+    'Database schemas', is here:
+    https://www.ensembl.org/info/docs/api/index.html
+url: https://www.ensembl.org/info/docs/api/index.html
+authors:
+  - David Lähnemann
+output:
+  - >
+    tab-separated values (``.tsv``); for supported compression extensions, see
+    `the write_tsv documentation page <https://readr.tidyverse.org/reference/write_delim.html#output>`_
+  - >
+    parquet (``.parquet``) file; for supported compression algorithms, see
+    `the write_parquet documentation page <https://r-lib.github.io/nanoparquet/reference/write_parquet.html#arguments>`_
+params:
+  - species: >
+      Species that is available via the Ensembl mysql databases. For a quick
+      check, see the
+      `Ensembl species list <https://www.ensembl.org/info/about/species.html>`_.
+      For full valid species names, consult the respective table for the
+      `release` you specify, for example for '112' this is at:
+      https://ftp.ensembl.org/pub/release-112/species_EnsemblVertebrates.txt
+  - build: build available for the selected species, for example 'GRCh38'
+  - release: release from which the species and build are available, for example '112'
+  - main_tables: >
+      A list of wanted ``main_tables``. You have to specify them as a dictionary in the
+      format ``{ table_name : database }``. You can find available tables in the
+      ``Database schema``s in the Ensembl documentation:
+      https://mart.ensembl.org/info/docs/api/index.html
+      Available ``database`` names at the time of writing are ``core``, ``cdna``,
+      ``funcgen``, ``compara``, ``rnaseq``, ``variation``, ``otherfeatures``.
+      You can also interactively explore the available databases and tables, for
+      example following this walkthrough:
+      https://tavareshugo.github.io/data_carpentry_extras/dbplyr_ensembl/dbplyr_ensembl.html
+  - join_tables: >
+      (optional) A list of ``join_tables`` to add further annotation columns. You have
+      to specify them as a nested dictionary in the format:
+      ``{ table_name : { "database": database,  "join_column": join_column_name } }``
+      As for ``main_tables``, most info can be found in the ``Database schema``s:
+      https://mart.ensembl.org/info/docs/api/index.html
+      And for more detailed infos, you'll have to interactively explore the mysql databases:
+      https://tavareshugo.github.io/data_carpentry_extras/dbplyr_ensembl/dbplyr_ensembl.html

@@ -1,4 +1,11 @@
 name: "diamond makedb"
 description: DIAMOND is a sequence aligner for protein and translated DNA searches, designed for high performance analysis of big sequence data.
+url: https://github.com/bbuchfink/diamond/wiki
 authors:
   - Kim Philipp Jablonski
+input:
+  - fname: Path to reference genome sequence (Fasta formatted)
+output:
+  - fname: Path to diamon database
+params:
+  - extra: Optional parameters, besides `--threads`, `--in`, and `--db`.

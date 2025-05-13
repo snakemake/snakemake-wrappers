@@ -1,0 +1,16 @@
+rule test_immunedeconv:
+    input:
+        expr="dataset.RDS",
+        # signature="",  # Path to custom signatures.
+        # cibersort_bin="",  # Path to CIBERSORT binary.
+        # cibersort_mat="",  # Path to CIBERSORT matrix.
+    output:
+        "deconv.csv", # Available formats are: RDS, csv or tsv
+    threads: 1
+    params:
+        method="deconvolute",
+        extra="method='epic'",
+    log:
+        "logs/immunedeconv/csv.log",
+    wrapper:
+        "master/bio/immunedeconv"

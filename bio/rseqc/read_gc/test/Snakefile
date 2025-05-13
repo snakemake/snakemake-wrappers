@@ -1,0 +1,13 @@
+rule test_rseqc_read_gc:
+    input:
+        "A.bam",
+    output:
+        xls="A.gc_percent.xls",
+        plot_r="A.script.r",
+        pdf="A.plot.pdf",
+    log:
+        "rseqc.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/rseqc/read_gc"

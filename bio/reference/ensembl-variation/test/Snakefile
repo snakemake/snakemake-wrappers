@@ -12,6 +12,8 @@ rule get_variation:
         type="all",  # one of "all", "somatic", "structural_variation"
         # chromosome="21", # optionally constrain to chromosome, only supported for homo_sapiens
         # branch="plants",  # optional: specify branch
+    params:
+        url="http://ftp.ensembl.org/pub",
     log:
         "logs/get_variation.log",
     cache: "omit-software"  # save space and time with between workflow caching (see docs)

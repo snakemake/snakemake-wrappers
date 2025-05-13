@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - genomescope2 =2.0
+  - genomescope2 =2.0.1

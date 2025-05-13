@@ -1,6 +1,6 @@
 rule bcftools_mpileup:
     input:
-        alignments="mapped/{sample}.bam",
+        alignments=["mapped/{sample}.bam", "mapped/{sample}.bam"],
         ref="genome.fasta",  # this can be left out if --no-reference is in options
         index="genome.fasta.fai",
     output:

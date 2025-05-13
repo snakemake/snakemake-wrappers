@@ -10,4 +10,3 @@ output: |
   and whether or not it is specified as output.
 params:
   - provider: which provider to download from, defaults to UCSC (choose from UCSC, Ensembl, NCBI).
-blacklisted: fails with ValueError when trying to remove plugin from list

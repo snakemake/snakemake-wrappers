@@ -1,4 +1,5 @@
 """Snakemake wrapper for *.2bit to *.fa conversion using UCSC twoBitToFa tool."""
+
 # http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/FOOTER.txt
 
 __author__ = "Roman Chernyatchik"

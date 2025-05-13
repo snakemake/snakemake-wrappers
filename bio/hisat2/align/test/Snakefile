@@ -1,11 +1,46 @@
 rule hisat2_align:
     input:
         reads=["reads/{sample}_R1.fastq", "reads/{sample}_R2.fastq"],
-        idx="index/",
+        idx=multiext(
+            "index/ref",
+            ".1.ht2",
+            ".2.ht2",
+            ".3.ht2",
+            ".4.ht2",
+            ".5.ht2",
+            ".6.ht2",
+            ".7.ht2",
+            ".8.ht2",
+        ),
     output:
         "mapped/{sample}.bam",
     log:
         "logs/hisat2_align_{sample}.log",
+    params:
+        extra="",
+    threads: 2
+    wrapper:
+        "master/bio/hisat2/align"
+
+
+rule hisat2_alignL:
+    input:
+        reads=["reads/{sample}_R1.fastq", "reads/{sample}_R2.fastq"],
+        idx=multiext(
+            "index/ref",
+            ".1.ht2l",
+            ".2.ht2l",
+            ".3.ht2l",
+            ".4.ht2l",
+            ".5.ht2l",
+            ".6.ht2l",
+            ".7.ht2l",
+            ".8.ht2l",
+        ),
+    output:
+        "mappedL/{sample}.bam",
+    log:
+        "logs/hisat2_alignL_{sample}.log",
     params:
         extra="",
     threads: 2

@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - pyroe =0.9.3
-  - bedtools =2.31.0
+  - bedtools =2.31.1

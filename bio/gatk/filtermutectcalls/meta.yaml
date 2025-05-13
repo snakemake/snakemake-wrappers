@@ -10,7 +10,7 @@ input:
   - vcf: Path to vcf file (pbgzipped, indexed)
   - ref: Path to reference genome (with .dict file alongside)
   - aln: Optional path to SAM/BAM/CRAM files
-  - contamination: Optional path to 
+  - contamination: Optional path to contamination table 
   - segmentation: Optional path to tumor segments
   - f1r2: Optional path to prior artefact (tar.gz2)
   - intervels: Optional file to BED intervals

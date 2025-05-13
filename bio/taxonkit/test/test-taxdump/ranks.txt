@@ -1,0 +1,107 @@
+
+# This file defines taxonomic rank order for taxdump/taxonkit.
+# 
+# Here'are the rules:
+#     1. Blank lines or lines starting with "#" are ignored.
+#     2. Ranks are in decending order and case ignored.
+#     3. Ranks with same order should be in one line separated with comma (",", no space).
+#     4. Ranks without order should be assigned a prefix symbol "!" for each rank.
+# 
+# Deault ranks reference from https://en.wikipedia.org/wiki/Taxonomic_rank ,
+# and contains some ranks from NCIB Taxonomy database.
+#
+
+!no rank
+!clade
+
+
+life
+
+domain,superkingdom,realm,empire
+
+kingdom
+subkingdom
+infrakingdom
+parvkingdom
+
+superphylum,superdivision
+phylum,division
+subphylum,subdivision
+infraphylum,infradivision
+microphylum,microdivision
+
+superclass
+class
+subclass
+infraclass
+parvclass
+
+superlegion
+legion
+sublegion
+infralegion
+
+supercohort
+cohort
+subcohort
+infracohort
+
+gigaorder
+magnorder,megaorder
+grandorder,capaxorder
+mirorder,hyperorder
+superorder
+# series
+order
+# parvorder
+nanorder
+hypoorder
+minorder
+suborder
+infraorder
+parvorder
+
+# section
+# subsection
+
+gigafamily
+megafamily
+grandfamily
+hyperfamily
+superfamily
+epifamily
+# series
+group
+family
+subfamily
+infrafamily
+
+supertribe
+tribe
+subtribe
+infratribe
+
+genus
+subgenus
+section
+subsection
+series
+subseries
+
+
+superspecies,species group
+species subgroup
+species
+
+subspecies,forma specialis,pathovar
+
+pathogroup,serogroup
+biotype,serotype,genotype
+
+variety,varietas,morph,aberration
+subvariety,subvarietas,submorph,subaberration
+form,forma
+subform,subforma
+
+strain
+isolate

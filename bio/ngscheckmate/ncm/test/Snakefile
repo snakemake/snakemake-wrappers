@@ -1,0 +1,84 @@
+rule test_ngscheckmate_fastq_pair_ended:
+    input:
+        samples=expand("{i}.small.fastq.gz", i=("a", "b", "b", "a")),
+        fasta="small_genome.fasta",
+        pattern="small_pt.pt",
+    output:
+        pdf="fastq_paired.pdf",
+        match="fastq_paired_matched.txt",
+        txt="fastq_paired_all.txt",
+    threads: 1
+    params:
+        # Optional parameters besides IO and threading
+        extra="--depth 5",
+        # Either `True` for pair-ended fastq files,
+        #    or  `False` for single-ended fastq files
+        # Used only for FastQ input files.
+        paired=True,
+    log:
+        "test_ngscheckmate_fastq_paired.log",
+    wrapper:
+        "master/bio/ngscheckmate/ncm"
+
+
+rule test_ngscheckmate_fastq_single_ended:
+    input:
+        samples=expand("{i}.small.fastq.gz", i=("a", "b")),
+        fasta="small_genome.fasta",
+        pattern="small_pt.pt",
+    output:
+        pdf="fastq.pdf",
+        match="fastq_matched.txt",
+        txt="fastq_all.txt",
+    threads: 1
+    params:
+        # Optional parameters besides IO and threading
+        extra="--depth 5",
+        # Either `True` for pair-ended fastq files,
+        #    or  `False` for single-ended fastq files
+        # Used only for FastQ input files.
+        paired=False,
+    log:
+        "test_ngscheckmate_fastq.log",
+    wrapper:
+        "master/bio/ngscheckmate/ncm"
+
+
+rule test_ngscheckmate_bam:
+    input:
+        samples=expand("{i}.small.bam", i=("a", "b")),
+        bed="small.bed",
+        fasta="small_genome.fasta",
+    output:
+        pdf="bam.pdf",
+        matrix="bam_matrix.txt",
+        match="bam_matched.txt",
+        txt="small_all.txt",
+    threads: 1
+    log:
+        "test_ngscheckmate_bam.log",
+    params:
+        # Optional parameters besides IO and threading
+        extra="--nonzero",
+    wrapper:
+        "master/bio/ngscheckmate/ncm"
+
+
+rule test_ngscheckmate_vcf:
+    input:
+        samples=expand("{i}.small.vcf", i=("a", "b")),
+        bed="small.bed",
+        fasta="small_genome.fasta",
+    output:
+        pdf="vcf.pdf",
+        matrix="vcf_matrix.txt",
+        match="vcf_matched.txt",
+        txt="vcf_all.txt",
+    threads: 1
+    log:
+        "test_ngscheckmate_vcf.log",
+    params:
+        # Optional parameters besides IO and threading
+        extra="--nonzero",
+    wrapper:
+        "master/bio/ngscheckmate/ncm"

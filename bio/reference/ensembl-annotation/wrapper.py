@@ -48,17 +48,8 @@ else:
     )
 
 
-url = "ftp://ftp.ensembl.org/pub/{branch}release-{release}/{out_fmt}/{species}/{species_cap}.{build}.{gtf_release}.{flavor}{suffix}".format(
-    release=release,
-    gtf_release=gtf_release,
-    build=build,
-    species=species,
-    out_fmt=out_fmt,
-    species_cap=species.capitalize(),
-    suffix=suffix,
-    flavor=flavor,
-    branch=branch,
-)
+url = snakemake.params.get("url", "ftp://ftp.ensembl.org/pub")
+url = f"{url}/{branch}release-{release}/{out_fmt}/{species}/{species.capitalize()}.{build}.{gtf_release}.{flavor}{suffix}"
 
 
 try:

@@ -1,0 +1,19 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: linux-64
+@EXPLICIT
+https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
+https://conda.anaconda.org/conda-forge/linux-64/ca-certificates-2024.2.2-hbcca054_0.conda#2f4327a1cbe7f022401b236e915a5fef
+https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-13.2.0-h7e041cc_5.conda#f6f6600d18a4047b54f803cf708b868a
+https://conda.anaconda.org/conda-forge/linux-64/libgomp-13.2.0-h807b86a_5.conda#d211c42b9ce49aee3734fdc828731689
+https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-13.2.0-h807b86a_5.conda#d4ff227c46917d3b4565302a2bbb276b
+https://conda.anaconda.org/conda-forge/linux-64/libgfortran5-13.2.0-ha4646dd_5.conda#7a6bd7a12a4bd359e2afe6c0fa1acace
+https://conda.anaconda.org/conda-forge/linux-64/openssl-3.2.1-hd590300_1.conda#9d731343cff6ee2e5a25c4a091bf8e2a
+https://conda.anaconda.org/bioconda/linux-64/starcode-1.4-h031d066_5.tar.bz2#f1e98071985e015104b9594951055398
+https://conda.anaconda.org/conda-forge/linux-64/libgfortran-ng-13.2.0-h69a702a_5.conda#e73e9cfd1191783392131e6238bdb3e9
+https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.27-pthreads_h413a1c8_0.conda#a356024784da6dfd4683dc5ecf45b155
+https://conda.anaconda.org/conda-forge/linux-64/libblas-3.9.0-22_linux64_openblas.conda#1a2a0cd3153464fee6646f3dd6dad9b8
+https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.9.0-22_linux64_openblas.conda#4b31699e0ec5de64d5896e580389c9a1
+https://conda.anaconda.org/conda-forge/linux-64/gsl-2.7-he838d99_0.tar.bz2#fec079ba39c9cca093bf4c00001825de
+https://conda.anaconda.org/bioconda/linux-64/rust-bio-tools-0.42.2-h4458251_1.tar.bz2#3b7cb7a0aab85a1bf374f6a1c390c62c

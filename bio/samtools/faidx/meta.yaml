@@ -1,12 +1,18 @@
 name: samtools faidx
 description: index reference sequence in FASTA format from reference sequence.
+url: http://www.htslib.org/doc/samtools-faidx.html
 authors:
   - Michael Chambers
   - Filipe G. Vieira
 input:
   - reference sequence file (.fa)
+  - regions: file with regions
+  - fai: index for reference file (optional)
+  - gzi: index for BGZip'ed reference file (optional)
 output:
   - indexed reference sequence file (.fai)
-notes: |
-  * The `extra` param allows for additional program arguments (not `-o`).
-  * For more information see, http://www.htslib.org/doc/samtools-faidx.html
+  - fai: index for reference file (optional)
+  - gzi: index for BGZip'ed reference file (optional)
+params:
+  - region: region to extract from input file (optional)
+  - extra: additional program arguments (not `-o`).

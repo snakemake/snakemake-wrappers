@@ -1,0 +1,22 @@
+name: Bowtie2 Sambamba
+url: http://lomereiter.github.io/sambamba/
+description: >
+  Map reads with Bowtie 2, and post-process alignments with Sambamba:
+
+    +----------------+----------+-----------------------------------------+
+    | Step           | Tool     | Reason                                  |
+    +================+==========+=========================================+
+    | Indexation     | Bowtie 2 | Create genome sequence index            |
+    +----------------+----------+-----------------------------------------+
+    | Mapping        | Bowtie 2 | Perform read mapping                    |
+    +----------------+----------+-----------------------------------------+
+    | Sort           | Sambamba | Perform sort based on mapping position  |
+    +----------------+----------+-----------------------------------------+
+    | Quality filter | Sambamba | Perform mapping quality filter          |
+    +----------------+----------+-----------------------------------------+
+    | Deduplication  | Sambamba | Identify possible sequencing duplicates |
+    +----------------+----------+-----------------------------------------+
+    | Indexation     | Sambamba | Index deduplicated reads                |
+    +----------------+----------+-----------------------------------------+
+authors:
+  - Thibault Dayris

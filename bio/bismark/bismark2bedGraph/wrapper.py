@@ -1,4 +1,5 @@
 """Snakemake wrapper for Bismark bismark2bedGraph tool."""
+
 # https://github.com/FelixKrueger/Bismark/blob/master/bismark2bedGraph
 
 __author__ = "Roman Chernyatchik"

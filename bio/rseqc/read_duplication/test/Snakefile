@@ -1,0 +1,14 @@
+rule test_rseqc_read_duplication:
+    input:
+        "A.bam",
+    output:
+        pos="a.dup.pos.xls",
+        seq="a.dup.seq.xls",
+        plot_r="script.a_plot.R",
+        pdf="a.pdf",
+    log:
+        "rseqc.log",
+    params:
+        extra="-q 10",
+    wrapper:
+        "master/bio/rseqc/read_duplication"

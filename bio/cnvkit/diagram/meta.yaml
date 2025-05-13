@@ -1,0 +1,13 @@
+name: "cnvkit diagram"
+description: >
+ Draw copy number (either individual bins (.cnn, .cnr) or segments (.cns)) on chromosomes as an ideogram. If both the bin-level log2 ratios and segmentation calls are given, show them side-by-side on each chromosome (segments on the left side, bins on the right side).
+url: https://cnvkit.readthedocs.io/en/stable/plots.html?highlight=diagram#diagram
+input:
+  - cns file (optional, if cnr is provided)
+  - cnr/cnn file (optional, if cns is provided)
+output:
+  - pdf report
+params:
+  - extra: additional parameters that will be forwarded to cnvkit diagram
+authors:
+  - Patrik Smeds

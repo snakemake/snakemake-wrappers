@@ -10,7 +10,8 @@ rule nonpareil:
         "logs/{sample}.log",
     params:
         alg="kmer",
-        extra="-X 1 -k 3 -F",
+        infer_X=True,
+        extra="-k 3 -F",
     threads: 2
     resources:
         mem_mb=50,

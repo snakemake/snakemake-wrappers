@@ -13,15 +13,65 @@ rule get_genome:
         "master/bio/reference/ensembl-sequence"
 
 
-rule get_chromosome:
+rule get_genome_gzipped:
     output:
-        "refs/chr1.fasta",
+        "refs/genome.fa.gz",
+    params:
+        species="saccharomyces_cerevisiae",
+        datatype="dna",
+        build="R64-1-1",
+        release="98",
+    log:
+        "logs/get_genome.log",
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/reference/ensembl-sequence"
+
+
+rule get_single_chromosome:
+    output:
+        "refs/chr2.fasta",
     params:
         species="saccharomyces_cerevisiae",
         datatype="dna",
         build="R64-1-1",
         release="101",
-        chromosome="I",  # optional: restrict to chromosome
+        chromosome=["II"],  # optional: restrict to one or multiple chromosomes, for multiple see below
+        # branch="plants",  # optional: specify branch
+    log:
+        "logs/get_genome.log",
+    params:
+        url="http://ftp.ensembl.org/pub",
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/reference/ensembl-sequence"
+
+rule get_multiple_chromosome:
+    output:
+        "refs/chr6_and_chr1.fasta",
+    params:
+        species="saccharomyces_cerevisiae",
+        datatype="dna",
+        build="R64-1-1",
+        release="113",
+        chromosome=["VI", "I"],  # optional: restrict to one or multiple chromosomes
+        # branch="plants",  # optional: specify branch
+    log:
+        "logs/get_genome.log",
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/reference/ensembl-sequence"
+
+
+rule get_multiple_chromosomes_gzipped:
+    output:
+        "refs/chr6_and_chr1.fa.gz",
+    params:
+        species="saccharomyces_cerevisiae",
+        datatype="dna",
+        build="R64-1-1",
+        release="113",
+        chromosome=["VI", "I"],  # optional: restrict to one or multiple chromosomes
         # branch="plants",  # optional: specify branch
     log:
         "logs/get_genome.log",

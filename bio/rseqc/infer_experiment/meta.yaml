@@ -1,0 +1,13 @@
+name: infer_experiment
+description: Report read strandiness and endeness
+url: https://rseqc.sourceforge.net/#infer-experiment-py
+authors:
+  - "Thibault Dayris"
+input:
+  - aln: Path to SAM/BAM alignment file
+  - refgene: Path to reference gene model in bed format
+output:
+  - Path to text formated results
+params:
+  - extra: Optional parameters for `infer_experiment.py` other than `-i` or `-r`
+  

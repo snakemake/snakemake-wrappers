@@ -1,0 +1,27 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: linux-64
+@EXPLICIT
+https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
+https://conda.anaconda.org/conda-forge/linux-64/ca-certificates-2023.7.22-hbcca054_0.conda#a73ecd2988327ad4c8f2c331482917f2
+https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.40-h41732ed_0.conda#7aca3059a1729aa76c597603f10b0dd3
+https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-13.2.0-h7e041cc_2.conda#9172c297304f2a20134fc56c97fbe229
+https://conda.anaconda.org/conda-forge/linux-64/libgomp-13.2.0-h807b86a_2.conda#e2042154faafe61969556f28bade94b9
+https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-13.2.0-h807b86a_2.conda#c28003b0be0494f9a7664389146716ff
+https://conda.anaconda.org/conda-forge/linux-64/libffi-3.2.1-he1b5a44_1007.tar.bz2#11389072d7d6036fd811c3d9460475cd
+https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.2.13-hd590300_5.conda#f36c115f1ee199da648e0597ec2047ad
+https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.4-h59595ed_2.conda#7dbaa197d7ba6032caf7ae7f32c1efa0
+https://conda.anaconda.org/conda-forge/linux-64/openssl-1.1.1w-hd590300_0.conda#301e70057a3bd399640bb16bbdf87995
+https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.43.2-h2797004_0.conda#4b441a1ee22397d5a27dc1126b849edd
+https://conda.anaconda.org/conda-forge/linux-64/readline-8.2-h8228510_1.conda#47d31b792659ce70f470b5c82fdfb7a4
+https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-h2797004_0.conda#513336054f884f95d9fd925748f41ef3
+https://conda.anaconda.org/conda-forge/linux-64/zlib-1.2.13-hd590300_5.conda#68c34ec6149623be41a1933ab996a209
+https://conda.anaconda.org/conda-forge/linux-64/sqlite-3.43.2-h2c6b66d_0.conda#c37b95bcd6c6833dacfd5df0ae2f4303
+https://conda.anaconda.org/conda-forge/linux-64/python-2.7.15-h5a48372_1011_cpython.tar.bz2#d1824ac0987155f58a03b7ffda01db38
+https://conda.anaconda.org/conda-forge/linux-64/python_abi-2.7-1_cp27mu.tar.bz2#02d6ad6bce3a798e6ee85494cd9b3d8d
+https://conda.anaconda.org/bioconda/linux-64/strelka-2.9.10-h9ee0642_1.tar.bz2#9a18c9417aea082fad6f830d42648d9f
+https://conda.anaconda.org/conda-forge/noarch/wheel-0.37.1-pyhd8ed1ab_0.tar.bz2#1ca02aaf78d9c70d9a81a3bed5752022
+https://conda.anaconda.org/conda-forge/linux-64/certifi-2019.11.28-py27h8c360ce_1.tar.bz2#a345324a2547908c1f9ca4b65d93f5ba
+https://conda.anaconda.org/conda-forge/linux-64/setuptools-44.0.0-py27_0.tar.bz2#a1dcb0ca393c777d0611faf5b86602be
+https://conda.anaconda.org/conda-forge/noarch/pip-20.1.1-pyh9f0ad1d_0.tar.bz2#cd67a20c73ff2514cf5f34cae28fc867

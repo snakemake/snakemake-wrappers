@@ -1,0 +1,3 @@
+2090174402	Archaea	Thermoproteota	Nitrososphaeria_A	Caldarchaeales	Wolframiiraptoraceae	Geocrenenecus	Geocrenenecus arthurdayi
+2139920326	Archaea	Huberarchaeota	Huberarchaeia	Huberarchaeales	Huberarchaeaceae	Huberarchaeum	Huberarchaeum crystalense
+2143941790	Archaea	Thermoproteota	Nitrososphaeria	Nitrososphaerales	UBA57	UBA57	UBA57 sp002495905

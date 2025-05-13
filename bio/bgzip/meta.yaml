@@ -3,7 +3,12 @@ description: Block compression/decompression utility
 url: https://github.com/samtools/htslib
 authors:
   - William Rowell
+  - Filipe G. Vieira
 input:
   - file to be compressed or decompressed
 output:
   - compressed or decompressed output
+params:
+  - extra: additional bgzip parameters
+notes: |
+  * Run mode (compression/decompression) is automatically inferred from the extension of the input file.

@@ -1,0 +1,17 @@
+name: Deeptools Plot Correlation
+url: https://deeptools.readthedocs.io/en/develop/content/tools/plotCorrelation.html
+description: >
+  Analysis and visualization of sample correlations based on the output of multiBamSummary or multiBigwigSummary.
+authors:
+  - Thibault Dayris
+input:
+  - Path to compressed matrix file
+output:
+  - plot: Path to scatterplot/heatmap. The available formats are `.png`, `.eps`, `.pdf` and `.svg`
+  - matrix: Optional path to pairwise correlation values (TSV)
+params:
+  - extra: Optional parameters except IO and `--plotFileFormat`.
+  - correlation: Either `spearman`, or `pearson`. No default is set in DeepTools. This wrapper considers `spearman` as default value.
+  - plot: Either `heatmap`, or `scatterplot`. No default is set in DeepTools. This wrapper considers `heatmap` as default value.
+notes: |
+  Plot file format is automatically inferred from plot file extension.

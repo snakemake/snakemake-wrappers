@@ -7,7 +7,7 @@ rule samtools_fastq_separate:
     log:
         "{sample}.separate.log",
     params:
-        sort="-m 4G",
+        collate="",
         fastq="-n",
     # Remember, this is the number of samtools' additional threads. At least 2 threads have to be requested on cluster sumbission. This value - 2 will be sent to samtools sort -@ argument.
     threads: 3

@@ -1,0 +1,17 @@
+name: "cnvkit call"
+description: >
+  Given segmented log2 ratio estimates (.cns), derive each segment’s absolute integer 
+  copy number. 
+url: https://cnvkit.readthedocs.io/en/stable/pipeline.html#call
+input:
+  - segments: Copy ratios (.cnr or .cns)
+  - vcf: VCF file name containing variants for calculation of b-allele frequencies
+output:
+  - segments: Output table file name (CNR-like table of segments, .cns)
+params:
+  - filter: Merge segments flagged by the specified filter(s) with the adjacent segment(s), optional
+  - purity: purity value of the tumor
+  - ploidy: Ploidy of the sample cells.
+  - extra: additional parameters that will be forwarded to cnvkit call
+authors:
+  - Patrik Smeds

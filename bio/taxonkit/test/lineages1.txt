@@ -1,0 +1,2 @@
+2026160944	Archaea	Halobacteriota	Halobacteria	Halobacteriales	Haloferacaceae	Halobellus	Halobellus inordinatus
+2088315078	Archaea	Halobacteriota	Methanosarcinia	Methanotrichales	Methanotrichaceae	Methanothrix_A	Methanothrix_A sp001602645

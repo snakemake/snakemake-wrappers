@@ -1,0 +1,5 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: linux-64
+@EXPLICIT
+https://conda.anaconda.org/bioconda/linux-64/sortmerna-4.3.6-h9ee0642_0.tar.bz2#ee2b0e09abfb792e5c8d480c121a9cc0

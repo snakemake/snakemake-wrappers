@@ -1,0 +1,11 @@
+rule download_file:
+    output:
+        "data/{egafile}.cram",
+    log:
+        "logs/ega/fetch/{egafile}.log",
+    params:
+        fileid=lambda wildcards: wildcards.egafile,
+        extra_pyega3="-t", # optional extra args for pyega3
+        extra_fetch="",  # optional extra args for the fetch subcommand
+    wrapper:
+        "master/bio/ega/fetch"

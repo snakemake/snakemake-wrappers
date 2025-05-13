@@ -1,0 +1,33 @@
+rule test_deeptools_multibwsummary_bins:
+    input:
+        bw=["a.bw", "b.bw"],
+        blacklist="blacklist.bed", # Optional
+    output:
+        npz="bins.npz",
+        counts="bins.counts",
+    threads: 1
+    params:
+        extra="",
+    log:
+        "bins.logs"
+    wrapper:
+        "master/bio/deeptools/multibigwigsummary"
+
+rule test_deeptools_multibwsummary_bed:
+    input:
+        bw=["a.bw", "b.bw"],
+        bed="intervals.bed",
+        # blacklist="", # Optional
+    output:
+        npz="bed.npz",
+        counts="bed.counts",
+    threads: 1
+    params:
+        extra="",
+    log:
+        "bins.logs"
+    wrapper:
+        "master/bio/deeptools/multibigwigsummary"
+
+
+

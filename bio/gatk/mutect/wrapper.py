@@ -42,6 +42,15 @@ pon = snakemake.input.get("pon", "")
 if pon:
     pon = f"--panel-of-normals {pon}"
 
+
+aln = snakemake.input.map
+# If aln is a string, then no change are done
+if isinstance(aln, list):
+    # Do not add the first `--input` since it will
+    # be added later in the shell command
+    aln = " --input ".join(aln)
+
+
 extra = snakemake.params.get("extra", "")
 java_opts = get_java_opts(snakemake)
 
@@ -58,7 +67,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "gatk --java-options '{java_opts}' Mutect2"  # Tool and its subprocess
         " --native-pair-hmm-threads {snakemake.threads}"
-        " --input {snakemake.input.map}"  # Path to input mapping file
+        " --input {aln}"  # Path to input mapping file
         " --reference {snakemake.input.fasta}"  # Path to reference fasta file
         " {f1r2}"  # Optional path to output f1r2 count file
         " {germline_resource}"  # Optional path to optional germline resource VCF

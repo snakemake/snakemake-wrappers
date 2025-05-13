@@ -7,6 +7,8 @@ import subprocess as sp
 import sys
 from itertools import product
 from snakemake.shell import shell
+from snakemake.logging import logger
+from os import path
 
 species = snakemake.params.species.lower()
 release = int(snakemake.params.release)
@@ -25,12 +27,17 @@ spec = ("{build}" if int(release) > 75 else "{build}.{release}").format(
     build=build, release=release
 )
 
+if path.splitext(snakemake.output[0])[1] == ".gz":
+    decompress = ""
+else:
+    decompress = " | gzip -d"
+
 suffixes = ""
 datatype = snakemake.params.get("datatype", "")
 chromosome = snakemake.params.get("chromosome", "")
 if datatype == "dna":
     if chromosome:
-        suffixes = ["dna.chromosome.{}.fa.gz".format(chromosome)]
+        suffixes = [f"dna.chromosome.{chrom}.fa.gz" for chrom in chromosome]
     else:
         suffixes = ["dna.primary_assembly.fa.gz", "dna.toplevel.fa.gz"]
 elif datatype == "cdna":
@@ -47,34 +54,59 @@ else:
 if chromosome:
     if not datatype == "dna":
         raise ValueError(
-            "invalid datatype, to select a single chromosome the datatype must be dna"
+            "Invalid datatype. To select individual chromosomes, the datatype must be dna."
         )
 
+url = snakemake.params.get("url", "https://ftp.ensembl.org/pub")
 spec = spec.format(build=build, release=release)
-url_prefix = f"ftp://ftp.ensembl.org/pub/{branch}release-{release}/fasta/{species}/{datatype}/{species.capitalize()}.{spec}"
+url_prefix = f"{url}/{branch}release-{release}/fasta/{species}/{datatype}/{species.capitalize()}.{spec}"
 
-success = False
 for suffix in suffixes:
+    success = False
+    use_ftp = False
     url = f"{url_prefix}.{suffix}"
+    # FTP works as a fallback, in case an HTTPS connection doesn't succeed
+    url_ftp = url.replace("https://", "ftp://")
 
     try:
-        shell("curl -sSf {url} > /dev/null 2> /dev/null")
+        # --location follows redirects, --head only gets the header without any download,
+        # Content-Length is only there if the file exists, for both https:// and ftp://
+        shell("curl --location --head {url} | grep 'Content-Length'")
     except sp.CalledProcessError:
-        continue
+        try:
+            shell("curl --location --head {url_ftp} | grep 'Content-Length'")
+        except sp.CalledProcessError:
+            if chromosome:
+                logger.error(
+                    f"Unable to download the requested chromosome sequence from Ensembl at either of: \n"
+                    f"* {url}\n"
+                    f"* {url_ftp}",
+                )
+                break
+            else:
+                continue
+        else:
+            use_ftp = True
 
-    shell("(curl -L {url} | gzip -d > {snakemake.output[0]}) {log}")
+    if use_ftp:
+        shell("(curl -L {url_ftp} {decompress} >> {snakemake.output[0]}) {log}")
+    else:
+        shell("(curl -L {url} {decompress} >> {snakemake.output[0]}) {log}")
     success = True
-    break
+    if not chromosome:
+        break
 
 if not success:
-    if len(suffixes) > 1:
-        url = f"{url_prefix}.[{'|'.join(suffixes)}]"
-    else:
-        url = f"{url_prefix}.{suffixes[0]}"
-    print(
-        f"Unable to download requested sequence data from Ensembl ({url}). "
-        "Please check whether above URL is currently available (might be a temporal server issue). "
+    if not chromosome:
+        if len(suffixes) > 1:
+            url = f"{url_prefix}.[{'|'.join(suffixes)}]"
+        else:
+            url = f"{url_prefix}.{suffixes[0]}"
+        logger.error(
+            f"Unable to download the requested reference sequence data from Ensembl at: {url}.",
+        )
+    logger.error(
+        "Please check whether above URL is currently available (might be a temporal server issue). \n"
         "Apart from that, did you check that this combination of species, build, and release is actually provided?",
-        file=sys.stderr,
     )
     exit(1)

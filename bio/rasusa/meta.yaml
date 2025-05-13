@@ -19,5 +19,5 @@ params:
     Alternatively, a FASTA/Q index file can be provided and the genome size will be set
     to the sum of all reference sequences. |nl|
     If ``bases`` is not provided, this option and ``coverage`` are required
-  options: >
-    Any other options as listed in `the docs <https://github.com/mbhall88/rasusa#usage>`_.
+  extra: >
+    Additional program arguments.

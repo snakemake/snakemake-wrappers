@@ -1,0 +1,11 @@
+name: encode_fastq_downloader
+authors:
+  - Maarten van der Sande
+description: |
+  Download fastq files directly from the ENCODE project: https://www.encodeproject.org/
+output: |
+  A single fastq.gz file for single-ended data and two for paired-ended data.
+notes: |
+  * You can use encode assay accession (ENCSR) and encode file accession (ENCFF). The ENCFF identifier needs to refer to a fastq file.
+  * When specifying a file accession for paired-end data, always BOTH files are downloaded. The downloaded R1 file is always the R1 file on ENCODE, and vice versa, regardless whether you specify the R1 or R2 file accession.
+  * When multiple sequencing runs belong to a single assay accession, they are all downloaded and concatenated. 

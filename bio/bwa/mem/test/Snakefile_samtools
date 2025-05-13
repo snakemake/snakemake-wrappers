@@ -17,13 +17,32 @@ rule bwa_mem:
         "master/bio/bwa/mem"
 
 
-rule bwa_mem_write_index:
+rule bwa_mem_write_index_csi:
     input:
         reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
         idx=multiext("genome", ".amb", ".ann", ".bwt", ".pac", ".sa"),
     output:
-        "mapped_with_index/{sample}.bam",
-        idx="mapped_with_index/{sample}.bam.csi",
+        "mapped_with_index_csi/{sample}.bam",
+        idx="mapped_with_index_csi/{sample}.bam.csi",
+    log:
+        "logs/bwa_mem/{sample}.log",
+    params:
+        extra=r"-R '@RG\tID:{sample}\tSM:{sample}'",
+        sorting="samtools",  # Can be 'none', 'samtools' or 'picard'.
+        sort_order="coordinate",  # Can be 'queryname' or 'coordinate'.
+        sort_extra="",  # Extra args for samtools/picard.
+        tmp_dir="/tmp/",  # Path to temp dir. (optional)
+    threads: 8
+    wrapper:
+        "master/bio/bwa/mem"
+
+rule bwa_mem_write_index_bai:
+    input:
+        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        idx=multiext("genome", ".amb", ".ann", ".bwt", ".pac", ".sa"),
+    output:
+        "mapped_with_index_bai/{sample}.bam",
+        idx="mapped_with_index_bai/{sample}.bam.bai",
     log:
         "logs/bwa_mem/{sample}.log",
     params:

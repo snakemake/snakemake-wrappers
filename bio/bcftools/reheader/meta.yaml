@@ -4,6 +4,12 @@ url: http://www.htslib.org/doc/bcftools.html#reheader
 authors:
   - Jan Forster
   - Filipe G. Vieira
-notes: |
-  * The `uncompressed_bcf` param allows to specify that a BCF output should be uncompressed (ignored otherwise).
-  * The `extra` param allows for additional program arguments (not `--threads`, `-o/--output`, `-O/--output-type`, or `-T/--temp-prefix`).
+input:
+  - VCF/BCF file
+  - header: new header (optional if "samples" is set)
+  - samples: new sample names (optional if "header" is set)
+output:
+  - VCF/BCF file with new header
+params:
+  - uncompressed_bcf: specify that a BCF output should be uncompressed (ignored otherwise).
+  - extra:  additional program arguments (not `--threads`, `-o/--output`, `-O/--output-type`, or `-T/--temp-prefix`)

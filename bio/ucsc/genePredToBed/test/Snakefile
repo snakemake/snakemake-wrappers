@@ -1,0 +1,11 @@
+rule test_genePredToBed:
+    input:
+        "annotation.genePred",
+    output:
+        "annotation.bed",
+    params:
+        extra="",
+    log:
+        "ucsc.log",
+    wrapper:
+        "master/bio/ucsc/genePredToBed"

@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - toulligqc =2.5.6
+  - snakemake-wrapper-utils =0.6.2

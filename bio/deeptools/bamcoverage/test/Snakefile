@@ -13,3 +13,30 @@ rule test_deeptools_bamcoverage:
         "logs/coverage.log",
     wrapper:
         "master/bio/deeptools/bamcoverage"
+
+
+rule test_deeptools_bamcoverage_default_eff_len:
+    input:
+        bam="a.sorted.bam",
+        bai="a.sorted.bam.bai",
+    output:
+        "a.coverage_code.bw",
+    params:
+        genome="GRCm38",
+        read_length=200,
+    log:
+        "logs/coverage_efault_eff_len.log",
+    wrapper:
+        "master/bio/deeptools/bamcoverage"
+
+
+rule test_deeptools_bamcoverage_no_params:
+    input:
+        bam="a.sorted.bam",
+        bai="a.sorted.bam.bai",
+    output:
+        "a.coverage_no_params.bw",
+    log:
+        "logs/coverage.log",
+    wrapper:
+        "master/bio/deeptools/bamcoverage"

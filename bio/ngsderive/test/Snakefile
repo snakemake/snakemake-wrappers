@@ -1,0 +1,101 @@
+rule test_ngsderive_endedness:
+    input:
+        ngs="A.rg.bam",
+    output:
+        tsv="A.endedness.tsv",
+    log:
+        "ngsderive/endedness.log",
+    params:
+        command="endedness",
+        extra="--n-reads 2",
+    wrapper:
+        "master/bio/ngsderive"
+
+
+rule test_ngsderive_junction_annotation:
+    input:
+        ngs="A.rg.bam",
+        gene_model="annotation.sorted.gtf.gz",
+    output:
+        tsv="A.junctions.tsv",
+        junction_dir=directory("junctions"),
+    log:
+        "ngsderive/junctions.log",
+    params:
+        command="junction-annotation",
+        extra="--min-intron 2 --consider-unannotated-references-novel",
+    wrapper:
+        "master/bio/ngsderive"
+
+
+rule test_ngsderive_junction_annotation_list:
+    input:
+        ngs="A.rg.bam",
+        gene_model="annotation.sorted.gtf.gz",
+    output:
+        tsv="A.junctions_list.tsv",
+        junction_dir=["junctions/A.rg.bam.junctions.tsv"],
+    log:
+        "ngsderive/junctions.log",
+    params:
+        command="junction-annotation",
+        extra="--min-intron 2 --consider-unannotated-references-novel",
+    wrapper:
+        "master/bio/ngsderive"        
+
+
+rule test_ngsderive_strandeness:
+    input:
+        ngs="A.rg.bam",
+        gene_model="annotation.sorted.gtf.gz",
+    output:
+        tsv="A.strandedness.tsv",
+    log:
+        "ngsderive/strand.log",
+    params:
+        command="strandedness",
+        extra="--verbose --minimum-reads-per-gene 2 --n-genes 1",
+    wrapper:
+        "master/bio/ngsderive"
+
+
+rule test_ngsderive_encoding:
+    input:
+        ngs="A.rg.bam",
+    output:
+        tsv="A.encoding.tsv",
+    log:
+        "ngsderive/encoding.log",
+    params:
+        command="encoding",
+        extra="--n-reads 2",
+    wrapper:
+        "master/bio/ngsderive"
+
+
+rule test_ngsderive_instrument:
+    input:
+        ngs="A.rg.bam",
+    output:
+        tsv="A.instrument.tsv",
+    log:
+        "ngsderive/instrument.log",
+    params:
+        command="instrument",
+        extra="--n-reads 2 --verbose",
+    wrapper:
+        "master/bio/ngsderive"
+
+
+rule test_ngsderive_readlen:
+    input:
+        ngs="A.rg.bam",
+    output:
+        tsv="A.readlen.tsv",
+    log:
+        "ngsderive/readlen.log",
+    params:
+        command="readlen",
+        extra="--majority-vote-cutoff 10 --n-reads 2",
+    wrapper:
+        "master/bio/ngsderive"

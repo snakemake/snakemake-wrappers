@@ -1,0 +1,12 @@
+name: galah
+description: More scalable dereplication for metagenome assembled genomes 
+url: https://github.com/wwood/galah
+authors:
+  - Filipe G. Vieira
+input:
+  - FASTA files
+output:
+  - clusters: representative FASTA<TAB>member lines
+  - repres: paths to representative FAS files
+params:
+  - extra: additional program arguments

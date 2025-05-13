@@ -1,4 +1,0 @@
-name: nanosim-h
-description: NanoSim-H is a simulator of Oxford Nanopore reads that captures the technology-specific features of ONT data, and allows for adjustments upon improvement of Nanopore sequencing technology.
-authors:
-  - Michael Hall

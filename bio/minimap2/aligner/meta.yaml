@@ -6,7 +6,7 @@ authors:
   - Michael Hall
   - Filipe G. Vieira
 input:
-  - FASTQ file(s)
+  - FASTQ file(s) or unaligned BAM file
   - reference genome
 output:
   - SAM/BAM/CRAM file

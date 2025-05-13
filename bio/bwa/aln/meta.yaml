@@ -1,4 +1,15 @@
 name: "bwa aln"
 description: Map reads with bwa aln. For more information about BWA see `BWA documentation <http://bio-bwa.sourceforge.net/bwa.shtml>`_.
+url: https://github.com/lh3/bwa
 authors:
   - Julian de Ruiter
+  - Filipe G. Vieira
+input:
+  - fastq" FASTQ file(s)
+  - idx: BWA reference genome index
+output:
+  - SAI file
+notes: |
+  * The `extra` param allows for additional arguments for bwa-mem.
+  * The `sorting` param allows to enable sorting, and can be either 'none', 'samtools' or 'picard'.
+  * The `sort_extra` allows for extra arguments for samtools/picard

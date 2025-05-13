@@ -1,0 +1,10 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - vg =1.65.0
+  - fgbio-minimal =2.5.21
+  - samtools =1.21
+  - picard-slim =3.4.0
+  - snakemake-wrapper-utils =0.7.2

@@ -1,0 +1,194 @@
+# Include snakefile with get_fractons function returning ["R1", "R2"] for paired reads or ["se"] for single reads
+include: "input_functions.smk"
+
+
+rule all:
+    input:
+        expand("logs/loglog/{sample}.log", sample=["SampleA"]),
+        expand("covstats/{sample}.tsv", sample=["SampleA"]),
+
+
+rule loglog:
+    input:
+        expand("reads/raw/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()),
+    log:
+        "logs/loglog/{sample}.log",  # Captures the error output of the command and the log of the wrapper
+    params:
+        command="loglog.sh",
+        buckets=2048,
+        seed=1234,
+    threads: 2
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/bbtools"
+
+
+# ########## Quality control of reads ##########
+
+
+# all rules use the same wrapper!!
+rule bbduk:
+    input:
+        expand("reads/raw/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()),
+        adapters="adapt.fas",
+    output:
+        out=expand(
+            "reads/trimmed/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()
+        ),
+        outmatch=expand(
+            "reads/discarded/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()
+        ),
+        #outsingle="reads/discarded/{sample}_singletons.fastq.gz", # only for paired reads
+        stats="stats/trimming_stats/{sample}.txt",
+    log:
+        "logs/bbduk/{sample}.log",
+    threads: 7
+    params:
+        command="bbduk.sh",
+        extra="tpe tbo ",
+        ktrim="r ",
+        ref=lambda w, input: [input.adapters, "adapters", "artifacts"],
+        k=23,
+        mink=11,
+        hdist=1,
+        trimpolygright=10,
+        minlen=25,
+        maxns=30,
+        entropy=0.5,
+        entropywindow=50,
+        entropyk=5,
+    resources:
+        mem_mb=4000,
+    log:
+        "logs/trim/{sample}.log",
+    wrapper:
+        "master/bio/bbtools"
+
+
+rule tadpole_correct:
+    input:
+        expand("reads/trimmed/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()),
+    output:
+        out=expand(
+            "reads/corrected/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()
+        ),
+        outd="reads/discarded/{sample}.fastq.gz",
+    log:
+        "logs/correct/{sample}.log",
+    params:
+        command="tadpole.sh",
+        mode="correct",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/bbtools"
+
+
+##########  Assembly ##########
+rule tadpole_assemble:
+    input:
+        expand(
+            "reads/corrected/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()
+        ),
+    output:
+        "assembly/{sample}.fasta.gz",
+    log:
+        "logs/assemble/{sample}.log",
+    params:
+        command="tadpole.sh",
+        mode="contig",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/bbtools"
+
+
+########## Map ##########
+
+
+rule map_reads_with_bbmap:
+    input:
+        input=expand(
+            "reads/trimmed/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()
+        ),
+        ref="assembly/{sample}.fasta.gz",
+    output:
+        out="mapped/{sample}.bam",
+    log:
+        "logs/bbmap/{sample}.log",
+    params:
+        command="bbmap.sh",
+        machineout=True,
+        overwrite=True,  # recommended
+        unpigz=True,
+        nodisk=True,  # Don't write a index
+    threads: 12
+    resources:
+        mem_mb=1000,  # optional: bbmap normaly needs a lot of memory, e.g. 60GB
+    wrapper:
+        "master/bio/bbtools"
+
+
+rule pileup:
+    input:
+        input="mapped/{sample}.bam",
+        ref="genome.fasta",
+    output:
+        covstats="covstats/{sample}.tsv",
+        basecov="basecov/{sample}.tsv",
+    log:
+        "logs/pileup/{sample}.log",
+    params:
+        command="pileup.sh",
+        nzo=True,
+        overwrite=True,
+    threads: 4
+    resources:
+        mem_mb=1000,
+    wrapper:
+        "master/bio/bbtools"
+
+
+### Create reads
+
+
+rule index_genome:
+    input:
+        ref="genome.fasta",
+    output:
+        # path to the index base folder
+        # The index is actually stored in subfolders of the path {path}/ref/genome/{build} and {path}/ref/index/{build}
+        # Where build is by default 1
+        path=temp(directory("path/to/indexes/genome/")),
+    params:
+        command="bbmap.sh",
+    log:
+        "logs/index_genome.log",
+    resources:
+        mem_mb=1000,
+    wrapper:
+        "master/bio/bbtools"
+
+
+rule create_reads:
+    input:
+        path="path/to/indexes/genome/",
+    output:
+        out=expand("reads/raw/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()),
+    params:
+        command="randomreads.sh",  # Define which bbmap command to use
+        # All parameters are passed to the command
+        length=100,
+        reads=100,
+        paired=True,
+        overwrite=True,
+        pigz=True,
+    resources:
+        mem_mb=1000,
+    log:
+        "logs/create_reads/{sample}.log",
+    wrapper:
+        "master/bio/bbtools"

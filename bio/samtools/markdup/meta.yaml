@@ -1,0 +1,12 @@
+name: samtools markdup
+description: Mark duplicate alignments in a coordinate sorted file .
+url: http://www.htslib.org/doc/samtools-markdup.html
+authors:
+  - Filipe G. Vieira
+input:
+  - SAM/BAM/CRAM file
+output:
+  - SAM/BAM/CRAM file
+  - SAM/BAM/CRAM index file (optional)
+params:
+  - extra: additional program arguments (not `-@/--threads`, `--write-index`, `-m`, `-T`, `-f`, `-o` or `-O/--output-fmt`).

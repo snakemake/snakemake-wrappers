@@ -1,0 +1,52 @@
+rule filter_str:
+    input:
+        "ntuple0.root",
+    output:
+        "ntuple0_str_output.root",
+    log:
+        "logs/filter/filter_str.log",
+    params:
+        input_tree_name="TestTree",
+        output_tree_name="TestTree",
+        criteria="(pt > 1400) && (pz > 19000)",
+        branches_to_save=["pz", "pt", "p"],
+    threads: 2
+    wrapper:
+        "master/phys/root/filter"
+
+rule filter_list:
+    input:
+        "ntuple0.root",
+    output:
+        "ntuple0_list_output.root",
+    log:
+        "logs/filter/filter_list.log",
+    params:
+        input_tree_name="TestTree",
+        output_tree_name="TestTree",
+        criteria=["pt > 1400", "pz > 19000"],
+        branches_to_save=["pz", "pt", "p"],
+        verbose=True
+    threads: 2
+    wrapper:
+        "master/phys/root/filter"
+
+rule filter_dict:
+    input:
+        "ntuple0.root",
+    output:
+        "ntuple0_dict_output.root",
+    log:
+        "logs/filter/filter.log",
+    params:
+        input_tree_name="TestTree",
+        output_tree_name="TestTree",
+        criteria={
+            "PT cut": "pt > 1400",
+            "PZ cut": "pz > 19000"
+        },
+        branches_to_save=["pz", "pt", "p"],
+        verbose=True
+    threads: 1
+    wrapper:
+        "master/phys/root/filter"

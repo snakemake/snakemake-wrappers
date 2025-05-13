@@ -1,0 +1,10 @@
+rule test_rseqc_read_distribution:
+    input:
+        aln="A.bam",
+        refgene="annotation.bed",
+    output:
+        "a.read_distribution.txt",
+    log:
+        "rseqc.log",
+    wrapper:
+        "master/bio/rseqc/read_distribution"

@@ -1,4 +1,5 @@
 """Snakemake wrapper for Bismark methylation extractor tool: bismark_methylation_extractor."""
+
 # https://github.com/FelixKrueger/Bismark/blob/master/bismark_methylation_extractor
 
 __author__ = "Roman Chernyatchik"

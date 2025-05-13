@@ -1,0 +1,12 @@
+name: "cnvkit export"
+description: >
+  Convert copy number ratio tables (.cnr files) or segments (.cns) to another format.
+url: https://cnvkit.readthedocs.io/en/stable/importexport.html#export
+input:
+  - cns: cns or cnr file(s)
+output:
+  - bed/vcf/vcf.gz/cdt/seq file
+params:
+  - extra: additional parameters that will be forwarded to cnvkit export
+authors:
+  - Patrik Smeds

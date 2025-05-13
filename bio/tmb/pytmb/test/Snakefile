@@ -1,0 +1,15 @@
+rule test_pytmb:
+    input:
+        vcf="sample.bcf",
+        db_config="dbconfig.yaml",
+        var_config="varconfig.yaml",
+        bed="regions.bed",
+    output:
+        res="tmb.txt",
+        vcf="tmp.vcf",
+    log:
+        "pytmb.log",
+    params:
+        extra="--verbose",
+    wrapper:
+        "master/bio/tmb/pytmb"

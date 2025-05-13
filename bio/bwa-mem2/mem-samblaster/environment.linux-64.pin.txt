@@ -1,0 +1,21 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: linux-64
+@EXPLICIT
+https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
+https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-13.2.0-hc0a3c3a_7.conda#53ebd4c833fa01cb2c6353e99f905406
+https://conda.anaconda.org/conda-forge/linux-64/libgomp-13.2.0-h77fa898_7.conda#abf3fec87c2563697defa759dec3d639
+https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-13.2.0-h77fa898_7.conda#72ec1b1b04c4d15d4204ece1ecea5978
+https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hd590300_5.conda#69b8b6202a07720f448be700e300ccf4
+https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.2.13-h4ab18f5_6.conda#27329162c0dc732bcf67a4e0cd488125
+https://conda.anaconda.org/conda-forge/linux-64/lz4-c-1.9.4-hcb278e6_0.conda#318b08df404f9c9be5712aaa5a6f0bb0
+https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.5-h59595ed_0.conda#fcea371545eda051b6deafb24889fc69
+https://conda.anaconda.org/bioconda/linux-64/samblaster-0.1.26-h4ac6f70_5.tar.bz2#a75893fa748b34123082ea21d4df229a
+https://conda.anaconda.org/conda-forge/linux-64/xz-5.2.6-h166bdaf_0.tar.bz2#2161070d867d1b1204ea749c8eec4ef0
+https://conda.anaconda.org/bioconda/linux-64/bwa-mem2-2.2.1-hd03093a_5.tar.bz2#a8de1b9c3db53f3436e06f86997b5316
+https://conda.anaconda.org/conda-forge/linux-64/libedit-3.1.20191231-he28a2e2_2.tar.bz2#4d331e44109e3f0e19b4cb8f9b82f3e1
+https://conda.anaconda.org/conda-forge/linux-64/zlib-1.2.13-h4ab18f5_6.conda#559d338a4234c2ad6e676f460a093e67
+https://conda.anaconda.org/conda-forge/linux-64/libllvm12-12.0.1-hf817b99_2.tar.bz2#dd23dea4ce9818bc420fe53a47e8764e
+https://conda.anaconda.org/conda-forge/linux-64/ldc-1.28.1-hcf88599_0.tar.bz2#2a72ea7786be25e98de98eb572a6ff4d
+https://conda.anaconda.org/bioconda/linux-64/sambamba-1.0.1-h6f6fda4_0.tar.bz2#feeba874a4da94e5b53912b8d940d845

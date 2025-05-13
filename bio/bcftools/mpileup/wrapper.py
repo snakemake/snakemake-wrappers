@@ -19,4 +19,4 @@ class MissingReferenceError(Exception):
     pass
 
 
-shell("bcftools mpileup {bcftools_opts} {extra} {snakemake.input[0]} {log}")
+shell("bcftools mpileup {bcftools_opts} {extra} {snakemake.input.alignments} {log}")

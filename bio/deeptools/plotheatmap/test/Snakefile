@@ -14,6 +14,6 @@ rule plot_heatmap:
         "logs/deeptools/heatmap.log"
     params:
         # optional parameters
-        "--plotType=fill "
+        extra="--plotType=fill "
     wrapper:
         "master/bio/deeptools/plotheatmap"

@@ -1,0 +1,11 @@
+name: genePredToBed
+description: Convert from genePred to bed format. Does not yet handle genePredExt
+url: https://hgdownload.cse.ucsc.edu/admin/exe/
+authors:
+  - "Thibault Dayris"
+input:
+  - Path to a genePred file
+output:
+  - Path to the output bed12 file
+params:
+  - extra: Optional parameters for `genePredToBed`

@@ -1,0 +1,17 @@
+rule whatshap_haplotag:
+    input:
+        "phased.vcf.gz.tbi",
+        "alignment.bam.bai", 
+        "reference.fasta.fai",
+        vcf ="phased.vcf.gz",
+        aln ="alignment.bam",
+        ref = "reference.fasta"
+    output:
+        "alignment.phased.bam"
+    params:
+        extra="" # optionally use --ignore-linked-read, --tag-supplementary, etc.
+    log:
+        "logs/haplotag.10X.phased.log"
+    threads: 4
+    wrapper:
+        "master/bio/whatshap/haplotag"

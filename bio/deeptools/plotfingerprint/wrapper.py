@@ -1,12 +1,14 @@
 __author__ = "Antonie Vietor"
-__copyright__ = "Copyright 2020, Antonie Vietor"
+__copyright__ = "Copyright 2024, Antonie Vietor, Lance Parsons"
 __email__ = "antonie.v@gmx.de"
 __license__ = "MIT"
 
-from snakemake.shell import shell
 import re
 
+from snakemake.shell import shell
+
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+extra = snakemake.params.get("extra", "")
 
 jsd_sample = snakemake.input.get("jsd_sample")
 out_counts = snakemake.output.get("counts")
@@ -30,16 +32,5 @@ shell(
     "{optional_output} "
     "--numberOfProcessors {snakemake.threads} "
     "{jsd} "
-    "{snakemake.params}) {log}"
+    "{extra}) {log}"
 )
-# ToDo: remove the 'NA' string replacement when fixed in deepTools, see:
-# https://github.com/deeptools/deepTools/pull/999
-regex_passes = 2
-
-with open(out_metrics, "rt") as f:
-    metrics = f.read()
-    for i in range(regex_passes):
-        metrics = re.sub("\tNA(\t|\n)", "\tnan\\1", metrics)
-
-with open(out_metrics, "wt") as f:
-    f.write(metrics)

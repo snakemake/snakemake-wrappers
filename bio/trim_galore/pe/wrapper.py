@@ -31,7 +31,7 @@ def fasta_filename(infile: str, infix: str, out_gzip: bool) -> str:
     """
     base_input = os.path.basename(infile)
     suffix = ".gz" if out_gzip or infile.endswith(".gz") else ""
-    REGEX_RULES = [r"\.fastq$", "\.fastq\.gz$", r"\.fq$", r"\.fq\.gz$"]
+    REGEX_RULES = [r"\.fastq$", r"\.fastq\.gz$", r"\.fq$", r"\.fq\.gz$"]
     for regex in REGEX_RULES:
         if re.search(regex, base_input):
             return re.sub(regex, f"{infix}.fq", base_input) + suffix

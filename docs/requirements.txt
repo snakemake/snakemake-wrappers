@@ -1,5 +1,7 @@
 sphinx
+sphinxawesome-theme
 sphinx_rtd_theme
 docutils
 pyyaml
-sphinx-copybutton
+myst-parser
+snowballstemmer<3 # This avoids Sphinx build failure, see https://github.com/sphinx-doc/sphinx/issues/13533

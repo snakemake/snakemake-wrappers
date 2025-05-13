@@ -1,0 +1,19 @@
+name: "goleft indexcov"
+description: "Quickly estimate coverage from a whole-genome bam or cram index"
+url: "https://github.com/brentp/goleft/tree/master/indexcov#indexcov"
+authors:
+  - "Thibault Dayris"
+input:
+  - aln: Path to indexed BAM/CRAM file
+  - fai: Path to fasta sequence index
+output:
+  - html: Optional path to HTML report
+  - bed: Optional path to coverage bed
+  - ped: Optional path to pedigree file
+  - roc: Optional path to coverage curves
+params:
+  - extra: Optional parameters besides `-d` or `-r`
+notes: |
+  Coverage bed, pedigree file, and roc curves are available in the HTML report.
+  Using `bed`, `ped`, or `roc` output keys alongside with `html` will make these
+  results unavailable in the HTML report, but won't break HTML content display.

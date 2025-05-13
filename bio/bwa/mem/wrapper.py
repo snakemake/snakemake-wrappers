@@ -53,6 +53,11 @@ elif sort == "samtools":
     # Sort alignments using samtools sort.
     pipe_cmd = "samtools sort {samtools_opts} {sort_extra} -T {tmpdir}"
 
+elif sort == "fgbio":
+    if sort_order == "queryname":
+        sort_extra += " -s Queryname"
+    pipe_cmd = "fgbio SortBam -i /dev/stdin -o {snakemake.output[0]} {sort_extra}"
+
 elif sort == "picard":
     # Sort alignments using picard SortSam.
     pipe_cmd = "picard SortSam {java_opts} {sort_extra} --INPUT /dev/stdin --TMP_DIR {tmpdir} --SORT_ORDER {sort_order} --OUTPUT {snakemake.output[0]}"

@@ -1,0 +1,46 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: linux-64
+# created-by: conda 24.9.2
+@EXPLICIT
+https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
+https://conda.anaconda.org/conda-forge/linux-64/ca-certificates-2025.1.31-hbcca054_0.conda#19f3a56f68d2fd06c516076bff482c52
+https://conda.anaconda.org/conda-forge/linux-64/libboost-headers-1.85.0-ha770c72_4.conda#00e4848983222729ccb7c69f1039f4b9
+https://conda.anaconda.org/conda-forge/linux-64/libgomp-14.2.0-h767d61c_2.conda#06d02030237f4d5b3d9a7e7d348fe3c6
+https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-14.2.0-h767d61c_2.conda#ef504d1acbd74b7cc6849ef8af47dd03
+https://conda.anaconda.org/conda-forge/linux-64/c-ares-1.34.5-hb9d3cd8_0.conda#f7f0d6cc2dc986d42ac2689ec88192be
+https://conda.anaconda.org/conda-forge/linux-64/gzip-1.14-hb9d3cd8_0.conda#84fa0d10c305971e39f516ca8354a9cd
+https://conda.anaconda.org/conda-forge/linux-64/libdeflate-1.22-hb9d3cd8_0.conda#b422943d5d772b7cc858b36ad2a92db5
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-14.2.0-h69a702a_2.conda#a2222a6ada71fb478682efe483ce0f92
+https://conda.anaconda.org/conda-forge/linux-64/libiconv-1.18-h4ce23a2_1.conda#e796ff8ddc598affdf7c173d6145f087
+https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.1-hb9d3cd8_0.conda#0e87378639676987af32fee53ba32258
+https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-14.2.0-h8f9b012_2.conda#a78c856b6dc6bf4ea8daeb9beaaa3fb0
+https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.1-hb9d3cd8_2.conda#edb0dca6bc32e4f4789199455a1dbeb8
+https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.5-h2d0b736_3.conda#47e340acb35de30501a76c7c799c41d7
+https://conda.anaconda.org/conda-forge/linux-64/openssl-3.5.0-h7b32b05_0.conda#bb539841f2a3fde210f387d00ed4bb9d
+https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-h4bc722e_7.conda#62ee74e96c5ebb0af99386de58cf9553
+https://conda.anaconda.org/conda-forge/linux-64/keyutils-1.6.1-h166bdaf_0.tar.bz2#30186d27e2c9fa62b45fb1476b7200e3
+https://conda.anaconda.org/conda-forge/linux-64/libedit-3.1.20250104-pl5321h7949ede_0.conda#c277e0a4d549b03ac1e9d6cbbe3d017b
+https://conda.anaconda.org/conda-forge/linux-64/libev-4.33-hd590300_2.conda#172bf1cd1ff8629f2b1179945ed45055
+https://conda.anaconda.org/bioconda/linux-64/libgff-2.0.0-h077b44d_2.tar.bz2#bc30f67663d75ea499ca1b51cf21388c
+https://conda.anaconda.org/conda-forge/linux-64/libjemalloc-5.3.0-h5888daf_1.conda#29f738fc41e063bfb120b1a667f684dc
+https://conda.anaconda.org/conda-forge/linux-64/liblzma-devel-5.8.1-hb9d3cd8_0.conda#8f456db836b4d3d00d3b6a6cc47009d8
+https://conda.anaconda.org/conda-forge/linux-64/libssh2-1.11.1-hf672d98_0.conda#be2de152d8073ef1c01b7728475f2fe7
+https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-14.2.0-h4852527_2.conda#c75da67f045c2627f59e6fcb5f4e3a9b
+https://conda.anaconda.org/conda-forge/linux-64/xz-gpl-tools-5.8.1-hbcc6ac9_0.conda#9177ea2e6886b8070012e1d68531ab2f
+https://conda.anaconda.org/conda-forge/linux-64/xz-tools-5.8.1-hb9d3cd8_0.conda#908d29a6cfd9e9a78d07012f5d1a8707
+https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb8e6e7a_2.conda#6432cb5d4ac0046c3ac0a8a0f95842f9
+https://conda.anaconda.org/conda-forge/linux-64/icu-75.1-he02047a_0.conda#8b189310083baabfb622af68fd9d3ae3
+https://conda.anaconda.org/conda-forge/linux-64/krb5-1.21.3-h659f571_0.conda#3f43953b7d3fb3aaa1d0d0723d91e368
+https://conda.anaconda.org/conda-forge/linux-64/libnghttp2-1.64.0-h161d5f1_0.conda#19e57602824042dfd0446292ef90488b
+https://conda.anaconda.org/conda-forge/linux-64/xz-5.8.1-hbcc6ac9_0.conda#c9880133bf4750a4c848f8d2c78d498c
+https://conda.anaconda.org/conda-forge/linux-64/libboost-1.85.0-h0ccab89_4.conda#4da1690badd566fc1041f91cd5655727
+https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.13.0-h332b0f4_0.conda#cbdc92ac0d93fe3c796e36ad65c7905c
+https://conda.anaconda.org/conda-forge/linux-64/libxml2-2.13.7-h4bc477f_1.conda#ad1f1f8238834cd3c88ceeaee8da444a
+https://conda.anaconda.org/conda-forge/linux-64/libboost-devel-1.85.0-h00ab1b0_4.conda#ded76b8670cb505006c891c4d45844a5
+https://conda.anaconda.org/conda-forge/linux-64/libhwloc-2.11.2-default_h0d58e46_1001.conda#804ca9e91bcaea0824a341d55b1684f2
+https://conda.anaconda.org/bioconda/linux-64/staden_io_lib-1.15.0-hfc9290b_4.tar.bz2#5d4f2e99a62ee3d3465b62d66125b745
+https://conda.anaconda.org/conda-forge/linux-64/boost-cpp-1.85.0-h3c6214e_4.conda#cc4533eabf5caa8b4fbb56418d1617a9
+https://conda.anaconda.org/conda-forge/linux-64/tbb-2022.1.0-h4ce085d_0.conda#f0afd0c7509f6c1b8d77ee64d7ba64b8
+https://conda.anaconda.org/bioconda/linux-64/salmon-1.10.3-h45fbf2d_4.tar.bz2#e50a8aff1a31191cddda4170bebe169a

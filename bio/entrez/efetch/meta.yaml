@@ -1,0 +1,7 @@
+name: efetch
+description: Obtain data from NCBI and Genbank using Entrez efetch
+url: https://www.ncbi.nlm.nih.gov/books/NBK179288/
+authors:
+  - Johannes Köster
+output:
+  - Any format supported by efetch

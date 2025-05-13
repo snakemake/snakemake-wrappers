@@ -62,36 +62,32 @@ else:
 
 species_filename = species if release >= 91 else species.capitalize()
 
+url = snakemake.params.get("url", "ftp://ftp.ensembl.org/pub")
 urls = [
-    "ftp://ftp.ensembl.org/pub/{branch}release-{release}/variation/vcf/{species}/{species_filename}{suffix}.{ext}".format(
-        release=release,
-        species=species,
-        suffix=suffix,
-        species_filename=species_filename,
-        branch=branch,
-        ext=ext,
-    )
+    f"{url}/{branch}release-{release}/variation/vcf/{species}/{species_filename}{suffix}.vcf.gz"
     for suffix in suffixes
-    for ext in ["vcf.gz", "vcf.gz.csi"]
 ]
-names = [os.path.basename(url) for url in urls if url.endswith(".gz")]
+
+names = [os.path.basename(url) for url in urls]
 
 try:
     gather = "curl {urls}".format(urls=" ".join(map("-O {}".format, urls)))
     workdir = os.getcwd()
+    out = os.path.abspath(snakemake.output[0])
     with tempfile.TemporaryDirectory() as tmpdir:
         if snakemake.input.get("fai"):
+            fai = os.path.abspath(snakemake.input.fai)
             shell(
                 "(cd {tmpdir}; {gather} && "
                 "bcftools concat -Oz --naive {names} > concat.vcf.gz && "
-                "bcftools reheader --fai {workdir}/{snakemake.input.fai} concat.vcf.gz "
-                "> {workdir}/{snakemake.output}) {log}"
+                "bcftools reheader --fai {fai} concat.vcf.gz "
+                "> {out}) {log}"
             )
         else:
             shell(
                 "(cd {tmpdir}; {gather} && "
                 "bcftools concat -Oz --naive {names} "
-                "> {workdir}/{snakemake.output}) {log}"
+                "> {out}) {log}"
             )
 except subprocess.CalledProcessError as e:
     if snakemake.log:

@@ -1,0 +1,4 @@
+channels:
+  - conda-forge
+dependencies:
+  - ROOT >6.24.0
