@@ -1,15 +1,35 @@
-rule test_deseq2_wald:
+rule test_deseq2_wald_ashr:
     input:
         dds="dds.RDS",
     output:
-        wald_rds="wald.RDS",
-        wald_tsv="dge.tsv",
-        deseq2_result_dir=directory("deseq_results"),
-        normalized_counts_table="counts.tsv",
-        normalized_counts_rds="counts.RDS",
+        wald_rds="ashr/wald.RDS",
+        wald_tsv="ashr/dge.tsv",
+        deseq2_result_dir=directory("deseq_results/ashr/"),
+        normalized_counts_table="ashr/counts.tsv",
+        normalized_counts_rds="ashr/counts.RDS",
     params:
         deseq_extra="",
         shrink_extra="type='ashr'",
+        results_extra="",
+        contrast=["condition", "A", "B"],
+    threads: 1
+    log:
+        "logs/deseq2.log",
+    wrapper:
+        "master/bio/deseq2/wald"
+
+rule test_deseq2_wald_apeglm:
+    input:
+        dds="dds.RDS",
+    output:
+        wald_rds="apeglm/wald.RDS",
+        wald_tsv="apeglm/dge.tsv",
+        deseq2_result_dir=directory("deseq_results/apeglm/"),
+        normalized_counts_table="apeglm/counts.tsv",
+        normalized_counts_rds="apeglm/counts.RDS",
+    params:
+        deseq_extra="",
+        shrink_extra="type='apeglm'",
         results_extra="",
         contrast=["condition", "A", "B"],
     threads: 1
