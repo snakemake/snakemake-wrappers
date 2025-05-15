@@ -215,7 +215,7 @@ if ("wald_tsv" %in% base::names(x = snakemake@output)) {
       base::message("Result extraction command: ", results_cmd)
 
       shrink_extra <- add_extra(
-        "dds = wald, res = results_frame, contrast = contrast[1], parallel = parallel, type = 'ashr'",
+        "dds = wald, res = results_frame, contrast = contrast[1], parallel = parallel",
         "shrink_extra"
       )
       shrink_cmd <- base::paste0("DESeq2::lfcShrink(", shrink_extra, ")")
