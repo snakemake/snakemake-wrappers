@@ -26,7 +26,7 @@ add_extra <- function(wrapper_extra, snakemake_param_name) {
     user_param <- snakemake@params[[snakemake_param_name]]
 
     param_is_empty <- user_param == ""
-    param_is_character <- inherits(x = user_param, what = "charcter")
+    param_is_character <- inherits(x = user_param, what = "character")
     if ((! param_is_empty) && (param_is_character)) {
       # Case user do not provide an empty string
       # (R does not like trailing commas at the end
