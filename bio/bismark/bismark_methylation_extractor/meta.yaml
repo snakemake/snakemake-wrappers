@@ -20,7 +20,7 @@ output:
   - splitting_report: Splitting report, \*_splitting_report.txt (if key is provided, the out file will be renamed to this name)
   - methylome_CpG_cov: Bismark coverage file for CpG context, \*.bismark.cov.gz (if key is provided, the out file will be renamed to this name)
   - methylome_CpG_mlevel_bedGraph: Bismark methylation level track, \*.bedGraph.gz
-  - read_base_meth_state_cpg: Per read CpG base methylation info, CpG_context_\*.txt.gz  (if key is provided, the out file will be renamed to this name)
-  - read_base_meth_state_chg: Per read CpG base methylation info, CHG_context_\*.txt.gz  (if key is provided, the out file will be renamed to this name)
-  - read_base_meth_state_chh: Per read CpG base methylation info, CHH_context_\*.txt.gz  (if key is provided, the out file will be renamed to this name)
+  - read_base_meth_state_cpg: Per read CpG base methylation info, CpG_context\_\*.txt.gz  (if key is provided, the out file will be renamed to this name)
+  - read_base_meth_state_chg: Per read CpG base methylation info, CHG_context\_\*.txt.gz  (if key is provided, the out file will be renamed to this name)
+  - read_base_meth_state_chh: Per read CpG base methylation info, CHH_context\_\*.txt.gz  (if key is provided, the out file will be renamed to this name)
 blacklisted: Wrapper fails to move output PNG to the right place.

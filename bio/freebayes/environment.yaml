@@ -9,5 +9,5 @@ dependencies:
   - htslib =1.21
   - parallel =20250422
   - bedtools =2.31.1
-  - sed =4.8
+  - sed =4.9
   - snakemake-wrapper-utils =0.7.2
