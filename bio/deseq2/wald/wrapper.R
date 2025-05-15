@@ -134,7 +134,7 @@ if ("deseq2_result_dir" %in% base::names(snakemake@output)) {
   base::message(results_cmd)
 
   shrink_extra <- add_extra(
-    "dds = wald, res = results_frame, contrast = contrast, parallel = parallel, type = 'ashr'",
+    "dds = wald, res = results_frame, contrast = contrast, parallel = parallel",
     "shrink_extra"
   )
   shrink_cmd <- base::paste0("DESeq2::lfcShrink(", shrink_extra, ")")
