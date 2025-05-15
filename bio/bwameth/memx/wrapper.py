@@ -31,40 +31,6 @@ java_opts = get_java_opts(snakemake)
 bwa_threads = snakemake.threads
 samtools_threads = snakemake.threads - 1
 
-# Checking required indexes
-mem_idx = {
-    ".c2t",
-    ".c2t.amb",
-    ".c2t.ann",
-    ".c2t.bwt",
-    ".c2t.pac",
-    ".c2t.sa",
-}
-
-mem2_idx = {
-    ".c2t",
-    ".c2t.0123",
-    ".c2t.amb",
-    ".c2t.ann",
-    ".c2t.bwt.2bit.64",
-    ".c2t.pac",
-}
-
-# Extract index prefix, and list of index extensions
-index = os.path.commonprefix(snakemake.input.idx)
-index_extensions = set(idx[len(index) - 4 :] for idx in snakemake.input.idx)
-missing_mem_idx = mem_idx - index_extensions
-missing_mem2_idx = mem2_idx - index_extensions
-if (len(missing_mem2_idx) > 0) and (len(missing_mem_idx) > 0):
-    # If ONE of the sets is empty, then all the index for one of the aligners
-    # are present.
-    raise ValueError(
-        "Missing required indices for both bwa-mem and bwa-mem2. No aligner can "
-        f"be launched. bwa-mem misses {missing_mem_idx}, while bwa-mem2 misses "
-        f"{missing_mem2_idx}. Please provide missing files. {index_extensions}"
-    )
-
-
 # Check arguments
 if sort_order not in {"coordinate", "queryname"}:
     raise ValueError(f"Unexpected value for sort_order ({sort_order})")
@@ -73,14 +39,14 @@ if sort_order not in {"coordinate", "queryname"}:
 if sort == "none":
     # Correctly assign number of threads according to user request
     if samtools_threads >= 1:
-        samtools_opts += " --threads {samtools_threads} "
+        samtools_opts += f" --threads {samtools_threads} "
 
     if str(snakemake.output[0]).lower().endswith(("bam", "cram")):
         # Simply convert to bam using samtools view.
-        pipe_cmd = " | samtools view {samtools_opts} > {snakemake.output[0]}"
+        pipe_cmd = f" | samtools view {samtools_opts} > {snakemake.output[0]}"
     else:
         # Do not perform any sort nor compression, output raw sam
-        pipe_cmd = " > {snakemake.output[0]} "
+        pipe_cmd = f" > {snakemake.output[0]} "
 
 
 elif sort == "samtools":
@@ -144,8 +110,9 @@ else:
     raise ValueError("Either provide `input.fq` or both `input.fq1` and `input.fq2`")
 
 with TemporaryDirectory() as tmpdir:
+    pipe_cmd = pipe_cmd.format(**locals())
     shell(
         "(bwameth.py --threads {snakemake.threads} "
         " {extra} --reference {snakemake.input.ref} "
-        " {fastq_files} " + pipe_cmd + " ) {log}"
+        " {fastq_files} {pipe_cmd} ) {log}"
     )
