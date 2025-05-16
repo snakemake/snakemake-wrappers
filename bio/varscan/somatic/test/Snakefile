@@ -5,7 +5,7 @@ rule varscan_somatic_single_mpileup:
         snp="single_mpileup/vcf/{sample}.snp.vcf",
         indel="single_mpileup/vcf/{sample}.indel.vcf",
     log:
-        "logs/single_mpileup/{sample}.log"
+        "logs/single_mpileup/{sample}.log",
     message:
         "Calling somatic variants from sample {wildcards.sample} using a normal-tumor file"
     threads: 1
@@ -19,12 +19,13 @@ rule varscan_somatic_single_mpileup:
 
 rule varscan_somatic_dual_mpileup:
     input:
-        "mpileup/{sample}.mpileup.gz" "mpileup/{sample}.tumor.mpileup.gz",
+        "mpileup/{sample}.mpileup.gz",
+        "mpileup/{sample}.tumor.mpileup.gz",
     output:
         snp="dual_mpileup/vcf/{sample}.snp.vcf",
         indel="dual_mpileup/vcf/{sample}.indel.vcf",
     log:
-        "logs/dual_mpileup/{sample}.log"
+        "logs/dual_mpileup/{sample}.log",
     message:
         "Calling somatic variants from sample {wildcards.sample} using both normal and tumor files."
     threads: 1
