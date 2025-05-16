@@ -9,7 +9,7 @@ rule test_deseq2_wald_ashr:
         normalized_counts_rds="ashr/counts.RDS",
     params:
         deseq_extra="",
-        shrink_extra="type=ashr",
+        shrink_extra="type='ashr'",
         results_extra="",
         contrast=["condition", "A", "B"],
     threads: 1
@@ -29,7 +29,7 @@ rule test_deseq2_wald_apeglm:
         normalized_counts_rds="apeglm/counts.RDS",
     params:
         deseq_extra="",
-        shrink_extra="type=apeglm",
+        shrink_extra="type='apeglm'",
         results_extra="",
         coef=2,
     threads: 1
