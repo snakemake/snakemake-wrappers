@@ -20,6 +20,7 @@ mem_per_thread_mb = int(
     get_mem(snakemake, "MiB") / snakemake.threads * (1.0 - mem_overhead_factor)
 )
 
+
 def basename_without_ext(file_path):
     """Returns basename of file path, without the file extension."""
 
