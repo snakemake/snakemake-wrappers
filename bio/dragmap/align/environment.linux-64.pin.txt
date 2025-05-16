@@ -112,7 +112,7 @@ https://conda.anaconda.org/bioconda/linux-64/samtools-1.21-h96c455f_1.tar.bz2#0f
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libxtst-1.2.5-hb9d3cd8_3.conda#7bbe9a0cc0df0ac5f5a8ad6d6a11af2f
 https://conda.anaconda.org/conda-forge/linux-64/cairo-1.18.4-h3394656_0.conda#09262e66b19567aff4f592fb53b28760
 https://conda.anaconda.org/conda-forge/linux-64/libboost-python-1.84.0-py313hf0ab243_7.conda#4d0032886fe3e25565489a979fdeaeaf
-https://conda.anaconda.org/conda-forge/linux-64/harfbuzz-11.1.0-h3beb420_0.conda#95e3bb97f9cdc251c0c68640e9c10ed3
+https://conda.anaconda.org/conda-forge/linux-64/harfbuzz-11.2.1-h3beb420_0.conda#0e6e192d4b3d95708ad192d957cf3163
 https://conda.anaconda.org/conda-forge/linux-64/libboost-python-devel-1.84.0-py313h59e1532_7.conda#c056e0a0b640b0d58f23cb631ea26398
 https://conda.anaconda.org/conda-forge/linux-64/boost-1.84.0-h59e1532_7.conda#2629249e7c14c5414d1197b9b48b013a
 https://conda.anaconda.org/conda-forge/linux-64/openjdk-23.0.2-h53dfc1b_2.conda#47eea31e0c3f960459237823e5e21a32
