@@ -171,7 +171,7 @@ def test_miller(run):
             "miller/split_2.csv": "expected/split_2.csv",
             "miller/uniq.tsv": "expected/uniq.tsv",
             "miller/pipe.tsv": "expected/pipe.tsv",
-        }
+        },
     )
 
 
@@ -5317,7 +5317,15 @@ def test_varscan_mpileup2snp(run):
 def test_varscan_somatic(run):
     run(
         "bio/varscan/somatic",
-        ["snakemake", "--cores", "1", "vcf/a.snp.vcf", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "single_mpileup/vcf/a.snp.vcf",
+            "dual_mpileup/vcf/a.snp.vcf",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -5534,6 +5542,7 @@ def test_ensembl_sequence_old_release(run):
         ["snakemake", "-s", "old_release.smk", "--cores", "1", "--use-conda", "-F"],
     )
 
+
 def test_ensembl_sequence_gzipped(run):
     run(
         "bio/reference/ensembl-sequence",
@@ -5557,6 +5566,7 @@ def test_ensembl_sequence_multiple_chromosomes(run):
         },
     )
 
+
 def test_ensembl_sequence_multiple_chromosomes_gzipped(run):
     run(
         "bio/reference/ensembl-sequence",
@@ -5565,7 +5575,6 @@ def test_ensembl_sequence_multiple_chromosomes_gzipped(run):
             "refs/chr6_and_chr1.fa.gz": "expected/chr6_and_chr1.fa.gz"
         },
     )
-
 
 
 def test_ensembl_sequence_chromosome_old_release(run):
@@ -5816,7 +5825,7 @@ def test_bismark_bismark(run):
         ],
         compare_results_with_expected={
             "results/bismark/b_genome.nucleotide_stats.txt": "expected/b_genome.nucleotide_stats.txt",
-        }
+        },
     )
 
 
