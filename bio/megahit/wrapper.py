@@ -73,19 +73,11 @@ else:
 
     shell("megahit " " --continue " " -o {output_dir} " " >> {snakemake.log[0]} 2>&1 ")
 
+
 # Rename/ move output files
-
-# bio/megahit/wrapper.py
-
-# … around line 78 …
 Output_key_mapping = {
     "contigs": "final.contigs.fa",  # MEGAHIT's output file name
 }
-
-# … later, around line 93 …
-if not has_named_output:
-    file_produced = os.path.join(output_dir, "final.contigs.fa")
-    file_renamed = snakemake.output[0]
 
 has_named_output = False
 for key in Output_key_mapping:
@@ -97,9 +89,8 @@ for key in Output_key_mapping:
         if file_produced != file_renamed:
             shutil.move(file_produced, file_renamed)
 
-
 if not has_named_output:
-    file_produced = os.path.join(output_dir, "contigs.fasta")
+    file_produced = os.path.join(output_dir, "final.contigs.fa")
     file_renamed = snakemake.output[0]
 
     if file_produced != file_renamed:
