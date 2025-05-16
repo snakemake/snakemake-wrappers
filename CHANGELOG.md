@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.2.0](https://github.com/snakemake/snakemake-wrappers/compare/v6.1.1...v6.2.0) (2025-05-16)
+
+
+### Features
+
+* bwameth mem and mem2 ([#3728](https://github.com/snakemake/snakemake-wrappers/issues/3728)) ([63f5e87](https://github.com/snakemake/snakemake-wrappers/commit/63f5e877e2191e6f17871e97d4cb6a353f85ef30))
+
 ## [6.1.1](https://github.com/snakemake/snakemake-wrappers/compare/v6.1.0...v6.1.1) (2025-05-16)
 
 
