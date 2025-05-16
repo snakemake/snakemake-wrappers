@@ -14,7 +14,7 @@ output:
   - normalized_counts_rds: Optional path to normalized counts (RDS formatted)
 params:
   - deseq_extra: Optional parameters provided to the function `DESeq()`
-  - shrink_extra: Optional parameters provided to the function `lfcSchrink()`
+  - shrink_extra: Optional parameters provided to the function `lfcShrink()`
   - results_extra: Optional parameters provided to the function `result()`
   - contrast: List of characters. See notes below.
 note: |
