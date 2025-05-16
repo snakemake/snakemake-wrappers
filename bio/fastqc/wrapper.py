@@ -16,7 +16,9 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 # Define memory per thread (https://github.com/s-andrews/FastQC/blob/master/fastqc#L201-L222)
 mem_overhead_factor = snakemake.params.get("mem_overhead_factor", 0.1)
-assert 0 <= mem_overhead_factor < 1, f"mem_overhead_factor must be between 0 and 1, got {mem_overhead_factor}"
+assert (
+    0 <= mem_overhead_factor < 1
+), f"mem_overhead_factor must be between 0 and 1, got {mem_overhead_factor}"
 mem_per_thread_mb = int(
     get_mem(snakemake, "MiB") / snakemake.threads * (1.0 - mem_overhead_factor)
 )
