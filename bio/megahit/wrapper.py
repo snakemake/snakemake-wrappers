@@ -71,12 +71,7 @@ else:
         "echo '\n\nRestart MEGAHIT \n Remove pipline_state file copy files to force copy files if necessary.' >> {log[0]}"
     )
 
-    shell(
-        "megahit "
-        " --continue "
-        " -o {output_dir} "
-        " >> {snakemake.log[0]} 2>&1 "
-    )
+    shell("megahit " " --continue " " -o {output_dir} " " >> {snakemake.log[0]} 2>&1 ")
 
 # Rename/ move output files
 
