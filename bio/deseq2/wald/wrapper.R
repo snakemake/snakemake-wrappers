@@ -17,6 +17,7 @@ base::library(package = "BiocParallel", character.only = TRUE)
 base::library(package = "SummarizedExperiment", character.only = TRUE)
 base::library(package = "DESeq2", character.only = TRUE)
 base::library(package = "ashr", character.only = TRUE)
+base::library(package = "apeglm", character.only = TRUE)
 
 # Function to handle optional user-defined parameters
 # and still follow R syntax
@@ -26,14 +27,13 @@ add_extra <- function(wrapper_extra, snakemake_param_name) {
     user_param <- snakemake@params[[snakemake_param_name]]
 
     param_is_empty <- user_param == ""
-    param_is_character <- inherits(x = user_param, what = "charcter")
-    if ((! param_is_empty) && (param_is_character)) {
-      # Case user do not provide an empty string
+    if (! user_param == "") {
+      # Case user do not provide an empty value
       # (R does not like trailing commas at the end
       # of a function call)
       wrapper_extra <- base::paste(
         wrapper_extra,
-        user_param,
+        base::as.character(x=user_param),
         sep = ", "
       )
     } # Nothing to do if user provides an empty / NULL parameter value
@@ -132,11 +132,26 @@ if ("deseq2_result_dir" %in% base::names(snakemake@output)) {
   results_cmd <- base::paste0("DESeq2::results(", results_extra, ")")
   base::message("Command line used for TSV results creation:")
   base::message(results_cmd)
+  model_matrix <- stats::model.matrix(
+    BiocGenerics::design(wald), 
+    SummarizedExperiment::colData(wald)
+  )
+  coef <- BiocGenerics::ncol(model_matrix)
 
   shrink_extra <- add_extra(
-    "dds = wald, res = results_frame, contrast = contrast, parallel = parallel, type = 'ashr'",
-    "shrink_extra"
+    wrapper_extra = "dds = wald, parallel = parallel",
+    snakemake_param_name = "shrink_extra"
   )
+  if (base::grepl(pattern='ashr', x=shrink_extra, fixed=TRUE)) {
+    shrink_extra <- base::paste0(shrink_extra, ", res=results_frame, contrast=contrast")
+  } else if (base::grepl(pattern='normal', x=shrink_extra, fixed=TRUE)) {
+    shrink_extra <- base::paste0(shrink_extra, ", res=results_frame, coef=result_name")
+  } else if (base::grepl(pattern="apeglm", x=shrink_extra, fixed=TRUE)) {
+    shrink_extra <- base::paste0(
+      shrink_extra,
+      ", coef=coef"
+    )
+  }
   shrink_cmd <- base::paste0("DESeq2::lfcShrink(", shrink_extra, ")")
   base::message("Command line used for log(FC) shrinkage:")
   base::message(shrink_cmd)
@@ -194,19 +209,31 @@ if ("wald_tsv" %in% base::names(x = snakemake@output)) {
     } else if (contrast_length == 3) {
       # Case user provided both tested and reference level,
       # and studied factor.
-      contrast <- sapply(
+      snake_contrast <- sapply(
         snakemake@params[["contrast"]],
         function(extra) base::as.character(x = extra)
       )
       contrast <- base::paste0(
         "contrast=c('",
-        contrast[1],
+        snake_contrast[1],
         "', '",
-        contrast[2],
+        snake_contrast[2],
         "', '",
-        contrast[3],
+        snake_contrast[3],
         "')"
       )
+      result_name <- base::paste(
+        snake_contrast[1],
+        snake_contrast[3],
+        "vs",
+        snake_contrast[2],
+        sep="_"
+      )
+      model_matrix <- stats::model.matrix(
+        BiocGenerics::design(wald), 
+        SummarizedExperiment::colData(wald)
+      )
+      apeglm_coef <- BiocGenerics::ncol(model_matrix)
 
       # Finally saving results as contrast has been
       # built from user input.
@@ -215,9 +242,19 @@ if ("wald_tsv" %in% base::names(x = snakemake@output)) {
       base::message("Result extraction command: ", results_cmd)
 
       shrink_extra <- add_extra(
-        "dds = wald, res = results_frame, contrast = contrast[1], parallel = parallel, type = 'ashr'",
+        "dds = wald, parallel = parallel",
         "shrink_extra"
       )
+      if (base::grepl(pattern='ashr', x=shrink_extra, fixed=TRUE)) {
+        shrink_extra <- base::paste0(shrink_extra, ", res = results_frame, contrast=contrast")
+      } else if (base::grepl(pattern='normal', x=shrink_extra, fixed=TRUE)) {
+        shrink_extra <- base::paste0(shrink_extra, ", res = results_frame, coef=result_name")
+      } else if (base::grepl(pattern='apeglm', x=shrink_extra, fixed=TRUE)) {
+        shrink_extra <- base::paste0(
+          shrink_extra,
+          ", coef=apeglm_coef"
+        )
+      }
       shrink_cmd <- base::paste0("DESeq2::lfcShrink(", shrink_extra, ")")
       base::message("Command line used for log(FC) shrinkage:")
       base::message(shrink_cmd)

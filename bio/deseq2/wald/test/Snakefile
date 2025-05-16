@@ -1,19 +1,64 @@
-rule test_deseq2_wald:
+rule test_deseq2_wald_apeglm:
     input:
         dds="dds.RDS",
     output:
-        wald_rds="wald.RDS",
-        wald_tsv="dge.tsv",
-        deseq2_result_dir=directory("deseq_results"),
-        normalized_counts_table="counts.tsv",
-        normalized_counts_rds="counts.RDS",
+        wald_rds="wald_apeglm.RDS",
+        wald_tsv="dge_apeglm.tsv",
+        deseq2_result_dir=directory("deseq_results_apeglm"),
+        normalized_counts_table="counts_apeglm.tsv",
+        normalized_counts_rds="counts_apeglm.RDS",
     params:
         deseq_extra="",
-        shrink_extra="",
+        # Optional parameters for `lfcShrink` besides dds, res, parallel, contrast, and coef
+        shrink_extra="type='apeglm'",
         results_extra="",
         contrast=["condition", "A", "B"],
     threads: 1
     log:
-        "logs/deseq2.log",
+        "logs/deseq2_apeglm.log",
+    wrapper:
+        "master/bio/deseq2/wald"
+
+
+rule test_deseq2_wald_ashr:
+    input:
+        dds="dds.RDS",
+    output:
+        wald_rds="wald_ashr.RDS",
+        wald_tsv="dge_ashr.tsv",
+        deseq2_result_dir=directory("deseq_results_ashr"),
+        normalized_counts_table="counts_ashr.tsv",
+        normalized_counts_rds="counts_ashr.RDS",
+    params:
+        deseq_extra="",
+        # Optional parameters for `lfcShrink` besides dds, res, parallel, contrast, and coef
+        shrink_extra="type='ashr'",
+        results_extra="",
+        contrast=["condition", "A", "B"],
+    threads: 1
+    log:
+        "logs/deseq2_ashr.log",
+    wrapper:
+        "master/bio/deseq2/wald"
+
+
+rule test_deseq2_wald_normal:
+    input:
+        dds="dds.RDS",
+    output:
+        wald_rds="wald_normal.RDS",
+        wald_tsv="dge_normal.tsv",
+        deseq2_result_dir=directory("deseq_results_normal"),
+        normalized_counts_table="counts_normal.tsv",
+        normalized_counts_rds="counts_normal.RDS",
+    params:
+        deseq_extra="",
+        # Optional parameters for `lfcShrink` besides dds, res, parallel, contrast, and coef
+        shrink_extra="type='normal'",
+        results_extra="",
+        contrast=["condition", "A", "B"],
+    threads: 1
+    log:
+        "logs/deseq2_normal.log",
     wrapper:
         "master/bio/deseq2/wald"
