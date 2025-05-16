@@ -17,7 +17,7 @@ extra = snakemake.params.get("extra", "")
 java_opts = get_java_opts(snakemake)
 
 # Output prefix
-prefix = op.path.splitext(snakemake.output.snp)[0]
+prefix = os.path.splitext(snakemake.output.snp)[0]
 
 # Case there is a mpileup with both normal and tumor
 mpileup = "--mpileup 1" if len(snakemake.input) == 1 else ""
@@ -26,7 +26,7 @@ shell(
     "varscan somatic"  # Tool and its subcommand
     " {snakemake.input}"  # Path to input file(s)
     " {prefix}"  # Path to output
-    " {java_opts}" # Java options
+    " {java_opts}"  # Java options
     " {extra}"  # Extra parameters
     " {mpileup}"
     " --output-snp {snakemake.output.snp}"  # Path to snp output file
