@@ -1,0 +1,20 @@
+name: bwa-meth memx
+url: https://github.com/brentp/bwa-meth?tab=readme-ov-file#align
+description: >
+  Align BS-Seq reads on an indexed reference
+authors:
+  - Thibault Dayris
+input:
+  - idx: List of paths to indexed reference files
+  - fq: List of path to fastq files
+  - ref: Path to reference fasta file
+output:
+  - Path to mapped reads (SAM/BAM/CRAM)
+params:
+  - extra: Optional parameters passed to `bwameth.py`, besides IO and threading.
+  - sort: Either `none` (default), `picard`, or `samtools`.
+  - sort_order: Either `coordinate` (default), or `queryname`.
+  - sort_extra: Optional parameters provided to samtools/picard besides IO and threading.
+notes: >
+  Both SAM sorting and compression and handled by either samtools or picard. No duplication analysis is performed by this wrapper.
+
