@@ -1,0 +1,26 @@
+__author__ = "Filipe G. Vieira"
+__copyright__ = "Copyright 2024, Filipe G. Vieira"
+__license__ = "MIT"
+
+import os
+import tempfile
+from snakemake.shell import shell
+
+extra = snakemake.params.get("extra", "")
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+
+
+target = snakemake.input.get("target", "")
+if isinstance(target, list):
+    target = os.path.commonprefix(snakemake.input.target)
+
+# TODO: arbitrary output file names
+out = snakemake.output
+if isinstance(out, list):
+    out = os.path.commonprefix(out).rstrip("_")
+
+
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "mmseqs {snakemake.params.module} {snakemake.input.query} {target} {out} {tmpdir} --threads {snakemake.threads} {extra} {log}"
+    )
