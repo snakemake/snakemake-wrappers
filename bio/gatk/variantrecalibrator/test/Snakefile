@@ -61,4 +61,4 @@ rule haplotype_caller:
     resources:
         mem_mb=1024,
     wrapper:
-        "bio/gatk/variantrecalibrator"
+        "master/bio/gatk/variantrecalibrator"
