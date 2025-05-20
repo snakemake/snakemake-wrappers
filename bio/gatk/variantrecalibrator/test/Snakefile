@@ -2,40 +2,40 @@
 rule haplotype_caller:
     input:
         vcf=storage.http(
-            "github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/VQSR/phase1.projectConsensus.chr20.1M-10M.raw.snps.vcf"
+            "https://github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/VQSR/phase1.projectConsensus.chr20.1M-10M.raw.snps.vcf"
         ),
         ref=storage.http(
-            "github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/human_g1k_v37.20.21.fasta"
+            "https://github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/human_g1k_v37.20.21.fasta"
         ),
         fai=storage.http(
-            "github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/human_g1k_v37.20.21.fasta.fai"
+            "https://github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/human_g1k_v37.20.21.fasta.fai"
         ),
         dict=storage.http(
-            "github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/human_g1k_v37.20.21.dict"
+            "https://github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/human_g1k_v37.20.21.dict"
         ),
         mills=storage.http(
-            "github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/VQSR/ALL.wgs.indels_mills_devine_hg19_leftAligned_collapsed_double_hit.sites.20.1M-10M.vcf"
+            "https://github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/VQSR/ALL.wgs.indels_mills_devine_hg19_leftAligned_collapsed_double_hit.sites.20.1M-10M.vcf"
         ),
         mills_idx=storage.http(
-            "github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/VQSR/ALL.wgs.indels_mills_devine_hg19_leftAligned_collapsed_double_hit.sites.20.1M-10M.vcf.idx"
+            "https://github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/VQSR/ALL.wgs.indels_mills_devine_hg19_leftAligned_collapsed_double_hit.sites.20.1M-10M.vcf.idx"
         ),
         omni=storage.http(
-            "github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/VQSR/Omni25_sites_1525_samples.b37.20.1M-10M.vcf"
+            "https://github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/VQSR/Omni25_sites_1525_samples.b37.20.1M-10M.vcf"
         ),
         omni_idx=storage.http(
-            "github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/VQSR/Omni25_sites_1525_samples.b37.20.1M-10M.vcf.idx"
+            "https://github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/VQSR/Omni25_sites_1525_samples.b37.20.1M-10M.vcf.idx"
         ),
         g1k=storage.http(
-            "github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/VQSR/combined.phase1.chr20.raw.indels.filtered.sites.1M-10M.vcf"
+            "https://github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/VQSR/combined.phase1.chr20.raw.indels.filtered.sites.1M-10M.vcf"
         ),
         g1k_idx=storage.http(
-            "github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/VQSR/combined.phase1.chr20.raw.indels.filtered.sites.1M-10M.vcf.idx"
+            "https://github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/VQSR/combined.phase1.chr20.raw.indels.filtered.sites.1M-10M.vcf.idx"
         ),
         dbsnp=storage.http(
-            "github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/VQSR/dbsnp_132_b37.leftAligned.20.1M-10M.vcf"
+            "https://github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/VQSR/dbsnp_132_b37.leftAligned.20.1M-10M.vcf"
         ),
         dbsnp_idx=storage.http(
-            "github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/VQSR/dbsnp_132_b37.leftAligned.20.1M-10M.vcf.idx"
+            "https://github.com/broadinstitute/gatk/raw/4.2.5.0/src/test/resources/large/VQSR/dbsnp_132_b37.leftAligned.20.1M-10M.vcf.idx"
         ),
     output:
         vcf="calls/all.recal.vcf",
