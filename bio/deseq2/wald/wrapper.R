@@ -248,7 +248,7 @@ if ("deseq2_result_dir" %in% base::names(snakemake@output)) {
     # Apeglm does not accept to correct intercept. It raises an error
     # if coef == 1. This factor is skipped and all other results are
     # iteratively saved on disk
-    if (((! base::grepl("ashr", shrink_extra)) || (! base::grepl("normal", shrink_extra))) && (coef < 2)) {
+    if ((! (base::grepl("ashr", shrink_extra)) || ( base::grepl("normal", shrink_extra))) && (coef < 2)) {
       base::message(
         "Cannot run `apeglm` on `",
         result_name,
@@ -310,7 +310,7 @@ if ("wald_tsv" %in% base::names(x = snakemake@output)) {
 
     # Shrinking:
     shrink_extra <- lfc_shrink_additional_parameters(
-      shrink_extrai = snakemake@params[["shrink_extra"]],
+      shrink_extra = snakemake@params[["shrink_extra"]],
       coef = coef,
       name = base::paste0("'", name, "'")
     )
