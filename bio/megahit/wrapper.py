@@ -41,8 +41,7 @@ elif len(reads) >= 4 and not hasattr(snakemake.input, "r1"):
     input_arg += " --read {} ".format(reads[3])
 
 # run megahit
-output_dir = os.path.dirname(snakemake.output.get("contigs"))
-with tempfile.TemporaryDirectory(dir=os.path.dirname(output_dir)) as temp_dir:
+with tempfile.TemporaryDirectory() as temp_dir:
     output_temp_dir = os.path.join(temp_dir, "temp")
 
     shell(
