@@ -6403,7 +6403,6 @@ def test_megahit(run):
         "bio/megahit",
         [
             "snakemake",
-            "run_megahit",
             "--cores",
             "2",
             "--use-conda",
