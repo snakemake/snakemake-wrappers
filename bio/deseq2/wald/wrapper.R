@@ -25,15 +25,16 @@ add_extra <- function(wrapper_extra, snakemake_param_name) {
   if (snakemake_param_name %in% base::names(snakemake@params)) {
     # Case user provides snakemake_param_name in snakemake rule
     user_param <- snakemake@params[[snakemake_param_name]]
+    base::message(user_param)
+    base::message(wrapper_extra)
 
-    param_is_empty <- user_param == ""
     if (! user_param == "") {
       # Case user do not provide an empty value
       # (R does not like trailing commas at the end
       # of a function call)
       wrapper_extra <- base::paste(
         wrapper_extra,
-        base::as.character(x=user_param),
+        base::as.character(x = user_param),
         sep = ", "
       )
     } # Nothing to do if user provides an empty / NULL parameter value
@@ -43,19 +44,110 @@ add_extra <- function(wrapper_extra, snakemake_param_name) {
   base::return(wrapper_extra)
 }
 
+
+# A result name is build using the following template
+# {factor}_{tested}_vs_{ref}
+get_result_name_from_params <- function(contrast_vector, dds) {
+  # Instantiate to null in order to let DESeq2 raise an error if user provided
+  # contrast_vector does not fit DESeq2 standards
+  name <- NULL
+  contrast_length <- base::length(contrast_vector)
+
+  if (contrast_length == 1) {
+    name <- contrast_vector[1]
+  } else if (contrast_length == 2) {
+    # There may be ambguity here with factors having identical level names
+    # The suffix of the expected result:
+    suffix <- base::paste(
+      contrast_vector[2], "vs", contrast_vector[1], sep = "_"
+    )
+    names <- DESeq2::resultsNames(dds)
+    # All possible results matchig this suffix
+    names <- names[base::endsWith(names, suffix)]
+    if (! base::length(names) == 1) {
+      base::stop(
+        "Could not guess correct result name from contrast ",
+        "due to the following ambiguity:",
+        base::paste(DESeq2::resultsNames(dds), sep = " "),
+        " based on the following suffix: ",
+        suffix
+      )
+    }
+    # Case there is no abiguity:
+    name <- names[1]
+  } else if (contrast_length == 3) {
+    name <- base::paste(
+      contrast_vector[1],
+      contrast_vector[3],
+      "vs",
+      contrast_vector[2],
+      sep = "_"
+    )
+  }
+
+  base::return(name)
+}
+
+
+# Function to address concerns about `coef` used in `apeglm` package
+get_coef_from_dds_and_params <- function(contrast_vector, dds) {
+  # Set to null in order to raise an explicit error in DESeq2
+  coef <- NULL
+  results_names <- DESeq2::resultsNames(dds)
+  name <- get_result_name_from_params(contrast_vector, dds)
+  # Raising eror with message since the later command
+  # would fail before DESeq2 could raise any error.
+  if (! name %in% results_names) {
+    base::stop(
+      "Couldn't find resultName: ",
+      name,
+      " within ",
+      base::paste(results_names)
+    )
+  }
+  coef <- base::which(results_names == name)
+  base::return(coef)
+}
+
+
+# Fill parameters for lfcShrink
+lfc_shrink_additional_parameters <- function(shrink_extra, coef, name) {
+  # Acquire user-defined optional parameters
+  shrink_extra <- add_extra(
+    wrapper_extra = "dds = wald, parallel = parallel",
+    snakemake_param_name = "shrink_extra"
+  )
+
+  # Add coef to access results easily
+  if (base::grepl(pattern = "apeglm", x = shrink_extra, fixed = TRUE)) {
+    shrink_extra <- base::paste0(shrink_extra, ", coef=", coef)
+  } else {
+    shrink_extra <- base::paste0(shrink_extra, ", coef=", name)
+  }
+
+  base::return(shrink_extra)
+}
+
+
 # Setting up multithreading if required
 parallel <- FALSE
 if (snakemake@threads > 1) {
-    BiocParallel::register(
-      BPPARAM = BiocParallel::MulticoreParam(snakemake@threads)
-    )
-    parallel <- TRUE
+  BiocParallel::register(
+    BPPARAM = BiocParallel::MulticoreParam(snakemake@threads)
+  )
+  parallel <- TRUE
 }
 
 # Load DESeq2 dataset
 dds_path <- base::as.character(x = snakemake@input[["dds"]])
 dds <- base::readRDS(file = dds_path)
 base::message("Libraries and dataset loaded")
+
+# Ensure future "paste" command work
+contrast_vector <- base::sapply(
+  snakemake@params[["contrast"]],
+  function(extra) base::as.character(x = extra)
+)
 
 # Build extra parameters for DESeq2
 extra_deseq2 <- add_extra(
@@ -115,68 +207,81 @@ if ("deseq2_result_dir" %in% base::names(snakemake@output)) {
   # Acquire list of available results in DESeqDataSet
   wald_results_names <- DESeq2::resultsNames(object = wald)
 
-  # Recovering extra parameters for TSV tables
-  # The variable `result_name` is built below in `for` loop.
-  results_extra <- add_extra(
-    wrapper_extra = "object = wald, name = result_name, parallel = parallel",
-    snakemake_param_name = "results_extra"
-  )
-
   # DESeq2 result dir will contain all results available in the Wald object
   output_prefix <- snakemake@output[["deseq2_result_dir"]]
   if (! base::file.exists(output_prefix)) {
     base::dir.create(path = output_prefix, recursive = TRUE)
   }
 
-  # Building command lines for both wald results and fc schinkage
+  # Building command lines for wald results
+  #
+  # The variable `result_name` is declared here, but evaluated
+  # later in the for loop.
+  results_extra <- add_extra(
+    wrapper_extra = "object = wald, name = result_name, parallel = parallel",
+    snakemake_param_name = "results_extra"
+  )
+
   results_cmd <- base::paste0("DESeq2::results(", results_extra, ")")
   base::message("Command line used for TSV results creation:")
   base::message(results_cmd)
-  model_matrix <- stats::model.matrix(
-    BiocGenerics::design(wald), 
-    SummarizedExperiment::colData(wald)
-  )
-  coef <- BiocGenerics::ncol(model_matrix)
 
-  shrink_extra <- add_extra(
-    wrapper_extra = "dds = wald, parallel = parallel",
-    snakemake_param_name = "shrink_extra"
-  )
-  if (base::grepl(pattern='ashr', x=shrink_extra, fixed=TRUE)) {
-    shrink_extra <- base::paste0(shrink_extra, ", res=results_frame, contrast=contrast")
-  } else if (base::grepl(pattern='normal', x=shrink_extra, fixed=TRUE)) {
-    shrink_extra <- base::paste0(shrink_extra, ", res=results_frame, coef=result_name")
-  } else if (base::grepl(pattern="apeglm", x=shrink_extra, fixed=TRUE)) {
-    shrink_extra <- base::paste0(
-      shrink_extra,
-      ", coef=coef"
-    )
-  }
-  shrink_cmd <- base::paste0("DESeq2::lfcShrink(", shrink_extra, ")")
-  base::message("Command line used for log(FC) shrinkage:")
-  base::message(shrink_cmd)
+
 
   # For each available comparison in the wald-dds object
   for (result_name in wald_results_names) {
-    # Building table
-    base::message(base::paste("Saving results for", result_name))
-    results_frame <- base::eval(base::parse(text = results_cmd))
-    shrink_frame <- base::eval(base::parse(text = shrink_cmd))
-    results_frame$log2FoldChange <- shrink_frame$log2FoldChange
+    # Setting all the lfcShrink values using resultsName
+    # in order to always shrink the correct result and not
+    # the one listed in 'snakemake@params[["contrast"]]'
+    #
+    # However, the argument names must be adjusted to
+    # the shrinkage method requested by user
+    coef <- get_coef_from_dds_and_params(c(result_name), wald)
+    name <- base::paste0("'", result_name, "'")
 
-    results_path <- base::file.path(
-      output_prefix,
-      base::paste0(result_name, ".tsv")
+    shrink_extra <- lfc_shrink_additional_parameters(
+      shrink_extra = snakemake@params[["shrink_extra"]],
+      coef = coef,
+      name = name
     )
 
-    # Saving table
-    utils::write.table(
-      x = results_frame,
-      file = results_path,
-      quote = FALSE,
-      sep = "\t",
-      row.names = TRUE
-    )
+    # Apeglm does not accept to correct intercept. It raises an error
+    # if coef == 1. This factor is skipped and all other results are
+    # iteratively saved on disk
+    if (((! base::grepl("ashr", shrink_extra)) || (! base::grepl("normal", shrink_extra))) && (coef < 2)) {
+      base::message(
+        "Cannot run `apeglm` on `",
+        result_name,
+        "`, since it's coef is `",
+        coef,
+        "`. Skipping."
+      )
+    } else {
+      shrink_cmd <- base::paste0("DESeq2::lfcShrink(", shrink_extra, ")")
+      base::message("Command line used for log(FC) shrinkage:")
+      base::message(shrink_cmd)
+
+
+      # Building table
+      base::message(base::paste("Saving results for", result_name))
+      results_frame <- base::eval(base::parse(text = results_cmd))
+      shrink_frame <- base::eval(base::parse(text = shrink_cmd))
+      results_frame$log2FoldChange <- shrink_frame$log2FoldChange
+
+      results_path <- base::file.path(
+        output_prefix,
+        base::paste0(result_name, ".tsv")
+      )
+
+      # Saving table
+      utils::write.table(
+        x = results_frame,
+        file = results_path,
+        quote = FALSE,
+        sep = "\t",
+        row.names = TRUE
+      )
+    }
   }
 }
 
@@ -185,94 +290,46 @@ if ("deseq2_result_dir" %in% base::names(snakemake@output)) {
 # can be extracted from DESeq2 object.
 if ("wald_tsv" %in% base::names(x = snakemake@output)) {
   if ("contrast" %in% base::names(x = snakemake@params)) {
-    contrast_length <- base::length(x = snakemake@params[["contrast"]])
-
-    results_extra <- "object=wald, parallel = parallel"
-    contrast <- NULL
-
-    if (contrast_length == 1) {
-      # Case user provided a result name in the `contrast` parameter
-      contrast <- base::as.character(x = snakemake@params[["contrast"]])
-      contrast <- base::paste0("name='", contrast[1], "'")
-
-    } else if (contrast_length == 2) {
-      # Case user provided both tested and reference level
-      # In that order! Order matters.
-      contrast <- sapply(
-        snakemake@params[["contrast"]],
-        function(extra) base::as.character(x = extra)
-      )
-      contrast <- base::paste0(
-        "contrast=list('", contrast[1], "', '", contrast[2], "')"
-      )
-
-    } else if (contrast_length == 3) {
-      # Case user provided both tested and reference level,
-      # and studied factor.
-      snake_contrast <- sapply(
-        snakemake@params[["contrast"]],
-        function(extra) base::as.character(x = extra)
-      )
-      contrast <- base::paste0(
-        "contrast=c('",
-        snake_contrast[1],
-        "', '",
-        snake_contrast[2],
-        "', '",
-        snake_contrast[3],
-        "')"
-      )
-      result_name <- base::paste(
-        snake_contrast[1],
-        snake_contrast[3],
-        "vs",
-        snake_contrast[2],
-        sep="_"
-      )
-      model_matrix <- stats::model.matrix(
-        BiocGenerics::design(wald), 
-        SummarizedExperiment::colData(wald)
-      )
-      apeglm_coef <- BiocGenerics::ncol(model_matrix)
-
-      # Finally saving results as contrast has been
-      # built from user input.
-      results_extra <- base::paste(results_extra, contrast, sep = ", ")
-      results_cmd <- base::paste0("DESeq2::results(", results_extra, ")")
-      base::message("Result extraction command: ", results_cmd)
-
-      shrink_extra <- add_extra(
-        "dds = wald, parallel = parallel",
-        "shrink_extra"
-      )
-      if (base::grepl(pattern='ashr', x=shrink_extra, fixed=TRUE)) {
-        shrink_extra <- base::paste0(shrink_extra, ", res = results_frame, contrast=contrast")
-      } else if (base::grepl(pattern='normal', x=shrink_extra, fixed=TRUE)) {
-        shrink_extra <- base::paste0(shrink_extra, ", res = results_frame, coef=result_name")
-      } else if (base::grepl(pattern='apeglm', x=shrink_extra, fixed=TRUE)) {
-        shrink_extra <- base::paste0(
-          shrink_extra,
-          ", coef=apeglm_coef"
-        )
-      }
-      shrink_cmd <- base::paste0("DESeq2::lfcShrink(", shrink_extra, ")")
-      base::message("Command line used for log(FC) shrinkage:")
-      base::message(shrink_cmd)
+    # Define all `contrast`, `coef`, and `name` to prepare
+    # to any shrinkage parameter set by user and still focus
+    # on the provided contrast given in `snakemake@params[["contrast"]]`
+    name <- get_result_name_from_params(contrast_vector, wald)
+    coef <- get_coef_from_dds_and_params(contrast_vector, wald)
 
 
-      results_frame <- base::eval(base::parse(text = results_cmd))
-      shrink_frame <- base::eval(base::parse(text = shrink_cmd))
-      results_frame$log2FoldChange <- shrink_frame$log2FoldChange
+    # Finally saving results as contrast has been
+    # built from user input.
+    # Extracting results:
+    results_extra <- add_extra(
+      wrapper_extra = "object = wald, name = name, parallel = parallel",
+      snakemake_param_name = "results_extra"
+    )
+    results_cmd <- base::paste0("DESeq2::results(", results_extra, ")")
+    base::message("Result extraction command: ", results_cmd)
+    results_frame <- base::eval(base::parse(text = results_cmd))
 
-      # Saving table
-      utils::write.table(
-        x = results_frame,
-        file = base::as.character(x = snakemake@output[["wald_tsv"]]),
-        quote = FALSE,
-        sep = "\t",
-        row.names = TRUE
-      )
-    }
+    # Shrinking:
+    shrink_extra <- lfc_shrink_additional_parameters(
+      shrink_extrai = snakemake@params[["shrink_extra"]],
+      coef = coef,
+      name = base::paste0("'", name, "'")
+    )
+    shrink_cmd <- base::paste0("DESeq2::lfcShrink(", shrink_extra, ")")
+    base::message("Command line used for log(FC) shrinkage:")
+    base::message(shrink_cmd)
+    shrink_frame <- base::eval(base::parse(text = shrink_cmd))
+
+    # Updating results:
+    results_frame$log2FoldChange <- shrink_frame$log2FoldChange
+
+    # Saving table
+    utils::write.table(
+      x = results_frame,
+      file = base::as.character(x = snakemake@output[["wald_tsv"]]),
+      quote = FALSE,
+      sep = "\t",
+      row.names = TRUE
+    )
   } else {
     base::stop(
       "No contrast provided. ",

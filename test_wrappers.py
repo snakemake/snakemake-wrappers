@@ -1152,7 +1152,7 @@ def test_deseq2_deseqdataset(run):
     )
 
 
-def test_deseq2_wald_normal(run):
+def test_deseq2_wald(run):
     run(
         "bio/deseq2/wald",
         ["snakemake", "--cores", "1", "--use-conda", "dge_normal.tsv"]
@@ -1168,6 +1168,15 @@ def test_deseq2_wald_normal(run):
         ["snakemake", "--cores", "1", "--use-conda", "dge_apeglm.tsv"]
     )
 
+    run(
+        "bio/deseq2/wald",
+        ["snakemake", "--cores", "1", "--use-conda", "dge_2f.tsv"]
+    )
+
+    run(
+        "bio/deseq2/wald",
+        ["snakemake", "--cores", "1", "--use-conda", "dge_1s.tsv"]
+    )
 
 def test_arriba_star_meta(run):
     run(
