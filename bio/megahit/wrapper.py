@@ -58,7 +58,7 @@ with tempfile.TemporaryDirectory(dir=os.path.dirname(output_dir)) as temp_dir:
         " -o {output_temp_dir} "
         " {input_arg} "
         " {extra} "
-        " > {snakemake.log[0]} 2>&1 "
+        " {log}"
     )
 
     if os.path.exists(os.path.join(output_temp_dir, "done")):
