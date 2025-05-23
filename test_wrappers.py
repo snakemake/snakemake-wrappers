@@ -24,13 +24,6 @@ if DIFF_MASTER or DIFF_LAST_COMMIT:
 CONTAINERIZED = os.environ.get("CONTAINERIZED", "false") == "true"
 
 
-class Skipped(Exception):
-    pass
-
-
-pytestmark = pytest.mark.xfail(raises=Skipped)
-
-
 @pytest.fixture
 def tmp_test_dir():
     with tempfile.TemporaryDirectory() as d:
@@ -59,7 +52,7 @@ def run(tmp_test_dir):
             raise ValueError(f"Unable to load or parse {meta_path}.")
 
         if meta.get("blacklisted"):
-            raise Skipped("wrapper blacklisted")
+            pytest.skip("wrapper blacklisted")
 
         dst = os.path.join(tmp_test_subdir, "master")
 
@@ -79,7 +72,7 @@ def run(tmp_test_dir):
             any(f.startswith(w) for f in DIFF_FILES)
             for w in chain(used_wrappers, [wrapper])
         ):
-            raise Skipped("wrappers not modified")
+            pytest.skip("wrappers not modified")
 
         testdir = os.path.join(tmp_test_subdir, "test")
         shutil.copytree(os.path.join(wrapper, "test"), testdir)
@@ -113,7 +106,7 @@ def run(tmp_test_dir):
             subprocess.check_call(cmd)
             if compare_results_with_expected:
                 for generated, expected in compare_results_with_expected.items():
-                    assert(filecmp.cmp(generated, expected, shallow=False))
+                    assert filecmp.cmp(generated, expected, shallow=False)
         except Exception as e:
             # go back to original directory
             os.chdir(origdir)
@@ -139,6 +132,68 @@ def run(tmp_test_dir):
         return tmp_test_subdir
 
     return _run
+
+
+def test_aria2c(run):
+    run(
+        "utils/aria2c",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "results/file.fas.gz",
+            "results/file.md5.fas.gz",
+            "results/file.md5file.fas.gz",
+            "results/file.sha1file.fas.gz",
+            "results/file.sha224file.fas.gz",
+            "results/file.sha256file.fas.gz",
+            "results/file.sha384file.fas.gz",
+            "results/file.sha512file.fas.gz",
+            "results/file.md5fileH.fas.gz",
+        ],
+    )
+
+def test_miller(run):
+    run(
+        "utils/miller",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "miller/cat.tsv",
+            "miller/summary.tsv",
+            "miller/summary.csv",
+            "miller/histogram.tsv",
+            "miller/join.csv",
+            "miller/sample.csv",
+            "miller/grep.csv",
+            "miller/cut.csv",
+            "miller/sort.csv",
+            "miller/split_1.csv",
+            "miller/split_2.csv",
+            "miller/uniq.tsv",
+            "miller/pipe.tsv",
+        ],
+        compare_results_with_expected={
+            "miller/cat.tsv": "expected/cat.tsv",
+            "miller/summary.tsv": "expected/summary.tsv",
+            "miller/summary.csv": "expected/summary.csv",
+            "miller/histogram.tsv": "expected/histogram.tsv",
+            "miller/join.csv": "expected/join.csv",
+            "miller/sample.csv": "expected/sample.csv",
+            "miller/grep.csv": "expected/grep.csv",
+            "miller/cut.csv": "expected/cut.csv",
+            "miller/sort.csv": "expected/sort.csv",
+            "miller/split_1.csv": "expected/split_1.csv",
+            "miller/split_2.csv": "expected/split_2.csv",
+            "miller/uniq.tsv": "expected/uniq.tsv",
+            "miller/pipe.tsv": "expected/pipe.tsv",
+        },
+    )
 
 
 def test_taxonkit(run):
@@ -464,6 +519,7 @@ def test_seqkit_concat(run):
         ],
     )
 
+
 def test_seqkit_split2_part(run):
     run(
         "bio/seqkit",
@@ -503,6 +559,53 @@ def test_sickle_se(run):
             "1",
             "--use-conda",
             "a.1.fastq",
+        ],
+    )
+
+
+def test_bwameth_mem(run):
+    run(
+        "bio/bwameth/memx",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "A.mem.bam",
+        ],
+    )
+    run(
+        "bio/bwameth/memx",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "A.mem2.bam",
+        ],
+    )
+    run(
+        "bio/bwameth/memx",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "A.picard_sort.bam",
+        ],
+    )
+    run(
+        "bio/bwameth/memx",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "A.samtools_sort.bam",
         ],
     )
 
@@ -1170,41 +1273,44 @@ def test_arriba_star_meta(run):
 
 
 def test_csvtk(run):
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/uniq.txt"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/stats.txt"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/split"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/sort.csv"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/cut.csv"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/grep.csv"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/sample.csv"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/join.csv"])
-
-    run(
-        "utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/headers.csv"]
-    )
-
     run(
         "utils/csvtk",
-        ["snakemake", "--cores", "1", "--use-conda", "csvtk/frequency.csv"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "csvtk/cat.csv",
+            "csvtk/summary_tsv.csv",
+            "csvtk/summary_csv.csv",
+            "csvtk/frequency.csv",
+            "csvtk/headers.csv",
+            "csvtk/join.csv",
+            "csvtk/sample.csv",
+            "csvtk/grep.csv",
+            "csvtk/cut.csv",
+            "csvtk/sort.csv",
+            "csvtk/split",
+            "csvtk/stats.txt",
+            "csvtk/uniq.txt",
+        ],
+        compare_results_with_expected={
+            "csvtk/cat.csv": "expected/cat.csv",
+            "csvtk/summary_tsv.csv": "expected/summary_tsv.csv",
+            "csvtk/summary_csv.csv": "expected/summary_csv.csv",
+            "csvtk/frequency.csv": "expected/frequency.csv",
+            "csvtk/headers.csv": "csvtk/headers.csv",
+            "csvtk/join.csv": "expected/join.csv",
+            "csvtk/sample.csv": "expected/sample.csv",
+            "csvtk/grep.csv": "expected/grep.csv",
+            "csvtk/cut.csv": "expected/cut.csv",
+            "csvtk/sort.csv": "expected/sort.csv",
+            "csvtk/split/table-ENSG02.csv": "expected/split/table-ENSG02.csv",
+            "csvtk/split/table-ENSG01.csv": "expected/split/table-ENSG01.csv",
+            "csvtk/stats.txt": "expected/stats.txt",
+            "csvtk/uniq.txt": "expected/uniq.txt",
+        },
     )
-
-    run(
-        "utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/summary.csv"]
-    )
-
-    run(
-        "utils/csvtk",
-        ["snakemake", "--cores", "1", "--use-conda", "csvtk/summary_tsv.csv"],
-    )
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/cat.csv"])
 
 
 def test_xsv(run):
@@ -5251,7 +5357,15 @@ def test_varscan_mpileup2snp(run):
 def test_varscan_somatic(run):
     run(
         "bio/varscan/somatic",
-        ["snakemake", "--cores", "1", "vcf/a.snp.vcf", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "single_mpileup/vcf/a.snp.vcf",
+            "dual_mpileup/vcf/a.snp.vcf",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -5377,6 +5491,13 @@ def test_hmmsearch(run):
     )
 
 
+def test_jackhmmer(run):
+    run(
+        "bio/hmmer/jackhmmer",
+        ["snakemake", "--cores", "1", "test-prot-tbl.txt", "--use-conda", "-F"],
+    )
+
+
 def test_paladin_index(run):
     run(
         "bio/paladin/index",
@@ -5462,6 +5583,13 @@ def test_ensembl_sequence_old_release(run):
     )
 
 
+def test_ensembl_sequence_gzipped(run):
+    run(
+        "bio/reference/ensembl-sequence",
+        ["snakemake", "--cores", "1", "refs/genome.fa.gz", "--use-conda", "-F"],
+    )
+
+
 def test_ensembl_sequence_chromosome(run):
     run(
         "bio/reference/ensembl-sequence",
@@ -5475,7 +5603,17 @@ def test_ensembl_sequence_multiple_chromosomes(run):
         ["snakemake", "--cores", "1", "refs/chr6_and_chr1.fasta", "--use-conda", "-F"],
         compare_results_with_expected={
             "refs/chr6_and_chr1.fasta": "expected/chr6_and_chr1.fasta"
-        }
+        },
+    )
+
+
+def test_ensembl_sequence_multiple_chromosomes_gzipped(run):
+    run(
+        "bio/reference/ensembl-sequence",
+        ["snakemake", "--cores", "1", "refs/chr6_and_chr1.fa.gz", "--use-conda", "-F"],
+        compare_results_with_expected={
+            "refs/chr6_and_chr1.fa.gz": "expected/chr6_and_chr1.fa.gz"
+        },
     )
 
 
@@ -5685,12 +5823,16 @@ def test_bismark_genome_preparation(run):
         [
             "snakemake",
             "--cores",
-            "1",
-            "indexes/genome/Bisulfite_Genome",
-            "indexes/genome_gz/Bisulfite_Genome",
+            "2",
+            "resources/genome/bismark",
+            "resources/genome_gz/bismark",
             "--use-conda",
             "-F",
         ],
+        compare_results_with_expected={
+            "resources/genome/bismark/Bisulfite_Genome/GA_conversion/genome_mfa.GA_conversion.fa": "expected/genome/bismark/Bisulfite_Genome/genome_mfa.GA_conversion.fa",
+            "resources/genome_gz/bismark/Bisulfite_Genome/CT_conversion/genome_mfa.CT_conversion.fa": "expected/genome_gz/bismark/Bisulfite_Genome/genome_mfa.CT_conversion.fa",
+        },
     )
 
 
@@ -5716,11 +5858,14 @@ def test_bismark_bismark(run):
             "snakemake",
             "--cores",
             "1",
-            "bams/a_genome_pe.bam",
-            "bams/b_genome.bam",
+            "results/bismark/a_genome_pe.bam",
+            "results/bismark/b_genome.cram",
             "--use-conda",
             "-F",
         ],
+        compare_results_with_expected={
+            "results/bismark/b_genome.nucleotide_stats.txt": "expected/b_genome.nucleotide_stats.txt",
+        },
     )
 
 
@@ -6349,6 +6494,19 @@ def test_metaspades(run):
     )
 
 
+def test_megahit(run):
+    run(
+        "bio/megahit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_verifybamid2(run):
     run(
         "bio/verifybamid/verifybamid2",
@@ -6763,4 +6921,25 @@ def test_varlociraptor_control_fdr(run):
             "conda",
             "-F",
         ],
+    )
+
+
+def test_overturemaps_download(run):
+    run(
+        "geo/overturemaps/download",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "results/division_boundary.parquet",
+        ],
+    )
+
+
+def test_pygadm_item(run):
+    run(
+        "geo/pygadm/item",
+        ["snakemake", "--cores", "2", "--use-conda", "-F", "results/mexico.parquet"],
     )

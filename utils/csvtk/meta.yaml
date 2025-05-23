@@ -5,9 +5,9 @@ description: >
 authors:
   - Filipe G. Vieira
 input:
-  - Path to CSV/TSV table.
+  - Path to CSV/TSV file.
 output:
-  - Path the result file / directory
+  - Path to result file / directory
 params:
   - extra: Optional arguments for `csvtk` (for TSV files, `--delimiter` is automatically set).
-  - subcommand: csvtk subcommand among `cat`, `count`, `fixlengths`, `flatten`, `fmt`, `frequency`, `headers`, `index`, `input`, `join`, `sample`, `search`, `select`, `slice`, `sort`, `split`, `stats`, or `table`
+  - subcommand: csvtk subcommand among `cat`, `count`, `fixlengths`, `flatten`, `fmt`, `frequency`, `headers`, `index`, `input`, `join`, `sample`, `search`, `select`, `slice`, `sort`, `split`, `stats`, or `table`.

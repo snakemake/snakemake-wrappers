@@ -1,16 +1,21 @@
 name: bismark
 description: |
-  Align BS-Seq reads using Bismark (see https://github.com/FelixKrueger/Bismark/blob/master/bismark).
+  Align bisulfite sequencing reads using Bismark (see https://github.com/FelixKrueger/Bismark/blob/master/bismark).
 authors:
   - Roman Cherniatchik
+  - David Lähnemann
+url: https://felixkrueger.github.io/Bismark/bismark/alignment/
 input:
-  - In SE mode one reads file with keay 'fq=...'
-  - In PE mode two reads files with keys 'fq_1=...', 'fq_2=...'
-  - bismark_indexes_dir: The path to the folder `Bisulfite_Genome` created by the Bismark_Genome_Preparation script, e.g. 'indexes/hg19/Bisulfite_Genome'
+  - For single end data, provide one read file with the names `fq=...`.
+  - For paired end data, provide two read files with the names `fq_1=...` and `fq_2=...`/
+  - bismark_indexes_dir: The path to the folder that contains the `Bisulfite_Genome` created by the `bismark_genome_preparation` script, e.g. 'resources/hg19/bismark'
+  - genomic_freqs (optional): When requesting the optional output `nucleotide_stats`, please include a `genomic_nucleotide_frequencies.txt` file for this input (precomputed with `bam2nuc`).
 params:
-  - basename: File base name
-  - extra: Any additional args
+  - extra: Any additional args, but none that get automatically determined by the wrapper (the wrapper will complain with a complete list).
 output:
-  - bam: Bam file. Output file will be renamed if differs from default `NAME_pe.bam` or `NAME_se.bam`
-  - report: Aligning report file. Output file will be renamed if differs from default `NAME_PE_report.txt` or `NAME_SE_report.txt`
-  - nucleotide_stats: Optional nucleotides report file. Output file will be renamed if differs from default `NAME_pe.nucleotide_stats.txt` or `NAME_se.nucleotide_stats.txt`
+  - bam, cram, or sam: The output file's name as `bam=`, `sam=` or `cram=` determines the output format, by implicitly setting the respective `--sam` or `--cram` options.
+  - report: Alignment report file.
+  - nucleotide_stats (optional): Report on the mono- and di-nucleotide sequence composition of covered positions in the analysed `.bam` file in comparison to the average genomic composition. Requires `genomic_freqs=` to be provided as an input, and is incompatible with `sam=` output.
+  - fq_unmapped (optional): Write unmapped reads to a `.fq.gz` file. Implicitly activates `--unmapped`.
+  - fq_ambiguous (optional): Write ambiguously mapped reads to a `.fq.gz` file. Implicitly activates `--ambiguous`.
+  - bam_ambiguous (optional): Write one mapping per ambiguously mapped read to a `.bam` file. Implicitly activates `--ambig_bam`.

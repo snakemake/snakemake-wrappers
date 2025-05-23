@@ -1,0 +1,9 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - bwameth =0.2.7
+  - samtools =1.21
+  - picard-slim =3.4.0
+  - snakemake-wrapper-utils =0.7.2

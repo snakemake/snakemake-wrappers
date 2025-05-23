@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - ngs-bits =2025_01
+  - ngs-bits =2025_03
