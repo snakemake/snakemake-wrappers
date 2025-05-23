@@ -16,10 +16,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 memory_requirements = get_mem(snakemake, out_unit="KiB") * 1024
 
 # parse short reads
-if hasattr(snakemake.input, "reads"):
-    reads = snakemake.input.reads
-else:
-    reads = snakemake.input
+reads = snakemake.input.reads if hasattr(snakemake.input, "reads") else snakemake.input
 
 input_arg = ""
 
