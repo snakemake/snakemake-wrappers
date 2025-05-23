@@ -1,5 +1,30 @@
 # Changelog
 
+## [6.3.0](https://github.com/snakemake/snakemake-wrappers/compare/v6.2.0...v6.3.0) (2025-05-23)
+
+
+### Features
+
+* add wrapper for MEGAHIT ([#4121](https://github.com/snakemake/snakemake-wrappers/issues/4121)) ([be71b0b](https://github.com/snakemake/snakemake-wrappers/commit/be71b0bc25c03130c93a476c4008e86c70762bc0))
+
+
+### Bug Fixes
+
+* fix 4118 ([#4119](https://github.com/snakemake/snakemake-wrappers/issues/4119)) ([00f7aaf](https://github.com/snakemake/snakemake-wrappers/commit/00f7aafb01188a0d0577af97569bfa6b8a3fc5a9))
+
+
+### Performance Improvements
+
+* autobump bio/bamtools/filter ([#4127](https://github.com/snakemake/snakemake-wrappers/issues/4127)) ([a5f375c](https://github.com/snakemake/snakemake-wrappers/commit/a5f375ced60fb040ab7b73862154ca3d2c37d9e7))
+* autobump bio/bamtools/filter_json ([#4131](https://github.com/snakemake/snakemake-wrappers/issues/4131)) ([da6cc46](https://github.com/snakemake/snakemake-wrappers/commit/da6cc46dda5dbc206b96ad4af21a1fd7bcad0633))
+* autobump bio/bamtools/split ([#4130](https://github.com/snakemake/snakemake-wrappers/issues/4130)) ([bcb48e4](https://github.com/snakemake/snakemake-wrappers/commit/bcb48e40ce78c5032d2a7959012d5ff732a8246c))
+* autobump bio/bamtools/stats ([#4128](https://github.com/snakemake/snakemake-wrappers/issues/4128)) ([cab52d7](https://github.com/snakemake/snakemake-wrappers/commit/cab52d7471c6cd72859ecec1290cd666038af86c))
+* autobump bio/bwameth/memx ([#4129](https://github.com/snakemake/snakemake-wrappers/issues/4129)) ([0c8667d](https://github.com/snakemake/snakemake-wrappers/commit/0c8667d60ba7408460b5f719154e9b63bc806c97))
+* autobump bio/freebayes ([#4132](https://github.com/snakemake/snakemake-wrappers/issues/4132)) ([c9749da](https://github.com/snakemake/snakemake-wrappers/commit/c9749da380942f6a9a99ea2e585053b36accad51))
+* autobump bio/multiqc ([#4133](https://github.com/snakemake/snakemake-wrappers/issues/4133)) ([9ebdbe9](https://github.com/snakemake/snakemake-wrappers/commit/9ebdbe9cd15c87983c3f01a19fd6c48083bfb38c))
+* autobump bio/ngs-disambiguate ([#4134](https://github.com/snakemake/snakemake-wrappers/issues/4134)) ([015d8ef](https://github.com/snakemake/snakemake-wrappers/commit/015d8ef12ff84a3f04ceac1f95787ae7176ea16d))
+* autobump bio/ucsc/twoBitInfo ([#4135](https://github.com/snakemake/snakemake-wrappers/issues/4135)) ([c3cad4f](https://github.com/snakemake/snakemake-wrappers/commit/c3cad4f949f1c2815535ff4b5cf3f9f29f9253ef))
+
 ## [6.2.0](https://github.com/snakemake/snakemake-wrappers/compare/v6.1.1...v6.2.0) (2025-05-19)
 
 
