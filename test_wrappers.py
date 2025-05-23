@@ -6475,6 +6475,19 @@ def test_metaspades(run):
     )
 
 
+def test_megahit(run):
+    run(
+        "bio/megahit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_verifybamid2(run):
     run(
         "bio/verifybamid/verifybamid2",

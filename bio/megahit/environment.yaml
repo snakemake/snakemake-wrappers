@@ -3,4 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - ngs-disambiguate =2018.05.03
+  - megahit =1.2.9
+  - snakemake-wrapper-utils =0.7.2
