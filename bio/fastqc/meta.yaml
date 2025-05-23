@@ -7,5 +7,8 @@ authors:
 input:
   - fastq file
 output:
-  - html file containing statistics
-  - zip file containing statistics
+  - html: statistics file in HTML format
+  - zip: statistics in text format (zip'ed)
+params:
+  - extra: additional program arguments
+  - mem_overhead_factor: factor of total memory saved for overhead
