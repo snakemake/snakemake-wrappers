@@ -12,6 +12,20 @@ rule bedtools_complement_bed:
     wrapper:
         "master/bio/bedtools/complement"
 
+rule bedtools_complement_bed_gz:
+    input:
+        in_file="a.bed",
+        genome="dummy.genome"
+    output:
+        "results/bed-complement/a.complement.bed.gz"
+    params:
+        ## Add optional parameters
+        extra="-L"
+    log:
+        "logs/a.complement.bed.gz.log"
+    wrapper:
+        "master/bio/bedtools/complement"
+
 rule bedtools_complement_vcf:
     input:
         in_file="a.vcf",
