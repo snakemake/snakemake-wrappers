@@ -7,33 +7,24 @@ from snakemake.shell import shell
 
 ## Extract arguments
 extra = snakemake.params.get("extra", "")
-
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 compress = "| bgzip" if snakemake.output[0].endswith(".gz") else ""
 
-if len(snakemake.input) > 1:
-    if all(f.endswith(".gz") for f in snakemake.input):
-        cat = "zcat"
-    elif all(not f.endswith(".gz") for f in snakemake.input):
-        cat = "cat"
-    else:
-        raise ValueError("Input files must be all compressed or uncompressed.")
-    shell(
-        "({cat} {snakemake.input} | "
-        "sort -k1,1 -k2,2n | "
-        "bedtools merge {extra} "
-        " -i stdin "
-        " {compress}"
-        "> {snakemake.output[0]}) "
-        " {log}"
-    )
+if all(f.endswith(".gz") for f in snakemake.input):
+    cat = "zcat"
+elif all(not f.endswith(".gz") for f in snakemake.input):
+    cat = "cat"
 else:
-    shell(
-        "( bedtools merge"
-        " {extra}"
-        " -i {snakemake.input}"
-        " {compress}"
-        " > {snakemake.output[0]})"
-        " {log}"
-    )
+    raise ValueError("Input files must be all compressed or uncompressed.")
+
+shell(
+    "({cat} {snakemake.input} | "
+    "sort -k1,1 -k2,2n | "
+    "bedtools merge"
+    " -i stdin"
+    " {extra}"
+    " {compress}"
+    " > {snakemake.output[0]})"
+    " {log}"
+)
