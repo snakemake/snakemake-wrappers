@@ -3,6 +3,7 @@ import os
 import tempfile
 import shutil
 import pytest
+import sys
 import yaml
 import filecmp
 from itertools import chain
