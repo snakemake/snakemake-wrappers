@@ -1,0 +1,39 @@
+name: trf
+description: >
+  Wrapper for Tandem Repeats Finder (TRF), a tool to identify tandem repeats in DNA sequences,
+  enabling easy integration into Snakemake workflows.
+url: https://tandem.bu.edu/trf/home
+authors:
+  - Muhammad Rohan Ali Asmat
+input:
+  - Single DNA sequence file in FASTA format to be analyzed by Tandem Repeats Finder.
+output: #TODO check optional output
+  - >
+    Tandem Repeats Finder (TRF) produces two primary output files:
+    - A **repeat table file** (`*.dat`) containing details about each repeat, including location, size, copy number, and nucleotide content.
+    - An **alignment file** (`*.align` or `.html` on the web interface), showing how repeat units align to a consensus sequence.
+
+    Optional outputs may include:
+    - A **masked sequence file** (`*.mask`) if the `-m` flag is used.
+    - No `.html` is generated in CLI by default unless formatting or redirection is used.
+params:
+  match: "Match weight (default: 2)"
+  mismatch: "Mismatch penalty (default: 7)"
+  delta: "Indel penalty (default: 7)"
+  pm: "Match probability percentage (default: 80)"
+  pi: "Indel probability percentage (default: 10)"
+  minscore: "Minimum alignment score to report (default: 50)"
+  maxperiod: "Maximum period size to report (default: 500)"
+  extra: "Optional command-line flags to pass to Tandem Repeats Finder (TRF). These flags are appended after the 7 required numeric parameters. Supported flags (default state in parentheses): -m (off, generate masked sequence file), -f (off, include flanking sequence), -d (on, produce .dat file), -h (off, suppress HTML output), -r (on, enable redundancy filtering), -l <n> (default 20 Mbp, set max tandem repeat size), -ngs (off, compact output for NGS), -u (off, show usage), -v (off, show version). Provide flags as a quoted string, e.g., '-d -h'."
+notes: >
+  Command template used:
+  trf <input.fasta> <match> <mismatch> <delta> <pm> <pi> <minscore> <maxperiod> <extra>
+
+  If one or more numeric parameters (e.g., match, mismatch) are not provided,
+  the wrapper will automatically substitute the default values recommended by TRF, as listed above.
+
+  Flags (extra) are optional and can be specified using the 'extra' param (e.g., '-d -h').
+  No default flags are added unless explicitly set by the user.
+
+  GitHub Repository: https://github.com/Benson-Genomics-Lab/TRF  
+  Bioconda Package: https://prefix.dev/channels/bioconda/packages/trf
