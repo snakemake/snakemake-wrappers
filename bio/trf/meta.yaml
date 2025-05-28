@@ -29,7 +29,7 @@ notes: >
   the wrapper will automatically substitute the default values recommended by TRF, as listed above.
 
   Flags (extra) are optional and can be specified using the 'extra' param (e.g., '-d -h').
-  No default flags are added unless explicitly set by the user.
+  If a flag is not provided, the program uses the default state as specified in the extra parameter description above.
 
   GitHub Repository: https://github.com/Benson-Genomics-Lab/TRF  
   Bioconda Package: https://prefix.dev/channels/bioconda/packages/trf
