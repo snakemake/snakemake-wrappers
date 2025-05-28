@@ -6,16 +6,12 @@ url: https://tandem.bu.edu/trf/home
 authors:
   - Muhammad Rohan Ali Asmat
 input:
-  - Single DNA sequence file in FASTA format to be analyzed by Tandem Repeats Finder.
-output: #TODO check optional output
-  - >
-    Tandem Repeats Finder (TRF) produces two primary output files:
-    - A **repeat table file** (`*.dat`) containing details about each repeat, including location, size, copy number, and nucleotide content.
-    - An **alignment file** (`*.align` or `.html` on the web interface), showing how repeat units align to a consensus sequence.
-
-    Optional outputs may include:
-    - A **masked sequence file** (`*.mask`) if the `-m` flag is used.
-    - No `.html` is generated in CLI by default unless formatting or redirection is used.
+  - fasta: DNA sequence file in FASTA format to be analyzed by Tandem Repeats Finder.
+output:
+  - dat: Path to the repeat table file (*.dat) with repeat details including location, size, copy number, and nucleotide content.
+  - align: Path to the alignment file (*.align) showing how repeat units align to a consensus sequence.
+  - mask: Path to the masked sequence file (*.mask) generated if the `-m` flag is used (optional).
+  - html: Path to the HTML report file (*.html), generated only if the `-h` or related flag is passed (optional).
 params:
   match: "Match weight (default: 2)"
   mismatch: "Mismatch penalty (default: 7)"
