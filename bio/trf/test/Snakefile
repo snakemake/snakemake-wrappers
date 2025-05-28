@@ -1,0 +1,11 @@
+# TODO: Amend test_wrappers.py
+# TODO: Check formatting of Python Files and SnakeFile
+rule run_trf_basic:
+    input:
+        sample="demo_data/{sample}.fasta",
+    output:
+        directory("trf_output/{sample}"),
+    log:
+        "logs/{sample}.log",
+    wrapper:
+        "master/bio/trf"

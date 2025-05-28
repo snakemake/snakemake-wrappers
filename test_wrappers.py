@@ -3,7 +3,6 @@ import os
 import tempfile
 import shutil
 import pytest
-import sys
 import yaml
 import filecmp
 from itertools import chain
@@ -6942,4 +6941,11 @@ def test_pygadm_item(run):
     run(
         "geo/pygadm/item",
         ["snakemake", "--cores", "2", "--use-conda", "-F", "results/mexico.parquet"],
+    )
+
+
+def test_trf_basic(run):
+    run(
+        "bio/trf",
+        ["snakemake", "--cores", "1", "trf_output/sample1", "--use-conda"]
     )
