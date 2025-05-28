@@ -5,6 +5,15 @@ rule run_trf_basic:
         sample="demo_data/{sample}.fasta",
     output:
         directory("trf_output/{sample}"),
+    params:
+        match=3,
+        mismatch=8,
+        delta=8,
+        pm=80,
+        pi=10,
+        minscore=60,
+        maxperiod=2020,
+        extra="-f -D",
     log:
         "logs/{sample}.log",
     wrapper:
