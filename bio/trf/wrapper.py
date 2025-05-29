@@ -20,6 +20,7 @@ from utils.validation_utils import (
     validate_trf_numeric_params,
     validate_trf_option_values,
 )
+from utils.log_utils import log_output_dir_contents
 
 
 #Read input file and make sure it is of valid Fasta format.
@@ -42,13 +43,12 @@ os.chdir(output_dir)
 
 
 #Set configuration instance and read and update params based on the user input
-config = TRFConfig()
-trf_numeric_params, trf_flags, trf_flags_with_opts = split_trf_params(snakemake.params)
-
+config = TRFConfig(log_file_path=log_file_path)
+trf_numeric_params, trf_flags, trf_flags_with_opts = split_trf_params(snakemake.params, log_file_path)
 
 #Validate the numeric params and trf optional flag
-validate_trf_numeric_params(trf_numeric_params)
-validate_trf_option_values(trf_flags_with_opts)
+validate_trf_numeric_params(trf_numeric_params, log_file_path)
+validate_trf_option_values(trf_flags_with_opts, log_file_path)
 
 
 #Update Config based on user input
@@ -66,16 +66,11 @@ cmd = config.build_command(relative_input_path)
 with open(log_file_path, 'w') as log_file:
     result = subprocess.run(cmd, shell=True, stdout=log_file, stderr=subprocess.STDOUT, check=False)
 
+
 #  Return Code  Check
 if result.returncode not in [0, 3]:
     raise subprocess.CalledProcessError(result.returncode, cmd)
 
-# Print and log output directory contents
-output_files = sorted(Path(output_dir).iterdir())
 
-with open(log_file_path, 'a') as log_file:
-    log_file.write(f"Output directory contents ({len(output_files)} files):\n")
-    
-    for file in output_files:
-        file_info = f"  - {file.name} ({file.stat().st_size} bytes)"
-        log_file.write(file_info + '\n')
+#Log & prints output directory contents
+log_output_dir_contents(output_dir, log_file_path)

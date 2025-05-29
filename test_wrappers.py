@@ -6972,3 +6972,10 @@ def test_trf_basic(run):
         "bio/trf",
         ["snakemake", "--cores", "1", "trf_output/sample1", "--use-conda"]
     )
+
+
+def test_trf_error_file(run):
+    run(
+        "bio/trf",
+        ["snakemake", "--cores", "1", "trf_output/sample2", "--use-conda"]
+    )

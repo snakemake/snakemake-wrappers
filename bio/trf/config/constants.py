@@ -5,17 +5,16 @@ TRF_DEFAULT_PARAMS = {
     "pm": "80",
     "pi": "10",
     "minscore": "50",
-    "maxperiod": "2000",
+    "maxperiod": "500",
 }
 
 TRF_DEFAULT_FLAGS_WITH_VALUE = {
-    "l": "2",
 }
 
 TRF_DEFAULT_FLAGS_BOOL = {
-    "m": False,
-    "f": False,
-    "d": False,
+    "m": True,
+    "f": True,
+    "d": True,
     "h": False,
     "u": False,
     "v": False,

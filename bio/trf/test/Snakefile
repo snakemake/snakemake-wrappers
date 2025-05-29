@@ -1,4 +1,3 @@
-# TODO: Amend test_wrappers.py
 # TODO: Check formatting of Python Files and SnakeFile
 rule run_trf_basic:
     input:
@@ -6,14 +5,49 @@ rule run_trf_basic:
     output:
         directory("trf_output/{sample}"),
     params:
-        match=3,
-        mismatch=8,
-        delta=8,
+        match=2,
+        mismatch=7,
+        delta=7,
         pm=80,
         pi=10,
-        minscore=60,
-        maxperiod=2020,
-        extra="-f -D",
+        minscore=70,
+        maxperiod=500,
+        extra="-m",
+    log:
+        "logs/{sample}.log",
+    wrapper:
+        "master/bio/trf"
+#not catering g 
+#if mistake in regular then correct and make -
+#Change behavior for unknown params (-g, etc.) to issue warnings instead of throwing errors.
+#Improve malformed flag detection with clear ValueErrors and suggestions (e.g., catching >h, +h, - h).
+#Log warnings for any unknown types (-g, -p, *p, etc.)
+#consider first one in case multiple same flags
+# #overwrite even if one change found in flag...
+
+# -g -p *p +h → all warned, none raise ValueError.
+
+# - h, + h, >h → warned, not fatal.
+
+# match=2 extra="-l=3 -l=5" → first -l taken, second ignored with warning.
+
+# -h -h -v → second -h ignored with warning
+
+
+rule run_trf_error:
+    input:
+        sample="demo_data/{sample}.bam",
+    output:
+        directory("trf_output/{sample}"),
+    params:
+        match=2,
+        mismatch=7,
+        delta=7,
+        pm=80,
+        pi=10,
+        minscore=50,
+        maxperiod=500,
+        extra="-f -d -m",
     log:
         "logs/{sample}.log",
     wrapper:
