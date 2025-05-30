@@ -5,4 +5,4 @@ channels:
 dependencies:
   - r-rubic =1.0.3
   - libgfortran =15.1.0
-  - r-data.table =1.17.0
+  - r-data.table =1.17.4
