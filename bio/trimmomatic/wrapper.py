@@ -26,8 +26,8 @@ if snakemake.input.get("r2", False):
     ]
 else:
     trim_mode = "SE"
-    in_files = snakemake.input[0]
-    out_files = snakemake.output[0]
+    in_files = [snakemake.input[0]]
+    out_files = [snakemake.output[0]]
 
 
 shell(
