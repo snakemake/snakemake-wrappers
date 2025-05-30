@@ -18,7 +18,12 @@ trimmer = " ".join(snakemake.params.trimmer)
 if snakemake.input.get("r2", False):
     trim_mode = "PE"
     in_files = [snakemake.input.r1, snakemake.input.r2]
-    out_files = [snakemake.output.r1, snakemake.output.r1_unpaired, snakemake.output.r2, snakemake.output.r2_unpaired]
+    out_files = [
+        snakemake.output.r1,
+        snakemake.output.r1_unpaired,
+        snakemake.output.r2,
+        snakemake.output.r2_unpaired,
+    ]
 else:
     trim_mode = "SE"
     in_files = snakemake.input[0]

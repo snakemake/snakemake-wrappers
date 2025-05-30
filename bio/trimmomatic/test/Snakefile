@@ -1,177 +1,176 @@
 rule trimmomatic_pe_fq_fq:
     input:
         r1="reads/{sample}.1.fastq",
-        r2="reads/{sample}.2.fastq"
+        r2="reads/{sample}.2.fastq",
     output:
         r1="trimmed/pe/fq_fq/{sample}.1.fastq",
         r2="trimmed/pe/fq_fq/{sample}.2.fastq",
         # reads where trimming entirely removed the mate
         r1_unpaired="trimmed/pe/fq_fq/{sample}.1.unpaired.fastq",
-        r2_unpaired="trimmed/pe/fq_fq/{sample}.2.unpaired.fastq"
+        r2_unpaired="trimmed/pe/fq_fq/{sample}.2.unpaired.fastq",
     log:
-        "logs/trimmomatic/{sample}.log"
+        "logs/trimmomatic/{sample}.log",
     params:
         # list of trimmers (see manual)
         trimmer=["TRAILING:3"],
         # optional parameters
-        extra=""
-    threads:
-        32
+        extra="",
+    threads: 32
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     wrapper:
         "master/bio/trimmomatic/pe"
+
 
 rule trimmomatic_pe_fq_gz:
     input:
         r1="reads/{sample}.1.fastq",
-        r2="reads/{sample}.2.fastq"
+        r2="reads/{sample}.2.fastq",
     output:
         r1="trimmed/pe/fq_gz/{sample}.1.fastq.gz",
         r2="trimmed/pe/fq_gz/{sample}.2.fastq.gz",
         # reads where trimming entirely removed the mate
         r1_unpaired="trimmed/pe/fq_gz/{sample}.1.unpaired.fastq.gz",
-        r2_unpaired="trimmed/pe/fq_gz/{sample}.2.unpaired.fastq.gz"
+        r2_unpaired="trimmed/pe/fq_gz/{sample}.2.unpaired.fastq.gz",
     log:
-        "logs/trimmomatic/{sample}.log"
+        "logs/trimmomatic/{sample}.log",
     params:
         # list of trimmers (see manual)
         trimmer=["TRAILING:3"],
         # optional parameters
         extra="",
-        compression_level="-9"
-    threads:
-        32
+        compression_level="-9",
+    threads: 32
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     wrapper:
         "master/bio/trimmomatic/pe"
+
 
 rule trimmomatic_pe_gz_fq:
     input:
         r1="reads/{sample}.1.fastq.gz",
-        r2="reads/{sample}.2.fastq.gz"
+        r2="reads/{sample}.2.fastq.gz",
     output:
         r1="trimmed/pe/gz_fq/{sample}.1.fastq",
         r2="trimmed/pe/gz_fq/{sample}.2.fastq",
         # reads where trimming entirely removed the mate
         r1_unpaired="trimmed/pe/gz_fq/{sample}.1.unpaired.fastq",
-        r2_unpaired="trimmed/pe/gz_fq/{sample}.2.unpaired.fastq"
+        r2_unpaired="trimmed/pe/gz_fq/{sample}.2.unpaired.fastq",
     log:
-        "logs/trimmomatic/{sample}.log"
+        "logs/trimmomatic/{sample}.log",
     params:
         # list of trimmers (see manual)
         trimmer=["TRAILING:3"],
         # optional parameters
-        extra=""
-    threads:
-        32
+        extra="",
+    threads: 32
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     wrapper:
         "master/bio/trimmomatic/pe"
+
 
 rule trimmomatic_pe_gz_gz:
     input:
         r1="reads/{sample}.1.fastq.gz",
-        r2="reads/{sample}.2.fastq.gz"
+        r2="reads/{sample}.2.fastq.gz",
     output:
         r1="trimmed/pe/gz_gz/{sample}.1.fastq.gz",
         r2="trimmed/pe/gz_gz/{sample}.2.fastq.gz",
         # reads where trimming entirely removed the mate
         r1_unpaired="trimmed/pe/gz_gz/{sample}.1.unpaired.fastq.gz",
-        r2_unpaired="trimmed/pe/gz_gz/{sample}.2.unpaired.fastq.gz"
+        r2_unpaired="trimmed/pe/gz_gz/{sample}.2.unpaired.fastq.gz",
     log:
-        "logs/trimmomatic/{sample}.log"
+        "logs/trimmomatic/{sample}.log",
     params:
         # list of trimmers (see manual)
         trimmer=["TRAILING:3"],
         # optional parameters
         extra="",
-        compression_level="-9"
-    threads:
-        32
+        compression_level="-9",
+    threads: 32
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     wrapper:
         "master/bio/trimmomatic/pe"
 
+
 rule trimmomatic_se_fq_fq:
     input:
-        "reads/{sample}.fastq"
+        "reads/{sample}.fastq",
     output:
-        "trimmed/se/fq_fq/{sample}.fastq"
+        "trimmed/se/fq_fq/{sample}.fastq",
     log:
-        "logs/trimmomatic/{sample}.log"
+        "logs/trimmomatic/{sample}.log",
     params:
         # list of trimmers (see manual)
         trimmer=["TRAILING:3"],
         # optional parameters
         extra="",
-    threads:
-        32
+    threads: 32
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     wrapper:
         "master/bio/trimmomatic/se"
 
+
 rule trimmomatic_se_fq_gz:
     input:
-        "reads/{sample}.fastq"
+        "reads/{sample}.fastq",
     output:
-        "trimmed/se/fq_gz/{sample}.fastq.gz"
+        "trimmed/se/fq_gz/{sample}.fastq.gz",
     log:
-        "logs/trimmomatic/{sample}.log"
+        "logs/trimmomatic/{sample}.log",
     params:
         # list of trimmers (see manual)
         trimmer=["TRAILING:3"],
         # compression levels from -0 to -9 and -11
         compression_level="-5",
         # optional parameters
-        extra=""
-    threads:
-        32
+        extra="",
+    threads: 32
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     wrapper:
         "master/bio/trimmomatic/se"
 
+
 rule trimmomatic_se_gz_fq:
     input:
-        "reads/{sample}.fastq.gz"
+        "reads/{sample}.fastq.gz",
     output:
-        "trimmed/se/gz_fq/{sample}.fastq"
+        "trimmed/se/gz_fq/{sample}.fastq",
     log:
-        "logs/trimmomatic/{sample}.log"
+        "logs/trimmomatic/{sample}.log",
     params:
         # list of trimmers (see manual)
         trimmer=["TRAILING:3"],
         # optional parameters
-        extra=""
-    threads:
-        32
+        extra="",
+    threads: 32
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     wrapper:
         "master/bio/trimmomatic/se"
 
+
 rule trimmomatic_se_gz_gz:
     input:
-        "reads/{sample}.fastq.gz"
+        "reads/{sample}.fastq.gz",
     output:
-        "trimmed/se/gz_gz/{sample}.fastq.gz"
+        "trimmed/se/gz_gz/{sample}.fastq.gz",
     log:
-        "logs/trimmomatic/{sample}.log"
+        "logs/trimmomatic/{sample}.log",
     params:
         # list of trimmers (see manual)
         trimmer=["TRAILING:3"],
         # optional parameters
         extra="",
         # optional compression levels from -0 to -9 and -11
-        compression_level="-9"
-    threads:
-        32
+        compression_level="-9",
+    threads: 32
     resources:
-        mem_mb=1024
+        mem_mb=1024,
     wrapper:
         "master/bio/trimmomatic/se"
