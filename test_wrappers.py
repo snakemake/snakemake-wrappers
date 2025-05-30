@@ -4552,7 +4552,7 @@ def test_trim_galore_se_uncompressed(run):
 def test_trimmomatic_pe(run):
     """Four tests, one per fq-gz combination"""
     run(
-        "bio/trimmomatic/pe",
+        "bio/trimmomatic",
         [
             "snakemake",
             "--cores",
