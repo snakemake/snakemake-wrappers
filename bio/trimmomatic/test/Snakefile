@@ -19,7 +19,7 @@ rule trimmomatic_pe_fq_fq:
     resources:
         mem_mb=1024,
     wrapper:
-        "master/bio/trimmomatic/pe"
+        "master/bio/trimmomatic"
 
 
 rule trimmomatic_pe_fq_gz:
@@ -44,7 +44,7 @@ rule trimmomatic_pe_fq_gz:
     resources:
         mem_mb=1024,
     wrapper:
-        "master/bio/trimmomatic/pe"
+        "master/bio/trimmomatic"
 
 
 rule trimmomatic_pe_gz_fq:
@@ -68,7 +68,7 @@ rule trimmomatic_pe_gz_fq:
     resources:
         mem_mb=1024,
     wrapper:
-        "master/bio/trimmomatic/pe"
+        "master/bio/trimmomatic"
 
 
 rule trimmomatic_pe_gz_gz:
@@ -93,7 +93,7 @@ rule trimmomatic_pe_gz_gz:
     resources:
         mem_mb=1024,
     wrapper:
-        "master/bio/trimmomatic/pe"
+        "master/bio/trimmomatic"
 
 
 rule trimmomatic_se_fq_fq:
@@ -112,7 +112,7 @@ rule trimmomatic_se_fq_fq:
     resources:
         mem_mb=1024,
     wrapper:
-        "master/bio/trimmomatic/se"
+        "master/bio/trimmomatic"
 
 
 rule trimmomatic_se_fq_gz:
@@ -133,7 +133,7 @@ rule trimmomatic_se_fq_gz:
     resources:
         mem_mb=1024,
     wrapper:
-        "master/bio/trimmomatic/se"
+        "master/bio/trimmomatic"
 
 
 rule trimmomatic_se_gz_fq:
@@ -152,7 +152,7 @@ rule trimmomatic_se_gz_fq:
     resources:
         mem_mb=1024,
     wrapper:
-        "master/bio/trimmomatic/se"
+        "master/bio/trimmomatic"
 
 
 rule trimmomatic_se_gz_gz:
@@ -173,4 +173,4 @@ rule trimmomatic_se_gz_gz:
     resources:
         mem_mb=1024,
     wrapper:
-        "master/bio/trimmomatic/se"
+        "master/bio/trimmomatic"
