@@ -32,7 +32,7 @@ else:
 
 shell(
     "trimmomatic {trim_mode}"
-    " -threads {snakemakethreads}"
+    " -threads {snakemake.threads}"
     " {java_opts}"
     " {extra}"
     " {in_files}"
