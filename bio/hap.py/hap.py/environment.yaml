@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - hap.py =0.3.15
-  - rtg-tools =3.12.1
+  - rtg-tools =3.13
