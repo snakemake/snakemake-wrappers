@@ -9,7 +9,7 @@ rule trimmomatic_pe_fq_fq:
         r1_unpaired="trimmed/pe/fq_fq/{sample}.1.unpaired.fastq",
         r2_unpaired="trimmed/pe/fq_fq/{sample}.2.unpaired.fastq",
     log:
-        "logs/trimmomatic/{sample}.log",
+        "logs/trimmomatic/pe/fq_fq/{sample}.log",
     params:
         # list of trimmers (see manual)
         trimmer=["TRAILING:3"],
@@ -33,7 +33,7 @@ rule trimmomatic_pe_fq_gz:
         r1_unpaired="trimmed/pe/fq_gz/{sample}.1.unpaired.fastq.gz",
         r2_unpaired="trimmed/pe/fq_gz/{sample}.2.unpaired.fastq.gz",
     log:
-        "logs/trimmomatic/{sample}.log",
+        "logs/trimmomatic/pe/fq_gz/{sample}.log",
     params:
         # list of trimmers (see manual)
         trimmer=["TRAILING:3"],
@@ -58,7 +58,7 @@ rule trimmomatic_pe_gz_fq:
         r1_unpaired="trimmed/pe/gz_fq/{sample}.1.unpaired.fastq",
         r2_unpaired="trimmed/pe/gz_fq/{sample}.2.unpaired.fastq",
     log:
-        "logs/trimmomatic/{sample}.log",
+        "logs/trimmomatic/pe/gz_fq/{sample}.log",
     params:
         # list of trimmers (see manual)
         trimmer=["TRAILING:3"],
@@ -82,7 +82,7 @@ rule trimmomatic_pe_gz_gz:
         r1_unpaired="trimmed/pe/gz_gz/{sample}.1.unpaired.fastq.gz",
         r2_unpaired="trimmed/pe/gz_gz/{sample}.2.unpaired.fastq.gz",
     log:
-        "logs/trimmomatic/{sample}.log",
+        "logs/trimmomatic/pe/gz_gz/{sample}.log",
     params:
         # list of trimmers (see manual)
         trimmer=["TRAILING:3"],
@@ -102,7 +102,7 @@ rule trimmomatic_se_fq_fq:
     output:
         "trimmed/se/fq_fq/{sample}.fastq",
     log:
-        "logs/trimmomatic/{sample}.log",
+        "logs/trimmomatic/se/fq_fq/{sample}.log",
     params:
         # list of trimmers (see manual)
         trimmer=["TRAILING:3"],
@@ -121,7 +121,7 @@ rule trimmomatic_se_fq_gz:
     output:
         "trimmed/se/fq_gz/{sample}.fastq.gz",
     log:
-        "logs/trimmomatic/{sample}.log",
+        "logs/trimmomatic/se/fq_gz/{sample}.log",
     params:
         # list of trimmers (see manual)
         trimmer=["TRAILING:3"],
@@ -142,7 +142,7 @@ rule trimmomatic_se_gz_fq:
     output:
         "trimmed/se/gz_fq/{sample}.fastq",
     log:
-        "logs/trimmomatic/{sample}.log",
+        "logs/trimmomatic/se/gz_fq/{sample}.log",
     params:
         # list of trimmers (see manual)
         trimmer=["TRAILING:3"],
@@ -161,7 +161,7 @@ rule trimmomatic_se_gz_gz:
     output:
         "trimmed/se/gz_gz/{sample}.fastq.gz",
     log:
-        "logs/trimmomatic/{sample}.log",
+        "logs/trimmomatic/se/gz_gz/{sample}.log",
     params:
         # list of trimmers (see manual)
         trimmer=["TRAILING:3"],
