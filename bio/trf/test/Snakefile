@@ -1,54 +1,54 @@
-# TODO: Check formatting of Python Files and SnakeFile
-rule run_trf_basic:
+include: "tests.smk" #[hide]
+
+
+#SAMPLE RULE 1: Run without params directive and it would
+##############  automaticaly run with default recommended params.
+##############  Also, missing logs directive would automatically 
+##############  create a directory(logs) and log in {your_wild_card}.log.
+rule run_trf_basic_with_defaults_nolog:
+    input:
+        sample="demo_data/{sample}.fasta",
+    output:
+        directory("trf_output/{sample}"),
+    wrapper:
+        "master/bio/trf"
+
+
+#SAMPLE RULE 2: Run with all params directive and it would
+##############  run according to provided params.
+rule run_trf_with_all_custom_params_with_log:
     input:
         sample="demo_data/{sample}.fasta",
     output:
         directory("trf_output/{sample}"),
     params:
         match=2,
-        mismatch=7,
-        delta=7,
-        pm=80,
-        pi=10,
-        minscore=70,
-        maxperiod=500,
-        extra="-m",
+        mismatch=3,
+        delta=3,
+        pm=75,
+        pi=20,
+        minscore=100,
+        maxperiod=1000,
+        extra="-h"
     log:
-        "logs/{sample}.log",
+        "logs_custom_param/{sample}.log"
     wrapper:
         "master/bio/trf"
-#not catering g 
-#if mistake in regular then correct and make -
-#Change behavior for unknown params (-g, etc.) to issue warnings instead of throwing errors.
-#Improve malformed flag detection with clear ValueErrors and suggestions (e.g., catching >h, +h, - h).
-#Log warnings for any unknown types (-g, -p, *p, etc.)
-#consider first one in case multiple same flags
-# #overwrite even if one change found in flag...
-
-# -g -p *p +h → all warned, none raise ValueError.
-
-# - h, + h, >h → warned, not fatal.
-
-# match=2 extra="-l=3 -l=5" → first -l taken, second ignored with warning.
-
-# -h -h -v → second -h ignored with warning
 
 
-rule run_trf_error:
+#SAMPLE RULE 3: Run with partial params directive and it would
+##############  run by updating defaults by provided params and
+##############  and the remaining would remain set to defaults.
+rule run_trf_basic_with_partial_custom_params_with_log:
     input:
-        sample="demo_data/{sample}.bam",
+        sample="demo_data/{sample}.fasta",
     output:
         directory("trf_output/{sample}"),
     params:
-        match=2,
-        mismatch=7,
-        delta=7,
-        pm=80,
-        pi=10,
-        minscore=50,
-        maxperiod=500,
-        extra="-f -d -m",
+        mismatch=3,
+        delta=3,
+        extra="-m -l20"
     log:
-        "logs/{sample}.log",
+        "logs/{sample}_partial_custom_params.log"
     wrapper:
         "master/bio/trf"

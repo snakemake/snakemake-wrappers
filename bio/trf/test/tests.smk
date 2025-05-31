@@ -1,0 +1,82 @@
+#VALIDATIONS RULE 1: Checks with default params if error generated
+#################### for invalid file type, that is {sample}.bam.
+rule run_trf_invalid_file:
+    input:
+        sample="demo_data/{sample}.bam",
+    output:
+        directory("trf_output/{sample}"),
+    log:
+        "logs/{sample}.log",
+    wrapper:
+        "master/bio/trf"
+
+
+#VALIDATIONS RULE 2: Checks invalid param e.g delta=20, if error generated
+#################### for invalid value or not.
+rule run_trf_invalid_param_value:
+    input:
+        sample="demo_data/{sample}.fasta",
+    output:
+        directory("trf_output/{sample}"),
+    params:
+        delta=20,
+    log:
+        "logs/{sample}.log",
+    wrapper:
+        "master/bio/trf"
+
+
+#VALIDATIONS RULE 3: Checks permissible flags run with valid input file.
+#######################################################################
+rule run_trf_permissible_flag:
+    input:
+        sample="demo_data/{sample}.fasta",
+    output:
+        directory("trf_output/{sample}"),
+    params:
+        extra='-D -L29',
+    log:
+        "logs/{sample}.log",
+    wrapper:
+        "master/bio/trf"
+
+
+#VALIDATIONS RULE 5: Checks permissbile flag types with mistake, run with valid 
+#################### input file.
+rule run_trf_permissible_flag_with_mistake:
+    input:
+        sample="demo_data/{sample}.fasta",
+    output:
+        directory("trf_output/{sample}"),
+    params:
+        extra='*l20 +m',
+    log:
+        "logs/{sample}.log",
+    wrapper:
+        "master/bio/trf"
+
+
+#VALIDATIONS RULE 5: Checks impermissible flag types run with valid input file.
+###############################################################################
+rule run_trf_impermissible_flag_types:
+    input:
+        sample="demo_data/{sample}.fasta",
+    output:
+        directory("trf_output/{sample}"),
+    params:
+        extra='-g *U )',
+    log:
+        "logs/{sample}.log",
+    wrapper:
+        "master/bio/trf"
+
+
+#VALIDATIONS RULE 6: Checks for logging in not set log directive.
+##################################################################
+rule run_trf_checks_custom_logging:
+    input:
+        sample="demo_data/{sample}.fasta",
+    output:
+        directory("trf_output/{sample}"),
+    wrapper:
+        "master/bio/trf"
