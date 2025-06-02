@@ -6,30 +6,33 @@ url: https://tandem.bu.edu/trf/home
 authors:
   - Muhammad Rohan Ali Asmat
 input:
-  - fasta: DNA sequence file in FASTA format to be analyzed by Tandem Repeats Finder.
+  - fasta: A DNA sequence file in FASTA format to be analyzed by Tandem Repeats Finder.
 output:
-  - dat: Path to the repeat table file (*.dat) with repeat details including location, size, copy number, and nucleotide content.
-  - align: Path to the alignment file (*.align) showing how repeat units align to a consensus sequence.
-  - mask: Path to the masked sequence file (*.mask) generated if the `-m` flag is used (optional).
-  - html: Path to the HTML report file (*.html), generated only if the `-h` or related flag is passed (optional).
+  - dat: "Data file (``*.dat``)."
+  - mask: "Masked sequence file (``*.mask``)."
+  - html: "HTML file (``*.html``)."
 params:
-  match: "Match weight (default: 2)"
-  mismatch: "Mismatch penalty (default: 7)"
-  delta: "Indel penalty (default: 7)"
-  pm: "Match probability percentage (default: 80)"
-  pi: "Indel probability percentage (default: 10)"
-  minscore: "Minimum alignment score to report (default: 50)"
-  maxperiod: "Maximum period size to report (default: 500)"
-  extra: "Optional command-line flags to pass to Tandem Repeats Finder (TRF). These flags are appended after the 7 required numeric parameters. Supported flags (default state in parentheses): -m (off, generate masked sequence file), -f (off, include flanking sequence), -d (on, produce .dat file), -h (off, suppress HTML output), -r (on, enable redundancy filtering), -l <n> (default 20 Mbp, set max tandem repeat size), -ngs (off, compact output for NGS), -u (off, show usage), -v (off, show version). Provide flags as a quoted string, e.g., '-d -h'."
+  match: "Match weight (default: 2, allowed: >= 1, )"
+  mismatch: "Mismatch penalty (default: 7, allowed: 3, 5, 7)"
+  delta: "Indel penalty (default: 7, allowed: 3, 5, 7)"
+  pm: "Match probability percentage (default: 80, allowed: 75, 80)"
+  pi: "Indel probability percentage (default: 10, allowed: 10, 20)"
+  minscore: "Minimum alignment score to report (default: 50, allowed: >=1)"
+  maxperiod: "Maximum period size to report (default: 500, allowed: >= 1 and <=2000)"
+  extra: "Optional command-line flags to pass to Tandem Repeats Finder (TRF). |nl| These flags are appended after the 7 required numeric parameters. Supported flags (default state in parentheses): -m (generate masked sequence file), -f (include flanking sequence), -d (produce .dat file), -h (suppress HTML output), -l <n> (set max tandem repeat size, default 500, allowed: >=1, preffered: >=1 and <=29), -ngs (more compact .dat output on multisequence files), -u (usage), -v (version). Provide flags as a quoted string, e.g., '-d -h'."
 notes: >
-  Command template used:
-  trf <input.fasta> <match> <mismatch> <delta> <pm> <pi> <minscore> <maxperiod> <extra>
-
   If one or more numeric parameters (e.g., match, mismatch) are not provided,
-  the wrapper will automatically substitute the default values recommended by TRF, as listed above.
+  the wrapper will automatically substitute the default values recommended by TRF, as listed in the params
+  section. |nl| |nl|
 
-  Flags (extra) are optional and can be specified using the 'extra' param (e.g., '-d -h').
-  If a flag is not provided, the program uses the default state as specified in the extra parameter description above.
+  Flags are default to `-m -f -d`, in case the user doesn't specify a flag. Flag(s) are specified using the 'extra' param (e.g., '-d -h'). 
+  In case user specifies a flag, then a flag combination with defaults is not formed rather his input of flag(s) is considered. |nl| |nl|
 
-  GitHub Repository: https://github.com/Benson-Genomics-Lab/TRF  
-  Bioconda Package: https://prefix.dev/channels/bioconda/packages/trf
+  One or more output type of files are produced based on the flag(s) slection just as in TRF. |nl| |nl|
+
+  For Developers: |nl|.
+  - GitHub Repository: https://github.com/Benson-Genomics-Lab/TRF  |nl|
+  - Bioconda Package: https://prefix.dev/channels/bioconda/packages/trf |nl|
+
+  |nl|
+  Note: As this is a wrapper for TRF utility, it comes with it's limitations or defects if any. 
