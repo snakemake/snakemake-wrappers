@@ -4249,6 +4249,20 @@ def test_samtools_fixmate(run):
         ["snakemake", "--cores", "1", "fixed/a.bam", "--use-conda", "-F"],
     )
 
+def test_pyfaidx(run):
+    run(
+        "bio/pyfaidx",
+        ["snakemake", "--cores", "1", "retrieved.fasta", "--use-conda", "-F"],
+    )
+    run(
+        "bio/pyfaidx",
+        ["snakemake", "--cores", "1", "retrieved.chrom", "--use-conda", "-F"],
+    )
+    run(
+        "bio/pyfaidx",
+        ["snakemake", "--cores", "1", "retrieved.bed", "--use-conda", "-F"],
+    )
+
 
 def test_pyfastaq_replace_bases(run):
     run(

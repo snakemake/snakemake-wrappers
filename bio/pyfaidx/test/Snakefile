@@ -1,0 +1,40 @@
+rule test_pydaifx_out_fasta:
+    input:
+        fasta="sequence.fasta",
+        bed="interval.bed",
+    output:
+        "retrieved.fasta",
+    threads: 1
+    log:
+        "test_pydaifx.log",
+    params:
+        extra="--complement",
+    wrapper:
+        "master/bio/pyfaidx"
+
+
+use rule test_pydaifx_out_fasta as test_pydaifx_index_fasta with:
+    output:
+        "sequence.fasta.fai",
+    params:
+        extra="",
+    log:
+        "test_pydaifx_index_fasta.log",
+
+
+use rule test_pydaifx_out_fasta as test_pydaifx_out_sizes with:
+    output:
+        "retrieved.chrom",
+    params:
+        extra="",
+    log:
+        "test_pydaifx_out_sizes.log",
+
+
+use rule test_pydaifx_out_fasta as test_pydaifx_out_bed with:
+    output:
+        "retrieved.bed",
+    params:
+        extra="",
+    log:
+        "test_pydaifx_out_bed.log",
