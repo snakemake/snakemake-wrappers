@@ -1,67 +1,140 @@
+"""
+This module provides default constants and the `TRFConfig` class for configuring
+Tandem Repeat Finder (TRF) command-line arguments.
+
+It defines default parameters, boolean flags, and flags with values for TRF configuration.
+The `TRFConfig` class allows users to update and build the final TRF command with user inputs.
+
+Constants:
+- `TRF_DEFAULT_PARAMS`: A dictionary of default numeric parameters for TRF.
+- `TRF_DEFAULT_FLAGS_WITH_VALUE`: A dictionary of flags that require a value.
+- `TRF_DEFAULT_FLAGS_BOOL`: A dictionary of boolean flags for TRF.
+
+Classes:
+- `TRFConfig`: A class that manages TRF configuration, allowing updates and command generation.
+"""
+
+import copy
 from dataclasses import dataclass, field
-from typing import Dict, Union
-from pathlib import Path
-import sys
+from typing import Dict
+
 from config.constants import (
-    TRF_DEFAULT_PARAMS,
-    TRF_DEFAULT_FLAGS_WITH_VALUE,
     TRF_DEFAULT_FLAGS_BOOL,
+    TRF_DEFAULT_FLAGS_WITH_VALUE,
+    TRF_DEFAULT_PARAMS,
 )
-from utils.tee import Tee
+
 
 @dataclass
 class TRFConfig:
-    # Default configuration for parameters, flags with value, and boolean flags
-    params: Dict[str, str] = field(default_factory=lambda: TRF_DEFAULT_PARAMS.copy())
-    flags_with_value: Dict[str, str] = field(default_factory=lambda: TRF_DEFAULT_FLAGS_WITH_VALUE.copy())
-    flags_bool: Dict[str, bool] = field(default_factory=lambda: TRF_DEFAULT_FLAGS_BOOL.copy())
-    log_file_path: Union[str, Path, None] = None
+    """
+    TRFConfig class for managing TRF configuration.
 
-    def __post_init__(self):
-        if self.log_file_path:
-            log_file = open(str(self.log_file_path), "a")
-            sys.stdout = Tee(sys.__stdout__, log_file)
-            sys.stderr = Tee(sys.__stderr__, log_file)
+    This class allows for updating parameters, boolean flags, and flags with values
+    used in constructing the TRF command. It helps to build the final TRF command
+    based on user-specified options or set defaults.
+
+    Attributes:
+        params (Dict[str, str]): A dictionary of numeric parameters for TRF.
+        flags_with_value (Dict[str, str]): A dictionary of flags that require values.
+        flags_bool (Dict[str, bool]): A dictionary of boolean flags for TRF.
+
+    Methods:
+        update_params(user_params):
+            Updates the numeric parameters for TRF with user-provided values.
+
+        update_flags_bool(user_flags):
+            Updates the boolean flags for TRF based on user input.
+
+        update_flags_with_value(user_flags):
+            Updates flags that require values (e.g., `-l 2`) with user-specified values.
+
+        build_command(input_file):
+            Builds the final TRF command-line string based on the real time configuration.
+    """
+
+    params: Dict[str, str] = field(
+        default_factory=lambda: copy.deepcopy(TRF_DEFAULT_PARAMS)
+    )  # noqa: W0108
+    flags_with_value: Dict[str, str] = field(
+        default_factory=lambda: copy.deepcopy(TRF_DEFAULT_FLAGS_WITH_VALUE)
+    )  # noqa: W0108
+    flags_bool: Dict[str, bool] = field(
+        default_factory=lambda: copy.deepcopy(TRF_DEFAULT_FLAGS_BOOL)
+    )  # noqa: W0108
 
     def update_params(self, user_params: Dict[str, str]) -> None:
         """
-        Directly updates TRF numeric params with pre-validated user values.
+        Update the numeric parameters for TRF with user-provided values.
+
+        This method takes a dictionary of parameters and updates the `params` attribute
+        by normalizing the keys to lowercase.
+
+        Args:
+            user_params (Dict[str, str]): A dictionary of user-specified numeric parameters.
+
+        Returns:
+            None
         """
         normalized = {k.lower(): v for k, v in user_params.items()}
         self.params.update(normalized)
-        print(f"param: {self.params}")
 
     def update_flags_bool(self, user_flags: Dict[str, bool]) -> None:
         """
-        Updates boolean flags (like `-m`, `-f`, etc.) from pre-parsed user input.
-        Also applies TRF-specific logic (e.g. -h implies -d).
+        Update the boolean flags for TRF with user-provided values.
+
+        This method updates the `flags_bool` dictionary based on the provided flags.
+
+        Args:
+            user_flags (Dict[str, bool]): A dictionary of boolean flags where keys are
+                                          flag names (e.g., `m`, `f`) and values are
+                                          True/False.
+
+        Returns:
+            None
         """
         if user_flags:
-            normalized = {k.lstrip('-').lower(): v for k, v in user_flags.items()}
-            self.flags_bool = normalized  # Override defaults if any user flag is given
+            normalized = {k.lstrip("-").lower(): v for k, v in user_flags.items()}
+            self.flags_bool = normalized
         else:
             self.flags_bool = TRF_DEFAULT_FLAGS_BOOL.copy()
 
-        # TRF logic: -h (suppress HTML) implies -d (data file)
-        if self.flags_bool.get("h", False):
-            self.flags_bool["d"] = True
-
-        print(f"param: {self.flags_bool}")
-
     def update_flags_with_value(self, user_flags: Dict[str, str]) -> None:
         """
-        Updates flags that require values (e.g., `-l 2`) from pre-parsed input.
+        Update the flags that require values (e.g., `-l 2`) with user-provided values.
+
+        This method updates the `flags_with_value` dictionary by normalizing the flag
+        names and applying the user-specified values.
+
+        Args:
+            user_flags (Dict[str, str]): A dictionary of flags that require values
+                                         (e.g., `-l 2`, where `l` is the flag and `2` is the value).
+
+        Returns:
+            None
         """
-        normalized = {k.lstrip('-').lower(): v for k, v in user_flags.items()}
+        normalized = {k.lstrip("-").lower(): v for k, v in user_flags.items()}
         self.flags_with_value.update(normalized)
-        print(f"param: {self.flags_with_value}")
 
     def build_command(self, input_file: str) -> str:
         """
-        Builds the final TRF command-line string.
+        Build the final TRF command string.
+
+        This method generates the full command-line string for running TRF based on
+        the runtime configuration (params, flags, and flags with values).
+
+        Args:
+            input_file (str): The path to the input file (e.g., a FASTA file).
+
+        Returns:
+            str: The complete TRF command string.
         """
         param_str = " ".join(f"{value}" for key, value in self.params.items())
-        flags_bool_str = " ".join(f"-{flag}" for flag, enabled in self.flags_bool.items() if enabled)
-        flags_with_value_str = " ".join(f"-{flag} {value}" for flag, value in self.flags_with_value.items())
+        flags_bool_str = " ".join(
+            f"-{flag}" for flag, enabled in self.flags_bool.items() if enabled
+        )
+        flags_with_value_str = " ".join(
+            f"-{flag} {value}" for flag, value in self.flags_with_value.items()
+        )
 
         return f"trf {input_file} {param_str} {flags_bool_str} {flags_with_value_str}"
