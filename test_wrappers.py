@@ -155,6 +155,7 @@ def test_aria2c(run):
         ],
     )
 
+
 def test_miller(run):
     run(
         "utils/miller",
@@ -1264,28 +1265,20 @@ def test_deseq2_deseqdataset(run):
 def test_deseq2_wald(run):
     run(
         "bio/deseq2/wald",
-        ["snakemake", "--cores", "1", "--use-conda", "dge_normal.tsv"]
+        ["snakemake", "--cores", "1", "--use-conda", "dge_normal.tsv"],
     )
+
+    run("bio/deseq2/wald", ["snakemake", "--cores", "1", "--use-conda", "dge_ashr.tsv"])
 
     run(
         "bio/deseq2/wald",
-        ["snakemake", "--cores", "1", "--use-conda", "dge_ashr.tsv"]
+        ["snakemake", "--cores", "1", "--use-conda", "dge_apeglm.tsv"],
     )
 
-    run(
-        "bio/deseq2/wald",
-        ["snakemake", "--cores", "1", "--use-conda", "dge_apeglm.tsv"]
-    )
+    run("bio/deseq2/wald", ["snakemake", "--cores", "1", "--use-conda", "dge_2f.tsv"])
 
-    run(
-        "bio/deseq2/wald",
-        ["snakemake", "--cores", "1", "--use-conda", "dge_2f.tsv"]
-    )
+    run("bio/deseq2/wald", ["snakemake", "--cores", "1", "--use-conda", "dge_1s.tsv"])
 
-    run(
-        "bio/deseq2/wald",
-        ["snakemake", "--cores", "1", "--use-conda", "dge_1s.tsv"]
-    )
 
 def test_arriba_star_meta(run):
     run(
@@ -2071,9 +2064,9 @@ def test_bedtools_complement(run):
         ],
         compare_results_with_expected={
             "results/bed-complement/a.complement.bed": "expected/bed-complement/a.complement.bed",
-            #"results/bed-complement/a.complement.bed.gz": "expected/bed-complement/a.complement.bed.gz",  # Disabled since filecmp does not work with gzip files
-            "results/vcf-complement/a.complement.vcf": "expected/vcf-complement/a.complement.vcf"
-        }
+            # "results/bed-complement/a.complement.bed.gz": "expected/bed-complement/a.complement.bed.gz",  # Disabled since filecmp does not work with gzip files
+            "results/vcf-complement/a.complement.vcf": "expected/vcf-complement/a.complement.vcf",
+        },
     )
 
 
@@ -2088,7 +2081,6 @@ def test_bedtools_sort(run):
             "results/bed-sorted/a.sorted_by_file.bed",
             "results/vcf-sorted/a.sorted_by_file.vcf",
             "--use-conda",
-
             "-F",
         ],
     )
@@ -2119,12 +2111,12 @@ def test_bedtools_intersect(run):
             "A_B.intersected.bed",
             "A_B.intersected.bed.gz",
             "--use-conda",
-            "-F"
+            "-F",
         ],
         compare_results_with_expected={
             "A_B.intersected.bed": "expected/A_B.intersected.bed",
-            #"A_B.intersected.bed.gz": "expected/A_B.intersected.bed.gz",  # Disabled since filecmp does not work with gzip files
-        }
+            # "A_B.intersected.bed.gz": "expected/A_B.intersected.bed.gz",  # Disabled since filecmp does not work with gzip files
+        },
     )
 
 
@@ -6967,15 +6959,194 @@ def test_pygadm_item(run):
     )
 
 
+################################## START: TRF TESTS BLOCK ##################
+############################################################################
+
+
+### BASICS
 def test_trf_basic(run):
     run(
         "bio/trf",
-        ["snakemake", "--cores", "1", "trf_output/sample1", "--use-conda"]
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "trf_output/small_test",
+            "--use-conda",
+            "--allowed-rules",
+            "run_trf_basic_with_defaults_nolog",
+        ],
+        compare_results_with_expected={
+            "trf_output/small_test/small_test.fasta.2.7.7.80.10.50.500.dat": "expected/small_test.fasta.2.7.7.80.10.50.500.dat",
+            "trf_output/small_test/small_test.fasta.2.7.7.80.10.50.500.mask": "expected/small_test.fasta.2.7.7.80.10.50.500.mask",
+            "trf_output/small_test/small_test.fasta.2.7.7.80.10.50.500.summary.html": "expected/small_test.fasta.2.7.7.80.10.50.500.summary.html",
+            "trf_output/small_test/small_test.fasta.s1.2.7.7.80.10.50.500.1.html": "expected/small_test.fasta.s1.2.7.7.80.10.50.500.1.html",
+            "trf_output/small_test/small_test.fasta.s1.2.7.7.80.10.50.500.1.txt.html": "expected/small_test.fasta.s1.2.7.7.80.10.50.500.1.txt.html",
+            "trf_output/small_test/small_test.fasta.s2.2.7.7.80.10.50.500.1.html": "expected/small_test.fasta.s2.2.7.7.80.10.50.500.1.html",
+            "trf_output/small_test/small_test.fasta.s2.2.7.7.80.10.50.500.1.txt.html": "expected/small_test.fasta.s2.2.7.7.80.10.50.500.1.txt.html",
+            "trf_output/small_test/small_test.fasta.s3.2.7.7.80.10.50.500.1.html": "expected/small_test.fasta.s3.2.7.7.80.10.50.500.1.html",
+            "trf_output/small_test/small_test.fasta.s3.2.7.7.80.10.50.500.1.txt.html": "expected/small_test.fasta.s3.2.7.7.80.10.50.500.1.txt.html",
+        },
     )
 
 
-def test_trf_error_file(run):
+def test_trf_with_all_custom_params(run):
     run(
         "bio/trf",
-        ["snakemake", "--cores", "1", "trf_output/sample2", "--use-conda"]
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "trf_output/small_test",
+            "--use-conda",
+            "--allowed-rules",
+            "run_trf_with_all_custom_params_with_log",
+        ],
     )
+
+
+def test_trf_with_partial_params(run):
+    run(
+        "bio/trf",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "trf_output/small_test",
+            "--use-conda",
+            "--allowed-rules",
+            "run_trf_basic_with_partial_custom_params_with_log",
+        ],
+    )
+
+
+### ERRORS & Validations
+def test_trf_with_invalid_file(run):
+    with pytest.raises(subprocess.CalledProcessError):
+        run(
+            "bio/trf",
+            [
+                "snakemake",
+                "--cores",
+                "1",
+                "trf_output/sample2",
+                "--use-conda",
+                "--allowed-rules",
+                "run_trf_invalid_file",
+            ],
+        )
+
+
+def test_trf_with_invalid_param_value(run):
+    with pytest.raises(subprocess.CalledProcessError):
+        run(
+            "bio/trf",
+            [
+                "snakemake",
+                "--cores",
+                "1",
+                "trf_output/small_test",
+                "--use-conda",
+                "--allowed-rules",
+                "run_trf_invalid_param_value",
+            ],
+        )
+
+
+def test_trf_with_permissible_flags(run):
+    run(
+        "bio/trf",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "trf_output/small_test",
+            "--use-conda",
+            "--allowed-rules",
+            "run_trf_permissible_flags",
+        ],
+        compare_results_with_expected={
+            "trf_output/small_test/small_test.fasta.2.7.7.80.10.50.500.dat": "expected/small_test.fasta.2.7.7.80.10.50.500.dat",
+        },
+    )
+
+
+def test_trf_permissible_flags_with_mistake(run):
+    with pytest.raises(subprocess.CalledProcessError):
+        run(
+            "bio/trf",
+            [
+                "snakemake",
+                "--cores",
+                "1",
+                "trf_output/small_test",
+                "--use-conda",
+                "--allowed-rules",
+                "run_trf_permissible_flag_with_mistake",
+            ],
+        )
+
+
+def test_trf_permissible_optional_flags_with_mistake(run):
+    with pytest.raises(subprocess.CalledProcessError):
+        run(
+            "bio/trf",
+            [
+                "snakemake",
+                "--cores",
+                "1",
+                "trf_output/small_test",
+                "--use-conda",
+                "--allowed-rules",
+                "run_trf_permissible__optional_flag_with_mistake",
+            ],
+        )
+
+
+def test_trf_permissible_optional_flags_with_additional_feature(run):
+    run(
+        "bio/trf",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "trf_output/small_test",
+            "--use-conda",
+            "--allowed-rules",
+            "run_trf_permissible_flag_with_additional_feature",
+        ],
+    )
+
+
+def test_trf_impermissible_flag(run):
+    run(
+        "bio/trf",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "trf_output/small_test",
+            "--use-conda",
+            "--allowed-rules",
+            "run_trf_impermissible_flag_types",
+        ],
+    )
+
+
+def test_trf_without_log_directive(run):
+    run(
+        "bio/trf",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "trf_output/small_test",
+            "--use-conda",
+            "--allowed-rules",
+            "run_trf_checks_custom_logging",
+        ],
+    )
+
+
+################################## END: TRF TESTS BLOCK ####################
+############################################################################
