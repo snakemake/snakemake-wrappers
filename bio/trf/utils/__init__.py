@@ -1,2 +1,4 @@
-from utils.log_utils import log_output_dir_contents
-
+"""
+Empty __init__.py, so that all tools are able to
+recognise utils as a valid package.
+"""
