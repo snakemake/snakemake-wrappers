@@ -6,11 +6,9 @@ url: https://tandem.bu.edu/trf/home
 authors:
   - Muhammad Rohan Ali Asmat
 input:
-  - fasta: A DNA sequence file in FASTA format to be analyzed by Tandem Repeats Finder.
+  - fasta: A DNA sequence file in FASTA format to be analyzed by Tandem Repeats Finder. (Supported formats at the moment are `.fasta`, `.fna`, `.fa` and `.fas`.)
 output:
-  - dat: "Data file (``*.dat``)."
-  - mask: "Masked sequence file (``*.mask``)."
-  - html: "HTML file (``*.html``)."
+  - directory: This **must be specified** in the way shown in **rule** snippet above. Final contents can contain one or more of "Data file (``*.dat``), "Masked sequence file (``*.mask``) or "HTML file (``*.html``)."
 params:
   match: "Match weight (default: 2, allowed: >= 1, )"
   mismatch: "Mismatch penalty (default: 7, allowed: 3, 5, 7)"
@@ -27,12 +25,22 @@ notes: >
 
   Flags are default to `-m -f -d`, in case the user doesn't specify a flag. Flag(s) are specified using the 'extra' param (e.g., '-d -h'). 
   In case user specifies a flag, then a flag combination with defaults is not formed rather his input of flag(s) is considered. |nl| |nl|
+  For `-l` flag, current ways to give option value are -l29, -l 29, -l=29. |nl| |nl|
 
-  One or more output type of files are produced based on the flag(s) slection just as in TRF. |nl| |nl|
+  One or more output type of files are produced based on the flag(s) selection just as in TRF. |nl| |nl|
+
+  If you choose `logs` directory to log in, kindly don't use this file name: **trf_run_by_logger.log**. This is reserved for logger input information. 
+  Specific to shell command, in general scenario your provided log file path will be used to log in with respective name. In case you don't provide the
+  log file path then the content would be shown on screen and this is not recommended way. |nl| |nl|
 
   For Developers: |nl|.
   - GitHub Repository: https://github.com/Benson-Genomics-Lab/TRF  |nl|
   - Bioconda Package: https://prefix.dev/channels/bioconda/packages/trf |nl|
+
+  |nl| |nl|
+  **Limitations & Future Work:**
+  The wrapper has been made as flexible as possible but there is room for adding more flexibility like supporting advance typing catches `-l    =   20` etc., but this has been not catered 
+  as users of this wrapper are normally those who are familiar of command line and its specificity.
 
   |nl|
   Note: As this is a wrapper for TRF utility, it comes with it's limitations or defects if any. 
