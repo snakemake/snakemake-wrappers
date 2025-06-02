@@ -1,76 +1,66 @@
-__author__ = "Muhammad Rohan Ali Asmat"
-__copyright__ = "Copyright 2025, Muhammad Rohan Ali Asmat"
-__email__ = "Muhammad.R.Ali.A@proton.me"
-__license__ = "MIT"
+"""
+    Snakemake Wrapper for TRF (Tandem Repeat Finder)
+    ------------------------------------------------------
+    Handles parameter and flags validations alongside with 
+    partial or complete parameter providing with defaults set
+    to recommened parameter values and flags for an ease of 
+    writing Snakemake rules.
+"""
 
-
-# Standard library imports
+import logging
 import os
-import subprocess
 from pathlib import Path
 
-# Third-party imports
+from config import TRFConfig
 from snakemake.shell import shell
 from snakemake_wrapper_utils.snakemake import get_format
+from utils.filteration import split_trf_params
+from utils.logger_utils import log_output_dir_contents, setup_logger
+from utils.validation import validate_trf_numeric_params, validate_trf_option_values
 
-# Local imports
-from config import TRFConfig
-from utils.split_params_utils import split_trf_params
-from utils.validation_utils import (
-    validate_trf_numeric_params,
-    validate_trf_option_values,
-)
-from utils.log_utils import log_output_dir_contents
+logger = setup_logger("trf_logger", "logs/trf_run_by_logger.log", logging.INFO)
 
-
-#Read input file and make sure it is of valid Fasta format.
 input_file = Path(snakemake.input.sample).resolve()
-file_format = get_format(input_file)
-if file_format != 'fasta':
-    raise ValueError(f"Expected FASTA format, got {file_format}.")
-
-
-# Create & Ensure the output and log directories exist
 output_dir = Path(snakemake.output[0]).resolve()
-Path(output_dir).mkdir(parents=True, exist_ok=True)
 
-log_file_path = Path(snakemake.log[0]).resolve()
-log_file_path.parent.mkdir(parents=True, exist_ok=True)
+log_redirect = " 2>&1"
+if snakemake.log and snakemake.log[0]:
+    log_file = Path(snakemake.log[0]).resolve()
+    log_file.parent.mkdir(parents=True, exist_ok=True)
 
+    snakemake.log = str(log_file)
+    log_redirect = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-# Change working directory to output_dir
+    logger.info("Log file: %s", log_file)
+else:
+    logger.warning("No log file specified, skipping redirection.")
+
+logger.info("Input file: %s", input_file)
+logger.info("Output directory: %s", output_dir)
+
+file_format = get_format(input_file)
+if file_format != "fasta":
+    raise ValueError(f"[TRF] Expected FASTA format, got {file_format}.")
+
+output_dir.mkdir(parents=True, exist_ok=True)
 os.chdir(output_dir)
 
+config = TRFConfig()
+trf_numeric_params, trf_flags_bool, trf_flags_with_values = split_trf_params(
+    snakemake.params, logger=logger
+)
+validate_trf_numeric_params(trf_numeric_params, logger=logger)
+validate_trf_option_values(trf_flags_with_values, logger=logger)
 
-#Set configuration instance and read and update params based on the user input
-config = TRFConfig(log_file_path=log_file_path)
-trf_numeric_params, trf_flags, trf_flags_with_opts = split_trf_params(snakemake.params, log_file_path)
-
-#Validate the numeric params and trf optional flag
-validate_trf_numeric_params(trf_numeric_params, log_file_path)
-validate_trf_option_values(trf_flags_with_opts, log_file_path)
-
-
-#Update Config based on user input
 config.update_params(trf_numeric_params)
-config.update_flags_bool(trf_flags)
-config.update_flags_with_value(trf_flags_with_opts)
+config.update_flags_bool(trf_flags_bool)
+config.update_flags_with_value(trf_flags_with_values)
 
+relative_input = os.path.relpath(input_file, output_dir)
+cmd = config.build_command(relative_input)
 
-#Compute relative path from the parent of output_dir & Build Command
-relative_input_path = os.path.relpath(input_file, output_dir)
-cmd = config.build_command(relative_input_path)
+logger.info("Running TRF command: %s", cmd)
+shell(f"( {cmd} || [ $? -eq 3 ] ) {log_redirect}")
 
-
-# Run TRF - use the resolved path
-with open(log_file_path, 'w') as log_file:
-    result = subprocess.run(cmd, shell=True, stdout=log_file, stderr=subprocess.STDOUT, check=False)
-
-
-#  Return Code  Check
-if result.returncode not in [0, 3]:
-    raise subprocess.CalledProcessError(result.returncode, cmd)
-
-
-#Log & prints output directory contents
-log_output_dir_contents(output_dir, log_file_path)
+log_output_dir_contents(output_dir, logger=logger)
+logger.info("Snakemake TRF wrapper completed successfully.")
