@@ -1,4 +1,4 @@
-rule test_pyfaifx_out_fasta:
+rule test_pyfaidx_out_fasta:
     input:
         fasta="sequence.fasta",
         bed="interval.bed",
