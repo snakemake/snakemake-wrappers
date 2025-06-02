@@ -2,13 +2,13 @@
 This module provides default constants and the `TRFConfig` class for configuring
 Tandem Repeat Finder (TRF) command-line arguments.
 
-It defines default parameters, boolean flags, and flags with values for TRF configuration.
+It defines parameters, boolean flags, and flags with values for TRF configuration.
 The `TRFConfig` class allows users to update and build the final TRF command with user inputs.
 
 Constants:
 - `TRF_DEFAULT_PARAMS`: A dictionary of default numeric parameters for TRF.
-- `TRF_DEFAULT_FLAGS_WITH_VALUE`: A dictionary of flags that require a value.
-- `TRF_DEFAULT_FLAGS_BOOL`: A dictionary of boolean flags for TRF.
+- `TRF_DEFAULT_FLAGS_WITH_VALUE`: A dictionary of default flags that require a value.
+- `TRF_DEFAULT_FLAGS_BOOL`: A dictionary of default boolean flags for TRF.
 
 Classes:
 - `TRFConfig`: A class that manages TRF configuration, allowing updates and command generation.
@@ -56,12 +56,8 @@ class TRFConfig:
     params: Dict[str, str] = field(
         default_factory=lambda: copy.deepcopy(TRF_DEFAULT_PARAMS)
     )  # noqa: W0108
-    flags_with_value: Dict[str, str] = field(
-        default_factory=lambda: copy.deepcopy(TRF_DEFAULT_FLAGS_WITH_VALUE)
-    )  # noqa: W0108
-    flags_bool: Dict[str, bool] = field(
-        default_factory=lambda: copy.deepcopy(TRF_DEFAULT_FLAGS_BOOL)
-    )  # noqa: W0108
+    flags_with_value: Dict[str, str] = field(default_factory=dict)
+    flags_bool: Dict[str, bool] = field(default_factory=dict)
 
     def update_params(self, user_params: Dict[str, str]) -> None:
         """
@@ -96,8 +92,6 @@ class TRFConfig:
         if user_flags:
             normalized = {k.lstrip("-").lower(): v for k, v in user_flags.items()}
             self.flags_bool = normalized
-        else:
-            self.flags_bool = TRF_DEFAULT_FLAGS_BOOL.copy()
 
     def update_flags_with_value(self, user_flags: Dict[str, str]) -> None:
         """
@@ -113,8 +107,9 @@ class TRFConfig:
         Returns:
             None
         """
-        normalized = {k.lstrip("-").lower(): v for k, v in user_flags.items()}
-        self.flags_with_value.update(normalized)
+        if user_flags:
+            normalized = {k.lstrip("-").lower(): v for k, v in user_flags.items()}
+            self.flags_with_value.update(normalized)
 
     def build_command(self, input_file: str) -> str:
         """
@@ -129,6 +124,11 @@ class TRFConfig:
         Returns:
             str: The complete TRF command string.
         """
+        if not self.flags_with_value and not self.flags_bool:
+            self.flags_with_value = copy.deepcopy(TRF_DEFAULT_FLAGS_WITH_VALUE)
+            self.flags_bool = copy.deepcopy(TRF_DEFAULT_FLAGS_BOOL)
+
+        print(f"{self.flags_bool} , {self.flags_with_value}")
         param_str = " ".join(f"{value}" for key, value in self.params.items())
         flags_bool_str = " ".join(
             f"-{flag}" for flag, enabled in self.flags_bool.items() if enabled
