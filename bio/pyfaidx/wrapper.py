@@ -3,7 +3,7 @@
 """Snakemake-wrapper for pyfaidx"""
 
 __author__ = "Thibault Dayris"
-copyright__ = "Copyright 2025, Thibault Dayris"
+__copyright__ = "Copyright 2025, Thibault Dayris"
 __email__ = "thibault.dayris@gustaveroussy.fr"
 __license__ = "MIT"
 
