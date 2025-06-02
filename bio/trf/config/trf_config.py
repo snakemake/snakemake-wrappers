@@ -128,7 +128,6 @@ class TRFConfig:
             self.flags_with_value = copy.deepcopy(TRF_DEFAULT_FLAGS_WITH_VALUE)
             self.flags_bool = copy.deepcopy(TRF_DEFAULT_FLAGS_BOOL)
 
-        print(f"{self.flags_bool} , {self.flags_with_value}")
         param_str = " ".join(f"{value}" for key, value in self.params.items())
         flags_bool_str = " ".join(
             f"-{flag}" for flag, enabled in self.flags_bool.items() if enabled
