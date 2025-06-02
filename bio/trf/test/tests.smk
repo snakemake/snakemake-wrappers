@@ -80,7 +80,17 @@ rule run_trf_permissible_flag_with_additional_feature:
     output:
         directory("trf_output/{sample}"),
     params:
-        extra="-l 20",
+        match=2,
+        mismatch=3,
+        delta=3,
+        pm=75,
+        pi=20,
+        minscore=100,
+        maxperiod=1000,
+        extra="-h",
+        jump="orange"
+        # mismatch=2,
+        # extra="-l 20",
     log:
         "logs/{sample}.log",
     wrapper:

@@ -11,56 +11,160 @@ import logging
 import os
 from pathlib import Path
 
-from config import TRFConfig
 from snakemake.shell import shell
 from snakemake_wrapper_utils.snakemake import get_format
-from utils.filteration import split_trf_params
-from utils.logger_utils import log_output_dir_contents, setup_logger
-from utils.validation import validate_trf_numeric_params, validate_trf_option_values
 
-logger = setup_logger("trf_logger", "logs/trf_run_by_logger.log", logging.INFO)
+#Constants
+TRF_PARAMS = {
+  "match": {   #done
+    "default": "2",
+    "constraints": {
+      "min": 1,
+      "recommended": 2
+    }
+  },
+  "mismatch": { #done
+    "default": "7",
+    "constraints": {
+      "allowed": {3, 5, 7}
+    }
+  },
+  "delta": { #done
+    "default": "7",
+    "constraints": {
+      "allowed": {3, 5, 7}
+    }
+  },
+  "pm": { #done
+    "default": "80",
+    "constraints": {
+      "allowed": {75, 80}
+    }
+  },
+  "pi": { #done
+    "default": "10",
+    "constraints": {
+      "allowed": {10, 20}
+    }
+  },
+  "minscore": {   #done
+    "default": "50",
+    "constraints": {
+      "min": 1
+    }
+  },
+  "maxperiod": {
+    "default": "500",
+    "constraints": {
+      "min": 1,
+      "max": 2000
+    }
+  }
+}
 
-input_file = Path(snakemake.input.sample).resolve()
-output_dir = Path(snakemake.output[0]).resolve()
+TRF_FLAGS = {
+    "m": True,
+    "f": True,
+    "d": True,
+    "h": False,
+    "u": False,
+    "v": False,
+    "ngs": False,
+}
 
+TRF_OPTION_VALUE_FLAG = {
+    "-l": {
+        "min": 1,
+        "max": 29,
+    }
+}
+
+# Minimal logging Setup for printing and storing.
+os.makedirs("logging", exist_ok=True)
+logging.basicConfig(
+    level=logging.INFO,
+    handlers=[
+        logging.FileHandler("logging/trf_run_by_logger.log", mode="a"),
+        logging.StreamHandler()
+    ]
+)
+
+#Log redirect and in case no logging file provided, redirect to console.
 log_redirect = " 2>&1"
 if snakemake.log and snakemake.log[0]:
     log_file = Path(snakemake.log[0]).resolve()
     log_file.parent.mkdir(parents=True, exist_ok=True)
-
     snakemake.log = str(log_file)
     log_redirect = snakemake.log_fmt_shell(stdout=True, stderr=True)
-
-    logger.info("Log file: %s", log_file)
+    logging.info("Log file: %s", log_file)
 else:
-    logger.warning("No log file specified, skipping redirection.")
+    logging.warning("No log file specified, skipping redirection.")
 
-logger.info("Input file: %s", input_file)
-logger.info("Output directory: %s", output_dir)
+input_file = Path(snakemake.input.sample).resolve()
+output_dir = Path(snakemake.output[0]).resolve()
 
-file_format = get_format(input_file)
-if file_format != "fasta":
-    raise ValueError(f"[TRF] Expected FASTA format, got {file_format}.")
+#Check valid Fasta file format
+try:
+    file_format = get_format(input_file)
+    if file_format != "fasta":
+        raise ValueError(f"[TRF] Expected FASTA format, got {file_format}.")
+except ValueError as exc:
+    logging.error("[TRF] Expected FASTA format, got: %s", file_format, exc_info=True)
+    raise ValueError(f"[TRF] Expected FASTA format, got {file_format}.") from exc
 
+#Changing to output directory
 output_dir.mkdir(parents=True, exist_ok=True)
 os.chdir(output_dir)
 
-config = TRFConfig()
-trf_numeric_params, trf_flags_bool, trf_flags_with_values = split_trf_params(
-    snakemake.params, logger=logger
-)
-validate_trf_numeric_params(trf_numeric_params, logger=logger)
-validate_trf_option_values(trf_flags_with_values, logger=logger)
-
-config.update_params(trf_numeric_params)
-config.update_flags_bool(trf_flags_bool)
-config.update_flags_with_value(trf_flags_with_values)
-
+#Building Command for TRF
+cmd = "trf "
 relative_input = os.path.relpath(input_file, output_dir)
-cmd = config.build_command(relative_input)
+cmd += relative_input
+print(f"path {cmd}")
 
-logger.info("Running TRF command: %s", cmd)
+TRF_DEFAULT_PARAMS = {
+    "match": "2",
+    "mismatch": "7",
+    "delta": "7",
+    "pm": "80",
+    "pi": "10",
+    "minscore": "50",
+    "maxperiod": "500",
+}
+TRF_DEFAULT_FLAGS = "-m -f -d"
+TRF_FLAG_OPTIONS = ['-m', '-f', '-d', '-u', '-v', '-h', '-ngs']
+
+for key, value in snakemake.params.items():
+    print(f"{key}, {value}")
+    if key.lower() != 'extra' and key.lower() in TRF_DEFAULT_PARAMS:
+      print("Out of Extra")
+      if isinstance(value, int):
+        if ( ( (key.lower() == 'match' or key.lower() == 'minscore') 
+              and value >= 1 
+             ) or
+             ( (key.lower() == 'mismatch' or key.lower() == 'delta') 
+               and value in (3, 5, 7)
+             ) or
+             ( (key.lower() == 'pm' and value in (75, 80)) or 
+               (key.lower() == 'pi'and value in (10,20))
+             ) or
+             ( (key.lower() == 'maxperiod' and value >= 1 and value <= 2000)
+             )
+        ):
+          TRF_DEFAULT_PARAMS[key.lower()] = value
+          print(f"VALUE is {value}, {TRF_DEFAULT_PARAMS[key.lower()]}")
+        else:
+          logging.warning("Provided value of the key %s is invalid", key.lower())
+      else:
+         logging.warning("Parameter{key} not integer, hence setting to default.")
+    elif key.lower() == 'extra':
+        print("In Extra")
+        pass 
+    else:
+       logging.warning(f"Ignoring Invalid Parameter: {key}")
+
+cmd = "touch pop.txt"
+logging.info("Running TRF command: %s", cmd)
 shell(f"( {cmd} || [ $? -eq 3 ] ) {log_redirect}")
 
-log_output_dir_contents(output_dir, logger=logger)
-logger.info("Snakemake TRF wrapper completed actions.")
+logging.info("Snakemake TRF wrapper completed actions.")
