@@ -63,4 +63,4 @@ logger.info("Running TRF command: %s", cmd)
 shell(f"( {cmd} || [ $? -eq 3 ] ) {log_redirect}")
 
 log_output_dir_contents(output_dir, logger=logger)
-logger.info("Snakemake TRF wrapper completed successfully.")
+logger.info("Snakemake TRF wrapper completed actions.")
