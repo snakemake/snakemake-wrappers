@@ -1,10 +1,11 @@
-include: "tests.smk" #[hide]
+include: "tests.smk"  #[hide]
 
 
-#SAMPLE RULE 1: Run without params directive and it would
+# SAMPLE RULE 1: Run without params directive and it would
 ##############  automaticaly run with default recommended params.
-##############  Also, missing logs directive would automatically 
-##############  create a directory(logs) and log in {your_wild_card}.log.
+##############  Also, missing logs directive would be handled gracefully
+##############  and would be redirected to terminal but leaving it is not
+##############  recommended Snakemake methodology.
 rule run_trf_basic_with_defaults_nolog:
     input:
         sample="demo_data/{sample}.fasta",
@@ -14,7 +15,7 @@ rule run_trf_basic_with_defaults_nolog:
         "master/bio/trf"
 
 
-#SAMPLE RULE 2: Run with all params directive and it would
+# SAMPLE RULE 2: Run with all params directive and it would
 ##############  run according to provided params.
 rule run_trf_with_all_custom_params_with_log:
     input:
@@ -29,14 +30,14 @@ rule run_trf_with_all_custom_params_with_log:
         pi=20,
         minscore=100,
         maxperiod=1000,
-        extra="-h"
+        extra="-h",
     log:
-        "logs_custom_param/{sample}.log"
+        "logs/{sample}.log",
     wrapper:
         "master/bio/trf"
 
 
-#SAMPLE RULE 3: Run with partial params directive and it would
+# SAMPLE RULE 3: Run with partial params directive and it would
 ##############  run by updating defaults by provided params and
 ##############  and the remaining would remain set to defaults.
 rule run_trf_basic_with_partial_custom_params_with_log:
@@ -47,8 +48,8 @@ rule run_trf_basic_with_partial_custom_params_with_log:
     params:
         mismatch=3,
         delta=3,
-        extra="-m -l20"
+        extra="-h",
     log:
-        "logs/{sample}_partial_custom_params.log"
+        "logs/{sample}.log",
     wrapper:
         "master/bio/trf"
