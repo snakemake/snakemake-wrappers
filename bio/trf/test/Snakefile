@@ -1,55 +1,48 @@
 include: "tests.smk"  #[hide]
 
 
-# SAMPLE RULE 1: Run without params directive and it would
-##############  automaticaly run with default recommended params.
-##############  Also, missing logs directive would be handled gracefully
-##############  and would be redirected to terminal but leaving it is not
-##############  recommended Snakemake methodology.
-rule run_trf_basic_with_defaults_nolog:
+# SAMPLE RULE 1: Run with params directive that is a must.
+# Flags or optional flags should go in extra parameter exactly
+# as it would be typed in for a terminal command. In this
+# example officially recommended parameters and flag options
+# on TRF website are used
+rule run_trf_basic:
     input:
         sample="demo_data/{sample}.fasta",
     output:
         directory("trf_output/{sample}"),
-    wrapper:
-        "master/bio/trf"
-
-
-# SAMPLE RULE 2: Run with all params directive and it would
-##############  run according to provided params.
-rule run_trf_with_all_custom_params_with_log:
-    input:
-        sample="demo_data/{sample}.fasta",
-    output:
-        directory("trf_output/{sample}"),
+    log:
+        "logs/{sample}.log",
     params:
         match=2,
-        mismatch=3,
-        delta=3,
-        pm=75,
-        pi=20,
-        minscore=100,
-        maxperiod=1000,
-        extra="-h",
-    log:
-        "logs/{sample}.log",
+        mismatch=7,
+        delta=7,
+        pm=80,
+        pi=10,
+        minscore=50,
+        maxperiod=500,
+        extra="-f -d -m",
     wrapper:
         "master/bio/trf"
 
 
-# SAMPLE RULE 3: Run with partial params directive and it would
-##############  run by updating defaults by provided params and
-##############  and the remaining would remain set to defaults.
-rule run_trf_basic_with_partial_custom_params_with_log:
+# SAMPLE RULE 2: Where all params are necessary apart from extra but their
+################ order is not strict as in TRF utility. Also missing extra's
+################ param can set it utilities(TRF) default.
+rule run_trf_basic_with_change_order_missing_extras:
     input:
         sample="demo_data/{sample}.fasta",
     output:
         directory("trf_output/{sample}"),
-    params:
-        mismatch=3,
-        delta=3,
-        extra="-h",
     log:
         "logs/{sample}.log",
+    params:
+        pm=80,
+        pi=10,
+        minscore=50,
+        maxperiod=500,
+        match=2,
+        mismatch=7,
+        delta=7,
     wrapper:
         "master/bio/trf"
