@@ -5,7 +5,8 @@ include: "tests.smk"  #[hide]
 # Flags or optional flags should go in extra parameter exactly
 # as it would be typed in for a terminal command. In this
 # example officially recommended parameters and flag options
-# on TRF website are used
+# on TRF website are used. Also, use directory function
+# to specifiy output file.
 rule run_trf_basic:
     input:
         sample="demo_data/{sample}.fasta",
@@ -28,7 +29,7 @@ rule run_trf_basic:
 
 # SAMPLE RULE 2: Where all params are necessary apart from extra but their
 ################ order is not strict as in TRF utility. Also missing extra's
-################ param can set it utilities(TRF) default.
+################ param can set it to utilities(TRF) default.
 rule run_trf_basic_with_change_order_missing_extras:
     input:
         sample="demo_data/{sample}.fasta",
@@ -44,5 +45,6 @@ rule run_trf_basic_with_change_order_missing_extras:
         match=2,
         mismatch=7,
         delta=7,
+        extra='-l 20'
     wrapper:
         "master/bio/trf"
