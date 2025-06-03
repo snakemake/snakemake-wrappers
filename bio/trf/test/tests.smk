@@ -80,15 +80,15 @@ rule run_trf_permissible_flag_with_additional_feature:
     output:
         directory("trf_output/{sample}"),
     params:
-        match=2,
+        MAtch=2,
         mismatch=3,
         delta=3,
         pm=75,
         pi=20,
         minscore=100,
-        maxperiod=1000,
-        extra="-h",
-        jump="orange"
+        maxperiod=500,
+        extra="-h -j -m -l=0",
+        jump="orange",
         # mismatch=2,
         # extra="-l 20",
     log:
