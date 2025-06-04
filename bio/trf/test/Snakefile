@@ -28,7 +28,7 @@ rule run_trf_basic:
 
 
 # SAMPLE RULE 2: Where all params are necessary apart from extra but their
-################ order is not strict as in TRF utility. Also missing 
+################ order is not strict as in TRF utility. Also missing
 ################ extra's param can set it to utilities(TRF) default.
 rule run_trf_basic_with_change_order_missing_extras:
     input:
@@ -45,6 +45,6 @@ rule run_trf_basic_with_change_order_missing_extras:
         match=2,
         mismatch=7,
         delta=7,
-        extra='-l 20'
+        extra="-l 20",
     wrapper:
         "master/bio/trf"
