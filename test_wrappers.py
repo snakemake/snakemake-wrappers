@@ -6959,11 +6959,7 @@ def test_pygadm_item(run):
     )
 
 
-################################## START: TRF TESTS BLOCK ##################
-############################################################################
-### BASICS
-
-def test_trf_basic_command(run):
+def test_trf_basic_recommended_params(run):
     run(
         "bio/trf",
         [
@@ -6976,17 +6972,28 @@ def test_trf_basic_command(run):
             "run_trf_basic",
         ],
         compare_results_with_expected={
-            "trf_output/small_test/small_test.fasta.2.7.7.80.10.50.500.dat": "expected/small_test.fasta.2.7.7.80.10.50.500.dat",
-            "trf_output/small_test/small_test.fasta.2.7.7.80.10.50.500.mask": "expected/small_test.fasta.2.7.7.80.10.50.500.mask",
-            "trf_output/small_test/small_test.fasta.2.7.7.80.10.50.500.summary.html": "expected/small_test.fasta.2.7.7.80.10.50.500.summary.html",
-            "trf_output/small_test/small_test.fasta.s1.2.7.7.80.10.50.500.1.html": "expected/small_test.fasta.s1.2.7.7.80.10.50.500.1.html",
-            "trf_output/small_test/small_test.fasta.s1.2.7.7.80.10.50.500.1.txt.html": "expected/small_test.fasta.s1.2.7.7.80.10.50.500.1.txt.html",
-            "trf_output/small_test/small_test.fasta.s2.2.7.7.80.10.50.500.1.html": "expected/small_test.fasta.s2.2.7.7.80.10.50.500.1.html",
-            "trf_output/small_test/small_test.fasta.s2.2.7.7.80.10.50.500.1.txt.html": "expected/small_test.fasta.s2.2.7.7.80.10.50.500.1.txt.html",
-            "trf_output/small_test/small_test.fasta.s3.2.7.7.80.10.50.500.1.html": "expected/small_test.fasta.s3.2.7.7.80.10.50.500.1.html",
-            "trf_output/small_test/small_test.fasta.s3.2.7.7.80.10.50.500.1.txt.html": "expected/small_test.fasta.s3.2.7.7.80.10.50.500.1.txt.html",
+            "trf_output/small_test/"
+            "small_test.fasta.2.7.7.80.10.50.500.dat": 
+            "expected/small_test.fasta.2.7.7.80.10.50.500.dat",
+            "trf_output/small_test/small_test.fasta.2.7.7.80.10.50.500.mask": 
+            "expected/small_test.fasta.2.7.7.80.10.50.500.mask",
+            "trf_output/small_test/small_test.fasta.2.7.7.80.10.50.500.summary.html": 
+            "expected/small_test.fasta.2.7.7.80.10.50.500.summary.html",
+            "trf_output/small_test/small_test.fasta.s1.2.7.7.80.10.50.500.1.html": 
+            "expected/small_test.fasta.s1.2.7.7.80.10.50.500.1.html",
+            "trf_output/small_test/small_test.fasta.s1.2.7.7.80.10.50.500.1.txt.html": 
+            "expected/small_test.fasta.s1.2.7.7.80.10.50.500.1.txt.html",
+            "trf_output/small_test/small_test.fasta.s2.2.7.7.80.10.50.500.1.html": 
+            "expected/small_test.fasta.s2.2.7.7.80.10.50.500.1.html",
+            "trf_output/small_test/small_test.fasta.s2.2.7.7.80.10.50.500.1.txt.html": 
+            "expected/small_test.fasta.s2.2.7.7.80.10.50.500.1.txt.html",
+            "trf_output/small_test/small_test.fasta.s3.2.7.7.80.10.50.500.1.html": 
+            "expected/small_test.fasta.s3.2.7.7.80.10.50.500.1.html",
+            "trf_output/small_test/small_test.fasta.s3.2.7.7.80.10.50.500.1.txt.html": 
+            "expected/small_test.fasta.s3.2.7.7.80.10.50.500.1.txt.html",
         },
     )
+
 
 def test_trf_basic_with_change_order(run):
     run(
@@ -7002,7 +7009,7 @@ def test_trf_basic_with_change_order(run):
         ],
     )
 
-### ERRORS & Validations
+
 def test_trf_with_invalid_param_value(run):
     with pytest.raises(subprocess.CalledProcessError):
         run(
@@ -7032,9 +7039,12 @@ def test_trf_with_permissible_flags(run):
             "run_trf_permissible_flags",
         ],
         compare_results_with_expected={
-            "trf_output/small_test/small_test.fasta.2.7.7.80.10.50.500.dat": "expected/small_test.fasta.2.7.7.80.10.50.500.dat",
+            "trf_output/small_test/"
+            "small_test.fasta.2.7.7.80.10.50.500.dat": 
+            "expected/small_test.fasta.2.7.7.80.10.50.500.dat",
         },
     )
+
 
 def test_trf_basic_with_uppercase_params(run):
     run(
@@ -7049,34 +7059,24 @@ def test_trf_basic_with_uppercase_params(run):
             "run_trf_basic_uppercase",
         ],
         compare_results_with_expected={
-            "trf_output/small_test/small_test.fasta.2.7.7.80.10.50.500.dat": "expected/small_test.fasta.2.7.7.80.10.50.500.dat",
-            "trf_output/small_test/small_test.fasta.2.7.7.80.10.50.500.mask": "expected/small_test.fasta.2.7.7.80.10.50.500.mask",
-            "trf_output/small_test/small_test.fasta.2.7.7.80.10.50.500.summary.html": "expected/small_test.fasta.2.7.7.80.10.50.500.summary.html",
-            "trf_output/small_test/small_test.fasta.s1.2.7.7.80.10.50.500.1.html": "expected/small_test.fasta.s1.2.7.7.80.10.50.500.1.html",
-            "trf_output/small_test/small_test.fasta.s1.2.7.7.80.10.50.500.1.txt.html": "expected/small_test.fasta.s1.2.7.7.80.10.50.500.1.txt.html",
-            "trf_output/small_test/small_test.fasta.s2.2.7.7.80.10.50.500.1.html": "expected/small_test.fasta.s2.2.7.7.80.10.50.500.1.html",
-            "trf_output/small_test/small_test.fasta.s2.2.7.7.80.10.50.500.1.txt.html": "expected/small_test.fasta.s2.2.7.7.80.10.50.500.1.txt.html",
-            "trf_output/small_test/small_test.fasta.s3.2.7.7.80.10.50.500.1.html": "expected/small_test.fasta.s3.2.7.7.80.10.50.500.1.html",
-            "trf_output/small_test/small_test.fasta.s3.2.7.7.80.10.50.500.1.txt.html": "expected/small_test.fasta.s3.2.7.7.80.10.50.500.1.txt.html",
+            "trf_output/small_test/"
+            "small_test.fasta.2.7.7.80.10.50.500.dat": 
+            "expected/small_test.fasta.2.7.7.80.10.50.500.dat",
+            "trf_output/small_test/small_test.fasta.2.7.7.80.10.50.500.mask": 
+            "expected/small_test.fasta.2.7.7.80.10.50.500.mask",
+            "trf_output/small_test/small_test.fasta.2.7.7.80.10.50.500.summary.html": 
+            "expected/small_test.fasta.2.7.7.80.10.50.500.summary.html",
+            "trf_output/small_test/small_test.fasta.s1.2.7.7.80.10.50.500.1.html": 
+            "expected/small_test.fasta.s1.2.7.7.80.10.50.500.1.html",
+            "trf_output/small_test/small_test.fasta.s1.2.7.7.80.10.50.500.1.txt.html": 
+            "expected/small_test.fasta.s1.2.7.7.80.10.50.500.1.txt.html",
+            "trf_output/small_test/small_test.fasta.s2.2.7.7.80.10.50.500.1.html": 
+            "expected/small_test.fasta.s2.2.7.7.80.10.50.500.1.html",
+            "trf_output/small_test/small_test.fasta.s2.2.7.7.80.10.50.500.1.txt.html": 
+            "expected/small_test.fasta.s2.2.7.7.80.10.50.500.1.txt.html",
+            "trf_output/small_test/small_test.fasta.s3.2.7.7.80.10.50.500.1.html": 
+            "expected/small_test.fasta.s3.2.7.7.80.10.50.500.1.html",
+            "trf_output/small_test/small_test.fasta.s3.2.7.7.80.10.50.500.1.txt.html": 
+            "expected/small_test.fasta.s3.2.7.7.80.10.50.500.1.txt.html",
         },
     )
-
-# To avoid linter errors the corresponding respective rule has
-# been commented and so is this test, but not omitting here as 
-# testers can test this function in future. 
-# def test_trf_without_log_directive(run):
-#     run(
-#         "bio/trf",
-#         [
-#             "snakemake",
-#             "--cores",
-#             "1",
-#             "trf_output/small_test",
-#             "--use-conda",
-#             "--allowed-rules",
-#             "run_trf_checks_without_log_directive",
-#         ],
-#     )
-
-################################## END: TRF TESTS BLOCK ####################
-############################################################################
