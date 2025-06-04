@@ -4,4 +4,3 @@ channels:
   - nodefaults
 dependencies:
   - trf =4.09
-  - snakemake-wrapper-utils =0.7.2
