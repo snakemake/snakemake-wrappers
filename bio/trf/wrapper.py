@@ -82,7 +82,7 @@ if snakemake.log and snakemake.log[0]:
         print(f"[TRF-INFO] Logging redirected to: {log_file}")
     except (OSError, PermissionError) as e:
         print(f"[TRF-WARNING] Failed to set up logging: {e}")
-        log_redirect = "" # pylint: disable=invalid-name
+        log_redirect = ""  # pylint: disable=invalid-name
 else:
     print("[TRF-INFO] No logging file provided, so outputting to console.")
 
