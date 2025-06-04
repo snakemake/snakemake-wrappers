@@ -11,20 +11,15 @@ from typing import Any
 
 from snakemake.shell import shell
 
+
 ###########################################################################
 ###################### Constants or Function Definitions ##################
 ###########################################################################
 
 TRF_PARAMS = {
-    "match": False,
-    "mismatch": False,
-    "delta": False,
-    "pm": False,
-    "pi": False,
-    "minscore": False,
-    "maxperiod": False,
+    "match": False, "mismatch": False, "delta": False, "pm": False,
+    "pi": False, "minscore": False, "maxperiod": False,
 }
-
 
 def get_params_and_flags_string(
     snakemake_params: Any, trf_params: dict[str, bool]
@@ -68,18 +63,33 @@ def get_params_and_flags_string(
 # Setting up log redirect.
 log_redirect = ""  # pylint: disable=invalid-name
 if snakemake.log and snakemake.log[0]:
-    log_file = Path(snakemake.log[0]).resolve()
-    log_file.parent.mkdir(parents=True, exist_ok=True)
-    snakemake.log = str(log_file)
-    log_redirect = snakemake.log_fmt_shell(stdout=True, stderr=True)
+    try:
+        log_file = Path(snakemake.log[0]).resolve()
+        log_file.parent.mkdir(parents=True, exist_ok=True)
+        snakemake.log = str(log_file)
+        log_redirect = snakemake.log_fmt_shell(stdout=True, stderr=True)
+        print(f"[TRF-INFO] Logging redirected to: {log_file}")
+    except (OSError, PermissionError) as e:
+        print(f"[TRF-WARNING] Failed to set up logging: {e}")
+        log_redirect = ""
+else:
+    print("[TRF-INFO] No logging file provided, so outputting to console.")
 
-# Getting input file and output directory path.
-input_file = Path(snakemake.input[0]).resolve()
-output_dir = Path(snakemake.output[0]).resolve()
+
+# Getting & Validating input File.
+try:
+    input_file = Path(snakemake.input[0]).resolve()
+    output_dir = Path(snakemake.output[0]).resolve()
+except (IndexError, TypeError) as e:
+    raise ValueError(f"Input/output specification error: {e}")
 
 # Changing to output directory
-output_dir.mkdir(parents=True, exist_ok=True)
-os.chdir(output_dir)
+try:
+    output_dir.mkdir(parents=True, exist_ok=True)
+    os.chdir(output_dir)
+    print(f"[TRF-INFO] Working in output directory: {output_dir}")
+except (OSError, PermissionError) as e:
+    raise RuntimeError(f"Failed to create/access output directory '{output_dir}': {e}")
 
 # Building Command for TRF
 cmd = "trf "  # pylint: disable=invalid-name

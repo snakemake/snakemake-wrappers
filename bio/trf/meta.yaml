@@ -10,13 +10,13 @@ input:
 output:
   - directory: This **must be specified** in the way shown in the **rule** snippet above. Final contents can contain one or more of Data file (``*.dat``), Masked sequence file (``*.mask``) or HTML file (``*.html``).
 params:
-  match: "Match weight (allowed: >= 1, )"
+  match: "Match weight (allowed: >= 1)"
   mismatch: "Mismatch penalty (allowed: 3, 5, 7)"
   delta: "Indel penalty (allowed: 3, 5, 7)"
   pm: "Match probability percentage (allowed: 75, 80)"
   pi: "Indel probability percentage (allowed: 10, 20)"
-  minscore: "Minimum alignment score to report (allowed: >=1)"
-  maxperiod: "Maximum period size to report (allowed: >= 1 and <=2000)"
+  minscore: "Minimum alignment score to report (allowed: >= 1)"
+  maxperiod: "Maximum period size to report (allowed: >= 1 and <= 2000)"
   extra: "Optional command-line flags to pass to Tandem Repeats Finder (TRF). |nl| These flags are appended after the 7 required numeric parameters. Supported flags (default state in parentheses): -m (generate masked sequence file), -f (include flanking sequence), -d (produce .dat file), -h (suppress HTML output), -l <n> (set max tandem repeat size, allowed: >=1, preffered: >=1 and <=29), -ngs (more compact .dat output on multisequence files), -u (usage), -v (version). Provide flags as a quoted string, e.g., '-d -h'."
 notes: >
   Flag(s) are specified using the 'extra' param (e.g., '-d -h'). 

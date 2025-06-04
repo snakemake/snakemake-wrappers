@@ -12,8 +12,6 @@ rule run_trf_basic:
         sample="demo_data/{sample}.fasta",
     output:
         directory("trf_output/{sample}"),
-    log:
-        "logs/{sample}.log",
     params:
         match=2,
         mismatch=7,
@@ -35,8 +33,6 @@ rule run_trf_basic_with_change_order_missing_extras:
         sample="demo_data/{sample}.fasta",
     output:
         directory("trf_output/{sample}"),
-    log:
-        "logs/{sample}.log",
     params:
         pm=80,
         pi=10,
