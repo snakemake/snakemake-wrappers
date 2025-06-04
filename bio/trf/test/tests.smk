@@ -48,8 +48,6 @@ rule run_trf_basic_uppercase:
         sample="demo_data/{sample}.fasta",
     output:
         directory("trf_output/{sample}"),
-    log:
-        "logs/{sample}.log",
     params:
         MATCH=2,
         mismatch=7,
@@ -59,25 +57,7 @@ rule run_trf_basic_uppercase:
         minscore=50,
         maxperiod=500,
         eXtra="-f -d -m",
+    log:
+        "logs/{sample}.log",
     wrapper:
         "master/bio/trf"
-
-
-# VALIDATIONS RULE 4: Gracefully runs for not set log directive,
-##################### although not recommended option and commenting
-##################### to avoid linter conflicts.
-# rule run_trf_checks_without_log_directive:
-#     input:
-#         sample="demo_data/{sample}.fasta",
-#     output:
-#         directory("trf_output/{sample}"),
-#     params:
-#         match=2,
-#         mismatch=7,
-#         delta=7,
-#         pm=80,
-#         pi=10,
-#         minscore=50,
-#         maxperiod=500,
-#     wrapper:
-#         "master/bio/trf"
