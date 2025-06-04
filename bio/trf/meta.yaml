@@ -8,7 +8,7 @@ authors:
 input:
   - fasta: A DNA sequence file in FASTA format to be analyzed by Tandem Repeats Finder.
 output:
-  - directory: This **must be specified** in the way shown in **rule** snippet above. Final contents can contain one or more of "Data file (``*.dat``), "Masked sequence file (``*.mask``) or "HTML file (``*.html``)."
+  - directory: This **must be specified** in the way shown in the **rule** snippet above. Final contents can contain one or more of Data file (``*.dat``), Masked sequence file (``*.mask``) or HTML file (``*.html``).
 params:
   match: "Match weight (allowed: >= 1, )"
   mismatch: "Mismatch penalty (allowed: 3, 5, 7)"
@@ -34,4 +34,4 @@ notes: >
 
   |nl|
   Note: As this is a wrapper for TRF utility, it comes with it's limitations or defects if any. Also, allowed values mentioned 
-  above are specified as deduced from the TRF's resources, so this wrapper doesn't validate on top of the TRF utility, rather depict's TRF behaviour.
+  below are specified as deduced from the TRF's resources, so this wrapper doesn't validate on top of the TRF utility, rather depict's TRF behaviour.
