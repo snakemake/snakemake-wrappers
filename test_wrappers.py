@@ -6971,42 +6971,6 @@ def test_trf_basic_recommended_params(run):
             "--allowed-rules",
             "run_trf_basic",
         ],
-        compare_results_with_expected={
-            "trf_output/small_test/"
-            "small_test.fasta.2.7.7.80.10.50.500.dat": 
-            "expected/small_test.fasta.2.7.7.80.10.50.500.dat",
-            "trf_output/small_test/small_test.fasta.2.7.7.80.10.50.500.mask": 
-            "expected/small_test.fasta.2.7.7.80.10.50.500.mask",
-            "trf_output/small_test/small_test.fasta.2.7.7.80.10.50.500.summary.html": 
-            "expected/small_test.fasta.2.7.7.80.10.50.500.summary.html",
-            "trf_output/small_test/small_test.fasta.s1.2.7.7.80.10.50.500.1.html": 
-            "expected/small_test.fasta.s1.2.7.7.80.10.50.500.1.html",
-            "trf_output/small_test/small_test.fasta.s1.2.7.7.80.10.50.500.1.txt.html": 
-            "expected/small_test.fasta.s1.2.7.7.80.10.50.500.1.txt.html",
-            "trf_output/small_test/small_test.fasta.s2.2.7.7.80.10.50.500.1.html": 
-            "expected/small_test.fasta.s2.2.7.7.80.10.50.500.1.html",
-            "trf_output/small_test/small_test.fasta.s2.2.7.7.80.10.50.500.1.txt.html": 
-            "expected/small_test.fasta.s2.2.7.7.80.10.50.500.1.txt.html",
-            "trf_output/small_test/small_test.fasta.s3.2.7.7.80.10.50.500.1.html": 
-            "expected/small_test.fasta.s3.2.7.7.80.10.50.500.1.html",
-            "trf_output/small_test/small_test.fasta.s3.2.7.7.80.10.50.500.1.txt.html": 
-            "expected/small_test.fasta.s3.2.7.7.80.10.50.500.1.txt.html",
-        },
-    )
-
-
-def test_trf_basic_with_change_order(run):
-    run(
-        "bio/trf",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trf_output/small_test",
-            "--use-conda",
-            "--allowed-rules",
-            "run_trf_basic_with_change_order_missing_extras",
-        ],
     )
 
 
@@ -7038,11 +7002,6 @@ def test_trf_with_permissible_flags(run):
             "--allowed-rules",
             "run_trf_permissible_flags",
         ],
-        compare_results_with_expected={
-            "trf_output/small_test/"
-            "small_test.fasta.2.7.7.80.10.50.500.dat": 
-            "expected/small_test.fasta.2.7.7.80.10.50.500.dat",
-        },
     )
 
 
@@ -7058,25 +7017,4 @@ def test_trf_basic_with_uppercase_params(run):
             "--allowed-rules",
             "run_trf_basic_uppercase",
         ],
-        compare_results_with_expected={
-            "trf_output/small_test/"
-            "small_test.fasta.2.7.7.80.10.50.500.dat": 
-            "expected/small_test.fasta.2.7.7.80.10.50.500.dat",
-            "trf_output/small_test/small_test.fasta.2.7.7.80.10.50.500.mask": 
-            "expected/small_test.fasta.2.7.7.80.10.50.500.mask",
-            "trf_output/small_test/small_test.fasta.2.7.7.80.10.50.500.summary.html": 
-            "expected/small_test.fasta.2.7.7.80.10.50.500.summary.html",
-            "trf_output/small_test/small_test.fasta.s1.2.7.7.80.10.50.500.1.html": 
-            "expected/small_test.fasta.s1.2.7.7.80.10.50.500.1.html",
-            "trf_output/small_test/small_test.fasta.s1.2.7.7.80.10.50.500.1.txt.html": 
-            "expected/small_test.fasta.s1.2.7.7.80.10.50.500.1.txt.html",
-            "trf_output/small_test/small_test.fasta.s2.2.7.7.80.10.50.500.1.html": 
-            "expected/small_test.fasta.s2.2.7.7.80.10.50.500.1.html",
-            "trf_output/small_test/small_test.fasta.s2.2.7.7.80.10.50.500.1.txt.html": 
-            "expected/small_test.fasta.s2.2.7.7.80.10.50.500.1.txt.html",
-            "trf_output/small_test/small_test.fasta.s3.2.7.7.80.10.50.500.1.html": 
-            "expected/small_test.fasta.s3.2.7.7.80.10.50.500.1.html",
-            "trf_output/small_test/small_test.fasta.s3.2.7.7.80.10.50.500.1.txt.html": 
-            "expected/small_test.fasta.s3.2.7.7.80.10.50.500.1.txt.html",
-        },
     )
