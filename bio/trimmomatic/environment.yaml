@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - trimmomatic =0.39
+  - snakemake-wrapper-utils =0.7.2
