@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - gseapy =1.1.8
+  - gseapy =1.1.9
