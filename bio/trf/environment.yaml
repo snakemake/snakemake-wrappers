@@ -1,6 +1,6 @@
 channels:
-  - conda-forge
   - bioconda
+  - conda-forge
   - nodefaults
 dependencies:
-  - sortmerna =4.3.7
+  - trf =4.09
