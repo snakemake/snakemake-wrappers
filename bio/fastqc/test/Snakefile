@@ -1,15 +1,16 @@
 rule fastqc:
     input:
-        "reads/{sample}.fastq"
+        "reads/{sample}.fastq",
     output:
         html="qc/fastqc/{sample}.html",
-        zip="qc/fastqc/{sample}_fastqc.zip" # the suffix _fastqc.zip is necessary for multiqc to find the file. If not using multiqc, you are free to choose an arbitrary filename
+        zip="qc/fastqc/{sample}_fastqc.zip", # the suffix _fastqc.zip is necessary for multiqc to find the file. If not using multiqc, you are free to choose an arbitrary filename
     params:
-        extra = "--quiet"
+        extra="--quiet",
+        mem_overhead_factor=0.1,
     log:
-        "logs/fastqc/{sample}.log"
+        "logs/fastqc/{sample}.log",
     threads: 1
     resources:
-        mem_mb = 1024
+        mem_mb = 1024,
     wrapper:
         "master/bio/fastqc"
