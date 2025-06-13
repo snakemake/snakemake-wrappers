@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - gfatools =0.5
+  - gfatools =0.5.5
