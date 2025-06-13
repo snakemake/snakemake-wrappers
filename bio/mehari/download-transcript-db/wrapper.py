@@ -6,6 +6,7 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 import re
+
 version_re = re.compile(r"\d+\.\d+\.\d+")
 
 extra = snakemake.params.get("extra", "")
@@ -24,4 +25,3 @@ assert source in ["ensembl", "refseq", "ensembl-and-refseq"]
 shell(
     "curl -L https://github.com/varfish-org/mehari-data-tx/releases/download/v{version}/mehari-data-txs-{build}-{source}-{version}.bin.zst -o {snakemake.output} {log}"
 )
-

@@ -32,7 +32,9 @@ reference_fasta = snakemake.input.get("reference_fasta", "")
 if reference_fasta:
     reference_fasta = "--reference {}".format(reference_fasta)
 else:
-    logging.warning("Without reference fasta, cannot do correct HGVS 3' shifting for genomic coordinates.")
+    logging.warning(
+        "Without reference fasta, cannot do correct HGVS 3' shifting for genomic coordinates."
+    )
 
 
 shell(

@@ -6,6 +6,7 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 import re
+
 version_re = re.compile(r"(?P<date>\d{8})\+(?P<annonars>\d+\.\d+\.\d+)")
 
 extra = snakemake.params.get("extra", "")
@@ -27,4 +28,3 @@ shell(
     "tar xvz --strip-components=1 -C {snakemake.output}"
     ") {log}"
 )
-
