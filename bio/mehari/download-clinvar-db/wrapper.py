@@ -22,9 +22,7 @@ assert build in ["grch37", "grch38"]
 flavour = snakemake.params["flavour"].lower()
 assert flavour in ["genes", "minimal", "sv"]
 
-shell(
-    "mkdir -p {snakemake.output}"
-)
+shell("mkdir -p {snakemake.output}")
 shell(
     "(curl -s -L https://github.com/varfish-org/annonars-data-clinvar/releases/download/annonars-data-clinvar-{date}/annonars-clinvar-{flavour}-{build}-{date}+{annonars_version}.tar.gz | "
     "tar xvz --strip-components=1 -C {snakemake.output}"
