@@ -1,4 +1,4 @@
-name: mehari annotate
+name: mehari annotate seqvars
 description: Annotate variant calls with mehari.
 url: https://github.com/varfish-org/mehari
 input:

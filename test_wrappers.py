@@ -6905,9 +6905,9 @@ def test_mehari_download_transcript_db(run):
         ["snakemake", "--cores", "1", "resources/mehari/dbs/transcripts.bin.zst", "--use-conda", "-F"],
     )
 
-def test_mehari_annotate(run):
+def test_mehari_annotate_seqvars(run):
     run(
-        "bio/mehari/annotate",
+        "bio/mehari/annotate-seqvars",
         [
             "snakemake",
             "--cores",

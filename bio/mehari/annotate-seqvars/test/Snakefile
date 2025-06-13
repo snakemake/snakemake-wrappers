@@ -1,4 +1,4 @@
-rule mehari_annotate_variants:
+rule mehari_annotate_seqvars_variants:
     input:
         calls="variants.bcf",  # .vcf, .vcf.gz or .bcf
         reference_fasta="genome.fasta",  # has to be uncompressed and must have corresponding index genome.fasta.fai
