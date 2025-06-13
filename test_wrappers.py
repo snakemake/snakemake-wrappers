@@ -6899,17 +6899,34 @@ def test_trf_basic_with_uppercase_params(run):
         ],
     )
 
+
 def test_mehari_download_transcript_db(run):
     run(
         "bio/mehari/download-transcript-db",
-        ["snakemake", "--cores", "1", "resources/mehari/dbs/transcripts.bin.zst", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/mehari/dbs/transcripts.bin.zst",
+            "--use-conda",
+            "-F",
+        ],
     )
+
 
 def test_mehari_download_clinvar_db_sv(run):
     run(
         "bio/mehari/download-clinvar-db",
-        ["snakemake", "--cores", "1", "resources/mehari/dbs/clinvar/sv", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/mehari/dbs/clinvar/sv",
+            "--use-conda",
+            "-F",
+        ],
     )
+
 
 def test_mehari_annotate_seqvars(run):
     run(
