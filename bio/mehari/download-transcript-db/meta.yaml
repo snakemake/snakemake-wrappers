@@ -1,0 +1,11 @@
+name: mehari download transcript DB
+description: Download mehari transcript database
+url: https://github.com/varfish-org/mehari
+authors:
+  - Till Hartmann
+output:
+  - path to the transcript DB storage location
+params:
+  - version: Version of the transcript DB
+  - build: GRCh37 or GRCh38
+  - source: ensembl, refseq or ensembl-and-refseq

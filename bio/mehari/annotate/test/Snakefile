@@ -1,0 +1,16 @@
+rule mehari_annotate_variants:
+    input:
+        calls="variants.bcf",  # .vcf, .vcf.gz or .bcf
+        reference_fasta="genome.fasta",  # has to be uncompressed and must have corresponding index genome.fasta.fai
+        transcript_db="transcripts.bin.zst",  # transcript database for SO term / consequence annotation
+        # clinvar_db="clinvar.bin.zst",  # clinvar database for clinvar VCV annotation
+        # frequency_db="frequencies.bin.zst"  # frequencies/gnomad database for frequency annotation
+    output:
+        calls="variants.annotated.bcf",  # .vcf, .vcf.gz or .bcf
+    params:
+        extra="",  # extra options include: --report-most-severe-consequence-by {gene, transcript, allele}, --pick-transcript {mane-select, mane-plus-clinical, length, ensembl-canonical, ref-seq-select, gencode-primary, basic}, --pick-transcript-mode {first, all}, --keep-intergenic, --discard-utr-splice-variants
+    log:
+        "logs/mehari/mehari_annotate_variants.log",
+    threads: 1
+    wrapper:
+        "master/bio/mehari/annotate"

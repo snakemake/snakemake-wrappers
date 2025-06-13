@@ -6898,3 +6898,23 @@ def test_trf_basic_with_uppercase_params(run):
             "run_trf_basic_uppercase",
         ],
     )
+
+def test_mehari_download_transcript_db(run):
+    run(
+        "bio/mehari/download-transcript-db",
+        ["snakemake", "--cores", "1", "resources/mehari/dbs/transcripts.bin.zst", "--use-conda", "-F"],
+    )
+
+def test_mehari_annotate(run):
+    run(
+        "bio/mehari/annotate",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "variants.annotated.bcf",
+            "--use-conda",
+            "-F",
+            "--verbose",
+        ],
+    )

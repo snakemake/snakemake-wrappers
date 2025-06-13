@@ -1,0 +1,11 @@
+name: mehari download clinvar DB
+description: Download mehari clinvar database
+url: https://github.com/varfish-org/mehari
+authors:
+  - Till Hartmann
+output:
+  - path to the clinvar DB storage directory
+params:
+  - version: Version of the transcript DB
+  - build: GRCh37 or GRCh38
+  - flavour: genes, minimal or sv
