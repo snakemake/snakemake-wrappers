@@ -6912,7 +6912,7 @@ def test_mehari_annotate_seqvars(run):
             "snakemake",
             "--cores",
             "1",
-            "variants.annotated.bcf",
+            "resources/MT-ND2.annotated.bcf",
             "--use-conda",
             "-F",
             "--verbose",
