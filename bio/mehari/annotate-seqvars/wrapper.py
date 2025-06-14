@@ -72,7 +72,7 @@ else:
 
 shell(
     "(mehari annotate seqvars "
-    "--path-input-vcf '{snakemake.input.calls}' "
+    "--path-input-vcf {snakemake.input.calls:q} "
     "{transcript_db} "
     "{clinvar_db} "
     "{frequency_db} "
@@ -83,6 +83,6 @@ shell(
     "{pick_transcript_mode} "
     "{report_most_severe_consequence_by} "
     "{extra} "
-    "--path-output-vcf {snakemake.output.calls} "
+    "--path-output-vcf {snakemake.output.calls:q} "
     ") {log}"
 )
