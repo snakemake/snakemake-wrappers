@@ -8,7 +8,12 @@ rule mehari_annotate_seqvars_variants_MT:
     output:
         calls="{prefix}.annotated.bcf",  # .vcf, .vcf.gz or .bcf
     params:
-        extra="",  # extra options include: --report-most-severe-consequence-by {gene, transcript, allele}, --pick-transcript {mane-select, mane-plus-clinical, length, ensembl-canonical, ref-seq-select, gencode-primary, basic}, --pick-transcript-mode {first, all}, --keep-intergenic, --discard-utr-splice-variants
+        extra="",
+        # report_most_severe_consequence_by="",  # Available options: transcript, gene, allele or undefined (i.e. keep all consequences, default).
+        # pick_transcript=['mane-select', 'mane-plus-clinical', 'length'], # Available options: mane-select, mane-plus-clinical, length, ensembl-canonical, ref-seq-select, gencode-primary, basic. Default is not to pick at all.
+        # pick_transcript_mode="all",  # first, all (default)
+        # keep_intergenic=False,  # True, False (default)
+        # discard_utr_splice_variants=False,  # True, False (default)
     log:
         "logs/mehari/mehari_annotate_variants.{prefix}.log",
     wrapper:

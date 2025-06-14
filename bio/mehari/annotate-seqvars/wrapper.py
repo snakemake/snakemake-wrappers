@@ -6,13 +6,41 @@ __license__ = "MIT"
 from snakemake.shell import shell
 import logging
 
-# extra options include:
-# --report-most-severe-consequence-by {gene, transcript, allele}
-# --pick-transcript {mane-select, mane-plus-clinical, length, ensembl-canonical, ref-seq-select, gencode-primary, basic}
-# --pick-transcript-mode {first, all} (default: all)
-# --keep-intergenic
-# --discard-utr-splice-variants
 extra = snakemake.params.get("extra", "")
+
+keep_intergenic = str(snakemake.params.get("keep_intergenic", ""))
+if keep_intergenic and bool(keep_intergenic):
+    keep_intergenic = "--keep-intergenic"
+
+discard_utr_splice_variants = str(
+    snakemake.params.get("discard_utr_splice_variants", "")
+)
+if discard_utr_splice_variants and bool(discard_utr_splice_variants):
+    discard_utr_splice_variants = "--discard-utr-splice-variants"
+
+report_most_severe_consequence_by = snakemake.params.get(
+    "report_most_severe_consequence_by", ""
+)
+if report_most_severe_consequence_by:
+    if report_most_severe_consequence_by not in {"transcript", "gene", "allele"}:
+        raise ValueError(
+            "report_most_severe_consequence_by must be either 'transcript', 'gene' or 'allele'"
+        )
+    report_most_severe_consequence_by = (
+        f"--report-most-severe-consequence-by {report_most_severe_consequence_by}"
+    )
+
+pick_transcript = snakemake.params.get("pick_transcript", [])
+if not isinstance(pick_transcript, list):
+    raise ValueError("pick_transcript must be a list")
+if pick_transcript:
+    pick_transcript = " ".join(f"--pick-transcript {v}" for v in pick_transcript)
+
+pick_transcript_mode = snakemake.params.get("pick_transcript_mode", "")
+if pick_transcript_mode:
+    if pick_transcript_mode not in {"first", "all"}:
+        raise ValueError("pick_transcript_mode must be either 'first' or 'all'")
+    pick_transcript_mode = f"--pick-transcript-mode {pick_transcript_mode}"
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -27,6 +55,11 @@ if clinvar_db:
 frequency_db = snakemake.input.get("frequency_db", "")
 if frequency_db:
     frequency_db = f"--frequency {frequency_db}"
+
+if not transcript_db and not clinvar_db and not frequency_db:
+    raise ValueError(
+        "At least one of inputs 'transcript_db', 'clinvar_db' and 'frequency_db' must be specified"
+    )
 
 reference_fasta = snakemake.input.get("reference_fasta", "")
 if reference_fasta:
@@ -44,6 +77,11 @@ shell(
     "{clinvar_db} "
     "{frequency_db} "
     "{reference_fasta} "
+    "{keep_intergenic} "
+    "{discard_utr_splice_variants} "
+    "{pick_transcript} "
+    "{pick_transcript_mode} "
+    "{report_most_severe_consequence_by} "
     "{extra} "
     "--path-output-vcf {snakemake.output.calls} "
     ") {log}"

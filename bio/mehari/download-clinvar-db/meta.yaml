@@ -6,6 +6,6 @@ authors:
 output:
   - path to the clinvar DB storage directory
 params:
-  - version: Version of the transcript DB
-  - build: GRCh37 or GRCh38
-  - flavour: genes, minimal or sv
+  version: Version of the transcript DB
+  build: GRCh37 or GRCh38
+  flavour: genes, minimal or sv

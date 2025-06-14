@@ -6,6 +6,6 @@ authors:
 output:
   - path to the transcript DB storage location
 params:
-  - version: Version of the transcript DB
-  - build: GRCh37 or GRCh38
-  - source: ensembl, refseq or ensembl-and-refseq
+  version: Version of the transcript DB
+  build: GRCh37 or GRCh38
+  source: ensembl, refseq or ensembl-and-refseq
