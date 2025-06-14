@@ -1,0 +1,20 @@
+rule mehari_annotate_seqvars_variants_MT:
+    input:
+        calls="{prefix}.vcf",  # .vcf, .vcf.gz or .bcf
+        reference_fasta="resources/MT.fasta",  # has to be uncompressed and must have corresponding index genome.fasta.fai
+        transcript_db="resources/MT-ND2-GRCh38-ensembl-0.10.3.bin.zst",  # transcript database for SO term / consequence annotation
+        # clinvar_db="resources/clinvar.bin.zst",  # clinvar database for clinvar VCV annotation
+        # frequency_db="resources/frequencies.bin.zst"  # frequencies/gnomad database for frequency annotation
+    output:
+        calls="{prefix}.annotated.bcf",  # .vcf, .vcf.gz or .bcf
+    params:
+        extra="",
+        # report_most_severe_consequence_by="",  # Available options: transcript, gene, allele or undefined (i.e. keep all consequences, default).
+        # pick_transcript=['mane-select', 'mane-plus-clinical', 'length'], # Available options: mane-select, mane-plus-clinical, length, ensembl-canonical, ref-seq-select, gencode-primary, basic. Default is not to pick at all.
+        # pick_transcript_mode="all",  # first, all (default)
+        # keep_intergenic=False,  # True, False (default)
+        # discard_utr_splice_variants=False,  # True, False (default)
+    log:
+        "logs/mehari/mehari_annotate_variants.{prefix}.log",
+    wrapper:
+        "master/bio/mehari/annotate-seqvars"
