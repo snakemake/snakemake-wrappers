@@ -64,6 +64,8 @@ if not transcript_db and not clinvar_db and not frequency_db:
 ref = snakemake.input.get("ref", "")
 if ref:
     ref = f"--reference {ref}"
+    if not snakemake.input.get("fai"):
+        raise ValueError("Reference FASTA index must be specified")
 else:
     logging.warning(
         "Without reference fasta, cannot do correct HGVS 3' shifting for genomic coordinates."
