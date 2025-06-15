@@ -8,15 +8,15 @@ import logging
 
 extra = snakemake.params.get("extra", "")
 
-keep_intergenic = str(snakemake.params.get("keep_intergenic", ""))
-if keep_intergenic and bool(keep_intergenic):
-    keep_intergenic = "--keep-intergenic"
-
-discard_utr_splice_variants = str(
-    snakemake.params.get("discard_utr_splice_variants", "")
+keep_intergenic = (
+    "--keep-intergenic" if snakemake.params.get("keep_intergenic", False) else ""
 )
-if discard_utr_splice_variants and bool(discard_utr_splice_variants):
-    discard_utr_splice_variants = "--discard-utr-splice-variants"
+
+discard_utr_splice_variants = (
+    "--discard-utr-splice-variants"
+    if snakemake.params.get("discard_utr_splice_variants", False)
+    else ""
+)
 
 report_most_severe_consequence_by = snakemake.params.get(
     "report_most_severe_consequence_by", ""
