@@ -11,7 +11,7 @@ version_re = re.compile(r"(?P<date>\d{8})\+(?P<annonars>\d+\.\d+\.\d+)")
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-version = snakemake.params.get("version")
+version = snakemake.params.get("version", "")
 if not version_re.fullmatch(version):
     raise ValueError("Version must have format YYYYMMDD+MAJOR.MINOR.PATCH")
 date, annonars_version = version_re.search(version).groups()
