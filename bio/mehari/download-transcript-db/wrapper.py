@@ -11,15 +11,16 @@ version_re = re.compile(r"\d+\.\d+\.\d+")
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-version = snakemake.params["version"]
+version = snakemake.params.get("version", "")
 if not version_re.fullmatch(version):
     raise ValueError("version must have format MAJOR.MINOR.PATCH")
 
-build = snakemake.params["build"]
-if build not in {"GRCh37", "GRCh38"}:
+build = snakemake.params.get("build", "").lower()
+if build not in {"grch37", "grch38"}:
     raise ValueError("build must be 'GRCh37' or 'GRCh38'")
+build = {"grch37": "GRCh37", "grch38": "GRCh38"}[build]
 
-source = snakemake.params["source"].lower()
+source = snakemake.params.get("source", "").lower()
 if source not in {"ensembl", "refseq", "ensembl-and-refseq"}:
     raise ValueError("source must be 'ensembl', 'refseq' or 'ensembl-and-refseq'")
 
