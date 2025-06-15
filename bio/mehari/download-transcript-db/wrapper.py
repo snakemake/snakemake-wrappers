@@ -25,5 +25,5 @@ if source not in {"ensembl", "refseq", "ensembl-and-refseq"}:
     raise ValueError("source must be 'ensembl', 'refseq' or 'ensembl-and-refseq'")
 
 shell(
-    "curl --fail --location https://github.com/varfish-org/mehari-data-tx/releases/download/v{version}/mehari-data-txs-{build}-{source}-{version}.bin.zst -o {snakemake.output[0]:q} {log}"
+    "curl --fail --silent --location https://github.com/varfish-org/mehari-data-tx/releases/download/v{version}/mehari-data-txs-{build}-{source}-{version}.bin.zst -o {snakemake.output[0]:q} {log}"
 )
