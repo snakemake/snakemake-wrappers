@@ -29,6 +29,6 @@ output = snakemake.output[0]
 shell("mkdir -p {output:q}")
 shell(
     "(curl --fail -s -L https://github.com/varfish-org/annonars-data-clinvar/releases/download/annonars-data-clinvar-{date}/annonars-clinvar-{flavour}-{build}-{date}+{annonars_version}.tar.gz | "
-    "tar xvz --strip-components=1 -C {output:q}"
+    "tar xvz -f- --strip-components=1 -C {output:q}"
     ") {log}"
 )
