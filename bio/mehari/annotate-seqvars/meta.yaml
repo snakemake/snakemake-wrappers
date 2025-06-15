@@ -3,7 +3,8 @@ description: Annotate variant calls with mehari.
 url: https://github.com/varfish-org/mehari
 input:
   calls: Path to variants (VCF / VCF.gz / BCF)
-  reference_fasta: Path to reference FASTA (uncompressed). Must have an accompanying index.fasta.fai.
+  ref: Path to reference FASTA (uncompressed).
+  fai: Path to refernce FAI file.
   transcript_db: Path to mehari transcript database. Needed for annotating SO terms / consequences.
   clinvar_db: Path to mehari clinvar database. Needed for annotating clinvar VCVs.
   frequency_db: Path to mehari frequency database. Needed for annotating frequencies from gnomAD.

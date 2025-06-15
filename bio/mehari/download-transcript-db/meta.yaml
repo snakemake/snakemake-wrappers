@@ -6,6 +6,6 @@ authors:
 output:
   - path to the transcript DB storage location
 params:
-  version: Version of the transcript DB
+  version: Version of the transcript DB, from `available versions <https://github.com/varfish-org/mehari-data-tx/releases>`_ 
   build: GRCh37 or GRCh38
   source: ensembl, refseq or ensembl-and-refseq

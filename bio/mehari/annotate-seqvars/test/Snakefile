@@ -1,7 +1,8 @@
 rule mehari_annotate_seqvars_variants_MT:
     input:
         calls="{prefix}.vcf",  # .vcf, .vcf.gz or .bcf
-        reference_fasta="resources/MT.fasta",  # has to be uncompressed and must have corresponding index genome.fasta.fai
+        ref="resources/MT.fasta",  # has to be uncompressed
+        fai="resources/MT.fasta.fai",
         transcript_db="resources/MT-ND2-GRCh38-ensembl-0.10.3.bin.zst",  # transcript database for SO term / consequence annotation
         # clinvar_db="resources/clinvar.bin.zst",  # clinvar database for clinvar VCV annotation
         # frequency_db="resources/frequencies.bin.zst"  # frequencies/gnomad database for frequency annotation

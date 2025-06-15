@@ -61,9 +61,9 @@ if not transcript_db and not clinvar_db and not frequency_db:
         "At least one of inputs 'transcript_db', 'clinvar_db' and 'frequency_db' must be specified"
     )
 
-reference_fasta = snakemake.input.get("reference_fasta", "")
-if reference_fasta:
-    reference_fasta = "--reference {}".format(reference_fasta)
+ref = snakemake.input.get("ref", "")
+if ref:
+    ref = f"--reference {ref}"
 else:
     logging.warning(
         "Without reference fasta, cannot do correct HGVS 3' shifting for genomic coordinates."
@@ -76,7 +76,7 @@ shell(
     "{transcript_db} "
     "{clinvar_db} "
     "{frequency_db} "
-    "{reference_fasta} "
+    "{ref} "
     "{keep_intergenic} "
     "{discard_utr_splice_variants} "
     "{pick_transcript} "
