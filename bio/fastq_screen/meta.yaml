@@ -43,6 +43,7 @@ input:
 output:
   - txt: an optional text file containing the fraction of reads mapping to each provided index
   - png: an optional bar plot of the contents of ``txt``, saved as a PNG file
+  - conf: an optional text file containing the configuration used by fastq screen
 notes: |
   * ``fastq_screen`` hard-codes the output filenames. This wrapper moves the
     hard-coded output files to those specified by the rule.
