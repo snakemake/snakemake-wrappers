@@ -29,5 +29,7 @@ elif fmt == "chrom":
     out = f"--out {out} --transform chromsizes"
 elif fmt == "nuc":
     out = f"--out {out} --transform nucleotide"
+else:
+    raise ValueError(f"invalid output file format.")
 
 shell("faidx {extra} {out} {snakemake.input.fasta} {log}")
