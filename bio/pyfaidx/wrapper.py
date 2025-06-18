@@ -15,19 +15,19 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=False)
 
 bed = snakemake.input.get("bed", "")
 if bed:
-    extra += f" --bed {bed} "
+    extra += f" --bed {bed}"
 
 out = str(snakemake.output[0])
 fmt = get_format(out)
 if fmt == "fai":
     out = ""
 elif fmt == "fasta":
-    out = f" --out {out} "
+    out = f"--out {out}"
 elif fmt == "bed":
-    out = f" --out {out} --transform bed "
+    out = f"--out {out} --transform bed"
 elif fmt == "chrom":
-    out = f" --out {out} --transform chromsizes "
+    out = f"--out {out} --transform chromsizes"
 elif fmt == "nuc":
-    out = f" --out {out} --transform nucleotide "
+    out = f"--out {out} --transform nucleotide"
 
 shell("faidx {extra} {out} {snakemake.input.fasta} {log}")
