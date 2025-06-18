@@ -8,7 +8,7 @@ authors:
 input:
   - fasta: Path to a sequence fasta file
   - fai: Path to the corresponding fasta index
-  - bed: Optional path to bed intervals
+  - bed: Path to BED intervals (optional)
 output:
   - Path to the modified sequences/intervals
 params:
