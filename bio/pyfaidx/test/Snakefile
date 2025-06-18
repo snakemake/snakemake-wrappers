@@ -13,7 +13,7 @@ rule test_pyfaidx_out_fasta:
         "master/bio/pyfaidx"
 
 
-rule test_pyfaidx_index_fasta with:
+rule test_pyfaidx_index_fasta:
     input:
         fasta="sequence.fasta",
         bed="interval.bed",
@@ -29,7 +29,7 @@ rule test_pyfaidx_index_fasta with:
         "master/bio/pyfaidx"
 
 
-rule test_pyfaidx_out_sizes with:
+rule test_pyfaidx_out_sizes:
     input:
         fasta="sequence.fasta",
         bed="interval.bed",
@@ -45,7 +45,7 @@ rule test_pyfaidx_out_sizes with:
         "master/bio/pyfaidx"
 
 
-rule test_pyfaidx_out_bed with:
+rule test_pyfaidx_out_bed:
     input:
         fasta="sequence.fasta",
         bed="interval.bed",
