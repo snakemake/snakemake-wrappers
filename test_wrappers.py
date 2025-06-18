@@ -155,6 +155,7 @@ def test_aria2c(run):
         ],
     )
 
+
 def test_miller(run):
     run(
         "utils/miller",
@@ -1264,28 +1265,20 @@ def test_deseq2_deseqdataset(run):
 def test_deseq2_wald(run):
     run(
         "bio/deseq2/wald",
-        ["snakemake", "--cores", "1", "--use-conda", "dge_normal.tsv"]
+        ["snakemake", "--cores", "1", "--use-conda", "dge_normal.tsv"],
     )
+
+    run("bio/deseq2/wald", ["snakemake", "--cores", "1", "--use-conda", "dge_ashr.tsv"])
 
     run(
         "bio/deseq2/wald",
-        ["snakemake", "--cores", "1", "--use-conda", "dge_ashr.tsv"]
+        ["snakemake", "--cores", "1", "--use-conda", "dge_apeglm.tsv"],
     )
 
-    run(
-        "bio/deseq2/wald",
-        ["snakemake", "--cores", "1", "--use-conda", "dge_apeglm.tsv"]
-    )
+    run("bio/deseq2/wald", ["snakemake", "--cores", "1", "--use-conda", "dge_2f.tsv"])
 
-    run(
-        "bio/deseq2/wald",
-        ["snakemake", "--cores", "1", "--use-conda", "dge_2f.tsv"]
-    )
+    run("bio/deseq2/wald", ["snakemake", "--cores", "1", "--use-conda", "dge_1s.tsv"])
 
-    run(
-        "bio/deseq2/wald",
-        ["snakemake", "--cores", "1", "--use-conda", "dge_1s.tsv"]
-    )
 
 def test_arriba_star_meta(run):
     run(
@@ -2071,9 +2064,9 @@ def test_bedtools_complement(run):
         ],
         compare_results_with_expected={
             "results/bed-complement/a.complement.bed": "expected/bed-complement/a.complement.bed",
-            #"results/bed-complement/a.complement.bed.gz": "expected/bed-complement/a.complement.bed.gz",  # Disabled since filecmp does not work with gzip files
-            "results/vcf-complement/a.complement.vcf": "expected/vcf-complement/a.complement.vcf"
-        }
+            # "results/bed-complement/a.complement.bed.gz": "expected/bed-complement/a.complement.bed.gz",  # Disabled since filecmp does not work with gzip files
+            "results/vcf-complement/a.complement.vcf": "expected/vcf-complement/a.complement.vcf",
+        },
     )
 
 
@@ -2088,7 +2081,6 @@ def test_bedtools_sort(run):
             "results/bed-sorted/a.sorted_by_file.bed",
             "results/vcf-sorted/a.sorted_by_file.vcf",
             "--use-conda",
-
             "-F",
         ],
     )
@@ -2119,12 +2111,12 @@ def test_bedtools_intersect(run):
             "A_B.intersected.bed",
             "A_B.intersected.bed.gz",
             "--use-conda",
-            "-F"
+            "-F",
         ],
         compare_results_with_expected={
             "A_B.intersected.bed": "expected/A_B.intersected.bed",
-            #"A_B.intersected.bed.gz": "expected/A_B.intersected.bed.gz",  # Disabled since filecmp does not work with gzip files
-        }
+            # "A_B.intersected.bed.gz": "expected/A_B.intersected.bed.gz",  # Disabled since filecmp does not work with gzip files
+        },
     )
 
 
@@ -4566,141 +4558,21 @@ def test_trim_galore_se_uncompressed(run):
 def test_trimmomatic_pe(run):
     """Four tests, one per fq-gz combination"""
     run(
-        "bio/trimmomatic/pe",
+        "bio/trimmomatic",
         [
             "snakemake",
             "--cores",
-            "1",
-            "trimmed/a.1.fastq",
+            "10",
+            "trimmed/se/fq_fq/a.1.fastq",
+            "trimmed/se/gz_fq/a.1.fastq",
+            "trimmed/se/fq_gz/a.1.fastq.gz",
+            "trimmed/se/gz_gz/a.1.fastq.gz",
+            "trimmed/pe/fq_fq/a.1.fastq",
+            "trimmed/pe/gz_fq/a.1.fastq",
+            "trimmed/pe/fq_gz/a.1.fastq.gz",
+            "trimmed/pe/gz_gz/a.1.fastq.gz",
             "--use-conda",
             "-F",
-            "-s",
-            "Snakefile_fq_fq",
-        ],
-    )
-    run(
-        "bio/trimmomatic/pe",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trimmed/a.1.fastq.gz",
-            "--use-conda",
-            "-F",
-            "-s",
-            "Snakefile_fq_gz",
-        ],
-    )
-    run(
-        "bio/trimmomatic/pe",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trimmed/a.1.fastq",
-            "--use-conda",
-            "-F",
-            "-s",
-            "Snakefile_gz_fq",
-        ],
-    )
-    run(
-        "bio/trimmomatic/pe",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trimmed/a.1.fastq.gz",
-            "--use-conda",
-            "-F",
-            "-s",
-            "Snakefile_gz_gz",
-        ],
-    )
-    run(
-        "bio/trimmomatic/pe",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trimmed/a.1.fastq.gz",
-            "--use-conda",
-            "-F",
-            "--cores",
-            "32",
-            "-s",
-            "Snakefile_gz_gz",
-        ],
-    )
-
-
-def test_trimmomatic_se(run):
-    """Four tests, one per fq-gz combination"""
-    run(
-        "bio/trimmomatic/se",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trimmed/a.fastq",
-            "--use-conda",
-            "-F",
-            "-s",
-            "Snakefile_fq_fq",
-        ],
-    )
-    run(
-        "bio/trimmomatic/se",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trimmed/a.fastq.gz",
-            "--use-conda",
-            "-F",
-            "-s",
-            "Snakefile_fq_gz",
-        ],
-    )
-    run(
-        "bio/trimmomatic/se",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trimmed/a.fastq",
-            "--use-conda",
-            "-F",
-            "-s",
-            "Snakefile_gz_fq",
-        ],
-    )
-    run(
-        "bio/trimmomatic/se",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trimmed/a.fastq.gz",
-            "--use-conda",
-            "-F",
-            "-s",
-            "Snakefile_gz_gz",
-        ],
-    )
-    run(
-        "bio/trimmomatic/se",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trimmed/a.fastq.gz",
-            "--use-conda",
-            "-F",
-            "--cores",
-            "32",
-            "-s",
-            "Snakefile_gz_gz",
         ],
     )
 
@@ -6978,4 +6850,65 @@ def test_pygadm_item(run):
     run(
         "geo/pygadm/item",
         ["snakemake", "--cores", "2", "--use-conda", "-F", "results/mexico.parquet"],
+    )
+
+
+def test_trf_basic_recommended_params(run):
+    run(
+        "bio/trf",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "trf_output/small_test",
+            "--use-conda",
+            "--allowed-rules",
+            "run_trf_basic",
+        ],
+    )
+
+
+def test_trf_with_invalid_param_value(run):
+    with pytest.raises(subprocess.CalledProcessError):
+        run(
+            "bio/trf",
+            [
+                "snakemake",
+                "--cores",
+                "1",
+                "trf_output/small_test",
+                "--use-conda",
+                "--allowed-rules",
+                "run_trf_with_missing_param_value",
+            ],
+        )
+
+
+def test_trf_with_permissible_flags(run):
+    run(
+        "bio/trf",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "trf_output/small_test",
+            "--use-conda",
+            "--allowed-rules",
+            "run_trf_permissible_flags",
+        ],
+    )
+
+
+def test_trf_basic_with_uppercase_params(run):
+    run(
+        "bio/trf",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "trf_output/small_test",
+            "--use-conda",
+            "--allowed-rules",
+            "run_trf_basic_uppercase",
+        ],
     )

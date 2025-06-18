@@ -4,5 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - minimap2 =2.29
-  - samtools =1.21
+  - samtools =1.22
   - snakemake-wrapper-utils =0.7.2

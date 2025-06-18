@@ -3,6 +3,6 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - samtools =1.21
+  - samtools =1.22
   - snakemake-wrapper-utils =0.7.2
 name: samtools
