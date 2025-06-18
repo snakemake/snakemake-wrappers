@@ -24,7 +24,7 @@ rule test_pyfaidx_index_fasta:
     log:
         "test_pyfaidx_index_fasta.log",
     params:
-        extra="--complement",
+        extra="",
     wrapper:
         "master/bio/pyfaidx"
 

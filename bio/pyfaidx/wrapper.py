@@ -7,25 +7,27 @@ __copyright__ = "Copyright 2025, Thibault Dayris"
 __email__ = "thibault.dayris@gustaveroussy.fr"
 __license__ = "MIT"
 
+from snakemake_wrapper_utils.snakemake import get_format
 from snakemake.shell import shell
 
-extra: str = snakemake.params.get("extra", "")
-log: str = snakemake.log_fmt_shell(stdout=True, stderr=True, append=False)
+extra = snakemake.params.get("extra", "")
+log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=False)
 
-bed: str = snakemake.input.get("bed", "")
+bed = snakemake.input.get("bed", "")
 if bed:
     extra += f" --bed {bed} "
 
-out: str = str(snakemake.output[0])
-if out.endswith(".fai"):
+out = str(snakemake.output[0])
+fmt = get_format(out)
+if fmt == "fai":
     out = ""
-elif out.endswith(".fasta"):
+elif fmt == "fasta":
     out = f" --out {out} "
-elif out.endswith(".bed"):
+elif fmt == "bed":
     out = f" --out {out} --transform bed "
-elif out.endswith(".chrom"):
+elif fmt == "chrom":
     out = f" --out {out} --transform chromsizes "
-elif out.endswith(".nuc"):
+elif fmt == "nuc":
     out = f" --out {out} --transform nucleotide "
 
 shell("faidx {extra} {out} {snakemake.input.fasta} {log}")

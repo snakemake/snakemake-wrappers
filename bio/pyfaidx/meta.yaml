@@ -7,7 +7,6 @@ authors:
   - Thibault Dayris
 input:
   - fasta: Path to a sequence fasta file
-  - fai: Path to the corresponding fasta index
   - bed: Path to BED intervals (optional)
 output:
   - Path to the modified sequences/intervals
@@ -16,3 +15,6 @@ params:
 notes: >
   The `--transform` parameter is automatically inferred from output file path. This
   tool automatically creates a fasta index if the output file is fasta formatted.
+
+  If no index exists alongside with the input fasta file, then it will be created
+  automatically.
