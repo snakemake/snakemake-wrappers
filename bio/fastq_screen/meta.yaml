@@ -41,8 +41,8 @@ description: |
 input:
   - A FASTQ file, gzipped or not.
 output:
-  - txt: a text file containing the fraction of reads mapping to each provided index
-  - png: a bar plot of the contents of ``txt``, saved as a PNG file
+  - txt: an optional text file containing the fraction of reads mapping to each provided index
+  - png: an optional bar plot of the contents of ``txt``, saved as a PNG file
 notes: |
   * ``fastq_screen`` hard-codes the output filenames. This wrapper moves the
     hard-coded output files to those specified by the rule.
@@ -59,4 +59,3 @@ notes: |
     details). One way of doing this is by adding  something like
     ``shell.prefix("export TMPDIR=/scratch; ")`` to the snakefile calling this
     wrapper.
-blacklisted: wrapper does not generate expected png file

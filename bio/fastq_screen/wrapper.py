@@ -3,14 +3,14 @@ import re
 from snakemake.shell import shell
 import tempfile
 
-__author__ = "Ryan Dale"
+__author__ = "Ryan Dale, Thibault Dayris"
 __copyright__ = "Copyright 2016, Ryan Dale"
-__email__ = "dalerr@niddk.nih.gov"
+__email__ = "dalerr@niddk.nih.gov, thibault.dayris@gustaveroussy.fr"
 __license__ = "MIT"
 
 _config = snakemake.params["fastq_screen_config"]
 
-subset = snakemake.params.get("subset", 100000)
+subset = snakemake.params.get("subset", 100_000)
 aligner = snakemake.params.get("aligner", "bowtie2")
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell()
@@ -51,8 +51,13 @@ shell(
 )
 
 # Move output to the filenames specified by the rule
-shell("mv {tempdir}/{prefix}_screen.txt {snakemake.output.txt}")
-shell("mv {tempdir}/{prefix}_screen.png {snakemake.output.png}")
+txt = snakemake.output.get("txt")
+if txt:
+    shell("mv {tempdir}/{prefix}_screen.txt {txt}")
+
+png = snakemake.output.get("png")
+if png:
+    shell("mv {tempdir}/{prefix}_screen.png {png}")
 
 # Clean up temp
 shell("rm -r {tempdir}")
