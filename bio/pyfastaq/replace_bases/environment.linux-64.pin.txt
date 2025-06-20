@@ -4,8 +4,8 @@
 # created-by: conda 24.9.2
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
-https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.4.26-hbd8a1cb_0.conda#95db94f75ba080a22eb623590993167b
-https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.43-h712a8e2_4.conda#01f8d123c96816249efd255a31ad7712
+https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.6.15-hbd8a1cb_0.conda#72525f07d72806e3b639ad4504c30ce5
+https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.43-h1423503_5.conda#6dc9e1305e7d3129af4ad0dabda30e56
 https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.1.0-h767d61c_2.conda#fbe7d535ff9d3a168c148e07358cd5b1
 https://conda.anaconda.org/conda-forge/noarch/python_abi-3.13-7_cp313.conda#e84b44e6300f1703cb25d29120c5b1d8
 https://conda.anaconda.org/conda-forge/noarch/tzdata-2025b-h78e105d_0.conda#4222072737ccff51314b5ece9c7d6f5a
@@ -24,6 +24,6 @@ https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.50.1-hee588c1_0.cond
 https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.38.1-h0b41bf4_0.conda#40b61aab5c7ba9ff276c41cfffe6b80b
 https://conda.anaconda.org/conda-forge/linux-64/readline-8.2-h8c095d6_2.conda#283b96675859b20a825f8fa30f311446
 https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_hd72426e_102.conda#a0116df4f4ed05c303811a837d5b39d8
-https://conda.anaconda.org/conda-forge/linux-64/python-3.13.5-hf636f53_101_cp313.conda#f3fa8f5ca181e0bacf92a09114fc4f31
+https://conda.anaconda.org/conda-forge/linux-64/python-3.13.5-hec9711d_102_cp313.conda#89e07d92cf50743886f41638d58c4328
 https://conda.anaconda.org/conda-forge/noarch/pip-25.1.1-pyh145f28c_0.conda#01384ff1639c6330a0924791413b8714
 https://conda.anaconda.org/bioconda/noarch/pyfastaq-3.18.0-pyhdfd78af_0.tar.bz2#3b009c832acd828e64cce3b15d2fd93f
