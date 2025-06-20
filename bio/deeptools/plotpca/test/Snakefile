@@ -6,7 +6,7 @@ rule test_deeptools_plot_pca:
         matrix="pca.tab",  # Optional
     threads: 1
     params:
-        extra="--ntop 5",
+        extra="--ntop 0",
     log:
         "pca.log",
     wrapper:

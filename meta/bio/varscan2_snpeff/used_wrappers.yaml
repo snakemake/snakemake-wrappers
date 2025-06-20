@@ -1,0 +1,6 @@
+wrappers:
+  - bio/reference/ensembl-sequence
+  - bio/samtools/mpileup
+  - bio/varscan/somatic
+  - bio/snpeff/download
+  - bio/snpeff/annotate

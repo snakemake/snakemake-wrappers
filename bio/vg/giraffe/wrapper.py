@@ -20,17 +20,6 @@ sort_extra = snakemake.params.get("sort_extra", "")
 samtools_opts = get_samtools_opts(snakemake, param_name="sort_extra")
 java_opts = get_java_opts(snakemake)
 
-
-expected_files = {".dist": "-d", ".min": "-m", ".giraffe.gbz": "-Z"}
-
-input_cmd = ""
-for ext, param in expected_files.items():
-    matching_files = [file for file in snakemake.input.index if file.endswith(ext)]
-    if not matching_files:
-        raise ValueError(f"Missing required file with extension: {ext}")
-    input_cmd += f" {param} {matching_files[0]}"
-
-
 # Check inputs/arguments.
 if not isinstance(snakemake.input.reads, str) and len(snakemake.input.reads) not in {
     1,
@@ -43,6 +32,12 @@ reads = (
     if isinstance(snakemake.input.reads, str)
     else " -f ".join(snakemake.input.reads)
 )
+
+input_cmd = ""
+if snakemake.input.get("hapl", ""):
+    input_cmd += f" --haplotype-name {snakemake.input.hapl}"
+if snakemake.input.get("kmers", ""):
+    input_cmd += f" --kff-name {snakemake.input.kmers}"
 
 if sort_order not in {"coordinate", "queryname"}:
     raise ValueError("Unexpected value for sort_order ({})".format(sort_order))
@@ -61,7 +56,7 @@ elif sort == "samtools":
 elif sort == "fgbio":
     if sort_order == "queryname":
         sort_extra += " -s Queryname"
-    pipe_cmd = "fgbio SortBam -i /dev/stdin -o {snakemake.output[0]} {sort_extra}"
+    pipe_cmd = "fgbio SortBam -i /dev/stdin -o {snakemake.output.bam} {sort_extra}"
 elif sort == "picard":
     # Sort alignments using picard SortSam.
     pipe_cmd = "picard SortSam {java_opts} {sort_extra} --INPUT /dev/stdin --TMP_DIR {tmpdir} --SORT_ORDER {sort_order} --OUTPUT {snakemake.output[0]}"
@@ -71,8 +66,9 @@ else:
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
-        "(vg giraffe"
+        "(vg giraffe -p "
         " -t {snakemake.threads}"
+        " -Z {snakemake.input.graph}"
         " {input_cmd}"
         " -f {reads}"
         " --output-format BAM"

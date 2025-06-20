@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - spades =4.0.0
-  - python =3.13.1
+  - spades =4.2.0
+  - python =3.13.5
