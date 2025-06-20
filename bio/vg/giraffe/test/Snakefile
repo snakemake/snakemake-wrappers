@@ -1,23 +1,17 @@
-rule vg_autoindex:  # [hide]
-    input:  # [hide]
-        ref="{genome}.fasta",  # [hide]
-    output:  # [hide]
-        multiext("resources/{genome}", ".dist", ".min", ".giraffe.gbz"),  # [hide]
-    log:  # [hide]
-        "logs/vg_autoindex/{genome}.log",  # [hide]
-    params:  # [hide]
-        extra="",  # [hide]
-    threads: 8  # [hide]
-    wrapper:  # [hide]
-        "master/bio/vg/autoindex"  # [hide]
-
-
 rule vg_giraffe_map:
     input:
         reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
-        index=multiext("resources/genome", ".dist", ".min", ".giraffe.gbz")
+        graph="resources/{sample}.gbz",
+        #kmers="resources/{sample}.kff", # optional: kmer counts
+        #hapl="resources/{genome}.hapl", # optional: haplotype index
     output:
-        "mapped/{sample}.bam",
+        bam="mapped/{sample}.bam",
+        indexes=multiext(
+            "resources/{sample}",
+            ".dist",
+            ".shortread.withzip.min",
+            ".shortread.zipcodes",
+        ),
     log:
         "logs/vg_giraffe/{sample}.log",
     params:

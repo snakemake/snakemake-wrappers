@@ -1,8 +1,8 @@
 name: datavzrd
 description: |
-  datavzrd allows to render tables by providing a configuration file. 
-  Configuration templates can be dynamically customized by utilizing the 
-  `rendering integration <https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#template-rendering-integration>`_.
+  Datavzrd allows to render tables by providing a configuration file.
+  The configuration file can be a yte template.
+  Inside of the template, the snakemake object is accessible (see [docs](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#python)).
   Any files specified in the configuration file have to be also specified as additional input files in the
   datavzrd rule.
 url: https://github.com/datavzrd/datavzrd

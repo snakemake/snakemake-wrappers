@@ -4,7 +4,7 @@ rule vg_autoindex_giraffe:
         # Optional vcf file containing haplotypes for graph creation
         #vcf="",
     output:
-        multiext("resources/{genome}", ".dist", ".min", ".giraffe.gbz"),
+        multiext("resources/{genome}", ".dist", ".shortread.zipcodes", ".shortread.withzip.min", ".giraffe.gbz"),
     log:
         "logs/autoindex/{genome}.log",
     params:

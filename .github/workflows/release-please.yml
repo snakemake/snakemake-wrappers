@@ -9,8 +9,8 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: GoogleCloudPlatform/release-please-action@v2
+      - uses: googleapis/release-please-action@v4
         id: release
         with:
-          release-type: go
-          package-name: ${{env.ACTION_NAME}}
+          release-type: simple
+          token: ${{ secrets.RELEASE_PLEASE_PR_CI_TOKEN }}

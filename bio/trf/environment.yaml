@@ -1,0 +1,6 @@
+channels:
+  - bioconda
+  - conda-forge
+  - nodefaults
+dependencies:
+  - trf =4.09.1

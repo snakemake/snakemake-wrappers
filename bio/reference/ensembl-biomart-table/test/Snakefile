@@ -5,7 +5,7 @@ rule create_transcripts_to_genes_mapping:
         biomart="genes",
         species="homo_sapiens",
         build="GRCh38",
-        release="112",
+        release="114",
         attributes=[
             "ensembl_transcript_id",
             "ensembl_gene_id",
@@ -28,7 +28,7 @@ rule create_transcripts_to_genes_mapping_parquet:
         biomart="genes",
         species="mus_musculus",
         build="GRCm39",
-        release="112",
+        release="114",
         attributes=["ensembl_transcript_id", "ensembl_gene_id"],
         # filters={ "chromosome_name": "19"}, # optional: restrict output by using filters
     log:
