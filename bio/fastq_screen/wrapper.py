@@ -33,8 +33,8 @@ with tempfile.TemporaryDirectory() as tempdir:
                     fout.write(
                         "\t".join(["DATABASE", label, index, aligner.upper()]) + "\n"
                     )
-                for aligner, path in _config["aligner_paths"].items():
-                    fout.write("\t".join([aligner.upper(), path]) + "\n")
+            for aligner, path in _config["aligner_paths"].items():
+                fout.write("\t".join([aligner.upper(), path]) + "\n")
     else:
         config_file = _config
 
