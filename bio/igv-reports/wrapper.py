@@ -18,5 +18,5 @@ if tracks:
     tracks = "--tracks {}".format(" ".join(tracks))
 
 shell(
-    "create_report {extra} --standalone --output {snakemake.output[0]} {snakemake.input.vcf} {snakemake.input.fasta} {tracks} {log}"
+    "create_report {extra} {tracks} --standalone --output {snakemake.output[0]} {snakemake.input.vcf} {snakemake.input.fasta} {log}"
 )
