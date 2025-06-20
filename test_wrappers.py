@@ -960,6 +960,117 @@ def test_agat_sq_filter_feature_from_fasta(run):
     )
 
 
+def test_agat_sq_list_attributes(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "test_agat_sq_list_attributes.txt",
+        ],
+    )
+
+
+def test_agat_sq_manage_IDs(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "test_agat_sq_manage_IDs.txt",
+        ],
+    )
+
+
+def test_agat_sq_manage_attributes(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "test_agat_sq_manage_attributes.gff",
+        ],
+    )
+
+
+def test_agat_sq_mask(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "test_agat_sq_mask.gff",
+        ],
+    )
+
+
+def test_agat_sq_remove_redundant_entries(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "test_agat_sq_remove_redundant_entries.gff",
+        ],
+    )
+
+
+def test_agat_sq_repeats_analyzer(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "test_agat_sq_repeats_analyzer.gff",
+        ],
+    )
+
+
+def test_agat_sq_reverse_complement(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "test_agat_sq_reverse_complement.gff",
+        ],
+    )
+
+
+def test_agat_sq_rfam_analyzer(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "test_agat_sq_rfam_analyzer.tsv",
+        ],
+    )
+
 
 def test_taxonkit(run):
     run(

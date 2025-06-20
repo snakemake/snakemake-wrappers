@@ -13,9 +13,15 @@ import os.path  # Get output files prefix
 import warnings  # Warn user on un-supported subcommands
 
 
+# Agat IO options do not follow the same patterns from one tool to another.
+# We let user provide the correct argument name, just like in NextFlow and Seqkit
+# wrappers.
 def parse_args(io: Dict[str, Union[str, List[str]]]) -> str:
     """
     Build command line from a mapping: arg / path
+
+    We also make sure paths are correctly quoted, since Agat produces
+    names with {, }, <, >, or -. And we must be able to move these files.
     """
     args = ""
     for argname, path in io.items():
@@ -37,6 +43,9 @@ def parse_args(io: Dict[str, Union[str, List[str]]]) -> str:
 def join_and_run_commands(command_lines: str) -> None:
     """
     Safely join multiple commands and run them.
+
+    When multiple command lines are used sequencially, we capture all their
+    stdout/stderr messages and let Snakemake stop on error if needed.
     """
     # Make sure each command line is use one after each other
     # if and only if the previous had a zero return code
@@ -52,6 +61,12 @@ def shell_rename(source: str, destination: str) -> str:
     """
     Move/Rename files with Shell rather than Python, in order
     to keep a track of renaming scheme in Snakemake logs
+
+    Some commands have only one output file to move, the next
+    funciton deals with multiple optional output files to move
+
+    We also make sure paths are correctly quoted, since Agat produces
+    names with {, }, <, >, or -. And we must be able to move these files.
     """
     # Make sure bash-interpretable characters are not interpreted
     # Make sure spaces are not splitted
@@ -63,8 +78,11 @@ def move_multiple_files(
     expected_files: Dict[str, str], snakemake_output: Dict[str, str]
 ) -> Generator[str, None, None]:
     """
-    For each key/value (arg/path) in expected_files dictionary, 
-    search if user expects them in snakemake.output. 
+    As suggested in snakemake-wrappers issue #3976, we will move
+    expected output files on user demand, and using a dictionary.
+
+    For each key/value (arg/path) in expected_files dictionary,
+    search if user expects them in snakemake.output.
     If so, yield shell_rename.
     """
     for key, path in expected_files.items():
@@ -75,6 +93,9 @@ def move_multiple_files(
 
 def get_gff_basename(snake_input) -> str:
     """
+    Many Agat commands base their output file name on GTF/GFF input file
+    name. We set-up the GFF/GTF base name extraction here once for all.
+
     Search the GFF/GTF input file name among the list of possible
     """
     # One of the output file is build on the GFF/GTF input file
@@ -154,6 +175,11 @@ if command == "agat_convert_minimap2_bam2gff.pl":
 # Some commands produce file(s) with fixed names. To avoid collisions
 # during possible concurrent execution, these commands will be executed in
 # a temporary directory.
+
+# The generic case is at the end of the script, let's deal with
+# specific cases first.
+
+# Access/modify configuration files
 if command in ("config", "levels"):
     # Special case: output file name cannot be chosen freely
     with TemporaryDirectory() as tempdir:
@@ -169,6 +195,7 @@ if command in ("config", "levels"):
             ]
         )
 
+
 elif command == "agat_sp_extract_attributes.pl":
     # Special case: output file name have a fixed suffix.
     # In order to let user choose output file name freely, we must
@@ -178,19 +205,19 @@ elif command == "agat_sp_extract_attributes.pl":
     # e.g. `--att Parents,ID --out prefix` that will produce both
     # `prefix_Parents` and `prefix_ID` files.
 
-    # We avoid name collision and ensure temporary file deletion
-    # with a temporary directory for execution:
-
     with TemporaryDirectory() as tempdir:
-        # We need to identify them in order to rename them correctly. To do so,
-        # we'll use the keys in the output section of the Snakemake rule to build
-        # the command line and link a result to its correct name.
+        # We need to identify pefixes in order to rename output files correctly.
+        # To do so,we'll use the keys in the output section of the Snakemake
+        # rule to build the command line and link a result to its correct name.
         att = " --att "
         for argvalue in snakemake.output.keys():
             if att.endswith(" "):
+                # Deal with first attribute
                 att += str(argvalue)
             else:
+                # Deal with optional additional attribute(s)
                 att += f",{argvalue}"
+
         basename = f"{tempdir}/snake_out_prefix"
         extra += f" {att} --out {basename} "
         extra += parse_args(snakemake.input)
@@ -242,6 +269,9 @@ elif command == "agat_sp_filter_by_ORF_size.pl":
             param_name=("--size", "-s"),
             default="100",
         )
+
+        # Warning, `test` holds bash interpretable characters
+        # use single quotes to move them
         matched = f"{prefix}_{test}{size}.gff"
         unmatched = f"{prefix}_NOT_{test}{size}.gff"
 
@@ -443,4 +473,4 @@ else:
         if str(snakemake.input.tsv).endswith("csv"):
             extra += " --csv "
 
-    shell("{command} {extra} {log}")
+    join_and_run_commands(["{command} {extra}"])
