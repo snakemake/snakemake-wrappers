@@ -39,15 +39,16 @@ with tempfile.TemporaryDirectory() as tempdir:
         config_file = _config
 
     shell(
-        "fastq_screen --outdir {tempdir} "
-        "--force "
-        "--aligner {aligner} "
-        "--conf {config_file} "
-        "--subset {subset} "
-        "--threads {snakemake.threads} "
-        "{extra} "
-        "{snakemake.input[0]} "
-        "{log}"
+        "fastq_screen"
+        " --threads {snakemake.threads}"
+        " --aligner {aligner}"
+        " --conf {config_file}"
+        " --subset {subset}"
+        " {extra}"
+        " --force"
+        " --outdir {tempdir}"
+        " {snakemake.input[0]}"
+        " {log}"
     )
 
     # Move output to the filenames specified by the rule if user expects them
