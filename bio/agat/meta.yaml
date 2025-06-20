@@ -6,7 +6,7 @@ authors:
 input:
   - Named input files. Names will be used as argument values in the final command line.
 output:
-  - Named input files. Names will be used as argument values in the final command line.
+  - Named output files. Names will be used as argument values in the final command line.
 params:
   - command: Agat command used
   - extra: Any non file parameter.
