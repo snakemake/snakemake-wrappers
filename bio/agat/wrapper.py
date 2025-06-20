@@ -8,7 +8,6 @@ from snakemake.shell import shell
 from tempfile import TemporaryDirectory
 from typing import Dict, Generator, List, Tuple, Union  # Compatibility with Python 3.7
 
-import argparse  # Search in command line argument to predict output file suffixes
 import os.path  # Get output files prefix
 import warnings  # Warn user on un-supported subcommands
 
@@ -156,7 +155,7 @@ elif command in (
     "agat_sp_filter_by_mrnaBlastValue.pl",
     "agat_sp_load_function_from_protein_align.pl",
 ):
-    warning.warn(f"The command `{command}` was not tested in Agat Snakemake-Wrappers.")
+    warnings.warn(f"The command `{command}` was not tested in Agat Snakemake-Wrappers.")
 
 
 # Handling optional parameters
@@ -335,7 +334,7 @@ elif command == "agat_sp_manage_UTRs.pl":
             basename = os.path.basename(input_file_path)
             command_lines.append(
                 "ln --symbolic --force --relative --verbose "
-                "'{input_file_path}' '{tempdir}/{basename}'"
+                f"'{input_file_path}' '{tempdir}/{basename}'"
             )
             extra += f" {arg} '{tempdir}/{basename}' "
 
@@ -473,4 +472,4 @@ else:
         if str(snakemake.input.tsv).endswith("csv"):
             extra += " --csv "
 
-    join_and_run_commands(["{command} {extra}"])
+    join_and_run_commands([f"{command} {extra}"])

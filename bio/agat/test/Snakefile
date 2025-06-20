@@ -1509,7 +1509,7 @@ rule test_agat_sq_rfam_analyzer:
         gff=storage(
             "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
         ),
-        fasta=storage(
+        genome=storage(
             "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/prokka_cav_10DC88.fa"
         ),
     output:
@@ -1518,8 +1518,9 @@ rule test_agat_sq_rfam_analyzer:
     log:
         "test_agat_sq_rfam_analyzer.log",
     params:
-        # Only verbosity parameter is allowed, other ones are automatically filled
-        extra="--verbose",
-        command="agat_sq_reverse_complement.pl",
+        # If no fasta file is provided in `input.genome`, then provide the genome size
+        # through optional parameter below:
+        # extra="--genome 125",
+        command="agat_sq_rfam_analyzer.pl",
     wrapper:
         "master/bio/agat"
