@@ -3215,6 +3215,14 @@ def test_fastq_screen(run):
         "bio/fastq_screen",
         ["snakemake", "--cores", "1", "qc/a.fastq_screen.txt", "--use-conda", "-F"],
     )
+    run(
+        "bio/fastq_screen",
+        ["snakemake", "--cores", "1", "qc/a.fastq_screen_conf.txt", "--use-conda", "-F"],
+    )
+    run(
+        "bio/fastq_screen",
+        ["snakemake", "--cores", "1", "qc/a.fastq_screen_nopng.txt", "--use-conda", "-F"],
+    )
 
 
 def test_fasttree(run):
