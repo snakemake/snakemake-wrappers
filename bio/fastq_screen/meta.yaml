@@ -43,9 +43,9 @@ description: |
 input:
   - A FASTQ file, gzipped or not.
 output:
-  - txt: an optional text file containing the fraction of reads mapping to each provided index
-  - png: an optional bar plot of the contents of ``txt``, saved as a PNG file
-  - conf: an optional text file containing the configuration used by fastq screen
+  - txt: Fraction of reads mapping to each provided index (optional)
+  - png: Barplot of the contents of ``txt``, saved as a PNG file (optional)
+  - conf: Configuration used by fastq screen (optional)
 notes: |
   * ``fastq_screen`` hard-codes the output filenames. This wrapper moves the
     hard-coded output files to those specified by the rule.
