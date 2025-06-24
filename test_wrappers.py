@@ -307,6 +307,20 @@ def test_agat_convert_sp_gff2tsv(run):
     )
 
 
+def test_agat_convert_sp_gff2zff(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "test_agat_convert_sp_gff2zff.dna",
+        ],
+    )
+
+
 def test_agat_convert_sp_gxf2gxf(run):
     run(
         "bio/agat",
@@ -359,6 +373,20 @@ def test_agat_sp_add_introns(run):
             "--use-conda",
             "-F",
             "test_agat_sp_add_introns.gff",
+        ],
+    )
+
+
+def test_agat_sp_add_splice_sites(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "test_agat_sp_add_splice_sites.gff",
         ],
     )
 
@@ -782,6 +810,19 @@ def test_agat_sp_list_short_introns(run):
         ],
     )
 
+
+def test_agat_sp_manage_IDs(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "test_agat_sp_manage_IDs.gff",
+        ],
+    )
 
 def test_agat_sp_manage_UTRs(run):
     run(

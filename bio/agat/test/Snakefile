@@ -1,7 +1,3 @@
-storage:
-    provider="http",
-
-
 rule test_agat_config:
     output:
         "agat_config.yaml",
@@ -29,9 +25,7 @@ rule test_agat_convert_bed2gff:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        bed=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/test.bed"
-        ),
+        bed="test.bed",
     output:
         # The key here will be used as argument name in the final command line
         gff="test_agat_convert_bed2gff.gff",
@@ -48,9 +42,7 @@ rule test_agat_convert_embl2gff:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        embl=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/agat_convert_embl2gff_1.embl"
-        ),
+        embl="agat_convert_embl2gff_1.embl"
     output:
         # The key here will be used as argument name in the final command line
         gff="test_agat_convert_embl2gff.gff",
@@ -67,9 +59,7 @@ rule test_agat_convert_genscan2gff:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        genscan=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/test.genscan"
-        ),
+        genscan="test.genscan"
     output:
         # The key here will be used as argument name in the final command line
         gff="test_agat_convert_genscan2gff.gff",
@@ -86,9 +76,7 @@ rule test_agat_convert_mfannot2gff:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        mfannot=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/test.mfannot"
-        ),
+        mfannot="test.mfannot"
     output:
         # The key here will be used as argument name in the final command line
         gff="test_agat_convert_mfannot2gff.gff",
@@ -105,9 +93,7 @@ rule test_agat_convert_minimap2_bam2gff_bam:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        i=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/test_minimap2.bam"
-        ),
+        i="test_minimap2.bam"
     output:
         # The key here will be used as argument name in the final command line
         out="test_agat_convert_minimap2_bam2gff_bam.gff",
@@ -124,9 +110,7 @@ rule test_agat_convert_minimap2_bam2gff_sam:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        i=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/test_minimap2.sam"
-        ),
+        i="test_minimap2.sam"
     output:
         # The key here will be used as argument name in the final command line
         out="test_agat_convert_minimap2_bam2gff_sam.gff",
@@ -143,9 +127,7 @@ rule test_agat_convert_sp_gff2bed:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
         out="test_agat_convert_sp_gff2bed.bed",
@@ -162,9 +144,7 @@ rule test_agat_convert_sp_gff2gtf:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
         out="test_agat_convert_sp_gff2gtf.gtf",
@@ -181,9 +161,7 @@ rule test_agat_convert_sp_gff2tsv:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
         out="test_agat_convert_sp_gff2tsv.tsv",
@@ -200,15 +178,12 @@ rule test_agat_convert_sp_gff2zff:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
-        fasta=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fasta"
-        ),
+        gff="annotation.gff",
+        fasta="sequence.fa"
     output:
         # The key here will be used as argument name in the final command line
-        out="test_agat_convert_sp_gff2zff.zff",
+        ann="test_agat_convert_sp_gff2zff.ann",
+        dna="test_agat_convert_sp_gff2zff.dna",
     log:
         "agat_convert_sp_gff2zff.log",
     params:
@@ -222,9 +197,7 @@ rule test_agat_convert_sp_gxf2gxf:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/test_kraken.gtf"
-        ),
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
         out="test_agat_convert_sp_gxf2gxf.gff",
@@ -241,9 +214,7 @@ rule test_agat_sp_Prokka_inferNameFromAttributes:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/agat_sp_compare_two_annotations/file1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
         out="test_agat_sp_Prokka_inferNameFromAttributes.gff",
@@ -260,9 +231,7 @@ rule test_agat_sp_add_intergenic_regions:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
         out="test_agat_sp_add_intergenic_regions.gff",
@@ -279,9 +248,7 @@ rule test_agat_sp_add_introns:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
         out="test_agat_sp_add_introns.gff",
@@ -298,9 +265,7 @@ rule test_agat_sp_add_splice_sites:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff"
     output:
         # The key here will be used as argument name in the final command line
         out="test_agat_sp_add_splice_sites.gff",
@@ -317,12 +282,8 @@ rule test_agat_sp_add_start_and_stop:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
-        fasta=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fa"
-        ),
+        gff="annotation.gff",
+        fasta="sequence.fa",
     output:
         # The key here will be used as argument name in the final command line
         out="test_agat_sp_add_start_and_stop.gff",
@@ -339,9 +300,7 @@ rule test_agat_sp_alignment_output_style:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
         out="test_agat_sp_alignment_output_style.gff",
@@ -358,12 +317,8 @@ rule test_agat_sp_clipN_seqExtremities_and_fixCoordinates:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
-        fasta=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fa"
-        ),
+        gff="annotation.gff",
+        fasta="sequence.fa",
     output:
         # The key here will be used as argument name in the final command line
         og="test_agat_sp_clipN_seqExtremities_and_fixCoordinates.gff",
@@ -381,12 +336,8 @@ rule test_agat_sp_compare_two_annotations:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff1=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/agat_sp_compare_two_annotations/file1.gff"
-        ),
-        gff2=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/agat_sp_compare_two_annotations/file2.gff"
-        ),
+        gff1="annotation.gff",
+        gff2="prokka_fragmented_genes.gff",
     output:
         # The key here will be used as argument name in the final command line
         # This subcommand returns a file per case, which names are build based
@@ -405,12 +356,8 @@ rule test_agat_sp_complement_annotations:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        ref=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/agat_sp_merge_annotations/file1.gff"
-        ),
-        add=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/agat_sp_merge_annotations/file2.gff"
-        ),
+        ref="annotation.gff",
+        add="prokka_fragmented_genes.gff",
     output:
         # The key here will be used as argument name in the final command line
         out="test_agat_sp_complement_annotations.gff",
@@ -427,9 +374,7 @@ rule test_agat_sp_ensembl_output_style:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
         o="test_agat_sp_ensembl_output_style.gff",
@@ -446,9 +391,7 @@ rule test_agat_sp_extract_attributes:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
         Parent="test_agat_sp_extract_attributes_Parent.txt",
@@ -467,12 +410,8 @@ rule test_agat_sp_extract_sequences:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
-        fasta=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fa"
-        ),
+        gff="annotation.gff",
+        fasta="sequence.fa",
     output:
         # The key here will be used as argument name in the final command line
         o="test_agat_sp_extract_sequences.fasta",
@@ -490,9 +429,7 @@ rule test_agat_sp_filter_by_ORF_size:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # Matched = ORF size satisfying `--test` and `--size` criteria
         matched="test_agat_sp_filter_by_ORF_size_matched.gff",
@@ -512,9 +449,7 @@ rule test_agat_sp_filter_by_locus_distance:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
         outfile="test_agat_sp_filter_by_locus_distance.gff",
@@ -532,9 +467,7 @@ rule test_agat_sp_filter_feature_by_attribute_presence:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
         o="test_agat_sp_filter_feature_by_attribute_presence.gff",
@@ -552,9 +485,7 @@ rule test_agat_sp_filter_feature_by_attribute_value:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
         o="test_agat_sp_filter_feature_by_attribute_value.gff",
@@ -572,12 +503,8 @@ rule test_agat_sp_filter_feature_from_keep_list:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
-        keep_list=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/keep_list.txt"
-        ),
+        gff="annotation.gff",
+        keep_list="keep_list.txt",
     output:
         # The key here will be used as argument name in the final command line
         o="test_agat_sp_filter_feature_from_keep_list.gff",
@@ -595,12 +522,8 @@ rule test_agat_sp_filter_feature_from_kill_list:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
-        kill_list=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/kill_list.txt"
-        ),
+        gff="annotation.gff",
+        kill_list="kill_list.txt",
     output:
         # The key here will be used as argument name in the final command line
         o="test_agat_sp_filter_feature_from_kill_list.gff",
@@ -618,9 +541,7 @@ rule test_agat_sp_filter_gene_by_intron_numbers:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
         o="test_agat_sp_filter_gene_by_intron_numbers.gff",
@@ -638,9 +559,7 @@ rule test_agat_sp_filter_gene_by_length:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
         o="test_agat_sp_filter_gene_by_length.gff",
@@ -658,12 +577,8 @@ rule test_agat_sp_filter_incomplete_gene_coding_models:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
-        fasta=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fa"
-        ),
+        gff="annotation.gff",
+        fasta="sequence.fa",
     output:
         # The key here will be used as argument name in the final command line
         outfile="test_agat_sp_filter_incomplete_gene_coding_models.gff",
@@ -681,12 +596,8 @@ rule test_agat_sp_filter_record_by_coordinates:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
-        coordinates=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/coordinates.tsv"
-        ),
+        gff="annotation.gff",
+        coordinates="coordinates.tsv",
     output:
         # The key here will be used as argument name in the final command line.
         # The directory contains a file per interval (if any record exists within),
@@ -707,12 +618,8 @@ rule test_agat_sp_fix_cds_phases:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
-        fasta=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fa"
-        ),
+        gff="annotation.gff",
+        fasta="sequence.fa",
     output:
         # The key here will be used as argument name in the final command line.
         o="test_agat_sp_fix_cds_phases.gff",
@@ -730,9 +637,7 @@ rule test_agat_sp_fix_features_locations_duplicated:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line.
         outfile="test_agat_sp_fix_features_locations_duplicated.gff",
@@ -750,12 +655,8 @@ rule test_agat_sp_fix_fusion:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
-        fasta=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fa"
-        ),
+        gff="annotation.gff",
+        fasta="sequence.fa",
     output:
         # Optional file contains all features in the GFF
         all="test_agat_sp_fix_fusion_all.gff",
@@ -779,12 +680,8 @@ rule test_agat_sp_fix_longest_ORF:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
-        fasta=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fa"
-        ),
+        gff="annotation.gff",
+        fasta="sequence.fa",
     output:
         # Optional file contains all features in the GFF
         all="test_agat_sp_fix_longest_ORF_all.gff",
@@ -808,9 +705,7 @@ rule test_agat_sp_fix_overlaping_genes:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line.
         outfile="test_agat_sp_fix_overlaping_genes.gff",
@@ -828,12 +723,8 @@ rule test_agat_sp_fix_small_exon_from_extremities:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
-        fasta=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fa"
-        ),
+        gff="annotation.gff",
+        fasta="sequence.fa",
     output:
         # The key here will be used as argument name in the final command line.
         outfile="test_agat_sp_fix_small_exon_from_extremities.gff",
@@ -851,12 +742,8 @@ rule test_agat_sp_flag_premature_stop_codons:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
-        fasta=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fa"
-        ),
+        gff="annotation.gff",
+        fasta="sequence.fa",
     output:
         # The key here will be used as argument name in the final command line.
         out="test_agat_sp_flag_premature_stop_codons.gff",
@@ -873,9 +760,7 @@ rule test_agat_sp_flag_short_introns:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line.
         out="test_agat_sp_flag_short_introns.gff",
@@ -893,9 +778,7 @@ rule test_agat_sp_functional_statistics:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff"
     output:
         # The key here will be used as argument name in the final command line.
         # This directory contains sub-directory for each type of features available
@@ -915,9 +798,7 @@ rule test_agat_sp_keep_longest_isoform:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line.
         o="test_agat_sp_keep_longest_isoform.gff",
@@ -934,9 +815,7 @@ rule test_agat_sp_kraken_assess_liftover:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gtf=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/test_kraken.gtf"
-        ),
+        gtf="test_kraken.gtf",
     output:
         # The key here will be used as argument name in the final command line.
         out="test_agat_sp_kraken_assess_liftover.gff",
@@ -954,9 +833,7 @@ rule test_agat_sp_list_short_introns:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="agat_sq_add_attributes_from_tsv.gff",
     output:
         # The key here will be used as argument name in the final command line.
         out="test_agat_sp_list_short_introns.gff",
@@ -974,9 +851,7 @@ rule test_agat_sp_manage_IDs:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="agat_sq_add_attributes_from_tsv.gff",
     output:
         # The key here will be used as argument name in the final command line.
         out="test_agat_sp_manage_IDs.gff",
@@ -994,9 +869,7 @@ rule test_agat_sp_manage_UTRs:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # Optional path to PDF histogram of 5'UTR with at least <n> exons
         five_prime_utr_overORequal="test_agat_sp_manage_UTRs_five_prime_utr_overORequal.pdf",
@@ -1007,9 +880,9 @@ rule test_agat_sp_manage_UTRs:
         # Optional path to PDF histogram of 3'UTR with at least <n> exons
         three_prime_utr_under="test_agat_sp_manage_UTRs_three_prime_utr_under.pdf",
         # Optional path to PDF histogram of both 3/5'UTR with at least <n> exons
-        both_utr_overORequal="test_agat_sp_manage_UTRs_both_utr_overORequal.pdf",
+        # both_utr_overORequal="test_agat_sp_manage_UTRs_both_utr_overORequal.pdf",
         # Optional path to PDF histogram of both 3/5'UTR with at least <n> exons
-        both_utr_under="test_agat_sp_manage_UTRs_both_utr_under.pdf",
+        # both_utr_under="test_agat_sp_manage_UTRs_both_utr_under.pdf",
         # Optional path to analysis report
         report="test_agat_sp_manage_UTRs_report.txt",
     log:
@@ -1027,9 +900,7 @@ rule test_agat_sp_manage_attributes:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="agat_sq_add_attributes_from_tsv.gff",
     output:
         # The key here will be used as argument name in the final command line.
         out="test_agat_sp_manage_attributes.gff",
@@ -1047,19 +918,11 @@ rule test_agat_sp_manage_functional_annotation:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/refs/heads/master/t/scripts_output/in/agat_sp_manage_functional_annotation/02413F.gff"
-        ),
+        gff="agat_sp_manage_functional_annotation/02413F.gff",
         # Optional path to blast, interpro, and reference fasta
-        blast=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/refs/heads/master/t/scripts_output/in/agat_sp_manage_functional_annotation/02413F_blast.out"
-        ),
-        db=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/refs/heads/master/t/scripts_output/in/agat_sp_manage_functional_annotation/uniprot_sprot_test.fasta"
-        ),
-        interpro=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/refs/heads/master/t/scripts_output/in/agat_sp_manage_functional_annotation/02413F_interpro.tsv"
-        ),
+        blast="agat_sp_manage_functional_annotation/02413F_blast.out",
+        db="agat_sp_manage_functional_annotation/uniprot_sprot_test.fasta",
+        interpro="agat_sp_manage_functional_annotation/02413F_interpro.tsv"
     output:
         # The key here will be used as argument name in the final command line.
         gff="test_agat_sp_manage_functional_annotation.gff",
@@ -1096,9 +959,7 @@ rule test_agat_sp_manage_introns:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # Optional path to intron report
         report="test_agat_sp_manage_introns_report.txt",
@@ -1109,7 +970,7 @@ rule test_agat_sp_manage_introns:
         # Optional path to 5'UTR histogram (triggers the `--plot` argument)
         five_prime_utr_pdf="test_agat_sp_manage_introns_exons_5p.pdf",
         # Optional path to 3'UTR histogram (triggers the `--plot` argument)
-        three_prime_utr_pdf="test_agat_sp_manage_introns_exons_3p.pdf",
+        # three_prime_utr_pdf="test_agat_sp_manage_introns_exons_3p.pdf",
     log:
         "test_agat_sp_manage_introns.log",
     params:
@@ -1125,13 +986,8 @@ rule test_agat_sp_merge_annotations:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=[
-            storage(
-                "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-            ),
-            storage(
-                "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/0.gff"
-            ),
+        gff=["prokka_fragmented_genes.gff",
+            "annotation.gff"
         ],
     output:
         # The key here will be used as argument name in the final command line.
@@ -1149,9 +1005,7 @@ rule test_agat_sp_move_attributes_within_records:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="agat_sq_add_attributes_from_tsv.gff",
     output:
         # The key here will be used as argument name in the final command line.
         out="test_agat_sp_move_attributes_within_records.gff",
@@ -1169,15 +1023,9 @@ rule test_agat_sp_prokka_fix_fragmented_gene_annotations:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/prokka_fragmented_genes.gff"
-        ),
-        fasta=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/prokka_cav_10DC88.fa"
-        ),
-        db=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/prokka_bacteria_sprot.fa"
-        ),
+        gff="prokka_fragmented_genes.gff",
+        fasta="prokka_cav_10DC88.fa",
+        db="prokka_bacteria_sprot.fa",
     output:
         # The key here will be used as argument name in the final command line.
         # The output directory contains a `report.txt` and additional files
@@ -1198,12 +1046,8 @@ rule test_agat_sp_sensitivity_specificity:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff1=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/0.gff"
-        ),
-        gff2=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff1="prokka_fragmented_genes.gff",
+        gff2="annotation.gff"
     output:
         # The key here will be used as argument name in the final command line.
         outfile="test_agat_sp_sensitivity_specificity.txt",
@@ -1221,9 +1065,7 @@ rule test_agat_sp_separate_by_record_type:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/0.gff"
-        ),
+        gff="agat_sq_add_attributes_from_tsv.gff",
     output:
         # The key here will be used as argument name in the final command line.
         # The output directory contains up to one file per record type among the
@@ -1242,9 +1084,7 @@ rule test_agat_sp_statistics:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/0.gff"
-        ),
+        gff="agat_sq_add_attributes_from_tsv.gff",
     output:
         # Optional Path to text report
         report="test_agat_sp_statistics.txt",
@@ -1269,12 +1109,8 @@ rule test_agat_sq_add_attributes_from_tsv:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/agat_sq_add_attributes_from_tsv.gff"
-        ),
-        tsv=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/agat_sq_add_attributes_from_tsv.tsv"
-        ),
+        gff="agat_sq_add_attributes_from_tsv.gff",
+        tsv="agat_sq_add_attributes_from_tsv.tsv",
     output:
         # Optional Path to text report
         o="test_agat_sq_add_attributes_from_tsv.gff",
@@ -1293,9 +1129,7 @@ rule test_agat_sq_add_hash_tag:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/agat_sq_add_attributes_from_tsv.gff"
-        ),
+        gff="agat_sq_add_attributes_from_tsv.gff",
     output:
         # Optional Path to text report
         o="test_agat_sq_add_hash_tag.gff",
@@ -1312,9 +1146,7 @@ rule test_agat_sq_add_locus_tag:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/agat_sq_add_attributes_from_tsv.gff"
-        ),
+        gff="agat_sq_add_attributes_from_tsv.gff",
     output:
         # Optional Path to text report
         o="test_agat_sq_add_locus_tag.gff",
@@ -1332,12 +1164,8 @@ rule test_agat_sq_filter_feature_from_fasta:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
-        fasta=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.fa"
-        ),
+        gff="annotation.gff",
+        fasta="sequence.fa",
     output:
         # Optional Path to text report
         o="test_agat_sq_filter_feature_from_fasta.gff",
@@ -1355,9 +1183,7 @@ rule test_agat_sq_list_attributes:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff"
     output:
         # Optional Path to attributes
         outfile="test_agat_sq_list_attributes.txt",
@@ -1375,9 +1201,7 @@ rule test_agat_sq_manage_IDs:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # Optional Path to ids
         o="test_agat_sq_manage_IDs.txt",
@@ -1395,9 +1219,7 @@ rule test_agat_sq_manage_attributes:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
+        gff="annotation.gff",
     output:
         # Optional Path to GFF
         outfile="test_agat_sq_manage_attributes.gff",
@@ -1416,12 +1238,8 @@ rule test_agat_sq_mask:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/prokka_fragmented_genes.gff"
-        ),
-        fasta=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/prokka_cav_10DC88.fa"
-        ),
+        gff="prokka_fragmented_genes.gff",
+        fasta="prokka_cav_10DC88.fa"
     output:
         # Path to masked GFF/GTF
         o="test_agat_sq_mask.gff",
@@ -1439,9 +1257,7 @@ rule test_agat_sq_remove_redundant_entries:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/prokka_fragmented_genes.gff"
-        ),
+        gff="prokka_fragmented_genes.gff",
     output:
         # Path to GFF entries
         o="test_agat_sq_remove_redundant_entries.gff",
@@ -1458,13 +1274,9 @@ rule test_agat_sq_repeats_analyzer:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/prokka_fragmented_genes.gff"
-        ),
+        gff="prokka_fragmented_genes.gff",
         # Optional path to fasta sequence, see params.extra
-        genome=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/prokka_cav_10DC88.fa"
-        ),
+        genome="prokka_cav_10DC88.fa"
     output:
         # Path to repeats
         o="test_agat_sq_repeats_analyzer.gff",
@@ -1483,12 +1295,8 @@ rule test_agat_sq_reverse_complement:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
-        fasta=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/prokka_cav_10DC88.fa"
-        ),
+        gff="prokka_fragmented_genes.gff",
+        fasta="prokka_cav_10DC88.fa",
     output:
         # Path to revert complement
         o="test_agat_sq_reverse_complement.gff",
@@ -1506,12 +1314,8 @@ rule test_agat_sq_rfam_analyzer:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/1.gff"
-        ),
-        genome=storage(
-            "https://raw.githubusercontent.com/NBISweden/AGAT/11434082853bf41f4b95c799652c31d11e380903/t/scripts_output/in/prokka_cav_10DC88.fa"
-        ),
+        gff="prokka_fragmented_genes.gff",
+        genome="prokka_cav_10DC88.fa"
     output:
         # Optional Path to ids
         o="test_agat_sq_rfam_analyzer.tsv",

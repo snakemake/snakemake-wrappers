@@ -244,7 +244,7 @@ elif command == "agat_sp_filter_by_ORF_size.pl":
         prefix = f"{tempdir}/snake_out_ORF"
         extra += f" --outfile {prefix} "
         extra += parse_args(snakemake.input)
-        command_lines = ["{command} {extra}"]
+        command_lines = [f"{command} {extra}"]
 
         # Output file extension can be predicted from command line:
         test = "sup"  # Default test value is >
@@ -449,6 +449,46 @@ elif command == "agat_sp_statistics.pl":
             "report": prefix,
             "yaml": f"{prefix}.yaml",
             "plot": f"{prefix}_distribution_plots",
+        }
+        command_lines += list(
+            move_multiple_files(expected_output_files, snakemake.output)
+        )
+        join_and_run_commands(command_lines)
+
+elif command == "agat_convert_sp_gff2zff.pl":
+    # Special case: 2 files created
+
+    with TemporaryDirectory() as tempdir:
+        # Build command line
+        prefix = f"{tempdir}/snake_out"
+        extra += f" --output {prefix} "
+
+        # Agat uses onle basename of prefixes, we have to move into
+        # the temporary directory to avoid filename collisions
+        command_lines = []
+        for argname, input_file_path in dict(snakemake.input).items():
+            basename = os.path.basename(input_file_path)
+            command_lines.append(
+                "ln --symbolic --force --relative --verbose "
+                f"'{input_file_path}' '{tempdir}/{basename}'"
+            )
+
+            dash = "-"
+            if len(argname) > 1:
+                dash = "--"
+
+            extra += f" {dash}{argname} '{basename}' "
+
+        command_lines += [
+            f"cd {tempdir}",
+            f"{command} {extra}",
+            "cd -",
+        ]
+
+        # Make output available on user request
+        expected_output_files = {
+            "ann": f"{prefix}.ann",
+            "dna": f"{prefix}.dna",
         }
         command_lines += list(
             move_multiple_files(expected_output_files, snakemake.output)

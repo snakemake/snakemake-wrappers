@@ -12,5 +12,5 @@ params:
   - extra: Any non file parameter.
 notes: |
   Remember that `input` and `output` are reserved key-words in Snakemake. Use alternate
-  command line argument names to avoid Workflow errors: like `i`, `o` or any of the
-  provided examples.
+  command line argument names to avoid Workflow errors: `i` instead of `input`, and
+  `o` instead of `output`.
