@@ -42,7 +42,7 @@ rule test_agat_convert_embl2gff:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        embl="agat_convert_embl2gff_1.embl"
+        embl="agat_convert_embl2gff_1.embl",
     output:
         # The key here will be used as argument name in the final command line
         gff="test_agat_convert_embl2gff.gff",
@@ -59,7 +59,7 @@ rule test_agat_convert_genscan2gff:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        genscan="test.genscan"
+        genscan="test.genscan",
     output:
         # The key here will be used as argument name in the final command line
         gff="test_agat_convert_genscan2gff.gff",
@@ -76,7 +76,7 @@ rule test_agat_convert_mfannot2gff:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        mfannot="test.mfannot"
+        mfannot="test.mfannot",
     output:
         # The key here will be used as argument name in the final command line
         gff="test_agat_convert_mfannot2gff.gff",
@@ -93,7 +93,7 @@ rule test_agat_convert_minimap2_bam2gff_bam:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        i="test_minimap2.bam"
+        i="test_minimap2.bam",
     output:
         # The key here will be used as argument name in the final command line
         out="test_agat_convert_minimap2_bam2gff_bam.gff",
@@ -110,7 +110,7 @@ rule test_agat_convert_minimap2_bam2gff_sam:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        i="test_minimap2.sam"
+        i="test_minimap2.sam",
     output:
         # The key here will be used as argument name in the final command line
         out="test_agat_convert_minimap2_bam2gff_sam.gff",
@@ -179,7 +179,7 @@ rule test_agat_convert_sp_gff2zff:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
         gff="annotation.gff",
-        fasta="sequence.fa"
+        fasta="sequence.fa",
     output:
         # The key here will be used as argument name in the final command line
         ann="test_agat_convert_sp_gff2zff.ann",
@@ -265,7 +265,7 @@ rule test_agat_sp_add_splice_sites:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff"
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
         out="test_agat_sp_add_splice_sites.gff",
@@ -778,7 +778,7 @@ rule test_agat_sp_functional_statistics:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff"
+        gff="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line.
         # This directory contains sub-directory for each type of features available
@@ -922,7 +922,7 @@ rule test_agat_sp_manage_functional_annotation:
         # Optional path to blast, interpro, and reference fasta
         blast="agat_sp_manage_functional_annotation/02413F_blast.out",
         db="agat_sp_manage_functional_annotation/uniprot_sprot_test.fasta",
-        interpro="agat_sp_manage_functional_annotation/02413F_interpro.tsv"
+        interpro="agat_sp_manage_functional_annotation/02413F_interpro.tsv",
     output:
         # The key here will be used as argument name in the final command line.
         gff="test_agat_sp_manage_functional_annotation.gff",
@@ -967,10 +967,10 @@ rule test_agat_sp_manage_introns:
         cds_pdf="test_agat_sp_manage_introns_cds.pdf",
         # Optional path to exon histogram (triggers the `--plot` argument)
         exon_pdf="test_agat_sp_manage_introns_exons.pdf",
-        # Optional path to 5'UTR histogram (triggers the `--plot` argument)
-        five_prime_utr_pdf="test_agat_sp_manage_introns_exons_5p.pdf",
         # Optional path to 3'UTR histogram (triggers the `--plot` argument)
         # three_prime_utr_pdf="test_agat_sp_manage_introns_exons_3p.pdf",
+        # Optional path to 5'UTR histogram (triggers the `--plot` argument)
+        five_prime_utr_pdf="test_agat_sp_manage_introns_exons_5p.pdf",
     log:
         "test_agat_sp_manage_introns.log",
     params:
@@ -986,9 +986,7 @@ rule test_agat_sp_merge_annotations:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=["prokka_fragmented_genes.gff",
-            "annotation.gff"
-        ],
+        gff=["prokka_fragmented_genes.gff", "annotation.gff"],
     output:
         # The key here will be used as argument name in the final command line.
         out="test_agat_sp_merge_annotations.gff",
@@ -1047,7 +1045,7 @@ rule test_agat_sp_sensitivity_specificity:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
         gff1="prokka_fragmented_genes.gff",
-        gff2="annotation.gff"
+        gff2="annotation.gff",
     output:
         # The key here will be used as argument name in the final command line.
         outfile="test_agat_sp_sensitivity_specificity.txt",
@@ -1183,7 +1181,7 @@ rule test_agat_sq_list_attributes:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff"
+        gff="annotation.gff",
     output:
         # Optional Path to attributes
         outfile="test_agat_sq_list_attributes.txt",
@@ -1239,7 +1237,7 @@ rule test_agat_sq_mask:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
         gff="prokka_fragmented_genes.gff",
-        fasta="prokka_cav_10DC88.fa"
+        fasta="prokka_cav_10DC88.fa",
     output:
         # Path to masked GFF/GTF
         o="test_agat_sq_mask.gff",
@@ -1276,7 +1274,7 @@ rule test_agat_sq_repeats_analyzer:
         # config="", # Optional path to configuration file
         gff="prokka_fragmented_genes.gff",
         # Optional path to fasta sequence, see params.extra
-        genome="prokka_cav_10DC88.fa"
+        genome="prokka_cav_10DC88.fa",
     output:
         # Path to repeats
         o="test_agat_sq_repeats_analyzer.gff",
@@ -1315,7 +1313,7 @@ rule test_agat_sq_rfam_analyzer:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
         gff="prokka_fragmented_genes.gff",
-        genome="prokka_cav_10DC88.fa"
+        genome="prokka_cav_10DC88.fa",
     output:
         # Optional Path to ids
         o="test_agat_sq_rfam_analyzer.tsv",

@@ -6,7 +6,6 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 from tempfile import TemporaryDirectory
-from typing import Dict, Generator, List, Tuple, Union  # Compatibility with Python 3.7
 
 import os.path  # Get output files prefix
 import warnings  # Warn user on un-supported subcommands
@@ -15,7 +14,7 @@ import warnings  # Warn user on un-supported subcommands
 # Agat IO options do not follow the same patterns from one tool to another.
 # We let user provide the correct argument name, just like in NextFlow and Seqkit
 # wrappers.
-def parse_args(io: Dict[str, Union[str, List[str]]]) -> str:
+def parse_args(io):
     """
     Build command line from a mapping: arg / path
 
@@ -39,7 +38,7 @@ def parse_args(io: Dict[str, Union[str, List[str]]]) -> str:
     return args
 
 
-def join_and_run_commands(command_lines: str) -> None:
+def join_and_run_commands(command_lines):
     """
     Safely join multiple commands and run them.
 
@@ -56,7 +55,7 @@ def join_and_run_commands(command_lines: str) -> None:
     shell(f"({command_lines}) {log}")
 
 
-def shell_rename(source: str, destination: str) -> str:
+def shell_rename(source, destination):
     """
     Move/Rename files with Shell rather than Python, in order
     to keep a track of renaming scheme in Snakemake logs
@@ -73,9 +72,7 @@ def shell_rename(source: str, destination: str) -> str:
     return f"mv --verbose '{source}' '{destination}'"
 
 
-def move_multiple_files(
-    expected_files: Dict[str, str], snakemake_output: Dict[str, str]
-) -> Generator[str, None, None]:
+def move_multiple_files(expected_files, snakemake_output):
     """
     As suggested in snakemake-wrappers issue #3976, we will move
     expected output files on user demand, and using a dictionary.
@@ -90,7 +87,7 @@ def move_multiple_files(
             yield shell_rename(path, snake_out)
 
 
-def get_gff_basename(snake_input) -> str:
+def get_gff_basename(snake_input):
     """
     Many Agat commands base their output file name on GTF/GFF input file
     name. We set-up the GFF/GTF base name extraction here once for all.
@@ -116,7 +113,7 @@ def get_gff_basename(snake_input) -> str:
     return gff_basename
 
 
-def find_arg_value(extra: str, param_name: str | Tuple[str], default: str) -> str:
+def find_arg_value(extra, param_name, default):
     """
     Somme commands name the output files with suffixes depending on
     parameter value. This function returns the value given to a parameter.
