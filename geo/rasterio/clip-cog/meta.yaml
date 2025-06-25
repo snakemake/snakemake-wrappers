@@ -1,0 +1,16 @@
+name: rasterio - clip-cog
+url: https://github.com/rasterio/rasterio
+description: Clip Cloud Optimised GeoTiff (COG) files using either a vector file or a bounding box.
+authors:
+  - Ivan Ruiz Manuel
+input:
+  - vector: Optional. Vector file to use as bbox.
+output:
+  - path: Location of the output .TIFF file.
+params:
+  - tiff_url: URL of the raster file.
+  - bbox: Optional. A bounding box in the shape of [minx, miny, maxx, maxy].
+  - buffer_degrees: Optional. Degrees to extend the bounding box in all directions.
+notes: |
+  Important: either the bbox or the vector file should be provided.
+  Giving both will raise an error.

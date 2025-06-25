@@ -1,0 +1,28 @@
+rule from_file:
+    input:
+        # Geometry file
+        vector="montenegro.parquet",
+    output:
+        # Clipped region
+        path="results/montenegro.tiff",
+    params:
+        buffer_degrees=1,
+        tiff_url="https://zenodo.org/records/14920365/files/minic_edtm_m_960m_s_20000101_20221231_go_epsg.4326_v20241230.tif"
+    threads: 1
+    log:
+        "logs/rasterio/clip-cog/from_file.log"
+    wrapper:
+        "master/geo/rasterio/clip-cog"
+
+rule from_bbox:
+    output:
+        path="results/switzerland.tiff",
+    params:
+        buffer_degrees=1,
+        bbox = [5.9559111595, 45.8056043984, 10.6135070324, 47.808380127],
+        tiff_url="https://zenodo.org/records/14920365/files/minic_edtm_m_240m_s_20000101_20221231_go_epsg.4326_v20241230.tif"
+    threads: 1
+    log:
+        "logs/rasterio/clip-cog/from_bbox.log"
+    wrapper:
+        "master/geo/rasterio/clip-cog"

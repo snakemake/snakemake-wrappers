@@ -6772,3 +6772,17 @@ def test_pygadm_item(run):
             "results/mexico.parquet"
         ]
     )
+
+def test_rasterio_clip_cog(run):
+    for country in ["montenegro"]:
+        run(
+            "geo/rasterio/clip-cog",
+            [
+                "snakemake",
+                "--cores",
+                "2",
+                "--use-conda",
+                "-F",
+                f"results/{country}.tiff"
+            ]
+        )
