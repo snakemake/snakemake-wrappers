@@ -61,6 +61,8 @@ else:
     b_minx, b_miny, b_maxx, b_maxy = gdf.total_bounds
 
 if buffer_degrees:
+    if buffer_degrees < 0:
+        raise ValueError(f"buffer_degrees must be non-negative, got {buffer_degrees}.")
     b_minx -= buffer_degrees
     b_miny -= buffer_degrees
     b_maxx += buffer_degrees
