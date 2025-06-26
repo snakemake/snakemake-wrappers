@@ -38,15 +38,15 @@ cog_url: str | None = snakemake.params.get("cog_url", None)
 vector_path: str | None = snakemake.input.get("vector", None)
 tiff_path: str | None = snakemake.input.get("raster", None)
 
-assert (bbox is None) ^ (vector_path is None), (
-    "Specify either params.bbox OR input.vector."
-)
-assert (cog_url is None) ^ (tiff_path is None), (
-    "Specify either params.cog_url OR input.raster."
-)
-assert (bbox is None) or (isinstance(bbox, (list, tuple)) and len(bbox) == 4), (
-    "params.bbox must be a 4-element list [minx, miny, maxx, maxy]."
-)
+assert (bbox is None) ^ (
+    vector_path is None
+), "Specify either params.bbox OR input.vector."
+assert (cog_url is None) ^ (
+    tiff_path is None
+), "Specify either params.cog_url OR input.raster."
+assert (bbox is None) or (
+    isinstance(bbox, (list, tuple)) and len(bbox) == 4
+), "params.bbox must be a 4-element list [minx, miny, maxx, maxy]."
 
 
 if vector_path is None:
