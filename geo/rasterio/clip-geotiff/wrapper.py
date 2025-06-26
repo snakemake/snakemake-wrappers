@@ -77,7 +77,6 @@ if raster_uri is cog_url:
     environment_options = {
         "GDAL_DISABLE_READDIR_ON_OPEN": "YES",
         "CPL_VSIL_CURL_USE_HEAD": "YES",
-        "CPL_VSIL_CURL_ALLOWED_EXTENSIONS": "tif,tiff",
     }
 
 # ------------------------------------------------------------------

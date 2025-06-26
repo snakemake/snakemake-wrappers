@@ -36,6 +36,7 @@ rule local_with_bbox:
     params:
         buffer_degrees=0,
         bbox= [-105.521764,20.520087,-105.152805,20.778076],
+    threads: 1
     log:
         "logs/rasterio/clip-geotiff/local_with_bbox.log"
     wrapper:
