@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bwa =0.7.18
+  - bwa =0.7.19

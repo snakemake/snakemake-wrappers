@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - seqtk =1.4
+  - seqtk =1.5
   - pigz

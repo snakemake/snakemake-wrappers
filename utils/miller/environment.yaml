@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - miller =6.13.0
+  - snakemake-wrapper-utils =0.7.2

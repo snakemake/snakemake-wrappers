@@ -1,6 +1,8 @@
 name: fastq_screen
 authors:
   - Ryan Dale
+  - Thibault Dayris
+url: https://github.com/StevenWingett/FastQ-Screen
 description: |
   `fastq_screen <http://www.bioinformatics.babraham.ac.uk/projects/fastq_screen>`_
   screens a library of sequences in FASTQ format against a set of sequence
@@ -41,8 +43,9 @@ description: |
 input:
   - A FASTQ file, gzipped or not.
 output:
-  - txt: a text file containing the fraction of reads mapping to each provided index
-  - png: a bar plot of the contents of ``txt``, saved as a PNG file
+  - txt: Fraction of reads mapping to each provided index (optional)
+  - png: Barplot of the contents of ``txt``, saved as a PNG file (optional)
+  - conf: Configuration used by fastq screen (optional)
 notes: |
   * ``fastq_screen`` hard-codes the output filenames. This wrapper moves the
     hard-coded output files to those specified by the rule.
@@ -59,4 +62,3 @@ notes: |
     details). One way of doing this is by adding  something like
     ``shell.prefix("export TMPDIR=/scratch; ")`` to the snakefile calling this
     wrapper.
-blacklisted: wrapper does not generate expected png file

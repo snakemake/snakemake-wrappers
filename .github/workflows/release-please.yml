@@ -5,11 +5,6 @@ on:
 
 name: release-please
 
-permissions:
-  actions: write
-  contents: write
-  pull-requests: write
-
 jobs:
   release-please:
     runs-on: ubuntu-latest
@@ -19,5 +14,3 @@ jobs:
         with:
           release-type: simple
           token: ${{ secrets.RELEASE_PLEASE_PR_CI_TOKEN }}
-          package-name: ${{env.ACTION_NAME}}
-          
