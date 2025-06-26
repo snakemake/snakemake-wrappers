@@ -1,0 +1,43 @@
+rule remote_with_local_vector:
+    input:
+        # Geometry file
+        vector="montenegro.parquet",
+    output:
+        # Clipped region
+        path="results/montenegro.tiff",
+    params:
+        buffer_degrees=1,
+        cog_url="https://zenodo.org/records/14920365/files/minic_edtm_m_960m_s_20000101_20221231_go_epsg.4326_v20241230.tif"
+    threads: 1
+    log:
+        "logs/rasterio/clip-geotiff/remote_with_local_vector.log"
+    wrapper:
+        "master/geo/rasterio/clip-geotiff"
+
+rule remote_with_bbox:
+    output:
+        path="results/switzerland.tiff",
+    params:
+        buffer_degrees=1,
+        bbox = [5.9559111595, 45.8056043984, 10.6135070324, 47.808380127],
+        cog_url="https://zenodo.org/records/14920365/files/minic_edtm_m_480m_s_20000101_20221231_go_epsg.4326_v20241230.tif"
+    threads: 1
+    log:
+        "logs/rasterio/clip-geotiff/remote_with_bbox.log"
+    wrapper:
+        "master/geo/rasterio/clip-geotiff"
+
+
+rule local_with_bbox:
+    input:
+        raster="puerto_vallarta.tiff"
+    output:
+        path="results/puerto_vallarta_small.tiff"
+    params:
+        buffer_degrees=0,
+        bbox= [-105.521764,20.520087,-105.152805,20.778076],
+    log:
+        "logs/rasterio/clip-geotiff/local_with_bbox.log"
+    wrapper:
+        "master/geo/rasterio/clip-geotiff"
+

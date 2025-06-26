@@ -6773,9 +6773,9 @@ def test_pygadm_item(run):
         ]
     )
 
-def test_rasterio_clip_cog(run):
+def test_rasterio_clip_geotiff(run):
     run(
-        "geo/rasterio/clip-cog",
+        "geo/rasterio/clip-geotiff",
         [
             "snakemake",
             "--cores",
@@ -6784,5 +6784,6 @@ def test_rasterio_clip_cog(run):
             "-F",
             "results/montenegro.tiff",
             "results/switzerland.tiff",
+            "results/puerto_vallarta_small.tiff"
         ]
     )
