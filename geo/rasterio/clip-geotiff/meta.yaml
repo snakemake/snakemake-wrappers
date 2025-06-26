@@ -6,14 +6,13 @@ description: |
 authors:
   - Ivan Ruiz Manuel
 input:
-  - raster: Optional. Path to local raster GeoTiff.
-  - vector: Optional. Vector file to use as bbox.
+  - raster: Raster GeoTiff (optional).
+  - vector: Vector file to use as bbox (optional).
 output:
-  - path: Location of the output .TIFF file.
+  - path: Output .TIFF file.
 params:
-  - bbox: Optional. A bounding box in the shape of [minx, miny, maxx, maxy].
-  - buffer_degrees: Optional. Degrees to extend the bounding box in all directions.
-  - cog_url: URL of the raster file.
+  - bbox: Bounding box in the shape of [minx, miny, maxx, maxy]  (optional).
+  - buffer_degrees: Degrees to extend the bounding box in all directions  (optional).
+  - cog_url: URL of the raster file (optional).
 notes: |
-  Important: either the bbox or the vector file should be provided.
-  Giving both will raise an error.
+  - Either the bbox or the vector file should be provided, but not both.
