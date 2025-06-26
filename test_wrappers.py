@@ -6923,3 +6923,18 @@ def test_trf_basic_with_uppercase_params(run):
             "run_trf_basic_uppercase",
         ],
     )
+
+def test_rasterio_clip_geotiff(run):
+    run(
+        "geo/rasterio/clip-geotiff",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "results/montenegro.tiff",
+            "results/switzerland.tiff",
+            "results/puerto_vallarta_small.tiff"
+        ]
+    )
