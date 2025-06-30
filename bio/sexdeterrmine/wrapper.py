@@ -21,10 +21,10 @@ extra = snakemake.params.get("extra", "")
 
 with TemporaryDirectory() as tempdir:
     orig_path = os.path.realpath(os.getcwd())
-    depth_path = os.path.realpath(snakemake.input.depth)
+    input_path = os.path.realpath(snakemake.input.depth)
     os.chdir(tempdir)
     commands = [
-        f"sexdeterrmine --Input {depth_path} {extra} > out.tsv",
+        f"sexdeterrmine --Input {input_path} {extra} > out.tsv",
     ]
 
     tsv = snakemake.output.get("tsv")
