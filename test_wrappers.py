@@ -4270,6 +4270,10 @@ def test_pyfaidx(run):
         "bio/pyfaidx",
         ["snakemake", "--cores", "1", "regions.fa", "--use-conda", "-F"],
     )
+    run(
+        "bio/pyfaidx",
+        ["snakemake", "--cores", "1", "list_regions.fa", "--use-conda", "-F"],
+    )
 
 
 def test_pyfastaq_replace_bases(run):

@@ -71,3 +71,18 @@ rule test_pyfaidx_fetch_regions:
         "test_pyfaidx_fetch_regions.log",
     wrapper:
         "master/bio/pyfaidx"
+
+
+rule test_pyfaidx_fetch_list_regions:
+    input:
+        #bed="interval.bed",
+        fasta="sequence.fasta",
+    output:
+        "list_regions.fa",
+    params:
+        extra="",
+        regions=["seq1", "seq2"],
+    log:
+        "test_pyfaidx_fetch_list_regions.log",
+    wrapper:
+        "master/bio/pyfaidx"
