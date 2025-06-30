@@ -26,7 +26,7 @@ with TemporaryDirectory() as tempdir:
     commands = [
         f"cd {tempdir}",
         f"sexdeterrmine --Input {depth_path} {extra} > out.tsv",
-        f"cd {old_path}"
+        f"cd {old_path}",
     ]
 
     tsv = snakemake.output.get("tsv")
