@@ -1,5 +1,26 @@
 # Changelog
 
+## [7.2.0](https://github.com/snakemake/snakemake-wrappers/compare/v7.1.0...v7.2.0) (2025-06-30)
+
+
+### Features
+
+* rasterio - clipping of Cloud Optimized GeoTIFF ([#4286](https://github.com/snakemake/snakemake-wrappers/issues/4286)) ([7dd85d9](https://github.com/snakemake/snakemake-wrappers/commit/7dd85d98a61b924adb8de9daea918f5f967fc6bf))
+* Updated trf to 4.10.0rc2 ([#4297](https://github.com/snakemake/snakemake-wrappers/issues/4297)) ([7a8a3f2](https://github.com/snakemake/snakemake-wrappers/commit/7a8a3f2450350eb3d5b7f4c9f87a090a1f471341))
+
+
+### Performance Improvements
+
+* autobump bio/bbtools ([#4288](https://github.com/snakemake/snakemake-wrappers/issues/4288)) ([0b9f9b7](https://github.com/snakemake/snakemake-wrappers/commit/0b9f9b758730afb0cfba85596862883887ee0031))
+* autobump bio/freebayes ([#4289](https://github.com/snakemake/snakemake-wrappers/issues/4289)) ([beed7c7](https://github.com/snakemake/snakemake-wrappers/commit/beed7c727ccd8d7c9ffe2ba4ae2b4c0c7764b543))
+* autobump bio/last/lastal ([#4291](https://github.com/snakemake/snakemake-wrappers/issues/4291)) ([44bb426](https://github.com/snakemake/snakemake-wrappers/commit/44bb42699141a96e66944a5e0fe2e8e80cd654cd))
+* autobump bio/last/lastdb ([#4290](https://github.com/snakemake/snakemake-wrappers/issues/4290)) ([3c1083e](https://github.com/snakemake/snakemake-wrappers/commit/3c1083e5478e62e6d5bc0e53bfba7cbd282322bb))
+* autobump bio/picard/collectinsertsizemetrics ([#4292](https://github.com/snakemake/snakemake-wrappers/issues/4292)) ([5785f6f](https://github.com/snakemake/snakemake-wrappers/commit/5785f6ff2026a29f4e1b5e16c9717cdbfce8108c))
+* autobump bio/trf ([#4293](https://github.com/snakemake/snakemake-wrappers/issues/4293)) ([568a6d3](https://github.com/snakemake/snakemake-wrappers/commit/568a6d393ce77e132649d05545b787fe9683b18a))
+* autobump bio/ucsc/bedGraphToBigWig ([#4296](https://github.com/snakemake/snakemake-wrappers/issues/4296)) ([fd977bd](https://github.com/snakemake/snakemake-wrappers/commit/fd977bd0ab425292840f76f30d7631e31d93bd7a))
+* autobump bio/ucsc/genePredToBed ([#4295](https://github.com/snakemake/snakemake-wrappers/issues/4295)) ([a9a9597](https://github.com/snakemake/snakemake-wrappers/commit/a9a95976c8b6f2f77a52fa5f869d350c87dd92fc))
+* autobump bio/ucsc/gtfToGenePred ([#4294](https://github.com/snakemake/snakemake-wrappers/issues/4294)) ([3bd7f08](https://github.com/snakemake/snakemake-wrappers/commit/3bd7f08698adb4d8380ae0bcfe49094d761de966))
+
 ## [7.1.0](https://github.com/snakemake/snakemake-wrappers/compare/v7.0.0...v7.1.0) (2025-06-20)
 
 
