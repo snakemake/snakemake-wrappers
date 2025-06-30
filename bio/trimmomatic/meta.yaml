@@ -1,0 +1,20 @@
+name: "trimmomatic pe"
+description: Trim reads with Trimmomatic.
+url: http://www.usadellab.org/cms/?page=trimmomatic
+authors:
+  - Johannes Köster
+  - Jorge Langa
+  - Filipe G. Vieira
+input:
+  - r1: fastq(gz) file
+  - r2: fastq(gz) file (if PE)
+output:
+  - r1: trimmed R1 fastq(gz) file 
+  - r2: trimmed R2 fastq(gz) file (if PE)
+  - r1_unpaired: unpaired R1 fastq(gz) file (if PE)
+  - r2_unpaired: unpaired R2 fastq(gz) file (if PE)
+params:
+  - trimmer: trimming steps
+  - extra: additional program arguments
+notes: |
+  For PE (paired-end) trimming, all output files need to be specified.

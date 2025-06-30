@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - sexdeterrmine=1.1.2
+  - sexdeterrmine =1.1.2

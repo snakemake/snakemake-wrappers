@@ -14,9 +14,9 @@ notes: |
   * Depending on the named inputs you specified, the wrapper automatically
     chooses the correct subcommand.
   * If the file extension of ``output: reads=`` is either ``fq`` or ``fastq``,
-    the wrapper will automatically set the ``--fastq`` flag. As fastq output
-    generates basecalling quality values, you then also have to specify the
-    ``--basecaller`` to use via ``params: extra=``.
+    the wrapper will automatically set the ``--fastq`` flag. For transcriptome
+    output, as fastq output generates basecalling quality values, you then
+    also have to specify the ``--basecaller`` to use via ``params: extra=``.
   * If you do not request an ``output: unaligned_reads=`` file, the wrapper
     will set the ``--perfect`` flag. Thus, if you want your simulated reads to
     contain simulated errors, make sure to specify a file to save the reads

@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bustools =0.44.1
-  - snakemake-wrapper-utils =0.6.2
+  - bustools =0.45.1
+  - snakemake-wrapper-utils =0.7.2
