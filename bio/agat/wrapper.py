@@ -175,10 +175,10 @@ if command == "agat_convert_minimap2_bam2gff.pl":
 # The generic case is at the end of the script, let's deal with
 # specific cases first.
 
-# Access/modify configuration files
-if command in ("config", "levels"):
-    # Special case: output file name cannot be chosen freely
-    with TemporaryDirectory() as tempdir:
+with TemporaryDirectory() as tempdir:
+    # Access/modify configuration files
+    if command in ("config", "levels"):
+        # Special case: output file name cannot be chosen freely
         yaml_file = "agat_config.yaml" if command == "config" else "feature_levels.yaml"
         join_and_run_commands(
             [
@@ -192,16 +192,15 @@ if command in ("config", "levels"):
         )
 
 
-elif command == "agat_sp_extract_attributes.pl":
-    # Special case: output file name have a fixed suffix.
-    # In order to let user choose output file name freely, we must
-    # move the results at the end of the command execution.
-    # The argument `--att` contains a single attribute, or a comma-separated
-    # list of attributes that will be used as file extension.
-    # e.g. `--att Parents,ID --out prefix` that will produce both
-    # `prefix_Parents` and `prefix_ID` files.
+    elif command == "agat_sp_extract_attributes.pl":
+        # Special case: output file name have a fixed suffix.
+        # In order to let user choose output file name freely, we must
+        # move the results at the end of the command execution.
+        # The argument `--att` contains a single attribute, or a comma-separated
+        # list of attributes that will be used as file extension.
+        # e.g. `--att Parents,ID --out prefix` that will produce both
+        # `prefix_Parents` and `prefix_ID` files.
 
-    with TemporaryDirectory() as tempdir:
         # We need to identify pefixes in order to rename output files correctly.
         # To do so,we'll use the keys in the output section of the Snakemake
         # rule to build the command line and link a result to its correct name.
@@ -231,12 +230,12 @@ elif command == "agat_sp_extract_attributes.pl":
 
         join_and_run_commands(command_lines)
 
-elif command == "agat_sp_filter_by_ORF_size.pl":
-    # Special case: This command returns a pair of files:
-    # 1. All genic features with and ORF that statisfies command line criteria
-    # 2. Rest of the genic features (aka. NOT satisfying command line criteria)
-    # Output file extention are defined according to command line content.
-    with TemporaryDirectory() as tempdir:
+    elif command == "agat_sp_filter_by_ORF_size.pl":
+        # Special case: This command returns a pair of files:
+        # 1. All genic features with and ORF that statisfies command line criteria
+        # 2. Rest of the genic features (aka. NOT satisfying command line criteria)
+        # Output file extention are defined according to command line content.
+
         # Add a known prefix to output files
         prefix = f"{tempdir}/snake_out_ORF"
         extra += f" --outfile {prefix} "
@@ -282,12 +281,10 @@ elif command == "agat_sp_filter_by_ORF_size.pl":
 
         join_and_run_commands(command_lines)
 
-elif command in ("agat_sp_fix_fusion.pl", "agat_sp_fix_longest_ORF.pl"):
-    # Special case: 4 output files with forced suffixes to handle.
-    # The same suffixes are applied to both subcommands
+    elif command in ("agat_sp_fix_fusion.pl", "agat_sp_fix_longest_ORF.pl"):
+        # Special case: 4 output files with forced suffixes to handle.
+        # The same suffixes are applied to both subcommands
 
-    log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-    with TemporaryDirectory() as tempdir:
         prefix = f"{tempdir}/snake_out_fix_fusion"
         extra += f" --outfile {prefix} "
         extra += parse_args(snakemake.input)
@@ -305,15 +302,14 @@ elif command in ("agat_sp_fix_fusion.pl", "agat_sp_fix_longest_ORF.pl"):
 
         join_and_run_commands(command_lines)
 
-elif command == "agat_sp_manage_UTRs.pl":
-    # Special case. This command produces between 2 and 4 files, depending on
-    # command line parameters.
+    elif command == "agat_sp_manage_UTRs.pl":
+        # Special case. This command produces between 2 and 4 files, depending on
+        # command line parameters.
 
-    # This command does not parse output path name like the others. Only the basename
-    # of the output path provided in `--output` is kept. This leads to potential
-    # output file name collision: we need to move into the tempdir to execute
-    # the command line.
-    with TemporaryDirectory() as tempdir:
+        # This command does not parse output path name like the others. Only the basename
+        # of the output path provided in `--output` is kept. This leads to potential
+        # output file name collision: we need to move into the tempdir to execute
+        # the command line.
         command_lines = []
         prefix = f"snake_out_manage_utr"
         extra += f" --output '{prefix}' "
@@ -364,11 +360,11 @@ elif command == "agat_sp_manage_UTRs.pl":
         )
         join_and_run_commands(command_lines)
 
-elif command == "agat_sp_manage_introns.pl":
-    # Special case: 1 to 5 files are created depending on command line
-    # parameters. Quite similar with the previous case, yet the list
-    # of output file differs.
-    with TemporaryDirectory() as tempdir:
+    elif command == "agat_sp_manage_introns.pl":
+        # Special case: 1 to 5 files are created depending on command line
+        # parameters. Quite similar with the previous case, yet the list
+        # of output file differs.
+        
         # Build command line
         if any(path.endswith(".pdf") for path in snakemake.output):
             extra += " --plot "
@@ -393,11 +389,10 @@ elif command == "agat_sp_manage_introns.pl":
         join_and_run_commands(command_lines)
 
 
-elif command == "agat_sp_manage_functional_annotation.pl":
-    # Special case: Multiple optional output files, 3 to 10 files are
-    # created by this command depending on the available input.
+    elif command == "agat_sp_manage_functional_annotation.pl":
+        # Special case: Multiple optional output files, 3 to 10 files are
+        # created by this command depending on the available input.
 
-    with TemporaryDirectory() as tempdir:
         # Build command line
         prefix = f"{tempdir}/snake_out"
         extra += parse_args(snakemake.input)
@@ -423,11 +418,10 @@ elif command == "agat_sp_manage_functional_annotation.pl":
         )
         join_and_run_commands(command_lines)
 
-elif command == "agat_sp_statistics.pl":
-    # Special case: 1 to 2 files depending on command line and a whole
-    # directory based on the content of the input file.
+    elif command == "agat_sp_statistics.pl":
+        # Special case: 1 to 2 files depending on command line and a whole
+        # directory based on the content of the input file.
 
-    with TemporaryDirectory() as tempdir:
         # Build command line
         prefix = f"{tempdir}/snake_out"
         extra += parse_args(snakemake.input)
@@ -452,10 +446,9 @@ elif command == "agat_sp_statistics.pl":
         )
         join_and_run_commands(command_lines)
 
-elif command == "agat_convert_sp_gff2zff.pl":
-    # Special case: 2 files created
+    elif command == "agat_convert_sp_gff2zff.pl":
+        # Special case: 2 files created
 
-    with TemporaryDirectory() as tempdir:
         # Build command line
         prefix = f"{tempdir}/snake_out"
         extra += f" --output {prefix} "
@@ -492,21 +485,21 @@ elif command == "agat_convert_sp_gff2zff.pl":
         )
         join_and_run_commands(command_lines)
 
-else:
-    # Generic case, will work for most of the agat subcommands.
-    log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-    # While subcommnds usully answer the same command line interface,
-    # some of them have unexpected changes in argument names.
-    # IO arguments will be acquired from snakemake rule IO keys.
-    io = {**snakemake.input, **snakemake.output}
-    extra += parse_args(io)
+    else:
+        # Generic case, will work for most of the agat subcommands.
+        log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+        # While subcommnds usully answer the same command line interface,
+        # some of them have unexpected changes in argument names.
+        # IO arguments will be acquired from snakemake rule IO keys.
+        io = {**snakemake.input, **snakemake.output}
+        extra += parse_args(io)
 
-    # Special case of agat_sq_add_attributes_from_tsv.pl in
-    # which TSV/CSV format is not auto-detected and therefore
-    # an extra parameter shall be added.
-    # Here, we use input file extension to fill command line argument.
-    if command == "agat_sq_add_attributes_from_tsv.pl":
-        if str(snakemake.input.tsv).endswith("csv"):
-            extra += " --csv "
+        # Special case of agat_sq_add_attributes_from_tsv.pl in
+        # which TSV/CSV format is not auto-detected and therefore
+        # an extra parameter shall be added.
+        # Here, we use input file extension to fill command line argument.
+        if command == "agat_sq_add_attributes_from_tsv.pl":
+            if str(snakemake.input.tsv).endswith("csv"):
+                extra += " --csv "
 
-    join_and_run_commands([f"{command} {extra}"])
+        join_and_run_commands([f"{command} {extra}"])
