@@ -8,6 +8,7 @@ from snakemake.shell import shell
 from tempfile import TemporaryDirectory
 
 import os.path  # Get output files prefix
+import shlex  # Ensure quotes escape
 import warnings  # Warn user on un-supported subcommands
 
 
@@ -29,11 +30,11 @@ def parse_args(io):
         argname = f" --{argname} " if len(argname) > 1 else f" -{argname} "
 
         if isinstance(path, str):
-            args += f" {argname} '{path}'"
+            args += f" {argname} {shlex.quote(str(path))}"
 
         # Handle repeated arguments for commands like `agat_sp_merge_annotations.pl`
         elif isinstance(path, list):
-            args += "".join([f" {argname} '{p}' " for p in path])
+            args += "".join([f" {argname} {shlex.quote(str(p))} " for p in path])
 
     return args
 
@@ -312,7 +313,6 @@ with TemporaryDirectory() as tempdir:
         command_lines = []
         prefix = f"snake_out_manage_utr"
         extra += f" --output '{prefix}' "
-        # extra += parse_args(snakemake.input)
 
         # Activate histograms on user request
         if any(path.endswith(".pdf") for path in snakemake.output):
@@ -485,7 +485,7 @@ with TemporaryDirectory() as tempdir:
 
     else:
         # Generic case, will work for most of the agat subcommands.
-        log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+
         # While subcommnds usully answer the same command line interface,
         # some of them have unexpected changes in argument names.
         # IO arguments will be acquired from snakemake rule IO keys.
