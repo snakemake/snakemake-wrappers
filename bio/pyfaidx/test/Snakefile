@@ -4,11 +4,11 @@ rule test_pyfaidx_out_fasta:
         bed="interval.bed",
     output:
         "retrieved.fasta",
-    threads: 1
     log:
         "test_pyfaidx.log",
     params:
-        extra="--complement",
+        extra="",
+        regions="",
     wrapper:
         "master/bio/pyfaidx"
 
@@ -19,12 +19,11 @@ rule test_pyfaidx_index_fasta:
         bed="interval.bed",
     output:
         "sequence.fasta.fai",
-    params:
-        extra="",
     log:
         "test_pyfaidx_index_fasta.log",
     params:
         extra="",
+        regions="",
     wrapper:
         "master/bio/pyfaidx"
 
@@ -37,10 +36,9 @@ rule test_pyfaidx_out_sizes:
         "retrieved.chrom",
     params:
         extra="",
+        regions="",
     log:
         "test_pyfaidx_out_sizes.log",
-    params:
-        extra="--complement",
     wrapper:
         "master/bio/pyfaidx"
 
@@ -53,9 +51,38 @@ rule test_pyfaidx_out_bed:
         "retrieved.bed",
     params:
         extra="",
+        regions="",
     log:
         "test_pyfaidx_out_bed.log",
+    wrapper:
+        "master/bio/pyfaidx"
+
+
+rule test_pyfaidx_fetch_regions:
+    input:
+        #bed="interval.bed",
+        fasta="sequence.fasta",
+    output:
+        "regions.fa",
     params:
-        extra="--complement",
+        extra="",
+        regions="seq1",
+    log:
+        "test_pyfaidx_fetch_regions.log",
+    wrapper:
+        "master/bio/pyfaidx"
+
+
+rule test_pyfaidx_fetch_list_regions:
+    input:
+        #bed="interval.bed",
+        fasta="sequence.fasta",
+    output:
+        "list_regions.fa",
+    params:
+        extra="",
+        regions=["seq1", "seq2"],
+    log:
+        "test_pyfaidx_fetch_list_regions.log",
     wrapper:
         "master/bio/pyfaidx"
