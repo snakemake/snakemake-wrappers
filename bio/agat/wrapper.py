@@ -61,7 +61,7 @@ def shell_rename(source, destination):
     to keep a track of renaming scheme in Snakemake logs
 
     Some commands have only one output file to move, the next
-    funciton deals with multiple optional output files to move
+    function deals with multiple optional output files to move
 
     We also make sure paths are correctly quoted, since Agat produces
     names with {, }, <, >, or -. And we must be able to move these files.
