@@ -1,0 +1,6 @@
+##gff-version 3
+##sequence-region NZ_CP006571.1 1 1041170
+NZ_CP006571.1	Prodigal:002006	gene	1	204	.	+	0	ID=agat-gene-1;inference=ab initio prediction:Prodigal:002006;locus_tag=DEKMBENF_00001;product=hypothetical protein
+NZ_CP006571.1	Prodigal:002006	mRNA	1	204	.	+	0	ID=nbisL2-cds-1;Parent=agat-gene-1;inference=ab initio prediction:Prodigal:002006;locus_tag=DEKMBENF_00001;product=hypothetical protein
+NZ_CP006571.1	Prodigal:002006	exon	1	204	.	+	.	ID=agat-exon-43;Parent=nbisL2-cds-1;inference=ab initio prediction:Prodigal:002006;locus_tag=DEKMBENF_00001;product=hypothetical protein
+NZ_CP006571.1	Prodigal:002006	CDS	1	204	.	+	0	ID=DEKMBENF_00001;Parent=nbisL2-cds-1;inference=ab initio prediction:Prodigal:002006;locus_tag=DEKMBENF_00001;product=hypothetical protein
