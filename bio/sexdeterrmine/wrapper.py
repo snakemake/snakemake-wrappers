@@ -24,21 +24,18 @@ with TemporaryDirectory() as tempdir:
     old_path = os.getcwd()
     depth_path = os.path.realpath(snakemake.input.depth)
     os.chdir(tempdir)
-    shell(f"sexdeterrmine --Input {depth_path} {extra} > out.tsv 2> sexdeterrmine.log")
-
-    log = snakemake.log_fmt_shell(
-        stdout=True,
-        stderr=True,
-        append=True,
-    )
-
-    os.chdir(old_path)
-    os.replace(f"{tempdir}/sexdeterrmine.log", str(snakemake.log))
+    commands = [
+        f"cd {tempdir}",
+        f"sexdeterrmine --Input {depth_path} {extra} > out.tsv"
+        "cd -"
+    ]
 
     tsv = snakemake.output.get("tsv")
     if tsv:
-        shell("mv --verbose {tempdir}/out.tsv {tsv} {log}")
+        commands.append("mv --verbose {tempdir}/out.tsv {tsv} {log}")
 
     json = snakemake.output.get("json")
     if json:
-        shell("mv --verbose {tempdir}/sexdeterrmine.json {json} {log}")
+        commands.append("mv --verbose {tempdir}/sexdeterrmine.json {json} {log}")
+
+    commands = '({" && ".join(commands)}) {log}' 
