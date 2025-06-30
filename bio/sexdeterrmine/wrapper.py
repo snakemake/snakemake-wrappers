@@ -20,22 +20,20 @@ log = snakemake.log_fmt_shell(
 extra = snakemake.params.get("extra", "")
 
 with TemporaryDirectory() as tempdir:
-    old_path = os.getcwd()
+    orig_path = os.path.realpath(os.getcwd())
     depth_path = os.path.realpath(snakemake.input.depth)
     os.chdir(tempdir)
     commands = [
-        f"cd {tempdir}",
         f"sexdeterrmine --Input {depth_path} {extra} > out.tsv",
-        f"cd {old_path}",
     ]
 
     tsv = snakemake.output.get("tsv")
     if tsv:
-        commands.append(f"mv --verbose {tempdir}/out.tsv {old_path}/{tsv}")
+        commands.append(f"mv --verbose out.tsv {orig_path}/{tsv}")
 
     json = snakemake.output.get("json")
     if json:
-        commands.append(f"mv --verbose {tempdir}/sexdeterrmine.json {old_path}/{json}")
+        commands.append(f"mv --verbose sexdeterrmine.json {orig_path}/{json}")
 
     commands = " && ".join(commands)
     shell("({commands}) {log}")
