@@ -70,7 +70,7 @@ def shell_rename(source, destination):
     # Make sure bash-interpretable characters are not interpreted
     # Make sure spaces are not splitted
     # Snakemake syntax :q to quote does not work here, using plain quotes
-    return f"mv --verbose '{source}' '{destination}'"
+    return f"mv --verbose {shlex.quote(str(source))} {shlex.quote(str(destination))}"
 
 
 def move_multiple_files(expected_files, snakemake_output):
@@ -312,7 +312,7 @@ with TemporaryDirectory() as tempdir:
         # the command line.
         command_lines = []
         prefix = f"snake_out_manage_utr"
-        extra += f" --output '{prefix}' "
+        extra += f" --output {shlex.quote(prefix)} "
 
         # Activate histograms on user request
         if any(path.endswith(".pdf") for path in snakemake.output):
@@ -323,12 +323,13 @@ with TemporaryDirectory() as tempdir:
             if input_file_path.endswith(".yaml"):
                 arg = "--config"
 
-            basename = os.path.basename(input_file_path)
+            tempname = f"{tempdir}/{os.path.basename(input_file_path)}"
             command_lines.append(
                 "ln --symbolic --force --relative --verbose "
-                f"'{input_file_path}' '{tempdir}/{basename}'"
+                f"{shlex.quote(str(input_file_path))} "
+                f"{shlex.quote(tempname)} "
             )
-            extra += f" {arg} '{tempdir}/{basename}' "
+            extra += f" {arg} {shlex.quote(tempname)} "
 
         command_lines += [
             f"cd {tempdir}",
@@ -456,16 +457,17 @@ with TemporaryDirectory() as tempdir:
         command_lines = []
         for argname, input_file_path in dict(snakemake.input).items():
             basename = os.path.basename(input_file_path)
+            tempname = f"{tempdir}/{basename}"
             command_lines.append(
                 "ln --symbolic --force --relative --verbose "
-                f"'{input_file_path}' '{tempdir}/{basename}'"
+                f"{shlex.quote(input_file_path)} {shlex.quote(tempname)}"
             )
 
             dash = "-"
             if len(argname) > 1:
                 dash = "--"
 
-            extra += f" {dash}{argname} '{basename}' "
+            extra += f" {dash}{argname} {shlex.quote(basename)} "
 
         command_lines += [
             f"cd {tempdir}",
