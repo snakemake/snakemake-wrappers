@@ -191,7 +191,6 @@ with TemporaryDirectory() as tempdir:
             ]
         )
 
-
     elif command == "agat_sp_extract_attributes.pl":
         # Special case: output file name have a fixed suffix.
         # In order to let user choose output file name freely, we must
@@ -364,7 +363,7 @@ with TemporaryDirectory() as tempdir:
         # Special case: 1 to 5 files are created depending on command line
         # parameters. Quite similar with the previous case, yet the list
         # of output file differs.
-        
+
         # Build command line
         if any(path.endswith(".pdf") for path in snakemake.output):
             extra += " --plot "
@@ -387,7 +386,6 @@ with TemporaryDirectory() as tempdir:
             move_multiple_files(expected_output_files, snakemake.output)
         )
         join_and_run_commands(command_lines)
-
 
     elif command == "agat_sp_manage_functional_annotation.pl":
         # Special case: Multiple optional output files, 3 to 10 files are
