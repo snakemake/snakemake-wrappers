@@ -3215,6 +3215,14 @@ def test_fastq_screen(run):
         "bio/fastq_screen",
         ["snakemake", "--cores", "1", "qc/a.fastq_screen.txt", "--use-conda", "-F"],
     )
+    run(
+        "bio/fastq_screen",
+        ["snakemake", "--cores", "1", "qc/a.fastq_screen_conf.txt", "--use-conda", "-F"],
+    )
+    run(
+        "bio/fastq_screen",
+        ["snakemake", "--cores", "1", "qc/a.fastq_screen_nopng.txt", "--use-conda", "-F"],
+    )
 
 
 def test_fasttree(run):
@@ -6919,4 +6927,19 @@ def test_trf_basic_with_uppercase_params(run):
             "--allowed-rules",
             "run_trf_basic_uppercase",
         ],
+    )
+
+def test_rasterio_clip_geotiff(run):
+    run(
+        "geo/rasterio/clip-geotiff",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "results/montenegro.tiff",
+            "results/switzerland.tiff",
+            "results/puerto_vallarta_small.tiff"
+        ]
     )

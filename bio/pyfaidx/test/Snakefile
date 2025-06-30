@@ -22,9 +22,11 @@ rule test_pyfaidx_index_fasta:
         "sequence.fasta.fai",
     params:
         extra="",
-        regions="",
     log:
         "test_pyfaidx_index_fasta.log",
+    params:
+        extra="",
+        regions"",
     wrapper:
         "master/bio/pyfaidx"
 

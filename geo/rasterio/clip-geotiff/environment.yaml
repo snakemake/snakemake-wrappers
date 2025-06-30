@@ -1,0 +1,9 @@
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - rasterio=1.4.3
+  - libgdal-arrow-parquet=3.10.3
+  - geopandas=1.0.1
+  - pyarrow=19.0.1
+  - pyproj=3.7.1
