@@ -8,7 +8,8 @@ rule test_pyfaidx_out_fasta:
     log:
         "test_pyfaidx.log",
     params:
-        extra="--complement",
+        extra="",
+        regions="",
     wrapper:
         "master/bio/pyfaidx"
 
@@ -21,10 +22,9 @@ rule test_pyfaidx_index_fasta:
         "sequence.fasta.fai",
     params:
         extra="",
+        regions="",
     log:
         "test_pyfaidx_index_fasta.log",
-    params:
-        extra="",
     wrapper:
         "master/bio/pyfaidx"
 
@@ -37,10 +37,9 @@ rule test_pyfaidx_out_sizes:
         "retrieved.chrom",
     params:
         extra="",
+        regions="",
     log:
         "test_pyfaidx_out_sizes.log",
-    params:
-        extra="--complement",
     wrapper:
         "master/bio/pyfaidx"
 
@@ -53,9 +52,23 @@ rule test_pyfaidx_out_bed:
         "retrieved.bed",
     params:
         extra="",
+        regions="",
     log:
         "test_pyfaidx_out_bed.log",
+    wrapper:
+        "master/bio/pyfaidx"
+
+
+rule test_pyfaidx_fetch_regions:
+    input:
+        fasta="sequence.fasta",
+        bed="interval.bed",
+    output:
+        "regions.fa",
     params:
-        extra="--complement",
+        extra="",
+        regions="seq1",
+    log:
+        "test_pyfaidx_out_bed.log",
     wrapper:
         "master/bio/pyfaidx"
