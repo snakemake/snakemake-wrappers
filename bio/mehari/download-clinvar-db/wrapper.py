@@ -29,6 +29,9 @@ if flavour not in {"genes", "minimal", "sv"}:
 
 output = snakemake.output[0]
 
+# FIXME: investigate why the second shell command fails without the explicit mkdir call
+#  snakemake should have created all output dirs/files before launching the wrapper.
+shell("mkdir -p {output:q}")
 shell(
     "(curl --fail --silent --location https://github.com/varfish-org/annonars-data-clinvar/releases/download/annonars-data-clinvar-{date}/annonars-clinvar-{flavour}-{build}-{date}+{annonars_version}.tar.gz | "
     "tar xvz -f- --strip-components=1 -C {output:q}"
