@@ -4350,6 +4350,15 @@ def test_pyfaidx(run):
         "bio/pyfaidx",
         ["snakemake", "--cores", "1", "sequence.fasta.fai", "--use-conda", "-F"],
     )
+    run(
+        "bio/pyfaidx",
+        ["snakemake", "--cores", "1", "regions.fa", "--use-conda", "-F"],
+    )
+    run(
+        "bio/pyfaidx",
+        ["snakemake", "--cores", "1", "list_regions.fa", "--use-conda", "-F"],
+    )
+
 
 def test_pyfastaq_replace_bases(run):
     run(
@@ -7006,4 +7015,19 @@ def test_trf_basic_with_uppercase_params(run):
             "--allowed-rules",
             "run_trf_basic_uppercase",
         ],
+    )
+
+def test_rasterio_clip_geotiff(run):
+    run(
+        "geo/rasterio/clip-geotiff",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "results/montenegro.tiff",
+            "results/switzerland.tiff",
+            "results/puerto_vallarta_small.tiff"
+        ]
     )

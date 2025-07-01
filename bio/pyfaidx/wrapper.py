@@ -32,4 +32,5 @@ elif fmt == "nuc":
 else:
     raise ValueError(f"invalid output file format: {out}")
 
-shell("faidx {extra} {out} {snakemake.input.fasta} {log}")
+regions = snakemake.params.get("regions", "")
+shell("faidx {extra} {out} {snakemake.input.fasta} {regions} {log}")
