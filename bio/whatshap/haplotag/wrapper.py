@@ -11,7 +11,7 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
-    "whatshap haplotag"
+    "whatshap haplotag "
     "{extra} "
     "--output-threads={snakemake.threads} "
     "-o {snakemake.output} "

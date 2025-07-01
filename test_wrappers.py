@@ -134,6 +134,7 @@ def run(tmp_test_dir):
     return _run
 
 
+
 def test_aria2c(run):
     run(
         "utils/aria2c",
@@ -152,6 +153,89 @@ def test_aria2c(run):
             "results/file.sha384file.fas.gz",
             "results/file.sha512file.fas.gz",
             "results/file.md5fileH.fas.gz",
+        ],
+    )
+
+
+def test_agat(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "agat_config.yaml",
+            "agat_levels.yaml",
+            "test_agat_convert_bed2gff.gff",
+            "test_agat_convert_embl2gff.gff",
+            "test_agat_convert_genscan2gff.gff",
+            "test_agat_convert_mfannot2gff.gff",
+            "test_agat_convert_minimap2_bam2gff_bam.gff",
+            "test_agat_convert_minimap2_bam2gff_sam.gff",
+            "test_agat_convert_sp_gff2bed.bed",
+            "test_agat_convert_sp_gff2gtf.gtf",
+            "test_agat_convert_sp_gff2tsv.tsv",
+            "test_agat_convert_sp_gff2zff.dna",
+            "test_agat_convert_sp_gxf2gxf.gff",
+            "test_agat_sp_Prokka_inferNameFromAttributes.gff",
+            "test_agat_sp_add_intergenic_regions.gff",
+            "test_agat_sp_add_introns.gff",
+            "test_agat_sp_add_splice_sites.gff",
+            "test_agat_sp_add_start_and_stop.gff",
+            "test_agat_sp_alignment_output_style.gff",
+            "test_agat_sp_clipN_seqExtremities_and_fixCoordinates.gff",
+            "test_agat_sp_compare_two_annotations",
+            "test_agat_sp_complement_annotations.gff",
+            "test_agat_sp_ensembl_output_style.gff",
+            "test_agat_sp_extract_attributes_ID.txt",
+            "test_agat_sp_extract_sequences.fasta",
+            "test_agat_sp_filter_by_ORF_size_matched.gff",
+            "test_agat_sp_filter_by_locus_distance.gff",
+            "test_agat_sp_filter_feature_by_attribute_presence.gff",
+            "test_agat_sp_filter_feature_by_attribute_value.gff",
+            "test_agat_sp_filter_feature_from_keep_list.gff",
+            "test_agat_sp_filter_feature_from_kill_list.gff",
+            "test_agat_sp_filter_gene_by_intron_numbers.gff",
+            "test_agat_sp_filter_gene_by_length.gff",
+            "test_agat_sp_filter_incomplete_gene_coding_models.gff",
+            "test_agat_sp_filter_record_by_coordinates",
+            "test_agat_sp_fix_cds_phases.gff",
+            "test_agat_sp_fix_features_locations_duplicated.gff",
+            "test_agat_sp_fix_fusion_all.gff",
+            "test_agat_sp_fix_longest_ORF_all.gff",
+            "test_agat_sp_fix_overlaping_genes.gff",
+            "test_agat_sp_fix_small_exon_from_extremities.gff",
+            "test_agat_sp_flag_premature_stop_codons.gff",
+            "test_agat_sp_flag_short_introns.gff",
+            "test_agat_sp_functional_statistics",
+            "test_agat_sp_keep_longest_isoform.gff",
+            "test_agat_sp_kraken_assess_liftover.gff",
+            "test_agat_sp_list_short_introns.gff",
+            "test_agat_sp_manage_IDs.gff",
+            "test_agat_sp_manage_UTRs_report.txt",
+            "test_agat_sp_manage_attributes.gff",
+            "test_agat_sp_manage_functional_annotation.gff",
+            "test_agat_sp_manage_introns_report.txt",
+            "test_agat_sp_merge_annotations.gff",
+            "test_agat_sp_move_attributes_within_records.gff",
+            "test_agat_sp_prokka_fix_fragmented_gene_annotations",
+            "test_agat_sp_sensitivity_specificity.txt",
+            "test_agat_sp_separate_by_record_type",
+            "test_agat_sp_statistics.txt",
+            "test_agat_sq_add_attributes_from_tsv.gff",
+            "test_agat_sq_add_hash_tag.gff",
+            "test_agat_sq_add_locus_tag.gff",
+            "test_agat_sq_filter_feature_from_fasta.gff",
+            "test_agat_sq_list_attributes.txt",
+            "test_agat_sq_manage_IDs.txt",
+            "test_agat_sq_manage_attributes.gff",
+            "test_agat_sq_mask.gff",
+            "test_agat_sq_remove_redundant_entries.gff",
+            "test_agat_sq_repeats_analyzer.gff",
+            "test_agat_sq_reverse_complement.gff",
+            "test_agat_sq_rfam_analyzer.tsv",
         ],
     )
 
@@ -3215,6 +3299,14 @@ def test_fastq_screen(run):
         "bio/fastq_screen",
         ["snakemake", "--cores", "1", "qc/a.fastq_screen.txt", "--use-conda", "-F"],
     )
+    run(
+        "bio/fastq_screen",
+        ["snakemake", "--cores", "1", "qc/a.fastq_screen_conf.txt", "--use-conda", "-F"],
+    )
+    run(
+        "bio/fastq_screen",
+        ["snakemake", "--cores", "1", "qc/a.fastq_screen_nopng.txt", "--use-conda", "-F"],
+    )
 
 
 def test_fasttree(run):
@@ -4239,6 +4331,32 @@ def test_samtools_fixmate(run):
     run(
         "bio/samtools/fixmate",
         ["snakemake", "--cores", "1", "fixed/a.bam", "--use-conda", "-F"],
+    )
+
+def test_pyfaidx(run):
+    run(
+        "bio/pyfaidx",
+        ["snakemake", "--cores", "1", "retrieved.fasta", "--use-conda", "-F"],
+    )
+    run(
+        "bio/pyfaidx",
+        ["snakemake", "--cores", "1", "retrieved.chrom", "--use-conda", "-F"],
+    )
+    run(
+        "bio/pyfaidx",
+        ["snakemake", "--cores", "1", "retrieved.bed", "--use-conda", "-F"],
+    )
+    run(
+        "bio/pyfaidx",
+        ["snakemake", "--cores", "1", "sequence.fasta.fai", "--use-conda", "-F"],
+    )
+    run(
+        "bio/pyfaidx",
+        ["snakemake", "--cores", "1", "regions.fa", "--use-conda", "-F"],
+    )
+    run(
+        "bio/pyfaidx",
+        ["snakemake", "--cores", "1", "list_regions.fa", "--use-conda", "-F"],
     )
 
 
@@ -6940,4 +7058,19 @@ def test_mehari_annotate_seqvars(run):
             "-F",
             "--verbose",
         ],
+
+def test_rasterio_clip_geotiff(run):
+    run(
+        "geo/rasterio/clip-geotiff",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "results/montenegro.tiff",
+            "results/switzerland.tiff",
+            "results/puerto_vallarta_small.tiff"
+        ]
+
     )

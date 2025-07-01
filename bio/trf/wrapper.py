@@ -122,7 +122,7 @@ except ValueError as e:
 # Running Command & printing status.
 print(f"[TRF-INFO] Ready to run TRF command: {cmd}")
 try:
-    shell(f"( {cmd} || [ $? -eq 3 ] ) {log_redirect}")
+    shell(f"{cmd} {log_redirect}")
     print("[TRF-INFO] Snakemake TRF wrapper completed actions.")
 except Exception as e:
     raise RuntimeError(f"TRF command execution failed: {e}") from e

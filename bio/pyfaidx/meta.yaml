@@ -1,0 +1,21 @@
+name: pyfaidx
+url: https://github.com/mdshw5/pyfaidx?tab=readme-ov-file#cli-script-faidx
+description: >
+  Pythonic indexing, retrieval, and in-place modification of FASTA files 
+  using a samtools compatible index.
+authors:
+  - Thibault Dayris
+input:
+  - fasta: Path to a sequence fasta file
+  - bed: Path to BED intervals (optional)
+output:
+  - Path to the modified sequences/intervals
+params:
+  - extra: Optional parameters besides `--transform`, `--bed` and `--out`.
+  - regions: Optional region, or list of regions to retrieve from fasta file
+notes: >
+  The `--transform` parameter is automatically inferred from output file path. This
+  tool automatically creates a fasta index if the output file is fasta formatted.
+
+  If no index exists alongside with the input fasta file, then it will be created
+  automatically.
