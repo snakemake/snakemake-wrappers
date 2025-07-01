@@ -7058,6 +7058,7 @@ def test_mehari_annotate_seqvars(run):
             "-F",
             "--verbose",
         ],
+    )
 
 def test_rasterio_clip_geotiff(run):
     run(
