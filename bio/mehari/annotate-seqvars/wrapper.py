@@ -8,40 +8,6 @@ import logging
 
 extra = snakemake.params.get("extra", "")
 
-keep_intergenic = (
-    "--keep-intergenic" if snakemake.params.get("keep_intergenic", False) else ""
-)
-
-discard_utr_splice_variants = (
-    "--discard-utr-splice-variants"
-    if snakemake.params.get("discard_utr_splice_variants", False)
-    else ""
-)
-
-report_most_severe_consequence_by = snakemake.params.get(
-    "report_most_severe_consequence_by", ""
-)
-if report_most_severe_consequence_by:
-    if report_most_severe_consequence_by not in {"transcript", "gene", "allele"}:
-        raise ValueError(
-            "report_most_severe_consequence_by must be either 'transcript', 'gene' or 'allele'"
-        )
-    report_most_severe_consequence_by = (
-        f"--report-most-severe-consequence-by {report_most_severe_consequence_by}"
-    )
-
-pick_transcript = snakemake.params.get("pick_transcript", [])
-if not isinstance(pick_transcript, list):
-    raise ValueError("pick_transcript must be a list")
-if pick_transcript:
-    pick_transcript = " ".join(f"--pick-transcript {v}" for v in pick_transcript)
-
-pick_transcript_mode = snakemake.params.get("pick_transcript_mode", "")
-if pick_transcript_mode:
-    if pick_transcript_mode not in {"first", "all"}:
-        raise ValueError("pick_transcript_mode must be either 'first' or 'all'")
-    pick_transcript_mode = f"--pick-transcript-mode {pick_transcript_mode}"
-
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 transcript_db = snakemake.input.get("transcript_db", "")
@@ -79,11 +45,6 @@ shell(
     "{clinvar_db} "
     "{frequency_db} "
     "{ref} "
-    "{keep_intergenic} "
-    "{discard_utr_splice_variants} "
-    "{pick_transcript} "
-    "{pick_transcript_mode} "
-    "{report_most_severe_consequence_by} "
     "{extra} "
     "--path-output-vcf {snakemake.output.calls:q} "
     ") {log}"

@@ -13,26 +13,5 @@ output:
 params:
   extra: |
     Extra arguments for the `mehari annotate seqvars` invocation.
-  report_most_severe_consequence_by: |
-    Whether to report only the most severe consequence, grouped by 'gene', 'transcript', or 'allele'.
-  pick_transcript: |
-    List of tags to filter transcripts for. Order is important (see `pick_transcript_mode`).
-    Which kind of transcript to pick / restrict to. Default is not to pick at all.
-    Depending on `--pick-transcript-mode`, if multiple transcripts match the selection, either the first one is kept or all are kept.
-    Possible values: `'mane-select', 'mane-plus-clinical', 'length', 'ensembl-canonical', 'ref-seq-select', 'gencode-primary', 'basic'`
-    For example `['mane-select', 'mane-plus-clinical', 'length']` will only keep those transcripts which are either
-    a MANE select, MANE plus clinical or the longest transcript.
-    Depending on `pick_transcript_mode`, either all or only the first transcript that match this list are kept.
-    The default is to not filter transcripts at all, i.e. report transcripts irrespective of tags.
-  pick_transcript_mode: |
-    Can be 'first' or 'all' (default).
-    If 'first', keep only the first transcript matching the `pick_transcript` list.
-    If 'all', keep all transcripts matching the `pick_transcript` list.
-  keep_intergenic: |
-    Whether to keep or discard intergenic variants (variants not within +-5kbp up-/downstream of a gene).
-    The default is to discard intergenic variants.
-  discard_utr_splice_variants: |
-    Whether or not to report splice variants in UTR region.
-    The default is to keep splice variants in UTR regions.
 authors:
   - Till Hartmann
