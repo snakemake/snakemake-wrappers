@@ -7017,6 +7017,49 @@ def test_trf_basic_with_uppercase_params(run):
         ],
     )
 
+
+def test_mehari_download_transcript_db(run):
+    run(
+        "bio/mehari/download-transcript-db",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/mehari/dbs/transcripts.bin.zst",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+def test_mehari_download_clinvar_db_sv(run):
+    run(
+        "bio/mehari/download-clinvar-db",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/mehari/dbs/clinvar/sv",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+def test_mehari_annotate_seqvars(run):
+    run(
+        "bio/mehari/annotate-seqvars",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/MT-ND2.annotated.bcf",
+            "--use-conda",
+            "-F",
+            "--verbose",
+        ],
+    )
+
 def test_rasterio_clip_geotiff(run):
     run(
         "geo/rasterio/clip-geotiff",
@@ -7030,4 +7073,5 @@ def test_rasterio_clip_geotiff(run):
             "results/switzerland.tiff",
             "results/puerto_vallarta_small.tiff"
         ]
+
     )

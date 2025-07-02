@@ -1,0 +1,12 @@
+rule download_mehari_clinvar_db_sv:
+    output:
+        directory("resources/mehari/dbs/clinvar/sv"),
+    params:
+        version="20250609+0.42.4",  # check https://github.com/varfish-org/annonars-data-clinvar/releases for available versions
+        build="GRCh38",  # GRCh37 or GRCh38
+        flavour="sv",  # genes, minimal or sv
+    log:
+        "logs/mehari/download_mehari_clinvar_db.log",
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/mehari/download-clinvar-db"
