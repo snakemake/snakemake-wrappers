@@ -12,38 +12,19 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 
 
-# Check output files
-per_base_out = quantize_out = thresholds_out = global_dist_out = region_dist_out = (
-    regions_bed_out
-) = False
-for file in snakemake.output:
-    if file.endswith(".per-base.bed.gz"):
-        per_base_out = file
-    if file.endswith(".quantized.bed.gz"):
-        quantize_out = file
-    if file.endswith(".thresholds.bed.gz"):
-        thresholds_out = file
-    if file.endswith(".mosdepth.global.dist.txt"):
-        global_dist_out = file
-    if file.endswith(".mosdepth.region.dist.txt"):
-        region_dist_out = file
-    if file.endswith(".regions.bed.gz"):
-        regions_bed_out = file
-
-
-if not per_base_out:
+if not snakemake.output.get("per_base"):
     extra += " --no-per-base"
 
 
-if quantize_out:
+if snakemake.output.get("quant"):
     extra += f" --quantize {snakemake.params.quantize}"
 
 
-if thresholds_out:
+if snakemake.output.get("thres"):
     extra += f" --thresholds {snakemake.params.thresholds}"
 
 
-if region_dist_out or regions_bed_out:
+if snakemake.output.get("bed_dist") or snakemake.output.get("bed"):
     by = snakemake.input.get("bed", snakemake.params.get("by", False))
     if by:
         extra += f" --by {by}"
@@ -73,24 +54,34 @@ with tempfile.TemporaryDirectory() as tmpdir:
             "mv --verbose {tmpdir}/temp.mosdepth.summary.txt {snakemake.output.summary} {log}"
         )
 
-    if per_base_out:
-        shell("mv --verbose {tmpdir}/temp.per-base.bed.gz {per_base_out} {log}")
-
-    if quantize_out:
-        shell("mv --verbose {tmpdir}/temp.quantized.bed.gz {quantize_out} {log}")
-
-    if thresholds_out:
-        shell("mv --verbose {tmpdir}/temp.thresholds.bed.gz {thresholds_out} {log}")
-
-    if global_dist_out:
+    if snakemake.output.get("per_base"):
+        assert snakemake.output.per_base.endswith("gz")
         shell(
-            "mv --verbose {tmpdir}/temp.mosdepth.global.dist.txt {global_dist_out} {log}"
+            "mv --verbose {tmpdir}/temp.per-base.bed.gz {snakemake.output.per_base} {log}"
         )
 
-    if region_dist_out:
+    if snakemake.output.get("quant"):
+        assert snakemake.output.quant.endswith("gz")
         shell(
-            "mv --verbose {tmpdir}/temp.mosdepth.region.dist.txt {region_dist_out} {log}"
+            "mv --verbose {tmpdir}/temp.quantized.bed.gz {snakemake.output.quant} {log}"
         )
 
-    if regions_bed_out:
-        shell("mv --verbose {tmpdir}/temp.regions.bed.gz {regions_bed_out} {log}")
+    if snakemake.output.get("thres"):
+        assert snakemake.output.thres.endswith("gz")
+        shell(
+            "mv --verbose {tmpdir}/temp.thresholds.bed.gz {snakemake.output.thres} {log}"
+        )
+
+    if snakemake.output.get("dist"):
+        shell(
+            "mv --verbose {tmpdir}/temp.mosdepth.global.dist.txt {snakemake.output.dist} {log}"
+        )
+
+    if snakemake.output.get("bed_dist"):
+        shell(
+            "mv --verbose {tmpdir}/temp.mosdepth.region.dist.txt {snakemake.output.bed_dist} {log}"
+        )
+
+    if snakemake.output.get("bed"):
+        assert snakemake.output.bed.endswith("gz")
+        shell("mv --verbose {tmpdir}/temp.regions.bed.gz {snakemake.output.bed} {log}")

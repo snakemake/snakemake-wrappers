@@ -3,8 +3,8 @@ rule mosdepth:
         bam="aligned/{dataset}.bam",
         bai="aligned/{dataset}.bam.bai",
     output:
-        "mosdepth/{dataset}.mosdepth.global.dist.txt",
-        "mosdepth/{dataset}.per-base.bed.gz",
+        dist="mosdepth/{dataset}.mosdepth.global.dist.txt",
+        per_base="mosdepth/{dataset}.per-base.bed.gz",
         summary="mosdepth/{dataset}.mosdepth.summary.txt",
     log:
         "logs/mosdepth/{dataset}.log",
@@ -21,9 +21,9 @@ rule mosdepth_bed:
         bai="aligned/{dataset}.bam.bai",
         bed="test.bed",
     output:
-        "mosdepth_bed/{dataset}.mosdepth.global.dist.txt",
-        "mosdepth_bed/{dataset}.mosdepth.region.dist.txt",
-        "mosdepth_bed/{dataset}.regions.bed.gz",
+        dist="mosdepth_bed/{dataset}.mosdepth.global.dist.txt",
+        bed_dist="mosdepth_bed/{dataset}.mosdepth.region.dist.txt",
+        bed="mosdepth_bed/{dataset}.regions.bed.gz",
         summary="mosdepth_bed/{dataset}.mosdepth.summary.txt",
     log:
         "logs/mosdepth_bed/{dataset}.log",
@@ -39,10 +39,10 @@ rule mosdepth_by_threshold:
         bam="aligned/{dataset}.bam",
         bai="aligned/{dataset}.bam.bai",
     output:
-        "mosdepth_by_threshold/{dataset}.mosdepth.global.dist.txt",
-        "mosdepth_by_threshold/{dataset}.mosdepth.region.dist.txt",
-        "mosdepth_by_threshold/{dataset}.regions.bed.gz",
-        "mosdepth_by_threshold/{dataset}.thresholds.bed.gz",
+        dist="mosdepth_by_threshold/{dataset}.mosdepth.global.dist.txt",
+        bed_dist="mosdepth_by_threshold/{dataset}.mosdepth.region.dist.txt",
+        bed="mosdepth_by_threshold/{dataset}.regions.bed.gz",
+        thres="mosdepth_by_threshold/{dataset}.thresholds.bed.gz",
         summary="mosdepth_by_threshold/{dataset}.mosdepth.summary.txt",
     log:
         "logs/mosdepth_by/{dataset}.log",
@@ -59,8 +59,8 @@ rule mosdepth_quantize_precision:
         bam="aligned/{dataset}.bam",
         bai="aligned/{dataset}.bam.bai",
     output:
-        "mosdepth_quantize_precision/{dataset}.mosdepth.global.dist.txt",
-        "mosdepth_quantize_precision/{dataset}.quantized.bed.gz",
+        dist="mosdepth_quantize_precision/{dataset}.mosdepth.global.dist.txt",
+        quant="mosdepth_quantize_precision/{dataset}.quantized.bed.gz",
         summary="mosdepth_quantize_precision/{dataset}.mosdepth.summary.txt",
     log:
         "logs/mosdepth_quantize_precision/{dataset}.log",
@@ -79,9 +79,9 @@ rule mosdepth_cram:
         bed="test.bed",
         fasta="genome.fasta",
     output:
-        "mosdepth_cram/{dataset}.mosdepth.global.dist.txt",
-        "mosdepth_cram/{dataset}.mosdepth.region.dist.txt",
-        "mosdepth_cram/{dataset}.regions.bed.gz",
+        dist="mosdepth_cram/{dataset}.mosdepth.global.dist.txt",
+        bed_dist="mosdepth_cram/{dataset}.mosdepth.region.dist.txt",
+        bed="mosdepth_cram/{dataset}.regions.bed.gz",
         summary="mosdepth_cram/{dataset}.mosdepth.summary.txt",
     log:
         "logs/mosdepth_cram/{dataset}.log",
