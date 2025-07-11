@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - mehari =0.36.2
+  - mehari =0.36.3
