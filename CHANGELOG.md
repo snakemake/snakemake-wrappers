@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.2.1](https://github.com/snakemake/snakemake-wrappers/compare/v7.2.0...v7.2.1) (2025-07-11)
+
+
+### Performance Improvements
+
+* autobump bio/busco ([#4312](https://github.com/snakemake/snakemake-wrappers/issues/4312)) ([01668b0](https://github.com/snakemake/snakemake-wrappers/commit/01668b0a32df7fa97594e50aaa087c3220a72b74))
+* autobump bio/mehari/annotate-seqvars ([#4317](https://github.com/snakemake/snakemake-wrappers/issues/4317)) ([7d172d1](https://github.com/snakemake/snakemake-wrappers/commit/7d172d12df6ccaa3375413324784c9d2a43a6242))
+* autobump bio/multiqc ([#4316](https://github.com/snakemake/snakemake-wrappers/issues/4316)) ([6f7a28f](https://github.com/snakemake/snakemake-wrappers/commit/6f7a28f6663613f0a1e9ff958a304e185c2e0dc1))
+* autobump geo/overturemaps/download ([#4318](https://github.com/snakemake/snakemake-wrappers/issues/4318)) ([5590ba5](https://github.com/snakemake/snakemake-wrappers/commit/5590ba57e572296df02c981dc1bb8efb8f34b585))
+* autobump utils/datavzrd ([#4314](https://github.com/snakemake/snakemake-wrappers/issues/4314)) ([3c95f2c](https://github.com/snakemake/snakemake-wrappers/commit/3c95f2ccf030331e86c08d0a8e4ef7e2a589bcde))
+
 ## [7.2.0](https://github.com/snakemake/snakemake-wrappers/compare/v7.1.0...v7.2.0) (2025-07-04)
 
 
