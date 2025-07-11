@@ -4,17 +4,20 @@
 # created-by: conda 24.9.2
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
-https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.6.15-hbd8a1cb_0.conda#72525f07d72806e3b639ad4504c30ce5
+https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.7.9-hbd8a1cb_0.conda#54521bf3b59c86e2f55b7294b40a04dc
 https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.1.0-h767d61c_3.conda#3cd1a7238a0dd3d0860fdefc496cc854
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.1.0-h767d61c_3.conda#9e60c55e725c20d23125a5f0dd69af5d
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.1.0-h69a702a_3.conda#e66f2b8ad787e7beb0f846e4bd7e8493
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.1.0-h8f9b012_3.conda#6d11a5edae89fe413c0569f16d308f5a
 https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.1-hb9d3cd8_2.conda#edb0dca6bc32e4f4789199455a1dbeb8
 https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.5-h2d0b736_3.conda#47e340acb35de30501a76c7c799c41d7
 https://conda.anaconda.org/conda-forge/linux-64/openssl-3.5.1-h7b32b05_0.conda#c87df2ab1448ba69169652ab9547082d
 https://conda.anaconda.org/conda-forge/linux-64/libabseil-20240722.0-cxx17_hbbce691_4.conda#488f260ccda0afaf08acb286db439c2f
-https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.50.2-h6cd9bfd_0.conda#b04c7eda6d7dab1e6503135e7fad4d25
+https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-15.1.0-h4852527_3.conda#57541755b5a51691955012b8e197c06c
 https://conda.anaconda.org/conda-forge/linux-64/readline-8.2-h8c095d6_2.conda#283b96675859b20a825f8fa30f311446
+https://conda.anaconda.org/conda-forge/linux-64/icu-75.1-he02047a_0.conda#8b189310083baabfb622af68fd9d3ae3
 https://conda.anaconda.org/conda-forge/linux-64/libprotobuf-5.27.5-h5b01275_2.conda#66ed3107adbdfc25ba70454ba11e6d1e
-https://conda.anaconda.org/conda-forge/linux-64/sqlite-3.50.2-hb7a22d2_0.conda#efe16ab2f63053af723e070f3f9bac4c
-https://conda.anaconda.org/bioconda/linux-64/mehari-0.36.2-h13c227e_0.tar.bz2#92b802c24cded7874414a66979047d4e
+https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.50.2-hee844dc_2.conda#be96b9fdd7b579159df77ece9bb80e48
+https://conda.anaconda.org/conda-forge/linux-64/sqlite-3.50.2-heff268d_2.conda#205e5726a9cbb72be7c374138b6fed7c
+https://conda.anaconda.org/bioconda/linux-64/mehari-0.36.3-h13c227e_0.tar.bz2#87beb241f0c4be705c5e6e9f4e37fd17
