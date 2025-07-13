@@ -84,11 +84,11 @@ def clip_wrapper(
     if sum(x is not None for x in (like_raster, like_vector, bounds)) != 1:
         raise ValueError(
             "Multiple clipping references given. Specify only one of "
-            "input.like_raster, input.like_shape or params.bounds."
+            "input.like_raster, input.like_vector or params.bounds."
         )
     if sum(x is not None for x in (input_raster, cog_url)) != 1:
         raise ValueError(
-            "Multiple input rasters given. Specify only one of "
+            "Multiple target rasters given. Specify only one of "
             "input.raster or params.cog_url."
         )
     if (like_raster or like_vector) and any([bounds, bounds_crs]):
