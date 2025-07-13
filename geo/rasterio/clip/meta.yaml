@@ -1,0 +1,43 @@
+name: rasterio - clip
+url: https://github.com/rasterio/rasterio
+description: |
+  Wrapper for ``rio clip`` CLI.
+  
+  Can clip local or remote raster files.
+  Steps:
+  
+  # A clipping window will be constructed in the reference's CRS.
+  # The window is extended in all sides using the buffer.
+  # The window converted to the CRS of the target.
+  # clip!
+
+  Two different target files are possible:
+  * A remote GeoTiff (provided via URL)
+  * A local raster
+  
+  Three different types of clipping references are possible:
+  * a local vector file
+  * a local raster file
+  * a bounding box (in the CRS specified)
+authors:
+  - Ivan Ruiz Manuel
+input:
+  - raster: target raster file to clip (optional).
+  - like_raster: raster file to use as clipping reference (optional).
+  - like_vector: vector file to use as clipping reference (optional).
+output:
+  - path: Output .TIFF file in the same CRS as the target raster.
+params:
+  - bounds: bounding box to use as clipping reference [minx, miny, maxx, maxy] (optional).
+  - bounds_crs: CRS of the provided bounds.
+  - buffer: buffer used to extend the clipping square in all directions (default 0).
+  - cog_url: URL of the target Cloud Optimised GeoTiff raster file to clip (optional).
+  # GDAL / rasterio overrides
+  - extra_options: additional options for the `rio clip` CLI command.
+  - profile_overrides: additional driver profile options (`--co`).
+  - environment_overrides: additional GDAL environment options.
+notes: |
+  * Only one target file to clip (raster, cog_url) should be provided.
+  * Only one reference (like_raster, like_vector, bounds) should be provided.
+  * IMPORTANT: the wrapper already comes with sensible GDAL driver and environment settings.
+  Make sure to check them before overriding with yours!

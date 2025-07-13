@@ -6926,7 +6926,7 @@ def test_trf_basic_with_uppercase_params(run):
 
 def test_rasterio_clip_geotiff(run):
     run(
-        "geo/rasterio/clip-geotiff",
+        "geo/rasterio/clip",
         [
             "snakemake",
             "--cores",
