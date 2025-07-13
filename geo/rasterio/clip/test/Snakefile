@@ -35,7 +35,7 @@ rule clip_local_with_bounds:
     params:
         bounds = [-105.521764, 20.520087, -105.152805, 20.778076],
         bounds_crs = "EPSG:4326",
-        buffer_degrees=0,
+        buffer=0,
     threads: 1
     log:
         "logs/rasterio/clip/clip_local_with_bounds.log"

@@ -33,7 +33,7 @@ params:
   - buffer: buffer used to extend the clipping square in all directions (default 0).
   - cog_url: URL of the target Cloud Optimised GeoTiff raster file to clip (optional).
   # GDAL / rasterio overrides
-  - extra_options: additional options for the `rio clip` CLI command.
+  - clip_options: additional options for the `rio clip` CLI command.
   - profile_overrides: additional driver profile options (`--co`).
   - environment_overrides: additional GDAL environment options.
 notes: |
