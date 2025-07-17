@@ -1137,7 +1137,7 @@ def test_mapdamage2(run):
             "--cores",
             "1",
             "--use-conda",
-            "results/a/Runtime_log.txt",
+            "results/rescale/a.bam",
         ],
     )
 

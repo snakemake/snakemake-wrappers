@@ -1,21 +1,61 @@
-rule mapdamage2:
+rule mapdamage2_plot:
     input:
-        ref="genome.fasta",
         bam="mapped/{sample}.bam",
+        ref="genome.fasta",
     output:
-        log="results/{sample}/Runtime_log.txt",  # output folder is infered from this file, so it needs to be the same folder for all output files
-        GtoA3p="results/{sample}/3pGtoA_freq.txt",
-        CtoT5p="results/{sample}/5pCtoT_freq.txt",
-        dnacomp="results/{sample}/dnacomp.txt",
-        frag_misincorp="results/{sample}/Fragmisincorporation_plot.pdf",
-        len="results/{sample}/Length_plot.pdf",
-        lg_dist="results/{sample}/lgdistribution.txt",
-        misincorp="results/{sample}/misincorporation.txt",
-    #   rescaled_bam="results/{sample}.rescaled.bam", # uncomment if you want the rescaled BAM file
+        GtoA3p="results/plot/{sample}.3pGtoA_freq.txt",
+        CtoT5p="results/plot/{sample}.5pCtoT_freq.txt",
+        dnacomp="results/plot/{sample}.dnacomp.txt",
+        lg_dist="results/plot/{sample}.lgdistribution.txt",
+        misinc="results/plot/{sample}.misincorporation.txt",
+        plot_misinc="results/plot/{sample}.Fragmisincorporation_plot.pdf",
+        plot_len="results/plot/{sample}.Length_plot.pdf",
+        log="results/plot/{sample}.log",
     params:
-        extra="--no-stats",  # optional parameters for mapdamage2 (except -i, -r, -d, --rescale)
+        extra="-m 20",
     log:
-        "logs/{sample}/mapdamage2.log",
-    threads: 1  # MapDamage2 is not threaded
+        "logs/plot/{sample}.log",
+    threads: 1
+    wrapper:
+        "master/bio/mapdamage2"
+
+
+rule mapdamage2_stats:
+    input:
+        GtoA3p=rules.mapdamage2_plot.output.GtoA3p,
+        CtoT5p=rules.mapdamage2_plot.output.CtoT5p,
+        misinc=rules.mapdamage2_plot.output.misinc,
+        ref="genome.fasta",
+    output:
+        stats_ref="results/stats/{sample}.dnacomp_genome.csv",
+        stats_prob="results/stats/{sample}.Stats_out_MCMC_correct_prob.csv",
+        stats_hist="results/stats/{sample}.Stats_out_MCMC_hist.pdf",
+        stats_iter="results/stats/{sample}.Stats_out_MCMC_iter.csv",
+        stats_summ="results/stats/{sample}.Stats_out_MCMC_iter_summ_stat.csv",
+        stats_plot_pred="results/stats/{sample}.Stats_out_MCMC_post_pred.pdf",
+        stats_plot_trace="results/stats/{sample}.Stats_out_MCMC_trace.pdf",
+        log="results/stats/{sample}.log",
+    params:
+        extra="--stats-only --burn 10 --iter 10",
+    log:
+        "logs/stats/{sample}.log",
+    threads: 1
+    wrapper:
+        "master/bio/mapdamage2"
+
+
+rule mapdamage2_rescale:
+    input:
+        bam="mapped/{sample}.bam",
+        stats_prob=rules.mapdamage2_stats.output.stats_prob,
+        ref="genome.fasta",
+    output:
+        bam="results/rescale/{sample}.bam",
+        log="results/rescale/{sample}.log",
+    params:
+        extra="",
+    log:
+        "logs/rescale/{sample}.log",
+    threads: 1
     wrapper:
         "master/bio/mapdamage2"
