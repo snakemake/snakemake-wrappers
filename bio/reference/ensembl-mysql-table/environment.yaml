@@ -3,7 +3,7 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - r-nanoparquet =0.3.1
+  - r-nanoparquet =0.4.2
   - r-tidyverse =2.0.0
   - r-dbplyr =2.5.0
-  - r-rmariadb =1.3.3
+  - r-rmariadb =1.3.4

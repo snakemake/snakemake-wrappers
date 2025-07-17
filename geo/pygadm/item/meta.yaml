@@ -1,0 +1,14 @@
+name: pygadm - item
+url: https://github.com/12rambau/pygadm
+description: Easy access to administrative boundaries from the GADM database.
+authors:
+  - Ivan Ruiz Manuel
+output:
+  - path: Location of the output file.
+params:
+  - name: Optional. Name of the item in the GADM database (e.g., "France" or ["France", "Spain"]).
+  - admin: Optional. Admin code in the GADM database, usually a country ISO alpha-3 code (e.g., "FRA" or ["FRA", "ESP"])
+  - content_level: Optional. level of administrative layer to get (e.g., 0, 1, 2). Defaults to the country layer (0).
+notes: |
+  Important: either name or admin must be specified.
+  Read the documentation https://pygadm.readthedocs.io/ to learn more about valid requests.

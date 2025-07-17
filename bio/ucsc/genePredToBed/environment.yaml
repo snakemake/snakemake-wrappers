@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - ucsc-genepredtobed =469
+  - ucsc-genepredtobed =482

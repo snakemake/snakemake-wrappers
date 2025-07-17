@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - bwameth =0.2.7
-  - bwa-mem2 =2.2.1
+  - bwa-mem2 =2.3
