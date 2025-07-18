@@ -24,7 +24,7 @@ if rescaled_bam:
 
 
 with tempfile.TemporaryDirectory() as tmpdir:
-    fnames_ori = {
+    fnames_tmp = {
         "GtoA3p": "3pGtoA_freq.txt",
         "CtoT5p": "5pCtoT_freq.txt",
         "dnacomp": "dnacomp.txt",
@@ -43,21 +43,21 @@ with tempfile.TemporaryDirectory() as tmpdir:
     }
 
     # Symlink input files to temp (to use as results) folder
-    for in_tag, fname_ori in snakemake.input.items():
+    for in_tag, fname_tmp in snakemake.input.items():
         if in_tag not in ["bam", "ref"]:
-            (Path(tmpdir) / fnames_ori[in_tag]).symlink_to(Path(fname_ori).resolve())
+            (Path(tmpdir) / fnames_tmp[in_tag]).symlink_to(Path(fname_tmp).resolve())
 
     shell(
-        "mapDamage "
-        "{in_bam} "
-        "--reference {snakemake.input.ref} "
-        "--folder {tmpdir} "
-        "{rescaled_bam} "
-        "{extra} "
-        "{log}"
+        "mapDamage"
+        " {in_bam}"
+        " --reference {snakemake.input.ref}"
+        " --folder {tmpdir}"
+        " {rescaled_bam}"
+        " {extra}"
+        " {log}"
     )
 
-    for in_tag, fname_ori in fnames_ori.items():
+    for in_tag, fname_tmp in fnames_tmp.items():
         fname_dest = snakemake.output.get(in_tag)
         if fname_dest:
-            shell("cp --verbose {tmpdir}/{fname_ori} {fname_dest} {log}")
+            shell("cp --verbose {tmpdir}/{fname_tmp} {fname_dest} {log}")

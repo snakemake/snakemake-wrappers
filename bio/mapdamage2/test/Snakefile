@@ -83,7 +83,7 @@ rule mapdamage2_all:
         bam="results/all/{sample}.bam",
         log="results/all/{sample}.log",
     params:
-        extra="--stats-only --burn 10 --iter 10",
+        extra="--burn 10 --iter 10",
     log:
         "logs/all/{sample}.log",
     threads: 1
