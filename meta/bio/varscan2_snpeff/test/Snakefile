@@ -50,7 +50,7 @@ rule snpeff_download:
     output:
         directory("resources/snpeff/{ref}"),
     log:
-        "logs/snpeff_download.log",
+        "logs/snpeff_download.{ref}.log",
     params:
         reference=lambda w: w.ref,
     threads: 1
