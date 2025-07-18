@@ -32,11 +32,11 @@ rule mapdamage2_stats:
         stats_hist="results/stats/{sample}.Stats_out_MCMC_hist.pdf",
         stats_iter="results/stats/{sample}.Stats_out_MCMC_iter.csv",
         stats_summ="results/stats/{sample}.Stats_out_MCMC_iter_summ_stat.csv",
-        stats_plot_pred="results/stats/{sample}.Stats_out_MCMC_post_pred.pdf",
+        stats_plot_freq="results/stats/{sample}.Stats_out_MCMC_post_pred.pdf",
         stats_plot_trace="results/stats/{sample}.Stats_out_MCMC_trace.pdf",
         log="results/stats/{sample}.log",
     params:
-        extra="--stats-only --burn 10 --iter 10",
+        extra="--burn 10 --iter 10",
     log:
         "logs/stats/{sample}.log",
     threads: 1
@@ -78,7 +78,7 @@ rule mapdamage2_all:
         stats_hist="results/all/{sample}.Stats_out_MCMC_hist.pdf",
         stats_iter="results/all/{sample}.Stats_out_MCMC_iter.csv",
         stats_summ="results/all/{sample}.Stats_out_MCMC_iter_summ_stat.csv",
-        stats_plot_pred="results/all/{sample}.Stats_out_MCMC_post_pred.pdf",
+        stats_plot_freq="results/all/{sample}.Stats_out_MCMC_post_pred.pdf",
         stats_plot_trace="results/all/{sample}.Stats_out_MCMC_trace.pdf",
         bam="results/all/{sample}.bam",
         log="results/all/{sample}.log",

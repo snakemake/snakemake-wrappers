@@ -15,12 +15,24 @@ if in_bam:
     in_bam = f"--input {in_bam}"
 
 # Output
-if not any([in_tag.startswith("stats_") for in_tag, _ in snakemake.output.items()]):
-    extra += " --no-stats"
+out_plot = any([in_tag.startswith("plot_") for in_tag, _ in snakemake.output.items()])
+out_stats = any([in_tag.startswith("stats_") for in_tag, _ in snakemake.output.items()])
+out_bam = snakemake.output.get("bam", "")
+if out_bam:
+    out_bam = f"--rescale --rescale-out {out_bam}"
 
-rescaled_bam = snakemake.output.get("bam", "")
-if rescaled_bam:
-    rescaled_bam = f"--rescale --rescale-out {rescaled_bam}"
+# Check if only tpye of output is specified
+# https://stackoverflow.com/questions/16801322/how-can-i-check-that-a-list-has-one-and-only-one-truthy-value
+i = iter([out_plot, out_stats, out_bam])
+if any(i) and not any(i):
+    if out_plot:
+        extra += " --no-stats"
+    elif out_stats:
+        extra += " --stats-only"
+    elif out_bam:
+        extra += " --rescale-only"
+    else:
+        raise ValueError("unexpected error.")
 
 
 with tempfile.TemporaryDirectory() as tmpdir:
@@ -38,7 +50,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         "stats_hist": "Stats_out_MCMC_hist.pdf",
         "stats_iter": "Stats_out_MCMC_iter.csv",
         "stats_summ": "Stats_out_MCMC_iter_summ_stat.csv",
-        "stats_plot_pred": "Stats_out_MCMC_post_pred.pdf",
+        "stats_plot_freq": "Stats_out_MCMC_post_pred.pdf",
         "stats_plot_trace": "Stats_out_MCMC_trace.pdf",
     }
 
@@ -52,7 +64,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " {in_bam}"
         " --reference {snakemake.input.ref}"
         " --folder {tmpdir}"
-        " {rescaled_bam}"
+        " {out_bam}"
         " {extra}"
         " {log}"
     )
