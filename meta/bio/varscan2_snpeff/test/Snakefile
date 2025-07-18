@@ -19,7 +19,7 @@ rule samtools_mpileup:
             "{sample}.sorted.bam",
             sample=("a", "b"),
         ),
-        reference_genome="genome.fasta",
+        ref="genome.fasta",
     output:
         "samtools/mpileup.gz",
     threads: 1
