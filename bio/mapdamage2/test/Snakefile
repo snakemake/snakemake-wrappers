@@ -59,3 +59,33 @@ rule mapdamage2_rescale:
     threads: 1
     wrapper:
         "master/bio/mapdamage2"
+
+
+rule mapdamage2_all:
+    input:
+        bam="mapped/{sample}.bam",
+        ref="genome.fasta",
+    output:
+        GtoA3p="resultsall/{sample}.3pGtoA_freq.txt",
+        CtoT5p="resultsall/{sample}.5pCtoT_freq.txt",
+        dnacomp="resultsall/{sample}.dnacomp.txt",
+        lg_dist="resultsall/{sample}.lgdistribution.txt",
+        misinc="resultsall/{sample}.misincorporation.txt",
+        plot_misinc="resultsall/{sample}.Fragmisincorporation_plot.pdf",
+        plot_len="resultsall/{sample}.Length_plot.pdf",
+        stats_ref="results/all/{sample}.dnacomp_genome.csv",
+        stats_prob="results/all/{sample}.Stats_out_MCMC_correct_prob.csv",
+        stats_hist="results/all/{sample}.Stats_out_MCMC_hist.pdf",
+        stats_iter="results/all/{sample}.Stats_out_MCMC_iter.csv",
+        stats_summ="results/all/{sample}.Stats_out_MCMC_iter_summ_stat.csv",
+        stats_plot_pred="results/all/{sample}.Stats_out_MCMC_post_pred.pdf",
+        stats_plot_trace="results/all/{sample}.Stats_out_MCMC_trace.pdf",
+        bam="results/all/{sample}.bam",
+        log="results/all/{sample}.log",
+    params:
+        extra="--stats-only --burn 10 --iter 10",
+    log:
+        "logs/all/{sample}.log",
+    threads: 1
+    wrapper:
+        "master/bio/mapdamage2"
