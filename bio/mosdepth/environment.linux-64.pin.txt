@@ -4,7 +4,7 @@
 # created-by: conda 24.9.2
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
-https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.7.9-hbd8a1cb_0.conda#54521bf3b59c86e2f55b7294b40a04dc
+https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.7.14-hbd8a1cb_0.conda#d16c90324aef024877d8713c0b7fea5b
 https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.1.0-h767d61c_3.conda#3cd1a7238a0dd3d0860fdefc496cc854
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.1.0-h767d61c_3.conda#9e60c55e725c20d23125a5f0dd69af5d
@@ -26,5 +26,5 @@ https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb8e6e7a_2.conda#6432
 https://conda.anaconda.org/conda-forge/linux-64/krb5-1.21.3-h659f571_0.conda#3f43953b7d3fb3aaa1d0d0723d91e368
 https://conda.anaconda.org/conda-forge/linux-64/libnghttp2-1.64.0-h161d5f1_0.conda#19e57602824042dfd0446292ef90488b
 https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.14.1-h332b0f4_0.conda#45f6713cb00f124af300342512219182
-https://conda.anaconda.org/bioconda/linux-64/htslib-1.22-h566b1c6_0.tar.bz2#6f6e3ce5c428c84b9f6ec294add9b33f
-https://conda.anaconda.org/bioconda/linux-64/mosdepth-0.3.11-h0ec343a_0.tar.bz2#1f9a673b57ad0e56a6cb9a9c63a88861
+https://conda.anaconda.org/bioconda/linux-64/htslib-1.22.1-h566b1c6_0.tar.bz2#646b491ab86e0ab7173d35eb3a5f3241
+https://conda.anaconda.org/bioconda/linux-64/mosdepth-0.3.11-h0ec343a_1.tar.bz2#f912ddec04fae9cd1a1b6301c83e5f50
