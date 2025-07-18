@@ -3752,61 +3752,9 @@ def test_mosdepth(run):
             "--cores",
             "4",
             "mosdepth/m54075_180905_225130.ccs.ecoliK12_pbi_March2013.mosdepth.summary.txt",
-            "--use-conda",
-            "-F",
-        ],
-    )
-
-
-def test_mosdepth_bed(run):
-    run(
-        "bio/mosdepth",
-        [
-            "snakemake",
-            "--cores",
-            "4",
             "mosdepth_bed/m54075_180905_225130.ccs.ecoliK12_pbi_March2013.mosdepth.summary.txt",
-            "--use-conda",
-            "-F",
-        ],
-    )
-
-
-def test_mosdepth_by_threshold(run):
-    run(
-        "bio/mosdepth",
-        [
-            "snakemake",
-            "--cores",
-            "4",
             "mosdepth_by_threshold/m54075_180905_225130.ccs.ecoliK12_pbi_March2013.mosdepth.summary.txt",
-            "--use-conda",
-            "-F",
-        ],
-    )
-
-
-def test_mosdepth_quantize_precision(run):
-    run(
-        "bio/mosdepth",
-        [
-            "snakemake",
-            "--cores",
-            "4",
             "mosdepth_quantize_precision/m54075_180905_225130.ccs.ecoliK12_pbi_March2013.mosdepth.summary.txt",
-            "--use-conda",
-            "-F",
-        ],
-    )
-
-
-def test_mosdepth_cram(run):
-    run(
-        "bio/mosdepth",
-        [
-            "snakemake",
-            "--cores",
-            "4",
             "mosdepth_cram/a.mosdepth.summary.txt",
             "--use-conda",
             "-F",
