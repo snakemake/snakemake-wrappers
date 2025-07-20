@@ -7,7 +7,7 @@ rule get_genome_fasta:
         species="saccharomyces_cerevisiae",
         datatype="dna",
         build="R64-1-1",
-        release="99",
+        release="105",
     threads: 1
     wrapper:
         "master/bio/reference/ensembl-sequence"
@@ -61,7 +61,7 @@ rule snpeff_download:
 rule snpeff_annotate:
     input:
         calls="varscan2/snp.vcf",
-        db=expand(rules.snpeff_download.output, ref="R64-1-1.99"),
+        db=expand(rules.snpeff_download.output, ref="R64-1-1.105"),
     output:
         calls="snpeff/annotated.vcf",
         stats="snpeff/annotated.html",
