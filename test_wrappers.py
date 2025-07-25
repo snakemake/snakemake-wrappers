@@ -134,7 +134,6 @@ def run(tmp_test_dir):
     return _run
 
 
-
 def test_aria2c(run):
     run(
         "utils/aria2c",
@@ -1137,7 +1136,8 @@ def test_mapdamage2(run):
             "--cores",
             "1",
             "--use-conda",
-            "results/a/Runtime_log.txt",
+            "results/rescale/a.bam",
+            "results/all/a.bam",
         ],
     )
 
@@ -3301,11 +3301,25 @@ def test_fastq_screen(run):
     )
     run(
         "bio/fastq_screen",
-        ["snakemake", "--cores", "1", "qc/a.fastq_screen_conf.txt", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "qc/a.fastq_screen_conf.txt",
+            "--use-conda",
+            "-F",
+        ],
     )
     run(
         "bio/fastq_screen",
-        ["snakemake", "--cores", "1", "qc/a.fastq_screen_nopng.txt", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "qc/a.fastq_screen_nopng.txt",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -4332,6 +4346,7 @@ def test_samtools_fixmate(run):
         "bio/samtools/fixmate",
         ["snakemake", "--cores", "1", "fixed/a.bam", "--use-conda", "-F"],
     )
+
 
 def test_pyfaidx(run):
     run(
@@ -7060,6 +7075,7 @@ def test_mehari_annotate_seqvars(run):
         ],
     )
 
+
 def test_rasterio_clip_geotiff(run):
     run(
         "geo/rasterio/clip",
@@ -7071,7 +7087,6 @@ def test_rasterio_clip_geotiff(run):
             "-F",
             "results/montenegro.tiff",
             "results/switzerland.tiff",
-            "results/puerto_vallarta_small.tiff"
-        ]
-
+            "results/puerto_vallarta_small.tiff",
+        ],
     )
