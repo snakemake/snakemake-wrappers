@@ -17,5 +17,5 @@ if not snakemake.output[0].endswith(".gz"):
     )
 
 shell(
-    "(samtools mpileup {extra} -f {snakemake.input.reference_genome} {snakemake.input.bam} | pigz > {snakemake.output}) {log}"
+    "(samtools mpileup {extra} -f {snakemake.input.ref} {snakemake.input.bam} | pigz > {snakemake.output}) {log}"
 )

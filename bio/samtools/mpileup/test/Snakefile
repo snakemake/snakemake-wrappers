@@ -1,8 +1,8 @@
-rule mpilup:
+rule mpileup:
     input:
         # single or list of bam files
         bam="mapped/{sample}.bam",
-        reference_genome="genome.fasta",
+        ref="genome.fasta",
     output:
         "mpileup/{sample}.mpileup.gz",
     log:
