@@ -1,0 +1,44 @@
+rule clip_remote_with_local_vector:
+    input:
+        like_vector="montenegro.parquet",
+    output:
+        path="results/montenegro.tiff",
+    params:
+        buffer=1,
+        cog_url="https://zenodo.org/records/14920365/files/minic_edtm_m_960m_s_20000101_20221231_go_epsg.4326_v20241230.tif"
+    threads: 1
+    log:
+        "logs/rasterio/clip/clip_remote_with_local_vector.log"
+    wrapper:
+        "master/geo/rasterio/clip"
+
+rule clip_remote_with_bounds:
+    output:
+        path="results/switzerland.tiff",
+    params:
+        bounds = "5.9559111595, 45.8056043984, 10.6135070324, 47.808380127",
+        bounds_crs = "EPSG:4326",
+        buffer = 1,
+        cog_url="https://zenodo.org/records/14920365/files/minic_edtm_m_480m_s_20000101_20221231_go_epsg.4326_v20241230.tif"
+    threads: 1
+    log:
+        "logs/rasterio/clip/clip_remote_with_bounds.log"
+    wrapper:
+        "master/geo/rasterio/clip"
+
+
+rule clip_local_with_bounds:
+    input:
+        raster="puerto_vallarta.tiff"
+    output:
+        path="results/puerto_vallarta_small.tiff"
+    params:
+        bounds = [-105.521764, 20.520087, -105.152805, 20.778076],
+        bounds_crs = "EPSG:4326",
+        buffer=0,
+    threads: 1
+    log:
+        "logs/rasterio/clip/clip_local_with_bounds.log"
+    wrapper:
+        "master/geo/rasterio/clip"
+
