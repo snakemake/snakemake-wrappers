@@ -4,7 +4,7 @@
 # created-by: conda 24.9.2
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
-https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.7.9-hbd8a1cb_0.conda#54521bf3b59c86e2f55b7294b40a04dc
+https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.7.14-hbd8a1cb_0.conda#d16c90324aef024877d8713c0b7fea5b
 https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.1.0-h767d61c_3.conda#3cd1a7238a0dd3d0860fdefc496cc854
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.1.0-h767d61c_3.conda#9e60c55e725c20d23125a5f0dd69af5d
@@ -18,6 +18,6 @@ https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-15.1.0-h4852527_3.c
 https://conda.anaconda.org/conda-forge/linux-64/readline-8.2-h8c095d6_2.conda#283b96675859b20a825f8fa30f311446
 https://conda.anaconda.org/conda-forge/linux-64/icu-75.1-he02047a_0.conda#8b189310083baabfb622af68fd9d3ae3
 https://conda.anaconda.org/conda-forge/linux-64/libprotobuf-5.27.5-h5b01275_2.conda#66ed3107adbdfc25ba70454ba11e6d1e
-https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.50.2-hee844dc_2.conda#be96b9fdd7b579159df77ece9bb80e48
-https://conda.anaconda.org/conda-forge/linux-64/sqlite-3.50.2-heff268d_2.conda#205e5726a9cbb72be7c374138b6fed7c
-https://conda.anaconda.org/bioconda/linux-64/mehari-0.36.3-h13c227e_0.tar.bz2#87beb241f0c4be705c5e6e9f4e37fd17
+https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.50.3-hee844dc_1.conda#18d2ac95b507ada9ca159a6bd73255f7
+https://conda.anaconda.org/conda-forge/linux-64/sqlite-3.50.3-heff268d_1.conda#a4cfbd4bc4cf834779a5383519f9eb5a
+https://conda.anaconda.org/bioconda/linux-64/mehari-0.37.0-h13c227e_0.tar.bz2#92dcafe9e63fe831f8390cbbe4fc59a0
