@@ -61,7 +61,7 @@ rule snpeff_download:
 rule snpeff_annotate:
     input:
         calls="varscan2/snp.vcf",
-        db=expand(rules.snpeff_download.output, ref="R64-1-1.105"),
+        db="resources/snpeff/R64-1-1.105",
     output:
         calls="snpeff/annotated.vcf",
         stats="snpeff/annotated.html",
