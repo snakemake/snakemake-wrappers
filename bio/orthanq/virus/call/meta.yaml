@@ -1,0 +1,12 @@
+name: orthanq call virus
+description: |
+  Orthanq call virus quantifies viral haplotypes an outputs them to a TSV file.
+input:
+  - candidates_folder: Folder that is used to generate candidate variants with `orthanq candidates virus`.
+  - haplotype_calls: Haplotype calls that are generated with `orthanq preprocess virus`.
+params:
+  - prior: Prior used in Bayesian model. It can be uniform or diploid (uniform should be used for viral lineage quantification)
+output: Tabular file with quantified viral haplotypes.
+url: https://github.com/orthanq/orthanq
+authors:
+  - Hamdiye Uzuner
