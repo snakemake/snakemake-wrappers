@@ -3,7 +3,7 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bwameth =0.2.8
+  - bwameth =0.2.9
   - samtools =1.22.1
   - picard-slim =3.4.0
   - snakemake-wrapper-utils =0.7.2
