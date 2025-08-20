@@ -34,7 +34,7 @@ for ending in (".amb", ".ann", ".bwt", ".pac", ".sa"):
 dictionary = reference + ".dict"
 if not path.exists(dictionary):
     raise ValueError(
-        "{dictionary}.dict missing. Please make sure the reference dictionary was properly created. This can be accomplished for example by CreateSequenceDictionary.jar from Picard".format(
+        "{dictionary} missing. Please make sure the reference dictionary was properly created. This can be accomplished for example by CreateSequenceDictionary.jar from Picard".format(
             dictionary=dictionary
         )
     )
@@ -45,6 +45,6 @@ shell(
     "--threads {snakemake.threads} "  # Threads
     "--workingdir {snakemake.params.workingdir} "  # Working directory
     "--assembly {snakemake.output.assembly} "  # Assembly output
-    "{snakemake.input.bam} "  # changed to bam for consistancy
+    "{snakemake.input.bam} "
     "{extra}) {log}"
 )
