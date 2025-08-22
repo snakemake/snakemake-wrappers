@@ -3,4 +3,4 @@
 # platform: linux-64
 # created-by: conda 24.9.2
 @EXPLICIT
-https://conda.anaconda.org/bioconda/linux-64/vg-1.65.0-h9ee0642_0.tar.bz2#43301db5c66c4bc802ee294c78fce0f8
+https://conda.anaconda.org/bioconda/linux-64/vg-1.67.0-h9ee0642_0.conda#2870283809666de40f1e4e8d1f18125d
