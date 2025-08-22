@@ -72,7 +72,7 @@ https://conda.anaconda.org/conda-forge/linux-64/krb5-1.21.3-h659f571_0.conda#3f4
 https://conda.anaconda.org/conda-forge/linux-64/libfreetype6-2.13.3-h48d6fc4_1.conda#3c255be50a506c50765a93a6644f32fe
 https://conda.anaconda.org/conda-forge/linux-64/libgfortran-ng-15.1.0-h69a702a_4.conda#b1a97c0f2c4f1bb2b8872a21fc7e17a7
 https://conda.anaconda.org/conda-forge/linux-64/libnghttp2-1.64.0-h161d5f1_0.conda#19e57602824042dfd0446292ef90488b
-https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.30-pthreads_h94d23a6_1.conda#7e2ba4ca7e6ffebb7f7fc2da2744df61
+https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.30-pthreads_h94d23a6_2.conda#dfc5aae7b043d9f56ba99514d5e60625
 https://conda.anaconda.org/conda-forge/linux-64/libtiff-4.7.0-h8261f1e_6.conda#b6093922931b535a7ba566b6f384fbe6
 https://conda.anaconda.org/conda-forge/linux-64/pcre2-10.45-hc749103_0.conda#b90bece58b4c2bf25969b70f3be42d25
 https://conda.anaconda.org/conda-forge/linux-64/perl-5.32.1-7_hd590300_perl5.conda#f2cfec9406850991f4e3d960cc9e3321
@@ -102,11 +102,11 @@ https://conda.anaconda.org/conda-forge/noarch/pip-25.2-pyh8b19718_0.conda#dfce4b
 https://conda.anaconda.org/conda-forge/linux-64/fontconfig-2.15.0-h7e30c49_1.conda#8f5b0b297b59e1ac160ad4beec99dbee
 https://conda.anaconda.org/conda-forge/linux-64/gsl-2.7-he838d99_0.tar.bz2#fec079ba39c9cca093bf4c00001825de
 https://conda.anaconda.org/bioconda/linux-64/samtools-1.22.1-h96c455f_0.tar.bz2#7088984cee084e606b2826b1fc3b5906
-https://conda.anaconda.org/conda-forge/linux-64/tbb-2022.2.0-hb60516a_0.conda#14dbfb03c196042efb72df45f036f3aa
+https://conda.anaconda.org/conda-forge/linux-64/tbb-2022.2.0-hb60516a_1.conda#29ed2be4b47b5aa1b07689e12407fbfd
 https://conda.anaconda.org/bioconda/linux-64/bcftools-1.22-h3a4d415_1.tar.bz2#ffd6659738d1b06f8d3fa5a3b0604703
 https://conda.anaconda.org/bioconda/linux-64/bowtie-1.3.1-py312hf8dbd9f_10.tar.bz2#75b4f2ab20e8a4ff848ed6736d91fbdb
 https://conda.anaconda.org/conda-forge/linux-64/cairo-1.18.4-h3394656_0.conda#09262e66b19567aff4f592fb53b28760
-https://conda.anaconda.org/conda-forge/linux-64/harfbuzz-11.4.1-h15599e2_0.conda#7da3b5c281ded5bb6a634e1fe7d3272f
+https://conda.anaconda.org/conda-forge/linux-64/harfbuzz-11.4.2-h15599e2_0.conda#63eb5b7e4230dfa0ee37b8fe26bc4dbd
 https://conda.anaconda.org/conda-forge/linux-64/pango-1.56.4-hadf4263_0.conda#79f71230c069a287efe3a8614069ddf1
 https://conda.anaconda.org/conda-forge/linux-64/r-base-4.5.1-h85845a0_0.conda#7f5b1b65c531dd70ee17c1ab9eb2d7c9
 https://conda.anaconda.org/bioconda/linux-64/ngscheckmate-1.0.1-py312pl5321h577a1d6_4.tar.bz2#395b2c2dbc328d1dfef69e940bc6b1b7
