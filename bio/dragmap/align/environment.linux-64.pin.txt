@@ -74,7 +74,7 @@ https://conda.anaconda.org/conda-forge/linux-64/krb5-1.21.3-h659f571_0.conda#3f4
 https://conda.anaconda.org/conda-forge/linux-64/libfreetype6-2.13.3-h48d6fc4_1.conda#3c255be50a506c50765a93a6644f32fe
 https://conda.anaconda.org/conda-forge/linux-64/libgfortran-ng-15.1.0-h69a702a_4.conda#b1a97c0f2c4f1bb2b8872a21fc7e17a7
 https://conda.anaconda.org/conda-forge/linux-64/libnghttp2-1.64.0-h161d5f1_0.conda#19e57602824042dfd0446292ef90488b
-https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.30-pthreads_h94d23a6_1.conda#7e2ba4ca7e6ffebb7f7fc2da2744df61
+https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.30-pthreads_h94d23a6_2.conda#dfc5aae7b043d9f56ba99514d5e60625
 https://conda.anaconda.org/conda-forge/linux-64/libtiff-4.7.0-h8261f1e_6.conda#b6093922931b535a7ba566b6f384fbe6
 https://conda.anaconda.org/conda-forge/linux-64/pcre2-10.45-hc749103_0.conda#b90bece58b4c2bf25969b70f3be42d25
 https://conda.anaconda.org/conda-forge/linux-64/python-3.13.5-hec9711d_102_cp313.conda#89e07d92cf50743886f41638d58c4328
@@ -112,11 +112,11 @@ https://conda.anaconda.org/bioconda/linux-64/samtools-1.22.1-h96c455f_0.tar.bz2#
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libxtst-1.2.5-hb9d3cd8_3.conda#7bbe9a0cc0df0ac5f5a8ad6d6a11af2f
 https://conda.anaconda.org/conda-forge/linux-64/cairo-1.18.4-h3394656_0.conda#09262e66b19567aff4f592fb53b28760
 https://conda.anaconda.org/conda-forge/linux-64/libboost-python-1.84.0-py313hf0ab243_7.conda#4d0032886fe3e25565489a979fdeaeaf
-https://conda.anaconda.org/conda-forge/linux-64/harfbuzz-11.4.1-h15599e2_0.conda#7da3b5c281ded5bb6a634e1fe7d3272f
+https://conda.anaconda.org/conda-forge/linux-64/harfbuzz-11.4.2-h15599e2_0.conda#63eb5b7e4230dfa0ee37b8fe26bc4dbd
 https://conda.anaconda.org/conda-forge/linux-64/libboost-python-devel-1.84.0-py313h59e1532_7.conda#c056e0a0b640b0d58f23cb631ea26398
 https://conda.anaconda.org/conda-forge/linux-64/boost-1.84.0-h59e1532_7.conda#2629249e7c14c5414d1197b9b48b013a
 https://conda.anaconda.org/conda-forge/linux-64/openjdk-23.0.2-h53dfc1b_2.conda#47eea31e0c3f960459237823e5e21a32
 https://conda.anaconda.org/conda-forge/linux-64/pango-1.56.4-hadf4263_0.conda#79f71230c069a287efe3a8614069ddf1
-https://conda.anaconda.org/bioconda/linux-64/dragmap-1.3.0-h5ca1c30_5.tar.bz2#593497ad440d952b19f54a43c5007585
+https://conda.anaconda.org/bioconda/linux-64/dragmap-1.3.0-h5ca1c30_6.conda#13c79a748b41db1bde1c6eb9b31a6fe6
 https://conda.anaconda.org/conda-forge/linux-64/r-base-4.5.1-h85845a0_0.conda#7f5b1b65c531dd70ee17c1ab9eb2d7c9
 https://conda.anaconda.org/bioconda/noarch/picard-3.4.0-hdfd78af_0.tar.bz2#40de476004af885d70d59725189bd07d
