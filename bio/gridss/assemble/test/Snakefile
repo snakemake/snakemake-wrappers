@@ -33,8 +33,8 @@ reference_index_endings = (".amb",".ann", ".bwt", ".pac", ".sa", ".gridsscache",
 
 rule gridss_assemble:
     input:
-        bams=expand("mapped/{sample}.bam", sample=samples),
-        bais=expand("mapped/{sample}.bam.bai", sample=samples),
+        bam=expand("mapped/{sample}.bam", sample=samples),
+        bai=expand("mapped/{sample}.bam.bai", sample=samples),
         reference="reference/genome.fasta",
         dictionary="reference/genome.dict",
         indices=multiext("reference/genome.fasta", *reference_index_endings),
