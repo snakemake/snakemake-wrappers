@@ -6,10 +6,9 @@ url: https://github.com/lit-regensburg/samshee
 authors:
   - Thibault Dayris
 input:
-  - Sample sheet V2, either json or csv formatted
+  - sample: Sample sheet V2, either json or csv formatted
+  - schema: Optional json validation schema
 output:
   - Sample sheet V2, either json or csv formatted
 params:
-  - extra: |
-    Optional parameters like `--schema` or 
-    `--output-format` in user expects `sectioned` format.
+  - extra: Optional parameters as `--schema` or `--output-format` if user expects `sectioned` format.
