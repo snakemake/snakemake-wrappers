@@ -2337,6 +2337,21 @@ def test_bwa_mem(run):
     )
 
 
+def test_samshee(run):
+    run(
+        "bio/samshee",
+        ["snakemake", "--cores", "1", "samples.json", "--use-conda", "-F"],
+    )
+    run(
+        "bio/samshee",
+        ["snakemake", "--cores", "1", "samples.csv", "--use-conda", "-F"],
+    )
+    run(
+        "bio/samshee",
+        ["snakemake", "--cores", "1", "samples_schema.json", "--use-conda", "-F"],
+    )
+
+
 def test_bwa_mem_sort_samtools(run):
     run(
         "bio/bwa/mem",

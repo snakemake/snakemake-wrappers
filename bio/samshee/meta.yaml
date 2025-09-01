@@ -1,0 +1,15 @@
+name: samshee
+description: |
+  A schema-agnostic parser and writer for 
+  illumina® sample sheets v2 and similar documents.
+url: https://github.com/lit-regensburg/samshee
+authors:
+  - Thibault Dayris
+input:
+  - Sample sheet V2, either json or csv formatted
+output:
+  - Sample sheet V2, either json or csv formatted
+params:
+  extra: |
+    Optional parameters like `--schema` or 
+    `--output-format` in user expects `sectioned` format.
