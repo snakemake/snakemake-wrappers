@@ -16,10 +16,10 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
 
 if get_format(str(snakemake.output)) == "json":
-    extra = " --output-format json "
+    extra += " --output-format json "
 
 if get_format(str(snakemake.input.sample)) == "json":
-    extra = " --input-format json "
+    extra += " --input-format json "
 
 schema = snakemake.input.get("schema")
 if schema:
