@@ -10,6 +10,6 @@ input:
 output:
   - Sample sheet V2, either json or csv formatted
 params:
-  extra: |
+  - extra: |
     Optional parameters like `--schema` or 
     `--output-format` in user expects `sectioned` format.
