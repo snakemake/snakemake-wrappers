@@ -1,7 +1,7 @@
 name: samshee
 description: |
   A schema-agnostic parser and writer for
-  illumina® sample sheets v2 and similar documents.
+  illumina sample sheets v2 and similar documents.
 url: https://github.com/lit-regensburg/samshee
 authors:
   - Thibault Dayris
