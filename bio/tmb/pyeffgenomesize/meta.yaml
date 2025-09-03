@@ -10,9 +10,9 @@ input:
   - bam: Optional path to a BAM file
 output:
   - txt: Path to effective genome size result
-  - mosdepth: Optional path to MosDepth intermediate intervals
-  - intersect: Optional path to BedTools intermediate intervals
-  - regions: Optional path MosDepth intermadiate coverage results
+  - mosdepth: Optional path to mosdepth intermediate intervals
+  - intersect: Optional path to bedtools intermediate intervals
+  - regions: Optional path mosdepth intermadiate coverage results
 params:
   - extra: Optional parameters, except IO parameters, threading, and `--mosdepth`.
 note: |
