@@ -1,0 +1,21 @@
+name: pyEffGenomeSize
+description: |
+  Calculate the effective genome size from a BAM file and genome annotations.
+url: https://github.com/bioinfo-pf-curie/TMB/tree/master?tab=readme-ov-file#pyeffgenomesizepy
+authors:
+  - Thibault Dayris
+input:
+  - annotation: Path to a GTF/GFF3 formatted genome annotation
+  - bed: Path to BED formatted genome intervals to operate on
+  - bam: Optional path to a BAM file
+output:
+  - txt: Path to effective genome size result
+  - mosdepth: Optional path to MosDepth intermediate intervals
+  - intersect: Optional path to BedTools intermediate intervals
+  - regions: Optional path MosDepth intermadiate coverage results
+params:
+  - extra: Optional parameters, except IO parameters, threading, and `--mosdepth`.
+note: |
+  This tool handles Gencode formatted GFF/GTF. To process any other source (Ensembl,
+  Refseq, ...) make sure the key `transcript_type` exists in the GTF and is never
+  empty.
