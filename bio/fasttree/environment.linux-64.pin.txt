@@ -1,9 +1,10 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
+# created-by: conda 24.9.2
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
-https://conda.anaconda.org/conda-forge/linux-64/libgomp-13.2.0-h807b86a_2.conda#e2042154faafe61969556f28bade94b9
+https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.1.0-h767d61c_4.conda#3baf8976c96134738bba224e9ef6b1e5
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
-https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-13.2.0-h807b86a_2.conda#c28003b0be0494f9a7664389146716ff
-https://conda.anaconda.org/bioconda/linux-64/fasttree-2.1.11-h031d066_2.tar.bz2#febe1c5a457b962a36c68c1d2d32be7c
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.1.0-h767d61c_4.conda#f406dcbb2e7bef90d793e50e79a2882b
+https://conda.anaconda.org/bioconda/linux-64/fasttree-2.2.0-h7b50bb2_0.conda#7e98e9bf25eca335b0d81d9e8905e916
