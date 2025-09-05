@@ -1,0 +1,34 @@
+{
+  "$id": "https://dataportal.lit.eu/schemas/litngscoresamplesheet/v0.1/litngscoresamplesheet.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Additional requirements for illumina samplesheets for LIT NGScore runs",
+    "title": "LIT NGScore sample sheet schema",
+    "type": "object",
+    "required": ["Header", "BCLConvert_Data"],
+    "properties": {
+        "Header": {
+            "type": "object",
+            "required": ["RunName"],
+            "properties": {
+                "RunName": {"type": "string"},
+                "NGS_Core_Projectid": {
+                    "type": "string",
+                    "$ref": "#/$defs/ngscoreprojectid"
+                }
+            }
+        },
+        "BCLConvert_Data": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": ["Sample_ID"],
+                "properties": {"Sample_ID": {"type": "string"}}
+            }
+        }
+    },
+    "$defs": {
+        "ngscoreprojectid": {"pattern": "^p[0-9]{3}$"},
+        "ngscoreprojectname": {"pattern": "^p[0-9]{3}(_.*)?$"},
+        "externalprojectname": {}
+    }
+}
