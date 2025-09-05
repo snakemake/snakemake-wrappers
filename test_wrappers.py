@@ -6729,6 +6729,15 @@ def test_sortmerna_se(run):
         ],
     )
 
+def test_tmb_pyeffgenomesize(run):
+    run(
+        "bio/tmb/pyeffgenomesize",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "minimal.txt"],
+    )
+    run(
+        "bio/tmb/pyeffgenomesize",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "complete.txt"],
+    )
 
 def test_tmb_pytmb(run):
     run(
