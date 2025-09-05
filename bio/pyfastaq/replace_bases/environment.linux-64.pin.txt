@@ -24,6 +24,6 @@ https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.50.4-h0c1763c_0.cond
 https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.38.1-h0b41bf4_0.conda#40b61aab5c7ba9ff276c41cfffe6b80b
 https://conda.anaconda.org/conda-forge/linux-64/readline-8.2-h8c095d6_2.conda#283b96675859b20a825f8fa30f311446
 https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_hd72426e_102.conda#a0116df4f4ed05c303811a837d5b39d8
-https://conda.anaconda.org/conda-forge/linux-64/python-3.13.5-hec9711d_102_cp313.conda#89e07d92cf50743886f41638d58c4328
+https://conda.anaconda.org/conda-forge/linux-64/python-3.13.7-h2b335a9_100_cp313.conda#724dcf9960e933838247971da07fe5cf
 https://conda.anaconda.org/conda-forge/noarch/pip-25.2-pyh145f28c_0.conda#e7ab34d5a93e0819b62563c78635d937
 https://conda.anaconda.org/bioconda/noarch/pyfastaq-3.18.0-pyhdfd78af_0.tar.bz2#3b009c832acd828e64cce3b15d2fd93f
