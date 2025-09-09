@@ -15,7 +15,7 @@ output:
   - regions: Optional path mosdepth intermadiate coverage results
 params:
   - extra: Optional parameters, except IO parameters, threading, and `--mosdepth`.
-note: |
+notes: |
   This tool handles Gencode formatted GFF/GTF. To process any other source (Ensembl,
   Refseq, ...) make sure the key `transcript_type` exists in the GTF and is never
   empty.
