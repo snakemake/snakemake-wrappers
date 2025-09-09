@@ -5,7 +5,7 @@ url: https://github.com/bioinfo-pf-curie/TMB/tree/master?tab=readme-ov-file#pyef
 authors:
   - Thibault Dayris
 input:
-  - annotation: Path to a GTF/GFF3 formatted genome annotation
+  - gtf: Path to a GTF/GFF3 formatted genome annotation
   - bed: Path to BED formatted genome intervals to operate on
   - bam: Optional path to a BAM file
 output:
