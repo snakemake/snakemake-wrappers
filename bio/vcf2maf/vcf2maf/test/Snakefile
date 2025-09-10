@@ -1,8 +1,8 @@
 rule test_vcf2maf:
     input:
         # Optional external VEP install
-        # vep="/path/to/vep/bin",
-        # vep_cache="/path/to/vep_cache",
+        # vep="path/to/vep/bin",
+        # vep_cache="path/to/vep_cache",
         # vep_config="vep.config",
         vcf="small.vcf",
         # Optional input files
