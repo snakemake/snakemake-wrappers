@@ -24,7 +24,7 @@ chain = snakemake.input.get("chain")
 if chain:
     extra += f" --remap-chain={quote(chain)}"
 
-# Acquiering external VEP installation
+# Acquiring external VEP installation
 # if any...
 vep = snakemake.input.get("vep", "")
 if vep:
