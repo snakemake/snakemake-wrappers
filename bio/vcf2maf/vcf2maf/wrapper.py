@@ -40,14 +40,14 @@ if vep_cache:
 
 # Automatically turning VEP off if user
 # does not provide at least one VEP information
-if not (vep or vep_cache or vep_config):
-    vep = " --inhibit-vep "
-    if snakemake.threads > 1:
-        warn("Too many threads requested: only 1 used.")
-else:
+if vep and vep_cache and vep_config:
     # vcf2maf.pl can run VEP using more than one thread
     # This would be the only multithreaded section of the code
-    vep += f" --vep-forks={snakemake.threads} "
+    vep += f" --vep-forks={snakemake.threads}"
+else:
+    vep = " --inhibit-vep"
+    if snakemake.threads > 1:
+        warn("Too many threads requested: only 1 used.")
 
 # Autmatically set temporary directory
 with TemporaryDirectory() as tempdir:
