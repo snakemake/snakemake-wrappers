@@ -51,10 +51,9 @@ else:
 
 # Autmatically set temporary directory
 with TemporaryDirectory() as tempdir:
-    quoted_tempdir = quote(str(tempdir))
     shell(
         "vcf2maf.pl "
-        "--tmp-dir={quoted_tempdir} {extra} {vep} "
+        "--tmp-dir={tempdir:q} {extra} {vep} "
         "--input-vcf={snakemake.input.vcf:q} "
         "--output-maf={snakemake.output:q} "
         "{log} "
