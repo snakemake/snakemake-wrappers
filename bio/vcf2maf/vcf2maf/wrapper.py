@@ -10,6 +10,7 @@ __license__ = "MIT"
 from tempfile import TemporaryDirectory
 from snakemake.shell import shell
 from warnings import warn
+from shlex import quote
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -27,15 +28,15 @@ if chain:
 # if any...
 vep = snakemake.input.get("vep", "")
 if vep:
-    vep = f" --vep-path='{vep}' "
+    vep = f" --vep-path={quote(vep)} "
 
 vep_config = snakemake.input.get("vep_config")
 if vep_config:
-    vep += f" --vep-config='{vep_config}' "
+    vep += f" --vep-config={quote(vep_config)} "
 
 vep_cache = snakemake.input.get("vep_cache")
 if vep_cache:
-    vep += f" --vep-data='{vep_cache}' "
+    vep += f" --vep-data={quote(vep_cache)} "
 
 # Automatically turning VEP off if user
 # does not provide at least one VEP information
@@ -52,7 +53,7 @@ else:
 with TemporaryDirectory() as tempdir:
     shell(
         "vcf2maf.pl "
-        "--tmp-dir='{tempdir}' {extra} {vep} "
+        "--tmp-dir={quote(tempdir)} {extra} {vep} "
         "--input-vcf={snakemake.input.vcf:q} "
         "--output-maf={snakemake.output:q} "
         "{log} "
