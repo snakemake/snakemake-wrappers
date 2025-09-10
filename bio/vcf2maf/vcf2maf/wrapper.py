@@ -18,11 +18,11 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 # Optional input files
 fasta = snakemake.input.get("fasta")
 if fasta:
-    extra += f" --ref-fasta='{fasta}' "
+    extra += f" --ref-fasta={quote(fasta)} "
 
 chain = snakemake.input.get("chain")
 if chain:
-    extra += f" --remap-chain='{chain}'"
+    extra += f" --remap-chain={quote(chain)}"
 
 # Acquiering external VEP installation
 # if any...
@@ -51,9 +51,10 @@ else:
 
 # Autmatically set temporary directory
 with TemporaryDirectory() as tempdir:
+    quoted_tempdir = quote(str(tempdir))
     shell(
         "vcf2maf.pl "
-        "--tmp-dir={quote(tempdir)} {extra} {vep} "
+        "--tmp-dir={quoted_tempdir} {extra} {vep} "
         "--input-vcf={snakemake.input.vcf:q} "
         "--output-maf={snakemake.output:q} "
         "{log} "
