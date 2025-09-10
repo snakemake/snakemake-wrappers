@@ -1,0 +1,19 @@
+rule test_vcf2maf:
+    input:
+        vcf="small.vcf",
+        # Optional input files
+        # chain="small.chain",
+        fasta="small.fa",
+        # Optional external VEP install
+        # vep="/path/to/vep/bin",
+        # vep_cache="/path/to/vep_cache",
+        # vep_config="vep.config",
+    output:
+        "small.maf",
+    threads: 1
+    log:
+        "test_vcf2maf.log",
+    params:
+        extra=" --tumor-id ind1 --normal-id NORMAL ",
+    wrapper:
+        "master/bio/vcf2maf/vcf2maf"
