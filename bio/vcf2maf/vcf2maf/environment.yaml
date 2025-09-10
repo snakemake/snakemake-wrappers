@@ -4,4 +4,3 @@ channels:
   - nodefaults
 dependencies:
   - vcf2maf =1.6.22
-  - ensembl-vep =115
