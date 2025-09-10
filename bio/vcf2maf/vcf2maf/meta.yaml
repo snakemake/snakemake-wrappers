@@ -15,9 +15,9 @@ output:
 params:
   - extra: Optional parameters besides IO and temporary directory
 notes: |
-  In order to use VEP in this wrapper, use must provide an external VEP
-  binary, cache and/or configuration. In case none of the VEP-related
+  In order to use VEP in this wrapper, user must provide an external VEP
+  binary, cache and/or configuration. If none of the VEP-related
   input parameters are filled, this wrapper automatically turns
   Ensembl VEP options off.
 
-  This wrapper uses only one threads if Ensembl VEP is turned off.
+  This wrapper uses only one thread if Ensembl VEP is turned off.
