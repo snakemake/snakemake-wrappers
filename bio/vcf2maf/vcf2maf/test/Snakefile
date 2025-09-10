@@ -1,13 +1,13 @@
 rule test_vcf2maf:
     input:
-        vcf="small.vcf",
-        # Optional input files
-        # chain="small.chain",
-        fasta="small.fa",
         # Optional external VEP install
         # vep="/path/to/vep/bin",
         # vep_cache="/path/to/vep_cache",
         # vep_config="vep.config",
+        vcf="small.vcf",
+        # Optional input files
+        # chain="small.chain",
+        fasta="small.fa",
     output:
         "small.maf",
     threads: 1
