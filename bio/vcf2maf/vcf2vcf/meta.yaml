@@ -7,7 +7,7 @@ author:
 input:
   - vcf: Path to the VCF to reformat
   - fasta: Path to a reference genome
-  - chain: Optional chain file to remap variants to a different assemnly
+  - chain: Optional chain file to remap variants to a different assembly
   - normal_bam: Optional path to normal bam file to overwrite DP:AD:ADF:ADR
   - tumor_bam: Optional path to tumor bam file to overwrite DP:AD:ADF:ADR
 output:
