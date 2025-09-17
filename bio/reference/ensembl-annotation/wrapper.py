@@ -47,22 +47,27 @@ else:
         "invalid format specified. Only 'gtf[.gz]' and 'gff3[.gz]' are currently supported."
     )
 
-
-url = snakemake.params.get("url", "ftp://ftp.ensembl.org/pub")
+url = snakemake.params.get("url", "https://ftp.ensembl.org/pub")
 url = f"{url}/{branch}release-{release}/{out_fmt}/{species}/{species.capitalize()}.{build}.{gtf_release}.{flavor}{suffix}"
-
+ftp_url = url.replace("https://", "ftp://")
 
 try:
     if out_gz:
         shell("curl -L {url} > {snakemake.output[0]} {log}")
     else:
         shell("(curl -L {url} | gzip -d > {snakemake.output[0]}) {log}")
-except subprocess.CalledProcessError as e:
-    if snakemake.log:
-        sys.stderr = open(snakemake.log[0], "a")
-    print(
-        "Unable to download annotation data from Ensembl. "
-        "Did you check that this combination of species, build, and release is actually provided?",
-        file=sys.stderr,
-    )
-    exit(1)
+except subprocess.CalledProcessError:
+    try:
+        if out_gz:
+            shell("curl --fail -L {ftp_url} > {snakemake.output[0]} {log}")
+        else:
+            shell("(curl --fail -L {ftp_url} | gzip -d > {snakemake.output[0]}) {log}")
+    except subprocess.CalledProcessError:
+        if snakemake.log:
+            sys.stderr = open(snakemake.log[0], "a")
+        print(
+            "Unable to download annotation data from Ensembl. "
+            "Did you check that this combination of species, build, and release is actually provided?",
+            file=sys.stderr,
+        )
+        exit(1)
