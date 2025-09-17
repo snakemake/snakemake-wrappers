@@ -20,16 +20,17 @@ if chain:
 
 normal_bam = snakemake.input.get("normal_bam")
 if normal_bam:
-    extra += f" --normal-bam={quote(normal_bam)} "
+    extra += f" --normal-bam={quote(normal_bam)}"
 
 tumor_bam = snakemake.input.get("tumor_bam")
 if tumor_bam:
-    extra += f" --tumor-bam={quote(tumor_bam)} "
+    extra += f" --tumor-bam={quote(tumor_bam)}"
 
 shell(
-    "vcf2vcf.pl {extra} "
-    "--input-vcf={snakemake.input.vcf:q} "
-    "--ref-fasta={snakemake.input.fasta:q} "
-    "--output-vcf={snakemake.output:q} "
-    "{log} "
+    "vcf2vcf.pl"
+    " --input-vcf={snakemake.input.vcf:q}"
+    " --ref-fasta={snakemake.input.fasta:q}"
+    " {extra}"
+    " --output-vcf={snakemake.output:q}"
+    " {log}"
 )
