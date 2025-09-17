@@ -26,8 +26,9 @@ if chain:
 
 # Acquiring external VEP installation
 # if any...
-vep = snakemake.input.get("vep", "")
-if vep:
+vep = ""
+vep_path = snakemake.input.get("vep", "")
+if vep_path:
     vep = f"--vep-path={quote(vep)}"
 
 vep_config = snakemake.input.get("vep_config")
@@ -40,7 +41,7 @@ if vep_cache:
 
 # Automatically turning VEP off if user
 # does not provide at least one VEP information
-if vep and vep_cache and vep_config:
+if vep_path and vep_cache and vep_config:
     # vcf2maf.pl can run VEP using more than one thread
     # This would be the only multithreaded section of the code
     vep += f" --vep-forks={snakemake.threads}"
