@@ -18,7 +18,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 # Optional input files
 fasta = snakemake.input.get("fasta")
 if fasta:
-    extra += f" --ref-fasta={quote(fasta)} "
+    extra += f" --ref-fasta={quote(fasta)}"
 
 chain = snakemake.input.get("chain")
 if chain:
@@ -28,15 +28,15 @@ if chain:
 # if any...
 vep = snakemake.input.get("vep", "")
 if vep:
-    vep = f" --vep-path={quote(vep)} "
+    vep = f"--vep-path={quote(vep)}"
 
 vep_config = snakemake.input.get("vep_config")
 if vep_config:
-    vep += f" --vep-config={quote(vep_config)} "
+    vep += f" --vep-config={quote(vep_config)}"
 
 vep_cache = snakemake.input.get("vep_cache")
 if vep_cache:
-    vep += f" --vep-data={quote(vep_cache)} "
+    vep += f" --vep-data={quote(vep_cache)}"
 
 # Automatically turning VEP off if user
 # does not provide at least one VEP information
@@ -52,9 +52,11 @@ else:
 # Autmatically set temporary directory
 with TemporaryDirectory() as tempdir:
     shell(
-        "vcf2maf.pl "
-        "--tmp-dir={tempdir:q} {extra} {vep} "
-        "--input-vcf={snakemake.input.vcf:q} "
-        "--output-maf={snakemake.output:q} "
-        "{log} "
+        "vcf2maf.pl"
+        " --input-vcf={snakemake.input.vcf:q}"
+        " {vep}"
+        " {extra}"
+        " --tmp-dir={tempdir:q}"
+        " --output-maf={snakemake.output:q}"
+        " {log}"
     )
