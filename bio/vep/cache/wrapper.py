@@ -3,6 +3,7 @@ __copyright__ = "Copyright 2023, Johannes Köster"
 __email__ = "johannes.koester@uni-due.de"
 __license__ = "MIT"
 
+import subprocess as sp
 import tempfile
 from pathlib import Path
 from snakemake.shell import shell
