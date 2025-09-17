@@ -1,0 +1,17 @@
+rule test_vcf2vcf:
+    input:
+        vcf="small.vcf",
+        fasta="small.fa",
+        # Optional input files
+        # chain="small.chain",
+        # normal_bam="normal.bam",
+        tumor_bam="tumor.bam",
+    output:
+        "corrected.vcf",
+    threads: 1
+    log:
+        "test_vcf2vcf.log",
+    params:
+        extra=" --new-tumor-id ind2 ",
+    wrapper:
+        "master/bio/vcf2maf/vcf2vcf"

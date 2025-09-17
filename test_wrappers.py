@@ -1040,6 +1040,20 @@ def test_open_cravat_module(run):
     )
 
 
+def test_vcf2maf_vcf2vcf(run):
+    run(
+        "bio/vcf2maf/vcf2vcf",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "corrected.vcf",
+        ],
+    )
+
+
 def test_varscan2_snpeff_meta(run):
     run(
         "meta/bio/varscan2_snpeff",
