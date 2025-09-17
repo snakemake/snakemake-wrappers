@@ -21,8 +21,16 @@ except ValueError:
 with tempfile.TemporaryDirectory() as tmpdir:
     # We download the cache tarball manually because vep_install does not consider proxy settings (in contrast to curl).
     # See https://github.com/bcbio/bcbio-nextgen/issues/1080
-    url_https = f"https://{snakemake.params.get('url', 'ftp.ensembl.org/pub')}/release-{release}/variation/{vep_dir}/{cache_tarball}"
-    url_ftp = url_https.replace("https://", "ftp://")
+    user_url = snakemake.params.get("url", "ftp.ensembl.org/pub")
+    if user_url.startswith("https://"):
+        url_https = f"{user_url}/release-{release}/variation/{vep_dir}/{cache_tarball}"
+        url_ftp = url_https.replace("https://", "ftp://")
+    elif user_url.startswith("ftp://"):
+        url_ftp = user_url
+        url_https = url_ftp.replace("ftp://", "https://")
+    else:
+        url_https = f"https://{user_url}/release-{release}/variation/{vep_dir}/{cache_tarball}"
+        url_ftp = url_https.replace("https://", "ftp://")
     cache_tarball = (
         f"{snakemake.params.species}_vep_{release}_{snakemake.params.build}.tar.gz"
     )
