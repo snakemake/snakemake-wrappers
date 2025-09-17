@@ -1,5 +1,18 @@
 # Changelog
 
+## [7.4.0](https://github.com/snakemake/snakemake-wrappers/compare/v7.3.0...v7.4.0) (2025-09-17)
+
+
+### Features
+
+* Samshee ([#4451](https://github.com/snakemake/snakemake-wrappers/issues/4451)) ([b1430ee](https://github.com/snakemake/snakemake-wrappers/commit/b1430ee81a7c819d1fb7e1fec5d2764f1c553e6c))
+* vcf2vcf ([#4473](https://github.com/snakemake/snakemake-wrappers/issues/4473)) ([250dc12](https://github.com/snakemake/snakemake-wrappers/commit/250dc129e40d9d01cf42440276419578bd3f06a2))
+
+
+### Bug Fixes
+
+* Switch ensembl annotation download to HTTPS with FTP fallback ([#4477](https://github.com/snakemake/snakemake-wrappers/issues/4477)) ([0cfb61f](https://github.com/snakemake/snakemake-wrappers/commit/0cfb61f829e3db910d2de0120d2db174bd40cc35))
+
 ## [7.3.0](https://github.com/snakemake/snakemake-wrappers/compare/v7.2.0...v7.3.0) (2025-09-17)
 
 
