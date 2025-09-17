@@ -46,7 +46,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         url_ftp = url_https.replace("https://", "ftp://")
 
     try:
-        shell(f"curl -L {url_https} -o {tmpdir}/{cache_tarball} {log}")
+        shell(f"curl --fail -L {url_https} -o {tmpdir}/{cache_tarball} {log}")
     except sp.CalledProcessError:
         shell(f"curl -L {url_ftp} -o {tmpdir}/{cache_tarball} {log}")
 
