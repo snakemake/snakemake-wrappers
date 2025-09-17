@@ -41,7 +41,7 @@ if vep_cache:
 
 # Automatically turning VEP off if user
 # does not provide at least one VEP information
-if vep_path and vep_cache and vep_config:
+if all([vep_path, vep_cache, vep_config]):
     # vcf2maf.pl can run VEP using more than one thread
     # This would be the only multithreaded section of the code
     vep += f" --vep-forks={snakemake.threads}"
