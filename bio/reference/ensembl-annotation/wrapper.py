@@ -53,9 +53,9 @@ ftp_url = url.replace("https://", "ftp://")
 
 try:
     if out_gz:
-        shell("curl -L {url} > {snakemake.output[0]} {log}")
+        shell("curl --fail -L {url} > {snakemake.output[0]} {log}")
     else:
-        shell("(curl -L {url} | gzip -d > {snakemake.output[0]}) {log}")
+        shell("(curl --fail -L {url} | gzip -d > {snakemake.output[0]}) {log}")
 except subprocess.CalledProcessError:
     try:
         if out_gz:
