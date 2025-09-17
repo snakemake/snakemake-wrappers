@@ -1,0 +1,23 @@
+name: "megahit"
+
+url: https://github.com/voutcn/megahit
+
+description: |
+  MEGAHIT is an ultra-fast and memory-efficient NGS assembler. It is optimized for metagenomes, but also works well on generic single genome assembly (small or mammalian size) and single-cell assembly.
+  Input options that can be specified for multiple times (supporting plain text and gz/bz2 extensions).
+
+input:
+  - reads: list of reads in FASTQ format
+  - r1: forward reads
+  - r2: reverse reads
+  - interleaved: interleaved reads
+  - unpaired: unpaired reads
+
+output:
+  - contigs: output file with contigs
+  - log: log file
+  - json: options json file
+
+authors:
+  - Jie Zhu
+  - Filipe G. Vieira

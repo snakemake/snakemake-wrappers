@@ -52,7 +52,7 @@ jobs:
         shell: bash -el {0}
         run: |
           conda config --set channel_priority strict
-          conda install -n snakemake -y snakemake-minimal snakemake
+          conda install -n snakemake -y snakemake snakemake-minimal snakemake-storage-plugin-http
 
       - name: Fetch master
         run: |

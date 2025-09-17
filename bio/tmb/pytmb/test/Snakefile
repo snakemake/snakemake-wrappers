@@ -1,14 +1,14 @@
 rule test_pytmb:
     input:
-        vcf="sample.bcf",
-        db_config="dbconfig.yaml",
-        var_config="varconfig.yaml",
-        bed="regions.bed",
+        vcf="input/sample.bcf",
+        db_config="input/dbconfig.yaml",
+        var_config="input/varconfig.yaml",
+        bed="input/regions.bed",
     output:
-        res="tmb.txt",
-        vcf="tmp.vcf",
+        res="output/tmb.txt",
+        vcf="output/tmp.vcf",
     log:
-        "pytmb.log",
+        "log/pytmb.log",
     params:
         extra="--verbose",
     wrapper:

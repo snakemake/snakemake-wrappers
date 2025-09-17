@@ -194,6 +194,117 @@ def test_mmseqs2(run):
     )
 
 
+def test_aria2c(run):
+    run(
+        "utils/aria2c",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "results/file.fas.gz",
+            "results/file.md5.fas.gz",
+            "results/file.md5file.fas.gz",
+            "results/file.sha1file.fas.gz",
+            "results/file.sha224file.fas.gz",
+            "results/file.sha256file.fas.gz",
+            "results/file.sha384file.fas.gz",
+            "results/file.sha512file.fas.gz",
+            "results/file.md5fileH.fas.gz",
+        ],
+    )
+
+
+def test_agat(run):
+    run(
+        "bio/agat",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "agat_config.yaml",
+            "agat_levels.yaml",
+            "test_agat_convert_bed2gff.gff",
+            "test_agat_convert_embl2gff.gff",
+            "test_agat_convert_genscan2gff.gff",
+            "test_agat_convert_mfannot2gff.gff",
+            "test_agat_convert_minimap2_bam2gff_bam.gff",
+            "test_agat_convert_minimap2_bam2gff_sam.gff",
+            "test_agat_convert_sp_gff2bed.bed",
+            "test_agat_convert_sp_gff2gtf.gtf",
+            "test_agat_convert_sp_gff2tsv.tsv",
+            "test_agat_convert_sp_gff2zff.dna",
+            "test_agat_convert_sp_gxf2gxf.gff",
+            "test_agat_sp_Prokka_inferNameFromAttributes.gff",
+            "test_agat_sp_add_intergenic_regions.gff",
+            "test_agat_sp_add_introns.gff",
+            "test_agat_sp_add_splice_sites.gff",
+            "test_agat_sp_add_start_and_stop.gff",
+            "test_agat_sp_alignment_output_style.gff",
+            "test_agat_sp_clipN_seqExtremities_and_fixCoordinates.gff",
+            "test_agat_sp_compare_two_annotations",
+            "test_agat_sp_complement_annotations.gff",
+            "test_agat_sp_ensembl_output_style.gff",
+            "test_agat_sp_extract_attributes_ID.txt",
+            "test_agat_sp_extract_sequences.fasta",
+            "test_agat_sp_filter_by_ORF_size_matched.gff",
+            "test_agat_sp_filter_by_locus_distance.gff",
+            "test_agat_sp_filter_feature_by_attribute_presence.gff",
+            "test_agat_sp_filter_feature_by_attribute_value.gff",
+            "test_agat_sp_filter_feature_from_keep_list.gff",
+            "test_agat_sp_filter_feature_from_kill_list.gff",
+            "test_agat_sp_filter_gene_by_intron_numbers.gff",
+            "test_agat_sp_filter_gene_by_length.gff",
+            "test_agat_sp_filter_incomplete_gene_coding_models.gff",
+            "test_agat_sp_filter_record_by_coordinates",
+            "test_agat_sp_fix_cds_phases.gff",
+            "test_agat_sp_fix_features_locations_duplicated.gff",
+            "test_agat_sp_fix_fusion_all.gff",
+            "test_agat_sp_fix_longest_ORF_all.gff",
+            "test_agat_sp_fix_overlaping_genes.gff",
+            "test_agat_sp_fix_small_exon_from_extremities.gff",
+            "test_agat_sp_flag_premature_stop_codons.gff",
+            "test_agat_sp_flag_short_introns.gff",
+            "test_agat_sp_functional_statistics",
+            "test_agat_sp_keep_longest_isoform.gff",
+            "test_agat_sp_kraken_assess_liftover.gff",
+            "test_agat_sp_list_short_introns.gff",
+            "test_agat_sp_manage_IDs.gff",
+            "test_agat_sp_manage_UTRs_report.txt",
+            "test_agat_sp_manage_attributes.gff",
+            "test_agat_sp_manage_functional_annotation.gff",
+            "test_agat_sp_manage_introns_report.txt",
+            "test_agat_sp_merge_annotations.gff",
+            "test_agat_sp_move_attributes_within_records.gff",
+            "test_agat_sp_prokka_fix_fragmented_gene_annotations",
+            "test_agat_sp_sensitivity_specificity.txt",
+            "test_agat_sp_separate_by_record_type",
+            "test_agat_sp_statistics.txt",
+            "test_agat_sq_add_attributes_from_tsv.gff",
+            "test_agat_sq_add_hash_tag.gff",
+            "test_agat_sq_add_locus_tag.gff",
+            "test_agat_sq_filter_feature_from_fasta.gff",
+            "test_agat_sq_list_attributes.txt",
+            "test_agat_sq_manage_IDs.txt",
+            "test_agat_sq_manage_attributes.gff",
+            "test_agat_sq_mask.gff",
+            "test_agat_sq_remove_redundant_entries.gff",
+            "test_agat_sq_repeats_analyzer.gff",
+            "test_agat_sq_reverse_complement.gff",
+            "test_agat_sq_rfam_analyzer.tsv",
+        ],
+    )
+
+
 def test_miller(run):
     run(
         "utils/miller",
@@ -602,6 +713,53 @@ def test_sickle_se(run):
     )
 
 
+def test_bwameth_mem(run):
+    run(
+        "bio/bwameth/memx",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "A.mem.bam",
+        ],
+    )
+    run(
+        "bio/bwameth/memx",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "A.mem2.bam",
+        ],
+    )
+    run(
+        "bio/bwameth/memx",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "A.picard_sort.bam",
+        ],
+    )
+    run(
+        "bio/bwameth/memx",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "A.samtools_sort.bam",
+        ],
+    )
+
+
 def test_bwameth_index(run):
     run(
         "bio/bwameth/index",
@@ -948,6 +1106,20 @@ def test_open_cravat_module(run):
     )
 
 
+def test_vcf2maf_vcf2vcf(run):
+    run(
+        "bio/vcf2maf/vcf2vcf",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "corrected.vcf",
+        ],
+    )
+
+
 def test_varscan2_snpeff_meta(run):
     run(
         "meta/bio/varscan2_snpeff",
@@ -1044,7 +1216,8 @@ def test_mapdamage2(run):
             "--cores",
             "1",
             "--use-conda",
-            "results/a/Runtime_log.txt",
+            "results/rescale/a.bam",
+            "results/all/a.bam",
         ],
     )
 
@@ -1254,7 +1427,21 @@ def test_deseq2_deseqdataset(run):
 
 
 def test_deseq2_wald(run):
-    run("bio/deseq2/wald", ["snakemake", "--cores", "1", "--use-conda", "dge.tsv"])
+    run(
+        "bio/deseq2/wald",
+        ["snakemake", "--cores", "1", "--use-conda", "dge_normal.tsv"],
+    )
+
+    run("bio/deseq2/wald", ["snakemake", "--cores", "1", "--use-conda", "dge_ashr.tsv"])
+
+    run(
+        "bio/deseq2/wald",
+        ["snakemake", "--cores", "1", "--use-conda", "dge_apeglm.tsv"],
+    )
+
+    run("bio/deseq2/wald", ["snakemake", "--cores", "1", "--use-conda", "dge_2f.tsv"])
+
+    run("bio/deseq2/wald", ["snakemake", "--cores", "1", "--use-conda", "dge_1s.tsv"])
 
 
 def test_arriba_star_meta(run):
@@ -1265,41 +1452,44 @@ def test_arriba_star_meta(run):
 
 
 def test_csvtk(run):
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/uniq.txt"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/stats.txt"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/split"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/sort.csv"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/cut.csv"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/grep.csv"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/sample.csv"])
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/join.csv"])
-
-    run(
-        "utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/headers.csv"]
-    )
-
     run(
         "utils/csvtk",
-        ["snakemake", "--cores", "1", "--use-conda", "csvtk/frequency.csv"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "csvtk/cat.csv",
+            "csvtk/summary_tsv.csv",
+            "csvtk/summary_csv.csv",
+            "csvtk/frequency.csv",
+            "csvtk/headers.csv",
+            "csvtk/join.csv",
+            "csvtk/sample.csv",
+            "csvtk/grep.csv",
+            "csvtk/cut.csv",
+            "csvtk/sort.csv",
+            "csvtk/split",
+            "csvtk/stats.txt",
+            "csvtk/uniq.txt",
+        ],
+        compare_results_with_expected={
+            "csvtk/cat.csv": "expected/cat.csv",
+            "csvtk/summary_tsv.csv": "expected/summary_tsv.csv",
+            "csvtk/summary_csv.csv": "expected/summary_csv.csv",
+            "csvtk/frequency.csv": "expected/frequency.csv",
+            "csvtk/headers.csv": "csvtk/headers.csv",
+            "csvtk/join.csv": "expected/join.csv",
+            "csvtk/sample.csv": "expected/sample.csv",
+            "csvtk/grep.csv": "expected/grep.csv",
+            "csvtk/cut.csv": "expected/cut.csv",
+            "csvtk/sort.csv": "expected/sort.csv",
+            "csvtk/split/table-ENSG02.csv": "expected/split/table-ENSG02.csv",
+            "csvtk/split/table-ENSG01.csv": "expected/split/table-ENSG01.csv",
+            "csvtk/stats.txt": "expected/stats.txt",
+            "csvtk/uniq.txt": "expected/uniq.txt",
+        },
     )
-
-    run(
-        "utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/summary.csv"]
-    )
-
-    run(
-        "utils/csvtk",
-        ["snakemake", "--cores", "1", "--use-conda", "csvtk/summary_tsv.csv"],
-    )
-
-    run("utils/csvtk", ["snakemake", "--cores", "1", "--use-conda", "csvtk/cat.csv"])
 
 
 def test_xsv(run):
@@ -2004,7 +2194,7 @@ def test_bcftools_view_uncompressed_bcf(run):
 def test_bedtools_bamtobed(run):
     run(
         "bio/bedtools/bamtobed",
-        ["snakemake", "--cores", "1", "a.bed", "--use-conda", "-F"],
+        ["snakemake", "--cores", "1", "a.bed", "a.bed.gz", "--use-conda", "-F"],
     )
 
 
@@ -2031,10 +2221,16 @@ def test_bedtools_complement(run):
             "--cores",
             "1",
             "results/bed-complement/a.complement.bed",
+            "results/bed-complement/a.complement.bed.gz",
             "results/vcf-complement/a.complement.vcf",
             "--use-conda",
             "-F",
         ],
+        compare_results_with_expected={
+            "results/bed-complement/a.complement.bed": "expected/bed-complement/a.complement.bed",
+            # "results/bed-complement/a.complement.bed.gz": "expected/bed-complement/a.complement.bed.gz",  # Disabled since filecmp does not work with gzip files
+            "results/vcf-complement/a.complement.vcf": "expected/vcf-complement/a.complement.vcf",
+        },
     )
 
 
@@ -2072,7 +2268,19 @@ def test_bedtools_split(run):
 def test_bedtools_intersect(run):
     run(
         "bio/bedtools/intersect",
-        ["snakemake", "--cores", "1", "A_B.intersected.bed", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "A_B.intersected.bed",
+            "A_B.intersected.bed.gz",
+            "--use-conda",
+            "-F",
+        ],
+        compare_results_with_expected={
+            "A_B.intersected.bed": "expected/A_B.intersected.bed",
+            # "A_B.intersected.bed.gz": "expected/A_B.intersected.bed.gz",  # Disabled since filecmp does not work with gzip files
+        },
     )
 
 
@@ -2206,6 +2414,21 @@ def test_bwa_mem(run):
     run(
         "bio/bwa/mem",
         ["snakemake", "--cores", "1", "mapped/a.bam", "--use-conda", "-F"],
+    )
+
+
+def test_samshee(run):
+    run(
+        "bio/samshee",
+        ["snakemake", "--cores", "1", "samples.json", "--use-conda", "-F"],
+    )
+    run(
+        "bio/samshee",
+        ["snakemake", "--cores", "1", "samples.csv", "--use-conda", "-F"],
+    )
+    run(
+        "bio/samshee",
+        ["snakemake", "--cores", "1", "samples_schema.json", "--use-conda", "-F"],
     )
 
 
@@ -3171,6 +3394,28 @@ def test_fastq_screen(run):
         "bio/fastq_screen",
         ["snakemake", "--cores", "1", "qc/a.fastq_screen.txt", "--use-conda", "-F"],
     )
+    run(
+        "bio/fastq_screen",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "qc/a.fastq_screen_conf.txt",
+            "--use-conda",
+            "-F",
+        ],
+    )
+    run(
+        "bio/fastq_screen",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "qc/a.fastq_screen_nopng.txt",
+            "--use-conda",
+            "-F",
+        ],
+    )
 
 
 def test_fasttree(run):
@@ -3616,61 +3861,9 @@ def test_mosdepth(run):
             "--cores",
             "4",
             "mosdepth/m54075_180905_225130.ccs.ecoliK12_pbi_March2013.mosdepth.summary.txt",
-            "--use-conda",
-            "-F",
-        ],
-    )
-
-
-def test_mosdepth_bed(run):
-    run(
-        "bio/mosdepth",
-        [
-            "snakemake",
-            "--cores",
-            "4",
             "mosdepth_bed/m54075_180905_225130.ccs.ecoliK12_pbi_March2013.mosdepth.summary.txt",
-            "--use-conda",
-            "-F",
-        ],
-    )
-
-
-def test_mosdepth_by_threshold(run):
-    run(
-        "bio/mosdepth",
-        [
-            "snakemake",
-            "--cores",
-            "4",
             "mosdepth_by_threshold/m54075_180905_225130.ccs.ecoliK12_pbi_March2013.mosdepth.summary.txt",
-            "--use-conda",
-            "-F",
-        ],
-    )
-
-
-def test_mosdepth_quantize_precision(run):
-    run(
-        "bio/mosdepth",
-        [
-            "snakemake",
-            "--cores",
-            "4",
             "mosdepth_quantize_precision/m54075_180905_225130.ccs.ecoliK12_pbi_March2013.mosdepth.summary.txt",
-            "--use-conda",
-            "-F",
-        ],
-    )
-
-
-def test_mosdepth_cram(run):
-    run(
-        "bio/mosdepth",
-        [
-            "snakemake",
-            "--cores",
-            "4",
             "mosdepth_cram/a.mosdepth.summary.txt",
             "--use-conda",
             "-F",
@@ -4198,6 +4391,33 @@ def test_samtools_fixmate(run):
     )
 
 
+def test_pyfaidx(run):
+    run(
+        "bio/pyfaidx",
+        ["snakemake", "--cores", "1", "retrieved.fasta", "--use-conda", "-F"],
+    )
+    run(
+        "bio/pyfaidx",
+        ["snakemake", "--cores", "1", "retrieved.chrom", "--use-conda", "-F"],
+    )
+    run(
+        "bio/pyfaidx",
+        ["snakemake", "--cores", "1", "retrieved.bed", "--use-conda", "-F"],
+    )
+    run(
+        "bio/pyfaidx",
+        ["snakemake", "--cores", "1", "sequence.fasta.fai", "--use-conda", "-F"],
+    )
+    run(
+        "bio/pyfaidx",
+        ["snakemake", "--cores", "1", "regions.fa", "--use-conda", "-F"],
+    )
+    run(
+        "bio/pyfaidx",
+        ["snakemake", "--cores", "1", "list_regions.fa", "--use-conda", "-F"],
+    )
+
+
 def test_pyfastaq_replace_bases(run):
     run(
         "bio/pyfastaq/replace_bases",
@@ -4500,141 +4720,21 @@ def test_trim_galore_se_uncompressed(run):
 def test_trimmomatic_pe(run):
     """Four tests, one per fq-gz combination"""
     run(
-        "bio/trimmomatic/pe",
+        "bio/trimmomatic",
         [
             "snakemake",
             "--cores",
-            "1",
-            "trimmed/a.1.fastq",
+            "10",
+            "trimmed/se/fq_fq/a.1.fastq",
+            "trimmed/se/gz_fq/a.1.fastq",
+            "trimmed/se/fq_gz/a.1.fastq.gz",
+            "trimmed/se/gz_gz/a.1.fastq.gz",
+            "trimmed/pe/fq_fq/a.1.fastq",
+            "trimmed/pe/gz_fq/a.1.fastq",
+            "trimmed/pe/fq_gz/a.1.fastq.gz",
+            "trimmed/pe/gz_gz/a.1.fastq.gz",
             "--use-conda",
             "-F",
-            "-s",
-            "Snakefile_fq_fq",
-        ],
-    )
-    run(
-        "bio/trimmomatic/pe",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trimmed/a.1.fastq.gz",
-            "--use-conda",
-            "-F",
-            "-s",
-            "Snakefile_fq_gz",
-        ],
-    )
-    run(
-        "bio/trimmomatic/pe",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trimmed/a.1.fastq",
-            "--use-conda",
-            "-F",
-            "-s",
-            "Snakefile_gz_fq",
-        ],
-    )
-    run(
-        "bio/trimmomatic/pe",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trimmed/a.1.fastq.gz",
-            "--use-conda",
-            "-F",
-            "-s",
-            "Snakefile_gz_gz",
-        ],
-    )
-    run(
-        "bio/trimmomatic/pe",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trimmed/a.1.fastq.gz",
-            "--use-conda",
-            "-F",
-            "--cores",
-            "32",
-            "-s",
-            "Snakefile_gz_gz",
-        ],
-    )
-
-
-def test_trimmomatic_se(run):
-    """Four tests, one per fq-gz combination"""
-    run(
-        "bio/trimmomatic/se",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trimmed/a.fastq",
-            "--use-conda",
-            "-F",
-            "-s",
-            "Snakefile_fq_fq",
-        ],
-    )
-    run(
-        "bio/trimmomatic/se",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trimmed/a.fastq.gz",
-            "--use-conda",
-            "-F",
-            "-s",
-            "Snakefile_fq_gz",
-        ],
-    )
-    run(
-        "bio/trimmomatic/se",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trimmed/a.fastq",
-            "--use-conda",
-            "-F",
-            "-s",
-            "Snakefile_gz_fq",
-        ],
-    )
-    run(
-        "bio/trimmomatic/se",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trimmed/a.fastq.gz",
-            "--use-conda",
-            "-F",
-            "-s",
-            "Snakefile_gz_gz",
-        ],
-    )
-    run(
-        "bio/trimmomatic/se",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "trimmed/a.fastq.gz",
-            "--use-conda",
-            "-F",
-            "--cores",
-            "32",
-            "-s",
-            "Snakefile_gz_gz",
         ],
     )
 
@@ -5327,7 +5427,15 @@ def test_varscan_mpileup2snp(run):
 def test_varscan_somatic(run):
     run(
         "bio/varscan/somatic",
-        ["snakemake", "--cores", "1", "vcf/a.snp.vcf", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "single_mpileup/vcf/a.snp.vcf",
+            "dual_mpileup/vcf/a.snp.vcf",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -6456,6 +6564,19 @@ def test_metaspades(run):
     )
 
 
+def test_megahit(run):
+    run(
+        "bio/megahit",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_verifybamid2(run):
     run(
         "bio/verifybamid/verifybamid2",
@@ -6891,4 +7012,124 @@ def test_pygadm_item(run):
     run(
         "geo/pygadm/item",
         ["snakemake", "--cores", "2", "--use-conda", "-F", "results/mexico.parquet"],
+    )
+
+
+def test_trf_basic_recommended_params(run):
+    run(
+        "bio/trf",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "trf_output/small_test",
+            "--use-conda",
+            "--allowed-rules",
+            "run_trf_basic",
+        ],
+    )
+
+
+def test_trf_with_invalid_param_value(run):
+    with pytest.raises(subprocess.CalledProcessError):
+        run(
+            "bio/trf",
+            [
+                "snakemake",
+                "--cores",
+                "1",
+                "trf_output/small_test",
+                "--use-conda",
+                "--allowed-rules",
+                "run_trf_with_missing_param_value",
+            ],
+        )
+
+
+def test_trf_with_permissible_flags(run):
+    run(
+        "bio/trf",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "trf_output/small_test",
+            "--use-conda",
+            "--allowed-rules",
+            "run_trf_permissible_flags",
+        ],
+    )
+
+
+def test_trf_basic_with_uppercase_params(run):
+    run(
+        "bio/trf",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "trf_output/small_test",
+            "--use-conda",
+            "--allowed-rules",
+            "run_trf_basic_uppercase",
+        ],
+    )
+
+
+def test_mehari_download_transcript_db(run):
+    run(
+        "bio/mehari/download-transcript-db",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/mehari/dbs/transcripts.bin.zst",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+def test_mehari_download_clinvar_db_sv(run):
+    run(
+        "bio/mehari/download-clinvar-db",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/mehari/dbs/clinvar/sv",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+def test_mehari_annotate_seqvars(run):
+    run(
+        "bio/mehari/annotate-seqvars",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "resources/MT-ND2.annotated.bcf",
+            "--use-conda",
+            "-F",
+            "--verbose",
+        ],
+    )
+
+
+def test_rasterio_clip_geotiff(run):
+    run(
+        "geo/rasterio/clip",
+        [
+            "snakemake",
+            "--cores",
+            "2",
+            "--use-conda",
+            "-F",
+            "results/montenegro.tiff",
+            "results/switzerland.tiff",
+            "results/puerto_vallarta_small.tiff",
+        ],
     )

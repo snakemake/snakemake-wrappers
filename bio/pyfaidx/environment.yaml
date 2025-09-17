@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - pyfaidx =0.9.0.3
+  - snakemake-wrapper-utils =0.7.2

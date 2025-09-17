@@ -1,7 +1,6 @@
 rule get_genome_fasta:
     output:
         "genome.fasta",
-    threads: 1
     log:
         "logs/get_genome_fasta.log",
     params:
@@ -9,6 +8,7 @@ rule get_genome_fasta:
         datatype="dna",
         build="R64-1-1",
         release="105",
+    threads: 1
     wrapper:
         "master/bio/reference/ensembl-sequence"
 
@@ -19,14 +19,14 @@ rule samtools_mpileup:
             "{sample}.sorted.bam",
             sample=("a", "b"),
         ),
-        reference_genome="genome.fasta",
+        ref="genome.fasta",
     output:
         "samtools/mpileup.gz",
-    threads: 1
     log:
         "logs/samtools_mpileup.log",
     params:
-        extra=" --count-orphans ",
+        extra="--count-orphans",
+    threads: 1
     wrapper:
         "master/bio/samtools/mpileup"
 
@@ -37,23 +37,23 @@ rule varscan2_somatic:
     output:
         snp="varscan2/snp.vcf",
         indel="varscan2/indel.vcf",
-    threads: 1
     log:
         "logs/varscan2_somatic.log",
     params:
-        extra=" --strand-filter 1 ",
+        extra="--strand-filter 1",
+    threads: 1
     wrapper:
         "master/bio/varscan/somatic"
 
 
 rule snpeff_download:
     output:
-        directory("resources/snpeff/R64-1-1.105"),
-    threads: 1
+        directory("resources/snpeff/{ref}"),
     log:
-        "logs/snpeff_download.log",
+        "logs/snpeff_download.{ref}.log",
     params:
-        reference="R64-1-1.105",
+        reference=lambda w: w.ref,
+    threads: 1
     wrapper:
         "master/bio/snpeff/download"
 
@@ -66,10 +66,10 @@ rule snpeff_annotate:
         calls="snpeff/annotated.vcf",
         stats="snpeff/annotated.html",
         csvstats="snpeff/annotated.csv",
-    threads: 1
     log:
         "logs/snpeff_annotate.log",
     params:
-        extra=" -nodownload -noLog ",
+        extra="-nodownload -noLog",
+    threads: 1
     wrapper:
         "master/bio/snpeff/annotate"
