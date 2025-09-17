@@ -47,6 +47,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
 
     try:
         shell(f"curl --fail -L {url_https} -o {tmpdir}/{cache_tarball} {log}")
+        shell(f"gzip -t {tmpdir}/{cache_tarball}")
     except sp.CalledProcessError:
         shell(f"curl -L {url_ftp} -o {tmpdir}/{cache_tarball} {log}")
 
