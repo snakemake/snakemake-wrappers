@@ -203,12 +203,6 @@ def test_aria2c(run):
             "2",
             "--use-conda",
             "-F",
-        [
-            "snakemake",
-            "--cores",
-            "2",
-            "--use-conda",
-            "-F",
             "results/file.fas.gz",
             "results/file.md5.fas.gz",
             "results/file.md5file.fas.gz",
