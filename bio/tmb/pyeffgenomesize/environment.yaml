@@ -4,3 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - tmb =1.5.0
+  - snakemake-wrapper-utils =0.8.0
