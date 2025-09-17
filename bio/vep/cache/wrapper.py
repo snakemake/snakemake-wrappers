@@ -29,7 +29,9 @@ with tempfile.TemporaryDirectory() as tmpdir:
         url_ftp = user_url
         url_https = url_ftp.replace("ftp://", "https://")
     else:
-        url_https = f"https://{user_url}/release-{release}/variation/{vep_dir}/{cache_tarball}"
+        url_https = (
+            f"https://{user_url}/release-{release}/variation/{vep_dir}/{cache_tarball}"
+        )
         url_ftp = url_https.replace("https://", "ftp://")
     cache_tarball = (
         f"{snakemake.params.species}_vep_{release}_{snakemake.params.build}.tar.gz"
