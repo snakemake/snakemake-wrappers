@@ -37,7 +37,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         url_https = f"{user_url}/release-{release}/variation/{vep_dir}/{cache_tarball}"
         url_ftp = url_https.replace("https://", "ftp://")
     elif user_url.startswith("ftp://"):
-        url_ftp = user_url
+        url_ftp = f"{user_url}/release-{release}/variation/{vep_dir}/{cache_tarball}"
         url_https = url_ftp.replace("ftp://", "https://")
     else:
         url_https = (
