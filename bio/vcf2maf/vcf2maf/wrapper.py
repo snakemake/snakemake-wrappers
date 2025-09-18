@@ -24,8 +24,7 @@ chain = snakemake.input.get("chain")
 if chain:
     extra += f" --remap-chain={quote(chain)}"
 
-# Acquiring external VEP installation
-# if any...
+# Acquiring external VEP installation (if any)
 vep = ""
 vep_path = snakemake.input.get("vep", "")
 if vep_path:
@@ -46,7 +45,7 @@ if all([vep_path, vep_cache, vep_config]):
     # This would be the only multithreaded section of the code
     vep += f" --vep-forks={snakemake.threads}"
 else:
-    vep = " --inhibit-vep"
+    vep = "--inhibit-vep"
     if snakemake.threads > 1:
         warn("Too many threads requested: only 1 used.")
 
