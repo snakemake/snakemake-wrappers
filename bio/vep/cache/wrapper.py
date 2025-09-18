@@ -31,7 +31,9 @@ with tempfile.TemporaryDirectory() as tmpdir:
         convert = ""
     else:
         if release >= 114:
-            raise ValueError("Releases >= 114 are only supported for indexed VEP caches.")
+            raise ValueError(
+                "Releases >= 114 are only supported for indexed VEP caches."
+            )
         vep_dir = "vep" if snakemake.params.get("url") or release >= 97 else "VEP"
         convert = "--CONVERT "
 
