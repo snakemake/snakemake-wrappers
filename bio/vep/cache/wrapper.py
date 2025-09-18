@@ -26,10 +26,12 @@ with tempfile.TemporaryDirectory() as tmpdir:
     cache_tarball = (
         f"{snakemake.params.species}_vep_{release}_{snakemake.params.build}.tar.gz"
     )
-    if snakemake.params.get("indexed"):
+    if snakemake.params.get("indexed", True):
         vep_dir = "indexed_vep_cache"
         convert = ""
     else:
+        if release >= 114:
+            raise ValueError("Releases >= 114 are only supported for indexed VEP caches.")
         vep_dir = "vep" if snakemake.params.get("url") or release >= 97 else "VEP"
         convert = "--CONVERT "
 
