@@ -1,5 +1,18 @@
 # Changelog
 
+## [7.5.0](https://github.com/snakemake/snakemake-wrappers/compare/v7.4.0...v7.5.0) (2025-09-18)
+
+
+### Features
+
+* vcf2maf ([#4469](https://github.com/snakemake/snakemake-wrappers/issues/4469)) ([042fff0](https://github.com/snakemake/snakemake-wrappers/commit/042fff0d2751fa3acbe0e5768f2a3e2d6611e1d6))
+
+
+### Bug Fixes
+
+* Document default value for indexed param and enforce for release &gt;= 114 ([#4480](https://github.com/snakemake/snakemake-wrappers/issues/4480)) ([bd0ed07](https://github.com/snakemake/snakemake-wrappers/commit/bd0ed07eac134b6bf8b7d307a92f45faed7b8d09))
+* Use HTTPS for Ensembl downloads and add FTP fallback ([#4479](https://github.com/snakemake/snakemake-wrappers/issues/4479)) ([43d1d32](https://github.com/snakemake/snakemake-wrappers/commit/43d1d3224afdeeadb42e3423463d5b0874e7f995))
+
 ## [7.4.0](https://github.com/snakemake/snakemake-wrappers/compare/v7.3.0...v7.4.0) (2025-09-17)
 
 
