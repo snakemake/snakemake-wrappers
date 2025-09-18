@@ -1068,6 +1068,20 @@ def test_varscan2_snpeff_meta(run):
     )
 
 
+def test_vcf2maf(run):
+    run(
+        "bio/vcf2maf/vcf2maf",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "small.maf",
+        ],
+    )
+
+
 def test_salmon_tximport_meta(run):
     run(
         "meta/bio/salmon_tximport",
