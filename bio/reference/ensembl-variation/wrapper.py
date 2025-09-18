@@ -73,7 +73,9 @@ names = [os.path.basename(url) for url in urls]
 
 try:
     gather = "curl -fsSL {urls}".format(urls=" ".join(map("-O {}".format, urls)))
-    ftp_gather = "curl -fsSL {urls}".format(urls=" ".join(map("-O {}".format, ftp_urls)))
+    ftp_gather = "curl -fsSL {urls}".format(
+        urls=" ".join(map("-O {}".format, ftp_urls))
+    )
     workdir = os.getcwd()
     out = os.path.abspath(snakemake.output[0])
     with tempfile.TemporaryDirectory() as tmpdir:
