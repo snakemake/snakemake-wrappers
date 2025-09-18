@@ -29,7 +29,7 @@ if chain:
 vep = ""
 vep_path = snakemake.input.get("vep", "")
 if vep_path:
-    vep = f"--vep-path={quote(vep)}"
+    vep = f"--vep-path={quote(vep_path)}"
 
 vep_config = snakemake.input.get("vep_config")
 if vep_config:
