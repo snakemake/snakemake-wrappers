@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - filtlong =0.3.0
+  - filtlong =0.3.1
