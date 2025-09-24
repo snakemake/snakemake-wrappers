@@ -143,11 +143,11 @@ def test_mmseqs2(run):
             "2",
             "--use-conda",
             "-F",
-            "out/search/a.fas",
+            "out/search/a.tab",
             "out/cluster/a_b_cluster.tsv",
             "out/linclust/a_b_cluster.tsv",
             "out/taxonomy/a_lca.tsv",
-            "out/rbh/a.fas",
+            "out/rbh/a.tab",
         ],
         compare_results_with_expected={
             "out/search/a.fas": "expected/search/a.fas",

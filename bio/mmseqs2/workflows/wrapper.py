@@ -21,22 +21,12 @@ if isinstance(out, list):
     out = os.path.commonprefix(out).rstrip("_")
 else:
     format_mode = get_format(out)
-    if format_mode == "tab":
-        # BLAST-TAB
-        format_mode = 0
-    elif format_mode == "sam":
+    if format_mode == "sam":
         # SAM
-        format_mode = 1
-    elif format_mode == "tabdb":
-        # BLAST-TAB + query/db length
-        format_mode = 2
+        extra += " --format-mode 1"
     elif format_mode == "html":
         # HTML
-        format_mode = 3
-    else:
-        # BLAST-TAB + column headers
-        format_mode = 4
-    extra += f" --format-mode {format_mode}"
+        extra += " --format-mode 3"
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
