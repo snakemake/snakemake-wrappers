@@ -150,7 +150,7 @@ def test_mmseqs2(run):
             "out/rbh/a.tab",
         ],
         compare_results_with_expected={
-            "out/search/a.fas": "expected/search/a.fas",
+            "out/search/a.tab": "expected/search/a.tab",
             "out/cluster/a_b_cluster.tsv": "expected/cluster/a_b_cluster.tsv",
             "out/cluster/a_b_rep_seq.fasta": "expected/cluster/a_b_rep_seq.fasta",
             "out/cluster/a_b_all_seqs.fasta": "expected/cluster/a_b_all_seqs.fasta",
@@ -162,7 +162,7 @@ def test_mmseqs2(run):
             "out/taxonomy/a_tophit_aln": "expected/taxonomy/a_tophit_aln",
             "out/taxonomy/a_report": "expected/taxonomy/a_report",
             "out/taxonomy/a_lca.tsv": "expected/taxonomy/a_lca.tsv",
-            "out/rbh/a.fas": "expected/rbh/a.fas",
+            "out/rbh/a.tab": "expected/rbh/a.tab",
         },
     )
 
