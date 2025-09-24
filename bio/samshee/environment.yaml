@@ -3,5 +3,5 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - samshee =0.2.10
-  - snakemake-wrapper-utils =0.7.2
+  - samshee =0.2.11
+  - snakemake-wrapper-utils =0.8.0

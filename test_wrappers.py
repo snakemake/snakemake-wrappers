@@ -1128,6 +1128,20 @@ def test_varscan2_snpeff_meta(run):
     )
 
 
+def test_vcf2maf(run):
+    run(
+        "bio/vcf2maf/vcf2maf",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "small.maf",
+        ],
+    )
+
+
 def test_salmon_tximport_meta(run):
     run(
         "meta/bio/salmon_tximport",
@@ -6766,6 +6780,15 @@ def test_sortmerna_se(run):
         ],
     )
 
+def test_tmb_pyeffgenomesize(run):
+    run(
+        "bio/tmb/pyeffgenomesize",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "minimal.txt"],
+    )
+    run(
+        "bio/tmb/pyeffgenomesize",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "complete.txt"],
+    )
 
 def test_tmb_pytmb(run):
     run(

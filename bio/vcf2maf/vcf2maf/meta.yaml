@@ -1,0 +1,23 @@
+name: vcf2maf.pl
+description: Convert a VCF into a MAF
+url: https://github.com/mskcc/vcf2maf/tree/main?tab=readme-ov-file#vcfmaf
+author:
+  - Thibault Dayris
+input:
+  - vcf: Path to the VCF to reformat
+  - fasta: Optional path to a reference genome
+  - chain: Optional chain file to remap variants to a different assemnly
+  - vep: Optional path to a Ensembl VEP install directory
+  - vep_cache: Optional path to Ensembl VEP cache
+  - vep_config: Optional path to Ensembl VEP configuration file
+output:
+  - Path to MAF file
+params:
+  - extra: Optional parameters besides IO and temporary directory
+notes: |
+  In order to use VEP in this wrapper, user must provide an external VEP
+  binary, cache and/or configuration. If none of the VEP-related
+  input parameters are filled, this wrapper automatically turns
+  Ensembl VEP options off.
+
+  This wrapper uses only one thread if Ensembl VEP is turned off.
