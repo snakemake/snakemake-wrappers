@@ -108,7 +108,7 @@ with TemporaryDirectory() as tempdir:
     extra += f" --list {list_file} "
 
     shell(
-        "export NCM_REF={snakemake.input.fasta:q} && {launcher} {extra} --outdir {tempdir} -N snake_out {log}"
+        "NCM_REF={snakemake.input.fasta:q} {launcher} {extra} --outdir {tempdir} -N snake_out {log}"
     )
 
     pdf = snakemake.output.get("pdf")
