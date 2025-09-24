@@ -3,7 +3,7 @@ rule mmseqs2_workflow_search:
         query=["seqs/nucl.a.fas.gz", "seqs/nucl.b.fas.gz"],
         target="seqs/nucl.{sample}.fas.gz",
     output:
-        aln="out/search/{sample}.fas",
+        aln="out/search/{sample}.tab",
     log:
         "logs/search/{sample}.log",
     params:
@@ -85,7 +85,7 @@ rule mmseqs2_workflow_rbh:
         query="seqs/nucl.b.fas.gz",
         target="seqs/nucl.{sample}.fas.gz",
     output:
-        aln="out/rbh/{sample}.fas",
+        aln="out/rbh/{sample}.tab",
     log:
         "logs/rbh/{sample}.log",
     params:

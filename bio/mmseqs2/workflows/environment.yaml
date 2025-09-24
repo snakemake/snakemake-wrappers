@@ -4,3 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - mmseqs2 =17.b804f
+  - snakemake-wrapper-utils =0.8.0

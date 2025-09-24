@@ -5,6 +5,7 @@ __license__ = "MIT"
 import os
 import tempfile
 from snakemake.shell import shell
+from snakemake_wrapper_utils import get_format
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -18,7 +19,24 @@ if isinstance(target, list):
 out = snakemake.output
 if isinstance(out, list):
     out = os.path.commonprefix(out).rstrip("_")
-
+else:
+    format_mode = get_format(out)
+    if format_mode == "tab":
+        # BLAST-TAB
+        format_mode = 0
+    elif format_mode == "sam":
+        # SAM
+        format_mode = 1
+    elif format_mode == "tabdb":
+        # BLAST-TAB + query/db length
+        format_mode = 2
+    elif format_mode == "html":
+        # HTML
+        format_mode = 3
+    else:
+        # BLAST-TAB + column headers
+        format_mode = 4
+    extra += f" --format-mode {format_mode}"
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
