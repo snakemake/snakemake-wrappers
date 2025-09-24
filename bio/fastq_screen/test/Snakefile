@@ -1,13 +1,55 @@
 rule fastq_screen:
     input:
-        "samples/{sample}.fastq"
+        "samples/{sample}.fastq",
     output:
         txt="qc/{sample}.fastq_screen.txt",
-        png="qc/{sample}.fastq_screen.png"
+        png="qc/{sample}.fastq_screen.png",
     params:
         fastq_screen_config="fastq_screen.conf",
         subset=100000,
-        aligner='bowtie2'
+        aligner="bowtie2",
+    log:
+        "logs/fastq_screen/{sample}.log",
+    threads: 8
+    wrapper:
+        "master/bio/fastq_screen"
+
+
+rule fastq_screen_with_config:
+    input:
+        "samples/{sample}.fastq",
+    output:
+        txt="qc/{sample}.fastq_screen_conf.txt",
+        png="qc/{sample}.fastq_screen_conf.png",
+        conf="qc/{sample}.config.txt",
+    params:
+        fastq_screen_config={
+            "aligner_paths": {"bowtie2": "bowtie2"},
+            "database": {"test": {"bowtie2": "genome"}},
+        },
+        subset=100000,
+        aligner="bowtie2",
+    log:
+        "logs/fastq_screen/{sample}_conf.log",
+    threads: 8
+    wrapper:
+        "master/bio/fastq_screen"
+
+
+rule fastq_screen_without_png:
+    input:
+        "samples/{sample}.fastq",
+    output:
+        txt="qc/{sample}.fastq_screen_nopng.txt",
+    params:
+        fastq_screen_config={
+            "aligner_paths": {"bowtie2": "bowtie2"},
+            "database": {"test": {"bowtie2": "genome"}},
+        },
+        subset=100000,
+        aligner="bowtie2",
+    log:
+        "logs/fastq_screen/{sample}_nopng.log",
     threads: 8
     wrapper:
         "master/bio/fastq_screen"

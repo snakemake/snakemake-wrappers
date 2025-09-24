@@ -12,6 +12,7 @@ output:
   - Path to the modified sequences/intervals
 params:
   - extra: Optional parameters besides `--transform`, `--bed` and `--out`.
+  - regions: Optional region, or list of regions to retrieve from fasta file
 notes: >
   The `--transform` parameter is automatically inferred from output file path. This
   tool automatically creates a fasta index if the output file is fasta formatted.
