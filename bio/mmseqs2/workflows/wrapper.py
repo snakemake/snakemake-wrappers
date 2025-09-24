@@ -5,7 +5,7 @@ __license__ = "MIT"
 import os
 import tempfile
 from snakemake.shell import shell
-from snakemake_wrapper_utils import get_format
+from snakemake_wrapper_utils.snakemake import get_format
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -21,11 +21,14 @@ if isinstance(out, list):
     out = os.path.commonprefix(out).rstrip("_")
 else:
     format_mode = get_format(out)
+    # (0) BLAST-TAB
+    # (1) SAM
+    # (2) BLAST-TAB + query/db length
+    # (3) HTML
+    # (4) BLAST-TAB + column headers
     if format_mode == "sam":
-        # SAM
         extra += " --format-mode 1"
     elif format_mode == "html":
-        # HTML
         extra += " --format-mode 3"
 
 with tempfile.TemporaryDirectory() as tmpdir:
