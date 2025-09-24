@@ -14,7 +14,6 @@ input:
   - fasta: Genome sequence in fasta format (optional).
   - fai: Fasta file index (optional).
   - <plugin>: Aux-files required by some plugins (optional).
-  - revel: Path to revel scores file (optional), see VEP documentation.
 output:
   - calls: Annotated variant calls in .vcf, .vcf.gz or .bcf format.
   - stats: HTML file with stats that can be interpreted by e.g. MultiQC.
