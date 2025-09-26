@@ -16,7 +16,7 @@ rule test_ngscheckmate_fastq_pair_ended:
         # Used only for FastQ input files.
         paired=True,
     log:
-        "test_ngscheckmate_fastq_paired.log",
+        "logs/fastq_paired.log",
     wrapper:
         "master/bio/ngscheckmate/ncm"
 
@@ -39,7 +39,7 @@ rule test_ngscheckmate_fastq_single_ended:
         # Used only for FastQ input files.
         paired=False,
     log:
-        "test_ngscheckmate_fastq.log",
+        "logs/fastq.log",
     wrapper:
         "master/bio/ngscheckmate/ncm"
 
@@ -56,7 +56,7 @@ rule test_ngscheckmate_bam:
         txt="small_all.txt",
     threads: 1
     log:
-        "test_ngscheckmate_bam.log",
+        "logs/bam.log",
     params:
         # Optional parameters besides IO and threading
         extra="--nonzero",
@@ -76,7 +76,7 @@ rule test_ngscheckmate_vcf:
         txt="vcf_all.txt",
     threads: 1
     log:
-        "test_ngscheckmate_vcf.log",
+        "logs/vcf.log",
     params:
         # Optional parameters besides IO and threading
         extra="--nonzero",
