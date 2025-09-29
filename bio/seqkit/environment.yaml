@@ -3,5 +3,6 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - seqkit =2.8.2
-  - htslib =1.21
+  - seqkit =2.10.1
+  - htslib =1.22.1
+  - snakemake-wrapper-utils =0.8.0

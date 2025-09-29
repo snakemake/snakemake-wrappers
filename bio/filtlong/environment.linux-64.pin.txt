@@ -1,12 +1,12 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
+# created-by: conda 24.9.2
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
-https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-13.2.0-h7e041cc_2.conda#9172c297304f2a20134fc56c97fbe229
-https://conda.anaconda.org/conda-forge/linux-64/libgomp-13.2.0-h807b86a_2.conda#e2042154faafe61969556f28bade94b9
+https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.1.0-h767d61c_5.conda#dcd5ff1940cd38f6df777cac86819d60
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
-https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-13.2.0-h807b86a_2.conda#c28003b0be0494f9a7664389146716ff
-https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.2.13-hd590300_5.conda#f36c115f1ee199da648e0597ec2047ad
-https://conda.anaconda.org/conda-forge/linux-64/zlib-1.2.13-hd590300_5.conda#68c34ec6149623be41a1933ab996a209
-https://conda.anaconda.org/bioconda/linux-64/filtlong-0.2.1-hdcf5f25_3.tar.bz2#8ba50d00f6edbe531e12d3bacd99b2f7
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.1.0-h767d61c_5.conda#264fbfba7fb20acf3b29cde153e345ce
+https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.1.0-h8f9b012_5.conda#4e02a49aaa9d5190cb630fa43528fbe6
+https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.1-hb9d3cd8_2.conda#edb0dca6bc32e4f4789199455a1dbeb8
+https://conda.anaconda.org/bioconda/linux-64/filtlong-0.3.1-h077b44d_0.conda#37b1d0998bbb32ed09fedd9e5e8b69bd

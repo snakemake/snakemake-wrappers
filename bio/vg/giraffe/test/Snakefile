@@ -1,0 +1,24 @@
+rule vg_giraffe_map:
+    input:
+        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
+        graph="resources/{sample}.gbz",
+        #kmers="resources/{sample}.kff", # optional: kmer counts
+        #hapl="resources/{genome}.hapl", # optional: haplotype index
+    output:
+        bam="mapped/{sample}.bam",
+        indexes=multiext(
+            "resources/{sample}",
+            ".dist",
+            ".shortread.withzip.min",
+            ".shortread.zipcodes",
+        ),
+    log:
+        "logs/vg_giraffe/{sample}.log",
+    params:
+        extra="",
+        sorting="none",  # Can be 'none', 'samtools' or 'picard'.
+        sort_order="queryname",  # Can be 'queryname' or 'coordinate'.
+        sort_extra="",  # Extra args for samtools/picard.
+    threads: 8
+    wrapper:
+        "master/bio/vg/giraffe"

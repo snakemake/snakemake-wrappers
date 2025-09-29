@@ -14,8 +14,8 @@ extra = snakemake.params.get("extra", "")
 sort_extra = snakemake.params.get("sort_extra", "")
 samblaster_extra = snakemake.params.get("samblaster_extra", "")
 
-index = snakemake.input.get("index", "")
-if isinstance(index, str):
+index = ""
+if isinstance(snakemake.input.idx, str):
     index = path.splitext(snakemake.input.idx)[0]
 else:
     index = path.splitext(snakemake.input.idx[0])[0]

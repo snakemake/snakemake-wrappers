@@ -7,8 +7,9 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
-log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
+# Input files
 annotation = snakemake.input.annotation
 
 # Output files
@@ -35,9 +36,9 @@ if protein_fasta:
 
 # Input format control
 if annotation.endswith(".bed"):
-    extra += " --in-bed "
+    extra += " --in-bed"
 elif annotation.endswith(".tlf"):
-    extra += " --in-tlf "
+    extra += " --in-tlf"
 elif annotation.endswith((".gtf", ".gff", ".gff3")):
     pass
 else:
@@ -47,11 +48,11 @@ else:
 if not records:
     pass
 elif records.endswith((".gtf", ".gff", ".gff3")):
-    extra += " -T "
+    extra += " -T"
 elif records.endswith(".bed"):
-    extra += " --bed "
+    extra += " --bed"
 elif records.endswith(".tlf"):
-    extra += " --tlf "
+    extra += " --tlf"
 else:
     raise ValueError("Unknown records format")
 
@@ -59,7 +60,7 @@ else:
 # Optional input files
 ids = snakemake.input.get("ids", "")
 if ids:
-    extra += f" --ids {ids} "
+    extra += f" --ids {ids}"
 
 nids = snakemake.input.get("nids", "")
 if nids:
@@ -68,15 +69,15 @@ if nids:
             "Provide either sequences ids to keep, or to drop."
             " Or else, an empty file is produced."
         )
-    extra += f" --nids {nids} "
+    extra += f" --nids {nids}"
 
 seq_info = snakemake.input.get("seq_info", "")
 if seq_info:
-    extra += f" -s {seq_info} "
+    extra += f" -s {seq_info}"
 
 sort_by = snakemake.input.get("sort_by", "")
 if sort_by:
-    extra += f" --sort-by {sort_by} "
+    extra += f" --sort-by {sort_by}"
 
 attr = snakemake.input.get("attr", "")
 if attr:
@@ -85,11 +86,11 @@ if attr:
             "GTF attributes specified in input, "
             "but records are not in GTF/GFF format."
         )
-    extra += f" --attrs {attr} "
+    extra += f" --attrs {attr}"
 
 chr_replace = snakemake.input.get("chr_replace", "")
 if chr_replace:
-    extra += f" -m {chr_replace} "
+    extra += f" -m {chr_replace}"
 
 
 shell("gffread {extra} -g {snakemake.input.fasta} {annotation} {log}")

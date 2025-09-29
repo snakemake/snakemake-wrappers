@@ -26,7 +26,7 @@ And then, contributions should:
   * ``wrapper.py`` or ``wrapper.R`` (actual wrapper code), see :ref:`wrapper`
   * ``test/Snakefile`` (minimal test cases and copy-pasteable examples), see :ref:`Snakefile`
 
-* amend ``test.py`` to call all of the testing rules provided in ``test/Snakefile``, see :ref:`test`
+* amend ``test_wrappers.py`` to call all of the testing rules provided in ``test/Snakefile``, see :ref:`test`
 * ensure consistent:
 
   * `formatting`_ of Python files
@@ -35,10 +35,10 @@ And then, contributions should:
 
 .. _development environment:
 
-``conda``/``mamba`` environment for development
+``conda`` environment for development
 -----------------------------------------------
 
-To have all the tools you need for developing and testing wrappers in one single ``conda``/``mamba`` environment:
+To have all the tools you need for developing and testing wrappers in one single ``conda`` environment:
 
 1. `Install miniforge <https://github.com/conda-forge/miniforge?tab=readme-ov-file#install>`_.
 2. Set up the channels as `described for bioconda <https://bioconda.github.io/#using-bioconda>`_.
@@ -46,13 +46,13 @@ To have all the tools you need for developing and testing wrappers in one single
 
 .. code-block:: bash
 
-  mamba create -n snakemake-wrappers-development -c conda-forge -c bioconda snakemake snakefmt snakedeploy black mamba pytest
+  conda create -n snakemake-wrappers-development -c conda-forge -c bioconda snakemake snakefmt snakedeploy black conda pytest
 
 4. Activate the environment with:
 
 .. code-block:: bash
 
-  mamba activate snakemake-wrappers-development
+  conda activate snakemake-wrappers-development
 
 
 .. _meta:
@@ -121,9 +121,9 @@ Example
 This file needs to list all the software that the wrapper code needes to run successfully.
 
 For all software following `semantic versioning <https://semver.org/>`_ conventions, specify (and thus pin) the major and minor version, but leave the patch version unspecified.
-Also, unless this is needed to work around version incompatibilities not properly handled by the conda packages themselves, only specify the actual software needed and let ``conda``/``mamba`` determine the dependencies.
+Also, unless this is needed to work around version incompatibilities not properly handled by the conda packages themselves, only specify the actual software needed and let ``conda`` determine the dependencies.
 
-To make sure that ``conda``/``mamba`` knows where to look for the package, include a list of all of the conda channels that the software and its dependencies require.
+To make sure that ``conda`` knows where to look for the package, include a list of all of the conda channels that the software and its dependencies require.
 This will usually include `conda-forge <https://conda-forge.org/>`_, as it contains many essential libraries that other packages and tools depend on.
 This channel should usually be specified first, to make sure it takes precedence (``snakemake`` asks users to ``conda config --set channel_priority strict``).
 In addition, you may need to include other sustainable community maintained channels (like `bioconda <https://bioconda.github.io/>`_).
@@ -131,7 +131,7 @@ And as the last channel specification, always include ``nodefaults``.
 This avoids software dependency conflicts between the ``conda-forge`` channel and the ``default`` channels that should not be needed nowadays.
 
 Finally, make sure to run ``snakedeploy pin-conda-envs environment.yaml`` on the finished environment specification.
-This will generate a file called ``environment.linux-64.pin.txt`` with all the dependency versions determined by ``conda``/``mamba``, ensuring that a particular wrapper version will always generate the exact same environment with the exact package versions from this file.
+This will generate a file called ``environment.linux-64.pin.txt`` with all the dependency versions determined by ``conda``, ensuring that a particular wrapper version will always generate the exact same environment with the exact package versions from this file.
 You should include this pinning file in the pull request for your wrapper.
 
 Example
@@ -164,7 +164,7 @@ Please ensure that the wrapper:
 * automatically infers command line arguments wherever possible (for example based on file extensions in ``input:`` and ``output:``)
 * passes on the `threads` value, if the used tool(s) allow(s) it
 * writes any temporary files to a unique hidden folder in the working directory, or (better) stores them where the Python function `tempfile.gettempdir() <https://docs.python.org/3/library/tempfile.html#tempfile.gettempdir>`_ points (this also means that using any Python tempfile default behavior works)
-* is formatted according to the language's standards (for Python, format it with `black <https://black.readthedocs.io/>`_: ``black wrapper.py``)
+* is formatted according to the language's standards (for Python, format it with `black`_: ``black wrapper.py``)
 
 For repeatedly needed functionality you can use the `snakemake-wrapper-utils <https://github.com/snakemake/snakemake-wrapper-utils>`_.
 Use what is available or create new functionality there, whenever you start repeating functions across wrappers.
@@ -193,14 +193,18 @@ When writing the ``Snakefile``, please ensure that:
 * all example rules in your ``test/Snakefile`` have an invocation as a test case in ``test.py``, see :ref:`test`
 * wherever you can do this with a short comment, explain possible settings for all keywords like ``input:``, ``output:``, ``params:``, ``threads:``, etc. (provide longer explanations in the :ref:`meta` file)
 * provide a sensible default for ``threads:``, if more than one thread can be used by the wrapper
+* use the `# [hide]` to hide lines from the final documentation and keep it in the tests
 
 .. _test:
 
-``test.py`` tests file
-----------------------
+``test_wrappers.py`` tests file
+-------------------------------
 
-Every example rule listed in a :ref:`snakefile`, should be included as a test case in ``test.py``.
+Every example rule listed in a :ref:`snakefile`, should be included as a test case in ``test_wrappers.py``.
 The easiest way is usually to duplicate an existing test and adapt it to your newly added example rule.
+If you know what your output should look like, and if it is isn't too big, you can include expected output files in the respective ``test/`` directory.
+You can then set up file comparisons via the optional ``compare_results_with_expected`` argument to the ``run()`` function.
+This argument takes a dictionary, where key-value pairs are always a file that is generated by the wrapper execution and the matching expected output file.
 
 When done editing, make sure that ``test.py`` :ref:`formatting` still follows |black|_ standards.
 
@@ -209,14 +213,14 @@ Example
 
 .. code-block:: python
 
-    @skip_if_not_modified
-    def test_bcftools_sort():
+    def test_ensembl_sequence_multiple_chromosomes(run):
         run(
-            "bio/bcftools/sort",
-            ["snakemake", "--cores", "1", "--use-conda", "-F", "a.sorted.bcf"],
+            "bio/reference/ensembl-sequence",
+            ["snakemake", "--cores", "1", "refs/chr6_and_chr1.fasta", "--use-conda", "-F"],
+            compare_results_with_expected={
+                "refs/chr6_and_chr1.fasta": "expected/chr6_and_chr1.fasta"
+            }
         )
-
-
 
 
 .. _formatting:
@@ -224,7 +228,7 @@ Example
 Formatting
 ----------
 
-Please ensure Python files such as ``test.py`` and ``wrapper.py`` are formatted with
+Please ensure Python files such as ``test_wrappers.py`` and ``wrapper.py`` are formatted with
 |black|_. Additionally, please format your test ``Snakefile`` with |snakefmt|_.
 
 .. |black| replace:: ``black``
@@ -254,7 +258,7 @@ that matches the name(s) of your test(s) via the ``-k`` option of ``pytest``:
 
 .. code-block:: bash
 
-  pytest test.py -v -k your_test
+  pytest test_wrappers.py -v -k your_test
 
 
 If you also want to test the docs generation locally, create another environment
@@ -262,8 +266,8 @@ and activate it:
 
 .. code-block:: bash
 
-  mamba create -n test-snakemake-wrapper-docs -c conda-forge sphinx sphinx_rtd_theme pyyaml sphinx-copybutton sphinxawesome_theme myst-parser
-  mamba activate test-snakemake-wrapper-docs
+  conda create -n test-snakemake-wrapper-docs -c conda-forge sphinx sphinx_rtd_theme pyyaml sphinx-copybutton sphinxawesome_theme myst-parser
+  conda activate test-snakemake-wrapper-docs
 
 Then, enter the respective directory and build the docs:
 
@@ -275,8 +279,5 @@ Then, enter the respective directory and build the docs:
 If it runs through, you can open the main page at ``docs/_build/html/index.html`` in a web browser.
 If you want to start fresh, you can clean up the build with ``make clean``.
 
-
-.. |mamba| replace:: ``mamba``
-.. _mamba: https://github.com/mamba-org/mamba
 .. |conda| replace:: ``conda``
 .. _conda: https://conda.io

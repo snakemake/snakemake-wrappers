@@ -5,4 +5,4 @@ authors:
 output:
   - Ensemble GTF or GFF3 anotation file
 params:
-  - url: URL from where to download cache data (optional; by default is ``ftp://ftp.ensembl.org/pub``)
+  - url: URL from where to download cache data (optional; by default is ``https://ftp.ensembl.org/pub``)

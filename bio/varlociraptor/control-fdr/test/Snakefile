@@ -1,0 +1,55 @@
+rule varlociraptor_alignment_properties:  # [hide]
+    input:  # [hide]
+        ref="resources/genome.fasta",  # [hide]
+        alignments="results/alignments/{sample}.bam",  # [hide]
+        ref_idx="resources/genome.fasta.fai",  # [hide]
+        aln_idx="results/alignments/{sample}.bam.bai",  # [hide]
+    output:  # [hide]
+        "results/alignment-properties/{sample}.json",  # [hide]
+    log:  # [hide]
+        "logs/varlociraptor/alignment-properties/{sample}.log",  # [hide]
+    wrapper:  # [hide]
+        "master/bio/varlociraptor/estimate-alignment-properties"  # [hide]
+
+
+rule varlociraptor_preprocess:  # [hide]
+    input:  # [hide]
+        ref="resources/genome.fasta",  # [hide]
+        alignment_properties="results/alignment-properties/{sample}.json",  # [hide]
+        alignments="results/alignments/{sample}.bam",  # [hide]
+        candidate_variants="results/candidate-variants/{sample}.vcf",  # [hide]
+    output:  # [hide]
+        "results/observations/{sample}.bcf",  # [hide]
+    log:  # [hide]
+        "logs/varlociraptor/preprocess/{sample}.log",  # [hide]
+    wrapper:  # [hide]
+        "master/bio/varlociraptor/preprocess-variants"  # [hide]
+
+
+rule varlociraptor_call:  # [hide]
+    input:  # [hide]
+        observations="results/observations/NA12878.bcf",  # [hide]
+        scenario="resources/scenarios/{sample_group}.yaml",  # [hide]
+    output:  # [hide]
+        "results/variant-calls/{sample_group}.bcf",  # [hide]
+    log:  # [hide]
+        "logs/varlociraptor/call-variants/{sample_group}.log",  # [hide]
+    params:  # [hide]
+        samples=["NA12878"],  # [hide]
+    wrapper:  # [hide]
+        "master/bio/varlociraptor/call-variants"  # [hide]
+
+
+rule varlociraptor_control_fdr:
+    input:
+        "results/variant-calls/{sample_group}.bcf",
+    output:
+        "results/variant-calls/{sample_group}.fdr-controlled.bcf",
+    log:
+        "logs/varlociraptor/control-fdr/{sample_group}.log",
+    params:
+        fdr=0.05,
+        mode="local-smart",
+        events=["present"],  # list of event names that occur in BCF (case-insensitive)
+    wrapper:
+        "master/bio/varlociraptor/control-fdr"

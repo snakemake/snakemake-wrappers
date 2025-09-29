@@ -29,7 +29,7 @@ rule quast:
         stats_cum="{sample}/stats/cumulative.pdf",
         stats_gc_plot="{sample}/stats/gc.pdf",
         stats_gc_icarus="{sample}/stats/gc.icarus.txt",
-        stats_gc_genome="{sample}/stats/gc_genome.pdf",
+        stats_gc_fasta="{sample}/stats/gc_fasta.pdf",
         stats_ngx="{sample}/stats/NGx.pdf",
         stats_nx="{sample}/stats/Nx.pdf",
         contigs="{sample}/contigs.all_alignments.tsv",

@@ -5,12 +5,12 @@ description: >
 author:
   - Thibault Dayris
 input:
-  - fasta: Path to genome file (FASTA formatted).
-  - annotation: Path to genome annotation (GTF/GTF/BED formatted).
-  - ids: Optional path to records/transcript to keep.
-  - nids: Optional path to records/transcripts to discard.
-  - seq_info: Optional path to sequence information, a TSV formatted text file containing `<seq-name> <seq-length> <seq-description>`
-  - sort_by: Optional path to a text file containing the ordered list of reference sequences.
+  - fasta: FASTA genome file.
+  - annotation: GTF/GTF/BED genome annotation.
+  - ids: Records/transcript to keep (optional).
+  - nids: Records/transcripts to discard (optional).
+  - seq_info: Sequence information, a TSV formatted text file containing `<seq-name> <seq-length> <seq-description>` (optional).
+  - sort_by: Text file containing the ordered list of reference sequences (optional).
   - attr: Text file containing comma-separated list of annotation attributes to keep (optional).
   - chr_replace: TSV-formatted text file containing `<original_ref_ID> <new_ref_ID>` (optional).
 output:

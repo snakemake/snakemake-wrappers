@@ -1,0 +1,10 @@
+name: varlociraptor control fdr
+description: |
+  Control false discovery rate of Varlociraptor calls
+url: https://varlociraptor.github.io/docs/filtering/
+authors:
+  - Johannes Köster
+input:
+  - BCF/VCF file with Varlociraptor calls
+output:
+  - filtered BCF/VCF file with Varlociraptor calls such that given FDR is not exceeded

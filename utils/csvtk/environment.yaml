@@ -3,4 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - csvtk =0.30.0
+  - csvtk =0.34.0
+  - snakemake-wrapper-utils =0.8.0

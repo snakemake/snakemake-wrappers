@@ -3,7 +3,7 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - snpsift =5.2
-  - bcftools =1.21
+  - snpsift =5.3.0a
+  - bcftools =1.22
   - pbgzip =2016.08.04
-  - snakemake-wrapper-utils =0.6.2
+  - snakemake-wrapper-utils =0.8.0
