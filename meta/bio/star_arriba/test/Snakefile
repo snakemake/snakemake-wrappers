@@ -1,15 +1,15 @@
 rule star_index:
     input:
-        fasta="resources/genome.fasta",
-        gtf="resources/genome.gtf",
+        fasta="<genome_sequence>",
+        gtf="<genome_annotation>",
     output:
-        directory("resources/star_genome"),
+        directory("<resources>/star_genome"),
     threads: 4
     params:
         sjdbOverhang=100,
         extra="--genomeSAindexNbases 2",
     log:
-        "logs/star_index_genome.log",
+        "<logs>/star_index_genome.log",
     cache: True  # mark as eligible for between workflow caching
     wrapper:
         "master/bio/star/index"
@@ -19,16 +19,16 @@ rule star_align:
     input:
         # use a list for multiple fastq files for one sample
         # usually technical replicates across lanes/flowcells
-        fq1="reads/{sample}_R1.1.fastq",
-        fq2="reads/{sample}_R2.1.fastq",  #optional
-        idx="resources/star_genome",
-        annotation="resources/genome.gtf",
+        fq1="<reads_r1>",
+        fq2="<reads_r2>",  #optional
+        idx="<resources>/star_genome",
+        annotation="<genome_annotation>",
     output:
         # see STAR manual for additional output files
-        aln="star/{sample}/Aligned.out.bam",
-        reads_per_gene="star/{sample}/ReadsPerGene.out.tab",
+        aln="<results>/star/<per>/Aligned.out.bam",
+        reads_per_gene="<results>/star/<per>/ReadsPerGene.out.tab",
     log:
-        "logs/star/{sample}.log",
+        "<logs>/star/<per>.log",
     params:
         # specific parameters to work well with arriba
         extra=lambda wc, input: f"--quantMode GeneCounts --sjdbGTFfile {input.annotation}"
@@ -43,15 +43,15 @@ rule star_align:
 rule arriba:
     input:
         bam=rules.star_align.output.aln,
-        genome="resources/genome.fasta",
-        annotation="resources/genome.gtf",
+        genome="<genome_sequence>",
+        annotation="<annotation>",
         # optional: # A custom tsv containing identified artifacts, such as read-through fusions of neighbouring genes.
         # default blacklists are selected via blacklist parameter
         # see https://arriba.readthedocs.io/en/latest/input-files/#blacklist
         custom_blacklist=[],
     output:
-        fusions="results/arriba/{sample}.fusions.tsv",
-        discarded="results/arriba/{sample}.fusions.discarded.tsv",
+        fusions="<results>/arriba/<per>.fusions.tsv",
+        discarded="<results>/arriba/<per>.fusions.discarded.tsv",
     params:
         # required if blacklist or known_fusions is set
         genome_build="GRCh38",
@@ -59,7 +59,7 @@ rule arriba:
         default_known_fusions=True,
         extra="",
     log:
-        "logs/arriba/{sample}.log",
+        "<logs>/arriba/<per>.log",
     threads: 1
     wrapper:
         "master/bio/arriba"
