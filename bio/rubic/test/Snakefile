@@ -2,12 +2,14 @@ rule rubic:
     input:
         seg="{samples}/segments.txt",
         markers="{samples}/markers.txt"
+#        genefile="path/to/genefile"
     output:
-        out_gains="{samples}/gains.txt",
-        out_losses="{samples}/losses.txt",
-        out_plots=directory("{samples}/plots") #only possible to provide output directory for plots
+        out_gains="out/{samples}/gains.txt",
+        out_losses="out/{samples}/losses.txt",
+        out_plots=directory("out/{samples}/plots") #only possible to provide output directory for plots
+    log:
+        "logs/{samples}/rubic.log"
     params:
-        fdr="",
-        genefile=""
+        fdr=0.2,
     wrapper:
         "master/bio/rubic"

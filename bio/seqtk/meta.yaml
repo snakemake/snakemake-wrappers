@@ -4,9 +4,9 @@ url: https://github.com/lh3/seqtk
 authors:
   - Filipe G. Vieira
 input:
-  - fastx file(s) (can be gzip bcompressed)
+  - fastx file(s) (can be gzip compressed)
 output:
-  - fastn files (can be gzip bcompressed)
+  - fastn files (can be gzip compressed)
 params:
   - n: number of reads after subsampling (for `sample`)
   - extra: additional program options (e.g. `-s` for `sample` or `-b/-e` for `trimfq`)

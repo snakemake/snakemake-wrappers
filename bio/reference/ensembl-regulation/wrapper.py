@@ -62,7 +62,7 @@ else:
 
 try:
     if out_gz:
-        shell('wget "{url}" -o {snakemake.output[0]} {log}')
+        shell('wget "{url}" -O {snakemake.output[0]} {log}')
     else:
         shell('(wget "{url}" -O - | gzip -d > {snakemake.output[0]}) {log}')
 except subprocess.CalledProcessError as e:

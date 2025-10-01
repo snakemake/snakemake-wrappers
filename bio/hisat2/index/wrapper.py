@@ -22,14 +22,7 @@ if not "." in fasta:
     input_seq += "-c "
 input_seq += ",".join(fasta) if isinstance(fasta, list) else fasta
 
-hisat_dir = snakemake.params.get("prefix", "")
-if hisat_dir:
-    os.makedirs(hisat_dir)
+# get common prefix
+prefix = os.path.commonprefix(snakemake.output).rstrip(".")
 
-shell(
-    "hisat2-build {extra} "
-    "-p {snakemake.threads} "
-    "{input_seq} "
-    "{snakemake.params.prefix} "
-    "{log}"
-)
+shell("hisat2-build --threads {snakemake.threads} {input_seq} {extra} {prefix} {log}")

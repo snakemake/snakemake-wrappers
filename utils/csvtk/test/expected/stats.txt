@@ -1,0 +1,2 @@
+file       num_cols  num_rows
+table.csv         4         2

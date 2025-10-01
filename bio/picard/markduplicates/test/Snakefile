@@ -5,10 +5,10 @@ rule markduplicates_bam:
     # of marking duplicates on separate read groups for a sample
     # and then merging
     output:
-        bam="dedup_bam/{sample}.bam",
-        metrics="dedup_bam/{sample}.metrics.txt",
+        bam="dedup/{sample}.bam",
+        metrics="dedup/{sample}.metrics.txt",
     log:
-        "logs/dedup_bam/{sample}.log",
+        "logs/{sample}.log",
     params:
         extra="--REMOVE_DUPLICATES true",
     # optional specification of memory usage of the JVM that snakemake will respect with global
@@ -23,11 +23,11 @@ rule markduplicates_bam:
 
 use rule markduplicates_bam as markduplicateswithmatecigar_bam with:
     output:
-        bam="dedup_bam/{sample}.matecigar.bam",
-        idx="dedup_bam/{sample}.mcigar.bai",
-        metrics="dedup_bam/{sample}.matecigar.metrics.txt",
+        bam="dedup/{sample}.matecigar.bam",
+        idx="dedup/{sample}.matecigar.bai",
+        metrics="dedup/{sample}.matecigar.metrics.txt",
     log:
-        "logs/dedup_bam/{sample}.matecigar.log",
+        "logs/{sample}.matecigar.log",
     params:
         withmatecigar=True,
         extra="--REMOVE_DUPLICATES true",
@@ -35,10 +35,10 @@ use rule markduplicates_bam as markduplicateswithmatecigar_bam with:
 
 use rule markduplicates_bam as markduplicates_sam with:
     output:
-        bam="dedup_sam/{sample}.sam",
-        metrics="dedup_sam/{sample}.metrics.txt",
+        bam="dedup/{sample}.sam",
+        metrics="dedup/{sample}.metrics.txt",
     log:
-        "logs/dedup_sam/{sample}.log",
+        "logs/{sample}.sam.log",
     params:
         extra="--REMOVE_DUPLICATES true",
 
@@ -48,11 +48,11 @@ use rule markduplicates_bam as markduplicates_cram with:
         bams="mapped/{sample}.bam",
         ref="ref/genome.fasta",
     output:
-        bam="dedup_cram/{sample}.cram",
-        idx="dedup_cram/{sample}.cram.crai",
-        metrics="dedup_cram/{sample}.metrics.txt",
+        bam="dedup/{sample}.cram",
+        idx="dedup/{sample}.cram.crai",
+        metrics="dedup/{sample}.metrics.txt",
     log:
-        "logs/dedup_cram/{sample}.log",
+        "logs/{sample}.cram.log",
     params:
         extra="--REMOVE_DUPLICATES true",
         embed_ref=True,  # set true if the fasta reference should be embedded into the cram

@@ -4,18 +4,10 @@ url: https://nonpareil.readthedocs.io/en/latest/
 authors:
   - Filipe G. Vieira
 input:
-  - NPO file
+  - NPO file(s)
 output:
-  - PDF file with plot
+  - PDF file with plot (optional)
+  - TSV file with summary stats (optional)
+  - JSON file with detailed info (optional)
 params:
-  - labels: Curve labels.
-  - col: Curve colors.
-  - enforce_consistency: Fails verbosely on insufficient data, otherwise it warns about the inconsistencies and attempts the estimations.
-  - star: Objective coverage in percentage (i.e., coverage value considered near-complete).
-  - correction_factor: Apply overlap-dependent correction factor, otherwise redundancy is assumed to equal coverage.
-  - weights_exp: Vector of values to be tested as exponent of the weights distribution.
-  - skip_model: Skip model estimation.
-  - plot_observed: Plot observed values?
-  - plot_model: Plot infered model?
-  - plot_dispersion: Plot dispersion around curve (one of `sd`, `ci95`, `ci90`, `ci50`, or `iq`)?
-  - plot_diversity: Plot diversity (bottom arrow)?
+  - extra: additional program arguments (not `--pdf`, `--tsv`, or `--json`).

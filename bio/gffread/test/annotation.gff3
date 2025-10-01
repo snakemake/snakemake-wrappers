@@ -1,0 +1,7 @@
+##gff-version 3
+chromosome1	manually_made	transcript	160	208	.	+	.	ID=transcript1;geneID=ENMG01;gene_name=ManuallyMadeGene1
+chromosome1	manually_made	exon	160	208	.	+	.	Parent=transcript1
+chromosome1	manually_made	CDS	160	208	.	+	.	Parent=transcript1
+chromosome1	manually_made	transcript	160	240	.	+	.	ID=transcript2;geneID=ENMG02;gene_name=ManuallyMadeGene2
+chromosome1	manually_made	exon	160	240	.	+	.	Parent=transcript2
+chromosome1	manually_made	CDS	160	240	.	+	.	Parent=transcript2

@@ -2,27 +2,27 @@ name: Code quality
 
 on:
   pull_request:
-    branches_ignore: []
+    paths-ignore:
+      - 'CHANGELOG.md'
 
 jobs:
   formatting:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup mamba
-        uses: conda-incubator/setup-miniconda@v2
+        uses: conda-incubator/setup-miniconda@v3
         with:
           activate-environment: fmt
           channels: "conda-forge, bioconda"
-          miniforge-variant: Mambaforge
           miniforge-version: latest
 
       - name: Setup environment
         shell: bash -el {0}
         run: |
           conda config --set channel_priority strict
-          mamba install -n fmt -y black snakefmt
+          conda install -n fmt -y black snakefmt
 
       - name: Check Python formatting
         shell: bash -el {0}
@@ -39,21 +39,20 @@ jobs:
   linting:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
 
       - name: Setup mamba
         uses: conda-incubator/setup-miniconda@v2
         with:
           activate-environment: snakemake
           channels: "conda-forge, bioconda"
-          miniforge-variant: Mambaforge
           miniforge-version: latest
 
       - name: Setup Snakemake environment
         shell: bash -el {0}
         run: |
           conda config --set channel_priority strict
-          mamba install -n snakemake -y snakemake-minimal snakemake
+          conda install -n snakemake -y snakemake snakemake-minimal snakemake-storage-plugin-http
 
       - name: Fetch master
         run: |

@@ -1,0 +1,14 @@
+rule varlociraptor_alignment_properties:
+    input:
+        ref="resources/genome.fasta",
+        alignments=["results/alignments/{sample}.bam"],
+        ref_idx="resources/genome.fasta.fai",
+        aln_idx=["results/alignments/{sample}.bam.bai"],
+    output:
+        "results/alignment-properties/{sample}.json",
+    log:
+        "logs/varlociraptor/alignment-properties/{sample}.log",
+    params:
+        extra="",  # optional additional parameters
+    wrapper:
+        "master/bio/varlociraptor/estimate-alignment-properties"

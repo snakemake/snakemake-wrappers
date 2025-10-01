@@ -1,0 +1,40 @@
+rule test_bwameth_index_mem:
+    input:
+        "genome.fasta",
+    output:
+        multiext(
+            "genome.fasta.bwameth",
+            ".c2t",
+            ".c2t.amb",
+            ".c2t.ann",
+            ".c2t.bwt",
+            ".c2t.pac",
+            ".c2t.sa",
+        ),
+    cache: True  # save space and time with between workflow caching (see docs)
+    threads: 1
+    log:
+        "bwameth_index.log",
+    wrapper:
+        "master/bio/bwameth/index"
+
+
+rule test_bwameth_index_mem2:
+    input:
+        "genome.fasta",
+    output:
+        multiext(
+            "genome.fasta.bwameth",
+            ".c2t",
+            ".c2t.amb",
+            ".c2t.ann",
+            ".c2t.bwt.2bit.64",
+            ".c2t.pac",
+            ".c2t.0123",
+        ),
+    cache: True  # save space and time with between workflow caching (see docs)
+    threads: 1
+    log:
+        "bwameth_index.log",
+    wrapper:
+        "master/bio/bwameth/index"

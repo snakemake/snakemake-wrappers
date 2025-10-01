@@ -12,6 +12,21 @@ rule get_vep_cache:
         "master/bio/vep/cache"
 
 
+rule get_indexed_vep_cache:
+    output:
+        directory("resources/vep/indexed_cache"),
+    params:
+        species="saccharomyces_cerevisiae",
+        build="R64-1-1",
+        release="98",
+        indexed=True,
+    log:
+        "logs/vep/indexed_cache.log",
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/vep/cache"
+
+
 rule get_vep_cache_ebi:
     output:
         directory("resources/vep/cache_ebi"),
