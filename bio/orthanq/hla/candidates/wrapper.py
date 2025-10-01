@@ -11,7 +11,6 @@ output_bcf = snakemake.params.get("output_bcf", False)
 output_bcf_flag = "--output-bcf" if output_bcf else ""
 
 shell(
-    "orthanq candidates hla --allele-freq {snakemake.input.allele_freqs} "
-    " --alleles {snakemake.input.alleles} --genome {snakemake.input.genome} "
+    "orthanq candidates hla --alleles {snakemake.input.alleles} --genome {snakemake.input.genome} "
     " --xml {snakemake.input.xml} {output_bcf_flag} --output {snakemake.output[0]} {log}"
 )
