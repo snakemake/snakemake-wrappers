@@ -7,5 +7,6 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 shell(
-    "orthanq candidates virus --output {snakemake.output[0]} {log}"
+        "orthanq candidates virus --genome {snakemake.input.genome} --lineages "
+        " {snakemake.input.lineages} --output {snakemake.output[0]} 2> {log}"
 )

@@ -1,6 +1,7 @@
 rule orthanq_preprocess_virus:
     input:
-        candidates_folder="candidates",
+        candidates_vcf="candidates.vcf",
+        genome="genome.fasta",
         reads=["reads_1.fq", "reads_2.fq"]
     output:
         "calls.bcf",

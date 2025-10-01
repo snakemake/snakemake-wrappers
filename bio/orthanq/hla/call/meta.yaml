@@ -7,6 +7,7 @@ input:
   - xml: This should be downloaded following the instructions in https://orthanq.github.io/docs/usage.html#preparation
 params:
   - prior: Prior used in Bayesian model. It can be uniform or diploid (diploid highly recommended for HLA typing)
+  - sample_name: Sample name used in multi-sample VCFs.
 output:
   - Tabular file with quantified HLA haplotypes.
 url: https://github.com/orthanq/orthanq

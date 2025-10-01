@@ -1,6 +1,10 @@
 rule orthanq_candidates_virus:
+    input:
+        genome="genome.fasta",
+        genome_fai="genome.fasta.fai",
+        lineages="lineages.fasta"
     output:
-        directory("viral_candidates"),
+        candidates = "candidates.vcf",
     log:
         "logs/orthanq_candidates/candidates_virus.log",
     wrapper:
