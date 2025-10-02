@@ -439,7 +439,7 @@ def parse_bbtool(snakemake):
     # log
     log = multiple_log_fmt_shell(snakemake, append_stderr=True)
 
-    command_with_parameters += f" {java_opts} {log}"
+    command_with_parameters += f" {java_opts} -eoom {log}"
 
     return command_with_parameters
 
