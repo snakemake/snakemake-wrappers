@@ -1,5 +1,23 @@
 # Changelog
 
+## [7.6.1](https://github.com/snakemake/snakemake-wrappers/compare/v7.6.0...v7.6.1) (2025-10-03)
+
+
+### Performance Improvements
+
+* autobump bio/dragmap/align ([#775](https://github.com/snakemake/snakemake-wrappers/issues/775)) ([6b8bb26](https://github.com/snakemake/snakemake-wrappers/commit/6b8bb2691ef327e533a1e0c70d18f08ba551de15))
+* autobump bio/genomepy ([#4626](https://github.com/snakemake/snakemake-wrappers/issues/4626)) ([074d5bc](https://github.com/snakemake/snakemake-wrappers/commit/074d5bc494ad81c68955700f10817c3f641f579a))
+* autobump bio/mehari/annotate-seqvars ([#4627](https://github.com/snakemake/snakemake-wrappers/issues/4627)) ([4b77f2c](https://github.com/snakemake/snakemake-wrappers/commit/4b77f2c4123fcfd172e107d53cf18c87c728e77a))
+* autobump bio/rubic ([#3364](https://github.com/snakemake/snakemake-wrappers/issues/3364)) ([d283645](https://github.com/snakemake/snakemake-wrappers/commit/d28364523ad17dc9d93d9ccac189da33a6bd40bd))
+* autobump bio/trimmomatic ([#4629](https://github.com/snakemake/snakemake-wrappers/issues/4629)) ([523b456](https://github.com/snakemake/snakemake-wrappers/commit/523b4560520ec23bba42d28bfc9d596d45b185e1))
+* autobump bio/varlociraptor/call-variants ([#4630](https://github.com/snakemake/snakemake-wrappers/issues/4630)) ([f760801](https://github.com/snakemake/snakemake-wrappers/commit/f760801f3433640dcb902a57f423922e059eb474))
+* autobump bio/varlociraptor/control-fdr ([#4633](https://github.com/snakemake/snakemake-wrappers/issues/4633)) ([0c8c5d9](https://github.com/snakemake/snakemake-wrappers/commit/0c8c5d919c3750d135260058f4e36a2d963f8d44))
+* autobump bio/varlociraptor/estimate-alignment-properties ([#4635](https://github.com/snakemake/snakemake-wrappers/issues/4635)) ([aa056dd](https://github.com/snakemake/snakemake-wrappers/commit/aa056dd743ac84a45a7f97fb18e0d6abdf6abd76))
+* autobump bio/varlociraptor/preprocess-variants ([#4631](https://github.com/snakemake/snakemake-wrappers/issues/4631)) ([88406f7](https://github.com/snakemake/snakemake-wrappers/commit/88406f7da2d48644bd795e2c19cb6e7fd9fe0a8a))
+* autobump bio/vembrane/filter ([#4634](https://github.com/snakemake/snakemake-wrappers/issues/4634)) ([3fdc131](https://github.com/snakemake/snakemake-wrappers/commit/3fdc1319d15cb0f7fd9694fa9283a7b66a0bf8c1))
+* autobump bio/vembrane/table ([#4632](https://github.com/snakemake/snakemake-wrappers/issues/4632)) ([202cccf](https://github.com/snakemake/snakemake-wrappers/commit/202cccfe92ef742e4cb9f615780f078cfc12dc29))
+* autobump geo/overturemaps/download ([#4628](https://github.com/snakemake/snakemake-wrappers/issues/4628)) ([57856cc](https://github.com/snakemake/snakemake-wrappers/commit/57856cc8396482ecfd2f958aa7e9bd9781259b1f))
+
 ## [7.6.0](https://github.com/snakemake/snakemake-wrappers/compare/v7.5.0...v7.6.0) (2025-09-26)
 
 
