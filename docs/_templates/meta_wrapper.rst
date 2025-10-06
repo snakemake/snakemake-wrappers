@@ -5,24 +5,46 @@
 
 {{ description }}
 
+{% set module_name = name|lower|replace('-', '_') %}
 
-Example
--------
 
-This meta-wrapper can be used by integrating the following into your workflow:
+Usage
+-----
+
+Via module
+~~~~~~~~~~
+
+This usage is recommended with Snakemake ``>=7.9``.
+You can include this meta-wrapper in your workflow via the `Snakemake module system <https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#meta-wrappers>`__:
 
 .. code-block:: python
 
-{{ snakefile }}
+    module {{ module_name }}:
+        meta_wrapper: "{{ uri }}"
+        pathvars:
+            {% for var, desc in pathvars.items() -%}
+            {{ var }}="...", # {{ desc }}
+            {%- endfor %}
 
-Note that input, output and log file paths can be chosen freely, as long as the dependencies between the rules remain as listed here.
+    use rule * from {{ module_name }} as {{ module_name }}_*
+
+Upon using the rules, you can additionally modify input, output, log, and params as needed (see the definition of each rule below and the `modules documentation <https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#modules>`__).
 For additional parameters in each individual wrapper, please refer to their corresponding documentation (see links below).
+
+Via copy-paste
+~~~~~~~~~~~~~~
+
+Alternatively, you can directly copy-paste and modify the full meta-wrapper code below into your workflow.
+
+Execution
+~~~~~~~~~
+
 
 When running with
 
 .. code-block:: bash
 
-    snakemake --use-conda
+    snakemake --sdm conda
 
 the software dependencies will be automatically deployed into an isolated environment before execution.
 {% if usedwrappers|length %}
@@ -58,3 +80,9 @@ Authors
 * {{ author }}
 {% endfor %}
 
+Code
+----
+
+.. code-block:: python
+
+{{ snakefile }}

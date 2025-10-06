@@ -42,6 +42,12 @@ disciplines_mask = {
     "phys": {"name": "Phys", "description": "physics"},
     "utils": {"name": "Utils", "description": "utility"}
 }
+DEFAULT_PATHVARS = {
+    "results": "Path to results directory",
+    "resources": "Path to resources directory",
+    "logs": "Path to logs directory",
+    "benchmarks": "Path to benchmarks directory",
+}
 
 with open(os.path.join(BASE_DIR, "_templates", "tool.rst")) as f:
     TOOL_TEMPLATE = Template(f.read())
@@ -143,11 +149,19 @@ def render_meta(path, target):
     snakefile = render_snakefile(path)
 
     name = meta["name"].replace(" ", "_") + ".rst"
+    used_default_pathvars = set(meta.get("pathvars", {}).get("custom", []))
+    custom_pathvars = meta.get("pathvars", {}).get("custom", {})
+    pathvars = {var: desc for var, desc in DEFAULT_PATHVARS.items() if var in used_default_pathvars}
+    pathvars.update(custom_pathvars)
+
+    meta["pathvars"] = pathvars
+    meta["uri"] = f"{TAG}/{path}"
+    meta["usedwrappers"] = used_wrappers
+    meta["snakefile"] = snakefile
+
     os.makedirs(os.path.dirname(target), exist_ok=True)
     with open(target, "w") as readme:
         rst = TEMPLATE_META.render(
-            snakefile=snakefile,
-            usedwrappers=used_wrappers,
             **meta,
         )
         readme.write(rst)
