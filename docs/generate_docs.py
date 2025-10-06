@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import re
 import textwrap
 from jinja2 import Template
@@ -26,7 +27,6 @@ BLACKLIST = {
     "test_wrappers.py",
     ".pytest_cache",
 } | SCRIPTS
-TAG = subprocess.check_output(["git", "describe", "--tags"]).decode().strip()
 DISCIPLINES = [
     os.path.basename(x) for x in os.listdir(WRAPPER_DIR) if all(
         [x not in BLACKLIST, os.path.isdir(os.path.join(WRAPPER_DIR, x)), x!="meta"])
@@ -85,16 +85,18 @@ def render_tool(tool, discipline, subcmds):
         f.write(TOOL_TEMPLATE.render(name=tool))
 
 
-def render_snakefile(path):
+def render_snakefile(path, tag: str | None):
     with open(os.path.join(path, "test", "Snakefile")) as snakefile:
         lines = filter(lambda line: re.search(r"# ?\[hide\]", line) is None, snakefile)
         snakefile = textwrap.indent(
             "\n".join(l.rstrip() for l in lines).strip(), "    "
-        ).replace("master", TAG)
+        )
+        if tag is not None:
+            snakefile = snakefile.replace("master", tag)
         return snakefile
 
 
-def render_wrapper(path, target, wrapper_id):
+def render_wrapper(path, target, wrapper_id, tag: str | None):
     print("rendering", path)
     with open(os.path.join(path, "meta.yaml")) as meta:
         meta = yaml.load(meta, Loader=yaml.BaseLoader)
@@ -109,7 +111,7 @@ def render_wrapper(path, target, wrapper_id):
     else:
         pkgs = []
 
-    snakefile = render_snakefile(path)
+    snakefile = render_snakefile(path, tag)
 
     wrapper = os.path.join(path, "wrapper.py")
     wrapper_lang = "python"
@@ -129,13 +131,14 @@ def render_wrapper(path, target, wrapper_id):
             pkgs=pkgs,
             id=wrapper_id,
             wrapper_path=os.path.relpath(path, WRAPPER_DIR),
+            tag=tag,
             **meta,
         )
         readme.write(rst)
     return name
 
 
-def render_meta(path, target):
+def render_meta(path, target, tag: str | None):
     print("rendering", path)
     with open(os.path.join(path, "meta.yaml")) as meta:
         meta = yaml.load(meta, Loader=yaml.BaseLoader)
@@ -146,7 +149,7 @@ def render_meta(path, target):
             used_wrappers = env["wrappers"]
     else:
         used_wrappers = []
-    snakefile = render_snakefile(path)
+    snakefile = render_snakefile(path, tag)
 
     name = meta["name"].replace(" ", "_") + ".rst"
     used_default_pathvars = set(meta.get("pathvars", {}).get("custom", []))
@@ -156,7 +159,7 @@ def render_meta(path, target):
 
     meta["pathvars_enabled"] = "pathvars" in meta
     meta["pathvars"] = pathvars
-    meta["uri"] = f"{TAG}/{path}"
+    meta["uri"] = f"{tag or 'master'}/{path}"
     meta["usedwrappers"] = used_wrappers
     meta["snakefile"] = snakefile
 
@@ -167,6 +170,21 @@ def render_meta(path, target):
         )
         readme.write(rst)
     return name
+
+
+def get_latest_git_tag(path: Path) -> str | None:
+    """Get the latest git tag of any file in the given directory or below.
+    Thereby ignore later git tags outside of the given directory.
+    """
+
+    # get the latest git commit that changed the given dir:
+    commit = subprocess.run(["git", "rev-list", "-1", "HEAD", "--", str(path)], stdout=subprocess.PIPE, check=True).stdout.decode().strip()
+    # get the first git tag that includes this commit:
+    tags = subprocess.run(["git", "tag", "--sort", "creatordate", "--contains", commit], check=True, stdout=subprocess.PIPE).stdout.decode().strip().splitlines()
+    if not tags:
+        return None
+    else:
+        return tags[0]
 
 
 def setup(*args):
@@ -200,17 +218,21 @@ def setup(*args):
                     subcmds.append(subcommand)
                     # watermark max_depth for current tool
                     max_depth = max(max_depth, len(tool_levels))
+                    tag = get_latest_git_tag(Path(dirpath))
                     render_wrapper(
                         dirpath,
                         os.path.join(get_tool_dir(tool, discipline), subcommand + ".rst"),
                         wrapper_id,
+                        tag,
                     )
             if len(subcmds) == 0:
                 # no subcommands, render a wrapper for the main tool command
+                tag = get_latest_git_tag(Path(path))
                 render_wrapper(
                     path,
                     os.path.join(OUTPUT_DIR, discipline, tool + ".rst"),
                     os.path.join(discipline, tool),
+                    tag,
                 )
             else:
                 # subcommands found (and rendered above), render the tool's table of content
@@ -225,7 +247,8 @@ def setup(*args):
             if subwf in BLACKLIST:
                 continue
             path = os.path.join(WRAPPER_DIR, "meta", discipline, subwf)
-            render_meta(path, os.path.join(META_OUTPUT_DIR, discipline, subwf + ".rst"))
+            tag = get_latest_git_tag(Path(path))
+            render_meta(path, os.path.join(META_OUTPUT_DIR, discipline, subwf + ".rst"), tag)
 
 
 if __name__ == "__main__":

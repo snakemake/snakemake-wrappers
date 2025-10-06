@@ -3,6 +3,8 @@
 {{ name|upper }}
 {{ name | length * '=' }}
 
+.. image:: https://img.shields.io/badge/meta_wrapper_version-{{ tag }}-10785b
+
 {{ description }}
 
 {% set module_name = name|lower|replace('-', '_') %}
