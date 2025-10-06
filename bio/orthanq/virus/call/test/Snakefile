@@ -1,7 +1,7 @@
 rule orthanq_call_virus:
     input:
         haplotype_calls="haplotype_calls.bcf",
-        candidates_vcf="candidates.vcf",
+        haplotype_variants="candidates.vcf",
     output:
         "calls.csv",
     params: prior="uniform"

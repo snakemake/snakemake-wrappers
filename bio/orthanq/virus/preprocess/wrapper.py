@@ -7,6 +7,6 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 shell(
-    "orthanq preprocess virus --genome {snakemake.input.genome} --candidates {snakemake.input.candidates_vcf} "
+    "orthanq preprocess virus --genome {snakemake.input.genome} --haplotype-variants {snakemake.input.haplotype_variants} "
     " --reads {snakemake.input.reads} --output {snakemake.output[0]} {log}"
 )

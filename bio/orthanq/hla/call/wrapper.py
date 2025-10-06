@@ -5,14 +5,15 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-prior_opt = snakemake.params.get("prior", "")
-sample_name = snakemake.params.get("sample_name", "")
 
-# only add --sample-name if a sample name is given
-sample_name_opt = f"--sample-name {sample_name}" if sample_name else ""
+#for HLA typing of normal samples, use diploid, for virus quantification, use uniform.
+prior_opt = snakemake.params.get("prior", "")
+
+#in case the preprocessed BCF contains multi sample records, use --sample-name
+extra = snakemake.params.get("extra", "")
 
 shell(
     "orthanq call hla --haplotype-calls {snakemake.input.haplotype_calls} "
     " --haplotype-variants {snakemake.input.haplotype_variants} --prior {prior_opt} "
-    " --xml {snakemake.input.xml} --output {snakemake.output[0]} {sample_name_opt} {log}"
+    " --xml {snakemake.input.xml} --output {snakemake.output[0]} {extra} {log}"
 )
