@@ -1,0 +1,2 @@
+pathvars:
+  mapped_reads: mapped/{sample}.marked.bam

@@ -1,9 +1,9 @@
 rule bowtie2_build:
     input:
-        ref="genome.fasta",
+        ref="<genome_sequence>",
     output:
         multiext(
-            "genome",
+            "<resources>/bowtie_index/genome",
             ".1.bt2",
             ".2.bt2",
             ".3.bt2",
@@ -22,9 +22,9 @@ rule bowtie2_build:
 
 rule bowtie2_alignment:
     input:
-        sample=["{sample}.R1.fastq", "{sample}.R2.fastq"],
+        sample=["<reads_r1>", "<reads_r2"],
         idx=multiext(
-            "genome",
+            "<resources>/bowtie_index/genome",
             ".1.bt2",
             ".2.bt2",
             ".3.bt2",
@@ -33,9 +33,9 @@ rule bowtie2_alignment:
             ".rev.2.bt2",
         ),
     output:
-        temp("mapped/{sample}.bam"),
+        temp("<results>/mapped/{sample}.bam"),
     log:
-        "logs/bowtie2/{sample}.log",
+        "<logs>/bowtie2/{sample}.log",
     params:
         extra=(
             " --rg-id {sample} "
@@ -48,13 +48,13 @@ rule bowtie2_alignment:
 
 rule sambamba_sort:
     input:
-        "mapped/{sample}.bam",
+        "<results>/mapped/{sample}.bam",
     output:
-        temp("mapped/{sample}.sorted.bam"),
+        temp("<results>/mapped/{sample}.sorted.bam"),
     params:
         "",
     log:
-        "logs/sambamba-sort/{sample}.log",
+        "<logs>/sambamba-sort/{sample}.log",
     threads: 8
     wrapper:
         "master/bio/sambamba/sort"
@@ -62,9 +62,9 @@ rule sambamba_sort:
 
 rule sambamba_view:
     input:
-        "mapped/{sample}.sorted.bam",
+        "<results>/mapped/{sample}.sorted.bam",
     output:
-        temp("mapped/{sample}.filtered.bam"),
+        temp("<results>/mapped/{sample}.filtered.bam"),
     params:
         extra=(
             " --format 'bam' "
@@ -79,13 +79,13 @@ rule sambamba_view:
 
 rule sambamba_markdup:
     input:
-        "mapped/{sample}.filtered.bam",
+        "<results>/mapped/{sample}.filtered.bam",
     output:
-        "mapped/{sample}.rmdup.bam",
+        "<results>/mapped/{sample}.rmdup.bam",
     params:
         extra=" --remove-duplicates ",  # optional parameters
     log:
-        "logs/sambamba-markdup/{sample}.log",
+        "<logs>/sambamba-markdup/{sample}.log",
     threads: 8
     wrapper:
         "master/bio/sambamba/markdup"
@@ -93,13 +93,13 @@ rule sambamba_markdup:
 
 rule sambamba_index:
     input:
-        "mapped/{sample}.rmdup.bam",
+        "<results>/mapped/{sample}.rmdup.bam",
     output:
-        "mapped/{sample}.rmdup.bam.bai",
+        "<results>/mapped/{sample}.rmdup.bam.bai",
     params:
         extra="",
     log:
-        "logs/sambamba-index/{sample}.log",
+        "<logs>/sambamba-index/{sample}.log",
     threads: 8
     wrapper:
         "master/bio/sambamba/index"

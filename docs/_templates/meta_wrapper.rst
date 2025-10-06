@@ -11,6 +11,7 @@
 Usage
 -----
 
+{% if pathvars_enabled %}
 Via module
 ~~~~~~~~~~
 
@@ -30,11 +31,17 @@ You can include this meta-wrapper in your workflow via the `Snakemake module sys
 
 Upon using the rules, you can additionally modify input, output, log, and params as needed (see the definition of each rule below and the `modules documentation <https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#modules>`__).
 For additional parameters in each individual wrapper, please refer to their corresponding documentation (see links below).
+{% endif %}
 
 Via copy-paste
 ~~~~~~~~~~~~~~
 
+{% if pathvars_enabled %}
 Alternatively, you can directly copy-paste and modify the full meta-wrapper code below into your workflow.
+{% else %}
+This meta-wrapper does not yet use Snakemake's `pathvars syntax <https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#path-variables>`__.
+You can best directly copy-paste and modify the full meta-wrapper code below into your workflow.
+{% endif %}
 
 Execution
 ~~~~~~~~~

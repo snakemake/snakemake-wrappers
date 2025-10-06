@@ -154,6 +154,7 @@ def render_meta(path, target):
     pathvars = {var: desc for var, desc in DEFAULT_PATHVARS.items() if var in used_default_pathvars}
     pathvars.update(custom_pathvars)
 
+    meta["pathvars_enabled"] = "pathvars" in meta
     meta["pathvars"] = pathvars
     meta["uri"] = f"{TAG}/{path}"
     meta["usedwrappers"] = used_wrappers

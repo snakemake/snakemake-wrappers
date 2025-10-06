@@ -1,0 +1,6 @@
+pathvars:
+  genome_sequence: resources/genome.fasta
+  genome_annotation: resources/genome.gtf
+  reads_r1: reads/{sample}_R1.1.fastq
+  reads_r2: reads/{sample}_R2.1.fastq
+  per: "{sample}"

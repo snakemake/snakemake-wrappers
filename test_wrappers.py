@@ -1395,7 +1395,7 @@ def test_deseq2_wald(run):
 def test_arriba_star_meta(run):
     run(
         "meta/bio/star_arriba",
-        ["snakemake", "--cores", "1", "--use-conda", "results/arriba/a.fusions.tsv"],
+        ["snakemake", "--cores", "1", "--sdm", "conda", "results/arriba/a.fusions.tsv", "--configfile", "config.yaml"],
     )
 
 
@@ -1496,7 +1496,9 @@ def test_bwa_mapping_meta(run):
             "--cores",
             "1",
             "--use-conda",
-            "mapped/a.bam.bai",
+            "results/mapped/a.bam.bai",
+            "--configfile",
+            "config.yaml",
         ],
     )
 
@@ -6576,7 +6578,9 @@ def test_bowtie2_sambamba_meta(run):
             "2",
             "--use-conda",
             "-F",
-            "mapped/Sample1.rmdup.bam.bai",
+            "results/mapped/Sample1.rmdup.bam.bai",
+            "--configfile",
+            "config.yaml",
         ],
     )
 

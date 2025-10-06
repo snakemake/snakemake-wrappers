@@ -1,27 +1,39 @@
+rule bwa_index:
+    input:
+        "<genome_sequence>",
+    output:
+        idx=multiext("<resources>/bwa_index/genome", ".amb", ".ann", ".bwt", ".pac", ".sa"),
+    log:
+        "logs/bwa_index.log",
+    wrapper:
+        "master/bio/bwa/index"
+
+
 rule bwa_mem:
     input:
-        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
-        idx=multiext("genome", ".amb", ".ann", ".bwt", ".pac", ".sa"),
+        reads=["<reads_r1>", "<reads_r2>"],
+        idx=multiext("<resources>/bwa_index/genome", ".amb", ".ann", ".bwt", ".pac", ".sa"),
     output:
-        "mapped/{sample}.bam"
+        "<results>/mapped/{sample}.bam"
     log:
-        "logs/bwa_mem/{sample}.log"
+        "<logs>/bwa_mem/{sample}.log"
     params:
         extra=r"-R '@RG\tID:{sample}\tSM:{sample}'",
-        sort="samtools",             # Can be 'none', 'samtools' or 'picard'.
+        sort="samtools",          # Can be 'none', 'samtools' or 'picard'.
         sort_order="coordinate",  # Can be 'queryname' or 'coordinate'.
-        sort_extra=""            # Extra args for samtools/picard.
+        sort_extra=""             # Extra args for samtools/picard.
     threads: 8
     wrapper:
         "master/bio/bwa/mem"
 
+
 rule samtools_index:
     input:
-        "mapped/{sample}.bam"
+        "<results>/mapped/{sample}.bam"
     output:
-        "mapped/{sample}.bam.bai"
+        "<results>/mapped/{sample}.bam.bai"
     log:
-        "logs/samtools_index/{sample}.log"
+        "<logs>/samtools_index/{sample}.log"
     params:
         "" # optional params string
     wrapper:
