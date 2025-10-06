@@ -399,6 +399,21 @@ def __check_for_duplicated_keywords(snakemake):
 
 
 def parse_bbtool(snakemake):
+    """
+    Assembles the bbtools wrapper shell command from Snakemake inputs, outputs, params, and runtime settings.
+
+    Validates that `snakemake.params.command` is present and is a single-word string without any whitespace, ending with ".sh".
+    Adds `snakemake.params.extra`, if present, asserting it is a string.
+    Parses inputs, outputs, and params into bbtools-style arguments, appends thread and Java memory options, adds the "-eoom" flag, and includes shell log redirections.
+
+    Returns:
+        command (str): The fully assembled command string ready to be executed in the shell.
+
+    Raises:
+        Exception: If `snakemake.params.command` is not provided.
+        AssertionError: If `command` or `extra` have invalid types or formats.
+    """
+
     ## keywords
     __check_for_duplicated_keywords(snakemake)
 
@@ -439,7 +454,7 @@ def parse_bbtool(snakemake):
     # log
     log = multiple_log_fmt_shell(snakemake, append_stderr=True)
 
-    command_with_parameters += f" {java_opts} {log}"
+    command_with_parameters += f" {java_opts} -eoom {log}"
 
     return command_with_parameters
 
