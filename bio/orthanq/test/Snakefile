@@ -34,9 +34,9 @@ rule orthanq_candidates_virus:
 rule orthanq_preprocess_hla:
     input:
         genome="genome_hla.fasta",
-        reads=["hla/read_1.fq", "hla/read_2.fq"],
+        reads=["read_1_hla.fq", "read_2_hla.fq"],
         haplotype_variants="haplotype_variants_hla.vcf",
-        vg_index="genome_hla.xg",
+        vg_index="genome_hlaxg",
     output:
         "out/preprocess_hla.bcf",
     log:
