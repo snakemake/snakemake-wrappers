@@ -34,9 +34,9 @@ rule orthanq_candidates_virus:
 rule orthanq_preprocess_hla:
     input:
         genome="genome_hla.fasta",
-        reads=["read_1.fq", "read_2.fq"],
-        haplotype_variants="B.vcf",
-        vg_index="hprc_prebuilt.xg",
+        reads=["hla/read_1.fq", "hla/read_2.fq"],
+        haplotype_variants="haplotype_variants_hla.vcf",
+        vg_index="genome_hla.xg",
     output:
         "out/preprocess_hla.bcf",
     log:
@@ -52,7 +52,7 @@ rule orthanq_preprocess_virus:
     input:
         genome="genome_virus.fasta",
         reads=["read_1.fq", "read_2.fq"],
-        haplotype_variants="haplotype_variants.vcf",
+        haplotype_variants="haplotype_variants_virus.vcf",
     output:
         "out/preprocess_virus.bcf"
     log:
@@ -70,7 +70,7 @@ rule orthanq_call_hla:
         haplotype_variants="haplotype_variants_hla.vcf",
         xml="alleles.xml"
     output:
-        "out/calls.csv"
+        "out/calls_hla.csv"
     log:
         "logs/orthanq_call/call.log",
     params:
@@ -87,7 +87,7 @@ rule orthanq_call_virus:
         haplotype_calls="haplotype_calls.bcf",
         haplotype_variants="haplotype_variants_virus.vcf"
     output:
-        "out/calls.csv"
+        "out/calls_virus.csv"
     log:
         "logs/orthanq_call/call.log",
     params:
