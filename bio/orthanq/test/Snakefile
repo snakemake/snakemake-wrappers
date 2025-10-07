@@ -2,12 +2,12 @@
 rule orthanq_candidates_hla:
     input:
         genome="genome_hla.fasta",
-        xml="hla.xml",
-        alleles="hla_alleles.fasta",
+        xml="alleles.xml",
+        alleles="alleles.fasta",
     output:
-        directory("out/hla_candidates")
+        directory("out/candidates")
     log:
-        "logs/orthanq_candidates/candidates_hla.log",
+        "logs/orthanq_candidates/candidates.log",
     params:
         command="candidates",
         subcommand="hla",
@@ -21,9 +21,9 @@ rule orthanq_candidates_virus:
         genome="genome_virus.fasta",
         lineages="lineages.fasta"
     output:
-        "out/virus_candidates.vcf"
+        "out/candidates.vcf"
     log:
-        "logs/orthanq_candidates/candidates_virus.log",
+        "logs/orthanq_candidates/candidates.log",
     params:
         command="candidates",
         subcommand="virus"
@@ -40,7 +40,7 @@ rule orthanq_preprocess_hla:
     output:
         "out/preprocess_hla.bcf",
     log:
-        "logs/orthanq_preprocess/preprocess_hla.log",
+        "logs/orthanq_preprocess/preprocess.log",
     params:
         command="preprocess",
         subcommand="hla"
@@ -56,7 +56,7 @@ rule orthanq_preprocess_virus:
     output:
         "out/preprocess_virus.bcf"
     log:
-        "logs/orthanq_preprocess/preprocess_virus.log",
+        "logs/orthanq_preprocess/preprocess.log",
     params:
         command="preprocess",
         subcommand="virus"
@@ -68,11 +68,11 @@ rule orthanq_call_hla:
     input:
         haplotype_calls="haplotype_calls.bcf",
         haplotype_variants="haplotype_variants_hla.vcf",
-        xml="hla.xml"
+        xml="alleles.xml"
     output:
-        "out/all_hla.csv"
+        "out/calls.csv"
     log:
-        "logs/orthanq_call/call_hla.log",
+        "logs/orthanq_call/call.log",
     params:
         command="call",
         subcommand="hla",
@@ -87,9 +87,9 @@ rule orthanq_call_virus:
         haplotype_calls="haplotype_calls.bcf",
         haplotype_variants="haplotype_variants_virus.vcf"
     output:
-        "out/call_virus.csv"
+        "out/calls.csv"
     log:
-        "logs/orthanq_call/call_virus.log",
+        "logs/orthanq_call/call.log",
     params:
         command="call",
         subcommand="virus",
