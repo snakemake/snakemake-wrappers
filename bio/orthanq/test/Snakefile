@@ -36,7 +36,7 @@ rule orthanq_preprocess_hla:
         genome="genome_hla.fasta",
         reads=["read_1_hla.fq", "read_2_hla.fq"],
         haplotype_variants="haplotype_variants_hla.vcf",
-        vg_index="genome_hlaxg",
+        vg_index="genome_hla.xg",
     output:
         "out/preprocess_hla.bcf",
     log:
