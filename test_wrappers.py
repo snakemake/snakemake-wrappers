@@ -7090,3 +7090,74 @@ def test_rasterio_clip_geotiff(run):
             "results/puerto_vallarta_small.tiff",
         ],
     )
+
+def test_orthanq_candidates_hla(run):
+    run(
+        "bio/orthanq",
+        [
+            "snakemake",
+            "--cores", "1",
+            "hla_candidates",
+            "--use-conda",
+        ],
+    )
+
+
+def test_orthanq_candidates_virus(run):
+    run(
+        "bio/orthanq",
+        [
+            "snakemake",
+            "--cores", "1",
+            "virus_candidates.vcf",
+            "--use-conda",
+        ],
+    )
+
+
+def test_orthanq_preprocess_hla(run):
+    run(
+        "bio/orthanq",
+        [
+            "snakemake",
+            "--cores", "1",
+            "preprocess_hla.bcf",
+            "--use-conda",
+        ],
+    )
+
+
+def test_orthanq_preprocess_virus(run):
+    run(
+        "bio/orthanq",
+        [
+            "snakemake",
+            "--cores", "1",
+            "preprocess_virus.bcf",
+            "--use-conda",
+        ],
+    )
+
+
+def test_orthanq_call_hla(run):
+    run(
+        "bio/orthanq",
+        [
+            "snakemake",
+            "--cores", "1",
+            "call_hla.csv",
+            "--use-conda",
+        ],
+    )
+
+
+def test_orthanq_call_virus(run):
+    run(
+        "bio/orthanq",
+        [
+            "snakemake",
+            "--cores", "1",
+            "call_virus.csv",
+            "--use-conda",
+        ],
+    )

@@ -33,7 +33,9 @@ if command == "candidates":
 elif command == "preprocess":
     reads = snakemake.input.reads
     haplotype_variants = snakemake.input.haplotype_variants
-    cmd += f" --genome {genome} --haplotype-variants {haplotype_variants} --reads {reads}"
+    cmd += (
+        f" --genome {genome} --haplotype-variants {haplotype_variants} --reads {reads}"
+    )
 
     if subcommand == "hla":
         vg_index = snakemake.input.vg_index
