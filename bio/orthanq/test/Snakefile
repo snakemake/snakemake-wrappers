@@ -67,7 +67,7 @@ rule orthanq_preprocess_virus:
 rule orthanq_call_hla:
     input:
         haplotype_calls="haplotype_calls.bcf",
-        haplotype_variants="haplotype_variants.vcf",
+        haplotype_variants="haplotype_variants_hla.vcf",
         xml="hla.xml"
     output:
         "call_hla.csv"
@@ -85,7 +85,7 @@ rule orthanq_call_hla:
 rule orthanq_call_virus:
     input:
         haplotype_calls="haplotype_calls.bcf",
-        haplotype_variants="haplotype_variants.vcf"
+        haplotype_variants="haplotype_variants_virus.vcf"
     output:
         "call_virus.csv"
     log:
