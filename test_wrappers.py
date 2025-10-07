@@ -7097,7 +7097,7 @@ def test_orthanq_candidates_hla(run):
         [
             "snakemake",
             "--cores", "1",
-            "hla_candidates",
+            "out/hla_candidates",
             "--use-conda",
         ],
     )
@@ -7109,7 +7109,7 @@ def test_orthanq_candidates_virus(run):
         [
             "snakemake",
             "--cores", "1",
-            "virus_candidates.vcf",
+            "out/virus_candidates.vcf",
             "--use-conda",
         ],
     )
@@ -7121,7 +7121,7 @@ def test_orthanq_preprocess_hla(run):
         [
             "snakemake",
             "--cores", "1",
-            "preprocess_hla.bcf",
+            "out/preprocess_hla.bcf",
             "--use-conda",
         ],
     )
@@ -7133,7 +7133,7 @@ def test_orthanq_preprocess_virus(run):
         [
             "snakemake",
             "--cores", "1",
-            "preprocess_virus.bcf",
+            "out/preprocess_virus.bcf",
             "--use-conda",
         ],
     )
@@ -7145,7 +7145,7 @@ def test_orthanq_call_hla(run):
         [
             "snakemake",
             "--cores", "1",
-            "call_hla.csv",
+            "out/call_hla.csv",
             "--use-conda",
         ],
     )
@@ -7157,7 +7157,7 @@ def test_orthanq_call_virus(run):
         [
             "snakemake",
             "--cores", "1",
-            "call_virus.csv",
+            "out/call_virus.csv",
             "--use-conda",
         ],
     )
