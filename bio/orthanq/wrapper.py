@@ -11,7 +11,7 @@ command = snakemake.params.command  # candidates, preprocess, call
 subcommand = snakemake.params.subcommand  # hla, virus
 
 # Shared inputs and params
-output = snakemake.output[0]
+output = snakemake.output.candidates_dir
 genome = snakemake.input.get("genome", "")
 extra = snakemake.params.get("extra", "")
 

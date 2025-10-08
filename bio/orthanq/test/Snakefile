@@ -5,7 +5,7 @@ rule orthanq_candidates_hla:
         xml="refs/alleles.xml",
         alleles="refs/alleles.fasta",
     output:
-        directory("out/candidates")
+        candidates_dir=directory("out/candidates")
     log:
         "logs/orthanq_candidates/candidates.log",
     params:
