@@ -29,8 +29,7 @@ params:
   - command: One of `candidates`, `preprocess`, or `call`
   - subcommand: One of `hla` or `virus`
   - prior: Prior model used in Bayesian quantification (`uniform` or `diploid`) - required for `call`
-  - sample_name: Sample name (optional; only used in `call hla` for multi-sample VCFs)
-  - extra: Optional extra parameters passed to the orthanq command
+  - extra: Optional extra parameters passed to the orthanq command (e.g. --sample-name used in `call hla` for multi-sample VCFs)
 
 notes: |
   - Follow preparation steps at https://orthanq.github.io/docs/usage.html#preparation to download necessary resources for HLA typing.
