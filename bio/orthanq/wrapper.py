@@ -75,4 +75,3 @@ else:
 cmd += f" --output {output} {log}"
 
 shell(cmd)
-

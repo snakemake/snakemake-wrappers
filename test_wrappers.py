@@ -6720,6 +6720,7 @@ def test_sortmerna_se(run):
         ],
     )
 
+
 def test_tmb_pyeffgenomesize(run):
     run(
         "bio/tmb/pyeffgenomesize",
@@ -6729,6 +6730,7 @@ def test_tmb_pyeffgenomesize(run):
         "bio/tmb/pyeffgenomesize",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "complete.txt"],
     )
+
 
 def test_tmb_pytmb(run):
     run(
@@ -7091,12 +7093,14 @@ def test_rasterio_clip_geotiff(run):
         ],
     )
 
+
 def test_orthanq_candidates_hla(run):
     run(
         "bio/orthanq",
         [
             "snakemake",
-            "--cores", "1",
+            "--cores",
+            "1",
             "out/candidates",
             "--use-conda",
         ],
@@ -7108,7 +7112,8 @@ def test_orthanq_candidates_virus(run):
         "bio/orthanq",
         [
             "snakemake",
-            "--cores", "1",
+            "--cores",
+            "1",
             "out/candidates.vcf",
             "--use-conda",
         ],
@@ -7132,7 +7137,8 @@ def test_orthanq_preprocess_virus(run):
         "bio/orthanq",
         [
             "snakemake",
-            "--cores", "1",
+            "--cores",
+            "1",
             "out/preprocess_virus.bcf",
             "--use-conda",
         ],
@@ -7144,7 +7150,8 @@ def test_orthanq_call_hla(run):
         "bio/orthanq",
         [
             "snakemake",
-            "--cores", "1",
+            "--cores",
+            "1",
             "out/calls_hla.csv",
             "--use-conda",
         ],
@@ -7156,7 +7163,8 @@ def test_orthanq_call_virus(run):
         "bio/orthanq",
         [
             "snakemake",
-            "--cores", "1",
+            "--cores",
+            "1",
             "out/calls_virus.csv",
             "--use-conda",
         ],
