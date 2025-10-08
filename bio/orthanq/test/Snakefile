@@ -1,9 +1,9 @@
 # Candidates HLA
 rule orthanq_candidates_hla:
     input:
-        genome="genome_hla.fasta",
-        xml="alleles.xml",
-        alleles="alleles.fasta",
+        genome="refs/genome_hla.fasta",
+        xml="refs/alleles.xml",
+        alleles="refs/alleles.fasta",
     output:
         directory("out/candidates")
     log:
@@ -18,8 +18,8 @@ rule orthanq_candidates_hla:
 # Candidates Virus
 rule orthanq_candidates_virus:
     input:
-        genome="genome_virus.fasta",
-        lineages="lineages.fasta"
+        genome="refs/genome_virus.fasta",
+        lineages="refs/lineages.fasta"
     output:
         "out/candidates.vcf"
     log:
@@ -33,10 +33,10 @@ rule orthanq_candidates_virus:
 # Preprocess HLA
 rule orthanq_preprocess_hla:
     input:
-        genome="genome_hla.fasta",
-        reads=["read_1_hla.fq", "read_2_hla.fq"],
-        haplotype_variants="haplotype_variants_hla.vcf",
-        vg_index="genome_hla.xg",
+        genome="refs/genome_hla.fasta",
+        reads=["reads/read_1_hla.fq", "reads/read_2_hla.fq"],
+        haplotype_variants="variants/haplotype_variants_hla.vcf",
+        vg_index="refs/hprc_prebuilt.xg",
     output:
         "out/preprocess_hla.bcf",
     log:
@@ -50,9 +50,9 @@ rule orthanq_preprocess_hla:
 # Preprocess Virus
 rule orthanq_preprocess_virus:
     input:
-        genome="genome_virus.fasta",
-        reads=["read_1.fq", "read_2.fq"],
-        haplotype_variants="haplotype_variants_virus.vcf",
+        genome="refs/genome_virus.fasta",
+        reads=["reads/read_1_virus.fq", "reads/read_2_virus.fq"],
+        haplotype_variants="variants/haplotype_variants_virus.vcf",
     output:
         "out/preprocess_virus.bcf"
     log:
@@ -66,9 +66,9 @@ rule orthanq_preprocess_virus:
 # Call HLA
 rule orthanq_call_hla:
     input:
-        haplotype_calls="haplotype_calls.bcf",
-        haplotype_variants="haplotype_variants_hla.vcf",
-        xml="alleles.xml"
+        haplotype_calls="variants/haplotype_calls.bcf",
+        haplotype_variants="variants/haplotype_variants_hla.vcf",
+        xml="ref/alleles.xml"
     output:
         "out/calls_hla.csv"
     log:
@@ -84,8 +84,8 @@ rule orthanq_call_hla:
 # Call Virus
 rule orthanq_call_virus:
     input:
-        haplotype_calls="haplotype_calls.bcf",
-        haplotype_variants="haplotype_variants_virus.vcf"
+        haplotype_calls="variants/haplotype_calls.bcf",
+        haplotype_variants="variants/haplotype_variants_virus.vcf"
     output:
         "out/calls_virus.csv"
     log:
