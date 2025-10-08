@@ -7094,78 +7094,19 @@ def test_rasterio_clip_geotiff(run):
     )
 
 
-def test_orthanq_candidates_hla(run):
+def test_orthanq(run):
     run(
         "bio/orthanq",
         [
             "snakemake",
             "--cores",
             "1",
+            "--use-conda",
             "out/candidates",
-            "--use-conda",
-        ],
-    )
-
-
-def test_orthanq_candidates_virus(run):
-    run(
-        "bio/orthanq",
-        [
-            "snakemake",
-            "--cores",
-            "1",
             "out/candidates.vcf",
-            "--use-conda",
-        ],
-    )
-
-
-# def test_orthanq_preprocess_hla(run):
-#     run(
-#         "bio/orthanq",
-#         [
-#             "snakemake",
-#             "--cores", "1",
 #             "out/preprocess_hla.bcf",
-#             "--use-conda",
-#         ],
-#     )
-
-
-def test_orthanq_preprocess_virus(run):
-    run(
-        "bio/orthanq",
-        [
-            "snakemake",
-            "--cores",
-            "1",
             "out/preprocess_virus.bcf",
-            "--use-conda",
-        ],
-    )
-
-
-def test_orthanq_call_hla(run):
-    run(
-        "bio/orthanq",
-        [
-            "snakemake",
-            "--cores",
-            "1",
             "out/calls_hla.csv",
-            "--use-conda",
-        ],
-    )
-
-
-def test_orthanq_call_virus(run):
-    run(
-        "bio/orthanq",
-        [
-            "snakemake",
-            "--cores",
-            "1",
             "out/calls_virus.csv",
-            "--use-conda",
         ],
     )
