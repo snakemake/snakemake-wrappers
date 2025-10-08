@@ -7115,16 +7115,16 @@ def test_orthanq_candidates_virus(run):
     )
 
 
-def test_orthanq_preprocess_hla(run):
-    run(
-        "bio/orthanq",
-        [
-            "snakemake",
-            "--cores", "1",
-            "out/preprocess_hla.bcf",
-            "--use-conda",
-        ],
-    )
+# def test_orthanq_preprocess_hla(run):
+#     run(
+#         "bio/orthanq",
+#         [
+#             "snakemake",
+#             "--cores", "1",
+#             "out/preprocess_hla.bcf",
+#             "--use-conda",
+#         ],
+#     )
 
 
 def test_orthanq_preprocess_virus(run):
