@@ -31,21 +31,21 @@ rule orthanq_candidates_virus:
         "master/bio/orthanq"
 
 # Preprocess HLA
-rule orthanq_preprocess_hla:
-    input:
-        genome="refs/genome_hla.fasta",
-        reads=["reads/read_1_hla.fq", "reads/read_2_hla.fq"],
-        haplotype_variants="variants/haplotype_variants_hla.vcf",
-        vg_index="refs/hprc_prebuilt.xg",
-    output:
-        "out/preprocess_hla.bcf",
-    log:
-        "logs/orthanq_preprocess/preprocess.log",
-    params:
-        command="preprocess",
-        subcommand="hla"
-    wrapper:
-        "master/bio/orthanq"
+# rule orthanq_preprocess_hla:
+#     input:
+#         genome="refs/genome_hla.fasta",
+#         reads=["reads/read_1_hla.fq", "reads/read_2_hla.fq"],
+#         haplotype_variants="variants/haplotype_variants_hla.vcf",
+#         vg_index="refs/hprc_prebuilt.xg",
+#     output:
+#         "out/preprocess_hla.bcf",
+#     log:
+#         "logs/orthanq_preprocess/preprocess.log",
+#     params:
+#         command="preprocess",
+#         subcommand="hla"
+#     wrapper:
+#         "master/bio/orthanq"
 
 # Preprocess Virus
 rule orthanq_preprocess_virus:
@@ -68,7 +68,7 @@ rule orthanq_call_hla:
     input:
         haplotype_calls="variants/haplotype_calls.bcf",
         haplotype_variants="variants/haplotype_variants_hla.vcf",
-        xml="ref/alleles.xml"
+        xml="refs/alleles.xml"
     output:
         "out/calls_hla.csv"
     log:
