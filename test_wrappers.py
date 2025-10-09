@@ -6720,6 +6720,7 @@ def test_sortmerna_se(run):
         ],
     )
 
+
 def test_tmb_pyeffgenomesize(run):
     run(
         "bio/tmb/pyeffgenomesize",
@@ -6729,6 +6730,7 @@ def test_tmb_pyeffgenomesize(run):
         "bio/tmb/pyeffgenomesize",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "complete.txt"],
     )
+
 
 def test_tmb_pytmb(run):
     run(
@@ -7088,5 +7090,23 @@ def test_rasterio_clip_geotiff(run):
             "results/montenegro.tiff",
             "results/switzerland.tiff",
             "results/puerto_vallarta_small.tiff",
+        ],
+    )
+
+
+def test_orthanq(run):
+    run(
+        "bio/orthanq",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "out/candidates",
+            "out/candidates.vcf",
+#             "out/preprocess_hla.bcf",
+            "out/preprocess_virus.bcf",
+            "out/calls_hla.csv",
+            "out/calls_virus.csv",
         ],
     )
