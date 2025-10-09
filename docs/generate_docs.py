@@ -28,19 +28,22 @@ BLACKLIST = {
     ".pytest_cache",
 } | SCRIPTS
 DISCIPLINES = [
-    os.path.basename(x) for x in os.listdir(WRAPPER_DIR) if all(
-        [x not in BLACKLIST, os.path.isdir(os.path.join(WRAPPER_DIR, x)), x!="meta"])
-    ]
+    os.path.basename(x)
+    for x in os.listdir(WRAPPER_DIR)
+    if all(
+        [x not in BLACKLIST, os.path.isdir(os.path.join(WRAPPER_DIR, x)), x != "meta"]
+    )
+]
 META_DISCIPLINES = [
-    os.path.basename(x) for x in os.listdir(
-        os.path.join(WRAPPER_DIR, "meta")) if all(
-            [x not in BLACKLIST, os.path.isdir(os.path.join(WRAPPER_DIR, "meta", x))]
-        )]
+    os.path.basename(x)
+    for x in os.listdir(os.path.join(WRAPPER_DIR, "meta"))
+    if all([x not in BLACKLIST, os.path.isdir(os.path.join(WRAPPER_DIR, "meta", x))])
+]
 disciplines_mask = {
     "bio": {"name": "Bio", "description": "bioinformatics"},
     "geo": {"name": "Geo", "description": "geospatial"},
     "phys": {"name": "Phys", "description": "physics"},
-    "utils": {"name": "Utils", "description": "utility"}
+    "utils": {"name": "Utils", "description": "utility"},
 }
 DEFAULT_PATHVARS = {
     "results": "Path to results directory",
@@ -63,6 +66,7 @@ with open(os.path.join(BASE_DIR, "_templates", "discipline.rst")) as f:
 
 with open(os.path.join(BASE_DIR, "_templates", "meta_discipline.rst")) as f:
     TEMPLATE_META_DISCIPLINE = Template(f.read())
+
 
 def get_tool_dir(tool, discipline=None):
     outdir = os.path.join(OUTPUT_DIR, discipline, tool)
@@ -154,7 +158,11 @@ def render_meta(path, target, tag: str | None):
     name = meta["name"].replace(" ", "_") + ".rst"
     used_default_pathvars = set(meta.get("pathvars", {}).get("custom", []))
     custom_pathvars = meta.get("pathvars", {}).get("custom", {})
-    pathvars = {var: desc for var, desc in DEFAULT_PATHVARS.items() if var in used_default_pathvars}
+    pathvars = {
+        var: desc
+        for var, desc in DEFAULT_PATHVARS.items()
+        if var in used_default_pathvars
+    }
     pathvars.update(custom_pathvars)
 
     meta["pathvars_enabled"] = "pathvars" in meta
@@ -178,9 +186,26 @@ def get_latest_git_tag(path: Path) -> str | None:
     """
 
     # get the latest git commit that changed the given dir:
-    commit = subprocess.run(["git", "rev-list", "-1", "HEAD", "--", str(path)], stdout=subprocess.PIPE, check=True).stdout.decode().strip()
+    commit = (
+        subprocess.run(
+            ["git", "rev-list", "-1", "HEAD", "--", str(path)],
+            stdout=subprocess.PIPE,
+            check=True,
+        )
+        .stdout.decode()
+        .strip()
+    )
     # get the first git tag that includes this commit:
-    tags = subprocess.run(["git", "tag", "--sort", "creatordate", "--contains", commit], check=True, stdout=subprocess.PIPE).stdout.decode().strip().splitlines()
+    tags = (
+        subprocess.run(
+            ["git", "tag", "--sort", "creatordate", "--contains", commit],
+            check=True,
+            stdout=subprocess.PIPE,
+        )
+        .stdout.decode()
+        .strip()
+        .splitlines()
+    )
     if not tags:
         return None
     else:
@@ -192,9 +217,12 @@ def setup(*args):
     for discipline in DISCIPLINES:
         # generate discipline index
         with open(os.path.join(OUTPUT_DIR, discipline + ".rst"), "w") as f:
-            f.write(TEMPLATE_DISCIPLINE.render(
-                name=disciplines_mask[discipline]['name'],
-                description=disciplines_mask[discipline]['description']))
+            f.write(
+                TEMPLATE_DISCIPLINE.render(
+                    name=disciplines_mask[discipline]["name"],
+                    description=disciplines_mask[discipline]["description"],
+                )
+            )
         os.makedirs(os.path.join(OUTPUT_DIR, discipline), exist_ok=True)
         for tool in os.listdir(os.path.join(WRAPPER_DIR, discipline)):
             if tool in BLACKLIST:
@@ -221,7 +249,9 @@ def setup(*args):
                     tag = get_latest_git_tag(Path(dirpath))
                     render_wrapper(
                         dirpath,
-                        os.path.join(get_tool_dir(tool, discipline), subcommand + ".rst"),
+                        os.path.join(
+                            get_tool_dir(tool, discipline), subcommand + ".rst"
+                        ),
                         wrapper_id,
                         tag,
                     )
@@ -248,7 +278,9 @@ def setup(*args):
                 continue
             path = os.path.join(WRAPPER_DIR, "meta", discipline, subwf)
             tag = get_latest_git_tag(Path(path))
-            render_meta(path, os.path.join(META_OUTPUT_DIR, discipline, subwf + ".rst"), tag)
+            render_meta(
+                path, os.path.join(META_OUTPUT_DIR, discipline, subwf + ".rst"), tag
+            )
 
 
 if __name__ == "__main__":
