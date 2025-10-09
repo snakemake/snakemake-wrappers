@@ -7,10 +7,6 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
-# Required parameters
-command = snakemake.params.command  # candidates, preprocess, call
-subcommand = snakemake.params.subcommand  # hla, virus
-
 # Parse inputs
 reads = snakemake.input.get("reads")
 if reads:
