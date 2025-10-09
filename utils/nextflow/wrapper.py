@@ -38,6 +38,12 @@ for name, value in snakemake.params.items():
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 args = " ".join(args)
 pipeline = snakemake.params.pipeline
-launch_dir = snakemake.params.get("launch_dir", ".")
 
-shell("cd {launch_dir}; nextflow run {pipeline} {args} {extra} {log}")
+launch_dir = snakemake.params.get("launch_dir")
+if launch_dir:
+    if not os.path.isdir(launch_dir):
+        raise ValueError(f"launch_dir does not exist: {launch_dir}")
+    else:
+        os.chdir(launch_dir)
+
+shell("nextflow run {pipeline} {args} {extra} {log}")
