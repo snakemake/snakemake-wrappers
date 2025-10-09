@@ -1395,7 +1395,7 @@ def test_deseq2_wald(run):
 def test_arriba_star_meta(run):
     run(
         "meta/bio/star_arriba",
-        ["snakemake", "--cores", "1", "--sdm", "conda", "results/arriba/a.fusions.tsv", "--configfile", "config.yaml"],
+        ["snakemake", "results/arriba/a.fusions.tsv", "--cores", "1", "--sdm", "conda", "--configfile", "config.yaml"],
     )
 
 
@@ -6560,6 +6560,8 @@ def test_calc_consensus_reads(run):
         "meta/bio/calc_consensus_reads/",
         [
             "snakemake",
+            "--configfile",
+            "config.yaml",
             "--cores",
             "1",
             "--use-conda",
