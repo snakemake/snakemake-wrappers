@@ -11,16 +11,11 @@ command = snakemake.params.command  # candidates, preprocess, call
 subcommand = snakemake.params.subcommand  # hla, virus
 
 # Shared inputs and params
+output = snakemake.output[0]
 genome = snakemake.input.get("genome", "")
 extra = snakemake.params.get("extra", "")
 
 cmd = f"orthanq {command} {subcommand}"
-
-# Determine output depending on command/subcommand
-if command == "candidates" and subcommand == "hla":
-    output = snakemake.output.candidates_dir
-else:
-    output = snakemake.output[0]
 
 if command == "candidates":
     if subcommand == "hla":
