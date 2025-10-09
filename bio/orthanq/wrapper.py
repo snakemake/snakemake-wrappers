@@ -42,7 +42,7 @@ if vg_index:
 
 
 # Parse params
-if command == "call":
+if snakemake.params.command == "call":
     extra += f" --prior {snakemake.params.prior}"
 
 
