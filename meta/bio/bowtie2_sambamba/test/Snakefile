@@ -22,7 +22,7 @@ rule bowtie2_build:
 
 rule bowtie2_alignment:
     input:
-        sample=["<reads_r1>", "<reads_r2"],
+        sample=["<reads_r1>", "<reads_r2>"],
         idx=multiext(
             "<resources>/bowtie_index/genome",
             ".1.bt2",

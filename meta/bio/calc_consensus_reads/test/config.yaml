@@ -1,2 +1,3 @@
 pathvars:
   mapped_reads: mapped/{sample}.marked.bam
+  genome_sequence: resources/genome.fa
