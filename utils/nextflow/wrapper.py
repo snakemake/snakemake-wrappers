@@ -32,16 +32,12 @@ for name, files in snakemake.input.items():
         files = ",".join(files)
     add_parameter(name, files)
 for name, value in snakemake.params.items():
-    if (
-        name != "pipeline"
-        and name != "revision"
-        and name != "profile"
-        and name != "extra"
-    ):
+    if name not in {"pipeline", "revision", "profile", "extra", "launch_dir"}:
         add_parameter(name, value)
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 args = " ".join(args)
 pipeline = snakemake.params.pipeline
+launch_dir = snakemake.params.get("launch_dir", ".")
 
-shell("nextflow run {pipeline} {args} {extra} {log}")
+shell("cd {launch_dir}; nextflow run {pipeline} {args} {extra} {log}")
