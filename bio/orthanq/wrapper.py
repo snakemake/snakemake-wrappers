@@ -5,68 +5,47 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
-
-# Required parameters
-command = snakemake.params.command  # candidates, preprocess, call
-subcommand = snakemake.params.subcommand  # hla, virus
-
-# Shared inputs and params
-output = snakemake.output[0]
-genome = snakemake.input.get("genome", "")
 extra = snakemake.params.get("extra", "")
 
-cmd = f"orthanq {command} {subcommand}"
 
-if command == "candidates":
-    if subcommand == "hla":
-        alleles = snakemake.input.alleles
-        xml = snakemake.input.xml
-        cmd += f" --alleles {alleles} --genome {genome} --xml {xml} {extra}"
-    elif subcommand == "virus":
-        lineages = snakemake.input.lineages
-        cmd += f" --genome {genome} --lineages {lineages}"
-    else:
-        raise ValueError(f"Unsupported subcommand for 'candidates': {subcommand}")
+# Parse inputs
+reads = snakemake.input.get("reads")
+if reads:
+    extra += f" --reads {reads}"
 
-# === Preprocess ===
-elif command == "preprocess":
-    reads = snakemake.input.reads
-    haplotype_variants = snakemake.input.haplotype_variants
-    cmd += (
-        f" --genome {genome} --haplotype-variants {haplotype_variants} --reads {reads}"
-    )
+genome = snakemake.input.get("genome")
+if genome:
+    extra += f" --genome {genome}"
 
-    if subcommand == "hla":
-        vg_index = snakemake.input.vg_index
-        cmd += f" --vg-index {vg_index}"
-    elif subcommand == "virus":
-        pass  # already complete
-    else:
-        raise ValueError(f"Unsupported subcommand for 'preprocess': {subcommand}")
+alleles = snakemake.input.get("alleles")
+if alleles:
+    extra += f" --alleles {alleles}"
 
-# === Call ===
-elif command == "call":
-    # Require prior
-    if not hasattr(snakemake.params, "prior"):
-        raise ValueError("Missing required param: 'prior' is required for orthanq call")
-    prior = snakemake.params.prior
+xml = snakemake.input.get("xml")
+if xml:
+    extra += f" --xml {xml}"
 
-    haplotype_calls = snakemake.input.haplotype_calls
-    haplotype_variants = snakemake.input.haplotype_variants
-    cmd += f" --haplotype-calls {haplotype_calls} --haplotype-variants {haplotype_variants} --prior {prior}"
+lineages = snakemake.input.get("lineages")
+if lineages:
+    extra += f" --lineages {lineages}"
 
-    if subcommand == "hla":
-        xml = snakemake.input.xml
-        cmd += f" --xml {xml} {extra}"
-    elif subcommand == "virus":
-        pass  # already complete
-    else:
-        raise ValueError(f"Unsupported subcommand for 'call': {subcommand}")
+haplotype_variants = snakemake.input.get("haplotype_variants")
+if haplotype_variants:
+    extra += f" --haplotype-variants {haplotype_variants}"
 
-else:
-    raise ValueError(f"Unsupported command: {command}")
+haplotype_calls = snakemake.input.get("haplotype_calls")
+if haplotype_calls:
+    extra += f" --haplotype-calls {haplotype_calls}"
+
+vg_index = snakemake.input.get("vg_index")
+if vg_index:
+    extra += f" --vg-index {vg_index}"
+
+
+# Parse params
+if command == "call":
+    extra += f" --prior {snakemake.params.prior}"
+
 
 # Finalize with output and log
-cmd += f" --output {output} {log}"
-
-shell(cmd)
+shell("orthanq {snakemake.params.command} {snakemake.params.subcommand} {extra} --output {snakemake.output[0]} {log}")
