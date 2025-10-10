@@ -64,9 +64,15 @@ jobs:
           declare -i ERRORS=0
           # get all modified and added files, not those that are deleted
           for f in $(git diff origin/master --name-only --diff-filter=d | grep Snakefile)
-          do 
-            snakemake -s $f --lint
-            ERRORS+=$?
+          do
+            if [[ $f == meta/* ]]
+            then
+              snakemake -s $f --lint --configfile $(dirname $f)/config.yaml
+              ERRORS+=$?
+            else
+              snakemake -s $f --lint
+              ERRORS+=$?
+            fi
           done
           if (( $ERRORS > 0 ))
           then
