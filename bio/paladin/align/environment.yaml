@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - paladin =1.4.6
+  - paladin =1.6.0
   - samtools =1.22.1
