@@ -21,7 +21,7 @@ inputs:
   - vg_index: Prebuilt VG index, used only in `preprocess hla`
 
 outputs:
-  - Quantified haplotypes in CSV (from `call`)
+  - Quantified haplotypes the output folder (from `call`)
   - Preprocessed BCF file (from `preprocess`)
   - Candidate variants in VCF or BCF format (from `candidates`)
 
