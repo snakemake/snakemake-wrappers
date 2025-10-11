@@ -90,7 +90,7 @@ def render_tool(tool, discipline, subcmds):
 
 
 def render_snakefile(path, tag: str | None):
-    with open(os.path.join(path, "test", "Snakefile")) as snakefile:
+    with open(path) as snakefile:
         lines = filter(lambda line: re.search(r"# ?\[hide\]", line) is None, snakefile)
         snakefile = textwrap.indent(
             "\n".join(l.rstrip() for l in lines).strip(), "    "
@@ -115,7 +115,7 @@ def render_wrapper(path, target, wrapper_id, tag: str | None):
     else:
         pkgs = []
 
-    snakefile = render_snakefile(path, tag)
+    snakefile = render_snakefile(os.path.join(path, "test", "Snakefile"), tag)
 
     wrapper = os.path.join(path, "wrapper.py")
     wrapper_lang = "python"
@@ -153,7 +153,7 @@ def render_meta(path, target, tag: str | None):
             used_wrappers = env["wrappers"]
     else:
         used_wrappers = []
-    snakefile = render_snakefile(path, tag)
+    snakefile = render_snakefile(os.path.join(path, "meta_wrapper.smk"), tag)
 
     name = meta["name"].replace(" ", "_") + ".rst"
     used_default_pathvars = set(meta.get("pathvars", {}).get("custom", []))
