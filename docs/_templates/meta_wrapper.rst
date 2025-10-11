@@ -3,26 +3,57 @@
 {{ name|upper }}
 {{ name | length * '=' }}
 
+.. image:: https://img.shields.io/badge/meta_wrapper_version-{{ tag }}-10785b
+
 {{ description }}
 
+{% set module_name = name|lower|replace('-', '_') %}
 
-Example
--------
 
-This meta-wrapper can be used by integrating the following into your workflow:
+Usage
+-----
+
+{% if pathvars_enabled %}
+Via module
+~~~~~~~~~~
+
+This usage is recommended with Snakemake ``>=7.9``.
+You can include this meta-wrapper in your workflow via the `Snakemake module system <https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#meta-wrappers>`__:
 
 .. code-block:: python
 
-{{ snakefile }}
+    module {{ module_name }}:
+        meta_wrapper: "{{ uri }}"
+        pathvars:
+            {% for var, desc in pathvars.items() -%}
+            {{ var }}="...", # {{ desc }}
+            {%- endfor %}
 
-Note that input, output and log file paths can be chosen freely, as long as the dependencies between the rules remain as listed here.
+    use rule * from {{ module_name }} as {{ module_name }}_*
+
+Upon using the rules, you can additionally modify input, output, log, and params as needed (see the definition of each rule below and the `modules documentation <https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#modules>`__).
 For additional parameters in each individual wrapper, please refer to their corresponding documentation (see links below).
+{% endif %}
+
+Via copy-paste
+~~~~~~~~~~~~~~
+
+{% if pathvars_enabled %}
+Alternatively, you can directly copy-paste and modify the full meta-wrapper code below into your workflow.
+{% else %}
+This meta-wrapper does not yet use Snakemake's `pathvars syntax <https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#path-variables>`__.
+You can best directly copy-paste and modify the full meta-wrapper code below into your workflow.
+{% endif %}
+
+Execution
+~~~~~~~~~
+
 
 When running with
 
 .. code-block:: bash
 
-    snakemake --use-conda
+    snakemake --sdm conda
 
 the software dependencies will be automatically deployed into an isolated environment before execution.
 {% if usedwrappers|length %}
@@ -58,3 +89,9 @@ Authors
 * {{ author }}
 {% endfor %}
 
+Code
+----
+
+.. code-block:: python
+
+{{ snakefile }}
