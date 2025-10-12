@@ -12,7 +12,7 @@ rule bowtie2_build:
             ".rev.2.bt2",
         ),
     log:
-        "logs/bowtie2_build/build.log",
+        "<logs>/bowtie2_build/build.log",
     params:
         extra="",
     threads: 8
