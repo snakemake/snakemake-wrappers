@@ -84,7 +84,7 @@ rule mutect2_call:
 rule gatk_get_pileup_summaries:
     input:
         bam="picard/{sample}.bam",
-        bai_bai="picard/{sample}.bam.bai",
+        bai="picard/{sample}.bam.bai",
         variants="known.vcf.gz",
         variants_tbi="known.vcf.gz.tbi",
         intervals="regions.bed",

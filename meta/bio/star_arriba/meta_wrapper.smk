@@ -31,10 +31,12 @@ rule star_align:
         "<logs>/star/<per>.log",
     params:
         # specific parameters to work well with arriba
-        extra=lambda wc, input: f"--quantMode GeneCounts --sjdbGTFfile {input.annotation}"
-        " --outSAMtype BAM Unsorted --chimSegmentMin 10 --chimOutType WithinBAM SoftClip"
-        " --chimJunctionOverhangMin 10 --chimScoreMin 1 --chimScoreDropMax 30 --chimScoreJunctionNonGTAG 0"
-        " --chimScoreSeparation 1 --alignSJstitchMismatchNmax 5 -1 5 5 --chimSegmentReadGapMax 3",
+        extra=lambda wc, input: (
+            f"--quantMode GeneCounts --sjdbGTFfile {input.annotation}"
+            " --outSAMtype BAM Unsorted --chimSegmentMin 10 --chimOutType WithinBAM SoftClip"
+            " --chimJunctionOverhangMin 10 --chimScoreMin 1 --chimScoreDropMax 30 --chimScoreJunctionNonGTAG 0"
+            " --chimScoreSeparation 1 --alignSJstitchMismatchNmax 5 -1 5 5 --chimSegmentReadGapMax 3"
+        ),
     threads: 12
     wrapper:
         "master/bio/star/align"
