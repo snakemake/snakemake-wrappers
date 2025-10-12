@@ -156,7 +156,7 @@ def render_meta(path, target, tag: str | None):
     snakefile = render_snakefile(os.path.join(path, "meta_wrapper.smk"), tag)
 
     name = meta["name"].replace(" ", "_") + ".rst"
-    used_default_pathvars = set(meta.get("pathvars", {}).get("custom", []))
+    used_default_pathvars = set(meta.get("pathvars", {}).get("default", []))
     custom_pathvars = meta.get("pathvars", {}).get("custom", {})
     pathvars = {
         var: desc
