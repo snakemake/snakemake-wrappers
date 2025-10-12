@@ -5,7 +5,7 @@ min_version("9.13.1")
 configfile: "config.yaml"
 
 module star_arriba:
-    snakefile: "../meta_wrapper.smk"
+    meta_wrapper: "master/meta/bio/star_arriba"
     config: config
 
 use rule * from star_arriba

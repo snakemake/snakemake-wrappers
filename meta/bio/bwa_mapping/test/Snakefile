@@ -5,7 +5,7 @@ min_version("9.13.1")
 configfile: "config.yaml"
 
 module bwa_mapping:
-    snakefile: "../meta_wrapper.smk"
+    meta_wrapper: "master/meta/bio/bwa_mapping"
     config: config
 
 use rule * from bwa_mapping
