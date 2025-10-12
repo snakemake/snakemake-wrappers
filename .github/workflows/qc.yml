@@ -65,14 +65,9 @@ jobs:
           # get all modified and added files, not those that are deleted
           for f in $(git diff origin/master --name-only --diff-filter=d | grep Snakefile)
           do
-            if [[ $f == meta/* ]]
-            then
-              snakemake -s $f --lint --configfile $(dirname $f)/config.yaml
-              ERRORS+=$?
-            else
-              snakemake -s $f --lint
-              ERRORS+=$?
-            fi
+            echo "Linting $f"
+            snakemake -s $f --lint
+            ERRORS+=$?
           done
           if (( $ERRORS > 0 ))
           then
