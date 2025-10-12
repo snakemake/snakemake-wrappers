@@ -2,10 +2,7 @@ from snakemake.utils import min_version
 
 min_version("9.13.1")
 
-configfile: "config.yaml"
-
 module dada2_se:
     snakefile: "../meta_wrapper.smk"
-    config: config
 
 use rule * from dada2_se
