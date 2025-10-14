@@ -7106,7 +7106,7 @@ def test_orthanq(run):
             "out/candidates.vcf",
 #             "out/preprocess_hla.bcf",
             "out/preprocess_virus.bcf",
-            "out/calls_hla.csv",
-            "out/calls_virus.csv",
+            "out/calls_hla",
+            "out/calls_virus",
         ],
     )
