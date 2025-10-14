@@ -1,5 +1,39 @@
 # Changelog
 
+## [7.7.0](https://github.com/snakemake/snakemake-wrappers/compare/v7.6.1...v7.7.0) (2025-10-14)
+
+
+### Features
+
+* add Orthanq wrappers for hla and virus applications ([#2640](https://github.com/snakemake/snakemake-wrappers/issues/2640)) ([5805a2b](https://github.com/snakemake/snakemake-wrappers/commit/5805a2b6b6d1137011965b79b1166371c4fa2230))
+
+
+### Bug Fixes
+
+* Add OOM check to bbtools ([#4623](https://github.com/snakemake/snakemake-wrappers/issues/4623)) ([502ef25](https://github.com/snakemake/snakemake-wrappers/commit/502ef25c1605a39f9812bfcb559cba57b5e77448))
+* orthanq outputcsv to output folder ([#4657](https://github.com/snakemake/snakemake-wrappers/issues/4657)) ([ad05cdd](https://github.com/snakemake/snakemake-wrappers/commit/ad05cdd19b9e04fff9302bad04d488cef521256c))
+
+
+### Performance Improvements
+
+* autobump bio/bbtools ([#4639](https://github.com/snakemake/snakemake-wrappers/issues/4639)) ([29e9543](https://github.com/snakemake/snakemake-wrappers/commit/29e95437d4fdb11a08a994d674c015c06789e988))
+* autobump bio/encode_fastq_downloader ([#4641](https://github.com/snakemake/snakemake-wrappers/issues/4641)) ([73f2d8c](https://github.com/snakemake/snakemake-wrappers/commit/73f2d8cc18a952077319f2fbbb4c86991048f239))
+* autobump bio/gatk3/baserecalibrator ([#4645](https://github.com/snakemake/snakemake-wrappers/issues/4645)) ([f11dbb9](https://github.com/snakemake/snakemake-wrappers/commit/f11dbb96e81d1c98a45d4af5079cdfe3d7a80104))
+* autobump bio/gatk3/indelrealigner ([#4644](https://github.com/snakemake/snakemake-wrappers/issues/4644)) ([d2cb35b](https://github.com/snakemake/snakemake-wrappers/commit/d2cb35b9398a9d335637939821e32b3bcd21c671))
+* autobump bio/gatk3/printreads ([#4643](https://github.com/snakemake/snakemake-wrappers/issues/4643)) ([5954021](https://github.com/snakemake/snakemake-wrappers/commit/59540219f9c641fafd8ecfacd8c9efea6d1ab796))
+* autobump bio/gatk3/realignertargetcreator ([#4646](https://github.com/snakemake/snakemake-wrappers/issues/4646)) ([baa6e25](https://github.com/snakemake/snakemake-wrappers/commit/baa6e25f461f29fa059ff50aa8849795ac327ab8))
+* autobump bio/genomescope ([#4642](https://github.com/snakemake/snakemake-wrappers/issues/4642)) ([bb6e356](https://github.com/snakemake/snakemake-wrappers/commit/bb6e356f123856c6e2b97669783c801c1243974e))
+* autobump bio/last/lastal ([#4648](https://github.com/snakemake/snakemake-wrappers/issues/4648)) ([6e940a3](https://github.com/snakemake/snakemake-wrappers/commit/6e940a3eb97819140b9b7eaa505b5fce30d8e395))
+* autobump bio/last/lastdb ([#4647](https://github.com/snakemake/snakemake-wrappers/issues/4647)) ([5ec863d](https://github.com/snakemake/snakemake-wrappers/commit/5ec863d43adf5492d50fb9c8016c9e0f773f9b4c))
+* autobump bio/mehari/annotate-seqvars ([#4649](https://github.com/snakemake/snakemake-wrappers/issues/4649)) ([bf7de05](https://github.com/snakemake/snakemake-wrappers/commit/bf7de059a44c1ae82f410e0937350f15eee8cb15))
+* autobump bio/paladin/align ([#4650](https://github.com/snakemake/snakemake-wrappers/issues/4650)) ([83ef7cd](https://github.com/snakemake/snakemake-wrappers/commit/83ef7cd86acef8180edea99c856d18d61257e655))
+* autobump bio/paladin/index ([#4652](https://github.com/snakemake/snakemake-wrappers/issues/4652)) ([1b9a197](https://github.com/snakemake/snakemake-wrappers/commit/1b9a1979fa1e4e5284fbdcf9e7ed14ca24421f72))
+* autobump bio/paladin/prepare ([#4651](https://github.com/snakemake/snakemake-wrappers/issues/4651)) ([943dbe6](https://github.com/snakemake/snakemake-wrappers/commit/943dbe652ddf8e399bb23b5b823ad96b562f27b4))
+* autobump bio/spades/metaspades ([#4653](https://github.com/snakemake/snakemake-wrappers/issues/4653)) ([189beb0](https://github.com/snakemake/snakemake-wrappers/commit/189beb03d8ab70a50ee9d6c46a22b92e0f40462e))
+* autobump bio/vep/plugins ([#4655](https://github.com/snakemake/snakemake-wrappers/issues/4655)) ([0488a2b](https://github.com/snakemake/snakemake-wrappers/commit/0488a2b9a65aa050c418186c2602e6d3c48986bb))
+* autobump bio/vsearch ([#4654](https://github.com/snakemake/snakemake-wrappers/issues/4654)) ([65adcaf](https://github.com/snakemake/snakemake-wrappers/commit/65adcaf2a7665a29d78822e4e611c801c94c0d7a))
+* autobump utils/datavzrd ([#4640](https://github.com/snakemake/snakemake-wrappers/issues/4640)) ([54abde8](https://github.com/snakemake/snakemake-wrappers/commit/54abde8245515bf5f763bd2fe9372eecd0f363a9))
+
 ## [7.6.1](https://github.com/snakemake/snakemake-wrappers/compare/v7.6.0...v7.6.1) (2025-10-03)
 
 
