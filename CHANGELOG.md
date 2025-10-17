@@ -1,5 +1,15 @@
 # Changelog
 
+## [7.7.1](https://github.com/snakemake/snakemake-wrappers/compare/v7.7.0...v7.7.1) (2025-10-17)
+
+
+### Performance Improvements
+
+* autobump bio/emu/abundance ([#4660](https://github.com/snakemake/snakemake-wrappers/issues/4660)) ([d133416](https://github.com/snakemake/snakemake-wrappers/commit/d133416731a156f02dfc70366b0074df70cc7206))
+* autobump bio/emu/collapse-taxonomy ([#4662](https://github.com/snakemake/snakemake-wrappers/issues/4662)) ([6a1e4fb](https://github.com/snakemake/snakemake-wrappers/commit/6a1e4fb8a471d079cd00755d527764a2c8840462))
+* autobump bio/emu/combine-outputs ([#4661](https://github.com/snakemake/snakemake-wrappers/issues/4661)) ([9e04619](https://github.com/snakemake/snakemake-wrappers/commit/9e0461956c42d1e29cddd36462df80552bf65493))
+* autobump utils/csvtk ([#4658](https://github.com/snakemake/snakemake-wrappers/issues/4658)) ([c18ac10](https://github.com/snakemake/snakemake-wrappers/commit/c18ac10dea718e3298d4e59ffbc82513dbbf23b0))
+
 ## [7.7.0](https://github.com/snakemake/snakemake-wrappers/compare/v7.6.1...v7.7.0) (2025-10-14)
 
 
