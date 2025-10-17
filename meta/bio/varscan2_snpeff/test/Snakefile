@@ -1,0 +1,8 @@
+from snakemake.utils import min_version
+
+min_version("9.13.1")
+
+module varscan2_snpeff:
+    meta_wrapper: "master/meta/bio/varscan2_snpeff"
+
+use rule * from varscan2_snpeff

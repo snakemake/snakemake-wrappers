@@ -1,3 +1,4 @@
+import difflib
 import subprocess
 import os
 import tempfile
@@ -106,7 +107,11 @@ def run(tmp_test_dir):
             subprocess.check_call(cmd)
             if compare_results_with_expected:
                 for generated, expected in compare_results_with_expected.items():
-                    assert filecmp.cmp(generated, expected, shallow=False)
+                    if not filecmp.cmp(generated, expected, shallow=False):
+                        raise ValueError(
+                            f"Unexpected results: {generated} != {expected}."
+                            f" Diff:\n{difflib.Differ().compare(open(generated).readlines(), open(expected).readlines())}"
+                        )
         except Exception as e:
             # go back to original directory
             os.chdir(origdir)
