@@ -110,7 +110,7 @@ def run(tmp_test_dir):
                     if not filecmp.cmp(generated, expected, shallow=False):
                         raise ValueError(
                             f"Unexpected results: {generated} != {expected}."
-                            f" Diff:\n{difflib.Differ().compare(open(generated).readlines(), open(expected).readlines())}"
+                            f"Diff:\n{difflib.Differ().compare(open(generated).readlines(), open(expected).readlines())}"
                         )
         except Exception as e:
             # go back to original directory
