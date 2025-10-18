@@ -108,9 +108,14 @@ def run(tmp_test_dir):
             if compare_results_with_expected:
                 for generated, expected in compare_results_with_expected.items():
                     if not filecmp.cmp(generated, expected, shallow=False):
+                        diff = "".join(
+                            difflib.Differ().compare(
+                                open(generated).readlines(), open(expected).readlines()
+                            )
+                        )
                         raise ValueError(
                             f"Unexpected results: {generated} != {expected}."
-                            f"Diff:\n{difflib.Differ().compare(open(generated).readlines(), open(expected).readlines())}"
+                            f"Diff:\n{diff}"
                         )
         except Exception as e:
             # go back to original directory
@@ -6725,6 +6730,7 @@ def test_sortmerna_se(run):
         ],
     )
 
+
 def test_tmb_pyeffgenomesize(run):
     run(
         "bio/tmb/pyeffgenomesize",
@@ -6734,6 +6740,7 @@ def test_tmb_pyeffgenomesize(run):
         "bio/tmb/pyeffgenomesize",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "complete.txt"],
     )
+
 
 def test_tmb_pytmb(run):
     run(
