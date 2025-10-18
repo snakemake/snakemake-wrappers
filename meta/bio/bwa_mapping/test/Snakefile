@@ -1,28 +1,11 @@
-rule bwa_mem:
-    input:
-        reads=["reads/{sample}.1.fastq", "reads/{sample}.2.fastq"],
-        idx=multiext("genome", ".amb", ".ann", ".bwt", ".pac", ".sa"),
-    output:
-        "mapped/{sample}.bam"
-    log:
-        "logs/bwa_mem/{sample}.log"
-    params:
-        extra=r"-R '@RG\tID:{sample}\tSM:{sample}'",
-        sort="samtools",             # Can be 'none', 'samtools' or 'picard'.
-        sort_order="coordinate",  # Can be 'queryname' or 'coordinate'.
-        sort_extra=""            # Extra args for samtools/picard.
-    threads: 8
-    wrapper:
-        "master/bio/bwa/mem"
+from snakemake.utils import min_version
 
-rule samtools_index:
-    input:
-        "mapped/{sample}.bam"
-    output:
-        "mapped/{sample}.bam.bai"
-    log:
-        "logs/samtools_index/{sample}.log"
-    params:
-        "" # optional params string
-    wrapper:
-        "master/bio/samtools/index"
+min_version("9.13.1")
+
+configfile: "config.yaml"
+
+module bwa_mapping:
+    meta_wrapper: "master/meta/bio/bwa_mapping"
+    config: config
+
+use rule * from bwa_mapping
