@@ -167,7 +167,7 @@ def render_meta(path, target, tag: str | None):
 
     meta["pathvars_enabled"] = "pathvars" in meta
     meta["pathvars"] = pathvars
-    meta["uri"] = f"{tag or 'master'}/{path}"
+    meta["uri"] = f"{tag or 'master'}/{os.path.relpath(path, WRAPPER_DIR)}"
     meta["usedwrappers"] = used_wrappers
     meta["snakefile"] = snakefile
 
