@@ -108,10 +108,11 @@ def run(tmp_test_dir):
             if compare_results_with_expected:
                 for generated, expected in compare_results_with_expected.items():
                     if not filecmp.cmp(generated, expected, shallow=False):
+                        with open(generated) as genf, open(expected) as expf:
+                            gen_lines = genf.readlines()
+                            exp_lines = expf.readlines()
                         diff = "".join(
-                            difflib.Differ().compare(
-                                open(generated).readlines(), open(expected).readlines()
-                            )
+                            difflib.Differ().compare(gen_lines, exp_lines)
                         )
                         raise ValueError(
                             f"Unexpected results: {generated} != {expected}."
