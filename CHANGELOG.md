@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.8.0](https://github.com/snakemake/snakemake-wrappers/compare/v7.7.1...v7.8.0) (2025-10-18)
+
+
+### Features
+
+* let the displayed version of each wrapper be the latest repo version with changes to that wrapper, instead of just the latest repo version; migrate meta-wrapper to the new pathvars syntax ([#4622](https://github.com/snakemake/snakemake-wrappers/issues/4622)) ([385e7ca](https://github.com/snakemake/snakemake-wrappers/commit/385e7ca0f554df482b600e6990c367df0ef4471f))
+
 ## [7.7.1](https://github.com/snakemake/snakemake-wrappers/compare/v7.7.0...v7.7.1) (2025-10-17)
 
 
