@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.8.1](https://github.com/snakemake/snakemake-wrappers/compare/v7.8.0...v7.8.1) (2025-10-19)
+
+
+### Bug Fixes
+
+* cleanup description of the bwa_mapping meta-wrapper ([7649cca](https://github.com/snakemake/snakemake-wrappers/commit/7649ccacd95f089dd5a6601def90ecc4f105d366))
+
 ## [7.8.0](https://github.com/snakemake/snakemake-wrappers/compare/v7.7.1...v7.8.0) (2025-10-18)
 
 
