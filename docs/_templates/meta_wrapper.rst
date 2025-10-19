@@ -27,7 +27,7 @@ You can include this meta-wrapper in your workflow via the `Snakemake module sys
         pathvars:
             {% for var, desc in pathvars.items() -%}
             {{ var }}="...", # {{ desc }}
-            {%- endfor %}
+            {% endfor %}
 
     use rule * from {{ module_name }} as {{ module_name }}_*
 
