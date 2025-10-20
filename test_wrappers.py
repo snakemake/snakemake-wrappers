@@ -1101,7 +1101,7 @@ def test_salmon_tximport_meta(run):
             "--cores",
             "2",
             "--use-conda",
-            "tximport/SummarizedExperimentObject.RDS",
+            "results/tximport/SummarizedExperimentObject.RDS",
         ],
     )
 
