@@ -1,5 +1,19 @@
 # Changelog
 
+## [7.8.2](https://github.com/snakemake/snakemake-wrappers/compare/v7.8.1...v7.8.2) (2025-10-24)
+
+
+### Performance Improvements
+
+* autobump bio/cutadapt/pe ([#4669](https://github.com/snakemake/snakemake-wrappers/issues/4669)) ([5ca9111](https://github.com/snakemake/snakemake-wrappers/commit/5ca9111cce1edf5bbaa3ed366222d2c66b64cd6c))
+* autobump bio/cutadapt/se ([#4667](https://github.com/snakemake/snakemake-wrappers/issues/4667)) ([813b1d3](https://github.com/snakemake/snakemake-wrappers/commit/813b1d3504012d22cff2284fd5e6b4aca702fe29))
+* autobump bio/diamond/blastp ([#4670](https://github.com/snakemake/snakemake-wrappers/issues/4670)) ([4d49313](https://github.com/snakemake/snakemake-wrappers/commit/4d49313ae09e35dddbb9a14c5a4b0bf1c85a0708))
+* autobump bio/diamond/blastx ([#4671](https://github.com/snakemake/snakemake-wrappers/issues/4671)) ([48b8fbc](https://github.com/snakemake/snakemake-wrappers/commit/48b8fbc02fe55903be95fe371b92d05dbc23dcc8))
+* autobump bio/diamond/makedb ([#4672](https://github.com/snakemake/snakemake-wrappers/issues/4672)) ([c3ee542](https://github.com/snakemake/snakemake-wrappers/commit/c3ee54220d62398ea898fa268437cadf9e6f404f))
+* autobump bio/gdc-api/bam-slicing ([#4673](https://github.com/snakemake/snakemake-wrappers/issues/4673)) ([c481c0b](https://github.com/snakemake/snakemake-wrappers/commit/c481c0b42179520931e8b058a1f8dec6c68977b5))
+* autobump bio/mehari/download-clinvar-db ([#4674](https://github.com/snakemake/snakemake-wrappers/issues/4674)) ([042c238](https://github.com/snakemake/snakemake-wrappers/commit/042c238894eef187481ddc96d300a422db115da0))
+* autobump bio/mehari/download-transcript-db ([#4675](https://github.com/snakemake/snakemake-wrappers/issues/4675)) ([0abdf9d](https://github.com/snakemake/snakemake-wrappers/commit/0abdf9da634a365faf3f2784c9fe96262d929963))
+
 ## [7.8.1](https://github.com/snakemake/snakemake-wrappers/compare/v7.8.0...v7.8.1) (2025-10-19)
 
 
