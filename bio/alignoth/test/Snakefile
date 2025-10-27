@@ -12,7 +12,7 @@ rule alignoth_json:
     wrapper:
         "master/bio/alignoth"
 
-rule alignoth_tsv:
+rule alignoth_html:
     input:
         bam="NA12878.bam",
         reference="ref.fa",
