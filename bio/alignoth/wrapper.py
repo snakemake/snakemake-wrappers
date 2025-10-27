@@ -4,9 +4,11 @@ __email__ = "felix.wiegand@uni-due.de"
 __license__ = "MIT"
 
 from snakemake.shell import shell
+from pathlib import Path
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
+output = snakemake.output[0]
 
 cmd = ["alignoth"]
 
@@ -33,15 +35,14 @@ if snakemake.input.get("bed", ""):
 cmd.append(f"{extra}")
 
 # HTML output
-if snakemake.output.html:
+if output.endswith(".html"):
     cmd.append("--html")
-    shell(f"{' '.join(cmd)} > {snakemake.output.html} {log}")
-# Multiple files output into directory
-elif snakemake.output.dir:
-    cmd.append(f"-o {snakemake.output.dir}")
-    shell(f"{' '.join(cmd)} {log}")
+    shell(f"{' '.join(cmd)} > {output} {log}")
 # Default: JSON output to single file via stdout
-elif snakemake.output.json:
-    shell(f"{' '.join(cmd)} > {snakemake.output.json} {log}")
+elif output.endswith(".json"):
+    shell(f"{' '.join(cmd)} > {output} {log}")
+# Assume output is directory
 else:
-    raise ValueError("No output specified")
+    Path(output).mkdir(parents=True, exist_ok=True)
+    cmd.append(f"-o {output}")
+    shell(f"{' '.join(cmd)} {log}")

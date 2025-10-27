@@ -4,7 +4,7 @@ rule alignoth_json:
         reference="ref.fa",
         vcf="1257A.vcf.gz"
     output:
-        json="out/json_plot.vl.json"
+        "out/json_plot.vl.json"
     params:
         extra="-g 1:50-280 -h coolregion:200-210"
     log:
@@ -18,7 +18,7 @@ rule alignoth_tsv:
         reference="ref.fa",
         vcf="1257A.vcf.gz"
     output:
-        html="out/plot.html"
+        "out/plot.html"
     params:
         extra="-g 1:50-280 -h coolregion:200-210"
     log:
@@ -32,7 +32,7 @@ rule alignoth_output_dir:
         reference="ref.fa",
         vcf="1257A.vcf.gz"
     output:
-        dir="output-dir/"
+        "output-dir/"
     params:
         extra="-g 1:50-280 -h coolregion:200-210"
     log:
