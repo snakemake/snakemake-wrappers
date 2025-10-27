@@ -4,7 +4,6 @@ __email__ = "felix.wiegand@uni-due.de"
 __license__ = "MIT"
 
 from snakemake.shell import shell
-import os
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
