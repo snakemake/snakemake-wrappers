@@ -1,0 +1,29 @@
+name: alignoth
+description: |
+  Alignoth generates alignment plots from BAM files.
+  This wrapper allows specifying BAMs, reference FASTA, VCFs,
+  highlight regions, auxiliary tags, and output options.
+url: https://github.com/alignoth/alignoth
+input:
+  - bam: Path to indexed BAM file
+  - reference: Path to indexed reference FASTA file
+  - vcf: Path to indexed VCF file (Optional)
+  - bed: Path to BED file (Optional)
+output:
+  - dir: "Directory for split Alignoth outputs (plots, specs, data)"
+  - html: "Single html output file via stdout redirection"
+  - json: "Single json output file via stdout redirection"
+authors:
+  - Felix Wiegand
+params:
+  - extra: "Extra command line arguments to pass directly to alignoth"
+  - region: "Chromosome region to visualize (e.g., chr2:132424-132924)"
+  - around: "Chromosome and single base to visualize ±500bp (e.g., chr2:20000)"
+  - highlight: "List of intervals or positions to highlight"
+  - aux_tags: "List of BAM aux tags to display in tooltip"
+  - html: "If true, generate a standalone HTML plot via --html"
+  - format: "Output data format (TSV, JSON)"
+  - max_read_depth: "Maximum rows of reads that will be shown in the alignment plots [default: 500]"
+  - no_embed_js: "If true, do not embed JavaScript in HTML output"
+notes: |
+  Outputs are mutually exclusive. Only one output type (either html, json or dir) can be specified at a time.
