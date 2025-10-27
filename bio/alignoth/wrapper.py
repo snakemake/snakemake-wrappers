@@ -60,7 +60,9 @@ if snakemake.params.get("html", False):
     if hasattr(snakemake.output, "html"):
         shell(f"{' '.join(cmd)} > {snakemake.output.html} {log}")
     else:
-        raise ValueError("HTML output requires a file path defined in output named 'html'")
+        raise ValueError(
+            "HTML output requires a file path defined in output named 'html'"
+        )
 # Directory output
 elif hasattr(snakemake.output, "dir"):
     cmd.append(f"-o {snakemake.output.dir}")
@@ -71,4 +73,6 @@ elif hasattr(snakemake.output, "dir"):
 elif hasattr(snakemake.output, "json"):
     shell(f"{' '.join(cmd)} > {snakemake.output.json} {log}")
 else:
-    raise ValueError("Plot spec output requires a file path defined in output named 'json'")
+    raise ValueError(
+        "Plot spec output requires a file path defined in output named 'json'"
+    )
