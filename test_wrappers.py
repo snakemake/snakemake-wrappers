@@ -253,15 +253,7 @@ def test_agat(run):
 def test_alignoth(run):
     run(
         "bio/alignoth",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "out/json_plot.vl.json"],
-    )
-    run(
-        "bio/alignoth",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "out/plot.html"],
-    )
-    run(
-        "bio/alignoth",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "output-dir/"],
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "out/json_plot.vl.json", "out/plot.html", "output-dir/"],
     )
 
 
