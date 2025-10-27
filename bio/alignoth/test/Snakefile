@@ -9,6 +9,8 @@ rule alignoth_json:
         region="1:50-280",
         highlight=["coolregion:200-210"],
         extra=""
+    log:
+        "logs/log.txt"
     wrapper:
         "master/bio/alignoth"
 
@@ -23,6 +25,8 @@ rule alignoth_tsv:
         region="1:50-280",
         highlight=["coolregion:200-210"],
         extra=""
+    log:
+        "logs/log.txt"
     wrapper:
         "master/bio/alignoth"
 
@@ -37,5 +41,7 @@ rule alignoth_output_dir:
         region="1:50-280",
         highlight=["coolregion:200-210"],
         extra=""
+    log:
+        "logs/log.txt"
     wrapper:
         "master/bio/alignoth"
