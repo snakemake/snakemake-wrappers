@@ -11,23 +11,23 @@ extra = snakemake.params.get("extra", "")
 cmd = ["alignoth"]
 
 # BAM input
-if hasattr(snakemake.input, "bam"):
+if snakemake.input.get("bam"):
     cmd.append(f"-b {snakemake.input.bam}")
 else:
     raise ValueError("BAM input required")
 
 # Reference
-if hasattr(snakemake.input, "reference"):
+if snakemake.input.get("reference"):
     cmd.append(f"-r {snakemake.input.reference}")
 else:
     raise ValueError("Reference input required")
 
 # Optional VCF
-if hasattr(snakemake.input, "vcf"):
+if snakemake.input.get("vcf"):
     cmd.append(f"-v {snakemake.input.vcf}")
 
 # Optional BED
-if hasattr(snakemake.input, "bed"):
+if snakemake.input.get("bed"):
     cmd.append(f"--bed {snakemake.input.bed}")
 
 region = snakemake.params.get("region")
