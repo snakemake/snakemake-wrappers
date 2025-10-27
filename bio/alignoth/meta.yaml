@@ -16,6 +16,6 @@ output:
 authors:
   - Felix Wiegand
 params:
-  - extra: "Extra command line arguments to pass directly to alignoth. --html is automatically added when html output is specified"
+  - extra: "Extra command line arguments to pass directly to alignoth. --html is automatically added when html output is specified."
 notes: |
   Outputs are mutually exclusive. Only one output type (either html, json or dir) can be specified at a time.
