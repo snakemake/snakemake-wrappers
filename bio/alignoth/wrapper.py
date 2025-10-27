@@ -4,7 +4,7 @@ __email__ = "felix.wiegand@uni-due.de"
 __license__ = "MIT"
 
 from snakemake.shell import shell
-from pathlib import Path
+import os
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
@@ -42,7 +42,10 @@ if output.endswith(".html"):
 elif output.endswith(".json"):
     shell(f"{' '.join(cmd)} > {output} {log}")
 # Assume output is directory
-else:
-    Path(output).mkdir(parents=True, exist_ok=True)
+elif os.path.isdir(output):
     cmd.append(f"-o {output}")
     shell(f"{' '.join(cmd)} {log}")
+else:
+    raise ValueError(
+        "Output must be a directory marked with snakemakes 'directory(<output>)' function or end with .json or .html"
+    )
