@@ -59,20 +59,20 @@ if no_embed_js:
 if html:
     cmd.append("--html")
     # Redirect output to file if output specified
-    if hasattr(snakemake.output, "html"):
+    if snakemake.output.html:
         shell(f"{' '.join(cmd)} > {snakemake.output.html} {log}")
     else:
         raise ValueError(
             "HTML output requires a file path defined in output named 'html'"
         )
 # Directory output
-elif hasattr(snakemake.output, "dir"):
+elif snakemake.output.dir:
     cmd.append(f"-o {snakemake.output.dir}")
     if format:
         cmd.append(f"-f {format}")
     shell(f"{' '.join(cmd)} {log}")
 # Default: JSON output to single file via stdout
-elif hasattr(snakemake.output, "json"):
+elif snakemake.output.json:
     shell(f"{' '.join(cmd)} > {snakemake.output.json} {log}")
 else:
     raise ValueError(
