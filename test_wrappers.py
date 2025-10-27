@@ -165,7 +165,6 @@ def test_mmseqs2(run):
             "out/cluster/a_b_cluster.tsv": "expected/cluster/a_b_cluster.tsv",
             "out/cluster/a_b_rep_seq.fasta": "expected/cluster/a_b_rep_seq.fasta",
             "out/cluster/a_b_all_seqs.fasta": "expected/cluster/a_b_all_seqs.fasta",
-            "out/cluster/a_b_cluster.tsv": "expected/cluster/a_b_cluster.tsv",
             "out/linclust/a_b_rep_seq.fasta": "expected/linclust/a_b_rep_seq.fasta",
             "out/linclust/a_b_all_seqs.fasta": "expected/linclust/a_b_all_seqs.fasta",
             "out/linclust/a_b_cluster.tsv": "expected/linclust/a_b_cluster.tsv",
