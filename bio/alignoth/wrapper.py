@@ -44,6 +44,4 @@ elif snakemake.output.dir:
 elif snakemake.output.json:
     shell(f"{' '.join(cmd)} > {snakemake.output.json} {log}")
 else:
-    raise ValueError(
-        "No output specified"
-    )
+    raise ValueError("No output specified")
