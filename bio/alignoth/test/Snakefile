@@ -32,7 +32,7 @@ rule alignoth_output_dir:
         reference="ref.fa",
         vcf="1257A.vcf.gz"
     output:
-        dir="out/"
+        dir="output-dir/"
     params:
         region="1:50-280",
         highlight=["coolregion:200-210"],
