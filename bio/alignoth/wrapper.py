@@ -30,31 +30,33 @@ if hasattr(snakemake.input, "vcf"):
 if hasattr(snakemake.input, "bed"):
     cmd.append(f"--bed {snakemake.input.bed}")
 
-# Region / around
-if "region" in snakemake.params:
-    cmd.append(f"-g {snakemake.params.region}")
-elif "around" in snakemake.params:
-    cmd.append(f"-a {snakemake.params.around}")
+region = snakemake.params.get("region")
+around = snakemake.params.get("around")
+highlight = snakemake.params.get("highlight")
+aux_tags = snakemake.params.get("aux_tags")
+max_read_depth = snakemake.params.get("max_read_depth")
+no_embed_js = snakemake.params.get("no_embed_js")
+html = snakemake.params.get("html")
+format = snakemake.params.get("format")
 
-# Optional highlights
-if "highlight" in snakemake.params:
-    for h in snakemake.params.highlight:
+if region:
+    cmd.append(f"-g {region}")
+elif around:
+    cmd.append(f"-a {around}")
+
+if highlight:
+    for h in highlight:
         cmd.append(f"-h {h}")
 
-# Optional aux tags
-if "aux_tags" in snakemake.params:
-    for t in snakemake.params.aux_tag:
-        cmd.append(f"-x {t}")
-
 # Optional Maximum read depth
-if "max_read_depth" in snakemake.params:
-    cmd.append(f"-d {snakemake.params.max_read_depth}")
+if max_read_depth:
+    cmd.append(f"-d {max_read_depth}")
 
-if "no_embed_js" in snakemake.params:
+if no_embed_js:
     cmd.append("--no-embed-js")
 
 # HTML output
-if snakemake.params.get("html", False):
+if html:
     cmd.append("--html")
     # Redirect output to file if output specified
     if hasattr(snakemake.output, "html"):
@@ -66,8 +68,8 @@ if snakemake.params.get("html", False):
 # Directory output
 elif hasattr(snakemake.output, "dir"):
     cmd.append(f"-o {snakemake.output.dir}")
-    if "format" in snakemake.params:
-        cmd.append(f"-f {snakemake.params.format}")
+    if format:
+        cmd.append(f"-f {format}")
     shell(f"{' '.join(cmd)} {log}")
 # Default: JSON output to single file via stdout
 elif hasattr(snakemake.output, "json"):
