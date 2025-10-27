@@ -32,7 +32,7 @@ rule alignoth_output_dir:
         reference="ref.fa",
         vcf="1257A.vcf.gz"
     output:
-        "output-dir/"
+        directory("output-dir/")
     params:
         extra="-g 1:50-280 -h coolregion:200-210"
     log:
