@@ -42,10 +42,6 @@ if output.endswith(".html"):
 elif output.endswith(".json"):
     shell(f"{' '.join(cmd)} > {output} {log}")
 # Assume output is directory
-elif os.path.isdir(output):
+else:
     cmd.append(f"-o {output}")
     shell(f"{' '.join(cmd)} {log}")
-else:
-    raise ValueError(
-        "Output must be a directory marked with snakemakes 'directory(<output>)' function or end with .json or .html"
-    )
