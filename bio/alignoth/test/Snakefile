@@ -6,9 +6,7 @@ rule alignoth_json:
     output:
         json="out/json_plot.vl.json"
     params:
-        region="1:50-280",
-        highlight=["coolregion:200-210"],
-        extra=""
+        extra="-g 1:50-280 -h coolregion:200-210"
     log:
         "logs/log.txt"
     wrapper:
@@ -22,9 +20,7 @@ rule alignoth_tsv:
     output:
         html="out/plot.html"
     params:
-        region="1:50-280",
-        highlight=["coolregion:200-210"],
-        extra=""
+        extra="-g 1:50-280 -h coolregion:200-210"
     log:
         "logs/log.txt"
     wrapper:
@@ -38,9 +34,7 @@ rule alignoth_output_dir:
     output:
         dir="output-dir/"
     params:
-        region="1:50-280",
-        highlight=["coolregion:200-210"],
-        extra=""
+        extra="-g 1:50-280 -h coolregion:200-210"
     log:
         "logs/log.txt"
     wrapper:
