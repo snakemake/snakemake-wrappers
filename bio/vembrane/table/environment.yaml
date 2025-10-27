@@ -4,4 +4,4 @@ channels:
   - default
   - nodefaults
 dependencies:
-  - vembrane =2.3.3
+  - vembrane =2.4.0
