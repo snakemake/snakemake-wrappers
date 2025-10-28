@@ -4,3 +4,14 @@ description: >
   ``STAR`` is used with specific parameters to ensure optimal functionality of the ``arriba`` fusion detection, for details, see the `documentation <https://arriba.readthedocs.io/en/latest/workflow/>`_.
 authors:
   - Jan Forster
+pathvars:
+  default:
+    - results
+    - resources
+    - logs
+  custom:
+    genome_sequence: Path to FASTA file with genome sequence
+    genome_annotation: Path to GTF file with genome annotation
+    reads_r1: Path/pattern for FASTQ files with R1 reads
+    reads_r2: Path/pattern for FASTQ files with R2 reads
+    per: Pattern for sample identifiers, e.g. ``"{sample}"``

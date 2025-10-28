@@ -1,0 +1,18 @@
+name: alignoth
+description: |
+  Alignoth generates alignment plots from BAM files.
+  This wrapper allows specifying BAMs, reference FASTA, VCFs,
+  highlight regions, auxiliary tags, and output options.
+url: https://github.com/alignoth/alignoth
+input:
+  - bam: Path to indexed BAM file
+  - reference: Path to indexed reference FASTA file
+  - vcf: Path to indexed VCF file (Optional)
+  - bed: Path to BED file (Optional)
+output: "HTML, JSON or directory path"
+authors:
+  - Felix Wiegand
+params:
+  - extra: "Extra command line arguments to pass directly to alignoth."
+notes: |
+  Output needs to end with .html, .json or a directory path.

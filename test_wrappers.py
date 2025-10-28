@@ -1,3 +1,4 @@
+import difflib
 import subprocess
 import os
 import tempfile
@@ -106,7 +107,17 @@ def run(tmp_test_dir):
             subprocess.check_call(cmd)
             if compare_results_with_expected:
                 for generated, expected in compare_results_with_expected.items():
-                    assert filecmp.cmp(generated, expected, shallow=False)
+                    if not filecmp.cmp(generated, expected, shallow=False):
+                        with open(generated) as genf, open(expected) as expf:
+                            gen_lines = genf.readlines()
+                            exp_lines = expf.readlines()
+                        diff = "".join(
+                            difflib.Differ().compare(gen_lines, exp_lines)
+                        )
+                        raise ValueError(
+                            f"Unexpected results: {generated} != {expected}."
+                            f"Diff:\n{diff}"
+                        )
         except Exception as e:
             # go back to original directory
             os.chdir(origdir)
@@ -236,6 +247,13 @@ def test_agat(run):
             "test_agat_sq_reverse_complement.gff",
             "test_agat_sq_rfam_analyzer.tsv",
         ],
+    )
+
+
+def test_alignoth(run):
+    run(
+        "bio/alignoth",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "out/json_plot.vl.json", "out/plot.html", "output-dir/"],
     )
 
 
@@ -1395,7 +1413,7 @@ def test_deseq2_wald(run):
 def test_arriba_star_meta(run):
     run(
         "meta/bio/star_arriba",
-        ["snakemake", "--cores", "1", "--use-conda", "results/arriba/a.fusions.tsv"],
+        ["snakemake", "results/arriba/a.fusions.tsv", "--cores", "1", "--sdm", "conda"],
     )
 
 
@@ -1496,7 +1514,7 @@ def test_bwa_mapping_meta(run):
             "--cores",
             "1",
             "--use-conda",
-            "mapped/a.bam.bai",
+            "results/mapped/a.bam.bai",
         ],
     )
 
@@ -6576,7 +6594,7 @@ def test_bowtie2_sambamba_meta(run):
             "2",
             "--use-conda",
             "-F",
-            "mapped/Sample1.rmdup.bam.bai",
+            "results/mapped/Sample1.rmdup.bam.bai",
         ],
     )
 
@@ -7106,7 +7124,7 @@ def test_orthanq(run):
             "out/candidates.vcf",
 #             "out/preprocess_hla.bcf",
             "out/preprocess_virus.bcf",
-            "out/calls_hla.csv",
-            "out/calls_virus.csv",
+            "out/calls_hla",
+            "out/calls_virus",
         ],
     )

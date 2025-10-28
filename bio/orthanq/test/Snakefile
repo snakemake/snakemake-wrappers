@@ -70,7 +70,7 @@ rule orthanq_call_hla:
         haplotype_variants="variants/haplotype_variants_hla.vcf",
         xml="refs/alleles.xml"
     output:
-        "out/calls_hla.csv"
+        directory("out/calls_hla")
     log:
         "logs/orthanq_call/call.log",
     params:
@@ -87,7 +87,7 @@ rule orthanq_call_virus:
         haplotype_calls="variants/haplotype_calls.bcf",
         haplotype_variants="variants/haplotype_variants_virus.vcf"
     output:
-        "out/calls_virus.csv"
+        directory("out/calls_virus")
     log:
         "logs/orthanq_call/call.log",
     params:
