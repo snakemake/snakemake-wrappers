@@ -1,5 +1,7 @@
 __use_yte__: true
 
+default-view: variants
+
 datasets:
   variants:
     path: ?input.overview
@@ -27,6 +29,7 @@ views:
           display-mode: hidden
   ?for i in range(params.max_index):
     ?i:
+        hidden: true
         datasets:
             reads: ?f"{i}.reads"
             reference: ?f"{i}.reference"
