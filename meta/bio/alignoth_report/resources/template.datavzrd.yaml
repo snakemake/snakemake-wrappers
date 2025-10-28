@@ -30,17 +30,19 @@ views:
         REF:
           label: reference
           plot:
-            separator: ""
-            domain: ["A", "T", "G", "C"]
-            range: ["#CADB69", "#7284A8", "#F28CC2", "#F2B671"]
-            merge: true
+            pills:
+              separator: ""
+              domain: ["A", "T", "G", "C"]
+              range: ["#CADB69", "#7284A8", "#F28CC2", "#F2B671"]
+              merge: true
         ALT:
           label: alternative
           plot:
-            separator: ""
-            domain: ["A", "T", "G", "C"]
-            range: ["#CADB69", "#7284A8", "#F28CC2", "#F2B671"]
-            merge: true
+            pills:
+              separator: ""
+              domain: ["A", "T", "G", "C"]
+              range: ["#CADB69", "#7284A8", "#F28CC2", "#F2B671"]
+              merge: true
   ?for i in range(params.max_index):
     ?i:
         hidden: true
