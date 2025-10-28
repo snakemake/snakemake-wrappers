@@ -250,6 +250,13 @@ def test_agat(run):
     )
 
 
+def test_alignoth(run):
+    run(
+        "bio/alignoth",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "out/json_plot.vl.json", "out/plot.html", "output-dir/"],
+    )
+
+
 def test_miller(run):
     run(
         "utils/miller",
