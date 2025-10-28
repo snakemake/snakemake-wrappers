@@ -13,7 +13,6 @@ https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-h767d61c_7.conda#c
 https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hda65f42_8.conda#51a19bba1b8ebfb60df25cde030b7ebc
 https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.7.1-hecca717_0.conda#4211416ecba1866fab0c6470986c22d6
 https://conda.anaconda.org/conda-forge/linux-64/libffi-3.5.2-h9ec8514_0.conda#35f29eec58405aaf55e01cb470d8c26a
-https://conda.anaconda.org/conda-forge/linux-64/libgfortran5-15.2.0-hcd61629_7.conda#f116940d825ffc9104400f0d7f1a4551
 https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.1-hb9d3cd8_2.conda#1a580f7796c7bf6393fddb8bbbde58dc
 https://conda.anaconda.org/conda-forge/linux-64/libmpdec-4.0.0-hb9d3cd8_0.conda#c7e925f37e3b40d893459e625f6a53f1
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h8f9b012_7.conda#5b767048b1b3ee9a954b06f4084f93dc
@@ -26,10 +25,11 @@ https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.50.4-h0c1763c_0.cond
 https://conda.anaconda.org/conda-forge/linux-64/readline-8.2-h8c095d6_2.conda#283b96675859b20a825f8fa30f311446
 https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_hd72426e_102.conda#a0116df4f4ed05c303811a837d5b39d8
 https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb8e6e7a_2.conda#6432cb5d4ac0046c3ac0a8a0f95842f9
-https://conda.anaconda.org/conda-forge/linux-64/python-3.14.0-h5989046_100_cp314.conda#d2e16e0bb7c3d9ddb3c597d43c8c708d
+https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.44-h1aa0949_4.conda#c94ab6ff54ba5172cf1c58267005670f
+https://conda.anaconda.org/conda-forge/linux-64/python-3.13.9-hc97d973_101_cp313.conda#4780fe896e961722d0623fa91d0d3378
 https://conda.anaconda.org/conda-forge/noarch/dpath-2.2.0-pyha770c72_0.conda#b2681af65644be41a18d4b00b67938f1
 https://conda.anaconda.org/conda-forge/noarch/pip-25.2-pyh145f28c_0.conda#e7ab34d5a93e0819b62563c78635d937
 https://conda.anaconda.org/conda-forge/noarch/plac-1.4.5-pyhd8ed1ab_0.conda#3f30dc72be42bb4619502fa496f8d86a
-https://conda.anaconda.org/conda-forge/noarch/pyyaml-6.0.3-pyh7db6752_0.conda#b12f41c0d7fb5ab81709fcc86579688f
+https://conda.anaconda.org/conda-forge/linux-64/pyyaml-6.0.3-py313h3dea7bd_0.conda#4794ea0adaebd9f844414e594b142cb2
 https://conda.anaconda.org/conda-forge/noarch/yte-1.8.1-pyha770c72_0.conda#55a52c71e7919a4951cfc6cccf4fa16f
 https://conda.anaconda.org/conda-forge/linux-64/datavzrd-2.61.4-py313he05c492_0.conda#e9e759a30eea1e4f30b7f3002c48ba62
