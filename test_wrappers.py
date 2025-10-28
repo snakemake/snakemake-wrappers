@@ -256,6 +256,18 @@ def test_alignoth(run):
         ["snakemake", "--cores", "1", "--use-conda", "-F", "out/json_plot.vl.json", "out/plot.html", "output-dir/"],
     )
 
+def test_alignoth_report_meta(run):
+    run(
+        "meta/bio/alignoth_report",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "results/datavzrd-report/NA12878/",
+        ],
+    )
+
 
 def test_miller(run):
     run(
