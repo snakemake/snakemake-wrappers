@@ -26,6 +26,6 @@ views:
         datasets:
             reads: ?f"{i}.reads"
             reference: ?f"{i}.reference"
-            coverage: sample.coverage
+            coverage: ?f"{i}.coverage"
         render-plot:
             spec-path: ?f"{input.plot_tables[i]}/{wildcards.sample}.vl.json"
