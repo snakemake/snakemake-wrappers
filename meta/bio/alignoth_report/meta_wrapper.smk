@@ -24,7 +24,7 @@ rule alignoth:
     output:
         directory("<results>/alignoth/{sample}/{index}/")
     params:
-        extra=lambda wc, input: f"--around {get_variant_position(wc, input)}"
+        extra=lambda wc, input: f"--around {get_variant_position(wc, input)} -f tsv"
     log:
         "<logs>/alignoth/{sample}_{index}.log"
     wrapper:
@@ -65,5 +65,4 @@ def get_variant_position(wildcards, input):
     row = int(wildcards.index)
     chrom = df.iloc[row]["CHROM"]
     pos = df.iloc[row]["POS"]
-    print(f"Row {row}: {chrom}:{pos}")
     return f"{chrom}:{pos}"
