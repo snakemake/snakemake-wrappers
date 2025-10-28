@@ -2,7 +2,7 @@ import pandas as pd
 
 checkpoint vembrane_table:
     input:
-        "<results>/{sample}.vcf.gz",
+        "<results>/{sample}.bcf",
     output:
         "<results>/tables/{sample}.tsv"
     log:
@@ -18,8 +18,8 @@ rule alignoth:
     input:
         bam="<results>/mapped/{sample}.bam",
         reference="resources/genome.fa",
-        vcf="<results>/{sample}.vcf.gz",
-        csi="<results>/{sample}.vcf.gz.csi",
+        vcf="<results>/{sample}.bcf",
+        csi="<results>/{sample}.bcf.csi",
         overview="<results>/tables/{sample}.tsv"
     output:
         directory("<results>/alignoth/{sample}/{index}/")
