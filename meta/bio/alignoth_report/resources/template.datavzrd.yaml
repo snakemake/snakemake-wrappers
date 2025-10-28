@@ -5,8 +5,9 @@ datasets:
     path: ?input.overview
     separator: "\t"
     links:
-      column: INDEX
-      view: "{value}"
+        alignment plot:
+          column: INDEX
+          view: "{value}"
   ?for i in range(params.max_index):
     ?f"{i}.coverage":
       path: ?f"{input.plot_tables[i]}/{wildcards.sample}.coverage.tsv"
