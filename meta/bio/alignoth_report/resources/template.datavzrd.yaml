@@ -20,6 +20,9 @@ datasets:
     ?f"{i}.reads":
       path: ?f"{input.plot_tables[i]}/{wildcards.sample}.reads.tsv"
       separator: "\t"
+    ?f"{i}.highlight":
+      path: ?f"{input.plot_tables[i]}/{wildcards.sample}.highlight.tsv"
+      separator: "\t"
 views:
   variants:
     dataset: variants
@@ -50,5 +53,6 @@ views:
             reads: ?f"{i}.reads"
             reference: ?f"{i}.reference"
             coverage: ?f"{i}.coverage"
+            highlight: ?f"{i}.highlight"
         render-plot:
             spec-path: ?f"{input.plot_tables[i]}/{wildcards.sample}.vl.json"
