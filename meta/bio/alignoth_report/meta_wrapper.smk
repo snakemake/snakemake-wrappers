@@ -35,7 +35,7 @@ rule datavzrd:
     input:
         config=workflow.source_path("resources/template.datavzrd.yaml"),
         overview="<results>/tables/{sample}.tsv",
-        plot_tables=lambda wc: get_alignoth_tables(wc, "results")
+        plot_tables=lambda wc: get_alignoth_tables(wc, "<results>")
     output:
         report(
             directory("<results>/datavzrd-report/{sample}"),
