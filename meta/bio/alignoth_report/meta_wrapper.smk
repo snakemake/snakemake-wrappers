@@ -19,7 +19,7 @@ rule alignoth:
         bam="<results>/mapped/{sample}.bam",
         reference="resources/genome.fa",
         vcf="<results>/{sample}.bcf",
-        csi="<results>/{sample}.bcf.csi",
+        idx="<results>/{sample}.bcf.csi",
         overview="<results>/tables/{sample}.tsv"
     output:
         directory("<results>/alignoth/{sample}/{index}/")
