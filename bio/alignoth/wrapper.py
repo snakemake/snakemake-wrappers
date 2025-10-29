@@ -23,9 +23,12 @@ if snakemake.input.get("reference", ""):
 else:
     raise ValueError("Reference input required")
 
-# Optional VCF
+# Optional VCF with required csi/tbi index
 if snakemake.input.get("vcf", ""):
-    cmd.append(f"-v {snakemake.input.vcf}")
+    if snakemake.input.get("idx", ""):
+        cmd.append(f"-v {snakemake.input.vcf}")
+    else:
+        raise ValueError("VCF input given without csi/tbi index")
 
 # Optional BED
 if snakemake.input.get("bed", ""):

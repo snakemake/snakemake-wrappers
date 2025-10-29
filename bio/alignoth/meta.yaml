@@ -8,6 +8,7 @@ input:
   - bam: Path to indexed BAM file
   - reference: Path to indexed reference FASTA file
   - vcf: Path to indexed VCF file (Optional)
+  - idx: Path to index of VCF file (required when VCF is used)
   - bed: Path to BED file (Optional)
 output: "HTML, JSON or directory path"
 authors:
