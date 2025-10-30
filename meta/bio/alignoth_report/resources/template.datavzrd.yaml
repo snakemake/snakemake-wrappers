@@ -32,20 +32,12 @@ views:
           display-mode: hidden
         REF:
           label: reference
-          plot:
-            pills:
-              separator: ""
-              domain: ["A", "T", "G", "C"]
-              range: ["#CADB69", "#7284A8", "#F28CC2", "#F2B671"]
-              merge: true
+          spell:
+            url: v1.5.0/med/alleles
         ALT:
           label: alternative
-          plot:
-            pills:
-              separator: ""
-              domain: ["A", "T", "G", "C"]
-              range: ["#CADB69", "#7284A8", "#F28CC2", "#F2B671"]
-              merge: true
+          spell:
+            url: v1.5.0/med/alleles
   ?for i in range(params.max_index):
     ?i:
         hidden: true
