@@ -6,7 +6,6 @@ __license__ = "MIT"
 import logging
 from os import listdir
 from os.path import basename
-from os.path import dirname
 from os.path import join
 from tempfile import TemporaryDirectory
 import shutil
@@ -65,15 +64,14 @@ with TemporaryDirectory() as tmpdirname:
         "{extra}) {log}"
     )
 
-    for output_file in output_list:
-        filename = basename(output_file)
-        parent = dirname(output_file)
-
+    temp_files = sorted(listdir(tmpdirname))
+    destination_paths = sorted(output_list)
+    for source, destination in zip(temp_files, destination_paths):
         try:
-            shutil.copy2(join(tmpdirname, filename), output_file)
+            shutil.copy2(join(tmpdirname, source), destination)
         except FileNotFoundError as e:
-            temp_files = listdir(tmpdirname)
             logging.error(
-                f"Couldn't locate file {basename} possible files are {[basename(f) for f in temp_files]}"
+                f"Couldn't locate file {join(tmpdirname, source)} to copy it to {destination}. "
+                f"Possible files are {[basename(f) for f in temp_files]}"
             )
             raise e
