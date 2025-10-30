@@ -66,6 +66,11 @@ with TemporaryDirectory() as tmpdirname:
 
     temp_files = sorted(listdir(tmpdirname))
     destination_paths = sorted(output_list)
+    if len(temp_files) != len(destination_paths):
+        raise ValueError(
+            f"Mismatch: {len(temp_files)} generated files but {len(destination_paths)} outputs expected. "
+            f"Generated: {temp_files}"
+        )
     for source, destination in zip(temp_files, destination_paths):
         try:
             shutil.copy2(join(tmpdirname, source), destination)
