@@ -24,7 +24,7 @@ rule alignoth:
     output:
         directory("<results>/alignoth/{sample}/{index}/")
     params:
-        extra=lambda wc, input: f"--around {get_variant_position(wc, input)} -f tsv"
+        extra=lambda wc, input: f"--around-vcf-record {wc.index} -f tsv"
     log:
         "<logs>/alignoth/{sample}_{index}.log"
     wrapper:
@@ -58,11 +58,3 @@ def get_alignoth_tables(wildcards, results_dir):
 
 def count_variants(wildcards):
     return sum(1 for _ in open(checkpoints.vembrane_table.get(sample=wildcards.sample).output[0], "r")) - 1
-
-
-def get_variant_position(wildcards, input):
-    df = pd.read_csv(input.overview, sep="\t")
-    row = int(wildcards.index)
-    chrom = df.iloc[row]["CHROM"]
-    pos = df.iloc[row]["POS"]
-    return f"{chrom}:{pos}"
