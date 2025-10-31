@@ -1,5 +1,35 @@
 # Changelog
 
+## [7.9.0](https://github.com/snakemake/snakemake-wrappers/compare/v7.8.1...v7.9.0) (2025-10-31)
+
+
+### Features
+
+* Add Alignoth wrapper ([#4676](https://github.com/snakemake/snakemake-wrappers/issues/4676)) ([fabf863](https://github.com/snakemake/snakemake-wrappers/commit/fabf863c4da509005efdcc4b3f94c09eedc07979))
+
+
+### Performance Improvements
+
+* autobump bio/alignoth ([#4684](https://github.com/snakemake/snakemake-wrappers/issues/4684)) ([fc34672](https://github.com/snakemake/snakemake-wrappers/commit/fc34672026700f3aa4d48a5a27a74cf06e54456a))
+* autobump bio/cutadapt/pe ([#4669](https://github.com/snakemake/snakemake-wrappers/issues/4669)) ([5ca9111](https://github.com/snakemake/snakemake-wrappers/commit/5ca9111cce1edf5bbaa3ed366222d2c66b64cd6c))
+* autobump bio/cutadapt/se ([#4667](https://github.com/snakemake/snakemake-wrappers/issues/4667)) ([813b1d3](https://github.com/snakemake/snakemake-wrappers/commit/813b1d3504012d22cff2284fd5e6b4aca702fe29))
+* autobump bio/diamond/blastp ([#4670](https://github.com/snakemake/snakemake-wrappers/issues/4670)) ([4d49313](https://github.com/snakemake/snakemake-wrappers/commit/4d49313ae09e35dddbb9a14c5a4b0bf1c85a0708))
+* autobump bio/diamond/blastx ([#4671](https://github.com/snakemake/snakemake-wrappers/issues/4671)) ([48b8fbc](https://github.com/snakemake/snakemake-wrappers/commit/48b8fbc02fe55903be95fe371b92d05dbc23dcc8))
+* autobump bio/diamond/makedb ([#4672](https://github.com/snakemake/snakemake-wrappers/issues/4672)) ([c3ee542](https://github.com/snakemake/snakemake-wrappers/commit/c3ee54220d62398ea898fa268437cadf9e6f404f))
+* autobump bio/emu/abundance ([#4688](https://github.com/snakemake/snakemake-wrappers/issues/4688)) ([e331f6e](https://github.com/snakemake/snakemake-wrappers/commit/e331f6ebe636bcd187ea0f302836a6691070dc3c))
+* autobump bio/emu/collapse-taxonomy ([#4687](https://github.com/snakemake/snakemake-wrappers/issues/4687)) ([2b27b8d](https://github.com/snakemake/snakemake-wrappers/commit/2b27b8de4ed5cec63dd646f16ebe45848dcef6b9))
+* autobump bio/emu/combine-outputs ([#4686](https://github.com/snakemake/snakemake-wrappers/issues/4686)) ([8e2380b](https://github.com/snakemake/snakemake-wrappers/commit/8e2380bea5d0bcf28eb5f859c6140f8ed2daa0dd))
+* autobump bio/gdc-api/bam-slicing ([#4673](https://github.com/snakemake/snakemake-wrappers/issues/4673)) ([c481c0b](https://github.com/snakemake/snakemake-wrappers/commit/c481c0b42179520931e8b058a1f8dec6c68977b5))
+* autobump bio/mehari/download-clinvar-db ([#4674](https://github.com/snakemake/snakemake-wrappers/issues/4674)) ([042c238](https://github.com/snakemake/snakemake-wrappers/commit/042c238894eef187481ddc96d300a422db115da0))
+* autobump bio/mehari/download-transcript-db ([#4675](https://github.com/snakemake/snakemake-wrappers/issues/4675)) ([0abdf9d](https://github.com/snakemake/snakemake-wrappers/commit/0abdf9da634a365faf3f2784c9fe96262d929963))
+* autobump bio/multiqc ([#4689](https://github.com/snakemake/snakemake-wrappers/issues/4689)) ([4834977](https://github.com/snakemake/snakemake-wrappers/commit/483497743f1405b166a3675cd0715ef5945c0dcf))
+* autobump geo/rasterio/clip ([#4690](https://github.com/snakemake/snakemake-wrappers/issues/4690)) ([1818819](https://github.com/snakemake/snakemake-wrappers/commit/18188198469a3ff1f5b9b8aa935aa5a71c32d939))
+* autobump utils/datavzrd ([#4685](https://github.com/snakemake/snakemake-wrappers/issues/4685)) ([bf54d66](https://github.com/snakemake/snakemake-wrappers/commit/bf54d664f7a968a7eb9461a35d03ddf08b360616))
+* Bump alignoth version ([#4679](https://github.com/snakemake/snakemake-wrappers/issues/4679)) ([eb370a9](https://github.com/snakemake/snakemake-wrappers/commit/eb370a96a30eaed2c6af6f7108d979bed15d6316))
+* Bump alignoth version ([#4681](https://github.com/snakemake/snakemake-wrappers/issues/4681)) ([57251ad](https://github.com/snakemake/snakemake-wrappers/commit/57251adaaf8fafe118a0687d1e47433fd2fc1159))
+* Bump alignoth version ([#4683](https://github.com/snakemake/snakemake-wrappers/issues/4683)) ([60860c8](https://github.com/snakemake/snakemake-wrappers/commit/60860c85821fd48a6633d63a9850fb0486802b4a))
+* Bump utils/datavzrd ([#4677](https://github.com/snakemake/snakemake-wrappers/issues/4677)) ([89e7e87](https://github.com/snakemake/snakemake-wrappers/commit/89e7e871d9c093a8f296a35eb756c1a101d41d56))
+
 ## [7.8.1](https://github.com/snakemake/snakemake-wrappers/compare/v7.8.0...v7.8.1) (2025-10-19)
 
 
