@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - emu =3.5.3
+  - emu =3.5.4
