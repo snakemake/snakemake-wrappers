@@ -5,5 +5,5 @@ dependencies:
   - rasterio =1.4.3
   - libgdal-arrow-parquet =3.10.3
   - geopandas =1.1.1
-  - pyarrow =21.0.0
+  - pyarrow =22.0.0
   - pyproj =3.7.2
