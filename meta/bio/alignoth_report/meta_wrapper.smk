@@ -11,7 +11,7 @@ checkpoint vembrane_table:
         expression="INDEX, CHROM, POS, ALT, REF",
         extra=""
     wrapper:
-        "master/bio/vembrane/table"
+        "v7.6.1/bio/vembrane/table"
 
 
 rule alignoth:
@@ -28,7 +28,7 @@ rule alignoth:
     log:
         "<logs>/alignoth/{sample}_{index}.log"
     wrapper:
-        "master/bio/alignoth"
+        "v7.9.0/bio/alignoth"
 
 
 rule datavzrd:
@@ -47,13 +47,12 @@ rule datavzrd:
     log:
         "<logs>/datavzrd/{sample}.log",
     wrapper:
-        "master/utils/datavzrd"
+        "v7.9.0/utils/datavzrd"
 
 
 def get_alignoth_tables(wildcards, results_dir):
     count = count_variants(wildcards)
-    l = [f"{results_dir}/alignoth/{{sample}}/{i}/" for i in range(count)]
-    return l
+    return [f"{results_dir}/alignoth/{{sample}}/{i}/" for i in range(count)]
 
 
 def count_variants(wildcards):
