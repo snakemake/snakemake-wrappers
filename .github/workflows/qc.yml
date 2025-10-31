@@ -65,6 +65,7 @@ jobs:
           # get all modified and added files, not those that are deleted
           for f in $(git diff origin/master --name-only --diff-filter=d | grep -P "(test/Snakefile|meta_wrapper.smk)")
           do
+            # lint meta_wrapper.smk and test/Snakefile of normal wrappers
             if [[ $f == meta/**/meta_wrapper.smk || $f != meta/**/test/Snakefile ]]
             then
               echo "Linting $f"
