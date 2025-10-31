@@ -69,7 +69,7 @@ jobs:
             if [[ $f == meta/**/meta_wrapper.smk || $f != meta/**/test/Snakefile ]]
             then
               echo "Linting $f"
-              (cd $(dirname $f) && snakemake --lint)
+              (cd $(dirname $f) && snakemake --lint --snakefile $(basename $f))
               ERRORS+=$?
             fi
           done
