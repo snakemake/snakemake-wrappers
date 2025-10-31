@@ -42,6 +42,8 @@ def tmp_test_dir():
 def run(tmp_test_dir):
     def _run(wrapper, cmd, check_log=None, compare_results_with_expected=None):
 
+        is_meta_wrapper = wrapper.startswith("meta/")
+
         tmp_test_subdir = tempfile.mkdtemp(dir=tmp_test_dir)
         origdir = os.getcwd()
 
@@ -82,13 +84,18 @@ def run(tmp_test_dir):
         os.chdir(testdir)
         if os.path.exists(".snakemake"):
             shutil.rmtree(".snakemake")
-        cmd = cmd + [
-            "--wrapper-prefix",
-            f"file://{tmp_test_subdir}/",
+        cmd += [
             "--conda-cleanup-pkgs",
             "--printshellcmds",
             "--show-failed-logs",
         ]
+        if not is_meta_wrapper:
+            # meta-wrappers define their specific wrapper versions
+            cmd += [
+                "--wrapper-prefix",
+                f"file://{tmp_test_subdir}/",
+            ]
+
 
         if CONTAINERIZED:
             # run snakemake in container
