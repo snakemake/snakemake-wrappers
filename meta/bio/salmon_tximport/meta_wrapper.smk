@@ -1,24 +1,24 @@
 rule salmon_decoy_sequences:
     input:
-        transcriptome="resources/transcriptome.fasta",
-        genome="resources/genome.fasta",
+        transcriptome="<transcriptome_sequence>",
+        genome="<genome_sequence>",
     output:
-        gentrome=temp("resources/gentrome.fasta"),
-        decoys=temp("resources/decoys.txt"),
+        gentrome=temp("<resources>/gentrome.fasta"),
+        decoys=temp("<resources>/decoys.txt"),
     threads: 1
     log:
-        "decoys.log",
+        "<logs>/decoys.log",
     wrapper:
         "master/bio/salmon/decoys"
 
 
 rule salmon_index_gentrome:
     input:
-        sequences="resources/gentrome.fasta",
-        decoys="resources/decoys.txt",
+        sequences="<resources>/gentrome.fasta",
+        decoys="<resources>/decoys.txt",
     output:
         multiext(
-            "salmon/transcriptome_index/",
+            "<resources>/salmon_gentrome_index/",
             "complete_ref_lens.bin",
             "ctable.bin",
             "ctg_offsets.bin",
@@ -37,7 +37,7 @@ rule salmon_index_gentrome:
         ),
     cache: True
     log:
-        "logs/salmon/transcriptome_index.log",
+        "<logs>/salmon/gentrome_index.log",
     threads: 2
     params:
         # optional parameters
@@ -48,9 +48,10 @@ rule salmon_index_gentrome:
 
 rule salmon_quant_reads:
     input:
-        r="reads/{sample}.fastq.gz",
+        r1="<reads_r1>",
+        r2="<reads_r2>",
         index=multiext(
-            "salmon/transcriptome_index/",
+            "<resources>/salmon_gentrome_index/",
             "complete_ref_lens.bin",
             "ctable.bin",
             "ctg_offsets.bin",
@@ -67,17 +68,17 @@ rule salmon_quant_reads:
             "seq.bin",
             "versionInfo.json",
         ),
-        gtf="resources/annotation.gtf",
+        gtf="<genome_annotation>",
     output:
-        quant=temp("pseudo_mapping/{sample}/quant.sf"),
-        quant_gene=temp("pseudo_mapping/{sample}/quant.genes.sf"),
-        lib=temp("pseudo_mapping/{sample}/lib_format_counts.json"),
-        aux_info=temp(directory("pseudo_mapping/{sample}/aux_info")),
-        cmd_info=temp("pseudo_mapping/{sample}/cmd_info.json"),
-        libparams=temp(directory("pseudo_mapping/{sample}/libParams")),
-        logs=temp(directory("pseudo_mapping/{sample}/logs")),
+        quant=temp("<results>/pseudo_mapping/<per>/quant.sf"),
+        quant_gene=temp("<results>/pseudo_mapping/<per>/quant.genes.sf"),
+        lib=temp("<results>/pseudo_mapping/<per>/lib_format_counts.json"),
+        aux_info=temp(directory("<results>/pseudo_mapping/<per>/aux_info")),
+        cmd_info=temp("<results>/pseudo_mapping/<per>/cmd_info.json"),
+        libparams=temp(directory("<results>/pseudo_mapping/<per>/libParams")),
+        logs=temp(directory("<results>/pseudo_mapping/<per>/logs")),
     log:
-        "logs/salmon/{sample}.log",
+        "<logs>/salmon/<per>.log",
     params:
         # optional parameters
         libtype="A",
@@ -90,28 +91,35 @@ rule salmon_quant_reads:
 rule tximport:
     input:
         quant=expand(
-            "pseudo_mapping/{sample}/quant.sf", sample=["S1", "S2", "S3", "S4"]
+            "<results>/pseudo_mapping/{sample}/quant.sf",
+            sample=["S1", "S2"],
         ),
         lib=expand(
-            "pseudo_mapping/{sample}/lib_format_counts.json",
-            sample=["S1", "S2", "S3", "S4"],
+            "<results>/pseudo_mapping/{sample}/lib_format_counts.json",
+            sample=["S1", "S2"],
         ),
         aux_info=expand(
-            "pseudo_mapping/{sample}/aux_info", sample=["S1", "S2", "S3", "S4"]
+            "<results>/pseudo_mapping/{sample}/aux_info",
+            sample=["S1", "S2"],
         ),
         cmd_info=expand(
-            "pseudo_mapping/{sample}/cmd_info.json", sample=["S1", "S2", "S3", "S4"]
+            "<results>/pseudo_mapping/{sample}/cmd_info.json",
+            sample=["S1", "S2"],
         ),
         libparams=expand(
-            "pseudo_mapping/{sample}/libParams", sample=["S1", "S2", "S3", "S4"]
+            "<results>/pseudo_mapping/{sample}/libParams",
+            sample=["S1", "S2"],
         ),
-        logs=expand("pseudo_mapping/{sample}/logs", sample=["S1", "S2", "S3", "S4"]),
-        tx_to_gene="resources/tx2gene.tsv",
+        logs=expand(
+            "<results>/pseudo_mapping/{sample}/logs",
+            sample=["S1", "S2"],
+        ),
+        tx_to_gene="<tx_to_gene>",
     output:
-        txi="tximport/SummarizedExperimentObject.RDS",
+        txi="<results>/tximport/SummarizedExperimentObject.RDS",
     params:
         extra="type='salmon'",
     log:
-        "logs/tximport.log"
+        "<logs>/tximport.log",
     wrapper:
         "master/bio/tximport"
