@@ -1,12 +1,12 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
-# created-by: conda 24.9.2
+# created-by: conda 25.9.1
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
 https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.10.5-hbd8a1cb_0.conda#f9e5fbc24009179e8b0409624691758a
 https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-h767d61c_7.conda#f7b4d76975aac7e5d9e6ad13845f92fe
-https://conda.anaconda.org/conda-forge/noarch/python_abi-3.14-8_cp314.conda#0539938c55b6b1a59b560e843ad864a4
+https://conda.anaconda.org/conda-forge/noarch/python_abi-3.13-8_cp313.conda#94305520c52a4aa3f6c2b1ff6008d9f8
 https://conda.anaconda.org/conda-forge/noarch/tzdata-2025b-h78e105d_0.conda#4222072737ccff51314b5ece9c7d6f5a
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-h767d61c_7.conda#c0374badb3a5d4b1372db28d19462c53
@@ -30,8 +30,8 @@ https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb8e6e7a_2.conda#6432
 https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.44-h1aa0949_4.conda#c94ab6ff54ba5172cf1c58267005670f
 https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.30-pthreads_h94d23a6_3.conda#ac2e4832427d6b159576e8a68305c722
 https://conda.anaconda.org/conda-forge/linux-64/libblas-3.9.0-38_h4a7cf45_openblas.conda#3509b5e2aaa5f119013c8969fdd9a905
-https://conda.anaconda.org/conda-forge/linux-64/python-3.14.0-h32b2ec7_102_cp314.conda#0a19d2cc6eb15881889b0c6fa7d6a78d
-https://conda.anaconda.org/conda-forge/noarch/cpython-3.14.0-py314hd8ed1ab_102.conda#ff3061d315c4a988fa1c29c543800780
+https://conda.anaconda.org/conda-forge/linux-64/python-3.13.9-hc97d973_101_cp313.conda#4780fe896e961722d0623fa91d0d3378
+https://conda.anaconda.org/conda-forge/noarch/cpython-3.13.9-py313hd8ed1ab_101.conda#367133808e89325690562099851529c8
 https://conda.anaconda.org/conda-forge/noarch/dpath-2.2.0-pyha770c72_0.conda#b2681af65644be41a18d4b00b67938f1
 https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.9.0-38_h0358290_openblas.conda#bcd928a9376a215cd9164a4312dd5e98
 https://conda.anaconda.org/conda-forge/linux-64/liblapack-3.9.0-38_h47877c9_openblas.conda#88f10bff57b423a3fd2d990c6055771e
@@ -39,14 +39,14 @@ https://conda.anaconda.org/conda-forge/noarch/pip-25.2-pyh145f28c_0.conda#e7ab34
 https://conda.anaconda.org/conda-forge/noarch/plac-1.4.5-pyhd8ed1ab_0.conda#3f30dc72be42bb4619502fa496f8d86a
 https://conda.anaconda.org/conda-forge/noarch/python-tzdata-2025.2-pyhd8ed1ab_0.conda#88476ae6ebd24f39261e0854ac244f33
 https://conda.anaconda.org/conda-forge/noarch/pytz-2025.2-pyhd8ed1ab_0.conda#bc8e3267d44011051f2eb14d22fb0960
-https://conda.anaconda.org/conda-forge/noarch/pyyaml-6.0.3-pyh7db6752_0.conda#b12f41c0d7fb5ab81709fcc86579688f
+https://conda.anaconda.org/conda-forge/linux-64/pyyaml-6.0.3-py313h3dea7bd_0.conda#4794ea0adaebd9f844414e594b142cb2
 https://conda.anaconda.org/conda-forge/noarch/six-1.17.0-pyhe01879c_1.conda#3339e3b65d58accf4ca4fb8748ab16b3
-https://conda.anaconda.org/conda-forge/linux-64/numpy-2.3.4-py314h2b28147_0.conda#1a829816158b0129acfe809f2971c14e
+https://conda.anaconda.org/conda-forge/linux-64/numpy-2.3.4-py313hf6604e3_0.conda#c47c527e215377958d28c470ce4863e1
 https://conda.anaconda.org/conda-forge/noarch/python-dateutil-2.9.0.post0-pyhe01879c_2.conda#5b8d21249ff20967101ffa321cab24e8
-https://conda.anaconda.org/conda-forge/noarch/python-gil-3.14.0-h4df99d1_102.conda#d152e423d80848fe95f0f4b43448030e
+https://conda.anaconda.org/conda-forge/noarch/python-gil-3.13.9-h4df99d1_101.conda#f41e3c1125e292e6bfcea8392a3de3d8
 https://conda.anaconda.org/conda-forge/noarch/yte-1.8.1-pyha770c72_0.conda#55a52c71e7919a4951cfc6cccf4fa16f
 https://conda.anaconda.org/conda-forge/noarch/_python_abi3_support-1.0-hd8ed1ab_2.conda#aaa2a381ccc56eac91d63b6c1240312f
-https://conda.anaconda.org/conda-forge/linux-64/datavzrd-2.58.8-py314he852efc_0.conda#877ad27ae4c9eb06d0f00f14b589d2f3
-https://conda.anaconda.org/conda-forge/linux-64/pandas-2.3.3-py314ha0b5721_1.conda#4e72e31689d2141ac77fd6a6dcb740d8
+https://conda.anaconda.org/conda-forge/linux-64/datavzrd-2.61.7-py313h15dba6a_0.conda#aba4bd04b6d03f85be756858f79ec46b
+https://conda.anaconda.org/conda-forge/linux-64/pandas-2.3.3-py313h08cd8bf_1.conda#9e87d4bda0c2711161d765332fa38781
 https://conda.anaconda.org/conda-forge/linux-64/polars-runtime-32-1.35.1-py310hffdcd12_0.conda#093d1242f534e7c383b4d67ab48c7c3d
 https://conda.anaconda.org/conda-forge/noarch/polars-1.35.1-pyh6a1acc5_0.conda#dcb4da1773fc1e8c9e2321a648f34382
