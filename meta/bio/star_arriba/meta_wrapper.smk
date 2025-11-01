@@ -12,7 +12,7 @@ rule star_index:
         "<logs>/star_index_genome.log",
     cache: True  # mark as eligible for between workflow caching
     wrapper:
-        "master/bio/star/index"
+        "v3.3.7/bio/star/index"
 
 
 rule star_align:
@@ -39,7 +39,7 @@ rule star_align:
         ),
     threads: 12
     wrapper:
-        "master/bio/star/align"
+        "v3.3.7/bio/star/align"
 
 
 rule arriba:
@@ -64,4 +64,4 @@ rule arriba:
         "<logs>/arriba/<per>.log",
     threads: 1
     wrapper:
-        "master/bio/arriba"
+        "v7.3.0/bio/arriba"

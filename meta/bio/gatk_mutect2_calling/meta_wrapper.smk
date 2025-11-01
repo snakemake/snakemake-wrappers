@@ -11,7 +11,7 @@ rule create_dict:
     params:
         extra="",
     wrapper:
-        "master/bio/picard/createsequencedictionary"
+        "v7.6.0/bio/picard/createsequencedictionary"
 
 
 rule samtools_index:
@@ -24,7 +24,7 @@ rule samtools_index:
     params:
         extra="",  # optional params string
     wrapper:
-        "master/bio/samtools/faidx"
+        "v7.6.0/bio/samtools/faidx"
 
 
 rule picard_replace_read_groups:
@@ -41,7 +41,7 @@ rule picard_replace_read_groups:
         # Required for GATK
         extra="--RGLB lib1 --RGPL illumina --RGPU {sample} --RGSM {sample}",
     wrapper:
-        "master/bio/picard/addorreplacereadgroups"
+        "v7.6.0/bio/picard/addorreplacereadgroups"
 
 
 rule sambamba_index_picard_bam:
@@ -55,7 +55,7 @@ rule sambamba_index_picard_bam:
     params:
         extra="",
     wrapper:
-        "master/bio/sambamba/index"
+        "v6.1.0/bio/sambamba/index"
 
 
 rule mutect2_call:
@@ -78,7 +78,7 @@ rule mutect2_call:
     log:
         "logs/mutect/{sample}.log",
     wrapper:
-        "master/bio/gatk/mutect"
+        "v7.6.0/bio/gatk/mutect"
 
 
 rule gatk_get_pileup_summaries:
@@ -98,7 +98,7 @@ rule gatk_get_pileup_summaries:
     log:
         "logs/summary/{sample}.log",
     wrapper:
-        "master/bio/gatk/getpileupsummaries"
+        "v7.6.0/bio/gatk/getpileupsummaries"
 
 
 rule gatk_calculate_contamination:
@@ -114,7 +114,7 @@ rule gatk_calculate_contamination:
     params:
         extra="",
     wrapper:
-        "master/bio/gatk/calculatecontamination"
+        "v7.6.0/bio/gatk/calculatecontamination"
 
 
 rule gatk_learn_read_orientation_model:
@@ -130,7 +130,7 @@ rule gatk_learn_read_orientation_model:
     log:
         "logs/learnreadorientationbias/{sample}.log",
     wrapper:
-        "master/bio/gatk/learnreadorientationmodel"
+        "v7.6.0/bio/gatk/learnreadorientationmodel"
 
 
 rule filter_mutect_calls:
@@ -155,4 +155,4 @@ rule filter_mutect_calls:
         extra="--create-output-variant-index --min-median-mapping-quality 35 --max-alt-allele-count 3",
         java_opts="",
     wrapper:
-        "master/bio/gatk/filtermutectcalls"
+        "v7.6.0/bio/gatk/filtermutectcalls"

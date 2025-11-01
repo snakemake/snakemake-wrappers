@@ -9,7 +9,7 @@ rule salmon_decoy_sequences:
     log:
         "decoys.log",
     wrapper:
-        "master/bio/salmon/decoys"
+        "v6.0.0/bio/salmon/decoys"
 
 
 rule salmon_index_gentrome:
@@ -43,7 +43,7 @@ rule salmon_index_gentrome:
         # optional parameters
         extra="",
     wrapper:
-        "master/bio/salmon/index"
+        "v3.5.3/bio/salmon/index"
 
 
 rule salmon_quant_reads:
@@ -84,7 +84,7 @@ rule salmon_quant_reads:
         extra="--numBootstraps 32",
     threads: 2
     wrapper:
-        "master/bio/salmon/quant"
+        "v6.0.0/bio/salmon/quant"
 
 
 rule tximport:
@@ -114,4 +114,4 @@ rule tximport:
     log:
         "logs/tximport.log"
     wrapper:
-        "master/bio/tximport"
+        "v6.0.2/bio/tximport"

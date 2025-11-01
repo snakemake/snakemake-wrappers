@@ -6,7 +6,7 @@ rule bwa_index:
     log:
         "<logs>/bwa_index.log",
     wrapper:
-        "master/bio/bwa/index"
+        "v5.10.0/bio/bwa/index"
 
 
 rule bwa_mem:
@@ -24,7 +24,7 @@ rule bwa_mem:
         sort_extra=""             # Extra args for samtools/picard.
     threads: 8
     wrapper:
-        "master/bio/bwa/mem"
+        "v7.6.0/bio/bwa/mem"
 
 
 rule samtools_index:
@@ -37,4 +37,4 @@ rule samtools_index:
     params:
         "" # optional params string
     wrapper:
-        "master/bio/samtools/index"
+        "v7.3.0/bio/samtools/index"
