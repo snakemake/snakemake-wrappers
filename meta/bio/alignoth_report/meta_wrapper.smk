@@ -17,9 +17,11 @@ checkpoint vembrane_table:
 rule alignoth:
     input:
         bam="<results>/mapped/{sample}.bam",
+        bam_idx="<results>/mapped/{sample}.bam.bai",
         reference="resources/genome.fa",
+        reference_idx="resources/genome.fa.fai",
         vcf="<results>/{sample}.bcf",
-        idx="<results>/{sample}.bcf.csi",
+        vcf_idx="<results>/{sample}.bcf.csi",
         overview="<results>/tables/{sample}.tsv"
     output:
         directory("<results>/alignoth/{sample}/{index}/")
