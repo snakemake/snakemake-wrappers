@@ -16,7 +16,7 @@ if snakemake.input.get("bam", ""):
     if snakemake.input.get("bam_idx", ""):
         cmd.append(f"-b {snakemake.input.bam}")
     else:
-       raise ValueError("BAM input given without bai index") 
+        raise ValueError("BAM input given without bai index")
 else:
     raise ValueError("BAM input required")
 
