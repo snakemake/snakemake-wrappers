@@ -30,7 +30,7 @@ rule alignoth:
     log:
         "<logs>/alignoth/{sample}_{index}.log"
     wrapper:
-        "v7.9.0/bio/alignoth"
+        "c530b7b1e12a02703ceb294ae22aadeb9cabc1d7/bio/alignoth"
 
 
 rule datavzrd:
@@ -49,7 +49,7 @@ rule datavzrd:
     log:
         "<logs>/datavzrd/{sample}.log",
     wrapper:
-        "v7.9.0/utils/datavzrd"
+        "c530b7b1e12a02703ceb294ae22aadeb9cabc1d7/utils/datavzrd"
 
 
 def get_alignoth_tables(wildcards, results_dir):
