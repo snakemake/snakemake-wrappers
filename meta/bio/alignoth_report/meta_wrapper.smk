@@ -8,7 +8,7 @@ checkpoint vembrane_table:
     log:
         "<logs>/vembrane_table/{sample}.log"
     params:
-        expression="INDEX, CHROM, POS, ALT, REF",
+        expression="INDEX, CHROM, POS, REF, ALT",
         extra=""
     wrapper:
         "v7.6.1/bio/vembrane/table"
