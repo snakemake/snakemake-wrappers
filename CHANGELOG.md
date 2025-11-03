@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.9.1](https://github.com/snakemake/snakemake-wrappers/compare/v7.9.0...v7.9.1) (2025-11-03)
+
+
+### Bug Fixes
+
+* Add index checks for BAM and reference inputs ([#4693](https://github.com/snakemake/snakemake-wrappers/issues/4693)) ([af7e91d](https://github.com/snakemake/snakemake-wrappers/commit/af7e91db262036ae3fef655d0ed9b68314e6633d))
+
+
+### Performance Improvements
+
+* Bump datavzrd version ([#4691](https://github.com/snakemake/snakemake-wrappers/issues/4691)) ([744b021](https://github.com/snakemake/snakemake-wrappers/commit/744b02196c7e43671606fbf99bfe5119e0a25c58))
+
 ## [7.9.0](https://github.com/snakemake/snakemake-wrappers/compare/v7.8.1...v7.9.0) (2025-10-31)
 
 
