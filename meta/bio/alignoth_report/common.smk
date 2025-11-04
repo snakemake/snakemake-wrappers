@@ -1,5 +1,3 @@
-import pandas as pd
-
 def get_alignoth_tables(wildcards, results_dir):
     count = count_variants(wildcards)
     return [f"{results_dir}/alignoth/{{sample}}/{i}/" for i in range(count)]
