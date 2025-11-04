@@ -28,14 +28,20 @@ views:
     dataset: variants
     render-table:
       columns:
+        SAMPLE:
+          label: sample
+        CHROM:
+          label: chromosome
+        POS:
+          label: position
         INDEX:
           display-mode: hidden
         REF:
-          label: reference
+          label: reference allele
           spell:
             url: v1.5.0/med/alleles
         ALT:
-          label: alternative
+          label: alternative allele
           spell:
             url: v1.5.0/med/alleles
   ?for i in range(params.max_index):

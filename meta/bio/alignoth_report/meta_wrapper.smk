@@ -8,7 +8,7 @@ checkpoint vembrane_table:
     log:
         "<logs>/vembrane_table/{sample}.log"
     params:
-        expression="INDEX, CHROM, POS, ALT, REF",
+        expression="INDEX, CHROM, POS, REF, ALT",
         extra=""
     wrapper:
         "v7.6.1/bio/vembrane/table"
@@ -17,9 +17,11 @@ checkpoint vembrane_table:
 rule alignoth:
     input:
         bam="<results>/mapped/{sample}.bam",
+        bam_idx="<results>/mapped/{sample}.bam.bai",
         reference="resources/genome.fa",
+        reference_idx="resources/genome.fa.fai",
         vcf="<results>/{sample}.bcf",
-        idx="<results>/{sample}.bcf.csi",
+        vcf_idx="<results>/{sample}.bcf.csi",
         overview="<results>/tables/{sample}.tsv"
     output:
         directory("<results>/alignoth/{sample}/{index}/")
@@ -28,7 +30,7 @@ rule alignoth:
     log:
         "<logs>/alignoth/{sample}_{index}.log"
     wrapper:
-        "v7.9.0/bio/alignoth"
+        "v7.9.1/bio/alignoth"
 
 
 rule datavzrd:
@@ -47,7 +49,7 @@ rule datavzrd:
     log:
         "<logs>/datavzrd/{sample}.log",
     wrapper:
-        "v7.9.0/utils/datavzrd"
+        "v7.9.1/utils/datavzrd"
 
 
 def get_alignoth_tables(wildcards, results_dir):
