@@ -80,6 +80,8 @@ def run(tmp_test_dir):
         testdir = os.path.join(tmp_test_subdir, "test")
         shutil.copytree(os.path.join(wrapper, "test"), testdir)
 
+        breakpoint()
+
         # switch to test directory
         os.chdir(testdir)
         if os.path.exists(".snakemake"):
@@ -93,7 +95,7 @@ def run(tmp_test_dir):
             # meta-wrappers define their specific wrapper versions
             cmd += [
                 "--wrapper-prefix",
-                f"file://{tmp_test_subdir}/",
+                f"git+file://{tmp_test_subdir}/",
             ]
 
 

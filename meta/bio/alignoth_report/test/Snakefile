@@ -3,6 +3,6 @@ from snakemake.utils import min_version
 min_version("9.13.1")
 
 module alignoth_report:
-    meta_wrapper: "master/meta/bio/alignoth_report"
+    meta_wrapper: "file:../master/meta/bio/alignoth_report"
 
 use rule * from alignoth_report
