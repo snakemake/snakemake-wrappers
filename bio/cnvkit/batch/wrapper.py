@@ -11,6 +11,7 @@ from tempfile import TemporaryDirectory
 import shutil
 from snakemake.shell import shell
 
+
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 input_bam_files = f"{snakemake.input.bam}"
@@ -49,9 +50,7 @@ extra = snakemake.params.get("extra", "")
 with TemporaryDirectory() as tmpdirname:
     if create_reference:
         output = f"--output-reference {join(tmpdirname, 'reference.cnn')}"
-        output_list = [snakemake.output.reference]
     else:
-        output_list = [value for key, value in snakemake.output.items()]
         output = f"-d {tmpdirname} "
     shell(
         "(cnvkit.py batch {input_bam_files} "
@@ -64,14 +63,35 @@ with TemporaryDirectory() as tmpdirname:
         "{extra}) {log}"
     )
 
-    temp_files = sorted(listdir(tmpdirname))
-    destination_paths = sorted(output_list)
-    if len(temp_files) != len(destination_paths):
-        raise ValueError(
-            f"Mismatch: {len(temp_files)} generated files but {len(destination_paths)} outputs expected. "
-            f"Generated: {temp_files}"
-        )
-    for source, destination in zip(temp_files, destination_paths):
+    # actual generated files
+    temp_files = listdir(tmpdirname)
+
+    # mapping of file suffixes to snakemake.output attributes
+    file_map = {
+        ".antitargetcoverage.cnn": "antitarget_coverage",
+        "bintest.cns": "bins",
+        "cnr": "regions",
+        "call.cns": "segments_called",
+        ".targetcoverage.cnn": "target_coverage",
+        "cns": "segments",
+        "reference.cnn": "reference"
+    }
+
+    sources = []
+    destinations = []
+
+    for file in temp_files:
+        for suffix, attr in file_map.items():
+            if suffix in file:
+                # Skip ambiguous matches
+                if attr == "segments" and any(x in file for x in ["call.cns", "bintest.cns"]):
+                    continue
+                destinations.append(getattr(snakemake.output, attr, None))
+                sources.append(file)
+                break  # stop after first match
+
+    # build destination paths:
+    for source, destination in zip(sources, destinations):
         try:
             shutil.copy2(join(tmpdirname, source), destination)
         except FileNotFoundError as e:
