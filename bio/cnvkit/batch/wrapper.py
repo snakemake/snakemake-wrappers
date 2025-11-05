@@ -74,7 +74,7 @@ with TemporaryDirectory() as tmpdirname:
         "call.cns": "segments_called",
         ".targetcoverage.cnn": "target_coverage",
         "cns": "segments",
-        "reference.cnn": "reference"
+        "reference.cnn": "reference",
     }
 
     sources = []
