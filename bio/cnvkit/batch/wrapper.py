@@ -84,7 +84,9 @@ with TemporaryDirectory() as tmpdirname:
         for suffix, attr in file_map.items():
             if suffix in file:
                 # Skip ambiguous matches
-                if attr == "segments" and any(x in file for x in ["call.cns", "bintest.cns"]):
+                if attr == "segments" and any(
+                    x in file for x in ["call.cns", "bintest.cns"]
+                ):
                     continue
                 destinations.append(getattr(snakemake.output, attr, None))
                 sources.append(file)
