@@ -68,11 +68,11 @@ with TemporaryDirectory() as tmpdirname:
 
     # mapping of file suffixes to snakemake.output attributes
     file_map = {
-        ".antitargetcoverage.cnn": "antitarget_coverage",
+        "antitargetcoverage.cnn": "antitarget_coverage",
         "bintest.cns": "bins",
         "cnr": "regions",
         "call.cns": "segments_called",
-        ".targetcoverage.cnn": "target_coverage",
+        "targetcoverage.cnn": "target_coverage",
         "cns": "segments",
         "reference.cnn": "reference",
     }
@@ -82,7 +82,7 @@ with TemporaryDirectory() as tmpdirname:
 
     for file in temp_files:
         for suffix, attr in file_map.items():
-            if suffix in file:
+            if file.endswith(suffix):
                 # Skip ambiguous matches
                 if attr == "segments" and any(
                     x in file for x in ["call.cns", "bintest.cns"]
