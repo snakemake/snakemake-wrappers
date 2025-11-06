@@ -80,6 +80,10 @@ def run(tmp_test_dir):
         testdir = os.path.join(tmp_test_subdir, "test")
         shutil.copytree(os.path.join(wrapper, "test"), testdir)
 
+        if is_meta_wrapper:
+            # make sure that the meta-wrapper is where we expect it
+            shutil.copy(os.path.join(wrapper, "meta_wrapper.smk"), tmp_test_subdir)
+
         # switch to test directory
         os.chdir(testdir)
         if os.path.exists(".snakemake"):
