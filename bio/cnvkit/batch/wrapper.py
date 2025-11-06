@@ -88,8 +88,10 @@ with TemporaryDirectory() as tmpdirname:
                     x in file for x in ["call.cns", "bintest.cns"]
                 ):
                     continue
-                destinations.append(getattr(snakemake.output, attr, None))
-                sources.append(file)
+                output_path = getattr(snakemake.output, attr, None)
+                if output_path is not None:
+                    destinations.append(output_path)
+                    sources.append(file)
                 break  # stop after first match
 
     # build destination paths:
