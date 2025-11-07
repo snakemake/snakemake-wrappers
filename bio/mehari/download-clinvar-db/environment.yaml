@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - curl =8.16.0
+  - curl =8.17.0
   - tar =1.35
