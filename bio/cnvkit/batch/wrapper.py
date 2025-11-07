@@ -5,11 +5,11 @@ __license__ = "MIT"
 
 import logging
 from os import listdir
-from os.path import basename
 from os.path import join
 from tempfile import TemporaryDirectory
 import shutil
 from snakemake.shell import shell
+from snakemake_wrapper_utils.snakemake import move_files
 
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
@@ -70,16 +70,16 @@ with TemporaryDirectory() as tmpdirname:
     file_map = {
         "antitargetcoverage.cnn": "antitarget_coverage",
         "bintest.cns": "bins",
-        "cnr": "regions",
+        ".cnr": "regions",
         "call.cns": "segments_called",
         "targetcoverage.cnn": "target_coverage",
-        "cns": "segments",
+        ".cns": "segments",
         "reference.cnn": "reference",
     }
 
-    sources = []
-    destinations = []
+    mapping = {}
 
+    # find matches btw generated files and snakemake output
     for file in temp_files:
         for suffix, attr in file_map.items():
             if file.endswith(suffix):
@@ -88,19 +88,8 @@ with TemporaryDirectory() as tmpdirname:
                     x in file for x in ["call.cns", "bintest.cns"]
                 ):
                     continue
-                output_path = getattr(snakemake.output, attr, None)
-                if output_path is not None:
-                    destinations.append(output_path)
-                    sources.append(file)
+                mapping[attr] = join(tmpdirname, file)
                 break  # stop after first match
 
-    # build destination paths:
-    for source, destination in zip(sources, destinations):
-        try:
-            shutil.copy2(join(tmpdirname, source), destination)
-        except FileNotFoundError as e:
-            logging.error(
-                f"Couldn't locate file {join(tmpdirname, source)} to copy it to {destination}. "
-                f"Possible files are {[basename(f) for f in temp_files]}"
-            )
-            raise e
+    for file in move_files(snakemake, mapping):
+        shell("{file} {log}")
