@@ -86,7 +86,7 @@ def run(tmp_test_dir):
             # make sure that the meta-wrapper is where we expect it
             for path in wrapper_dir.iterdir():
                 if path.is_dir():
-                    shutil.copytree(path, tmp_test_subdir)
+                    shutil.copytree(path, tmp_test_subdir / path.name)
                 else:
                     shutil.copy(path, tmp_test_subdir)
 
