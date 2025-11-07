@@ -3,16 +3,14 @@ __copyright__ = "Copyright 2023, Patrik Smeds"
 __email__ = "patrik.smeds@scilifelab.uu.se"
 __license__ = "MIT"
 
-import logging
 from os import listdir
 from os.path import join
 from tempfile import TemporaryDirectory
-import shutil
 from snakemake.shell import shell
 from snakemake_wrapper_utils.snakemake import move_files
 
 
-log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 
 input_bam_files = f"{snakemake.input.bam}"
 
