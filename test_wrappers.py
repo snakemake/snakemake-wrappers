@@ -1,4 +1,5 @@
 import difflib
+from pathlib import Path
 import subprocess
 import os
 import tempfile
@@ -41,6 +42,7 @@ def tmp_test_dir():
 @pytest.fixture
 def run(tmp_test_dir):
     def _run(wrapper, cmd, check_log=None, compare_results_with_expected=None):
+        wrapper_dir = Path(wrapper)
 
         is_meta_wrapper = wrapper.startswith("meta/")
 
@@ -82,7 +84,11 @@ def run(tmp_test_dir):
 
         if is_meta_wrapper:
             # make sure that the meta-wrapper is where we expect it
-            shutil.copy(os.path.join(wrapper, "meta_wrapper.smk"), tmp_test_subdir)
+            for path in wrapper_dir.iterdir():
+                if path.is_dir():
+                    shutil.copytree(path, tmp_test_subdir)
+                else:
+                    shutil.copy(path, tmp_test_subdir)
 
         # switch to test directory
         os.chdir(testdir)
