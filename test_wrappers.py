@@ -46,7 +46,7 @@ def run(tmp_test_dir):
 
         is_meta_wrapper = wrapper.startswith("meta/")
 
-        tmp_test_subdir = tempfile.mkdtemp(dir=tmp_test_dir)
+        tmp_test_subdir = Path(tempfile.mkdtemp(dir=tmp_test_dir))
         origdir = os.getcwd()
 
         meta_path = os.path.join(wrapper, "meta.yaml")
@@ -59,7 +59,7 @@ def run(tmp_test_dir):
         if meta.get("blacklisted"):
             pytest.skip("wrapper blacklisted")
 
-        dst = os.path.join(tmp_test_subdir, "master")
+        dst = tmp_test_subdir / "master"
 
         os.symlink(origdir, dst)
 
@@ -79,8 +79,7 @@ def run(tmp_test_dir):
         ):
             pytest.skip("wrappers not modified")
 
-        testdir = os.path.join(tmp_test_subdir, "test")
-        shutil.copytree(os.path.join(wrapper, "test"), testdir)
+        testdir = tmp_test_subdir / "test"
 
         if is_meta_wrapper:
             # make sure that the meta-wrapper is where we expect it
@@ -89,6 +88,8 @@ def run(tmp_test_dir):
                     shutil.copytree(path, tmp_test_subdir / path.name)
                 else:
                     shutil.copy(path, tmp_test_subdir)
+        else:
+            shutil.copytree(wrapper_dir / "test", testdir)
 
         # switch to test directory
         os.chdir(testdir)
