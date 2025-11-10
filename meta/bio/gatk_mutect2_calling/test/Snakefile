@@ -3,6 +3,6 @@ from snakemake.utils import min_version
 min_version("9.13.1")
 
 module gatk_mutect2_calling:
-    meta_wrapper: "master/meta/bio/gatk_mutect2_calling"
+    meta_wrapper: "file:.."
 
 use rule * from gatk_mutect2_calling

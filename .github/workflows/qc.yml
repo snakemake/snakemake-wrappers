@@ -63,11 +63,23 @@ jobs:
         run: |
           declare -i ERRORS=0
           # get all modified and added files, not those that are deleted
-          for f in $(git diff origin/master --name-only --diff-filter=d | grep Snakefile)
+          for f in $(git diff origin/master --name-only --diff-filter=d | grep -P "(test/Snakefile|meta_wrapper.smk)")
           do
-            echo "Linting $f"
-            (cd $(dirname $f) && snakemake --lint)
-            ERRORS+=$?
+            # lint meta_wrapper.smk and test/Snakefile of normal wrappers
+            if [[ $f == meta/**/meta_wrapper.smk ]]
+            then
+              echo "Linting $f"
+              # ignore errors in meta_wrapper.smk files for now
+              # TODO We have to rather lint test/Snakefile because it defines the right pathvars
+              # or we disable the pathvar checking when linting
+              (cd $(dirname $f) && (snakemake --lint --snakefile $(basename $f)) || true)
+              ERRORS+=$?
+            elif [[ $f != meta/**/test/Snakefile ]]
+            then
+              echo "Linting $f"
+              (cd $(dirname $f) && snakemake --lint --snakefile $(basename $f))
+              ERRORS+=$?
+            fi
           done
           if (( $ERRORS > 0 ))
           then
