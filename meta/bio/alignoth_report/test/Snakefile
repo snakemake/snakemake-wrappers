@@ -2,10 +2,7 @@ from snakemake.utils import min_version
 
 min_version("9.13.1")
 
-configfile: "config.yaml"
-
-module bwa_mapping:
+module alignoth_report:
     meta_wrapper: "file:.."
-    config: config
 
-use rule * from bwa_mapping
+use rule * from alignoth_report
