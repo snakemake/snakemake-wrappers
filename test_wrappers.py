@@ -104,7 +104,7 @@ def run(tmp_test_dir):
             # meta-wrappers define their specific wrapper versions
             cmd += [
                 "--wrapper-prefix",
-                f"git+file://{tmp_test_subdir}/",
+                f"file://{tmp_test_subdir}/",
             ]
 
 
