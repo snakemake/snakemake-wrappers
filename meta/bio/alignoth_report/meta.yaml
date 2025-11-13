@@ -3,3 +3,7 @@ description: Export variants via vembrane and create alignment plots with aligno
 authors:
   - Felix Wiegand
   - Felix Mölder
+pathvars:
+  default:
+    - results
+    - logs
