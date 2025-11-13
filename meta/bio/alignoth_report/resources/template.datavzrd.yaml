@@ -39,11 +39,11 @@ views:
         REF:
           label: reference allele
           spell:
-            url: v1.5.0/med/alleles
+            url: v1.5.1/med/alleles
         ALT:
           label: alternative allele
           spell:
-            url: v1.5.0/med/alleles
+            url: v1.5.1/med/alleles
   ?for i in range(params.max_index):
     ?i:
         hidden: true
