@@ -1,10 +1,9 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
-# created-by: conda 24.9.2
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
-https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.10.5-hbd8a1cb_0.conda#f9e5fbc24009179e8b0409624691758a
+https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2025.11.12-hbd8a1cb_0.conda#f0991f0f84902f6b6009b4d2350a83aa
 https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-h767d61c_7.conda#f7b4d76975aac7e5d9e6ad13845f92fe
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-h767d61c_7.conda#c0374badb3a5d4b1372db28d19462c53
@@ -15,7 +14,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libgfortran5-15.2.0-hcd61629_7.c
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h8f9b012_7.conda#5b767048b1b3ee9a954b06f4084f93dc
 https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.1-hb9d3cd8_2.conda#edb0dca6bc32e4f4789199455a1dbeb8
 https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.5-h2d0b736_3.conda#47e340acb35de30501a76c7c799c41d7
-https://conda.anaconda.org/conda-forge/linux-64/openssl-3.5.4-h26f9b46_0.conda#14edad12b59ccbfa3910d42c72adc2a0
+https://conda.anaconda.org/conda-forge/linux-64/openssl-3.6.0-h26f9b46_0.conda#9ee58d5c534af06558933af3c845a780
 https://conda.anaconda.org/conda-forge/linux-64/libedit-3.1.20250104-pl5321h7949ede_0.conda#c277e0a4d549b03ac1e9d6cbbe3d017b
 https://conda.anaconda.org/conda-forge/linux-64/libev-4.33-hd590300_2.conda#172bf1cd1ff8629f2b1179945ed45055
 https://conda.anaconda.org/conda-forge/linux-64/libgfortran-15.2.0-h69a702a_7.conda#8621a450add4e231f676646880703f49
@@ -26,6 +25,6 @@ https://conda.anaconda.org/conda-forge/linux-64/krb5-1.21.3-h659f571_0.conda#3f4
 https://conda.anaconda.org/conda-forge/linux-64/libnghttp2-1.67.0-had1ee68_0.conda#b499ce4b026493a13774bcf0f4c33849
 https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.30-pthreads_h94d23a6_3.conda#ac2e4832427d6b159576e8a68305c722
 https://conda.anaconda.org/conda-forge/linux-64/libblas-3.9.0-38_h4a7cf45_openblas.conda#3509b5e2aaa5f119013c8969fdd9a905
-https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.16.0-h4e3cde8_0.conda#a401aa9329350320c7d3809a7a5a1640
+https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.17.0-h4e3cde8_0.conda#01e149d4a53185622dc2e788281961f2
 https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.9.0-38_h0358290_openblas.conda#bcd928a9376a215cd9164a4312dd5e98
-https://conda.anaconda.org/bioconda/linux-64/alignoth-1.3.0-h1520f10_0.conda#a845bed7fc7f4c56459e863a98580776
+https://conda.anaconda.org/bioconda/linux-64/alignoth-1.4.0-h1520f10_0.conda#2e0867af2fde0ef78d58a0c2ff67969b
