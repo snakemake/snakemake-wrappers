@@ -23,8 +23,8 @@ https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-15.2.0-h4852527_7.c
 https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb8e6e7a_2.conda#6432cb5d4ac0046c3ac0a8a0f95842f9
 https://conda.anaconda.org/conda-forge/linux-64/krb5-1.21.3-h659f571_0.conda#3f43953b7d3fb3aaa1d0d0723d91e368
 https://conda.anaconda.org/conda-forge/linux-64/libnghttp2-1.67.0-had1ee68_0.conda#b499ce4b026493a13774bcf0f4c33849
-https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.30-pthreads_h94d23a6_3.conda#ac2e4832427d6b159576e8a68305c722
+https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.30-pthreads_h94d23a6_4.conda#be43915efc66345cccb3c310b6ed0374
 https://conda.anaconda.org/conda-forge/linux-64/libblas-3.9.0-38_h4a7cf45_openblas.conda#3509b5e2aaa5f119013c8969fdd9a905
 https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.17.0-h4e3cde8_0.conda#01e149d4a53185622dc2e788281961f2
 https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.9.0-38_h0358290_openblas.conda#bcd928a9376a215cd9164a4312dd5e98
-https://conda.anaconda.org/bioconda/linux-64/alignoth-1.4.0-h1520f10_0.conda#2e0867af2fde0ef78d58a0c2ff67969b
+https://conda.anaconda.org/bioconda/linux-64/alignoth-1.4.1-h1520f10_0.conda#2488281770ea1504fcc30ffa2d63b3ad
