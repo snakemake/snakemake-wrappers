@@ -2,15 +2,10 @@ from snakemake.utils import min_version
 
 min_version("9.13.1")
 
-
 configfile: "config.yaml"
 
-
 module salmon_tximport:
-    meta_wrapper:
-        "master/meta/bio/salmon_tximport"
-    config:
-        config
-
+    meta_wrapper: "file:.."
+    config: config
 
 use rule * from salmon_tximport

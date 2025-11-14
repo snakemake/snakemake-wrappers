@@ -1,0 +1,56 @@
+__use_yte__: true
+
+default-view: variants
+
+datasets:
+  variants:
+    path: ?input.overview
+    separator: "\t"
+    links:
+        alignment plot:
+          column: INDEX
+          view: "{value}"
+  ?for i in range(params.max_index):
+    ?f"{i}.coverage":
+      path: ?f"{input.plot_tables[i]}/{wildcards.sample}.coverage.tsv"
+      separator: "\t"
+    ?f"{i}.reference":
+      path: ?f"{input.plot_tables[i]}/{wildcards.sample}.reference.tsv"
+      separator: "\t"
+    ?f"{i}.reads":
+      path: ?f"{input.plot_tables[i]}/{wildcards.sample}.reads.tsv"
+      separator: "\t"
+    ?f"{i}.highlight":
+      path: ?f"{input.plot_tables[i]}/{wildcards.sample}.highlight.tsv"
+      separator: "\t"
+views:
+  variants:
+    dataset: variants
+    render-table:
+      columns:
+        SAMPLE:
+          label: sample
+        CHROM:
+          label: chromosome
+        POS:
+          label: position
+        INDEX:
+          display-mode: hidden
+        REF:
+          label: reference allele
+          spell:
+            url: v1.5.1/med/alleles
+        ALT:
+          label: alternative allele
+          spell:
+            url: v1.5.1/med/alleles
+  ?for i in range(params.max_index):
+    ?i:
+        hidden: true
+        datasets:
+            reads: ?f"{i}.reads"
+            reference: ?f"{i}.reference"
+            coverage: ?f"{i}.coverage"
+            highlight: ?f"{i}.highlight"
+        render-plot:
+            spec-path: ?f"{input.plot_tables[i]}/{wildcards.sample}.vl.json"
