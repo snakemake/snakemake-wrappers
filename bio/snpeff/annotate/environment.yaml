@@ -3,6 +3,6 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - snpeff =5.2
+  - snpeff =5.3
   - bcftools =1.22
   - snakemake-wrapper-utils =0.7.2
