@@ -400,6 +400,15 @@ def test_nonpareil(run):
             "results/a.fq.npc": "expected/a.fq.npc",
             "results/a.fq.bz2.npc": "expected/a.fq.bz2.npc",
             "results/a.fastq.gz.npc": "expected/a.fastq.gz.npc",
+            "results/empty.fq.bz2.npa": "expected/empty.fq.bz2.npa",
+            "expected/empty.fq.bz2.npc": "expected/empty.fq.bz2.npc",
+            "expected/empty.fq.bz2.npo": "expected/empty.fq.bz2.npo",
+            "expected/empty.fq.gz.npa": "expected/empty.fq.gz.npa",
+            "expected/empty.fq.gz.npc": "expected/empty.fq.gz.npc",
+            "expected/empty.fq.gz.npo": "expected/empty.fq.gz.npo",
+            "expected/empty.fq.npa": "expected/empty.fq.npa",
+            "expected/empty.fq.npc": "expected/empty.fq.npc",
+            "expected/empty.fq.npo": "expected/empty.fq.npo",
         },
     )
 
