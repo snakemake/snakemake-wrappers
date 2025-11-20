@@ -390,6 +390,9 @@ def test_nonpareil(run):
             "results/a.fq.npo",
             "results/a.fq.bz2.npo",
             "results/a.fastq.gz.npo",
+            "results/empty.fq.bz2.npo",
+            "results/empty.fq.gz.npo",
+            "results/empty.fq.npo",
         ],
         compare_results_with_expected={
             "results/a.fa.log": "expected/a.fa.log",

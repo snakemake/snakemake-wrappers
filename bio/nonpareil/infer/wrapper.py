@@ -55,6 +55,7 @@ with tempfile.NamedTemporaryFile() as tmp:
             empty = not bool(f.readlines())
 
     # If empty, provide dummy input file so that program does not crash
+    # https://github.com/lmrodriguezr/nonpareil/issues/71
     if empty:
         in_uncomp = tmp.name
         with open(in_uncomp, "wt") as f:
