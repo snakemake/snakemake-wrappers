@@ -80,4 +80,4 @@ with tempfile.NamedTemporaryFile() as tmp:
 
     if empty and redund_sum:
         with open(redund_sum, "at") as f:
-            f.write("\t".join(["0.000000"]+["0.00000"]*5) + "\n")
+            f.write("\t".join(["0.000000"] + ["0.00000"] * 5) + "\n")
