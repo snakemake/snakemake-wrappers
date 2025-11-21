@@ -20,7 +20,7 @@ https://conda.anaconda.org/conda-forge/linux-64/alsa-lib-1.2.14-hb9d3cd8_0.conda
 https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hda65f42_8.conda#51a19bba1b8ebfb60df25cde030b7ebc
 https://conda.anaconda.org/conda-forge/linux-64/keyutils-1.6.3-hb9d3cd8_0.conda#b38117a3c920364aff79f870c984b4a3
 https://conda.anaconda.org/conda-forge/linux-64/libdeflate-1.25-h17f619e_0.conda#6c77a605a7a689d17d4819c0f8ac9a00
-https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.7.1-hecca717_0.conda#4211416ecba1866fab0c6470986c22d6
+https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.7.3-hecca717_0.conda#8b09ae86839581147ef2e5c5e229d164
 https://conda.anaconda.org/conda-forge/linux-64/libffi-3.5.2-h9ec8514_0.conda#35f29eec58405aaf55e01cb470d8c26a
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.2.0-h69a702a_7.conda#280ea6eee9e2ddefde25ff799c4f0363
 https://conda.anaconda.org/conda-forge/linux-64/libiconv-1.18-h3b78370_2.conda#915f5995e94f60e9a4826e0b0920ee88
@@ -53,9 +53,9 @@ https://conda.anaconda.org/conda-forge/linux-64/zlib-1.3.1-hb9d3cd8_2.conda#c9f0
 https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb8e6e7a_2.conda#6432cb5d4ac0046c3ac0a8a0f95842f9
 https://conda.anaconda.org/conda-forge/linux-64/icu-75.1-he02047a_0.conda#8b189310083baabfb622af68fd9d3ae3
 https://conda.anaconda.org/conda-forge/linux-64/krb5-1.21.3-h659f571_0.conda#3f43953b7d3fb3aaa1d0d0723d91e368
-https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45-h1aa0949_0.conda#1450224b3e7d17dfeb985364b77a4d47
+https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45-hbd61a6d_1.conda#74973af25f7e298f684f7782f4e8b43b
 https://conda.anaconda.org/conda-forge/linux-64/libfreetype6-2.14.1-h73754d4_0.conda#8e7251989bca326a28f4a5ffbd74557a
-https://conda.anaconda.org/conda-forge/linux-64/libglib-2.86.1-h32235b2_2.conda#986dcf488a1aced411da84753d93d078
+https://conda.anaconda.org/conda-forge/linux-64/libglib-2.86.2-h32235b2_0.conda#0cb0612bc9cb30c62baf41f9d600611b
 https://conda.anaconda.org/conda-forge/linux-64/libtiff-4.7.1-h9d88235_1.conda#cd5a90476766d53e901500df9215e927
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libx11-1.8.12-h4f16b4b_0.conda#db038ce880f100acc74dba10302b5630
 https://conda.anaconda.org/conda-forge/linux-64/lcms2-2.17-h717163a_0.conda#000e85703f0fd9594c81710dd5066471
