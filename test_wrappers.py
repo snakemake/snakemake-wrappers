@@ -435,6 +435,26 @@ def test_nonpareil_plot(run):
             "results/d.nomodel.pdf",
             "results/samples.pdf",
         ],
+        compare_results_with_expected={
+            "results/a.json": "expected/a.json",
+            "results/a.tsv": "expected/a.tsv",
+            "results/a.nomodel.json": "expected/a.nomodel.json",
+            "results/a.nomodel.tsv": "expected/a.nomodel.tsv",
+            "results/b.json": "expected/b.json",
+            "results/b.tsv": "expected/b.tsv",
+            "results/b.nomodel.json": "expected/b.nomodel.json",
+            "results/b.nomodel.tsv": "expected/b.nomodel.tsv",
+            "results/c.json": "expected/c.json",
+            "results/c.tsv": "expected/c.tsv",
+            "results/c.nomodel.json": "expected/c.nomodel.json",
+            "results/c.nomodel.tsv": "expected/c.nomodel.tsv",
+            "results/d.json": "expected/d.json",
+            "results/d.tsv": "expected/d.tsv",
+            "results/d.nomodel.json": "expected/d.nomodel.json",
+            "results/d.nomodel.tsv": "expected/d.nomodel.tsv",
+            "results/samples.json": "expected/samples.json",
+            "results/samples.tsv": "expected/samples.tsv",
+        },
     )
 
 
