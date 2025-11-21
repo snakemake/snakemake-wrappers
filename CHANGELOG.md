@@ -1,5 +1,21 @@
 # Changelog
 
+## [8.0.3](https://github.com/snakemake/snakemake-wrappers/compare/v8.0.2...v8.0.3) (2025-11-21)
+
+
+### Performance Improvements
+
+* autobump bio/bbtools/environment.yaml ([#4732](https://github.com/snakemake/snakemake-wrappers/issues/4732)) ([c6be4e5](https://github.com/snakemake/snakemake-wrappers/commit/c6be4e52062acdeee53143557bdd1899c2dad629))
+* autobump bio/deseq2/deseqdataset/environment.yaml ([#4734](https://github.com/snakemake/snakemake-wrappers/issues/4734)) ([0f97ec4](https://github.com/snakemake/snakemake-wrappers/commit/0f97ec4c2ca62db4e48ecbb66fb0958e2ec1e0bd))
+* autobump bio/gseapy/gsea/environment.yaml ([#4735](https://github.com/snakemake/snakemake-wrappers/issues/4735)) ([09c557d](https://github.com/snakemake/snakemake-wrappers/commit/09c557d55a7eb7ee834384995fb402bbb708edf2))
+* autobump bio/last/lastal/environment.yaml ([#4737](https://github.com/snakemake/snakemake-wrappers/issues/4737)) ([2d0d770](https://github.com/snakemake/snakemake-wrappers/commit/2d0d7700684cc0914087f5db0abbf0b190a79486))
+* autobump bio/last/lastdb/environment.yaml ([#4736](https://github.com/snakemake/snakemake-wrappers/issues/4736)) ([0788474](https://github.com/snakemake/snakemake-wrappers/commit/0788474dab4a273944d87d045d27b5cc0d768518))
+* autobump bio/orthanq/environment.yaml ([#4739](https://github.com/snakemake/snakemake-wrappers/issues/4739)) ([c412fa3](https://github.com/snakemake/snakemake-wrappers/commit/c412fa3340f457b57a1f3ec85f50b27e0480a48d))
+* autobump bio/toulligqc/environment.yaml ([#4710](https://github.com/snakemake/snakemake-wrappers/issues/4710)) ([fd41434](https://github.com/snakemake/snakemake-wrappers/commit/fd414344909e7b6f7b6a8f1286001f74ded72c55))
+* autobump bio/tximport/environment.yaml ([#4741](https://github.com/snakemake/snakemake-wrappers/issues/4741)) ([ccf4eb0](https://github.com/snakemake/snakemake-wrappers/commit/ccf4eb05c4cb1e849cfe7d13f8a808c063421da0))
+* autobump utils/csvtk/environment.yaml ([#4733](https://github.com/snakemake/snakemake-wrappers/issues/4733)) ([9b841ed](https://github.com/snakemake/snakemake-wrappers/commit/9b841ed5a595ec034a02a031e5a88b63fc57c80c))
+* autobump utils/miller/environment.yaml ([#4738](https://github.com/snakemake/snakemake-wrappers/issues/4738)) ([8d1e5ca](https://github.com/snakemake/snakemake-wrappers/commit/8d1e5ca0f2c845128aeced41d4ff57156355187d))
+
 ## [8.0.2](https://github.com/snakemake/snakemake-wrappers/compare/v8.0.1...v8.0.2) (2025-11-14)
 
 
