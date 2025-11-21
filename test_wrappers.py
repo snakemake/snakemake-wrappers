@@ -428,9 +428,11 @@ def test_nonpareil_plot(run):
             "results/a.pdf",
             "results/b.pdf",
             "results/c.pdf",
+            "results/d.pdf",
             "results/a.nomodel.pdf",
             "results/b.nomodel.pdf",
             "results/c.nomodel.pdf",
+            "results/d.nomodel.pdf",
             "results/samples.pdf",
         ],
     )

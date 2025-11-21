@@ -16,7 +16,7 @@ rule test_nonpareil_plot:
 
 use rule test_nonpareil_plot as test_nonpareil_plot_multiple with:
     input:
-        npo=["a.npo", "b.npo", "c.npo"],
+        npo=["a.npo", "b.npo", "c.npo", "d.npo"],
     output:
         pdf="results/samples.pdf",
         tsv="results/samples.tsv",
