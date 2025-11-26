@@ -3,7 +3,7 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - vg =1.67.0
+  - vg =1.70.0
   - fgbio-minimal =3.0.0
   - samtools =1.22.1
   - picard-slim =3.4.0
