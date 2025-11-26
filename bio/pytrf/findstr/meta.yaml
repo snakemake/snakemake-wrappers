@@ -1,0 +1,30 @@
+name: pytrf findstr
+description: >
+  Find exact short tandem repeats (SSRs/microsatellites) from DNA sequences.
+  Identifies perfect repeats with motif lengths of 1-6 bp (mono-, di-, tri-,
+  tetra-, penta-, and hexa-nucleotide repeats).
+url: https://github.com/lmdu/pytrf
+authors:
+  - Muhammad Rohan Ali Asmat
+input:
+  - FASTA or FASTQ file (supports gzip compression)
+output:
+  - Output file (default: stdout).
+params:
+  out_format: >
+    Output format. Options: 'tsv' (default), 'csv', 'bed', or 'gff'.
+  repeats: >
+    List of 6 integers specifying minimum repeats for each SSR type:
+    [mono, di, tri, tetra, penta, hexa]. Default: [12, 7, 5, 4, 4, 4].
+    Example: repeats=[10, 6, 4, 3, 3, 3] requires at least 10 mononucleotide
+    repeats, 6 dinucleotide repeats, etc.
+notes: >
+  **Output columns:** chrom, start (0-based), end (0-based exclusive),
+  motif, motif_length (1-6 bp), repeat_number, repeat_length. |nl|
+  |nl|
+  **Example:** Sequence "ATATATAT" reported as motif="AT", motif_length=2,
+  repeat_number=4, repeat_length=8.
+  |nl|
+  |nl|
+  **Bioconda package:** https://bioconda.github.io/recipes/pytrf/README.html
+  **License:** MIT License

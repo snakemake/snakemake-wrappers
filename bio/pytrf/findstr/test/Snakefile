@@ -1,0 +1,13 @@
+# Test rule for PyTRF findstr with default parameters
+rule pytrf_findstr:
+    input:
+        "demo_data/{sample}.fasta",
+    output: # you can remove, so it can default to stdout.
+        "results/{sample}.tsv",
+    params:
+        repeats=[10, 6, 4, 3, 3, 3],
+        out_format="csv",
+    log:
+        "logs/{sample}.log",
+    wrapper:
+        "master/bio/pytrf/findstr"
