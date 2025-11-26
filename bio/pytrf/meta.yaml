@@ -1,0 +1,18 @@
+name: pytrf
+description: >
+  Wrapper for PyTRF, a Python package for finding tandem repeats from genomic sequences.
+  Supports finding exact SSRs (findstr), generic tandem repeats (findgtr), 
+  and approximate tandem repeats (findatr).
+url: https://github.com/lmdu/pytrf
+authors:
+  - Muhammad Rohan Ali Asmat
+input:
+  - fasta: A DNA sequence file in FASTA or FASTQ format (supports gzip compression).
+output:
+  - Output file in specified format (TSV, CSV, BED, or GFF).
+params:
+  command: "Required. One of: 'findstr', 'findgtr', 'findatr' or 'exact'."
+notes: >
+  This is a minimal implementation supporting basic functionality.
+  pytrf is not a Python binding to TRF - it's an independent tool.
+  

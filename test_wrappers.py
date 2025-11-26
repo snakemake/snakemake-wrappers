@@ -7158,3 +7158,19 @@ def test_orthanq(run):
             "out/calls_virus",
         ],
     )
+
+
+def test_pytrf_findstr_basic(run):
+    run(
+        "bio/pytrf",
+        [
+            "snakemake", 
+            "--cores", 
+            "1", 
+            "results/small_test.tsv", 
+            "--use-conda", 
+            "-F", 
+            "--allowed-rules", 
+            "pytrf_findstr_basic"
+        ],
+    )

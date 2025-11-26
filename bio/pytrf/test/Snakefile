@@ -1,0 +1,12 @@
+# Simple test rule for PyTRF findstr with default parameters
+rule pytrf_findstr_basic:
+    input:
+        "demo_data/{sample}.fasta",
+    output:
+        "results/{sample}.tsv",
+    log:
+        "logs/{sample}.log",
+    params:
+        command="findstr",
+    wrapper:
+        "master/bio/pytrf"
