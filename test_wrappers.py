@@ -7215,6 +7215,9 @@ def test_pytrf_findgtr(run):
             "--allowed-rules",
             "pytrf_findgtr",
         ],
+        compare_results_with_expected={
+            "results/small_test.tsv": "expected/findgtr_basic.tsv",
+        },
     )
 
 
