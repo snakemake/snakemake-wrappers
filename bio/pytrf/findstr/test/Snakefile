@@ -1,8 +1,9 @@
 include: "test.smk"  #[hide]
 
+
 # SAMPLE RULE: Basic usage with custom parameters
 # The pytrf findstr wrapper finds exact short tandem repeats (SSRs/microsatellites).
-# 
+#
 # Output:
 # - If output file is specified, results are written to that file
 # - If output is omitted, pytrf writes to stdout (which gets redirected to log file)
