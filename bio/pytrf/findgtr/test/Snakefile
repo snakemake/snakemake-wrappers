@@ -1,0 +1,14 @@
+# Test rule for PyTRF findgtr with custom parameters
+rule pytrf_findgtr:
+    input:
+        "demo_data/{sample}.fasta",
+    output:
+        "results/{sample}.tsv",
+    log:
+        "logs/{sample}.log",
+    params:
+        min_motif=20,
+        max_motif=100,
+        min_repeat=2,
+    wrapper:
+        "master/bio/pytrf/findgtr"
