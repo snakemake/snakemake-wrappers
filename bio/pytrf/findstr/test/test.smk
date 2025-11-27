@@ -1,4 +1,4 @@
-# SAMPLE RULE 2: Minimal usage with all defaults
+# SAMPLE RULE 1: Minimal usage with all defaults
 # When params are omitted, pytrf findstr uses default values:
 # - repeats: [12, 7, 5, 4, 4, 4] (standard thresholds for SSR detection)
 # - out_format: 'tsv' (tab-separated values)

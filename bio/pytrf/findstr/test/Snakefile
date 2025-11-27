@@ -1,6 +1,6 @@
 include: "test.smk"  #[hide]
 
-# SAMPLE RULE 1: Basic usage with custom parameters
+# SAMPLE RULE: Basic usage with custom parameters
 # The pytrf findstr wrapper finds exact short tandem repeats (SSRs/microsatellites).
 # 
 # Output:
