@@ -1,0 +1,14 @@
+# Test rule for PyTRF findatr with custom parameters
+rule pytrf_findatr:
+    input:
+        "demo_data/{sample}.fasta",
+    output:
+        "results/{sample}.csv",
+    log:
+        "logs/{sample}.log",
+    params:
+        out_format="csv",
+        min_identity=80,
+        max_errors=2,
+    wrapper:
+        "master/bio/pytrf/findatr"

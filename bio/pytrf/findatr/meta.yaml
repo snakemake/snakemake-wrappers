@@ -1,0 +1,50 @@
+name: pytrf findatr
+description: >
+  Find approximate/imperfect tandem repeats from DNA sequences.
+  Uses a two-step algorithm: (1) finds a perfect seed repeat, (2) extends
+  left and right allowing mismatches, insertions, and deletions.
+url: https://github.com/lmdu/pytrf
+authors:
+  - Muhammad Rohan Ali Asmat
+input:
+  - FASTA or FASTQ file (supports gzip compression)
+output:
+  - Output file (default: stdout, will be redirected to the log file).
+params:
+  out_format: >
+    Output format. Options: 'tsv' (default), 'csv', 'bed', or 'gff'.
+  min_motif: >
+    Minimum motif size in bp (default: 1).
+  max_motif: >
+    Maximum motif size in bp (default: 6).
+  min_seedrep: >
+    Minimum repeat number for seed (default: 3).
+  min_seedlen: >
+    Minimum length for seed (default: 10).
+  max_errors: >
+    Maximum number of continuous alignment errors (default: 3).
+  min_identity: >
+    Minimum identity for extending, 0 to 100 (default: 70).
+  max_extend: >
+    Maximum length allowed to extend (default: 2000).
+notes: >
+  **Output columns (TSV/CSV/BED/GFF):** sequence or chromosome name, start position,
+  end position, motif sequence, motif length, repeat number, repeat length, seed start
+  position, seed end position, seed repeat number, seed length, number of matches,
+  number of substitutions, number of insertions, number of deletions, extend alignment
+  identity between imperfect repeat and its perfect counterpart.
+  |nl|
+  **Example:**
+  Row in record: 0	1	32	T	1	32.0	32	1	1	1	1	10	22	0	0	31.25
+  This indicates that in sequence '0', from position 1 to 32, there is a tandem repeat
+  with motif 'T' (length 1) repeated 32 times, resulting in a repeat length of 32 bp.
+  The seed repeat started at position 1 and ended at position 1, with a seed repeat number of 1
+  and seed length of 1 bp. The alignment of the imperfect repeat to its perfect counterpart
+  has 10 matches, 22 substitutions, 0 insertions, and 0 deletions, yielding an identity of 31.25%.
+  |nl|
+  |nl|
+  **Bioconda package:** https://bioconda.github.io/recipes/pytrf/README.html
+  **License:** MIT License
+  **Disclaimer:** This is a minimal implementation supporting basic functionality.
+  pytrf is not a Python binding to TRF - it's an independent tool.
+  
