@@ -28,3 +28,5 @@ notes: >
   |nl|
   **Bioconda package:** https://bioconda.github.io/recipes/pytrf/README.html
   **License:** MIT License
+  **Disclaimer:** This is a minimal implementation supporting basic functionality.
+  pytrf is not a Python binding to TRF - it's an independent tool.
