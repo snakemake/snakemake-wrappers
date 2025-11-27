@@ -1,14 +1,20 @@
-# Test rule for PyTRF findatr with custom parameters
+# SAMPLE RULE: Find approximate/imperfect tandem repeats
+#
+# Output:
+# - If output file is specified, results are written to that file
+# - If output is omitted, PyTRF writes to stdout (redirected to log file)
+#
+# This example searches for approximate repeats with motif sizes between 3-10 bp,
+# allowing detection of imperfect short/medium tandem repeats with mismatches.
 rule pytrf_findatr:
     input:
         "demo_data/{sample}.fasta",
     output:
-        "results/{sample}.csv",
+        "results/{sample}.tsv",
     log:
         "logs/{sample}.log",
     params:
-        out_format="csv",
-        min_identity=80,
-        max_errors=2,
+        min_motif=3,
+        max_motif=10,
     wrapper:
         "master/bio/pytrf/findatr"

@@ -7228,12 +7228,15 @@ def test_pytrf_findatr(run):
             "snakemake",
             "--cores",
             "1",
-            "results/small_test.csv",
+            "results/small_test.tsv",
             "--use-conda",
             "-F",
             "--allowed-rules",
             "pytrf_findatr",
         ],
+        compare_results_with_expected={
+            "results/small_test.tsv": "expected/findatr_basic.tsv",
+        },
     )
 
 
