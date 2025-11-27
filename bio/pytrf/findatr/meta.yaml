@@ -31,7 +31,7 @@ notes: >
   position, seed end position, seed repeat number, seed length, number of matches,
   number of substitutions, number of insertions, number of deletions, extend alignment
   identity between imperfect repeat and its perfect counterpart.
-  |nl|
+  |nl| |nl|
   **Example:** 
   Row in record: 0	1	32	T	1	32.0	32	1	1	1	1	10	22	0	0	31.25 |nl|
   This indicates that in sequence '0', from position 1 to 32, there is a tandem repeat
