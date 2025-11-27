@@ -26,8 +26,8 @@ notes: >
   repeat_number=4, repeat_length=8.
   |nl|
   |nl|
-  **Bioconda package:** https://bioconda.github.io/recipes/pytrf/README.html
-  **GitHub repository:** https://github.com/lmdu/pytrf
-  **License:** MIT License
+  **Bioconda package:** https://bioconda.github.io/recipes/pytrf/README.html |nl|
+  **GitHub repository:** https://github.com/lmdu/pytrf |nl|
+  **License:** MIT License |nl|
   **Disclaimer:** This is a minimal implementation supporting basic functionality.
   pytrf is not a Python binding to TRF - it's an independent tool.

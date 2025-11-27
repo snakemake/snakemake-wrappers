@@ -8,7 +8,7 @@ authors:
 input:
   - FASTA or FASTQ file (supports gzip compression)
 output:
-  - Output file (default: stdout, will be redirected to the log file).
+  - Output file (default -> stdout, will be redirected to the log file).
 params:
   repeat_file: >
     **Required.** Path to TSV or CSV file from pytrf findstr/findgtr/findatr.
@@ -18,11 +18,11 @@ params:
   flank_length: >
     Length of flanking sequence (default: 100).
 notes: >
-  **Bioconda package:** https://bioconda.github.io/recipes/pytrf/README.html
-  **GitHub repository:** https://github.com/lmdu/pytrf
-  **License:** MIT License
+  **Bioconda package:** https://bioconda.github.io/recipes/pytrf/README.html |nl|
+  **GitHub repository:** https://github.com/lmdu/pytrf |nl|
+  **License:** MIT License |nl|
   **Disclaimer:** This is a minimal implementation supporting basic functionality.
-  pytrf is not a Python binding to TRF - it's an independent tool.
-  **Known issue:** PyTRF 1.4.2 has a bug in the `extract` command (delimiter error).
-  See: https://github.com/lmdu/pytrf/issues/6
+  pytrf is not a Python binding to TRF - it's an independent tool. |nl|
+  **Known issue:** PyTRF 1.4.2 has a bug in the `extract` command (delimiter error). |nl|
+  See: https://github.com/lmdu/pytrf/issues/6 |nl|
   This wrapper skips extract tests until upstream patch is released.
