@@ -107,7 +107,6 @@ def run(tmp_test_dir):
                 f"file://{tmp_test_subdir}/",
             ]
 
-
         if CONTAINERIZED:
             # run snakemake in container
             cmd = [
@@ -129,9 +128,7 @@ def run(tmp_test_dir):
                         with open(generated) as genf, open(expected) as expf:
                             gen_lines = genf.readlines()
                             exp_lines = expf.readlines()
-                        diff = "".join(
-                            difflib.Differ().compare(gen_lines, exp_lines)
-                        )
+                        diff = "".join(difflib.Differ().compare(gen_lines, exp_lines))
                         raise ValueError(
                             f"Unexpected results: {generated} != {expected}."
                             f"Diff:\n{diff}"
@@ -271,8 +268,18 @@ def test_agat(run):
 def test_alignoth(run):
     run(
         "bio/alignoth",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "out/json_plot.vl.json", "out/plot.html", "output-dir/"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "out/json_plot.vl.json",
+            "out/plot.html",
+            "output-dir/",
+        ],
     )
+
 
 def test_alignoth_report_meta(run):
     run(
@@ -7152,7 +7159,7 @@ def test_orthanq(run):
             "--use-conda",
             "out/candidates",
             "out/candidates.vcf",
-#             "out/preprocess_hla.bcf",
+            #             "out/preprocess_hla.bcf",
             "out/preprocess_virus.bcf",
             "out/calls_hla",
             "out/calls_virus",
@@ -7160,17 +7167,65 @@ def test_orthanq(run):
     )
 
 
-def test_pytrf_findstr_basic(run):
+def test_pytrf_findstr(run):
     run(
-        "bio/pytrf",
+        "bio/pytrf/findstr",
         [
-            "snakemake", 
-            "--cores", 
-            "1", 
-            "results/small_test.tsv", 
-            "--use-conda", 
-            "-F", 
-            "--allowed-rules", 
-            "pytrf_findstr_basic"
+            "snakemake",
+            "--cores",
+            "1",
+            "results/small_test.tsv",
+            "--use-conda",
+            "-F",
+            "--allowed-rules",
+            "pytrf_findstr",
+        ],
+    )
+
+
+def test_pytrf_findgtr(run):
+    run(
+        "bio/pytrf/findgtr",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/small_test.tsv",
+            "--use-conda",
+            "-F",
+            "--allowed-rules",
+            "pytrf_findgtr",
+        ],
+    )
+
+
+def test_pytrf_findatr(run):
+    run(
+        "bio/pytrf/findatr",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/small_test.csv",
+            "--use-conda",
+            "-F",
+            "--allowed-rules",
+            "pytrf_findatr",
+        ],
+    )
+
+
+def test_pytrf_extract(run):
+    run(
+        "bio/pytrf/extract",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/small_test_extract.fasta",
+            "--use-conda",
+            "-F",
+            "--allowed-rules",
+            "pytrf_extract",
         ],
     )
