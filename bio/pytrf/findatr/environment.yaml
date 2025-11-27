@@ -4,6 +4,5 @@ channels:
   - nodefaults
 
 dependencies:
-  - python =3.10
   - pytrf =1.4
   - pyfastx =2.2
