@@ -7240,6 +7240,9 @@ def test_pytrf_findatr(run):
     )
 
 
+@pytest.mark.skip(
+    reason="PyTRF extract command has a delimiter bug (see https://github.com/lmdu/pytrf/issues/6)"
+)
 def test_pytrf_extract(run):
     run(
         "bio/pytrf/extract",

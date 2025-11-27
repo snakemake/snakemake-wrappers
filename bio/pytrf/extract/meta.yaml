@@ -1,4 +1,4 @@
-name: pytrf extract
+name: pytrf extract (NOT WORKING, see notes below)
 description: >
   Extract tandem repeat sequences with flanking regions from DNA sequences.
   Requires output from pytrf findstr, findgtr, or findatr as input.
@@ -23,3 +23,6 @@ notes: >
   **License:** MIT License
   **Disclaimer:** This is a minimal implementation supporting basic functionality.
   pytrf is not a Python binding to TRF - it's an independent tool.
+  **Known issue:** PyTRF 1.4.2 has a bug in the `extract` command (delimiter error).
+  See: https://github.com/lmdu/pytrf/issues/6
+  This wrapper skips extract tests until upstream patch is released.
