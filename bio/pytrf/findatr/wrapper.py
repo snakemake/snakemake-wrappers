@@ -1,7 +1,7 @@
 """
-    Snakemake Wrapper for PyTRF findatr
-    ------------------------------------------------------
-    Find approximate/imperfect tandem repeats.
+Snakemake Wrapper for PyTRF findatr
+------------------------------------------------------
+Find approximate/imperfect tandem repeats.
 """
 
 from pathlib import Path

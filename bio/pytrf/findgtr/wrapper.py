@@ -1,7 +1,7 @@
 """
-    Snakemake Wrapper for PyTRF findgtr
-    ------------------------------------------------------
-    Find exact generic tandem repeats (any motif size).
+Snakemake Wrapper for PyTRF findgtr
+------------------------------------------------------
+Find exact generic tandem repeats (any motif size).
 """
 
 from pathlib import Path

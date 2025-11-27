@@ -1,7 +1,7 @@
 """
-    Snakemake Wrapper for PyTRF findstr
-    ------------------------------------------------------
-    Find exact short tandem repeats (SSRs/microsatellites).
+Snakemake Wrapper for PyTRF findstr
+------------------------------------------------------
+Find exact short tandem repeats (SSRs/microsatellites).
 """
 
 from pathlib import Path
