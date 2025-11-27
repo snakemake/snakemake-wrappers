@@ -17,9 +17,9 @@ except (IndexError, TypeError) as e:
     raise ValueError(f"Input specification error: {e}") from e
 
 # Get output file if specified
-output_file = None
+OUTPUT_FILE = None
 if snakemake.output:
-    output_file = Path(snakemake.output[0]).resolve()
+    OUTPUT_FILE = Path(snakemake.output[0]).resolve()
 
 # Build parameters
 params = []
@@ -52,14 +52,14 @@ except (AttributeError, ValueError) as e:
     raise RuntimeError(f"Parameter processing failed: {e}") from e
 
 # Build command
-cmd = f"pytrf findatr {input_file}"
+CMD = f"pytrf findatr {input_file}"
 if params:
-    cmd += " " + " ".join(params)
-if output_file:
-    cmd += f" -o {output_file}"
+    CMD += " " + " ".join(params)
+if OUTPUT_FILE:
+    CMD += f" -o {OUTPUT_FILE}"
 
 # Execute
 try:
-    shell(f"{cmd} {log}")
+    shell(f"{CMD} {log}")
 except Exception as e:
     raise RuntimeError(f"PyTRF findatr execution failed: {e}") from e
