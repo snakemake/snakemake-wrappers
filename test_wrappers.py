@@ -7247,10 +7247,13 @@ def test_pytrf_extract(run):
             "snakemake",
             "--cores",
             "1",
-            "results/small_test_extract.fasta",
+            "results/small_test_extract.tsv",
             "--use-conda",
             "-F",
             "--allowed-rules",
             "pytrf_extract",
         ],
+        compare_results_with_expected={
+            "results/small_test_extract.tsv": "expected/extract_basic.tsv",
+        },
     )
