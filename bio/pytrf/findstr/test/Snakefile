@@ -3,12 +3,6 @@ include: "test.smk"  #[hide]
 # SAMPLE RULE 1: Basic usage with custom parameters
 # The pytrf findstr wrapper finds exact short tandem repeats (SSRs/microsatellites).
 # 
-# Parameters:
-# - repeats: List of 6 integers [mono, di, tri, tetra, penta, hexa] 
-#            specifying minimum repeat counts for each SSR type.
-#            Default: [12, 7, 5, 4, 4, 4]
-# - out_format: Output format ('tsv', 'csv', 'bed', or 'gff'). Default: 'tsv'
-#
 # Output:
 # - If output file is specified, results are written to that file
 # - If output is omitted, pytrf writes to stdout (which gets redirected to log file)
