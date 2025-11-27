@@ -32,8 +32,8 @@ notes: >
   number of substitutions, number of insertions, number of deletions, extend alignment
   identity between imperfect repeat and its perfect counterpart.
   |nl| |nl|
-  **Example:** 
-  Row in record: 0	1	32	T	1	32.0	32	1	1	1	1	10	22	0	0	31.25 |nl|
+  **Example:** |nl|
+  Example row in record: 0	1	32	T	1	32.0	32	1	1	1	1	10	22	0	0	31.25 |nl|
   This indicates that in sequence '0', from position 1 to 32, there is a tandem repeat
   with motif 'T' (length 1) repeated 32 times, resulting in a repeat length of 32 bp.
   The seed repeat started at position 1 and ended at position 1, with a seed repeat number of 1
