@@ -9,7 +9,7 @@ authors:
 input:
   - FASTA or FASTQ file (supports gzip compression)
 output:
-  - Output file (default: stdout).
+  - Output file (default: stdout, will be redirected to the log file).
 params:
   out_format: >
     Output format. Options: 'tsv' (default), 'csv', 'bed', or 'gff'.
