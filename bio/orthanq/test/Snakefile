@@ -1,0 +1,98 @@
+# Candidates HLA
+rule orthanq_candidates_hla:
+    input:
+        genome="refs/genome_hla.fasta",
+        xml="refs/alleles.xml",
+        alleles="refs/alleles.fasta",
+    output:
+        directory("out/candidates")
+    log:
+        "logs/orthanq_candidates/candidates.log",
+    params:
+        command="candidates",
+        subcommand="hla",
+        output_bcf=False 
+    wrapper:
+        "master/bio/orthanq"
+
+# Candidates Virus
+rule orthanq_candidates_virus:
+    input:
+        genome="refs/genome_virus.fasta",
+        lineages="refs/lineages.fasta"
+    output:
+        "out/candidates.vcf"
+    log:
+        "logs/orthanq_candidates/candidates.log",
+    params:
+        command="candidates",
+        subcommand="virus"
+    wrapper:
+        "master/bio/orthanq"
+
+# Preprocess HLA
+rule orthanq_preprocess_hla:
+    input:
+        genome="refs/genome_hla.fasta",
+        reads=["reads/read_1_hla.fq", "reads/read_2_hla.fq"],
+        haplotype_variants="variants/haplotype_variants_hla.vcf",
+        vg_index="refs/hprc_prebuilt.xg",
+    output:
+        "out/preprocess_hla.bcf",
+    log:
+        "logs/orthanq_preprocess/preprocess.log",
+    params:
+        command="preprocess",
+        subcommand="hla"
+    wrapper:
+        "master/bio/orthanq"
+
+# Preprocess Virus
+rule orthanq_preprocess_virus:
+    input:
+        genome="refs/genome_virus.fasta",
+        reads=["reads/read_1_virus.fq", "reads/read_2_virus.fq"],
+        haplotype_variants="variants/haplotype_variants_virus.vcf",
+    output:
+        "out/preprocess_virus.bcf"
+    log:
+        "logs/orthanq_preprocess/preprocess.log",
+    params:
+        command="preprocess",
+        subcommand="virus"
+    wrapper:
+        "master/bio/orthanq"
+
+# Call HLA
+rule orthanq_call_hla:
+    input:
+        haplotype_calls="variants/haplotype_calls.bcf",
+        haplotype_variants="variants/haplotype_variants_hla.vcf",
+        xml="refs/alleles.xml"
+    output:
+        directory("out/calls_hla")
+    log:
+        "logs/orthanq_call/call.log",
+    params:
+        command="call",
+        subcommand="hla",
+        prior="diploid",
+        extra=""
+    wrapper:
+        "master/bio/orthanq"
+
+# Call Virus
+rule orthanq_call_virus:
+    input:
+        haplotype_calls="variants/haplotype_calls.bcf",
+        haplotype_variants="variants/haplotype_variants_virus.vcf"
+    output:
+        directory("out/calls_virus")
+    log:
+        "logs/orthanq_call/call.log",
+    params:
+        command="call",
+        subcommand="virus",
+        prior="uniform"
+    wrapper:
+        "master/bio/orthanq"

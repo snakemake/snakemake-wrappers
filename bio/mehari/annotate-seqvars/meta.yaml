@@ -1,0 +1,17 @@
+name: mehari annotate seqvars
+description: Annotate variant calls with mehari.
+url: https://github.com/varfish-org/mehari
+input:
+  calls: Path to variants (VCF / VCF.gz / BCF)
+  ref: Path to reference FASTA (uncompressed).
+  fai: Path to reference FAI file.
+  transcript_db: Path to mehari transcript database. Needed for annotating SO terms / consequences.
+  clinvar_db: Path to mehari clinvar database. Needed for annotating clinvar VCVs.
+  frequency_db: Path to mehari frequency database. Needed for annotating frequencies from gnomAD.
+output:
+  calls: Path to annotated variants (VCF / VCF.gz / BCF).
+params:
+  extra: |
+    Extra arguments for the `mehari annotate seqvars` invocation.
+authors:
+  - Till Hartmann

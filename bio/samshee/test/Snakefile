@@ -1,0 +1,41 @@
+rule test_samshee_csv_to_json:
+    input:
+        sample="SampleSheet.csv",
+    output:
+        "samples.json",
+    threads: 1
+    log:
+        "test_samshee_csv_to_json.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/samshee"
+
+
+rule test_samshee_json_to_csv:
+    input:
+        sample="SampleSheet.json",
+    output:
+        "samples.csv",
+    threads: 1
+    log:
+        "test_samshee_json_to_csv.log",
+    params:
+        extra=" --output-format sectioned ",
+    wrapper:
+        "master/bio/samshee"
+
+
+rule test_samshee_schema_input:
+    input:
+        sample="SampleSheet.csv",
+        schema="schema.json",
+    output:
+        "samples_schema.json",
+    threads: 1
+    log:
+        "test_samshee_schema_input.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/samshee"

@@ -20,7 +20,7 @@ rule gfatools_gfa2fa:
         "logs/{sample}.gfa2fa.log",
     params:
         command="gfa2fa",
-	extra="-l 90",
+        extra="-l 90",
     wrapper:
         "master/bio/gfatools"
 
@@ -47,7 +47,7 @@ rule gfatools_blacklist:
         "logs/{sample}.blacklist.log",
     params:
         command="blacklist",
-	extra="-l 100",
+        extra="-l 100",
     wrapper:
         "master/bio/gfatools"
 
@@ -74,7 +74,7 @@ rule gfatools_asm:
         "logs/{sample}.asm.log",
     params:
         command="asm",
-	extra="-u",
+        extra="-u",
     wrapper:
         "master/bio/gfatools"
 

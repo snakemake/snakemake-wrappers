@@ -1,0 +1,50 @@
+rule alignoth_json:
+    input:
+        bam="NA12878.bam",
+        bam_idx="NA12878.bam.bai",
+        reference="ref.fa",
+        reference_idx="ref.fa.fai",
+        vcf="1257A.vcf.gz",
+        vcf_idx="1257A.vcf.gz.csi"
+    output:
+        "out/json_plot.vl.json"
+    params:
+        extra="-g 1:50-280 -h coolregion:200-210"
+    log:
+        "logs/log.txt"
+    wrapper:
+        "master/bio/alignoth"
+
+rule alignoth_html:
+    input:
+        bam="NA12878.bam",
+        bam_idx="NA12878.bam.bai",
+        reference="ref.fa",
+        reference_idx="ref.fa.fai",
+        vcf="1257A.vcf.gz",
+        vcf_idx="1257A.vcf.gz.csi"
+    output:
+        "out/plot.html"
+    params:
+        extra="-g 1:50-280 -h coolregion:200-210"
+    log:
+        "logs/log.txt"
+    wrapper:
+        "master/bio/alignoth"
+
+rule alignoth_output_dir:
+    input:
+        bam="NA12878.bam",
+        bam_idx="NA12878.bam.bai",
+        reference="ref.fa",
+        reference_idx="ref.fa.fai",
+        vcf="1257A.vcf.gz",
+        vcf_idx="1257A.vcf.gz.csi"
+    output:
+        directory("output-dir/")
+    params:
+        extra="-g 1:50-280 -h coolregion:200-210"
+    log:
+        "logs/log.txt"
+    wrapper:
+        "master/bio/alignoth"

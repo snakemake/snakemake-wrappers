@@ -3,4 +3,4 @@
 # platform: linux-64
 # created-by: conda 24.9.2
 @EXPLICIT
-https://conda.anaconda.org/bioconda/linux-64/taxonkit-0.19.0-h9ee0642_0.tar.bz2#89d310834ead4fc4ff977d9e95b53e66
+https://conda.anaconda.org/bioconda/linux-64/taxonkit-0.20.0-h9ee0642_0.tar.bz2#d7ddad34ed5659a9ff053e1fc43f363d
