@@ -1,0 +1,25 @@
+name: pytrf extract
+description: >
+  Extract tandem repeat sequences with flanking regions from DNA sequences.
+  Requires output from pytrf findstr, findgtr, or findatr as input.
+url: https://pytrf.readthedocs.io/en/latest/usage.html#commandline-interface
+authors:
+  - Muhammad Rohan Ali Asmat
+input:
+  - FASTA or FASTQ file (supports gzip compression)
+output:
+  - Output file (default: stdout, will be redirected to the log file).
+params:
+  repeat_file: >
+    **Required.** Path to TSV or CSV file from pytrf findstr/findgtr/findatr.
+  out_format: >
+    Output format. Options: 'tsv' (default), 'csv', or 'fasta'.
+    Note: Only extract command supports FASTA output.
+  flank_length: >
+    Length of flanking sequence (default: 100).
+notes: >
+  **Bioconda package:** https://bioconda.github.io/recipes/pytrf/README.html
+  **GitHub repository:** https://github.com/lmdu/pytrf
+  **License:** MIT License
+  **Disclaimer:** This is a minimal implementation supporting basic functionality.
+  pytrf is not a Python binding to TRF - it's an independent tool.
