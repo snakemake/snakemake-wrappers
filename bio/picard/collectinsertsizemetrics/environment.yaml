@@ -4,5 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - picard =3.4.0
-  - r-base =4.5.1
+  - r-base =4.5.2
   - snakemake-wrapper-utils =0.8.0
