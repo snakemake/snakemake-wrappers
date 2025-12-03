@@ -6,7 +6,6 @@ __email__ = "yoann.pradat@gustaveroussy.fr"
 __license__ = "MIT"
 
 import os
-import re
 from tempfile import TemporaryDirectory
 from snakemake.shell import shell
 
