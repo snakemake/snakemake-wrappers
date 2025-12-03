@@ -10,8 +10,5 @@ output:
   - html: statistics file in HTML format
   - data: statistics file in TXT format
   - summ: summary file in TXT format
-  - dir: output directory path
 params:
   - extra: additional program arguments
-notes: |
-  * The `dir` output cannot be specified alongside individual file outputs. Choose one or the other.

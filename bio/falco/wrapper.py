@@ -16,39 +16,21 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 if len(snakemake.input) > 1:
     raise IOError("Got multiple input files, I don't know how to process them!")
 
-# Output directory
-output_dir_user = snakemake.output.get("dir", "")
-
-# Run falco.
 # We use a temp dir to clean up intermediate files.
 with TemporaryDirectory() as tempdir:
-    # if the user did not specify an output directory, use temporary directory
-    if not output_dir_user:
-        output_dir_algo = os.path.join(tempdir, "falco")
-    else:
-        output_dir_algo = output_dir_user
-
     shell(
         "falco"
         " --threads {snakemake.threads}"
         " {extra}"
-        " --outdir {output_dir_algo:q}"
+        " --outdir {tempdir:q}"
         " {snakemake.input[0]:q}"
         " {log}"
     )
 
-    # If the user did not specify an output directory in the snakemake outputs, move individual files
-    # to the locations specified by the user
-    if not output_dir_user:
-        html_path = os.path.join(output_dir_algo, "fastqc_report.html")
-        data_path = os.path.join(output_dir_algo, "fastqc_data.txt")
-        summ_path = os.path.join(output_dir_algo, "summary.txt")
+    html_path = os.path.join(tempdir, "fastqc_report.html")
+    data_path = os.path.join(tempdir, "fastqc_data.txt")
+    summ_path = os.path.join(tempdir, "summary.txt")
 
-        if snakemake.output.html != html_path:
-            shell("mv {html_path:q} {snakemake.output.html:q}")
-
-        if snakemake.output.data != data_path:
-            shell("mv {data_path:q} {snakemake.output.data:q}")
-
-        if snakemake.output.summ != summ_path:
-            shell("mv {summ_path:q} {snakemake.output.summ:q}")
+    shell("mv {html_path:q} {snakemake.output.html:q}")
+    shell("mv {data_path:q} {snakemake.output.data:q}")
+    shell("mv {summ_path:q} {snakemake.output.summ:q}")
