@@ -3330,7 +3330,7 @@ def test_epic_peaks(run):
     )
 
 
-def test_falco():
+def test_falco(run):
     run(
         "bio/falco",
         ["snakemake", "--cores", "1", "qc/falco/a.html", "--use-conda", "-F"],
