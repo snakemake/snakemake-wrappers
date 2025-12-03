@@ -1,0 +1,19 @@
+name: falco
+description: |
+  Generate fastq qc statistics using falco.
+url: https://github.com/smithlabcode/falco
+authors:
+  - Yoann Pradat
+input:
+  - fastq file
+output:
+  - html: statistics file in HTML format
+  - data: statistics file in TXT format
+  - summ: summary file in TXT format
+  - dir: output directory path
+params:
+  - extra: additional program arguments
+  - output_dir: output directory path
+notes: |
+  * The `dir` output cannot be specified alongside individual file outputs.
+  * The output directory can be specified via `output_dir` param in which case the `dir` output should not be set.
