@@ -13,7 +13,5 @@ output:
   - dir: output directory path
 params:
   - extra: additional program arguments
-  - output_dir: output directory path
 notes: |
-  * The `dir` output cannot be specified alongside individual file outputs.
-  * The output directory can be specified via `output_dir` param in which case the `dir` output should not be set.
+  * The `dir` output cannot be specified alongside individual file outputs. Choose one or the other.
