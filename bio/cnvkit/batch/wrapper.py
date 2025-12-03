@@ -78,8 +78,10 @@ with TemporaryDirectory() as tmpdirname:
     mapping = {}
 
     # find matches btw generated files and snakemake output
-    for file in temp_files:
-        for suffix, attr in file_map.items():
+    for suffix, attr in file_map.items():
+        if not snakemake.output.get(attr):
+            continue
+        for file in temp_files:
             if file.endswith(suffix):
                 # Skip ambiguous matches
                 if attr == "segments" and any(
