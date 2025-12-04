@@ -30,10 +30,6 @@ mapping = {"html": Path(tmpdir) / "fastqc_report.html",
         " {log}"
     )
 
-    html_path = os.path.join(tempdir, "fastqc_report.html")
-    data_path = os.path.join(tempdir, "fastqc_data.txt")
-    summ_path = os.path.join(tempdir, "summary.txt")
-
-    shell("mv {html_path:q} {snakemake.output.html:q}")
-    shell("mv {data_path:q} {snakemake.output.data:q}")
-    shell("mv {summ_path:q} {snakemake.output.summ:q}")
+    log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
+    for move_cmd in move_files(snakemake, mapping):
+        shell("{move_cmd} {log}")
