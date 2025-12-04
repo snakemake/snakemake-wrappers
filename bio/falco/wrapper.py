@@ -18,6 +18,9 @@ if len(snakemake.input) > 1:
 
 # We use a temp dir to clean up intermediate files.
 with TemporaryDirectory() as tempdir:
+mapping = {"html": Path(tmpdir) / "fastqc_report.html",
+           "data": Path(tmpdir) / "fastqc_data.txt",
+           "summ": Path(tmpdir) / "summary.txt",}
     shell(
         "falco"
         " --threads {snakemake.threads}"
