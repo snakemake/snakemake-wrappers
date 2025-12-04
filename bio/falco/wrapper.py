@@ -5,7 +5,7 @@ __copyright__ = "Copyright 2025, Yoann Pradat"
 __email__ = "yoann.pradat@gustaveroussy.fr"
 __license__ = "MIT"
 
-import os
+from pathlib import Path
 from tempfile import TemporaryDirectory
 from snakemake.shell import shell
 from snakemake_wrapper_utils.snakemake import move_files
