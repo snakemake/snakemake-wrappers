@@ -13,9 +13,6 @@ from snakemake_wrapper_utils.snakemake import move_files
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-if len(snakemake.input) > 1:
-    raise IOError("Got multiple input files, I don't know how to process them!")
-
 # We use a temp dir to clean up intermediate files.
 with TemporaryDirectory() as tempdir:
     mapping = {
