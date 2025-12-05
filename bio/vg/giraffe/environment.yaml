@@ -4,7 +4,7 @@ channels:
   - nodefaults
 dependencies:
   - vg =1.70.0
-  - fgbio-minimal =3.0.0
+  - fgbio-minimal =3.1.0
   - samtools =1.22.1
   - picard-slim =3.4.0
   - snakemake-wrapper-utils =0.8.0
