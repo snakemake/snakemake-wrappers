@@ -7178,6 +7178,7 @@ def test_go_yq(run):
             "concat.yaml",
             "updated.yaml",
             "evaluated.yaml",
+            "foo_bar.yml",
             "table.json",
         ],
     )
