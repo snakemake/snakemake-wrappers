@@ -24,6 +24,7 @@ def detect_fmt(files, long_option, short_option, extra) -> str:
         "sh": "shell",
         "lua": "lua",
         "ini": "ini",
+        "xml": "xml",
     }
 
     # Ensure user did not provide any format information

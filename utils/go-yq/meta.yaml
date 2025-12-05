@@ -19,7 +19,7 @@ notes: |
 
   Format are mostly auto-detected using `--output-format` and `--input-format`.
   However, you may want to provide formats through `params.extra` in case of
-  ambiguity (`uri`, `base64`).
+  ambiguity (e.g. `uri`, `base64`).
 
   Through file splitting, files name expression are not automatically inferred.
   User should provide the proper `-s/--split-exp` parameters in `params.extra`.
