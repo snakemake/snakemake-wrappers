@@ -55,7 +55,7 @@ subcommand = snakemake.params.get("subcommand", "")
 # yq/jq expression should be quoted
 expression = shlex.quote(snakemake.params.get("expression", ""))
 
-# Handle the case use creates a file from command line
+# Handle the case user creates a file from command line
 infile = snakemake.input
 if len(infile) == 0:
     infile = " --null-input "
