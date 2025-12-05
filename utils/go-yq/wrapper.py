@@ -37,7 +37,7 @@ def detect_fmt(files, long_option, short_option, extra) -> str:
             )
 
         # Trying to detect output format from file extension
-        # since yq defaults to yaml outout and writes information
+        # since yq defaults to yaml output and writes information
         # in standard output.
         fmt = accepted_formats.get(formats[0])
         if fmt:
