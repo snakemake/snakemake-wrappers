@@ -1,0 +1,6 @@
+channels:
+  - conda-forge 
+dependencies:
+  - go-yq =4.49.2
+  - snakemake-wrapper-utils =0.8.0
+  
