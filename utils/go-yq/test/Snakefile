@@ -2,9 +2,10 @@ rule test_yq_concat:
     input:
         ["bazquux.yaml", "foobar.yaml"],
     output:
-        "concat.yaml"
+        "concat.yaml",
     threads: 1
-    log: "test_yq_concat.log"
+    log:
+        "test_yq_concat.log",
     params:
         extra="",
         subcommand="",
@@ -12,17 +13,19 @@ rule test_yq_concat:
     wrapper:
         "master/utils/go-yq"
 
+
 rule test_yq_simple_yaml_update:
     input:
         "foobar.yaml",
     output:
         "updated.yaml",
     threads: 1
-    log: "test_yq_simple_yaml_update.log"
+    log:
+        "test_yq_simple_yaml_update.log",
     params:
         extra="",
         subcommand="",
-        expression=".[].foo = \"foobar\"",
+        expression='.[].foo = "foobar"',
     wrapper:
         "master/utils/go-yq"
 
@@ -33,28 +36,32 @@ rule test_yq_evaluate_yaml_content:
     output:
         "evaluated.yaml",
     threads: 1
-    log: "test_yq_evaluate_yaml_content.log",
+    log:
+        "test_yq_evaluate_yaml_content.log",
     params:
         extra="",
         subcommand="",
-        expression="eval(.pathExp)"
+        expression="eval(.pathExp)",
     wrapper:
         "master/utils/go-yq"
+
 
 rule test_yq_split_yaml:
     input:
         "concat.yaml",
     output:
         "foo_bar.yaml",
-        "foo_bar2.yaml",        
+        "foo_bar2.yaml",
     threads: 1
-    log: "test_yq_split_yaml.log",
+    log:
+        "test_yq_split_yaml.log",
     params:
         extra="-s '\"user_\" + .name'",
         subcommand="",
         expression=".[]",
     wrapper:
         "master/utils/go-yq"
+
 
 rule test_yq_format_conversion:
     input:

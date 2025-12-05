@@ -46,7 +46,7 @@ def detect_fmt(files, long_option, short_option, extra) -> str:
 
 
 # Enhance extra parameters if needed
-extra = snakemake. params.get("extra", "")
+extra = snakemake.params.get("extra", "")
 extra += detect_fmt(snakemake.input, "--input-format", "-p", extra)
 extra += detect_fmt(snakemake.output, "--output-format", "-o", extra)
 
