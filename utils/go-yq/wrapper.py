@@ -70,8 +70,10 @@ if len(snakemake.output) > 1:
         )
     log = snakemake.log_fmt_shell(stdout=True, stderr=True)
     outfile = ""
-else:
+elif len(snakemake.outfile) == 1:
     log = snakemake.log_fmt_shell(stdout=False, stderr=True)
     outfile = f"> {snakemake.output[0]}"
+else:
+    raise ValueError("Inplace modifications are not handled by this wrapper.")
 
 shell("yq {subcommand} {extra} {expression} {infile} {outfile} {log}")
