@@ -24,32 +24,29 @@ if snakemake.output:
 # Build parameters
 params = []
 
-try:
-    if hasattr(snakemake.params, "out_format"):
-        params.append(f"-f {snakemake.params.out_format}")
+if hasattr(snakemake.params, "out_format"):
+    params.append(f"-f {snakemake.params.out_format}")
 
-    if hasattr(snakemake.params, "min_motif"):
-        params.append(f"-m {snakemake.params.min_motif}")
+if hasattr(snakemake.params, "min_motif"):
+    params.append(f"-m {snakemake.params.min_motif}")
 
-    if hasattr(snakemake.params, "max_motif"):
-        params.append(f"-M {snakemake.params.max_motif}")
+if hasattr(snakemake.params, "max_motif"):
+    params.append(f"-M {snakemake.params.max_motif}")
 
-    if hasattr(snakemake.params, "min_seedrep"):
-        params.append(f"-r {snakemake.params.min_seedrep}")
+if hasattr(snakemake.params, "min_seedrep"):
+    params.append(f"-r {snakemake.params.min_seedrep}")
 
-    if hasattr(snakemake.params, "min_seedlen"):
-        params.append(f"-l {snakemake.params.min_seedlen}")
+if hasattr(snakemake.params, "min_seedlen"):
+    params.append(f"-l {snakemake.params.min_seedlen}")
 
-    if hasattr(snakemake.params, "max_errors"):
-        params.append(f"-e {snakemake.params.max_errors}")
+if hasattr(snakemake.params, "max_errors"):
+    params.append(f"-e {snakemake.params.max_errors}")
 
-    if hasattr(snakemake.params, "min_identity"):
-        params.append(f"-p {snakemake.params.min_identity}")
+if hasattr(snakemake.params, "min_identity"):
+    params.append(f"-p {snakemake.params.min_identity}")
 
-    if hasattr(snakemake.params, "max_extend"):
-        params.append(f"-x {snakemake.params.max_extend}")
-except (AttributeError, ValueError) as e:
-    raise RuntimeError(f"Parameter processing failed: {e}") from e
+if hasattr(snakemake.params, "max_extend"):
+    params.append(f"-x {snakemake.params.max_extend}")
 
 # Build command
 CMD = f"pytrf findatr {input_file}"

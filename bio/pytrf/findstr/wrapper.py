@@ -24,17 +24,14 @@ if snakemake.output:
 # Build parameters
 params = []
 
-try:
-    if hasattr(snakemake.params, "out_format"):
-        params.append(f"-f {snakemake.params.out_format}")
+if hasattr(snakemake.params, "out_format"):
+    params.append(f"-f {snakemake.params.out_format}")
 
-    if hasattr(snakemake.params, "repeats"):
-        repeats_list = snakemake.params.repeats
-        if isinstance(repeats_list, (list, tuple)):
-            REPEATS_STR = " ".join(str(x) for x in repeats_list)
-            params.append(f"-r {REPEATS_STR}")
-except (AttributeError, ValueError) as e:
-    raise RuntimeError(f"Parameter processing failed: {e}") from e
+if hasattr(snakemake.params, "repeats"):
+    repeats_list = snakemake.params.repeats
+    if isinstance(repeats_list, (list, tuple)):
+        REPEATS_STR = " ".join(str(x) for x in repeats_list)
+        params.append(f"-r {REPEATS_STR}")
 
 # Build command
 CMD = f"pytrf findstr {input_file}"

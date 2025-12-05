@@ -24,23 +24,20 @@ if snakemake.output:
 # Build parameters
 params = []
 
-try:
-    if hasattr(snakemake.params, "out_format"):
-        params.append(f"-f {snakemake.params.out_format}")
+if hasattr(snakemake.params, "out_format"):
+    params.append(f"-f {snakemake.params.out_format}")
 
-    if hasattr(snakemake.params, "min_motif"):
-        params.append(f"-m {snakemake.params.min_motif}")
+if hasattr(snakemake.params, "min_motif"):
+    params.append(f"-m {snakemake.params.min_motif}")
 
-    if hasattr(snakemake.params, "max_motif"):
-        params.append(f"-M {snakemake.params.max_motif}")
+if hasattr(snakemake.params, "max_motif"):
+    params.append(f"-M {snakemake.params.max_motif}")
 
-    if hasattr(snakemake.params, "min_repeat"):
-        params.append(f"-r {snakemake.params.min_repeat}")
+if hasattr(snakemake.params, "min_repeat"):
+    params.append(f"-r {snakemake.params.min_repeat}")
 
-    if hasattr(snakemake.params, "min_length"):
-        params.append(f"-l {snakemake.params.min_length}")
-except (AttributeError, ValueError) as e:
-    raise RuntimeError(f"Parameter processing failed: {e}") from e
+if hasattr(snakemake.params, "min_length"):
+    params.append(f"-l {snakemake.params.min_length}")
 
 # Build command
 CMD = f"pytrf findgtr {input_file}"

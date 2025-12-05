@@ -32,14 +32,11 @@ except (AttributeError, ValueError) as e:
 # Build parameters
 params = [f"-r {repeat_file}"]
 
-try:
-    if hasattr(snakemake.params, "out_format"):
-        params.append(f"-f {snakemake.params.out_format}")
+if hasattr(snakemake.params, "out_format"):
+    params.append(f"-f {snakemake.params.out_format}")
 
-    if hasattr(snakemake.params, "flank_length"):
-        params.append(f"-l {snakemake.params.flank_length}")
-except (AttributeError, ValueError) as e:
-    raise RuntimeError(f"Parameter processing failed: {e}") from e
+if hasattr(snakemake.params, "flank_length"):
+    params.append(f"-l {snakemake.params.flank_length}")
 
 # Build command
 CMD = f"pytrf extract {input_file}"
