@@ -30,7 +30,7 @@ def detect_fmt(files, long_option, short_option, extra) -> str:
     # Ensure user did not provide any format information
     if not (is_arg(long_option, extra) or is_arg(short_option, extra)):
         # Check unique format in input and output separately
-        if len(set(formats)) != 1:
+        if len(set(formats)) > 1:
             raise ValueError(
                 f"The following files: {files}, should have the same extension. "
                 f"Got {set(formats)} instead."
