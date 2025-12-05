@@ -1,0 +1,17 @@
+# SAMPLE RULE: Extract tandem repeat sequences with flanking regions
+# The pytrf extract wrapper requires output from findstr, findgtr, or findatr.
+#
+# Output:
+# - If output file is specified, results are written to that file
+# - If output is omitted, pytrf writes to stdout (redirected to log file)
+rule pytrf_extract:
+    input:
+        "demo_data/{sample}.fasta",
+    output:
+        "results/{sample}_extract.tsv",
+    params:
+        repeat_file="demo_data/{sample}.tsv",
+    log:
+        "logs/{sample}.log",
+    wrapper:
+        "master/bio/pytrf/extract"
