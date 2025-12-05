@@ -70,7 +70,7 @@ if len(snakemake.output) > 1:
         )
     log = snakemake.log_fmt_shell(stdout=True, stderr=True)
     outfile = ""
-elif len(snakemake.outfile) == 1:
+elif len(snakemake.output) == 1:
     log = snakemake.log_fmt_shell(stdout=False, stderr=True)
     outfile = f"> {snakemake.output[0]}"
 else:
