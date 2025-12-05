@@ -5,4 +5,4 @@ channels:
 
 dependencies:
   - pytrf =1.4
-  - pyfastx =2.2
+  
