@@ -1,0 +1,5 @@
+channels:
+  - conda-forge 
+dependencies:
+  - go-yq =4.49.2
+  

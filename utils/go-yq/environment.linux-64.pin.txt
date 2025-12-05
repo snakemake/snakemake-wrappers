@@ -1,0 +1,10 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: linux-64
+# created-by: conda 25.9.1
+@EXPLICIT
+https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
+https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-he0feb66_15.conda#a90d6983da0757f4c09bb8fcfaf34e71
+https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-he0feb66_15.conda#a5d86b0496174a412d531eac03af9174
+https://conda.anaconda.org/conda-forge/linux-64/go-yq-4.49.2-h280c20c_0.conda#8ce54444fc979c3b3b8c940bab203a4c

@@ -7158,3 +7158,20 @@ def test_orthanq(run):
             "out/calls_virus",
         ],
     )
+
+def test_go_yq(run):
+    run(
+        "utils/go-yq",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "concat.yaml",
+            "updated.yaml",
+            "evaluated.yaml",
+            "table.json",
+        ],
+    )
+
