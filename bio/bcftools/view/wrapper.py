@@ -11,4 +11,10 @@ bcftools_opts = get_bcftools_opts(snakemake, parse_ref=False, parse_memory=False
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
+for outfile in snakemake.output:
+    if str(outfile).endswith(".tbi"):
+        extra += " --write-index=tbi"
+    elif str(outfile).endswith(".csi"):
+        extra += " --write-index=csi"
+
 shell("bcftools view {bcftools_opts} {extra} {snakemake.input[0]} {log}")

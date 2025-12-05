@@ -32,6 +32,7 @@ rule bcf_view_o_vcf_gz:
         "{prefix}.bcf",
     output:
         "{prefix}.view.vcf.gz",
+        "{prefix}.view.vcf.gz.tbi",
     log:
         "log/{prefix}.view.vcf.gz.log",
     params:
