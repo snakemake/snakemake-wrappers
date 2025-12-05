@@ -3,7 +3,7 @@ channels:
   - nodefaults
 dependencies:
   - datavzrd =2.58.8
-  - yte =1.8.1
+  - yte =1.9.4
   - numpy
   - pandas
   - polars
