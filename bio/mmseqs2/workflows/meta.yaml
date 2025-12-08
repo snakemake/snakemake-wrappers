@@ -1,0 +1,14 @@
+name: MMseqs2 workflows
+url: https://github.com/soedinglab/mmseqs2
+description: |
+  ultra fast and sensitive sequence search and clustering suite
+authors:
+  - Filipe G. Vieira
+input:
+  - query: input query FAS file(s)
+  - target: input target FAS file(s) or DB
+output:
+  - output: FAS, cluster or DB file(s)
+params:
+  - module: workflow to use
+  - extra: additional program arguments
