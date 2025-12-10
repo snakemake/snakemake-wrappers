@@ -218,6 +218,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-cpp11-0.5.2-r44h785f33e_2.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-crayon-1.5.3-r44hc72bb7e_2.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-cyclocomp-1.1.1-r44hc72bb7e_2.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/r-data.table-1.17.8-r44h1c8cec4_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-desc-1.4.3-r44hc72bb7e_2.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-digest-0.6.39-r44h3697838_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/r-dplyr-1.1.4-r44h3697838_2.conda
@@ -3019,6 +3020,19 @@ packages:
   license_family: MIT
   size: 40945
   timestamp: 1757496123649
+- conda: https://conda.anaconda.org/conda-forge/linux-64/r-data.table-1.17.8-r44h1c8cec4_1.conda
+  sha256: c85f8832e1aafcdb6dcf79c0547696aac91f9b12eda2e765184f3146b9463481
+  md5: 3a4754795ca474da5ce390d8510fb674
+  depends:
+  - __glibc >=2.17,<3.0.a0
+  - _openmp_mutex >=4.5
+  - libgcc >=14
+  - libzlib >=1.3.1,<2.0a0
+  - r-base >=4.4,<4.5.0a0
+  license: MPL-2.0
+  license_family: OTHER
+  size: 2302139
+  timestamp: 1757499607287
 - conda: https://conda.anaconda.org/conda-forge/noarch/r-desc-1.4.3-r44hc72bb7e_2.conda
   sha256: 0b511eadd8299b370b23f45268a9f3de9015457913e86e373fc34184e65c155e
   md5: 24fe88af88fc79dd249b6ffdbd32af06
