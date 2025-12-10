@@ -1,0 +1,12 @@
+name: mofa2
+description: |
+  Lorem ipsum
+authors:
+  - Simon Sack
+input:
+  - Lorem ipsum
+output:
+  - Lorem ipsum
+notes: |
+  Add any tximport options in the params, they will be transmitted through the
+  R wrapper. Supplementary options will cause unknown parameters error.

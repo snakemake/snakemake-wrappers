@@ -6,4 +6,6 @@ __pycache__
 .idea
 *~
 docs/_build
-docs/meta-wrappers
+docs/meta-wrappers# pixi environments
+.pixi/*
+!.pixi/config.toml
