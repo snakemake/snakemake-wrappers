@@ -1,8 +1,11 @@
 rule alignoth_json:
     input:
         bam="NA12878.bam",
+        bam_idx="NA12878.bam.bai",
         reference="ref.fa",
-        vcf="1257A.vcf.gz"
+        reference_idx="ref.fa.fai",
+        vcf="1257A.vcf.gz",
+        vcf_idx="1257A.vcf.gz.csi"
     output:
         "out/json_plot.vl.json"
     params:
@@ -15,8 +18,11 @@ rule alignoth_json:
 rule alignoth_html:
     input:
         bam="NA12878.bam",
+        bam_idx="NA12878.bam.bai",
         reference="ref.fa",
-        vcf="1257A.vcf.gz"
+        reference_idx="ref.fa.fai",
+        vcf="1257A.vcf.gz",
+        vcf_idx="1257A.vcf.gz.csi"
     output:
         "out/plot.html"
     params:
@@ -29,8 +35,11 @@ rule alignoth_html:
 rule alignoth_output_dir:
     input:
         bam="NA12878.bam",
+        bam_idx="NA12878.bam.bai",
         reference="ref.fa",
-        vcf="1257A.vcf.gz"
+        reference_idx="ref.fa.fai",
+        vcf="1257A.vcf.gz",
+        vcf_idx="1257A.vcf.gz.csi"
     output:
         directory("output-dir/")
     params:

@@ -1,4 +1,5 @@
 import difflib
+from pathlib import Path
 import subprocess
 import os
 import tempfile
@@ -41,8 +42,11 @@ def tmp_test_dir():
 @pytest.fixture
 def run(tmp_test_dir):
     def _run(wrapper, cmd, check_log=None, compare_results_with_expected=None):
+        wrapper_dir = Path(wrapper)
 
-        tmp_test_subdir = tempfile.mkdtemp(dir=tmp_test_dir)
+        is_meta_wrapper = wrapper.startswith("meta/")
+
+        tmp_test_subdir = Path(tempfile.mkdtemp(dir=tmp_test_dir))
         origdir = os.getcwd()
 
         meta_path = os.path.join(wrapper, "meta.yaml")
@@ -55,7 +59,7 @@ def run(tmp_test_dir):
         if meta.get("blacklisted"):
             pytest.skip("wrapper blacklisted")
 
-        dst = os.path.join(tmp_test_subdir, "master")
+        dst = tmp_test_subdir / "master"
 
         os.symlink(origdir, dst)
 
@@ -75,20 +79,34 @@ def run(tmp_test_dir):
         ):
             pytest.skip("wrappers not modified")
 
-        testdir = os.path.join(tmp_test_subdir, "test")
-        shutil.copytree(os.path.join(wrapper, "test"), testdir)
+        testdir = tmp_test_subdir / "test"
+
+        if is_meta_wrapper:
+            # make sure that the meta-wrapper is where we expect it
+            for path in wrapper_dir.iterdir():
+                if path.is_dir():
+                    shutil.copytree(path, tmp_test_subdir / path.name)
+                else:
+                    shutil.copy(path, tmp_test_subdir)
+        else:
+            shutil.copytree(wrapper_dir / "test", testdir)
 
         # switch to test directory
         os.chdir(testdir)
         if os.path.exists(".snakemake"):
             shutil.rmtree(".snakemake")
-        cmd = cmd + [
-            "--wrapper-prefix",
-            f"file://{tmp_test_subdir}/",
+        cmd += [
             "--conda-cleanup-pkgs",
             "--printshellcmds",
             "--show-failed-logs",
         ]
+        if not is_meta_wrapper:
+            # meta-wrappers define their specific wrapper versions
+            cmd += [
+                "--wrapper-prefix",
+                f"file://{tmp_test_subdir}/",
+            ]
+
 
         if CONTAINERIZED:
             # run snakemake in container
@@ -254,6 +272,18 @@ def test_alignoth(run):
     run(
         "bio/alignoth",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "out/json_plot.vl.json", "out/plot.html", "output-dir/"],
+    )
+
+def test_alignoth_report_meta(run):
+    run(
+        "meta/bio/alignoth_report",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "results/datavzrd-report/NA12878/",
+        ],
     )
 
 
@@ -3297,6 +3327,13 @@ def test_epic_peaks(run):
     run(
         "bio/epic/peaks",
         ["snakemake", "--cores", "1", "epic/enriched_regions.bed", "--use-conda", "-F"],
+    )
+
+
+def test_falco(run):
+    run(
+        "bio/falco",
+        ["snakemake", "--cores", "1", "qc/falco/a.html", "--use-conda", "-F"],
     )
 
 
@@ -7128,3 +7165,21 @@ def test_orthanq(run):
             "out/calls_virus",
         ],
     )
+
+def test_go_yq(run):
+    run(
+        "utils/go-yq",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "concat.yaml",
+            "updated.yaml",
+            "evaluated.yaml",
+            "foo_bar.yml",
+            "table.json",
+        ],
+    )
+

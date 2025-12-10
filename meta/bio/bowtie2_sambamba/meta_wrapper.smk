@@ -17,7 +17,7 @@ rule bowtie2_build:
         extra="",
     threads: 8
     wrapper:
-        "master/bio/bowtie2/build"
+        "v3.11.0/bio/bowtie2/build"
 
 
 rule bowtie2_alignment:
@@ -43,7 +43,7 @@ rule bowtie2_alignment:
         ),
     threads: 8
     wrapper:
-        "master/bio/bowtie2/align"
+        "v7.6.0/bio/bowtie2/align"
 
 
 rule sambamba_sort:
@@ -57,7 +57,7 @@ rule sambamba_sort:
         "<logs>/sambamba-sort/{sample}.log",
     threads: 8
     wrapper:
-        "master/bio/sambamba/sort"
+        "v3.11.0/bio/sambamba/sort"
 
 
 rule sambamba_view:
@@ -74,7 +74,7 @@ rule sambamba_view:
         "logs/sambamba-view/{sample}.log",
     threads: 8
     wrapper:
-        "master/bio/sambamba/view"
+        "v6.1.0/bio/sambamba/view"
 
 
 rule sambamba_markdup:
@@ -88,7 +88,7 @@ rule sambamba_markdup:
         "<logs>/sambamba-markdup/{sample}.log",
     threads: 8
     wrapper:
-        "master/bio/sambamba/markdup"
+        "v6.1.0/bio/sambamba/markdup"
 
 
 rule sambamba_index:
@@ -102,4 +102,4 @@ rule sambamba_index:
         "<logs>/sambamba-index/{sample}.log",
     threads: 8
     wrapper:
-        "master/bio/sambamba/index"
+        "v6.1.0/bio/sambamba/index"

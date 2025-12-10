@@ -13,19 +13,28 @@ cmd = ["alignoth"]
 
 # BAM input
 if snakemake.input.get("bam", ""):
-    cmd.append(f"-b {snakemake.input.bam}")
+    if snakemake.input.get("bam_idx", ""):
+        cmd.append(f"-b {snakemake.input.bam}")
+    else:
+        raise ValueError("BAM input given without bai index")
 else:
     raise ValueError("BAM input required")
 
 # Reference
 if snakemake.input.get("reference", ""):
-    cmd.append(f"-r {snakemake.input.reference}")
+    if snakemake.input.get("reference_idx", ""):
+        cmd.append(f"-r {snakemake.input.reference}")
+    else:
+        raise ValueError("Reference input given without fai index")
 else:
     raise ValueError("Reference input required")
 
-# Optional VCF
+# Optional VCF with required csi/tbi index
 if snakemake.input.get("vcf", ""):
-    cmd.append(f"-v {snakemake.input.vcf}")
+    if snakemake.input.get("vcf_idx", ""):
+        cmd.append(f"-v {snakemake.input.vcf}")
+    else:
+        raise ValueError("VCF input given without csi/tbi index")
 
 # Optional BED
 if snakemake.input.get("bed", ""):

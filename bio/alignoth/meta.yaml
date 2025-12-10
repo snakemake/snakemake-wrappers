@@ -6,10 +6,14 @@ description: |
 url: https://github.com/alignoth/alignoth
 input:
   - bam: Path to indexed BAM file
+  - bam_idx: Path to BAM index file
   - reference: Path to indexed reference FASTA file
+  - reference_idx: Path to index of reference FASTA file
   - vcf: Path to indexed VCF file (Optional)
+  - vcf_idx: Path to index of VCF file (required when VCF is used)
   - bed: Path to BED file (Optional)
-output: "HTML, JSON or directory path"
+output:
+  - HTML, JSON or directory path
 authors:
   - Felix Wiegand
 params:

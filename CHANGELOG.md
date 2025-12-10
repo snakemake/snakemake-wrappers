@@ -1,5 +1,133 @@
 # Changelog
 
+## [8.0.3](https://github.com/snakemake/snakemake-wrappers/compare/v8.0.2...v8.0.3) (2025-11-28)
+
+
+### Performance Improvements
+
+* autobump bio/bbtools/environment.yaml ([#4732](https://github.com/snakemake/snakemake-wrappers/issues/4732)) ([c6be4e5](https://github.com/snakemake/snakemake-wrappers/commit/c6be4e52062acdeee53143557bdd1899c2dad629))
+* autobump bio/bbtools/environment.yaml ([#4746](https://github.com/snakemake/snakemake-wrappers/issues/4746)) ([3194be4](https://github.com/snakemake/snakemake-wrappers/commit/3194be479e7c27f2defa3f13128ce355b4116536))
+* autobump bio/bwa/mem/environment.yaml ([#4747](https://github.com/snakemake/snakemake-wrappers/issues/4747)) ([74cf4e1](https://github.com/snakemake/snakemake-wrappers/commit/74cf4e1e3c9960046b4c90eb40bc3f8ca8358943))
+* autobump bio/deseq2/deseqdataset/environment.yaml ([#4734](https://github.com/snakemake/snakemake-wrappers/issues/4734)) ([0f97ec4](https://github.com/snakemake/snakemake-wrappers/commit/0f97ec4c2ca62db4e48ecbb66fb0958e2ec1e0bd))
+* autobump bio/fgbio/annotatebamwithumis/environment.yaml ([#4754](https://github.com/snakemake/snakemake-wrappers/issues/4754)) ([f14db7b](https://github.com/snakemake/snakemake-wrappers/commit/f14db7b6be30e0487edb626f5445e7369144fe2e))
+* autobump bio/fgbio/callmolecularconsensusreads/environment.yaml ([#4750](https://github.com/snakemake/snakemake-wrappers/issues/4750)) ([f57053f](https://github.com/snakemake/snakemake-wrappers/commit/f57053f96f136f7fdcf11622d34aa58789d8b74f))
+* autobump bio/fgbio/collectduplexseqmetrics/environment.yaml ([#4749](https://github.com/snakemake/snakemake-wrappers/issues/4749)) ([3dd6be9](https://github.com/snakemake/snakemake-wrappers/commit/3dd6be9d44af826ee90dd9d205559cae1998e75d))
+* autobump bio/fgbio/filterconsensusreads/environment.yaml ([#4751](https://github.com/snakemake/snakemake-wrappers/issues/4751)) ([3bfa1ba](https://github.com/snakemake/snakemake-wrappers/commit/3bfa1ba903a19133158b06695896f0efcadc953b))
+* autobump bio/fgbio/groupreadsbyumi/environment.yaml ([#4755](https://github.com/snakemake/snakemake-wrappers/issues/4755)) ([54ffc88](https://github.com/snakemake/snakemake-wrappers/commit/54ffc8855158dcc04fe29a006b0ac05ed704c13d))
+* autobump bio/fgbio/setmateinformation/environment.yaml ([#4753](https://github.com/snakemake/snakemake-wrappers/issues/4753)) ([aae3d07](https://github.com/snakemake/snakemake-wrappers/commit/aae3d07d3291bb097d6efef1191be48dcc22f5e3))
+* autobump bio/freebayes/environment.yaml ([#4752](https://github.com/snakemake/snakemake-wrappers/issues/4752)) ([ee66f56](https://github.com/snakemake/snakemake-wrappers/commit/ee66f562d4dddf8b987b064653488e7245fbed21))
+* autobump bio/gseapy/gsea/environment.yaml ([#4735](https://github.com/snakemake/snakemake-wrappers/issues/4735)) ([09c557d](https://github.com/snakemake/snakemake-wrappers/commit/09c557d55a7eb7ee834384995fb402bbb708edf2))
+* autobump bio/last/lastal/environment.yaml ([#4737](https://github.com/snakemake/snakemake-wrappers/issues/4737)) ([2d0d770](https://github.com/snakemake/snakemake-wrappers/commit/2d0d7700684cc0914087f5db0abbf0b190a79486))
+* autobump bio/last/lastdb/environment.yaml ([#4736](https://github.com/snakemake/snakemake-wrappers/issues/4736)) ([0788474](https://github.com/snakemake/snakemake-wrappers/commit/0788474dab4a273944d87d045d27b5cc0d768518))
+* autobump bio/orthanq/environment.yaml ([#4739](https://github.com/snakemake/snakemake-wrappers/issues/4739)) ([c412fa3](https://github.com/snakemake/snakemake-wrappers/commit/c412fa3340f457b57a1f3ec85f50b27e0480a48d))
+* autobump bio/orthanq/environment.yaml ([#4756](https://github.com/snakemake/snakemake-wrappers/issues/4756)) ([1b68010](https://github.com/snakemake/snakemake-wrappers/commit/1b680107b31e2de87c48b592c611e323b557ec37))
+* autobump bio/toulligqc/environment.yaml ([#4710](https://github.com/snakemake/snakemake-wrappers/issues/4710)) ([fd41434](https://github.com/snakemake/snakemake-wrappers/commit/fd414344909e7b6f7b6a8f1286001f74ded72c55))
+* autobump bio/tximport/environment.yaml ([#4741](https://github.com/snakemake/snakemake-wrappers/issues/4741)) ([ccf4eb0](https://github.com/snakemake/snakemake-wrappers/commit/ccf4eb05c4cb1e849cfe7d13f8a808c063421da0))
+* autobump bio/varlociraptor/call-variants/environment.yaml ([#4758](https://github.com/snakemake/snakemake-wrappers/issues/4758)) ([b826040](https://github.com/snakemake/snakemake-wrappers/commit/b8260403f7ba0f0726bdab0a93aa3cdbf4273d10))
+* autobump bio/varlociraptor/control-fdr/environment.yaml ([#4757](https://github.com/snakemake/snakemake-wrappers/issues/4757)) ([1fa3cf2](https://github.com/snakemake/snakemake-wrappers/commit/1fa3cf2c072e9ee0e119c8ca137dce5b0fadacec))
+* autobump bio/varlociraptor/estimate-alignment-properties/environment.yaml ([#4759](https://github.com/snakemake/snakemake-wrappers/issues/4759)) ([76eb5a7](https://github.com/snakemake/snakemake-wrappers/commit/76eb5a73effa93ab24ed2902df9e68a1edc9723a))
+* autobump bio/varlociraptor/preprocess-variants/environment.yaml ([#4761](https://github.com/snakemake/snakemake-wrappers/issues/4761)) ([d39d252](https://github.com/snakemake/snakemake-wrappers/commit/d39d2522b424eaa6ef4218a38d2ee33e62c365bd))
+* autobump bio/vg/giraffe/environment.yaml ([#4760](https://github.com/snakemake/snakemake-wrappers/issues/4760)) ([54af202](https://github.com/snakemake/snakemake-wrappers/commit/54af2021064522f4008f18776026d140244da2f0))
+* autobump utils/csvtk/environment.yaml ([#4733](https://github.com/snakemake/snakemake-wrappers/issues/4733)) ([9b841ed](https://github.com/snakemake/snakemake-wrappers/commit/9b841ed5a595ec034a02a031e5a88b63fc57c80c))
+* autobump utils/datavzrd/environment.yaml ([#4748](https://github.com/snakemake/snakemake-wrappers/issues/4748)) ([a5d9f5b](https://github.com/snakemake/snakemake-wrappers/commit/a5d9f5b4c0fef27c3735d063d1c00ba83e1453b6))
+* autobump utils/miller/environment.yaml ([#4738](https://github.com/snakemake/snakemake-wrappers/issues/4738)) ([8d1e5ca](https://github.com/snakemake/snakemake-wrappers/commit/8d1e5ca0f2c845128aeced41d4ff57156355187d))
+* update vg wrappers to v1.70 ([#4742](https://github.com/snakemake/snakemake-wrappers/issues/4742)) ([12f2191](https://github.com/snakemake/snakemake-wrappers/commit/12f2191b2307a6de78fb603e73f21b090053acbc))
+
+## [8.0.2](https://github.com/snakemake/snakemake-wrappers/compare/v8.0.1...v8.0.2) (2025-11-14)
+
+
+### Performance Improvements
+
+* autobump bio/diamond/blastp/environment.yaml ([#4720](https://github.com/snakemake/snakemake-wrappers/issues/4720)) ([d024305](https://github.com/snakemake/snakemake-wrappers/commit/d0243052c66462cfe1cbbfcd236888cb5221c5a5))
+* autobump bio/diamond/blastx/environment.yaml ([#4721](https://github.com/snakemake/snakemake-wrappers/issues/4721)) ([f4328a9](https://github.com/snakemake/snakemake-wrappers/commit/f4328a9549222bb7118c8c3a6f95c97c7e2f4b2a))
+* autobump bio/diamond/makedb/environment.yaml ([#4719](https://github.com/snakemake/snakemake-wrappers/issues/4719)) ([4b76213](https://github.com/snakemake/snakemake-wrappers/commit/4b762137e59335d54440f6737939ea816167e7d3))
+* autobump bio/mosdepth/environment.yaml ([#4722](https://github.com/snakemake/snakemake-wrappers/issues/4722)) ([89cb486](https://github.com/snakemake/snakemake-wrappers/commit/89cb486ed6c19426c071889ec7a03e6c95c2f6f6))
+* autobump bio/orthanq/environment.yaml ([#4723](https://github.com/snakemake/snakemake-wrappers/issues/4723)) ([81d4ce0](https://github.com/snakemake/snakemake-wrappers/commit/81d4ce00f18907e602de2deb9c98dc18e59d6cd7))
+* autobump bio/varlociraptor/call-variants/environment.yaml ([#4725](https://github.com/snakemake/snakemake-wrappers/issues/4725)) ([4d3cdcc](https://github.com/snakemake/snakemake-wrappers/commit/4d3cdcc1ed4413fcfcaba85f734b434af60b93da))
+* autobump bio/varlociraptor/control-fdr/environment.yaml ([#4724](https://github.com/snakemake/snakemake-wrappers/issues/4724)) ([0fc2154](https://github.com/snakemake/snakemake-wrappers/commit/0fc215409e5919715bc5bcb053df8aaa76455dcb))
+* autobump bio/varlociraptor/estimate-alignment-properties/environment.yaml ([#4726](https://github.com/snakemake/snakemake-wrappers/issues/4726)) ([e8c3966](https://github.com/snakemake/snakemake-wrappers/commit/e8c3966cb34c43efc55dfc8f628fa1254c391169))
+* autobump bio/varlociraptor/preprocess-variants/environment.yaml ([#4727](https://github.com/snakemake/snakemake-wrappers/issues/4727)) ([9cfd9b9](https://github.com/snakemake/snakemake-wrappers/commit/9cfd9b93d81060b5558d33021d98571ad8f9d7bd))
+* Update alignoth report meta wrapper ([#4717](https://github.com/snakemake/snakemake-wrappers/issues/4717)) ([93eb4c8](https://github.com/snakemake/snakemake-wrappers/commit/93eb4c84403d5f917c35a5347350fd51ed5f4df9))
+* Update alignoth wrapper ([#4728](https://github.com/snakemake/snakemake-wrappers/issues/4728)) ([ad3adc3](https://github.com/snakemake/snakemake-wrappers/commit/ad3adc38ef52bd30c37ff43851b597957d3b5894))
+
+## [8.0.1](https://github.com/snakemake/snakemake-wrappers/compare/v8.0.0...v8.0.1) (2025-11-13)
+
+
+### Performance Improvements
+
+* Update alignoth wrapper ([#4715](https://github.com/snakemake/snakemake-wrappers/issues/4715)) ([305df51](https://github.com/snakemake/snakemake-wrappers/commit/305df514fbbc66447d72ce1af24c25308d5d5f6e))
+
+## [8.0.0](https://github.com/snakemake/snakemake-wrappers/compare/v7.9.1...v8.0.0) (2025-11-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* Pin wrapper versions in meta-wrappers; add alignoth_report meta-wrapper ([#4678](https://github.com/snakemake/snakemake-wrappers/issues/4678))
+
+### Features
+
+* Pin wrapper versions in meta-wrappers; add alignoth_report meta-wrapper ([#4678](https://github.com/snakemake/snakemake-wrappers/issues/4678)) ([df95006](https://github.com/snakemake/snakemake-wrappers/commit/df95006e266d2a343db8347c875ab81ba096cedb))
+
+
+### Bug Fixes
+
+* downgrade bcftools in vep environment ([#4713](https://github.com/snakemake/snakemake-wrappers/issues/4713)) ([f6f3104](https://github.com/snakemake/snakemake-wrappers/commit/f6f31043c4849043cd07399b7c10f91bf5c42a3c))
+
+
+### Performance Improvements
+
+* autobump bio/delly/environment.yaml ([#4701](https://github.com/snakemake/snakemake-wrappers/issues/4701)) ([ac0eccc](https://github.com/snakemake/snakemake-wrappers/commit/ac0eccc5325506f76c21c90d3d711bd25f98f421))
+* autobump bio/diamond/blastp/environment.yaml ([#4696](https://github.com/snakemake/snakemake-wrappers/issues/4696)) ([69ca46b](https://github.com/snakemake/snakemake-wrappers/commit/69ca46b960bdafefb38cabf6f1647ee6c69d449b))
+* autobump bio/diamond/blastx/environment.yaml ([#4697](https://github.com/snakemake/snakemake-wrappers/issues/4697)) ([a78f857](https://github.com/snakemake/snakemake-wrappers/commit/a78f857518fb729ec066f063cb86165d0c563104))
+* autobump bio/diamond/makedb/environment.yaml ([#4700](https://github.com/snakemake/snakemake-wrappers/issues/4700)) ([cda63aa](https://github.com/snakemake/snakemake-wrappers/commit/cda63aa9d84f9fffc8efa48b441f9dab14271bdc))
+* autobump bio/gdc-api/bam-slicing/environment.yaml ([#4702](https://github.com/snakemake/snakemake-wrappers/issues/4702)) ([4442ff1](https://github.com/snakemake/snakemake-wrappers/commit/4442ff114f6e106361bbb2be3dc66b095392645f))
+* autobump bio/mehari/download-clinvar-db/environment.yaml ([#4704](https://github.com/snakemake/snakemake-wrappers/issues/4704)) ([60b7a96](https://github.com/snakemake/snakemake-wrappers/commit/60b7a9623a4343f3a114a9a5d711a837c4aeaa48))
+* autobump bio/mehari/download-transcript-db/environment.yaml ([#4703](https://github.com/snakemake/snakemake-wrappers/issues/4703)) ([c9e468b](https://github.com/snakemake/snakemake-wrappers/commit/c9e468ba907a20fddcbc06d3cb1f08f766ed55a7))
+* autobump bio/picard/collectinsertsizemetrics/environment.yaml ([#4706](https://github.com/snakemake/snakemake-wrappers/issues/4706)) ([cc3bf0e](https://github.com/snakemake/snakemake-wrappers/commit/cc3bf0e65f6fbf8503f8cfbb5f2910c6c65edb83))
+* autobump utils/datavzrd/environment.yaml ([#4699](https://github.com/snakemake/snakemake-wrappers/issues/4699)) ([0b40b95](https://github.com/snakemake/snakemake-wrappers/commit/0b40b95050309b69629e5fe4172c6a577f6b393b))
+
+## [7.9.1](https://github.com/snakemake/snakemake-wrappers/compare/v7.9.0...v7.9.1) (2025-11-03)
+
+
+### Bug Fixes
+
+* Add index checks for BAM and reference inputs ([#4693](https://github.com/snakemake/snakemake-wrappers/issues/4693)) ([af7e91d](https://github.com/snakemake/snakemake-wrappers/commit/af7e91db262036ae3fef655d0ed9b68314e6633d))
+
+
+### Performance Improvements
+
+* Bump datavzrd version ([#4691](https://github.com/snakemake/snakemake-wrappers/issues/4691)) ([744b021](https://github.com/snakemake/snakemake-wrappers/commit/744b02196c7e43671606fbf99bfe5119e0a25c58))
+
+## [7.9.0](https://github.com/snakemake/snakemake-wrappers/compare/v7.8.1...v7.9.0) (2025-10-31)
+
+
+### Features
+
+* Add Alignoth wrapper ([#4676](https://github.com/snakemake/snakemake-wrappers/issues/4676)) ([fabf863](https://github.com/snakemake/snakemake-wrappers/commit/fabf863c4da509005efdcc4b3f94c09eedc07979))
+
+
+### Performance Improvements
+
+* autobump bio/alignoth ([#4684](https://github.com/snakemake/snakemake-wrappers/issues/4684)) ([fc34672](https://github.com/snakemake/snakemake-wrappers/commit/fc34672026700f3aa4d48a5a27a74cf06e54456a))
+* autobump bio/cutadapt/pe ([#4669](https://github.com/snakemake/snakemake-wrappers/issues/4669)) ([5ca9111](https://github.com/snakemake/snakemake-wrappers/commit/5ca9111cce1edf5bbaa3ed366222d2c66b64cd6c))
+* autobump bio/cutadapt/se ([#4667](https://github.com/snakemake/snakemake-wrappers/issues/4667)) ([813b1d3](https://github.com/snakemake/snakemake-wrappers/commit/813b1d3504012d22cff2284fd5e6b4aca702fe29))
+* autobump bio/diamond/blastp ([#4670](https://github.com/snakemake/snakemake-wrappers/issues/4670)) ([4d49313](https://github.com/snakemake/snakemake-wrappers/commit/4d49313ae09e35dddbb9a14c5a4b0bf1c85a0708))
+* autobump bio/diamond/blastx ([#4671](https://github.com/snakemake/snakemake-wrappers/issues/4671)) ([48b8fbc](https://github.com/snakemake/snakemake-wrappers/commit/48b8fbc02fe55903be95fe371b92d05dbc23dcc8))
+* autobump bio/diamond/makedb ([#4672](https://github.com/snakemake/snakemake-wrappers/issues/4672)) ([c3ee542](https://github.com/snakemake/snakemake-wrappers/commit/c3ee54220d62398ea898fa268437cadf9e6f404f))
+* autobump bio/emu/abundance ([#4688](https://github.com/snakemake/snakemake-wrappers/issues/4688)) ([e331f6e](https://github.com/snakemake/snakemake-wrappers/commit/e331f6ebe636bcd187ea0f302836a6691070dc3c))
+* autobump bio/emu/collapse-taxonomy ([#4687](https://github.com/snakemake/snakemake-wrappers/issues/4687)) ([2b27b8d](https://github.com/snakemake/snakemake-wrappers/commit/2b27b8de4ed5cec63dd646f16ebe45848dcef6b9))
+* autobump bio/emu/combine-outputs ([#4686](https://github.com/snakemake/snakemake-wrappers/issues/4686)) ([8e2380b](https://github.com/snakemake/snakemake-wrappers/commit/8e2380bea5d0bcf28eb5f859c6140f8ed2daa0dd))
+* autobump bio/gdc-api/bam-slicing ([#4673](https://github.com/snakemake/snakemake-wrappers/issues/4673)) ([c481c0b](https://github.com/snakemake/snakemake-wrappers/commit/c481c0b42179520931e8b058a1f8dec6c68977b5))
+* autobump bio/mehari/download-clinvar-db ([#4674](https://github.com/snakemake/snakemake-wrappers/issues/4674)) ([042c238](https://github.com/snakemake/snakemake-wrappers/commit/042c238894eef187481ddc96d300a422db115da0))
+* autobump bio/mehari/download-transcript-db ([#4675](https://github.com/snakemake/snakemake-wrappers/issues/4675)) ([0abdf9d](https://github.com/snakemake/snakemake-wrappers/commit/0abdf9da634a365faf3f2784c9fe96262d929963))
+* autobump bio/multiqc ([#4689](https://github.com/snakemake/snakemake-wrappers/issues/4689)) ([4834977](https://github.com/snakemake/snakemake-wrappers/commit/483497743f1405b166a3675cd0715ef5945c0dcf))
+* autobump geo/rasterio/clip ([#4690](https://github.com/snakemake/snakemake-wrappers/issues/4690)) ([1818819](https://github.com/snakemake/snakemake-wrappers/commit/18188198469a3ff1f5b9b8aa935aa5a71c32d939))
+* autobump utils/datavzrd ([#4685](https://github.com/snakemake/snakemake-wrappers/issues/4685)) ([bf54d66](https://github.com/snakemake/snakemake-wrappers/commit/bf54d664f7a968a7eb9461a35d03ddf08b360616))
+* Bump alignoth version ([#4679](https://github.com/snakemake/snakemake-wrappers/issues/4679)) ([eb370a9](https://github.com/snakemake/snakemake-wrappers/commit/eb370a96a30eaed2c6af6f7108d979bed15d6316))
+* Bump alignoth version ([#4681](https://github.com/snakemake/snakemake-wrappers/issues/4681)) ([57251ad](https://github.com/snakemake/snakemake-wrappers/commit/57251adaaf8fafe118a0687d1e47433fd2fc1159))
+* Bump alignoth version ([#4683](https://github.com/snakemake/snakemake-wrappers/issues/4683)) ([60860c8](https://github.com/snakemake/snakemake-wrappers/commit/60860c85821fd48a6633d63a9850fb0486802b4a))
+* Bump utils/datavzrd ([#4677](https://github.com/snakemake/snakemake-wrappers/issues/4677)) ([89e7e87](https://github.com/snakemake/snakemake-wrappers/commit/89e7e871d9c093a8f296a35eb756c1a101d41d56))
+
 ## [7.8.1](https://github.com/snakemake/snakemake-wrappers/compare/v7.8.0...v7.8.1) (2025-10-19)
 
 
