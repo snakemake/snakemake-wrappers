@@ -1,5 +1,17 @@
 # Changelog
 
+## [8.1.1](https://github.com/snakemake/snakemake-wrappers/compare/v8.1.0...v8.1.1) (2025-12-12)
+
+
+### Performance Improvements
+
+* autobump bio/encode_fastq_downloader/environment.yaml ([#4781](https://github.com/snakemake/snakemake-wrappers/issues/4781)) ([11db59d](https://github.com/snakemake/snakemake-wrappers/commit/11db59d4937303f9650c8e45460f26d3291088d7))
+* autobump bio/mlst/environment.yaml ([#4784](https://github.com/snakemake/snakemake-wrappers/issues/4784)) ([05f54fb](https://github.com/snakemake/snakemake-wrappers/commit/05f54fbb3874878a312fa1f5e8272c461ad1f41a))
+* autobump bio/multiqc/environment.yaml ([#4783](https://github.com/snakemake/snakemake-wrappers/issues/4783)) ([cdf39a1](https://github.com/snakemake/snakemake-wrappers/commit/cdf39a1cc5532344a73e765f576facf3c5bfc4c0))
+* autobump bio/reference/ensembl-regulation/environment.yaml ([#4785](https://github.com/snakemake/snakemake-wrappers/issues/4785)) ([378fee1](https://github.com/snakemake/snakemake-wrappers/commit/378fee141dcddd31e38ed7b5ea33411b5a3ff308))
+* autobump bio/samshee/environment.yaml ([#4786](https://github.com/snakemake/snakemake-wrappers/issues/4786)) ([8757e0b](https://github.com/snakemake/snakemake-wrappers/commit/8757e0befb0e4bfdb550a79d58e8e0fbc3f3e854))
+* autobump bio/vep/plugins/environment.yaml ([#4787](https://github.com/snakemake/snakemake-wrappers/issues/4787)) ([ab5eca0](https://github.com/snakemake/snakemake-wrappers/commit/ab5eca03a32842298f395924914ad343e0088802))
+
 ## [8.1.0](https://github.com/snakemake/snakemake-wrappers/compare/v8.0.3...v8.1.0) (2025-12-10)
 
 
