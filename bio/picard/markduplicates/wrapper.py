@@ -19,7 +19,6 @@ java_opts = get_java_opts(snakemake, java_mem_overhead_factor=0.3)
 samtools_opts = (
     snakemake.params.get("samtools_opts", "") + " " + get_samtools_opts(snakemake)
 )
-print("Test")
 
 tool = "MarkDuplicates"
 if snakemake.params.get("withmatecigar", False):
