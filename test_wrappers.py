@@ -107,7 +107,6 @@ def run(tmp_test_dir):
                 f"file://{tmp_test_subdir}/",
             ]
 
-
         if CONTAINERIZED:
             # run snakemake in container
             cmd = [
@@ -129,9 +128,7 @@ def run(tmp_test_dir):
                         with open(generated) as genf, open(expected) as expf:
                             gen_lines = genf.readlines()
                             exp_lines = expf.readlines()
-                        diff = "".join(
-                            difflib.Differ().compare(gen_lines, exp_lines)
-                        )
+                        diff = "".join(difflib.Differ().compare(gen_lines, exp_lines))
                         raise ValueError(
                             f"Unexpected results: {generated} != {expected}."
                             f"Diff:\n{diff}"
@@ -271,8 +268,18 @@ def test_agat(run):
 def test_alignoth(run):
     run(
         "bio/alignoth",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "out/json_plot.vl.json", "out/plot.html", "output-dir/"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "out/json_plot.vl.json",
+            "out/plot.html",
+            "output-dir/",
+        ],
     )
+
 
 def test_alignoth_report_meta(run):
     run(
@@ -383,21 +390,29 @@ def test_nonpareil(run):
             "results/a.fq.npo",
             "results/a.fq.bz2.npo",
             "results/a.fastq.gz.npo",
+            "results/empty.fq.bz2.npo",
+            "results/empty.fq.gz.npo",
+            "results/empty.fq.npo",
         ],
-    )
-
-
-def test_ngsbits_samplesimilarity(run):
-    run(
-        "bio/ngsbits/samplesimilarity",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "--use-conda",
-            "-F",
-            "similarity.tsv",
-        ],
+        compare_results_with_expected={
+            "results/a.fa.log": "expected/a.fa.log",
+            "results/a.fa.npc": "expected/a.fa.npc",
+            "results/a.fas.bz2.npc": "expected/a.fas.bz2.npc",
+            "results/a.fasta.gz.npc": "expected/a.fasta.gz.npc",
+            "results/a.fq.log": "expected/a.fq.log",
+            "results/a.fq.npc": "expected/a.fq.npc",
+            "results/a.fq.bz2.npc": "expected/a.fq.bz2.npc",
+            "results/a.fastq.gz.npc": "expected/a.fastq.gz.npc",
+            "results/empty.fq.bz2.npa": "expected/empty.fq.bz2.npa",
+            "results/empty.fq.bz2.npc": "expected/empty.fq.bz2.npc",
+            "results/empty.fq.bz2.npo": "expected/empty.fq.bz2.npo",
+            "results/empty.fq.gz.npa": "expected/empty.fq.gz.npa",
+            "results/empty.fq.gz.npc": "expected/empty.fq.gz.npc",
+            "results/empty.fq.gz.npo": "expected/empty.fq.gz.npo",
+            "results/empty.fq.npa": "expected/empty.fq.npa",
+            "results/empty.fq.npc": "expected/empty.fq.npc",
+            "results/empty.fq.npo": "expected/empty.fq.npo",
+        },
     )
 
 
@@ -413,10 +428,26 @@ def test_nonpareil_plot(run):
             "results/a.pdf",
             "results/b.pdf",
             "results/c.pdf",
+            "results/d.pdf",
             "results/a.nomodel.pdf",
             "results/b.nomodel.pdf",
             "results/c.nomodel.pdf",
+            "results/d.nomodel.pdf",
             "results/samples.pdf",
+        ],
+    )
+
+
+def test_ngsbits_samplesimilarity(run):
+    run(
+        "bio/ngsbits/samplesimilarity",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "similarity.tsv",
         ],
     )
 
@@ -7159,7 +7190,7 @@ def test_orthanq(run):
             "--use-conda",
             "out/candidates",
             "out/candidates.vcf",
-#             "out/preprocess_hla.bcf",
+            # "out/preprocess_hla.bcf",
             "out/preprocess_virus.bcf",
             "out/calls_hla",
             "out/calls_virus",
