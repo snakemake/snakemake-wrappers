@@ -3,7 +3,10 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bioconductor-mofa2 >=1.16.0,<2
-  - r-data.table >= 1.17.8,<2
+  - bioconductor-mofa2 =1.16.0
+  - r-base =4.5.2 # TODO does this break on testing?
+  # - r-tidyverse # TODO lookup
+  # - r-data.table =1.17.8 # TODO remove maybe
+  - r-arrow =22.0.0
   # - r-readr =2.1.6
   # - r-jsonlite =2.0.0

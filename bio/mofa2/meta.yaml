@@ -1,12 +1,14 @@
 name: mofa2
 description: |
-  Lorem ipsum
+  Train a model on a multi-omic data set with default options.
+url: https://www.bioconductor.org/packages/release/bioc/html/MOFA2.html
 authors:
   - Simon Sack
 input:
-  - Lorem ipsum
+  - |
+    A parquet file in tidy format containing data with the headers: `sample, feature, view, group (optional), value`
+    TODO: document headers!
 output:
-  - Lorem ipsum
+  - An HDF5-file with the trained model.
 notes: |
-  Add any tximport options in the params, they will be transmitted through the
-  R wrapper. Supplementary options will cause unknown parameters error.
+  Lorem ipsum
