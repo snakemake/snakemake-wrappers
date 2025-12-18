@@ -2,13 +2,14 @@
 authors = ["Simon Sack <simon.sack@proton.me>"]
 channels = ["conda-forge", "bioconda"]
 name = "snakemake-wrappers"
-platforms = ["linux-64", "osx-arm64"]
+# platforms = ["linux-64", "osx-arm64"]
+platforms = ["linux-64"]
 version = "0.1.0"
 
 [tasks]
 
 [dependencies]
-# bioconductor-mofa2 = ">=1.16.0,<2"
+bioconductor-mofa2 = ">=1.16.0,<2"
 r-languageserver = ">=0.3.16,<0.4"
 snakemake = ">=9.14.3,<10"
 snakefmt = ">=0.11.2,<0.12"
@@ -19,3 +20,5 @@ pytest = ">=9.0.2,<10"
 "r-data.table" = ">=1.17.8,<2"
 r-arrow = ">=22.0.0,<23"
 polars = ">=1.36.1,<2"
+mofapy2 = ">=0.7.2,<0.8"
+bioconductor-basilisk = ">=1.18.0,<2"

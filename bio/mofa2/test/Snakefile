@@ -4,4 +4,4 @@ rule mofa2:
   output:
     "{data}.hdf5"
   wrapper:
-    "master/bio/mofa2"
+    "file:///home/simon/Documents/Coding_No_Sync/SHK_code/snakemake-wrappers/bio/mofa2/wrapper.R"

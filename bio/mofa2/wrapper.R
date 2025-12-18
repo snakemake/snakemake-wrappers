@@ -7,6 +7,13 @@ library(arrow)
 # load long.data frame from parquet file with headers
 # `sample, feature, view, group (optional), value`
 
+conda_prefix <- Sys.getenv("CONDA_PREFIX")
+# conda_path <- file.path(conda_prefix, )
+
+print(conda_prefix)
+
+reticulate::use_condaenv(conda_prefix)
+
 # cast input path as character to avoid errors
 path <- as.character(snakemake@input[[1]])
 
@@ -28,4 +35,8 @@ mofa_object <- prepare_mofa(
 outfile <- file.path(getwd(), snakemake@output[[1]])
 
 # train the MOFA model and write the result to `outfile`
-run_mofa(mofa_object, outfile)
+run_mofa(
+  mofa_object,
+  outfile,
+  # use_basilisk = TRUE
+)

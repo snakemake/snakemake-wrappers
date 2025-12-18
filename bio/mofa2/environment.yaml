@@ -4,9 +4,10 @@ channels:
   - nodefaults
 dependencies:
   - bioconductor-mofa2 =1.16.0
-  - r-base =4.5.2 # TODO does this break on testing?
+  - bioconductor-basilisk =1.18.0
+  - r-base =4.5.2
   # - r-tidyverse # TODO lookup
   # - r-data.table =1.17.8 # TODO remove maybe
   - r-arrow =22.0.0
-  # - r-readr =2.1.6
-  # - r-jsonlite =2.0.0
+  - mofapy2 =0.7.0
+  - python =3.14.2
