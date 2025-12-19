@@ -4,6 +4,6 @@ channels:
   - nodefaults
 dependencies:
   - snpsift =5.4.0a
-  - bcftools =1.22
+  - bcftools =1.23
   - pbgzip =2016.08.04
   - snakemake-wrapper-utils =0.8.0
