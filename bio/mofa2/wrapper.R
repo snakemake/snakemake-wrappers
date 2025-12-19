@@ -1,18 +1,22 @@
 #!/bin/R
 
-# Loading library
+# load libraries
 library(MOFA2)
 library(arrow)
 
-# load long.data frame from parquet file with headers
-# `sample, feature, view, group (optional), value`
-
+# connect to conda environment
 conda_prefix <- Sys.getenv("CONDA_PREFIX")
-# conda_path <- file.path(conda_prefix, )
-
-print(conda_prefix)
-
 reticulate::use_condaenv(conda_prefix)
+
+# if log file is provided, write log to that file
+if (length(snakemake@log) > 0) {
+  log <- file(snakemake@log[[1]], open = "wt")
+  sink(log)
+  sink(log, type = "message")
+}
+
+# load long.data frame from parquet file with following headers:
+# `sample, feature, view, group (optional), value`
 
 # cast input path as character to avoid errors
 path <- as.character(snakemake@input[[1]])

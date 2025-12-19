@@ -3,5 +3,8 @@ rule mofa2:
     "{data}.parquet"
   output:
     "{data}.hdf5"
+  log:
+    "log/{data}.log"
   wrapper:
-    "file:///home/simon/Documents/Coding_No_Sync/SHK_code/snakemake-wrappers/bio/mofa2/wrapper.R"
+    # "master/bio/mofa2"
+    "file://.."

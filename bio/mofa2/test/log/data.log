@@ -1,0 +1,29 @@
+Creating MOFA object from a data.frame...
+
+# Multi-group mode requested.
+
+This is an advanced option, if this is the first time that you are running MOFA, we suggest that you try do some exploration first without specifying groups. Two important remarks:
+
+ - The aim of the multi-group framework is to identify the sources of variability *within* the groups. If your aim is to find a factor that 'separates' the groups, you DO NOT want to use the multi-group framework. Please see the FAQ on the MOFA2 webpage.
+
+ - It is important to account for the group effect before selecting highly variable features (HVFs). We suggest that either you calculate HVFs per group and then take the union, or regress out the group effect before HVF selection
+Checking data options...
+Checking training options...
+Checking model options...
+Connecting to the mofapy2 python package using reticulate (use_basilisk = FALSE)... 
+    Please make sure to manually specify the right python binary when loading R with reticulate::use_python(..., force=TRUE) or the right conda environment with reticulate::use_condaenv(..., force=TRUE)
+    If you prefer to let us automatically install a conda environment with 'mofapy2' installed using the 'basilisk' package, please use the argument 'use_basilisk = TRUE'
+
+10 factors were found to explain no variance and they were removed for downstream analysis. You can disable this option by setting load_model(..., remove_inactive_factors = FALSE)
+Trained MOFA with the following characteristics: 
+ Number of views: 2 
+ Views names: view_0 view_1 
+ Number of features (per view): 1000 1000 
+ Number of groups: 2 
+ Groups names: group_0 group_1 
+ Number of samples (per group): 100 100 
+ Number of factors: 5 
+
+Warning message:
+In run_mofa(mofa_object, outfile, ) :
+  The latest mofapy2 version is 0.7.0, you are using 0.7.2. Please upgrade with 'pip install mofapy2'

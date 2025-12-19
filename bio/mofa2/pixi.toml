@@ -1,0 +1,14 @@
+[workspace]
+authors = ["Simon <simon.sack@proton.me>"]
+channels = ["conda-forge", "bioconda"]
+name = "mofa2"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+conda = ">=25.11.1,<26"
+snakemake = ">=9.14.5,<10"
+r = ">=4.5,<4.6"
+r-languageserver = ">=0.3.16,<0.4"
