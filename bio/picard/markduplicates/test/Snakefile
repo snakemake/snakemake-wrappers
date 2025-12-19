@@ -56,4 +56,5 @@ use rule markduplicates_bam as markduplicates_cram with:
     params:
         extra="--REMOVE_DUPLICATES true",
         embed_ref=True,  # set true if the fasta reference should be embedded into the cram
+        samtools_opts="--output-fmt-option version=3.0",
         withmatecigar=False,
