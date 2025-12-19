@@ -4,4 +4,3 @@ channels:
   - nodefaults
 dependencies:
   - samtools =1.23
-  - pigz =2.8
