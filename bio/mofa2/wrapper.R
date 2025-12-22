@@ -29,6 +29,29 @@ data_opts <- get_default_data_options(mofa_object)
 model_opts <- get_default_model_options(mofa_object)
 train_opts <- get_default_training_options(mofa_object)
 
+# add params:
+# model params: scale_groups, scale_views
+
+if ("scale_groups" %in% names(snakemake@params)) {
+  if (snakemake@params[["scale_groups"]] == "FALSE") {
+    data_opts$scale_groups <- FALSE
+  }
+  if (snakemake@params[["scale_groups"]] == "TRUE") {
+    data_opts$scale_groups <- TRUE
+  }
+}
+
+if ("scale_views" %in% names(snakemake@params)) {
+  if (snakemake@params[["scale_views"]] == "FALSE") {
+    data_opts$scale_views <- FALSE
+  }
+  if (snakemake@params[["scale_views"]] == "TRUE") {
+    data_opts$scale_views <- TRUE
+  }
+}
+
+# training params: maxiter (int), convergence_mode, gpu_mode, verbose
+
 mofa_object <- prepare_mofa(
   object = mofa_object,
   data_options = data_opts,
@@ -42,5 +65,4 @@ outfile <- file.path(getwd(), snakemake@output[[1]])
 run_mofa(
   mofa_object,
   outfile,
-  # use_basilisk = TRUE
 )

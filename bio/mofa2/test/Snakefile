@@ -5,6 +5,14 @@ rule mofa2:
     "{data}.hdf5"
   log:
     "log/{data}.log"
+  params:
+    # if groups have different ranges/variances, it is good practice to scale
+    # each group to unit variance. Default is FALSE
+    scale_groups = "TRUE",
+    # if views have different ranges/variances, it is good practice to scale
+    # each view to unit variance. Default is FALSE
+    scale_views = "FALSE" 
+# model params: scale_groups, scale_views
   wrapper:
     # "master/bio/mofa2"
     "file://.."
