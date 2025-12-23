@@ -9,5 +9,4 @@ rule mofa2:
         scale_groups="FALSE",  # set to TRUE if groups have different ranges/variances
         scale_views="FALSE",  # set to TRUE if views have different ranges/variances
     wrapper:
-        # "master/bio/mofa2"
-        "file://.."
+        "master/bio/mofa2"
