@@ -53,13 +53,13 @@ try:
         shell("curl --fail -L {url} > {snakemake.output[0]} {log}")
     else:
         shell("(curl --fail -L {url} | gzip -d > {snakemake.output[0]}) {log}")
-except subprocess.CalledProcessError:
+except sp.CalledProcessError:
     try:
         if out_gz:
             shell("curl --fail -L {ftp_url} > {snakemake.output[0]} {log}")
         else:
             shell("(curl --fail -L {ftp_url} | gzip -d > {snakemake.output[0]}) {log}")
-    except subprocess.CalledProcessError:
+    except sp.CalledProcessError:
         if snakemake.log:
             sys.stderr = open(snakemake.log[0], "a")
         print(
