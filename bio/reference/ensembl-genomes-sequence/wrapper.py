@@ -33,6 +33,8 @@ else:
 suffixes = []
 datatype = snakemake.params.get("datatype", "")
 chromosome = snakemake.params.get("chromosome", "")
+if chromosome and isinstance(chromosome, str):
+    chromosome = [chromosome]
 if datatype == "dna":
     if chromosome:
         suffixes = [f"dna.chromosome.{chrom}.fa.gz" for chrom in chromosome]
