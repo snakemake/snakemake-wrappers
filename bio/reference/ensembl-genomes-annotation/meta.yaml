@@ -1,0 +1,12 @@
+name: ensembl-genomes-annotation
+description: |
+  Download annotation of genomic sites (e.g. transcripts) for non-vertebrate
+  species from Ensembl Genomes FTP servers, and store them in a single .gtf or
+  .gff3 file. Adapted from ``ensembl-annotation`` wrapper.
+authors:
+  - Brandon Seah
+  - Johannes Köster
+output:
+  - Ensembl Genomes GTF or GFF3 anotation file
+params:
+  - url: URL from where to download cache data (optional; by default is ``https://ftp.ebi.ac.uk/ensemblgenomes/pub``)

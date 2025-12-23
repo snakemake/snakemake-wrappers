@@ -1,0 +1,81 @@
+rule get_genome:
+    output:
+        "refs/ensembl-genomes-genome.fasta",
+    params:
+        species="plasmodium_falciparum",
+        assembly="GCA000002765v3",
+        division="protists",
+        datatype="dna",
+        release="62",
+    log:
+        "logs/get_genome.log",
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/reference/ensembl-genomes-sequence"
+
+
+rule get_genome_gzipped:
+    output:
+        "refs/ensembl-genomes-genome.fa.gz",
+    params:
+        species="plasmodium_falciparum",
+        assembly="GCA000002765v3",
+        division="protists",
+        datatype="dna",
+        release="62",
+    log:
+        "logs/get_genome.log",
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/reference/ensembl-genomes-sequence"
+
+
+rule get_single_chromosome:
+    output:
+        "refs/ensembl-genomes-chrMt.fasta",
+    params:
+        species="schizosaccharomyces_pombe",
+        assembly="ASM294v2",
+        division="fungi",
+        datatype="dna",
+        release="62",
+        chromosome=["MT"],  # optional: restrict to one or multiple chromosomes, for multiple see below
+    log:
+        "logs/get_genome.log",
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/reference/ensembl-genomes-sequence"
+
+
+rule get_multiple_chromosome:
+    output:
+        "refs/ensembl-genomes-chr3_and_chrMt.fasta",
+    params:
+        species="schizosaccharomyces_pombe",
+        assembly="ASM294v2",
+        division="fungi",
+        datatype="dna",
+        release="62",
+        chromosome=["III", "MT"],
+    log:
+        "logs/get_genome.log",
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/reference/ensembl-genomes-sequence"
+
+
+rule get_multiple_chromosomes_gzipped:
+    output:
+        "refs/ensembl-genomes-chr3_and_chrMt.fasta.gz",
+    params:
+        species="schizosaccharomyces_pombe",
+        assembly="ASM294v2",
+        division="fungi",
+        datatype="dna",
+        release="62",
+        chromosome=["III", "MT"],
+    log:
+        "logs/get_genome.log",
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/reference/ensembl-genomes-sequence"

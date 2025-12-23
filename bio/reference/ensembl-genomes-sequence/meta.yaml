@@ -1,0 +1,13 @@
+name: ensembl-genomes-sequence
+description: |
+  Download sequences (e.g. genome) of non-vertebrate species from Ensembl
+  Genomes FTP servers, and store them in a single .fasta file. The release
+  numbers and folder organization differ from the Ensembl project, which
+  maintains data for vertebrate species. Based on wrapper ``ensembl-sequences``
+authors:
+  - Brandon Seah
+  - Johannes Köster
+output:
+  - fasta file
+params:
+  - url: URL from where to download cache data (optional; by default is ``ftp://ftp.ebi.ac.uk/ensemblgenomes/pub/``)

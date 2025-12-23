@@ -1,0 +1,28 @@
+rule get_annotation:
+    output:
+        "refs/ensembl-genomes-annotation.gtf",
+    params:
+        species="schizosaccharomyces_pombe",
+        division="fungi",
+        assembly="ASM294v2",
+        release="62",
+    log:
+        "logs/get_annotation.log",
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/reference/ensembl-genomes-annotation"
+
+
+rule get_annotation_gz:
+    output:
+        "refs/ensembl-genomes-annotation.gtf.gz",
+    params:
+        species="schizosaccharomyces_pombe",
+        division="fungi",
+        assembly="ASM294v2",
+        release="62",
+    log:
+        "logs/get_annotation.log",
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/reference/ensembl-genomes-annotation"
