@@ -8,6 +8,6 @@ authors:
   - Johannes Köster
 url: https://ensemblgenomes.org/
 output:
-  - Ensembl Genomes GTF or GFF3 anotation file
+  - Ensembl Genomes GTF or GFF3 annotation file
 params:
   - url: URL from where to download cache data (optional; by default is ``https://ftp.ebi.ac.uk/ensemblgenomes/pub``)

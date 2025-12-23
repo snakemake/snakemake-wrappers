@@ -3,7 +3,7 @@ description: |
   Download sequences (e.g. genome) of non-vertebrate species from Ensembl
   Genomes FTP servers, and store them in a single .fasta file. The release
   numbers and folder organization differ from the Ensembl project, which
-  maintains data for vertebrate species. Based on wrapper ``ensembl-sequences``
+  maintains data for vertebrate species. Based on wrapper ``ensembl-sequence``
 authors:
   - Brandon Seah
   - Johannes Köster
