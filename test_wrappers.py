@@ -7175,4 +7175,4 @@ def test_orthanq(run):
 
 
 def test_mofa2(run):
-    run("bio/mofa2", ["snakemake", "--cores", "1", "data.hdf5", "--sdm", "conda", "-F"])
+    run("bio/mofa2", ["snakemake", "--cores", "1", "data.hdf5", "--use-conda", "-F"])
