@@ -65,7 +65,7 @@ if chromosome:
         )
 
 url = snakemake.params.get("url", "https://ftp.ebi.ac.uk/ensemblgenomes/pub/")
-url_prefix = f"release-{release}/{division}/fasta/{species}/{datatype}/{species.capitalize()}.{assembly}"
+url_prefix = f"{url}/release-{release}/{division}/fasta/{species}/{datatype}/{species.capitalize()}.{assembly}"
 
 for suffix in suffixes:
     success = False
