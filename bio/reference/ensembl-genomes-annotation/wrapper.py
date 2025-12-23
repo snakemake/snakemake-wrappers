@@ -6,11 +6,8 @@ __license__ = "MIT"
 import subprocess as sp
 import sys
 
-# from itertools import product
 from snakemake.shell import shell
 from snakemake.logging import logger
-
-# from os import path
 from pathlib import Path
 
 species = snakemake.params.species.lower()

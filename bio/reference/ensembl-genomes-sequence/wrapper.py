@@ -4,8 +4,6 @@ __email__ = "brandon_seah@tll.org.sg"
 __license__ = "MIT"
 
 import subprocess as sp
-import sys
-from itertools import product
 from snakemake.shell import shell
 from snakemake.logging import logger
 from os import path

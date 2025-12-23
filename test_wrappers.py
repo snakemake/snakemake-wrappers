@@ -5727,7 +5727,7 @@ def test_ensembl_genomes_sequence_get_genome(run):
     )
 
 
-def test_ensembl_genomes_get_genome_gzipped(run):
+def test_ensembl_genomes_sequence_get_genome_gzipped(run):
     run(
         "bio/reference/ensembl-genomes-sequence",
         [
@@ -5741,7 +5741,7 @@ def test_ensembl_genomes_get_genome_gzipped(run):
     )
 
 
-def test_ensembl_genomes_get_single_chromosome(run):
+def test_ensembl_genomes_sequence_get_single_chromosome(run):
     run(
         "bio/reference/ensembl-genomes-sequence",
         [
@@ -5755,7 +5755,7 @@ def test_ensembl_genomes_get_single_chromosome(run):
     )
 
 
-def test_ensembl_genomes_get_multiple_chromosome(run):
+def test_ensembl_genomes_sequence_get_multiple_chromosome(run):
     run(
         "bio/reference/ensembl-genomes-sequence",
         [
@@ -5769,7 +5769,7 @@ def test_ensembl_genomes_get_multiple_chromosome(run):
     )
 
 
-def test_ensembl_genomes_get_multiple_chromosomes_gzipped(run):
+def test_ensembl_genomes_sequence_get_multiple_chromosomes_gzipped(run):
     run(
         "bio/reference/ensembl-genomes-sequence",
         [
