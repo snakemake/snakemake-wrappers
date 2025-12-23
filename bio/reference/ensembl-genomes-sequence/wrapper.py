@@ -8,6 +8,8 @@ from snakemake.shell import shell
 from snakemake.logging import logger
 from os import path
 
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+
 species = snakemake.params.species.lower()
 release = int(snakemake.params.release)
 division = snakemake.params.division.lower()
@@ -22,8 +24,6 @@ if division not in available_divisions:
 # TODO: bacteria, fungi/ascomycota folders are further subdivided
 # TODO: chromosome file names may not follow standard naming convention, e.g.
 # Plasmodium_falciparum.GCA000002765v3.dna.primary_assembly.Pf3D7_01_v3.fa.gz
-
-log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 if path.splitext(snakemake.output[0])[1] == ".gz":
     decompress = ""

@@ -10,14 +10,12 @@ from snakemake.shell import shell
 from snakemake.logging import logger
 from pathlib import Path
 
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+
 species = snakemake.params.species.lower()
 release = int(snakemake.params.release)
 division = snakemake.params.division.lower()
 assembly = snakemake.params.assembly
-
-out_fmt = Path(snakemake.output[0]).suffixes
-out_gz = (out_fmt.pop() and True) if out_fmt[-1] == ".gz" else False
-out_fmt = out_fmt.pop().lstrip(".")
 
 available_divisions = ["fungi", "metazoa", "plants", "protists"]
 if division not in available_divisions:
@@ -29,7 +27,14 @@ if division not in available_divisions:
 # TODO: chromosome file names may not follow standard naming convention, e.g.
 # Plasmodium_falciparum.GCA000002765v3.dna.primary_assembly.Pf3D7_01_v3.fa.gz
 
-log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+out_fmt = Path(snakemake.output[0]).suffixes
+if not out_fmt:
+    raise ValueError("Output file must have a format filename extension")
+out_gz = len(out_fmt) > 1 and out_fmt[-1] == ".gz"
+if out_gz:
+    out_fmt = out_fmt[-2].lstrip(".")
+else:
+    out_fmt = out_fmt[-1].lstrip(".")
 
 suffix = ""
 if out_fmt == "gtf":
