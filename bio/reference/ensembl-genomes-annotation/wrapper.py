@@ -41,7 +41,7 @@ else:
         "invalid format specified. Only 'gtf[.gz]' and 'gff3[.gz]' are currently supported."
     )
 
-url = snakemake.params.get("url", "https://ftp.ebi.ac.uk/ensemblgenomes/pub/")
+url = snakemake.params.get("url", "https://ftp.ebi.ac.uk/ensemblgenomes/pub")
 url = f"{url}/release-{release}/{division}/{out_fmt}/{species}/{species.capitalize()}.{assembly}.{release}.{suffix}"
 ftp_url = url.replace("https://", "ftp://")
 

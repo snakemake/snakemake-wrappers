@@ -30,7 +30,7 @@ if path.splitext(snakemake.output[0])[1] == ".gz":
 else:
     decompress = " | gzip -d"
 
-suffixes = ""
+suffixes = []
 datatype = snakemake.params.get("datatype", "")
 chromosome = snakemake.params.get("chromosome", "")
 if datatype == "dna":
@@ -62,7 +62,7 @@ if chromosome:
             "Invalid datatype. To select individual chromosomes, the datatype must be dna."
         )
 
-url = snakemake.params.get("url", "https://ftp.ebi.ac.uk/ensemblgenomes/pub/")
+url = snakemake.params.get("url", "https://ftp.ebi.ac.uk/ensemblgenomes/pub")
 url_prefix = f"{url}/release-{release}/{division}/fasta/{species}/{datatype}/{species.capitalize()}.{assembly}"
 
 for suffix in suffixes:
