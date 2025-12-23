@@ -6,6 +6,7 @@ description: |
 authors:
   - Brandon Seah
   - Johannes Köster
+url: https://ensemblgenomes.org/
 output:
   - Ensembl Genomes GTF or GFF3 anotation file
 params:
