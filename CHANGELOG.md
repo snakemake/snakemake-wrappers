@@ -1,5 +1,16 @@
 # Changelog
 
+## [8.1.2](https://github.com/snakemake/snakemake-wrappers/compare/v8.1.1...v8.1.2) (2025-12-26)
+
+
+### Performance Improvements
+
+* autobump bio/diamond/blastp/environment.yaml ([#4886](https://github.com/snakemake/snakemake-wrappers/issues/4886)) ([f430448](https://github.com/snakemake/snakemake-wrappers/commit/f43044856f5291b40e65a179cf9f8157e2459c67))
+* autobump bio/diamond/blastx/environment.yaml ([#4885](https://github.com/snakemake/snakemake-wrappers/issues/4885)) ([9c71773](https://github.com/snakemake/snakemake-wrappers/commit/9c71773701fe846185f6458776a4ece9bbe063d5))
+* autobump bio/diamond/makedb/environment.yaml ([#4884](https://github.com/snakemake/snakemake-wrappers/issues/4884)) ([d8b3ae5](https://github.com/snakemake/snakemake-wrappers/commit/d8b3ae5a2cfdfb78632da6f80b2ecf8cc8fd1118))
+* autobump geo/rasterio/clip/environment.yaml ([#4887](https://github.com/snakemake/snakemake-wrappers/issues/4887)) ([e107b8b](https://github.com/snakemake/snakemake-wrappers/commit/e107b8b799bb0dde7ae68100d14bf879f087e05c))
+* suggest realistic amount of memory for samtools sort and adapt example to latest wrapper features ([#4880](https://github.com/snakemake/snakemake-wrappers/issues/4880)) ([1af3918](https://github.com/snakemake/snakemake-wrappers/commit/1af39189f12c60f5afb53e7656d27513d0702e05))
+
 ## [8.1.1](https://github.com/snakemake/snakemake-wrappers/compare/v8.1.0...v8.1.1) (2025-12-19)
 
 
