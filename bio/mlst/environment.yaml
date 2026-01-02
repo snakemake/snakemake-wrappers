@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - mlst =2.25.0
+  - mlst =2.28.1
