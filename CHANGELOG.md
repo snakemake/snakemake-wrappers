@@ -1,5 +1,20 @@
 # Changelog
 
+## [8.1.2](https://github.com/snakemake/snakemake-wrappers/compare/v8.1.1...v8.1.2) (2026-01-02)
+
+
+### Performance Improvements
+
+* autobump bio/diamond/blastp/environment.yaml ([#4886](https://github.com/snakemake/snakemake-wrappers/issues/4886)) ([f430448](https://github.com/snakemake/snakemake-wrappers/commit/f43044856f5291b40e65a179cf9f8157e2459c67))
+* autobump bio/diamond/blastx/environment.yaml ([#4885](https://github.com/snakemake/snakemake-wrappers/issues/4885)) ([9c71773](https://github.com/snakemake/snakemake-wrappers/commit/9c71773701fe846185f6458776a4ece9bbe063d5))
+* autobump bio/diamond/makedb/environment.yaml ([#4884](https://github.com/snakemake/snakemake-wrappers/issues/4884)) ([d8b3ae5](https://github.com/snakemake/snakemake-wrappers/commit/d8b3ae5a2cfdfb78632da6f80b2ecf8cc8fd1118))
+* autobump bio/mlst/environment.yaml ([#4888](https://github.com/snakemake/snakemake-wrappers/issues/4888)) ([e7e8b0d](https://github.com/snakemake/snakemake-wrappers/commit/e7e8b0d4a2408cfcf2b7b39322e042a7cf43d2d7))
+* autobump bio/reference/ensembl-biomart-table/environment.yaml ([#4889](https://github.com/snakemake/snakemake-wrappers/issues/4889)) ([eb59502](https://github.com/snakemake/snakemake-wrappers/commit/eb595027b2bf3d946aea5891e0b1a65887b4d850))
+* autobump bio/reference/ensembl-mysql-table/environment.yaml ([#4890](https://github.com/snakemake/snakemake-wrappers/issues/4890)) ([fcc68ce](https://github.com/snakemake/snakemake-wrappers/commit/fcc68ce3db150e2ce82f09865f61571b629dc4f6))
+* autobump bio/reference/ensembl-variation/environment.yaml ([#4891](https://github.com/snakemake/snakemake-wrappers/issues/4891)) ([70989cf](https://github.com/snakemake/snakemake-wrappers/commit/70989cf7196f8505bf653e5710db9cebd96aabb8))
+* autobump geo/rasterio/clip/environment.yaml ([#4887](https://github.com/snakemake/snakemake-wrappers/issues/4887)) ([e107b8b](https://github.com/snakemake/snakemake-wrappers/commit/e107b8b799bb0dde7ae68100d14bf879f087e05c))
+* suggest realistic amount of memory for samtools sort and adapt example to latest wrapper features ([#4880](https://github.com/snakemake/snakemake-wrappers/issues/4880)) ([1af3918](https://github.com/snakemake/snakemake-wrappers/commit/1af39189f12c60f5afb53e7656d27513d0702e05))
+
 ## [8.1.1](https://github.com/snakemake/snakemake-wrappers/compare/v8.1.0...v8.1.1) (2025-12-19)
 
 
