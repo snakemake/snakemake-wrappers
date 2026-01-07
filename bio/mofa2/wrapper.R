@@ -64,5 +64,5 @@ outfile <- file.path(getwd(), snakemake@output[[1]])
 # train the MOFA model and write the result to `outfile`
 run_mofa(
   mofa_object,
-  outfile,
+  outfile
 )
