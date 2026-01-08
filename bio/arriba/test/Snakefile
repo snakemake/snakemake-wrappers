@@ -40,7 +40,7 @@ rule arriba_with_sv:
         # optional arriba blacklist file
         custom_blacklist="blacklist.tsv",
         # optional file with known structural variants
-        sv_list="sv_list_from_wgs.vcf"
+        sv_file="sv_list_from_wgs.vcf"
     output:
         # approved gene fusions
         fusions="fusions/{sample}.with_sv.tsv",

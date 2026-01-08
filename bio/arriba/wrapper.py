@@ -74,7 +74,7 @@ else:
 
 sv_file_input = snakemake.input.get("sv_file")
 if sv_file_input:
-    sv_cmd = "-d " + sv_file
+    sv_cmd = "-d " + sv_file_input
 else:
     sv_cmd = ""
 
