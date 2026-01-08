@@ -46,10 +46,8 @@ mofa_object <- prepare_mofa(
   training_options = train_opts
 )
 
-outfile <- file.path(getwd(), snakemake@output[[1]])
-
 # train the MOFA model and write the result to `outfile`
 run_mofa(
   mofa_object,
-  outfile
+  snakemake@output[[1]]
 )
