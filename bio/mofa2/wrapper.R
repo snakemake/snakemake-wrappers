@@ -29,19 +29,16 @@ data_opts <- get_default_data_options(mofa_object)
 model_opts <- get_default_model_options(mofa_object)
 train_opts <- get_default_training_options(mofa_object)
 
-# add params:
 # model params: scale_groups, scale_views
-
 if ("scale_groups" %in% names(snakemake@params)) {
   data_opts$scale_groups <- snakemake@params[["scale_groups"]]
 }
 
 if ("scale_views" %in% names(snakemake@params)) {
-  data_opts$scale_groups <- snakemake@params[["scale_views"]]
+  data_opts$scale_views <- snakemake@params[["scale_views"]]
 }
 
-# training params: maxiter (int), convergence_mode, gpu_mode, verbose
-
+# create MOFA-object
 mofa_object <- prepare_mofa(
   object = mofa_object,
   data_options = data_opts,
