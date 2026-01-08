@@ -2003,6 +2003,21 @@ def test_arriba(run):
     )
 
 
+def test_arriba_with_sv(run):
+    run(
+        "bio/arriba",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "fusions/A.with_sv.tsv",
+            "fusions/A.with_sv.discarded.tsv",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_art_profiler_illumina(run):
     run(
         "bio/art/profiler_illumina",
