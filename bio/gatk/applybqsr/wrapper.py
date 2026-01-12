@@ -16,9 +16,10 @@ java_opts = get_java_opts(snakemake)
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 
-if snakemake.output.bam.endswith(".cram") and embed_ref:
+if snakemake.output.bam.endswith(".cram"):
+    embed =",embed_ref" if embed_ref else ""
     output = "/dev/stdout"
-    pipe_cmd = " | samtools view -h -O cram,embed_ref -T {reference} -o {snakemake.output.bam} -"
+    pipe_cmd = f" | samtools view -h -O cram{embed} -T {reference} -o {snakemake.output.bam} -"
 else:
     output = snakemake.output.bam
     pipe_cmd = ""
