@@ -4,5 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - seqkit =2.12.0
-  - htslib =1.22.1
+  - htslib =1.23
   - snakemake-wrapper-utils =0.8.0
