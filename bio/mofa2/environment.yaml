@@ -4,7 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - bioconductor-mofa2 =1.16.0
-  - r-base =4.4.3
   - r-arrow =22.0.0
   - mofapy2 =0.7.2
-  - python =3.14.2
