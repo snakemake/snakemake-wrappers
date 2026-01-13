@@ -5136,6 +5136,7 @@ def test_gatk_applybqsr_cram(run):
         ],
     )
 
+
 def test_gatk_applybqsrspark(run):
     run(
         "bio/gatk/applybqsrspark",
