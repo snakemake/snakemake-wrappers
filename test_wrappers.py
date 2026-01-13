@@ -2010,6 +2010,21 @@ def test_arriba(run):
     )
 
 
+def test_arriba_with_sv(run):
+    run(
+        "bio/arriba",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "fusions/A.with_sv.tsv",
+            "fusions/A.with_sv.discarded.tsv",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_art_profiler_illumina(run):
     run(
         "bio/art/profiler_illumina",
@@ -5090,6 +5105,22 @@ def test_gatk_applybqsr(run):
     )
 
 
+def test_gatk_applybqsr_cram_embed_ref(run):
+    run(
+        "bio/gatk/applybqsr",
+        [
+            "snakemake",
+            "-s",
+            "Snakefile_cram_embed_ref",
+            "--cores",
+            "1",
+            "recal/a.cram",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_gatk_applybqsr_cram(run):
     run(
         "bio/gatk/applybqsr",
@@ -5104,7 +5135,6 @@ def test_gatk_applybqsr_cram(run):
             "-F",
         ],
     )
-
 
 def test_gatk_applybqsrspark(run):
     run(
@@ -7194,4 +7224,3 @@ def test_go_yq(run):
             "table.json",
         ],
     )
-

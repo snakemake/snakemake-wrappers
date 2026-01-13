@@ -4,16 +4,21 @@ description: Detect gene fusions from chimeric STAR output
 authors:
   - Jan Forster
   - Felix Mölder
+  - David Lähnemann
 input:
-  - bam: Path to bam formatted alignment file from STAR
-  - genome: Path to fasta formatted genome sequence
-  - annotation: Path to GTF formatted genome annotation
+  - bam: Path to SAM, BAM or CRAM formatted alignment file from STAR. See `the documentation on alignment file inputs <https://github.com/suhrig/arriba/wiki/04-Input-files#alignments>`_.
+  - genome: Path to FASTA formatted genome sequence file (may be gzipped). See `the documentation on assembly file inputs <https://github.com/suhrig/arriba/wiki/04-Input-files#assembly>`_.
+  - annotation: Path to GTF formatted genome annotation file (may be gzipped). See `the documentation on annotation file inputs <https://github.com/suhrig/arriba/wiki/04-Input-files#annotation>`_.
+  - custom_blacklist: (optional) Path to custom arriba blacklist file. See `the documentation on blacklist <https://arriba.readthedocs.io/en/latest/input-files/#blacklist>`_.
+  - custom_known_fusions: (optional) Path to known fusions file. See `the documentation on known fusions <https://arriba.readthedocs.io/en/latest/input-files/#known-fusions>`_.
+  - sv_file: (optional) Path to structural variations calls from WGS. See `the documentation on SV <https://arriba.readthedocs.io/en/latest/input-files/#structural-variant-calls-from-wgs>`_.
 output:
-  - fusions: Path to output fusion file
+  - fusions: Path to output file for fusions after filtering.
+  - discarded: (optional) Path to output file for fusions that were filtered out by arriba.
 params:
-  - known_fusions: Path to known fusions file, see `official documentation on known fusions <https://arriba.readthedocs.io/en/latest/input-files/#known-fusions>`_ for more information.
-  - blacklist: Path to blacklist file, see `official documentation on blacklist <https://arriba.readthedocs.io/en/latest/input-files/#blacklist>`_ for more information.
-  - sv_file: Path to structural variations calls from WGS, see `official documentation on SV <https://arriba.readthedocs.io/en/latest/input-files/#structural-variant-calls-from-wgs>`_ for more information.
-  - extra: Other `optional parameters <https://arriba.readthedocs.io/en/latest/command-line-options/>`_
+  - genome_build: Required if any of ``default_blacklist`` or ``default_known_fusions`` is set to ``True``
+  - default_blacklist: Set to ``True`` to use default blacklist. Must be ``False`` (or omitted) if a ``custom_blacklist`` file is specified under ``input:``. See `the documentation on blacklist <https://arriba.readthedocs.io/en/latest/input-files/#blacklist>`_.
+  - default_known_fusions: Set to ``True`` to use default known fusions. Must be ``False`` (or omitted) if a ``custom_known_fusions`` file is specified under ``input:``. See `the documentation on known fusions <https://arriba.readthedocs.io/en/latest/input-files/#known-fusions>`_.
+  - extra: Other `optional parameters <https://arriba.readthedocs.io/en/latest/command-line-options/>`_.
 notes: |
-  This tool/wrapper does not handle multi threading.
+  This tool/wrapper does not handle multi threading, as arriba indicates that no significant speedup is expected from it. Also see the ``-@ THREADS`` option description description in the `the command line arguments documentation <https://github.com/suhrig/arriba/wiki/07-Command-line-options>`_.
