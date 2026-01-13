@@ -7,7 +7,9 @@ rule arriba:
         # path to annotation gtf
         annotation="annotation.gtf",
         # optional arriba blacklist file
-        custom_blacklist=[],
+        custom_blacklist="minimal_blacklist.tsv.gz",
+        # optional file with known fusions
+        custom_known_fusions="minimal_known_fusions.tsv.gz",
     output:
         # approved gene fusions
         fusions="fusions/{sample}.tsv",
@@ -16,16 +18,43 @@ rule arriba:
     log:
         "logs/arriba/{sample}.log",
     params:
-        # required when blacklist or known_fusions is set 
+        # strongly recommended, see https://arriba.readthedocs.io/en/latest/input-files/#blacklist
+        # only set blacklist input-file or blacklist-param
+        default_blacklist=False,  # optional
+        default_known_fusions=False,  # optional
+        # optional parameters
+        extra="-i 1,2",
+    threads: 1
+    wrapper:
+        "master/bio/arriba"
+
+
+rule arriba_with_sv:
+    input:
+        # STAR bam containing chimeric alignments
+        bam="{sample}.bam",
+        # path to reference genome
+        genome="genome.fa.gz",
+        # path to annotation gtf
+        annotation="annotation.gtf",
+        # optional arriba blacklist file
+        custom_blacklist="blacklist.tsv",
+        # optional file with known structural variants
+        sv_file="sv_list_from_wgs.vcf"
+    output:
+        # approved gene fusions
+        fusions="fusions/{sample}.with_sv.tsv",
+        # discarded gene fusions
+        discarded="fusions/{sample}.with_sv.discarded.tsv",  # optional
+    log:
+        "logs/arriba/{sample}.with_sv.log",
+    params:
+        # required when any of blacklist or known_fusions is set to True
         genome_build="GRCh38",
         # strongly recommended, see https://arriba.readthedocs.io/en/latest/input-files/#blacklist
         # only set blacklist input-file or blacklist-param
         default_blacklist=False,  # optional
         default_known_fusions=True,  # optional
-        # file containing information from structural variant analysis
-        sv_file="",  # optional
-        # optional parameters
-        extra="-i 1,2",
     threads: 1
     wrapper:
         "master/bio/arriba"
