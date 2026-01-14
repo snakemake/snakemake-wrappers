@@ -1,0 +1,8 @@
+from snakemake.utils import min_version
+
+min_version("9.13.1")
+
+module alignoth_report:
+    meta_wrapper: "file:.."
+
+use rule * from alignoth_report

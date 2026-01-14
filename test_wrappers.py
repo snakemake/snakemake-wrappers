@@ -1,4 +1,5 @@
 import difflib
+from pathlib import Path
 import subprocess
 import os
 import tempfile
@@ -41,8 +42,11 @@ def tmp_test_dir():
 @pytest.fixture
 def run(tmp_test_dir):
     def _run(wrapper, cmd, check_log=None, compare_results_with_expected=None):
+        wrapper_dir = Path(wrapper)
 
-        tmp_test_subdir = tempfile.mkdtemp(dir=tmp_test_dir)
+        is_meta_wrapper = wrapper.startswith("meta/")
+
+        tmp_test_subdir = Path(tempfile.mkdtemp(dir=tmp_test_dir))
         origdir = os.getcwd()
 
         meta_path = os.path.join(wrapper, "meta.yaml")
@@ -55,7 +59,7 @@ def run(tmp_test_dir):
         if meta.get("blacklisted"):
             pytest.skip("wrapper blacklisted")
 
-        dst = os.path.join(tmp_test_subdir, "master")
+        dst = tmp_test_subdir / "master"
 
         os.symlink(origdir, dst)
 
@@ -75,20 +79,34 @@ def run(tmp_test_dir):
         ):
             pytest.skip("wrappers not modified")
 
-        testdir = os.path.join(tmp_test_subdir, "test")
-        shutil.copytree(os.path.join(wrapper, "test"), testdir)
+        testdir = tmp_test_subdir / "test"
+
+        if is_meta_wrapper:
+            # make sure that the meta-wrapper is where we expect it
+            for path in wrapper_dir.iterdir():
+                if path.is_dir():
+                    shutil.copytree(path, tmp_test_subdir / path.name)
+                else:
+                    shutil.copy(path, tmp_test_subdir)
+        else:
+            shutil.copytree(wrapper_dir / "test", testdir)
 
         # switch to test directory
         os.chdir(testdir)
         if os.path.exists(".snakemake"):
             shutil.rmtree(".snakemake")
-        cmd = cmd + [
-            "--wrapper-prefix",
-            f"file://{tmp_test_subdir}/",
+        cmd += [
             "--conda-cleanup-pkgs",
             "--printshellcmds",
             "--show-failed-logs",
         ]
+        if not is_meta_wrapper:
+            # meta-wrappers define their specific wrapper versions
+            cmd += [
+                "--wrapper-prefix",
+                f"file://{tmp_test_subdir}/",
+            ]
+
 
         if CONTAINERIZED:
             # run snakemake in container
@@ -305,6 +323,25 @@ def test_agat(run):
             "test_agat_sq_repeats_analyzer.gff",
             "test_agat_sq_reverse_complement.gff",
             "test_agat_sq_rfam_analyzer.tsv",
+        ],
+    )
+
+
+def test_alignoth(run):
+    run(
+        "bio/alignoth",
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "out/json_plot.vl.json", "out/plot.html", "output-dir/"],
+    )
+
+def test_alignoth_report_meta(run):
+    run(
+        "meta/bio/alignoth_report",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "results/datavzrd-report/NA12878/",
         ],
     )
 
@@ -2025,6 +2062,21 @@ def test_arriba(run):
     )
 
 
+def test_arriba_with_sv(run):
+    run(
+        "bio/arriba",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "fusions/A.with_sv.tsv",
+            "fusions/A.with_sv.discarded.tsv",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_art_profiler_illumina(run):
     run(
         "bio/art/profiler_illumina",
@@ -3349,6 +3401,13 @@ def test_epic_peaks(run):
     run(
         "bio/epic/peaks",
         ["snakemake", "--cores", "1", "epic/enriched_regions.bed", "--use-conda", "-F"],
+    )
+
+
+def test_falco(run):
+    run(
+        "bio/falco",
+        ["snakemake", "--cores", "1", "qc/falco/a.html", "--use-conda", "-F"],
     )
 
 
@@ -5098,6 +5157,22 @@ def test_gatk_applybqsr(run):
     )
 
 
+def test_gatk_applybqsr_cram_embed_ref(run):
+    run(
+        "bio/gatk/applybqsr",
+        [
+            "snakemake",
+            "-s",
+            "Snakefile_cram_embed_ref",
+            "--cores",
+            "1",
+            "recal/a.cram",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_gatk_applybqsr_cram(run):
     run(
         "bio/gatk/applybqsr",
@@ -5112,7 +5187,6 @@ def test_gatk_applybqsr_cram(run):
             "-F",
         ],
     )
-
 
 def test_gatk_applybqsrspark(run):
     run(
@@ -7178,5 +7252,22 @@ def test_orthanq(run):
             "out/preprocess_virus.bcf",
             "out/calls_hla",
             "out/calls_virus",
+        ],
+    )
+
+def test_go_yq(run):
+    run(
+        "utils/go-yq",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "concat.yaml",
+            "updated.yaml",
+            "evaluated.yaml",
+            "foo_bar.yml",
+            "table.json",
         ],
     )

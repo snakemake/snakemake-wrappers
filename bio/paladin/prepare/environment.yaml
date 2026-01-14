@@ -4,4 +4,3 @@ channels:
   - nodefaults
 dependencies:
   - paladin =1.6.0
-  - samtools =1.22.1
