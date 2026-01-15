@@ -7,7 +7,7 @@ rule star_index:
     threads: 4
     params:
         sjdbOverhang=100,
-        extra="--genomeSAindexNbases 2",
+        extra="",
     log:
         "<logs>/star_index_genome.log",
     cache: True  # mark as eligible for between workflow caching
