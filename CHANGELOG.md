@@ -1,5 +1,23 @@
 # Changelog
 
+## [9.0.1](https://github.com/snakemake/snakemake-wrappers/compare/v9.0.0...v9.0.1) (2026-01-16)
+
+
+### Bug Fixes
+
+* star_arriba meta-wrapper, remove star_index extra parameter ([#4904](https://github.com/snakemake/snakemake-wrappers/issues/4904)) ([1dca000](https://github.com/snakemake/snakemake-wrappers/commit/1dca0005718d64a4c5691e118172fc10395a7794))
+
+
+### Performance Improvements
+
+* autobump bio/alignoth/environment.yaml ([#4906](https://github.com/snakemake/snakemake-wrappers/issues/4906)) ([c146d98](https://github.com/snakemake/snakemake-wrappers/commit/c146d98ad7b57a9ca97c9b948bf1a4f38045b68e))
+* autobump bio/mehari/annotate-seqvars/environment.yaml ([#4907](https://github.com/snakemake/snakemake-wrappers/issues/4907)) ([15765b8](https://github.com/snakemake/snakemake-wrappers/commit/15765b88a58f7522c815c0c49d84c885bc448250))
+* autobump bio/varlociraptor/call-variants/environment.yaml ([#4912](https://github.com/snakemake/snakemake-wrappers/issues/4912)) ([74201e7](https://github.com/snakemake/snakemake-wrappers/commit/74201e7f6576b5487ad3c4c21b80e68149006303))
+* autobump bio/varlociraptor/control-fdr/environment.yaml ([#4909](https://github.com/snakemake/snakemake-wrappers/issues/4909)) ([f36a50e](https://github.com/snakemake/snakemake-wrappers/commit/f36a50e48aaefc882d58d42639324d7cada3dbff))
+* autobump bio/varlociraptor/estimate-alignment-properties/environment.yaml ([#4910](https://github.com/snakemake/snakemake-wrappers/issues/4910)) ([4a363bf](https://github.com/snakemake/snakemake-wrappers/commit/4a363bfdd471d709ae2bdb0334501580b6a8f4c8))
+* autobump bio/varlociraptor/preprocess-variants/environment.yaml ([#4913](https://github.com/snakemake/snakemake-wrappers/issues/4913)) ([311be32](https://github.com/snakemake/snakemake-wrappers/commit/311be321e56ff24fc9e0d0f5ebe078770492288f))
+* autobump bio/vsearch/environment.yaml ([#4911](https://github.com/snakemake/snakemake-wrappers/issues/4911)) ([5f6cb90](https://github.com/snakemake/snakemake-wrappers/commit/5f6cb9001634a0813851bc2b6750788bbaf35b7b))
+
 ## [9.0.0](https://github.com/snakemake/snakemake-wrappers/compare/v8.1.1...v9.0.0) (2026-01-13)
 
 
