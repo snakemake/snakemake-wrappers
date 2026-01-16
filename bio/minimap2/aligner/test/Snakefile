@@ -38,7 +38,6 @@ rule minimap2_sam_sorted:
         query=["query/reads1.fasta", "query/reads2.fasta"],
     output:
         "aligned/{input1}_aln.sorted.sam",
-        idx="aligned/{input1}_aln.sorted.sam.sai",
     log:
         "logs/minimap2/{input1}.log",
     params:
@@ -107,7 +106,6 @@ rule minimap2_ubam_sam_sorted:
         query="query/reads.bam",
     output:
         "aligned/{input1}_aln.sorted.ubam.sam",
-        idx="aligned/{input1}_aln.sorted.ubam.sam.sai",
     log:
         "logs/minimap2/{input1}.ubam.log",
     params:
