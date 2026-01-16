@@ -36,7 +36,7 @@ else:
 
 out_ext = infer_out_format(snakemake.output[0])
 
-pipe_cmd = ""
+pipe_cmd = f"> {snakemake.output[0]}"
 if out_ext != "PAF":
     # Add option for SAM output
     extra += " -a"
