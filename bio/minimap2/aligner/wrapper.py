@@ -11,7 +11,7 @@ from snakemake_wrapper_utils.samtools import get_samtools_opts
 
 
 samtools_opts = get_samtools_opts(
-    snakemake, parse_output=False, param_name="sort_extra"
+    snakemake, param_name="sort_extra"
 )
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
@@ -68,6 +68,5 @@ shell(
     " {snakemake.input.target}"
     " {query}"
     " {pipe_cmd}"
-    " > {snakemake.output[0]}"
     ") {log}"
 )
