@@ -1,12 +1,4 @@
-# SAMPLE RULE: Find generic tandem repeats with custom thresholds
-# The PyTRF findgtr wrapper finds exact tandem repeats of any motif size.
-#
-# Output:
-# - If output file is specified, results are written to that file
-# - If output is omitted, PyTRF writes to stdout (redirected to log file)
-#
-# This example uses sensitive thresholds (min_motif=3, min_repeat=1) to detect
-# shorter generic tandem repeats.
+# SAMPLE RULE: Custom parameters via extra
 rule pytrf_findgtr:
     input:
         "demo_data/{sample}.fasta",
@@ -15,7 +7,6 @@ rule pytrf_findgtr:
     log:
         "logs/{sample}.log",
     params:
-        min_motif=3,
-        min_repeat=1,
+        extra="-m 3 -r 1",  # min-motif=3, min-repeat=1
     wrapper:
         "master/bio/pytrf/findgtr"

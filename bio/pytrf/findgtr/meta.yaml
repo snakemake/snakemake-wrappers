@@ -8,28 +8,12 @@ authors:
 input:
   - FASTA or FASTQ file (supports gzip compression)
 output:
-  - Output file (default -> stdout, will be redirected to the log file).
+  - Output file (required). Format auto-detected from file extension.
 params:
-  out_format: >
-    Output format. Options: 'tsv' (default), 'csv', 'bed', or 'gff'.
-  min_motif: >
-    Minimum motif length in bp (default: 10).
-  max_motif: >
-    Maximum motif length in bp (default: 100).
-  min_repeat: >
-    Minimum number of times motif must repeat (default: 3).
-    Example: min_repeat=3 requires at least 3 copies of the motif.
-  min_length: >
-    Minimum total length of tandem repeat in bp (default: 10).
-    Example: min_length=50 requires entire repeat region ≥50 bp.
+  extra: >
+    Additional command-line arguments passed to pytrf findgtr.
+    See url for options.
 notes: >
-  **Output columns:** chrom, start (0-based), end (0-based exclusive),
-  motif, motif_length, repeat_number, repeat_length. |nl|
-  |nl|
-  **Example:** A 50 bp motif repeated 3 times (150 bp total) reported as
-  motif_length=50, repeat_number=3, repeat_length=150.
-  |nl|
-  |nl|
   **Bioconda package:** https://bioconda.github.io/recipes/pytrf/README.html |nl|
   **GitHub repository:** https://github.com/lmdu/pytrf |nl|
   **License:** MIT License |nl|
