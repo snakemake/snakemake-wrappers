@@ -6,6 +6,8 @@ Find exact short tandem repeats (SSRs/microsatellites).
 
 from pathlib import Path
 from snakemake.shell import shell
+from snakemake_wrapper_utils.snakemake import is_arg
+
 
 # Logging
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -16,29 +18,44 @@ try:
 except (IndexError, TypeError) as e:
     raise ValueError(f"Input specification error: {e}") from e
 
-# Get output file if specified
-OUTPUT_FILE = None
-if snakemake.output:
+# Get output file and determine format
+try:
     OUTPUT_FILE = Path(snakemake.output[0]).resolve()
+except (IndexError, TypeError) as e:
+    raise ValueError("Output file is required") from e
 
-# Build parameters
-params = []
+ext = OUTPUT_FILE.suffix.lower()
 
-if hasattr(snakemake.params, "out_format"):
-    params.append(f"-f {snakemake.params.out_format}")
+format_map = {
+    ".tsv": "tsv",
+    ".csv": "csv",
+    ".bed": "bed",
+    ".gff": "gff",
+}
 
-if hasattr(snakemake.params, "repeats"):
-    repeats_list = snakemake.params.repeats
-    if isinstance(repeats_list, (list, tuple)):
-        REPEATS_STR = " ".join(str(x) for x in repeats_list)
-        params.append(f"-r {REPEATS_STR}")
+if ext not in format_map:
+    raise ValueError(
+        f"Unsupported output format '{ext}' for pytrf findstr. "
+        f"Supported extensions: {', '.join(format_map.keys())}"
+    )
+
+out_format = format_map[ext]
+
+# Additional parameters
+extra = snakemake.params.get("extra", "")
+
+if is_arg("-f", extra) or is_arg("--out-format", extra):
+    raise ValueError(
+        "Output format is automatically inferred from output file extension. "
+        "Do not specify -f/--out-format in params.extra. "
+        f"Detected format: {out_format} (from {ext})"
+    )
 
 # Build command
-CMD = f"pytrf findstr {input_file}"
-if params:
-    CMD += " " + " ".join(params)
-if OUTPUT_FILE:
-    CMD += f" -o {OUTPUT_FILE}"
+CMD = f"pytrf findstr {input_file} -f {out_format}"
+if extra:
+    CMD += f" {extra}"
+CMD += f" -o {OUTPUT_FILE}"
 
 # Execute
 try:
