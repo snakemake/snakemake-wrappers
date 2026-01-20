@@ -7249,7 +7249,7 @@ def test_pytrf_findstr_defaults(run):
             "snakemake",
             "--cores",
             "1",
-            "logs/small_test_defaults.log",
+            "results/small_test_defaults.tsv",
             "--use-conda",
             "-F",
             "--allowed-rules",
