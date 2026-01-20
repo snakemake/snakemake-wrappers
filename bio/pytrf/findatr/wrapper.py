@@ -6,6 +6,8 @@ Find approximate/imperfect tandem repeats.
 
 from pathlib import Path
 from snakemake.shell import shell
+from snakemake_wrapper_utils.snakemake import is_arg
+
 
 # Logging
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -16,44 +18,42 @@ try:
 except (IndexError, TypeError) as e:
     raise ValueError(f"Input specification error: {e}") from e
 
-# Get output file if specified
-OUTPUT_FILE = None
-if snakemake.output:
+# Get output file and determine format
+try:
     OUTPUT_FILE = Path(snakemake.output[0]).resolve()
+except (IndexError, TypeError) as e:
+    raise ValueError("Output file is required") from e
 
-# Build parameters
-params = []
+ext = OUTPUT_FILE.suffix.lower()
 
-if hasattr(snakemake.params, "out_format"):
-    params.append(f"-f {snakemake.params.out_format}")
+format_map = {
+    ".tsv": "tsv",
+    ".csv": "csv",
+    ".gff": "gff",
+}
 
-if hasattr(snakemake.params, "min_motif"):
-    params.append(f"-m {snakemake.params.min_motif}")
+if ext not in format_map:
+    raise ValueError(
+        f"Unsupported output format '{ext}' for pytrf findatr. "
+        f"Supported extensions: {', '.join(format_map.keys())}"
+    )
 
-if hasattr(snakemake.params, "max_motif"):
-    params.append(f"-M {snakemake.params.max_motif}")
+out_format = format_map[ext]
 
-if hasattr(snakemake.params, "min_seedrep"):
-    params.append(f"-r {snakemake.params.min_seedrep}")
+# Additional parameters
+extra = snakemake.params.get("extra", "")
 
-if hasattr(snakemake.params, "min_seedlen"):
-    params.append(f"-l {snakemake.params.min_seedlen}")
+if is_arg("-f", extra) or is_arg("--out-format", extra):
+    raise ValueError(
+        "Output format is automatically inferred from output file extension. "
+        "Do not specify -f/--out-format in params.extra. "
+        f"Detected format: {out_format} (from {ext})"
+    )
 
-if hasattr(snakemake.params, "max_errors"):
-    params.append(f"-e {snakemake.params.max_errors}")
-
-if hasattr(snakemake.params, "min_identity"):
-    params.append(f"-p {snakemake.params.min_identity}")
-
-if hasattr(snakemake.params, "max_extend"):
-    params.append(f"-x {snakemake.params.max_extend}")
-
-# Build command
-CMD = f"pytrf findatr {input_file}"
-if params:
-    CMD += " " + " ".join(params)
-if OUTPUT_FILE:
-    CMD += f" -o {OUTPUT_FILE}"
+CMD = f"pytrf findatr {input_file} -f {out_format}"
+if extra:
+    CMD += f" {extra}"
+CMD += f" -o {OUTPUT_FILE}"
 
 # Execute
 try:
