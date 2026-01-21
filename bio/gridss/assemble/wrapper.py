@@ -31,12 +31,10 @@ for ending in (".amb", ".ann", ".bwt", ".pac", ".sa"):
             )
         )
 
-dictionary = path.splitext(reference)[0] + ".dict"
+dictionary = reference + ".dict"
 if not path.exists(dictionary):
     raise ValueError(
-        "{dictionary}.dict missing. Please make sure the reference dictionary was properly created. This can be accomplished for example by CreateSequenceDictionary.jar from Picard".format(
-            dictionary=dictionary
-        )
+        f"{dictionary} missing. Please make sure the reference dictionary was properly created. This can be accomplished for example by CreateSequenceDictionary.jar from Picard."
     )
 
 shell(
@@ -45,6 +43,6 @@ shell(
     "--threads {snakemake.threads} "  # Threads
     "--workingdir {snakemake.params.workingdir} "  # Working directory
     "--assembly {snakemake.output.assembly} "  # Assembly output
-    "{snakemake.input.bams} "
+    "{snakemake.input.bam} "
     "{extra}) {log}"
 )
