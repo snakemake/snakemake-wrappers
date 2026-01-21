@@ -6633,7 +6633,7 @@ def test_gatk_mutect2_calling_meta(run):
             "2",
             "--use-conda",
             "-F",
-            "variant/Sample1.filtered.vcf.gz.tbi",
+            "results/variant/Sample1.filtered.vcf.gz.tbi",
         ],
     )
 

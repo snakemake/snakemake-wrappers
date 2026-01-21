@@ -1,0 +1,9 @@
+pathvars:
+  genome_sequence: "reference/genome.fasta"
+  genome_sequence_index: "reference/genome.fasta.fai"
+  genome_dict: "reference/genome.dict"
+  bed_intervals: "reference/regions.bed"
+  known_variants: "reference/known.vcf.gz"
+  known_variants_tbi: "reference/known.vcf.gz.tbi"
+  per: "{sample}"
+  bam_file: "mapped/{sample}.bam"
