@@ -9,6 +9,7 @@ import sys
 from snakemake.shell import shell
 from snakemake.logging import logger
 from pathlib import Path
+from snakemake_wrapper_utils.snakemake import get_format
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
@@ -27,24 +28,15 @@ if division not in available_divisions:
 # TODO: chromosome file names may not follow standard naming convention, e.g.
 # Plasmodium_falciparum.GCA000002765v3.dna.primary_assembly.Pf3D7_01_v3.fa.gz
 
-out_fmt = Path(snakemake.output[0]).suffixes
-if not out_fmt:
-    raise ValueError("Output file must have a format filename extension")
-out_gz = len(out_fmt) > 1 and out_fmt[-1] == ".gz"
-if out_gz:
-    out_fmt = out_fmt[-2].lstrip(".")
-else:
-    out_fmt = out_fmt[-1].lstrip(".")
+out_fmt = get_format(str(snakemake.output[0]))
+out_gz = str(snakemake.output[0]).endswith(".gz")
 
-suffix = ""
-if out_fmt == "gtf":
-    suffix = "gtf.gz"
-elif out_fmt == "gff3":
-    suffix = "gff3.gz"
-else:
+if out_fmt not in ["gtf", "gff3"]:
     raise ValueError(
         "invalid format specified. Only 'gtf[.gz]' and 'gff3[.gz]' are currently supported."
     )
+else:
+    suffix = out_fmt + ".gz"
 
 url = snakemake.params.get("url", "https://ftp.ebi.ac.uk/ensemblgenomes/pub")
 url = f"{url}/release-{release}/{division}/{out_fmt}/{species}/{species.capitalize()}.{assembly}.{release}.{suffix}"
