@@ -28,4 +28,4 @@ https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.30-pthreads_h94d
 https://conda.anaconda.org/conda-forge/linux-64/libblas-3.11.0-5_h4a7cf45_openblas.conda#c160954f7418d7b6e87eaf05a8913fa9
 https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.18.0-h4e3cde8_0.conda#0a5563efed19ca4461cf927419b6eb73
 https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.11.0-5_h0358290_openblas.conda#6636a2b6f1a87572df2970d3ebc87cc0
-https://conda.anaconda.org/bioconda/linux-64/alignoth-1.4.2-h1520f10_0.conda#adbbea9422a9e393eaf0eb642a318846
+https://conda.anaconda.org/bioconda/linux-64/alignoth-1.4.3-h1520f10_0.conda#c800919aadcdcfc38a6032649ba31a7f
