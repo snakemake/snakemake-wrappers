@@ -6,7 +6,7 @@ Find exact short tandem repeats (SSRs/microsatellites).
 
 from pathlib import Path
 from snakemake.shell import shell
-from snakemake_wrapper_utils.snakemake import is_arg
+from snakemake_wrapper_utils.snakemake import get_format, is_arg
 
 
 # Logging
@@ -20,26 +20,19 @@ except (IndexError, TypeError) as e:
 
 # Get output file and determine format
 try:
-    OUTPUT_FILE = Path(snakemake.output[0]).resolve()
+    output_file = Path(snakemake.output[0]).resolve()
 except (IndexError, TypeError) as e:
     raise ValueError("Output file is required") from e
 
-ext = OUTPUT_FILE.suffix.lower()
+out_format = get_format(output_file)
 
-format_map = {
-    ".tsv": "tsv",
-    ".csv": "csv",
-    ".bed": "bed",
-    ".gff": "gff",
-}
+supported_formats = {"tsv", "csv", "bed", "gff"}
 
-if ext not in format_map:
+if out_format not in supported_formats:
     raise ValueError(
-        f"Unsupported output format '{ext}' for pytrf findstr. "
-        f"Supported extensions: {', '.join(format_map.keys())}"
+        f"Unsupported format '{out_format}' for pytrf findstr. "
+        f"Supported formats: {', '.join(supported_formats)}"
     )
-
-out_format = format_map[ext]
 
 # Additional parameters
 extra = snakemake.params.get("extra", "")
@@ -48,14 +41,13 @@ if is_arg("-f", extra) or is_arg("--out-format", extra):
     raise ValueError(
         "Output format is automatically inferred from output file extension. "
         "Do not specify -f/--out-format in params.extra. "
-        f"Detected format: {out_format} (from {ext})"
     )
 
 # Build command
 CMD = f"pytrf findstr {input_file} -f {out_format}"
 if extra:
     CMD += f" {extra}"
-CMD += f" -o {OUTPUT_FILE}"
+CMD += f" -o {output_file}"
 
 # Execute
 try:
