@@ -1,8 +1,8 @@
 # SAMPLE RULE: Custom parameters via extra
 rule pytrf_extract:
     input:
-        "demo_data/{sample}.fasta",  # input[0] - reference fasta
-        "demo_data/{sample}.tsv",  # input[1] - repeat file from findstr/findgtr/findatr
+        ref="demo_data/{sample}.fasta",  # reference fasta
+        repeat="demo_data/{sample}.tsv",  # repeat file from findstr/findgtr/findatr
     output:
         "results/{sample}_extract.tsv",
     params:

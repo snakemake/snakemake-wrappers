@@ -1,4 +1,4 @@
-name: pytrf extract (NOT WORKING, see notes below)
+name: pytrf extract (NOT WORKING, see notes)
 description: >
   Extract tandem repeat sequences with flanking regions from DNA sequences.
   Requires output from pytrf findstr, findgtr, or findatr as input.
