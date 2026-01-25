@@ -6,11 +6,12 @@ authors:
   - Michael Hall
   - Filipe G. Vieira
 input:
-  - FASTQ file(s) or unaligned BAM file
-  - reference genome
+  - query: FASTQ file(s) or unaligned BAM file
+  - target: reference genome
 output:
   - SAM/BAM/CRAM file
-notes: |
-  * The `extra` param allows for additional arguments for minimap2.
-  * The `sort` param allows to enable sorting (if output not PAF), and can be either 'none', 'queryname' or 'coordinate'.
-  * The `sort_extra` allows for extra arguments for samtools/picard
+  - idx: Index for SAM/BAM/CRAM file
+params:
+  - sort: Enable sorting (if output not PAF), and can be either 'none', 'queryname' or 'coordinate'.
+  - sort_extra: Additional arguments for samtools/picard.
+  - extra: Additional arguments for minimap2.
