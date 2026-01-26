@@ -45,7 +45,8 @@ if is_arg("-f", extra) or is_arg("--out-format", extra):
 
 # Execute
 try:
-    shell("pytrf findgtr"
+    shell(
+        "pytrf findgtr"
         " {input_file}"
         " {extra}"
         " -f {out_format}"

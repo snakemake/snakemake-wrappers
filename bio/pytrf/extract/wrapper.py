@@ -55,7 +55,8 @@ if is_arg("-r", extra) or is_arg("--repeat-file", extra):
 
 # Execute
 try:
-    shell("pytrf extract"
+    shell(
+        "pytrf extract"
         " {input_file}"
         " -r {repeat_file}"
         " {extra}"
