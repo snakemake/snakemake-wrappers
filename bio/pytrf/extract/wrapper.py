@@ -53,14 +53,15 @@ if is_arg("-r", extra) or is_arg("--repeat-file", extra):
         "Do not specify -r/--repeat-file in params.extra"
     )
 
-# Build command
-CMD = f"pytrf extract {input_file} -r {repeat_file} -f {out_format}"
-if extra:
-    CMD += f" {extra}"
-CMD += f" -o {output_file}"
-
 # Execute
 try:
-    shell(f"{CMD} {log}")
+    shell("pytrf extract"
+          " {input_file}"
+          " -r {repeat_file}"
+          " {extra}"
+          " -f {out_format}"
+          " -o {output_file}"
+          " {log}"
+    )
 except Exception as e:
     raise RuntimeError(f"PyTRF extract execution failed: {e}") from e

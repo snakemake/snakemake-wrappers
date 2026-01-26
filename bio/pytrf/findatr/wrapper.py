@@ -43,13 +43,14 @@ if is_arg("-f", extra) or is_arg("--out-format", extra):
         "Do not specify -f/--out-format in params.extra. "
     )
 
-CMD = f"pytrf findatr {input_file} -f {out_format}"
-if extra:
-    CMD += f" {extra}"
-CMD += f" -o {output_file}"
-
 # Execute
 try:
-    shell(f"{CMD} {log}")
+    shell("pytrf findatr"
+          " {input_file}"
+          " {extra}"
+          " -f {out_format}"
+          " -o {output_file}"
+          " {log}"
+    )
 except Exception as e:
     raise RuntimeError(f"PyTRF findatr execution failed: {e}") from e

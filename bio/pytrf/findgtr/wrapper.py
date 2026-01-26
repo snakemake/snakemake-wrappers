@@ -43,14 +43,14 @@ if is_arg("-f", extra) or is_arg("--out-format", extra):
         "Do not specify -f/--out-format in params.extra. "
     )
 
-# Build command
-CMD = f"pytrf findgtr {input_file} -f {out_format}"
-if extra:
-    CMD += f" {extra}"
-CMD += f" -o {output_file}"
-
 # Execute
 try:
-    shell(f"{CMD} {log}")
+    shell("pytrf findgtr"
+          " {input_file}"
+          " {extra}"
+          " -f {out_format}"
+          " -o {output_file}"
+          " {log}"
+    )
 except Exception as e:
     raise RuntimeError(f"pytrf findgtr execution failed: {e}") from e
