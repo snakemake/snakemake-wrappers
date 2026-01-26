@@ -7233,28 +7233,12 @@ def test_pytrf_findstr(run):
             "results/small_test.csv",
             "--use-conda",
             "-F",
-            "--allowed-rules",
-            "pytrf_findstr",
+            "results/small_test.csv",
+            "results/small_test_defaults.tsv",
         ],
         compare_results_with_expected={
             "results/small_test.csv": "expected/findstr_basic.csv",
         },
-    )
-
-
-def test_pytrf_findstr_defaults(run):
-    run(
-        "bio/pytrf/findstr",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "results/small_test_defaults.tsv",
-            "--use-conda",
-            "-F",
-            "--allowed-rules",
-            "pytrf_findstr_defaults",
-        ],
     )
 
 
