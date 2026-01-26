@@ -46,11 +46,11 @@ if is_arg("-f", extra) or is_arg("--out-format", extra):
 # Execute
 try:
     shell("pytrf findatr"
-          " {input_file}"
-          " {extra}"
-          " -f {out_format}"
-          " -o {output_file}"
-          " {log}"
+        " {input_file}"
+        " {extra}"
+        " -f {out_format}"
+        " -o {output_file}"
+        " {log}"
     )
 except Exception as e:
     raise RuntimeError(f"PyTRF findatr execution failed: {e}") from e
