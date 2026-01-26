@@ -7251,8 +7251,6 @@ def test_pytrf_findgtr(run):
             "results/small_test.tsv",
             "--use-conda",
             "-F",
-            "--allowed-rules",
-            "pytrf_findgtr",
         ],
         compare_results_with_expected={
             "results/small_test.tsv": "expected/findgtr_basic.tsv",
@@ -7270,8 +7268,6 @@ def test_pytrf_findatr(run):
             "results/small_test.tsv",
             "--use-conda",
             "-F",
-            "--allowed-rules",
-            "pytrf_findatr",
         ],
         compare_results_with_expected={
             "results/small_test.tsv": "expected/findatr_basic.tsv",
@@ -7292,8 +7288,6 @@ def test_pytrf_extract(run):
             "results/small_test_extract.tsv",
             "--use-conda",
             "-F",
-            "--allowed-rules",
-            "pytrf_extract",
         ],
         compare_results_with_expected={
             "results/small_test_extract.tsv": "expected/extract_basic.tsv",
