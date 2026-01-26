@@ -7197,7 +7197,7 @@ def test_orthanq(run):
             "--use-conda",
             "out/candidates",
             "out/candidates.vcf",
-            #             "out/preprocess_hla.bcf",
+            #"out/preprocess_hla.bcf",
             "out/preprocess_virus.bcf",
             "out/calls_hla",
             "out/calls_virus",
