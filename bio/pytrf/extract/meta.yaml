@@ -6,8 +6,8 @@ url: https://pytrf.readthedocs.io/en/latest/usage.html#commandline-interface
 authors:
   - Muhammad Rohan Ali Asmat
 input:
-  - FASTA or FASTQ file (supports gzip compression)
-  - Repeat File (TSV or CSV file from pytrf findstr/findgtr/findatr)
+  - ref: FASTA or FASTQ file (supports gzip compression)
+  - repeat: TSV or CSV file from pytrf findstr/findgtr/findatr
 output:
   - Output file (required). Format auto-detected from file extension.
 params:
