@@ -7231,10 +7231,9 @@ def test_pytrf_findstr(run):
             "--cores",
             "1",
             "results/small_test.csv",
+            "results/small_test_defaults.tsv",
             "--use-conda",
             "-F",
-            "results/small_test.csv",
-            "results/small_test_defaults.tsv",
         ],
         compare_results_with_expected={
             "results/small_test.csv": "expected/findstr_basic.csv",
