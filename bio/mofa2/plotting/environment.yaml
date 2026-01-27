@@ -1,0 +1,8 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - bioconductor-mofa2 =1.16.0
+  # - r-arrow =22.0.0
+  # - mofapy2 =0.7.2
