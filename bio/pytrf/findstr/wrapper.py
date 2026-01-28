@@ -37,20 +37,27 @@ if out_format not in supported_formats:
 # Additional parameters
 extra = snakemake.params.get("extra", "")
 
-if is_arg("-f", extra) or is_arg("--out-format", extra):
+# Validate: block format and output flags
+if (
+    is_arg("-f", extra)
+    or is_arg("--out-format", extra)
+    or is_arg("-o", extra)
+    or is_arg("--out-file", extra)
+):
     raise ValueError(
-        "Output format is automatically inferred from output file extension. "
-        "Do not specify -f/--out-format in params.extra. "
+        "Output format is inferred and output path is provided by Snakemake output. "
+        "Do not specify -f/--out-format or -o/--out-file in params.extra"
     )
-
-# Build command
-CMD = f"pytrf findstr {input_file} -f {out_format}"
-if extra:
-    CMD += f" {extra}"
-CMD += f" -o {output_file}"
 
 # Execute
 try:
-    shell(f"{CMD} {log}")
+    shell(
+        "pytrf findstr"
+        " {input_file}"
+        " {extra}"
+        " -f {out_format}"
+        " -o {output_file}"
+        " {log}"
+    )
 except Exception as e:
     raise RuntimeError(f"pytrf findstr execution failed: {e}") from e
