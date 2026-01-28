@@ -1,0 +1,24 @@
+# SAMPLE RULE: Custom parameters via extra
+rule pytrf_findstr:
+    input:
+        "demo_data/{sample}.fasta",
+    output:
+        "results/{sample}.csv",
+    params:
+        extra="-r 5 1 3 3 3 3",
+    log:
+        "logs/{sample}.log",
+    wrapper:
+        "master/bio/pytrf/findstr"
+
+
+# SAMPLE RULE: Minimal usage with defaults
+rule pytrf_findstr_defaults:
+    input:
+        "demo_data/small_test.fasta",
+    output:
+        "results/small_test_defaults.tsv",
+    log:
+        "logs/small_test_defaults.log",
+    wrapper:
+        "master/bio/pytrf/findstr"
