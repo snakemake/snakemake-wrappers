@@ -41,10 +41,16 @@ if out_format not in supported_formats:
 # Additional parameters
 extra = snakemake.params.get("extra", "")
 
-if is_arg("-f", extra) or is_arg("--out-format", extra):
+# Validate: block format, output, and repeat-file flags
+if (
+    is_arg("-f", extra)
+    or is_arg("--out-format", extra)
+    or is_arg("-o", extra)
+    or is_arg("--out-file", extra)
+):
     raise ValueError(
-        "Output format is automatically inferred from output file extension. "
-        "Do not specify -f/--out-format in params.extra. "
+        "Output format is inferred and output path is provided by Snakemake output. "
+        "Do not specify -f/--out-format or -o/--out-file in params.extra"
     )
 
 if is_arg("-r", extra) or is_arg("--repeat-file", extra):
