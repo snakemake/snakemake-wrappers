@@ -1,4 +1,4 @@
-name: pytrf findstr
+name: pytrf findstr (Bug in bed output format, see notes)
 description: >
   Find exact short tandem repeats (SSRs/microsatellites) from DNA sequences.
   Identifies perfect repeats with motif lengths of 1-6 bp (mono-, di-, tri-,
@@ -19,4 +19,6 @@ notes: >
   **GitHub repository:** https://github.com/lmdu/pytrf |nl|
   **License:** MIT License |nl|
   **Disclaimer:** This is a minimal implementation supporting basic functionality.
-  pytrf is not a Python binding to TRF - it's an independent tool.
+  pytrf is not a Python binding to TRF - it's an independent tool. |nl|
+  **Known issue:** PyTRF 1.4.2 has a bug in the `findstr` command (bed output format). |nl|
+  See: https://github.com/lmdu/pytrf/issues/7 |nl|
