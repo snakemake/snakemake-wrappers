@@ -1,26 +1,31 @@
-name: mofa2
+name: mofa2 plotting
 description: |
-  Train a model on a multi-omic data set with default options.
+  Explore a model of a multi-omic data set with some basics plotting.
 url: https://www.bioconductor.org/packages/release/bioc/html/MOFA2.html
 authors:
   - Simon Sack
 input:
-  - |
-    A parquet file in tidy format containing data with the headers: `sample, feature, view, group (optional), value`
-
-    `sample`: The name of the sample
-
-    `feature`: The name of the observed feature
-
-    `group` (optional, advanced): Discouraged for beginners. The aim of the multi-group framework is not to capture differential changes in mean levels between the groups (as for example when doing differential RNA expression). The goal is to compare the sources of variability that drive each group.
-
-    `value`: The observed value
-
-    `view`: The view the observed feature is grouped into
-output:
   - An HDF5-file with the trained model.
+output:
+  - >
+    Each of the plots as a PNG-file, depending on the plots specified by the user. The following are possible:
+  - >
+    `overview`: Shows the number of views (rows) and groups (columns), what their corresponding dimensionalities
+    are, and how much missing data they have. *Doesn't require any params to be set.*
+  - >
+    `variance_explained`: Shows how much of the variance is explained by each factor in each data modality.
+    Includes all factors. *Doesn't require any params to be set.*
+  - >
+    `feature_weights`: The weights provide a score for how strong each feature relates to each factor.
+    Features with no association with the factor have values close to zero, while features with strong association
+    with the factor have large absolute values. The sign of the weight indicates the direction of the effect: a
+    positive weight indicates that the feature has higher levels in the cells with positive factor values, and vice versa.
+    *Requires the following params to be set:* `view`, `factor`, `nfeatures` (see notes for explanation).
+  - >
+    `data_heatmap`:
+    Heatmap of observations to allow for an observation of the coordinated heterogeneity that MOFA captures in the
+    original data. Top features are selected by their weight in the selected factor.
+    Samples are ordered according to their corresponding factor value.
+    *Requires the following params to be set:* `view`, `factor`, `features` (see notes for explanation).
 notes: |
-  In the params, set `scale_group` and/or `scale_views` to `TRUE`, if your groups/views
-  have different ranges/variances. This scales them to unit variance.
-  Defaults to `FALSE` if no params are given.
-  For all other training variables, this wrapper uses the default values.
+  TODO
