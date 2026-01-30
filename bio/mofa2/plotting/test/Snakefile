@@ -1,12 +1,14 @@
-rule mofa2:
+rule mofa2_plotting:
     input:
-        "{data}.parquet",
-    output:
         "{data}.hdf5",
+    output:
+        overview="results/{data}_overview.png",
+        # variance_explained="results/{data}_variance_explained.png",
+        # feature_weights="results/{data}_feature_weights.png",
+        # data_heatmap="results/{data}_data_heatmap.png",
+        # data_scatter="results/{data}_data_scatter.png",
     log:
         "log/{data}.log",
-    params:
-        scale_groups=False,  # set to TRUE if groups have different ranges/variances
-        scale_views=False,  # set to TRUE if views have different ranges/variances
+    # params:
     wrapper:
         "master/bio/mofa2"
