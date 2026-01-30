@@ -20,6 +20,32 @@ input_path <- as.character(snakemake@input[[1]])
 # load a MOFA2 model from an hdf5 file
 model <- load_model(input_path)
 
+# setting the variables customisable with params
+
+if ("view" %in% names(snakemake@params)) {
+  view <- snakemake@params[["view"]]
+} else {
+  view <- "view_0"
+}
+
+if ("factor" %in% names(snakemake@params)) {
+  factor <- snakemake@params[["factor"]]
+} else {
+  factor <- 1
+}
+
+if ("features" %in% names(snakemake@params)) {
+  features <- snakemake@params[["features"]]
+} else {
+  features <- 10
+}
+
+if ("nfeatures" %in% names(snakemake@params)) {
+  nfeatures <- snakemake@params[["nfeatures"]]
+} else {
+  nfeatures <- 10
+}
+
 # creating the requested plots
 
 # overview plot
@@ -28,7 +54,7 @@ if ("overview" %in% names(snakemake@output)) {
   p <- plot_data_overview(model)
 
   # write plot to file
-  ggsave(filename = overview_path)
+  ggsave(plot = p, filename = overview_path)
 }
 
 # variance_explained plot
@@ -37,25 +63,23 @@ if ("variance_explained" %in% names(snakemake@output)) {
   p <- plot_variance_explained(model, x="view", y="factor")
 
   # write plot to file
-  ggsave(filename = variance_explained_path)
+  ggsave(plot = p, filename = variance_explained_path)
 }
-
-# TODO: visualisation of factors
 
 # feature weights plot
 # TODO: add multiple views
 if ("feature_weights" %in% names(snakemake@output)) {
   feature_weights_path <- as.character(snakemake@output[["feature_weights"]])
   p <- plot_weights(model,
-    view = "view_0",
-    factor = 1,
-    nfeatures = 10, # number of features to highlight
+    view = view,
+    factor = factor,
+    nfeatures = nfeatures, # number of features to highlight
     scale = TRUE,
     abs = FALSE
   )
 
   # write plot to file
-  ggsave(filename = feature_weights_path)
+  ggsave(plot = p, filename = feature_weights_path)
 }
 
 # TODO: covariation patterns
@@ -67,30 +91,30 @@ if ("feature_weights" %in% names(snakemake@output)) {
 if ("data_heatmap" %in% names(snakemake@output)) {
   data_heatmap_path <- as.character(snakemake@output[["data_heatmap"]])
   p <- plot_data_heatmap(model,
-    view = "view_1",
-    factor = 1,
-    features = 20,
+    view = view,
+    factor = factor,
+    features = features,
 
     cluster_rows = TRUE, cluster_cols = FALSE,
     show_rownames = TRUE, show_colnames = FALSE
   )
 
   # write plot to file
-  ggsave(filename = data_heatmap_path)
+  ggsave(plot = p, filename = data_heatmap_path)
 }
 
-## covariation patterns scatter plot
-if ("data_scatter" %in% names(snakemake@output)) {
-  data_scatter_path <- as.character(snakemake@output[["data_scatter"]])
-  p <- plot_data_scatter(model,
-    view = "view_1",
-    factor = 1,
-    features = 5,
-    add_lm = TRUE,
-    color_by = condition
-  )
+# ## covariation patterns scatter plot
+# if ("data_scatter" %in% names(snakemake@output)) {
+#   data_scatter_path <- as.character(snakemake@output[["data_scatter"]])
+#   p <- plot_data_scatter(model,
+#     view = "view_0",
+#     factor = 1,
+#     features = 5,
+#     add_lm = TRUE,
+#     color_by = "condition"
+#   )
 
-  # write plot to file
-  ggsave(filename = data_scatter_path)
-}
+#   # write plot to file
+#   ggsave(plot = p, filename = data_scatter_path)
+# }
 
