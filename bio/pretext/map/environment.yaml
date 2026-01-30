@@ -3,6 +3,6 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - pretextmap =0.2.2
+  - pretextmap =0.2.3
   - samtools =1.23
   - snakemake-wrapper-utils =0.8.0
