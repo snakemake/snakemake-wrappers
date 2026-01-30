@@ -17,7 +17,7 @@ https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.2-hb03c661_0.conda#c
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h934c35e_16.conda#68f68355000ec3f1d6f26ea13e8f525f
 https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.1-hb9d3cd8_2.conda#edb0dca6bc32e4f4789199455a1dbeb8
 https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.5-h2d0b736_3.conda#47e340acb35de30501a76c7c799c41d7
-https://conda.anaconda.org/conda-forge/linux-64/openssl-3.6.0-h26f9b46_0.conda#9ee58d5c534af06558933af3c845a780
+https://conda.anaconda.org/conda-forge/linux-64/openssl-3.6.1-h35e630c_1.conda#f61eb8cd60ff9057122a3d338b99c00f
 https://conda.anaconda.org/conda-forge/linux-64/libedit-3.1.20250104-pl5321h7949ede_0.conda#c277e0a4d549b03ac1e9d6cbbe3d017b
 https://conda.anaconda.org/conda-forge/linux-64/libev-4.33-hd590300_2.conda#172bf1cd1ff8629f2b1179945ed45055
 https://conda.anaconda.org/conda-forge/linux-64/libssh2-1.11.1-hcf80075_0.conda#eecce068c7e4eddeb169591baac20ac4
