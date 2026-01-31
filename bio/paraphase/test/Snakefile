@@ -1,0 +1,24 @@
+# Set the custom wrapper prefix for the entire workflow
+
+
+rule paraphase:
+    input:
+        bam="test_data/PDPK1.bam",
+        fasta="test_data/chr16s.fa",
+        faidx="test_data/homo_sapiens.fa.fai",
+    output:
+        bam="paraphase/PDPK1_realigned.paraphase.bam",
+        bai="paraphase/PDPK1_realigned.paraphase.bam.bai",
+        merged_vcf="paraphase/PDK1_paraphase.vcf.gz",
+        vcf_header="paraphase/vcf_chromosome_header.vcf",
+    params:
+        extra="-g PDPK1 --genome 38",
+    log:
+        "paraphase/PDPK1_realigned.vcf.log",
+    benchmark:
+        "paraphase/PDPK1_paraphase.vcf.benchmark.tsv"
+    threads: 1
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "main/bio/paraphase"
