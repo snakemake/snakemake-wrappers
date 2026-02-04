@@ -86,3 +86,31 @@ rule vsearch_fastq_convert:
     threads: 2
     wrapper:
         "master/bio/vsearch"
+
+rule vsearch_derep_fulllength:
+    input:
+        derep_fulllength="reads/{sample}.fastq",
+    output:
+        output="out/derep_fulllength/{sample}.fastq",
+    log:
+        "logs/vsearch/derep_fulllength/{sample}.log",
+        vsearch="out/derep_fulllength/{sample}.log",
+    params:
+        extra="--sizeout --relabel_sha1 --fasta_width 0 --minseqlength 30",
+    threads: 2
+    wrapper:
+        "master/bio/vsearch"
+
+rule vsearch_derep_prefix:
+    input:
+        derep_prefix="reads/{sample}.fastq",
+    output:
+        output="out/derep_prefix/{sample}.fastq",
+    log:
+        "logs/vsearch/derep_prefix/{sample}.log",
+        vsearch="out/derep_prefix/{sample}.log",
+    params:
+        extra="--sizeout --relabel_sha1 --fasta_width 0 --minseqlength 30",
+    threads: 2
+    wrapper:
+        "master/bio/vsearch"
