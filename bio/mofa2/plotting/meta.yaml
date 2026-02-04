@@ -28,4 +28,9 @@ output:
     Samples are ordered according to their corresponding factor value.
     *Requires the following params to be set:* `view`, `factor`, `features` (see notes for explanation).
 notes: |
-  TODO
+  Depending on the desired output, certain parameters need to be set:
+
+  - `view` (string): specifies the name of the view from the data set that will be plotted.
+  - `factor` (integer): specifies the index of the factor that will be plotted (used in `feature_weights`, `data_heatmap`).
+  - `features` (integer): specifies the number of features to be plotted (used in the `data_heatmap` plot).
+  - `nfeatures` (integer): specifies the number of features to be highlighted (used in the `feature_weights` plot).
