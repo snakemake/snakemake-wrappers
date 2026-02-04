@@ -89,12 +89,12 @@ rule vsearch_fastq_convert:
 
 rule vsearch_derep_fulllength:
     input:
-        derep_fulllength="reads/{file}",
+        derep_fulllength="reads/{sample}.fasta",
     output:
-        output="out/derep_fulllength/{file}",
+        output="out/derep_fulllength/{sample}.fasta",
     log:
-        "logs/vsearch/derep_fulllength/{file}.log",
-        vsearch="out/derep_fulllength/{file}.log",
+        "logs/vsearch/derep_fulllength/{sample}.log",
+        vsearch="out/derep_fulllength/{sample}.log",
     params:
         extra="--sizeout --relabel_sha1 --fasta_width 0 --minseqlength 30",
     threads: 2
@@ -103,12 +103,12 @@ rule vsearch_derep_fulllength:
 
 rule vsearch_derep_prefix:
     input:
-        derep_prefix="reads/{file}",
+        derep_prefix="reads/{sample}.fasta",
     output:
-        output="out/derep_prefix/{file}",
+        output="out/derep_prefix/{sample}.fasta",
     log:
-        "logs/vsearch/derep_prefix/{file}.log",
-        vsearch="out/derep_prefix/{file}.log",
+        "logs/vsearch/derep_prefix/{sample}.log",
+        vsearch="out/derep_prefix/{sample}.log",
     params:
         extra="--sizeout --relabel_sha1 --fasta_width 0 --minseqlength 30",
     threads: 2

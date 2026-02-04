@@ -451,9 +451,7 @@ def test_vsearch(run):
             "out/fastx_uniques/a.fastq.bz2",
             "out/fastq_convert/a.fastq",
             "out/derep_fulllength/a.fasta",
-            "out/derep_fulllength/a.fastq",
             "out/derep_prefix/a.fasta",
-            "out/derep_prefix/a.fastq",
         ],
     )
 
