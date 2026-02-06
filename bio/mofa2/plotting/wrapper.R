@@ -98,3 +98,6 @@ if ("data_heatmap" %in% names(snakemake@output)) {
   ggsave(plot = p, filename = data_heatmap_path)
 }
 
+# checks whether Rplots was created and removes it
+file.exists("Rplots.pdf")
+file.remove("Rplots.pdf")
