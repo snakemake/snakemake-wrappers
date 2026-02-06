@@ -107,7 +107,6 @@ def run(tmp_test_dir):
                 f"file://{tmp_test_subdir}/",
             ]
 
-
         if CONTAINERIZED:
             # run snakemake in container
             cmd = [
@@ -129,9 +128,7 @@ def run(tmp_test_dir):
                         with open(generated) as genf, open(expected) as expf:
                             gen_lines = genf.readlines()
                             exp_lines = expf.readlines()
-                        diff = "".join(
-                            difflib.Differ().compare(gen_lines, exp_lines)
-                        )
+                        diff = "".join(difflib.Differ().compare(gen_lines, exp_lines))
                         raise ValueError(
                             f"Unexpected results: {generated} != {expected}."
                             f"Diff:\n{diff}"
@@ -271,8 +268,18 @@ def test_agat(run):
 def test_alignoth(run):
     run(
         "bio/alignoth",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "out/json_plot.vl.json", "out/plot.html", "output-dir/"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "out/json_plot.vl.json",
+            "out/plot.html",
+            "output-dir/",
+        ],
     )
+
 
 def test_alignoth_report_meta(run):
     run(
@@ -5129,6 +5136,7 @@ def test_gatk_applybqsr_cram(run):
         ],
     )
 
+
 def test_gatk_applybqsrspark(run):
     run(
         "bio/gatk/applybqsrspark",
@@ -7189,12 +7197,13 @@ def test_orthanq(run):
             "--use-conda",
             "out/candidates",
             "out/candidates.vcf",
-#             "out/preprocess_hla.bcf",
+            #"out/preprocess_hla.bcf",
             "out/preprocess_virus.bcf",
             "out/calls_hla",
             "out/calls_virus",
         ],
     )
+
 
 def test_go_yq(run):
     run(
@@ -7211,4 +7220,76 @@ def test_go_yq(run):
             "foo_bar.yml",
             "table.json",
         ],
+    )
+
+
+def test_pytrf_findstr(run):
+    run(
+        "bio/pytrf/findstr",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/small_test.csv",
+            "results/small_test_defaults.tsv",
+            "--use-conda",
+            "-F",
+        ],
+        compare_results_with_expected={
+            "results/small_test.csv": "expected/findstr_basic.csv",
+        },
+    )
+
+
+def test_pytrf_findgtr(run):
+    run(
+        "bio/pytrf/findgtr",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/small_test.tsv",
+            "--use-conda",
+            "-F",
+        ],
+        compare_results_with_expected={
+            "results/small_test.tsv": "expected/findgtr_basic.tsv",
+        },
+    )
+
+
+def test_pytrf_findatr(run):
+    run(
+        "bio/pytrf/findatr",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/small_test.tsv",
+            "--use-conda",
+            "-F",
+        ],
+        compare_results_with_expected={
+            "results/small_test.tsv": "expected/findatr_basic.tsv",
+        },
+    )
+
+
+@pytest.mark.skip(
+    reason="PyTRF extract command has a delimiter bug (see https://github.com/lmdu/pytrf/issues/6)"
+)
+def test_pytrf_extract(run):
+    run(
+        "bio/pytrf/extract",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/small_test_extract.tsv",
+            "--use-conda",
+            "-F",
+        ],
+        compare_results_with_expected={
+            "results/small_test_extract.tsv": "expected/extract_basic.tsv",
+        },
     )
