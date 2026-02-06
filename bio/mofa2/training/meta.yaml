@@ -1,4 +1,4 @@
-name: mofa2
+name: mofa2 training
 description: |
   Train a model on a multi-omic data set with default options.
 url: https://www.bioconductor.org/packages/release/bioc/html/MOFA2.html

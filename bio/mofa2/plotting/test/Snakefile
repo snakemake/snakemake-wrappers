@@ -1,0 +1,25 @@
+rule test_all:
+    input:
+        "results/data_overview.png",
+        "results/data_variance_explained.png",
+        "results/data_feature_weights.png",
+        "results/data_data_heatmap.png",
+
+
+rule mofa2_plotting:
+    input:
+        "{data}.hdf5",
+    output:
+        overview="results/{data}_overview.png",  # no requirements
+        variance_explained="results/{data}_variance_explained.png",  # no requirements 
+        feature_weights="results/{data}_feature_weights.png",  # requires params: `view`, `factor`, `nfeatures`
+        data_heatmap="results/{data}_data_heatmap.png",  # requires params: `view`, `factor`, `features`
+    log:
+        "log/{data}.log",
+    params:
+        view="view_0",  # the name of the view to be plotted
+        factor=1,  # which factor to plot
+        features=20,  # the number of features to plot
+        nfeatures=10,  # the number of features to highlight
+    wrapper:
+        "master/bio/mofa2"
