@@ -1,4 +1,4 @@
-rule mofa2:
+rule mofa2_training:
     input:
         "{data}.parquet",
     output:
@@ -9,4 +9,4 @@ rule mofa2:
         scale_groups=False,  # set to TRUE if groups have different ranges/variances
         scale_views=False,  # set to TRUE if views have different ranges/variances
     wrapper:
-        "master/bio/mofa2"
+        "master/bio/mofa2/training"

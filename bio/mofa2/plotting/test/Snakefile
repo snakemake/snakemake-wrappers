@@ -22,4 +22,4 @@ rule mofa2_plotting:
         features=20,  # the number of features to plot
         nfeatures=10,  # the number of features to highlight
     wrapper:
-        "master/bio/mofa2"
+        "master/bio/mofa2/plotting"

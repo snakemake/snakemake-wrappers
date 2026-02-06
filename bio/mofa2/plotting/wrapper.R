@@ -99,5 +99,6 @@ if ("data_heatmap" %in% names(snakemake@output)) {
 }
 
 # checks whether Rplots was created and removes it
-file.exists("Rplots.pdf")
-file.remove("Rplots.pdf")
+if (file.exists("Rplots.pdf")) {
+  file.remove("Rplots.pdf")
+}
