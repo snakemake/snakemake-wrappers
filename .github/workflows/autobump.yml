@@ -33,4 +33,5 @@ jobs:
         with:
           subcommand: update-conda-envs
           args: "*/${{ matrix.prefix }}*/environment.yaml */${{ matrix.prefix }}*/*/environment.yaml --create-prs --warn-on-error --entity-regex '(?P<entity>.+)/environment.yaml' --pr-add-label --pin-envs"
-        
+
+      # TODO add snakedeploy update-wrappers command applied to all meta-wrappers once it has the --create-prs option
