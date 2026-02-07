@@ -10,7 +10,7 @@ rule get_genome_fasta:
         release="105",
     threads: 1
     wrapper:
-        "v5.10.0/bio/reference/ensembl-sequence"
+        "v9.0.0/bio/reference/ensembl-sequence"
 
 
 rule samtools_mpileup:
@@ -28,7 +28,7 @@ rule samtools_mpileup:
         extra="--count-orphans",
     threads: 1
     wrapper:
-        "v7.3.0/bio/samtools/mpileup"
+        "v9.0.0/bio/samtools/mpileup"
 
 
 rule varscan2_somatic:
@@ -43,7 +43,7 @@ rule varscan2_somatic:
         extra="--strand-filter 1",
     threads: 1
     wrapper:
-        "v7.0.0/bio/varscan/somatic"
+        "v9.0.0/bio/varscan/somatic"
 
 
 rule snpeff_download:
