@@ -2,9 +2,9 @@ rule toulligqc_sequencing_summary:
     input:
         "demodata/sequencing_summary.txt",
     output:
-        "toulligqc_sequencing_summary/report.html",
+        "out/toulligqc_sequencing_summary.html",
     log:
-        "toulligqc_sequencing_summary/merged.log",
+        "logs/toulligqc_sequencing_summary.log",
     params:
         extra="",  # optional additional parameters as string
     wrapper:
@@ -14,9 +14,9 @@ rule toulligqc_bam:
     input:
         "demodata/test.sorted.bam",
     output:
-        "toulligqc_bam/report.html",
+        "out/toulligqc_bam.html",
     log:
-        "toulligqc_bam/merged.log",
+        "logs/toulligqc_bam.log",
     params:
         extra="",  # optional additional parameters as string
     wrapper:
@@ -26,9 +26,9 @@ rule toulligqc_fastq:
     input:
         "demodata/test.fastq.gz",
     output:
-        "toulligqc_fastq/report.html",
+        "out/toulligqc_fastq.html",
     log:
-        "toulligqc_fastq/merged.log",
+        "logs/toulligqc_fastq.log",
     params:
         extra="",  # optional additional parameters as string
     wrapper:
