@@ -51,6 +51,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
+        "export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK && "
         "gatk --java-options '{java_opts}' HaplotypeCaller"
         " --native-pair-hmm-threads {snakemake.threads}"
         " {bams}"
