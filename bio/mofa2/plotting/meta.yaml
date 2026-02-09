@@ -7,32 +7,16 @@ authors:
 input:
   - An HDF5-file with the trained model.
 output:
-  - >
-    Each of the plots as a PNG-file, depending on the plots specified by the user. The following are possible:
-  - >
-    `overview`: Shows the number of views (rows) and groups (columns), what their corresponding dimensionalities
-    are, and how much missing data they have. *Doesn't require any params to be set.*
-  - >
-    `variance_explained`: Shows how much of the variance is explained by each factor in each data modality.
-    Includes all factors. *Doesn't require any params to be set.*
-  - >
-    `feature_weights`: The weights provide a score for how strong each feature relates to each factor.
-    Features with no association with the factor have values close to zero, while features with strong association
-    with the factor have large absolute values. The sign of the weight indicates the direction of the effect: a
-    positive weight indicates that the feature has higher levels in the cells with positive factor values, and vice versa.
-    *Requires the following params to be set:* `view`, `factor`, `nfeatures` (see notes for explanation).
-  - >
-    `data_heatmap`:
-    Heatmap of observations to allow for an observation of the coordinated heterogeneity that MOFA captures in the
-    original data. Top features are selected by their weight in the selected factor.
-    Samples are ordered according to their corresponding factor value.
-    *Requires the following params to be set:* `view`, `factor`, `features` (see notes for explanation).
+  - overview: Optional. PNG file. Shows the number of views (rows) and groups (columns), what their corresponding dimensionalities are, and how much missing data they have. *Doesn't require any params to be set.*
+  - variance_explained: Optional. PNG file. Shows how much of the variance is explained by each factor in each data modality. Includes all factors. *Doesn't require any params to be set.*
+  - feature_weights: "Optional. PNG file. The weights provide a score for how strong each feature relates to each factor. Features with no association with the factor have values close to zero, while features with strong association with the factor have large absolute values. The sign of the weight indicates the direction of the effect: a positive weight indicates that the feature has higher levels in the cells with positive factor values, and vice versa. *Requires the following params to be set:* `view`, `factor`, `nfeatures`."
+  - data_heatmap: "Optional. PNG file. Heatmap of observations to allow for an observation of the coordinated heterogeneity that MOFA captures in the original data. Top features are selected by their weight in the selected factor. Samples are ordered according to their corresponding factor value. *Requires the following params to be set:* `view`, `factor`, `features`."
 params:
-  - >
-    `view` (string): specifies the name of the view from the data set that will be plotted.
-  - >
-    `factor` (integer): specifies the index of the factor that will be plotted (used in `feature_weights`, `data_heatmap`).
-  - >
-    `features` (integer): specifies the number of features to be plotted (used in the `data_heatmap` plot).
-  - >
-    `nfeatures` (integer): specifies the number of features to be highlighted (used in the `feature_weights` plot).
+  - view: String that specifies the name of the view from the data set that will be plotted.
+  - factor: Integer that specifies the index of the factor that will be plotted. Required for `feature_weights`, `data_heatmap`.
+  - features: Integer that specifies the number of features to be plotted. Required for `data_heatmap` plot.
+  - nfeatures: Integer that specifies the number of features to be highlighted. Required for `feature_weights` plot.
+notes: |
+  * Each of the plots will be output as a separate PNG file. Choose the plots by setting the output accordingly.
+  * Make sure to set the `params` required for the desired output.
+  
