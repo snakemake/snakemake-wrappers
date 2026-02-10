@@ -1,0 +1,12 @@
+# SAMPLE RULE: Custom parameters via extra
+rule pytrf_findgtr:
+    input:
+        "demo_data/{sample}.fasta",
+    output:
+        "results/{sample}.tsv",
+    log:
+        "logs/{sample}.log",
+    params:
+        extra="-m 3 -r 1",  # min-motif=3, min-repeat=1
+    wrapper:
+        "master/bio/pytrf/findgtr"

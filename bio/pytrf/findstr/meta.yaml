@@ -1,0 +1,24 @@
+name: pytrf findstr (Bug in bed output format, see notes)
+description: >
+  Find exact short tandem repeats (SSRs/microsatellites) from DNA sequences.
+  Identifies perfect repeats with motif lengths of 1-6 bp (mono-, di-, tri-,
+  tetra-, penta-, and hexa-nucleotide repeats).
+url: https://pytrf.readthedocs.io/en/latest/usage.html#commandline-interface
+authors:
+  - Muhammad Rohan Ali Asmat
+input:
+  - FASTA or FASTQ file (supports gzip compression)
+output:
+  - Output file (required). Format auto-detected from file extension.
+params:
+  extra: >
+    Additional command-line arguments passed to pytrf findstr.
+    See url for options.
+notes: >
+  **Bioconda package:** https://bioconda.github.io/recipes/pytrf/README.html |nl|
+  **GitHub repository:** https://github.com/lmdu/pytrf |nl|
+  **License:** MIT License |nl|
+  **Disclaimer:** This is a minimal implementation supporting basic functionality.
+  pytrf is not a Python binding to TRF - it's an independent tool. |nl|
+  **Known issue:** PyTRF 1.4.2 has a bug in the `findstr` command (bed output format). |nl|
+  See: https://github.com/lmdu/pytrf/issues/7 |nl|

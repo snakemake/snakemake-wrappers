@@ -1,0 +1,12 @@
+# SAMPLE RULE: Custom parameters via extra
+rule pytrf_findatr:
+    input:
+        "demo_data/{sample}.fasta",
+    output:
+        "results/{sample}.tsv",
+    log:
+        "logs/{sample}.log",
+    params:
+        extra="-m 3 -M 10",  # min-motif-size=3, max-motif-size=10
+    wrapper:
+        "master/bio/pytrf/findatr"

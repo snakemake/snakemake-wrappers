@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - pytrf =1.4
+  - snakemake-wrapper-utils =0.8.0
