@@ -1,4 +1,4 @@
 channels:
   - conda-forge
 dependencies:
-  - root=6.30.4
+  - root =6.30.4
