@@ -107,7 +107,6 @@ def run(tmp_test_dir):
                 f"file://{tmp_test_subdir}/",
             ]
 
-
         if CONTAINERIZED:
             # run snakemake in container
             cmd = [
@@ -129,9 +128,7 @@ def run(tmp_test_dir):
                         with open(generated) as genf, open(expected) as expf:
                             gen_lines = genf.readlines()
                             exp_lines = expf.readlines()
-                        diff = "".join(
-                            difflib.Differ().compare(gen_lines, exp_lines)
-                        )
+                        diff = "".join(difflib.Differ().compare(gen_lines, exp_lines))
                         raise ValueError(
                             f"Unexpected results: {generated} != {expected}."
                             f"Diff:\n{diff}"
@@ -271,8 +268,18 @@ def test_agat(run):
 def test_alignoth(run):
     run(
         "bio/alignoth",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "out/json_plot.vl.json", "out/plot.html", "output-dir/"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "out/json_plot.vl.json",
+            "out/plot.html",
+            "output-dir/",
+        ],
     )
+
 
 def test_alignoth_report_meta(run):
     run(
@@ -5736,6 +5743,76 @@ def test_ensembl_sequence_chromosome_old_release(run):
     )
 
 
+def test_ensembl_genomes_sequence_get_genome(run):
+    run(
+        "bio/reference/ensembl-genomes-sequence",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "refs/ensembl-genomes-genome.fasta",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+def test_ensembl_genomes_sequence_get_genome_gzipped(run):
+    run(
+        "bio/reference/ensembl-genomes-sequence",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "refs/ensembl-genomes-genome.fa.gz",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+def test_ensembl_genomes_sequence_get_single_chromosome(run):
+    run(
+        "bio/reference/ensembl-genomes-sequence",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "refs/ensembl-genomes-chrMt.fasta",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+def test_ensembl_genomes_sequence_get_multiple_chromosome(run):
+    run(
+        "bio/reference/ensembl-genomes-sequence",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "refs/ensembl-genomes-chr3_and_chrMt.fasta",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+def test_ensembl_genomes_sequence_get_multiple_chromosomes_gzipped(run):
+    run(
+        "bio/reference/ensembl-genomes-sequence",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "refs/ensembl-genomes-chr3_and_chrMt.fasta.gz",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_ensembl_annotation_gtf(run):
     run(
         "bio/reference/ensembl-annotation",
@@ -5747,6 +5824,34 @@ def test_ensembl_annotation_gtf_gz(run):
     run(
         "bio/reference/ensembl-annotation",
         ["snakemake", "--cores", "1", "refs/annotation.gtf.gz", "--use-conda", "-F"],
+    )
+
+
+def test_ensembl_genomes_annotation_get_annotation(run):
+    run(
+        "bio/reference/ensembl-genomes-annotation",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "refs/ensembl-genomes-annotation.gtf",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+def test_ensembl_genomes_annotation_get_annotation_gz(run):
+    run(
+        "bio/reference/ensembl-genomes-annotation",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "refs/ensembl-genomes-annotation.gtf.gz",
+            "--use-conda",
+            "-F",
+        ],
     )
 
 
@@ -7189,12 +7294,13 @@ def test_orthanq(run):
             "--use-conda",
             "out/candidates",
             "out/candidates.vcf",
-#             "out/preprocess_hla.bcf",
+            #             "out/preprocess_hla.bcf",
             "out/preprocess_virus.bcf",
             "out/calls_hla",
             "out/calls_virus",
         ],
     )
+
 
 def test_go_yq(run):
     run(
