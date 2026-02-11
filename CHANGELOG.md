@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.2](https://github.com/snakemake/snakemake-wrappers/compare/v9.0.1...v9.0.2) (2026-02-11)
+
+
+### Bug Fixes
+
+* naming of root (lowercase) in the respective wrapper envs ([#4939](https://github.com/snakemake/snakemake-wrappers/issues/4939)) ([02884b5](https://github.com/snakemake/snakemake-wrappers/commit/02884b5e265a05bca0da329a846e7625e3d45605))
+
 ## [9.0.1](https://github.com/snakemake/snakemake-wrappers/compare/v9.0.0...v9.0.1) (2026-02-09)
 
 
