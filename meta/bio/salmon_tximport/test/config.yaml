@@ -1,0 +1,14 @@
+pathvars:
+  transcriptome_sequence: "resources/transcriptome.fasta"
+  genome_sequence: "resources/genome.fasta"
+  genome_annotation: "resources/annotation.gtf"
+  tx_to_gene: "resources/tx2gene.tsv"
+  per: "{sample}"
+  reads_r1: "reads/{sample}_R1.fq.gz"
+  reads_r2: "reads/{sample}_R2.fq.gz"
+  resources: "resources"
+
+salmon_tximport_submodule:
+  samples:
+    - "S1"
+    - "S2"
