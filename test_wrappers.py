@@ -2010,6 +2010,21 @@ def test_arriba(run):
     )
 
 
+def test_arriba_with_sv(run):
+    run(
+        "bio/arriba",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "fusions/A.with_sv.tsv",
+            "fusions/A.with_sv.discarded.tsv",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_art_profiler_illumina(run):
     run(
         "bio/art/profiler_illumina",
@@ -5086,42 +5101,26 @@ def test_gatk_collectalleliccounts(run):
 def test_gatk_applybqsr(run):
     run(
         "bio/gatk/applybqsr",
-        ["snakemake", "--cores", "1", "recal/a.bam", "--use-conda", "-F"],
-    )
-
-
-def test_gatk_applybqsr_cram(run):
-    run(
-        "bio/gatk/applybqsr",
         [
             "snakemake",
-            "-s",
-            "Snakefile_cram",
             "--cores",
             "1",
+            "recal/a.bam",
             "recal/a.cram",
+            "recal/a.embed.cram",
             "--use-conda",
             "-F",
         ],
     )
 
-
 def test_gatk_applybqsrspark(run):
-    run(
-        "bio/gatk/applybqsrspark",
-        ["snakemake", "--cores", "1", "recal/a.bam", "--use-conda", "-F"],
-    )
-
-
-def test_gatk_applybqsrspark_cram(run):
     run(
         "bio/gatk/applybqsrspark",
         [
             "snakemake",
-            "-s",
-            "Snakefile_cram",
             "--cores",
             "1",
+            "recal/a.bam",
             "recal/a.cram",
             "--use-conda",
             "-F",

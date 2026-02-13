@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - hisat2 =2.2.1
+  - hisat2 =2.2.2
