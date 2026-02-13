@@ -28,7 +28,7 @@ rule test_agat_convert_bed2gff:
         bed="input/test.bed",
     output:
         # The key here will be used as argument name in the final command line
-        gff="out/test_agat_convert_bed2gff.gff",
+        output="out/test_agat_convert_bed2gff.gff",
     log:
         "logs/test_agat_convert_bed2gff.log",
     params:
@@ -45,7 +45,7 @@ rule test_agat_convert_embl2gff:
         embl="input/agat_convert_embl2gff_1.embl",
     output:
         # The key here will be used as argument name in the final command line
-        gff="out/test_agat_convert_embl2gff.gff",
+        output="out/test_agat_convert_embl2gff.gff",
     log:
         "logs/test_agat_convert_embl2gff.log",
     params:
@@ -62,7 +62,7 @@ rule test_agat_convert_genscan2gff:
         genscan="input/test.genscan",
     output:
         # The key here will be used as argument name in the final command line
-        gff="out/test_agat_convert_genscan2gff.gff",
+        output="out/test_agat_convert_genscan2gff.gff",
     log:
         "logs/test_agat_convert_genscan2gff.log",
     params:
@@ -79,7 +79,7 @@ rule test_agat_convert_mfannot2gff:
         mfannot="input/test.mfannot",
     output:
         # The key here will be used as argument name in the final command line
-        gff="out/test_agat_convert_mfannot2gff.gff",
+        output="out/test_agat_convert_mfannot2gff.gff",
     log:
         "logs/agat_convert_mfannot2gff.log",
     params:
