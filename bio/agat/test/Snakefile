@@ -1063,7 +1063,7 @@ rule test_agat_sp_separate_by_record_type:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="agat_sq_add_attributes_from_tsv.gff",
+        gff="input/agat_sq_add_attributes_from_tsv.gff",
     output:
         # The key here will be used as argument name in the final command line.
         # The output directory contains up to one file per record type among the
@@ -1082,7 +1082,7 @@ rule test_agat_sp_statistics:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="agat_sq_add_attributes_from_tsv.gff",
+        gff="input/agat_sq_add_attributes_from_tsv.gff",
     output:
         # Optional Path to text report
         report="out/test_agat_sp_statistics.txt",
@@ -1107,8 +1107,8 @@ rule test_agat_sq_add_attributes_from_tsv:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="agat_sq_add_attributes_from_tsv.gff",
-        tsv="agat_sq_add_attributes_from_tsv.tsv",
+        gff="input/agat_sq_add_attributes_from_tsv.gff",
+        tsv="input/agat_sq_add_attributes_from_tsv.tsv",
     output:
         # Optional Path to text report
         o="out/test_agat_sq_add_attributes_from_tsv.gff",
@@ -1127,7 +1127,7 @@ rule test_agat_sq_add_hash_tag:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="agat_sq_add_attributes_from_tsv.gff",
+        gff="input/agat_sq_add_attributes_from_tsv.gff",
     output:
         # Optional Path to text report
         o="out/test_agat_sq_add_hash_tag.gff",
@@ -1144,7 +1144,7 @@ rule test_agat_sq_add_locus_tag:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="agat_sq_add_attributes_from_tsv.gff",
+        gff="input/agat_sq_add_attributes_from_tsv.gff",
     output:
         # Optional Path to text report
         o="out/test_agat_sq_add_locus_tag.gff",
