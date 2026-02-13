@@ -900,7 +900,7 @@ rule test_agat_sp_manage_attributes:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="agat_sq_add_attributes_from_tsv.gff",
+        gff="input/agat_sq_add_attributes_from_tsv.gff",
     output:
         # The key here will be used as argument name in the final command line.
         out="out/test_agat_sp_manage_attributes.gff",
@@ -918,11 +918,11 @@ rule test_agat_sp_manage_functional_annotation:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="agat_sp_manage_functional_annotation/02413F.gff",
+        gff="input/agat_sp_manage_functional_annotation/02413F.gff",
         # Optional path to blast, interpro, and reference fasta
-        blast="agat_sp_manage_functional_annotation/02413F_blast.out",
-        db="agat_sp_manage_functional_annotation/uniprot_sprot_test.fasta",
-        interpro="agat_sp_manage_functional_annotation/02413F_interpro.tsv",
+        blast="input/agat_sp_manage_functional_annotation/02413F_blast.out",
+        db="input/agat_sp_manage_functional_annotation/uniprot_sprot_test.fasta",
+        interpro="input/agat_sp_manage_functional_annotation/02413F_interpro.tsv",
     output:
         # The key here will be used as argument name in the final command line.
         gff="out/test_agat_sp_manage_functional_annotation.gff",
@@ -1003,7 +1003,7 @@ rule test_agat_sp_move_attributes_within_records:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="agat_sq_add_attributes_from_tsv.gff",
+        gff="input/agat_sq_add_attributes_from_tsv.gff",
     output:
         # The key here will be used as argument name in the final command line.
         out="out/test_agat_sp_move_attributes_within_records.gff",
