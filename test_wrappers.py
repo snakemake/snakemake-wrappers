@@ -107,7 +107,6 @@ def run(tmp_test_dir):
                 f"file://{tmp_test_subdir}/",
             ]
 
-
         if CONTAINERIZED:
             # run snakemake in container
             cmd = [
@@ -129,9 +128,7 @@ def run(tmp_test_dir):
                         with open(generated) as genf, open(expected) as expf:
                             gen_lines = genf.readlines()
                             exp_lines = expf.readlines()
-                        diff = "".join(
-                            difflib.Differ().compare(gen_lines, exp_lines)
-                        )
+                        diff = "".join(difflib.Differ().compare(gen_lines, exp_lines))
                         raise ValueError(
                             f"Unexpected results: {generated} != {expected}."
                             f"Diff:\n{diff}"
@@ -207,7 +204,7 @@ def test_agat(run):
             "out/test_agat_convert_sp_gff2tsv.tsv",
             "out/test_agat_convert_sp_gff2zff.dna",
             "out/test_agat_convert_sp_gxf2gxf.gff",
-            "out/test_agat_sp_Prokka_inferNameFromAttributes.gff",
+            "out/test_agat_sp_prokka_inferNameFromAttributes.gff",
             "out/test_agat_sp_add_intergenic_regions.gff",
             "out/test_agat_sp_add_introns.gff",
             "out/test_agat_sp_add_splice_sites.gff",
@@ -271,8 +268,18 @@ def test_agat(run):
 def test_alignoth(run):
     run(
         "bio/alignoth",
-        ["snakemake", "--cores", "1", "--use-conda", "-F", "out/json_plot.vl.json", "out/plot.html", "output-dir/"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "out/json_plot.vl.json",
+            "out/plot.html",
+            "output-dir/",
+        ],
     )
+
 
 def test_alignoth_report_meta(run):
     run(
@@ -7159,12 +7166,13 @@ def test_orthanq(run):
             "--use-conda",
             "out/candidates",
             "out/candidates.vcf",
-#             "out/preprocess_hla.bcf",
+            #"out/preprocess_hla.bcf",
             "out/preprocess_virus.bcf",
             "out/calls_hla",
             "out/calls_virus",
         ],
     )
+
 
 def test_go_yq(run):
     run(
@@ -7182,4 +7190,3 @@ def test_go_yq(run):
             "table.json",
         ],
     )
-

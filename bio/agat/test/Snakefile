@@ -210,18 +210,18 @@ rule test_agat_convert_sp_gxf2gxf:
         "master/bio/agat"
 
 
-rule test_agat_sp_Prokka_inferNameFromAttributes:
+rule test_agat_sp_prokka_inferNameFromAttributes:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
         gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
-        out="out/test_agat_sp_Prokka_inferNameFromAttributes.gff",
+        out="out/test_agat_sp_prokka_inferNameFromAttributes.gff",
     log:
-        "logs/agat_sp_Prokka_inferNameFromAttributes.log",
+        "logs/agat_sp_prokka_inferNameFromAttributes.log",
     params:
-        command="agat_sp_Prokka_inferNameFromAttributes.pl",
+        command="agat_sp_prokka_inferNameFromAttributes.pl",
         extra="",  # Non file arguments (`--force`).
     wrapper:
         "master/bio/agat"
