@@ -1206,8 +1206,8 @@ rule test_agat_sq_manage_IDs:
     log:
         "logs/test_agat_sq_manage_IDs.log",
     params:
-        # Only `--of`, all other parameters are infered
-        extra="--of 2",
+        # Only `--verbose`, all other parameters are infered
+        extra="--verbose 4",
         command="agat_sq_manage_IDs.pl",
     wrapper:
         "master/bio/agat"
