@@ -5079,11 +5079,18 @@ def test_gatk_collectalleliccounts(run):
 def test_gatk_applybqsr(run):
     run(
         "bio/gatk/applybqsr",
+        ["snakemake", "--cores", "1", "recal/a.bam", "--use-conda", "-F"],
+    )
+
+def test_gatk_applybqsr_cram(run):
+    run(
+        "bio/gatk/applybqsr",
         [
             "snakemake",
+            "-s",
+            "Snakefile_cram",
             "--cores",
             "1",
-            "recal/a.bam"
             "recal/a.cram",
             "--use-conda",
             "-F",
