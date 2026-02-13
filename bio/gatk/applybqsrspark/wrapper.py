@@ -15,21 +15,17 @@ spark_master = snakemake.params.get(
     "spark_master", "local[{}]".format(snakemake.threads)
 )
 spark_extra = snakemake.params.get("spark_extra", "")
-reference = snakemake.input.get("ref")
 embed_ref = snakemake.params.get("embed_ref", False)
-exceed_thread_limit = snakemake.params.get("exceed_thread_limit", False)
-java_opts = get_java_opts(snakemake)
+samtools_threads = snakemake.threads if snakemake.params.get("exceed_thread_limit", False) else 1
+
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+java_opts = get_java_opts(snakemake)
 
-if exceed_thread_limit:
-    samtools_threads = snakemake.threads
-else:
-    samtools_threads = 1
 
 if snakemake.output.bam.endswith(".cram") and embed_ref:
     output = "/dev/stdout --create-output-bam-splitting-index false"
-    pipe_cmd = " | samtools view -h -O cram,embed_ref -T {reference} -o {snakemake.output.bam} -@ {samtools_threads} -"
+    pipe_cmd = " | samtools view -h -O cram,embed_ref -T {snakemake.input.ref} -o {snakemake.output.bam} -@ {samtools_threads} -"
 else:
     output = snakemake.output.bam
     pipe_cmd = ""
