@@ -10,7 +10,6 @@ from snakemake_wrapper_utils.java import get_java_opts
 
 # Extract arguments
 extra = snakemake.params.get("extra", "")
-reference = snakemake.input.get("ref")
 embed_ref = snakemake.params.get("embed_ref", False)
 java_opts = get_java_opts(snakemake)
 
@@ -20,7 +19,7 @@ if snakemake.output.bam.endswith(".cram"):
     embed = " --output-fmt-option embed_ref" if embed_ref else ""
     output = "/dev/stdout"
     pipe_cmd = (
-        " | samtools view -h -O cram {embed} -T {reference} -o {snakemake.output.bam} -"
+        "| samtools view --threads {samtools_threads} --with-header --reference {snakemake.input.ref} --output-fmt cram {embed} --output {snakemake.output.bam}"
     )
 else:
     output = snakemake.output.bam
