@@ -1,0 +1,9 @@
+name: alignoth_report
+description: Export variants via vembrane and create alignment plots with alignoth for a Datavzrd report.
+authors:
+  - Felix Wiegand
+  - Felix Mölder
+pathvars:
+  default:
+    - results
+    - logs

@@ -42,7 +42,7 @@ rule minimap2_sam_sorted:
         "logs/minimap2/{input1}.log",
     params:
         extra="-x map-pb",  # optional
-        sorting="queryname",  # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
+        sorting="coordinate",  # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
         sort_extra="",  # optional: extra arguments for samtools/picard
     threads: 3
     wrapper:
@@ -55,6 +55,7 @@ rule minimap2_bam_sorted:
         query=["query/reads1.fasta", "query/reads2.fasta"],
     output:
         "aligned/{input1}_aln.sorted.bam",
+        idx="aligned/{input1}_aln.sorted.bam.bai",
     log:
         "logs/minimap2/{input1}.log",
     params:
@@ -109,7 +110,7 @@ rule minimap2_ubam_sam_sorted:
         "logs/minimap2/{input1}.ubam.log",
     params:
         extra="-x map-pb",  # optional
-        sorting="queryname",  # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
+        sorting="coordinate",  # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
         sort_extra="",  # optional: extra arguments for samtools/picard
     threads: 3
     wrapper:
@@ -122,6 +123,7 @@ rule minimap2_ubam_bam_sorted:
         query="query/reads.bam",
     output:
         "aligned/{input1}_aln.sorted.ubam.bam",
+        idx="aligned/{input1}_aln.sorted.ubam.bam.bai",
     log:
         "logs/minimap2/{input1}.ubam.log",
     params:

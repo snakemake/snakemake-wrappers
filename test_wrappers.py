@@ -1,3 +1,5 @@
+import difflib
+from pathlib import Path
 import subprocess
 import os
 import tempfile
@@ -40,8 +42,11 @@ def tmp_test_dir():
 @pytest.fixture
 def run(tmp_test_dir):
     def _run(wrapper, cmd, check_log=None, compare_results_with_expected=None):
+        wrapper_dir = Path(wrapper)
 
-        tmp_test_subdir = tempfile.mkdtemp(dir=tmp_test_dir)
+        is_meta_wrapper = wrapper.startswith("meta/")
+
+        tmp_test_subdir = Path(tempfile.mkdtemp(dir=tmp_test_dir))
         origdir = os.getcwd()
 
         meta_path = os.path.join(wrapper, "meta.yaml")
@@ -54,7 +59,7 @@ def run(tmp_test_dir):
         if meta.get("blacklisted"):
             pytest.skip("wrapper blacklisted")
 
-        dst = os.path.join(tmp_test_subdir, "master")
+        dst = tmp_test_subdir / "master"
 
         os.symlink(origdir, dst)
 
@@ -74,20 +79,33 @@ def run(tmp_test_dir):
         ):
             pytest.skip("wrappers not modified")
 
-        testdir = os.path.join(tmp_test_subdir, "test")
-        shutil.copytree(os.path.join(wrapper, "test"), testdir)
+        testdir = tmp_test_subdir / "test"
+
+        if is_meta_wrapper:
+            # make sure that the meta-wrapper is where we expect it
+            for path in wrapper_dir.iterdir():
+                if path.is_dir():
+                    shutil.copytree(path, tmp_test_subdir / path.name)
+                else:
+                    shutil.copy(path, tmp_test_subdir)
+        else:
+            shutil.copytree(wrapper_dir / "test", testdir)
 
         # switch to test directory
         os.chdir(testdir)
         if os.path.exists(".snakemake"):
             shutil.rmtree(".snakemake")
-        cmd = cmd + [
-            "--wrapper-prefix",
-            f"file://{tmp_test_subdir}/",
+        cmd += [
             "--conda-cleanup-pkgs",
             "--printshellcmds",
             "--show-failed-logs",
         ]
+        if not is_meta_wrapper:
+            # meta-wrappers define their specific wrapper versions
+            cmd += [
+                "--wrapper-prefix",
+                f"file://{tmp_test_subdir}/",
+            ]
 
         if CONTAINERIZED:
             # run snakemake in container
@@ -106,7 +124,15 @@ def run(tmp_test_dir):
             subprocess.check_call(cmd)
             if compare_results_with_expected:
                 for generated, expected in compare_results_with_expected.items():
-                    assert filecmp.cmp(generated, expected, shallow=False)
+                    if not filecmp.cmp(generated, expected, shallow=False):
+                        with open(generated) as genf, open(expected) as expf:
+                            gen_lines = genf.readlines()
+                            exp_lines = expf.readlines()
+                        diff = "".join(difflib.Differ().compare(gen_lines, exp_lines))
+                        raise ValueError(
+                            f"Unexpected results: {generated} != {expected}."
+                            f"Diff:\n{diff}"
+                        )
         except Exception as e:
             # go back to original directory
             os.chdir(origdir)
@@ -165,76 +191,105 @@ def test_agat(run):
             "1",
             "--use-conda",
             "-F",
-            "agat_config.yaml",
-            "agat_levels.yaml",
-            "test_agat_convert_bed2gff.gff",
-            "test_agat_convert_embl2gff.gff",
-            "test_agat_convert_genscan2gff.gff",
-            "test_agat_convert_mfannot2gff.gff",
-            "test_agat_convert_minimap2_bam2gff_bam.gff",
-            "test_agat_convert_minimap2_bam2gff_sam.gff",
-            "test_agat_convert_sp_gff2bed.bed",
-            "test_agat_convert_sp_gff2gtf.gtf",
-            "test_agat_convert_sp_gff2tsv.tsv",
-            "test_agat_convert_sp_gff2zff.dna",
-            "test_agat_convert_sp_gxf2gxf.gff",
-            "test_agat_sp_Prokka_inferNameFromAttributes.gff",
-            "test_agat_sp_add_intergenic_regions.gff",
-            "test_agat_sp_add_introns.gff",
-            "test_agat_sp_add_splice_sites.gff",
-            "test_agat_sp_add_start_and_stop.gff",
-            "test_agat_sp_alignment_output_style.gff",
-            "test_agat_sp_clipN_seqExtremities_and_fixCoordinates.gff",
-            "test_agat_sp_compare_two_annotations",
-            "test_agat_sp_complement_annotations.gff",
-            "test_agat_sp_ensembl_output_style.gff",
-            "test_agat_sp_extract_attributes_ID.txt",
-            "test_agat_sp_extract_sequences.fasta",
-            "test_agat_sp_filter_by_ORF_size_matched.gff",
-            "test_agat_sp_filter_by_locus_distance.gff",
-            "test_agat_sp_filter_feature_by_attribute_presence.gff",
-            "test_agat_sp_filter_feature_by_attribute_value.gff",
-            "test_agat_sp_filter_feature_from_keep_list.gff",
-            "test_agat_sp_filter_feature_from_kill_list.gff",
-            "test_agat_sp_filter_gene_by_intron_numbers.gff",
-            "test_agat_sp_filter_gene_by_length.gff",
-            "test_agat_sp_filter_incomplete_gene_coding_models.gff",
-            "test_agat_sp_filter_record_by_coordinates",
-            "test_agat_sp_fix_cds_phases.gff",
-            "test_agat_sp_fix_features_locations_duplicated.gff",
-            "test_agat_sp_fix_fusion_all.gff",
-            "test_agat_sp_fix_longest_ORF_all.gff",
-            "test_agat_sp_fix_overlaping_genes.gff",
-            "test_agat_sp_fix_small_exon_from_extremities.gff",
-            "test_agat_sp_flag_premature_stop_codons.gff",
-            "test_agat_sp_flag_short_introns.gff",
-            "test_agat_sp_functional_statistics",
-            "test_agat_sp_keep_longest_isoform.gff",
-            "test_agat_sp_kraken_assess_liftover.gff",
-            "test_agat_sp_list_short_introns.gff",
-            "test_agat_sp_manage_IDs.gff",
-            "test_agat_sp_manage_UTRs_report.txt",
-            "test_agat_sp_manage_attributes.gff",
-            "test_agat_sp_manage_functional_annotation.gff",
-            "test_agat_sp_manage_introns_report.txt",
-            "test_agat_sp_merge_annotations.gff",
-            "test_agat_sp_move_attributes_within_records.gff",
-            "test_agat_sp_prokka_fix_fragmented_gene_annotations",
-            "test_agat_sp_sensitivity_specificity.txt",
-            "test_agat_sp_separate_by_record_type",
-            "test_agat_sp_statistics.txt",
-            "test_agat_sq_add_attributes_from_tsv.gff",
-            "test_agat_sq_add_hash_tag.gff",
-            "test_agat_sq_add_locus_tag.gff",
-            "test_agat_sq_filter_feature_from_fasta.gff",
-            "test_agat_sq_list_attributes.txt",
-            "test_agat_sq_manage_IDs.txt",
-            "test_agat_sq_manage_attributes.gff",
-            "test_agat_sq_mask.gff",
-            "test_agat_sq_remove_redundant_entries.gff",
-            "test_agat_sq_repeats_analyzer.gff",
-            "test_agat_sq_reverse_complement.gff",
-            "test_agat_sq_rfam_analyzer.tsv",
+            "out/agat_config.yaml",
+            "out/agat_levels.yaml",
+            "out/test_agat_convert_bed2gff.gff",
+            "out/test_agat_convert_embl2gff.gff",
+            "out/test_agat_convert_genscan2gff.gff",
+            "out/test_agat_convert_mfannot2gff.gff",
+            "out/test_agat_convert_minimap2_bam2gff_bam.gff",
+            "out/test_agat_convert_minimap2_bam2gff_sam.gff",
+            "out/test_agat_convert_sp_gff2bed.bed",
+            "out/test_agat_convert_sp_gff2gtf.gtf",
+            "out/test_agat_convert_sp_gff2tsv.tsv",
+            "out/test_agat_convert_sp_gff2zff.dna",
+            "out/test_agat_convert_sp_gxf2gxf.gff",
+            "out/test_agat_sp_prokka_infer_name_from_attributes.gff",
+            "out/test_agat_sp_add_intergenic_regions.gff",
+            "out/test_agat_sp_add_introns.gff",
+            "out/test_agat_sp_add_splice_sites.gff",
+            "out/test_agat_sp_add_start_and_stop.gff",
+            "out/test_agat_sp_alignment_output_style.gff",
+            "out/test_agat_sp_clipN_seqExtremities_and_fixCoordinates.gff",
+            "out/test_agat_sp_compare_two_annotations",
+            "out/test_agat_sp_complement_annotations.gff",
+            "out/test_agat_sp_ensembl_output_style.gff",
+            "out/test_agat_sp_extract_attributes_ID.txt",
+            "out/test_agat_sp_extract_sequences.fasta",
+            "out/test_agat_sp_filter_by_ORF_size_matched.gff",
+            "out/test_agat_sp_filter_by_locus_distance.gff",
+            "out/test_agat_sp_filter_feature_by_attribute_presence.gff",
+            "out/test_agat_sp_filter_feature_by_attribute_value.gff",
+            "out/test_agat_sp_filter_feature_from_keep_list.gff",
+            "out/test_agat_sp_filter_feature_from_kill_list.gff",
+            "out/test_agat_sp_filter_gene_by_intron_numbers.gff",
+            "out/test_agat_sp_filter_gene_by_length.gff",
+            "out/test_agat_sp_filter_incomplete_gene_coding_models.gff",
+            "out/test_agat_sp_filter_record_by_coordinates",
+            "out/test_agat_sp_fix_cds_phases.gff",
+            "out/test_agat_sp_fix_features_locations_duplicated.gff",
+            "out/test_agat_sp_fix_fusion_all.gff",
+            "out/test_agat_sp_fix_longest_ORF_all.gff",
+            "out/test_agat_sp_fix_overlaping_genes.gff",
+            "out/test_agat_sp_fix_small_exon_from_extremities.gff",
+            "out/test_agat_sp_flag_premature_stop_codons.gff",
+            "out/test_agat_sp_flag_short_introns.gff",
+            "out/test_agat_sp_functional_statistics",
+            "out/test_agat_sp_keep_longest_isoform.gff",
+            "out/test_agat_sp_kraken_assess_liftover.gff",
+            "out/test_agat_sp_list_short_introns.gff",
+            "out/test_agat_sp_manage_IDs.gff",
+            "out/test_agat_sp_manage_UTRs_report.txt",
+            "out/test_agat_sp_manage_attributes.gff",
+            "out/test_agat_sp_manage_functional_annotation.gff",
+            "out/test_agat_sp_manage_introns_report.txt",
+            "out/test_agat_sp_merge_annotations.gff",
+            "out/test_agat_sp_move_attributes_within_records.gff",
+            "out/test_agat_sp_prokka_fix_fragmented_gene_annotations",
+            "out/test_agat_sp_sensitivity_specificity.txt",
+            "out/test_agat_sp_separate_by_record_type",
+            "out/test_agat_sp_statistics.txt",
+            "out/test_agat_sq_add_attributes_from_tsv.gff",
+            "out/test_agat_sq_add_hash_tag.gff",
+            "out/test_agat_sq_add_locus_tag.gff",
+            "out/test_agat_sq_filter_feature_from_fasta.gff",
+            "out/test_agat_sq_list_attributes.txt",
+            "out/test_agat_sq_manage_IDs.txt",
+            "out/test_agat_sq_manage_attributes.gff",
+            "out/test_agat_sq_mask.gff",
+            "out/test_agat_sq_remove_redundant_entries.gff",
+            "out/test_agat_sq_repeats_analyzer.gff",
+            "out/test_agat_sq_reverse_complement.gff",
+            "out/test_agat_sq_rfam_analyzer.tsv",
+        ],
+    )
+
+
+def test_alignoth(run):
+    run(
+        "bio/alignoth",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "out/json_plot.vl.json",
+            "out/plot.html",
+            "output-dir/",
+        ],
+    )
+
+
+def test_alignoth_report_meta(run):
+    run(
+        "meta/bio/alignoth_report",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "results/datavzrd-report/NA12878/",
         ],
     )
 
@@ -1395,7 +1450,7 @@ def test_deseq2_wald(run):
 def test_arriba_star_meta(run):
     run(
         "meta/bio/star_arriba",
-        ["snakemake", "--cores", "1", "--use-conda", "results/arriba/a.fusions.tsv"],
+        ["snakemake", "results/arriba/a.fusions.tsv", "--cores", "1", "--sdm", "conda"],
     )
 
 
@@ -1496,7 +1551,7 @@ def test_bwa_mapping_meta(run):
             "--cores",
             "1",
             "--use-conda",
-            "mapped/a.bam.bai",
+            "results/mapped/a.bam.bai",
         ],
     )
 
@@ -1949,6 +2004,21 @@ def test_arriba(run):
             "1",
             "fusions/A.tsv",
             "fusions/A.discarded.tsv",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
+def test_arriba_with_sv(run):
+    run(
+        "bio/arriba",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "fusions/A.with_sv.tsv",
+            "fusions/A.with_sv.discarded.tsv",
             "--use-conda",
             "-F",
         ],
@@ -3279,6 +3349,13 @@ def test_epic_peaks(run):
     run(
         "bio/epic/peaks",
         ["snakemake", "--cores", "1", "epic/enriched_regions.bed", "--use-conda", "-F"],
+    )
+
+
+def test_falco(run):
+    run(
+        "bio/falco",
+        ["snakemake", "--cores", "1", "qc/falco/a.html", "--use-conda", "-F"],
     )
 
 
@@ -5024,20 +5101,13 @@ def test_gatk_collectalleliccounts(run):
 def test_gatk_applybqsr(run):
     run(
         "bio/gatk/applybqsr",
-        ["snakemake", "--cores", "1", "recal/a.bam", "--use-conda", "-F"],
-    )
-
-
-def test_gatk_applybqsr_cram(run):
-    run(
-        "bio/gatk/applybqsr",
         [
             "snakemake",
-            "-s",
-            "Snakefile_cram",
             "--cores",
             "1",
+            "recal/a.bam",
             "recal/a.cram",
+            "recal/a.embed.cram",
             "--use-conda",
             "-F",
         ],
@@ -5047,19 +5117,11 @@ def test_gatk_applybqsr_cram(run):
 def test_gatk_applybqsrspark(run):
     run(
         "bio/gatk/applybqsrspark",
-        ["snakemake", "--cores", "1", "recal/a.bam", "--use-conda", "-F"],
-    )
-
-
-def test_gatk_applybqsrspark_cram(run):
-    run(
-        "bio/gatk/applybqsrspark",
         [
             "snakemake",
-            "-s",
-            "Snakefile_cram",
             "--cores",
             "1",
+            "recal/a.bam",
             "recal/a.cram",
             "--use-conda",
             "-F",
@@ -6576,7 +6638,7 @@ def test_bowtie2_sambamba_meta(run):
             "2",
             "--use-conda",
             "-F",
-            "mapped/Sample1.rmdup.bam.bai",
+            "results/mapped/Sample1.rmdup.bam.bai",
         ],
     )
 
@@ -6720,6 +6782,7 @@ def test_sortmerna_se(run):
         ],
     )
 
+
 def test_tmb_pyeffgenomesize(run):
     run(
         "bio/tmb/pyeffgenomesize",
@@ -6729,6 +6792,7 @@ def test_tmb_pyeffgenomesize(run):
         "bio/tmb/pyeffgenomesize",
         ["snakemake", "--cores", "1", "--use-conda", "-F", "complete.txt"],
     )
+
 
 def test_tmb_pytmb(run):
     run(
@@ -7088,5 +7152,41 @@ def test_rasterio_clip_geotiff(run):
             "results/montenegro.tiff",
             "results/switzerland.tiff",
             "results/puerto_vallarta_small.tiff",
+        ],
+    )
+
+
+def test_orthanq(run):
+    run(
+        "bio/orthanq",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "out/candidates",
+            "out/candidates.vcf",
+            # "out/preprocess_hla.bcf",
+            "out/preprocess_virus.bcf",
+            "out/calls_hla",
+            "out/calls_virus",
+        ],
+    )
+
+
+def test_go_yq(run):
+    run(
+        "utils/go-yq",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "concat.yaml",
+            "updated.yaml",
+            "evaluated.yaml",
+            "foo_bar.yml",
+            "table.json",
         ],
     )

@@ -1,0 +1,28 @@
+name: go-yq
+url: https://github.com/mikefarah/yq
+description: >
+  A lightweight and portable command-line YAML, JSON and XML processor.
+  yq uses jq like syntax but works with yaml files as well as json, xml, 
+  properties, csv and tsv.
+authors:
+  - Thibault Dayris
+input:
+  - Optional path to one or multiple file(s) to process
+output:
+  - Path to one or multiple output file(s)
+params:
+  - extra: Optional arguments for `yq` command, besides `--null-input`.
+  - expression: Optional expression to evaluate.
+  - subcommand: Optional subcommand for `yq`
+notes: |
+  This tool does not support multithreading.
+
+  Format are mostly auto-detected using `--output-format` and `--input-format`.
+  However, you may want to provide formats through `params.extra` in case of
+  ambiguity (e.g. `uri`, `base64`).
+
+  Through file splitting, files name expression are not automatically inferred.
+  User should provide the proper `-s/--split-exp` parameters in `params.extra`.
+
+
+
