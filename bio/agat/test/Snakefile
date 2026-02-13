@@ -452,7 +452,7 @@ rule test_agat_sp_filter_by_locus_distance:
         gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
-        outfile="out/test_agat_sp_filter_by_locus_distance.gff",
+        output="out/test_agat_sp_filter_by_locus_distance.gff",
     log:
         "logs/test_agat_sp_filter_by_locus_distance.log",
     params:
@@ -581,7 +581,7 @@ rule test_agat_sp_filter_incomplete_gene_coding_models:
         fasta="input/sequence.fa",
     output:
         # The key here will be used as argument name in the final command line
-        outfile="out/test_agat_sp_filter_incomplete_gene_coding_models.gff",
+        output="out/test_agat_sp_filter_incomplete_gene_coding_models.gff",
     log:
         "logs/test_agat_sp_filter_incomplete_gene_coding_models.log",
     params:
@@ -640,7 +640,7 @@ rule test_agat_sp_fix_features_locations_duplicated:
         gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line.
-        outfile="out/test_agat_sp_fix_features_locations_duplicated.gff",
+        output="out/test_agat_sp_fix_features_locations_duplicated.gff",
     log:
         "logs/test_agat_sp_fix_features_locations_duplicated.log",
     params:
@@ -708,7 +708,7 @@ rule test_agat_sp_fix_overlaping_genes:
         gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line.
-        outfile="out/test_agat_sp_fix_overlaping_genes.gff",
+        output="out/test_agat_sp_fix_overlaping_genes.gff",
     log:
         "logs/test_agat_sp_fix_overlaping_genes.log",
     params:
@@ -727,7 +727,7 @@ rule test_agat_sp_fix_small_exon_from_extremities:
         fasta="input/sequence.fa",
     output:
         # The key here will be used as argument name in the final command line.
-        outfile="out/test_agat_sp_fix_small_exon_from_extremities.gff",
+        output="out/test_agat_sp_fix_small_exon_from_extremities.gff",
     log:
         "logs/test_agat_sp_fix_small_exon_from_extremities.log",
     params:
@@ -1048,7 +1048,7 @@ rule test_agat_sp_sensitivity_specificity:
         gff2="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line.
-        outfile="out/test_agat_sp_sensitivity_specificity.txt",
+        output="out/test_agat_sp_sensitivity_specificity.txt",
     log:
         "logs/test_agat_sp_sensitivity_specificity.log",
     params:
@@ -1184,7 +1184,7 @@ rule test_agat_sq_list_attributes:
         gff="input/annotation.gff",
     output:
         # Optional Path to attributes
-        outfile="out/test_agat_sq_list_attributes.txt",
+        output="out/test_agat_sq_list_attributes.txt",
     log:
         "logs/test_agat_sq_list_attributes.log",
     params:
@@ -1220,7 +1220,7 @@ rule test_agat_sq_manage_attributes:
         gff="input/annotation.gff",
     output:
         # Optional Path to GFF
-        outfile="out/test_agat_sq_manage_attributes.gff",
+        output="out/test_agat_sq_manage_attributes.gff",
     log:
         "logs/test_agat_sq_manage_attributes.log",
     params:
