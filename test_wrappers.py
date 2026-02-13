@@ -204,7 +204,7 @@ def test_agat(run):
             "out/test_agat_convert_sp_gff2tsv.tsv",
             "out/test_agat_convert_sp_gff2zff.dna",
             "out/test_agat_convert_sp_gxf2gxf.gff",
-            "out/test_agat_sp_prokka_inferNameFromAttributes.gff",
+            "out/test_agat_sp_prokka_infer_name_from_attributes.gff",
             "out/test_agat_sp_add_intergenic_regions.gff",
             "out/test_agat_sp_add_introns.gff",
             "out/test_agat_sp_add_splice_sites.gff",
@@ -5113,6 +5113,7 @@ def test_gatk_applybqsr(run):
         ],
     )
 
+
 def test_gatk_applybqsrspark(run):
     run(
         "bio/gatk/applybqsrspark",
@@ -7165,7 +7166,7 @@ def test_orthanq(run):
             "--use-conda",
             "out/candidates",
             "out/candidates.vcf",
-            #"out/preprocess_hla.bcf",
+            # "out/preprocess_hla.bcf",
             "out/preprocess_virus.bcf",
             "out/calls_hla",
             "out/calls_virus",
