@@ -25,7 +25,7 @@ java_opts = get_java_opts(snakemake)
 
 if snakemake.output.bam.endswith(".cram") and embed_ref:
     output = "/dev/stdout --create-output-bam-splitting-index false"
-    pipe_cmd = " | samtools view -h -O cram,embed_ref -T {snakemake.input.ref} -o {snakemake.output.bam} -@ {samtools_threads} -"
+    pipe_cmd = "| samtools view --threads {samtools_threads} --with-header --reference {snakemake.input.ref} --output-fmt cram,embed_ref --output {snakemake.output.bam}"
 else:
     output = snakemake.output.bam
     pipe_cmd = ""
