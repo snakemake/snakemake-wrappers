@@ -3,7 +3,7 @@ rule test_agat_config:
         "out/agat_config.yaml",
     threads: 1
     log:
-        "test_agat_config.log",
+        "logs/test_agat_config.log",
     params:
         command="config",
     wrapper:
@@ -14,7 +14,7 @@ rule test_agat_levels:
     output:
         "out/agat_levels.yaml",
     log:
-        "test_agat_levels.log",
+        "logs/test_agat_levels.log",
     params:
         command="levels",
     wrapper:
@@ -30,7 +30,7 @@ rule test_agat_convert_bed2gff:
         # The key here will be used as argument name in the final command line
         gff="out/test_agat_convert_bed2gff.gff",
     log:
-        "test_agat_convert_bed2gff.log",
+        "logs/test_agat_convert_bed2gff.log",
     params:
         command="agat_convert_bed2gff.pl",
         extra="",  # Anything besides IO
@@ -47,7 +47,7 @@ rule test_agat_convert_embl2gff:
         # The key here will be used as argument name in the final command line
         gff="out/test_agat_convert_embl2gff.gff",
     log:
-        "test_agat_convert_embl2gff.log",
+        "logs/test_agat_convert_embl2gff.log",
     params:
         command="agat_convert_embl2gff.pl",
         extra="",  # Anything besides IO
@@ -64,7 +64,7 @@ rule test_agat_convert_genscan2gff:
         # The key here will be used as argument name in the final command line
         gff="out/test_agat_convert_genscan2gff.gff",
     log:
-        "test_agat_convert_genscan2gff.log",
+        "logs/test_agat_convert_genscan2gff.log",
     params:
         command="agat_convert_genscan2gff.pl",
         extra="",  # Anything besides IO
@@ -81,7 +81,7 @@ rule test_agat_convert_mfannot2gff:
         # The key here will be used as argument name in the final command line
         gff="out/test_agat_convert_mfannot2gff.gff",
     log:
-        "agat_convert_mfannot2gff.log",
+        "logs/agat_convert_mfannot2gff.log",
     params:
         # No optional non-file parameters with this subcommand.
         command="agat_convert_mfannot2gff.pl",
@@ -98,7 +98,7 @@ rule test_agat_convert_minimap2_bam2gff_bam:
         # The key here will be used as argument name in the final command line
         out="out/test_agat_convert_minimap2_bam2gff_bam.gff",
     log:
-        "agat_convert_minimap2_bam2gff_bam.log",
+        "logs/agat_convert_minimap2_bam2gff_bam.log",
     params:
         # All non-file parameters are auto detected.
         command="agat_convert_minimap2_bam2gff.pl",
@@ -115,7 +115,7 @@ rule test_agat_convert_minimap2_bam2gff_sam:
         # The key here will be used as argument name in the final command line
         out="out/test_agat_convert_minimap2_bam2gff_sam.gff",
     log:
-        "agat_convert_minimap2_bam2gff_sam.log",
+        "logs/agat_convert_minimap2_bam2gff_sam.log",
     params:
         # All non-file parameters are auto detected.
         command="agat_convert_minimap2_bam2gff.pl",
@@ -132,7 +132,7 @@ rule test_agat_convert_sp_gff2bed:
         # The key here will be used as argument name in the final command line
         out="out/test_agat_convert_sp_gff2bed.bed",
     log:
-        "agat_convert_sp_gff2bed.log",
+        "logs/agat_convert_sp_gff2bed.log",
     params:
         command="agat_convert_sp_gff2bed.pl",
         extra="",  # Non file arguments (`--nc` or `--sub`).
@@ -149,7 +149,7 @@ rule test_agat_convert_sp_gff2gtf:
         # The key here will be used as argument name in the final command line
         out="out/test_agat_convert_sp_gff2gtf.gtf",
     log:
-        "agat_convert_sp_gff2gtf.log",
+        "logs/agat_convert_sp_gff2gtf.log",
     params:
         command="agat_convert_sp_gff2gtf.pl",
         extra="",  # Non file arguments (`--gtf_version`).
@@ -166,7 +166,7 @@ rule test_agat_convert_sp_gff2tsv:
         # The key here will be used as argument name in the final command line
         out="out/test_agat_convert_sp_gff2tsv.tsv",
     log:
-        "agat_convert_sp_gff2tsv.log",
+        "logs/agat_convert_sp_gff2tsv.log",
     params:
         # No non-file parameters for this command
         command="agat_convert_sp_gff2tsv.pl",
@@ -185,7 +185,7 @@ rule test_agat_convert_sp_gff2zff:
         ann="out/test_agat_convert_sp_gff2zff.ann",
         dna="out/test_agat_convert_sp_gff2zff.dna",
     log:
-        "agat_convert_sp_gff2zff.log",
+        "logs/agat_convert_sp_gff2zff.log",
     params:
         # No non-file parameters for this command
         command="agat_convert_sp_gff2zff.pl",
@@ -202,7 +202,7 @@ rule test_agat_convert_sp_gxf2gxf:
         # The key here will be used as argument name in the final command line
         out="out/test_agat_convert_sp_gxf2gxf.gff",
     log:
-        "agat_convert_sp_gxf2gfx.log",
+        "logs/agat_convert_sp_gxf2gfx.log",
     params:
         command="agat_convert_sp_gxf2gxf.pl",
         extra="",  # Non file arguments (`-v`).
@@ -219,7 +219,7 @@ rule test_agat_sp_Prokka_inferNameFromAttributes:
         # The key here will be used as argument name in the final command line
         out="out/test_agat_sp_Prokka_inferNameFromAttributes.gff",
     log:
-        "agat_sp_Prokka_inferNameFromAttributes.log",
+        "logs/agat_sp_Prokka_inferNameFromAttributes.log",
     params:
         command="agat_sp_Prokka_inferNameFromAttributes.pl",
         extra="",  # Non file arguments (`--force`).
@@ -236,7 +236,7 @@ rule test_agat_sp_add_intergenic_regions:
         # The key here will be used as argument name in the final command line
         out="out/test_agat_sp_add_intergenic_regions.gff",
     log:
-        "test_agat_sp_add_intergenic_regions.log",
+        "logs/test_agat_sp_add_intergenic_regions.log",
     params:
         command="agat_sp_add_intergenic_regions.pl",
         extra="",  # Non file arguments (`--verbose`).
@@ -253,7 +253,7 @@ rule test_agat_sp_add_introns:
         # The key here will be used as argument name in the final command line
         out="out/test_agat_sp_add_introns.gff",
     log:
-        "test_agat_sp_add_introns.log",
+        "logs/test_agat_sp_add_introns.log",
     params:
         # No non-file arguments.
         command="agat_sp_add_introns.pl",
@@ -270,7 +270,7 @@ rule test_agat_sp_add_splice_sites:
         # The key here will be used as argument name in the final command line
         out="out/test_agat_sp_add_splice_sites.gff",
     log:
-        "test_agat_sp_add_splice_sites.log",
+        "logs/test_agat_sp_add_splice_sites.log",
     params:
         # No non-file arguments.
         command="agat_sp_add_splice_sites.pl",
@@ -288,7 +288,7 @@ rule test_agat_sp_add_start_and_stop:
         # The key here will be used as argument name in the final command line
         out="out/test_agat_sp_add_start_and_stop.gff",
     log:
-        "test_agat_sp_add_start_and_stop.log",
+        "logs/test_agat_sp_add_start_and_stop.log",
     params:
         extra="",  # Non-file arguments (e.g. `--codon`, `--extend`, `-v`, or `--na`)
         command="agat_sp_add_start_and_stop.pl",
@@ -305,7 +305,7 @@ rule test_agat_sp_alignment_output_style:
         # The key here will be used as argument name in the final command line
         out="out/test_agat_sp_alignment_output_style.gff",
     log:
-        "test_agat_sp_alignment_output_style.log",
+        "logs/test_agat_sp_alignment_output_style.log",
     params:
         extra="",  # Non-file arguments (e.g. `--ct`, or `-v`)
         command="agat_sp_alignment_output_style.pl",
@@ -324,7 +324,7 @@ rule test_agat_sp_clipN_seqExtremities_and_fixCoordinates:
         og="out/test_agat_sp_clipN_seqExtremities_and_fixCoordinates.gff",
         of="out/test_agat_sp_clipN_seqExtremities_and_fixCoordinates.fasta",
     log:
-        "test_agat_sp_clipN_seqExtremities_and_fixCoordinates.log",
+        "logs/test_agat_sp_clipN_seqExtremities_and_fixCoordinates.log",
     params:
         extra="",  # Non-file arguments (e.g. `--of`, or `--og`)
         command="agat_sp_clipN_seqExtremities_and_fixCoordinates.pl",
@@ -342,9 +342,9 @@ rule test_agat_sp_compare_two_annotations:
         # The key here will be used as argument name in the final command line
         # This subcommand returns a file per case, which names are build based
         # on the comparison result as well as a report.
-        out=directory("out/test_agat_sp_compare_two_annotation"),
+        out=directory("out/test_agat_sp_compare_two_annotations"),
     log:
-        "test_agat_sp_compare_two_annotations.log",
+        "logs/test_agat_sp_compare_two_annotations.log",
     params:
         extra="",  # Non-file arguments (`-v`)
         command="agat_sp_compare_two_annotations.pl",
@@ -362,7 +362,7 @@ rule test_agat_sp_complement_annotations:
         # The key here will be used as argument name in the final command line
         out="out/test_agat_sp_complement_annotations.gff",
     log:
-        "test_agat_sp_complement_annotations.log",
+        "logs/test_agat_sp_complement_annotations.log",
     params:
         extra="",  # Non-file arguments (`--size_min`)
         command="agat_sp_complement_annotations.pl",
@@ -379,7 +379,7 @@ rule test_agat_sp_ensembl_output_style:
         # The key here will be used as argument name in the final command line
         o="out/test_agat_sp_ensembl_output_style.gff",
     log:
-        "test_agat_sp_ensembl_output_style.log",
+        "logs/test_agat_sp_ensembl_output_style.log",
     params:
         extra="",  # Non-file arguments (`--ct`, or `-v`)
         command="agat_sp_ensembl_output_style.pl",
@@ -397,7 +397,7 @@ rule test_agat_sp_extract_attributes:
         Parent="out/test_agat_sp_extract_attributes_Parent.txt",
         ID="out/test_agat_sp_extract_attributes_ID.txt",
     log:
-        "test_agat_sp_extract_attributes.log",
+        "logs/test_agat_sp_extract_attributes.log",
     params:
         # Non-file arguments besides `--att` (e.g. `-p`, `--merge`, or `-d`)
         extra="-d",
@@ -416,7 +416,7 @@ rule test_agat_sp_extract_sequences:
         # The key here will be used as argument name in the final command line
         o="out/test_agat_sp_extract_sequences.fasta",
     log:
-        "test_agat_sp_extract_attributes.log",
+        "logs/test_agat_sp_extract_attributes.log",
     params:
         # Non-file arguments (e.g. `--asc`, `--cdna`, `--cfs`, ...)
         extra="-p -t cds",
@@ -436,7 +436,7 @@ rule test_agat_sp_filter_by_ORF_size:
         # Unmatched = ORF size *NOT* satisfying `--test` and `--size` criteria
         unmatched="out/test_agat_sp_filter_by_ORF_size_unmatched.gff",
     log:
-        "test_agat_sp_filter_by_ORF_size.log",
+        "logs/test_agat_sp_filter_by_ORF_size.log",
     params:
         # Non-file arguments (e.g. `--size`, `--test`, or `-v`)
         extra="",
@@ -454,7 +454,7 @@ rule test_agat_sp_filter_by_locus_distance:
         # The key here will be used as argument name in the final command line
         outfile="out/test_agat_sp_filter_by_locus_distance.gff",
     log:
-        "test_agat_sp_filter_by_locus_distance.log",
+        "logs/test_agat_sp_filter_by_locus_distance.log",
     params:
         # Non-file arguments (e.g. `-d`, or `--add_flag`)
         extra="",
@@ -472,7 +472,7 @@ rule test_agat_sp_filter_feature_by_attribute_presence:
         # The key here will be used as argument name in the final command line
         o="out/test_agat_sp_filter_feature_by_attribute_presence.gff",
     log:
-        "test_agat_sp_filter_feature_by_attribute_presence.log",
+        "logs/test_agat_sp_filter_feature_by_attribute_presence.log",
     params:
         # Non-file arguments (`--type`, `--flip` or `--att`)
         extra="--type gene --att Parent",
@@ -490,7 +490,7 @@ rule test_agat_sp_filter_feature_by_attribute_value:
         # The key here will be used as argument name in the final command line
         o="out/test_agat_sp_filter_feature_by_attribute_value.gff",
     log:
-        "test_agat_sp_filter_feature_by_attribute_value.log",
+        "logs/test_agat_sp_filter_feature_by_attribute_value.log",
     params:
         # Non-file arguments (e.g. `--type`, `--value`, `--value_insensitive`...)
         extra="--type exon --attribute constitutive --value 1",
@@ -509,7 +509,7 @@ rule test_agat_sp_filter_feature_from_keep_list:
         # The key here will be used as argument name in the final command line
         o="out/test_agat_sp_filter_feature_from_keep_list.gff",
     log:
-        "test_agat_sp_filter_feature_from_keep_list.log",
+        "logs/test_agat_sp_filter_feature_from_keep_list.log",
     params:
         # Non-file arguments (`--type`, or `-v`)
         extra="-v",
@@ -528,7 +528,7 @@ rule test_agat_sp_filter_feature_from_kill_list:
         # The key here will be used as argument name in the final command line
         o="out/test_agat_sp_filter_feature_from_kill_list.gff",
     log:
-        "test_agat_sp_filter_feature_from_kill_list.log",
+        "logs/test_agat_sp_filter_feature_from_kill_list.log",
     params:
         # Non-file arguments (`--type`, or `-v`)
         extra="-v",
@@ -546,7 +546,7 @@ rule test_agat_sp_filter_gene_by_intron_numbers:
         # The key here will be used as argument name in the final command line
         o="out/test_agat_sp_filter_gene_by_intron_numbers.gff",
     log:
-        "test_agat_sp_filter_gene_by_intron_numbers.log",
+        "logs/test_agat_sp_filter_gene_by_intron_numbers.log",
     params:
         # Non-file arguments (`--number`, `-v`, or `--test`)
         extra="--test '>=' --nb 3",
@@ -564,7 +564,7 @@ rule test_agat_sp_filter_gene_by_length:
         # The key here will be used as argument name in the final command line
         o="out/test_agat_sp_filter_gene_by_length.gff",
     log:
-        "test_agat_sp_filter_gene_by_length.log",
+        "logs/test_agat_sp_filter_gene_by_length.log",
     params:
         # Non-file arguments (`--size`, `-v`, or `--test`)
         extra="--test '>=' --size 3",
@@ -583,7 +583,7 @@ rule test_agat_sp_filter_incomplete_gene_coding_models:
         # The key here will be used as argument name in the final command line
         outfile="out/test_agat_sp_filter_incomplete_gene_coding_models.gff",
     log:
-        "test_agat_sp_filter_incomplete_gene_coding_models.log",
+        "logs/test_agat_sp_filter_incomplete_gene_coding_models.log",
     params:
         # Non-file arguments (e.g. `--codon`, `--add_flag`, `--skip_start_check`, ...)
         extra="-v",
@@ -605,7 +605,7 @@ rule test_agat_sp_filter_record_by_coordinates:
         # and a text report.
         o=directory("out/test_agat_sp_filter_record_by_coordinates"),
     log:
-        "test_agat_sp_filter_record_by_coordinates.log",
+        "logs/test_agat_sp_filter_record_by_coordinates.log",
     params:
         # Non-file arguments (`--exclude` or `-v`)
         extra="-v",
@@ -624,7 +624,7 @@ rule test_agat_sp_fix_cds_phases:
         # The key here will be used as argument name in the final command line.
         o="out/test_agat_sp_fix_cds_phases.gff",
     log:
-        "test_agat_sp_fix_cds_phases.log",
+        "logs/test_agat_sp_fix_cds_phases.log",
     params:
         # Non-file arguments (`-v`)
         extra="",
@@ -642,7 +642,7 @@ rule test_agat_sp_fix_features_locations_duplicated:
         # The key here will be used as argument name in the final command line.
         outfile="out/test_agat_sp_fix_features_locations_duplicated.gff",
     log:
-        "test_agat_sp_fix_features_locations_duplicated.log",
+        "logs/test_agat_sp_fix_features_locations_duplicated.log",
     params:
         # Non-file arguments (`-v`, or `--model`)
         extra="",
@@ -667,7 +667,7 @@ rule test_agat_sp_fix_fusion:
         # An optional report over the number of modified/intact features
         report="out/test_agat_sp_fix_fusion_report.txt",
     log:
-        "test_agat_sp_fix_fusion.log",
+        "logs/test_agat_sp_fix_fusion.log",
     params:
         # Non-file arguments (`--codon`, `--threshold`, `--stranded`, or `-v`)
         extra="",
@@ -692,7 +692,7 @@ rule test_agat_sp_fix_longest_ORF:
         # An optional report over the number of modified/intact features
         report="out/test_agat_sp_fix_longest_ORF_report.txt",
     log:
-        "test_agat_sp_fix_longest_ORF.log",
+        "logs/test_agat_sp_fix_longest_ORF.log",
     params:
         # Non-file arguments (`--codon`, `--split`, `--stranded`, or `-v`)
         extra="",
@@ -710,7 +710,7 @@ rule test_agat_sp_fix_overlaping_genes:
         # The key here will be used as argument name in the final command line.
         outfile="out/test_agat_sp_fix_overlaping_genes.gff",
     log:
-        "test_agat_sp_fix_overlaping_genes.log",
+        "logs/test_agat_sp_fix_overlaping_genes.log",
     params:
         # Non-file arguments (`--merge` or `--verbose`)
         extra="",
@@ -729,7 +729,7 @@ rule test_agat_sp_fix_small_exon_from_extremities:
         # The key here will be used as argument name in the final command line.
         outfile="out/test_agat_sp_fix_small_exon_from_extremities.gff",
     log:
-        "test_agat_sp_fix_small_exon_from_extremities.log",
+        "logs/test_agat_sp_fix_small_exon_from_extremities.log",
     params:
         # Non-file arguments (`--merge`, `--size`, `--codon`, or `-v`)
         extra="",
@@ -748,7 +748,7 @@ rule test_agat_sp_flag_premature_stop_codons:
         # The key here will be used as argument name in the final command line.
         out="out/test_agat_sp_flag_premature_stop_codons.gff",
     log:
-        "test_agat_sp_flag_premature_stop_codons.log",
+        "logs/test_agat_sp_flag_premature_stop_codons.log",
     params:
         extra="",  # Non-file argument: `--codon`
         command="agat_sp_flag_premature_stop_codons.pl",
@@ -765,7 +765,7 @@ rule test_agat_sp_flag_short_introns:
         # The key here will be used as argument name in the final command line.
         out="out/test_agat_sp_flag_short_introns.gff",
     log:
-        "test_agat_sp_flag_short_introns.log",
+        "logs/test_agat_sp_flag_short_introns.log",
     params:
         # Non-file parameters (`--intron_size` or `-v`)
         extra="",
@@ -785,7 +785,7 @@ rule test_agat_sp_functional_statistics:
         # in the GFF/GTF file, as long as a report
         o=directory("test_agat_sp_functional_statistics"),
     log:
-        "test_agat_sp_functional_statistics.log",
+        "logs/test_agat_sp_functional_statistics.log",
     params:
         # Non-file parameters (`--gs`)
         extra="",
@@ -803,7 +803,7 @@ rule test_agat_sp_keep_longest_isoform:
         # The key here will be used as argument name in the final command line.
         o="out/test_agat_sp_keep_longest_isoform.gff",
     log:
-        "test_agat_sp_keep_longest_isoform.log",
+        "logs/test_agat_sp_keep_longest_isoform.log",
     params:
         # No non-file parameters allowed
         command="agat_sp_keep_longest_isoform.pl",
@@ -820,7 +820,7 @@ rule test_agat_sp_kraken_assess_liftover:
         # The key here will be used as argument name in the final command line.
         out="out/test_agat_sp_kraken_assess_liftover.gff",
     log:
-        "test_agat_sp_kraken_assess_liftover.log",
+        "logs/test_agat_sp_kraken_assess_liftover.log",
     params:
         # Non-file parameters (`--threshold` or `--verbose`)
         extra="",
@@ -838,7 +838,7 @@ rule test_agat_sp_list_short_introns:
         # The key here will be used as argument name in the final command line.
         out="out/test_agat_sp_list_short_introns.gff",
     log:
-        "test_agat_sp_list_short_introns.log",
+        "logs/test_agat_sp_list_short_introns.log",
     params:
         # Non-file parameter: `--size`
         extra="",
@@ -856,7 +856,7 @@ rule test_agat_sp_manage_IDs:
         # The key here will be used as argument name in the final command line.
         out="out/test_agat_sp_manage_IDs.gff",
     log:
-        "test_agat_sp_manage_IDs.log",
+        "logs/test_agat_sp_manage_IDs.log",
     params:
         # Non-file parameters (e.g. `--gap`, `--ensembl`, `--prefix`, ...)
         extra="",
@@ -886,7 +886,7 @@ rule test_agat_sp_manage_UTRs:
         # Optional path to analysis report
         report="out/test_agat_sp_manage_UTRs_report.txt",
     log:
-        "test_agat_sp_manage_UTRs.log",
+        "logs/test_agat_sp_manage_UTRs.log",
     params:
         # Non-file parameters (e.g. `--number`, `--three`, `--five`, or `--both`)
         # The parameter `--plot` is automatically infered
@@ -905,7 +905,7 @@ rule test_agat_sp_manage_attributes:
         # The key here will be used as argument name in the final command line.
         out="out/test_agat_sp_manage_attributes.gff",
     log:
-        "test_agat_sp_manage_attributes.log",
+        "logs/test_agat_sp_manage_attributes.log",
     params:
         # Non-file parameters (`--type`, `--tag`, `--add`, `--cp`, or `--overwrite`)
         extra="--att biotype",
@@ -945,7 +945,7 @@ rule test_agat_sp_manage_functional_annotation:
         # Superfamily database terms, requires all optional input
         superfamily="out/test_agat_sp_manage_functional_annotation.superfamily.tsv",
     log:
-        "test_agat_sp_manage_functional_annotation.log",
+        "logs/test_agat_sp_manage_functional_annotation.log",
     params:
         # Non-file parameters (e.g. `--blast_evalue`, `--pe`, `--clean_ontology`, ...)
         # The parameter `--plot` is automatically infered.
@@ -972,7 +972,7 @@ rule test_agat_sp_manage_introns:
         # Optional path to 5'UTR histogram (triggers the `--plot` argument)
         five_prime_utr_pdf="out/test_agat_sp_manage_introns_exons_5p.pdf",
     log:
-        "test_agat_sp_manage_introns.log",
+        "logs/test_agat_sp_manage_introns.log",
     params:
         # Non-file parameters (`--p`, `--window`)
         # The parameter `--plot` is automatically infered.
@@ -991,7 +991,7 @@ rule test_agat_sp_merge_annotations:
         # The key here will be used as argument name in the final command line.
         out="out/test_agat_sp_merge_annotations.gff",
     log:
-        "test_agat_sp_merge_annotations.log",
+        "logs/test_agat_sp_merge_annotations.log",
     params:
         # No non-file parameters
         command="agat_sp_merge_annotations.pl",
@@ -1008,7 +1008,7 @@ rule test_agat_sp_move_attributes_within_records:
         # The key here will be used as argument name in the final command line.
         out="out/test_agat_sp_move_attributes_within_records.gff",
     log:
-        "test_agat_sp_move_attributes_within_records.log",
+        "logs/test_agat_sp_move_attributes_within_records.log",
     params:
         # Non-file parameters (`--fp`, `--fc`, `--attribute`, or `-v`)
         extra="--feature_copy mRNA  --feature_paste CDS",
@@ -1030,7 +1030,7 @@ rule test_agat_sp_prokka_fix_fragmented_gene_annotations:
         # depending on the content of input file(s).
         out=directory("out/test_agat_sp_prokka_fix_fragmented_gene_annotations"),
     log:
-        "test_agat_sp_prokka_fix_fragmented_gene_annotations.log",
+        "logs/test_agat_sp_prokka_fix_fragmented_gene_annotations.log",
     params:
         # Non-file parameters:
         # `--frags`, `--pseudo`, `--hmap_size`, `--ct`, `--skip_hmap`, or `-v`
@@ -1050,7 +1050,7 @@ rule test_agat_sp_sensitivity_specificity:
         # The key here will be used as argument name in the final command line.
         outfile="out/test_agat_sp_sensitivity_specificity.txt",
     log:
-        "test_agat_sp_sensitivity_specificity.log",
+        "logs/test_agat_sp_sensitivity_specificity.log",
     params:
         # Non-file parameters (`-v`)
         extra="",
@@ -1070,7 +1070,7 @@ rule test_agat_sp_separate_by_record_type:
         # huge list of records available in `agat levels`.
         o=directory("out/test_agat_sp_separate_by_record_type"),
     log:
-        "test_agat_sp_separate_by_record_type.log",
+        "logs/test_agat_sp_separate_by_record_type.log",
     params:
         # No non-file parameters
         command="agat_sp_separate_by_record_type.pl",
@@ -1093,7 +1093,7 @@ rule test_agat_sp_statistics:
         # `agat levels` command. Triggers `-p` argument.
         plot=directory("test_agat_sp_statistics_plots"),
     log:
-        "test_agat_sp_statistics.log",
+        "logs/test_agat_sp_statistics.log",
     params:
         # Non-file parameters: `--gs`, or `--verbose`)
         # All other non-file parameters are automatically infered
@@ -1113,7 +1113,7 @@ rule test_agat_sq_add_attributes_from_tsv:
         # Optional Path to text report
         o="out/test_agat_sq_add_attributes_from_tsv.gff",
     log:
-        "test_agat_sq_add_attributes_from_tsv.log",
+        "logs/test_agat_sq_add_attributes_from_tsv.log",
     params:
         # Non-file parameters: `--vebose`
         # All other parameters are automatically included
@@ -1132,7 +1132,7 @@ rule test_agat_sq_add_hash_tag:
         # Optional Path to text report
         o="out/test_agat_sq_add_hash_tag.gff",
     log:
-        "test_agat_sq_add_hash_tag.log",
+        "logs/test_agat_sq_add_hash_tag.log",
     params:
         extra="--interval 1",
         command="agat_sq_add_hash_tag.pl",
@@ -1149,7 +1149,7 @@ rule test_agat_sq_add_locus_tag:
         # Optional Path to text report
         o="out/test_agat_sq_add_locus_tag.gff",
     log:
-        "test_agat_sq_add_locus_tag.log",
+        "logs/test_agat_sq_add_locus_tag.log",
     params:
         # Non-file parameters, eg: `--type`, `--lo`, `--li`, `--of` or `--quiet`
         extra="",
@@ -1168,7 +1168,7 @@ rule test_agat_sq_filter_feature_from_fasta:
         # Optional Path to text report
         o="out/test_agat_sq_filter_feature_from_fasta.gff",
     log:
-        "test_agat_sq_filter_feature_from_fasta.log",
+        "logs/test_agat_sq_filter_feature_from_fasta.log",
     params:
         # Only verbosity parameter is expected, other ones are automatically filled
         extra="--verbose 4",
@@ -1186,7 +1186,7 @@ rule test_agat_sq_list_attributes:
         # Optional Path to attributes
         outfile="out/test_agat_sq_list_attributes.txt",
     log:
-        "test_agat_sq_list_attributes.log",
+        "logs/test_agat_sq_list_attributes.log",
     params:
         # Only `-p`, `-t` or `-l`, other options are automatically infered
         extra="-p level2,cds,exon",
@@ -1204,7 +1204,7 @@ rule test_agat_sq_manage_IDs:
         # Optional Path to ids
         o="out/test_agat_sq_manage_IDs.txt",
     log:
-        "test_agat_sq_manage_IDs.log",
+        "logs/test_agat_sq_manage_IDs.log",
     params:
         # Only `--of`, all other parameters are infered
         extra="--of 2",
@@ -1222,7 +1222,7 @@ rule test_agat_sq_manage_attributes:
         # Optional Path to GFF
         outfile="out/test_agat_sq_manage_attributes.gff",
     log:
-        "test_agat_sq_manage_attributes.log",
+        "logs/test_agat_sq_manage_attributes.log",
     params:
         # One of `--type`, `--tag` `--add`, `--vp`,
         # `--overwrite`, `--value` or `--strategy`
@@ -1242,7 +1242,7 @@ rule test_agat_sq_mask:
         # Path to masked GFF/GTF
         o="out/test_agat_sq_mask.gff",
     log:
-        "test_agat_sq_mask.log",
+        "logs/test_agat_sq_mask.log",
     params:
         # Only `--sm` or `--hm` (mutually exclusive), all other parameters are infered.
         extra="--hm",
@@ -1260,7 +1260,7 @@ rule test_agat_sq_remove_redundant_entries:
         # Path to GFF entries
         o="out/test_agat_sq_remove_redundant_entries.gff",
     log:
-        "test_agat_sq_remove_redundant_entries.log",
+        "logs/test_agat_sq_remove_redundant_entries.log",
     params:
         # All parameters are filled automatically
         command="agat_sq_remove_redundant_entries.pl",
@@ -1279,7 +1279,7 @@ rule test_agat_sq_repeats_analyzer:
         # Path to repeats
         o="out/test_agat_sq_repeats_analyzer.gff",
     log:
-        "test_agat_sq_repeats_analyzer.log",
+        "logs/test_agat_sq_repeats_analyzer.log",
     params:
         # If no fasta file is provided in `input.genome`, then provide the genome size
         # through optional parameter below:
@@ -1299,7 +1299,7 @@ rule test_agat_sq_reverse_complement:
         # Path to revert complement
         o="out/test_agat_sq_reverse_complement.gff",
     log:
-        "test_agat_sq_reverse_complement.log",
+        "logs/test_agat_sq_reverse_complement.log",
     params:
         # Only verbosity parameter is allowed, other ones are automatically filled
         extra="--verbose 4",
@@ -1318,7 +1318,7 @@ rule test_agat_sq_rfam_analyzer:
         # Optional Path to ids
         o="out/test_agat_sq_rfam_analyzer.tsv",
     log:
-        "test_agat_sq_rfam_analyzer.log",
+        "logs/test_agat_sq_rfam_analyzer.log",
     params:
         # If no fasta file is provided in `input.genome`, then provide the genome size
         # through optional parameter below:
