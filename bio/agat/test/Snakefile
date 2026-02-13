@@ -783,7 +783,7 @@ rule test_agat_sp_functional_statistics:
         # The key here will be used as argument name in the final command line.
         # This directory contains sub-directory for each type of features available
         # in the GFF/GTF file, as long as a report
-        o=directory("test_agat_sp_functional_statistics"),
+        o=directory("out/test_agat_sp_functional_statistics"),
     log:
         "logs/test_agat_sp_functional_statistics.log",
     params:
@@ -1091,7 +1091,7 @@ rule test_agat_sp_statistics:
         # Optional path to directory containing multiple plots, corresponding
         # to each level present in the input GFF file and described by the
         # `agat levels` command. Triggers `-p` argument.
-        plot=directory("test_agat_sp_statistics_plots"),
+        plot=directory("out/test_agat_sp_statistics_plots"),
     log:
         "logs/test_agat_sp_statistics.log",
     params:
