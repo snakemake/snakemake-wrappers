@@ -16,7 +16,9 @@ spark_master = snakemake.params.get(
 )
 spark_extra = snakemake.params.get("spark_extra", "")
 embed_ref = snakemake.params.get("embed_ref", False)
-samtools_threads = snakemake.threads if snakemake.params.get("exceed_thread_limit", False) else 1
+samtools_threads = (
+    snakemake.threads if snakemake.params.get("exceed_thread_limit", False) else 1
+)
 
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
