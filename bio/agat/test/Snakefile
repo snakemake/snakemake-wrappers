@@ -205,7 +205,7 @@ rule test_agat_convert_sp_gxf2gxf:
         "logs/agat_convert_sp_gxf2gfx.log",
     params:
         command="agat_convert_sp_gxf2gxf.pl",
-        extra="",  # Non file arguments (`-v`).
+        extra="",  # Non file arguments (`--verbose`)
     wrapper:
         "master/bio/agat"
 
@@ -290,7 +290,7 @@ rule test_agat_sp_add_start_and_stop:
     log:
         "logs/test_agat_sp_add_start_and_stop.log",
     params:
-        extra="",  # Non-file arguments (e.g. `--codon`, `--extend`, `-v`, or `--na`)
+        extra="",  # Non-file arguments (e.g. `--codon`, `--extend`, `--verbose`, or `--na`)
         command="agat_sp_add_start_and_stop.pl",
     wrapper:
         "master/bio/agat"
@@ -307,7 +307,7 @@ rule test_agat_sp_alignment_output_style:
     log:
         "logs/test_agat_sp_alignment_output_style.log",
     params:
-        extra="",  # Non-file arguments (e.g. `--ct`, or `-v`)
+        extra="",  # Non-file arguments (e.g. `--ct`, or `--verbose`)
         command="agat_sp_alignment_output_style.pl",
     wrapper:
         "master/bio/agat"
@@ -346,7 +346,7 @@ rule test_agat_sp_compare_two_annotations:
     log:
         "logs/test_agat_sp_compare_two_annotations.log",
     params:
-        extra="",  # Non-file arguments (`-v`)
+        extra="",  # Non-file arguments (`--verbose`)
         command="agat_sp_compare_two_annotations.pl",
     wrapper:
         "master/bio/agat"
@@ -381,7 +381,7 @@ rule test_agat_sp_ensembl_output_style:
     log:
         "logs/test_agat_sp_ensembl_output_style.log",
     params:
-        extra="",  # Non-file arguments (`--ct`, or `-v`)
+        extra="",  # Non-file arguments (`--ct`, or `--verbose`)
         command="agat_sp_ensembl_output_style.pl",
     wrapper:
         "master/bio/agat"
@@ -438,7 +438,7 @@ rule test_agat_sp_filter_by_ORF_size:
     log:
         "logs/test_agat_sp_filter_by_ORF_size.log",
     params:
-        # Non-file arguments (e.g. `--size`, `--test`, or `-v`)
+        # Non-file arguments (e.g. `--size`, `--test`, or `--verbose`)
         extra="",
         command="agat_sp_filter_by_ORF_size.pl",
     wrapper:
@@ -511,8 +511,8 @@ rule test_agat_sp_filter_feature_from_keep_list:
     log:
         "logs/test_agat_sp_filter_feature_from_keep_list.log",
     params:
-        # Non-file arguments (`--type`, or `-v`)
-        extra="-v",
+        # Non-file arguments (`--type`, or `--verbose`)
+        extra="--verbose 4",
         command="agat_sp_filter_feature_from_keep_list.pl",
     wrapper:
         "master/bio/agat"
@@ -530,8 +530,8 @@ rule test_agat_sp_filter_feature_from_kill_list:
     log:
         "logs/test_agat_sp_filter_feature_from_kill_list.log",
     params:
-        # Non-file arguments (`--type`, or `-v`)
-        extra="-v",
+        # Non-file arguments (`--type`, or `--verbose`)
+        extra="--verbose 4",
         command="agat_sp_filter_feature_from_kill_list.pl",
     wrapper:
         "master/bio/agat"
@@ -548,7 +548,7 @@ rule test_agat_sp_filter_gene_by_intron_numbers:
     log:
         "logs/test_agat_sp_filter_gene_by_intron_numbers.log",
     params:
-        # Non-file arguments (`--number`, `-v`, or `--test`)
+        # Non-file arguments (`--number`, `--verbose`, or `--test`)
         extra="--test '>=' --nb 3",
         command="agat_sp_filter_gene_by_intron_numbers.pl",
     wrapper:
@@ -566,7 +566,7 @@ rule test_agat_sp_filter_gene_by_length:
     log:
         "logs/test_agat_sp_filter_gene_by_length.log",
     params:
-        # Non-file arguments (`--size`, `-v`, or `--test`)
+        # Non-file arguments (`--size`, `--verbose`, or `--test`)
         extra="--test '>=' --size 3",
         command="agat_sp_filter_gene_by_length.pl",
     wrapper:
@@ -586,7 +586,7 @@ rule test_agat_sp_filter_incomplete_gene_coding_models:
         "logs/test_agat_sp_filter_incomplete_gene_coding_models.log",
     params:
         # Non-file arguments (e.g. `--codon`, `--add_flag`, `--skip_start_check`, ...)
-        extra="-v",
+        extra="--verbose 4",
         command="agat_sp_filter_incomplete_gene_coding_models.pl",
     wrapper:
         "master/bio/agat"
@@ -607,8 +607,8 @@ rule test_agat_sp_filter_record_by_coordinates:
     log:
         "logs/test_agat_sp_filter_record_by_coordinates.log",
     params:
-        # Non-file arguments (`--exclude` or `-v`)
-        extra="-v",
+        # Non-file arguments (`--exclude` or `--verbose`)
+        extra="--verbose 4",
         command="agat_sp_filter_record_by_coordinates.pl",
     wrapper:
         "master/bio/agat"
@@ -626,7 +626,7 @@ rule test_agat_sp_fix_cds_phases:
     log:
         "logs/test_agat_sp_fix_cds_phases.log",
     params:
-        # Non-file arguments (`-v`)
+        # Non-file arguments (`--verbose`)
         extra="",
         command="agat_sp_fix_cds_phases.pl",
     wrapper:
@@ -644,7 +644,7 @@ rule test_agat_sp_fix_features_locations_duplicated:
     log:
         "logs/test_agat_sp_fix_features_locations_duplicated.log",
     params:
-        # Non-file arguments (`-v`, or `--model`)
+        # Non-file arguments (`--verbose`, or `--model`)
         extra="",
         command="agat_sp_fix_features_locations_duplicated.pl",
     wrapper:
@@ -669,7 +669,7 @@ rule test_agat_sp_fix_fusion:
     log:
         "logs/test_agat_sp_fix_fusion.log",
     params:
-        # Non-file arguments (`--codon`, `--threshold`, `--stranded`, or `-v`)
+        # Non-file arguments (`--codon`, `--threshold`, `--stranded`, or `--verbose`)
         extra="",
         command="agat_sp_fix_fusion.pl",
     wrapper:
@@ -694,7 +694,7 @@ rule test_agat_sp_fix_longest_ORF:
     log:
         "logs/test_agat_sp_fix_longest_ORF.log",
     params:
-        # Non-file arguments (`--codon`, `--split`, `--stranded`, or `-v`)
+        # Non-file arguments (`--codon`, `--split`, `--stranded`, or `--verbose`)
         extra="",
         command="agat_sp_fix_longest_ORF.pl",
     wrapper:
@@ -731,7 +731,7 @@ rule test_agat_sp_fix_small_exon_from_extremities:
     log:
         "logs/test_agat_sp_fix_small_exon_from_extremities.log",
     params:
-        # Non-file arguments (`--merge`, `--size`, `--codon`, or `-v`)
+        # Non-file arguments (`--merge`, `--size`, `--codon`, or `--verbose`)
         extra="",
         command="agat_sp_fix_small_exon_from_extremities.pl",
     wrapper:
@@ -767,7 +767,7 @@ rule test_agat_sp_flag_short_introns:
     log:
         "logs/test_agat_sp_flag_short_introns.log",
     params:
-        # Non-file parameters (`--intron_size` or `-v`)
+        # Non-file parameters (`--intron_size` or `--verbose`)
         extra="",
         command="agat_sp_flag_short_introns.pl",
     wrapper:
@@ -1010,7 +1010,7 @@ rule test_agat_sp_move_attributes_within_records:
     log:
         "logs/test_agat_sp_move_attributes_within_records.log",
     params:
-        # Non-file parameters (`--fp`, `--fc`, `--attribute`, or `-v`)
+        # Non-file parameters (`--fp`, `--fc`, `--attribute`, or `--verbose`)
         extra="--feature_copy mRNA  --feature_paste CDS",
         command="agat_sp_move_attributes_within_records.pl",
     wrapper:
@@ -1033,7 +1033,7 @@ rule test_agat_sp_prokka_fix_fragmented_gene_annotations:
         "logs/test_agat_sp_prokka_fix_fragmented_gene_annotations.log",
     params:
         # Non-file parameters:
-        # `--frags`, `--pseudo`, `--hmap_size`, `--ct`, `--skip_hmap`, or `-v`
+        # `--frags`, `--pseudo`, `--hmap_size`, `--ct`, `--skip_hmap`, or `--verbose`
         extra="--skip_hamap",  # To speed up tests
         command="agat_sp_prokka_fix_fragmented_gene_annotations.pl",
     wrapper:
@@ -1052,7 +1052,7 @@ rule test_agat_sp_sensitivity_specificity:
     log:
         "logs/test_agat_sp_sensitivity_specificity.log",
     params:
-        # Non-file parameters (`-v`)
+        # Non-file parameters (`--verbose`)
         extra="",
         command="agat_sp_sensitivity_specificity.pl",
     wrapper:
@@ -1115,7 +1115,7 @@ rule test_agat_sq_add_attributes_from_tsv:
     log:
         "logs/test_agat_sq_add_attributes_from_tsv.log",
     params:
-        # Non-file parameters: `--vebose`
+        # Non-file parameters: `--verbose`
         # All other parameters are automatically included
         extra="",
         command="agat_sq_add_attributes_from_tsv.pl",
