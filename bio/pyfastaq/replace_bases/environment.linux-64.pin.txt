@@ -3,12 +3,11 @@
 # platform: linux-64
 # created-by: conda 24.9.2
 @EXPLICIT
-https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2#d7c89558ba9fa0495403155b64376d81
 https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2026.1.4-hbd8a1cb_0.conda#bddacf101bb4dd0e51811cb69c7790e2
 https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-he0feb66_17.conda#51b78c6a757575c0d12f4401ffc67029
 https://conda.anaconda.org/conda-forge/noarch/python_abi-3.14-8_cp314.conda#0539938c55b6b1a59b560e843ad864a4
 https://conda.anaconda.org/conda-forge/noarch/tzdata-2025c-hc9c84f9_1.conda#ad659d0a2b3e47e38d829aa8cad2d610
-https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2#73aaf86a425cc6e73fcf236a5a46396d
+https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda#a9f577daf3de00bca7c3c76c0ecbd1de
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-he0feb66_17.conda#3c281169ea25b987311400d7a7e28445
 https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hda65f42_8.conda#51a19bba1b8ebfb60df25cde030b7ebc
 https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.7.3-hecca717_0.conda#8b09ae86839581147ef2e5c5e229d164
@@ -26,6 +25,6 @@ https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_h366c992_103.con
 https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb78ec9c_6.conda#4a13eeac0b5c8e5b8ab496e6c4ddd829
 https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45.1-default_hbd61a6d_101.conda#12bd9a3f089ee6c9266a37dab82afabd
 https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.51.2-hf4e2dac_0.conda#da5be73701eecd0e8454423fd6ffcf30
-https://conda.anaconda.org/conda-forge/linux-64/python-3.14.3-h32b2ec7_100_cp314.conda#b40594d5da041824087eebe12228af42
+https://conda.anaconda.org/conda-forge/linux-64/python-3.14.3-h32b2ec7_101_cp314.conda#c014ad06e60441661737121d3eae8a60
 https://conda.anaconda.org/conda-forge/noarch/pip-26.0.1-pyh145f28c_0.conda#09a970fbf75e8ed1aa633827ded6aa4f
 https://conda.anaconda.org/bioconda/noarch/pyfastaq-3.18.0-pyhdfd78af_0.tar.bz2#3b009c832acd828e64cce3b15d2fd93f
