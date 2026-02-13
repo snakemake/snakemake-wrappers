@@ -7,7 +7,7 @@ rule star_index:
     threads: 4
     params:
         sjdbOverhang=100,
-        extra="--genomeSAindexNbases 2",
+        extra="",
     log:
         "<logs>/star_index_genome.log",
     cache: True  # mark as eligible for between workflow caching
@@ -49,7 +49,7 @@ rule arriba:
         annotation="<genome_annotation>",
         # optional: # A custom tsv containing identified artifacts, such as read-through fusions of neighbouring genes.
         # default blacklists are selected via blacklist parameter
-        # see https://arriba.readthedocs.io/en/latest/input-files/#blacklist
+        # see https://github.com/suhrig/arriba/wiki/04-Input-files#blacklist
         custom_blacklist=[],
     output:
         fusions="<results>/arriba/<per>.fusions.tsv",

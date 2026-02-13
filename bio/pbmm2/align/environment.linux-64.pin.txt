@@ -3,4 +3,4 @@
 # platform: linux-64
 # created-by: conda 24.9.2
 @EXPLICIT
-https://conda.anaconda.org/bioconda/linux-64/pbmm2-1.17.0-h9ee0642_0.tar.bz2#a0521944fc05eb64b1147cab8b9e6d8c
+https://conda.anaconda.org/bioconda/linux-64/pbmm2-26.1.0-h9ee0642_0.conda#acab607a35d1e87b9a1fde30f9cadfa8
