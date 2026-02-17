@@ -3,6 +3,6 @@ from snakemake.utils import min_version
 min_version("9.13.1")
 
 module dada2_se:
-    meta_wrapper: "master/meta/bio/dada2_se"
+    meta_wrapper: "file:.."
 
 use rule * from dada2_se

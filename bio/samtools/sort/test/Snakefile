@@ -6,7 +6,8 @@ rule samtools_sort:
     log:
         "logs/{sample}.log",
     params:
-        extra="-m 4G",
+        mem="64G", # choose as required, the more the better
+        extra="",
     threads: 8
     wrapper:
         "master/bio/samtools/sort"
