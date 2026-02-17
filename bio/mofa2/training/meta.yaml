@@ -20,9 +20,9 @@ input:
 output:
   - An HDF5-file with the trained model.
 notes: |
-  In the params, set `scale_group` and/or `scale_views` to `TRUE`, if your groups/views
+  In the params, set `scale_group` and/or `scale_views` to `True`, if your groups/views
   have different ranges/variances. This scales them to unit variance.
-  Defaults to `FALSE` if no params are given.
+  Defaults to `False` if no params are given.
 params: |
   - scale_group: set to `TRUE` if groups
   have different ranges/variances
