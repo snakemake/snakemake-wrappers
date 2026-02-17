@@ -24,9 +24,9 @@ notes: |
   have different ranges/variances. This scales them to unit variance.
   Defaults to `False` if no params are given.
 params: |
-  - scale_group: set to `TRUE` if groups
+  - scale_group: set to `True` if groups
   have different ranges/variances
-  - scale_views: set to `TRUE` if views
+  - scale_views: set to `True` if views
   have different ranges/variances
 notes: |
   * All other training variables are set to default values.
