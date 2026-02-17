@@ -34,6 +34,7 @@ jobs:
           black --check */*/*/wrapper.py */*/wrapper.py
 
       - name: Check Snakemake formatting
+        shell: bash -el {0}
         run: |
           snakefmt --check $(git diff origin/master --name-only | grep Snakefile)
 
@@ -43,7 +44,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup mamba
-        uses: conda-incubator/setup-miniconda@v2
+        uses: conda-incubator/setup-miniconda@v3
         with:
           activate-environment: snakemake
           channels: "conda-forge, bioconda"
