@@ -7176,6 +7176,14 @@ def test_orthanq(run):
     )
 
 
+def test_mofa2_training(run):
+    run("bio/mofa2/training", ["snakemake", "--cores", "1", "data.hdf5", "--use-conda", "-F"])
+
+
+def test_mofa2_plotting(run):
+    run("bio/mofa2/plotting", ["snakemake", "--cores", "1", "--use-conda", "-F"])
+
+
 def test_go_yq(run):
     run(
         "utils/go-yq",
