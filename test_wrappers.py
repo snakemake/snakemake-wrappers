@@ -46,10 +46,8 @@ def run(tmp_test_dir):
 
         is_meta_wrapper = wrapper.startswith("meta/")
 
-        tmp_test_subdir = Path(tempfile.mkdtemp(dir=tmp_test_dir))
-        origdir = os.getcwd()
-
-        meta_path = os.path.join(wrapper, "meta.yaml")
+        # Check meta.yaml file
+        meta_path = wrapper_dir / "meta.yaml"
         try:
             with open(meta_path) as f:
                 meta = yaml.load(f, Loader=yaml.BaseLoader)
@@ -59,26 +57,17 @@ def run(tmp_test_dir):
         if meta.get("blacklisted"):
             pytest.skip("wrapper blacklisted")
 
-        dst = tmp_test_subdir / "master"
-
-        os.symlink(origdir, dst)
-
-        used_wrappers = []
-        wrapper_file = "used_wrappers.yaml"
-        if os.path.exists(os.path.join(wrapper, wrapper_file)):
-            # is meta wrapper
-            with open(os.path.join(wrapper, wrapper_file), "r") as wf:
-                wf = yaml.load(wf, Loader=yaml.BaseLoader)
-                used_wrappers = wf["wrappers"]
-        else:
-            used_wrappers.append(wrapper)
-
+        # Check if wrapper was modified
         if (DIFF_MASTER or DIFF_LAST_COMMIT) and not any(
-            any(f.startswith(w) for f in DIFF_FILES)
-            for w in chain(used_wrappers, [wrapper])
+            f.startswith(wrapper) for f in DIFF_FILES
         ):
-            pytest.skip("wrappers not modified")
+            pytest.skip("wrapper not modified")
 
+        # Prepare and copy files to temp test directory
+        tmp_test_subdir = Path(tempfile.mkdtemp(dir=tmp_test_dir))
+        origdir = Path.cwd()
+        dst = tmp_test_subdir / "master"
+        os.symlink(origdir, dst)
         testdir = tmp_test_subdir / "test"
 
         if is_meta_wrapper:
@@ -91,7 +80,7 @@ def run(tmp_test_dir):
         else:
             shutil.copytree(wrapper_dir / "test", testdir)
 
-        # switch to test directory
+        # Switch to test directory
         os.chdir(testdir)
         if os.path.exists(".snakemake"):
             shutil.rmtree(".snakemake")
@@ -7177,7 +7166,10 @@ def test_orthanq(run):
 
 
 def test_mofa2_training(run):
-    run("bio/mofa2/training", ["snakemake", "--cores", "1", "data.hdf5", "--use-conda", "-F"])
+    run(
+        "bio/mofa2/training",
+        ["snakemake", "--cores", "1", "data.hdf5", "--use-conda", "-F"],
+    )
 
 
 def test_mofa2_plotting(run):
