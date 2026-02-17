@@ -3,6 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - varscan =2.4.6
-  - snakemake-wrapper-utils =0.8.0
-name: varscan
+  - bioconductor-mofa2 =1.16.0
