@@ -6,8 +6,8 @@ rule test_jq:
     log:
         "logs/jq.log",
     params:
-        expression="-cr",
-        extra=".array_tot = .array[0] + .array[1]",
+        expression=".array_tot = .array[0] + .array[1]",
+        extra="-cr",
     threads: 1
     wrapper:
         "master/utils/jq"
