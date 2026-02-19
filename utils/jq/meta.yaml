@@ -9,7 +9,7 @@ input:
 output:
   - Path to JSON(L) file.
 params:
-  - expression: Optional expression to evaluate.
-  - extra: Optional arguments for `yq` command, besides `--null-input`.
+  - expression: Expression to evaluate (by default, '.').
+  - extra: Optional arguments for `jq` command.
 notes: |
   This tool does not support multithreading.
