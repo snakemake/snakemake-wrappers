@@ -324,6 +324,22 @@ def test_miller(run):
     )
 
 
+def test_jq(run):
+    run(
+        "utils/jq",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "out/sum.json",
+        ],
+        compare_results_with_expected={
+            "out/sum.json": "expected/sum.json",
+        },
+    )
+
+
 def test_taxonkit(run):
     run(
         "bio/taxonkit",

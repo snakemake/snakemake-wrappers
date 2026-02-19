@@ -1,0 +1,15 @@
+name: jq
+url: https://github.com/jqlang/jq
+description: >
+  Command-line JSON processor.
+authors:
+  - Filipe G. Vieira
+input:
+  - Path to JSON(L) file.
+output:
+  - Path to JSON(L) file.
+params:
+  - expression: Optional expression to evaluate.
+  - extra: Optional arguments for `yq` command, besides `--null-input`.
+notes: |
+  This tool does not support multithreading.
