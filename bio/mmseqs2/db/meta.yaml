@@ -1,0 +1,13 @@
+name: MMseqs2 db
+url: https://github.com/soedinglab/mmseqs2
+description: |
+  ultra fast and sensitive sequence search and clustering suite
+authors:
+  - Filipe G. Vieira
+input:
+  - input FAS file
+output:
+  - output: DB files
+params:
+  - module: workflow to use
+  - extra: additional program arguments
