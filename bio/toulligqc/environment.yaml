@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - toulligqc =2.7.1
+  - toulligqc =2.8
   - snakemake-wrapper-utils =0.8.0
