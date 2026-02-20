@@ -1,5 +1,30 @@
 # Changelog
 
+## [9.1.1](https://github.com/snakemake/snakemake-wrappers/compare/v9.1.0...v9.1.1) (2026-02-20)
+
+
+### Bug Fixes
+
+* add version constraint to utils/nextflow env yaml ([#4637](https://github.com/snakemake/snakemake-wrappers/issues/4637)) ([64522b5](https://github.com/snakemake/snakemake-wrappers/commit/64522b5405d4d1e89d14ebe50daca2549d42a78f))
+
+
+### Performance Improvements
+
+* autobump bio/diamond/blastp/environment.yaml ([#4973](https://github.com/snakemake/snakemake-wrappers/issues/4973)) ([b4219b4](https://github.com/snakemake/snakemake-wrappers/commit/b4219b4cae2f4683bcf18804702da792ba0482b9))
+* autobump bio/diamond/blastx/environment.yaml ([#4972](https://github.com/snakemake/snakemake-wrappers/issues/4972)) ([f596278](https://github.com/snakemake/snakemake-wrappers/commit/f596278a66b753ca110fe5552ce42fb0c3a9b703))
+* autobump bio/diamond/makedb/environment.yaml ([#4971](https://github.com/snakemake/snakemake-wrappers/issues/4971)) ([b79d8ba](https://github.com/snakemake/snakemake-wrappers/commit/b79d8ba3b5cd867c168f5358ecbdd89b72b459ef))
+* autobump bio/emu/abundance/environment.yaml ([#4975](https://github.com/snakemake/snakemake-wrappers/issues/4975)) ([f17865d](https://github.com/snakemake/snakemake-wrappers/commit/f17865de808071ee96361432515c74928da46d30))
+* autobump bio/emu/collapse-taxonomy/environment.yaml ([#4974](https://github.com/snakemake/snakemake-wrappers/issues/4974)) ([12da167](https://github.com/snakemake/snakemake-wrappers/commit/12da1672e2d96e176e76ca40185a5b420cb57505))
+* autobump bio/emu/combine-outputs/environment.yaml ([#4976](https://github.com/snakemake/snakemake-wrappers/issues/4976)) ([8673b38](https://github.com/snakemake/snakemake-wrappers/commit/8673b3820e9bc45757e3989c3bec0e1927563cff))
+* autobump bio/mofa2/training/environment.yaml ([#4978](https://github.com/snakemake/snakemake-wrappers/issues/4978)) ([d0e3c01](https://github.com/snakemake/snakemake-wrappers/commit/d0e3c0199b9bd116891769941a739fcbfb2f32b5))
+* autobump bio/rasusa/environment.yaml ([#4981](https://github.com/snakemake/snakemake-wrappers/issues/4981)) ([489a899](https://github.com/snakemake/snakemake-wrappers/commit/489a8998cb02092b09e3655e732be5376adc9f95))
+* autobump bio/unicycler/environment.yaml ([#4986](https://github.com/snakemake/snakemake-wrappers/issues/4986)) ([bf63ea5](https://github.com/snakemake/snakemake-wrappers/commit/bf63ea5204b8854c44ae4a2a08bf4bc5b616b5fc))
+* autobump geo/rasterio/clip/environment.yaml ([#4985](https://github.com/snakemake/snakemake-wrappers/issues/4985)) ([1ec0c08](https://github.com/snakemake/snakemake-wrappers/commit/1ec0c08e3ac7b37cf2c9222e60f76a0b5e58f136))
+* autobump phys/root/define_columns/environment.yaml ([#4980](https://github.com/snakemake/snakemake-wrappers/issues/4980)) ([61b542c](https://github.com/snakemake/snakemake-wrappers/commit/61b542cb92b2104b2ddb36adbf9b40e67a3f6e47))
+* autobump phys/root/filter/environment.yaml ([#4982](https://github.com/snakemake/snakemake-wrappers/issues/4982)) ([1004c62](https://github.com/snakemake/snakemake-wrappers/commit/1004c62a6f882ce3dbbcab89b1b28db846c49957))
+* autobump phys/root/hadd/environment.yaml ([#4984](https://github.com/snakemake/snakemake-wrappers/issues/4984)) ([7fc07f8](https://github.com/snakemake/snakemake-wrappers/commit/7fc07f8bf9cbe6c2e79c30043edfacc542741f55))
+* autobump phys/root/rootcp/environment.yaml ([#4983](https://github.com/snakemake/snakemake-wrappers/issues/4983)) ([1551e57](https://github.com/snakemake/snakemake-wrappers/commit/1551e57128254805cf601ab2ff785d14c91ce5bd))
+
 ## [9.1.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.0.2...v9.1.0) (2026-02-17)
 
 
