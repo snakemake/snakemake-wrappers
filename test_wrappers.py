@@ -395,21 +395,29 @@ def test_nonpareil(run):
             "results/a.fq.npo",
             "results/a.fq.bz2.npo",
             "results/a.fastq.gz.npo",
+            "results/empty.fq.bz2.npo",
+            "results/empty.fq.gz.npo",
+            "results/empty.fq.npo",
         ],
-    )
-
-
-def test_ngsbits_samplesimilarity(run):
-    run(
-        "bio/ngsbits/samplesimilarity",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "--use-conda",
-            "-F",
-            "similarity.tsv",
-        ],
+        compare_results_with_expected={
+            "results/a.fa.log": "expected/a.fa.log",
+            "results/a.fa.npc": "expected/a.fa.npc",
+            "results/a.fas.bz2.npc": "expected/a.fas.bz2.npc",
+            "results/a.fasta.gz.npc": "expected/a.fasta.gz.npc",
+            "results/a.fq.log": "expected/a.fq.log",
+            "results/a.fq.npc": "expected/a.fq.npc",
+            "results/a.fq.bz2.npc": "expected/a.fq.bz2.npc",
+            "results/a.fastq.gz.npc": "expected/a.fastq.gz.npc",
+            "results/empty.fq.bz2.npa": "expected/empty.fq.bz2.npa",
+            "results/empty.fq.bz2.npc": "expected/empty.fq.bz2.npc",
+            "results/empty.fq.bz2.npo": "expected/empty.fq.bz2.npo",
+            "results/empty.fq.gz.npa": "expected/empty.fq.gz.npa",
+            "results/empty.fq.gz.npc": "expected/empty.fq.gz.npc",
+            "results/empty.fq.gz.npo": "expected/empty.fq.gz.npo",
+            "results/empty.fq.npa": "expected/empty.fq.npa",
+            "results/empty.fq.npc": "expected/empty.fq.npc",
+            "results/empty.fq.npo": "expected/empty.fq.npo",
+        },
     )
 
 
@@ -425,10 +433,26 @@ def test_nonpareil_plot(run):
             "results/a.pdf",
             "results/b.pdf",
             "results/c.pdf",
+            "results/d.pdf",
             "results/a.nomodel.pdf",
             "results/b.nomodel.pdf",
             "results/c.nomodel.pdf",
+            "results/d.nomodel.pdf",
             "results/samples.pdf",
+        ],
+    )
+
+
+def test_ngsbits_samplesimilarity(run):
+    run(
+        "bio/ngsbits/samplesimilarity",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "similarity.tsv",
         ],
     )
 

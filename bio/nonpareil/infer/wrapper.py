@@ -2,33 +2,18 @@ __author__ = "Filipe G. Vieira"
 __copyright__ = "Copyright 2023, Filipe G. Vieira"
 __license__ = "MIT"
 
-from os import path
 import tempfile
+from pathlib import Path
 from snakemake.shell import shell
-from snakemake_wrapper_utils.snakemake import get_mem
+from snakemake_wrapper_utils.snakemake import get_mem, get_format
 
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 mem_mb = get_mem(snakemake, out_unit="MiB")
 
-uncomp = ""
-in_name, in_ext = path.splitext(snakemake.input[0])
-if in_ext in [".gz", ".bz2"]:
-    uncomp = (
-        f"pbzip2 -p{snakemake.threads} --decompress --stdout"
-        if in_ext == ".bz2"
-        else ""
-    )
-    in_name, in_ext = path.splitext(in_name)
-
 # Infer output format
-if in_ext in [".fa", ".fas", ".fasta"]:
-    in_format = "fasta"
-elif in_ext in [".fq", ".fastq"]:
-    in_format = "fastq"
-else:
-    raise ValueError("invalid input format")
+in_format = get_format(snakemake.input[0])
 
 # Redundancy summary
 redund_sum = snakemake.output.get("redund_sum", "")
@@ -52,11 +37,35 @@ if out_log:
 
 
 with tempfile.NamedTemporaryFile() as tmp:
-    if uncomp:
+    # Uncompress bzip2 input files
+    if Path(snakemake.input[0]).suffix == ".bz2":
         in_uncomp = tmp.name
-        shell("{uncomp} {snakemake.input[0]} > {tmp.name}")
+        shell(
+            "pbzip2 -p{snakemake.threads} --decompress --stdout {snakemake.input[0]} > {tmp.name}"
+        )
     else:
         in_uncomp = snakemake.input[0]
+
+    # Check if input file is empty
+    empty = Path(in_uncomp).stat().st_size == 0
+    if Path(in_uncomp).suffix == ".gz" and Path(in_uncomp).stat().st_size < 50:
+        import gzip
+
+        with gzip.open(in_uncomp, "rt") as f:
+            empty = not bool(f.readlines())
+
+    # If empty, provide dummy input file so that program does not crash
+    # https://github.com/lmrodriguezr/nonpareil/issues/71
+    if empty:
+        in_uncomp = tmp.name
+        with open(in_uncomp, "wt") as f:
+            if in_format == "fasta":
+                f.write("\n".join([">dummy1", "N" * 100]))
+            elif in_format == "fastq":
+                f.write("\n".join(["@dummy1", "N" * 100, "+", "!" * 100]))
+            else:
+                raise ValueError(f"invalid format: {in_format}")
+            f.write("\n")
 
     shell(
         "nonpareil"
@@ -68,3 +77,7 @@ with tempfile.NamedTemporaryFile() as tmp:
         " {extra}"
         " {log}"
     )
+
+    if empty and redund_sum:
+        with open(redund_sum, "at") as f:
+            f.write("\t".join(["0.000000"] + ["0.00000"] * 5) + "\n")
