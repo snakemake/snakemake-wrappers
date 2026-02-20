@@ -1,4 +1,5 @@
 channels:
   - conda-forge
+  - nodefaults
 dependencies:
-  - root =6.38.00
+  - jq =1.8.1

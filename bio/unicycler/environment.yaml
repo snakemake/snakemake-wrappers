@@ -3,7 +3,7 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bowtie2 =2.5.4
+  - bowtie2 =2.5.5
   - bcftools =1.23
   - spades =4.2.0
   - samtools =1.23
