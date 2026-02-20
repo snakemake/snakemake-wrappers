@@ -1,5 +1,17 @@
 # Changelog
 
+## [9.2.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.1.1...v9.2.0) (2026-02-20)
+
+
+### Features
+
+* add wrapper for JQ ([#4969](https://github.com/snakemake/snakemake-wrappers/issues/4969)) ([18bad62](https://github.com/snakemake/snakemake-wrappers/commit/18bad625ac54fd9fc96bf9f84068518825c2fa27))
+
+
+### Bug Fixes
+
+* Bump YQ ([#4970](https://github.com/snakemake/snakemake-wrappers/issues/4970)) ([adfae32](https://github.com/snakemake/snakemake-wrappers/commit/adfae3242d0b9e41b402e08e2485bc3721d88160))
+
 ## [9.1.1](https://github.com/snakemake/snakemake-wrappers/compare/v9.1.0...v9.1.1) (2026-02-20)
 
 
