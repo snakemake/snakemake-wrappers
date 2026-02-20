@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - varlociraptor =8.9.3
+  - varlociraptor =8.9.5
