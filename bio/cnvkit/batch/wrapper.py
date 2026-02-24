@@ -70,7 +70,7 @@ with TemporaryDirectory() as tmpdirname:
         "bintest.cns": "bins",
         ".cnr": "regions",
         "call.cns": "segments_called",
-        "targetcoverage.cnn": "target_coverage",
+        ".targetcoverage.cnn": "target_coverage",
         ".cns": "segments",
         "reference.cnn": "reference",
     }
