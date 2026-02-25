@@ -42,7 +42,7 @@ https://conda.anaconda.org/conda-forge/noarch/python-dateutil-2.9.0.post0-pyhe01
 https://conda.anaconda.org/conda-forge/noarch/python-gil-3.13.12-h4df99d1_100.conda#3d92938d5b83c49162ade038aab58a59
 https://conda.anaconda.org/conda-forge/noarch/yte-1.9.4-pyhd8ed1ab_0.conda#89d5edf5d52d3bc1ed4d7d3feef508ba
 https://conda.anaconda.org/conda-forge/noarch/_python_abi3_support-1.0-hd8ed1ab_2.conda#aaa2a381ccc56eac91d63b6c1240312f
-https://conda.anaconda.org/conda-forge/linux-64/datavzrd-2.63.3-py313hb4d97b4_0.conda#fba93a2374a659d5564dffba5cf48efe
+https://conda.anaconda.org/conda-forge/linux-64/datavzrd-2.63.4-py313h15dba6a_0.conda#65a62301bd740c5509d3e1aa1a3ab59c
 https://conda.anaconda.org/conda-forge/linux-64/pandas-3.0.1-py313hbfd7664_0.conda#1c8807728f0333228766dee685394e16
 https://conda.anaconda.org/conda-forge/linux-64/polars-runtime-32-1.38.1-py310hffdcd12_0.conda#b659a59ec7b67623dcaec02388e06fb9
 https://conda.anaconda.org/conda-forge/noarch/polars-1.38.1-pyh6a1acc5_0.conda#b20de145c676cbae6138ac478cdb137b
