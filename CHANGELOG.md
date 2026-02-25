@@ -1,5 +1,25 @@
 # Changelog
 
+## [9.2.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.1.1...v9.2.0) (2026-02-25)
+
+
+### Features
+
+* add wrapper for JQ ([#4969](https://github.com/snakemake/snakemake-wrappers/issues/4969)) ([18bad62](https://github.com/snakemake/snakemake-wrappers/commit/18bad625ac54fd9fc96bf9f84068518825c2fa27))
+* GATK Meta-wrapper update to follow pathvars ([#4666](https://github.com/snakemake/snakemake-wrappers/issues/4666)) ([102cb02](https://github.com/snakemake/snakemake-wrappers/commit/102cb021c4c176d4e66e579f00a83eceaea94c9e))
+* nonpareil allow for empty FASTQ input files ([#4731](https://github.com/snakemake/snakemake-wrappers/issues/4731)) ([c9bf3b2](https://github.com/snakemake/snakemake-wrappers/commit/c9bf3b2ee131d1cb187b59dd423165cbbe538656))
+
+
+### Bug Fixes
+
+* Bump YQ ([#4970](https://github.com/snakemake/snakemake-wrappers/issues/4970)) ([adfae32](https://github.com/snakemake/snakemake-wrappers/commit/adfae3242d0b9e41b402e08e2485bc3721d88160))
+* change target_coverage file extension to include leading dot ([#4991](https://github.com/snakemake/snakemake-wrappers/issues/4991)) ([ff30108](https://github.com/snakemake/snakemake-wrappers/commit/ff3010823aa0b6fac3d826130abf891a712267e7))
+
+
+### Performance Improvements
+
+* Bump datavzrd wrapper version ([#4989](https://github.com/snakemake/snakemake-wrappers/issues/4989)) ([a772948](https://github.com/snakemake/snakemake-wrappers/commit/a772948d00b8d2f651addcdb27f905dcbd41e9f0))
+
 ## [9.1.1](https://github.com/snakemake/snakemake-wrappers/compare/v9.1.0...v9.1.1) (2026-02-20)
 
 
