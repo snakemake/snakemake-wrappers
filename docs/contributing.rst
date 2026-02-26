@@ -118,7 +118,7 @@ Example
 ``environment.yaml`` file
 -------------------------
 
-This file needs to list all of the software, that the wrapper code needs to run successfully.
+This file needs to list all software necessary for the wrapper to run successfully.
 It follows the `standard format for conda environment files <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#create-env-file-manually>`_.
 
 For all software following `semantic versioning <https://semver.org/>`_ conventions, specify (and thus pin) the major and minor version, but leave the patch version unspecified.
