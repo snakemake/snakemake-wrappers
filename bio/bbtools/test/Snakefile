@@ -166,7 +166,7 @@ rule tadpole_assemble:
 rule bbmap:
     input:
         input=rules.bbduk.output.out,
-        ref="assembly/{sample}.fasta.gz",
+        ref=rules.tadpole_assemble.output,
     output:
         out="mapped/{sample}.bam",
     log:
@@ -187,7 +187,7 @@ rule bbmap:
 rule pileup:
     input:
         input=rules.bbmap.output.out,
-        ref="genome.fasta",
+        ref=rules.tadpole_assemble.output,
     output:
         covstats="covstats/{sample}.tsv",
         basecov="basecov/{sample}.tsv",
