@@ -1,5 +1,11 @@
-# Include snakefile with get_fractons function returning ["R1", "R2"] for paired reads or ["se"] for single reads
-include: "input_functions.smk"
+# Function returning ["R1", "R2"] for paired reads or ["se"] for single reads
+def get_fractions():
+    if config.get("reads_are_paired", True):
+        fractions = ["R1", "R2"]
+    else:
+        fractions = ["se"]
+
+    return fractions
 
 
 rule all:
@@ -153,8 +159,6 @@ rule pileup:
 
 
 ### Create reads
-
-
 rule index_genome:
     input:
         ref="genome.fasta",
