@@ -10,6 +10,7 @@ rule toulligqc_sequencing_summary:
     wrapper:
         "master/bio/toulligqc"
 
+
 rule toulligqc_bam:
     input:
         "demodata/test.sorted.bam",
@@ -21,6 +22,7 @@ rule toulligqc_bam:
         extra="",  # optional additional parameters as string
     wrapper:
         "master/bio/toulligqc"
+
 
 rule toulligqc_fastq:
     input:
