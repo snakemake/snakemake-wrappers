@@ -16,7 +16,11 @@ rule all:
 
 rule loglog:
     input:
-        expand("reads/raw/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()),
+        expand(
+            "reads/raw/{sample}_{fraction}.fastq.gz",
+            fraction=get_fractions(),
+            allow_missing=True,
+        ),
     log:
         "logs/loglog/{sample}.log",  # Captures the error output of the command and the log of the wrapper
     params:
@@ -181,7 +185,11 @@ rule create_reads:
     input:
         path="path/to/indexes/genome/",
     output:
-        out=expand("reads/raw/{{sample}}_{fraction}.fastq.gz", fraction=get_fractions()),
+        out=expand(
+            "reads/raw/{sample}_{fraction}.fastq.gz",
+            fraction=get_fractions(),
+            allow_missing=True,
+        ),
     params:
         command="randomreads.sh",  # Define which bbmap command to use
         # All parameters are passed to the command
