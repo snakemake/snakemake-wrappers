@@ -4,5 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - bioconductor-tximport =1.38.2
-  - r-readr =2.1.6
+  - r-readr =2.2.0
   - r-jsonlite =2.0.0
