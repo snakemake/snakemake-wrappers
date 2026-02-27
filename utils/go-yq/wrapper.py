@@ -2,10 +2,6 @@
 
 """Snakemake wrapper for go-yq"""
 
-import re
-import shlex
-import warnings
-
 from snakemake_wrapper_utils.snakemake import is_arg, get_format
 from snakemake.shell import shell
 
@@ -52,8 +48,7 @@ extra += detect_fmt(snakemake.input, "--input-format", "-p", extra)
 extra += detect_fmt(snakemake.output, "--output-format", "-o", extra)
 
 subcommand = snakemake.params.get("subcommand", "")
-# yq/jq expression should be quoted
-expression = shlex.quote(snakemake.params.get("expression", ""))
+expression = snakemake.params.get("expression", "")
 
 # Handle the case user creates a file from command line
 infile = snakemake.input
@@ -76,4 +71,4 @@ elif len(snakemake.output) == 1:
 else:
     raise ValueError("Inplace modifications are not handled by this wrapper.")
 
-shell("yq {subcommand} {extra} {expression} {infile} {outfile} {log}")
+shell("yq {subcommand} {extra} {expression:q} {infile} {outfile} {log}")

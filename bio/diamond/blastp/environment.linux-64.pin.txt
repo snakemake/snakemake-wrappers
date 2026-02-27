@@ -3,11 +3,11 @@
 # platform: linux-64
 # created-by: conda 24.9.2
 @EXPLICIT
-https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-he0feb66_17.conda#51b78c6a757575c0d12f4401ffc67029
+https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-he0feb66_18.conda#239c5e9546c38a1e884d69effcf4c882
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda#a9f577daf3de00bca7c3c76c0ecbd1de
-https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-he0feb66_17.conda#3c281169ea25b987311400d7a7e28445
-https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h934c35e_17.conda#24c2fe35fa45cd71214beba6f337c071
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-he0feb66_18.conda#0aa00f03f9e39fb9876085dee11a85d4
+https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h934c35e_18.conda#1b08cd684f34175e4514474793d44bcb
 https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.1-hb9d3cd8_2.conda#edb0dca6bc32e4f4789199455a1dbeb8
 https://conda.anaconda.org/conda-forge/linux-64/icu-78.2-h33c6efd_0.conda#186a18e3ba246eccfc7cff00cd19a870
 https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.51.2-hf4e2dac_0.conda#da5be73701eecd0e8454423fd6ffcf30
-https://conda.anaconda.org/bioconda/linux-64/diamond-2.1.22-h13889ed_0.conda#407aaba8bd88b81b08876f5ef849297c
+https://conda.anaconda.org/bioconda/linux-64/diamond-2.1.23-hf93d47f_0.conda#035a71ffe588653f4a85f9ff6c27f890

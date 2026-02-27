@@ -3,6 +3,6 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bowtie2 =2.5.4
+  - bowtie2 =2.5.5
   - samtools =1.23
   - snakemake-wrapper-utils =0.8.0

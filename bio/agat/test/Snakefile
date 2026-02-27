@@ -1,9 +1,9 @@
 rule test_agat_config:
     output:
-        "agat_config.yaml",
+        "out/agat_config.yaml",
     threads: 1
     log:
-        "test_agat_config.log",
+        "logs/test_agat_config.log",
     params:
         command="config",
     wrapper:
@@ -12,9 +12,9 @@ rule test_agat_config:
 
 rule test_agat_levels:
     output:
-        "agat_levels.yaml",
+        "out/agat_levels.yaml",
     log:
-        "test_agat_levels.log",
+        "logs/test_agat_levels.log",
     params:
         command="levels",
     wrapper:
@@ -25,12 +25,12 @@ rule test_agat_convert_bed2gff:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        bed="test.bed",
+        bed="input/test.bed",
     output:
         # The key here will be used as argument name in the final command line
-        gff="test_agat_convert_bed2gff.gff",
+        output="out/test_agat_convert_bed2gff.gff",
     log:
-        "test_agat_convert_bed2gff.log",
+        "logs/test_agat_convert_bed2gff.log",
     params:
         command="agat_convert_bed2gff.pl",
         extra="",  # Anything besides IO
@@ -42,12 +42,12 @@ rule test_agat_convert_embl2gff:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        embl="agat_convert_embl2gff_1.embl",
+        embl="input/agat_convert_embl2gff_1.embl",
     output:
         # The key here will be used as argument name in the final command line
-        gff="test_agat_convert_embl2gff.gff",
+        output="out/test_agat_convert_embl2gff.gff",
     log:
-        "test_agat_convert_embl2gff.log",
+        "logs/test_agat_convert_embl2gff.log",
     params:
         command="agat_convert_embl2gff.pl",
         extra="",  # Anything besides IO
@@ -59,12 +59,12 @@ rule test_agat_convert_genscan2gff:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        genscan="test.genscan",
+        genscan="input/test.genscan",
     output:
         # The key here will be used as argument name in the final command line
-        gff="test_agat_convert_genscan2gff.gff",
+        output="out/test_agat_convert_genscan2gff.gff",
     log:
-        "test_agat_convert_genscan2gff.log",
+        "logs/test_agat_convert_genscan2gff.log",
     params:
         command="agat_convert_genscan2gff.pl",
         extra="",  # Anything besides IO
@@ -76,12 +76,12 @@ rule test_agat_convert_mfannot2gff:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        mfannot="test.mfannot",
+        mfannot="input/test.mfannot",
     output:
         # The key here will be used as argument name in the final command line
-        gff="test_agat_convert_mfannot2gff.gff",
+        output="out/test_agat_convert_mfannot2gff.gff",
     log:
-        "agat_convert_mfannot2gff.log",
+        "logs/agat_convert_mfannot2gff.log",
     params:
         # No optional non-file parameters with this subcommand.
         command="agat_convert_mfannot2gff.pl",
@@ -93,12 +93,12 @@ rule test_agat_convert_minimap2_bam2gff_bam:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        i="test_minimap2.bam",
+        i="input/test_minimap2.bam",
     output:
         # The key here will be used as argument name in the final command line
-        out="test_agat_convert_minimap2_bam2gff_bam.gff",
+        out="out/test_agat_convert_minimap2_bam2gff_bam.gff",
     log:
-        "agat_convert_minimap2_bam2gff_bam.log",
+        "logs/agat_convert_minimap2_bam2gff_bam.log",
     params:
         # All non-file parameters are auto detected.
         command="agat_convert_minimap2_bam2gff.pl",
@@ -110,12 +110,12 @@ rule test_agat_convert_minimap2_bam2gff_sam:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        i="test_minimap2.sam",
+        i="input/test_minimap2.sam",
     output:
         # The key here will be used as argument name in the final command line
-        out="test_agat_convert_minimap2_bam2gff_sam.gff",
+        out="out/test_agat_convert_minimap2_bam2gff_sam.gff",
     log:
-        "agat_convert_minimap2_bam2gff_sam.log",
+        "logs/agat_convert_minimap2_bam2gff_sam.log",
     params:
         # All non-file parameters are auto detected.
         command="agat_convert_minimap2_bam2gff.pl",
@@ -127,12 +127,12 @@ rule test_agat_convert_sp_gff2bed:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
-        out="test_agat_convert_sp_gff2bed.bed",
+        out="out/test_agat_convert_sp_gff2bed.bed",
     log:
-        "agat_convert_sp_gff2bed.log",
+        "logs/agat_convert_sp_gff2bed.log",
     params:
         command="agat_convert_sp_gff2bed.pl",
         extra="",  # Non file arguments (`--nc` or `--sub`).
@@ -144,12 +144,12 @@ rule test_agat_convert_sp_gff2gtf:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
-        out="test_agat_convert_sp_gff2gtf.gtf",
+        out="out/test_agat_convert_sp_gff2gtf.gtf",
     log:
-        "agat_convert_sp_gff2gtf.log",
+        "logs/agat_convert_sp_gff2gtf.log",
     params:
         command="agat_convert_sp_gff2gtf.pl",
         extra="",  # Non file arguments (`--gtf_version`).
@@ -161,12 +161,12 @@ rule test_agat_convert_sp_gff2tsv:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
-        out="test_agat_convert_sp_gff2tsv.tsv",
+        out="out/test_agat_convert_sp_gff2tsv.tsv",
     log:
-        "agat_convert_sp_gff2tsv.log",
+        "logs/agat_convert_sp_gff2tsv.log",
     params:
         # No non-file parameters for this command
         command="agat_convert_sp_gff2tsv.pl",
@@ -178,14 +178,14 @@ rule test_agat_convert_sp_gff2zff:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
-        fasta="sequence.fa",
+        gff="input/annotation.gff",
+        fasta="input/sequence.fa",
     output:
         # The key here will be used as argument name in the final command line
-        ann="test_agat_convert_sp_gff2zff.ann",
-        dna="test_agat_convert_sp_gff2zff.dna",
+        ann="out/test_agat_convert_sp_gff2zff.ann",
+        dna="out/test_agat_convert_sp_gff2zff.dna",
     log:
-        "agat_convert_sp_gff2zff.log",
+        "logs/agat_convert_sp_gff2zff.log",
     params:
         # No non-file parameters for this command
         command="agat_convert_sp_gff2zff.pl",
@@ -197,31 +197,31 @@ rule test_agat_convert_sp_gxf2gxf:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
-        out="test_agat_convert_sp_gxf2gxf.gff",
+        out="out/test_agat_convert_sp_gxf2gxf.gff",
     log:
-        "agat_convert_sp_gxf2gfx.log",
+        "logs/agat_convert_sp_gxf2gfx.log",
     params:
         command="agat_convert_sp_gxf2gxf.pl",
-        extra="",  # Non file arguments (`-v`).
+        extra="",  # Non file arguments (`--verbose`)
     wrapper:
         "master/bio/agat"
 
 
-rule test_agat_sp_Prokka_inferNameFromAttributes:
+rule test_agat_sp_prokka_infer_name_from_attributes:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
-        out="test_agat_sp_Prokka_inferNameFromAttributes.gff",
+        out="out/test_agat_sp_prokka_infer_name_from_attributes.gff",
     log:
-        "agat_sp_Prokka_inferNameFromAttributes.log",
+        "logs/agat_sp_prokka_infer_name_from_attributes.log",
     params:
-        command="agat_sp_Prokka_inferNameFromAttributes.pl",
+        command="agat_sp_prokka_infer_name_from_attributes.pl",
         extra="",  # Non file arguments (`--force`).
     wrapper:
         "master/bio/agat"
@@ -231,12 +231,12 @@ rule test_agat_sp_add_intergenic_regions:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
-        out="test_agat_sp_add_intergenic_regions.gff",
+        out="out/test_agat_sp_add_intergenic_regions.gff",
     log:
-        "test_agat_sp_add_intergenic_regions.log",
+        "logs/test_agat_sp_add_intergenic_regions.log",
     params:
         command="agat_sp_add_intergenic_regions.pl",
         extra="",  # Non file arguments (`--verbose`).
@@ -248,12 +248,12 @@ rule test_agat_sp_add_introns:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
-        out="test_agat_sp_add_introns.gff",
+        out="out/test_agat_sp_add_introns.gff",
     log:
-        "test_agat_sp_add_introns.log",
+        "logs/test_agat_sp_add_introns.log",
     params:
         # No non-file arguments.
         command="agat_sp_add_introns.pl",
@@ -265,12 +265,12 @@ rule test_agat_sp_add_splice_sites:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
-        out="test_agat_sp_add_splice_sites.gff",
+        out="out/test_agat_sp_add_splice_sites.gff",
     log:
-        "test_agat_sp_add_splice_sites.log",
+        "logs/test_agat_sp_add_splice_sites.log",
     params:
         # No non-file arguments.
         command="agat_sp_add_splice_sites.pl",
@@ -282,15 +282,15 @@ rule test_agat_sp_add_start_and_stop:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
-        fasta="sequence.fa",
+        gff="input/annotation.gff",
+        fasta="input/sequence.fa",
     output:
         # The key here will be used as argument name in the final command line
-        out="test_agat_sp_add_start_and_stop.gff",
+        out="out/test_agat_sp_add_start_and_stop.gff",
     log:
-        "test_agat_sp_add_start_and_stop.log",
+        "logs/test_agat_sp_add_start_and_stop.log",
     params:
-        extra="",  # Non-file arguments (e.g. `--codon`, `--extend`, `-v`, or `--na`)
+        extra="",  # Non-file arguments (e.g. `--codon`, `--extend`, `--verbose`, or `--na`)
         command="agat_sp_add_start_and_stop.pl",
     wrapper:
         "master/bio/agat"
@@ -300,14 +300,14 @@ rule test_agat_sp_alignment_output_style:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
-        out="test_agat_sp_alignment_output_style.gff",
+        out="out/test_agat_sp_alignment_output_style.gff",
     log:
-        "test_agat_sp_alignment_output_style.log",
+        "logs/test_agat_sp_alignment_output_style.log",
     params:
-        extra="",  # Non-file arguments (e.g. `--ct`, or `-v`)
+        extra="",  # Non-file arguments (e.g. `--ct`, or `--verbose`)
         command="agat_sp_alignment_output_style.pl",
     wrapper:
         "master/bio/agat"
@@ -317,14 +317,14 @@ rule test_agat_sp_clipN_seqExtremities_and_fixCoordinates:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
-        fasta="sequence.fa",
+        gff="input/annotation.gff",
+        fasta="input/sequence.fa",
     output:
         # The key here will be used as argument name in the final command line
-        og="test_agat_sp_clipN_seqExtremities_and_fixCoordinates.gff",
-        of="test_agat_sp_clipN_seqExtremities_and_fixCoordinates.fasta",
+        og="out/test_agat_sp_clipN_seqExtremities_and_fixCoordinates.gff",
+        of="out/test_agat_sp_clipN_seqExtremities_and_fixCoordinates.fasta",
     log:
-        "test_agat_sp_clipN_seqExtremities_and_fixCoordinates.log",
+        "logs/test_agat_sp_clipN_seqExtremities_and_fixCoordinates.log",
     params:
         extra="",  # Non-file arguments (e.g. `--of`, or `--og`)
         command="agat_sp_clipN_seqExtremities_and_fixCoordinates.pl",
@@ -336,17 +336,17 @@ rule test_agat_sp_compare_two_annotations:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff1="annotation.gff",
-        gff2="prokka_fragmented_genes.gff",
+        gff1="input/annotation.gff",
+        gff2="input/prokka_fragmented_genes.gff",
     output:
         # The key here will be used as argument name in the final command line
         # This subcommand returns a file per case, which names are build based
         # on the comparison result as well as a report.
-        out=directory("test_agat_sp_compare_two_annotation"),
+        out=directory("out/test_agat_sp_compare_two_annotations"),
     log:
-        "test_agat_sp_compare_two_annotations.log",
+        "logs/test_agat_sp_compare_two_annotations.log",
     params:
-        extra="",  # Non-file arguments (`-v`)
+        extra="",  # Non-file arguments (`--verbose`)
         command="agat_sp_compare_two_annotations.pl",
     wrapper:
         "master/bio/agat"
@@ -356,13 +356,13 @@ rule test_agat_sp_complement_annotations:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        ref="annotation.gff",
-        add="prokka_fragmented_genes.gff",
+        ref="input/annotation.gff",
+        add="input/prokka_fragmented_genes.gff",
     output:
         # The key here will be used as argument name in the final command line
-        out="test_agat_sp_complement_annotations.gff",
+        out="out/test_agat_sp_complement_annotations.gff",
     log:
-        "test_agat_sp_complement_annotations.log",
+        "logs/test_agat_sp_complement_annotations.log",
     params:
         extra="",  # Non-file arguments (`--size_min`)
         command="agat_sp_complement_annotations.pl",
@@ -374,14 +374,14 @@ rule test_agat_sp_ensembl_output_style:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
-        o="test_agat_sp_ensembl_output_style.gff",
+        o="out/test_agat_sp_ensembl_output_style.gff",
     log:
-        "test_agat_sp_ensembl_output_style.log",
+        "logs/test_agat_sp_ensembl_output_style.log",
     params:
-        extra="",  # Non-file arguments (`--ct`, or `-v`)
+        extra="",  # Non-file arguments (`--ct`, or `--verbose`)
         command="agat_sp_ensembl_output_style.pl",
     wrapper:
         "master/bio/agat"
@@ -391,13 +391,13 @@ rule test_agat_sp_extract_attributes:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
-        Parent="test_agat_sp_extract_attributes_Parent.txt",
-        ID="test_agat_sp_extract_attributes_ID.txt",
+        Parent="out/test_agat_sp_extract_attributes_Parent.txt",
+        ID="out/test_agat_sp_extract_attributes_ID.txt",
     log:
-        "test_agat_sp_extract_attributes.log",
+        "logs/test_agat_sp_extract_attributes.log",
     params:
         # Non-file arguments besides `--att` (e.g. `-p`, `--merge`, or `-d`)
         extra="-d",
@@ -410,13 +410,13 @@ rule test_agat_sp_extract_sequences:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
-        fasta="sequence.fa",
+        gff="input/annotation.gff",
+        fasta="input/sequence.fa",
     output:
         # The key here will be used as argument name in the final command line
-        o="test_agat_sp_extract_sequences.fasta",
+        o="out/test_agat_sp_extract_sequences.fasta",
     log:
-        "test_agat_sp_extract_attributes.log",
+        "logs/test_agat_sp_extract_attributes.log",
     params:
         # Non-file arguments (e.g. `--asc`, `--cdna`, `--cfs`, ...)
         extra="-p -t cds",
@@ -429,16 +429,16 @@ rule test_agat_sp_filter_by_ORF_size:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # Matched = ORF size satisfying `--test` and `--size` criteria
-        matched="test_agat_sp_filter_by_ORF_size_matched.gff",
+        matched="out/test_agat_sp_filter_by_ORF_size_matched.gff",
         # Unmatched = ORF size *NOT* satisfying `--test` and `--size` criteria
-        unmatched="test_agat_sp_filter_by_ORF_size_unmatched.gff",
+        unmatched="out/test_agat_sp_filter_by_ORF_size_unmatched.gff",
     log:
-        "test_agat_sp_filter_by_ORF_size.log",
+        "logs/test_agat_sp_filter_by_ORF_size.log",
     params:
-        # Non-file arguments (e.g. `--size`, `--test`, or `-v`)
+        # Non-file arguments (e.g. `--size`, `--test`, or `--verbose`)
         extra="",
         command="agat_sp_filter_by_ORF_size.pl",
     wrapper:
@@ -449,12 +449,12 @@ rule test_agat_sp_filter_by_locus_distance:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
-        outfile="test_agat_sp_filter_by_locus_distance.gff",
+        output="out/test_agat_sp_filter_by_locus_distance.gff",
     log:
-        "test_agat_sp_filter_by_locus_distance.log",
+        "logs/test_agat_sp_filter_by_locus_distance.log",
     params:
         # Non-file arguments (e.g. `-d`, or `--add_flag`)
         extra="",
@@ -467,12 +467,12 @@ rule test_agat_sp_filter_feature_by_attribute_presence:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
-        o="test_agat_sp_filter_feature_by_attribute_presence.gff",
+        o="out/test_agat_sp_filter_feature_by_attribute_presence.gff",
     log:
-        "test_agat_sp_filter_feature_by_attribute_presence.log",
+        "logs/test_agat_sp_filter_feature_by_attribute_presence.log",
     params:
         # Non-file arguments (`--type`, `--flip` or `--att`)
         extra="--type gene --att Parent",
@@ -485,12 +485,12 @@ rule test_agat_sp_filter_feature_by_attribute_value:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
-        o="test_agat_sp_filter_feature_by_attribute_value.gff",
+        o="out/test_agat_sp_filter_feature_by_attribute_value.gff",
     log:
-        "test_agat_sp_filter_feature_by_attribute_value.log",
+        "logs/test_agat_sp_filter_feature_by_attribute_value.log",
     params:
         # Non-file arguments (e.g. `--type`, `--value`, `--value_insensitive`...)
         extra="--type exon --attribute constitutive --value 1",
@@ -503,16 +503,16 @@ rule test_agat_sp_filter_feature_from_keep_list:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
-        keep_list="keep_list.txt",
+        gff="input/annotation.gff",
+        keep_list="input/keep_list.txt",
     output:
         # The key here will be used as argument name in the final command line
-        o="test_agat_sp_filter_feature_from_keep_list.gff",
+        o="out/test_agat_sp_filter_feature_from_keep_list.gff",
     log:
-        "test_agat_sp_filter_feature_from_keep_list.log",
+        "logs/test_agat_sp_filter_feature_from_keep_list.log",
     params:
-        # Non-file arguments (`--type`, or `-v`)
-        extra="-v",
+        # Non-file arguments (`--type`, or `--verbose`)
+        extra="--verbose 4",
         command="agat_sp_filter_feature_from_keep_list.pl",
     wrapper:
         "master/bio/agat"
@@ -522,16 +522,16 @@ rule test_agat_sp_filter_feature_from_kill_list:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
-        kill_list="kill_list.txt",
+        gff="input/annotation.gff",
+        kill_list="input/kill_list.txt",
     output:
         # The key here will be used as argument name in the final command line
-        o="test_agat_sp_filter_feature_from_kill_list.gff",
+        o="out/test_agat_sp_filter_feature_from_kill_list.gff",
     log:
-        "test_agat_sp_filter_feature_from_kill_list.log",
+        "logs/test_agat_sp_filter_feature_from_kill_list.log",
     params:
-        # Non-file arguments (`--type`, or `-v`)
-        extra="-v",
+        # Non-file arguments (`--type`, or `--verbose`)
+        extra="--verbose 4",
         command="agat_sp_filter_feature_from_kill_list.pl",
     wrapper:
         "master/bio/agat"
@@ -541,14 +541,14 @@ rule test_agat_sp_filter_gene_by_intron_numbers:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
-        o="test_agat_sp_filter_gene_by_intron_numbers.gff",
+        o="out/test_agat_sp_filter_gene_by_intron_numbers.gff",
     log:
-        "test_agat_sp_filter_gene_by_intron_numbers.log",
+        "logs/test_agat_sp_filter_gene_by_intron_numbers.log",
     params:
-        # Non-file arguments (`--number`, `-v`, or `--test`)
+        # Non-file arguments (`--number`, `--verbose`, or `--test`)
         extra="--test '>=' --nb 3",
         command="agat_sp_filter_gene_by_intron_numbers.pl",
     wrapper:
@@ -559,14 +559,14 @@ rule test_agat_sp_filter_gene_by_length:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line
-        o="test_agat_sp_filter_gene_by_length.gff",
+        o="out/test_agat_sp_filter_gene_by_length.gff",
     log:
-        "test_agat_sp_filter_gene_by_length.log",
+        "logs/test_agat_sp_filter_gene_by_length.log",
     params:
-        # Non-file arguments (`--size`, `-v`, or `--test`)
+        # Non-file arguments (`--size`, `--verbose`, or `--test`)
         extra="--test '>=' --size 3",
         command="agat_sp_filter_gene_by_length.pl",
     wrapper:
@@ -577,16 +577,16 @@ rule test_agat_sp_filter_incomplete_gene_coding_models:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
-        fasta="sequence.fa",
+        gff="input/annotation.gff",
+        fasta="input/sequence.fa",
     output:
         # The key here will be used as argument name in the final command line
-        outfile="test_agat_sp_filter_incomplete_gene_coding_models.gff",
+        output="out/test_agat_sp_filter_incomplete_gene_coding_models.gff",
     log:
-        "test_agat_sp_filter_incomplete_gene_coding_models.log",
+        "logs/test_agat_sp_filter_incomplete_gene_coding_models.log",
     params:
         # Non-file arguments (e.g. `--codon`, `--add_flag`, `--skip_start_check`, ...)
-        extra="-v",
+        extra="--verbose 4",
         command="agat_sp_filter_incomplete_gene_coding_models.pl",
     wrapper:
         "master/bio/agat"
@@ -596,19 +596,19 @@ rule test_agat_sp_filter_record_by_coordinates:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
-        coordinates="coordinates.tsv",
+        gff="input/annotation.gff",
+        coordinates="input/coordinates.tsv",
     output:
         # The key here will be used as argument name in the final command line.
         # The directory contains a file per interval (if any record exists within),
         # a GFF with records belonging to none of the intervald given in coordinates,
         # and a text report.
-        o=directory("test_agat_sp_filter_record_by_coordinates"),
+        o=directory("out/test_agat_sp_filter_record_by_coordinates"),
     log:
-        "test_agat_sp_filter_record_by_coordinates.log",
+        "logs/test_agat_sp_filter_record_by_coordinates.log",
     params:
-        # Non-file arguments (`--exclude` or `-v`)
-        extra="-v",
+        # Non-file arguments (`--exclude` or `--verbose`)
+        extra="--verbose 4",
         command="agat_sp_filter_record_by_coordinates.pl",
     wrapper:
         "master/bio/agat"
@@ -618,15 +618,15 @@ rule test_agat_sp_fix_cds_phases:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
-        fasta="sequence.fa",
+        gff="input/annotation.gff",
+        fasta="input/sequence.fa",
     output:
         # The key here will be used as argument name in the final command line.
-        o="test_agat_sp_fix_cds_phases.gff",
+        o="out/test_agat_sp_fix_cds_phases.gff",
     log:
-        "test_agat_sp_fix_cds_phases.log",
+        "logs/test_agat_sp_fix_cds_phases.log",
     params:
-        # Non-file arguments (`-v`)
+        # Non-file arguments (`--verbose`)
         extra="",
         command="agat_sp_fix_cds_phases.pl",
     wrapper:
@@ -637,14 +637,14 @@ rule test_agat_sp_fix_features_locations_duplicated:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line.
-        outfile="test_agat_sp_fix_features_locations_duplicated.gff",
+        output="out/test_agat_sp_fix_features_locations_duplicated.gff",
     log:
-        "test_agat_sp_fix_features_locations_duplicated.log",
+        "logs/test_agat_sp_fix_features_locations_duplicated.log",
     params:
-        # Non-file arguments (`-v`, or `--model`)
+        # Non-file arguments (`--verbose`, or `--model`)
         extra="",
         command="agat_sp_fix_features_locations_duplicated.pl",
     wrapper:
@@ -655,21 +655,21 @@ rule test_agat_sp_fix_fusion:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
-        fasta="sequence.fa",
+        gff="input/annotation.gff",
+        fasta="input/sequence.fa",
     output:
         # Optional file contains all features in the GFF
-        all="test_agat_sp_fix_fusion_all.gff",
+        all="out/test_agat_sp_fix_fusion_all.gff",
         # Optional file only contains features that were modified by agat
-        only_modified="test_agat_sp_fix_fusion_modified.gff",
+        only_modified="out/test_agat_sp_fix_fusion_modified.gff",
         # Optional file only contains features that were *NOT* modified by agat
-        intact="test_agat_sp_fix_fusion_intact.gff",
+        intact="out/test_agat_sp_fix_fusion_intact.gff",
         # An optional report over the number of modified/intact features
-        report="test_agat_sp_fix_fusion_report.txt",
+        report="out/test_agat_sp_fix_fusion_report.txt",
     log:
-        "test_agat_sp_fix_fusion.log",
+        "logs/test_agat_sp_fix_fusion.log",
     params:
-        # Non-file arguments (`--codon`, `--threshold`, `--stranded`, or `-v`)
+        # Non-file arguments (`--codon`, `--threshold`, `--stranded`, or `--verbose`)
         extra="",
         command="agat_sp_fix_fusion.pl",
     wrapper:
@@ -680,21 +680,21 @@ rule test_agat_sp_fix_longest_ORF:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
-        fasta="sequence.fa",
+        gff="input/annotation.gff",
+        fasta="input/sequence.fa",
     output:
         # Optional file contains all features in the GFF
-        all="test_agat_sp_fix_longest_ORF_all.gff",
+        all="out/test_agat_sp_fix_longest_ORF_all.gff",
         # Optional file only contains features that were modified by agat
-        only_modified="test_agat_sp_fix_longest_ORF_modified.gff",
+        only_modified="out/test_agat_sp_fix_longest_ORF_modified.gff",
         # Optional file only contains features that were *NOT* modified by agat
-        intact="test_agat_sp_fix_longest_ORF_intact.gff",
+        intact="out/test_agat_sp_fix_longest_ORF_intact.gff",
         # An optional report over the number of modified/intact features
-        report="test_agat_sp_fix_longest_ORF_report.txt",
+        report="out/test_agat_sp_fix_longest_ORF_report.txt",
     log:
-        "test_agat_sp_fix_longest_ORF.log",
+        "logs/test_agat_sp_fix_longest_ORF.log",
     params:
-        # Non-file arguments (`--codon`, `--split`, `--stranded`, or `-v`)
+        # Non-file arguments (`--codon`, `--split`, `--stranded`, or `--verbose`)
         extra="",
         command="agat_sp_fix_longest_ORF.pl",
     wrapper:
@@ -705,12 +705,12 @@ rule test_agat_sp_fix_overlaping_genes:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line.
-        outfile="test_agat_sp_fix_overlaping_genes.gff",
+        output="out/test_agat_sp_fix_overlaping_genes.gff",
     log:
-        "test_agat_sp_fix_overlaping_genes.log",
+        "logs/test_agat_sp_fix_overlaping_genes.log",
     params:
         # Non-file arguments (`--merge` or `--verbose`)
         extra="",
@@ -723,15 +723,15 @@ rule test_agat_sp_fix_small_exon_from_extremities:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
-        fasta="sequence.fa",
+        gff="input/annotation.gff",
+        fasta="input/sequence.fa",
     output:
         # The key here will be used as argument name in the final command line.
-        outfile="test_agat_sp_fix_small_exon_from_extremities.gff",
+        output="out/test_agat_sp_fix_small_exon_from_extremities.gff",
     log:
-        "test_agat_sp_fix_small_exon_from_extremities.log",
+        "logs/test_agat_sp_fix_small_exon_from_extremities.log",
     params:
-        # Non-file arguments (`--merge`, `--size`, `--codon`, or `-v`)
+        # Non-file arguments (`--merge`, `--size`, `--codon`, or `--verbose`)
         extra="",
         command="agat_sp_fix_small_exon_from_extremities.pl",
     wrapper:
@@ -742,13 +742,13 @@ rule test_agat_sp_flag_premature_stop_codons:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
-        fasta="sequence.fa",
+        gff="input/annotation.gff",
+        fasta="input/sequence.fa",
     output:
         # The key here will be used as argument name in the final command line.
-        out="test_agat_sp_flag_premature_stop_codons.gff",
+        out="out/test_agat_sp_flag_premature_stop_codons.gff",
     log:
-        "test_agat_sp_flag_premature_stop_codons.log",
+        "logs/test_agat_sp_flag_premature_stop_codons.log",
     params:
         extra="",  # Non-file argument: `--codon`
         command="agat_sp_flag_premature_stop_codons.pl",
@@ -760,14 +760,14 @@ rule test_agat_sp_flag_short_introns:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line.
-        out="test_agat_sp_flag_short_introns.gff",
+        out="out/test_agat_sp_flag_short_introns.gff",
     log:
-        "test_agat_sp_flag_short_introns.log",
+        "logs/test_agat_sp_flag_short_introns.log",
     params:
-        # Non-file parameters (`--intron_size` or `-v`)
+        # Non-file parameters (`--intron_size` or `--verbose`)
         extra="",
         command="agat_sp_flag_short_introns.pl",
     wrapper:
@@ -778,14 +778,14 @@ rule test_agat_sp_functional_statistics:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line.
         # This directory contains sub-directory for each type of features available
         # in the GFF/GTF file, as long as a report
-        o=directory("test_agat_sp_functional_statistics"),
+        o=directory("out/test_agat_sp_functional_statistics"),
     log:
-        "test_agat_sp_functional_statistics.log",
+        "logs/test_agat_sp_functional_statistics.log",
     params:
         # Non-file parameters (`--gs`)
         extra="",
@@ -798,12 +798,12 @@ rule test_agat_sp_keep_longest_isoform:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line.
-        o="test_agat_sp_keep_longest_isoform.gff",
+        o="out/test_agat_sp_keep_longest_isoform.gff",
     log:
-        "test_agat_sp_keep_longest_isoform.log",
+        "logs/test_agat_sp_keep_longest_isoform.log",
     params:
         # No non-file parameters allowed
         command="agat_sp_keep_longest_isoform.pl",
@@ -815,12 +815,12 @@ rule test_agat_sp_kraken_assess_liftover:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gtf="test_kraken.gtf",
+        gtf="input/test_kraken.gtf",
     output:
         # The key here will be used as argument name in the final command line.
-        out="test_agat_sp_kraken_assess_liftover.gff",
+        out="out/test_agat_sp_kraken_assess_liftover.gff",
     log:
-        "test_agat_sp_kraken_assess_liftover.log",
+        "logs/test_agat_sp_kraken_assess_liftover.log",
     params:
         # Non-file parameters (`--threshold` or `--verbose`)
         extra="",
@@ -833,12 +833,12 @@ rule test_agat_sp_list_short_introns:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="agat_sq_add_attributes_from_tsv.gff",
+        gff="input/agat_sq_add_attributes_from_tsv.gff",
     output:
         # The key here will be used as argument name in the final command line.
-        out="test_agat_sp_list_short_introns.gff",
+        out="out/test_agat_sp_list_short_introns.gff",
     log:
-        "test_agat_sp_list_short_introns.log",
+        "logs/test_agat_sp_list_short_introns.log",
     params:
         # Non-file parameter: `--size`
         extra="",
@@ -851,12 +851,12 @@ rule test_agat_sp_manage_IDs:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="agat_sq_add_attributes_from_tsv.gff",
+        gff="input/agat_sq_add_attributes_from_tsv.gff",
     output:
         # The key here will be used as argument name in the final command line.
-        out="test_agat_sp_manage_IDs.gff",
+        out="out/test_agat_sp_manage_IDs.gff",
     log:
-        "test_agat_sp_manage_IDs.log",
+        "logs/test_agat_sp_manage_IDs.log",
     params:
         # Non-file parameters (e.g. `--gap`, `--ensembl`, `--prefix`, ...)
         extra="",
@@ -869,24 +869,24 @@ rule test_agat_sp_manage_UTRs:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # Optional path to PDF histogram of 5'UTR with at least <n> exons
-        five_prime_utr_overORequal="test_agat_sp_manage_UTRs_five_prime_utr_overORequal.pdf",
+        five_prime_utr_overORequal="out/test_agat_sp_manage_UTRs_five_prime_utr_overORequal.pdf",
         # Optional path to PDF histogram of 5'UTR with less than <n> exons
-        five_prime_utr_under="test_agat_sp_manage_UTRs_five_prime_utr_under.pdf",
+        five_prime_utr_under="out/test_agat_sp_manage_UTRs_five_prime_utr_under.pdf",
         # Optional path to PDF histogram of 3'UTR with at least <n> exons
-        three_prime_utr_overORequal="test_agat_sp_manage_UTRs_three_prime_utr_overORequal.pdf",
+        three_prime_utr_overORequal="out/test_agat_sp_manage_UTRs_three_prime_utr_overORequal.pdf",
         # Optional path to PDF histogram of 3'UTR with at least <n> exons
-        three_prime_utr_under="test_agat_sp_manage_UTRs_three_prime_utr_under.pdf",
+        three_prime_utr_under="out/test_agat_sp_manage_UTRs_three_prime_utr_under.pdf",
         # Optional path to PDF histogram of both 3/5'UTR with at least <n> exons
-        # both_utr_overORequal="test_agat_sp_manage_UTRs_both_utr_overORequal.pdf",
+        # both_utr_overORequal="out/test_agat_sp_manage_UTRs_both_utr_overORequal.pdf",
         # Optional path to PDF histogram of both 3/5'UTR with at least <n> exons
-        # both_utr_under="test_agat_sp_manage_UTRs_both_utr_under.pdf",
+        # both_utr_under="out/test_agat_sp_manage_UTRs_both_utr_under.pdf",
         # Optional path to analysis report
-        report="test_agat_sp_manage_UTRs_report.txt",
+        report="out/test_agat_sp_manage_UTRs_report.txt",
     log:
-        "test_agat_sp_manage_UTRs.log",
+        "logs/test_agat_sp_manage_UTRs.log",
     params:
         # Non-file parameters (e.g. `--number`, `--three`, `--five`, or `--both`)
         # The parameter `--plot` is automatically infered
@@ -900,12 +900,12 @@ rule test_agat_sp_manage_attributes:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="agat_sq_add_attributes_from_tsv.gff",
+        gff="input/agat_sq_add_attributes_from_tsv.gff",
     output:
         # The key here will be used as argument name in the final command line.
-        out="test_agat_sp_manage_attributes.gff",
+        out="out/test_agat_sp_manage_attributes.gff",
     log:
-        "test_agat_sp_manage_attributes.log",
+        "logs/test_agat_sp_manage_attributes.log",
     params:
         # Non-file parameters (`--type`, `--tag`, `--add`, `--cp`, or `--overwrite`)
         extra="--att biotype",
@@ -918,34 +918,34 @@ rule test_agat_sp_manage_functional_annotation:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="agat_sp_manage_functional_annotation/02413F.gff",
+        gff="input/agat_sp_manage_functional_annotation/02413F.gff",
         # Optional path to blast, interpro, and reference fasta
-        blast="agat_sp_manage_functional_annotation/02413F_blast.out",
-        db="agat_sp_manage_functional_annotation/uniprot_sprot_test.fasta",
-        interpro="agat_sp_manage_functional_annotation/02413F_interpro.tsv",
+        blast="input/agat_sp_manage_functional_annotation/02413F_blast.out",
+        db="input/agat_sp_manage_functional_annotation/uniprot_sprot_test.fasta",
+        interpro="input/agat_sp_manage_functional_annotation/02413F_interpro.tsv",
     output:
         # The key here will be used as argument name in the final command line.
-        gff="test_agat_sp_manage_functional_annotation.gff",
+        gff="out/test_agat_sp_manage_functional_annotation.gff",
         # Global text report
-        report="test_agat_sp_manage_functional_annotation.report.txt",
+        report="out/test_agat_sp_manage_functional_annotation.report.txt",
         # Warnings and non-blocking format errors
-        error="test_agat_sp_manage_functional_annotation.error.txt",
+        error="out/test_agat_sp_manage_functional_annotation.error.txt",
         # Duplicates blast sequences, requires blast and db
-        duplicates="test_agat_sp_manage_functional_annotation.duplicates.tsv",
+        duplicates="out/test_agat_sp_manage_functional_annotation.duplicates.tsv",
         # Conserved protein domains database terms, requires all optional input
-        cdd="test_agat_sp_manage_functional_annotation.cdd.tsv",
+        cdd="out/test_agat_sp_manage_functional_annotation.cdd.tsv",
         # Gene onthology database terms, requires all optional input
-        go="test_agat_sp_manage_functional_annotation.go.tsv",
+        go="out/test_agat_sp_manage_functional_annotation.go.tsv",
         # Interpro domain database terms, requires all optional input
-        interpro="test_agat_sp_manage_functional_annotation.interpro.tsv",
+        interpro="out/test_agat_sp_manage_functional_annotation.interpro.tsv",
         # MobiDB Lite database terms, requires all optional input
-        mobidb="test_agat_sp_manage_functional_annotation.mobidblite.tsv",
+        mobidb="out/test_agat_sp_manage_functional_annotation.mobidblite.tsv",
         # Panther database terms, requires all optional input
-        panther="test_agat_sp_manage_functional_annotation.panther.tsv",
+        panther="out/test_agat_sp_manage_functional_annotation.panther.tsv",
         # Superfamily database terms, requires all optional input
-        superfamily="test_agat_sp_manage_functional_annotation.superfamily.tsv",
+        superfamily="out/test_agat_sp_manage_functional_annotation.superfamily.tsv",
     log:
-        "test_agat_sp_manage_functional_annotation.log",
+        "logs/test_agat_sp_manage_functional_annotation.log",
     params:
         # Non-file parameters (e.g. `--blast_evalue`, `--pe`, `--clean_ontology`, ...)
         # The parameter `--plot` is automatically infered.
@@ -959,20 +959,20 @@ rule test_agat_sp_manage_introns:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # Optional path to intron report
-        report="test_agat_sp_manage_introns_report.txt",
+        report="out/test_agat_sp_manage_introns_report.txt",
         # Optional path to cds histogram (triggers the `--plot` argument)
-        cds_pdf="test_agat_sp_manage_introns_cds.pdf",
+        cds_pdf="out/test_agat_sp_manage_introns_cds.pdf",
         # Optional path to exon histogram (triggers the `--plot` argument)
-        exon_pdf="test_agat_sp_manage_introns_exons.pdf",
+        exon_pdf="out/test_agat_sp_manage_introns_exons.pdf",
         # Optional path to 3'UTR histogram (triggers the `--plot` argument)
-        # three_prime_utr_pdf="test_agat_sp_manage_introns_exons_3p.pdf",
+        # three_prime_utr_pdf="out/test_agat_sp_manage_introns_exons_3p.pdf",
         # Optional path to 5'UTR histogram (triggers the `--plot` argument)
-        five_prime_utr_pdf="test_agat_sp_manage_introns_exons_5p.pdf",
+        five_prime_utr_pdf="out/test_agat_sp_manage_introns_exons_5p.pdf",
     log:
-        "test_agat_sp_manage_introns.log",
+        "logs/test_agat_sp_manage_introns.log",
     params:
         # Non-file parameters (`--p`, `--window`)
         # The parameter `--plot` is automatically infered.
@@ -986,12 +986,12 @@ rule test_agat_sp_merge_annotations:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff=["prokka_fragmented_genes.gff", "annotation.gff"],
+        gff=["input/prokka_fragmented_genes.gff", "input/annotation.gff"],
     output:
         # The key here will be used as argument name in the final command line.
-        out="test_agat_sp_merge_annotations.gff",
+        out="out/test_agat_sp_merge_annotations.gff",
     log:
-        "test_agat_sp_merge_annotations.log",
+        "logs/test_agat_sp_merge_annotations.log",
     params:
         # No non-file parameters
         command="agat_sp_merge_annotations.pl",
@@ -1003,14 +1003,14 @@ rule test_agat_sp_move_attributes_within_records:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="agat_sq_add_attributes_from_tsv.gff",
+        gff="input/agat_sq_add_attributes_from_tsv.gff",
     output:
         # The key here will be used as argument name in the final command line.
-        out="test_agat_sp_move_attributes_within_records.gff",
+        out="out/test_agat_sp_move_attributes_within_records.gff",
     log:
-        "test_agat_sp_move_attributes_within_records.log",
+        "logs/test_agat_sp_move_attributes_within_records.log",
     params:
-        # Non-file parameters (`--fp`, `--fc`, `--attribute`, or `-v`)
+        # Non-file parameters (`--fp`, `--fc`, `--attribute`, or `--verbose`)
         extra="--feature_copy mRNA  --feature_paste CDS",
         command="agat_sp_move_attributes_within_records.pl",
     wrapper:
@@ -1021,19 +1021,19 @@ rule test_agat_sp_prokka_fix_fragmented_gene_annotations:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="prokka_fragmented_genes.gff",
-        fasta="prokka_cav_10DC88.fa",
-        db="prokka_bacteria_sprot.fa",
+        gff="input/prokka_fragmented_genes.gff",
+        fasta="input/prokka_cav_10DC88.fa",
+        db="input/prokka_bacteria_sprot.fa",
     output:
         # The key here will be used as argument name in the final command line.
         # The output directory contains a `report.txt` and additional files
         # depending on the content of input file(s).
-        out=directory("test_agat_sp_prokka_fix_fragmented_gene_annotations"),
+        out=directory("out/test_agat_sp_prokka_fix_fragmented_gene_annotations"),
     log:
-        "test_agat_sp_prokka_fix_fragmented_gene_annotations.log",
+        "logs/test_agat_sp_prokka_fix_fragmented_gene_annotations.log",
     params:
         # Non-file parameters:
-        # `--frags`, `--pseudo`, `--hmap_size`, `--ct`, `--skip_hmap`, or `-v`
+        # `--frags`, `--pseudo`, `--hmap_size`, `--ct`, `--skip_hmap`, or `--verbose`
         extra="--skip_hamap",  # To speed up tests
         command="agat_sp_prokka_fix_fragmented_gene_annotations.pl",
     wrapper:
@@ -1044,15 +1044,15 @@ rule test_agat_sp_sensitivity_specificity:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff1="prokka_fragmented_genes.gff",
-        gff2="annotation.gff",
+        gff1="input/prokka_fragmented_genes.gff",
+        gff2="input/annotation.gff",
     output:
         # The key here will be used as argument name in the final command line.
-        outfile="test_agat_sp_sensitivity_specificity.txt",
+        output="out/test_agat_sp_sensitivity_specificity.txt",
     log:
-        "test_agat_sp_sensitivity_specificity.log",
+        "logs/test_agat_sp_sensitivity_specificity.log",
     params:
-        # Non-file parameters (`-v`)
+        # Non-file parameters (`--verbose`)
         extra="",
         command="agat_sp_sensitivity_specificity.pl",
     wrapper:
@@ -1063,14 +1063,14 @@ rule test_agat_sp_separate_by_record_type:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="agat_sq_add_attributes_from_tsv.gff",
+        gff="input/agat_sq_add_attributes_from_tsv.gff",
     output:
         # The key here will be used as argument name in the final command line.
         # The output directory contains up to one file per record type among the
         # huge list of records available in `agat levels`.
-        o=directory("test_agat_sp_separate_by_record_type"),
+        o=directory("out/test_agat_sp_separate_by_record_type"),
     log:
-        "test_agat_sp_separate_by_record_type.log",
+        "logs/test_agat_sp_separate_by_record_type.log",
     params:
         # No non-file parameters
         command="agat_sp_separate_by_record_type.pl",
@@ -1082,18 +1082,18 @@ rule test_agat_sp_statistics:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="agat_sq_add_attributes_from_tsv.gff",
+        gff="input/agat_sq_add_attributes_from_tsv.gff",
     output:
         # Optional Path to text report
-        report="test_agat_sp_statistics.txt",
+        report="out/test_agat_sp_statistics.txt",
         # Optional path to yaml report (triggers the `--yaml` argument)
-        yaml="test_agat_sp_statistics.yaml",
+        yaml="out/test_agat_sp_statistics.yaml",
         # Optional path to directory containing multiple plots, corresponding
         # to each level present in the input GFF file and described by the
         # `agat levels` command. Triggers `-p` argument.
-        plot=directory("test_agat_sp_statistics_plots"),
+        plot=directory("out/test_agat_sp_statistics_plots"),
     log:
-        "test_agat_sp_statistics.log",
+        "logs/test_agat_sp_statistics.log",
     params:
         # Non-file parameters: `--gs`, or `--verbose`)
         # All other non-file parameters are automatically infered
@@ -1107,15 +1107,15 @@ rule test_agat_sq_add_attributes_from_tsv:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="agat_sq_add_attributes_from_tsv.gff",
-        tsv="agat_sq_add_attributes_from_tsv.tsv",
+        gff="input/agat_sq_add_attributes_from_tsv.gff",
+        tsv="input/agat_sq_add_attributes_from_tsv.tsv",
     output:
         # Optional Path to text report
-        o="test_agat_sq_add_attributes_from_tsv.gff",
+        o="out/test_agat_sq_add_attributes_from_tsv.gff",
     log:
-        "test_agat_sq_add_attributes_from_tsv.log",
+        "logs/test_agat_sq_add_attributes_from_tsv.log",
     params:
-        # Non-file parameters: `--vebose`
+        # Non-file parameters: `--verbose`
         # All other parameters are automatically included
         extra="",
         command="agat_sq_add_attributes_from_tsv.pl",
@@ -1127,12 +1127,12 @@ rule test_agat_sq_add_hash_tag:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="agat_sq_add_attributes_from_tsv.gff",
+        gff="input/agat_sq_add_attributes_from_tsv.gff",
     output:
         # Optional Path to text report
-        o="test_agat_sq_add_hash_tag.gff",
+        o="out/test_agat_sq_add_hash_tag.gff",
     log:
-        "test_agat_sq_add_hash_tag.log",
+        "logs/test_agat_sq_add_hash_tag.log",
     params:
         extra="--interval 1",
         command="agat_sq_add_hash_tag.pl",
@@ -1144,12 +1144,12 @@ rule test_agat_sq_add_locus_tag:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="agat_sq_add_attributes_from_tsv.gff",
+        gff="input/agat_sq_add_attributes_from_tsv.gff",
     output:
         # Optional Path to text report
-        o="test_agat_sq_add_locus_tag.gff",
+        o="out/test_agat_sq_add_locus_tag.gff",
     log:
-        "test_agat_sq_add_locus_tag.log",
+        "logs/test_agat_sq_add_locus_tag.log",
     params:
         # Non-file parameters, eg: `--type`, `--lo`, `--li`, `--of` or `--quiet`
         extra="",
@@ -1162,16 +1162,16 @@ rule test_agat_sq_filter_feature_from_fasta:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
-        fasta="sequence.fa",
+        gff="input/annotation.gff",
+        fasta="input/sequence.fa",
     output:
         # Optional Path to text report
-        o="test_agat_sq_filter_feature_from_fasta.gff",
+        o="out/test_agat_sq_filter_feature_from_fasta.gff",
     log:
-        "test_agat_sq_filter_feature_from_fasta.log",
+        "logs/test_agat_sq_filter_feature_from_fasta.log",
     params:
         # Only verbosity parameter is expected, other ones are automatically filled
-        extra="--verbose",
+        extra="--verbose 4",
         command="agat_sq_filter_feature_from_fasta.pl",
     wrapper:
         "master/bio/agat"
@@ -1181,12 +1181,12 @@ rule test_agat_sq_list_attributes:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # Optional Path to attributes
-        outfile="test_agat_sq_list_attributes.txt",
+        output="out/test_agat_sq_list_attributes.txt",
     log:
-        "test_agat_sq_list_attributes.log",
+        "logs/test_agat_sq_list_attributes.log",
     params:
         # Only `-p`, `-t` or `-l`, other options are automatically infered
         extra="-p level2,cds,exon",
@@ -1199,15 +1199,15 @@ rule test_agat_sq_manage_IDs:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # Optional Path to ids
-        o="test_agat_sq_manage_IDs.txt",
+        o="out/test_agat_sq_manage_IDs.txt",
     log:
-        "test_agat_sq_manage_IDs.log",
+        "logs/test_agat_sq_manage_IDs.log",
     params:
-        # Only `--of`, all other parameters are infered
-        extra="--of 2",
+        # Only `--verbose`, all other parameters are infered
+        extra="--verbose 4",
         command="agat_sq_manage_IDs.pl",
     wrapper:
         "master/bio/agat"
@@ -1217,12 +1217,12 @@ rule test_agat_sq_manage_attributes:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="annotation.gff",
+        gff="input/annotation.gff",
     output:
         # Optional Path to GFF
-        outfile="test_agat_sq_manage_attributes.gff",
+        output="out/test_agat_sq_manage_attributes.gff",
     log:
-        "test_agat_sq_manage_attributes.log",
+        "logs/test_agat_sq_manage_attributes.log",
     params:
         # One of `--type`, `--tag` `--add`, `--vp`,
         # `--overwrite`, `--value` or `--strategy`
@@ -1236,13 +1236,13 @@ rule test_agat_sq_mask:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="prokka_fragmented_genes.gff",
-        fasta="prokka_cav_10DC88.fa",
+        gff="input/prokka_fragmented_genes.gff",
+        fasta="input/prokka_cav_10DC88.fa",
     output:
         # Path to masked GFF/GTF
-        o="test_agat_sq_mask.gff",
+        o="out/test_agat_sq_mask.gff",
     log:
-        "test_agat_sq_mask.log",
+        "logs/test_agat_sq_mask.log",
     params:
         # Only `--sm` or `--hm` (mutually exclusive), all other parameters are infered.
         extra="--hm",
@@ -1255,12 +1255,12 @@ rule test_agat_sq_remove_redundant_entries:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="prokka_fragmented_genes.gff",
+        gff="input/prokka_fragmented_genes.gff",
     output:
         # Path to GFF entries
-        o="test_agat_sq_remove_redundant_entries.gff",
+        o="out/test_agat_sq_remove_redundant_entries.gff",
     log:
-        "test_agat_sq_remove_redundant_entries.log",
+        "logs/test_agat_sq_remove_redundant_entries.log",
     params:
         # All parameters are filled automatically
         command="agat_sq_remove_redundant_entries.pl",
@@ -1272,14 +1272,14 @@ rule test_agat_sq_repeats_analyzer:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="prokka_fragmented_genes.gff",
+        gff="input/prokka_fragmented_genes.gff",
         # Optional path to fasta sequence, see params.extra
-        genome="prokka_cav_10DC88.fa",
+        genome="input/prokka_cav_10DC88.fa",
     output:
         # Path to repeats
-        o="test_agat_sq_repeats_analyzer.gff",
+        o="out/test_agat_sq_repeats_analyzer.gff",
     log:
-        "test_agat_sq_repeats_analyzer.log",
+        "logs/test_agat_sq_repeats_analyzer.log",
     params:
         # If no fasta file is provided in `input.genome`, then provide the genome size
         # through optional parameter below:
@@ -1293,16 +1293,16 @@ rule test_agat_sq_reverse_complement:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="prokka_fragmented_genes.gff",
-        fasta="prokka_cav_10DC88.fa",
+        gff="input/prokka_fragmented_genes.gff",
+        fasta="input/prokka_cav_10DC88.fa",
     output:
         # Path to revert complement
-        o="test_agat_sq_reverse_complement.gff",
+        o="out/test_agat_sq_reverse_complement.gff",
     log:
-        "test_agat_sq_reverse_complement.log",
+        "logs/test_agat_sq_reverse_complement.log",
     params:
         # Only verbosity parameter is allowed, other ones are automatically filled
-        extra="--verbose",
+        extra="--verbose 4",
         command="agat_sq_reverse_complement.pl",
     wrapper:
         "master/bio/agat"
@@ -1312,13 +1312,13 @@ rule test_agat_sq_rfam_analyzer:
     input:
         # The key here will be used as argument name in the final command line
         # config="", # Optional path to configuration file
-        gff="prokka_fragmented_genes.gff",
-        genome="prokka_cav_10DC88.fa",
+        gff="input/prokka_fragmented_genes.gff",
+        genome="input/prokka_cav_10DC88.fa",
     output:
         # Optional Path to ids
-        o="test_agat_sq_rfam_analyzer.tsv",
+        o="out/test_agat_sq_rfam_analyzer.tsv",
     log:
-        "test_agat_sq_rfam_analyzer.log",
+        "logs/test_agat_sq_rfam_analyzer.log",
     params:
         # If no fasta file is provided in `input.genome`, then provide the genome size
         # through optional parameter below:

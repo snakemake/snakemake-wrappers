@@ -1,6 +1,7 @@
 channels:
-  - conda-forge 
+  - conda-forge
+  - bioconda
+  - nodefaults
 dependencies:
-  - go-yq =4.49.2
+  - go-yq =4.52.4
   - snakemake-wrapper-utils =0.8.0
-  
