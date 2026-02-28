@@ -31,12 +31,10 @@ for ending in (".amb", ".ann", ".bwt", ".pac", ".sa"):
             )
         )
 
-dictionary = path.splitext(reference)[0] + ".dict"
+# dictionary = path.splitext(reference)[0] + ".dict" --> leads to incorrect paths (reference.dict), which is incompatible with setup reference (reference.fa.dict)
 if not path.exists(dictionary):
     raise ValueError(
-        "{dictionary}.dict missing. Please make sure the reference dictionary was properly created. This can be accomplished for example by CreateSequenceDictionary.jar from Picard".format(
-            dictionary=dictionary
-        )
+        f"{dictionary} missing or wrong naming (reference.fa.dict). Please make sure the reference dictionary was properly created. This can be accomplished for example by CreateSequenceDictionary.jar from Picard."
     )
 
 shell(
