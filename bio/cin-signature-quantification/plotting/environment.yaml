@@ -1,0 +1,10 @@
+channels:
+   - conda-forge
+   - bioconda
+   - nodefaults
+dependencies:
+  - r-cin-signature-quantification =1.2.0
+  - r-tibble >=2.2.1,<4
+  - r-dplyr >=1.2.0,<2
+  - r-stringr >=1.6.0,<2
+  - r-arrow >=23.0.0,<24
