@@ -5136,6 +5136,7 @@ def test_gatk_applybqsr_cram(run):
         ],
     )
 
+
 def test_gatk_applybqsrspark(run):
     run(
         "bio/gatk/applybqsrspark",
@@ -7196,7 +7197,7 @@ def test_orthanq(run):
             "--use-conda",
             "out/candidates",
             "out/candidates.vcf",
-#             "out/preprocess_hla.bcf",
+            #             "out/preprocess_hla.bcf",
             "out/preprocess_virus.bcf",
             "out/calls_hla",
             "out/calls_virus",
@@ -7205,10 +7206,18 @@ def test_orthanq(run):
 
 
 def test_mofa2_training(run):
-    run("bio/mofa2/training", ["snakemake", "--cores", "1", "data.hdf5", "--use-conda", "-F"])
+    run(
+        "bio/mofa2/training",
+        ["snakemake", "--cores", "1", "data.hdf5", "--use-conda", "-F"],
+    )
+
 
 def test_mofa2_plotting(run):
     run("bio/mofa2/plotting", ["snakemake", "--cores", "1", "--use-conda", "-F"])
+
+
+def test_cin_signature_quantification(run):
+    run("bio/cin-signature-quantification", ["snakemake", "--cores", "1", "--use-conda", "-F"])
 
 
 def test_go_yq(run):
