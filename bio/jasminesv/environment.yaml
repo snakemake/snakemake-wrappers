@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+  - bioconda
+  - default
+  - nodefaults
+dependencies:
+  - jasminesv =1.1.5
