@@ -1,6 +1,7 @@
 import tempfile
-import types
 from contextlib import ExitStack
+from typing import Sequence, Iterable
+
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
@@ -29,9 +30,9 @@ if chr_norm_file:
 
 sample_dists = snakemake.params.get("sample_dists")
 if sample_dists:
-    if not isinstance(sample_dists, (types.Sequence, types.Iterable)) or len(
-        sample_dists
-    ) != len(vcfs):
+    if not isinstance(sample_dists, (Sequence, Iterable)) or len(sample_dists) != len(
+        vcfs
+    ):
         raise ValueError(
             "The parameter 'sample_dists' must be a list with the same length as the input VCF files."
         )
