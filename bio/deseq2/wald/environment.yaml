@@ -3,7 +3,7 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bioconductor-deseq2 =1.46.0
-  - bioconductor-biocparallel =1.40.0
-  - bioconductor-apeglm =1.28.0
+  - bioconductor-deseq2 =1.50.2
+  - bioconductor-biocparallel =1.44.0
+  - bioconductor-apeglm =1.32.0
   - r-ashr =2.2_63
