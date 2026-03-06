@@ -71,7 +71,7 @@ with ExitStack() as stack:
     shell(
         "jasmine "
         "file_list={vcf_list_file.name} "
-        "out_file={out_vcf} "
+        "out_file={snakemake.output.vcf} "
         "threads={snakemake.threads} "
         "{extra} "
         "{log}"
