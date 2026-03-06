@@ -1,13 +1,13 @@
 rule all:
     input:
-        "abc.vcf",
+        "ab.vcf",
 
 
 rule test_jasminesv:
     input:
-        vcfs=["a.vcf", "b.vcf", "c.vcf"],
+        vcfs=["a.vcf", "b.vcf"],
     output:
-        vcf="abc.vcf",
+        vcf="ab.vcf",
     log:
         "logs/jasminesv.log",
     threads: 1
