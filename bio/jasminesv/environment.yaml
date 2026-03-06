@@ -1,5 +1,4 @@
 channels:
-channels:
   - conda-forge
   - bioconda
   - nodefaults
