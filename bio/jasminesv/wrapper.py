@@ -37,8 +37,6 @@ if sample_dists:
             "The parameter 'sample_dists' must be a list with the same length as the input VCF files."
         )
 
-out_vcf = snakemake.output.vcf
-
 out_dir = snakemake.output.get("out_dir")
 if out_dir:
     extra += f" out_dir={out_dir}"
