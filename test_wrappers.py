@@ -7292,3 +7292,6 @@ def test_go_yq(run):
             "table.json",
         ],
     )
+
+def test_jasminesv(run):
+    run("bio/jasminesv", ["snakemake", "--cores", "1", "--use-conda", "-F"])
