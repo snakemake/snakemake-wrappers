@@ -1,0 +1,32 @@
+rule sequali_se:
+    input:
+        sample=["reads/se/{sample}.fastq"],
+    output:
+        json="report/se/{sample}.html",
+        html="report/se/{sample}.json",
+    params:
+        extra="",
+    log:
+        "logs/sequali/{sample}.log",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/sequali"
+
+
+rule sequali_pe:
+    input:
+        sample=["reads/pe/{sample}.f.fastq", "reads/pe/{sample}.r.fastq"],
+    output:
+        json="report/pe/{sample}.html",
+        html="report/pe/{sample}.json",
+    params:
+        extra="",
+    threads: 2
+    log:
+        "logs/sequali/{sample}.log",
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/sequali"

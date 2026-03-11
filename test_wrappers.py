@@ -2085,6 +2085,32 @@ def test_seqtk(run):
         ],
     )
 
+def test_sequali(run):
+    run(
+        "bio/sequali",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "report/se/a.html",
+            "report/se/a.json",
+        ],
+    )
+
+    run(
+        "bio/sequali",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "report/pe/a.html",
+            "report/pe/a.json",
+        ],
+    )
 
 def test_arriba(run):
     run(

@@ -1,0 +1,14 @@
+name: sequali
+description: |
+  Sequence quality metrics for FASTQ and uBAM files.
+url: https://github.com/rhpvorderman/sequali
+authors:
+  - Artur Gomes
+input:
+  - FASTQ or uBAM file
+  - Second FASTQ file for Illumina paired-end reads.
+output:
+  - html: statistics file in HTML format
+  - json: statistics in json format
+params:
+  - extra: additional program arguments
