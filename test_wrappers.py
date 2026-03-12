@@ -3056,6 +3056,12 @@ def test_dragmap_align_sort_picard(run):
         ],
     )
 
+def test_chopper(run):
+    run(
+        "bio/chopper",
+        ["snakemake", "--cores", "1", "treated/a.fastq", "--use-conda", "-F"],
+    )
+
 
 def test_clustalo(run):
     run(

@@ -1,0 +1,14 @@
+rule chopper:
+    input:
+        in_reads=["reads/{sample}.fastq"]
+    output:
+        out_reads=["treated/{sample}.fastq"]
+    params:
+        extra="",
+    log:
+        "logs/chopper/{sample}.log",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/chopper"

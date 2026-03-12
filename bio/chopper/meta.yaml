@@ -1,0 +1,13 @@
+name: chopper
+description: |
+  Tool for filtering and trimming long reads.
+url: https://github.com/wdecoster/chopper
+authors:
+  - Artur Gomes
+input:
+  - FASTQ or fastq.gz of raw reads
+  - (Optional) FASTA file with reference to check potential contaminants against.
+output:
+  - FASTQ or fastq.gz of filtered and trimmed reads
+params:
+  - extra: additional program arguments
