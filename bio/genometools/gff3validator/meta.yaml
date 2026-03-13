@@ -7,5 +7,5 @@ input:
   - gff3: GFF3 file
 output:
   - gff3: validated GFF3 file
-notes: |
-  * The `extra` param allows for additional program arguments.
+params:
+  - extra: additional program arguments.

@@ -9,5 +9,5 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
-shell("gt gff3validator {extra} {snakemake.input.gff3} {log}")
+shell("gt gff3validator {extra} {snakemake.input[0]} {log}")
 shell("cp {snakemake.input.gff3} {snakemake.output.gff3}")

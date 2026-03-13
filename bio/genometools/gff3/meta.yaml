@@ -4,8 +4,8 @@ url: https://github.com/genometools/genometools
 authors:
   - Jorge Alvarez-Jarreta
 input:
-  - gff3: GFF3 file
+  - GFF3 file
 output:
-  - gff3: output GFF3 file
-notes: |
-  * The `extra` param allows for additional program arguments.
+  - output GFF3 file
+params:
+  - extra: additional program arguments.

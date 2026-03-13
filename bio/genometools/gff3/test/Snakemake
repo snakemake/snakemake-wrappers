@@ -1,8 +1,8 @@
 rule genometools_gff3:
     input:
-        gff3="{sample}.gff3",
+        "{sample}.gff3",
     output:
-        gff3="{sample}.revised.gff3",
+        "{sample}.revised.gff3",
     log:
         "logs/genometools/gff3/{sample}.log",
     params:

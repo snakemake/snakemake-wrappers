@@ -1,8 +1,8 @@
 rule genometools_gff3validate:
     input:
-        gff3="{sample}.gff3",
+        "{sample}.gff3",
     output:
-        gff3="{sample}.validated.gff3",
+        "{sample}.validated.gff3",
     log:
         "logs/genometools/gff3validator/{sample}.log",
     params:

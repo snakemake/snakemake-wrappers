@@ -9,4 +9,4 @@ from snakemake.shell import shell
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
-shell("gt gff3 {extra} -o {snakemake.output.fname} {snakemake.input.fname} {log}")
+shell("gt gff3 {extra} -o {snakemake.output[0]} {snakemake.input[0]} {log}")
