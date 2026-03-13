@@ -1,0 +1,11 @@
+name: GFF3
+description: Tool to parse, possibly transform, and output GFF3 files
+url: https://github.com/genometools/genometools
+authors:
+  - Jorge Alvarez-Jarreta
+input:
+  - gff3: GFF3 file
+output:
+  - gff3: output GFF3 file
+notes: |
+  * The `extra` param allows for additional program arguments.
