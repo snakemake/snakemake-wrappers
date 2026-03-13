@@ -1,0 +1,10 @@
+name: "kraken2"
+description: Classify metagenomic sequences with Kraken2.
+url: https://github.com/DerrickWood/kraken2
+authors:
+  - Alessandro Leone
+notes: |
+  * Kraken2
+  * Supports single-end and paired-end input.
+  * Requires a prebuilt Kraken2 database (`--db`).
+  * Typical outputs include classification results and a report file.

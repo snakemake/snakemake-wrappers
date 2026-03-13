@@ -1,0 +1,9 @@
+name: "kraken2"
+description: Classify metagenomic sequences with Kraken2.
+url: https://github.com/DerrickWood/kraken2
+authors:
+  - Alessandro Leone
+notes: |
+  * Kraken2 build allows building a Kraken2 database from a library file.
+  * Requires a valid taxonomy directory and sequence library inputs.
+  * The resulting database can be reused by the `kraken2 classify` wrapper via `--db`.

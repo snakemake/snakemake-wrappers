@@ -1,0 +1,23 @@
+rule kraken2_classify_pe:
+    input:
+        fq1="reads/{sample}.fastq",
+        fq2="reads/{sample}.fastq",
+        db="{db}/library/",
+    output:
+        report="kraken2/pe/{sample}_classified_report.tsv",
+    log:
+        "logs/kraken2/classify/{sample}.log",
+    wrapper:
+        "master/bio/kraken2/classify/"
+
+
+rule kraken2_classify_se:
+    input:
+        fq1="reads/{sample}.fastq",
+        db="{db}/library/",
+    output:
+        report="kraken2/se/{sample}_classified_report.tsv",
+    log:
+        "logs/kraken2/classify/{sample}.log",
+    wrapper:
+        "master/bio/kraken2/classify/"

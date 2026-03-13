@@ -1,0 +1,16 @@
+rule test_build: 
+    input:
+        "test_db/hash.k2d",
+
+rule kraken2_build:
+    input:
+        db="{db}",
+    output:
+        hash="{db}/hash.k2d",
+        opts="{db}/opts.k2d",
+        taxo="{db}/taxo.k2d",
+    params:
+        extra="",
+    log: "{db}/build.log",
+    wrapper:
+        "file:///home/aleone/snakemake-wrappers/bio/kraken2/build"

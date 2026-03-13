@@ -5025,6 +5025,28 @@ def test_salmon_quant(run):
         ],
     )
 
+def test_kraken2_classify(run):
+    run( 
+        "bio/kraken2/classify",
+        ["snakemake", "--cores", "1",  "--use-conda", "-F", "kraken2/pe/classified_report.tsv"],
+    )
+    run(
+        "bio/kraken2/classify",
+        ["snakemake", "--cores", "1",  "--use-conda", "-F", "kraken2/se/classified_report.tsv"],
+    )
+
+def test_kraken2_build(run):
+    run(
+        "bio/kraken2/build",
+        ["snakemake", "--cores", "1",  "--use-conda", "-F", "test_db/hash.k2d"],
+    )
+
+    
+def test_kraken2_add_to_library(run): 
+    run(
+        "bio/kraken2/add_to_library", 
+        ["snakemake", "--cores", "1", "--use-conda", "-F", "test_db/library/added/added.md5"]
+    )    
 
 def test_gseapy_gsea(run):
     run(
