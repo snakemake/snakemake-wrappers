@@ -7300,7 +7300,7 @@ def test_jasminesv(run):
 def test_genometools(run):
     run(
         "bio/genometools/gff3",
-        ["snakemake", "example.revied.gff3", "--cores", "1", "--use-conda", "-F"],
+        ["snakemake", "example.revised.gff3", "--cores", "1", "--use-conda", "-F"],
     )
 
     run(
