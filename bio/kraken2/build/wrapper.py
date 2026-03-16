@@ -5,9 +5,8 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
-
-db = snakemake.params.get("db")
-assert db is not None, "Params -> db is a required parameter"
+db = snakemake.input.get("db")
+assert db is not None, "Input -> db is a required input parameter"
 
 extra = snakemake.params.get("extra", "")
 
@@ -22,8 +21,6 @@ assert taxo_file is not None, "Output -> taxo is required"
 log_file = snakemake.log[0] if snakemake.log else None
 log_flag = f"--log {log_file}" if log_file else ""
 
-
-
 shell(
     "k2 build "
     "--db {db} "
@@ -31,4 +28,3 @@ shell(
     "{log_flag} "
     "{extra}"
 )
-

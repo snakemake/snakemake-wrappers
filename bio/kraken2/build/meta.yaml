@@ -1,9 +1,17 @@
-name: "kraken2"
-description: Classify metagenomic sequences with Kraken2.
+name: kraken2 build
+description: Build a Kraken2 database from a sequence library and taxonomy.
 url: https://github.com/DerrickWood/kraken2
 authors:
   - Alessandro Leone
+input:
+  - db: Path to the database directory containing the sequence library and taxonomy folders.
+output:
+  - hash: Database file mapping minimizers to taxon IDs (hash.k2d).
+  - opts: Database file storing build options (opts.k2d).
+  - taxo: Database file storing taxonomy information (taxo.k2d).
+params:
+  - extra: (optional) Additional arguments passed to `k2 build`.
 notes: |
-  * Kraken2 build allows building a Kraken2 database from a library file.
-  * Requires a valid taxonomy directory and sequence library inputs.
-  * The resulting database can be reused by the `kraken2 classify` wrapper via `--db`.
+  The database directory must already contain the sequence library
+  and taxonomy folder before building.
+  Use the `kraken2 classify` wrapper to classify reads against the built database.

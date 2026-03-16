@@ -1,16 +1,20 @@
-rule test_build: 
+rule all:
     input:
         "test_db/hash.k2d",
+        "test_db/opts.k2d",
+        "test_db/taxo.k2d",
+
 
 rule kraken2_build:
     input:
-        db="{db}",
+        db="{db}",  # Folder containing the library and taxonomy subfolders, to build the database
     output:
         hash="{db}/hash.k2d",
         opts="{db}/opts.k2d",
         taxo="{db}/taxo.k2d",
     params:
         extra="",
-    log: "{db}/build.log",
+    log:
+        "{db}/build.log",
     wrapper:
-        "file:///home/aleone/snakemake-wrappers/bio/kraken2/build"
+        "master/bio/kraken2/build"
