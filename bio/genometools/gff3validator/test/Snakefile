@@ -1,0 +1,11 @@
+rule genometools_gff3validate:
+    input:
+        "{sample}.gff3",
+    output:
+        touch("{sample}.validated.flag"),
+    log:
+        "logs/genometools/gff3validator/{sample}.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/genometools/gff3validator"
