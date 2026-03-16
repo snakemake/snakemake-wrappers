@@ -5025,7 +5025,7 @@ def test_salmon_quant(run):
         ],
     )
 
-def test_kraken2_classify(run):
+def test_kraken2(run):
     run( 
         "bio/kraken2/classify",
         [
@@ -5050,14 +5050,11 @@ def test_kraken2_classify(run):
         ],
     )
 
-def test_kraken2_build(run):
     run(
         "bio/kraken2/build",
         ["snakemake", "--cores", "1",  "--use-conda", "-F", "test_db/hash.k2d", "test_db/opts.k2d", "test_db/taxo.k2d"],
     )
 
-    
-def test_kraken2_add_to_library(run): 
     run(
         "bio/kraken2/add_to_library", 
         ["snakemake", "--cores", "1", "--use-conda", "-F", "test_db/library/added"]
