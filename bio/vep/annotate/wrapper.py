@@ -72,6 +72,8 @@ shell(
     "--dir_plugins {plugins} "
     "{load_plugins} "
     "--output_file STDOUT "
+    "--warning_file STDERR "
+    "--safe "
     "--stats_file {stats} | "
     "bcftools view -O{fmt} > {snakemake.output.calls}) {log}"
 )
