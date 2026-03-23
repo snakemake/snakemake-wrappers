@@ -15,20 +15,14 @@ min_threads = 1
 
 
 # Uncompression shall be done according to user-defined input
-incall = snakemake.input["call"]
-if snakemake.input["call"].endswith("bcf"):
+incall = snakemake.input[0]
+if snakemake.input["call"].endswith(("gz", "bcf")):
     min_threads += 1
     incall = "< <(bcftools view {})".format(incall)
-elif snakemake.input["call"].endswith("gz"):
-    min_threads += 1
-    incall = "< <(gunzip -c {})".format(incall)
 
 # Compression shall be done according to user-defined output
-outcall = snakemake.output["call"]
-if snakemake.output["call"].endswith("gz"):
-    min_threads += 1
-    outcall = "| gzip -c > {}".format(outcall)
-elif snakemake.output["call"].endswith("bcf"):
+outcall = snakemake.output[0]
+if snakemake.output["call"].endswith(("gz", "bcf")):
     min_threads += 1
     outcall = "| bcftools view {} > {}".format(bcftools_opts, outcall)
 else:

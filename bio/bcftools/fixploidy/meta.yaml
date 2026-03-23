@@ -5,9 +5,9 @@ author:
 description: |
   Set correct ploidy on variants calls
 input:
-  - call: Path to variants file (VCF/VCF.GZ/BCF)
+  - Path to variants file (VCF/VCF.GZ/BCF)
 output:
-  - call: Path to corrected variants file (VCF/BCF/VCF.GZ)
+  - Path to corrected variants file (VCF/BCF/VCF.GZ)
 params:
   - extra: Optional parameters besides IO and their formats.
 notes: |

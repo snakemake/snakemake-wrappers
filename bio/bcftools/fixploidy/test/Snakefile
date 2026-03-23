@@ -1,8 +1,8 @@
 rule test_bcftools_fixploidy:
     input:
-        call="a.bcf",
+        "a.bcf",
     output:
-        call="a.fixed.bcf",
+        "a.fixed.bcf",
     threads: 3
     params:
         extra="",
