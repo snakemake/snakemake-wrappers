@@ -8,7 +8,11 @@ from snakemake.shell import shell
 from snakemake_wrapper_utils.bcftools import get_bcftools_opts
 
 
-bcftools_opts = get_bcftools_opts(snakemake, parse_ref=False, parse_memory=False)
+bcftools_opts = get_bcftools_opts(
+    snakemake, 
+    parse_ref=False, # No use form 
+    parse_memory=False, 
+)
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 min_threads = 1
@@ -30,7 +34,7 @@ if snakemake.output["call"].endswith("gz"):
     outcall = "| gzip -c > {}".format(outcall)
 elif snakemake.output["call"].endswith("bcf"):
     min_threads += 1
-    outcall = "| bcftools view > {}".format(outcall)
+    outcall = "| bcftools view {} > {}".format(bcftools_opts, outcall)
 else:
     outcall = "> {}".format(outcall)
 
