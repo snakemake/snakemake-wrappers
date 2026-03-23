@@ -27,3 +27,17 @@ description: >
     +----------------+---------------------------+-------------------------------------------------------------+
 authors:
   - Thibault Dayris
+pathvars:
+  default:
+    - results
+    - resources
+    - logs
+  custom:
+    per: Pattern for sample identifiers, e.g. ``"{sample}"``
+    genome_sequence: Path to FASTA file with genome sequence
+    genome_sequence_index: Path to FAI file with genome sequence index
+    genome_dict: Path to DICT file with genome sequence dictionary
+    bed_intervals: Path to BED file with genome intervals
+    known_variants: Path to gzipped VCF file containing known variants
+    known_variants_tbi: Path to TBI index corresponding to known variants
+    bam_file: Path/Pattern to aligned reads (SAM/BAM/CRAM)

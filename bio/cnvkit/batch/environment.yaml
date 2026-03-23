@@ -4,3 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - cnvkit =0.9.12
+  - snakemake-wrapper-utils =0.8.0
