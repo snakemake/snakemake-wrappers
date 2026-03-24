@@ -23,9 +23,9 @@ fq1 = [fq1] if isinstance(fq1, str) else fq1
 paired = fq2 is not None
 if paired:
     fq2 = [fq2] if isinstance(fq2, str) else list(fq2)
-    assert len(fq1) == len(fq2), (
-        "Input -> equal number of files required for fq1 and fq2"
-    )
+    assert len(fq1) == len(
+        fq2
+    ), "Input -> equal number of files required for fq1 and fq2"
 
 input_str_db = ",".join(db)
 input_str_fq1 = " ".join(fq1)

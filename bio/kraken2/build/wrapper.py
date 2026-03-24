@@ -21,10 +21,4 @@ assert taxo_file is not None, "Output -> taxo is required"
 log_file = snakemake.log[0] if snakemake.log else None
 log_flag = f"--log {log_file}" if log_file else ""
 
-shell(
-    "k2 build "
-    "--db {db} "
-    "--threads {snakemake.threads} "
-    "{log_flag} "
-    "{extra}"
-)
+shell("k2 build " "--db {db} " "--threads {snakemake.threads} " "{log_flag} " "{extra}")
