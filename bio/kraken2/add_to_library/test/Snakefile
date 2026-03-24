@@ -6,7 +6,7 @@ rule kraken2_add_to_library:
             "{db}/library/tiny2.fa",
         ],
     output:
-        added_dir=directory("{db}/library/added"),
+        db=directory("{db}/library/added"),
     params:
         extra="",
     log:
