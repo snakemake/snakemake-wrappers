@@ -17,8 +17,8 @@ assert fq1 is not None, "Input -> fq1 is a required input parameter"
 
 fq2 = snakemake.input.get("fq2")
 
-db = [db] if isinstance(db, str) else list(db)
-fq1 = [fq1] if isinstance(fq1, str) else list(fq1)
+db = [db] if isinstance(db, str) else db
+fq1 = [fq1] if isinstance(fq1, str) else fq1
 
 paired = fq2 is not None
 if paired:
