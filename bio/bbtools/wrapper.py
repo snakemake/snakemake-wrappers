@@ -326,52 +326,31 @@ def parse_bbtool(snakemake):
         AssertionError: If `command` or `extra` have invalid types or formats.
     """
 
+    java_opts = get_java_opts(snakemake, java_mem_overhead_factor=0.15)
+    extra = snakemake.params.get("extra", "")
+
     ## keywords
     __check_for_duplicated_keywords(snakemake)
 
-    if not hasattr(snakemake.params, "command"):
-        raise Exception("params needs 'command' parameter")
-    else:
-        command = snakemake.params.command
-        assert type(command) == str, "command should be a string"
-        assert len(command.split()) == 1, "command should not contain spaces"
-        assert command.endswith(".sh"), "command should end with .sh"
-
-        command_with_parameters = command
-        logger.info(f"command is: {command_with_parameters}")
-
-        # add extra arguments  at the beginning
-        if hasattr(snakemake.params, "extra"):
-            extra = snakemake.params.extra
-            assert type(extra) == str, "extra should be a string"
-            logger.info(f"extra arguments: {extra} ")
-            command_with_parameters += f" {extra} "
-
-    command_with_parameters += _parse_keywords_for_bbtool(snakemake.input, "input")
-    command_with_parameters += _parse_keywords_for_bbtool(snakemake.output, "output")
-    command_with_parameters += _parse_keywords_for_bbtool(snakemake.params, "params")
-
     # Add threads if not in single threaded scripts
-    if command in single_threaded_scripts:
+    threads=f"threads={snakemake.threads}"
+    if snakemake.params.command in single_threaded_scripts:
         if snakemake.threads > 3:
             logger.warning(
-                f"Shell script {command} will only use 1-3 threads, but you specify {snakemake.threads} threads. I ignore the threads argument."
+                f"Shell script {snakemake.params.command} will only use 1-3 threads, but you specify {snakemake.threads} threads. I ignore the threads argument."
             )
-    else:
-        command_with_parameters += f" threads={snakemake.threads} "
+            threads=""
 
-    # memory
-    java_opts = get_java_opts(snakemake, java_mem_overhead_factor=0.15)
+    input = _parse_keywords_for_bbtool(snakemake.input, "input")
+    params = _parse_keywords_for_bbtool(snakemake.params, "params")
+    output = _parse_keywords_for_bbtool(snakemake.output, "output")
 
-    # log
-    log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
-
-    command_with_parameters += f" {java_opts} -eoom {log}"
-
-    return command_with_parameters
+    return f"{snakemake.params.command} {java_opts} -eoom {threads} {input} {params} {extra} {output}"
 
 
 command = parse_bbtool(snakemake)
 logger.info(f"run command:\n\n\t{command}\n")
 
-shell(command)
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+
+shell("{command} {log}")
