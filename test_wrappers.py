@@ -5036,9 +5036,9 @@ def test_kraken2(run):
             "--use-conda", 
             "-F", 
             "kraken2/pe/a.report.tsv",
-            "kraken2/pe/a.classified_1.fastq"  
+            "kraken2/pe/a.classified_1.fastq",
             "kraken2/se/b.report.tsv",
-            "kraken2/se/b.classified.fastq"
+            "kraken2/se/b.classified.fastq",
         ],
     )
 
