@@ -1,7 +1,7 @@
 rule kraken2_add_to_library:
     input:
         db="test_db",  # path to kraken2 database
-        fasta= [
+        fasta=[
             "{db}/library/tiny.fa",  # path to fasta(s) file to add to library
             "{db}/library/tiny2.fa",
         ],
