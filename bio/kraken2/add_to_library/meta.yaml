@@ -7,7 +7,7 @@ input:
   - db: Path to the Kraken2 database directory.
   - fasta: One or more FASTA files to add to the library.
 output:
-  - added_dir: Directory where added sequence records are stored (library/added/).
+  - db: Directory where added sequence records are stored (library/added/).
 params:
   - extra: (optional) Additional arguments passed to `k2 add-to-library`.
 notes: |
