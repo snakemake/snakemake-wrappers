@@ -1,6 +1,7 @@
 # coding: utf-8
 
 """Snakemake wrapper for jq"""
+
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
