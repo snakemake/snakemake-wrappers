@@ -1,10 +1,3 @@
-rule all:
-    input:
-        "test_db/hash.k2d",
-        "test_db/opts.k2d",
-        "test_db/taxo.k2d",
-
-
 rule kraken2_build:
     input:
         db="{db}",  # Folder containing the library and taxonomy subfolders, to build the database
