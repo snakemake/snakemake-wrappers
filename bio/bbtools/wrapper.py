@@ -332,13 +332,13 @@ def parse_bbtool(snakemake):
     __check_for_duplicated_keywords(snakemake)
 
     # Add threads if not in single threaded scripts
-    threads=snakemake.threads
+    threads = snakemake.threads
     if snakemake.params.command in single_threaded_scripts:
         if snakemake.threads > 3:
             logger.warning(
                 f"{snakemake.params.command} will only use 1-3 threads, but you specified {snakemake.threads} threads. Threads will be caped at 3."
             )
-            threads=3
+            threads = 3
 
     input = _parse_keywords_for_bbtool(snakemake.input, "input")
     params = _parse_keywords_for_bbtool(snakemake.params, "params")
