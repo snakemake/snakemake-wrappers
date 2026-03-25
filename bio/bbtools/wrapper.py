@@ -336,7 +336,7 @@ def parse_bbtool(snakemake):
     if snakemake.params.command in single_threaded_scripts:
         if snakemake.threads > 3:
             logger.warning(
-                f"{snakemake.params.command} will only use 1-3 threads, but you specified {snakemake.threads} threads. Threads will be caped at 3."
+                f"{snakemake.params.command} will only use 1-3 threads, but you specified {snakemake.threads} threads. Threads will be capped at 3."
             )
             threads = 3
 
