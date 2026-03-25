@@ -12,9 +12,9 @@ rule kraken2_build:
         hash="{db}/hash.k2d",
         opts="{db}/opts.k2d",
         taxo="{db}/taxo.k2d",
-    params:
-        extra="",
     log:
         "{db}/build.log",
+    params:
+        extra="",
     wrapper:
         "master/bio/kraken2/build"
