@@ -7295,3 +7295,15 @@ def test_go_yq(run):
 
 def test_jasminesv(run):
     run("bio/jasminesv", ["snakemake", "--cores", "1", "--use-conda", "-F"])
+
+
+def test_genometools(run):
+    run(
+        "bio/genometools/gff3",
+        ["snakemake", "example.revised.gff3", "--cores", "1", "--use-conda", "-F"],
+    )
+
+    run(
+        "bio/genometools/gff3validator",
+        ["snakemake", "example.validated.flag", "--cores", "1", "--use-conda", "-F"],
+    )
