@@ -115,9 +115,9 @@ threads = snakemake.threads
 
 
 def get_auto_prefix(file_path):
-    (pref, ext) = path.splitext(path.basename(file_path))
+    pref, ext = path.splitext(path.basename(file_path))
     if ext == ".gz":
-        (pref, _) = path.splitext(pref)
+        pref, _ = path.splitext(pref)
     return pref
 
 
