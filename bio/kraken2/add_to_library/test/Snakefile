@@ -7,9 +7,9 @@ rule kraken2_add_to_library:
         ],
     output:
         db=directory("{db}/library/added"),
-    params:
-        extra="",
     log:
         "{db}/library/added.log",
+    params:
+        extra="",
     wrapper:
         "master/bio/kraken2/add_to_library"
