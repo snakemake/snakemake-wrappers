@@ -8,7 +8,6 @@ import tempfile
 from snakemake.shell import shell
 from pathlib import Path
 
-
 log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=False)
 extra = snakemake.params.get("extra", "")
 

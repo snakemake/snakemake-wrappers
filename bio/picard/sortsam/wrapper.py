@@ -10,7 +10,6 @@ import tempfile
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
-
 extra = snakemake.params.get("extra", "")
 sort_order = snakemake.params.get("sort_order", "coordinate")
 java_opts = get_java_opts(snakemake)
