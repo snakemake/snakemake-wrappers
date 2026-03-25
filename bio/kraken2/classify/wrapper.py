@@ -31,12 +31,6 @@ input_str_db = ",".join(db)
 input_str_fq1 = " ".join(fq1)
 input_str_fq2 = " ".join(fq2) if paired else ""
 
-report = snakemake.output.get("report")
-classif = snakemake.output.get("classif")
-classified_out = snakemake.output.get("classified_out")
-unclassified_out = snakemake.output.get("unclassified_out")
-
-
 def format_out_flag(out_param, flag_name):
     if not out_param:
         return ""
@@ -55,10 +49,22 @@ def format_out_flag(out_param, flag_name):
         return f"{flag_name} {out_file}"
 
 
-output_flag = f"--output {classif}" if classif else "--output -"
-report_flag = f"--report {report}" if report else ""
-classified_out_flag = format_out_flag(classified_out, "--classified-out")
-unclassified_out_flag = format_out_flag(unclassified_out, "--unclassified-out")
+report = snakemake.output.get("report", "")
+if report:
+    report = f"--report {report}"
+
+output = snakemake.output.get("classif", "-")
+if output:
+    output = f"--output {output}"
+
+classified = snakemake.output.get("classified_out", "")
+if classified:
+    classified = format_out_flag(classified, "--classified-out")
+
+unclassified = snakemake.output.get("unclassified_out", "")
+if unclassified:
+    unclassified = format_out_flag(unclassified, "--unclassified-out")
+
 paired_flag = "--paired" if paired else ""
 
 shell(
@@ -66,10 +72,10 @@ shell(
     "--db {input_str_db} "
     "--threads {snakemake.threads} "
     "{paired_flag} "
-    "{report_flag} "
-    "{output_flag} "
-    "{classified_out_flag} "
-    "{unclassified_out_flag} "
+    "{report} "
+    "{output} "
+    "{classified} "
+    "{unclassified} "
     "{extra} "
     "{input_str_fq1} {input_str_fq2} "
     "{log}"
