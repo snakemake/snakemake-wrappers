@@ -7,7 +7,6 @@ from pathlib import Path
 from snakemake.shell import shell
 from snakemake_wrapper_utils.snakemake import get_mem, get_format
 
-
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 mem_mb = get_mem(snakemake, out_unit="MiB")

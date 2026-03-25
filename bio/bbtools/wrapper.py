@@ -7,7 +7,6 @@ import sys
 import logging, traceback
 import warnings
 
-
 input_keys = ["input", "fastq", "sample", "reads"]
 # keys that can be used with 1,2, as suffixes to indicate the paired end reads.
 paired_keys = ["in", "out", "outm", "outu", "outmatch"]

@@ -8,7 +8,6 @@ __license__ = "MIT"
 import os, shutil
 from snakemake.shell import shell
 
-
 # infer output directory
 
 if hasattr(snakemake.output, "dir"):
