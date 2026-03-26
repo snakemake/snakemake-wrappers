@@ -2,9 +2,11 @@ rule kraken2_build:
     input:
         db="{db}",  # Folder containing the library and taxonomy subfolders, to build the database
     output:
-        hash="{db}/hash.k2d",
-        opts="{db}/opts.k2d",
-        taxo="{db}/taxo.k2d",
+        multiext("{db}/",  # the {db} part here needs to exactly match the {db} part in `input:`
+            hash="hash.k2d",  # this filename is required by kraken2
+            opts="opts.k2d",  # this filename is required by kraken2
+            taxo="taxo.k2d",  # this filename is required by kraken2
+        ),
     log:
         "{db}/build.log",
     params:

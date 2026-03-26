@@ -31,6 +31,12 @@ input_str_db = ",".join(db)
 input_str_fq1 = " ".join(fq1)
 input_str_fq2 = " ".join(fq2) if paired else ""
 
+db_files = [snakemake.input["hash"], snakemake.input["opts"], snakemake.input["taxo"]]
+db_dirs = [os.path.dirname(os.path.abspath(f)) for f in db_files]
+assert all(d == db_dirs[0] for d in db_dirs), (
+    f"All db files (hash, opts, taxo) must be in the same directory, got: {db_dirs}"
+)
+db_dir = db_dirs[0]
 
 def format_out_flag(out_param, flag_name):
     if not out_param:

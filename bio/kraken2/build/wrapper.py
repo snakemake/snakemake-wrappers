@@ -10,7 +10,10 @@ extra = snakemake.params.get("extra", "")
 assert snakemake.output.get("hash") is not None, "Output -> hash is required"
 assert snakemake.output.get("opts") is not None, "Output -> opts is required"
 assert snakemake.output.get("taxo") is not None, "Output -> taxo is required"
-
+db_dir = os.path.abspath(snakemake.input.db)
+for key in ("hash", "opts", "taxo"):
+    out_dir = os.path.dirname(os.path.abspath(snakemake.output[key]))
+    assert out_dir == db_dir, f"Output -> {key} must be in the same directory as the input database" f"({db_dir}), but it is in {out_dir}"
 log = snakemake.log[0] if snakemake.log else ""
 if log:
     log = f"--log {log}"

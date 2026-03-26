@@ -2,7 +2,9 @@ rule kraken2_classify_pe:
     input:
         fq1="reads/{sample}_R1.fastq",
         fq2="reads/{sample}_R2.fastq",
-        db="test_db",
+        hash="test_db/hash.k2d",  # this filename is required by kraken2
+        opts="test_db/opts.k2d",  # this filename is required by kraken2
+        taxo="test_db/taxo.k2d",  # this filename is required by kraken2
     output:
         report="kraken2/pe/{sample}.report.tsv",
         classif="kraken2/pe/{sample}.kraken2.tsv",
@@ -24,7 +26,9 @@ rule kraken2_classify_pe:
 rule kraken2_classify_se:
     input:
         fq1="reads/{sample}_R1.fastq",
-        db="test_db",
+        hash="test_db/hash.k2d",  # this filename is required by kraken2
+        opts="test_db/opts.k2d",  # this filename is required by kraken2
+        taxo="test_db/taxo.k2d",  # this filename is required by kraken2
     output:
         report="kraken2/se/{sample}.report.tsv",
         classif="kraken2/se/{sample}.kraken2.tsv",
