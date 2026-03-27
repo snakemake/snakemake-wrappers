@@ -17,7 +17,7 @@ extra = snakemake.params.get("extra", "")
 # Optional IO files
 bam = snakemake.input.get("bam", "")
 if bam:
-    bam = f"--bam {bam}"
+    bam = f"--bam '{bam}'"
 
 
 # pyEffGenomeSize does not erase temporary files
@@ -44,7 +44,7 @@ with TemporaryDirectory() as tempdir:
         " --thread {snakemake.threads}"
         " --bed {snakemake.input.bed:q}"
         " --gtf {snakemake.input.gtf:q}"
-        " {bam:q}"
+        " {bam}"
         " {extra}"
         " --oprefix {tempdir}/snake_result"
         " > {snakemake.output.txt:q}"
