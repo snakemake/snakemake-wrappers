@@ -8,7 +8,7 @@ import refgenconf
 
 conf_path = os.environ["REFGENIE"]
 
-rgc = refgenconf.RefGenConf.from_yaml_file(conf_path)
+rgc = refgenconf.RefGenConf.from_yaml_file(conf_path, writable=True)
 
 # pull asset if necessary
 gat, archive_data, server_url = rgc.pull(
