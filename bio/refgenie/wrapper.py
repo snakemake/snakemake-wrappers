@@ -12,7 +12,7 @@ tag = snakemake.params.tag
 
 conf_path = os.environ["REFGENIE"]
 
-rgc = refgenconf.RefGenConf(conf_path, writable=True)
+rgc = refgenconf.RefGenConf(conf_path)
 
 # pull asset if necessary
 gat, archive_data, server_url = rgc.pull(genome, asset, tag, force=False)
