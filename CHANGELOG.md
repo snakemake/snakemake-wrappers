@@ -1,5 +1,25 @@
 # Changelog
 
+## [9.4.2](https://github.com/snakemake/snakemake-wrappers/compare/v9.4.1...v9.4.2) (2026-03-27)
+
+
+### Bug Fixes
+
+* simplify bbtools logging ([#5088](https://github.com/snakemake/snakemake-wrappers/issues/5088)) ([e7be8e8](https://github.com/snakemake/snakemake-wrappers/commit/e7be8e88f66c37f7b3b3ee486ec3aaf89e40fbc0))
+
+
+### Performance Improvements
+
+* autobump bio/fastp/environment.yaml ([#5179](https://github.com/snakemake/snakemake-wrappers/issues/5179)) ([eae6726](https://github.com/snakemake/snakemake-wrappers/commit/eae6726672091db42c0583eceec90fc8911dedd7))
+* autobump bio/kallisto/index/environment.yaml ([#5181](https://github.com/snakemake/snakemake-wrappers/issues/5181)) ([bf29df6](https://github.com/snakemake/snakemake-wrappers/commit/bf29df6bc08c51781e68c384b48ba71a95294031))
+* autobump bio/kallisto/quant/environment.yaml ([#5182](https://github.com/snakemake/snakemake-wrappers/issues/5182)) ([2ed480c](https://github.com/snakemake/snakemake-wrappers/commit/2ed480c90e4d90323b1617d3d1d3d4ca309da0e0))
+* autobump bio/mehari/annotate-seqvars/environment.yaml ([#5184](https://github.com/snakemake/snakemake-wrappers/issues/5184)) ([4163e44](https://github.com/snakemake/snakemake-wrappers/commit/4163e448fb814e085fc60eb5d26430cd7625909e))
+* autobump bio/mlst/environment.yaml ([#5183](https://github.com/snakemake/snakemake-wrappers/issues/5183)) ([251a856](https://github.com/snakemake/snakemake-wrappers/commit/251a856f583c08c008dbbc22488edcc5011a4c3b))
+* autobump bio/pyfaidx/environment.yaml ([#5186](https://github.com/snakemake/snakemake-wrappers/issues/5186)) ([160e362](https://github.com/snakemake/snakemake-wrappers/commit/160e3623d19ef01c6dd15dd11fcc07b60688c138))
+* autobump bio/tmb/pytmb/environment.yaml ([#5189](https://github.com/snakemake/snakemake-wrappers/issues/5189)) ([cb44d0e](https://github.com/snakemake/snakemake-wrappers/commit/cb44d0e79ad84a399cefbdb40379e322b1bf1a8c))
+* autobump geo/overturemaps/download/environment.yaml ([#5185](https://github.com/snakemake/snakemake-wrappers/issues/5185)) ([9654880](https://github.com/snakemake/snakemake-wrappers/commit/9654880ae79d9fc970f19fdc40a7665604bc5d86))
+* autobump utils/go-yq/environment.yaml ([#5180](https://github.com/snakemake/snakemake-wrappers/issues/5180)) ([6371686](https://github.com/snakemake/snakemake-wrappers/commit/637168637fef698f60d138006757b47968f3efe9))
+
 ## [9.4.1](https://github.com/snakemake/snakemake-wrappers/compare/v9.4.0...v9.4.1) (2026-03-20)
 
 
