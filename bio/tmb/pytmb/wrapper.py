@@ -27,7 +27,7 @@ if bed:
 
 out_vcf = snakemake.output.get("vcf", "")
 if out_vcf:
-    extra += " --export"
+    out_vcf = f"--export {out_vcf}"
 
 shell(
     "pyTMB"
@@ -36,11 +36,7 @@ shell(
     " {var_config}"
     " {bed}"
     " {extra}"
+    " {out_vcf}"
     " > {snakemake.output.res}"
     " {log}"
 )
-
-# Moving the optional exported VCF file
-if out_vcf:
-    prefix = Path(snakemake.input.vcf.removesuffix(".gz")).with_suffix("").name
-    shell("mv --verbose {prefix}_export.vcf.gz {out_vcf} {log}")
