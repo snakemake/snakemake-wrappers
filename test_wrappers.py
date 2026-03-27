@@ -5207,6 +5207,22 @@ def test_gatk_applybqsr(run):
     )
 
 
+def test_gatk_applybqsr_cram(run):
+    run(
+        "bio/gatk/applybqsr",
+        [
+            "snakemake",
+            "-s",
+            "Snakefile_cram",
+            "--cores",
+            "1",
+            "recal/a.cram",
+            "--use-conda",
+            "-F",
+        ],
+    )
+
+
 def test_gatk_applybqsrspark(run):
     run(
         "bio/gatk/applybqsrspark",
@@ -7293,6 +7309,78 @@ def test_go_yq(run):
             "foo_bar.yml",
             "table.json",
         ],
+    )
+
+
+def test_pytrf_findstr(run):
+    run(
+        "bio/pytrf/findstr",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/small_test.csv",
+            "results/small_test_defaults.tsv",
+            "--use-conda",
+            "-F",
+        ],
+        compare_results_with_expected={
+            "results/small_test.csv": "expected/findstr_basic.csv",
+        },
+    )
+
+
+def test_pytrf_findgtr(run):
+    run(
+        "bio/pytrf/findgtr",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/small_test.tsv",
+            "--use-conda",
+            "-F",
+        ],
+        compare_results_with_expected={
+            "results/small_test.tsv": "expected/findgtr_basic.tsv",
+        },
+    )
+
+
+def test_pytrf_findatr(run):
+    run(
+        "bio/pytrf/findatr",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/small_test.tsv",
+            "--use-conda",
+            "-F",
+        ],
+        compare_results_with_expected={
+            "results/small_test.tsv": "expected/findatr_basic.tsv",
+        },
+    )
+
+
+@pytest.mark.skip(
+    reason="PyTRF extract command has a delimiter bug (see https://github.com/lmdu/pytrf/issues/6)"
+)
+def test_pytrf_extract(run):
+    run(
+        "bio/pytrf/extract",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/small_test_extract.tsv",
+            "--use-conda",
+            "-F",
+        ],
+        compare_results_with_expected={
+            "results/small_test_extract.tsv": "expected/extract_basic.tsv",
+        },
     )
 
 def test_jasminesv(run):
