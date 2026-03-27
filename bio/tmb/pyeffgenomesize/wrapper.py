@@ -40,7 +40,7 @@ with TemporaryDirectory() as tempdir:
         optional_output["intersect"] = f"{tempdir}/snake_result.intersect.bed"
 
     shell(
-        "pyEffGenomeSize.py"
+        "pyEffGenomeSize"
         " --thread {snakemake.threads}"
         " --bed {snakemake.input.bed:q}"
         " --gtf {snakemake.input.gtf:q}"
