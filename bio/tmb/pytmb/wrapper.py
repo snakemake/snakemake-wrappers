@@ -30,7 +30,7 @@ if out_vcf:
     extra += " --export"
 
 shell(
-    "pyTMB.py"
+    "pyTMB"
     " --vcf {snakemake.input.vcf}"
     " {db_config}"
     " {var_config}"
