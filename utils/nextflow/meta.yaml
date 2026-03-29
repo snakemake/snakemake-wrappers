@@ -6,3 +6,7 @@ notes: |
   This wrapper can e.g. be used to run `nf-core <https://nf-co.re>`_ pipelines. 
   In each of the nf-core pipeline descriptions, you will find available parameters and the output file structure (under "aws results"). 
   The latter can be used to set the desired output files for this wrapper.
+params:
+  launch_dir: |
+    Allows adjusting the directory from which nextflow is launched.
+    Nextflow itself does not allow doing so; it always sets launchDir (read-only) from where it was invoked.

@@ -44,15 +44,18 @@ rule chipseq_pipeline:
         gtf="data/genome.gtf",
         # any --<argname> pipeline file arguments can be given here as <argname>=<path>
     output:
-        "results/multiqc/broadPeak/multiqc_report.html",
+        multiqc_report="results/multiqc/broadPeak/multiqc_report.html",
+        # directory from which nextflow is launched, will contain the `.nextflow` directory
+        launch_dir=directory("some_directory"),
     params:
         pipeline="nf-core/chipseq",
         revision="2.0.0",
         profile=["test", "docker"],
+        launch_dir=lambda wildcards, output: output.launch_dir,
         # The chosen pipeline expects an --outdir to be given.
         # We infer this from the output file path. Since that file path can be changed
         # e.g. in case of cloud storage, we use a lambda function to infer the outdir.
-        outdir=lambda wildcards, output: str(Path(output[0]).parents[-2]),
+        outdir=lambda wildcards, output: str(Path(output.multiqc_report).parents[-2]),
         # any --<argname> pipeline arguments can be given here as <argname>=<value>
     handover: True
     wrapper:
