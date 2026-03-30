@@ -2,7 +2,7 @@ __author__ = "Alessandro Leone"
 __copyright__ = "Copyright 2026, Alessandro Leone"
 __email__ = "alessandro.leone@unito.it"
 __license__ = "MIT"
-
+import os
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
