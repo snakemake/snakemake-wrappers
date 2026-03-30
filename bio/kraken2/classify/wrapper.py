@@ -12,10 +12,14 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 hash_file = snakemake.input.get("hash")
 opts_file = snakemake.input.get("opts")
 taxo_file = snakemake.input.get("taxo")
-assert hash_file and opts_file and taxo_file, "Input -> hash, opts, and taxo are required input parameters"
+assert (
+    hash_file and opts_file and taxo_file
+), "Input -> hash, opts, and taxo are required input parameters"
 db_files = [hash_file, opts_file, taxo_file]
 db_dirs = [os.path.dirname(os.path.abspath(f)) for f in db_files]
-assert all(d == db_dirs[0] for d in db_dirs), f"All db files (hash, opts, taxo) must be in the same directory, got: {db_dirs}"
+assert all(
+    d == db_dirs[0] for d in db_dirs
+), f"All db files (hash, opts, taxo) must be in the same directory, got: {db_dirs}"
 db = db_dirs[0]
 fq1 = snakemake.input.get("fq1")
 assert fq1 is not None, "Input -> fq1 is a required input parameter"
