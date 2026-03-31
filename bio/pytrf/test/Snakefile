@@ -10,11 +10,11 @@ rule pytrf_findstr:
         seq="demo_data/{sample}.fasta",
     output:
         "results/{sample}_findstr.csv",
+    log:
+        "logs/{sample}.log",
     params:
         subcommand="findstr",
         extra="-r 5 1 3 3 3 3",
-    log:
-        "logs/{sample}.log",
     wrapper:
         "master/bio/pytrf"
 
@@ -25,9 +25,9 @@ rule pytrf_findstr_defaults:
         seq="demo_data/small_test.fasta",
     output:
         "results/small_test_findstr_defaults.tsv",
-    params:
-        subcommand="findstr",
     log:
         "logs/small_test_defaults.log",
+    params:
+        subcommand="findstr",
     wrapper:
         "master/bio/pytrf"

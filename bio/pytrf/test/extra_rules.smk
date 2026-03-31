@@ -37,10 +37,10 @@ rule pytrf_extract:
         repeat="demo_data/small_test_extract.tsv",  # repeat file from findstr/findgtr/findatr
     output:
         "results/small_test_extract.tsv",
+    log:
+        "logs/small_test_extract.log",
     params:
         subcommand="extract",
         extra="-l 150",  # flank-length=150
-    log:
-        "logs/small_test_extract.log",
     wrapper:
         "master/bio/pytrf"
