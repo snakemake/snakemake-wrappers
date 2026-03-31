@@ -7383,6 +7383,7 @@ def test_pytrf_extract(run):
         },
     )
 
+
 def test_jasminesv(run):
     run("bio/jasminesv", ["snakemake", "--cores", "1", "--use-conda", "-F"])
 
