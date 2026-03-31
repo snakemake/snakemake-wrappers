@@ -1,4 +1,4 @@
-""" Snakemake wrapper for lastal """
+"""Snakemake wrapper for lastal"""
 
 __author__ = "N. Tessa Pierce"
 __copyright__ = "Copyright 2019, N. Tessa Pierce"

@@ -144,6 +144,8 @@ def run(tmp_test_dir):
         finally:
             # go back to original directory
             os.chdir(origdir)
+        # Clean up temp folder
+        shutil.rmtree(tmp_test_subdir)
         return tmp_test_subdir
 
     return _run

@@ -8,7 +8,6 @@ import tempfile
 from pathlib import Path
 from snakemake.shell import shell
 
-
 out_prefix = "out"
 
 with tempfile.TemporaryDirectory() as tmpdir:
