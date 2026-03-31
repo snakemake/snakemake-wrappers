@@ -35,7 +35,7 @@ notes: >
   pytrf is not a Python binding to TRF - it's an independent tool. |nl|
   |nl|
   **Testing:** |nl|
-  This wrapper skips extract tests until upstream patch is released. |nl|
+  This wrapper skips extract test until upstream patch is released. |nl|
   |nl|
   **Known issues:** |nl|
   - PyTRF 1.4.2 has a bug in findstr bed output format (https://github.com/lmdu/pytrf/issues/7) |nl|
