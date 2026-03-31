@@ -1,0 +1,42 @@
+name: pytrf
+description: >
+  Tandem Repeat (TR) finding and extraction toolkit.
+  Supports finding exact short TRs (findstr), generic TRs (findgtr),
+  approximate TRs (findatr), and extracting sequences (extract).
+url: https://pytrf.readthedocs.io/en/latest/usage.html
+authors:
+  - Muhammad Rohan Ali Asmat
+input:
+  - seq: FASTA or FASTQ file (supports gzip compression)
+  - repeat: For extract only - TSV/CSV file from findstr/findgtr/findatr
+output:
+  - Output file (required). Format auto-detected from file extension.
+params:
+  subcommand: >
+    Required. PyTRF subcommand to run.
+    Options: findstr, findgtr, findatr, extract.
+  extra: >
+    Additional command-line arguments passed to pytrf.
+    See url for subcommand-specific options.
+notes: >
+  **Subcommands:** |nl|
+  - findstr: Find exact short tandem repeats (STRs/microsatellites) |nl|
+  - findgtr: Find exact generic tandem repeats |nl|
+  - findatr: Find approximate/imperfect tandem repeats |nl|
+  - extract: **NOT WORKING** - Extract TR sequences and flanking sequence (bug in PyTRF 1.4.2, see known issues) |nl|
+  |nl|
+  **All commands require named input 'seq'** (fasta/fastq). |nl|
+  **Extract also requires 'repeat'** (tsv/csv from findstr/findgtr/findatr). |nl|
+  |nl|
+  **Bioconda package:** https://bioconda.github.io/recipes/pytrf/README.html |nl|
+  **GitHub repository:** https://github.com/lmdu/pytrf |nl|
+  **License:** MIT License |nl|
+  **Disclaimer:** This is a minimal implementation supporting basic functionality.
+  pytrf is not a Python binding to TRF - it's an independent tool. |nl|
+  |nl|
+  **Testing:** |nl|
+  This wrapper skips extract tests until upstream patch is released. |nl|
+  |nl|
+  **Known issues:** |nl|
+  - PyTRF 1.4.2 has a bug in findstr bed output format (https://github.com/lmdu/pytrf/issues/7) |nl|
+  - PyTRF 1.4.2 has a bug in extract command (https://github.com/lmdu/pytrf/issues/6)

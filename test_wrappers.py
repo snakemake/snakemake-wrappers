@@ -7197,7 +7197,7 @@ def test_orthanq(run):
             "--use-conda",
             "out/candidates",
             "out/candidates.vcf",
-            #"out/preprocess_hla.bcf",
+            # "out/preprocess_hla.bcf",
             "out/preprocess_virus.bcf",
             "out/calls_hla",
             "out/calls_virus",
@@ -7225,52 +7225,52 @@ def test_go_yq(run):
 
 def test_pytrf_findstr(run):
     run(
-        "bio/pytrf/findstr",
+        "bio/pytrf",
         [
             "snakemake",
             "--cores",
             "1",
-            "results/small_test.csv",
-            "results/small_test_defaults.tsv",
+            "results/small_test_findstr.csv",
+            "results/small_test_findstr_defaults.tsv",
             "--use-conda",
             "-F",
         ],
         compare_results_with_expected={
-            "results/small_test.csv": "expected/findstr_basic.csv",
+            "results/small_test_findstr.csv": "expected/findstr_basic.csv",
         },
     )
 
 
 def test_pytrf_findgtr(run):
     run(
-        "bio/pytrf/findgtr",
+        "bio/pytrf",
         [
             "snakemake",
             "--cores",
             "1",
-            "results/small_test.tsv",
+            "results/small_test_findgtr.tsv",
             "--use-conda",
             "-F",
         ],
         compare_results_with_expected={
-            "results/small_test.tsv": "expected/findgtr_basic.tsv",
+            "results/small_test_findgtr.tsv": "expected/findgtr_basic.tsv",
         },
     )
 
 
 def test_pytrf_findatr(run):
     run(
-        "bio/pytrf/findatr",
+        "bio/pytrf",
         [
             "snakemake",
             "--cores",
             "1",
-            "results/small_test.tsv",
+            "results/small_test_findatr.tsv",
             "--use-conda",
             "-F",
         ],
         compare_results_with_expected={
-            "results/small_test.tsv": "expected/findatr_basic.tsv",
+            "results/small_test_findatr.tsv": "expected/findatr_basic.tsv",
         },
     )
 
@@ -7280,7 +7280,7 @@ def test_pytrf_findatr(run):
 )
 def test_pytrf_extract(run):
     run(
-        "bio/pytrf/extract",
+        "bio/pytrf",
         [
             "snakemake",
             "--cores",
