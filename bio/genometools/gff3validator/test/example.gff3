@@ -1,0 +1,10 @@
+##gff-version 3
+##sequence-region   NC_002355.1 1 15883
+NC_002355.1	ASM3026992v2	region	1	15643	.	.	.	ID=region:NC_002355.1;Alias=NC_002355,MT,NC_002355.1;Is_circular=true
+NC_002355.1	RefSeq	ncRNA_gene	243	308	.	+	.	ID=gene:GeneID_64985531;Name=KEF65_t01;biotype=tRNA;description=tRNA-Gly;gene_id=GeneID_64985531;logic_name=refseq_import_visible
+NC_002355.1	RefSeq	tRNA	243	308	.	+	.	ID=transcript:GeneID_64985531_t1;Parent=gene:GeneID_64985531;Name=KEF65_t01_t1;biotype=tRNA;tag=Ensembl_canonical;transcript_id=GeneID_64985531_t1
+NC_002355.1	RefSeq	exon	243	308	.	+	.	Parent=transcript:GeneID_64985531_t1;Name=KEF65_t01_t1-E1;constitutive=1;ensembl_end_phase=-1;ensembl_phase=-1;exon_id=KEF65_t01_t1-E1;rank=1
+NC_002355.1	RefSeq	gene	312	662	.	+	.	ID=gene:GeneID_809257;Name=KEF65_p13;biotype=protein_coding;description=NADH-ubiquinone oxidoreductase chain 3 [Source:UniProtKB/TrEMBL%3BAcc:Q9MIE8];gene_id=GeneID_809257;logic_name=refseq_import_visible
+NC_002355.1	RefSeq	mRNA	312	662	.	+	.	ID=transcript:GeneID_809257_t1;Parent=gene:GeneID_809257;Name=KEF65_p13_t1;biotype=protein_coding;tag=Ensembl_canonical;transcript_id=GeneID_809257_t1
+NC_002355.1	RefSeq	exon	312	662	.	+	.	Parent=transcript:GeneID_809257_t1;Name=KEF65_p13_t1-E1;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=KEF65_p13_t1-E1;rank=1
+NC_002355.1	RefSeq	CDS	312	662	.	+	0	ID=CDS:NP_059468.1;Parent=transcript:GeneID_809257_t1;protein_id=NP_059468.1ß

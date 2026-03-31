@@ -101,7 +101,7 @@ def clip_wrapper(
         l_minx, l_miny, l_maxx, l_maxy = parse_bounds(bounds)
         like_crs = bounds_crs
     elif like_vector:
-        gdf = gpd.read_file(like_vector)
+        gdf = gpd.read_parquet(like_vector)
         if gdf.empty or not gdf.crs:
             raise ValueError("Failed to obtain bounds from input vector file.")
         l_minx, l_miny, l_maxx, l_maxy = gdf.total_bounds

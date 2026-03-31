@@ -1,0 +1,25 @@
+##gff-version 3
+##sequence-region   1 1 43270923
+#!genome-build RAP-DB IRGSP-1.0
+#!genome-version IRGSP-1.0
+#!genome-date 2015-10
+#!genome-build-accession GCA_001433935.1
+1	RAP-DB	chromosome	1	43270923	.	.	.	ID=chromosome:1;Alias=Chr1,AP014957.1,NC_029256.1
+###
+1	irgsp	repeat_region	2000	2100	.	+	.	ID=fakeRepeat1
+###
+1	irgsp	gene	2983	10815	.	+	.	ID=gene:Os01g0100100;biotype=protein_coding;description=RabGAP/TBC domain containing protein. (Os01t0100100-01);gene_id=Os01g0100100;logic_name=irgspv1.0-20170804-genes
+1	irgsp	mRNA	2983	10815	.	+	.	ID=transcript:Os01t0100100-01;Parent=gene:Os01g0100100;biotype=protein_coding;transcript_id=Os01t0100100-01
+1	irgsp	exon	2983	3268	.	+	.	Parent=transcript:Os01t0100100-01;Name=Os01t0100100-01.exon1;constitutive=1;ensembl_end_phase=-1;ensembl_phase=-1;exon_id=Os01t0100100-01.exon1;rank=1
+1	irgsp	five_prime_UTR	2983	3268	.	+	.	Parent=transcript:Os01t0100100-01
+1	irgsp	five_prime_UTR	3354	3448	.	+	.	Parent=transcript:Os01t0100100-01
+1	irgsp	exon	3354	3616	.	+	.	Parent=transcript:Os01t0100100-01;Name=Os01t0100100-01.exon2;constitutive=1;ensembl_end_phase=0;ensembl_phase=-1;exon_id=Os01t0100100-01.exon2;rank=2
+1	irgsp	CDS	3449	3616	.	+	0	ID=CDS:Os01t0100100-01;Parent=transcript:Os01t0100100-01;protein_id=Os01t0100100-01
+1	irgsp	exon	4357	4455	.	+	.	Parent=transcript:Os01t0100100-01;Name=Os01t0100100-01.exon3;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=Os01t0100100-01.exon3;rank=3
+1	irgsp	CDS	4357	4455	.	+	0	ID=CDS:Os01t0100100-01;Parent=transcript:Os01t0100100-01;protein_id=Os01t0100100-01
+1	irgsp	exon	5457	5560	.	+	.	Parent=transcript:Os01t0100100-01;Name=Os01t0100100-01.exon4;constitutive=1;ensembl_end_phase=2;ensembl_phase=0;exon_id=Os01t0100100-01.exon4;rank=4
+1	irgsp	CDS	5457	5560	.	+	0	ID=CDS:Os01t0100100-01;Parent=transcript:Os01t0100100-01;protein_id=Os01t0100100-01
+1	irgsp	exon	7136	7944	.	+	.	Parent=transcript:Os01t0100100-01;Name=Os01t0100100-01.exon5;constitutive=1;ensembl_end_phase=1;ensembl_phase=2;exon_id=Os01t0100100-01.exon5;rank=5
+1	irgsp	CDS	7136	7944	.	+	1	ID=CDS:Os01t0100100-01;Parent=transcript:Os01t0100100-01;protein_id=Os01t0100100-01
+1	irgsp	exon	8028	8150	.	+	.	Parent=transcript:Os01t0100100-01;Name=Os01t0100100-01.exon6;constitutive=1;ensembl_end_phase=1;ensembl_phase=1;exon_id=Os01t0100100-01.exon6;rank=6
+1	irgsp	CDS	8028	8150	.	+	2	ID=CDS:Os01t0100100-01;Parent=transcript:Os01t0100100-01;protein_id=Os01t0100100-01

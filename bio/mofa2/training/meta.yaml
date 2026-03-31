@@ -1,0 +1,32 @@
+name: mofa2 training
+description: |
+  Train a model on a multi-omic data set with default options.
+url: https://www.bioconductor.org/packages/release/bioc/html/MOFA2.html
+authors:
+  - Simon Sack
+input:
+  - |
+    A parquet file in tidy format containing data with the headers: `sample, feature, view, group (optional), value`
+
+    `sample`: The name of the sample
+
+    `feature`: The name of the observed feature
+
+    `group` (optional, advanced): Discouraged for beginners. The aim of the multi-group framework is not to capture differential changes in mean levels between the groups (as for example when doing differential RNA expression). The goal is to compare the sources of variability that drive each group.
+
+    `value`: The observed value
+
+    `view`: The view the observed feature is grouped into
+output:
+  - An HDF5-file with the trained model.
+notes: |
+  In the params, set `scale_group` and/or `scale_views` to `True`, if your groups/views
+  have different ranges/variances. This scales them to unit variance.
+  Defaults to `False` if no params are given.
+params: |
+  - scale_group: set to `True` if groups
+  have different ranges/variances
+  - scale_views: set to `True` if views
+  have different ranges/variances
+notes: |
+  * All other training variables are set to default values.
