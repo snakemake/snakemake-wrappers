@@ -12,12 +12,8 @@ input:
 output:
   - Output file (required). Format auto-detected from file extension.
 params:
-  subcommand: >
-    Required. PyTRF subcommand to run.
-    Options: findstr, findgtr, findatr, extract.
-  extra: >
-    Additional command-line arguments passed to pytrf.
-    See url for subcommand-specific options.
+  - subcommand: PyTRF subcommand to run [`findstr`, `findgtr`, `findatr`, `extract`].
+  - extra: Additional command-line arguments passed to pytrf.
 notes: >
   **Subcommands:** |nl|
   - findstr: Find exact short tandem repeats (STRs/microsatellites) |nl|
