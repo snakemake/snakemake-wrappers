@@ -23,12 +23,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 # Get subcommand type and validate
 subcommand = snakemake.params.get("subcommand")
-if not subcommand:
-    raise ValueError(
-        "params.subcommand is required. "
-        f"Valid options: {', '.join(sorted(VALID_SUBCOMMANDS))}"
-    )
-if subcommand not in VALID_SUBCOMMANDS:
+if subcommand is None or subcommand not in VALID_SUBCOMMANDS:
     raise ValueError(
         f"Invalid subcommand '{subcommand}'. "
         f"Valid options: {', '.join(sorted(VALID_SUBCOMMANDS))}"
