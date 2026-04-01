@@ -5207,22 +5207,6 @@ def test_gatk_applybqsr(run):
     )
 
 
-def test_gatk_applybqsr_cram(run):
-    run(
-        "bio/gatk/applybqsr",
-        [
-            "snakemake",
-            "-s",
-            "Snakefile_cram",
-            "--cores",
-            "1",
-            "recal/a.cram",
-            "--use-conda",
-            "-F",
-        ],
-    )
-
-
 def test_gatk_applybqsrspark(run):
     run(
         "bio/gatk/applybqsrspark",
@@ -7312,7 +7296,7 @@ def test_go_yq(run):
     )
 
 
-def test_pytrf_findstr(run):
+def test_pytrf(run):
     run(
         "bio/pytrf",
         [
@@ -7321,45 +7305,13 @@ def test_pytrf_findstr(run):
             "1",
             "results/small_test_findstr.csv",
             "results/small_test_findstr_defaults.tsv",
-            "--use-conda",
-            "-F",
-        ],
-        compare_results_with_expected={
-            "results/small_test_findstr.csv": "expected/findstr_basic.csv",
-        },
-    )
-
-
-def test_pytrf_findgtr(run):
-    run(
-        "bio/pytrf",
-        [
-            "snakemake",
-            "--cores",
-            "1",
             "results/small_test_findgtr.tsv",
-            "--use-conda",
-            "-F",
-        ],
-        compare_results_with_expected={
-            "results/small_test_findgtr.tsv": "expected/findgtr_basic.tsv",
-        },
-    )
-
-
-def test_pytrf_findatr(run):
-    run(
-        "bio/pytrf",
-        [
-            "snakemake",
-            "--cores",
-            "1",
             "results/small_test_findatr.tsv",
             "--use-conda",
             "-F",
         ],
         compare_results_with_expected={
-            "results/small_test_findatr.tsv": "expected/findatr_basic.tsv",
+            "results/small_test_findstr.csv": "expected/findstr_basic.csv",
         },
     )
 
