@@ -18,7 +18,7 @@ if log:
     log = f"--log {log}"
 else:
     log = ""
-    
+
 shell(
     "k2 add-to-library"
     " --db {snakemake.input.db}"

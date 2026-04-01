@@ -45,7 +45,6 @@ input_str_fq1 = " ".join(fq1)
 input_str_fq2 = " ".join(fq2) if paired else ""
 
 
-
 def format_out_flag(out_param, flag_name):
     if not out_param:
         return ""
