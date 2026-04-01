@@ -7,7 +7,6 @@ import os
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from snakemake.shell import shell
-from snakemake_wrapper_utils.snakemake import move_files
 
 
 extra = snakemake.params.get("extra", "")
