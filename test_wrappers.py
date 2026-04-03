@@ -2178,6 +2178,12 @@ def test_bcftools_filter_sample(run):
         ["snakemake", "--cores", "1", "a.filter_sample.vcf", "--use-conda", "-F"],
     )
 
+def test_bcftools_fixploidy(run):
+    run(
+        "bio/bcftools/fixploidy",
+        ["snakemake", "--cores", "3", "a.fixed.bcf", "--use-conda", "-F"],
+    )
+
 
 def test_bcftools_filter_vcf(run):
     run(
