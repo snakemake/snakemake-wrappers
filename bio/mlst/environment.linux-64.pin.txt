@@ -25,7 +25,7 @@ https://conda.anaconda.org/bioconda/linux-64/fasttree-2.2.0-h7b50bb2_1.conda#2d5
 https://conda.anaconda.org/conda-forge/linux-64/gzip-1.14-hb9d3cd8_0.conda#84fa0d10c305971e39f516ca8354a9cd
 https://conda.anaconda.org/bioconda/linux-64/kalign2-2.04-h7b50bb2_8.tar.bz2#b8351c2fed8f377b6f7db3da31b966ff
 https://conda.anaconda.org/conda-forge/linux-64/keyutils-1.6.3-hb9d3cd8_0.conda#b38117a3c920364aff79f870c984b4a3
-https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.7.4-hecca717_0.conda#e7f7ce06ec24cfcfb9e36d28cf82ba57
+https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.7.5-hecca717_0.conda#49f570f3bc4c874a06ea69b7225753af
 https://conda.anaconda.org/conda-forge/linux-64/libffi-3.5.2-h3435931_0.conda#a360c33a5abe61c07959e449fa1453eb
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.2.0-h69a702a_18.conda#d5e96b1ed75ca01906b3d2469b4ce493
 https://conda.anaconda.org/conda-forge/linux-64/libgfortran5-15.2.0-h68bc16d_18.conda#646855f357199a12f02a87382d429b75
@@ -35,7 +35,7 @@ https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.2-hb03c661_0.conda#c
 https://conda.anaconda.org/conda-forge/linux-64/libnsl-2.0.1-hb9d3cd8_1.conda#d864d34357c3b65a4b731f78c0801dc4
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h934c35e_18.conda#1b08cd684f34175e4514474793d44bcb
 https://conda.anaconda.org/conda-forge/linux-64/libtasn1-4.21.0-hb03c661_0.conda#0ffe6217a3d09398155d32a2ddb41251
-https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.41.3-h5347b49_0.conda#db409b7c1720428638e7c0d509d3e1b5
+https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.42-h5347b49_0.conda#38ffe67b78c9d4de527be8315e5ada2c
 https://conda.anaconda.org/conda-forge/linux-64/libwebp-base-1.6.0-hd42ef1d_0.conda#aea31d2e5b1091feca96fcfe945c3cf9
 https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.5-h2d0b736_3.conda#47e340acb35de30501a76c7c799c41d7
 https://conda.anaconda.org/conda-forge/linux-64/openssl-3.6.1-h35e630c_1.conda#f61eb8cd60ff9057122a3d338b99c00f
@@ -56,7 +56,7 @@ https://conda.anaconda.org/conda-forge/linux-64/xorg-xproto-7.0.31-hb9d3cd8_1008
 https://conda.anaconda.org/conda-forge/linux-64/alsa-lib-1.2.11-hd590300_1.conda#0bb492cca54017ea314b809b1ee3a176
 https://conda.anaconda.org/conda-forge/linux-64/argtable2-2.13-hd590300_1004.conda#d7d089e975b1213c2a0f94e592b7b422
 https://conda.anaconda.org/bioconda/linux-64/clustalw-2.1-h9948957_12.tar.bz2#5989fcb871dabc90d1bb5de3d5c79185
-https://conda.anaconda.org/conda-forge/linux-64/expat-2.7.4-hecca717_0.conda#a0535741a4934b3e386051065c58761a
+https://conda.anaconda.org/conda-forge/linux-64/expat-2.7.5-hecca717_0.conda#7de50d165039df32d38be74c1b34a910
 https://conda.anaconda.org/bioconda/linux-64/famsa-2.2.3-h9948957_1.tar.bz2#0cc9c71c75994450c0af5001f71e2fba
 https://conda.anaconda.org/conda-forge/linux-64/giflib-5.2.2-hd590300_0.conda#3bf7b9fd5a7136126e0234db4b87c8b6
 https://conda.anaconda.org/conda-forge/linux-64/graphite2-1.3.14-hecca717_2.conda#2cd94587f3a401ae05e03a6caf09539d
@@ -256,9 +256,9 @@ https://conda.anaconda.org/bioconda/noarch/perl-http-negotiate-6.01-pl5321hdfd78
 https://conda.anaconda.org/bioconda/noarch/perl-lwp-protocol-https-6.15-pl5321hdfd78af_0.conda#581dffd243f36eb33d940d23740a3754
 https://conda.anaconda.org/bioconda/linux-64/t-coffee-13.46.2.7c9e712d-pl5321hb2a3317_0.conda#079c99f8f1e607b7ffb8e987ff1658b2
 https://conda.anaconda.org/bioconda/noarch/perl-bio-tools-run-alignment-tcoffee-1.7.4-pl5321hdfd78af_5.tar.bz2#932416c9ba6a9af43609e04ec5952574
-https://conda.anaconda.org/bioconda/noarch/perl-libwww-perl-6.81-pl5321hdfd78af_0.conda#423db060578b68bf0e1798d31fc577b4
+https://conda.anaconda.org/bioconda/noarch/perl-libwww-perl-6.82-pl5321hdfd78af_0.conda#aa22aaf9aa96485cbf6e8ab1501bb7c4
 https://conda.anaconda.org/bioconda/noarch/perl-xml-dom-1.46-pl5321hdfd78af_1.tar.bz2#45b7ce435727456727f45b3e2121b23b
 https://conda.anaconda.org/bioconda/noarch/perl-xml-dom-xpath-0.14-pl5321hdfd78af_2.tar.bz2#b959a7e6e307abaec3f06b0bc007809a
 https://conda.anaconda.org/bioconda/noarch/perl-bio-featureio-1.6.905-pl5321hdfd78af_4.tar.bz2#1b4b260b45e9cac33fcb45918cda428b
 https://conda.anaconda.org/bioconda/noarch/perl-bioperl-1.7.8-hdfd78af_1.tar.bz2#a693939710e572d0f85f6058b534e319
-https://conda.anaconda.org/bioconda/noarch/mlst-2.33.0-hdfd78af_0.conda#48b05e031235b3a465f6d4c211599b87
+https://conda.anaconda.org/bioconda/noarch/mlst-2.33.1-hdfd78af_0.conda#7c3d0b317863ae2217224ebc46dcaff1
