@@ -7295,6 +7295,47 @@ def test_go_yq(run):
         ],
     )
 
+
+def test_pytrf(run):
+    run(
+        "bio/pytrf",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/small_test_findstr.csv",
+            "results/small_test_findstr_defaults.tsv",
+            "results/small_test_findgtr.tsv",
+            "results/small_test_findatr.tsv",
+            "--use-conda",
+            "-F",
+        ],
+        compare_results_with_expected={
+            "results/small_test_findstr.csv": "expected/findstr_basic.csv",
+        },
+    )
+
+
+@pytest.mark.skip(
+    reason="PyTRF extract command has a delimiter bug (see https://github.com/lmdu/pytrf/issues/6)"
+)
+def test_pytrf_extract(run):
+    run(
+        "bio/pytrf",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "results/small_test_extract.tsv",
+            "--use-conda",
+            "-F",
+        ],
+        compare_results_with_expected={
+            "results/small_test_extract.tsv": "expected/extract_basic.tsv",
+        },
+    )
+
+
 def test_jasminesv(run):
     run("bio/jasminesv", ["snakemake", "--cores", "1", "--use-conda", "-F"])
 
