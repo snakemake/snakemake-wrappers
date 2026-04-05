@@ -7013,35 +7013,16 @@ def test_emu_combine_output_split(run):
     )
 
 
-def test_toulligqc_sequencing_summary(run):
+def test_toulligqc(run):
     run(
         "bio/toulligqc",
         [
             "snakemake",
             "--cores",
             "1",
-            "toulligqc_sequencing_summary/report.html",
-            "--use-conda",
-            "-F",
-        ],
-    )
-
-
-def test_toulligqc_bam(run):
-    run(
-        "bio/toulligqc",
-        ["snakemake", "--cores", "1", "toulligqc_bam/report.html", "--use-conda", "-F"],
-    )
-
-
-def test_toulligqc_fastq(run):
-    run(
-        "bio/toulligqc",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "toulligqc_fastq/report.html",
+            "out_summary/report.html",
+            "out_bam/report.html",
+            "out_fastq/report.html",
             "--use-conda",
             "-F",
         ],
