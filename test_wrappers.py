@@ -6959,7 +6959,7 @@ def test_toulligqc(run):
             "--cores",
             "1",
             "out/toulligqc_sequencing_summary.html",
-            "out/toulligqc_bam.html",
+            "out/report.html",
             "out/toulligqc_fastq.html",
             "--use-conda",
             "-F",
