@@ -1,0 +1,17 @@
+name: kraken2 add-to-library
+description: Add sequences to a Kraken2 database library.
+url: https://github.com/DerrickWood/kraken2
+authors:
+  - Alessandro Leone
+input:
+  - db: Path to the Kraken2 database directory.
+  - fasta: One or more FASTA files to add to the library.
+output:
+  - db: Directory where added sequence records are stored (library/added/).
+params:
+  - extra: (optional) Additional arguments passed to `k2 add-to-library`.
+notes: |
+  Adds one or more sequence files to a Kraken2 database library.
+  Requires a valid database directory initialized for Kraken2.
+  This step updates library contents only; run the build step afterward
+  to generate searchable database indices.
