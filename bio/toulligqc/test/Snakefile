@@ -2,7 +2,7 @@ rule toulligqc_sequencing_summary:
     input:
         "demodata/sequencing_summary.txt",
     output:
-        "out/toulligqc_sequencing_summary.html",
+        "out_summary/report.html",
     log:
         "logs/toulligqc_sequencing_summary.log",
     params:
@@ -15,7 +15,7 @@ rule toulligqc_bam:
     input:
         "demodata/test.sorted.bam",
     output:
-        "out/report.html",
+        "out_bam/report.html",
     log:
         "logs/toulligqc_bam.log",
     params:
@@ -28,7 +28,7 @@ rule toulligqc_fastq:
     input:
         "demodata/test.fastq.gz",
     output:
-        "out/toulligqc_fastq.html",
+        "out_fastq/report.html",
     log:
         "logs/toulligqc_fastq.log",
     params:
