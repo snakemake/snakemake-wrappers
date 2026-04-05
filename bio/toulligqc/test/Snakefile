@@ -15,7 +15,7 @@ rule toulligqc_bam:
     input:
         "demodata/test.sorted.bam",
     output:
-        "out/toulligqc_bam.html",
+        "out/report.html",
     log:
         "logs/toulligqc_bam.log",
     params:
