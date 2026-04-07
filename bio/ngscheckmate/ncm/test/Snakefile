@@ -61,7 +61,7 @@ rule test_ngscheckmate_bam:
         # Optional parameters besides IO and threading
         extra="--nonzero",
     wrapper:
-        "bio/ngscheckmate/ncm"
+        "master/bio/ngscheckmate/ncm"
 
 
 rule test_ngscheckmate_vcf:
