@@ -24,17 +24,19 @@ jobs:
           conda config --set channel_priority strict
           conda install -n fmt -y black snakefmt
 
+      - name: Fetch master
+        run: |
+          git fetch origin master
+
       - name: Check Python formatting
         shell: bash -el {0}
         run: |
           black --check */*/*/wrapper.py */*/wrapper.py
 
-      # TODO reactivate once comment errors are fixed
-      # - name: Check Snakemake formatting
-      #   run: |
-      #     export PATH="/usr/share/miniconda/bin:$PATH"
-      #     source activate fmt
-      #     snakefmt --check $(git diff origin/master --name-only | grep Snakefile)
+      - name: Check Snakemake formatting
+        shell: bash -el {0}
+        run: |
+          snakefmt --check $(git diff origin/master --name-only | grep Snakefile)
 
   linting:
     runs-on: ubuntu-latest
@@ -42,7 +44,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup mamba
-        uses: conda-incubator/setup-miniconda@v2
+        uses: conda-incubator/setup-miniconda@v3
         with:
           activate-environment: snakemake
           channels: "conda-forge, bioconda"
@@ -63,10 +65,23 @@ jobs:
         run: |
           declare -i ERRORS=0
           # get all modified and added files, not those that are deleted
-          for f in $(git diff origin/master --name-only --diff-filter=d | grep Snakefile)
-          do 
-            snakemake -s $f --lint
-            ERRORS+=$?
+          for f in $(git diff origin/master --name-only --diff-filter=d | grep -P "(test/Snakefile|meta_wrapper.smk)")
+          do
+            # lint meta_wrapper.smk and test/Snakefile of normal wrappers
+            if [[ $f == meta/**/meta_wrapper.smk ]]
+            then
+              echo "Linting $f"
+              # ignore errors in meta_wrapper.smk files for now
+              # TODO We have to rather lint test/Snakefile because it defines the right pathvars
+              # or we disable the pathvar checking when linting
+              (cd $(dirname $f) && (snakemake --lint --snakefile $(basename $f)) || true)
+              ERRORS+=$?
+            elif [[ $f != meta/**/test/Snakefile ]]
+            then
+              echo "Linting $f"
+              (cd $(dirname $f) && snakemake --lint --snakefile $(basename $f))
+              ERRORS+=$?
+            fi
           done
           if (( $ERRORS > 0 ))
           then

@@ -40,8 +40,6 @@ shell(
 
 if os.path.getsize(snakemake.output.bam) < 100000:
     with open(snakemake.output.bam) as f:
-        if "error" in f.read():
-            shell("cat {snakemake.output.bam} {log}")
-            raise RuntimeError(
-                "Your GDC API request returned an error, check your log file for the error message."
-            )
+        assert (
+            "error" not in f.read()
+        ), "Your GDC API request returned an error, check your log file for the error message."

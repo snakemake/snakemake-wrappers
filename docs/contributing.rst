@@ -118,10 +118,12 @@ Example
 ``environment.yaml`` file
 -------------------------
 
-This file needs to list all the software that the wrapper code needes to run successfully.
+This file needs to list all software necessary for the wrapper to run successfully.
+It follows the `standard format for conda environment files <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#create-env-file-manually>`_.
 
 For all software following `semantic versioning <https://semver.org/>`_ conventions, specify (and thus pin) the major and minor version, but leave the patch version unspecified.
 Also, unless this is needed to work around version incompatibilities not properly handled by the conda packages themselves, only specify the actual software needed and let ``conda`` determine the dependencies.
+For any more complicate version restrictions, refer to `conda's package match specifications for the correct syntax <https://docs.conda.io/projects/conda-build/en/latest/resources/package-spec.html#package-match-specifications>`_.
 
 To make sure that ``conda`` knows where to look for the package, include a list of all of the conda channels that the software and its dependencies require.
 This will usually include `conda-forge <https://conda-forge.org/>`_, as it contains many essential libraries that other packages and tools depend on.
@@ -130,9 +132,9 @@ In addition, you may need to include other sustainable community maintained chan
 And as the last channel specification, always include ``nodefaults``.
 This avoids software dependency conflicts between the ``conda-forge`` channel and the ``default`` channels that should not be needed nowadays.
 
-Finally, make sure to run ``snakedeploy pin-conda-envs environment.yaml`` on the finished environment specification.
+Finally, make sure to run ``snakedeploy pin-conda-envs environment.yaml`` on the finished environment specification, to `pin all of the dependencies of this environment specification to a working combination of versions <https://snakedeploy.readthedocs.io/en/stable/workflow_developers/update_conda_envs.html#pin-lock-conda-environments>`_.
 This will generate a file called ``environment.linux-64.pin.txt`` with all the dependency versions determined by ``conda``, ensuring that a particular wrapper version will always generate the exact same environment with the exact package versions from this file.
-You should include this pinning file in the pull request for your wrapper.
+You should include this pinning file in the pull request for your wrapper, and update it whenever you change any versions in the ``environment.yaml`` file.
 
 Example
 ^^^^^^^

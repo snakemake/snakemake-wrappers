@@ -7,7 +7,6 @@ from pathlib import Path
 from snakemake.shell import shell
 from snakemake_wrapper_utils.snakemake import is_arg
 
-
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 

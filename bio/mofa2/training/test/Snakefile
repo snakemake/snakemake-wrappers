@@ -1,0 +1,12 @@
+rule mofa2_training:
+    input:
+        "{data}.parquet",
+    output:
+        "{data}.hdf5",
+    log:
+        "log/{data}.log",
+    params:
+        scale_groups=False,  # set to True if groups have different ranges/variances
+        scale_views=False,  # set to True if views have different ranges/variances
+    wrapper:
+        "master/bio/mofa2/training"
