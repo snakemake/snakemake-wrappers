@@ -4,6 +4,7 @@ authors:
   - Johannes Köster
   - Derek Croote
   - Filipe G. Vieira
+url: https://github.com/ncbi/sra-tools
 output:
   - fastq files for R1 and R2 reads
 notes: |
