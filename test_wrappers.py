@@ -42,7 +42,12 @@ def tmp_test_dir():
 @pytest.fixture
 def run(tmp_test_dir):
     def _run(
-        wrapper, cmd, check_log=None, compare_results_with_expected=None, sdm=["conda"]
+        wrapper,
+        cmd=["snakemake"],
+        cores=1,
+        sdm=["conda"],
+        check_log=None,
+        compare_results_with_expected=None,
     ):
         wrapper_dir = Path(wrapper)
 
@@ -87,6 +92,7 @@ def run(tmp_test_dir):
         if os.path.exists(".snakemake"):
             shutil.rmtree(".snakemake")
         cmd += [
+            f"--cores {cores}",
             "--conda-cleanup-pkgs",
             "--printshellcmds",
             "--show-failed-logs",
@@ -160,14 +166,13 @@ def test_mmseqs2(run):
         "bio/mmseqs2/workflows",
         [
             "snakemake",
-            "--cores",
-            "2",
             "out/search/a.tsv",
             "out/cluster/a_b.cluster.tsv",
             "out/linclust/a_b.cluster.tsv",
             "out/taxonomy/a.lca.tsv",
             "out/rbh/a.tsv",
         ],
+        cores=2,
         compare_results_with_expected={
             "out/search/a.tsv": "expected/search/a.tsv",
             "out/cluster/a_b.seqs.fas": "expected/cluster/a_b.seqs.fas",
@@ -188,12 +193,11 @@ def test_mmseqs2(run):
         "bio/mmseqs2/db",
         [
             "snakemake",
-            "--cores",
-            "2",
             "out/databases/a",
             "out/createdb/a",
             "out/createtaxdb/a.done",
         ],
+        cores=2,
         compare_results_with_expected={
             "out/databases/a.dbtype": "expected/databases/a.dbtype",
             "out/databases/a_h.dbtype": "expected/databases/a_h.dbtype",
@@ -216,8 +220,6 @@ def test_aria2c(run):
         "utils/aria2c",
         [
             "snakemake",
-            "--cores",
-            "2",
             "results/file.fas.gz",
             "results/file.md5.fas.gz",
             "results/file.md5file.fas.gz",
@@ -228,6 +230,7 @@ def test_aria2c(run):
             "results/file.sha512file.fas.gz",
             "results/file.md5fileH.fas.gz",
         ],
+        cores=2,
     )
 
 
@@ -236,8 +239,6 @@ def test_agat(run):
         "bio/agat",
         [
             "snakemake",
-            "--cores",
-            "1",
             "out/agat_config.yaml",
             "out/agat_levels.yaml",
             "out/test_agat_convert_bed2gff.gff",
@@ -317,8 +318,6 @@ def test_alignoth(run):
         "bio/alignoth",
         [
             "snakemake",
-            "--cores",
-            "1",
             "out/json_plot.vl.json",
             "out/plot.html",
             "output-dir/",
@@ -331,8 +330,6 @@ def test_meta_alignoth_report(run):
         "meta/bio/alignoth_report",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/datavzrd-report/NA12878/",
         ],
     )
@@ -343,8 +340,6 @@ def test_miller(run):
         "utils/miller",
         [
             "snakemake",
-            "--cores",
-            "2",
             "miller/cat.tsv",
             "miller/summary.tsv",
             "miller/summary.csv",
@@ -359,6 +354,7 @@ def test_miller(run):
             "miller/uniq.tsv",
             "miller/pipe.tsv",
         ],
+        cores=2,
         compare_results_with_expected={
             "miller/cat.tsv": "expected/cat.tsv",
             "miller/summary.tsv": "expected/summary.tsv",
@@ -382,8 +378,6 @@ def test_jq(run):
         "utils/jq",
         [
             "snakemake",
-            "--cores",
-            "1",
             "out/sum.json",
         ],
         compare_results_with_expected={
@@ -397,8 +391,6 @@ def test_taxonkit(run):
         "bio/taxonkit",
         [
             "snakemake",
-            "--cores",
-            "1",
             "out/list/a.txt",
             "out/list/a.json",
             "out/lineage/a.txt",
@@ -418,8 +410,6 @@ def test_galah(run):
         "bio/galah",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results.fas.tsv",
             "results.fas.list",
             "results.fas_list.tsv",
@@ -433,8 +423,6 @@ def test_nonpareil(run):
         "bio/nonpareil/infer",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/a.fa.npo",
             "results/a.fas.bz2.npo",
             "results/a.fasta.gz.npo",
@@ -472,8 +460,6 @@ def test_nonpareil_plot(run):
         "bio/nonpareil/plot",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/a.pdf",
             "results/b.pdf",
             "results/c.pdf",
@@ -490,7 +476,7 @@ def test_nonpareil_plot(run):
 def test_lofreq_call(run):
     run(
         "bio/lofreq/call",
-        ["snakemake", "--cores", "1", "calls/a.vcf"],
+        ["snakemake", "calls/a.vcf"],
     )
 
 
@@ -499,11 +485,10 @@ def test_lofreq_indelqual(run):
         "bio/lofreq/indelqual",
         [
             "snakemake",
-            "--cores",
-            "2",
             "out/indelqual/a.uindel.bam",
             "out/indelqual/a.dindel.bam",
         ],
+        cores=2,
     )
 
 
@@ -512,8 +497,6 @@ def test_vsearch(run):
         "bio/vsearch",
         [
             "snakemake",
-            "--cores",
-            "1",
             "out/cluster_fast/a.profile",
             "out/maskfasta/a.fasta",
             "out/fastx_uniques/a.fastq",
@@ -531,20 +514,18 @@ def test_bbtools(run):
         "bio/bbtools",
         [
             "snakemake",
-            "--cores",
-            "2",
         ],
+        cores=2,
     )
 
     run(
         "bio/bbtools",
         [
             "snakemake",
-            "--cores",
-            "2",
             "--config",
             "reads_are_paired=False",
         ],
+        cores=2,
     )
 
 
@@ -553,8 +534,6 @@ def test_gffread(run):
         "bio/gffread",
         [
             "snakemake",
-            "--cores",
-            "1",
             "transcripts.fa",
             "proteins.fa",
         ],
@@ -566,8 +545,6 @@ def test_seqkit(run):
         "bio/seqkit",
         [
             "snakemake",
-            "--cores",
-            "2",
             "out/stats/a.tsv",
             "out/rmdup/name/a.fastq.gz",
             "out/rmdup/seq/a.fastq.gz",
@@ -583,6 +560,7 @@ def test_seqkit(run):
             "out/split2/part/a.1-of-2.fas",
             "out/split2/part/a.2-of-2.fas",
         ],
+        cores=2,
     )
 
 
@@ -591,8 +569,6 @@ def test_sickle_pe(run):
         "bio/sickle/pe",
         [
             "snakemake",
-            "--cores",
-            "1",
             "a.1.fastq",
             "a.2.fastq",
             "a.single.fastq",
@@ -605,8 +581,6 @@ def test_sickle_se(run):
         "bio/sickle/se",
         [
             "snakemake",
-            "--cores",
-            "1",
             "a.1.fastq",
         ],
     )
@@ -617,13 +591,12 @@ def test_bwameth_memx(run):
         "bio/bwameth/memx",
         [
             "snakemake",
-            "--cores",
-            "2",
             "A.mem.bam",
             "A.mem2.bam",
             "A.picard_sort.bam",
             "A.samtools_sort.bam",
         ],
+        cores=2,
     )
 
 
@@ -632,8 +605,6 @@ def test_bwameth_index(run):
         "bio/bwameth/index",
         [
             "snakemake",
-            "--cores",
-            "1",
             "genome.fasta.bwameth.c2t.sa",
             "genome.fasta.bwameth.c2t.0123",
         ],
@@ -645,8 +616,6 @@ def test_bwa_memx_index(run):
         "bio/bwa-memx/index",
         [
             "snakemake",
-            "--cores",
-            "1",
             "genome.fasta.sa",
             "genome.fasta.bwt.2bit.64",
             "genome.fasta.pos_packed",
@@ -659,8 +628,6 @@ def test_bwa_memx_mem(run):
         "bio/bwa-memx/mem",
         [
             "snakemake",
-            "--cores",
-            "1",
             "bwa_memx_test",
         ],
     )
@@ -669,49 +636,49 @@ def test_bwa_memx_mem(run):
 def test_purge_dups_calcuts(run):
     run(
         "bio/purge_dups/calcuts",
-        ["snakemake", "--cores", "1", "out/calcuts.cutoffs"],
+        ["snakemake", "out/calcuts.cutoffs"],
     )
 
 
 def test_purge_dups_get_seqs(run):
     run(
         "bio/purge_dups/get_seqs",
-        ["snakemake", "--cores", "1", "out/get_seqs.hap.fasta"],
+        ["snakemake", "out/get_seqs.hap.fasta"],
     )
 
 
 def test_purge_dups_ngscstat(run):
     run(
         "bio/purge_dups/ngscstat",
-        ["snakemake", "--cores", "1", "out/ngscstat.cov"],
+        ["snakemake", "out/ngscstat.cov"],
     )
 
 
 def test_purge_dups_pbcstat(run):
     run(
         "bio/purge_dups/pbcstat",
-        ["snakemake", "--cores", "1", "out/pbcstat.cov"],
+        ["snakemake", "out/pbcstat.cov"],
     )
 
 
 def test_purge_dups(run):
     run(
         "bio/purge_dups/purge_dups",
-        ["snakemake", "--cores", "1", "out/purge_dups.bed"],
+        ["snakemake", "out/purge_dups.bed"],
     )
 
 
 def test_purge_dups_split_fa(run):
     run(
         "bio/purge_dups/split_fa",
-        ["snakemake", "--cores", "1", "out/genome.split"],
+        ["snakemake", "out/genome.split"],
     )
 
 
 def test_quast(run):
     run(
         "bio/quast",
-        ["snakemake", "--cores", "1", "a/treport.tsv"],
+        ["snakemake", "a/treport.tsv"],
     )
 
 
@@ -720,8 +687,6 @@ def test_gfatools(run):
         "bio/gfatools",
         [
             "snakemake",
-            "--cores",
-            "1",
             "a.stat",
             "a.fas",
             "a.bed",
@@ -736,14 +701,16 @@ def test_gfatools(run):
 def test_hifiasm(run):
     run(
         "bio/hifiasm",
-        ["snakemake", "--cores", "2", "hifiasm/a.a_ctg.gfa"],
+        ["snakemake", "hifiasm/a.a_ctg.gfa"],
+        cores=2,
     )
 
 
 def meryl_count(run):
     run(
         "bio/meryl/count",
-        ["snakemake", "--cores", "2", "genome"],
+        ["snakemake", "genome"],
+        cores=2,
     )
 
 
@@ -752,8 +719,6 @@ def meryl_sets(run):
         "bio/meryl/sets",
         [
             "snakemake",
-            "--cores",
-            "1",
             "genome_union",
             "genome_intersect",
             "genome_subtract",
@@ -765,28 +730,29 @@ def meryl_sets(run):
 def meryl_stats(run):
     run(
         "bio/meryl/stats",
-        ["snakemake", "--cores", "1", "genome.stats"],
+        ["snakemake", "genome.stats"],
     )
 
 
 def test_genomescope(run):
     run(
         "bio/genomescope",
-        ["snakemake", "--cores", "1", "a/model.txt"],
+        ["snakemake", "a/model.txt"],
     )
 
 
 def test_bellerophon(run):
     run(
         "bio/bellerophon",
-        ["snakemake", "--cores", "2", "out.sam", "out.bam"],
+        ["snakemake", "out.sam", "out.bam"],
+        cores=2,
     )
 
 
 def test_pretext_map(run):
     run(
         "bio/pretext/map",
-        ["snakemake", "--cores", "1", "map.pretext"],
+        ["snakemake", "map.pretext"],
     )
 
 
@@ -795,8 +761,6 @@ def test_pretext_snapshot(run):
         "bio/pretext/snapshot",
         [
             "snakemake",
-            "--cores",
-            "1",
             "full_map.png",
             "full_map.jpg",
         ],
@@ -806,14 +770,14 @@ def test_pretext_snapshot(run):
 def test_pretext_graph(run):
     run(
         "bio/pretext/graph",
-        ["snakemake", "--cores", "1", "a.pretext"],
+        ["snakemake", "a.pretext"],
     )
 
 
 def test_salsa2(run):
     run(
         "bio/salsa2",
-        ["snakemake", "--cores", "1", "out/a.agp"],
+        ["snakemake", "out/a.agp"],
     )
 
 
@@ -822,8 +786,6 @@ def test_merqury(run):
         "bio/merqury",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/haploid/out.qv",
             "results/diploid/out.qv",
         ],
@@ -831,18 +793,17 @@ def test_merqury(run):
 
 
 def test_mashmap(run):
-    run("bio/mashmap", ["snakemake", "--cores", "2", "mashmap.out"])
+    run("bio/mashmap", ["snakemake", "mashmap.out"], cores=2)
 
     run(
         "bio/mashmap",
         [
             "snakemake",
-            "--cores",
-            "2",
             "mashmap.out",
             "-s",
             "Snakefile_reflist.smk",
         ],
+        cores=2,
     )
 
 
@@ -851,8 +812,6 @@ def test_liftoff(run):
         "bio/liftoff",
         [
             "snakemake",
-            "--cores",
-            "1",
             "genome_annotation_genome.gff3",
         ],
     )
@@ -861,42 +820,42 @@ def test_liftoff(run):
 def test_biobambam2_bamsormadup(run):
     run(
         "bio/biobambam2/bamsormadup",
-        ["snakemake", "--cores", "1", "dedup/a.bam"],
+        ["snakemake", "dedup/a.bam"],
     )
 
 
 def test_bustools_text(run):
     run(
         "bio/bustools/text",
-        ["snakemake", "--cores", "1", "file.tsv", "file2.tsv"],
+        ["snakemake", "file.tsv", "file2.tsv"],
     )
 
 
 def test_bustools_count(run):
     run(
         "bio/bustools/count",
-        ["snakemake", "--cores", "1", "buscount.mtx"],
+        ["snakemake", "buscount.mtx"],
     )
 
 
 def test_bustools_sort(run):
     run(
         "bio/bustools/sort",
-        ["snakemake", "--cores", "1", "sorted.bus"],
+        ["snakemake", "sorted.bus"],
     )
 
 
 def test_open_cravat_run(run):
     run(
         "bio/open-cravat/run",
-        ["snakemake", "--cores", "1"],
+        ["snakemake"],
     )
 
 
 def test_open_cravat_module(run):
     run(
         "bio/open-cravat/module",
-        ["snakemake", "--cores", "1"],
+        ["snakemake"],
     )
 
 
@@ -905,8 +864,6 @@ def test_vcf2maf(run):
         "bio/vcf2maf/vcf2maf",
         [
             "snakemake",
-            "--cores",
-            "1",
             "small.maf",
         ],
     )
@@ -917,8 +874,6 @@ def test_vcf2vcf(run):
         "bio/vcf2maf/vcf2vcf",
         [
             "snakemake",
-            "--cores",
-            "1",
             "corrected.vcf",
         ],
     )
@@ -929,8 +884,6 @@ def test_meta_varscan2_snpeff(run):
         "meta/bio/varscan2_snpeff",
         [
             "snakemake",
-            "--cores",
-            "1",
             "snpeff/annotated.vcf",
         ],
     )
@@ -941,10 +894,9 @@ def test_meta_salmon_tximport(run):
         "meta/bio/salmon_tximport",
         [
             "snakemake",
-            "--cores",
-            "2",
             "tximport/SummarizedExperimentObject.RDS",
         ],
+        cores=2,
     )
 
 
@@ -953,8 +905,6 @@ def test_meta_dada2_se(run):
         "meta/bio/dada2_se",
         [
             "snakemake",
-            "--cores",
-            "1",
         ],
     )
 
@@ -964,8 +914,6 @@ def test_meta_dada2_pe(run):
         "meta/bio/dada2_pe",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/dada2/taxa.RDS",
             "reports/dada2/quality-profile/a-quality-profile.png",
             "reports/dada2/quality-profile/b-quality-profile.png",
@@ -978,8 +926,6 @@ def test_adapterremoval(run):
         "bio/adapterremoval",
         [
             "snakemake",
-            "--cores",
-            "1",
             "trimmed/pe/a_R1.fastq.gz",
             "trimmed/pe/a_R2.fastq.gz",
             "trimmed/pe/a.singleton.fastq.gz",
@@ -999,8 +945,6 @@ def test_mapdamage2(run):
         "bio/mapdamage2",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/rescale/a.bam",
             "results/all/a.bam",
         ],
@@ -1010,28 +954,28 @@ def test_mapdamage2(run):
 def test_microphaser_normal(run):
     run(
         "bio/microphaser/normal",
-        ["snakemake", "--cores", "1", "out/a.fasta"],
+        ["snakemake", "out/a.fasta"],
     )
 
 
 def test_microphaser_somatic(run):
     run(
         "bio/microphaser/somatic",
-        ["snakemake", "--cores", "1", "out/a.info.tsv"],
+        ["snakemake", "out/a.info.tsv"],
     )
 
 
 def test_microphaser_build_reference(run):
     run(
         "bio/microphaser/build_reference",
-        ["snakemake", "--cores", "1", "out/peptides.bin"],
+        ["snakemake", "out/peptides.bin"],
     )
 
 
 def test_microphaser_filter(run):
     run(
         "bio/microphaser/filter",
-        ["snakemake", "--cores", "1", "out/peptides.wt.fasta"],
+        ["snakemake", "out/peptides.wt.fasta"],
     )
 
 
@@ -1040,8 +984,6 @@ def test_dada2_quality_profile(run):
         "bio/dada2/quality-profile",
         [
             "snakemake",
-            "--cores",
-            "1",
             "reports/dada2/quality-profile/a-quality-profile.png",
             "reports/dada2/quality-profile/a.1-quality-profile.png",
         ],
@@ -1053,8 +995,6 @@ def test_dada2_filter_trim(run):
         "bio/dada2/filter-trim",
         [
             "snakemake",
-            "--cores",
-            "1",
             "filtered-se/a.1.fastq.gz",
             "filtered-pe/a.1.fastq.gz",
         ],
@@ -1064,28 +1004,28 @@ def test_dada2_filter_trim(run):
 def test_dada2_dereplicate_fastq(run):
     run(
         "bio/dada2/dereplicate-fastq",
-        ["snakemake", "--cores", "1", "uniques/a.1.RDS"],
+        ["snakemake", "uniques/a.1.RDS"],
     )
 
 
 def test_dada2_learn_errors(run):
     run(
         "bio/dada2/learn-errors",
-        ["snakemake", "--cores", "1", "results/dada2/model_1.RDS"],
+        ["snakemake", "results/dada2/model_1.RDS"],
     )
 
 
 def test_dada2_sample_inference(run):
     run(
         "bio/dada2/sample-inference",
-        ["snakemake", "--cores", "1", "denoised/a.1.RDS"],
+        ["snakemake", "denoised/a.1.RDS"],
     )
 
 
 def test_dada2_merge_pairs(run):
     run(
         "bio/dada2/merge-pairs",
-        ["snakemake", "--cores", "1", "merged/a.RDS"],
+        ["snakemake", "merged/a.RDS"],
     )
 
 
@@ -1094,8 +1034,6 @@ def test_dada2_make_table(run):
         "bio/dada2/make-table",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/dada2/seqTab-se.RDS",
             "results/dada2/seqTab-pe.RDS",
         ],
@@ -1105,7 +1043,7 @@ def test_dada2_make_table(run):
 def test_dada2_remove_chimeras(run):
     run(
         "bio/dada2/remove-chimeras",
-        ["snakemake", "--cores", "1", "results/dada2/seqTab.nochim.RDS"],
+        ["snakemake", "results/dada2/seqTab.nochim.RDS"],
     )
 
 
@@ -1114,8 +1052,6 @@ def test_dada2_collapse_nomismatch(run):
         "bio/dada2/collapse-nomismatch",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/dada2/seqTab.collapsed.RDS",
         ],
     )
@@ -1124,7 +1060,7 @@ def test_dada2_collapse_nomismatch(run):
 def test_dada2_assign_taxonomy(run):
     run(
         "bio/dada2/assign-taxonomy",
-        ["snakemake", "--cores", "1", "results/dada2/taxa.RDS"],
+        ["snakemake", "results/dada2/taxa.RDS"],
     )
 
 
@@ -1133,8 +1069,6 @@ def test_dada2_assign_species(run):
         "bio/dada2/assign-species",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/dada2/genus-species-taxa.RDS",
         ],
     )
@@ -1143,14 +1077,14 @@ def test_dada2_assign_species(run):
 def test_dada2_add_species(run):
     run(
         "bio/dada2/add-species",
-        ["snakemake", "--cores", "1", "results/dada2/taxa-sp.RDS"],
+        ["snakemake", "results/dada2/taxa-sp.RDS"],
     )
 
 
 def test_datavzrd(run):
     run(
         "utils/datavzrd",
-        ["snakemake", "--cores", "1", "results/datavzrd-report/A"],
+        ["snakemake", "results/datavzrd-report/A"],
     )
 
 
@@ -1159,8 +1093,6 @@ def test_deseq2_deseqdataset(run):
         "bio/deseq2/deseqdataset",
         [
             "snakemake",
-            "--cores",
-            "1",
             "dds_htseq.RDS",
             "dds_minimal.RDS",
             "dds_txi.RDS",
@@ -1176,8 +1108,6 @@ def test_deseq2_wald(run):
         "bio/deseq2/wald",
         [
             "snakemake",
-            "--cores",
-            "1",
             "dge_normal.tsv",
             "dge_ashr.tsv",
             "dge_apeglm.tsv",
@@ -1190,7 +1120,7 @@ def test_deseq2_wald(run):
 def test_meta_arriba_star(run):
     run(
         "meta/bio/star_arriba",
-        ["snakemake", "results/arriba/a.fusions.tsv", "--cores", "1", "--sdm", "conda"],
+        ["snakemake", "results/arriba/a.fusions.tsv"],
     )
 
 
@@ -1199,8 +1129,6 @@ def test_csvtk(run):
         "utils/csvtk",
         [
             "snakemake",
-            "--cores",
-            "1",
             "csvtk/cat.csv",
             "csvtk/summary_tsv.csv",
             "csvtk/summary_csv.csv",
@@ -1239,8 +1167,6 @@ def test_xsv(run):
         "utils/xsv",
         [
             "snakemake",
-            "--cores",
-            "1",
             "xsv/split/0.csv",
             "xsv/table.txt",
             "xsv/stats.txt",
@@ -1272,8 +1198,6 @@ def test_meta_bwa_mapping(run):
         "meta/bio/bwa_mapping",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/mapped/a.bam.bai",
         ],
     )
@@ -1284,8 +1208,6 @@ def test_cnvkit_batch(run):
         "bio/cnvkit/batch",
         [
             "snakemake",
-            "--cores",
-            "1",
             "cnvkit/reference.cnn",
             "cnvkit/a.antitargetcoverage.cnn",
             "cnvkit/a.bintest.cns",
@@ -1302,8 +1224,6 @@ def test_cnvkit_call(run):
         "bio/cnvkit/call",
         [
             "snakemake",
-            "--cores",
-            "1",
             "test.call.cns",
         ],
     )
@@ -1314,8 +1234,6 @@ def test_cnvkit_diagram(run):
         "bio/cnvkit/diagram",
         [
             "snakemake",
-            "--cores",
-            "1",
             "test.cns.pdf",
             "test.cnr.pdf",
             "test.cnn.pdf",
@@ -1329,8 +1247,6 @@ def test_cnvkit_antitarget(run):
         "bio/cnvkit/antitarget",
         [
             "snakemake",
-            "--cores",
-            "1",
             "test.antitarget.bed",
         ],
     )
@@ -1341,8 +1257,6 @@ def test_cnvkit_target(run):
         "bio/cnvkit/target",
         [
             "snakemake",
-            "--cores",
-            "1",
             "test.target.bed",
         ],
     )
@@ -1353,8 +1267,6 @@ def test_cnvkit_export(run):
         "bio/cnvkit/export",
         [
             "snakemake",
-            "--cores",
-            "1",
             "test.cns.seg",
             "test.cns.vcf",
             "test.cns.vcf.gz",
@@ -1369,8 +1281,6 @@ def test_enhanced_volcano(run):
         "bio/enhancedvolcano",
         [
             "snakemake",
-            "--cores",
-            "1",
             "volcano_tsv.png",
             "volcano_csv.svg",
             "volcano_rds.svg",
@@ -1381,7 +1291,7 @@ def test_enhanced_volcano(run):
 def test_goleft_indexcov(run):
     run(
         "bio/goleft/indexcov",
-        ["snakemake", "--cores", "1"],
+        ["snakemake"],
     )
 
 
@@ -1391,8 +1301,6 @@ def test_gridss_call(run):
         [
             "snakemake",
             "--show-failed-logs",
-            "--cores",
-            "1",
             "vcf/group.vcf",
         ],
     )
@@ -1404,8 +1312,6 @@ def test_gridss_assemble(run):
         [
             "snakemake",
             "--show-failed-logs",
-            "--cores",
-            "1",
             "assembly/group.bam",
         ],
     )
@@ -1416,8 +1322,6 @@ def test_gridss_preprocess(run):
         "bio/gridss/preprocess",
         [
             "snakemake",
-            "--cores",
-            "1",
             "--show-failed-logs",
             "working_dir/A.bam.gridss.working/A.bam.cigar_metrics",
             "working_dir/A.bam.gridss.working/A.bam.computesamtags.changes.tsv",
@@ -1438,8 +1342,6 @@ def test_gridss_setupreference(run):
         "bio/gridss/setupreference",
         [
             "snakemake",
-            "--cores",
-            "1",
             "--show-failed-logs",
             "reference/genome.fasta.amb",
             "reference/genome.fasta.ann",
@@ -1457,8 +1359,6 @@ def test_strling_call(run):
         "bio/strling/call",
         [
             "snakemake",
-            "--cores",
-            "1",
             "call/A-bounds.txt",
             "call/A-genotype.txt",
             "call/A-unplaced.txt",
@@ -1469,14 +1369,14 @@ def test_strling_call(run):
 def test_strling_merge(run):
     run(
         "bio/strling/merge",
-        ["snakemake", "--cores", "1", "merged/group-bounds.txt"],
+        ["snakemake", "merged/group-bounds.txt"],
     )
 
 
 def test_strling_extract(run):
     run(
         "bio/strling/extract",
-        ["snakemake", "--cores", "1", "extract/A.bin"],
+        ["snakemake", "extract/A.bin"],
     )
 
 
@@ -1485,8 +1385,6 @@ def test_strling_index(run):
         "bio/strling/index",
         [
             "snakemake",
-            "--cores",
-            "1",
             "reference/genome.fasta.str",
             "reference/genome.fasta.fai",
         ],
@@ -1496,14 +1394,14 @@ def test_strling_index(run):
 def test_vembrane_filter(run):
     run(
         "bio/vembrane/filter",
-        ["snakemake", "--cores", "1", "filtered/out.vcf"],
+        ["snakemake", "filtered/out.vcf"],
     )
 
 
 def test_vembrane_table(run):
     run(
         "bio/vembrane/table",
-        ["snakemake", "--cores", "1", "table/out.tsv"],
+        ["snakemake", "table/out.tsv"],
     )
 
 
@@ -1514,8 +1412,6 @@ def test_shovill(run):
             "snakemake",
             "assembly/input.spades.assembly.fa",
             "assembly/input.spades.contigs.fa",
-            "--cores",
-            "1",
         ],
     )
 
@@ -1525,8 +1421,6 @@ def test_prinseq_plus_plus(run):
         "bio/prinseq-plus-plus",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/a.fq",
             "results/a.fq.gz",
             "results/a.fasta",
@@ -1541,8 +1435,6 @@ def test_seqtk(run):
         "bio/seqtk",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/fq2fas/a.fasta",
             "results/convBQ/a.fasta",
             "results/subseq_list/a.fq.gz",
@@ -1559,8 +1451,6 @@ def test_arriba(run):
         "bio/arriba",
         [
             "snakemake",
-            "--cores",
-            "1",
             "fusions/A.tsv",
             "fusions/A.discarded.tsv",
             "fusions/A.with_sv.tsv",
@@ -1574,8 +1464,6 @@ def test_art_profiler_illumina(run):
         "bio/art/profiler_illumina",
         [
             "snakemake",
-            "--cores",
-            "1",
             "profiles/a.1.txt",
             "profiles/a.2.txt",
         ],
@@ -1587,8 +1475,6 @@ def test_pyroe_idtoname(run):
         "bio/pyroe/idtoname",
         [
             "snakemake",
-            "--cores",
-            "1",
             "id2name.gtf.tsv",
             "id2name.gff3.tsv",
         ],
@@ -1600,8 +1486,6 @@ def test_pyroe_makesplicedunspliced(run):
         "bio/pyroe/makeunspliceunspliced/",
         [
             "snakemake",
-            "--cores",
-            "1",
             "spliceu.fa",
         ],
     )
@@ -1612,8 +1496,6 @@ def test_pyroe_makesplicedintronic(run):
         "bio/pyroe/makesplicedintronic",
         [
             "snakemake",
-            "--cores",
-            "1",
             "splici_full/spliced_intronic_sequences.fasta",
         ],
     )
@@ -1624,8 +1506,6 @@ def test_bcftools_filter(run):
         "bio/bcftools/filter",
         [
             "snakemake",
-            "--cores",
-            "1",
             "a.filter_sample.vcf",
             "a.filter.vcf",
             "a.filter.vcf.gz",
@@ -1638,42 +1518,42 @@ def test_bcftools_filter(run):
 def test_bcftools_sort(run):
     run(
         "bio/bcftools/sort",
-        ["snakemake", "--cores", "1", "a.sorted.bcf"],
+        ["snakemake", "a.sorted.bcf"],
     )
 
 
 def test_bcftools_call(run):
     run(
         "bio/bcftools/call",
-        ["snakemake", "--cores", "1", "a.calls.bcf"],
+        ["snakemake", "a.calls.bcf"],
     )
 
 
 def test_bcftools_index(run):
     run(
         "bio/bcftools/index",
-        ["snakemake", "--cores", "1", "a.bcf.csi"],
+        ["snakemake", "a.bcf.csi"],
     )
 
 
 def test_bcftools_concat(run):
     run(
         "bio/bcftools/concat",
-        ["snakemake", "--cores", "1", "all.bcf"],
+        ["snakemake", "all.bcf"],
     )
 
 
 def test_bcftools_merge(run):
     run(
         "bio/bcftools/merge",
-        ["snakemake", "--cores", "1", "all.bcf"],
+        ["snakemake", "all.bcf"],
     )
 
 
 def test_bcftools_mpileup(run):
     run(
         "bio/bcftools/mpileup",
-        ["snakemake", "--cores", "1", "pileups/a.pileup.bcf"],
+        ["snakemake", "pileups/a.pileup.bcf"],
     )
 
 
@@ -1682,8 +1562,6 @@ def test_bcftools_reheader(run):
         "bio/bcftools/reheader",
         [
             "snakemake",
-            "--cores",
-            "1",
             "a.reheader.bcf",
             "a.reheader_map.bcf",
         ],
@@ -1693,14 +1571,14 @@ def test_bcftools_reheader(run):
 def test_bcftools_stats(run):
     run(
         "bio/bcftools/stats",
-        ["snakemake", "--cores", "1", "a.bcf.stats.txt"],
+        ["snakemake", "a.bcf.stats.txt"],
     )
 
 
 def test_bcftools_norm(run):
     run(
         "bio/bcftools/norm",
-        ["snakemake", "--cores", "1", "a.norm.vcf"],
+        ["snakemake", "a.norm.vcf"],
     )
 
 
@@ -1709,8 +1587,6 @@ def test_bcftools_view(run):
         "bio/bcftools/view",
         [
             "snakemake",
-            "--cores",
-            "1",
             "a.view.vcf",
             "a.view.vcf.gz",
             "a.view.bcf",
@@ -1722,7 +1598,7 @@ def test_bcftools_view(run):
 def test_bedtools_bamtobed(run):
     run(
         "bio/bedtools/bamtobed",
-        ["snakemake", "--cores", "1", "a.bed", "a.bed.gz"],
+        ["snakemake", "a.bed", "a.bed.gz"],
     )
 
 
@@ -1731,8 +1607,6 @@ def test_bedtools_genomecov(run):
         "bio/bedtools/genomecov",
         [
             "snakemake",
-            "--cores",
-            "1",
             "genomecov_bam/a.genomecov",
             "genomecov_bed/a.genomecov",
         ],
@@ -1744,8 +1618,6 @@ def test_bedtools_complement(run):
         "bio/bedtools/complement",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/bed-complement/a.complement.bed",
             "results/bed-complement/a.complement.bed.gz",
             "results/vcf-complement/a.complement.vcf",
@@ -1763,8 +1635,6 @@ def test_bedtools_sort(run):
         "bio/bedtools/sort",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/bed-sorted/a.sorted.bed",
             "results/bed-sorted/a.sorted_by_file.bed",
             "results/vcf-sorted/a.sorted_by_file.vcf",
@@ -1777,8 +1647,6 @@ def test_bedtools_split(run):
         "bio/bedtools/split",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/a.1-of-2.bed",
             "results/a.2-of-2.bed",
         ],
@@ -1790,8 +1658,6 @@ def test_bedtools_intersect(run):
         "bio/bedtools/intersect",
         [
             "snakemake",
-            "--cores",
-            "1",
             "A_B.intersected.bed",
             "A_B.intersected.bed.gz",
         ],
@@ -1807,8 +1673,6 @@ def test_bedtools_merge(run):
         "bio/bedtools/merge",
         [
             "snakemake",
-            "--cores",
-            "1",
             "A.merged.bed",
             "-s",
             "Snakefile",
@@ -1819,8 +1683,6 @@ def test_bedtools_merge(run):
         "bio/bedtools/merge",
         [
             "snakemake",
-            "--cores",
-            "1",
             "AB.merged.bed",
             "-s",
             "Snakefile_multi",
@@ -1831,12 +1693,12 @@ def test_bedtools_merge(run):
 def test_bedtools_slop(run):
     run(
         "bio/bedtools/slop",
-        ["snakemake", "--cores", "1", "A.slop.bed"],
+        ["snakemake", "A.slop.bed"],
     )
 
 
 def test_bgzip(run):
-    run("bio/bgzip", ["snakemake", "--cores", "1", "test.vcf.gz"])
+    run("bio/bgzip", ["snakemake", "test.vcf.gz"])
 
 
 def test_blast_makeblastdb(run):
@@ -1844,8 +1706,6 @@ def test_blast_makeblastdb(run):
         "bio/blast/makeblastdb",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/genome.fasta.ndb",
             "results/genome.fasta.nhr",
             "results/genome.fasta.nin",
@@ -1867,7 +1727,7 @@ def test_blast_makeblastdb(run):
 def test_blast_blastn(run):
     run(
         "bio/blast/blastn",
-        ["snakemake", "--cores", "1", "a.blast.txt"],
+        ["snakemake", "a.blast.txt"],
     )
 
 
@@ -1876,13 +1736,12 @@ def test_bowtie2_align(run):
         "bio/bowtie2/align",
         [
             "snakemake",
-            "--cores",
-            "2",
             "mapped_idx/a.cram",
             "mapped_idx/a.bam",
             "mapped/a.bam",
             "mapped_se_gz/a.bam",
         ],
+        cores=2,
     )
 
 
@@ -1891,8 +1750,6 @@ def test_bowtie2_build(run):
         "bio/bowtie2/build",
         [
             "snakemake",
-            "--cores",
-            "1",
             "genome.1.bt2",
             "genome.1.bt2l",
         ],
@@ -1904,8 +1761,6 @@ def test_samshee(run):
         "bio/samshee",
         [
             "snakemake",
-            "--cores",
-            "1",
             "samples.json",
             "samples.csv",
             "samples_schema.json",
@@ -1916,15 +1771,13 @@ def test_samshee(run):
 def test_bwa_mem(run):
     run(
         "bio/bwa/mem",
-        ["snakemake", "--cores", "1", "mapped/a.bam"],
+        ["snakemake", "mapped/a.bam"],
     )
 
     run(
         "bio/bwa/mem",
         [
             "snakemake",
-            "--cores",
-            "1",
             "mapped/a.bam",
             "mapped_with_index_bai/a.bam",
             "mapped_with_index_bai/a.bam.bai",
@@ -1939,8 +1792,6 @@ def test_bwa_mem(run):
         "bio/bwa/mem",
         [
             "snakemake",
-            "--cores",
-            "1",
             "mapped/a.bam",
             "-s",
             "Snakefile_fgbio",
@@ -1951,8 +1802,6 @@ def test_bwa_mem(run):
         "bio/bwa/mem",
         [
             "snakemake",
-            "--cores",
-            "1",
             "mapped/a.bam",
             "-s",
             "Snakefile_picard",
@@ -1965,8 +1814,6 @@ def test_bwa_aln(run):
         "bio/bwa/aln",
         [
             "snakemake",
-            "--cores",
-            "1",
             "sai/a.1.sai",
             "sai/a.2.sai",
         ],
@@ -1978,8 +1825,6 @@ def test_bwa_index(run):
         "bio/bwa/index",
         [
             "snakemake",
-            "--cores",
-            "1",
             "genome.bwtsw.amb",
             "genome.bwtsw.ann",
             "genome.bwtsw.bwt",
@@ -2004,8 +1849,6 @@ def test_bwa_samxe(run):
         "bio/bwa/samxe",
         [
             "snakemake",
-            "--cores",
-            "1",
             "mapped/a.se.sam",
             "mapped/a.pe.sam",
             "mapped/a.se.bam",
@@ -2017,8 +1860,6 @@ def test_bwa_samxe(run):
         "bio/bwa/samxe",
         [
             "snakemake",
-            "--cores",
-            "1",
             "mapped/a.se.samtools_sort.bam",
             "mapped/a.se.samtools_sort.sam",
             "mapped/a.pe.samtools_sort.bam",
@@ -2032,8 +1873,6 @@ def test_bwa_samxe(run):
         "bio/bwa/samxe",
         [
             "snakemake",
-            "--cores",
-            "1",
             "mapped/a.se.picard_sort.sam",
             "mapped/a.pe.picard_sort.sam",
             "mapped/a.se.picard_sort.bam",
@@ -2047,15 +1886,13 @@ def test_bwa_samxe(run):
 def test_bwa_sampe(run):
     run(
         "bio/bwa/sampe",
-        ["snakemake", "--cores", "1", "mapped/a.bam"],
+        ["snakemake", "mapped/a.bam"],
     )
 
     run(
         "bio/bwa/sampe",
         [
             "snakemake",
-            "--cores",
-            "1",
             "mapped/a.bam",
             "-s",
             "Snakefile_samtools",
@@ -2066,8 +1903,6 @@ def test_bwa_sampe(run):
         "bio/bwa/sampe",
         [
             "snakemake",
-            "--cores",
-            "1",
             "mapped/a.bam",
             "-s",
             "Snakefile_picard",
@@ -2078,15 +1913,13 @@ def test_bwa_sampe(run):
 def test_bwa_samse(run):
     run(
         "bio/bwa/samse",
-        ["snakemake", "--cores", "1", "mapped/a.bam"],
+        ["snakemake", "mapped/a.bam"],
     )
 
     run(
         "bio/bwa/samse",
         [
             "snakemake",
-            "--cores",
-            "1",
             "mapped/a.bam",
             "-s",
             "Snakefile_samtools",
@@ -2097,8 +1930,6 @@ def test_bwa_samse(run):
         "bio/bwa/samse",
         [
             "snakemake",
-            "--cores",
-            "1",
             "mapped/a.bam",
             "-s",
             "Snakefile_picard",
@@ -2109,7 +1940,7 @@ def test_bwa_samse(run):
 def test_bwa_mem_samblaster(run):
     run(
         "bio/bwa/mem-samblaster",
-        ["snakemake", "--cores", "1", "mapped/a.bam"],
+        ["snakemake", "mapped/a.bam"],
     )
 
 
@@ -2118,8 +1949,6 @@ def test_bwa_meme(run):
         "bio/bwa-meme/mem",
         [
             "snakemake",
-            "--cores",
-            "1",
             "bwa_meme_test",
         ],
     )
@@ -2128,35 +1957,35 @@ def test_bwa_meme(run):
 def test_bwa_mem2_mem(run):
     run(
         "bio/bwa-mem2/mem",
-        ["snakemake", "--cores", "2", "mapped/a.bam"],
+        ["snakemake", "mapped/a.bam"],
+        cores=2,
     )
     run(
         "bio/bwa-mem2/mem",
-        ["snakemake", "--cores", "2", "mapped/a.sam"],
+        ["snakemake", "mapped/a.sam"],
+        cores=2,
     )
 
     run(
         "bio/bwa-mem2/mem",
         [
             "snakemake",
-            "--cores",
-            "2",
             "mapped/a.bam",
             "-s",
             "Snakefile_samtools",
         ],
+        cores=2,
     )
 
     run(
         "bio/bwa-mem2/mem",
         [
             "snakemake",
-            "--cores",
-            "2",
             "mapped/a.bam",
             "-s",
             "Snakefile_picard",
         ],
+        cores=2,
     )
 
 
@@ -2165,8 +1994,6 @@ def test_bwa_mem2_index(run):
         "bio/bwa-mem2/index",
         [
             "snakemake",
-            "--cores",
-            "1",
             "genome.fasta.amb",
             "genome.fasta.ann",
             "genome.fasta.0123",
@@ -2179,29 +2006,27 @@ def test_bwa_mem2_index(run):
 def test_bwa_mem2_mem_samblaster(run):
     run(
         "bio/bwa-mem2/mem-samblaster",
-        ["snakemake", "--cores", "1", "mapped/a.bam"],
+        ["snakemake", "mapped/a.bam"],
     )
 
 
 def test_dragmap_build(run):
     run(
         "bio/dragmap/build",
-        ["snakemake", "--cores", "1", "genome/hash_table.cfg"],
+        ["snakemake", "genome/hash_table.cfg"],
     )
 
 
 def test_dragmap_align(run):
     run(
         "bio/dragmap/align",
-        ["snakemake", "--cores", "1", "mapped/a.bam"],
+        ["snakemake", "mapped/a.bam"],
     )
 
     run(
         "bio/dragmap/align",
         [
             "snakemake",
-            "--cores",
-            "1",
             "mapped/a.bam",
             "mapped_with_index/a.bam",
             "mapped_with_index/a.bam.csi",
@@ -2214,8 +2039,6 @@ def test_dragmap_align(run):
         "bio/dragmap/align",
         [
             "snakemake",
-            "--cores",
-            "1",
             "mapped/a.bam",
             "-s",
             "Snakefile_picard",
@@ -2226,7 +2049,7 @@ def test_dragmap_align(run):
 def test_clustalo(run):
     run(
         "bio/clustalo",
-        ["snakemake", "--cores", "1", "test.msa.fa"],
+        ["snakemake", "test.msa.fa"],
     )
 
 
@@ -2235,8 +2058,6 @@ def test_cnv_facets(run):
         "bio/cnv_facets",
         [
             "snakemake",
-            "--cores",
-            "1",
             "CNV_bam.vcf.gz",
             "CNV_pileup.vcf.gz",
         ],
@@ -2246,14 +2067,14 @@ def test_cnv_facets(run):
 def test_coolpuppy(run):
     run(
         "bio/coolpuppy",
-        ["snakemake", "--cores", "1", "CN_1000000.clpy"],
+        ["snakemake", "CN_1000000.clpy"],
     )
 
 
 def test_cooltools_insulation(run):
     run(
         "bio/cooltools/insulation",
-        ["snakemake", "--cores", "1", "CN_1000000.insulation.tsv"],
+        ["snakemake", "CN_1000000.insulation.tsv"],
     )
 
 
@@ -2262,8 +2083,6 @@ def test_cooltools_expected_cis(run):
         "bio/cooltools/expected_cis",
         [
             "snakemake",
-            "--cores",
-            "1",
             "CN_1000000.cis.expected.tsv",
         ],
     )
@@ -2274,8 +2093,6 @@ def test_cooltools_expected_trans(run):
         "bio/cooltools/expected_trans",
         [
             "snakemake",
-            "--cores",
-            "1",
             "CN_1000000.trans.expected.tsv",
         ],
     )
@@ -2286,8 +2103,6 @@ def test_cooltools_eigs_cis(run):
         "bio/cooltools/eigs_cis",
         [
             "snakemake",
-            "--cores",
-            "1",
             "CN_1000000.cis.vecs.tsv",
             "CN_1000000.cis.lam.tsv",
             "CN_1000000.cis.bw",
@@ -2300,8 +2115,6 @@ def test_cooltools_eigs_trans(run):
         "bio/cooltools/eigs_trans",
         [
             "snakemake",
-            "--cores",
-            "1",
             "CN_1000000.trans.vecs.tsv",
             "CN_1000000.trans.lam.tsv",
             "CN_1000000.trans.bw",
@@ -2312,49 +2125,49 @@ def test_cooltools_eigs_trans(run):
 def test_cooltools_saddle(run):
     run(
         "bio/cooltools/saddle",
-        ["snakemake", "--cores", "1", "CN_1000000.saddledump.npz"],
+        ["snakemake", "CN_1000000.saddledump.npz"],
     )
 
 
 def test_cooltools_pileup(run):
     run(
         "bio/cooltools/pileup",
-        ["snakemake", "--cores", "1", "CN_1000000.pileup.npz"],
+        ["snakemake", "CN_1000000.pileup.npz"],
     )
 
 
 def test_cooltools_dots(run):
     run(
         "bio/cooltools/dots",
-        ["snakemake", "--cores", "1", "HFF_10000.dots.bedpe"],
+        ["snakemake", "HFF_10000.dots.bedpe"],
     )
 
 
 def test_cooltools_genome_binnify(run):
     run(
         "bio/cooltools/genome/binnify",
-        ["snakemake", "--cores", "1", "hg38_1000000_bins.bed"],
+        ["snakemake", "hg38_1000000_bins.bed"],
     )
 
 
 def test_cooltools_genome_gc(run):
     run(
         "bio/cooltools/genome/gc",
-        ["snakemake", "--cores", "1", "gc_100000.tsv"],
+        ["snakemake", "gc_100000.tsv"],
     )
 
 
 def test_cutadapt_pe(run):
     run(
         "bio/cutadapt/pe",
-        ["snakemake", "--cores", "1", "trimmed/a.1.fastq"],
+        ["snakemake", "trimmed/a.1.fastq"],
     )
 
 
 def test_cutadapt_se(run):
     run(
         "bio/cutadapt/se",
-        ["snakemake", "--cores", "1", "trimmed/a.fastq"],
+        ["snakemake", "trimmed/a.fastq"],
     )
 
 
@@ -2363,8 +2176,6 @@ def test_deeptools_computematrix(run):
         "bio/deeptools/computematrix",
         [
             "snakemake",
-            "--cores",
-            "1",
             "matrix_files/matrix.gz",
             "matrix_files/matrix.tab",
             "matrix_files/matrix.bed",
@@ -2375,7 +2186,7 @@ def test_deeptools_computematrix(run):
 def test_deeptools_plotcorrelation(run):
     run(
         "bio/deeptools/plotcorrelation",
-        ["snakemake", "--cores", "1", "bins.svg"],
+        ["snakemake", "bins.svg"],
     )
 
 
@@ -2383,15 +2194,13 @@ def test_deeptools_bampe_fragmentsize(run):
     # Test basic functionality
     run(
         "bio/deeptools/bampefragmentsize",
-        ["snakemake", "--cores", "1", "results/histogram.png"],
+        ["snakemake", "results/histogram.png"],
     )
     # Test with multiple BAMs and custom labels
     run(
         "bio/deeptools/bampefragmentsize",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/histogram.png",
             "--config",
             "labels='sample1,sample2'",
@@ -2402,8 +2211,6 @@ def test_deeptools_bampe_fragmentsize(run):
         "bio/deeptools/bampefragmentsize",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/histogram.png",
             "--config",
             "blacklist='regions.bed'",
@@ -2416,8 +2223,6 @@ def test_deeptools_multibigwigsummary(run):
         "bio/deeptools/multibigwigsummary",
         [
             "snakemake",
-            "--cores",
-            "1",
             "bins.npz",
             "bed.npz",
         ],
@@ -2429,8 +2234,6 @@ def test_deeptools_bamcoverage(run):
         "bio/deeptools/bamcoverage",
         [
             "snakemake",
-            "--cores",
-            "1",
             "a.coverage.bw",
             "a.coverage_code.bw",
             "a.coverage_no_params.bw",
@@ -2443,8 +2246,6 @@ def test_deeptools_alignmentsieve(run):
         "bio/deeptools/alignmentsieve",
         [
             "snakemake",
-            "--cores",
-            "1",
             "filtered.bam",
         ],
     )
@@ -2455,8 +2256,6 @@ def test_deeptools_plotpca(run):
         "bio/deeptools/plotpca",
         [
             "snakemake",
-            "--cores",
-            "1",
             "pca.svg",
         ],
     )
@@ -2467,8 +2266,6 @@ def test_deeptools_plotheatmap(run):
         "bio/deeptools/plotheatmap",
         [
             "snakemake",
-            "--cores",
-            "1",
             "plot_heatmap/heatmap.png",
             "plot_heatmap/heatmap_regions.bed",
             "plot_heatmap/heatmap_matrix.tab",
@@ -2481,8 +2278,6 @@ def test_deeptools_plotfingerprint(run):
         "bio/deeptools/plotfingerprint",
         [
             "snakemake",
-            "--cores",
-            "1",
             "plot_fingerprint/plot_fingerprint.png",
             "plot_fingerprint/raw_counts.tab",
             "plot_fingerprint/qc_metrics.txt",
@@ -2495,8 +2290,6 @@ def test_deeptools_plotprofile(run):
         "bio/deeptools/plotprofile",
         [
             "snakemake",
-            "--cores",
-            "1",
             "plot_profile/plot.png",
             "plot_profile/regions.bed",
             "plot_profile/data.tab",
@@ -2509,8 +2302,6 @@ def test_deeptools_plotcoverage(run):
         "bio/deeptools/plotcoverage",
         [
             "snakemake",
-            "--cores",
-            "1",
             "coverage.png",
         ],
     )
@@ -2521,8 +2312,6 @@ def test_deepvariant(run):
         "bio/deepvariant",
         [
             "snakemake",
-            "--cores",
-            "1",
             "calls/a.vcf.gz",
             "gvcf_calls/a.vcf.gz",
             "gvcf_calls/a.g.vcf.gz",
@@ -2533,14 +2322,14 @@ def test_deepvariant(run):
 def test_epic_peaks(run):
     run(
         "bio/epic/peaks",
-        ["snakemake", "--cores", "1", "epic/enriched_regions.bed"],
+        ["snakemake", "epic/enriched_regions.bed"],
     )
 
 
 def test_falco(run):
     run(
         "bio/falco",
-        ["snakemake", "--cores", "1", "qc/falco/a.html"],
+        ["snakemake", "qc/falco/a.html"],
     )
 
 
@@ -2549,8 +2338,6 @@ def test_fastp(run):
         "bio/fastp",
         [
             "snakemake",
-            "--cores",
-            "1",
             "trimmed/se/a.fastq",
             "report/se/a.html",
             "report/se/a.json",
@@ -2567,7 +2354,7 @@ def test_fastp(run):
 def test_fastqc(run):
     run(
         "bio/fastqc",
-        ["snakemake", "--cores", "1", "qc/fastqc/a.html"],
+        ["snakemake", "qc/fastqc/a.html"],
     )
 
 
@@ -2576,8 +2363,6 @@ def test_fastq_screen(run):
         "bio/fastq_screen",
         [
             "snakemake",
-            "--cores",
-            "1",
             "qc/a.fastq_screen.txt",
             "qc/a.fastq_screen_conf.txt",
             "qc/a.fastq_screen_nopng.txt",
@@ -2588,7 +2373,7 @@ def test_fastq_screen(run):
 def test_fasttree(run):
     run(
         "bio/fasttree",
-        ["snakemake", "--cores", "1", "test-proteins.nwk"],
+        ["snakemake", "test-proteins.nwk"],
     )
 
 
@@ -2597,8 +2382,6 @@ def test_fgbio_annotatebamwithumis(run):
         "bio/fgbio/annotatebamwithumis",
         [
             "snakemake",
-            "--cores",
-            "1",
             "mapped/a.annotated.bam",
             "mapped/a-a.annotated.bam",
         ],
@@ -2610,8 +2393,6 @@ def test_fgbio_collectduplexseqmetrics(run):
         "bio/fgbio/collectduplexseqmetrics",
         [
             "snakemake",
-            "--cores",
-            "1",
             "stats/a.family_sizes.txt",
             "stats/a.duplex_family_sizes.txt",
             "stats/a.duplex_yield_metrics.txt",
@@ -2625,7 +2406,7 @@ def test_fgbio_collectduplexseqmetrics(run):
 def test_fgbio_filterconsensusreads(run):
     run(
         "bio/fgbio/filterconsensusreads",
-        ["snakemake", "--cores", "1", "mapped/a.filtered.bam"],
+        ["snakemake", "mapped/a.filtered.bam"],
     )
 
 
@@ -2634,8 +2415,6 @@ def test_fgbio_groupreadsbyumi(run):
         "bio/fgbio/groupreadsbyumi",
         [
             "snakemake",
-            "--cores",
-            "1",
             "mapped/a.gu.bam",
             "mapped/a.gu.histo.tsv",
         ],
@@ -2645,21 +2424,21 @@ def test_fgbio_groupreadsbyumi(run):
 def test_fgbio_setmateinformation(run):
     run(
         "bio/fgbio/setmateinformation",
-        ["snakemake", "--cores", "1", "mapped/a.mi.bam"],
+        ["snakemake", "mapped/a.mi.bam"],
     )
 
 
 def test_fgbio_callmolecularconsensusreads(run):
     run(
         "bio/fgbio/callmolecularconsensusreads",
-        ["snakemake", "--cores", "1", "mapped/a.m3.bam"],
+        ["snakemake", "mapped/a.m3.bam"],
     )
 
 
 def test_filtlong(run):
     run(
         "bio/filtlong",
-        ["snakemake", "--cores", "1", "reads.filtered.fastq"],
+        ["snakemake", "reads.filtered.fastq"],
     )
 
 
@@ -2669,12 +2448,11 @@ def test_freebayes(run):
             "bio/freebayes",
             [
                 "snakemake",
-                "--cores",
-                str(c),
                 "calls/a.bcf",
                 "calls/a.vcf",
                 "calls/a.vcf.gz",
             ],
+            cores=c,
         )
 
 
@@ -2684,7 +2462,7 @@ def test_gdc_api_bam_slicing(run):
 
     run(
         "bio/gdc-api/bam-slicing",
-        ["snakemake", "--cores", "1", "raw/testing_sample.bam"],
+        ["snakemake", "raw/testing_sample.bam"],
         check_log=check_log,
     )
 
@@ -2692,7 +2470,7 @@ def test_gdc_api_bam_slicing(run):
 def test_gdc_client_download(run):
     run(
         "bio/gdc-client/download",
-        ["snakemake", "--cores", "1", "raw/testing_sample.maf.gz"],
+        ["snakemake", "raw/testing_sample.maf.gz"],
     )
 
 
@@ -2701,8 +2479,6 @@ def test_happy_prepy(run):
         "bio/hap.py/pre.py",
         [
             "snakemake",
-            "--cores",
-            "1",
             "normalized/variants.vcf",
             "normalized/variants.vcf.gz",
         ],
@@ -2714,8 +2490,6 @@ def test_hisat2_index(run):
         "bio/hisat2/index",
         [
             "snakemake",
-            "--cores",
-            "1",
             *[f"hisat2_index/genome.{i}.ht2" for i in range(1, 9)],
             *[f"hisat2_index/genome.{i}.ht2l" for i in range(1, 9)],
         ],
@@ -2725,35 +2499,35 @@ def test_hisat2_index(run):
 def test_hisat2_align(run):
     run(
         "bio/hisat2/align",
-        ["snakemake", "--cores", "1", "mapped/A.bam"],
+        ["snakemake", "mapped/A.bam"],
     )
 
 
 def test_homer_mergepeaks(run):
     run(
         "bio/homer/mergePeaks",
-        ["snakemake", "--cores", "1", "merged/a_b.peaks"],
+        ["snakemake", "merged/a_b.peaks"],
     )
 
 
 def test_homer_getdifferentialpeaks(run):
     run(
         "bio/homer/getDifferentialPeaks",
-        ["snakemake", "--cores", "1", "a_diffPeaks.txt"],
+        ["snakemake", "a_diffPeaks.txt"],
     )
 
 
 def test_homer_findpeaks(run):
     run(
         "bio/homer/findPeaks",
-        ["snakemake", "--cores", "1", "a_peaks.txt"],
+        ["snakemake", "a_peaks.txt"],
     )
 
 
 def test_homer_maketagdirectory(run):
     run(
         "bio/homer/makeTagDirectory",
-        ["snakemake", "--cores", "1", "tagDir/a"],
+        ["snakemake", "tagDir/a"],
     )
 
 
@@ -2762,8 +2536,6 @@ def test_homer_annotatepeaks(run):
         "bio/homer/annotatePeaks",
         [
             "snakemake",
-            "--cores",
-            "1",
             "a_annot.txt",
             "a.count.matrix.txt",
             "a.ratio.matrix.txt",
@@ -2779,49 +2551,53 @@ def test_homer_annotatepeaks(run):
 def test_immunedeconv(run):
     run(
         "bio/immunedeconv",
-        ["snakemake", "--cores", "1", "deconv.csv"],
+        ["snakemake", "deconv.csv"],
     )
 
 
 def test_jellyfish_count(run):
     run(
         "bio/jellyfish/count",
-        ["snakemake", "--cores", "2", "a.jf"],
+        ["snakemake", "a.jf"],
+        cores=2,
     )
 
 
 def test_jellyfish_dump(run):
     run(
         "bio/jellyfish/dump",
-        ["snakemake", "--cores", "2", "a.dump"],
+        ["snakemake", "a.dump"],
+        cores=2,
     )
 
 
 def test_jellyfish_histo(run):
     run(
         "bio/jellyfish/histo",
-        ["snakemake", "--cores", "2", "a.histo"],
+        ["snakemake", "a.histo"],
+        cores=2,
     )
 
 
 def test_jellyfish_merge(run):
     run(
         "bio/jellyfish/merge",
-        ["snakemake", "--cores", "2", "ab.jf"],
+        ["snakemake", "ab.jf"],
+        cores=2,
     )
 
 
 def test_kallisto_index(run):
     run(
         "bio/kallisto/index",
-        ["snakemake", "--cores", "1", "transcriptome.idx"],
+        ["snakemake", "transcriptome.idx"],
     )
 
 
 def test_kallisto_quant(run):
     run(
         "bio/kallisto/quant",
-        ["snakemake", "--cores", "1", "quant_results_A"],
+        ["snakemake", "quant_results_A"],
     )
 
 
@@ -2830,8 +2606,6 @@ def test_macs2_callpeak(run):
         "bio/macs2/callpeak",
         [
             "snakemake",
-            "--cores",
-            "1",
             "callpeak/basename_peaks.xls",
             "callpeak/basename_peaks.narrowPeak",
             "callpeak/basename_summits.bed",
@@ -2849,8 +2623,6 @@ def test_minimap2_aligner(run):
         "bio/minimap2/aligner",
         [
             "snakemake",
-            "--cores",
-            "1",
             "aligned/genome_aln.paf",
             "aligned/genome_aln.sam",
             "aligned/genome_aln.sorted.sam",
@@ -2866,14 +2638,14 @@ def test_minimap2_aligner(run):
 def test_minimap2_index(run):
     run(
         "bio/minimap2/index",
-        ["snakemake", "--cores", "1", "genome.mmi"],
+        ["snakemake", "genome.mmi"],
     )
 
 
 def test_mtnucratio(run):
     run(
         "bio/mtnucratio",
-        ["snakemake", "--cores", "1", "ratio.txt"],
+        ["snakemake", "ratio.txt"],
     )
 
 
@@ -2882,14 +2654,13 @@ def test_mosdepth(run):
         "bio/mosdepth",
         [
             "snakemake",
-            "--cores",
-            "4",
             "mosdepth/m54075_180905_225130.ccs.ecoliK12_pbi_March2013.mosdepth.summary.txt",
             "mosdepth_bed/m54075_180905_225130.ccs.ecoliK12_pbi_March2013.mosdepth.summary.txt",
             "mosdepth_by_threshold/m54075_180905_225130.ccs.ecoliK12_pbi_March2013.mosdepth.summary.txt",
             "mosdepth_quantize_precision/m54075_180905_225130.ccs.ecoliK12_pbi_March2013.mosdepth.summary.txt",
             "mosdepth_cram/a.mosdepth.summary.txt",
         ],
+        cores=4,
     )
 
 
@@ -2898,8 +2669,6 @@ def test_multiqc(run):
         "bio/multiqc",
         [
             "snakemake",
-            "--cores",
-            "1",
             "qc/multiqc.html",
             "qc/multiqc.a.html",
             "qc/multiqc.config.html",
@@ -2912,11 +2681,10 @@ def test_muscle(run):
         "bio/muscle",
         [
             "snakemake",
-            "--cores",
-            "2",
             "test-proteins.super5.fas",
             "test-proteins.fas",
         ],
+        cores=2,
     )
 
 
@@ -2925,8 +2693,6 @@ def test_nanosim(run):
         "bio/nanosim/simulator",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/nanosim/genome/brca2/human_giab_hg002_sub1M_kitv14_dorado_v3.2.1.simulated_reads.fq",
             "results/nanosim/genome/brca2/human_giab_hg002_sub1M_kitv14_dorado_v3.2.1.simulated_errors.txt",
             "results/nanosim/genome/brca2/human_giab_hg002_sub1M_kitv14_dorado_v3.2.1.simulated_reads.unaligned.fq",
@@ -2947,8 +2713,6 @@ def test_ngsbits_samplesimilarity(run):
         "bio/ngsbits/samplesimilarity",
         [
             "snakemake",
-            "--cores",
-            "1",
             "similarity.tsv",
         ],
     )
@@ -2959,8 +2723,6 @@ def test_ngsbits_sampleancestry(run):
         "bio/ngsbits/sampleancestry",
         [
             "snakemake",
-            "--cores",
-            "1",
             "ancestry.tsv",
         ],
     )
@@ -2971,8 +2733,6 @@ def test_ngsderive(run):
         "bio/ngsderive",
         [
             "snakemake",
-            "--cores",
-            "1",
             "A.readlen.tsv",
             "A.instrument.tsv",
             "A.strandedness.tsv",
@@ -2988,8 +2748,6 @@ def test_ngs_disambiguate(run):
         "bio/ngs-disambiguate",
         [
             "snakemake",
-            "--cores",
-            "1",
             "disambiguate/s1.graft.ambiguous.bam",
         ],
     )
@@ -2998,28 +2756,28 @@ def test_ngs_disambiguate(run):
 def test_optitype(run):
     run(
         "bio/optitype",
-        ["snakemake", "--cores", "1", "optitype/a_result.tsv"],
+        ["snakemake", "optitype/a_result.tsv"],
     )
 
 
 def test_pandora_index(run):
     run(
         "bio/pandora/index",
-        ["snakemake", "--cores", "1", "rpsL/prg.fa.k15.w14.idx"],
+        ["snakemake", "rpsL/prg.fa.k15.w14.idx"],
     )
 
 
 def test_pcaexplorer_pcaplot(run):
     run(
         "bio/pcaexplorer/pcaplot",
-        ["snakemake", "--cores", "1", "pca.svg"],
+        ["snakemake", "pca.svg"],
     )
 
 
 def test_picard_addorreplacegroups(run):
     run(
         "bio/picard/addorreplacereadgroups",
-        ["snakemake", "--cores", "1", "fixed-rg/a.bam"],
+        ["snakemake", "fixed-rg/a.bam"],
     )
 
 
@@ -3028,8 +2786,6 @@ def test_picard_markduplicates(run):
         "bio/picard/markduplicates",
         [
             "snakemake",
-            "--cores",
-            "1",
             "dedup/a.bam",
             "dedup/a.sam",
             "dedup/a.cram",
@@ -3043,28 +2799,28 @@ def test_picard_markduplicates(run):
 def test_picard_collectalignmentsummarymetrics(run):
     run(
         "bio/picard/collectalignmentsummarymetrics",
-        ["snakemake", "--cores", "1", "stats/a.summary.txt"],
+        ["snakemake", "stats/a.summary.txt"],
     )
 
 
 def test_picard_collectinsertsizemetrics(run):
     run(
         "bio/picard/collectinsertsizemetrics",
-        ["snakemake", "--cores", "1", "stats/a.isize.txt"],
+        ["snakemake", "stats/a.isize.txt"],
     )
 
 
 def test_picard_bedtointervallist(run):
     run(
         "bio/picard/bedtointervallist",
-        ["snakemake", "--cores", "1", "a.interval_list"],
+        ["snakemake", "a.interval_list"],
     )
 
 
 def test_picard_collecthsmetrics(run):
     run(
         "bio/picard/collecthsmetrics",
-        ["snakemake", "--cores", "1", "stats/hs_metrics/a.txt"],
+        ["snakemake", "stats/hs_metrics/a.txt"],
     )
 
 
@@ -3073,8 +2829,6 @@ def test_picard_collectmultiplemetrics(run):
         "bio/picard/collectmultiplemetrics",
         [
             "snakemake",
-            "--cores",
-            "1",
             "stats/a.alignment_summary_metrics",
             "stats/a.insert_size_metrics",
             "stats/a.insert_size_histogram.pdf",
@@ -3101,14 +2855,14 @@ def test_picard_collectmultiplemetrics(run):
 def test_picard_mergesamfiles(run):
     run(
         "bio/picard/mergesamfiles",
-        ["snakemake", "--cores", "1", "merged.bam"],
+        ["snakemake", "merged.bam"],
     )
 
 
 def test_picard_collecttargetedpcrmetrics(run):
     run(
         "bio/picard/collecttargetedpcrmetrics/",
-        ["snakemake", "--cores", "1", "stats/a.pcr.txt"],
+        ["snakemake", "stats/a.pcr.txt"],
     )
 
 
@@ -3117,8 +2871,6 @@ def test_picard_samtofastq(run):
         "bio/picard/samtofastq",
         [
             "snakemake",
-            "--cores",
-            "1",
             "reads/a.R1.fastq",
             "reads/a.R2.fastq",
         ],
@@ -3128,42 +2880,42 @@ def test_picard_samtofastq(run):
 def test_picard_sortsam(run):
     run(
         "bio/picard/sortsam",
-        ["snakemake", "--cores", "1", "sorted/a.bam"],
+        ["snakemake", "sorted/a.bam"],
     )
 
 
 def test_picard_revertsam(run):
     run(
         "bio/picard/revertsam",
-        ["snakemake", "--cores", "1", "revert/a.bam"],
+        ["snakemake", "revert/a.bam"],
     )
 
 
 def test_picard_createsequencedictionary(run):
     run(
         "bio/picard/createsequencedictionary",
-        ["snakemake", "--cores", "1", "genome.dict"],
+        ["snakemake", "genome.dict"],
     )
 
 
 def test_picard_mergevcfs(run):
     run(
         "bio/picard/mergevcfs",
-        ["snakemake", "--cores", "1", "snvs.vcf"],
+        ["snakemake", "snvs.vcf"],
     )
 
 
 def test_picard_collectrnaseqmetrics(run):
     run(
         "bio/picard/collectrnaseqmetrics",
-        ["snakemake", "--cores", "1"],
+        ["snakemake"],
     )
 
 
 def test_picard_collectgcbiasmetrics(run):
     run(
         "bio/picard/collectgcbiasmetrics",
-        ["snakemake", "--cores", "1"],
+        ["snakemake"],
     )
 
 
@@ -3175,8 +2927,6 @@ def test_pindel_call(run):
         "bio/pindel/call",
         [
             "snakemake",
-            "--cores",
-            "1",
             "pindel/all_D",
             "pindel/all_included_D",
             "pindel/all_excluded_D",
@@ -3190,8 +2940,6 @@ def test_pindel_pindel2vcf(run):
         "bio/pindel/pindel2vcf",
         [
             "snakemake",
-            "--cores",
-            "1",
             "pindel/all_D.vcf",
             "pindel/all.vcf",
         ],
@@ -3203,8 +2951,6 @@ def test_preseq_lc_extrap(run):
         "bio/preseq/lc_extrap",
         [
             "snakemake",
-            "--cores",
-            "1",
             "test_bam/a.lc_extrap",
             "test_bed/a.lc_extrap",
         ],
@@ -3216,8 +2962,6 @@ def test_prosolo_single_cell_bulk(run):
         "bio/prosolo/single-cell-bulk",
         [
             "snakemake",
-            "--cores",
-            "1",
             "variant_calling/single_cell.bulk.prosolo.bcf",
         ],
     )
@@ -3228,8 +2972,6 @@ def test_prosolo_control_fdr(run):
         "bio/prosolo/control-fdr",
         [
             "snakemake",
-            "--cores",
-            "1",
             "fdr_control/single_cell.bulk.prosolo.fdr.bcf",
         ],
     )
@@ -3238,60 +2980,60 @@ def test_prosolo_control_fdr(run):
 def test_razers3(run):
     run(
         "bio/razers3",
-        ["snakemake", "--cores", "1", "mapped/a.bam"],
+        ["snakemake", "mapped/a.bam"],
     )
 
 
 def test_rebaler(run):
-    run("bio/rebaler", ["snakemake", "--cores", "1", "sample1.asm.fa"])
+    run("bio/rebaler", ["snakemake", "sample1.asm.fa"])
 
 
 def test_sambamba_flagstat(run):
     run(
         "bio/sambamba/flagstat",
-        ["snakemake", "--cores", "1", "mapped/A.stats.txt"],
+        ["snakemake", "mapped/A.stats.txt"],
     )
 
 
 def test_sambamba_sort(run):
     run(
         "bio/sambamba/sort",
-        ["snakemake", "--cores", "1", "mapped/A.sorted.bam"],
+        ["snakemake", "mapped/A.sorted.bam"],
     )
 
 
 def test_sambamba_index(run):
     run(
         "bio/sambamba/index",
-        ["snakemake", "--cores", "1", "mapped/A.sorted.bam.bai"],
+        ["snakemake", "mapped/A.sorted.bam.bai"],
     )
 
 
 def test_sambamba_merge(run):
     run(
         "bio/sambamba/merge",
-        ["snakemake", "--cores", "1", "mapped/A.merged.bam"],
+        ["snakemake", "mapped/A.merged.bam"],
     )
 
 
 def test_sambamba_view(run):
     run(
         "bio/sambamba/view",
-        ["snakemake", "--cores", "1", "mapped/A.filtered.bam"],
+        ["snakemake", "mapped/A.filtered.bam"],
     )
 
 
 def test_sambamba_slice(run):
     run(
         "bio/sambamba/slice",
-        ["snakemake", "--cores", "1", "mapped/A.region.bam"],
+        ["snakemake", "mapped/A.region.bam"],
     )
 
 
 def test_sambamba_markdup(run):
     run(
         "bio/sambamba/markdup",
-        ["snakemake", "--cores", "1", "mapped/A.rmdup.bam"],
+        ["snakemake", "mapped/A.rmdup.bam"],
     )
 
 
@@ -3300,8 +3042,6 @@ def test_pyfaidx(run):
         "bio/pyfaidx",
         [
             "snakemake",
-            "--cores",
-            "1",
             "retrieved.fasta",
             "retrieved.chrom",
             "retrieved.bed",
@@ -3315,95 +3055,95 @@ def test_pyfaidx(run):
 def test_pyfastaq_replace_bases(run):
     run(
         "bio/pyfastaq/replace_bases",
-        ["snakemake", "--cores", "1", "sample1.dna.fa"],
+        ["snakemake", "sample1.dna.fa"],
     )
 
 
 def test_samtools_calmd(run):
     run(
         "bio/samtools/calmd",
-        ["snakemake", "--cores", "1", "a.calmd.bam"],
+        ["snakemake", "a.calmd.bam"],
     )
 
 
 def test_samtools_collate(run):
     run(
         "bio/samtools/collate",
-        ["snakemake", "--cores", "1", "a.collated.bam"],
+        ["snakemake", "a.collated.bam"],
     )
 
 
 def test_samtools_fixmate(run):
     run(
         "bio/samtools/fixmate",
-        ["snakemake", "--cores", "1", "fixed/a.bam"],
+        ["snakemake", "fixed/a.bam"],
     )
 
 
 def test_samtools_depth(run):
     run(
         "bio/samtools/depth",
-        ["snakemake", "--cores", "1", "depth.txt"],
+        ["snakemake", "depth.txt"],
     )
 
 
 def test_samtools_mpileup(run):
     run(
         "bio/samtools/mpileup",
-        ["snakemake", "--cores", "1", "mpileup/a.mpileup.gz"],
+        ["snakemake", "mpileup/a.mpileup.gz"],
     )
 
 
 def test_samtools_mpileup(run):
     run(
         "bio/samtools/markdup",
-        ["snakemake", "--cores", "1", "a.markdup.bam"],
+        ["snakemake", "a.markdup.bam"],
     )
 
 
 def test_samtools_stats(run):
     run(
         "bio/samtools/stats",
-        ["snakemake", "--cores", "1", "samtools_stats/a.txt"],
+        ["snakemake", "samtools_stats/a.txt"],
     )
 
 
 def test_samtools_sort(run):
     run(
         "bio/samtools/sort",
-        ["snakemake", "--cores", "1", "mapped/a.sorted.bam"],
+        ["snakemake", "mapped/a.sorted.bam"],
     )
 
 
 def test_samtools_index(run):
     run(
         "bio/samtools/index",
-        ["snakemake", "--cores", "1", "mapped/a.sorted.bam.bai"],
+        ["snakemake", "mapped/a.sorted.bam.bai"],
     )
 
 
 def test_samtools_merge(run):
     run(
         "bio/samtools/merge",
-        ["snakemake", "--cores", "1", "merged.bam"],
+        ["snakemake", "merged.bam"],
     )
 
 
 def test_samtools_view(run):
-    run("bio/samtools/view", ["snakemake", "--cores", "1", "a.bam"])
+    run("bio/samtools/view", ["snakemake", "a.bam"])
 
 
 def test_samtools_fastx(run):
     run(
         "bio/samtools/fastx",
-        ["snakemake", "--cores", "1", "a.fasta"],
+        ["snakemake", "a.fasta"],
     )
 
 
 def test_samtools_flagstat(run):
     run(
         "bio/samtools/flagstat",
-        ["snakemake", "--cores", "1", "mapped/a.bam.flagstat"],
+        ["snakemake", "mapped/a.bam.flagstat"],
     )
 
 
@@ -3412,8 +3152,6 @@ def test_samtools_idxstats(run):
         "bio/samtools/idxstats",
         [
             "snakemake",
-            "--cores",
-            "1",
             "mapped/a.sorted.bam.idxstats",
         ],
     )
@@ -3422,14 +3160,14 @@ def test_samtools_idxstats(run):
 def test_samtools_fastq_interleaved(run):
     run(
         "bio/samtools/fastq/interleaved",
-        ["snakemake", "--cores", "1", "reads/a.fq"],
+        ["snakemake", "reads/a.fq"],
     )
 
 
 def test_samtools_fastq_separate(run):
     run(
         "bio/samtools/fastq/separate",
-        ["snakemake", "--cores", "1", "reads/a.1.fq"],
+        ["snakemake", "reads/a.1.fq"],
     )
 
 
@@ -3438,8 +3176,6 @@ def test_samtools_faidx(run):
         "bio/samtools/faidx",
         [
             "snakemake",
-            "--cores",
-            "1",
             "out/genome.fa.fai",
             "out/genome.named.fa.fai",
             "out/genome.fas.bgz.fai",
@@ -3454,28 +3190,28 @@ def test_samtools_faidx(run):
 def test_bamtools_filter(run):
     run(
         "bio/bamtools/filter",
-        ["snakemake", "--cores", "1", "filtered/a.bam"],
+        ["snakemake", "filtered/a.bam"],
     )
 
 
 def test_bamtools_filter_json(run):
     run(
         "bio/bamtools/filter_json",
-        ["snakemake", "--cores", "1", "filtered/a.bam"],
+        ["snakemake", "filtered/a.bam"],
     )
 
 
 def test_bamtools_split(run):
     run(
         "bio/bamtools/split",
-        ["snakemake", "--cores", "1", "mapped/a.REF_xx.bam"],
+        ["snakemake", "mapped/a.REF_xx.bam"],
     )
 
 
 def test_bamtools_stats(run):
     run(
         "bio/bamtools/stats",
-        ["snakemake", "--cores", "1", "a.bamstats"],
+        ["snakemake", "a.bamstats"],
     )
 
 
@@ -3484,8 +3220,6 @@ def test_snpmutator(run):
         "bio/snp-mutator",
         [
             "snakemake",
-            "--cores",
-            "1",
             "test_mutated_1.fasta",
             "test_mutated_2.fasta",
         ],
@@ -3515,8 +3249,6 @@ def test_star_align(run):
         "bio/star/align",
         [
             "snakemake",
-            "--cores",
-            "1",
             "star/se/a/se_aligned.bam",
             "star/pe/a/pe_aligned.sam",
         ],
@@ -3524,13 +3256,13 @@ def test_star_align(run):
 
 
 def test_star_index(run):
-    run("bio/star/index", ["snakemake", "--cores", "1", "genome"])
+    run("bio/star/index", ["snakemake", "genome"])
 
 
 def test_ngscheckmate_makesnvpattern(run):
     run(
         "bio/ngscheckmate/makesnvpattern",
-        ["snakemake", "--cores", "1", "genome.pt"],
+        ["snakemake", "genome.pt"],
     )
 
 
@@ -3539,8 +3271,6 @@ def test_ngscheckmate_ncm(run):
         "bio/ngscheckmate/ncm",
         [
             "snakemake",
-            "--cores",
-            "1",
             "bam_matrix.txt",
             "vcf_matrix.txt",
             "fastq_matched.txt",
@@ -3554,8 +3284,6 @@ def test_snpeff_annotate(run):
         "bio/snpeff/annotate",
         [
             "snakemake",
-            "--cores",
-            "1",
             "snpeff/fake_KJ660346.vcf",
             "snpeff_nostats/fake_KJ660346.vcf",
         ],
@@ -3567,8 +3295,6 @@ def test_snpeff_download(run):
         "bio/snpeff/download",
         [
             "snakemake",
-            "--cores",
-            "1",
             "resources/snpeff/ebola_zaire",
         ],
     )
@@ -3577,14 +3303,14 @@ def test_snpeff_download(run):
 def test_strelka_germline(run):
     run(
         "bio/strelka/germline",
-        ["snakemake", "--cores", "1", "strelka/a.vcf.gz"],
+        ["snakemake", "strelka/a.vcf.gz"],
     )
 
 
 def test_strelka_somatic(run):
     run(
         "bio/strelka/somatic",
-        ["snakemake", "--cores", "1", "a_vcf", "-j 2"],
+        ["snakemake", "a_vcf", "-j 2"],
     )
 
 
@@ -3593,8 +3319,6 @@ def test_subread_featurecounts(run):
         "bio/subread/featurecounts",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/a.featureCounts",
             "results/a.featureCounts.summary",
             "results/a.featureCounts.jcounts",
@@ -3607,8 +3331,6 @@ def test_trim_galore_pe(run):
         "bio/trim_galore/pe",
         [
             "snakemake",
-            "--cores",
-            "1",
             "trimmed/a_R1.fq.gz",
             "trimmed/a_R2.fastq",
         ],
@@ -3620,8 +3342,6 @@ def test_trim_galore_se(run):
         "bio/trim_galore/se",
         [
             "snakemake",
-            "--cores",
-            "1",
             "trimmed/a_trimmed.fq.gz",
             "trimmed/a_trimmed.fastq",
         ],
@@ -3634,8 +3354,6 @@ def test_trimmomatic(run):
         "bio/trimmomatic",
         [
             "snakemake",
-            "--cores",
-            "10",
             "trimmed/se/fq_fq/a.1.fastq",
             "trimmed/se/gz_fq/a.1.fastq",
             "trimmed/se/fq_gz/a.1.fastq.gz",
@@ -3645,20 +3363,21 @@ def test_trimmomatic(run):
             "trimmed/pe/fq_gz/a.1.fastq.gz",
             "trimmed/pe/gz_gz/a.1.fastq.gz",
         ],
+        cores=10,
     )
 
 
 def test_rasusa(run):
     run(
         "bio/rasusa",
-        ["snakemake", "--cores", "1", "a.subsampled.r1.fq"],
+        ["snakemake", "a.subsampled.r1.fq"],
     )
 
 
 def test_rubic(run):
     run(
         "bio/rubic",
-        ["snakemake", "--cores", "1", "out/BRCA/gains.txt"],
+        ["snakemake", "out/BRCA/gains.txt"],
     )
 
 
@@ -3667,8 +3386,6 @@ def test_delly(run):
         "bio/delly",
         [
             "snakemake",
-            "--cores",
-            "1",
             "sv/calls.bcf",
             "sv/calls.vcf.gz",
         ],
@@ -3678,7 +3395,8 @@ def test_delly(run):
 def test_manta(run):
     run(
         "bio/manta",
-        ["snakemake", "--cores", "2", "results/out.bcf"],
+        ["snakemake", "results/out.bcf"],
+        cores=2,
     )
 
 
@@ -3687,15 +3405,13 @@ def test_jannovar(run):
         "bio/jannovar",
         [
             "snakemake",
-            "--cores",
-            "1",
             "jannovar/pedigree_vars.vcf.gz",
         ],
     )
 
 
 def test_cairosvg(run):
-    run("utils/cairosvg", ["snakemake", "--cores", "1", "pca.pdf"])
+    run("utils/cairosvg", ["snakemake", "pca.pdf"])
 
 
 def test_trinity(run):
@@ -3703,8 +3419,6 @@ def test_trinity(run):
         "bio/trinity",
         [
             "snakemake",
-            "--cores",
-            "1",
             "trinity_out_dir.Trinity.fasta",
         ],
     )
@@ -3713,7 +3427,8 @@ def test_trinity(run):
 def test_salmon_decoys(run):
     run(
         "bio/salmon/decoys",
-        ["snakemake", "--cores", "2", "gentrome.fasta.gz"],
+        ["snakemake", "gentrome.fasta.gz"],
+        cores=2,
     )
 
 
@@ -3722,8 +3437,6 @@ def test_salmon_index(run):
         "bio/salmon/index",
         [
             "snakemake",
-            "--cores",
-            "1",
             "salmon/transcriptome_index/complete_ref_lens.bin",
         ],
     )
@@ -3732,8 +3445,6 @@ def test_salmon_index(run):
         "bio/salmon/index",
         [
             "snakemake",
-            "--cores",
-            "1",
             "salmon/transcriptome_index/",
             "-s",
             "Snakefile_dir",
@@ -3746,8 +3457,6 @@ def test_salmon_quant(run):
         "bio/salmon/quant",
         [
             "snakemake",
-            "--cores",
-            "1",
             "salmon/a/quant.sf",
             "-s",
             "Snakefile",
@@ -3758,8 +3467,6 @@ def test_salmon_quant(run):
         "bio/salmon/quant",
         [
             "snakemake",
-            "--cores",
-            "1",
             "salmon/a/quant.sf",
             "-s",
             "Snakefile_index_list",
@@ -3770,8 +3477,6 @@ def test_salmon_quant(run):
         "bio/salmon/quant",
         [
             "snakemake",
-            "--cores",
-            "1",
             "salmon/a_se_x_transcriptome/quant.sf",
             "-s",
             "Snakefile_se",
@@ -3782,20 +3487,17 @@ def test_salmon_quant(run):
         "bio/salmon/quant",
         [
             "snakemake",
-            "--cores",
-            "2",
             "salmon/a_se_x_transcriptome/quant.sf",
             "-s",
             "Snakefile_se_bz2",
         ],
+        cores=2,
     )
 
     run(
         "bio/salmon/quant",
         [
             "snakemake",
-            "--cores",
-            "1",
             "salmon/ab_pe_x_transcriptome/quant.sf",
             "-s",
             "Snakefile_pe_multi",
@@ -3808,8 +3510,6 @@ def test_gseapy_gsea(run):
         "bio/gseapy/gsea",
         [
             "snakemake",
-            "--cores",
-            "1",
             "KEGG_2016",
             "gsea.results.csv",
             "ssgsea.results.csv",
@@ -3821,7 +3521,7 @@ def test_gseapy_gsea(run):
 def test_sexdeterrmine(run):
     run(
         "bio/sexdeterrmine",
-        ["snakemake", "--cores", "1", "results.tsv"],
+        ["snakemake", "results.tsv"],
     )
 
 
@@ -3830,8 +3530,6 @@ def test_sourmash_compute(run):
         "bio/sourmash/compute/",
         [
             "snakemake",
-            "--cores",
-            "1",
             "transcriptome.sig",
             "reads.sig",
         ],
@@ -3843,8 +3541,6 @@ def test_busco(run):
         "bio/busco",
         [
             "snakemake",
-            "--cores",
-            "1",
             "txome_busco/short_summary.json",
         ],
     )
@@ -3853,91 +3549,91 @@ def test_busco(run):
 def test_vcftools_filter(run):
     run(
         "bio/vcftools/filter",
-        ["snakemake", "--cores", "1", "sample.filtered.vcf"],
+        ["snakemake", "sample.filtered.vcf"],
     )
 
 
 def test_gatk_callcopyrationsegments(run):
     run(
         "bio/gatk/callcopyratiosegments",
-        ["snakemake", "--cores", "1", "a.called.seg"],
+        ["snakemake", "a.called.seg"],
     )
 
 
 def test_gatk_calculatecontamination(run):
     run(
         "bio/gatk/calculatecontamination",
-        ["snakemake", "--cores", "1", "contamination.table"],
+        ["snakemake", "contamination.table"],
     )
 
 
 def test_gatk_scatterintervalsbyns(run):
     run(
         "bio/gatk/scatterintervalsbyns",
-        ["snakemake", "--cores", "1", "genome.intervals"],
+        ["snakemake", "genome.intervals"],
     )
 
 
 def test_gatk_splitintervals(run):
     run(
         "bio/gatk/splitintervals",
-        ["snakemake", "--cores", "1", "out/genome.00.bed"],
+        ["snakemake", "out/genome.00.bed"],
     )
 
 
 def test_gatk_printreadsspark(run):
     run(
         "bio/gatk/printreadsspark",
-        ["snakemake", "--cores", "1", "a.bam"],
+        ["snakemake", "a.bam"],
     )
 
 
 def test_gatk_markduplicatesspark(run):
     run(
         "bio/gatk/markduplicatesspark",
-        ["snakemake", "--cores", "1", "dedup/a.bam"],
+        ["snakemake", "dedup/a.bam"],
     )
 
 
 def test_gatk_intervallisttobed(run):
     run(
         "bio/gatk/intervallisttobed",
-        ["snakemake", "--cores", "1", "genome.bed"],
+        ["snakemake", "genome.bed"],
     )
 
 
 def test_gatk_estimatelibrarycomplexity(run):
     run(
         "bio/gatk/estimatelibrarycomplexity",
-        ["snakemake", "--cores", "1", "a.metrics"],
+        ["snakemake", "a.metrics"],
     )
 
 
 def test_gatk_baserecalibrator(run):
     run(
         "bio/gatk/baserecalibrator",
-        ["snakemake", "--cores", "1", "recal/a.grp"],
+        ["snakemake", "recal/a.grp"],
     )
 
 
 def test_gatk_baserecalibratorspark(run):
     run(
         "bio/gatk/baserecalibratorspark",
-        ["snakemake", "--cores", "1", "recal/a.grp"],
+        ["snakemake", "recal/a.grp"],
     )
 
 
 def test_gatk_collectreadcounts(run):
     run(
         "bio/gatk/collectreadcounts",
-        ["snakemake", "--cores", "1", "a.counts.hdf5"],
+        ["snakemake", "a.counts.hdf5"],
     )
 
 
 def test_gatk_collectalleliccounts(run):
     run(
         "bio/gatk/collectalleliccounts",
-        ["snakemake", "--cores", "1", "a.counts.tsv"],
+        ["snakemake", "a.counts.tsv"],
     )
 
 
@@ -3946,8 +3642,6 @@ def test_gatk_applybqsr(run):
         "bio/gatk/applybqsr",
         [
             "snakemake",
-            "--cores",
-            "1",
             "recal/a.bam",
             "recal/a.cram",
             "recal/a.embed.cram",
@@ -3960,8 +3654,6 @@ def test_gatk_applybqsrspark(run):
         "bio/gatk/applybqsrspark",
         [
             "snakemake",
-            "--cores",
-            "1",
             "recal/a.bam",
             "recal/a.cram",
         ],
@@ -3973,8 +3665,6 @@ def test_gatk_denoisereadcounts(run):
         "bio/gatk/denoisereadcounts",
         [
             "snakemake",
-            "--cores",
-            "1",
             "a.standardizedCR.tsv",
             "a.denoisedCR.tsv",
         ],
@@ -3986,8 +3676,6 @@ def test_gatk_haplotypecaller(run):
         "bio/gatk/haplotypecaller",
         [
             "snakemake",
-            "--cores",
-            "1",
             "calls/a.vcf",
             "calls/a.g.vcf",
         ],
@@ -3997,7 +3685,7 @@ def test_gatk_haplotypecaller(run):
 def test_gatk_modelsegments(run):
     run(
         "bio/gatk/modelsegments",
-        ["snakemake", "--cores", "1", "a.den.modelFinal.seg"],
+        ["snakemake", "a.den.modelFinal.seg"],
     )
 
 
@@ -4009,8 +3697,6 @@ def test_gatk_variantrecalibrator(run):
         "bio/gatk/variantrecalibrator",
         [
             "snakemake",
-            "--cores",
-            "1",
             "calls/all.recal.vcf",
         ],
         check_log=check_log,
@@ -4020,7 +3706,7 @@ def test_gatk_variantrecalibrator(run):
 def test_gatk_variantstotable(run):
     run(
         "bio/gatk/variantstotable",
-        ["snakemake", "--cores", "1", "calls/snvs.tab"],
+        ["snakemake", "calls/snvs.tab"],
     )
 
 
@@ -4029,8 +3715,6 @@ def test_gatk_filtermutectcalls(run):
         "bio/gatk/filtermutectcalls",
         [
             "snakemake",
-            "--cores",
-            "1",
             "calls/snvs.mutect.filtered.vcf",
             "calls/snvs.mutect.filtered.b.vcf",
         ],
@@ -4040,71 +3724,69 @@ def test_gatk_filtermutectcalls(run):
 def test_gatk_selectvariants(run):
     run(
         "bio/gatk/selectvariants",
-        ["snakemake", "--cores", "1", "calls/snvs.vcf"],
+        ["snakemake", "calls/snvs.vcf"],
     )
 
 
 def test_gatk_variantannotator(run):
     run(
         "bio/gatk/variantannotator",
-        ["snakemake", "--cores", "1", "snvs.annot.vcf"],
+        ["snakemake", "snvs.annot.vcf"],
     )
 
 
 def test_gatk_variantfiltration(run):
     run(
         "bio/gatk/variantfiltration",
-        ["snakemake", "--cores", "1", "calls/snvs.filtered.vcf"],
+        ["snakemake", "calls/snvs.filtered.vcf"],
     )
 
 
 def test_gatk_varianteval(run):
     run(
         "bio/gatk/varianteval",
-        ["snakemake", "--cores", "1", "snvs.varianteval.grp"],
+        ["snakemake", "snvs.varianteval.grp"],
     )
 
 
 def test_gatk_genotypegvcfs(run):
     run(
         "bio/gatk/genotypegvcfs",
-        ["snakemake", "--cores", "1", "calls/all.vcf"],
+        ["snakemake", "calls/all.vcf"],
     )
 
 
 def test_gatk_genomicsdbimport(run):
     run(
         "bio/gatk/genomicsdbimport",
-        ["snakemake", "--cores", "1", "db"],
+        ["snakemake", "db"],
     )
 
 
 def test_gatk_combinegvcfs(run):
     run(
         "bio/gatk/combinegvcfs",
-        ["snakemake", "--cores", "1", "calls/all.g.vcf"],
+        ["snakemake", "calls/all.g.vcf"],
     )
 
 
 def test_gatk_splitncigarreads(run):
     run(
         "bio/gatk/splitncigarreads",
-        ["snakemake", "--cores", "1", "split/a.bam"],
+        ["snakemake", "split/a.bam"],
     )
 
 
 def test_gatk_cleansam(run):
     run(
         "bio/gatk/cleansam",
-        ["snakemake", "--cores", "1", "a.clean.bam"],
+        ["snakemake", "a.clean.bam"],
     )
 
     run(
         "bio/gatk/mutect",
         [
             "snakemake",
-            "--cores",
-            "1",
             "variant/a.vcf",
             "variant_complete/a.vcf",
             "variant_list/a_b.vcf",
@@ -4117,7 +3799,7 @@ def test_gatk_cleansam(run):
 def test_gatk_learnreadorientationmodel(run):
     run(
         "bio/gatk/learnreadorientationmodel",
-        ["snakemake", "--cores", "1"],
+        ["snakemake"],
     )
 
 
@@ -4126,8 +3808,6 @@ def test_gatk_leftalignandtrimvariants(run):
         "bio/gatk/leftalignandtrimvariants",
         [
             "snakemake",
-            "--cores",
-            "1",
             "calls/split_multiallelics.vcf",
         ],
     )
@@ -4136,7 +3816,7 @@ def test_gatk_leftalignandtrimvariants(run):
 def test_gatk_getpileupsummaries(run):
     run(
         "bio/gatk/getpileupsummaries",
-        ["snakemake", "--cores", "1", "summaries.table"],
+        ["snakemake", "summaries.table"],
     )
 
 
@@ -4145,8 +3825,6 @@ def test_gatk_depthofcoverage(run):
         "bio/gatk/depthofcoverage",
         [
             "snakemake",
-            "--cores",
-            "1",
             "depth/a",
             "depth/a.sample_cumulative_coverage_counts",
             "depth/a.sample_cumulative_coverage_proportions",
@@ -4161,36 +3839,36 @@ def test_gatk_depthofcoverage(run):
 def test_gatk_applyvqsr(run):
     run(
         "bio/gatk/applyvqsr",
-        ["snakemake", "--cores", "1", "test.snp_recal.vcf"],
+        ["snakemake", "test.snp_recal.vcf"],
     )
 
 
 def test_gatk3(run):
     run(
         "bio/gatk3/realignertargetcreator",
-        ["snakemake", "--cores", "1", "a.intervals"],
+        ["snakemake", "a.intervals"],
     )
 
     run(
         "bio/gatk3/indelrealigner",
-        ["snakemake", "--cores", "1", "a.realigned.bam"],
+        ["snakemake", "a.realigned.bam"],
     )
 
     run(
         "bio/gatk3/baserecalibrator",
-        ["snakemake", "--cores", "1", "a.recal_data_table"],
+        ["snakemake", "a.recal_data_table"],
     )
 
     run(
         "bio/gatk3/printreads",
-        ["snakemake", "--cores", "1", "a.bqsr.bam"],
+        ["snakemake", "a.bqsr.bam"],
     )
 
 
 def test_igv_reports(run):
     run(
         "bio/igv-reports",
-        ["snakemake", "--cores", "1", "igv-report.html"],
+        ["snakemake", "igv-report.html"],
     )
 
 
@@ -4199,8 +3877,6 @@ def test_vardict(run):
         "bio/vardict",
         [
             "snakemake",
-            "--cores",
-            "1",
             "vcf/a.s.vcf",
             "vcf/a.tn.vcf",
         ],
@@ -4210,14 +3886,14 @@ def test_vardict(run):
 def test_varscan_mpileup2indel(run):
     run(
         "bio/varscan/mpileup2indel",
-        ["snakemake", "--cores", "1", "vcf/a.vcf"],
+        ["snakemake", "vcf/a.vcf"],
     )
 
 
 def test_varscan_mpileup2snp(run):
     run(
         "bio/varscan/mpileup2snp",
-        ["snakemake", "--cores", "1", "vcf/a.vcf"],
+        ["snakemake", "vcf/a.vcf"],
     )
 
 
@@ -4226,8 +3902,6 @@ def test_varscan_somatic(run):
         "bio/varscan/somatic",
         [
             "snakemake",
-            "--cores",
-            "1",
             "single_mpileup/vcf/a.snp.vcf",
             "dual_mpileup/vcf/a.snp.vcf",
         ],
@@ -4237,7 +3911,7 @@ def test_varscan_somatic(run):
 def test_umis_bamtag(run):
     run(
         "bio/umis/bamtag",
-        ["snakemake", "--cores", "1", "data/a.annotated.bam"],
+        ["snakemake", "data/a.annotated.bam"],
     )
 
 
@@ -4246,8 +3920,6 @@ def test_transdecoder_longorfs(run):
         "bio/transdecoder/longorfs",
         [
             "snakemake",
-            "--cores",
-            "1",
             "test.fa.transdecoder_dir/longest_orfs.pep",
         ],
     )
@@ -4256,7 +3928,7 @@ def test_transdecoder_longorfs(run):
 def test_transdecoder_predict(run):
     run(
         "bio/transdecoder/predict",
-        ["snakemake", "--cores", "1", "test.fa.transdecoder.gff3"],
+        ["snakemake", "test.fa.transdecoder.gff3"],
     )
 
 
@@ -4265,8 +3937,6 @@ def test_last_lastdb(run):
         "bio/last/lastdb",
         [
             "snakemake",
-            "--cores",
-            "1",
             "test-transcript.fa.prj",
             "test-protein.fa.prj",
         ],
@@ -4278,8 +3948,6 @@ def test_last_lastal(run):
         "bio/last/lastal",
         [
             "snakemake",
-            "--cores",
-            "1",
             "test-transcript.maf",
             "test-tr-x-prot.maf",
         ],
@@ -4291,8 +3959,6 @@ def test_pear(run):
         "bio/pear",
         [
             "snakemake",
-            "--cores",
-            "1",
             "pear/reads_pear_assembled.fq.gz",
         ],
     )
@@ -4303,8 +3969,6 @@ def test_plass(run):
         "bio/plass",
         [
             "snakemake",
-            "--cores",
-            "1",
             "plass/prot.fasta",
             "plass/prot_single.fasta",
         ],
@@ -4318,76 +3982,76 @@ def test_refgenie(run):
         # no worries, the directory is already there
         pass
     os.environ["REFGENIE"] = "/tmp/genome_folder/genome_config.yaml"
-    run("bio/refgenie", ["snakemake", "--cores", "1"])
+    run("bio/refgenie", ["snakemake"])
 
 
 def test_hmmer_hmmbuild(run):
     run(
         "bio/hmmer/hmmbuild",
-        ["snakemake", "--cores", "1", "test-profile.hmm"],
+        ["snakemake", "test-profile.hmm"],
     )
 
 
 def test_hmmer_hmmpress(run):
     run(
         "bio/hmmer/hmmpress",
-        ["snakemake", "--cores", "1", "test-profile.hmm.h3f"],
+        ["snakemake", "test-profile.hmm.h3f"],
     )
 
 
 def test_hmmer_hmmscan(run):
     run(
         "bio/hmmer/hmmscan",
-        ["snakemake", "--cores", "1", "test-prot-tbl.txt"],
+        ["snakemake", "test-prot-tbl.txt"],
     )
 
 
 def test_hmmer_hmmsearch(run):
     run(
         "bio/hmmer/hmmsearch",
-        ["snakemake", "--cores", "1", "test-prot-tbl.txt"],
+        ["snakemake", "test-prot-tbl.txt"],
     )
 
 
 def test_hmmer_jackhmmer(run):
     run(
         "bio/hmmer/jackhmmer",
-        ["snakemake", "--cores", "1", "test-prot-tbl.txt"],
+        ["snakemake", "test-prot-tbl.txt"],
     )
 
 
 def test_paladin_index(run):
     run(
         "bio/paladin/index",
-        ["snakemake", "--cores", "1", "index/prot.fasta.bwt"],
+        ["snakemake", "index/prot.fasta.bwt"],
     )
 
 
 def test_paladin_prepare(run):
     run(
         "bio/paladin/prepare",
-        ["snakemake", "--cores", "1", "uniprot_sprot.fasta.gz"],
+        ["snakemake", "uniprot_sprot.fasta.gz"],
     )
 
 
 def test_paladin_align(run):
     run(
         "bio/paladin/align",
-        ["snakemake", "--cores", "1", "paladin_mapped/a.bam"],
+        ["snakemake", "paladin_mapped/a.bam"],
     )
 
 
 def test_ucsc_bedgraphtobigwig(run):
     run(
         "bio/ucsc/bedGraphToBigWig",
-        ["snakemake", "--cores", "1", "a.bw"],
+        ["snakemake", "a.bw"],
     )
 
 
 def test_ucsc_genepredtobed(run):
     run(
         "bio/ucsc/genePredToBed",
-        ["snakemake", "--cores", "1", "annotation.bed"],
+        ["snakemake", "annotation.bed"],
     )
 
 
@@ -4396,8 +4060,6 @@ def test_ucsc_fatotwobit(run):
         "bio/ucsc/faToTwoBit",
         [
             "snakemake",
-            "--cores",
-            "1",
             "genome.2bit",
             "genome_gz.2bit",
         ],
@@ -4407,22 +4069,20 @@ def test_ucsc_fatotwobit(run):
 def test_ucsc_twobitinfo(run):
     run(
         "bio/ucsc/twoBitInfo",
-        ["snakemake", "--cores", "1", "genome.chrom.sizes"],
+        ["snakemake", "genome.chrom.sizes"],
     )
 
 
 def test_ucsc_twobittofa(run):
     run(
         "bio/ucsc/twoBitToFa",
-        ["snakemake", "--cores", "1", "genome.fa"],
+        ["snakemake", "genome.fa"],
     )
 
     run(
         "bio/ucsc/gtfToGenePred",
         [
             "snakemake",
-            "--cores",
-            "1",
             "annotation.genePred",
             "annotation.PicardCollectRnaSeqMetrics.genePred",
         ],
@@ -4432,7 +4092,7 @@ def test_ucsc_twobittofa(run):
 def test_entrez_efetch(run):
     run(
         "bio/entrez/efetch",
-        ["snakemake", "--cores", "1"],
+        ["snakemake"],
     )
 
 
@@ -4441,8 +4101,6 @@ def test_ensembl_sequence(run):
         "bio/reference/ensembl-sequence",
         [
             "snakemake",
-            "--cores",
-            "1",
             "refs/genome.fasta",
             "refs/genome.fa.gz",
             "refs/chr2.fasta",
@@ -4461,8 +4119,6 @@ def test_ensembl_sequence(run):
             "snakemake",
             "-s",
             "old_release.smk",
-            "--cores",
-            "1",
             "refs/genome.fasta",
             "refs/old_release.chr1.fasta",
         ],
@@ -4474,8 +4130,6 @@ def test_ensembl_annotation(run):
         "bio/reference/ensembl-annotation",
         [
             "snakemake",
-            "--cores",
-            "1",
             "refs/annotation.gtf",
             "refs/annotation.gtf.gz",
             "resources/regulatory_features.gff",
@@ -4489,8 +4143,6 @@ def test_ensembl_regulation(run):
         "bio/reference/ensembl-regulation",
         [
             "snakemake",
-            "--cores",
-            "1",
             "resources/regulatory_features.mouse.gff.gz",
         ],
     )
@@ -4501,8 +4153,6 @@ def test_ensembl_biomart_table(run):
         "bio/reference/ensembl-biomart-table",
         [
             "snakemake",
-            "--cores",
-            "1",
             "resources/ensembl_transcripts_to_genes_mapping.tsv.gz",
             "resources/ensembl_transcripts_to_genes_mapping.parquet.gz",
         ],
@@ -4514,8 +4164,6 @@ def test_ensembl_mysql_table(run):
         "bio/reference/ensembl-mysql-table",
         [
             "snakemake",
-            "--cores",
-            "1",
             "resources/ensembl_repeat_annotations.tsv.gz",
             "resources/ensembl_regulatory_annotations.parquet.gz",
         ],
@@ -4525,25 +4173,23 @@ def test_ensembl_mysql_table(run):
 def test_ensembl_variation(run):
     run(
         "bio/reference/ensembl-variation",
-        ["snakemake", "--cores", "1"],
+        ["snakemake"],
     )
 
     run(
         "bio/reference/ensembl-variation",
-        ["snakemake", "-s", "old_release.smk", "--cores", "1"],
+        ["snakemake", "-s", "old_release.smk"],
     )
 
     run(
         "bio/reference/ensembl-variation",
-        ["snakemake", "-s", "chrom_wise.smk", "--cores", "1"],
+        ["snakemake", "-s", "chrom_wise.smk"],
     )
 
     run(
         "bio/reference/ensembl-variation",
         [
             "snakemake",
-            "--cores",
-            "1",
             "--snakefile",
             "with_fai.smk",
         ],
@@ -4554,14 +4200,14 @@ def test_ensembl_variation(run):
 def test_ensembl_variation_grch37(run):
     run(
         "bio/reference/ensembl-variation",
-        ["snakemake", "-s", "grch37.smk", "--cores", "1"],
+        ["snakemake", "-s", "grch37.smk"],
     )
 
 
 def test_ega_fetch(run):
     run(
         "bio/ega/fetch",
-        ["snakemake", "--cores", "1", "data/EGAF00007243774.cram"],
+        ["snakemake", "data/EGAF00007243774.cram"],
     )
 
 
@@ -4570,8 +4216,6 @@ def test_infernal_cmpress(run):
         "bio/infernal/cmpress",
         [
             "snakemake",
-            "--cores",
-            "1",
             "test-covariance-model.cm.i1f",
         ],
     )
@@ -4580,7 +4224,7 @@ def test_infernal_cmpress(run):
 def test_infernal_cmscan(run):
     run(
         "bio/infernal/cmscan",
-        ["snakemake", "--cores", "1", "tr-infernal-tblout.txt"],
+        ["snakemake", "tr-infernal-tblout.txt"],
     )
 
 
@@ -4589,8 +4233,6 @@ def test_methyldackel_extract(run):
         "bio/methyldackel/extract",
         [
             "snakemake",
-            "--cores",
-            "1",
             "cpg.meth.bg",
             "cpg.count.bg",
             "cpg.logit.bg",
@@ -4604,11 +4246,10 @@ def test_bismark_genome_preparation(run):
         "bio/bismark/bismark_genome_preparation",
         [
             "snakemake",
-            "--cores",
-            "2",
             "resources/genome/bismark",
             "resources/genome_gz/bismark",
         ],
+        cores=2,
         compare_results_with_expected={
             "resources/genome/bismark/Bisulfite_Genome/GA_conversion/genome_mfa.GA_conversion.fa": "expected/genome/bismark/Bisulfite_Genome/genome_mfa.GA_conversion.fa",
             "resources/genome_gz/bismark/Bisulfite_Genome/CT_conversion/genome_mfa.CT_conversion.fa": "expected/genome_gz/bismark/Bisulfite_Genome/genome_mfa.CT_conversion.fa",
@@ -4621,8 +4262,6 @@ def test_bismark_bam2nuc(run):
         "bio/bismark/bam2nuc",
         [
             "snakemake",
-            "--cores",
-            "1",
             "indexes/genome/genomic_nucleotide_frequencies.txt",
             "bams/b_genome.nucleotide_stats.txt",
         ],
@@ -4634,8 +4273,6 @@ def test_bismark(run):
         "bio/bismark/bismark",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/bismark/a_genome_pe.bam",
             "results/bismark/b_genome.cram",
         ],
@@ -4650,8 +4287,6 @@ def test_bismark_deduplicate(run):
         "bio/bismark/deduplicate_bismark",
         [
             "snakemake",
-            "--cores",
-            "1",
             "bams/a_pe.deduplicated.bam",
             "bams/b.deduplicated.bam",
         ],
@@ -4663,8 +4298,6 @@ def test_bismark_methylation_extractor(run):
         "bio/bismark/bismark_methylation_extractor",
         [
             "snakemake",
-            "--cores",
-            "1",
             "meth_cpg/a_genome_pe.deduplicated.bismark.cov.gz",
             "meth_cpg/b_genome.deduplicated.bismark.cov.gz",
             "meth_cpg/b_genome.bismark.cov.gz",
@@ -4677,8 +4310,6 @@ def test_bismark_bismark2report(run):
         "bio/bismark/bismark2report",
         [
             "snakemake",
-            "--cores",
-            "1",
             "qc/meth/a_genome.bismark2report.html",
             "qc/meth/b_genome.bismark2report.html",
         ],
@@ -4690,8 +4321,6 @@ def test_bismark_bismark2summary(run):
         "bio/bismark/bismark2summary",
         [
             "snakemake",
-            "--cores",
-            "1",
             "qc/experiment.bismark2summary.html",
         ],
     )
@@ -4702,8 +4331,6 @@ def test_bismark_bismark2bedgraph(run):
         "bio/bismark/bismark2bedGraph",
         [
             "snakemake",
-            "--cores",
-            "1",
             "meth_cpg/a_genome_pe.deduplicated_CpG.bismark.cov.gz",
             "meth_non_cpg/a_genome_pe.deduplicated_non_cpg.bismark.cov.gz",
         ],
@@ -4713,31 +4340,31 @@ def test_bismark_bismark2bedgraph(run):
 def test_tabix_index(run):
     run(
         "bio/tabix/index",
-        ["snakemake", "--cores", "1", "test.vcf.gz.tbi"],
+        ["snakemake", "test.vcf.gz.tbi"],
     )
 
 
 def test_tabix_query(run):
     run(
         "bio/tabix/query",
-        ["snakemake", "--cores", "1", "A.output.bed"],
+        ["snakemake", "A.output.bed"],
     )
 
 
 def test_msisensor(run):
     run(
         "bio/msisensor/msi",
-        ["snakemake", "--cores", "1", "example.msi"],
+        ["snakemake", "example.msi"],
     )
 
     run(
         "bio/msisensor/scan",
-        ["snakemake", "--cores", "1", "microsat.list"],
+        ["snakemake", "microsat.list"],
     )
 
 
 def test_tximport(run):
-    run("bio/tximport", ["snakemake", "--cores", "1", "txi.RDS"])
+    run("bio/tximport", ["snakemake", "txi.RDS"])
 
 
 def test_sra_tools_fasterq_dump(run):
@@ -4745,8 +4372,6 @@ def test_sra_tools_fasterq_dump(run):
         "bio/sra-tools/fasterq-dump",
         [
             "snakemake",
-            "--cores",
-            "1",
             "data/se/SRR14133989.fastq",
             "data/se/SRR14133989.fastq.gz",
             "data/se/SRR14133989.fastq.bz2",
@@ -4760,35 +4385,35 @@ def test_sra_tools_fasterq_dump(run):
 def test_snpsift_genesets(run):
     run(
         "bio/snpsift/genesets",
-        ["snakemake", "--cores", "1", "annotated/out.vcf"],
+        ["snakemake", "annotated/out.vcf"],
     )
 
 
 def test_snpsift_vartype(run):
     run(
         "bio/snpsift/varType",
-        ["snakemake", "--cores", "1", "annotated/out.vcf"],
+        ["snakemake", "annotated/out.vcf"],
     )
 
 
 def test_snpsift_gwascat(run):
     run(
         "bio/snpsift/gwascat",
-        ["snakemake", "--cores", "1", "annotated/out.vcf"],
+        ["snakemake", "annotated/out.vcf"],
     )
 
 
 def test_snpsift_dbnsfp(run):
     run(
         "bio/snpsift/dbnsfp",
-        ["snakemake", "--cores", "1", "out.vcf"],
+        ["snakemake", "out.vcf"],
     )
 
 
 def test_snpsift_annotate(run):
     run(
         "bio/snpsift/annotate",
-        ["snakemake", "--cores", "1", "annotated/out.vcf"],
+        ["snakemake", "annotated/out.vcf"],
     )
 
 
@@ -4797,8 +4422,6 @@ def test_ptrimmer(run):
         "bio/ptrimmer",
         [
             "snakemake",
-            "--cores",
-            "1",
             "ptrimmer_se",
             "ptrimmer_pe",
         ],
@@ -4810,8 +4433,6 @@ def test_vep_cache(run):
         "bio/vep/cache",
         [
             "snakemake",
-            "--cores",
-            "1",
             "resources/vep/cache",
             "resources/vep/indexed_cache",
             "resources/vep/cache_ebi",
@@ -4822,7 +4443,7 @@ def test_vep_cache(run):
 def test_vep_plugins(run):
     run(
         "bio/vep/plugins",
-        ["snakemake", "--cores", "1", "resources/vep/plugins"],
+        ["snakemake", "resources/vep/plugins"],
     )
 
 
@@ -4831,8 +4452,6 @@ def test_vep_annotate(run):
         "bio/vep/annotate",
         [
             "snakemake",
-            "--cores",
-            "1",
             "variants.annotated.bcf",
             "--verbose",
         ],
@@ -4844,8 +4463,6 @@ def test_genefuse(run):
         "bio/genefuse",
         [
             "snakemake",
-            "--cores",
-            "1",
             "a_fusions.txt",
             "a_genefuse_report.html",
         ],
@@ -4856,25 +4473,25 @@ def test_genomepy(run):
     # download dm3 genome (relatively small, +/- 250 mb)
     run(
         "bio/genomepy",
-        ["snakemake", "--cores", "1", "dm3/dm3.fa"],
+        ["snakemake", "dm3/dm3.fa"],
     )
 
 
 def test_chm_eval_sample(run):
     run(
         "bio/benchmark/chm-eval-sample",
-        ["snakemake", "--cores", "1"],
+        ["snakemake"],
     )
 
 
 def test_chm_eval_kit(run):
-    run("bio/benchmark/chm-eval-kit", ["snakemake", "--cores", "1"])
+    run("bio/benchmark/chm-eval-kit", ["snakemake"])
 
 
 def test_chm_eval_eval(run):
     run(
         "bio/benchmark/chm-eval",
-        ["snakemake", "--cores", "1", "chm-eval/calls.summary"],
+        ["snakemake", "chm-eval/calls.summary"],
     )
 
 
@@ -4883,8 +4500,6 @@ def test_unicycler(run):
         "bio/unicycler",
         [
             "snakemake",
-            "--cores",
-            "1",
             "result/reads/assembly.fasta",
         ],
     )
@@ -4895,8 +4510,6 @@ def test_vg_autoindex(run):
         "bio/vg/autoindex",
         [
             "snakemake",
-            "--cores",
-            "1",
             "resources/genome.dist",
             "resources/genome.xg",
         ],
@@ -4906,177 +4519,177 @@ def test_vg_autoindex(run):
 def test_vg_construct(run):
     run(
         "bio/vg/construct",
-        ["snakemake", "--cores", "1", "graph/c.vg"],
+        ["snakemake", "graph/c.vg"],
     )
 
 
 def test_vg_giraffe(run):
     run(
         "bio/vg/giraffe",
-        ["snakemake", "--cores", "1", "mapped/a.bam"],
+        ["snakemake", "mapped/a.bam"],
     )
 
 
 def test_vg_merge(run):
     run(
         "bio/vg/merge",
-        ["snakemake", "--cores", "1", "graph/wg.vg"],
+        ["snakemake", "graph/wg.vg"],
     )
 
 
 def test_vg_ids(run):
     run(
         "bio/vg/ids",
-        ["snakemake", "--cores", "1", "graph/c_mod.vg"],
+        ["snakemake", "graph/c_mod.vg"],
     )
 
 
 def test_vg_index_gcsa(run):
     run(
         "bio/vg/index/gcsa",
-        ["snakemake", "--cores", "1", "index/wg.gcsa"],
+        ["snakemake", "index/wg.gcsa"],
     )
 
 
 def test_vg_index_xg(run):
     run(
         "bio/vg/index/xg",
-        ["snakemake", "--cores", "1", "index/x.xg"],
+        ["snakemake", "index/x.xg"],
     )
 
 
 def test_vg_kmers(run):
     run(
         "bio/vg/kmers",
-        ["snakemake", "--cores", "1", "kmers/c.kmers"],
+        ["snakemake", "kmers/c.kmers"],
     )
 
 
 def test_vg_prune(run):
     run(
         "bio/vg/prune",
-        ["snakemake", "--cores", "1", "graph/c.pruned.vg"],
+        ["snakemake", "graph/c.pruned.vg"],
     )
 
 
 def test_vg_sim(run):
-    run("bio/vg/sim", ["snakemake", "--cores", "1", "reads/x.seq"])
+    run("bio/vg/sim", ["snakemake", "reads/x.seq"])
 
 
 def test_wgsim(run):
     run(
         "bio/wgsim",
-        ["snakemake", "--cores", "1", "reads/1.fq", "reads/2.fq"],
+        ["snakemake", "reads/1.fq", "reads/2.fq"],
     )
 
 
 def test_diamond_makedb(run):
     run(
         "bio/diamond/makedb",
-        ["snakemake", "--cores", "1", "foo.dmnd"],
+        ["snakemake", "foo.dmnd"],
     )
 
 
 def test_diamond_blastx(run):
     run(
         "bio/diamond/blastx",
-        ["snakemake", "--cores", "1", "foo.tsv.gz"],
+        ["snakemake", "foo.tsv.gz"],
     )
 
 
 def test_diamond_blastp(run):
     run(
         "bio/diamond/blastp",
-        ["snakemake", "--cores", "1", "test-protein.tsv.gz"],
+        ["snakemake", "test-protein.tsv.gz"],
     )
 
 
 def test_nextflow(run):
     run(
         "utils/nextflow",
-        ["snakemake", "--cores", "1", "--show-failed-logs"],
+        ["snakemake", "--show-failed-logs"],
     )
 
 
 def test_qualimap_rnaseq(run):
     run(
         "bio/qualimap/rnaseq",
-        ["snakemake", "--cores", "1"],
+        ["snakemake"],
     )
 
 
 def test_qualimap_bamqc(run):
     run(
         "bio/qualimap/bamqc",
-        ["snakemake", "--cores", "1", "qc/a"],
+        ["snakemake", "qc/a"],
     )
 
 
 def test_rsem_calculate_expression(run):
     run(
         "bio/rsem/calculate-expression",
-        ["snakemake", "--cores", "1"],
+        ["snakemake"],
     )
 
     run(
         "bio/rsem/calculate-expression",
-        ["snakemake", "--cores", "1", "-s", "Snakefile_fastq"],
+        ["snakemake", "-s", "Snakefile_fastq"],
     )
 
 
 def test_rsem_prepare_reference(run):
     run(
         "bio/rsem/prepare-reference",
-        ["snakemake", "--cores", "1"],
+        ["snakemake"],
     )
 
 
 def test_rsem_generate_data_matrix(run):
     run(
         "bio/rsem/generate-data-matrix",
-        ["snakemake", "--cores", "1"],
+        ["snakemake"],
     )
 
 
 def test_rseqc_inner_distance(run):
     run(
         "bio/rseqc/inner_distance",
-        ["snakemake", "--cores", "1", "a.pdf"],
+        ["snakemake", "a.pdf"],
     )
 
 
 def test_rseqc_infer_experiment(run):
     run(
         "bio/rseqc/infer_experiment",
-        ["snakemake", "--cores", "1", "a.experiment.txt"],
+        ["snakemake", "a.experiment.txt"],
     )
 
 
 def test_rseqc_bam_stat(run):
     run(
         "bio/rseqc/bam_stat",
-        ["snakemake", "--cores", "1", "a.stats"],
+        ["snakemake", "a.stats"],
     )
 
 
 def test_rseqc_read_gc(run):
     run(
         "bio/rseqc/read_gc",
-        ["snakemake", "--cores", "1"],
+        ["snakemake"],
     )
 
 
 def test_rseqc_read_duplication(run):
     run(
         "bio/rseqc/read_duplication",
-        ["snakemake", "--cores", "1"],
+        ["snakemake"],
     )
 
 
 def test_rseqc_read_distribution(run):
     run(
         "bio/rseqc/read_distribution",
-        ["snakemake", "--cores", "1"],
+        ["snakemake"],
     )
 
 
@@ -5086,13 +4699,12 @@ def test_spades_metaspades(run):
         [
             "snakemake",
             "run_metaspades",
-            "--cores",
-            "2",
             "--resources",
             "mem_mem=1000",
             "time=15",
             "--show-failed-logs",
         ],
+        cores=2,
     )
 
 
@@ -5101,30 +4713,29 @@ def test_megahit(run):
         "bio/megahit",
         [
             "snakemake",
-            "--cores",
-            "2",
         ],
+        cores=2,
     )
 
 
 def test_verifybamid2(run):
     run(
         "bio/verifybamid/verifybamid2",
-        ["snakemake", "--cores", "1"],
+        ["snakemake"],
     )
 
 
 def test_rbt_csvreport(run):
     run(
         "bio/rbt/csvreport",
-        ["snakemake", "--cores", "1", "qc_data"],
+        ["snakemake", "qc_data"],
     )
 
 
 def test_rbt_collapse_reads_to_fragments(run):
     run(
         "bio/rbt/collapse_reads_to_fragments-bam",
-        ["snakemake", "--cores", "1"],
+        ["snakemake"],
     )
 
 
@@ -5133,10 +4744,9 @@ def test_meta_gatk_mutect2_calling(run):
         "meta/bio/gatk_mutect2_calling",
         [
             "snakemake",
-            "--cores",
-            "2",
             "results/variant/Sample1.filtered.vcf.gz.tbi",
         ],
+        cores=2,
     )
 
 
@@ -5145,8 +4755,6 @@ def test_meta_calc_consensus_reads(run):
         "meta/bio/calc_consensus_reads/",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/consensus/sampleA.bam",
         ],
     )
@@ -5157,10 +4765,9 @@ def test_meta_bowtie2_sambamba(run):
         "meta/bio/bowtie2_sambamba",
         [
             "snakemake",
-            "--cores",
-            "2",
             "results/mapped/Sample1.rmdup.bam.bai",
         ],
+        cores=2,
     )
 
 
@@ -5169,8 +4776,6 @@ def test_bazam(run):
         "bio/bazam",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/reads/a.fastq.gz",
             "results/reads/a.r1.fastq.gz",
         ],
@@ -5182,8 +4787,6 @@ def test_ragtag_correction(run):
         "bio/ragtag/correction",
         [
             "snakemake",
-            "--cores",
-            "1",
             "query_corrected_reference/ragtag.correct.fasta",
         ],
     )
@@ -5194,8 +4797,6 @@ def test_ragtag_patch(run):
         "bio/ragtag/patch",
         [
             "snakemake",
-            "--cores",
-            "1",
             "query_reference.fasta",
         ],
     )
@@ -5206,8 +4807,6 @@ def test_ragtag_scaffold(run):
         "bio/ragtag/scaffold",
         [
             "snakemake",
-            "--cores",
-            "1",
             "query_scaffold_reference/ragtag.scaffold.fasta",
         ],
     )
@@ -5218,8 +4817,6 @@ def test_ragtag_merge(run):
         "bio/ragtag/merge",
         [
             "snakemake",
-            "--cores",
-            "1",
             "asm_merged.fasta",
         ],
     )
@@ -5230,8 +4827,6 @@ def test_barrnap(run):
         "bio/barrnap",
         [
             "snakemake",
-            "--cores",
-            "1",
             "mitochondria.gff",
         ],
     )
@@ -5240,7 +4835,7 @@ def test_barrnap(run):
 def test_encode_fastq_downloader(run):
     run(
         "bio/encode_fastq_downloader",
-        ["snakemake", "--cores", "1", "ENCFF140TJA.fastq.gz"],
+        ["snakemake", "ENCFF140TJA.fastq.gz"],
     )
 
 
@@ -5249,8 +4844,6 @@ def test_whatshap_haplotag(run):
         "bio/whatshap/haplotag",
         [
             "snakemake",
-            "--cores",
-            "1",
             "alignment.phased.bam",
         ],
     )
@@ -5261,8 +4854,6 @@ def test_sortmerna(run):
         "bio/sortmerna",
         [
             "snakemake",
-            "--cores",
-            "1",
             "aligned_1.fastq.gz",
             "unpaired.fastq",
         ],
@@ -5274,8 +4865,6 @@ def test_tmb_pyeffgenomesize(run):
         "bio/tmb/pyeffgenomesize",
         [
             "snakemake",
-            "--cores",
-            "1",
             "minimal.txt",
             "complete.txt",
         ],
@@ -5285,21 +4874,23 @@ def test_tmb_pyeffgenomesize(run):
 def test_tmb_pytmb(run):
     run(
         "bio/tmb/pytmb",
-        ["snakemake", "--cores", "1"],
+        ["snakemake"],
     )
 
 
 def test_root_hadd(run):
     run(
         "phys/root/hadd",
-        ["snakemake", "--cores", "2"],
+        ["snakemake"],
+        cores=2,
     )
 
 
 def test_root_define_columns(run):
     run(
         "phys/root/define_columns",
-        ["snakemake", "--cores", "2"],
+        ["snakemake"],
+        cores=2,
     )
 
 
@@ -5308,19 +4899,19 @@ def test_root_filter(run):
         "phys/root/filter",
         [
             "snakemake",
-            "--cores",
-            "2",
             "ntuple0_str_output.root",
             "ntuple0_list_output.root",
             "ntuple0_dict_output.root",
         ],
+        cores=2,
     )
 
 
 def test_root_rootcp(run):
     run(
         "phys/root/rootcp",
-        ["snakemake", "--cores", "2"],
+        ["snakemake"],
+        cores=2,
     )
 
 
@@ -5329,8 +4920,6 @@ def test_emu_abundance(run):
         "bio/emu/abundance",
         [
             "snakemake",
-            "--cores",
-            "1",
             "sample_rel-abundance.tsv",
             "sample_emu_alignments.sam",
             "sample_unclassified.fas",
@@ -5348,8 +4937,6 @@ def test_emu_collapse_taxonomy(run):
         "bio/emu/collapse-taxonomy",
         [
             "snakemake",
-            "--cores",
-            "1",
             "full_length_rel-abundance_collapsed.tsv",
         ],
     )
@@ -5360,8 +4947,6 @@ def test_emu_combine_output(run):
         "bio/emu/combine-outputs",
         [
             "snakemake",
-            "--cores",
-            "1",
             "combined_abundances.tsv",
             "counts.tsv",
             "taxonomy.tsv",
@@ -5374,8 +4959,6 @@ def test_toulligqc(run):
         "bio/toulligqc",
         [
             "snakemake",
-            "--cores",
-            "1",
             "toulligqc_sequencing_summary/report.html",
             "toulligqc_bam/report.html",
             "toulligqc_fastq/report.html",
@@ -5388,8 +4971,6 @@ def test_varlociraptor_estimate_alignment_properties(run):
         "bio/varlociraptor/estimate-alignment-properties",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/alignment-properties/NA12878.json",
             "--sdm",
             "conda",
@@ -5402,8 +4983,6 @@ def test_varlociraptor_preprocess_variants(run):
         "bio/varlociraptor/preprocess-variants",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/observations/NA12878.bcf",
             "--sdm",
             "conda",
@@ -5416,8 +4995,6 @@ def test_varlociraptor_call_variants(run):
         "bio/varlociraptor/call-variants",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/variant-calls/dummy-group.bcf",
             "--sdm",
             "conda",
@@ -5430,8 +5007,6 @@ def test_varlociraptor_control_fdr(run):
         "bio/varlociraptor/control-fdr",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/variant-calls/dummy-group.fdr-controlled.bcf",
             "--sdm",
             "conda",
@@ -5444,17 +5019,17 @@ def test_overturemaps_download(run):
         "geo/overturemaps/download",
         [
             "snakemake",
-            "--cores",
-            "2",
             "results/division_boundary.parquet",
         ],
+        cores=2,
     )
 
 
 def test_pygadm_item(run):
     run(
         "geo/pygadm/item",
-        ["snakemake", "--cores", "2", "results/mexico.parquet"],
+        ["snakemake", "results/mexico.parquet"],
+        cores=2,
     )
 
 
@@ -5463,8 +5038,6 @@ def test_trf(run):
         "bio/trf",
         [
             "snakemake",
-            "--cores",
-            "1",
             "trf_output/small_test",
             "--allowed-rules",
             "run_trf_basic",
@@ -5476,8 +5049,6 @@ def test_trf(run):
             "bio/trf",
             [
                 "snakemake",
-                "--cores",
-                "1",
                 "trf_output/small_test",
                 "--allowed-rules",
                 "run_trf_with_missing_param_value",
@@ -5488,8 +5059,6 @@ def test_trf(run):
         "bio/trf",
         [
             "snakemake",
-            "--cores",
-            "1",
             "trf_output/small_test",
             "--allowed-rules",
             "run_trf_permissible_flags",
@@ -5500,8 +5069,6 @@ def test_trf(run):
         "bio/trf",
         [
             "snakemake",
-            "--cores",
-            "1",
             "trf_output/small_test",
             "--allowed-rules",
             "run_trf_basic_uppercase",
@@ -5514,8 +5081,6 @@ def test_mehari_download_transcript_db(run):
         "bio/mehari/download-transcript-db",
         [
             "snakemake",
-            "--cores",
-            "1",
             "resources/mehari/dbs/transcripts.bin.zst",
         ],
     )
@@ -5526,8 +5091,6 @@ def test_mehari_download_clinvar_db(run):
         "bio/mehari/download-clinvar-db",
         [
             "snakemake",
-            "--cores",
-            "1",
             "resources/mehari/dbs/clinvar/sv",
         ],
     )
@@ -5538,8 +5101,6 @@ def test_mehari_annotate_seqvars(run):
         "bio/mehari/annotate-seqvars",
         [
             "snakemake",
-            "--cores",
-            "1",
             "resources/MT-ND2.annotated.bcf",
             "--verbose",
         ],
@@ -5551,12 +5112,11 @@ def test_rasterio_clip(run):
         "geo/rasterio/clip",
         [
             "snakemake",
-            "--cores",
-            "2",
             "results/montenegro.tiff",
             "results/switzerland.tiff",
             "results/puerto_vallarta_small.tiff",
         ],
+        cores=2,
     )
 
 
@@ -5565,8 +5125,6 @@ def test_orthanq(run):
         "bio/orthanq",
         [
             "snakemake",
-            "--cores",
-            "1",
             "out/candidates",
             "out/candidates.vcf",
             # "out/preprocess_hla.bcf",
@@ -5580,12 +5138,12 @@ def test_orthanq(run):
 def test_mofa2_training(run):
     run(
         "bio/mofa2/training",
-        ["snakemake", "--cores", "1", "data.hdf5"],
+        ["snakemake", "data.hdf5"],
     )
 
 
 def test_mofa2_plotting(run):
-    run("bio/mofa2/plotting", ["snakemake", "--cores", "1"])
+    run("bio/mofa2/plotting", ["snakemake"])
 
 
 def test_go_yq(run):
@@ -5593,8 +5151,6 @@ def test_go_yq(run):
         "utils/go-yq",
         [
             "snakemake",
-            "--cores",
-            "1",
             "concat.yaml",
             "updated.yaml",
             "evaluated.yaml",
@@ -5605,16 +5161,16 @@ def test_go_yq(run):
 
 
 def test_jasminesv(run):
-    run("bio/jasminesv", ["snakemake", "--cores", "1"])
+    run("bio/jasminesv", ["snakemake"])
 
 
 def test_genometools(run):
     run(
         "bio/genometools/gff3",
-        ["snakemake", "example.revised.gff3", "--cores", "1"],
+        ["snakemake", "example.revised.gff3"],
     )
 
     run(
         "bio/genometools/gff3validator",
-        ["snakemake", "example.validated.flag", "--cores", "1"],
+        ["snakemake", "example.validated.flag"],
     )
