@@ -13,7 +13,7 @@ rule bedtools_merge:
         "master/bio/bedtools/merge"
 
 
-rule bedtools_merge:
+rule bedtools_merge_multi:
     input:
         ["A.bed.gz", "B.bed.gz"],
     output:
