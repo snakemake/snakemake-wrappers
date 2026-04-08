@@ -92,7 +92,8 @@ def run(tmp_test_dir):
         if os.path.exists(".snakemake"):
             shutil.rmtree(".snakemake")
         cmd += [
-            f"--cores {cores}",
+            "--cores",
+            str(cores),
             "--conda-cleanup-pkgs",
             "--printshellcmds",
             "--show-failed-logs",
