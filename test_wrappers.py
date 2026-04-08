@@ -1675,18 +1675,7 @@ def test_bedtools_merge(run):
         [
             "snakemake",
             "A.merged.bed",
-            "-s",
-            "Snakefile",
-        ],
-    )
-
-    run(
-        "bio/bedtools/merge",
-        [
-            "snakemake",
             "AB.merged.bed",
-            "-s",
-            "Snakefile_multi",
         ],
     )
 
@@ -3844,22 +3833,28 @@ def test_gatk_applyvqsr(run):
     )
 
 
-def test_gatk3(run):
+def test_gatk3_realignertargetcreator(run):
     run(
         "bio/gatk3/realignertargetcreator",
         ["snakemake", "a.intervals"],
     )
 
+
+def test_gatk3_indelrealigner(run):
     run(
         "bio/gatk3/indelrealigner",
         ["snakemake", "a.realigned.bam"],
     )
 
+
+def test_gatk3_baserecalibrator(run):
     run(
         "bio/gatk3/baserecalibrator",
         ["snakemake", "a.recal_data_table"],
     )
 
+
+def test_gatk3_printreads(run):
     run(
         "bio/gatk3/printreads",
         ["snakemake", "a.bqsr.bam"],
@@ -4080,6 +4075,8 @@ def test_ucsc_twobittofa(run):
         ["snakemake", "genome.fa"],
     )
 
+
+def test_ucsc_gtftogenepred(run):
     run(
         "bio/ucsc/gtfToGenePred",
         [
@@ -4352,12 +4349,14 @@ def test_tabix_query(run):
     )
 
 
-def test_msisensor(run):
+def test_msisensor_msi(run):
     run(
         "bio/msisensor/msi",
         ["snakemake", "example.msi"],
     )
 
+
+def test_msisensor_scan(run):
     run(
         "bio/msisensor/scan",
         ["snakemake", "microsat.list"],
