@@ -1,0 +1,25 @@
+container: "docker://continuumio/miniconda3:4.4.10"
+
+rule run_flye:
+    input:
+        reads="reads/ecoli_500kb_reads.fastq.gz"
+    output:
+        contigs="assembly/assembly.fasta",
+        dir=directory("assembly")
+    params:
+        seq_type="nano-raw",
+        extra="--iterations 1"
+    log:
+        "logs/flye.log"
+    threads: 4
+    wrapper:
+        "master/bio/flye"
+
+
+rule download_test_reads:
+    output:
+        "reads/ecoli_500kb_reads.fastq.gz"
+    log:
+        "logs/download.log"
+    shell:
+        "wget -O {output} https://raw.githubusercontent.com/mikolmogorov/Flye/flye/flye/tests/data/ecoli_500kb_reads.fastq.gz"
