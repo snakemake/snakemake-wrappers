@@ -52,6 +52,35 @@ rule test_bwameth_mem2:
         "master/bio/bwameth/memx"
 
 
+
+rule test_bwameth_mem_pe:
+    input:
+        ref="mem/genome.fasta",
+        idx=multiext(
+            "mem/genome.fasta.bwameth",
+            ".c2t",
+            ".c2t.amb",
+            ".c2t.ann",
+            ".c2t.bwt",
+            ".c2t.pac",
+            ".c2t.sa",
+        ),
+        fq1="A.fastq",
+        fq2="B.fastq",
+    output:
+        "A.mem.bam",
+    threads: 2
+    params:
+        extra="",  # Optional parameters for bwameth.py, besides IO and threading
+        sort="none",  # Either `none` (default), `samtools`, or `picard`
+        sort_order="coordinate",  # Either `coordinate` (default) or `queryname`
+        sort_extra="",  # Optional parameters for sambamba/samtools/picard. Ignored if `sort` is equal to `none`.
+    log:
+        "test_bwameth_mem.log"
+    wrapper:
+        "master/bio/bwameth/memx"
+
+
 rule test_bwameth_mem_sort_picard:
     input:
         ref="mem/genome.fasta",
