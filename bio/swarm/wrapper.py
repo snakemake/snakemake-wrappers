@@ -17,6 +17,6 @@ for key, value in snakemake.output.items():
     elif key in ["seeds", "log"]:
         output.append(f"--{key} {value}")
     else:
-        raise ValueError(f"Unknown named output '{key}', with file name '{value}'. Please see the wrapper documentation for available named outputs.")
+        raise ValueError(f"Unknown named output '{key}' with file name '{value}'.")
 
 shell("swarm --threads {snakemake.threads} {extra} {output} {snakemake.input[0]} {log}")
