@@ -14,7 +14,9 @@ for key, value in snakemake.output.items():
         output.append(f"--internal-{key} {value}")
     elif key in ["network", "output", "statistics", "uclust"]:
         output.append(f"--{key}-file {value}")
-    else:
+    elif key in ["seeds", "log"]:
         output.append(f"--{key} {value}")
+    else:
+        raise ValueError(f"Unknown named output '{key}', with file name '{value}'. Please see the wrapper documentation for available named outputs.")
 
 shell("swarm --threads {snakemake.threads} {extra} {output} {snakemake.input[0]} {log}")
