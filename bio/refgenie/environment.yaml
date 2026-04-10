@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - refgenie =0.13.0
-  - refgenconf =0.13.0
+  - refgenconf =0.13.1
