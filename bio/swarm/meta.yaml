@@ -1,0 +1,18 @@
+name: swarm
+url: https://github.com/torognes/swarm
+description: |
+  A robust and fast clustering method for amplicon-based studies
+authors:
+  - Filipe G. Vieira
+input:
+  - input file in FASTA format
+output:
+  - structure: pairs of nearly-identical amplicons in TSV format with five columns.
+  - network: raw amplicon network in TSV format with two columns.
+  - output: list of clusters.
+  - statistics: statistics in TSV format with one cluster per row and seven columns.
+  - uclust: clustering results in TSV format with 10 columns and 3 different type of entries (S, H or C).
+  - seeds: cluster representative sequences in FASTA format.
+  - log: log messages instead of `stderr` (with the exception of error messages).
+params:
+  - extra: additional program arguments
