@@ -594,6 +594,7 @@ def test_bwameth_memx(run):
             "snakemake",
             "A.mem.bam",
             "A.mem2.bam",
+            "A_pe.mem.bam",
             "A.picard_sort.bam",
             "A.samtools_sort.bam",
         ],
@@ -2727,7 +2728,8 @@ def test_ngsderive(run):
             "A.instrument.tsv",
             "A.strandedness.tsv",
             "A.encoding.tsv",
-            "A.junctions.tsv" "junctions/A.rg.bam.junctions.tsv",
+            "A.junctions.tsv",
+            "junctions/A.rg.bam.junctions.tsv",
             "A.endedness.tsv",
         ],
     )

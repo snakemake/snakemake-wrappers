@@ -68,7 +68,7 @@ rule test_bwameth_mem_pe:
         fq1="A.fastq",
         fq2="B.fastq",
     output:
-        "A.mem.bam",
+        "A_pe.mem.bam",
     threads: 2
     params:
         extra="",  # Optional parameters for bwameth.py, besides IO and threading
