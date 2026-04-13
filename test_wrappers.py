@@ -510,6 +510,17 @@ def test_vsearch(run):
     )
 
 
+def test_swarm(run):
+    run(
+        "bio/swarm",
+        [
+            "snakemake",
+            "out/a.seeds.fas",
+        ],
+        cores=2,
+    )
+
+
 def test_bbtools(run):
     run(
         "bio/bbtools",
