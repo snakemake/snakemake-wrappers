@@ -7,7 +7,7 @@ authors:
 input:
   - idx: List of paths to indexed reference files
   - For single end data, provide at least one read file with the name fq=…. You can provide multiple files in a list, which will be merged before alignment.
-  - For paired end data, provide at least two read files with the names fq_1=… and fq_2=…. You can provide multiple files in a list for each read, they will be merged before alignment.
+  - For paired end data, provide at least two read files with the names fq1=… and fq2=…. You can provide multiple files in a list for each read, they will be merged before alignment.
   - ref: Path to reference fasta file
 output:
   - Path to mapped reads (SAM/BAM/CRAM)
