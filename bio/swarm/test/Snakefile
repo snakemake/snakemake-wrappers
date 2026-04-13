@@ -1,0 +1,18 @@
+rule swarm:
+    input:
+        "{sample}.fasta",
+    output:
+        structure="out/{sample}.struct.tsv",
+        network="out/{sample}.network.tsv",
+        output="out/{sample}.clusters",
+        statistics="stats/{sample}.stats.tsv",
+        uclust="out/{sample}.uclust.tsv",
+        seeds="out/{sample}.seeds.fas",
+        log="out/{sample}.log",
+    log:
+        "logs/{sample}.log",
+    threads: 4
+    params:
+        extra="--fastidious --differences 1 --usearch-abundance",
+    wrapper:
+        "master/bio/swarm"

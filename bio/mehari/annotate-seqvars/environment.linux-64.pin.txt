@@ -17,4 +17,4 @@ https://conda.anaconda.org/conda-forge/linux-64/readline-8.3-h853b02a_0.conda#d7
 https://conda.anaconda.org/conda-forge/linux-64/libprotobuf-6.31.1-h49aed37_4.conda#07479fc04ba3ddd5d9f760ef1635cfa7
 https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.52.0-hf4e2dac_0.conda#fd893f6a3002a635b5e50ceb9dd2c0f4
 https://conda.anaconda.org/conda-forge/linux-64/sqlite-3.52.0-h04a0ce9_0.conda#7d9d7efe9541d4bb71b5934e8ee348ea
-https://conda.anaconda.org/bioconda/linux-64/mehari-0.40.0-h957ea76_0.conda#166d4b7c980fc018a4e9b9f0b7d50bd1
+https://conda.anaconda.org/bioconda/linux-64/mehari-0.41.2-h957ea76_0.conda#bba7632adcae325aa42f18725c35ecad
