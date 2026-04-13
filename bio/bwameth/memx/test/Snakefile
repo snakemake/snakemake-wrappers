@@ -13,14 +13,14 @@ rule test_bwameth_mem:
         fq=["A.fastq"],
     output:
         "A.mem.bam",
+    log:
+        "test_bwameth_mem.log",
     threads: 2
     params:
         extra="",  # Optional parameters for bwameth.py, besides IO and threading
         sort="none",  # Either `none` (default), `samtools`, or `picard`
         sort_order="coordinate",  # Either `coordinate` (default) or `queryname`
         sort_extra="",  # Optional parameters for sambamba/samtools/picard. Ignored if `sort` is equal to `none`.
-    log:
-        "test_bwameth_mem.log"
     wrapper:
         "master/bio/bwameth/memx"
 
@@ -40,17 +40,16 @@ rule test_bwameth_mem2:
         fq=["A.fastq"],
     output:
         "A.mem2.bam",
+    log:
+        "test_bwameth_mem2.log",
     threads: 2
     params:
         extra="",  # Optional parameters for bwameth.py, besides IO and threading
         sort="none",  # Either `none` (default), `samtools`, or `picard`
         sort_order="coordinate",  # Either `coordinate` (default) or `queryname`
         sort_extra="",  # Optional parameters for sambamba/samtools/picard. Ignored if `sort` is equal to `none`.
-    log:
-        "test_bwameth_mem2.log"
     wrapper:
         "master/bio/bwameth/memx"
-
 
 
 rule test_bwameth_mem_pe:
@@ -69,14 +68,14 @@ rule test_bwameth_mem_pe:
         fq2="B.fastq",
     output:
         "A_pe.mem.bam",
+    log:
+        "test_bwameth_mem.log",
     threads: 2
     params:
         extra="",  # Optional parameters for bwameth.py, besides IO and threading
         sort="none",  # Either `none` (default), `samtools`, or `picard`
         sort_order="coordinate",  # Either `coordinate` (default) or `queryname`
         sort_extra="",  # Optional parameters for sambamba/samtools/picard. Ignored if `sort` is equal to `none`.
-    log:
-        "test_bwameth_mem.log"
     wrapper:
         "master/bio/bwameth/memx"
 
@@ -96,14 +95,14 @@ rule test_bwameth_mem_sort_picard:
         fq=["A.fastq"],
     output:
         "A.picard_sort.bam",
+    log:
+        "test_bwameth_mem_sort_picard.log",
     threads: 2
     params:
         extra="",  # Optional parameters for bwameth.py, besides IO and threading
         sort="picard",  # Either `none` (default), `samtools`, or `picard`
         sort_order="coordinate",  # Either `coordinate` (default) or `queryname`
         sort_extra="",  # Optional parameters for sambamba/samtools/picard. Ignored if `sort` is equal to `none`.
-    log:
-        "test_bwameth_mem_sort_picard.log"
     wrapper:
         "master/bio/bwameth/memx"
 
@@ -123,13 +122,13 @@ rule test_bwameth_mem_sort_samtools:
         fq=["A.fastq"],
     output:
         "A.samtools_sort.bam",
+    log:
+        "test_bwameth_mem_sort_samtools.log",
     threads: 2
     params:
         extra="",  # Optional parameters for bwameth.py, besides IO and threading
         sort="samtools",  # Either `none` (default), `samtools`, or `picard`
         sort_order="coordinate",  # Either `coordinate` (default) or `queryname`
         sort_extra="",  # Optional parameters for sambamba/samtools/picard. Ignored if `sort` is equal to `none`.
-    log:
-        "test_bwameth_mem_sort_samtools.log"
     wrapper:
         "master/bio/bwameth/memx"
