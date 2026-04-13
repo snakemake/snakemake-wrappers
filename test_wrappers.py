@@ -7312,6 +7312,8 @@ def test_pytrf(run):
         ],
         compare_results_with_expected={
             "results/small_test_findstr.csv": "expected/findstr_basic.csv",
+            "results/small_test_findgtr.tsv": "expected/findgtr_basic.tsv",
+            "results/small_test_findatr.tsv": "expected/findatr_basic.tsv",
         },
     )
 
