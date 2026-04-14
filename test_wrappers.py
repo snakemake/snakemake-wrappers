@@ -605,7 +605,7 @@ def test_bwameth_memx(run):
             "snakemake",
             "A.mem.bam",
             "A.mem2.bam",
-            "A_pe.mem.bam",
+            "AB_pe.mem.bam",
             "A.picard_sort.bam",
             "A.samtools_sort.bam",
         ],
