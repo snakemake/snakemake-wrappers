@@ -30,9 +30,6 @@ rule star_pe_multi:
         ],
     log:
         "logs/pe/{sample}.log",
-    params:
-        # optional parameters
-        extra="",
     threads: 8
     resources:
         # The memory estimation is based on:
@@ -40,6 +37,9 @@ rule star_pe_multi:
         # As that recommendation only factors in the genome index size, the
         # FASTQ file sizes will add an extra buffer to the memory reservation.
         mem_mb=lambda wc, input, threads: input.size_mb + threads * 150,
+    params:
+        # optional parameters
+        extra="",
     wrapper:
         "master/bio/star/align"
 
@@ -69,9 +69,6 @@ rule star_se:
         unmapped="star/se/{sample}/unmapped.fastq",
     log:
         "logs/se/{sample}.log",
-    params:
-        # optional parameters
-        extra="--outSAMtype BAM Unsorted",
     threads: 8
     resources:
         # The memory estimation is based on:
@@ -79,5 +76,8 @@ rule star_se:
         # As that recommendation only factors in the genome index size, the
         # FASTQ file sizes will add an extra buffer to the memory reservation.
         mem_mb=lambda wc, input, threads: input.size_mb + threads * 150,
+    params:
+        # optional parameters
+        extra="--outSAMtype BAM Unsorted",
     wrapper:
         "master/bio/star/align"

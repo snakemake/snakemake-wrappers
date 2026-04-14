@@ -16,6 +16,8 @@ rule star_index:
             "SA",
             "SAindex",
         ),
+    log:
+        "logs/star_index_{genome}.log",
     threads: 1
     resources:
         # We couldn't find clear guidance for dynamically estimating the
@@ -25,7 +27,5 @@ rule star_index:
         mem_mb=lambda wc, input: input.size_mb * 10,
     params:
         extra="",
-    log:
-        "logs/star_index_{genome}.log",
     wrapper:
         "master/bio/star/index"
