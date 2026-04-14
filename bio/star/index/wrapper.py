@@ -23,12 +23,14 @@ if gtf:
 
 genome_dir = path.commonpath(snakemake.output)
 
+mem_bytes = snakemake.resources.mem_mb * 1024 * 1024
+
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "STAR"
         " --runThreadN {snakemake.threads}"  # Number of threads
         " --runMode genomeGenerate"  # Indexation mode
-        " --limitGenomeGenerateRAM {snakemake.resources.mem_mb} "
+        " --limitGenomeGenerateRAM {mem_bytes} "
         " --genomeFastaFiles {snakemake.input.fasta}"  # Path to fasta files
         " {sjdb_overhang}"  # Read-len - 1
         " {gtf}"  # Highly recommended GTF
