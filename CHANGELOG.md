@@ -1,5 +1,23 @@
 # Changelog
 
+## [9.5.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.4.2...v9.5.0) (2026-04-14)
+
+
+### Features
+
+* add pytrf sub-commands as individual Snakemake-Wrappers  ([#4745](https://github.com/snakemake/snakemake-wrappers/issues/4745)) ([3fb92b0](https://github.com/snakemake/snakemake-wrappers/commit/3fb92b0ab8aa93d5c19dc5bc3b7ff3699fef8510))
+* add swarm wrapper ([#5218](https://github.com/snakemake/snakemake-wrappers/issues/5218)) ([a01c78a](https://github.com/snakemake/snakemake-wrappers/commit/a01c78af1ffcbdb253b380723534aed7b0ab9ebc))
+
+
+### Performance Improvements
+
+* autobump bio/encode_fastq_downloader/environment.yaml ([#5221](https://github.com/snakemake/snakemake-wrappers/issues/5221)) ([7b8e067](https://github.com/snakemake/snakemake-wrappers/commit/7b8e0679c7109a4a10561eee19667e89068496a5))
+* autobump bio/fastp/environment.yaml ([#5222](https://github.com/snakemake/snakemake-wrappers/issues/5222)) ([ba62e4b](https://github.com/snakemake/snakemake-wrappers/commit/ba62e4bf77297f78d0adfa8636db91bb854f0904))
+* autobump bio/refgenie/environment.yaml ([#5187](https://github.com/snakemake/snakemake-wrappers/issues/5187)) ([7031e02](https://github.com/snakemake/snakemake-wrappers/commit/7031e0293cba8efa5feb89a00da16d37cafa1285))
+* autobump bio/vep/plugins/environment.yaml ([#5224](https://github.com/snakemake/snakemake-wrappers/issues/5224)) ([7da8810](https://github.com/snakemake/snakemake-wrappers/commit/7da8810f16cd7e6da4bb6f291f198d1b71a8c5ad))
+* autobump geo/rasterio/clip/environment.yaml ([#5223](https://github.com/snakemake/snakemake-wrappers/issues/5223)) ([36cde37](https://github.com/snakemake/snakemake-wrappers/commit/36cde3760ec72c766db3b3222dac217fe1be2945))
+* autobump utils/csvtk/environment.yaml ([#5219](https://github.com/snakemake/snakemake-wrappers/issues/5219)) ([b445011](https://github.com/snakemake/snakemake-wrappers/commit/b4450118e1bb03c8558bc9660735bf51d0c2fb1a))
+
 ## [9.4.2](https://github.com/snakemake/snakemake-wrappers/compare/v9.4.1...v9.4.2) (2026-04-05)
 
 
