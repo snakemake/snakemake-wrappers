@@ -45,7 +45,7 @@ out_unmapped = snakemake.output.get("unmapped", "")
 if out_unmapped:
     out_unmapped = "--outReadsUnmapped Fastx"
 
-genome_dir = path.commonpath(snakemake.input.get("idx"))
+genome_dir = snakemake.input.get("idx")
 if not genome_dir:
     raise KeyError(
         "Missing named 'input: idx=multiext()'.\n"
@@ -53,6 +53,8 @@ if not genome_dir:
         "the common multiext() part corresponding to the --genomeDir for the "
         "STAR command."
     )
+else:
+    genome_dir = path.commonpath(genome_dir)
 
 if "--outSAMtype BAM SortedByCoordinate" in extra:
     stdout = "BAM_SortedByCoordinate"
