@@ -34,6 +34,12 @@ rule star_pe_multi:
         # optional parameters
         extra="",
     threads: 8
+    resources:
+        # The memory estimation is based on:
+        # https://github.com/alexdobin/STAR/issues/1063#issuecomment-713734761
+        # As that recommendation only factors in the genome index size, the
+        # FASTQ file sizes will add an extra buffer to the memory reservation.
+        mem_mb=lambda wc, input, threads: input.size_mb + threads * 150
     wrapper:
         "master/bio/star/align"
 
@@ -67,5 +73,11 @@ rule star_se:
         # optional parameters
         extra="--outSAMtype BAM Unsorted",
     threads: 8
+    resources:
+        # The memory estimation is based on:
+        # https://github.com/alexdobin/STAR/issues/1063#issuecomment-713734761
+        # As that recommendation only factors in the genome index size, the
+        # FASTQ file sizes will add an extra buffer to the memory reservation.
+        mem_mb=lambda wc, input, threads: input.size_mb + threads * 150
     wrapper:
         "master/bio/star/align"
