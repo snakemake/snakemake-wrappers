@@ -2085,6 +2085,7 @@ def test_seqtk(run):
         ],
     )
 
+
 def test_sequali(run):
     run(
         "bio/sequali",
@@ -2107,10 +2108,25 @@ def test_sequali(run):
             "1",
             "--use-conda",
             "-F",
-            "report/pe/a.html",
-            "report/pe/a.json",
+            "report/se/a.adapter.html",
+            "report/se/a.adapter.json",
         ],
     )
+
+    run(
+        "bio/sequali",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "report/pe/a.images.html",
+            "report/pe/a.images.json",
+            "report/pe/a.zip",
+        ],
+    )
+
 
 def test_arriba(run):
     run(
@@ -7318,6 +7334,7 @@ def test_go_yq(run):
             "table.json",
         ],
     )
+
 
 def test_jasminesv(run):
     run("bio/jasminesv", ["snakemake", "--cores", "1", "--use-conda", "-F"])
