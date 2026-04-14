@@ -8,6 +8,7 @@ __license__ = "MIT"
 import tempfile
 from snakemake.shell import shell
 from snakemake.utils import makedirs
+from os import path
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
@@ -20,6 +21,7 @@ gtf = snakemake.input.get("gtf", "")
 if gtf:
     gtf = f"--sjdbGTFfile {gtf}"
 
+genome_dir = path.commonpath(snakemake.output)
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
@@ -31,6 +33,6 @@ with tempfile.TemporaryDirectory() as tmpdir:
         " {gtf}"  # Highly recommended GTF
         " {extra}"  # Optional parameters
         " --outTmpDir {tmpdir}/STARtmp"  # Temp dir
-        " --genomeDir {snakemake.output}"  # Path to output
+        " --genomeDir {genome_dir}"  # Path to output
         " {log}"  # Logging
     )

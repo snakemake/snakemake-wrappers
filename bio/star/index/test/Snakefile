@@ -2,7 +2,17 @@ rule star_index:
     input:
         fasta="{genome}.fasta",
     output:
-        directory("{genome}"),
+        multiext(
+            "{genome}/",
+            "chrLength.txt",
+            "chrName.txt",
+            "chrNameLength.txt",
+            "chrStart.txt",
+            "genomeParameters.txt",
+            "Genome",
+            "SA",
+            "SAindex",
+        ),
     message:
         "Testing STAR index"
     threads: 1

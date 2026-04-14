@@ -4,7 +4,7 @@ __email__ = "koester@jimmy.harvard.edu"
 __license__ = "MIT"
 
 
-import os
+from os import path
 import tempfile
 from snakemake.shell import shell
 
@@ -45,10 +45,14 @@ out_unmapped = snakemake.output.get("unmapped", "")
 if out_unmapped:
     out_unmapped = "--outReadsUnmapped Fastx"
 
-index = snakemake.input.get("idx")
-if not index:
-    index = snakemake.params.get("idx", "")
-
+genome_dir = path.commonpath(snakemake.input.get("idx"))
+if not genome_dir:
+    raise KeyError(
+        "Missing named 'input: idx=multiext()'.\n"
+        "This should comprise the most important STAR genome index files, with "
+        "the common multiext() part corresponding to the --genomeDir for the "
+        "STAR command."
+    )
 
 if "--outSAMtype BAM SortedByCoordinate" in extra:
     stdout = "BAM_SortedByCoordinate"
@@ -62,7 +66,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "STAR "
         " --runThreadN {snakemake.threads}"
-        " --genomeDir {index}"
+        " --genomeDir {genome_dir}"
         " --readFilesIn {input_str}"
         " {readcmd}"
         " {extra}"
