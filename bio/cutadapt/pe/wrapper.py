@@ -8,7 +8,6 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
-
 n = len(snakemake.input)
 assert n == 2, "Input must contain 2 (paired-end) elements."
 

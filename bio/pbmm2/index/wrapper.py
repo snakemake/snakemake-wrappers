@@ -8,13 +8,11 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-shell(
-    """
+shell("""
     (pbmm2 index \
     --num-threads {snakemake.threads} \
     --preset {snakemake.params.preset} \
     --log-level DEBUG \
     {extra} \
     {snakemake.input.reference} {snakemake.output}) {log}
-    """
-)
+    """)

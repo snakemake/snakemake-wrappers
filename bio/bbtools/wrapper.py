@@ -7,7 +7,6 @@ import sys
 import logging, traceback
 import warnings
 
-
 input_keys = ["input", "fastq", "sample", "reads"]
 # keys that can be used with 1,2, as suffixes to indicate the paired end reads.
 paired_keys = ["in", "out", "outm", "outu", "outmatch"]
@@ -73,93 +72,7 @@ single_threaded_scripts = [
     "translate6frames.sh",
 ]
 
-
-### Logging ####
-# TODO: replace with snakemake logging once it is implemented
-# Will be implemented in Snakemake https://github.com/snakemake/snakemake/pull/2474
-def infer_stdout_and_stderr(log) -> tuple:
-    """
-    If multiple log files are provided, try to infer which one is for stderr.
-
-    If only one log file is provided, or inference fails, return None for stdout_file
-
-
-    Returns
-    -------
-    tuple
-        stdout_file, stderr_file
-
-
-    """
-
-    if len(log) == 0:
-        return None, None
-
-    elif len(log) == 1:
-        return None, log[0]
-
-    else:
-        # infer stdout and stderr file
-        for key in ["stderr", "err"]:
-            if hasattr(log, key):
-                stderr_file = log[key]
-
-        for key in ["stdout", "out"]:
-            if hasattr(log, key):
-                stdout_file = log[key]
-
-        if (stderr_file is None) or (stderr_file is None):
-            warnings.warn(
-                "Cannot infer which logfile is stderr and which is stdout, Logging stderr and stdout to the same file"
-            )
-            return None, log[0]
-
-        else:
-            return stdout_file, stderr_file
-
-
-def multiple_log_fmt_shell(snakemake, append_stderr=False, append_stdout=False) -> str:
-    """
-    Format shell command for logging to stdout and stderr files.
-    """
-
-    from snakemake.script import _log_shell_redirect
-
-    stdout_file, stderr_file = infer_stdout_and_stderr(snakemake.log)
-
-    if stdout_file is None:
-        # log both to the same file
-        return snakemake.log_fmt_shell(
-            append=append_stderr or append_stdout, stdout=True, stderr=True
-        )
-    else:
-        # successfully inferred und stderr and stdout file
-
-        shell_log_fmt = (
-            _log_shell_redirect(
-                stderr_file, stdout=False, stderr=True, append=append_stderr
-            )
-            + " "
-            + _log_shell_redirect(
-                stdout_file, stdout=True, stderr=False, append=append_stdout
-            )
-        )
-
-        return shell_log_fmt
-
-
-try:
-    _, logfile = infer_stdout_and_stderr(snakemake.log)
-
-    # clear stderr file
-    open(logfile, "w").close()
-
-except:
-    print("No log file provided, logging to stdout")
-    logfile = None
-
 logging.basicConfig(
-    filename=logfile,
     level=logging.DEBUG,
     format="%(asctime)s %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
@@ -188,8 +101,6 @@ sys.excepthook = handle_exception
 
 
 ###################################### Beginning of wrapper ######################################
-
-
 # global flags to check if input and output are parsed multiple times
 parsed_input, parsed_output = False, False
 
@@ -414,52 +325,31 @@ def parse_bbtool(snakemake):
         AssertionError: If `command` or `extra` have invalid types or formats.
     """
 
+    java_opts = get_java_opts(snakemake, java_mem_overhead_factor=0.15)
+    extra = snakemake.params.get("extra", "")
+
     ## keywords
     __check_for_duplicated_keywords(snakemake)
 
-    if not hasattr(snakemake.params, "command"):
-        raise Exception("params needs 'command' parameter")
-    else:
-        command = snakemake.params.command
-        assert type(command) == str, "command should be a string"
-        assert len(command.split()) == 1, "command should not contain spaces"
-        assert command.endswith(".sh"), "command should end with .sh"
-
-        command_with_parameters = command
-        logger.info(f"command is: {command_with_parameters}")
-
-        # add extra arguments  at the beginning
-        if hasattr(snakemake.params, "extra"):
-            extra = snakemake.params.extra
-            assert type(extra) == str, "extra should be a string"
-            logger.info(f"extra arguments: {extra} ")
-            command_with_parameters += f" {extra} "
-
-    command_with_parameters += _parse_keywords_for_bbtool(snakemake.input, "input")
-    command_with_parameters += _parse_keywords_for_bbtool(snakemake.output, "output")
-    command_with_parameters += _parse_keywords_for_bbtool(snakemake.params, "params")
-
     # Add threads if not in single threaded scripts
-    if command in single_threaded_scripts:
+    threads = snakemake.threads
+    if snakemake.params.command in single_threaded_scripts:
         if snakemake.threads > 3:
             logger.warning(
-                f"Shell script {command} will only use 1-3 threads, but you specify {snakemake.threads} threads. I ignore the threads argument."
+                f"{snakemake.params.command} will only use 1-3 threads, but you specified {snakemake.threads} threads. Threads will be capped at 3."
             )
-    else:
-        command_with_parameters += f" threads={snakemake.threads} "
+            threads = 3
 
-    # memory
-    java_opts = get_java_opts(snakemake, java_mem_overhead_factor=0.15)
+    input = _parse_keywords_for_bbtool(snakemake.input, "input")
+    params = _parse_keywords_for_bbtool(snakemake.params, "params")
+    output = _parse_keywords_for_bbtool(snakemake.output, "output")
 
-    # log
-    log = multiple_log_fmt_shell(snakemake, append_stderr=True)
-
-    command_with_parameters += f" {java_opts} -eoom {log}"
-
-    return command_with_parameters
+    return f"{snakemake.params.command} {java_opts} -eoom threads={threads} {input} {params} {extra} {output}"
 
 
 command = parse_bbtool(snakemake)
 logger.info(f"run command:\n\n\t{command}\n")
 
-shell(command)
+log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+
+shell("{command} {log}")
