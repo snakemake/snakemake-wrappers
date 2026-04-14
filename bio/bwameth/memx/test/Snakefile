@@ -67,7 +67,7 @@ rule test_bwameth_mem_pe:
         fq1="A.fastq",
         fq2="B.fastq",
     output:
-        "A_pe.mem.bam",
+        "AB_pe.mem.bam",
     log:
         "test_bwameth_mem.log",
     threads: 2
