@@ -17,6 +17,12 @@ rule star_index:
             "SAindex",
         ),
     threads: 1
+    resources:
+        # We couldn't find clear guidance for dynamically estimating the
+        # required memory. Suggestions for mouse and human genome are
+        # usually around 32 - 35 GB, so try 38 GB if this dynamic
+        # setting here fails.
+        mem_mb=lambda wc, input: input.size_mb * 10
     params:
         extra="",
     log:
