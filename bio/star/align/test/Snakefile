@@ -5,7 +5,9 @@ rule star_pe_multi:
         fq1=["reads/{sample}_R1.1.fastq", "reads/{sample}_R1.2.fastq"],
         # paired end reads needs to be ordered so each item in the two lists match
         fq2=["reads/{sample}_R2.1.fastq", "reads/{sample}_R2.2.fastq"],  #optional
-        # STAR reference genome index files
+        # STAR reference genome index files. Only the common path in the first
+        # multiext entry can be chosen arbitrarily. All the filenames are
+        # hardcoded into STAR source code, so do not change them.
         idx=multiext(
             "index/",
             "chrLength.txt",
@@ -36,7 +38,9 @@ rule star_pe_multi:
 rule star_se:
     input:
         fq1="reads/{sample}_R1.1.fastq",
-        # STAR reference genome index files
+        # STAR reference genome index files. Only the common path in the first
+        # multiext entry can be chosen arbitrarily. All the filenames are
+        # hardcoded into STAR source code, so do not change them.
         idx=multiext(
             "index/",
             "chrLength.txt",

@@ -2,6 +2,9 @@ rule star_index:
     input:
         fasta="{genome}.fasta",
     output:
+        # STAR reference genome index files. Only the common path in the first
+        # multiext entry can be chosen arbitrarily. All the filenames are
+        # hardcoded into STAR source code, so do not change them.
         multiext(
             "{genome}/",
             "chrLength.txt",
@@ -13,8 +16,6 @@ rule star_index:
             "SA",
             "SAindex",
         ),
-    message:
-        "Testing STAR index"
     threads: 1
     params:
         extra="",
