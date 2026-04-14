@@ -28,6 +28,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         "STAR"
         " --runThreadN {snakemake.threads}"  # Number of threads
         " --runMode genomeGenerate"  # Indexation mode
+        " --limitGenomeGenerateRAM {snakemake.resources.mem_mb} "
         " --genomeFastaFiles {snakemake.input.fasta}"  # Path to fasta files
         " {sjdb_overhang}"  # Read-len - 1
         " {gtf}"  # Highly recommended GTF
