@@ -3056,10 +3056,48 @@ def test_dragmap_align_sort_picard(run):
         ],
     )
 
+
 def test_chopper(run):
     run(
         "bio/chopper",
-        ["snakemake", "--cores", "1", "treated/a.fastq", "--use-conda", "-F"],
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "treated/filter.fastq",
+        ],
+        compare_results_with_expected={
+            "treated/filter.fastq": "expected/filter.fastq",
+        },
+    )
+
+    run(
+        "bio/chopper",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "treated/contam.fastq",
+        ],
+        compare_results_with_expected={
+            "treated/contam.fastq": "expected/contam.fastq",
+        },
+    )
+
+    run(
+        "bio/chopper",
+        [
+            "snakemake",
+            "--cores",
+            "1",
+            "--use-conda",
+            "-F",
+            "treated/filter.fastq.gz",
+        ],
     )
 
 
@@ -7298,6 +7336,7 @@ def test_go_yq(run):
             "table.json",
         ],
     )
+
 
 def test_jasminesv(run):
     run("bio/jasminesv", ["snakemake", "--cores", "1", "--use-conda", "-F"])

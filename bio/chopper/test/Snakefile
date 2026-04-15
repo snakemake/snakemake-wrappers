@@ -1,13 +1,46 @@
-rule chopper:
+rule chopper_filter:
     input:
-        in_reads=["reads/{sample}.fastq"]
+        in_reads="data/reads.fastq",
     output:
-        out_reads=["treated/{sample}.fastq"]
+        out_reads="treated/filter.fastq",
+    params:
+        extra="--minlength 8 --quality 20",
+    log:
+        "logs/chopper/filter.log",
+    threads: 4
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/chopper"
+
+
+rule chopper_contam:
+    input:
+        in_reads="data/reads_contam.fastq",
+        contam="data/contam.fa",
+    output:
+        out_reads="treated/contam.fastq",
     params:
         extra="",
     log:
-        "logs/chopper/{sample}.log",
-    threads: 2
+        "logs/chopper/contam.log",
+    threads: 4
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/chopper"
+
+
+rule chopper_filter_gz:
+    input:
+        in_reads="data/reads.fastq",
+    output:
+        out_reads="treated/filter.fastq.gz",
+    params:
+        extra="--minlength 8 --quality 20",
+    log:
+        "logs/chopper/filter.gz.log",
+    threads: 4
     resources:
         mem_mb=1024,
     wrapper:
