@@ -9,7 +9,6 @@ from tempfile import TemporaryDirectory
 from snakemake.shell import shell
 from snakemake_wrapper_utils.snakemake import move_files
 
-
 log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 
 input_bam_files = f"{snakemake.input.bam}"

@@ -1,5 +1,5 @@
 name: BBmap-suite
-url: https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/
+url: https://bbmap.org/#documentation
 description: |
   Wrapper for all tools in the BBmap suite. One pattern to run them all.
 authors:
@@ -19,7 +19,7 @@ notes: |
   This wrapper allows to run any of the bbtools. The command is defined by the 'command' parameter, which is required.
   **All keywords in input, output, params are passed as key value pairs to the command!**
   Take care that they are valid for the bbtool.
-  In theory all of the tools in the bbmap-suite v39.01 are sported by this wrapper, but we didn't test them all.
+  In theory all of the tools in the bbmap-suite v39.01 are supported by this wrapper, but we didn't test them all.
   Scripts with different input/output might not be supported by this wrapper.
   If you find one that is not yet supported, please feel free to adjust this wrapper accordingly and include a test case.
 

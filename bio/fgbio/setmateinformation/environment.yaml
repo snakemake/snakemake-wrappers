@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - fgbio =3.1.1
+  - fgbio =4.0.0

@@ -1,0 +1,9 @@
+name: GFF3Validator
+description: Tool to strictly validate given GFF3 files
+url: https://github.com/genometools/genometools
+authors:
+  - Jorge Alvarez-Jarreta
+input:
+  - GFF3 file
+params:
+  - extra: additional program arguments.
