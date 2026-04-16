@@ -26,4 +26,6 @@ for key, value in snakemake.output.items():
     else:
         raise ValueError(f"Unknown named output '{key}' with file name '{value}'.")
 
-shell("{in_cmd} {snakemake.input[0]} | swarm --threads {snakemake.threads} {extra} {output} {log}")
+shell(
+    "{in_cmd} {snakemake.input[0]} | swarm --threads {snakemake.threads} {extra} {output} {log}"
+)

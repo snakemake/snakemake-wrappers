@@ -1,16 +1,16 @@
 rule swarm:
     input:
-        "{sample}.fasta",
+        "{file}",
     output:
-        structure="out/{sample}.struct.tsv",
-        network="out/{sample}.network.tsv",
-        output="out/{sample}.clusters",
-        statistics="stats/{sample}.stats.tsv",
-        uclust="out/{sample}.uclust.tsv",
-        seeds="out/{sample}.seeds.fas",
-        log="out/{sample}.log",
+        structure="out/{file}.struct.tsv",
+        network="out/{file}.network.tsv",
+        output="out/{file}.clusters",
+        statistics="stats/{file}.stats.tsv",
+        uclust="out/{file}.uclust.tsv",
+        seeds="out/{file}.seeds.fas",
+        log="out/{file}.log",
     log:
-        "logs/{sample}.log",
+        "logs/{file}.log",
     threads: 4
     params:
         extra="--fastidious --differences 1 --usearch-abundance",
