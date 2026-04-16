@@ -16,3 +16,5 @@ output:
   - log: log messages instead of `stderr` (with the exception of error messages).
 params:
   - extra: additional program arguments
+notes: |
+  * Input files can be compress with `gzip` or `bzip2`.
