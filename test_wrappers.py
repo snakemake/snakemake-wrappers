@@ -2053,42 +2053,14 @@ def test_chopper(run):
         "bio/chopper",
         [
             "snakemake",
-            "--cores",
-            "1",
-            "--use-conda",
-            "-F",
             "treated/filter.fastq",
-        ],
-        compare_results_with_expected={
-            "treated/filter.fastq": "expected/filter.fastq",
-        },
-    )
-
-    run(
-        "bio/chopper",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "--use-conda",
-            "-F",
+            "treated/filter.fastq.gz",
             "treated/contam.fastq",
         ],
         compare_results_with_expected={
+            "treated/filter.fastq": "expected/filter.fastq",
             "treated/contam.fastq": "expected/contam.fastq",
         },
-    )
-
-    run(
-        "bio/chopper",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "--use-conda",
-            "-F",
-            "treated/filter.fastq.gz",
-        ],
     )
 
 
