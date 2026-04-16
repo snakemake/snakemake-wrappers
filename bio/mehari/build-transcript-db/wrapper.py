@@ -26,9 +26,7 @@ if transcript_sequences:
     transcript_sequences = f"--transcript-sequences {transcript_sequences}"
 
 if not (bool(seqrepo) ^ bool(transcript_sequences)):
-    raise ValueError(
-        "Either 'seqrepo' or 'transcript_sequences' have to be provided. "
-    )
+    raise ValueError("Either 'seqrepo' or 'transcript_sequences' have to be provided. ")
 
 # required params
 assembly = snakemake.params.get("assembly")
@@ -51,7 +49,9 @@ if annotation_version:
 
 transcript_source_version = snakemake.params.get("transcript_source_version", "")
 if transcript_source_version:
-    transcript_source_version = f"--transcript-source-version {transcript_source_version}"
+    transcript_source_version = (
+        f"--transcript-source-version {transcript_source_version}"
+    )
 
 shell(
     "(mehari db create "
