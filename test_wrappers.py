@@ -1459,6 +1459,22 @@ def test_seqtk(run):
     )
 
 
+def test_sequali(run):
+    run(
+        "bio/sequali",
+        [
+            "snakemake",
+            "report/se/a.html",
+            "report/se/a.json",
+            "report/se/a.adapter.html",
+            "report/se/a.adapter.json",
+            "report/pe/a.images.html",
+            "report/pe/a.images.json",
+            "report/pe/a.zip",
+        ],
+    )
+
+
 def test_arriba(run):
     run(
         "bio/arriba",
