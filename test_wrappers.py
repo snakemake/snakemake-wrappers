@@ -1464,36 +1464,10 @@ def test_sequali(run):
         "bio/sequali",
         [
             "snakemake",
-            "--cores",
-            "1",
-            "--use-conda",
-            "-F",
             "report/se/a.html",
             "report/se/a.json",
-        ],
-    )
-
-    run(
-        "bio/sequali",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "--use-conda",
-            "-F",
             "report/se/a.adapter.html",
             "report/se/a.adapter.json",
-        ],
-    )
-
-    run(
-        "bio/sequali",
-        [
-            "snakemake",
-            "--cores",
-            "1",
-            "--use-conda",
-            "-F",
             "report/pe/a.images.html",
             "report/pe/a.images.json",
             "report/pe/a.zip",
@@ -5215,8 +5189,6 @@ def test_go_yq(run):
     )
 
 
-<<<<<<< sequali-wrapper
-=======
 def test_pytrf(run):
     run(
         "bio/pytrf",
@@ -5259,7 +5231,6 @@ def test_pytrf_extract(run):
     )
 
 
->>>>>>> master
 def test_jasminesv(run):
     run("bio/jasminesv", ["snakemake"])
 
