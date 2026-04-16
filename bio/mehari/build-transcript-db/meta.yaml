@@ -3,8 +3,8 @@ description: Build a transcript database for mehari.
 url: https://github.com/varfish-org/mehari
 input:
   annotation: Path to GFF3 or CDOT annotation.
-  transcript_sequences: Path to reference FASTA (uncompressed) containing cDNA / ncDNA sequences.
-  seqrepo: Path to biocommons SeqRepo instance.
+  transcript_sequences: Path to reference FASTA (uncompressed) containing cDNA / ncDNA sequences. Mutually exclusive with `seqrepo`.
+  seqrepo: Path to biocommons SeqRepo instance. Mutually exclusive with `transcript_sequences`.
 output:
   db: Path to transcript database.
 params:
