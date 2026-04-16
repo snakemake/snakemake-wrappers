@@ -4,13 +4,13 @@ rule sequali_se:
     output:
         json="report/se/{sample}.json",
         html="report/se/{sample}.html",
-    params:
-        extra="",
     log:
         "logs/sequali/{sample}.log",
     threads: 2
     resources:
         mem_mb=1024,
+    params:
+        extra="",
     wrapper:
         "master/bio/sequali"
 
@@ -22,13 +22,13 @@ rule sequali_se_adapter_file:
     output:
         json="report/se/{sample}.adapter.json",
         html="report/se/{sample}.adapter.html",
-    params:
-        extra="",
     log:
         "logs/sequali/{sample}.adapter.log",
     threads: 2
     resources:
         mem_mb=1024,
+    params:
+        extra="",
     wrapper:
         "master/bio/sequali"
 
@@ -40,12 +40,12 @@ rule sequali_pe_images_zip:
         json="report/pe/{sample}.images.json",
         html="report/pe/{sample}.images.html",
         images_zip="report/pe/{sample}.zip",
-    params:
-        extra="",
-    threads: 2
     log:
         "logs/sequali/{sample}.log",
+    threads: 2
     resources:
         mem_mb=1024,
+    params:
+        extra="",
     wrapper:
         "master/bio/sequali"
