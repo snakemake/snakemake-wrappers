@@ -17,16 +17,25 @@ output_db = snakemake.output.get("db")
 if not output_db:
     raise ValueError("Output 'db' is required but not specified")
 
-seqrepo = snakemake.input.get("seqrepo", "")
-if seqrepo:
-    seqrepo = f"--seqrepo {seqrepo}"
+sequences = snakemake.input.get("sequences")
+if not sequences:
+    raise ValueError("Input 'sequences' is required but not specified")
 
-transcript_sequences = snakemake.input.get("transcript_sequences", "")
-if transcript_sequences:
-    transcript_sequences = f"--transcript-sequences {transcript_sequences}"
-
-if not (bool(seqrepo) ^ bool(transcript_sequences)):
-    raise ValueError("Either 'seqrepo' or 'transcript_sequences' have to be provided. ")
+fasta_extensions = (
+    ".fasta",
+    ".fa",
+    ".fna",
+    ".fasta.gz",
+    ".fasta.bgz",
+    ".fa.gz",
+    ".fa.bgz",
+    ".fna.gz",
+    ".fna.bgz",
+)
+if str(sequences).lower().endswith(fasta_extensions):
+    seq_arg = f"--transcript-sequences {sequences}"
+else:
+    seq_arg = f"--seqrepo {sequences}"
 
 # required params
 assembly = snakemake.params.get("assembly")
@@ -58,8 +67,7 @@ shell(
     "--annotation {annotation:q} "
     "--assembly {assembly:q} "
     "--transcript-source {transcript_source:q} "
-    "{seqrepo} "
-    "{transcript_sequences} "
+    "{seq_arg} "
     "{assembly_version} "
     "{annotation_version} "
     "{transcript_source_version} "
