@@ -17,4 +17,4 @@ output:
 params:
   - extra: additional program arguments
 notes: |
-  * Input files can be compress with `gzip` or `bzip2`.
+  * Input files can be compressed with `gzip` or `bzip2`.
