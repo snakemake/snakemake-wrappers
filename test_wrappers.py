@@ -5136,6 +5136,17 @@ def test_mehari_annotate_seqvars(run):
     )
 
 
+def test_mehari_build_transcript_db(run):
+    run(
+        "bio/mehari/build-transcript-db",
+        [
+            "snakemake",
+            "MT.bin.zst",
+            "--verbose",
+        ],
+    )
+
+
 def test_rasterio_clip(run):
     run(
         "geo/rasterio/clip",
