@@ -19,7 +19,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.7.5-hecca717_0.conda#
 https://conda.anaconda.org/conda-forge/linux-64/libffi-3.5.2-h3435931_0.conda#a360c33a5abe61c07959e449fa1453eb
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.2.0-h69a702a_18.conda#d5e96b1ed75ca01906b3d2469b4ce493
 https://conda.anaconda.org/conda-forge/linux-64/libiconv-1.18-h3b78370_2.conda#915f5995e94f60e9a4826e0b0920ee88
-https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.2-hb03c661_0.conda#c7c83eecbb72d88b940c249af56c8b17
+https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.3-hb03c661_0.conda#b88d90cad08e6bc8ad540cb310a761fb
 https://conda.anaconda.org/conda-forge/linux-64/libmpdec-4.0.0-hb03c661_1.conda#2c21e66f50753a083cbe6b80f38268fa
 https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.53.0-h0c1763c_0.conda#393c8b31bd128e3d979e7ec17e9507c6
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h934c35e_18.conda#1b08cd684f34175e4514474793d44bcb
