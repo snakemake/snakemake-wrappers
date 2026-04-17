@@ -10,11 +10,11 @@ https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda#a
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-he0feb66_18.conda#0aa00f03f9e39fb9876085dee11a85d4
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h934c35e_18.conda#1b08cd684f34175e4514474793d44bcb
 https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.5-h2d0b736_3.conda#47e340acb35de30501a76c7c799c41d7
-https://conda.anaconda.org/conda-forge/linux-64/openssl-3.6.1-h35e630c_1.conda#f61eb8cd60ff9057122a3d338b99c00f
+https://conda.anaconda.org/conda-forge/linux-64/openssl-3.6.2-h35e630c_0.conda#da1b85b6a87e141f5140bb9924cecab0
 https://conda.anaconda.org/conda-forge/linux-64/icu-78.3-h33c6efd_0.conda#c80d8a3b84358cb967fa81e7075fbc8a
 https://conda.anaconda.org/conda-forge/linux-64/libabseil-20250512.1-cxx17_hba17884_0.conda#83b160d4da3e1e847bf044997621ed63
 https://conda.anaconda.org/conda-forge/linux-64/readline-8.3-h853b02a_0.conda#d7d95fc8287ea7bf33e0e7116d2b95ec
 https://conda.anaconda.org/conda-forge/linux-64/libprotobuf-6.31.1-h49aed37_4.conda#07479fc04ba3ddd5d9f760ef1635cfa7
-https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.52.0-hf4e2dac_0.conda#fd893f6a3002a635b5e50ceb9dd2c0f4
-https://conda.anaconda.org/conda-forge/linux-64/sqlite-3.52.0-h04a0ce9_0.conda#7d9d7efe9541d4bb71b5934e8ee348ea
-https://conda.anaconda.org/bioconda/linux-64/mehari-0.41.2-h957ea76_0.conda#bba7632adcae325aa42f18725c35ecad
+https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.53.0-hf4e2dac_0.conda#810d83373448da85c3f673fbcb7ad3a3
+https://conda.anaconda.org/conda-forge/linux-64/sqlite-3.53.0-h04a0ce9_0.conda#dc540e5bd5616d83a1ec46af8315ff98
+https://conda.anaconda.org/bioconda/linux-64/mehari-0.42.0-h957ea76_0.conda#7b43dc2f379a2c28d0a41fee9e6f61f4
