@@ -516,6 +516,8 @@ def test_swarm(run):
         [
             "snakemake",
             "out/a.seeds.fas",
+            "out/a.gz.seeds.fas",
+            "out/a.bz2.seeds.fas",
         ],
         cores=2,
     )
