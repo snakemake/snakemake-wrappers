@@ -1,6 +1,6 @@
 rule swarm:
     input:
-        "{sample}",
+        "{sample}.fas",
     output:
         structure="out/{sample}.struct.tsv",
         network="out/{sample}.network.tsv",
@@ -20,7 +20,7 @@ rule swarm:
 
 rule swarm_gz:
     input:
-        "{sample}.gz",
+        "{sample}.fas.gz",
     output:
         structure="out/{sample}.gz.struct.tsv",
         network="out/{sample}.gz.network.tsv",
@@ -40,7 +40,7 @@ rule swarm_gz:
 
 rule swarm_bz2:
     input:
-        "{sample}.bz2",
+        "{sample}.fas.bz2",
     output:
         structure="out/{sample}.bz2.struct.tsv",
         network="out/{sample}.bz2.network.tsv",
