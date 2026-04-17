@@ -4,4 +4,4 @@ channels:
   - nodefaults
 
 dependencies:
-  - chopper >= 0.12.0
+  - chopper =0.12.0
