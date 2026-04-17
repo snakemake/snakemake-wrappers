@@ -1,16 +1,56 @@
 rule swarm:
     input:
-        "{file}",
+        "{sample}",
     output:
-        structure="out/{file}.struct.tsv",
-        network="out/{file}.network.tsv",
-        output="out/{file}.clusters",
-        statistics="stats/{file}.stats.tsv",
-        uclust="out/{file}.uclust.tsv",
-        seeds="out/{file}.seeds.fas",
-        log="out/{file}.log",
+        structure="out/{sample}.struct.tsv",
+        network="out/{sample}.network.tsv",
+        output="out/{sample}.clusters",
+        statistics="stats/{sample}.stats.tsv",
+        uclust="out/{sample}.uclust.tsv",
+        seeds="out/{sample}.seeds.fas",
+        log="out/{sample}.log",
     log:
-        "logs/{file}.log",
+        "logs/{sample}.log",
+    threads: 4
+    params:
+        extra="--fastidious --differences 1 --usearch-abundance",
+    wrapper:
+        "master/bio/swarm"
+
+
+rule swarm_gz:
+    input:
+        "{sample}.gz",
+    output:
+        structure="out/{sample}.gz.struct.tsv",
+        network="out/{sample}.gz.network.tsv",
+        output="out/{sample}.gz.clusters",
+        statistics="stats/{sample}.gz.stats.tsv",
+        uclust="out/{sample}.gz.uclust.tsv",
+        seeds="out/{sample}.gz.seeds.fas",
+        log="out/{sample}.gz.log",
+    log:
+        "logs/{sample}.gz.log",
+    threads: 4
+    params:
+        extra="--fastidious --differences 1 --usearch-abundance",
+    wrapper:
+        "master/bio/swarm"
+
+
+rule swarm_bz2:
+    input:
+        "{sample}.bz2",
+    output:
+        structure="out/{sample}.bz2.struct.tsv",
+        network="out/{sample}.bz2.network.tsv",
+        output="out/{sample}.bz2.clusters",
+        statistics="stats/{sample}.bz2.stats.tsv",
+        uclust="out/{sample}.bz2.uclust.tsv",
+        seeds="out/{sample}.bz2.seeds.fas",
+        log="out/{sample}.bz2.log",
+    log:
+        "logs/{sample}.bz2.log",
     threads: 4
     params:
         extra="--fastidious --differences 1 --usearch-abundance",
