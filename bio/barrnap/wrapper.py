@@ -14,7 +14,7 @@ kingdom = snakemake.params.get("kingdom", "bac")
 
 fasta_out = snakemake.output.get("fasta")
 if fasta_out:
-    extra += f" -o {fasta_out}"
+    extra += f" --outseq {fasta_out}"
 
 shell(
     "barrnap"
