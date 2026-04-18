@@ -19,14 +19,12 @@ if isinstance(reads, str):
 assert len(reads) == 1, "input.in_reads must resolve to exactly one file"
 reads = reads[0]
 
-if hasattr(snakemake.input, "contam"):
-    contam_reads = snakemake.input.contam
-    if isinstance(contam_reads, str):
-        contam_reads = [contam_reads]
-    assert len(contam_reads) == 1, "input.contam must resolve to exactly one file"
-    contam = f"--contam {shlex.quote(contam_reads[0])}"
-else:
-    contam = ""
+contam = snakemake.input.get("contam", "")
+if contam:
+    if isinstance(contam, str):
+        contam = [contam]
+    assert len(contam) == 1, "input.contam must resolve to exactly one file"
+    contam = f"--contam {contam[0]}"
 
 outfile = snakemake.output[0]
 if isinstance(outfile, str):
