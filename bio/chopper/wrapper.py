@@ -28,7 +28,7 @@ if hasattr(snakemake.input, "contam"):
 else:
     contam = ""
 
-outfile = snakemake.output.out_reads
+outfile = snakemake.output[0]
 if isinstance(outfile, str):
     outfile = [outfile]
 
