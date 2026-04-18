@@ -12,11 +12,11 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-reads = snakemake.input.in_reads
+reads = snakemake.input.fq
 if isinstance(reads, str):
     reads = [reads]
 
-assert len(reads) == 1, "input.in_reads must resolve to exactly one file"
+assert len(reads) == 1, "input.fq must resolve to exactly one file"
 reads = reads[0]
 
 contam = snakemake.input.get("contam", "")
