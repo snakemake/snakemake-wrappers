@@ -3277,7 +3277,20 @@ def test_star_align(run):
 
 
 def test_star_index(run):
-    run("bio/star/index", ["snakemake", "genome"])
+    run(
+        "bio/star/index",
+        [
+            "snakemake",
+            "genome/chrLength.txt",
+            "genome/chrName.txt",
+            "genome/chrNameLength.txt",
+            "genome/chrStart.txt",
+            "genome/genomeParameters.txt",
+            "genome/Genome",
+            "genome/SA",
+            "genome/SAindex"
+        ],
+    )
 
 
 def test_ngscheckmate_makesnvpattern(run):
