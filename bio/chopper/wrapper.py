@@ -34,7 +34,7 @@ assert len(outfile) == 1, "output.out_reads must resolve to exactly one file"
 outfile = outfile[0]
 
 output = (
-    f"| gzip -c > {shlex.quote(outfile)}"  
+    f"| gzip -c > {shlex.quote(outfile)}"
     if outfile.endswith(".gz")
     else f"> {shlex.quote(outfile)}"
 )
