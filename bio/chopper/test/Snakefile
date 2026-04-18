@@ -1,6 +1,6 @@
 rule chopper_filter:
     input:
-        in_reads="data/reads.fastq",
+        fq="data/reads.fastq",
     output:
         out_reads="treated/filter.fastq",
     params:
@@ -16,7 +16,7 @@ rule chopper_filter:
 
 rule chopper_contam:
     input:
-        in_reads="data/reads_contam.fastq",
+        fq="data/reads_contam.fastq",
         contam="data/contam.fa",
     output:
         out_reads="treated/contam.fastq",
@@ -33,7 +33,7 @@ rule chopper_contam:
 
 rule chopper_filter_gz:
     input:
-        in_reads="data/reads.fastq",
+        fq="data/reads.fastq",
     output:
         out_reads="treated/filter.fastq.gz",
     params:
