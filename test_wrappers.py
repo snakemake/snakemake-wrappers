@@ -516,6 +516,8 @@ def test_swarm(run):
         [
             "snakemake",
             "out/a.seeds.fas",
+            "out/a.gz.seeds.fas",
+            "out/a.bz2.seeds.fas",
         ],
         cores=2,
     )
@@ -1455,6 +1457,22 @@ def test_seqtk(run):
             "results/sample_se/a.fastq.gz",
             "results/sample_pe/a.1.fastq.gz",
             "results/sample_pe/a.2.fastq.gz",
+        ],
+    )
+
+
+def test_sequali(run):
+    run(
+        "bio/sequali",
+        [
+            "snakemake",
+            "report/se/a.html",
+            "report/se/a.json",
+            "report/se/a.adapter.html",
+            "report/se/a.adapter.json",
+            "report/pe/a.images.html",
+            "report/pe/a.images.json",
+            "report/pe/a.zip",
         ],
     )
 

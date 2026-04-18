@@ -73,32 +73,12 @@ single_threaded_scripts = [
 ]
 
 logging.basicConfig(
-    level=logging.DEBUG,
+    level=logging.WARN,
     format="%(asctime)s %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
 logger = logging.getLogger(__file__)
-
-
-def handle_exception(exc_type, exc_value, exc_traceback):
-    if issubclass(exc_type, KeyboardInterrupt):
-        sys.__excepthook__(exc_type, exc_value, exc_traceback)
-        return
-
-    logger.error(
-        "".join(
-            [
-                "Uncaught exception: ",
-                *traceback.format_exception(exc_type, exc_value, exc_traceback),
-            ]
-        )
-    )
-
-
-# Install exception handler
-sys.excepthook = handle_exception
-
 
 ###################################### Beginning of wrapper ######################################
 # global flags to check if input and output are parsed multiple times
@@ -121,7 +101,7 @@ def get_java_opts(snakemake, java_mem_overhead_factor=0.15) -> str:
     regex = re.compile(r"-Xmx\d+[gGmM]")
     memory_options = regex.findall(all_java_opts)[0]
 
-    logger.info("Memory specification: " + memory_options)
+    logger.debug(f"Memory specification: {memory_options}")
 
     return memory_options
 
@@ -222,7 +202,7 @@ def _parse_paired_keys(key, values):
 
         parsed_arg = f" {key}=" + ",".join(values)
 
-    logger.info(f"parsed {key} argument: {parsed_arg}")
+    logger.debug(f"parsed {key} argument: {parsed_arg}")
     return parsed_arg
 
 
@@ -237,7 +217,7 @@ def _parse_keywords_for_bbtool(parameter_list, section):
 
     """
 
-    logger.info(f"Parse {section} section of snamemake rule into bbmap command")
+    logger.debug(f"Parse {section} section of snamemake rule into bbmap command")
 
     if section == "params":
         ignore_keys = ["command", "extra"]
@@ -254,7 +234,7 @@ def _parse_keywords_for_bbtool(parameter_list, section):
 
     if len(unnamed_arguments) > 0:
         assert section in ["input", "output"]
-        logger.info(f"Found unnamed arguments. parse them as {section}")
+        logger.debug(f"Found unnamed arguments. parse them as {section}")
 
         command += _parse_in_out(section, unnamed_arguments)
 
@@ -263,9 +243,9 @@ def _parse_keywords_for_bbtool(parameter_list, section):
     parameter_list = dict(parameter_list)
 
     for k in parameter_list.keys():
-        logger.info(f"Parse keyword: {k}")
+        logger.debug(f"Parse keyword: {k}")
         if k in ignore_keys:
-            logger.info(f"{k} argument detected, This is not passed to the bbtool.")
+            logger.debug(f"{k} argument detected, This is not passed to the bbtool.")
             pass
 
         # INPUT keys
@@ -292,7 +272,7 @@ def _parse_keywords_for_bbtool(parameter_list, section):
 
             parsed = f" {k}={parameter_list[k]} "
 
-            logger.info(f"parsed argument: {parsed}")
+            logger.debug(f"parsed argument: {parsed}")
             command += parsed
 
     return command
@@ -348,7 +328,7 @@ def parse_bbtool(snakemake):
 
 
 command = parse_bbtool(snakemake)
-logger.info(f"run command:\n\n\t{command}\n")
+logger.debug(f"run command:\n\n\t{command}\n")
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 

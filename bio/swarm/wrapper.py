@@ -7,6 +7,13 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
+# Check input files
+in_cmd = "cat"
+if snakemake.input[0].endswith(".gz"):
+    in_cmd = "gzip --decompress --stdout"
+if snakemake.input[0].endswith(".bz2"):
+    in_cmd = "bzip2 --decompress --stdout"
+
 # Parse output files
 output = list()
 for key, value in snakemake.output.items():
@@ -19,4 +26,6 @@ for key, value in snakemake.output.items():
     else:
         raise ValueError(f"Unknown named output '{key}' with file name '{value}'.")
 
-shell("swarm --threads {snakemake.threads} {extra} {output} {snakemake.input[0]} {log}")
+shell(
+    "{in_cmd} {snakemake.input[0]} | swarm --threads {snakemake.threads} {extra} {output} {log}"
+)
