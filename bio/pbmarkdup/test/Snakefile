@@ -1,0 +1,38 @@
+rule pbmarkdup:
+    input:
+        reads="reads.fastq.gz",
+    output:
+        dedup_file="pbmarkdup1.fastq.gz",
+    log:
+        "logs/pbmarkdup.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/pbmarkdup"
+
+
+rule pbmarkdup_dedup:
+    input:
+        reads="reads.fastq.gz",
+    output:
+        dedup_file="pbmarkdup2.fastq.gz",
+        dup_file="dedup.fastq.gz",
+    log:
+        "logs/pbmarkdup_dedup.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/pbmarkdup"
+
+
+rule pbmarkdup_rmdup:
+    input:
+        reads="reads.fastq.gz",
+    output:
+        dedup_file="pbmarkdup3.fastq.gz",
+    log:
+        "logs/pbmarkdup_rmdup.log",
+    params:
+        extra="--rmdup",
+    wrapper:
+        "master/bio/pbmarkdup"
