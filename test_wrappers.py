@@ -5247,3 +5247,17 @@ def test_genometools(run):
         "bio/genometools/gff3validator",
         ["snakemake", "example.validated.flag"],
     )
+
+
+def test_pbmarkdup(run):
+    run(
+        "bio/pbmarkdup",
+        ["snakemake", "--cores", "1", "dedup.fastq.gz"],
+    )
+
+
+def test_pbmarkdup_rmdup(run):
+    run(
+        "bio/pbmarkdup",
+        ["snakemake", "--cores", "1", "rmdup.fastq.gz"],
+    )
