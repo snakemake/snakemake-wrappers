@@ -5,4 +5,6 @@ __license__ = "MIT"
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
 
-shell("sed {extra} {params.expr:q} {snakemake.input[0]} > {snakemake.output[0]} {log}")
+shell(
+    "sed {extra} {snakemake.params.expr:q} {snakemake.input[0]} > {snakemake.output[0]} {log}"
+)
