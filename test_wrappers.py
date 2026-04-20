@@ -523,6 +523,21 @@ def test_swarm(run):
     )
 
 
+def test_sed(run):
+    run(
+        "utils/sed",
+        [
+            "snakemake",
+            "out/sed.csv",
+            "out/sed_regex.csv",
+        ],
+        compare_results_with_expected={
+            "out/sed.csv": "expected/sed.csv",
+            "out/sed_regex.csv": "expected/sed_regex.csv",
+        },
+    )
+
+
 def test_bbtools(run):
     run(
         "bio/bbtools",
