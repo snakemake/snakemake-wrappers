@@ -3,7 +3,7 @@ rule test_sed:
     input:
         "table.csv",
     output:
-        "out/sed.tsv",
+        "out/sed.csv",
     log:
         "logs/sed.log",
     threads: 1
