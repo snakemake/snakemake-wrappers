@@ -525,7 +525,7 @@ def test_swarm(run):
 
 def test_sed(run):
     run(
-        "bio/sed",
+        "utils/sed",
         [
             "snakemake",
             "out/sed.csv",
