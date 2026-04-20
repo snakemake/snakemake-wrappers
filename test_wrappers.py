@@ -516,6 +516,8 @@ def test_swarm(run):
         [
             "snakemake",
             "out/a.seeds.fas",
+            "out/a.gz.seeds.fas",
+            "out/a.bz2.seeds.fas",
         ],
         cores=2,
     )
@@ -2061,6 +2063,22 @@ def test_dragmap_align(run):
             "-s",
             "Snakefile_picard",
         ],
+    )
+
+
+def test_chopper(run):
+    run(
+        "bio/chopper",
+        [
+            "snakemake",
+            "treated/filter.fastq",
+            "treated/filter.fastq.gz",
+            "treated/contam.fastq",
+        ],
+        compare_results_with_expected={
+            "treated/filter.fastq": "expected/filter.fastq",
+            "treated/contam.fastq": "expected/contam.fastq",
+        },
     )
 
 
