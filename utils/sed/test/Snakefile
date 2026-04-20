@@ -1,0 +1,13 @@
+### Cat ###
+rule test_sed:
+    input:
+        "table.csv",
+    output:
+        "out/sed.tsv",
+    log:
+        "logs/sed.log",
+    threads: 1
+    params:
+        expr="s/ENSG02/ENSG03/",
+    wrapper:
+        "master/utils/sed"
