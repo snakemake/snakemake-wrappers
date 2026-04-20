@@ -9,5 +9,6 @@ rule test_sed:
     threads: 1
     params:
         expr="s/ENSG02/ENSG03/",
+        extra="",
     wrapper:
         "master/utils/sed"

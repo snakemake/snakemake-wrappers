@@ -9,4 +9,5 @@ input:
 output:
   - Path to output file.
 params:
+  - expr: SED expression to execute.
   - extra: Optional arguments for `sed`.
