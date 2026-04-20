@@ -2066,6 +2066,22 @@ def test_dragmap_align(run):
     )
 
 
+def test_chopper(run):
+    run(
+        "bio/chopper",
+        [
+            "snakemake",
+            "treated/filter.fastq",
+            "treated/filter.fastq.gz",
+            "treated/contam.fastq",
+        ],
+        compare_results_with_expected={
+            "treated/filter.fastq": "expected/filter.fastq",
+            "treated/contam.fastq": "expected/contam.fastq",
+        },
+    )
+
+
 def test_clustalo(run):
     run(
         "bio/clustalo",
