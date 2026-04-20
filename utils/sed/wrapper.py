@@ -2,6 +2,8 @@ __author__ = "Filipe G. Vieira"
 __copyright__ = "Copyright 2026, Filipe G. Vieira"
 __license__ = "MIT"
 
+from snakemake.shell import shell
+
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
 
