@@ -1,7 +1,7 @@
 name: sed
 url: https://www.gnu.org/software/sed/
 description: >
-  sed (stream editor) is a non-interactive command-line text editor.
+  sed (stream editor) is a non-interactive command-line text editor. For a helpful introduction, see `the tutorial by Bruce Barnett <http://www.grymoire.com/Unix/sed.html>`_.
 authors:
   - Filipe G. Vieira
 input:
