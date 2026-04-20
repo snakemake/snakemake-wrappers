@@ -5,9 +5,9 @@ url: https://github.com/wdecoster/chopper
 authors:
   - Artur Gomes
 input:
-  - in_reads: one FASTQ/FASTQ.GZ read file
+  - fq: one FASTQ/FASTQ.GZ read file
   - contam (optional): FASTA file of contaminant sequences (passed as --contam)
 output:
-  - out_reads: one filtered/trimmed FASTQ/FASTQ.GZ read file
+  - one filtered/trimmed FASTQ/FASTQ.GZ read file
 params:
   - extra: additional program arguments (for filtering/trimming options)
