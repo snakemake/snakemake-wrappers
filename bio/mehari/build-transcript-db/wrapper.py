@@ -4,6 +4,7 @@ __email__ = "till.hartmann@bih-charite.de"
 __license__ = "MIT"
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.snakemake import get_format
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
@@ -32,7 +33,7 @@ fasta_extensions = (
     ".fna.gz",
     ".fna.bgz",
 )
-if str(sequences).lower().endswith(fasta_extensions):
+if get_format(sequences) == "fasta":
     seq_arg = f"--transcript-sequences {sequences}"
 else:
     seq_arg = f"--seqrepo {sequences}"
