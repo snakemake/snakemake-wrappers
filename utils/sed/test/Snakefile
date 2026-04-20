@@ -1,4 +1,3 @@
-### Cat ###
 rule test_sed:
     input:
         "table.csv",
@@ -10,5 +9,20 @@ rule test_sed:
     params:
         expr="s/ENSG02/ENSG03/",
         extra="",
+    wrapper:
+        "master/utils/sed"
+
+
+rule test_sed_regex:
+    input:
+        "table.csv",
+    output:
+        "out/sed_regex.csv",
+    log:
+        "logs/sed_regex.log",
+    threads: 1
+    params:
+        expr=r"s/ENSG0(\d)/ENSG\1/",
+        extra="-r",
     wrapper:
         "master/utils/sed"

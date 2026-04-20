@@ -529,9 +529,11 @@ def test_sed(run):
         [
             "snakemake",
             "out/sed.csv",
+            "out/sed_regex.csv",
         ],
         compare_results_with_expected={
             "out/sed.csv": "expected/sed.csv",
+            "out/sed_regex.csv": "expected/sed_regex.csv",
         },
     )
 
