@@ -3,13 +3,13 @@ rule chopper_filter:
         fq="data/reads.fastq",
     output:
         out_reads="treated/filter.fastq",
-    params:
-        extra="--minlength 8 --quality 20",
     log:
         "logs/chopper/filter.log",
     threads: 4
     resources:
         mem_mb=1024,
+    params:
+        extra="--minlength 8 --quality 20",
     wrapper:
         "master/bio/chopper"
 
@@ -20,13 +20,13 @@ rule chopper_contam:
         contam="data/contam.fa",
     output:
         out_reads="treated/contam.fastq",
-    params:
-        extra="",
     log:
         "logs/chopper/contam.log",
     threads: 4
     resources:
         mem_mb=1024,
+    params:
+        extra="",
     wrapper:
         "master/bio/chopper"
 
@@ -36,12 +36,12 @@ rule chopper_filter_gz:
         fq="data/reads.fastq",
     output:
         out_reads="treated/filter.fastq.gz",
-    params:
-        extra="--minlength 8 --quality 20",
     log:
         "logs/chopper/filter.gz.log",
     threads: 4
     resources:
         mem_mb=1024,
+    params:
+        extra="--minlength 8 --quality 20",
     wrapper:
         "master/bio/chopper"
