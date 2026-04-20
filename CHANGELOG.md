@@ -1,5 +1,28 @@
 # Changelog
 
+## [9.6.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.5.0...v9.6.0) (2026-04-20)
+
+
+### Features
+
+* add chopper wrapper ([#5228](https://github.com/snakemake/snakemake-wrappers/issues/5228)) ([8030960](https://github.com/snakemake/snakemake-wrappers/commit/803096062e7a6568269ec60b08c4eaa95f874a5d))
+* add sequali wrapper ([#5227](https://github.com/snakemake/snakemake-wrappers/issues/5227)) ([37f4641](https://github.com/snakemake/snakemake-wrappers/commit/37f4641a31783ec50b957462235fe43af60103fe))
+* add swarm support for gz and bz2 input files ([#5232](https://github.com/snakemake/snakemake-wrappers/issues/5232)) ([b5e62e0](https://github.com/snakemake/snakemake-wrappers/commit/b5e62e09065005d2171f5753011296daa7c69756))
+
+
+### Bug Fixes
+
+* Change bbtools logging level ([#5230](https://github.com/snakemake/snakemake-wrappers/issues/5230)) ([62e69bb](https://github.com/snakemake/snakemake-wrappers/commit/62e69bb4e6b996015478f0b2abdf0b04680eb658))
+
+
+### Performance Improvements
+
+* autobump bio/agat/environment.yaml ([#5233](https://github.com/snakemake/snakemake-wrappers/issues/5233)) ([8758707](https://github.com/snakemake/snakemake-wrappers/commit/8758707453b71c98050d1b5352d3d89b0d762a39))
+* autobump bio/entrez/efetch/environment.yaml ([#5235](https://github.com/snakemake/snakemake-wrappers/issues/5235)) ([3d9f1aa](https://github.com/snakemake/snakemake-wrappers/commit/3d9f1aa6d1e42567d3f4d825aed863b2d05e9419))
+* autobump bio/gffread/environment.yaml ([#5236](https://github.com/snakemake/snakemake-wrappers/issues/5236)) ([74e1614](https://github.com/snakemake/snakemake-wrappers/commit/74e16147a93e57d4fba64a20742f475470b804cb))
+* autobump bio/pytrf/environment.yaml ([#5238](https://github.com/snakemake/snakemake-wrappers/issues/5238)) ([0bb75ba](https://github.com/snakemake/snakemake-wrappers/commit/0bb75bade4e8b370b90acc1b1ca131e6380aa474))
+* autobump bio/reference/ensembl-biomart-table/environment.yaml ([#5239](https://github.com/snakemake/snakemake-wrappers/issues/5239)) ([be4dcf6](https://github.com/snakemake/snakemake-wrappers/commit/be4dcf67a6f749fda2375e1acf34af2278da3a6c))
+
 ## [9.5.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.4.2...v9.5.0) (2026-04-14)
 
 
