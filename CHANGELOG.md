@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.6.1](https://github.com/snakemake/snakemake-wrappers/compare/v9.6.0...v9.6.1) (2026-04-20)
+
+
+### Performance Improvements
+
+* autobump bio/reference/ensembl-mysql-table/environment.yaml ([#5240](https://github.com/snakemake/snakemake-wrappers/issues/5240)) ([590d447](https://github.com/snakemake/snakemake-wrappers/commit/590d447f65a4de9f82d33973e5a46cb7edbc4d7b))
+
 ## [9.6.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.5.0...v9.6.0) (2026-04-20)
 
 
