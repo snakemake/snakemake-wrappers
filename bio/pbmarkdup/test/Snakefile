@@ -30,7 +30,6 @@ rule pbmarkdup_rmdup:
         reads="reads.fastq.gz",
     output:
         "pbmarkdup3.fastq.gz",
-        dup="reads.fastq.gz",
     log:
         "logs/pbmarkdup_rmdup.log",
     params:
