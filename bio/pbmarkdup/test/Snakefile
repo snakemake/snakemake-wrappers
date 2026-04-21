@@ -31,8 +31,6 @@ rule pbmarkdup_rmdup:
     output:
         "pbmarkdup3.fastq.gz",
         dup="reads.fastq.gz",
-    output:
-        "pbmarkdup3.fastq.gz",
     log:
         "logs/pbmarkdup_rmdup.log",
     params:
