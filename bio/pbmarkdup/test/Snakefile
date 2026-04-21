@@ -29,8 +29,8 @@ rule pbmarkdup_rmdup:
     input:
         reads="reads.fastq.gz",
     output:
-        dedup_file="pbmarkdup3.fastq.gz",
-        "reads.fastq.gz",
+        "pbmarkdup3.fastq.gz",
+        dup="reads.fastq.gz",
     output:
         "pbmarkdup3.fastq.gz",
         "logs/pbmarkdup_rmdup.log",
