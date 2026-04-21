@@ -5268,19 +5268,10 @@ def test_genometools(run):
 def test_pbmarkdup(run):
     run(
         "bio/pbmarkdup",
-        ["snakemake", "--cores", "1", "pbmarkdup1.fastq.gz"],
-    )
-
-
-def test_pbmarkdup_dedup(run):
-    run(
-        "bio/pbmarkdup",
-        ["snakemake", "--cores", "1", "pbmarkdup2.fastq.gz", "dedup.fastq.gz"],
-    )
-
-
-def test_pbmarkdup_rmdup(run):
-    run(
-        "bio/pbmarkdup",
-        ["snakemake", "--cores", "1", "pbmarkdup3.fastq.gz"],
+        ["snakemake",
+        "pbmarkdup1.fastq.gz",
+        "pbmarkdup2.fastq.gz",
+        "pbmarkdup3.fastq.gz",
+        "dedup.fastq.gz",
+        ],
     )
