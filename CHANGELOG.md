@@ -1,5 +1,14 @@
 # Changelog
 
+## [9.7.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.6.1...v9.7.0) (2026-04-21)
+
+
+### Features
+
+* add mehari/build-transcript-db sub-wrapper ([#5231](https://github.com/snakemake/snakemake-wrappers/issues/5231)) ([303fe9f](https://github.com/snakemake/snakemake-wrappers/commit/303fe9f078845050ac4340702b050b1bc07ce14b))
+* Add sed wrapper ([#5242](https://github.com/snakemake/snakemake-wrappers/issues/5242)) ([8df2906](https://github.com/snakemake/snakemake-wrappers/commit/8df2906aeb95bc239ada9e68e3db87b4dc5d1692))
+* add wrapper for pbmarkdup ([#5243](https://github.com/snakemake/snakemake-wrappers/issues/5243)) ([8b725c7](https://github.com/snakemake/snakemake-wrappers/commit/8b725c756809815102d2a573ad9a98be58c01be4))
+
 ## [9.6.1](https://github.com/snakemake/snakemake-wrappers/compare/v9.6.0...v9.6.1) (2026-04-20)
 
 
