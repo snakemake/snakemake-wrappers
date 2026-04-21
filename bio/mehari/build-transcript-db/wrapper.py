@@ -22,17 +22,6 @@ sequences = snakemake.input.get("sequences")
 if not sequences:
     raise ValueError("Input 'sequences' is required but not specified")
 
-fasta_extensions = (
-    ".fasta",
-    ".fa",
-    ".fna",
-    ".fasta.gz",
-    ".fasta.bgz",
-    ".fa.gz",
-    ".fa.bgz",
-    ".fna.gz",
-    ".fna.bgz",
-)
 if get_format(sequences) == "fasta":
     seq_arg = f"--transcript-sequences {sequences}"
 else:
