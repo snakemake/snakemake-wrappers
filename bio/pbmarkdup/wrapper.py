@@ -7,9 +7,9 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-dedup_file = snakemake.output.get("dedup_file", snakemake.output[0])
+dedup_file = snakemake.output.get("dedup", snakemake.output[0])
 
-dup_file = snakemake.output.get("dup_file", "")
+dup_file = snakemake.output.get("dup", "")
 if dup_file:
     dup_file = f"--dup-file {dup_file}"
 

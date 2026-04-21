@@ -6,7 +6,7 @@ authors:
 input:
   - One or more BAM, FASTQ, FASTA (gzipped or plain), or FOFN input files
 output:
-  - Deduplicated reads file (BAM, FASTQ, or FASTA; format inferred from file extension)
-  - dup_file: Optional separate output file for duplicate reads, can not be combined with extra `--rmdup`
+  - dedup: Deduplicated reads file (BAM, FASTQ, or FASTA; format inferred from file extension)
+  - dup: Duplicated reads, can not be combined with extra `--rmdup` (optional)
 params:
   - extra: Additional program arguments (not `--dup-file`). Use `--rmdup` to remove duplicates instead of marking, `--cross-library` for library-agnostic detection.

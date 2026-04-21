@@ -1,8 +1,8 @@
 rule pbmarkdup:
     input:
-        reads="reads.fastq.gz",
+        "reads.fastq.gz",
     output:
-        dedup_file="pbmarkdup1.fastq.gz",
+        dedup="pbmarkdup1.fastq.gz",
     log:
         "logs/pbmarkdup.log",
     params:
@@ -13,10 +13,10 @@ rule pbmarkdup:
 
 rule pbmarkdup_dedup:
     input:
-        reads="reads.fastq.gz",
+        "reads.fastq.gz",
     output:
-        dedup_file="pbmarkdup2.fastq.gz",
-        dup_file="dedup.fastq.gz",
+        dedup="pbmarkdup2.fastq.gz",
+        dup="dedup.fastq.gz",
     log:
         "logs/pbmarkdup_dedup.log",
     params:
@@ -30,7 +30,9 @@ rule pbmarkdup_rmdup:
         reads="reads.fastq.gz",
     output:
         dedup_file="pbmarkdup3.fastq.gz",
-    log:
+        "reads.fastq.gz",
+    output:
+        "pbmarkdup3.fastq.gz",
         "logs/pbmarkdup_rmdup.log",
     params:
         extra="--rmdup",
