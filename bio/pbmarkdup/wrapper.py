@@ -10,7 +10,8 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 dedup_file = snakemake.output.get("dedup_file", snakemake.output[0])
 
 dup_file = snakemake.output.get("dup_file", "")
-dup_file = f"--dup-file {dup_file}" if dup_file else ""
+if dup_file:
+    dup_file = f"--dup-file {dup_file}"
 
 inputs = " ".join(snakemake.input)
 
