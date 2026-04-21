@@ -516,8 +516,25 @@ def test_swarm(run):
         [
             "snakemake",
             "out/a.seeds.fas",
+            "out/a.gz.seeds.fas",
+            "out/a.bz2.seeds.fas",
         ],
         cores=2,
+    )
+
+
+def test_sed(run):
+    run(
+        "utils/sed",
+        [
+            "snakemake",
+            "out/sed.csv",
+            "out/sed_regex.csv",
+        ],
+        compare_results_with_expected={
+            "out/sed.csv": "expected/sed.csv",
+            "out/sed_regex.csv": "expected/sed_regex.csv",
+        },
     )
 
 
@@ -2061,6 +2078,22 @@ def test_dragmap_align(run):
             "-s",
             "Snakefile_picard",
         ],
+    )
+
+
+def test_chopper(run):
+    run(
+        "bio/chopper",
+        [
+            "snakemake",
+            "treated/filter.fastq",
+            "treated/filter.fastq.gz",
+            "treated/contam.fastq",
+        ],
+        compare_results_with_expected={
+            "treated/filter.fastq": "expected/filter.fastq",
+            "treated/contam.fastq": "expected/contam.fastq",
+        },
     )
 
 
@@ -5136,6 +5169,17 @@ def test_mehari_annotate_seqvars(run):
     )
 
 
+def test_mehari_build_transcript_db(run):
+    run(
+        "bio/mehari/build-transcript-db",
+        [
+            "snakemake",
+            "MT.bin.zst",
+            "--verbose",
+        ],
+    )
+
+
 def test_rasterio_clip(run):
     run(
         "geo/rasterio/clip",
@@ -5194,14 +5238,10 @@ def test_pytrf(run):
         "bio/pytrf",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/small_test_findstr.csv",
             "results/small_test_findstr_defaults.tsv",
             "results/small_test_findgtr.tsv",
             "results/small_test_findatr.tsv",
-            "--use-conda",
-            "-F",
         ],
         compare_results_with_expected={
             "results/small_test_findstr.csv": "expected/findstr_basic.csv",
@@ -5219,11 +5259,7 @@ def test_pytrf_extract(run):
         "bio/pytrf",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/small_test_extract.tsv",
-            "--use-conda",
-            "-F",
         ],
         compare_results_with_expected={
             "results/small_test_extract.tsv": "expected/extract_basic.tsv",
@@ -5244,4 +5280,17 @@ def test_genometools(run):
     run(
         "bio/genometools/gff3validator",
         ["snakemake", "example.validated.flag"],
+    )
+
+
+def test_pbmarkdup(run):
+    run(
+        "bio/pbmarkdup",
+        [
+            "snakemake",
+            "pbmarkdup1.fastq.gz",
+            "pbmarkdup2.fastq.gz",
+            "pbmarkdup3.fastq.gz",
+            "dedup.fastq.gz",
+        ],
     )

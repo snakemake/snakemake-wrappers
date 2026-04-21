@@ -3,6 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - swarm =3.1.6
-  - gzip =1.14
-  - bzip2 =1.0.8
+  - mehari =0.42.0
+  - snakemake-wrapper-utils =0.8.0
