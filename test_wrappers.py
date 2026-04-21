@@ -5227,14 +5227,10 @@ def test_pytrf(run):
         "bio/pytrf",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/small_test_findstr.csv",
             "results/small_test_findstr_defaults.tsv",
             "results/small_test_findgtr.tsv",
             "results/small_test_findatr.tsv",
-            "--use-conda",
-            "-F",
         ],
         compare_results_with_expected={
             "results/small_test_findstr.csv": "expected/findstr_basic.csv",
@@ -5252,11 +5248,7 @@ def test_pytrf_extract(run):
         "bio/pytrf",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/small_test_extract.tsv",
-            "--use-conda",
-            "-F",
         ],
         compare_results_with_expected={
             "results/small_test_extract.tsv": "expected/extract_basic.tsv",
@@ -5277,4 +5269,17 @@ def test_genometools(run):
     run(
         "bio/genometools/gff3validator",
         ["snakemake", "example.validated.flag"],
+    )
+
+
+def test_pbmarkdup(run):
+    run(
+        "bio/pbmarkdup",
+        [
+            "snakemake",
+            "pbmarkdup1.fastq.gz",
+            "pbmarkdup2.fastq.gz",
+            "pbmarkdup3.fastq.gz",
+            "dedup.fastq.gz",
+        ],
     )
