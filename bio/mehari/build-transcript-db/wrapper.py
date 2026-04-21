@@ -10,12 +10,10 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 # required inputs and outputs
-annotation = snakemake.input.get("annotation")
-if not annotation:
+if not snakemake.input.get("annotation"):
     raise ValueError("Input 'annotation' is required but not specified")
 
-output_db = snakemake.output.get("db")
-if not output_db:
+if not snakemake.output.get("db"):
     raise ValueError("Output 'db' is required but not specified")
 
 sequences = snakemake.input.get("sequences")
@@ -23,17 +21,15 @@ if not sequences:
     raise ValueError("Input 'sequences' is required but not specified")
 
 if get_format(sequences) == "fasta":
-    seq_arg = f"--transcript-sequences {sequences}"
+    sequences = f"--transcript-sequences {sequences}"
 else:
-    seq_arg = f"--seqrepo {sequences}"
+    sequences = f"--seqrepo {sequences}"
 
 # required params
-assembly = snakemake.params.get("assembly")
-if not assembly:
+if not snakemake.params.get("assembly"):
     raise ValueError("Parameter 'assembly' is required but not specified")
 
-transcript_source = snakemake.params.get("transcript_source")
-if not transcript_source:
+if not snakemake.params.get("transcript_source"):
     raise ValueError("Parameter 'transcript_source' is required but not specified")
 
 
@@ -53,16 +49,16 @@ if transcript_source_version:
     )
 
 shell(
-    "(mehari db create "
-    "--annotation {annotation:q} "
-    "--assembly {assembly:q} "
-    "--transcript-source {transcript_source:q} "
-    "{seq_arg} "
-    "{assembly_version} "
-    "{annotation_version} "
-    "{transcript_source_version} "
-    "--threads {snakemake.threads} "
-    "{extra} "
-    "--output {output_db:q} "
-    ") {log}"
+    "mehari db create"
+    " --threads {snakemake.threads}"
+    " --annotation {snakemake.input.annotation:q}"
+    " --assembly {snakemake.params.assembly:q}"
+    " --transcript-source {snakemake.params.transcript_source:q}"
+    " {sequences}"
+    " {assembly_version}"
+    " {annotation_version}"
+    " {transcript_source_version}"
+    " {extra}"
+    " --output {snakemake.output.db:q}"
+    " {log}"
 )
