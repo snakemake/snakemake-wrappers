@@ -92,27 +92,27 @@ rule tximport:
     input:
         quant=expand(
             "<results>/pseudo_mapping/{sample}/quant.sf",
-            sample=lookup(dpath="salmon_tximport_submodule/samples", within=config),
+            sample=lookup(dpath="samples", within=config),
         ),
         lib=expand(
             "<results>/pseudo_mapping/{sample}/lib_format_counts.json",
-            sample=lookup(dpath="salmon_tximport_submodule/samples", within=config),
+            sample=lookup(dpath="samples", within=config),
         ),
         aux_info=expand(
             "<results>/pseudo_mapping/{sample}/aux_info",
-            sample=lookup(dpath="salmon_tximport_submodule/samples", within=config),
+            sample=lookup(dpath="samples", within=config),
         ),
         cmd_info=expand(
             "<results>/pseudo_mapping/{sample}/cmd_info.json",
-            sample=lookup(dpath="salmon_tximport_submodule/samples", within=config),
+            sample=lookup(dpath="samples", within=config),
         ),
         libparams=expand(
             "<results>/pseudo_mapping/{sample}/libParams",
-            sample=lookup(dpath="salmon_tximport_submodule/samples", within=config),
+            sample=lookup(dpath="samples", within=config),
         ),
         logs=expand(
             "<results>/pseudo_mapping/{sample}/logs",
-            sample=lookup(dpath="salmon_tximport_submodule/samples", within=config),
+            sample=lookup(dpath="samples", within=config),
         ),
         tx_to_gene="<tx_to_gene>",
     output:

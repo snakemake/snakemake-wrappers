@@ -8,7 +8,6 @@ pathvars:
   reads_r2: "reads/{sample}_R2.fq.gz"
   resources: "resources"
 
-salmon_tximport_submodule:
-  samples:
-    - "S1"
-    - "S2"
+samples:
+  - "S1"
+  - "S2"
