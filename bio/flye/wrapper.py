@@ -3,26 +3,53 @@ __copyright__ = "Copyright 2026, Artur Gomes"
 __email__ = "arafaelogomes@gmail.com"
 __license__ = "MIT"
 
-import os
 from snakemake.shell import shell
+import os
+import shutil
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
-if hasattr(snakemake.resources, "mem_mb"):
-    mem_gb = snakemake.resources.mem_mb // 1000
-    extra += f" --memory {mem_gb}"
-
-output_dir = snakemake.output.get("dir")
-if output_dir is None:
-    output_file = (
-        snakemake.output.get("contigs")
-        or snakemake.output.get("scaffolds")
-        or snakemake.output[0]
+if "--polish-target" in extra:
+    raise ValueError(
+        "Flye `--polish-target` mode is not supported by this wrapper. "
     )
-    output_dir = os.path.dirname(output_file) or "."
 
-os.makedirs(output_dir, exist_ok=True)
+output_dir = snakemake.params.get("dir", "")
+if output_dir is None:
+    raise ValueError(
+        "Missing required output `dir`. Flye assembly mode requires a dedicated "
+    )
+
+
+def parse_bool_param(value, param_name):
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        normalized = value.strip().lower()
+        if normalized in {"true", "1", "yes", "y", "on"}:
+            return True
+        if normalized in {"false", "0", "no", "n", "off"}:
+            return False
+
+    raise ValueError(
+        f"Parameter `{param_name}` must be a boolean value (true/false), got: {value!r}."
+    )
+
+
+keep_intermediates = parse_bool_param(
+    snakemake.params.get("keep_intermediates", False), "keep_intermediates"
+)
+
+file_path = snakemake.output[0] # probably extra pass to remove file name to stay only the path
+if file_path is not None:
+    expected_path =           #complete this!!!
+    if os.path.abspath(file_path) != os.path.abspath(expected_contigs):
+        raise ValueError(
+            "Ambiguous outputs: `output` files must point to "
+            f"`output.dir` which is `{output_dir}`. "
+            f"Got `{file_path}`."
+        )
 
 input_arg = ""
 
@@ -35,38 +62,50 @@ seq_types = {
     "pacbio-hifi": "--pacbio-hifi",
 }
 
-param_seq_type = snakemake.params.get("seq_type", "")
-if param_seq_type:
-    if param_seq_type in seq_types:
-        input_arg += f" {seq_types[param_seq_type]}"
-    else:
-        raise ValueError(
-            f"Invalid seq_type: {param_seq_type}. Must be one of: {', '.join(seq_types.keys())}"
-        )
+param_seq_type = snakemake.params.get("seq_type")
+if not param_seq_type:
+    raise ValueError(
+        "Missing required parameter `seq_type`. "
+        f"Must be one of: {', '.join(seq_types.keys())}"
+    )
 
-reads = snakemake.input.get("reads")
-if reads:
-    if isinstance(reads, list):
-        reads = " ".join(reads)
-    input_arg += f" {reads}"
+if param_seq_type in seq_types:
+    input_arg += f" {seq_types[param_seq_type]}"
+else:
+    raise ValueError(
+        f"Invalid seq_type: {param_seq_type}. Must be one of: {', '.join(seq_types.keys())}"
+    )
 
-if snakemake.params.get("meta"):
-    extra += " --meta"
+reads = snakemake.input[0]
+if reads is None:
+    raise ValueError("Missing required input `reads` for Flye assembly mode.")
 
-if snakemake.params.get("keep_haplotypes"):
-    extra += " --keep-haplotypes"
+if isinstance(reads, list):
+    reads = " ".join(reads)
 
-if snakemake.params.get("no_alt_contigs"):
-    extra += " --no-alt-contigs"
+input_arg += f" {reads}"
 
-if snakemake.params.get("scaffold"):
-    extra += " --scaffold"
+try:
+    shell(
+        "flye"
+        " --threads {snakemake.threads}"
+        " {extra}"
+        " {input_arg}"
+        " -o {output_dir}"
+        " {log}"
+    )
+except Exception:
+    # Do not clean intermediates on failure.
+    raise
 
-shell(
-    "flye"
-    " --threads {snakemake.threads}"
-    " {extra}"
-    " {input_arg}"
-    " -o {output_dir}"
-    " {log}"
-)
+if not keep_intermediates:
+    for dirname in [
+        "00-assembly",
+        "10-consensus",
+        "20-repeat",
+        "30-contigger",
+        "40-polishing",
+    ]:
+        path = os.path.join(output_dir, dirname)
+        if os.path.isdir(path):
+            shutil.rmtree(path)

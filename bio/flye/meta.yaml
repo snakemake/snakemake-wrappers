@@ -1,24 +1,22 @@
 name: flye
 description: |
-  Flye is a de novo assembler for single-molecule sequencing reads.
+  Flye is a de novo assembler for single molecule sequencing reads, such as those produced by PacBio and Oxford Nanopore Technologies.
+  It is designed for a wide range of datasets, from small bacterial projects to large mammalian-scale assemblies.
 
-  You may find additional information on `Flye's <https://github.com/mikolmogorov/Flye>`_ github page.
 url: https://github.com/mikolmogorov/Flye
 authors:
   - Artur Gomes
 input:
-  - reads: Long reads (FASTQ/FASTA, can be gzipped)
+  - Long reads (FASTQ/FASTA, can be gzipped)
 output:
-  - contigs: Assembled contigs (FASTA)
-  - dir: Output directory containing assembly files
+  - assembly: Primary assembly FASTA written by Flye.
+  - assembly_graph: Assembly graph in GFA/Graphviz format.
+  - assembly_info: Assembly summary table.
 params:
-  seq_type: |
-    Sequencing type. Valid options: nano-raw, nano-corr, nano-hq, pacbio-raw, pacbio-corr, pacbio-hifi.
-  meta: Enable metagenome mode (boolean)
-  keep_haplotypes: Keep alternative haplotypes (boolean)
-  no_alt_contigs: Disable alternative contigs output (boolean)
-  scaffold: Enable scaffolding (boolean)
-  extra: Additional program arguments
+  - dir: Required Flye output directory folder.
+  - seq_type: Required sequencing type. Valid options: nano-raw, nano-corr, nano-hq, pacbio-raw, pacbio-corr, pacbio-hifi.
+  - keep_intermediates: Whether to keep Flye intermediate directories. Default: false.
+                        If false, the wrapper removes `00-assembly`, `10-consensus`, `20-repeat`, `30-contigger`, and `40-polishing` folders after a successful run.
+  - extra: Additional program arguments
 notes: |
-  * Memory is automatically set from `resources.mem_mb` if available.
-  * The `seq_type` parameter is required to specify the input read type.
+  * Assembly-mode wrapper only (`--polish-target` is not supported).

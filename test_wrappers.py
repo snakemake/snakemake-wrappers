@@ -2436,7 +2436,6 @@ def test_flye(run):
         "bio/flye",
         [
             "snakemake",
-            "assembly/assembly.fasta",
         ],
     )
 
