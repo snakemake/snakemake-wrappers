@@ -1,18 +1,23 @@
 container: "docker://continuumio/miniconda3:4.4.10"
 
+rule all:
+    input:
+        "assembly/assembly.fasta"
+
+
 rule run_flye:
     input:
         reads="test_reads/ecoli_500kb_reads.fastq.gz"
     output:
-        assembly="{DIR_PATH}/assembly.fasta",
+        assembly="{dir_path}/assembly.fasta",
     benchmark:
-        "logs/benchmarks/assembly/flye.txt"
+        "logs/benchmarks/{dir_path}/flye.txt"
     params:
         seq_type="nano-raw",
-        dir={DIR_PATH}
+        dir=lambda wildcards: wildcards.dir_path,
         extra="--iterations 1 --meta"
     log:
-        "logs/flye.log"
+        "logs/{dir_path}/flye.log"
     threads: 8
     resources:
         mem_mb=250000,

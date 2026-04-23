@@ -15,10 +15,11 @@ if "--polish-target" in extra:
         "Flye `--polish-target` mode is not supported by this wrapper. "
     )
 
-output_dir = snakemake.params.get("dir", "")
+output_dir = snakemake.params.get("dir", None)
 if output_dir is None:
     raise ValueError(
-        "Missing required output `dir`. Flye assembly mode requires a dedicated "
+        "Missing required param `dir`. " \
+        "Flye assembly mode requires a dedicated output directory."
     )
 
 
@@ -41,10 +42,9 @@ keep_intermediates = parse_bool_param(
     snakemake.params.get("keep_intermediates", False), "keep_intermediates"
 )
 
-file_path = snakemake.output[0] # probably extra pass to remove file name to stay only the path
+file_path = os.path.dirname(snakemake.output[0]) # probably extra pass to remove file name to stay only the path
 if file_path is not None:
-    expected_path =           #complete this!!!
-    if os.path.abspath(file_path) != os.path.abspath(expected_contigs):
+    if file_path != output_dir:
         raise ValueError(
             "Ambiguous outputs: `output` files must point to "
             f"`output.dir` which is `{output_dir}`. "
