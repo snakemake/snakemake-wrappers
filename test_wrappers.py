@@ -1564,7 +1564,9 @@ def test_bcftools_filter(run):
 def test_bcftools_fixploidy(run):
     run(
         "bio/bcftools/fixploidy",
-        ["snakemake", "--cores", "3", "a.fixed.bcf"],
+        ["snakemake", "a.fixed.bcf"],
+        cores=3,
+    )
 
 
 def test_bcftools_sort(run):
