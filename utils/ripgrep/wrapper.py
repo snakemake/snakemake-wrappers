@@ -33,7 +33,7 @@ if str(outfile).endswith(".json"):
 
 compression_fmts = (".gz", ".lzma", ".bz2", ".xz", ".lz4", ".zst")
 if any(str(i).endswith(compression_fmts) for i in snakemake.input):
-    extra += f" --search-zip"
+    extra += " --search-zip"
 
 input_target = snakemake.input.get("target", "")
 
