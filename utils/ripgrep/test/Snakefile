@@ -7,14 +7,15 @@ rule test_ripgrep_plain_text:
         target="data.txt",
     output:
         "test_ripgrep_plain_text.txt",
-    threads: 1
     log:
-        "test_ripgrep_plain_text.log"
+        "test_ripgrep_plain_text.log",
+    threads: 1
     params:
         pattern="hello",
         extra="",
     wrapper:
         "master/utils/ripgrep"
+
 
 rule test_ripgrep_pattern_file:
     input:
@@ -24,9 +25,9 @@ rule test_ripgrep_pattern_file:
         pattern="pattern.txt",
     output:
         "test_ripgrep_pattern_file.txt",
-    threads: 1
     log:
         "test_ripgrep_pattern_file.log",
+    threads: 1
     params:
         # Optional pattern can be provided alongside with pattern file
         # pattern="",
@@ -35,6 +36,7 @@ rule test_ripgrep_pattern_file:
         extra="",
     wrapper:
         "master/utils/ripgrep"
+
 
 rule test_ripgrep_compressed_input:
     input:
@@ -45,14 +47,15 @@ rule test_ripgrep_compressed_input:
         target="data.txt.gz",
     output:
         "test_ripgrep_compressed_input.txt",
-    threads: 1
     log:
-        "test_ripgrep_compressed_input.log"
+        "test_ripgrep_compressed_input.log",
+    threads: 1
     params:
         pattern="hello",
         extra="",
     wrapper:
         "master/utils/ripgrep"
+
 
 rule test_ripgrep_search_in_directory:
     input:
@@ -63,13 +66,11 @@ rule test_ripgrep_search_in_directory:
         ignore=".ignore",
     output:
         "test_ripgrep_search_in_directory.txt",
-    threads: 1
     log:
         "test_ripgrep_search_in_directory.log",
+    threads: 1
     params:
         pattern="hello",
         extra="",
     wrapper:
         "master/utils/ripgrep"
-
-

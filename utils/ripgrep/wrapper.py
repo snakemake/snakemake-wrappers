@@ -25,13 +25,12 @@ if ignore:
     extra += f" --ignore-file='{ignore}'"
 
 if any(
-    str(i).endswith((".gz", ".lzma", ".bz2", ".xz", ".lz4")) 
-    for i in snakemake.input
+    str(i).endswith((".gz", ".lzma", ".bz2", ".xz", ".lz4")) for i in snakemake.input
 ):
     extra += f" --search-zip"
 
 input_target = snakemake.input.get("target", "")
-    
+
 
 shell(
     "rg {extra} --threads {snakemake.threads} "
