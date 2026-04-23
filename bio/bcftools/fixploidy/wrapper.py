@@ -11,4 +11,4 @@ bcftools_opts = get_bcftools_opts(snakemake, parse_ref=False, parse_memory=False
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-shell("bcftools plugin fixploidy {bcftools_opts} {extra} {snakemake.input[0]} {log}")
+shell("bcftools plugin fixploidy {bcftools_opts} {snakemake.input[0]} -- {extra} {log}")
