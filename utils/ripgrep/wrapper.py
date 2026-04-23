@@ -10,7 +10,7 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
-log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+log = snakemake.log_fmt_shell(stdout=False, stderr=True, append=True)
 
 pattern_file = snakemake.input.get("pattern")
 if pattern_file:
@@ -38,7 +38,11 @@ if any(str(i).endswith(compression_fmts) for i in snakemake.input):
 input_target = snakemake.input.get("target", "")
 
 
+# rg returns status 1 for "no matches", so this currently fails the Snakemake job
+# instead of producing a valid empty result file. Below, we handle  status 1 as
+# success while preserving real errors (status 2 and above).
 shell(
     "rg {extra} --threads {snakemake.threads} "
-    "{input_target} > {snakemake.output[0]:q} {log}"
+    "{input_target} > {snakemake.output[0]:q} {log} "
+    "|| if [ $? -eq 1 ]; then echo 'No match' {log}; else exit $?; fi "
 )
