@@ -14,3 +14,5 @@ output:
 params:
   - pattern: Optional pattern to search in files and/or directories.
   - extra: Optional command line arguments besides `--json`, `--file`, `--search-zip`, `--threads`
+notes: |
+  See patterns examples at: https://github.com/BurntSushi/ripgrep#quick-examples-comparing-tools
