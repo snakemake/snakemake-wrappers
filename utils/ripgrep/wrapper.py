@@ -20,6 +20,9 @@ pattern = snakemake.params.get("pattern")
 if pattern:
     extra += f" --regexp='{pattern}'"
 
+if not (pattern or pattern_file):
+    raise ValueError("Either a `input.pattern` or `params.pattern` has to be provided")
+
 ignore = snakemake.input.get("ignore")
 if ignore:
     extra += f" --ignore-file='{ignore}'"
