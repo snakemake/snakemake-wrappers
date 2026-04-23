@@ -3466,6 +3466,25 @@ def test_cairosvg(run):
     run("utils/cairosvg", ["snakemake", "pca.pdf"])
 
 
+def test_ripgrep(run):
+    run(
+        "utils/ripgrep", 
+        [
+            "snakemake", 
+            "test_ripgrep_plain_text.txt",
+            "test_ripgrep_pattern_file.txt",
+            "test_ripgrep_compressed_input.txt",
+            "test_ripgrep_search_in_directory.txt",
+        ],
+        compare_results_with_expected={
+            "test_ripgrep_plain_text.txt": "expected/hello.txt",
+            "test_ripgrep_pattern_file.txt": "expected/hello.txt",
+            "test_ripgrep_compressed_input.txt": "expected/hello.txt",
+            "test_ripgrep_search_in_directory.txt": "expected/directory.txt",
+        },
+    )
+
+
 def test_trinity(run):
     run(
         "bio/trinity",

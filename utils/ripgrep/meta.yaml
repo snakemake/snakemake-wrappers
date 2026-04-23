@@ -1,0 +1,16 @@
+name: ripgrep
+description: |
+  `ripgrep` is a line-oriented search tool that recursively searches the 
+  current directory for a regex pattern. Faster than GNU grep.
+url: https://github.com/BurntSushi/ripgrep
+authors:
+  - Thibault Dayris
+input:
+  - target: Optional list of files and/or directories to process
+  - pattern: Optional path to pattern file
+  - ignore: Optional path to `.gitignore`-styled list of files to ignore
+output:
+  - Path to `ripgrep` result, depending on the command line
+params:
+  - pattern: Optional pattern to search in files and/or directories.
+  - extra: Optional command line arguments besides `--json`, `--file`, `--search-zip`, `--threads`
