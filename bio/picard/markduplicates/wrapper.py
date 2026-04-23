@@ -10,14 +10,12 @@ from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 from snakemake_wrapper_utils.samtools import get_samtools_opts, infer_out_format
 
-
 log = snakemake.log_fmt_shell()
 extra = snakemake.params.get("extra", "")
 # the --SORTING_COLLECTION_SIZE_RATIO default of 0.25 might
 # indicate a JVM memory overhead of that proportion
 java_opts = get_java_opts(snakemake, java_mem_overhead_factor=0.3)
-samtools_opts = get_samtools_opts(snakemake)
-
+samtools_opts = get_samtools_opts(snakemake, param_name="samtools_opts")
 
 tool = "MarkDuplicates"
 if snakemake.params.get("withmatecigar", False):

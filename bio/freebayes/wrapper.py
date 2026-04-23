@@ -8,7 +8,6 @@ from snakemake.shell import shell
 from tempfile import TemporaryDirectory
 from snakemake_wrapper_utils.bcftools import get_bcftools_opts
 
-
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")
 bcftools_sort_opts = get_bcftools_opts(
