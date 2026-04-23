@@ -3,10 +3,10 @@ rule test_bcftools_fixploidy:
         "a.bcf",
     output:
         "a.fixed.bcf",
+    log:
+        "test_bcftools_fixploidy.log",
     threads: 3
     params:
         extra="",
-    log:
-        "test_bcftools_fixploidy.log",
     wrapper:
         "master/bio/bcftools/fixploidy"
