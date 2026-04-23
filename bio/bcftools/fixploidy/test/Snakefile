@@ -1,0 +1,12 @@
+rule test_bcftools_fixploidy:
+    input:
+        "a.bcf",
+    output:
+        "a.fixed.bcf",
+    log:
+        "test_bcftools_fixploidy.log",
+    threads: 3
+    params:
+        extra="",
+    wrapper:
+        "master/bio/bcftools/fixploidy"
