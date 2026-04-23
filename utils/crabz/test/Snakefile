@@ -1,0 +1,26 @@
+rule test_crabz_file_compression:
+    input:
+        "hello.txt",
+    output:
+        "hello.txt.gz",
+    threads: 1
+    log:
+        "test_crabz_single_file_compression.log",
+    params:
+        extra="--compression-level 9 --format mgzip",
+    wrapper:
+        "master/utils/crabz"
+
+
+rule test_crabz_file_decompression:
+    input:
+        "hello.txt.gz",
+    output:
+        "hello.decompressed.txt",
+    threads: 1
+    log:
+        "test_crabz_single_file_decompression.log",
+    params:
+        extra="",
+    wrapper:
+        "master/utils/crabz"

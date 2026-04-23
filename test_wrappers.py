@@ -387,6 +387,20 @@ def test_jq(run):
     )
 
 
+def test_crabz(run):
+    run(
+        "utils/crabz",
+        [
+            "snakemake",
+            "hello.txt.gz",
+            "hello.decompressed.txt",
+        ],
+        compare_results_with_expected={
+            "hello.decompressed.txt": "hello.txt",
+        },
+    )
+
+
 def test_taxonkit(run):
     run(
         "bio/taxonkit",
