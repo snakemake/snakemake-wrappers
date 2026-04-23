@@ -1,0 +1,51 @@
+rule sequali_se:
+    input:
+        sample="reads/se/{sample}.fastq",
+    output:
+        json="report/se/{sample}.json",
+        html="report/se/{sample}.html",
+    log:
+        "logs/sequali/{sample}.log",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    params:
+        extra="",
+    wrapper:
+        "master/bio/sequali"
+
+
+rule sequali_se_adapter_file:
+    input:
+        sample="reads/se/{sample}.fastq",
+        adapter_file="adapters/custom_adapters.tsv",
+    output:
+        json="report/se/{sample}.adapter.json",
+        html="report/se/{sample}.adapter.html",
+    log:
+        "logs/sequali/{sample}.adapter.log",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    params:
+        extra="",
+    wrapper:
+        "master/bio/sequali"
+
+
+rule sequali_pe_images_zip:
+    input:
+        sample=["reads/pe/{sample}.f.fastq", "reads/pe/{sample}.r.fastq"],
+    output:
+        json="report/pe/{sample}.images.json",
+        html="report/pe/{sample}.images.html",
+        images_zip="report/pe/{sample}.zip",
+    log:
+        "logs/sequali/{sample}.log",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    params:
+        extra="",
+    wrapper:
+        "master/bio/sequali"
