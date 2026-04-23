@@ -12,6 +12,7 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
+
 def guess_compression_format(path: str) -> str:
     """Try to guess compression format among the formats available in crabz"""
     if path.endswith(".gz"):
@@ -22,12 +23,25 @@ def guess_compression_format(path: str) -> str:
         return " --format mgzip"
     elif path.endswith((".zz", ".Z")):
         return " --format zlib"
-    elif path.endswith((".snappy", ".snap")):
+    elif path.endswith(".deflat"):
+        return " --format dflat"
+    elif path.endswith((".snappy", ".snap", ".sz")):
         return " --format snap"
     return ""
 
 
-compression_formats = (".gz", ".bgz", "mgz", "zz", "deflat", "snappy", "sz")
+compression_formats = (
+    ".gz",
+    ".bgz",
+    ".bz",
+    ".mgz",
+    ".zz",
+    ".Z",
+    ".deflat",
+    ".snappy",
+    "sz",
+    ".snap",
+)
 infile = str(snakemake.input)
 if infile.endswith(compression_formats):
     extra += " --decompress"
