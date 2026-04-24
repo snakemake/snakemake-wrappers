@@ -7,18 +7,17 @@ from snakemake.shell import shell
 import os
 import shutil
 
+# Read and validate top-level wrapper parameters.
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
 if "--polish-target" in extra:
-    raise ValueError(
-        "Flye `--polish-target` mode is not supported by this wrapper. "
-    )
+    raise ValueError("Flye `--polish-target` mode is not supported by this wrapper. ")
 
-output_dir = snakemake.params.get("dir", None)
-if output_dir is None:
+out_dir = snakemake.params.get("out_dir")
+if out_dir is None:
     raise ValueError(
-        "Missing required param `dir`. " \
+        "Missing required param `params.out_dir`. "
         "Flye assembly mode requires a dedicated output directory."
     )
 
@@ -42,17 +41,18 @@ keep_intermediates = parse_bool_param(
     snakemake.params.get("keep_intermediates", False), "keep_intermediates"
 )
 
-file_path = os.path.dirname(snakemake.output[0]) # probably extra pass to remove file name to stay only the path
-if file_path is not None:
-    if file_path != output_dir:
-        raise ValueError(
-            "Ambiguous outputs: `output` files must point to "
-            f"`output.dir` which is `{output_dir}`. "
-            f"Got `{file_path}`."
-        )
+# Validate output directory consistency.
+files_dir = {os.path.dirname(path) for path in snakemake.output}
+if files_dir != {out_dir}:
+    raise ValueError(
+        "Ambiguous outputs: all `output` files must point to "
+        f"`params.out_dir` which is `{out_dir}`. "
+        f"Got output directories: {sorted(files_dir)}."
+    )
 
 input_arg = ""
 
+# Build Flye input argument from sequence type and reads.
 seq_types = {
     "nano-raw": "--nano-raw",
     "nano-corr": "--nano-corr",
@@ -73,7 +73,8 @@ if param_seq_type in seq_types:
     input_arg += f" {seq_types[param_seq_type]}"
 else:
     raise ValueError(
-        f"Invalid seq_type: {param_seq_type}. Must be one of: {', '.join(seq_types.keys())}"
+        f"Invalid seq_type: {param_seq_type}."
+        f"Must be one of: {', '.join(seq_types.keys())}"
     )
 
 reads = snakemake.input[0]
@@ -85,19 +86,20 @@ if isinstance(reads, list):
 
 input_arg += f" {reads}"
 
+# Run Flye assembly.
 try:
     shell(
         "flye"
         " --threads {snakemake.threads}"
         " {extra}"
         " {input_arg}"
-        " -o {output_dir}"
+        " -o {out_dir}"
         " {log}"
     )
 except Exception:
-    # Do not clean intermediates on failure.
     raise
 
+# Remove intermediate directories unless requested otherwise.
 if not keep_intermediates:
     for dirname in [
         "00-assembly",
@@ -106,6 +108,6 @@ if not keep_intermediates:
         "30-contigger",
         "40-polishing",
     ]:
-        path = os.path.join(output_dir, dirname)
+        path = os.path.join(out_dir, dirname)
         if os.path.isdir(path):
             shutil.rmtree(path)
