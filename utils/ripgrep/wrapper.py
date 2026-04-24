@@ -42,7 +42,7 @@ input_target = snakemake.input.get("target", "")
 # instead of producing a valid empty result file. Below, we handle  status 1 as
 # success while preserving real errors (status 2 and above).
 shell(
-    "rg {extra} --threads {snakemake.threads} "
+    "rg --threads {snakemake.threads} {extra} "
     "{input_target} > {snakemake.output[0]:q} {log} "
     "|| if [ $? -eq 1 ]; then echo 'No match' {log}; else exit $?; fi "
 )
