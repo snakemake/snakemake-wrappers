@@ -3589,10 +3589,10 @@ def test_gseapy_gsea(run):
         "bio/gseapy/gsea",
         [
             "snakemake",
-            "KEGG_2016",
-            "gsea.results.csv",
-            "ssgsea.results.csv",
-            "prerank_results_dir",
+            "out/enrichr/KEGG_2016",
+            "out/gsea/results.csv",
+            "out/ssgsea/results.csv",
+            "out/prerank/results.csv",
         ],
     )
 
