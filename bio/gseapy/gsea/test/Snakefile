@@ -4,13 +4,13 @@ rule test_gseapy_enrichr:
         # gmt="", Optional path to a GMT file
     output:
         enrichr_dir=directory("out/enrichr/EGG_2016"),
+    log:
+        wrapper="logs/enrichr.wrapper.log",
+        gseapy="logs/enrichr.log",
     threads: 1
     params:
         extra={"cutoff": 1},
         gene_sets=["KEGG_2016"],  # Optional list of gene sets available on biomart
-    log:
-        wrapper="logs/enrichr.wrapper.log",
-        gseapy="logs/enrichr.log",
     wrapper:
         "master/bio/gseapy/gsea"
 
@@ -23,15 +23,15 @@ rule test_gseapy_gsea:
     output:
         gmt="out/gsea/gene_sets.gmt",
         csv="out/gsea/results.csv",
+    log:
+        wrapper="logs/gsea.wrapper.log",
+        gseapy="logs/gsea.log",
     threads: 1
     params:
         extra={
             "min_size": 1,
         },
         # gene_sets = [""] # Optional list of gene sets available on biomart
-    log:
-        wrapper="logs/gsea.wrapper.log",
-        gseapy="logs/gsea.log",
     wrapper:
         "master/bio/gseapy/gsea"
 
@@ -43,15 +43,15 @@ rule test_gseapy_ssgsea:
     output:
         gmt="out/ssgsea/gene_sets.gmt",
         csv="out/ssgsea/results.csv",
+    log:
+        wrapper="logs/ssgsea.wrapper.log",
+        gseapy="logs/ssgsea.log",
     threads: 1
     params:
         extra={
             "min_size": 1,
         },
         # gene_sets = [""] # Optional list of gene sets available on biomart
-    log:
-        wrapper="logs/ssgsea.wrapper.log",
-        gseapy="logs/ssgsea.log",
     wrapper:
         "master/bio/gseapy/gsea"
 
@@ -64,14 +64,14 @@ rule test_gseapy_prerank:
         gmt="out/prerank/gene_sets.gmt",
         csv="out/prerank/results.csv",
         prerank=directory("out/prerank/results_dir"),
+    log:
+        wrapper="logs/prerank.wrapper.log",
+        gseapy="logs/prerank.log",
     threads: 1
     params:
         extra={
             "min_size": 1,
         },
         # gene_sets = [""] # Optional list of gene sets available on biomart
-    log:
-        wrapper="logs/prerank.wrapper.log",
-        gseapy="logs/prerank.log",
     wrapper:
         "master/bio/gseapy/gsea"
