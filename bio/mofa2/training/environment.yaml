@@ -5,4 +5,4 @@ channels:
 dependencies:
   - bioconductor-mofa2 =1.20.2
   - r-arrow =24.0.0
-  - mofapy2 =0.7.3
+  - mofapy2 =0.7.4
