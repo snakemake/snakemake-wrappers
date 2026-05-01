@@ -3,7 +3,7 @@ rule test_gseapy_enrichr:
         gene_list="genes_list.txt",
         # gmt="", Optional path to a GMT file
     output:
-        enrichr_dir=directory("out/enrichr/EGG_2016"),
+        enrichr_dir=directory("out/enrichr/KEGG_2016"),
     log:
         wrapper="logs/enrichr.wrapper.log",
         gseapy="logs/enrichr.log",
