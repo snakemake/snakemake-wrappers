@@ -39,7 +39,8 @@ def extract_files(
         raise ValueError("Requested output files must not contain duplicates.")
 
     output_mapping = {
-        file: Path(output_file) for file, output_file in zip(internal_paths, output_files)
+        file: Path(output_file)
+        for file, output_file in zip(internal_paths, output_files)
     }
 
     requested = set(output_mapping)
@@ -86,12 +87,13 @@ def extract_files(
 def main():
     """Main snakemake process."""
     sys.stderr = open(snakemake.log[0], "w", buffering=1)
-    
+
     extract_files(
         archive_file=snakemake.input.archive,
         internal_paths=_listify(snakemake.params.internal_paths),
-        output_files=_listify(snakemake.output)
-
+        output_files=_listify(snakemake.output),
     )
+
+
 if __name__ == "__main__":
     main()

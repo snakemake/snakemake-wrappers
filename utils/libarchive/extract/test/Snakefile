@@ -25,6 +25,6 @@ rule extract_multiple_files:
     message:
         "Extracting multiple files from a zip archive."
     log:
-        "logs/libarchive/extract/extract_single_file.log"
+        "logs/libarchive/extract/extract_multiple_files.log"
     wrapper:
         "master/utils/libarchive/extract"
