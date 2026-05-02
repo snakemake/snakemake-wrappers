@@ -1,0 +1,6 @@
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - libarchive =3.8.7
+  - python-libarchive-c =5.3

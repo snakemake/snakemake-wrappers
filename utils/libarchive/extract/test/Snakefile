@@ -1,0 +1,30 @@
+rule extract_single_file:
+    input:
+        archive="test.7z"
+    output:
+        "results/7z/a.txt",
+    params:
+        internal_paths="textfile_a.txt",
+    threads: 1
+    message:
+        "Extracting single file from a 7zip archive."
+    log:
+        "logs/libarchive/extract/extract_single_file.log"
+    wrapper:
+        "master/utils/libarchive/extract"
+
+
+rule extract_multiple_files:
+    input:
+        archive="test.zip"
+    output:
+        ["results/zip/a.txt", "results/zip/b.txt"],
+    params:
+        internal_paths=["textfile_a.txt", "subfolder/textfile_b.txt"],
+    threads: 1
+    message:
+        "Extracting multiple files from a zip archive."
+    log:
+        "logs/libarchive/extract/extract_single_file.log"
+    wrapper:
+        "master/utils/libarchive/extract"
