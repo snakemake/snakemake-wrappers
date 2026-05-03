@@ -42,7 +42,7 @@ def compress(
     archive_path: Path | str,
     input_files: list[Path | str],
     format_name: str,
-    filter_name: str,
+    filter_name: str | None = None,
     internal_paths: list[str] | None = None,
     **kwargs,
 ) -> None:
@@ -52,10 +52,9 @@ def compress(
         archive_path: Path where the archive should be created.
         input_files: Files to add to the archive.
         format_name: libarchive format name ("zip", "pax", "7zip", "gnutar", "ustar", etc).
-        filter_name: libarchive compression filter name ("gzip", "xz", "zstd", etc).
+        filter_name: Optional libarchive compression filter name ("gzip", "xz", "zstd", etc).
         internal_paths: Optional archive-internal paths for the input files.
             If provided, must have the same length as input_files.
-
     """
     archive_path = Path(archive_path)
     input_files = [Path(path) for path in input_files]
@@ -76,9 +75,7 @@ def compress(
             **kwargs,
         ) as archive:
             created = True
-            for input_path, archive_name in zip(
-                input_files, internal_paths, strict=True
-            ):
+            for input_path, archive_name in zip(input_files, internal_paths):
                 _validate_input_file(input_path)
                 _validate_internal_path(archive_name)
                 archive.add_file(

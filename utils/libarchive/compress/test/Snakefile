@@ -4,7 +4,7 @@ rule compress_single_file_to_7zip:
     output:
         archive="results/compressed.7z",
     log:
-        "logs/libarchive/extract/compress_single_file_to_7zip.log",
+        "logs/libarchive/compress/compress_single_file_to_7zip.log",
     threads: 1
     params:
         format_name="7zip",
@@ -21,7 +21,7 @@ rule compress_multiple_files_to_tar_gz:
     output:
         archive="results/compressed.tar.gz",
     log:
-        "logs/libarchive/extract/compress_multiple_files_to_tar_gz.log",
+        "logs/libarchive/compress/compress_multiple_files_to_tar_gz.log",
     threads: 1
     params:
         internal_paths=["text/textfile_a.txt", "markdown/markdown_b.md"],

@@ -21,7 +21,7 @@ def _listify(x: str | list) -> list:
 
 
 def extract(
-    archive_file: Path | str,
+    archive_file: str,
     internal_paths: list[str],
     output_files: list[str],
 ) -> None:
