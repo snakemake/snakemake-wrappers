@@ -26,7 +26,7 @@ rule compress_multiple_files_to_tar_gz:
     params:
         internal_paths=["text/textfile_a.txt", "markdown/markdown_b.md"],
         format_name="pax",
-        filter_name="gzip"
+        filter_name="gzip",
     message:
         "Compressing multiple files into a tar.gz archive."
     wrapper:
