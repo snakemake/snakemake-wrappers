@@ -1,6 +1,6 @@
-"""Unzip wrapper.
+"""libarchive wrapper.
 
-Emulates the `unzip` command across platforms.
+Enables archive decompression for various formats (zip, 7zip, tar, etc) across platforms.
 """
 
 __author__ = "Ivan Ruiz Manuel"
@@ -20,7 +20,7 @@ def _listify(x: str | list) -> list:
     return x
 
 
-def extract_files(
+def extract(
     archive_file: Path | str,
     internal_paths: list[str],
     output_files: list[str],
@@ -88,7 +88,7 @@ def main():
     """Main snakemake process."""
     sys.stderr = open(snakemake.log[0], "w", buffering=1)
 
-    extract_files(
+    extract(
         archive_file=snakemake.input.archive,
         internal_paths=_listify(snakemake.params.internal_paths),
         output_files=_listify(snakemake.output),

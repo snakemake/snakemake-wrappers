@@ -5332,3 +5332,13 @@ def test_libarchive_extract(run):
             "results/zip/b.txt"
         ],
     )
+
+def test_libarchive_compress(run):
+    run(
+        "utils/libarchive/compress",
+        [
+            "snakemake",
+            "results/compressed.7z",
+            "results/compressed.tar.gz"
+        ],
+    )

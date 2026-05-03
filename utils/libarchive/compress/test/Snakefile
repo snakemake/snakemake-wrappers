@@ -1,0 +1,33 @@
+rule compress_single_file_to_7zip:
+    input:
+        "a.txt",
+    output:
+        archive="results/compressed.7z",
+    log:
+        "logs/libarchive/extract/compress_single_file_to_7zip.log",
+    threads: 1
+    params:
+        format_name="7zip",
+    message:
+        "Compress single file into a 7zip archive."
+    wrapper:
+        "master/utils/libarchive/compress"
+
+
+rule compress_multiple_files_to_tar_gz:
+    input:
+        "a.txt",
+        "b.md",
+    output:
+        archive="results/compressed.tar.gz",
+    log:
+        "logs/libarchive/extract/compress_multiple_files_to_tar_gz.log",
+    threads: 1
+    params:
+        internal_paths=["text/textfile_a.txt", "markdown/markdown_b.md"],
+        format_name="pax",
+        filter_name="gzip"
+    message:
+        "Compressing multiple files into a tar.gz archive."
+    wrapper:
+        "master/utils/libarchive/compress"
