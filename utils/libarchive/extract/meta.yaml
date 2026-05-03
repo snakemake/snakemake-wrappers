@@ -1,0 +1,13 @@
+name: libarchive - extract
+url: https://github.com/libarchive/libarchive
+description: A simple tool to extract files from compressed archives (.zip, .7zip, .tar, etc).
+authors:
+  - Ivan Ruiz Manuel
+input:
+  - archive: Location of the compressed archive (.zip, .7zip, .tar, etc.).
+output:
+  - Paths of the extracted files.
+params:
+  - internal_paths: >
+      Path of the output files within the archive.
+      Order and length must match that of the output files.
