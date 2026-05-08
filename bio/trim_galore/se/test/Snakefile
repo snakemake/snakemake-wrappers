@@ -17,11 +17,11 @@ rule trim_galore_se_uncompressed:
         "reads/{sample}.fastq",
     output:
         fasta="trimmed/{sample}_trimmed.fastq",
-        report="trimmed/report/{sample}.fastq_trimming_report.txt",
+        report="trimmed/report/{sample}.fastq_trimming_uncomp_report.txt",
     params:
         extra="--illumina -q 20",
     threads: 1
     log:
-        "logs/trim_galore/{sample}.log",
+        "logs/trim_galore/{sample}.uncomp.log",
     wrapper:
         "master/bio/trim_galore/se"
