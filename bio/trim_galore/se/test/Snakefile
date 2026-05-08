@@ -6,6 +6,7 @@ rule trim_galore_se:
         report="trimmed/report/{sample}.fastq.gz_trimming_report.txt",
     log:
         "logs/trim_galore/{sample}.log",
+    threads: 1
     params:
         extra="--illumina -q 20",
     wrapper:
@@ -20,8 +21,8 @@ rule trim_galore_se_uncompressed:
         report="trimmed/report/{sample}.fastq_trimming_uncomp_report.txt",
     log:
         "logs/trim_galore/{sample}.uncomp.log",
+    threads: 1
     params:
         extra="--illumina -q 20",
-    threads: 1
     wrapper:
         "master/bio/trim_galore/se"
