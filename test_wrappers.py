@@ -3391,7 +3391,7 @@ def test_trim_galore_pe(run):
         "bio/trim_galore/pe",
         [
             "snakemake",
-            "trimmed/a_R1.fq.gz",
+            "trimmed/a_R2.fq.gz",
             "trimmed/a_R2.fastq",
         ],
     )
