@@ -39,7 +39,7 @@ if not path.exists(dictionary):
 
 shell(
     "(gridss -s preprocess "  # Tool
-    "--reference {reference} "  # Reference
+    "--reference {snakemake.input.reference} "  # Reference
     "--threads {snakemake.threads} "
     "--workingdir {snakemake.params.workingdir} "
     "{snakemake.input.bam} "
