@@ -89,7 +89,7 @@ def main():
     sys.stderr = open(snakemake.log[0], "w", buffering=1)
 
     extract(
-        archive_file=snakemake.input.archive,
+        archive_file=snakemake.input[0],
         internal_paths=_listify(snakemake.params.internal_paths),
         output_files=_listify(snakemake.output),
     )

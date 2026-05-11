@@ -4,7 +4,7 @@ description: A simple tool to extract files from compressed archives (.zip, .7zi
 authors:
   - Ivan Ruiz Manuel
 input:
-  - archive: Location of the compressed archive (.zip, .7zip, .tar, etc.).
+  - Location of the compressed archive (.zip, .7zip, .tar, etc.).
 output:
   - Paths of the extracted files.
 params:

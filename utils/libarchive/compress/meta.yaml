@@ -6,7 +6,7 @@ authors:
 input:
   - Paths of the files to compress.
 output:
-  - archive: Location of the compressed archive (.zip, .7zip, .tar, etc.).
+  - Location of the compressed archive (.zip, .7zip, .tar, etc.).
 params:
   - format_name: >
       Compression format (e.g., "7zip", "pax", "zip").

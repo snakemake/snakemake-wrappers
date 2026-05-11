@@ -93,7 +93,7 @@ def main():
     sys.stderr = open(snakemake.log[0], "w", buffering=1)
 
     compress(
-        archive_path=snakemake.output.archive,
+        archive_path=snakemake.output[0],
         input_files=_listify(snakemake.input),
         format_name=snakemake.params.format_name,
         filter_name=snakemake.params.get("filter_name", None),
