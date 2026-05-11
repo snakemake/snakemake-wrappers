@@ -9,9 +9,11 @@ __email__ = "i.ruizmanuel@tudelft.nl"
 __license__ = "MIT"
 
 import sys
-from pathlib import Path, PurePosixPath
+from pathlib import Path
+import re
 
 import libarchive
+_WINDOWS_DRIVE_RE = re.compile(r"^[A-Za-z]:")
 
 
 def _listify(x: str | list | None) -> list | None:
@@ -27,14 +29,22 @@ def _validate_input_file(path: Path) -> None:
 
 
 def _validate_internal_path(path: str) -> None:
-    """Reject archive paths that would be unsafe or ambiguous."""
-    parsed = PurePosixPath(path)
+    """Reject archive paths that would be unsafe or ambiguous.
+    
+    Valid paths are exclusively relative POSIX-style paths such as:
+    - "foo.txt"
+    - "dir/foo.txt"
+    """
     if (
         not path
+        or path.startswith("/")
         or path.endswith("/")
-        or parsed.is_absolute()
-        or any(part in {"", ".", ".."} for part in parsed.parts)
+        or "\\" in path
+        or _WINDOWS_DRIVE_RE.match(path)
     ):
+        raise ValueError(f"Internal path {path!r} is invalid.")
+    parts = path.split("/")
+    if any(part in {"", ".", ".."} for part in parts):
         raise ValueError(f"Internal path {path!r} is invalid.")
 
 
