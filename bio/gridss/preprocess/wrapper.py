@@ -16,26 +16,19 @@ extra = snakemake.params.get("extra", "")
 
 # Check inputs/arguments.
 reference = snakemake.input.get("reference")
-dictionary = snakemake.input.get("dictionary")
 if not snakemake.params.workingdir:
     raise ValueError("Please set params.workingdir to provide a working directory.")
 
 if not snakemake.input.reference:
     raise ValueError("Please set input.reference to provide reference genome.")
 
-for ending in (".amb", ".ann", ".bwt", ".pac", ".sa"):
+for ending in (".amb", ".ann", ".bwt", ".pac", ".sa", ".dict"):
     if not path.exists("{}{}".format(reference, ending)):
         raise ValueError(
             "{reference}{ending} missing. Please make sure the reference was properly indexed by bwa.".format(
                 reference=reference, ending=ending
             )
         )
-
-# dictionary = path.splitext(reference)[0] + ".dict" --> leads to incorrect paths (reference.dict), which is incompatible with setup reference (reference.fa.dict)
-if not path.exists(dictionary):
-    raise ValueError(
-        f"{dictionary} missing or wrong naming (reference.fa.dict). Please make sure the reference dictionary was properly created. This can be accomplished for example by CreateSequenceDictionary.jar from Picard."
-    )
 
 shell(
     "(gridss -s preprocess "  # Tool
