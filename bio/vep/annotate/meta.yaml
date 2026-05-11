@@ -1,5 +1,44 @@
 name: vep annotate
-description: Annotate variant calls with VEP.
+url: https://www.ensembl.org/info/docs/tools/vep/index.html
+description: Annotate variant calls with Ensemble's Variant Effect Predictor (VEP).
 authors:
   - Johannes Köster
   - Felix Mölder
+  - Michael Jahn
+input:
+  - calls: Variant calls in .vcf, .vcf.gz or .bcf format.
+  - cache: Path to cache dir. Can be output from the wrapper VEP / cache.
+  - plugins: Path to plugins dir. Can be output from the wrapper VEP / plugins.
+  - gff: Genome features in GFF format (optional). See notes for details on how to prepare.
+  - csi: Tabix index file for the GFF (optional). See notes for details on how to prepare.
+  - fasta: Genome sequence in fasta format (optional).
+  - fai: Fasta file index (optional).
+  - <plugin>: Aux-files required by some plugins (optional).
+output:
+  - calls: Annotated variant calls in .vcf, .vcf.gz or .bcf format.
+  - stats: HTML file with stats that can be interpreted by e.g. MultiQC.
+params:
+  - plugins: Optional list of plugins to use, see https://www.ensembl.org/info/docs/tools/vep/script/vep_plugins.html
+  - extra: additional program arguments.
+notes: |
+  * In order ro predict variant effects, VEP makes use of variant data bases supplied with the `cache` argument.
+  * Alternatively, genome annotation can be supplied as GFF and Fasta files.
+  * In that case, VEP *does not accept* plain GFF files as e.g. obtained from NCBI.
+    GFF files need to be sorted, gzipped, and indexed as documented on the [VEP homepage](https://www.ensembl.org/info/docs/tools/vep/script/vep_cache.html#gff).
+    It is recommended to add a rule preparing the GFF similar to this:
+    ```
+    rule vep_prepare:
+        input:
+            gff="genome.gff",
+        output:
+            gff="genome.gff.gz",
+            index="genome.gff.gz.tbi",
+        conda:
+            "../envs/vep.yml" # env with htslib
+        log:
+            "tabix.log",
+        threads: 1
+        shell:
+            "grep -v '#' {input.gff} | sort -k1,1 -k4,4n -k5,5n -t$'\t' | bgzip -c > {output.gff};"
+            "tabix -p gff {output.gff}"
+    ```

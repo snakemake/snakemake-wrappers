@@ -1,0 +1,4 @@
+pathvars:
+  genome_sequence: genome.fasta
+  reads_r1: reads/{sample}.1.fastq
+  reads_r2: reads/{sample}.2.fastq

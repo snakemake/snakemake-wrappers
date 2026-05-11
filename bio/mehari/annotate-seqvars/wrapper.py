@@ -40,12 +40,12 @@ else:
 
 shell(
     "(mehari annotate seqvars "
-    "--path-input-vcf {snakemake.input.calls:q} "
+    "--input {snakemake.input.calls:q} "
     "{transcript_db} "
     "{clinvar_db} "
     "{frequency_db} "
     "{ref} "
     "{extra} "
-    "--path-output-vcf {snakemake.output.calls:q} "
+    "--output {snakemake.output.calls:q} "
     ") {log}"
 )

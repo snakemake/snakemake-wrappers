@@ -1,0 +1,10 @@
+##fileformat=VCFv4.2
+##fileDate=20250909
+##source=tskit 0.4.1
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FILTER=<ID=PASS,Description="All filters passed">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	ind1	NORMAL
+ref1	2	.	0	1	.	PASS		GT:AD:DP	0|0:.:.	.:.:.
+ref1	4	.	0	1	.	PASS		GT:AD:DP	0|1:.:.	.:.:.
+ref1	5	.	0	1	.	PASS		GT:AD:DP	1|0:.:.	.:.:.
+ref1	6	.	0	1	.	PASS		GT:AD:DP	1|1:.:.	.:.:.

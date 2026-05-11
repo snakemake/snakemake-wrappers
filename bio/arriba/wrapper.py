@@ -23,6 +23,7 @@ build = snakemake.params.get("genome_build", None)
 blacklist_input = snakemake.input.get("custom_blacklist")
 default_blacklist = snakemake.params.get("default_blacklist", False)
 
+known_fusions_input = snakemake.input.get("custom_known_fusions")
 default_known_fusions = snakemake.params.get("default_known_fusions", False)
 
 if default_blacklist or default_known_fusions:
@@ -50,10 +51,12 @@ elif not blacklist_input and not default_blacklist:
     blacklist_cmd = "-f blacklist"
 else:
     raise ValueError(
-        "custom_blacklist input file and default_blacklist parameter option defined. Please set only one of both."
+        "A custom_blacklist input file is given and the default_blacklist parameter is set to 'True'. Please set only one of both."
     )
 
-if default_known_fusions:
+if known_fusions_input and not default_known_fusions:
+    known_cmd = "-k " + known_fusions_input
+elif not known_fusions_input and default_known_fusions:
     fusions_dict = {
         "GRCh37": f"known_fusions_hg19_hs37d5_GRCh37_v{arriba_vers}.tsv.gz",
         "GRCh38": f"known_fusions_hg38_GRCh38_v{arriba_vers}.tsv.gz",
@@ -62,12 +65,16 @@ if default_known_fusions:
     }
     known_fusions_path = os.path.join(database_dir, fusions_dict[build])
     known_cmd = "-k " + known_fusions_path
+elif not known_fusions_input and not default_known_fusions:
+    known_cmd = "-f known_fusions"
 else:
-    known_cmd = ""
+    raise ValueError(
+        "A custom_known_fusions input file is given and the default_known_fusions parameter is set to 'True'. Please set only one of both."
+    )
 
-sv_file = snakemake.params.get("sv_file")
-if sv_file:
-    sv_cmd = "-d " + sv_file
+sv_file_input = snakemake.input.get("sv_file")
+if sv_file_input:
+    sv_cmd = "-d " + sv_file_input
 else:
     sv_cmd = ""
 

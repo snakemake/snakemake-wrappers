@@ -1,0 +1,14 @@
+name: falco
+description: |
+  Generate fastq qc statistics using falco.
+url: https://github.com/smithlabcode/falco
+authors:
+  - Yoann Pradat
+input:
+  - fastq file
+output:
+  - html: statistics file in HTML format
+  - data: statistics file in TXT format
+  - summ: summary file in TXT format
+params:
+  - extra: additional program arguments

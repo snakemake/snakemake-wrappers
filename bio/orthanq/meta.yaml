@@ -1,0 +1,36 @@
+name: orthanq
+description: |
+  Orthanq is a tool for haplotype quantification in both viral and HLA contexts.
+  This wrapper supports all three main subcommands (`candidates`, `preprocess`, and `call`) for both `hla` and `virus` use cases.
+  - `candidates`: Generates candidate variants for quantification.
+  - `preprocess`: Preprocesses raw reads into BCF.
+  - `call`: Quantifies haplotypes using a Bayesian model.
+url: https://github.com/orthanq/orthanq
+authors:
+  - Hamdiye Uzuner
+license: MIT
+
+inputs:
+  - genome: Reference genome in FASTA format (required for all commands except `call virus`)
+  - reads: Raw reads in FASTQ format (used in `preprocess`)
+  - haplotype_variants: Candidate variants VCF/BCF from `orthanq candidates` (used in `preprocess` and `call`)
+  - haplotype_calls: BCF file from `orthanq preprocess` (used in `call`)
+  - xml: XML data required for HLA commands (`candidates hla`, `call hla`)
+  - alleles: Allele file required for `candidates hla`
+  - lineages: FASTA of lineage sequences for `candidates virus`
+  - vg_index: Prebuilt VG index, used only in `preprocess hla`
+
+outputs:
+  - Quantified haplotypes the output folder (from `call`)
+  - Preprocessed BCF file (from `preprocess`)
+  - Candidate variants in VCF or BCF format (from `candidates`)
+
+params:
+  - command: One of `candidates`, `preprocess`, or `call`
+  - subcommand: One of `hla` or `virus`
+  - prior: Prior model used in Bayesian quantification (`uniform` or `diploid`) - required for `call`
+  - extra: Optional extra parameters passed to the orthanq command (e.g. --sample-name used in `call hla` for multi-sample VCFs)
+
+notes: |
+  - Follow preparation steps at https://orthanq.github.io/docs/usage.html#preparation to download necessary resources for HLA typing.
+  - The `wrapper.py` dynamically constructs the correct CLI command based on `command` and `subcommand`.

@@ -1,0 +1,16 @@
+name: "jasminesv"
+description: "Software for merging structural variants between individuals"
+url: https://github.com/mkirsche/Jasmine
+authors:
+  - Till Hartmann
+input:
+  vcfs: List of VCF files to merge.
+  bams: (optional) List of BAM files, corresonding to the VCF files (same order).
+  fasta: (optional) Path to the reference genome being used. Required if `--dup_to_ins` or `--run_iris` is passed in params.extra.
+  chr_norm_file: (optional) Path to a file containing chromosome name mappings, if they are being normalized.
+output:
+  vcf: The merged VCF file.
+  out_dir: The directory where intermediate files go.
+params:
+  sample_dists: (optional) List of distance thresholds for each sample.
+  extra: (optional) Additional params to pass to `jasmine`. See user manual for more information.

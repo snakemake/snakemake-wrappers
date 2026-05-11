@@ -1,0 +1,12 @@
+name: pbmarkdup
+description: Takes one or multiple sequencing chips of an amplified library as HiFi reads and marks or removes duplicates.
+url: https://github.com/PacificBiosciences/pbmarkdup
+authors:
+  - Patrik Smeds
+input:
+  - One or more BAM, FASTQ, FASTA (gzipped or plain), or FOFN input files
+output:
+  - dedup: Deduplicated reads file (BAM, FASTQ, or FASTA; format inferred from file extension)
+  - dup: Duplicated reads, can not be combined with extra `--rmdup` (optional)
+params:
+  - extra: Additional program arguments (not `--dup-file`). Use `--rmdup` to remove duplicates instead of marking, `--cross-library` for library-agnostic detection.

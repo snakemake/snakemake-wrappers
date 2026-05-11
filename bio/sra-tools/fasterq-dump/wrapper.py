@@ -8,7 +8,6 @@ import tempfile
 from snakemake.shell import shell
 from snakemake_wrapper_utils.snakemake import get_mem
 
-
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 

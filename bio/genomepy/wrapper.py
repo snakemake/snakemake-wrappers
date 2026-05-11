@@ -27,8 +27,7 @@ if snakemake.output[0].count("/") > 1:
 log = snakemake.log
 
 # Finally execute genomepy
-shell(
-    """
+shell("""
     # set a trap so we can reset to original user's settings
     active_plugins=$(genomepy config show | grep -Po '(?<=- ).*' | paste -s -d, -) || echo ""
     trap "genomepy plugin disable {{{all_plugins}}} >> {log} 2>&1;\
@@ -41,5 +40,4 @@ shell(
     # install the genome
     genomepy install {snakemake.wildcards.assembly} \
     --provider {provider} {annotation} -g {genome_dir} >> {log} 2>&1
-    """
-)
+    """)

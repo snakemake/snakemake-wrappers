@@ -1,0 +1,35 @@
+rule test_pyeffgenomesize_minimal:
+    input:
+        bed="small.bed",
+        gtf="small.gtf",
+    output:
+        txt="minimal.txt",
+    threads: 1
+    log:
+        "test_pyeffgenomesize_minimal.log",
+    params:
+        extra="--filterNonCoding --verbose",
+    wrapper:
+        "master/bio/tmb/pyeffgenomesize"
+
+
+rule test_pyeffgenomesize_complete:
+    input:
+        bed="small.bed",
+        gtf="small.gtf",
+        # Optional input:
+        bam="small.sorted.bam",
+    output:
+        txt="complete.txt",
+        # Optional output
+        intersect="complete.bed",
+        # Optional output that required BAM input:
+        regions="complete.regions.bed.gz",
+        thresholds="complete.thresholds.bed",
+    threads: 1
+    log:
+        "test_pyeffgenomesize_complete.log",
+    params:
+        extra="--filterNonCoding --verbose",
+    wrapper:
+        "master/bio/tmb/pyeffgenomesize"

@@ -1,0 +1,44 @@
+{
+    "Header": {
+        "FileFormatVersion": 2,
+        "RunName": "p123_A_scGEX_scCSP_Novaseq",
+        "InstrumentPlatform": "NovaSeq",
+        "IndexOrientation": "Forward"
+    },
+    "Reads": {
+        "Read1Cycles": 28,
+        "Read2Cycles": 90,
+        "Index1Cycles": 10,
+        "Index2Cycles": 10
+    },
+    "BCLConvert_Settings": {
+            "SoftwareVersion": "4.3.13",
+            "FastqCompressionFormat": "gzip"
+     },
+    "BCLConvert_Data": [
+        {
+            "Lane": 1,
+            "Sample_ID": "scGEX_A2",
+            "Index": "GTGGATCAAA",
+            "Index2": "GCCAACCCTG"
+        },
+        {
+            "Lane": 2,
+            "Sample_ID": "scGEX_A2",
+            "Index": "GTGGATCAAA",
+            "Index2": "GCCAACCCTG"
+        },
+        {
+            "Lane": 3,
+            "Sample_ID": "scGEX_A2",
+            "Index": "GTGGATCAAA",
+            "Index2": "GCCAACCCTG"
+        },
+        {
+            "Lane": 4,
+            "Sample_ID": "scGEX_A2",
+            "Index": "GTGGATCAAA",
+            "Index2": "GCCAACCCTG"
+        }
+    ]
+}

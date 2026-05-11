@@ -7,7 +7,6 @@ __license__ = "MIT"
 from pathlib import Path
 from snakemake.shell import shell
 
-
 # Extract arguments.
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")

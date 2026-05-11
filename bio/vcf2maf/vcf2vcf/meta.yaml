@@ -1,0 +1,18 @@
+name: vcf2vcf.pl
+description: |
+  Reformat unconventional VCF
+url: https://github.com/mskcc/vcf2maf/tree/main?tab=readme-ov-file#vcfvcf
+author:
+  - Thibault Dayris
+input:
+  - vcf: Path to the VCF to reformat
+  - fasta: Path to a reference genome
+  - chain: Optional chain file to remap variants to a different assembly
+  - normal_bam: Optional path to normal bam file to overwrite DP:AD:ADF:ADR
+  - tumor_bam: Optional path to tumor bam file to overwrite DP:AD:ADF:ADR
+output:
+  - Path to corrected VCF file
+params:
+  - extra: Optional parameters besides IO
+notes: |
+  This tool has no threading option.

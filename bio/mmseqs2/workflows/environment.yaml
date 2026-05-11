@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - mmseqs2 =18.8cc5c
+  - snakemake-wrapper-utils =0.8.0
