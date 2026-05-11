@@ -13,6 +13,7 @@ from pathlib import Path
 import re
 
 import libarchive
+
 _WINDOWS_DRIVE_RE = re.compile(r"^[A-Za-z]:")
 
 
@@ -30,7 +31,7 @@ def _validate_input_file(path: Path) -> None:
 
 def _validate_internal_path(path: str) -> None:
     """Reject archive paths that would be unsafe or ambiguous.
-    
+
     Valid paths are exclusively relative POSIX-style paths such as:
     - "foo.txt"
     - "dir/foo.txt"
