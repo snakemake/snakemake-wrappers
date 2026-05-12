@@ -24,6 +24,7 @@ def extract(
     archive_file: str,
     internal_paths: list[str],
     output_files: list[str],
+    **kwargs,
 ) -> None:
     """Extract archive members to exact output paths.
 
@@ -48,7 +49,7 @@ def extract(
     created_paths: set[Path] = set()
 
     try:
-        with libarchive.file_reader(archive_file) as archive:
+        with libarchive.file_reader(archive_file, **kwargs) as archive:
             for entry in archive:
                 name = entry.pathname
 
@@ -92,6 +93,7 @@ def main():
         archive_file=snakemake.input[0],
         internal_paths=_listify(snakemake.params.internal_paths),
         output_files=_listify(snakemake.output),
+        **snakemake.params.get("extra", {}),
     )
 
 

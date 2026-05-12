@@ -11,3 +11,4 @@ params:
   - internal_paths: >
       Path of the output files within the archive.
       Order and length must match that of the output files.
+  - extra: Dictionary with additional arguments for `libarchive.file_reader()`.
