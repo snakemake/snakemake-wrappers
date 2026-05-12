@@ -109,7 +109,7 @@ def main():
         format_name=snakemake.params.format_name,
         filter_name=snakemake.params.get("filter_name", None),
         internal_paths=_listify(snakemake.params.get("internal_paths", None)),
-        **snakemake.params.get("extras", {}),
+        **snakemake.params.get("extra", {}),
     )
 
 

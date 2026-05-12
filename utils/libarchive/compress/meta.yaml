@@ -16,4 +16,4 @@ params:
       Common combinations: 
         * For zip and 7zip: none.
         * For pax: gzip or xz (*.tar.gz, and *.tar.xz).
-  - extras: Dictionary with additional arguments for `libarchive.file_writer()`.
+  - extra: Dictionary with additional arguments for `libarchive.file_writer()`.
