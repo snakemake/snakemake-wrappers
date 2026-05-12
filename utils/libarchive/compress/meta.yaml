@@ -16,4 +16,9 @@ params:
       Common combinations: 
         * For zip and 7zip: none.
         * For pax: gzip or xz (*.tar.gz, and *.tar.xz).
-  - extra: Dictionary with additional arguments for `libarchive.file_writer()`.
+  - internal_paths: >
+      Optional. Destination path(s) for the files within the archive.
+      Must correspond one-to-one with the output files, in the same order.
+      If omitted, all files are added at the archive root.
+  - extra: >
+      Optional. Dictionary with additional arguments for `libarchive.file_writer()`.

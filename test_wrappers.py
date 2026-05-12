@@ -5328,8 +5328,9 @@ def test_libarchive_extract(run):
         [
             "snakemake",
             "results/7z/a.txt",
-            "results/zip/a.txt",
-            "results/zip/b.txt"
+            "results/tar/a.txt",
+            "results/tar/b.md",
+            "results/zip/a.txt"
         ],
     )
 
@@ -5338,7 +5339,8 @@ def test_libarchive_compress(run):
         "utils/libarchive/compress",
         [
             "snakemake",
-            "results/compressed.7z",
-            "results/compressed.tar.gz"
+            "results/test.7z",
+            "results/test.tar.gz",
+            "results/test.zip"
         ],
     )

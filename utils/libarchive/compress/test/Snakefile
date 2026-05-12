@@ -2,7 +2,7 @@ rule compress_single_file_to_7zip:
     input:
         "a.txt",
     output:
-        "results/compressed.7z",
+        "results/test.7z",
     log:
         "logs/libarchive/compress/compress_single_file_to_7zip.log",
     threads: 1
@@ -17,7 +17,7 @@ rule compress_multiple_files_to_tar_gz:
         "a.txt",
         "b.md",
     output:
-        "results/compressed.tar.gz",
+        "results/test.tar.gz",
     log:
         "logs/libarchive/compress/compress_multiple_files_to_tar_gz.log",
     threads: 1
@@ -25,5 +25,20 @@ rule compress_multiple_files_to_tar_gz:
         internal_paths=["text/textfile_a.txt", "markdown/markdown_b.md"],
         format_name="pax",
         filter_name="gzip",
+    wrapper:
+        "master/utils/libarchive/compress"
+
+
+rule compress_single_file_to_zip_with_password:
+    input:
+        "a.txt",
+    output:
+        "results/test.zip",
+    log:
+        "logs/libarchive/compress/compress_single_file_to_zip_with_password.log",
+    threads: 1
+    params:
+        format_name="zip",
+        extra={"passphrase": "t0ps3cr3t", "options": "zip:encryption=aes256"},
     wrapper:
         "master/utils/libarchive/compress"

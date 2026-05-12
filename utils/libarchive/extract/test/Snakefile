@@ -1,26 +1,44 @@
-rule extract_single_file:
+rule extract_single_file_from_7zip:
     input:
         "test.7z",
     output:
         "results/7z/a.txt",
     log:
-        "logs/libarchive/extract/extract_single_file.log",
+        "logs/libarchive/extract/extract_single_file_from_7zip.log",
     threads: 1
     params:
-        internal_paths="textfile_a.txt",
+        internal_paths="a.txt",
     wrapper:
         "master/utils/libarchive/extract"
 
 
-rule extract_multiple_files:
+rule extract_multiple_files_from_tar_gz:
+    input:
+        "test.tar.gz",
+    output:
+        "results/tar/a.txt",
+        "results/tar/b.md",
+    log:
+        "logs/libarchive/extract/extract_multiple_files_from_tar_gz.log",
+    threads: 1
+    params:
+        internal_paths=["text/textfile_a.txt", "markdown/markdown_b.md"],
+    wrapper:
+        "master/utils/libarchive/extract"
+
+
+rule extract_single_file_from_zip_with_password:
     input:
         "test.zip",
     output:
-        ["results/zip/a.txt", "results/zip/b.txt"],
+        "results/zip/a.txt",
     log:
-        "logs/libarchive/extract/extract_multiple_files.log",
+        "logs/libarchive/extract/extract_single_file_from_zip_with_password.log",
     threads: 1
     params:
-        internal_paths=["textfile_a.txt", "subfolder/textfile_b.txt"],
+        internal_paths="a.txt",
+        extra={
+            "passphrase": "t0ps3cr3t",
+        },
     wrapper:
         "master/utils/libarchive/extract"
