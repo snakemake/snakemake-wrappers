@@ -5321,3 +5321,26 @@ def test_pbmarkdup(run):
             "dedup.fastq.gz",
         ],
     )
+    
+def test_libarchive_extract(run):
+    run(
+        "utils/libarchive/extract",
+        [
+            "snakemake",
+            "results/7z/a.txt",
+            "results/tar/a.txt",
+            "results/tar/b.md",
+            "results/zip/a.txt"
+        ],
+    )
+
+def test_libarchive_compress(run):
+    run(
+        "utils/libarchive/compress",
+        [
+            "snakemake",
+            "results/test.7z",
+            "results/test.tar.gz",
+            "results/test.zip"
+        ],
+    )
