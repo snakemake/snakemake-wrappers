@@ -3,4 +3,4 @@
 # platform: linux-64
 # created-by: conda 24.9.2
 @EXPLICIT
-https://conda.anaconda.org/bioconda/linux-64/trim-galore-2.1.0-h9ee0642_0.conda#f881401af2f9b43618a823a7599c4fa8
+https://conda.anaconda.org/bioconda/linux-64/trim-galore-2.2.0-h9ee0642_0.conda#1f4936fbb8a5f21241cef4d662354ff2
