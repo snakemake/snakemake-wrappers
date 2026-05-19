@@ -2515,6 +2515,7 @@ def test_freebayes(run):
         )
 
 
+@pytest.mark.skip(reason="needs valid token since all datasets are controled")
 def test_gdc_api_bam_slicing(run):
     def check_log(log):
         assert "error" in log and "token" in log
