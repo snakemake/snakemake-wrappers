@@ -9,8 +9,7 @@ from tempfile import TemporaryDirectory
 import glob
 
 extra = snakemake.params.get("extra", "")
-uuid = snakemake.params.uuid
-assert str(uuid).strip(), "You need to provide a GDC UUID via the 'uuid' in 'params'."
+uuid = snakemake.params.uuid.strip()
 
 # Input
 token = snakemake.input.get("gdc_token", "")
