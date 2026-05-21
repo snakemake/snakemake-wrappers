@@ -2515,6 +2515,7 @@ def test_freebayes(run):
         )
 
 
+@pytest.mark.skip(reason="needs valid token since all datasets are controled")
 def test_gdc_api_bam_slicing(run):
     def check_log(log):
         assert "error" in log and "token" in log
@@ -5319,5 +5320,28 @@ def test_pbmarkdup(run):
             "pbmarkdup2.fastq.gz",
             "pbmarkdup3.fastq.gz",
             "dedup.fastq.gz",
+        ],
+    )
+    
+def test_libarchive_extract(run):
+    run(
+        "utils/libarchive/extract",
+        [
+            "snakemake",
+            "results/7z/a.txt",
+            "results/tar/a.txt",
+            "results/tar/b.md",
+            "results/zip/a.txt"
+        ],
+    )
+
+def test_libarchive_compress(run):
+    run(
+        "utils/libarchive/compress",
+        [
+            "snakemake",
+            "results/test.7z",
+            "results/test.tar.gz",
+            "results/test.zip"
         ],
     )
