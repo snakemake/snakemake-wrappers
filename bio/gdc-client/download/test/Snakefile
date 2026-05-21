@@ -11,11 +11,6 @@ rule gdc_download:
         # the column `id` in the GDC manifest files, which can be used to
         # systematically construct sample sheets)
         uuid="173e67fb-917c-43e1-b07c-f2b7d1ca6998",
-        # a gdc_token is only required for controlled access samples,
-        # leave blank otherwise (`gdc_token=""`) or skip this param entirely
-        gdc_token="gdc/gdc-user-token.2020-05-07T10_00_00.555Z.txt",
-        # for valid extra command line arguments, check command line help or:
-        # https://docs.gdc.cancer.gov/Data_Transfer_Tool/Users_Guide/Data_Download_and_Upload/
         extra="",
     threads: 4
     wrapper:
@@ -23,9 +18,12 @@ rule gdc_download:
 
 
 rule gdc_download_bam:
+    input:
+        # a gdc_token is only required for controlled access samples,
+        gdc_token="gdc/gdc-user-token.2020-05-07T10_00_00.555Z.txt",
     output:
         # specify all the downloaded files you want to keep, as all other
-        # downloaded files will be removed automatically e.g. for
+        # downloaded files will be removed automatically. For example, for
         # BAM data this could be
         "raw/{sample}.bam",
         "raw/{sample}.bam.bai",
@@ -39,11 +37,6 @@ rule gdc_download_bam:
         # the column `id` in the GDC manifest files, which can be used to
         # systematically construct sample sheets)
         uuid="72a72637-284e-4f1c-8c5e-0a657136c3c3",
-        # a gdc_token is only required for controlled access samples,
-        # leave blank otherwise (`gdc_token=""`) or skip this param entirely
-        gdc_token="gdc/gdc-user-token.2020-05-07T10_00_00.555Z.txt",
-        # for valid extra command line arguments, check command line help or:
-        # https://docs.gdc.cancer.gov/Data_Transfer_Tool/Users_Guide/Data_Download_and_Upload/
         extra="",
     threads: 4
     wrapper:

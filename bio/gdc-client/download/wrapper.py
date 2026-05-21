@@ -8,14 +8,15 @@ import os.path as path
 from tempfile import TemporaryDirectory
 import glob
 
+extra = snakemake.params.get("extra", "")
 uuid = snakemake.params.get("uuid", "")
 if uuid == "":
     raise ValueError("You need to provide a GDC UUID via the 'uuid' in 'params'.")
 
-extra = snakemake.params.get("extra", "")
-token = snakemake.params.get("gdc_token", "")
-if token != "":
-    token = "--token-file {}".format(token)
+# Input
+token = snakemake.input.get("gdc_token", "")
+if token:
+    token = f"--token-file {token}"
 
 with TemporaryDirectory() as tempdir:
     shell(
