@@ -35,7 +35,11 @@ with TemporaryDirectory() as tempdir:
             if len(paths) > 1:
                 root, ext2 = path.splitext(root)
                 paths = glob.glob(path.join(tempdir, uuid, f"*{ext2}{ext1}"))
-            assert len(paths) > 0, f"File '{out_path}' extension ({ext1}) does not match any downloaded file. Are you sure that UUID {uuid} provides a file of such format?"
-            assert len(paths) == 1, f"Cannot match requested output file {out_path} unambiguously. Found more than one downloaded file with extension '{ext1}{ext2}': {paths}."
+            assert (
+                len(paths) > 0
+            ), f"File '{out_path}' extension ({ext1}) does not match any downloaded file. Are you sure that UUID {uuid} provides a file of such format?"
+            assert (
+                len(paths) == 1
+            ), f"Cannot match requested output file {out_path} unambiguously. Found more than one downloaded file with extension '{ext1}{ext2}': {paths}."
             tmp_path = paths[0]
         shell("mv {tmp_path} {out_path}")
