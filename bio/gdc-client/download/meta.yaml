@@ -8,5 +8,5 @@ input:
 output:
   - Downloaded data
 params:
-  - uuid: GDC resource UUID
-  - extra: additional program arguments (see: https://docs.gdc.cancer.gov/Data_Transfer_Tool/Users_Guide/Data_Download_and_Upload/)
+  - uuid: GDC resource UUID (mandatory)
+  - extra: additional program arguments (see `documentation <https://docs.gdc.cancer.gov/Data_Transfer_Tool/Users_Guide/Data_Download_and_Upload/>`_)

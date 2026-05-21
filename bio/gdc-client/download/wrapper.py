@@ -9,9 +9,8 @@ from tempfile import TemporaryDirectory
 import glob
 
 extra = snakemake.params.get("extra", "")
-uuid = snakemake.params.get("uuid", "")
-if uuid == "":
-    raise ValueError("You need to provide a GDC UUID via the 'uuid' in 'params'.")
+uuid = snakemake.params.uuid
+assert str(uuid).strip(), "You need to provide a GDC UUID via the 'uuid' in 'params'."
 
 # Input
 token = snakemake.input.get("gdc_token", "")
@@ -26,7 +25,7 @@ with TemporaryDirectory() as tempdir:
         " -n {snakemake.threads} "
         " --log-file {snakemake.log} "
         " --dir {tempdir}"
-        " {uuid}"
+        " {snakemake.params.uuid}"
     )
 
     for out_path in snakemake.output:
@@ -39,9 +38,7 @@ with TemporaryDirectory() as tempdir:
                 paths = glob.glob(path.join(tempdir, uuid, "*" + ext2 + ext1))
             if len(paths) == 0:
                 raise ValueError(
-                    "{} file extension {} does not match any downloaded file.\n"
-                    "Are you sure that UUID {} provides a file of such format?\n".format(
-                        out_path, ext1, uuid
+                    f"{out_path} file extension {ext1} does not match any downloaded file. Are you sure that UUID {uuid} provides a file of such format?"
                     )
                 )
             if len(paths) > 1:

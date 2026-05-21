@@ -5,6 +5,7 @@ rule gdc_download:
         "raw/{sample}.maf.gz",
     log:
         "logs/gdc-client/download/{sample}.log",
+    threads: 4
     params:
         # to use this rule flexibly, make uuid a function that maps your
         # sample names of choice to the UUIDs they correspond to (they are
@@ -12,7 +13,6 @@ rule gdc_download:
         # systematically construct sample sheets)
         uuid="173e67fb-917c-43e1-b07c-f2b7d1ca6998",
         extra="",
-    threads: 4
     wrapper:
         "master/bio/gdc-client/download"
 
@@ -31,6 +31,7 @@ rule gdc_download_bam:
         directory("raw/{sample}/logs"),
     log:
         "logs/gdc-client/download/{sample}.log",
+    threads: 4
     params:
         # to use this rule flexibly, make uuid a function that maps your
         # sample names of choice to the UUIDs they correspond to (they are
@@ -38,6 +39,5 @@ rule gdc_download_bam:
         # systematically construct sample sheets)
         uuid="72a72637-284e-4f1c-8c5e-0a657136c3c3",
         extra="",
-    threads: 4
     wrapper:
         "master/bio/gdc-client/download"
