@@ -2,6 +2,7 @@ rule optitype:
     input:
         # list of input reads
         reads=["reads/{sample}_1.fished.fastq", "reads/{sample}_2.fished.fastq"]
+        #config="config_file",
     output:
         pdf="optitype/{sample}_coverage_plot.pdf",
         tsv="optitype/{sample}_result.tsv",
@@ -10,8 +11,6 @@ rule optitype:
     params:
         # Type of sequencing data. Can be 'dna' or 'rna'. Default is 'dna'.
         sequencing_type="dna",
-        # optiype config file, optional
-        config="",
         # additional parameters
         extra=""
     wrapper:
