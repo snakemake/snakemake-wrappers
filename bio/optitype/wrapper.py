@@ -10,6 +10,12 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
+# Input
+in_reads = snakemake.input.reads
+if not isinstance(in_reads, list):
+    in_reads = [in_reads]
+in_reads = " --input ".join(in_reads)
+
 # get sequencing type
 seq_type = snakemake.params.get("sequencing_type", "dna")
 seq_type = f"--{seq_type}"
@@ -22,7 +28,7 @@ if config:
 with TemporaryDirectory() as tempdir:
     shell(
         "(optitype run"
-        "  --input {snakemake.input.reads}"
+        "  --input {in_reads}"
         "  --outdir {tempdir}"
         "  --prefix tmp_prefix"
         "  {seq_type}"
