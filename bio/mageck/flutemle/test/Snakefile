@@ -2,11 +2,11 @@ rule test_mageck_flute_mle:
     input:
         rra="gene_summary.txt",
     output:
-        directory("test_mageck_flute_mle")
+        directory("test_mageck_flute_mle"),
     log:
         "test_mageck_flute_mle.log",
     params:
         treatname="Pmel1",
-        extra="ctrlname='Pmel1_Input', organism='mmu', omitEssential=TRUE"
+        extra="ctrlname='Pmel1_Input', organism='mmu', omitEssential=TRUE",
     wrapper:
         "master/bio/mageck/flutemle"
