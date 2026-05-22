@@ -2669,6 +2669,16 @@ def test_macs2_callpeak(run):
     )
 
 
+def test_mageck_flute_mle(run):
+    run(
+        "bio/mageck/flutemle",
+        [
+            "snakemake",
+            "test_mageck_flute_mle",
+        ],
+    )
+
+
 def test_minimap2_aligner(run):
     run(
         "bio/minimap2/aligner",

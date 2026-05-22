@@ -1,0 +1,17 @@
+name: MaGeCK FluteMLE
+description: |
+  CRISPR integrative analysis pipeline using the gene summary table in 
+  MAGeCK MLE results
+url: https://bioconductor.org/packages/3.20/bioc/html/MAGeCKFlute.html
+authors:
+  - Thibault Dayris
+input:
+  - Path to the MLE gene summary table
+output:
+  - Path to the directory holding results
+params:
+  - treatname: Required treatment name.
+  - extra: Optional parameters besides `gene_summary`, `treatname` or `outdir`.
+notes: |
+  The output directory content depends on optional parameters and the content of the
+  CRISPR data.
