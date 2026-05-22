@@ -9,9 +9,7 @@ rule optitype:
     log:
         "logs/optitype/{sample}.log"
     params:
-        # Type of sequencing data. Can be 'dna' or 'rna'. Default is 'dna'.
         sequencing_type="dna",
-        # additional parameters
-        extra=""
+        extra="",
     wrapper:
         "master/bio/optitype"

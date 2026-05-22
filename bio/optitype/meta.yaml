@@ -10,5 +10,5 @@ output:
   - tsv: HLA typing results
   - pdf: coverage plot
 params:
-  - sequencing_type: type of sequencing data
+  - sequencing_type: type of sequencing data (can be 'dna' or 'rna'; default is 'dna').
   - extra: additional program arguments
