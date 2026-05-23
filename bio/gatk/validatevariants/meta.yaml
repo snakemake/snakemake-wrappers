@@ -1,0 +1,12 @@
+name: GATK ValidateVariants
+description: Interleave two paired-end FASTA/Q files
+url: https://gatk.broadinstitute.org/hc/en-us/articles/360037057272-ValidateVariants
+authors:
+  - Graeme Ford
+input:
+  vcf: VCF file to be validated
+output:
+  - VCF output file
+params:
+  extra: any extra commands as a string
+notes: Multiple threads can be used during compression of the output file with ``pigz``.
