@@ -168,6 +168,19 @@ Please ensure that the wrapper:
 * writes any temporary files to a unique hidden folder in the working directory, or (better) stores them where the Python function `tempfile.gettempdir() <https://docs.python.org/3/library/tempfile.html#tempfile.gettempdir>`_ points (this also means that using any Python tempfile default behavior works)
 * is formatted according to the language's standards (for Python, format it with `black`_: ``black wrapper.py``)
 
+Wrapper interface design
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Wrappers should expose a predictable Snakemake interface and infer command-line arguments where possible:
+
+* use ``input:`` for input files and ``output:`` for output files
+* automatically infer file formats and paths from ``input:`` and ``output:`` whenever possible
+* avoid allowing users to specify parameters that the wrapper can infer from ``input:`` or ``output:``; add error handling and document the behavior in ``meta.yaml`` when needed
+* keep parameters that are only needed for wrapper logic as explicit ``params:`` entries
+* prefer ``params.extra`` for tool-specific command-line options, including mandatory options that the wrapped tool can validate itself
+
+When checking whether a user has already supplied an argument in ``params.extra``, use helpers from ``snakemake-wrapper-utils`` such as `is_arg <https://github.com/snakemake/snakemake-wrapper-utils/blob/6912c9d9c9921a7f02a92940731014d87eb00080/snakemake_wrapper_utils/snakemake.py#L32-L34>`_.
+
 For repeatedly needed functionality you can use the `snakemake-wrapper-utils <https://github.com/snakemake/snakemake-wrapper-utils>`_.
 Use what is available or create new functionality there, whenever you start repeating functions across wrappers.
 Examples of this are:
