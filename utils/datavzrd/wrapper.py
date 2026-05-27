@@ -9,6 +9,8 @@ from snakemake.shell import shell
 import shutil
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+sys.stderr = open(snakemake.log[0], "w", buffering=1)
+sys.stdout = open(snakemake.log[0], "w", buffering=1)
 
 extra = snakemake.params.get("extra", "")
 
