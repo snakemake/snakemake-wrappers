@@ -9,7 +9,7 @@ from snakemake.shell import shell
 import shutil
 import sys
 
-log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 
 extra = snakemake.params.get("extra", "")
 
