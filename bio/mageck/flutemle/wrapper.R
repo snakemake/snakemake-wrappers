@@ -1,4 +1,4 @@
-# This wrapper performs Mageck flute rra downstream analysis
+# This wrapper performs Mageck flute mle downstream analysis
 
 # __author__ = "Thibault Dayris"
 # __copyright__ = "Copyright 2026, Thibault Dayris"
