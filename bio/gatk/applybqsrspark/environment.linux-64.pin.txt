@@ -62,7 +62,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libnghttp2-1.68.1-h877daf1_0.con
 https://conda.anaconda.org/conda-forge/linux-64/libtiff-4.7.1-h9d88235_1.conda#cd5a90476766d53e901500df9215e927
 https://conda.anaconda.org/conda-forge/linux-64/python-3.10.20-h3c07f61_0_cpython.conda#5d4e2b00d99feacd026859b7fa239dc0
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libx11-1.8.13-he1eb515_0.conda#861fb6ccbc677bb9a9fb2468430b9c6a
-https://conda.anaconda.org/conda-forge/linux-64/fontconfig-2.17.1-h27c8c51_0.conda#867127763fbe935bab59815b6e0b7b5c
+https://conda.anaconda.org/conda-forge/linux-64/fontconfig-2.18.0-h27c8c51_0.conda#06965b2f9854d0b15e0443ee81fe83dc
 https://conda.anaconda.org/conda-forge/linux-64/lcms2-2.19.1-h0c24ade_0.conda#f92f984b558e6e6204014b16d212b271
 https://conda.anaconda.org/conda-forge/linux-64/libcups-2.3.3-h7a8fb5f_6.conda#49c553b47ff679a6a1e9fc80b9c5a2d4
 https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.20.0-hcf29cc6_0.conda#c3cc2864f82a944bc90a7beb4d3b0e88
