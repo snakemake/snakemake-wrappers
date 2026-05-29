@@ -9,4 +9,4 @@ https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda#a
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-he0feb66_19.conda#57736f29cc2b0ec0b6c2952d3f101b6a
 https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.53.1-h0c1763c_0.conda#7dc38adcbf71e6b38748e919e16e0dce
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h934c35e_19.conda#5794b3bdc38177caf969dabd3af08549
-https://conda.anaconda.org/bioconda/linux-64/diamond-2.2.0-he361c42_0.conda#0d7e28d1cac84b2d7cc149ca03a2a5fc
+https://conda.anaconda.org/bioconda/linux-64/diamond-2.2.1-he361c42_0.conda#2dd1e9db11e9005b97db7dba55b51bcb
