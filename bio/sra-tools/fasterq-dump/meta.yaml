@@ -4,10 +4,11 @@ authors:
   - Johannes Köster
   - Derek Croote
   - Filipe G. Vieira
+url: https://github.com/ncbi/sra-tools
 output:
   - fastq files for R1 and R2 reads
+params:
+  - extra: additional program arguments
 notes: |
   * The output format is automatically detected and, if needed, files compressed with either `gzip` or `bzip2`.
   * Currently only supports PE samples
-  * The `extra` param alllows for additional program arguments.
-  * More information in, https://github.com/ncbi/sra-tools

@@ -1561,6 +1561,14 @@ def test_bcftools_filter(run):
     )
 
 
+def test_bcftools_fixploidy(run):
+    run(
+        "bio/bcftools/fixploidy",
+        ["snakemake", "a.fixed.bcf"],
+        cores=3,
+    )
+
+
 def test_bcftools_sort(run):
     run(
         "bio/bcftools/sort",
@@ -2507,6 +2515,7 @@ def test_freebayes(run):
         )
 
 
+@pytest.mark.skip(reason="needs valid token since all datasets are controled")
 def test_gdc_api_bam_slicing(run):
     def check_log(log):
         assert "error" in log and "token" in log
@@ -3393,7 +3402,7 @@ def test_trim_galore_pe(run):
         "bio/trim_galore/pe",
         [
             "snakemake",
-            "trimmed/a_R1.fq.gz",
+            "trimmed/a_R2.fq.gz",
             "trimmed/a_R2.fastq",
         ],
     )
@@ -3474,6 +3483,25 @@ def test_jannovar(run):
 
 def test_cairosvg(run):
     run("utils/cairosvg", ["snakemake", "pca.pdf"])
+
+
+def test_ripgrep(run):
+    run(
+        "utils/ripgrep", 
+        [
+            "snakemake", 
+            "test_ripgrep_plain_text.txt",
+            "test_ripgrep_pattern_file.txt",
+            "test_ripgrep_compressed_input.txt",
+            "test_ripgrep_search_in_directory.txt",
+        ],
+        compare_results_with_expected={
+            "test_ripgrep_plain_text.txt": "expected/hello.txt",
+            "test_ripgrep_pattern_file.txt": "expected/hello.txt",
+            "test_ripgrep_compressed_input.txt": "expected/hello.txt",
+            "test_ripgrep_search_in_directory.txt": "expected/directory.txt",
+        },
+    )
 
 
 def test_trinity(run):
@@ -3572,10 +3600,10 @@ def test_gseapy_gsea(run):
         "bio/gseapy/gsea",
         [
             "snakemake",
-            "KEGG_2016",
-            "gsea.results.csv",
-            "ssgsea.results.csv",
-            "prerank_results_dir",
+            "out/enrichr/KEGG_2016",
+            "out/gsea/results.csv",
+            "out/ssgsea/results.csv",
+            "out/prerank/results.csv",
         ],
     )
 
@@ -5302,5 +5330,28 @@ def test_pbmarkdup(run):
             "pbmarkdup2.fastq.gz",
             "pbmarkdup3.fastq.gz",
             "dedup.fastq.gz",
+        ],
+    )
+    
+def test_libarchive_extract(run):
+    run(
+        "utils/libarchive/extract",
+        [
+            "snakemake",
+            "results/7z/a.txt",
+            "results/tar/a.txt",
+            "results/tar/b.md",
+            "results/zip/a.txt"
+        ],
+    )
+
+def test_libarchive_compress(run):
+    run(
+        "utils/libarchive/compress",
+        [
+            "snakemake",
+            "results/test.7z",
+            "results/test.tar.gz",
+            "results/test.zip"
         ],
     )
