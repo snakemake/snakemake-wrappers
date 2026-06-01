@@ -7,6 +7,8 @@ rule test_mageck_flute_mle:
         "test_mageck_flute_mle.log",
     params:
         treatname="Pmel1",
-        extra="ctrlname='Pmel1_Input', organism='mmu', omitEssential=TRUE",
+        ctrlname="Pmel1_Input",
+        organism="mmu",
+        omitEssential=True,
     wrapper:
         "master/bio/mageckflute/flutemle"

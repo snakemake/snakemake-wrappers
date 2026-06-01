@@ -23,24 +23,18 @@ base::dir.create(
 )
 
 # Build command line extra parameters
-flute_mle_extra <- base::paste0(
-    "gene_summary = snakemake@input[[1]], ",
-    "treatname = snakemake@params[['treatname']], ",
-    "outdir = outdir"
+flute_mle_extra <- base::list(
+    gene_summary = snakemake@input[[1]],
+    outdir = outdir
 )
-if ("extra" %in% base::names(snakemake@params)) {
-    flute_mle_extra <- base::paste(
-        flute_mle_extra,
-        snakemake@params[["extra"]],
-        sep = ", "
-    )
+if (base::length(snakemake@params) > 0) {
+    extra <- snakemake@params[base::names(snakemake@params) != ""]
+    flute_mle_extra <- c(extra, flute_mle_extra)
 }
 
 # Run command line
-base::message("MaGeCK command line:")
-flute_mle_cmd <- base::paste0("MAGeCKFlute::FluteMLE(", flute_mle_extra, ")")
-base::message(flute_mle_cmd)
-base::eval(base::parse(text = flute_mle_cmd))
+base::message("Running command line:")
+base::do.call(MAGeCKFlute::FluteMLE, flute_mle_extra)
 
 utils::sessionInfo()
 # Proper syntax to close the connection for the log file
