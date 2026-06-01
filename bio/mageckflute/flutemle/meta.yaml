@@ -10,8 +10,9 @@ input:
 output:
   - Path to the directory holding results
 params:
-  - treatname: Required treatment name.
-  - extra: Optional parameters besides `gene_summary`, `treatname` or `outdir`.
+  Any named argument present in MAGeCKFlute:FluteMLE function (see URL above).
+  Remember `treatname` **MUST** be included, while `gene_summary` and `outdir`
+  are automatically determined from IO and therefore must **not** be included.
 notes: |
   The output directory content depends on optional parameters and the content of the
   CRISPR data.
