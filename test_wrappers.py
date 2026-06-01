@@ -2671,7 +2671,7 @@ def test_macs2_callpeak(run):
 
 def test_mageck_flute_mle(run):
     run(
-        "bio/mageck/flutemle",
+        "bio/mageckflute/flutemle",
         [
             "snakemake",
             "test_mageck_flute_mle",
