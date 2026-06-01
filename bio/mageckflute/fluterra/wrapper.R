@@ -48,7 +48,7 @@ if (base::length(snakemake@params) > 0) {
 }
 
 base::message("Running MAGeCK command line:")
-base::do.call(MAGeCK::FluteRRA, flute_rra_extra)
+base::do.call(MAGeCKFlute::FluteRRA, flute_rra_extra)
 
 utils::sessionInfo()
 # Proper syntax to close the connection for the log file
