@@ -17,7 +17,7 @@ rule calc_consensus_reads:
     log:
         "<logs>/consensus/{sample}.log",
     wrapper:
-        "master/bio/rbt/collapse_reads_to_fragments-bam"
+        "v3.9.0/bio/rbt/collapse_reads_to_fragments-bam"
 
 
 rule bwa_index:
@@ -28,7 +28,7 @@ rule bwa_index:
     log:
         "<logs>/bwa_index.log",
     wrapper:
-        "master/bio/bwa/index"
+        "v5.10.0/bio/bwa/index"
 
 
 rule map_consensus_reads:
@@ -52,7 +52,7 @@ rule map_consensus_reads:
         "<logs>/bwa_mem/{sample}.{read_type}.consensus.log",
     threads: 8
     wrapper:
-        "master/bio/bwa/mem"
+        "v7.6.0/bio/bwa/mem"
 
 
 rule sort_skipped_reads:
@@ -68,7 +68,7 @@ rule sort_skipped_reads:
     # Samtools takes additional threads through its option -@
     threads: 8  # This value - 1 will be sent to -@.
     wrapper:
-        "master/bio/samtools/sort"
+        "v7.6.0/bio/samtools/sort"
 
 
 rule mark_duplicates_skipped:
@@ -88,7 +88,7 @@ rule mark_duplicates_skipped:
     resources:
         mem_mb=1024,
     wrapper:
-        "master/bio/picard/markduplicates"
+        "v7.6.0/bio/picard/markduplicates"
 
 
 rule merge_consensus_reads:
@@ -102,4 +102,4 @@ rule merge_consensus_reads:
         "<logs>/samtools_merge/{sample}.log",
     threads: 8
     wrapper:
-        "master/bio/samtools/merge"
+        "v7.6.0/bio/samtools/merge"

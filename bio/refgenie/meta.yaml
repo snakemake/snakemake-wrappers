@@ -1,4 +1,7 @@
 name: refgenie
 description: Deploy biomedical reference datasets via refgenie.
+url: https://refgenie.databio.org/en/latest/
 authors:
   - Johannes Köster
+output:
+  - Multiple outputs/seek keys (see attributes on http://refgenomes.databio.org)

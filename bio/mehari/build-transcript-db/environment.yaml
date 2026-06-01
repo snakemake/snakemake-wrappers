@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - mehari =0.43.2
+  - snakemake-wrapper-utils =0.8.0

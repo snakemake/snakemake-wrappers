@@ -1,0 +1,16 @@
+rule falco:
+    input:
+        "reads/{sample}.fastq",
+    output:
+        html="qc/falco/{sample}.html",
+        data="qc/falco/{sample}_data.text",
+        summ="qc/falco/{sample}_summary.text",
+    params:
+        extra="",
+    log:
+        "logs/falco/{sample}.log",
+    threads: 1
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/falco"

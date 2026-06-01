@@ -8,7 +8,6 @@ import tempfile
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
-
 denoised_copy_ratios = ""
 if snakemake.input.get("denoised_copy_ratios", None):
     denoised_copy_ratios = (

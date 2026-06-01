@@ -238,7 +238,7 @@ with TemporaryDirectory() as tempdir:
 
         # Add a known prefix to output files
         prefix = f"{tempdir}/snake_out_ORF"
-        extra += f" --outfile {prefix} "
+        extra += f" --output {prefix} "
         extra += parse_args(snakemake.input)
         command_lines = [f"{command} {extra}"]
 
@@ -286,7 +286,7 @@ with TemporaryDirectory() as tempdir:
         # The same suffixes are applied to both subcommands
 
         prefix = f"{tempdir}/snake_out_fix_fusion"
-        extra += f" --outfile {prefix} "
+        extra += f" --output {prefix} "
         extra += parse_args(snakemake.input)
         command_lines = [f"{command} {extra}"]
 

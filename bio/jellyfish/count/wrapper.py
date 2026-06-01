@@ -9,8 +9,7 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 
-shell(
-    """
+shell("""
     (jellyfish count \
         {extra} \
         --mer-len={snakemake.params.kmer_length} \
@@ -18,5 +17,4 @@ shell(
         --threads={snakemake.threads} \
         --output={snakemake.output} \
         {snakemake.input}) {log}
-    """
-)
+    """)

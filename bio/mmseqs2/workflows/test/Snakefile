@@ -1,0 +1,93 @@
+rule mmseqs2_workflow_search:
+    input:
+        query=["seqs/nucl.a.fas.gz", "seqs/nucl.b.fas.gz"],
+        target="seqs/nucl.{sample}.fas.gz",
+    output:
+        aln="out/search/{sample}.tsv",
+    log:
+        "logs/search/{sample}.log",
+    params:
+        module="easy-search",
+        extra="--search-type 3",
+    threads: 2
+    wrapper:
+        "master/bio/mmseqs2/workflows"
+
+
+rule mmseqs2_workflow_cluster:
+    input:
+        query=["seqs/nucl.a.fas.gz", "seqs/nucl.b.fas.gz"],
+    output:
+        fas="out/cluster/a_b.seqs.fas",
+        tsv="out/cluster/a_b.cluster.tsv",
+        fas_rep="out/cluster/a_b.rep_seq.fasta",
+    log:
+        "logs/cluster/a_b.log",
+    params:
+        module="easy-cluster",
+        extra="--max-seqs 5",
+    threads: 2
+    wrapper:
+        "master/bio/mmseqs2/workflows"
+
+
+rule mmseqs2_workflow_linclust:
+    input:
+        query=["seqs/nucl.a.fas.gz", "seqs/nucl.b.fas.gz"],
+    output:
+        fas="out/linclust/a_b.seqs.fas",
+        tsv="out/linclust/a_b.cluster.tsv",
+        fas_rep="out/linclust/a_b.rep_seq.fasta",
+    log:
+        "logs/linclust/a_b.log",
+    params:
+        module="easy-linclust",
+        extra="--max-seq-len 1000",
+    threads: 2
+    wrapper:
+        "master/bio/mmseqs2/workflows"
+
+
+rule mmseqs2_workflow_taxonomy:
+    input:
+        query=["seqs/nucl.a.fas.gz", "seqs/nucl.b.fas.gz"],
+        target=multiext(
+            "db/{sample}",
+            "",
+            ".dbtype",
+            ".index",
+            ".lookup",
+            ".source",
+            "_h",
+            "_h.dbtype",
+            "_h.index",
+        ),
+    output:
+        lca="out/taxonomy/{sample}.lca.tsv",
+        report="out/taxonomy/{sample}.report",
+        taln="out/taxonomy/{sample}.tophit_aln",
+        treport="out/taxonomy/{sample}.tophit_report",
+    log:
+        "logs/taxonomy/{sample}.log",
+    params:
+        module="easy-taxonomy",
+        extra="--max-seq-len 1000 --search-type 3",
+    threads: 2
+    wrapper:
+        "master/bio/mmseqs2/workflows"
+
+
+rule mmseqs2_workflow_rbh:
+    input:
+        query="seqs/nucl.b.fas.gz",
+        target="seqs/nucl.{sample}.fas.gz",
+    output:
+        aln="out/rbh/{sample}.tsv",
+    log:
+        "logs/rbh/{sample}.log",
+    params:
+        module="easy-rbh",
+        extra="--search-type 3",
+    threads: 2
+    wrapper:
+        "master/bio/mmseqs2/workflows"

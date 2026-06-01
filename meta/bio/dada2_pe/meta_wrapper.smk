@@ -22,7 +22,7 @@ rule dada2_quality_profile_pe:
     log:
         "logs/dada2/quality-profile/{sample}-quality-profile-pe.log"
     wrapper:
-        "master/bio/dada2/quality-profile"
+        "v5.5.1/bio/dada2/quality-profile"
 
 rule dada2_filter_trim_pe:
     input:
@@ -42,7 +42,7 @@ rule dada2_filter_trim_pe:
         "logs/dada2/filter-trim-pe/{sample}.log"
     threads: 1 # set desired number of threads here
     wrapper:
-        "master/bio/dada2/filter-trim"
+        "v5.5.1/bio/dada2/filter-trim"
 
 rule dada2_learn_errors:
     input:
@@ -57,7 +57,7 @@ rule dada2_learn_errors:
         "logs/dada2/learn-errors/learn-errors_{orientation}.log"
     threads: 1 # set desired number of threads here
     wrapper:
-        "master/bio/dada2/learn-errors"
+        "v5.5.1/bio/dada2/learn-errors"
 
 rule dada2_dereplicate_fastq:
     input:
@@ -69,7 +69,7 @@ rule dada2_dereplicate_fastq:
     log:
         "logs/dada2/dereplicate-fastq/{fastq}.log"
     wrapper:
-        "master/bio/dada2/dereplicate-fastq"
+        "v5.5.1/bio/dada2/dereplicate-fastq"
 
 rule dada2_sample_inference:
     input:
@@ -82,7 +82,7 @@ rule dada2_sample_inference:
         "logs/dada2/sample-inference/{sample}.{orientation}.log"
     threads: 1 # set desired number of threads here
     wrapper:
-        "master/bio/dada2/sample-inference"
+        "v5.5.1/bio/dada2/sample-inference"
 
 rule dada2_merge_pairs:
     input:
@@ -96,7 +96,7 @@ rule dada2_merge_pairs:
         "logs/dada2/merge-pairs/{sample}.log"
     threads: 1 # set desired number of threads here
     wrapper:
-        "master/bio/dada2/merge-pairs"
+        "v5.5.1/bio/dada2/merge-pairs"
 
 rule dada2_make_table_pe:
     input:
@@ -111,7 +111,7 @@ rule dada2_make_table_pe:
         "logs/dada2/make-table/make-table-pe.log"
     threads: 1 # set desired number of threads here
     wrapper:
-        "master/bio/dada2/make-table"
+        "v5.5.1/bio/dada2/make-table"
 
 rule dada2_remove_chimeras:
     input:
@@ -122,7 +122,7 @@ rule dada2_remove_chimeras:
         "logs/dada2/remove-chimeras/remove-chimeras.log"
     threads: 1 # set desired number of threads here
     wrapper:
-        "master/bio/dada2/remove-chimeras"
+        "v5.5.1/bio/dada2/remove-chimeras"
 
 rule dada2_collapse_nomismatch:
     input:
@@ -133,7 +133,7 @@ rule dada2_collapse_nomismatch:
         "logs/dada2/collapse-nomismatch/collapse-nomismatch.log"
     threads: 1 # set desired number of threads here
     wrapper:
-        "master/bio/dada2/collapse-nomismatch"
+        "v5.5.1/bio/dada2/collapse-nomismatch"
 
 rule dada2_assign_taxonomy:
     input:
@@ -145,4 +145,4 @@ rule dada2_assign_taxonomy:
         "logs/dada2/assign-taxonomy/assign-taxonomy.log"
     threads: 1 # set desired number of threads here
     wrapper:
-        "master/bio/dada2/assign-taxonomy"
+        "v5.5.1/bio/dada2/assign-taxonomy"

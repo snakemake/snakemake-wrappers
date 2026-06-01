@@ -1,0 +1,13 @@
+name: MMseqs2 db
+url: https://github.com/soedinglab/mmseqs2
+description: |
+  ultra fast and sensitive sequence search and clustering suite
+authors:
+  - Filipe G. Vieira
+input:
+  - input FAS file
+output:
+  - output: DB files
+params:
+  - module: workflow to use; it can either be `database <https://github.com/soedinglab/mmseqs2/wiki#downloading-databases>`_, or `createdb/createtaxdb <https://github.com/soedinglab/mmseqs2/wiki#creating-a-seqtaxdb>`_
+  - extra: additional program arguments

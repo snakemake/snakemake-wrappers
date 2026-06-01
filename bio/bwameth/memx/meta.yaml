@@ -6,7 +6,8 @@ authors:
   - Thibault Dayris
 input:
   - idx: List of paths to indexed reference files
-  - fq: List of path to fastq files
+  - fq1: List of FASTQ files (multiple files will be merged before alignment).
+  - fq2: List of paired-end FASTQ files (multiple files will be merged before alignment).
   - ref: Path to reference fasta file
 output:
   - Path to mapped reads (SAM/BAM/CRAM)
@@ -17,4 +18,3 @@ params:
   - sort_extra: Optional parameters provided to samtools/picard besides IO and threading.
 notes: >
   Both SAM sorting and compression and handled by either samtools or picard. No duplication analysis is performed by this wrapper.
-

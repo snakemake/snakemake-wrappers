@@ -6,14 +6,12 @@ __license__ = "MIT"
 import tempfile
 from snakemake.shell import shell
 
-
 extra = snakemake.params.get("extra", "")
 tmp_root = snakemake.params.get("tmp_root", None)
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 with tempfile.TemporaryDirectory(dir=tmp_root) as tmp_dir:
-    shell(
-        """
+    shell("""
         (TMPDIR={tmp_dir}; \
         pbmm2 align --num-threads {snakemake.threads} \
             --preset {snakemake.params.preset} \
@@ -23,5 +21,4 @@ with tempfile.TemporaryDirectory(dir=tmp_root) as tmp_dir:
             {snakemake.input.reference} \
             {snakemake.input.query} \
             {snakemake.output.bam}) {log}
-        """
-    )
+        """)

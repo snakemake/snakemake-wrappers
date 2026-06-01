@@ -5,7 +5,7 @@ min_version("9.13.1")
 configfile: "config.yaml"
 
 module bowtie2_sambamba:
-    meta_wrapper: "master/meta/bio/bowtie2_sambamba"
+    meta_wrapper: "file:.."
     config: config
 
 use rule * from bowtie2_sambamba

@@ -4,26 +4,31 @@ __email__ = "j.forster@dkfz.de"
 __license__ = "MIT"
 
 
-import os
 from tempfile import TemporaryDirectory
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
+# Input
+in_reads = snakemake.input.reads
+if not isinstance(in_reads, list):
+    in_reads = [in_reads]
+in_reads = " --input ".join(in_reads)
+
 # get sequencing type
 seq_type = snakemake.params.get("sequencing_type", "dna")
-seq_type = "--{}".format(seq_type)
+seq_type = f"--{seq_type}"
 
 # check if non-default config.ini is used
-config = snakemake.params.get("config", "")
-if any(config):
-    config = "--config {}".format(config)
+config = snakemake.input.get("config", "")
+if config:
+    config = f"--config {config}"
 
 with TemporaryDirectory() as tempdir:
     shell(
-        "(OptiTypePipeline.py"
-        "  --input {snakemake.input.reads}"
+        "(optitype run"
+        "  --input {in_reads}"
         "  --outdir {tempdir}"
         "  --prefix tmp_prefix"
         "  {seq_type}"

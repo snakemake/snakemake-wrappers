@@ -5,7 +5,7 @@ min_version("9.13.1")
 configfile: "config.yaml"
 
 module calc_consensus_reads:
-    meta_wrapper: "master/meta/bio/calc_consensus_reads"
+    meta_wrapper: "file:.."
     config: config
 
 use rule * from calc_consensus_reads
