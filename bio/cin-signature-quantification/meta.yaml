@@ -1,0 +1,6 @@
+name : CINSignatureQuantification
+description : 
+  Chromosomal instability signature quantification using unrounded absolute copy number 
+  profiles with the CINSignatureQuantification package 
+author:
+  - Carlo Monschein
