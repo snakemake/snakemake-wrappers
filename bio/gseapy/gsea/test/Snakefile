@@ -75,3 +75,19 @@ rule test_gseapy_prerank:
         # gene_sets = [""] # Optional list of gene sets available on biomart
     wrapper:
         "master/bio/gseapy/gsea"
+
+rule test_gseapy_enrichr_with_background:
+    input:
+        gene_list="genes_list.txt",
+        background_genes="genes_list.txt",  # Using same file as background for testing
+    output:
+        enrichr_dir=directory("out/enrichr_background/KEGG_2016"),
+    log:
+        wrapper="logs/enrichr_background.wrapper.log",
+        gseapy="logs/enrichr_background.log",
+    threads: 1
+    params:
+        extra={"cutoff": 1},
+        gene_sets=["KEGG_2016"],
+    wrapper:
+        "master/bio/gseapy/gsea"
