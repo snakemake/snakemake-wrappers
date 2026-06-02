@@ -120,11 +120,10 @@ with TemporaryDirectory() as tempdir:
         if snakemake.threads > 1:
             raise TooManyThreadsRequested()
         print("Using Biomart EnrichR method")
-        background = snakemake.input.get("background_genes")
         result = gseapy.enrichr(
             gene_list=snakemake.input.gene_list,
             gene_sets=gene_sets,
-            background=background,
+            background=snakemake.input.get("background_genes"),
             outdir=tempdir,
             **extra,
         )
