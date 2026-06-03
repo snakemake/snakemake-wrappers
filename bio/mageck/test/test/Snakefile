@@ -1,0 +1,23 @@
+rule test_mageck_test:
+    input:
+        counts="counts.tsv",
+        # Optional path to CNV matrix
+        cnv="short_cnv.tsv",
+    output:
+        # Path to positively/negatively selected genes
+        rra="RRA.tsv",
+        r_script="mageck.R",
+        rmd_report="mageck.Rmd",
+        sgrna_summary="sgrna.tsv",
+        sweave="mageck.Rnw",
+        logs="additional_logs.log",
+        # Optional path to PDF report
+        pdf="RRA.pdf",
+        # Optional path to normalized counts
+        normalized="Normalired_counts.tsv",
+    log:
+        "test_mageck_test.log",
+    params:
+        extra="--treatment-id HL60.final,KBM7.final --control-id HL60.initial,KBM7.initial --cell-line HL60_HAEMATOPOIETIC_AND_LYMPHOID_TISSUE",
+    wrapper:
+        "master/bio/mageck/test"
