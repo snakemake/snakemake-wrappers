@@ -1,0 +1,17 @@
+name: MaGeCK FluteRRA
+description: |
+  CRISPR integrative analysis pipeline using the gene summary table in 
+  MAGeCK RRA results
+url: https://bioconductor.org/packages/3.20/bioc/html/MAGeCKFlute.html
+authors:
+  - Thibault Dayris
+input:
+  - rra: Path to the gene summary table from MAGeCK RRA results
+  - sgrna: Path to the sgRNA summary data
+output:
+  - Path to the directory holding results
+params:
+  - extra: Optional parameters besides `gene_summary`, `sgrna_summary`, or `outdir`.
+notes: |
+  The output directory content depends on optional parameters, and the content of the
+  CRISPR data.
