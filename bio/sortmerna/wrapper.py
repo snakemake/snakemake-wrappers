@@ -37,13 +37,27 @@ if other:
         assert isinstance(
             reads, list
         ), "if paired input, reads must be a list of two files"
-    extra = f"--fastx {extra}"
 
-is_paired = False
+if other and aligned:
+    assert isinstance(aligned, list) == isinstance(other, list), (
+        "if requesting both aligned and other, both must be the same shape "
+        "(single file, or list of two files for split output)"
+    )
+
 if isinstance(reads, list):
     assert len(reads) == 2, "if paired input, reads must be a list of two files"
     reads = " --reads ".join(reads)
-    is_paired = True
+
+# A list output means split paired output (_fwd/_rev files), which requires
+# --out2; a single output file with paired input produces one interleaved file.
+split_output = isinstance(aligned, list) or isinstance(other, list)
+
+# fastx output is required whenever aligned or other reads are requested
+if aligned or other:
+    extra = f"--fastx {extra}"
+
+if split_output:
+    extra = f"--out2 {extra}"
 
 if stats:
     assert isinstance(stats, str), "stats must be a single file"
@@ -62,7 +76,7 @@ with tempfile.TemporaryDirectory() as temp_workdir:
         " {log}"
     )
 
-    if is_paired:
+    if split_output:
         if aligned:
             # Handle the case were no alignment
             shell("mv {temp_workdir}/aligned_reads_fwd.* {aligned[0]}")
