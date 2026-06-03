@@ -1,0 +1,18 @@
+name: MAGeCK FluteMLE
+description: |
+  Use MAGeCK to call gene essentialities
+url: https://sourceforge.net/p/mageck/wiki/demo/#the-fourth-demo-using-mageck-mle-module
+authors:
+  - Thibault Dayris
+input:
+  - count: Path to count table from MAGeCK count
+  - design: Optional path to design table
+  - cnv: Optional path to CNV table
+  - sgrna: Optional path to sgRNA efficiency file
+output:
+  - Path to the directory holding results
+params:
+  - extra: Optional parameters besides `--count-table`, `--design-matrix`, `--output-prefix`, `--sgrna-efficiency` or `--cnv-norm`.
+note: |
+  If no design table is provided, then at least `--day0-label` must be given in extra.
+  See official documentation for more information.

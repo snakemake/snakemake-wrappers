@@ -1,0 +1,5 @@
+Samples        baseline        HL60_HAEMATOPOIETIC_AND_LYMPHOID_TISSUE        KBM7
+HL60.initial   1               0           0
+KBM7.initial   1               0           0
+HL60.final     1               1           0
+KBM7.final     1               0           1
