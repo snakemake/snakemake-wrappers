@@ -708,7 +708,7 @@ def test_purge_dups_split_fa(run):
 def test_quast(run):
     run(
         "bio/quast",
-        ["snakemake", "quast/treport.tsv", "metaquast/treport.tsv"],
+        ["snakemake", "quast/treport.tsv", "meta_quast/treport.tsv"],
     )
 
 
