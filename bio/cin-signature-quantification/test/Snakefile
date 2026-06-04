@@ -1,6 +1,6 @@
 rule quantify_cin_signatures:
     input:
-        segments="data/TCGA_478_Samples_SNP6_GOLD",
+        segments="data/TCGA_478_Samples_SNP6_GOLD_truncated",
     output:
         signatures="results/signatures.tsv",
     log:
