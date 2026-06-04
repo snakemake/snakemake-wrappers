@@ -7,6 +7,11 @@ if (length(snakemake@log) > 0) {
     log <- file(snakemake@log[[1]], open="wt")
     sink(log)
     sink(log, type="message")
+    on.exit({
+        sink(type = "message")
+        sink()
+        close(log)
+        }, add = TRUE)
 }
 
 library(CINSignatureQuantification)

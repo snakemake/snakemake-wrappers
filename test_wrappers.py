@@ -2091,14 +2091,11 @@ def test_dragmap_align(run):
 
 def test_cin_signature_quantification(run):
     run(
-        "bio/cin-signature-quantification   ",
+        "bio/cin-signature-quantification",
         [
             "snakemake",
-            "--cores",
-            "1",
             "results/signatures.tsv",
-            "--use-conda"
-            ],
+        ],
         compare_results_with_expected={
             "results/signatures.tsv": "expected/expected_results.tsv"
         },
