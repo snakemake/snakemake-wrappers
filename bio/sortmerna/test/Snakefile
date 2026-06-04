@@ -13,7 +13,7 @@ rule sortmerna_pe:
         mem_mb=3072,  # amount of memory for building the index
     params:
         # --out2 is injected automatically for list (split) outputs
-        extra="--idx-dir idx --paired_in",
+        extra="--paired_in",
     wrapper:
         "master/bio/sortmerna"
 
@@ -33,7 +33,7 @@ rule sortmerna_pe_interleaved:
     resources:
         mem_mb=3072,  # amount of memory for building the index
     params:
-        extra="--idx-dir idx --paired_in",
+        extra="--paired_in",
     wrapper:
         "master/bio/sortmerna"
 
@@ -42,6 +42,7 @@ rule sortmerna_se:
     input:
         ref=["database1.fa", "database2.fa"],
         reads="reads.fq",
+        idx_dir="idx",
     output:
         aligned="aligned.fastq",
         other="unpaired.fastq",
@@ -52,6 +53,6 @@ rule sortmerna_se:
     resources:
         mem_mb=3072,  # amount of memory for building the index
     params:
-        extra="--idx-dir idx",
+        extra="",
     wrapper:
         "master/bio/sortmerna"

@@ -12,6 +12,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 ref = snakemake.input.ref
 reads = snakemake.input.reads
+idx_dir = snakemake.input.get("idx_dir", None)
 aligned = snakemake.output.get("aligned", None)
 other = snakemake.output.get("other", None)
 stats = snakemake.output.get("stats", None)
@@ -58,6 +59,9 @@ if aligned or other:
 
 if split_output:
     extra = f"--out2 {extra}"
+
+if idx_dir:
+    extra = f"--idx_dir {idx_dir} {extra}"
 
 if stats:
     assert isinstance(stats, str), "stats must be a single file"
