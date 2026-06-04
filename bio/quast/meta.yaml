@@ -27,5 +27,9 @@ output:
   - Report on unaligned and partially unaligned contigs
   - Report on k-mer-based metrics
   - Report on mapped reads statistics.
+params:
+  - tool: "tool executable to run; allowed values are `quast` and `metaquast` (default: `quast`)."
+  - extra: "Additional program arguments."
 notes: |
   * The `extra` param allows for additional program arguments.
+  * The `tool` param allows choosing between `quast` and `metaquast`.

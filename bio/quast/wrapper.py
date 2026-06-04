@@ -10,6 +10,9 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
+tool = snakemake.params.get("tool", "quast")
+if tool not in {"quast", "metaquast"}:
+    raise ValueError("Invalid params.tool: must be one of 'quast' or 'metaquast'.")
 
 ref = snakemake.input.get("ref", "")
 if ref:
@@ -69,7 +72,7 @@ if sv_bedpe:
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
-        "quast --threads {snakemake.threads} {ref} {gff} {pe1} {pe2} {pe12} {mp1} {mp2} {mp12} {single} {pacbio} {nanopore} {ref_bam} {ref_sam} {bam} {sam} {sv_bedpe} {extra} -o {tmpdir} {snakemake.input.fasta} {log}"
+        "{tool} --threads {snakemake.threads} {ref} {gff} {pe1} {pe2} {pe12} {mp1} {mp2} {mp12} {single} {pacbio} {nanopore} {ref_bam} {ref_sam} {bam} {sam} {sv_bedpe} {extra} -o {tmpdir} {snakemake.input.fasta} {log}"
     )
 
     fasta_name = Path(snakemake.input.fasta).with_suffix("").name

@@ -708,7 +708,7 @@ def test_purge_dups_split_fa(run):
 def test_quast(run):
     run(
         "bio/quast",
-        ["snakemake", "a/treport.tsv"],
+        ["snakemake", "a/treport.tsv", "b/treport.tsv"],
     )
 
 
@@ -3477,9 +3477,9 @@ def test_cairosvg(run):
 
 def test_ripgrep(run):
     run(
-        "utils/ripgrep", 
+        "utils/ripgrep",
         [
-            "snakemake", 
+            "snakemake",
             "test_ripgrep_plain_text.txt",
             "test_ripgrep_pattern_file.txt",
             "test_ripgrep_compressed_input.txt",
@@ -5322,7 +5322,8 @@ def test_pbmarkdup(run):
             "dedup.fastq.gz",
         ],
     )
-    
+
+
 def test_libarchive_extract(run):
     run(
         "utils/libarchive/extract",
@@ -5331,17 +5332,13 @@ def test_libarchive_extract(run):
             "results/7z/a.txt",
             "results/tar/a.txt",
             "results/tar/b.md",
-            "results/zip/a.txt"
+            "results/zip/a.txt",
         ],
     )
+
 
 def test_libarchive_compress(run):
     run(
         "utils/libarchive/compress",
-        [
-            "snakemake",
-            "results/test.7z",
-            "results/test.tar.gz",
-            "results/test.zip"
-        ],
+        ["snakemake", "results/test.7z", "results/test.tar.gz", "results/test.zip"],
     )
