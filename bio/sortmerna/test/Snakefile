@@ -42,6 +42,7 @@ rule sortmerna_se:
     input:
         ref=["database1.fa", "database2.fa"],
         reads="reads.fq",
+        # optional: reuse a pre-built index dir instead of rebuilding it (adds --idx-dir)
         idx_dir="idx",
     output:
         aligned="aligned.fastq",

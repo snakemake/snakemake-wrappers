@@ -60,8 +60,11 @@ if aligned or other:
 if split_output:
     extra = f"--out2 {extra}"
 
+# A pre-built index can be supplied as the optional `idx_dir` input so it is
+# reused across runs instead of rebuilt in the (ephemeral) workdir each time.
+# The per-run kvdb still lives in the temporary workdir, so it stays fresh.
 if idx_dir:
-    extra = f"--idx_dir {idx_dir} {extra}"
+    extra = f"--idx-dir {idx_dir} {extra}"
 
 if stats:
     assert isinstance(stats, str), "stats must be a single file"
