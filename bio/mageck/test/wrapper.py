@@ -29,7 +29,6 @@ with TemporaryDirectory() as tempdir:
         "logs": f"{tempdir}.log",
     }
 
-
     pdf = snakemake.output.get("pdf")
     if pdf:
         extra += " --pdf-report "
@@ -40,7 +39,6 @@ with TemporaryDirectory() as tempdir:
         extra += " --normcounts-to-file "
         outfile_mapping["normalized"] = f"{tempdir}.normalized.txt"
 
-
     shell(
         "mageck test {extra} --count-table {snakemake.input.counts} "
         "--output-prefix {tempdir} {cnv} {log} "
@@ -50,5 +48,3 @@ with TemporaryDirectory() as tempdir:
 
     for move_cmd in move_files(snakemake, outfile_mapping):
         shell("{move_cmd} {log}")
-
-
