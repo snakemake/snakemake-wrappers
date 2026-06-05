@@ -11,6 +11,6 @@ rule test_mageck_mle:
     log:
         "test_mageck_mle.log",
     params:
-        extra="--cell-line HL60_HAEMATOPOIETIC_AND_LYMPHOID_TISSUE --permutation-round 2"
+        extra="--cell-line HL60_HAEMATOPOIETIC_AND_LYMPHOID_TISSUE --permutation-round 2",
     wrapper:
         "master/bio/mageck/mle"

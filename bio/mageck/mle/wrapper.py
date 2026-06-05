@@ -24,7 +24,6 @@ if design:
     extra += f" --design-matrix {design}"
 
 
-
 with TemporaryDirectory() as tempdir:
     temp_prefix = f"{tempdir}/snake_out"
     outfile_mapping = {
@@ -40,5 +39,3 @@ with TemporaryDirectory() as tempdir:
 
     for move_cmd in move_files(snakemake, outfile_mapping):
         shell("{move_cmd} {log}")
-
-
