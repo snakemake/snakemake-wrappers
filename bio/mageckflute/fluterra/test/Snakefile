@@ -4,13 +4,13 @@ rule test_mageck_flute_rra:
         # Optional path to sgRNA
         sgrna="sgrna_summary_small.txt",
     output:
-        directory("test_mageck_flute_rra")
+        directory("test_mageck_flute_rra"),
     log:
         "test_mageck_flute_rra.log",
     params:
-        keytype='Symbol', 
-        organism='mmu', 
-        proj='testing', 
+        keytype="Symbol",
+        organism="mmu",
+        proj="testing",
         verbose=True,
     wrapper:
         "master/bio/mageckflute/fluterra"
