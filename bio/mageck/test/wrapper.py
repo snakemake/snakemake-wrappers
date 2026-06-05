@@ -42,8 +42,6 @@ with TemporaryDirectory() as tempdir:
     shell(
         "mageck test {extra} --count-table {snakemake.input.counts} "
         "--output-prefix {tempdir} {cnv} {log} "
-        " && tree {tempdir}* {log} "
-        " && ls {tempdir}* {log} "
     )
 
     for move_cmd in move_files(snakemake, outfile_mapping):
