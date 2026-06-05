@@ -5,9 +5,6 @@ channels:
 dependencies:
   - mageck =0.5.9.5
   - snakemake-wrapper-utils =0.8.0
-  # Required for optional PDF export
   - r-base =4.6.0
-  # To avoid encoding issues, must not be updated
   - python =3.10.20
-  # To access numpy deprecated method removed in numpy 1.24.0, must not be updated
   - numpy =1.23.5

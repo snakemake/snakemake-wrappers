@@ -1,17 +1,23 @@
-name: MaGeCK FluteRRA
+name: MaGeCK test
 description: |
-  CRISPR integrative analysis pipeline using the gene summary table in 
-  MAGeCK RRA results
-url: https://bioconductor.org/packages/3.20/bioc/html/MAGeCKFlute.html
+  Search positively and negatively selected genes with MAGeCK.
+url: https://sourceforge.net/p/mageck/wiki/demo/#h-step-5-compare-samples-using-mageck-test-subcommand
 authors:
   - Thibault Dayris
 input:
-  - rra: Path to the gene summary table from MAGeCK RRA results
-  - sgrna: Path to the sgRNA summary data
+  - counts: Path to file holding read counts.
+  - cnv: Optional path to CNV data.
 output:
-  - Path to the directory holding results
+  - rra: Path to selected genes
+  - r_script: Path to RScript used to perform end-analysis
+  - rmd_report: Path to ready-to-use RMarkdown report
+  - sgrna_summary: Path to sgRNA score ranking
+  - sweave: Path to ready-to-use sweave report
+  - logs: Path to internal logs file
+  - pdf: Optional path to PDF report
+  - normalized: Optional path to normalized read count file
 params:
-  - extra: Optional parameters besides `gene_summary`, `sgrna_summary`, or `outdir`.
+  - extra: Optional parameters besides `--cnv-norm`, `--normcounts-to-file`, `-n|--output-prefix`, `--pdf-report`, or `--count-table`.
 notes: |
-  The output directory content depends on optional parameters, and the content of the
-  CRISPR data.
+  Python (3.10.20) and numpy (1.23.5) version in the environment file must not change, 
+  as long as the owners do not fix their deprecation issues.
