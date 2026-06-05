@@ -11,7 +11,7 @@ input:
 output:
   - Path to the directory holding results
 params:
-  Any named parameter besides `gene_summary`, sgrna_summary` or `outdir`.
+  Any named parameter besides `gene_summary`, `sgrna_summary` or `outdir`.
 notes: |
   The output directory content depends on optional parameters, and the content of the
   CRISPR data.
