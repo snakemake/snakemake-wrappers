@@ -15,7 +15,7 @@ output:
   - sgrna: Path to sgrna score ranking
 params:
   - extra: Optional parameters besides `--count-table`, `--design-matrix`, `--output-prefix`, `--sgrna-efficiency` or `--cnv-norm`.
-note: |
+notes: |
   If no design table is provided, then at least `--day0-label` must be given in extra.
   See official documentation for more information.
 
