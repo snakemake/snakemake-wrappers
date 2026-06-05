@@ -1,6 +1,6 @@
 rule test_mageck_mle:
     input:
-        counts="leukemia.new.csv",
+        counts="gene_summary.txt",
         # Optional input files
         design="designmat.txt",
         cnv="cnv_data.txt",
