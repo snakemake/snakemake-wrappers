@@ -18,7 +18,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libffi-3.5.2-h3435931_0.conda#a3
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.2.0-h69a702a_19.conda#331ee9b72b9dff570d56b1302c5ab37d
 https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.3-hb03c661_0.conda#b88d90cad08e6bc8ad540cb310a761fb
 https://conda.anaconda.org/conda-forge/linux-64/libmpdec-4.0.0-hb03c661_1.conda#2c21e66f50753a083cbe6b80f38268fa
-https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.53.1-h0c1763c_0.conda#7dc38adcbf71e6b38748e919e16e0dce
+https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.53.2-h0c1763c_0.conda#062b0ac602fb0adf250e3dfa86f221c4
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h934c35e_19.conda#5794b3bdc38177caf969dabd3af08549
 https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.42.1-h5347b49_0.conda#7d0a66598195ef00b6efc55aefc7453b
 https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.6-hdb14827_0.conda#fc21868a1a5aacc937e7a18747acb8a5
@@ -27,5 +27,5 @@ https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_h366c992_103.con
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-15.2.0-hdf11a46_19.conda#e5ce228e579726c07255dbf90dc62101
 https://conda.anaconda.org/conda-forge/linux-64/readline-8.3-h853b02a_0.conda#d7d95fc8287ea7bf33e0e7116d2b95ec
 https://conda.anaconda.org/conda-forge/linux-64/python-3.14.5-habeac84_100_cp314.conda#da92e59ff92f2d5ede4f612af20f583f
-https://conda.anaconda.org/conda-forge/noarch/pip-26.1.1-pyh145f28c_0.conda#2e7e59a063366f1fc4f45ac86bd9485f
-https://conda.anaconda.org/conda-forge/linux-64/sortmerna-6.0.0-py314hd80a2e3_0.conda#54a7aa63f68ca7cd937b86260d5550bf
+https://conda.anaconda.org/conda-forge/noarch/pip-26.1.2-pyh145f28c_0.conda#733cc07ed34162ac50b936464b163366
+https://conda.anaconda.org/conda-forge/linux-64/sortmerna-6.0.2-py314hd80a2e3_0.conda#9176dba72b1f1ca2e8966ea7dc2e3c03
