@@ -18,11 +18,6 @@ if isinstance(ref, list):
 
 
 reads = snakemake.input.reads
-if isinstance(reads, list):
-    assert len(reads) == 2, "if paired input, reads must be a list of two files"
-    reads = " --reads ".join(reads)
-
-
 aligned = snakemake.output.get("aligned")
 if aligned:
     if isinstance(aligned, list):
@@ -43,6 +38,11 @@ if other:
         assert isinstance(
             reads, list
         ), "if paired input, reads must be a list of two files"
+
+
+if isinstance(reads, list):
+    assert len(reads) == 2, "if paired input, reads must be a list of two files"
+    reads = " --reads ".join(reads)
 
 
 # A list output means split paired output (_fwd/_rev files), which requires
