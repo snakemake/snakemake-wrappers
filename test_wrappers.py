@@ -4955,6 +4955,7 @@ def test_sortmerna(run):
         [
             "snakemake",
             "aligned_1.fastq.gz",
+            "aligned_interleaved.fastq.gz",
             "unpaired.fastq",
         ],
     )
