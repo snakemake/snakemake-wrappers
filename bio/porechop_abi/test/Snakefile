@@ -11,6 +11,5 @@ rule porechop_abi:
         mem_mb=1024,
     params:
         ab_initio=True,
-        extra="-nr 1 -cr 1 -v 0",
     wrapper:
         "master/bio/porechop_abi"
