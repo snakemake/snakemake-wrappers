@@ -708,7 +708,7 @@ def test_purge_dups_split_fa(run):
 def test_quast(run):
     run(
         "bio/quast",
-        ["snakemake", "a/treport.tsv"],
+        ["snakemake", "quast/treport.tsv", "meta_quast/treport.tsv"],
     )
 
 
@@ -2515,6 +2515,7 @@ def test_freebayes(run):
         )
 
 
+@pytest.mark.skip(reason="needs valid token since all datasets are controled")
 def test_gdc_api_bam_slicing(run):
     def check_log(log):
         assert "error" in log and "token" in log
@@ -2673,6 +2674,16 @@ def test_macs2_callpeak(run):
             "callpeak_options/basename_peaks.gappedPeak",
             "callpeak_options/basename_treat_pileup.bdg",
             "callpeak_options/basename_control_lambda.bdg",
+        ],
+    )
+
+
+def test_mageck_flute_mle(run):
+    run(
+        "bio/mageckflute/flutemle",
+        [
+            "snakemake",
+            "test_mageck_flute_mle",
         ],
     )
 
@@ -3476,9 +3487,9 @@ def test_cairosvg(run):
 
 def test_ripgrep(run):
     run(
-        "utils/ripgrep", 
+        "utils/ripgrep",
         [
-            "snakemake", 
+            "snakemake",
             "test_ripgrep_plain_text.txt",
             "test_ripgrep_pattern_file.txt",
             "test_ripgrep_compressed_input.txt",
@@ -4958,6 +4969,7 @@ def test_sortmerna(run):
         [
             "snakemake",
             "aligned_1.fastq.gz",
+            "aligned_interleaved.fastq.gz",
             "unpaired.fastq",
         ],
     )
@@ -5335,7 +5347,8 @@ def test_pbmarkdup(run):
             "dedup.fastq.gz",
         ],
     )
-    
+
+
 def test_libarchive_extract(run):
     run(
         "utils/libarchive/extract",
@@ -5344,17 +5357,13 @@ def test_libarchive_extract(run):
             "results/7z/a.txt",
             "results/tar/a.txt",
             "results/tar/b.md",
-            "results/zip/a.txt"
+            "results/zip/a.txt",
         ],
     )
+
 
 def test_libarchive_compress(run):
     run(
         "utils/libarchive/compress",
-        [
-            "snakemake",
-            "results/test.7z",
-            "results/test.tar.gz",
-            "results/test.zip"
-        ],
+        ["snakemake", "results/test.7z", "results/test.tar.gz", "results/test.zip"],
     )
