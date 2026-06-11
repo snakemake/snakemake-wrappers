@@ -1,0 +1,16 @@
+name: porechop_abi
+description: |
+  Adapter trimming for Oxford Nanopore reads with optional ab initio adapter inference.
+url: https://github.com/bonsai-team/Porechop_ABI
+authors:
+  - Artur Gomes
+input:
+  - fq: one FASTA/FASTQ read file (optionally gzipped)
+  - ab_initio_config: custom ab initio config file (optional)
+  - custom_adapters: custom adapters file (optional)
+output:
+  - fq: one trimmed FASTA/FASTQ read file
+  - consensus: optional consensus export file
+params:
+  - extra: additional program arguments
+  - ab_initio: "run adapter inference before trimming (bool, default: true)"
