@@ -1,0 +1,20 @@
+name: crabz
+description: |
+  Like pigz, but rust. A cross platform, fast, compression and decompression tool.
+url: https://github.com/sstadick/crabz
+author:
+  - Thibault Dayris
+input:
+  - Path to the file to compress.
+output:
+  - Path to archive.
+params:
+  - extra: Optional parameters besides `-p|--compression-threads` or `-o|--output`
+note: |
+  Due to multiple compression formats having the same file extension,
+  compression format is not always guessed right. Feel free to provide this parameter
+  to override automatic detection.
+  
+  The parameter `-d|--decompress` is provided, but 
+  "this flag may change in future releases" according to the documentation.
+  
