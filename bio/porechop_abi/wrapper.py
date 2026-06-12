@@ -16,16 +16,16 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 ab_initio_flag = "--ab_initio" if ab_initio else ""
 ab_initio_config = snakemake.input.get("ab_initio_config", "")
 ab_initio_config_arg = (
-    f"--ab_initio_config {ab_initio_config}" if ab_initio_config else ""
+    f"--ab_initio_config {ab_initio_config:q}" if ab_initio_config else ""
 )
 
 custom_adapters = snakemake.input.get("custom_adapters", "")
-custom_adapters_arg = f"--custom_adapters {custom_adapters}" if custom_adapters else ""
+custom_adapters_arg = f"--custom_adapters {custom_adapters:q}" if custom_adapters else ""
 
 consensus = snakemake.output.get("consensus", "")
 if consensus and not ab_initio:
     raise ValueError("output.consensus requires params.ab_initio=True")
-consensus_arg = f"--export_consensus {consensus}" if consensus else ""
+consensus_arg = f"--export_consensus {consensus:q}" if consensus else ""
 
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
