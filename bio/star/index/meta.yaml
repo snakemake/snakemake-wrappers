@@ -5,6 +5,7 @@ authors:
   - Thibault Dayris
   - Tomás Di Domenico
   - Filipe G. Vieira
+  - David Lähnemann
 input:
   - A (multi)fasta formatted file
 output:
