@@ -1,8 +1,8 @@
 """Snakemake wrapper for porechop_abi."""
 
-__author__ = "Snakemake Wrapper Team"
-__copyright__ = "Copyright 2026, Snakemake Wrapper Team"
-__email__ = ""
+__author__ = "Artur Gomes"
+__copyright__ = "Copyright 2026, Artur Gomes"
+__email__ = "arafaelogomes@gmail.com"
 __license__ = "MIT"
 
 import tempfile
