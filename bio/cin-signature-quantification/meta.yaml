@@ -1,0 +1,12 @@
+name : CINSignatureQuantification
+description : 
+  Chromosomal instability signature quantification using unrounded absolute copy number 
+  profiles with the CINSignatureQuantification package 
+url :
+  https://github.com/markowetzlab/CINSignatureQuantification/tree/main
+author :
+  - Carlo Monschein
+input :
+  - absolute copy number profiles in segment table format, containing multiple samples, without allele or subclonal information
+output :
+  - A file containing copy number signature activities for each sample
