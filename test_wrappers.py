@@ -4071,6 +4071,21 @@ def test_plass(run):
     )
 
 
+def test_porechop_abi(run):
+    run(
+        "bio/porechop_abi",
+        [
+            "snakemake",
+            "treated/trimmed.fasta",
+            "treated/consensus.fasta",
+        ],
+        compare_results_with_expected={
+            "treated/trimmed.fasta": "expected/trimmed.fasta",
+            "treated/consensus.fasta": "expected/consensus.fasta",
+        },
+    )
+
+
 def test_refgenie(run):
     try:
         shutil.copytree("bio/refgenie/test/genome_folder", "/tmp/genome_folder")
