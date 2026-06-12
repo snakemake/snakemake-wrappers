@@ -4081,6 +4081,7 @@ def test_porechop_abi(run):
         ],
         compare_results_with_expected={
             "treated/trimmed.fasta": "expected/trimmed.fasta",
+            "treated/consensus.fasta": "expected/consensus.fasta",
         },
     )
 

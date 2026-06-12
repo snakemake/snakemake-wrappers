@@ -20,7 +20,9 @@ ab_initio_config_arg = (
 )
 
 custom_adapters = snakemake.input.get("custom_adapters", "")
-custom_adapters_arg = f"--custom_adapters {custom_adapters:q}" if custom_adapters else ""
+custom_adapters_arg = (
+    f"--custom_adapters {custom_adapters:q}" if custom_adapters else ""
+)
 
 consensus = snakemake.output.get("consensus", "")
 if consensus and not ab_initio:
