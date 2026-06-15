@@ -5,7 +5,5 @@ rule quantify_cin_signatures:
         signatures="results/signatures.tsv",
     log:
         "logs/cin_signature_quantification.log",
-    conda:
-        "../environment.yaml"
-    script:
-        "../wrapper.R"
+    wrapper:
+        "master/cin-signature-quantification"

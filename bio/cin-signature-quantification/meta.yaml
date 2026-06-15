@@ -3,7 +3,7 @@ description :
   Chromosomal instability signature quantification using unrounded absolute copy number 
   profiles with the CINSignatureQuantification package 
 url :
-  https://github.com/markowetzlab/CINSignatureQuantification/tree/main
+  https://github.com/markowetzlab/CINSignatureQuantification/
 author :
   - Carlo Monschein
 input :

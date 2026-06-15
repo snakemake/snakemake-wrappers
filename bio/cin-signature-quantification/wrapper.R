@@ -19,8 +19,8 @@ library(CINSignatureQuantification)
 # Input data is absolute copy number profiles in segment table format, containing 
 # multiple samples, without allele or subclonal information. It is perferable to use
 # unrounded absolute copy number profiles.
-segments_file <- snakemake@input[["segments"]]
-out_file <- snakemake@output[["signatures"]]
+segments_file <- snakemake@input[[0]]
+out_file <- snakemake@output[[0]]
 
 cat("Quantifing Signatures...", "\n")
 Signatures <- quantifyCNSignatures(segments_file)
