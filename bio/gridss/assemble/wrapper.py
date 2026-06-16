@@ -23,7 +23,7 @@ if not snakemake.params.workingdir:
 if not snakemake.input.reference:
     raise ValueError("Please set input.reference to provide reference genome.")
 
-for ending in (".amb", ".ann", ".bwt", ".pac", ".sa"):
+for ending in (".amb", ".ann", ".bwt", ".pac", ".sa", ".dict"):
     if not path.exists("{}{}".format(reference, ending)):
         raise ValueError(
             "{reference}{ending} missing. Please make sure the reference was properly indexed by bwa.".format(
@@ -31,20 +31,12 @@ for ending in (".amb", ".ann", ".bwt", ".pac", ".sa"):
             )
         )
 
-dictionary = path.splitext(reference)[0] + ".dict"
-if not path.exists(dictionary):
-    raise ValueError(
-        "{dictionary}.dict missing. Please make sure the reference dictionary was properly created. This can be accomplished for example by CreateSequenceDictionary.jar from Picard".format(
-            dictionary=dictionary
-        )
-    )
-
 shell(
     "(gridss -s assemble "  # Tool
     "--reference {reference} "  # Reference
     "--threads {snakemake.threads} "  # Threads
     "--workingdir {snakemake.params.workingdir} "  # Working directory
     "--assembly {snakemake.output.assembly} "  # Assembly output
-    "{snakemake.input.bams} "
+    "{snakemake.input.bam} "
     "{extra}) {log}"
 )
