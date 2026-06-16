@@ -708,7 +708,7 @@ def test_purge_dups_split_fa(run):
 def test_quast(run):
     run(
         "bio/quast",
-        ["snakemake", "a/treport.tsv"],
+        ["snakemake", "quast/treport.tsv", "meta_quast/treport.tsv"],
     )
 
 
@@ -2691,6 +2691,16 @@ def test_macs2_callpeak(run):
     )
 
 
+def test_mageck_flute_mle(run):
+    run(
+        "bio/mageckflute/flutemle",
+        [
+            "snakemake",
+            "test_mageck_flute_mle",
+        ],
+    )
+
+
 def test_minimap2_aligner(run):
     run(
         "bio/minimap2/aligner",
@@ -3490,9 +3500,9 @@ def test_cairosvg(run):
 
 def test_ripgrep(run):
     run(
-        "utils/ripgrep", 
+        "utils/ripgrep",
         [
-            "snakemake", 
+            "snakemake",
             "test_ripgrep_plain_text.txt",
             "test_ripgrep_pattern_file.txt",
             "test_ripgrep_compressed_input.txt",
@@ -4071,6 +4081,21 @@ def test_plass(run):
             "plass/prot.fasta",
             "plass/prot_single.fasta",
         ],
+    )
+
+
+def test_porechop_abi(run):
+    run(
+        "bio/porechop_abi",
+        [
+            "snakemake",
+            "treated/trimmed.fasta",
+            "treated/consensus.fasta",
+        ],
+        compare_results_with_expected={
+            "treated/trimmed.fasta": "expected/trimmed.fasta",
+            "treated/consensus.fasta": "expected/consensus.fasta",
+        },
     )
 
 
@@ -4958,6 +4983,7 @@ def test_sortmerna(run):
         [
             "snakemake",
             "aligned_1.fastq.gz",
+            "aligned_interleaved.fastq.gz",
             "unpaired.fastq",
         ],
     )
@@ -5335,7 +5361,8 @@ def test_pbmarkdup(run):
             "dedup.fastq.gz",
         ],
     )
-    
+
+
 def test_libarchive_extract(run):
     run(
         "utils/libarchive/extract",
@@ -5344,17 +5371,13 @@ def test_libarchive_extract(run):
             "results/7z/a.txt",
             "results/tar/a.txt",
             "results/tar/b.md",
-            "results/zip/a.txt"
+            "results/zip/a.txt",
         ],
     )
+
 
 def test_libarchive_compress(run):
     run(
         "utils/libarchive/compress",
-        [
-            "snakemake",
-            "results/test.7z",
-            "results/test.tar.gz",
-            "results/test.zip"
-        ],
+        ["snakemake", "results/test.7z", "results/test.tar.gz", "results/test.zip"],
     )
