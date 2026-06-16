@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - r-cin-signature-quantification
+  - r-cin-signature-quantification =1.2.0
