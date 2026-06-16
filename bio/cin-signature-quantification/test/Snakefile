@@ -6,4 +6,4 @@ rule quantify_cin_signatures:
     log:
         "logs/cin_signature_quantification.log",
     wrapper:
-        "master/cin-signature-quantification"
+        "master/bio/cin-signature-quantification"
