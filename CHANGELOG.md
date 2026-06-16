@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.10.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.9.0...v9.10.0) (2026-06-16)
+
+
+### Features
+
+* add wrapper for cin_signature_quantification package ([#5332](https://github.com/snakemake/snakemake-wrappers/issues/5332)) ([76890a1](https://github.com/snakemake/snakemake-wrappers/commit/76890a1e73698f35b9b0767d18bbda8ffb588e19))
+* adds Porechop abi wrapper ([#5341](https://github.com/snakemake/snakemake-wrappers/issues/5341)) ([f083da0](https://github.com/snakemake/snakemake-wrappers/commit/f083da04baf734c1e972dec6e3f3f48585a74969))
+
 ## [9.9.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.8.0...v9.9.0) (2026-06-12)
 
 
