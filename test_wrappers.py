@@ -4024,20 +4024,14 @@ def test_umis_bamtag(run):
     )
 
 
-def test_transdecoder_longorfs(run):
+def test_transdecoder(run):
     run(
-        "bio/transdecoder/longorfs",
+        "bio/transdecoder",
         [
             "snakemake",
             "test.fa.transdecoder_dir/longest_orfs.pep",
+            "test.fa.transdecoder.gff3",
         ],
-    )
-
-
-def test_transdecoder_predict(run):
-    run(
-        "bio/transdecoder/predict",
-        ["snakemake", "test.fa.transdecoder.gff3"],
     )
 
 
