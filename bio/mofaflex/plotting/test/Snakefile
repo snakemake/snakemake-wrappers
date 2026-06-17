@@ -1,0 +1,28 @@
+rule test_all:
+  input:
+    "results/data_training_curve.pdf",
+    "results/data_factor_correlation.pdf",
+    "results/data_variance_explained.pdf",
+    "results/data_top_weights.pdf",
+    "results/data_weights.pdf",
+    "results/data_factors_scatter.pdf",
+    "results/data_weight_fig_size.pdf",
+    
+  
+rule mofaflex:
+  input:
+    "{data}.h5" # the trained 
+  output:
+    training_curve="results/{data}_training_curve.pdf",
+    factor_correlation="results/{data}_factor_correlation.pdf",
+    variance_explained="results/{data}_variance_explained.pdf",
+    top_weights="results/{data}_top_weights.pdf",
+    weights="results/{data}_weights.pdf",
+    factors_scatter="results/{data}_factors_scatter.pdf",
+    weight_fig_size="results/{data}_weight_fig_size.pdf",
+  params:
+    weight_fig_size=(5, 5)
+
+  wrapper:
+    # "master/bio/mofaflex/plotting"
+    "file:.."

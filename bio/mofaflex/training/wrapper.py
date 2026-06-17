@@ -12,6 +12,7 @@ import pickle as p
 
 def train_model(
     mdata: md.MuData | md.AnnData,
+    out_path: Path,
     n_factors: int = 15,
     likelihoods: Literal["Normal", "NegativeBinomial", "Binomial"] = "Normal",
     batch_size: int = 1000,
@@ -20,13 +21,14 @@ def train_model(
     model = mfl.MOFAFLEX(
         mdata,
         mfl.ModelOptions(n_factors=n_factors, likelihoods=likelihoods),
-        mfl.TrainingOptions(batch_size=batch_size, seed=seed),
+        mfl.TrainingOptions(batch_size=batch_size, seed=seed, save_path=out_path),
+        mfl.DataOptions(plot_data_overview=False),
     )
     return model
 
 
-def store_model(model: mfl.MOFAFLEX, file: BufferedWriter):
-    p.dump(model, file)
+# def store_model(model: mfl.MOFAFLEX, file: BufferedWriter):
+#     p.dump(model, file)
 
 
 if __name__ == "__main__":
@@ -51,11 +53,12 @@ if __name__ == "__main__":
 
     model: mfl.MOFAFLEX = train_model(
         mdata=mdata,
+        out_path=out_path,
         n_factors=n_factors,
         likelihoods=likelihoods,
         batch_size=batch_size,
         seed=seed,
     )
 
-    with open(out_path, "wb") as file:
-        store_model(model, file)
+    # with open(out_path, "wb") as file:
+    #     store_model(model, file)

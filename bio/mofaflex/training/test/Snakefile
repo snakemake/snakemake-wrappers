@@ -2,12 +2,13 @@ rule mofaflex:
   input:
     "{data}.h5mu" # data should be filtered before training
   output:
-    "{data}.pkl"
+    "{data}.h5"
   params:
-    n_factors=15
-    likelihoods="Normal" # "Normal", "NegativeBinomial", "Binomial"
-    batch_size=1000
-    seed=42
+    n_factors=15,
+    likelihoods="Normal", # "Normal", "NegativeBinomial", "Binomial"
+    batch_size=1000,
+    seed=42,
 
   wrapper:
-    "master/bio/mofaflex"
+    # "master/bio/mofaflex/training"
+    "file:.."
