@@ -2697,6 +2697,7 @@ def test_mageck_flute_rra(run):
         [
             "snakemake",
             "test_mageck_flute_rra",
+        ]
 
 
 def test_mageck_flute_mle(run):
