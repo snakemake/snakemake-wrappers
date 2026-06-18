@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.10.1](https://github.com/snakemake/snakemake-wrappers/compare/v9.10.0...v9.10.1) (2026-06-18)
+
+
+### Performance Improvements
+
+* Bump datavzrd ([#5354](https://github.com/snakemake/snakemake-wrappers/issues/5354)) ([d18ed53](https://github.com/snakemake/snakemake-wrappers/commit/d18ed53fec1628c823e34b6200dfdc0f82cd8d45))
+
 ## [9.10.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.9.0...v9.10.0) (2026-06-16)
 
 
