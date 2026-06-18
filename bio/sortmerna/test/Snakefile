@@ -6,13 +6,34 @@ rule sortmerna_pe:
         aligned=["aligned_1.fastq.gz", "aligned_2.fastq.gz"],
         other=["unpaired_1.fastq.gz", "unpaired_2.fastq.gz"],
         stats="sortmerna_pe_stats.log",
-    params:
-        extra="--idx-dir idx --paired_in --out2",
+    log:
+        "logs/sortmerna/reads_pe.log",
     threads: 16
     resources:
         mem_mb=3072,  # amount of memory for building the index
+    params:
+        # --out2 is injected automatically for list (split) outputs
+        extra="--paired_in",
+    wrapper:
+        "master/bio/sortmerna"
+
+
+rule sortmerna_pe_interleaved:
+    input:
+        ref=["database1.fa", "database2.fa"],
+        reads=["reads_1.fq.gz", "reads_2.fq.gz"],
+    output:
+        # single-file outputs with paired input -> interleaved (no --out2)
+        aligned="aligned_interleaved.fastq.gz",
+        other="unpaired_interleaved.fastq.gz",
+        stats="sortmerna_pe_interleaved_stats.log",
     log:
-        "logs/sortmerna/reads_pe.log",
+        "logs/sortmerna/reads_pe_interleaved.log",
+    threads: 16
+    resources:
+        mem_mb=3072,  # amount of memory for building the index
+    params:
+        extra="--paired_in",
     wrapper:
         "master/bio/sortmerna"
 
@@ -21,16 +42,18 @@ rule sortmerna_se:
     input:
         ref=["database1.fa", "database2.fa"],
         reads="reads.fq",
+        # optional: reuse a pre-built index dir instead of rebuilding it (adds --idx-dir)
+        idx_dir="idx",
     output:
         aligned="aligned.fastq",
         other="unpaired.fastq",
         stats="sortmerna_se_stats.log",
-    params:
-        extra="--idx-dir idx",
+    log:
+        "logs/sortmerna/reads_se.log",
     threads: 16
     resources:
         mem_mb=3072,  # amount of memory for building the index
-    log:
-        "logs/sortmerna/reads_se.log",
+    params:
+        extra="",
     wrapper:
         "master/bio/sortmerna"

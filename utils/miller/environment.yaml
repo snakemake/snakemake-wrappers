@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - miller =6.17.0
+  - miller =6.18.1
   - snakemake-wrapper-utils =0.8.0

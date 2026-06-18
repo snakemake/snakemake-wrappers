@@ -1,5 +1,5 @@
 sphinx
-sphinxawesome-theme
+sphinxawesome-theme!=6.0.3  # 6.0.3 wheel is broken: ships no sphinxawesome_theme module
 sphinx_rtd_theme
 docutils
 pyyaml

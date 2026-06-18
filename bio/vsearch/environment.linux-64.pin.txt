@@ -12,5 +12,5 @@ https://conda.anaconda.org/conda-forge/linux-64/libgcc-ng-15.2.0-h69a702a_18.con
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h934c35e_18.conda#1b08cd684f34175e4514474793d44bcb
 https://conda.anaconda.org/conda-forge/linux-64/pigz-2.8-h421ea60_2.conda#3d71c0550440051500a14e13f691580d
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-15.2.0-hdf11a46_18.conda#6235adb93d064ecdf3d44faee6f468de
-https://conda.anaconda.org/bioconda/linux-64/vsearch-2.30.6-h0bb26bb_0.conda#9669008c05b152af12931a0560abde74
+https://conda.anaconda.org/bioconda/linux-64/vsearch-2.31.0-hd2be7a0_0.conda#1688be9a6aa97ea509e853055f57b03d
 https://conda.anaconda.org/conda-forge/linux-64/pbzip2-1.1.13-h1fcc475_2.conda#e1bf3c0868789f3ddf5d1aeb47bc60a6

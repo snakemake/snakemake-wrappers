@@ -1,0 +1,5 @@
+expected/*.txt
+pattern.txt
+ignore.txt
+test_ripgrep_*.txt
+Snakefile

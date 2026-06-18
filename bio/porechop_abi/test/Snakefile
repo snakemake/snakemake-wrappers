@@ -1,0 +1,15 @@
+rule porechop_abi:
+    input:
+        fq="data/reads.fasta",
+    output:
+        fq="treated/trimmed.fasta",
+        consensus="treated/consensus.fasta",
+    log:
+        "logs/porechop_abi.log",
+    threads: 2
+    resources:
+        mem_mb=1024,
+    params:
+        ab_initio=True,
+    wrapper:
+        "master/bio/porechop_abi"
