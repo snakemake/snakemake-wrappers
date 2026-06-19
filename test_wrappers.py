@@ -3550,7 +3550,7 @@ def test_salmon_index(run):
         "bio/salmon/index",
         [
             "snakemake",
-            "salmon/transcriptome_index/complete_ref_lens.bin",
+            "salmon/transcriptome_index/refseq.bin",
         ],
     )
 
