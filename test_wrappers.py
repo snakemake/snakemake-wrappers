@@ -5098,9 +5098,9 @@ def test_toulligqc(run):
         "bio/toulligqc",
         [
             "snakemake",
-            "toulligqc_sequencing_summary/report.html",
-            "toulligqc_bam/report.html",
-            "toulligqc_fastq/report.html",
+            "out_summary/report.html",
+            "out_bam/report.html",
+            "out_fastq/report.html",
         ],
     )
 
