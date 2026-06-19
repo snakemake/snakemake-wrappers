@@ -1,4 +1,39 @@
-rule salmon_quant_reads:
+
+rule salmon_quant_pe_list:
+    input:
+        # If you have multiple fastq files for a single sample (e.g. technical replicates)
+        # use a list for r1 and r2.
+        r1="reads/{sample}_1.fq.gz",
+        r2="reads/{sample}_2.fq.gz",
+        index=multiext(
+            "salmon/transcriptome_index/",
+            "duplicate_clusters.tsv",
+            "index.ctab",
+            "index.ectab",
+            "index.refinfo",
+            "index.ssi",
+            "index.ssi.mphf",
+            "index.tct",
+            "index.tdct",
+            "info.json",
+            "refseq.bin",
+            "refseq_offsets.json",
+        ),
+    output:
+        quant="salmon_pe_list/{sample}/quant.sf",
+        lib="salmon_pe_list/{sample}/lib_format_counts.json",
+    log:
+        "logs/salmon_pe_list/{sample}.log",
+    threads: 2
+    params:
+        # optional parameters
+        libtype="A",
+        extra="",
+    wrapper:
+        "master/bio/salmon/quant"
+
+
+rule salmon_quant_pe:
     input:
         # If you have multiple fastq files for a single sample (e.g. technical replicates)
         # use a list for r1 and r2.
@@ -6,14 +41,71 @@ rule salmon_quant_reads:
         r2="reads/{sample}_2.fq.gz",
         index="salmon/transcriptome_index",
     output:
-        quant="salmon/{sample}/quant.sf",
-        lib="salmon/{sample}/lib_format_counts.json",
+        quant="salmon_pe/{sample}/quant.sf",
+        lib="salmon_pe/{sample}/lib_format_counts.json",
     log:
-        "logs/salmon/{sample}.log",
+        "logs/salmon_pe/{sample}.log",
+    threads: 2
     params:
         # optional parameters
         libtype="A",
         extra="",
+    wrapper:
+        "master/bio/salmon/quant"
+
+
+rule salmon_quant_pe_multi:
+    input:
+        # If you have multiple fastq files for a single sample (e.g. technical replicates, flowcells),
+        # use a list for multiple fastq files for each sample.
+        r1=["reads/a_1.fq.gz", "reads/b_1.fq.gz"],
+        r2=["reads/a_2.fq.gz", "reads/b_2.fq.gz"],
+        index="salmon/transcriptome_index",
+    output:
+        quant="salmon_pe_multi/ab_pe_x_transcriptome/quant.sf",
+        lib="salmon_pe_multi/ab_pe_x_transcriptome/lib_format_counts.json",
+    log:
+        "logs/salmon/ab_pe_x_transcriptome.log",
     threads: 2
+    params:
+        # optional parameters
+        libtype="A",
+        extra="",
+    wrapper:
+        "master/bio/salmon/quant"
+
+
+rule salmon_quant_se:
+    input:
+        r="reads/{sample}.fq.gz",
+        index="salmon/transcriptome_index",
+    output:
+        quant="salmon_se/{sample}_x_transcriptome/quant.sf",
+        lib="salmon_se/{sample}_x_transcriptome/lib_format_counts.json",
+    log:
+        "logs/salmon_se/{sample}_x_transcriptome.log",
+    threads: 2
+    params:
+        # optional parameters
+        libtype="A",
+        extra="",
+    wrapper:
+        "master/bio/salmon/quant"
+
+
+rule salmon_quant_se_bz2:
+    input:
+        r="reads/{sample}.fq.bz2",
+        index="salmon/transcriptome_index",
+    output:
+        quant="salmon_se_bz2/{sample}_x_transcriptome/quant.sf",
+        lib="salmon_se_bz2/{sample}_x_transcriptome/lib_format_counts.json",
+    log:
+        "logs/salmon_se_bz2/{sample}_x_transcriptome.log",
+    threads: 2
+    params:
+        # optional parameters
+        libtype="A",
+        extra="",
     wrapper:
         "master/bio/salmon/quant"
