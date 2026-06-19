@@ -3550,7 +3550,7 @@ def test_salmon_index(run):
         "bio/salmon/index",
         [
             "snakemake",
-            "salmon/transcriptome_index/complete_ref_lens.bin",
+            "salmon/transcriptome_index/refseq.bin",
         ],
     )
 
@@ -3570,51 +3570,13 @@ def test_salmon_quant(run):
         "bio/salmon/quant",
         [
             "snakemake",
-            "salmon/a/quant.sf",
-            "-s",
-            "Snakefile",
-        ],
-    )
-
-    run(
-        "bio/salmon/quant",
-        [
-            "snakemake",
-            "salmon/a/quant.sf",
-            "-s",
-            "Snakefile_index_list",
-        ],
-    )
-
-    run(
-        "bio/salmon/quant",
-        [
-            "snakemake",
-            "salmon/a_se_x_transcriptome/quant.sf",
-            "-s",
-            "Snakefile_se",
-        ],
-    )
-
-    run(
-        "bio/salmon/quant",
-        [
-            "snakemake",
-            "salmon/a_se_x_transcriptome/quant.sf",
-            "-s",
-            "Snakefile_se_bz2",
+            "salmon_pe_list/a/quant.sf",
+            "salmon_pe/a/quant.sf",
+            "salmon_pe_multi/ab_pe_x_transcriptome/quant.sf",
+            "salmon_se/a_se_x_transcriptome/quant.sf",
+            "salmon_se_bz2/a_se_x_transcriptome/quant.sf",
         ],
         cores=2,
-    )
-
-    run(
-        "bio/salmon/quant",
-        [
-            "snakemake",
-            "salmon/ab_pe_x_transcriptome/quant.sf",
-            "-s",
-            "Snakefile_pe_multi",
-        ],
     )
 
 
@@ -5098,9 +5060,9 @@ def test_toulligqc(run):
         "bio/toulligqc",
         [
             "snakemake",
-            "toulligqc_sequencing_summary/report.html",
-            "toulligqc_bam/report.html",
-            "toulligqc_fastq/report.html",
+            "out_summary/report.html",
+            "out_bam/report.html",
+            "out_fastq/report.html",
         ],
     )
 
