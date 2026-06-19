@@ -98,7 +98,7 @@ rule salmon_quant_se_bz2:
         r="reads/{sample}.fq.bz2",
         index="salmon/transcriptome_index",
     output:
-        quant="salmonse__bz2/{sample}_x_transcriptome/quant.sf",
+        quant="salmon_se_bz2/{sample}_x_transcriptome/quant.sf",
         lib="salmon_se_bz2/{sample}_x_transcriptome/lib_format_counts.json",
     log:
         "logs/salmon_se_bz2/{sample}_x_transcriptome.log",
