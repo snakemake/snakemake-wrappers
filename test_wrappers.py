@@ -3570,51 +3570,13 @@ def test_salmon_quant(run):
         "bio/salmon/quant",
         [
             "snakemake",
-            "salmon/a/quant.sf",
-            "-s",
-            "Snakefile",
-        ],
-    )
-
-    run(
-        "bio/salmon/quant",
-        [
-            "snakemake",
-            "salmon/a/quant.sf",
-            "-s",
-            "Snakefile_index_list",
-        ],
-    )
-
-    run(
-        "bio/salmon/quant",
-        [
-            "snakemake",
-            "salmon/a_se_x_transcriptome/quant.sf",
-            "-s",
-            "Snakefile_se",
-        ],
-    )
-
-    run(
-        "bio/salmon/quant",
-        [
-            "snakemake",
-            "salmon/a_se_x_transcriptome/quant.sf",
-            "-s",
-            "Snakefile_se_bz2",
+            "salmon_pe_list/a/quant.sf",
+            "salmon_pe/a/quant.sf",
+            "salmon_pe_multi/ab_pe_x_transcriptome/quant.sf",
+            "salmon_se/a_se_x_transcriptome/quant.sf",
+            "salmon_se_bz2/a_se_x_transcriptome/quant.sf",
         ],
         cores=2,
-    )
-
-    run(
-        "bio/salmon/quant",
-        [
-            "snakemake",
-            "salmon/ab_pe_x_transcriptome/quant.sf",
-            "-s",
-            "Snakefile_pe_multi",
-        ],
     )
 
 
