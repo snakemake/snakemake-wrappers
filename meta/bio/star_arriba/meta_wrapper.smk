@@ -39,7 +39,7 @@ rule star_align:
         ),
     threads: 12
     wrapper:
-        "v3.3.7/bio/star/align"
+        "v9.4.2/bio/star/align"
 
 
 rule arriba:
@@ -64,4 +64,4 @@ rule arriba:
         "<logs>/arriba/<per>.log",
     threads: 1
     wrapper:
-        "v7.3.0/bio/arriba"
+        "v9.0.1/bio/arriba"
