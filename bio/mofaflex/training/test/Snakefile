@@ -5,10 +5,9 @@ rule mofaflex:
     "{data}.h5"
   params:
     n_factors=15,
-    likelihoods="Normal", # "Normal", "NegativeBinomial", "Binomial"
+    likelihoods="Normal", # "Normal", "NegativeBinomial", "Bernoulli"
     batch_size=1000,
     seed=42,
 
   wrapper:
-    # "master/bio/mofaflex/training"
-    "file:.."
+    "master/bio/mofaflex/training"

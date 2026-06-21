@@ -1,0 +1,24 @@
+name: mofaflex plotting
+description: |
+  Explore a MOFAFLEX model with basic plotting.
+url: https://www.bioconductor.org/packages/release/bioc/html/MOFA2.html
+authors:
+  - Simon Sack
+input:
+  - A trained MOFAFLEX model in h5 format.
+output:
+  - >
+    Each of the plots as a PDF-file, depending on the plots
+    specified by the user. These are the options:
+  - "`training_curve`: Provides an overview of the training process."
+  - "`factor_correlation`: Plots the correlation between the factors. Should be as low as possible."
+  - "`variance_explained`: Plots the fraction of variance explained by each factor. This is an approximation for non-normal values."
+  - "`top_weights`: An overview of the most important features per factor."
+  - "`weights`: Plot with the top weights individually for each view"
+  - "`factors_scatter`: Plots two factors against each other in a scatter plot."
+params:
+  - "`factors_scatter_x`: Integer or string indicating the factor to be plotted on the x-axis in the factors_scatter plot. Defaults to 1 if not set."
+  - "`factors_scatter_y`: Integer or string indicating the factor to be plotted on the y-axis in the factors_scatter plot. Defaults to 2 if not set."
+  - "`weight_factors`: A sequence of factors to plot in the weights plot. Defaults to all factors if not set."
+notes: |
+  The parameters can be set to determine which factors to plot.

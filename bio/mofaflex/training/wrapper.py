@@ -2,19 +2,17 @@ __author__ = "Simon Sack"
 __copyright__ = "Copyright 2026, Simon Sack"
 __license__ = "MIT"
 
-from io import BufferedWriter
 from typing import Literal
 import mudata as md
 import mofaflex as mfl
 from pathlib import Path
-import pickle as p
 
 
 def train_model(
     mdata: md.MuData | md.AnnData,
     out_path: Path,
     n_factors: int = 15,
-    likelihoods: Literal["Normal", "NegativeBinomial", "Binomial"] = "Normal",
+    likelihoods: Literal["Normal", "NegativeBinomial", "Bernoulli"] = "Normal",
     batch_size: int = 1000,
     seed: int = 42,
 ) -> mfl.MOFAFLEX:
@@ -25,10 +23,6 @@ def train_model(
         mfl.DataOptions(plot_data_overview=False),
     )
     return model
-
-
-# def store_model(model: mfl.MOFAFLEX, file: BufferedWriter):
-#     p.dump(model, file)
 
 
 if __name__ == "__main__":
@@ -45,7 +39,7 @@ if __name__ == "__main__":
         raise Exception("Illegal file format. Must be h5mu or h5ad.")
 
     n_factors: int = snakemake.params.get("n_factors", 15)
-    likelihoods: Literal["Normal", "NegativeBinomial", "Binomial"] = (
+    likelihoods: Literal["Normal", "NegativeBinomial", "Bernoulli"] = (
         snakemake.params.get("likelihoods", "Normal")
     )
     batch_size: int = snakemake.params.get("batch_size", 1000)
@@ -59,6 +53,3 @@ if __name__ == "__main__":
         batch_size=batch_size,
         seed=seed,
     )
-
-    # with open(out_path, "wb") as file:
-    #     store_model(model, file)
