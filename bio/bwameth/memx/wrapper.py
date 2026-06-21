@@ -5,6 +5,7 @@ Snakemake wrapper for bwameth
 
 Proceeed according to other bwa wrappers: Align + optional sort
 """
+
 __author__ = "Thibault Dayris"
 __mail__ = "thibault.dayris@gustaveroussy.fr"
 __copyright__ = "Copyright 2024, Thibault Dayris"

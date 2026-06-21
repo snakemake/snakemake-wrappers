@@ -10,7 +10,6 @@ from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 from snakemake_wrapper_utils.samtools import get_samtools_opts, infer_out_format
 
-
 log = snakemake.log_fmt_shell()
 extra = snakemake.params.get("extra", "")
 # the --SORTING_COLLECTION_SIZE_RATIO default of 0.25 might

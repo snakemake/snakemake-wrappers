@@ -8,7 +8,6 @@ import tempfile
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
-
 pon = snakemake.input.get("pon", "")
 if pon:
     pon = f"--count-panel-of-normals {snakemake.input.pon}"

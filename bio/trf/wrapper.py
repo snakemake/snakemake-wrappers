@@ -1,8 +1,8 @@
 """
-    Snakemake Wrapper for TRF (Tandem Repeat Finder)
-    ------------------------------------------------------
-    Take all necessary parameters required by the TRF tool
-    and runs the facility to produce the desired output.
+Snakemake Wrapper for TRF (Tandem Repeat Finder)
+------------------------------------------------------
+Take all necessary parameters required by the TRF tool
+and runs the facility to produce the desired output.
 """
 
 import os

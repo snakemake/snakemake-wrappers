@@ -4,7 +4,6 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
-
 extra = snakemake.params.get("extra", "")
 log = snakemake.log.get("vsearch", "")
 if log:

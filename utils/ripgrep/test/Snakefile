@@ -1,0 +1,76 @@
+rule test_ripgrep_plain_text:
+    input:
+        # Optional path to pattern file
+        # pattern="",
+        # Optional path to .gitignore-styled list of file to ignore
+        # ignore="",
+        target="data.txt",
+    output:
+        "test_ripgrep_plain_text.txt",
+    log:
+        "test_ripgrep_plain_text.log",
+    threads: 1
+    params:
+        pattern="hello",
+        extra="",
+    wrapper:
+        "master/utils/ripgrep"
+
+
+rule test_ripgrep_pattern_file:
+    input:
+        # Optional path to .gitignore-styled list of file to ignore
+        # ignore="",
+        target="data.txt",
+        pattern="pattern.txt",
+    output:
+        "test_ripgrep_pattern_file.txt",
+    log:
+        "test_ripgrep_pattern_file.log",
+    threads: 1
+    params:
+        # Optional pattern can be provided alongside with pattern file
+        # pattern="",
+        # Optional path to .gitignore-styled list of file to ignore
+        # ignore="",
+        extra="",
+    wrapper:
+        "master/utils/ripgrep"
+
+
+rule test_ripgrep_compressed_input:
+    input:
+        # Optional path to pattern file
+        # pattern="",
+        # Optional path to .gitignore-styled list of file to ignore
+        # ignore="",
+        target="data.txt.gz",
+    output:
+        "test_ripgrep_compressed_input.txt",
+    log:
+        "test_ripgrep_compressed_input.log",
+    threads: 1
+    params:
+        pattern="hello",
+        extra="",
+    wrapper:
+        "master/utils/ripgrep"
+
+
+rule test_ripgrep_search_in_directory:
+    input:
+        # Optional path to pattern file
+        # pattern="",
+        # Optional path to files or directories to search into
+        # target="",
+        ignore=".ignore",
+    output:
+        "test_ripgrep_search_in_directory.txt",
+    log:
+        "test_ripgrep_search_in_directory.log",
+    threads: 1
+    params:
+        pattern="hello",
+        extra="",
+    wrapper:
+        "master/utils/ripgrep"

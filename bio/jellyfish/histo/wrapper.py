@@ -9,11 +9,9 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 
-shell(
-    """
+shell("""
     (jellyfish histo \
         {extra} \
         --threads={snakemake.threads} \
         {snakemake.input} > {snakemake.output}) {log}
-    """
-)
+    """)

@@ -9,7 +9,6 @@ from os import path
 
 from snakemake.shell import shell
 
-
 index = snakemake.input.get("idx", "")
 if isinstance(index, str):
     index = path.splitext(snakemake.input.idx)[0]

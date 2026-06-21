@@ -1,94 +1,35 @@
-#!/bin/R
+# __author__ = "Carlo Monschein"
+# __copyright__ = "Copyright 2026, Carlo Monschein"
+# __email__ = "carlo.monschein@hotmail.de"
+# __license__ = "MIT"
 
-# load libraries
+if (length(snakemake@log) > 0) {
+    log <- file(snakemake@log[[1]], open="wt")
+    sink(log)
+    sink(log, type="message")
+    on.exit({
+        sink(type = "message")
+        sink()
+        close(log)
+        }, add = TRUE)
+}
+
 library(CINSignatureQuantification)
-library(tibble)
-library(dplyr)
-library(tidyr)
-library(stringr)
-library(arrow)
 
-# cast input path and param as character to avoid errors
-input_path <- as.character(snakemake@input[[1]])
-experiment_name <- as.character(snakemake@params[["experiment_name"]])
+# Input data is absolute copy number profiles in segment table format, containing 
+# multiple samples, without allele or subclonal information. It is perferable to use
+# unrounded absolute copy number profiles.
+segments_file <- snakemake@input[[1]]
+out_file <- snakemake@output[[1]]
 
-# cast thread count as integer to avoid errors
+cat("Quantifing Signatures...", "\n")
+Signatures <- quantifyCNSignatures(segments_file)
+Signatures_matrix <- getActivities(Signatures)
 
-cores <- as.integer(snakemake@threads)
+Signatures_df <- data.frame(Sample = rownames(Signatures_matrix), 
+                            Signatures_matrix, 
+                            row.names = NULL, 
+                            check.names = FALSE)
 
-# load data
-
-data(input_path)
-
-cnobj <- quantifyCNSignatures(
-  object = input_path,
-  experimentName = experiment_name,
-  method = "dres",
-  cores = cores,
-  build = "hg19"
-)
-
-if ("cnobj" %in% names(snakemake@output)) {
-  path <- as.character(snakemake@output[["cnobj"]])
-  saveRDS(cnobj, file = path)
-}
-
-# features
-
-if ("features" %in% names(snakemake@output)) {
-  feature_path <- as.character(snakemake@output[["features"]])
-  feats <- getFeatures(cnobj)
-  dfs <- feats |>
-    lapply(function(df) {
-      names(df)[2] <- "value"
-      df
-    })
-  df <- bind_rows(dfs, .id = "feature")
-  df |> select(ID, feature, value) |> write_parquet(feature_path)
-}
-
-# signature activities
-
-if ("signature_activities" %in% names(snakemake@output)) {
-  sig_path <- as.character(snakemake@output[["signature_activities"]])
-
-  sigAct <- getActivities(cnobj, type = "threashold")
-
-  # transform from matrix to data.frame in tidy format
-
-  df <- sigAct |>
-    as.data.frame() |>
-    rownames_to_column("sample") |>
-    pivot_longer(-"sample", names_to = "signature", values_to = "value")
-
-  write_parquet(df, sig_path)
-}
-
-# sample by component
-
-if ("sample_by_component" %in% names(snakemake@output)) {
-  sxc_path <- as.character(snakemake@output[["sample_by_component"]])
-
-  SxC <- getSampleByComponen(cnobj)
-
-  # transform from matrix to data.frame in tidy format
-
-  df <- SxC |>
-    as.data.frame() |>
-    rownames_to_column("sample") |>
-    pivot_longer(-"sample", names_to = "component", values_to = "value")
-
-  write_parquet(df, sxc_path)
-}
-
-# clinical predictors
-
-if ("clinical_predictors" %in% names(snakemake@output)) {
-  clin_pred_path <- as.character(snakemake@output[["clinical_predictors"]])
-
-  pred <- clinPredictionPlatinum(object = cnobj)
-  df <- enframe(pred, name = "sample", value = "prediction")
-  df <- df |> mutate(prediction = str_replace(prediction, "Predicted ", ""))
-  
-  write_parquet(df, clin_pred_path)
-}
+cat("Saving signatures in: ", out_file, "\n")
+write.table(Signatures_df, file = out_file, sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE)

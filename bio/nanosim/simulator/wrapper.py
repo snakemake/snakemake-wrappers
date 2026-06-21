@@ -38,7 +38,7 @@ if "reference_genomes" in snakemake.input.keys():
     ) as abun_in:
         abundances_dict = dict()
         for line in abun_in:
-            (k, v) = line.rstrip().split("\t")
+            k, v = line.rstrip().split("\t")
             abundances_dict[k] = v
         total_abundance = 0.0
         for key in abundances_dict:

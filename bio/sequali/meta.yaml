@@ -1,0 +1,19 @@
+name: sequali
+description: |
+  Generate quality-control reports from sequencing reads with Sequali.
+url: https://github.com/rhpvorderman/sequali
+authors:
+  - Artur Gomes
+input:
+  - sample: one FASTQ/uBAM file (format auto-detected) or two FASTQ files (paired-end)
+  - adapter_file (optional): tab-separated TSV file with custom adapter sequences for Sequali's --adapter-file option
+output:
+  - html: QC report in HTML format
+  - json: QC metrics in JSON format
+  - images_zip (optional): zip archive containing the generated images
+params:
+  - extra: additional program arguments
+notes:
+  - When output.images_zip is declared in the rule, it is passed to Sequali via --images-zip.
+  - When input.adapter_file is provided in the rule, it is passed to Sequali via --adapter-file.
+  

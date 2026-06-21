@@ -1,0 +1,11 @@
+rule genometools_gff3:
+    input:
+        "{sample}.gff3",
+    output:
+        "{sample}.revised.gff3",
+    log:
+        "logs/genometools/gff3/{sample}.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/genometools/gff3"

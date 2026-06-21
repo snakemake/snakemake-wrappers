@@ -3,7 +3,6 @@
 
 """snakemake wrapper for bustool text"""
 
-
 __author__ = "Thibault Dayris"
 __copyright__ = "Copyright 2022, Thibault Dayris"
 __email__ = "thibault.dayris@gustaveroussy.fr"

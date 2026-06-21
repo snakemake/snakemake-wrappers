@@ -4,6 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - nonpareil =3.5.5
-  - pigz
-  - pbzip2
+  - pbzip2 =1.1.13
   - snakemake-wrapper-utils =0.8.0

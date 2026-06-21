@@ -14,8 +14,8 @@ for v in snakemake.input:
     if os.path.isfile(v):
         inputfiles.append(v)
     elif os.path.isdir(v):
-        (module_group_dir, module_name) = os.path.split(v)
-        (in_modules_dir, module_group) = os.path.split(module_group_dir)
+        module_group_dir, module_name = os.path.split(v)
+        in_modules_dir, module_group = os.path.split(module_group_dir)
         modules_dir.add(in_modules_dir)
         if module_group == "annotators":
             annotators.append(module_name)

@@ -18,7 +18,7 @@ rule arriba:
     log:
         "logs/arriba/{sample}.log",
     params:
-        # strongly recommended, see https://arriba.readthedocs.io/en/latest/input-files/#blacklist
+        # strongly recommended, see https://github.com/suhrig/arriba/wiki/04-Input-files#blacklist
         # only set blacklist input-file or blacklist-param
         default_blacklist=False,  # optional
         default_known_fusions=False,  # optional
@@ -51,7 +51,7 @@ rule arriba_with_sv:
     params:
         # required when any of blacklist or known_fusions is set to True
         genome_build="GRCh38",
-        # strongly recommended, see https://arriba.readthedocs.io/en/latest/input-files/#blacklist
+        # strongly recommended, see https://github.com/suhrig/arriba/wiki/04-Input-files#blacklist
         # only set blacklist input-file or blacklist-param
         default_blacklist=False,  # optional
         default_known_fusions=True,  # optional

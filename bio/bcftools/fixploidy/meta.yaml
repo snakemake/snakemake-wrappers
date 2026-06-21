@@ -1,0 +1,14 @@
+name: bcftools fixploidy
+url: https://samtools.github.io/bcftools/bcftools.html
+author:
+  - Thibault Dayris
+description: |
+  Set correct ploidy on variants calls
+input:
+  - Path to variants file (VCF/VCF.GZ/BCF)
+output:
+  - Path to corrected variants file (VCF/BCF/VCF.GZ)
+params:
+  - extra: Optional parameters besides IO and their formats.
+notes: |
+  This wrapper requires additional threads for IO compression.

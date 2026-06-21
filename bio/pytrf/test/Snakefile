@@ -1,0 +1,78 @@
+########################################################
+# Snakefile for pytrf wrapper
+########################################################
+
+
+# SAMPLE RULE: Find exact short tandem repeats (STRs/SSRs)
+rule pytrf_findstr:
+    input:
+        seq="demo_data/{sample}.fasta",
+    output:
+        "results/{sample}_findstr.csv",
+    log:
+        "logs/{sample}.log",
+    params:
+        subcommand="findstr",
+        extra="-r 5 1 3 3 3 3",
+    wrapper:
+        "master/bio/pytrf"
+
+
+# SAMPLE RULE: Find exact STRs with default parameters
+rule pytrf_findstr_defaults:
+    input:
+        seq="demo_data/small_test.fasta",
+    output:
+        "results/small_test_findstr_defaults.tsv",
+    log:
+        "logs/small_test_defaults.log",
+    params:
+        subcommand="findstr",
+    wrapper:
+        "master/bio/pytrf"
+
+
+# SAMPLE RULE: Find generic tandem repeats
+rule pytrf_findgtr:
+    input:
+        seq="demo_data/{sample}.fasta",
+    output:
+        "results/{sample}_findgtr.tsv",
+    log:
+        "logs/{sample}.log",
+    params:
+        subcommand="findgtr",
+        extra="-m 3 -r 1",  # min-motif=3, min-repeat=1
+    wrapper:
+        "master/bio/pytrf"
+
+
+# SAMPLE RULE: Find approximate tandem repeats
+rule pytrf_findatr:
+    input:
+        seq="demo_data/{sample}.fasta",
+    output:
+        "results/{sample}_findatr.tsv",
+    log:
+        "logs/{sample}.log",
+    params:
+        subcommand="findatr",
+        extra="-m 3 -M 10",  # min-motif-size=3, max-motif-size=10
+    wrapper:
+        "master/bio/pytrf"
+
+
+# SAMPLE RULE: Extract TR sequences (NOT WORKING - see meta.yaml notes)
+rule pytrf_extract:
+    input:
+        seq="demo_data/small_test_extract.fasta",  # sequence fasta
+        repeat="demo_data/small_test_extract.tsv",  # repeat file from findstr/findgtr/findatr
+    output:
+        "results/small_test_extract.tsv",
+    log:
+        "logs/small_test_extract.log",
+    params:
+        subcommand="extract",
+        extra="-l 150",  # flank-length=150
+    wrapper:
+        "master/bio/pytrf"

@@ -7,7 +7,46 @@ rule gatk_applybqsr:
     output:
         bam="recal/{sample}.bam",
     log:
-        "logs/gatk/gatk_applybqsr/{sample}.log",
+        "logs/gatk/applybqsr/{sample}.log",
+    params:
+        extra="",  # optional
+        java_opts="",  # optional
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/gatk/applybqsr"
+
+
+rule gatk_applybqsr_cram:
+    input:
+        bam="mapped/{sample}.bam",
+        ref="genome.fasta",
+        dict="genome.dict",
+        recal_table="recal/{sample}.grp",
+    output:
+        bam="recal/{sample}.cram",
+    log:
+        "logs/gatk/applybqsr/{sample}.cram.log",
+    params:
+        extra="",  # optional
+        java_opts="",  # optional
+        embed_ref=False,  # embed the reference in cram output
+    resources:
+        mem_mb=1024,
+    wrapper:
+        "master/bio/gatk/applybqsr"
+
+
+rule gatk_applybqsr_cram_embed:
+    input:
+        bam="mapped/{sample}.bam",
+        ref="genome.fasta",
+        dict="genome.dict",
+        recal_table="recal/{sample}.grp",
+    output:
+        bam="recal/{sample}.embed.cram",
+    log:
+        "logs/gatk/applybqsr/{sample}.embed.cram.log",
     params:
         extra="",  # optional
         java_opts="",  # optional

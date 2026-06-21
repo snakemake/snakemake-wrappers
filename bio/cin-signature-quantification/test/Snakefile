@@ -1,25 +1,9 @@
-rule test_all:
+rule quantify_cin_signatures:
     input:
-        "results/data.rds",
-        "results/data_features.parquet",
-        "results/data_signature_activities.parquet",
-        "results/data_sample_by_componen.parquet",
-        "results/data_clinical_predictors.parquet",
-
-
-rule cin_signature_quantification:
-    input:
-        "{data}.parquet",
+        segments="data/TCGA_478_Samples_SNP6_GOLD_truncated",
     output:
-        cnobj="results/{data}.rds",
-        features="results/{data}_features.parquet",
-        sample_by_component="results/{data}_sample_by_component.parquet",
-        signature_activities="results/{data}_signature_activities.parquet",
-        clinical_predictors="results/{data}_clinical_predictors.parquet",
+        signatures="results/signatures.tsv",
     log:
-        "log/{data}.log",
-    params:
-        experiment_name="VignetteExample",
-    threads: 1
+        "logs/cin_signature_quantification.log",
     wrapper:
         "master/bio/cin-signature-quantification"
