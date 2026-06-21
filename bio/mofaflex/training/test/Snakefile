@@ -1,13 +1,12 @@
 rule mofaflex:
-  input:
-    "{data}.h5mu" # data should be filtered before training
-  output:
-    "{data}.h5"
-  params:
-    n_factors=15,
-    likelihoods="Normal", # "Normal", "NegativeBinomial", "Bernoulli"
-    batch_size=1000,
-    seed=42,
-
-  wrapper:
-    "master/bio/mofaflex/training"
+    input:
+        "{data}.h5mu",  # data should be filtered before training
+    output:
+        "{data}.h5",
+    params:
+        n_factors=15,
+        likelihoods="Normal",  # "Normal", "NegativeBinomial", "Bernoulli"
+        batch_size=1000,
+        seed=42,
+    wrapper:
+        "master/bio/mofaflex/training"

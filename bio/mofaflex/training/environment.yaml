@@ -4,4 +4,3 @@ channels:
   - nodefaults
 dependencies:
   - mofaflex =0.1.1
-  # - mudata =0.3.8

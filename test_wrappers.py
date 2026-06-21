@@ -7216,8 +7216,22 @@ def test_mofa2_plotting(run):
     run("bio/mofa2/plotting", ["snakemake", "--cores", "1", "--use-conda", "-F"])
 
 
+def test_mofaflex_training(run):
+    run(
+        "bio/mofa2/training",
+        ["snakemake", "--cores", "1", "data.h5", "--use-conda", "-F"],
+    )
+
+
+def test_mofaflex_plotting(run):
+    run("bio/mofa2/plotting", ["snakemake", "--cores", "1", "--use-conda", "-F"])
+
+
 def test_cin_signature_quantification(run):
-    run("bio/cin-signature-quantification", ["snakemake", "--cores", "1", "--use-conda", "-F"])
+    run(
+        "bio/cin-signature-quantification",
+        ["snakemake", "--cores", "1", "--use-conda", "-F"],
+    )
 
 
 def test_go_yq(run):
