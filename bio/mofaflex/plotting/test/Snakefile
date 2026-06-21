@@ -8,7 +8,7 @@ rule test_all:
         "results/shrunk_data_factors_scatter.pdf",
 
 
-rule mofaflex:
+rule mofaflex_plotting:
     input:
         "{data}.h5",  # the trained model
     output:
@@ -18,6 +18,8 @@ rule mofaflex:
         top_weights="results/{data}_top_weights.pdf",
         weights="results/{data}_weights.pdf",
         factors_scatter="results/{data}_factors_scatter.pdf",
+    log:
+        "logs/mofaflex_plotting.log"
     params:
         factors_scatter_x=1,  # index of factor on x axis to compare in scatter plot
         factors_scatter_y=2,  # index of factor on y axis to compare in scatter plot

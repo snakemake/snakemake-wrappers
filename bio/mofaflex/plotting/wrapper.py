@@ -55,7 +55,7 @@ def plot(
         if not results_dir_exists:
             weights.parent.mkdir(exist_ok=True)
             results_dir_exists = True
-        w: pn.ggplot = mfl.pl.weights(model, factors=(1, 2), figsize=(10, 10))
+        w: pn.ggplot = mfl.pl.weights(model, factors=weight_factors, figsize=(10, 10))
         w.save(weights)
 
     if factors_scatter is not None:
@@ -80,12 +80,29 @@ if __name__ == "__main__":
     batch_size: int = snakemake.params.get("batch_size", 1000)
     seed: int = snakemake.params.get("seed", 42)
 
-    training_curve: Path = Path(snakemake.output.get("training_curve"))
-    factor_correlation: Path = Path(snakemake.output.get("factor_correlation"))
-    variance_explained: Path = Path(snakemake.output.get("variance_explained"))
-    top_weights: Path = Path(snakemake.output.get("top_weights"))
-    weights: Path = Path(snakemake.output.get("weights"))
-    factors_scatter: Path = Path(snakemake.output.get("factors_scatter"))
+    training_curve_raw = snakemake.output.get("training_curve")
+    factor_correlation_raw = snakemake.output.get("factor_correlation")
+    variance_explained_raw = snakemake.output.get("variance_explained")
+    top_weights_raw = snakemake.output.get("top_weights")
+    weights_raw = snakemake.output.get("weights")
+    factors_scatter_raw = snakemake.output.get("factors_scatter")
+
+    training_curve: Path | None = (
+        Path(training_curve_raw) if training_curve_raw is not None else None
+    )
+    factor_correlation: Path | None = (
+        Path(factor_correlation_raw) if factor_correlation_raw is not None else None
+    )
+    variance_explained: Path | None = (
+        Path(variance_explained_raw) if variance_explained_raw is not None else None
+    )
+    top_weights: Path | None = (
+        Path(top_weights_raw) if top_weights_raw is not None else None
+    )
+    weights: Path | None = Path(weights_raw) if weights_raw is not None else None
+    factors_scatter: Path | None = (
+        Path(factors_scatter_raw) if factors_scatter_raw is not None else None
+    )
 
     factors_scatter_x: int | str = snakemake.params.get("factors_scatter_x", 1)
     factors_scatter_y: int | str = snakemake.params.get("factors_scatter_y", 2)

@@ -1,8 +1,10 @@
-rule mofaflex:
+rule mofaflex_training:
     input:
         "{data}.h5mu",  # data should be filtered before training
     output:
         "{data}.h5",
+    log:
+        "logs/mofaflex_training.log"
     params:
         n_factors=15,
         likelihoods="Normal",  # "Normal", "NegativeBinomial", "Bernoulli"
