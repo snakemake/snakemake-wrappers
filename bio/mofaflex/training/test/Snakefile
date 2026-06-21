@@ -4,7 +4,7 @@ rule mofaflex_training:
     output:
         "{data}.h5",
     log:
-        "logs/mofaflex_training.log"
+        "logs/mofaflex_training_{data}.log",
     params:
         n_factors=15,
         likelihoods="Normal",  # "Normal", "NegativeBinomial", "Bernoulli"
