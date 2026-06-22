@@ -1,7 +1,7 @@
 name: mofaflex plotting
 description: |
   Explore a MOFAFLEX model with basic plotting.
-url: https://www.bioconductor.org/packages/release/bioc/html/MOFA2.html
+url: https://github.com/bioFAM/mofaflex
 authors:
   - Simon Sack
 input:
