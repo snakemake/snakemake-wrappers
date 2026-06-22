@@ -7,9 +7,6 @@ authors:
 input:
   - A trained MOFAFLEX model in h5 format.
 output:
-  - >
-    Each of the plots as a PDF-file, depending on the plots
-    specified by the user. These are the options:
   - training_curve: Provides an overview of the training process.
   - factor_correlation: Plots the correlation between the factors. Should be as low as possible.
   - variance_explained: Plots the fraction of variance explained by each factor. This is an approximation for non-normal values.
