@@ -1,13 +1,3 @@
-rule test_all:
-    input:
-        "results/shrunk_data_training_curve.pdf",
-        "results/shrunk_data_factor_correlation.pdf",
-        "results/shrunk_data_variance_explained.pdf",
-        "results/shrunk_data_top_weights.pdf",
-        "results/shrunk_data_weights.pdf",
-        "results/shrunk_data_factors_scatter.pdf",
-
-
 rule mofaflex_plotting:
     input:
         "{data}.h5",  # the trained model
