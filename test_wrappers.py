@@ -1325,6 +1325,43 @@ def test_goleft_indexcov(run):
     )
 
 
+def test_grit_genomics(run):
+    run(
+        "bio/grit_genomics",
+        [
+            "snakemake",
+            "synthetic_beds",
+            "sorted.bed",
+            "merged.bed",
+            "extended.bed",
+            "complement.bed",
+            "genome_coverage.bed",
+            "intersections.bed",
+            "intersect.bed",
+            "closest.bed",
+            "window.bed",
+            "jaccard.tsv",
+            "subtract.bed",
+            "coverage.bed",
+        ],
+        cores=2,
+        compare_results_with_expected={
+            "sorted.bed": "expected_sorted.bed",
+            "merged.bed": "expected_merged.bed",
+            "subtract.bed": "expected_subtract.bed",
+            "intersect.bed": "expected_intersect.bed",
+            "closest.bed": "expected_closest.bed",
+            "window.bed": "expected_window.bed",
+            "coverage.bed": "expected_coverage.tsv",
+            "complement.bed": "expected_complement.bed",
+            "extended.bed": "expected_slop.bed",
+            "genome_coverage.bed": "expected_genomecov.bed",
+            "jaccard.tsv": "expected_jaccard.tsv",
+            "intersections.bed": "expected_multiinter.bed",
+        },
+    )
+
+
 def test_gridss_call(run):
     run(
         "bio/gridss/call",
