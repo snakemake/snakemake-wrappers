@@ -2669,7 +2669,7 @@ def test_macs2_callpeak(run):
     )
 
 
-def test_mageck_flute_mle(run):
+def test_mageck_mle(run):
     run(
         "bio/mageck/mle",
         [
