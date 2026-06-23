@@ -5,6 +5,3 @@ channels:
 dependencies:
   - mageck =0.5.9.5
   - snakemake-wrapper-utils =0.8.0
-  - r-base =4.6.0
-  - python =3.10.20
-  - numpy =1.23.5
