@@ -708,7 +708,7 @@ def test_purge_dups_split_fa(run):
 def test_quast(run):
     run(
         "bio/quast",
-        ["snakemake", "a/treport.tsv"],
+        ["snakemake", "quast/treport.tsv", "meta_quast/treport.tsv"],
     )
 
 
@@ -1561,6 +1561,14 @@ def test_bcftools_filter(run):
     )
 
 
+def test_bcftools_fixploidy(run):
+    run(
+        "bio/bcftools/fixploidy",
+        ["snakemake", "a.fixed.bcf"],
+        cores=3,
+    )
+
+
 def test_bcftools_sort(run):
     run(
         "bio/bcftools/sort",
@@ -2081,6 +2089,19 @@ def test_dragmap_align(run):
     )
 
 
+def test_cin_signature_quantification(run):
+    run(
+        "bio/cin-signature-quantification",
+        [
+            "snakemake",
+            "results/signatures.tsv",
+        ],
+        compare_results_with_expected={
+            "results/signatures.tsv": "expected/expected_results.tsv"
+        },
+    )
+
+
 def test_chopper(run):
     run(
         "bio/chopper",
@@ -2507,6 +2528,7 @@ def test_freebayes(run):
         )
 
 
+@pytest.mark.skip(reason="needs valid token since all datasets are controled")
 def test_gdc_api_bam_slicing(run):
     def check_log(log):
         assert "error" in log and "token" in log
@@ -2675,6 +2697,26 @@ def test_mageck_mle(run):
         [
             "snakemake",
             "test_mageck_mle.genes.tsv",
+        ],
+    )
+
+
+def test_mageck_flute_rra(run):
+    run(
+        "bio/mageckflute/fluterra",
+        [
+            "snakemake",
+            "test_mageck_flute_rra",
+        ],
+    )
+
+
+def test_mageck_flute_mle(run):
+    run(
+        "bio/mageckflute/flutemle",
+        [
+            "snakemake",
+            "test_mageck_flute_mle",
         ],
     )
 
@@ -3393,7 +3435,7 @@ def test_trim_galore_pe(run):
         "bio/trim_galore/pe",
         [
             "snakemake",
-            "trimmed/a_R1.fq.gz",
+            "trimmed/a_R2.fq.gz",
             "trimmed/a_R2.fastq",
         ],
     )
@@ -3476,6 +3518,25 @@ def test_cairosvg(run):
     run("utils/cairosvg", ["snakemake", "pca.pdf"])
 
 
+def test_ripgrep(run):
+    run(
+        "utils/ripgrep",
+        [
+            "snakemake",
+            "test_ripgrep_plain_text.txt",
+            "test_ripgrep_pattern_file.txt",
+            "test_ripgrep_compressed_input.txt",
+            "test_ripgrep_search_in_directory.txt",
+        ],
+        compare_results_with_expected={
+            "test_ripgrep_plain_text.txt": "expected/hello.txt",
+            "test_ripgrep_pattern_file.txt": "expected/hello.txt",
+            "test_ripgrep_compressed_input.txt": "expected/hello.txt",
+            "test_ripgrep_search_in_directory.txt": "expected/directory.txt",
+        },
+    )
+
+
 def test_trinity(run):
     run(
         "bio/trinity",
@@ -3499,7 +3560,7 @@ def test_salmon_index(run):
         "bio/salmon/index",
         [
             "snakemake",
-            "salmon/transcriptome_index/complete_ref_lens.bin",
+            "salmon/transcriptome_index/refseq.bin",
         ],
     )
 
@@ -3519,51 +3580,13 @@ def test_salmon_quant(run):
         "bio/salmon/quant",
         [
             "snakemake",
-            "salmon/a/quant.sf",
-            "-s",
-            "Snakefile",
-        ],
-    )
-
-    run(
-        "bio/salmon/quant",
-        [
-            "snakemake",
-            "salmon/a/quant.sf",
-            "-s",
-            "Snakefile_index_list",
-        ],
-    )
-
-    run(
-        "bio/salmon/quant",
-        [
-            "snakemake",
-            "salmon/a_se_x_transcriptome/quant.sf",
-            "-s",
-            "Snakefile_se",
-        ],
-    )
-
-    run(
-        "bio/salmon/quant",
-        [
-            "snakemake",
-            "salmon/a_se_x_transcriptome/quant.sf",
-            "-s",
-            "Snakefile_se_bz2",
+            "salmon_pe_list/a/quant.sf",
+            "salmon_pe/a/quant.sf",
+            "salmon_pe_multi/ab_pe_x_transcriptome/quant.sf",
+            "salmon_se/a_se_x_transcriptome/quant.sf",
+            "salmon_se_bz2/a_se_x_transcriptome/quant.sf",
         ],
         cores=2,
-    )
-
-    run(
-        "bio/salmon/quant",
-        [
-            "snakemake",
-            "salmon/ab_pe_x_transcriptome/quant.sf",
-            "-s",
-            "Snakefile_pe_multi",
-        ],
     )
 
 
@@ -3572,10 +3595,10 @@ def test_gseapy_gsea(run):
         "bio/gseapy/gsea",
         [
             "snakemake",
-            "KEGG_2016",
-            "gsea.results.csv",
-            "ssgsea.results.csv",
-            "prerank_results_dir",
+            "out/enrichr/KEGG_2016",
+            "out/gsea/results.csv",
+            "out/ssgsea/results.csv",
+            "out/prerank/results.csv",
         ],
     )
 
@@ -4040,6 +4063,21 @@ def test_plass(run):
             "plass/prot.fasta",
             "plass/prot_single.fasta",
         ],
+    )
+
+
+def test_porechop_abi(run):
+    run(
+        "bio/porechop_abi",
+        [
+            "snakemake",
+            "treated/trimmed.fasta",
+            "treated/consensus.fasta",
+        ],
+        compare_results_with_expected={
+            "treated/trimmed.fasta": "expected/trimmed.fasta",
+            "treated/consensus.fasta": "expected/consensus.fasta",
+        },
     )
 
 
@@ -4927,6 +4965,7 @@ def test_sortmerna(run):
         [
             "snakemake",
             "aligned_1.fastq.gz",
+            "aligned_interleaved.fastq.gz",
             "unpaired.fastq",
         ],
     )
@@ -5031,9 +5070,9 @@ def test_toulligqc(run):
         "bio/toulligqc",
         [
             "snakemake",
-            "toulligqc_sequencing_summary/report.html",
-            "toulligqc_bam/report.html",
-            "toulligqc_fastq/report.html",
+            "out_summary/report.html",
+            "out_bam/report.html",
+            "out_fastq/report.html",
         ],
     )
 
@@ -5303,4 +5342,24 @@ def test_pbmarkdup(run):
             "pbmarkdup3.fastq.gz",
             "dedup.fastq.gz",
         ],
+    )
+
+
+def test_libarchive_extract(run):
+    run(
+        "utils/libarchive/extract",
+        [
+            "snakemake",
+            "results/7z/a.txt",
+            "results/tar/a.txt",
+            "results/tar/b.md",
+            "results/zip/a.txt",
+        ],
+    )
+
+
+def test_libarchive_compress(run):
+    run(
+        "utils/libarchive/compress",
+        ["snakemake", "results/test.7z", "results/test.tar.gz", "results/test.zip"],
     )

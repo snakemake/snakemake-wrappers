@@ -2,4 +2,4 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
-  - barrnap =0.9
+  - barrnap =1.10.6

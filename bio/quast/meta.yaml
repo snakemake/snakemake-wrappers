@@ -5,27 +5,31 @@ url: https://github.com/ablab/quast
 authors:
   - Filipe G. Vieira
 input:
-  - Sequences in FASTA format
-  - Reference genome (optional)
-  - GFF (optional)
-  - Paired end read (optional)
-  - Mate-pair reads (optional)
-  - Unpaired reads (optional)
-  - PacBio SMRT reads (optional)
-  - Oxford Nanopore reads (optional)
-  - Mapped reads against the reference in SAM/BAM (optional)
-  - Mapped reads against each of the assemblies in SAM/BAM (same order; optional)
-  - Structural variants in BEDPE (optional)
+  - fasta: Sequences in FASTA format.
+  - ref: Reference genome. May be multiple references when using MetaQUAST (optional).
+  - ref_ls: File with reference genome names only for MetaQUAST. (optional).
+  - blast_db: BLAST database path only for MetaQUAST (optional).
+  - gff: GFF/features file (optional).
+  - pe(1/2/12): Paired-end reads (optional).
+  - mp(1/2/12): Mate-pair reads (optional).
+  - single: Unpaired reads (optional).
+  - pacbio: PacBio SMRT reads (optional).
+  - nanopore: Oxford Nanopore reads (optional).
+  - ref_(bam/sam): Mapped reads against the reference (optional).
+  - (bam/sam): Mapped reads against each assembly (same order; optional).
+  - sv_bedpe: Structural variants in BEDPE (optional).
 output:
-  - Assessment summary in plain text format
-  - Tab-separated version of the summary
-  - LaTeX version of the summary
-  - Icarus main menu with links to interactive viewers
-  - PDF report of all plots combined with all tables
-  - HTML version of the report with interactive plots inside
-  - Report on misassemblies
-  - Report on unaligned and partially unaligned contigs
-  - Report on k-mer-based metrics
-  - Report on mapped reads statistics.
+  - report_(html/pdf/tex/txt/tsv): Different versions of the report.
+  - treport_(tex/txt/tsv): Different versions of the transposed report.
+  - stats_(cum/gc_plot/gc_icarus/gc_fasta/ngx/nx): Basic statistics outputs.
+  - contigs: Contig alignments report.
+  - contigs_mis: Report on misassemblies.
+  - icarus: Icarus main menu.
+  - icarus_viewer: Icarus contig size viewer.
+params:
+  - tool: "tool executable to run; allowed values are `quast` and `metaquast` (default: `quast`)."
+  - extra: "Additional program arguments."
 notes: |
   * The `extra` param allows for additional program arguments.
+  * The `tool` param allows choosing between `quast` and `metaquast`.
+  * The `ref_ls` option is incompatible with `ref`. Only chose one.

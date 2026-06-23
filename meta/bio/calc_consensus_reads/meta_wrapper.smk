@@ -52,7 +52,7 @@ rule map_consensus_reads:
         "<logs>/bwa_mem/{sample}.{read_type}.consensus.log",
     threads: 8
     wrapper:
-        "v7.6.0/bio/bwa/mem"
+        "v9.9.0/bio/bwa/mem"
 
 
 rule sort_skipped_reads:
@@ -68,7 +68,7 @@ rule sort_skipped_reads:
     # Samtools takes additional threads through its option -@
     threads: 8  # This value - 1 will be sent to -@.
     wrapper:
-        "v7.6.0/bio/samtools/sort"
+        "v9.4.2/bio/samtools/sort"
 
 
 rule mark_duplicates_skipped:
@@ -88,7 +88,7 @@ rule mark_duplicates_skipped:
     resources:
         mem_mb=1024,
     wrapper:
-        "v7.6.0/bio/picard/markduplicates"
+        "v9.4.2/bio/picard/markduplicates"
 
 
 rule merge_consensus_reads:
@@ -102,4 +102,4 @@ rule merge_consensus_reads:
         "<logs>/samtools_merge/{sample}.log",
     threads: 8
     wrapper:
-        "v7.6.0/bio/samtools/merge"
+        "v9.4.1/bio/samtools/merge"
