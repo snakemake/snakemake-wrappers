@@ -41,6 +41,6 @@ if __name__ == "__main__":
         out_path=Path(snakemake.output[0]),
         n_factors=snakemake.params.get("n_factors", 15),
         likelihoods=snakemake.params.get("likelihoods", "Normal"),
-        batch_size=nakemake.params.get("batch_size", 1000),
+        batch_size=snakemake.params.get("batch_size", 1000),
         seed=snakemake.params.get("seed", 42),
     )

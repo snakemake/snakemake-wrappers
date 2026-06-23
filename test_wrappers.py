@@ -5262,7 +5262,7 @@ def test_mofaflex_training(run):
     run("bio/mofaflex/training", ["snakemake", "shrunk_data.h5"])
 
 
-def test_mofafflex_plotting(run):
+def test_mofaflex_plotting(run):
     run("bio/mofaflex/plotting", ["snakemake", "results/shrunk_data_weights.pdf"])
 
 
