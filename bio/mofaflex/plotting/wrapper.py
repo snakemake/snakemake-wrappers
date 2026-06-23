@@ -21,57 +21,29 @@ def plot(
     factors_scatter_y: int | str,
     weight_factors: int | str | Sequence[int] | Sequence[str] | None,
 ):
-    results_dir_exists: bool = False
-
     if training_curve is not None:
-        if not results_dir_exists:
-            training_curve.parent.mkdir(exist_ok=True)
-            results_dir_exists = True
-        t_curve: pn.ggplot = mfl.pl.training_curve(model)
-        t_curve.save(training_curve)
+        mfl.pl.training_curve(model).save(training_curve)
 
     if factor_correlation is not None:
-        if not results_dir_exists:
-            factor_correlation.parent.mkdir(exist_ok=True)
-            results_dir_exists = True
-        factor_corr: pn.ggplot = mfl.pl.factor_correlation(model)
-        factor_corr.save(factor_correlation)
+        mfl.pl.factor_correlation(model).save(factor_correlation)
 
     if variance_explained is not None:
-        if not results_dir_exists:
-            variance_explained.parent.mkdir(exist_ok=True)
-            results_dir_exists = True
-        var_expl: pn.ggplot = mfl.pl.variance_explained(model)
-        var_expl.save(variance_explained)
+        mfl.pl.variance_explained(model).save(variance_explained)
 
     if top_weights is not None:
-        if not results_dir_exists:
-            top_weights.parent.mkdir(exist_ok=True)
-            results_dir_exists = True
-        top_w: pn.ggplot = mfl.pl.top_weights(model, figsize=(10, 10))
-        top_w.save(top_weights)
+        mfl.pl.top_weights(model, figsize=(10, 10)).save(top_weights)
 
     if weights is not None:
-        if not results_dir_exists:
-            weights.parent.mkdir(exist_ok=True)
-            results_dir_exists = True
-        w: pn.ggplot = mfl.pl.weights(model, factors=weight_factors, figsize=(10, 10))
-        w.save(weights)
+        mfl.pl.weights(model, factors=weight_factors, figsize=(10, 10)).save(weights)
 
     if factors_scatter is not None:
-        if not results_dir_exists:
-            factors_scatter.parent.mkdir(exist_ok=True)
-            results_dir_exists = True
-        f_scatter: pn.ggplot = mfl.pl.factors_scatter(
+        mfl.pl.factors_scatter(
             model, factors_scatter_x, factors_scatter_y, alpha=0.5
-        )
-        f_scatter.save(factors_scatter)
+        ).save(factors_scatter)
 
 
 if __name__ == "__main__":
-    model_path: Path = Path(snakemake.input[0])
-
-    model: mfl.MOFAFLEX = mfl.MOFAFLEX.load(model_path)
+    model: mfl.MOFAFLEX = mfl.MOFAFLEX.load(snakemake.input[0])
 
     n_factors: int = snakemake.params.get("n_factors", 15)
     likelihoods: Literal["Normal", "NegativeBinomial", "Binomial"] = (

@@ -27,8 +27,6 @@ def train_model(
 
 if __name__ == "__main__":
     mdata_path: Path = Path(snakemake.input[0])
-    out_path: Path = Path(snakemake.output[0])
-
     mdata: md.MuData | md.AnnData = md.MuData()
 
     if mdata_path.suffix == ".h5mu":
@@ -38,18 +36,11 @@ if __name__ == "__main__":
     else:
         raise Exception("Illegal file format. Must be h5mu or h5ad.")
 
-    n_factors: int = snakemake.params.get("n_factors", 15)
-    likelihoods: Literal["Normal", "NegativeBinomial", "Bernoulli"] = (
-        snakemake.params.get("likelihoods", "Normal")
-    )
-    batch_size: int = snakemake.params.get("batch_size", 1000)
-    seed: int = snakemake.params.get("seed", 42)
-
     model: mfl.MOFAFLEX = train_model(
         mdata=mdata,
-        out_path=out_path,
-        n_factors=n_factors,
-        likelihoods=likelihoods,
-        batch_size=batch_size,
-        seed=seed,
+        out_path=Path(snakemake.output[0]),
+        n_factors=snakemake.params.get("n_factors", 15),
+        likelihoods=snakemake.params.get("likelihoods", "Normal"),
+        batch_size=nakemake.params.get("batch_size", 1000),
+        seed=snakemake.params.get("seed", 42),
     )
