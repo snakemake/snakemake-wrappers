@@ -15,7 +15,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 input_args = ""
 output_args = f" > {snakemake.output[0]}"
-if command in ("generate"):
+if command in "generate":
     output_args = f" --output {snakemake.output[0]}"
     log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 elif command in ("sort", "merge", "slop", "complement", "genomecov", "multiinter"):
