@@ -4,12 +4,18 @@ url: https://sortmerna.readthedocs.io/
 authors:
   - Curro Campuzano Jiménez
 input:
-  - Reference FASTA files (one or more)
-  - Query FASTA file (single or paired-end)
+  - ref: Reference FASTA file(s) (one or more)
+  - reads: Query FASTA/Q file (single file, or a list of two files for paired-end)
+  - idx_dir: Pre-built reference index directory (optional); reused across runs instead of rebuilt each time
 output:
-  - Aligned reads
-  - Unaligned reads (other)
+  - aligned: Aligned reads (single file, or a list of two files for split paired output)
+  - other: Unaligned reads (single file, or a list of two files for split paired output)
+  - stats: Alignment statistics log (single file, optional)
 params:
-  - extra: aditional program arguments
+  - extra: additional program arguments
 notes: |
-  * The kvdb (key value database) will be created in a temporary directory. Then, you don't have to prune it before each run. If you want to re-use the index, you can specify the idx-dir parameter.
+  * `--fastx` is added automatically whenever `aligned` or `other` is requested.
+  * `--out2` is added automatically when an output is declared as a list of two files (split `_fwd`/`_rev` output); declaring single output files with paired input instead produces interleaved single files. `aligned` and `other`, when both requested, must use the same shape.
+  * The kvdb (key value database) is created in a temporary directory, so it does not need pruning before each run.
+  * `idx_dir` is an optional input pointing at a reference index directory. When supplied, the wrapper adds `--idx-dir <idx_dir>`; sortmerna reuses an index already present there (matching `ref`) and otherwise builds it into that directory, so the index persists and is reused across runs instead of being rebuilt in the (discarded) workdir each time. Because `idx_dir` is a Snakemake `input`, the directory path must exist before the job runs (provide it as an upstream rule's `directory()` output, or pre-create it) — an empty directory is fine, sortmerna will populate it. When `idx_dir` is omitted, the index is built in the temporary workdir and discarded.
+  * Caution: if several jobs run in parallel against the *same* empty `idx_dir`, they will each try to build the index into it concurrently, which can corrupt it. To reuse a shared index safely, build it once in a separate index-only step (sortmerna `-task 5`) and let the aligning jobs depend on that step's `directory()` output, so they only ever read a complete index.

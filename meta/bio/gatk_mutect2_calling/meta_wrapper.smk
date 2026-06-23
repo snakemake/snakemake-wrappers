@@ -11,7 +11,7 @@ rule create_dict:
     params:
         extra="",
     wrapper:
-        "v7.6.0/bio/picard/createsequencedictionary"
+        "v9.4.2/bio/picard/createsequencedictionary"
 
 
 rule samtools_index:
@@ -24,7 +24,7 @@ rule samtools_index:
     params:
         extra="",  # optional params string
     wrapper:
-        "v7.6.0/bio/samtools/faidx"
+        "v9.4.1/bio/samtools/faidx"
 
 
 rule picard_replace_read_groups:
