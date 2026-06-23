@@ -1,9 +1,9 @@
 rule test_grit_generate:
     output:
         directory("synthetic_beds"),
-    threads: 7
     log:
         "test_grit_generate.log",
+    threads: 7
     params:
         command="generate",
         extra="",
@@ -18,9 +18,9 @@ rule test_grit_sort:
         genome="genome.size",
     output:
         "sorted.bed",
-    threads: 1
     log:
         "test_grit_sort.log",
+    threads: 1
     params:
         command="sort",
         extra="",
@@ -35,9 +35,9 @@ rule test_grit_merge:
         genome="genome.size",
     output:
         "merged.bed",
-    threads: 1
     log:
         "test_grit_merge.log",
+    threads: 1
     params:
         command="merge",
         extra="",
@@ -52,9 +52,9 @@ rule test_grit_slop:
         genome="genome.size",
     output:
         "extended.bed",
-    threads: 1
     log:
         "test_grit_slop.log",
+    threads: 1
     params:
         command="slop",
         extra="",
@@ -69,9 +69,9 @@ rule test_grit_complement:
         genome="genome.size",
     output:
         "complement.bed",
-    threads: 1
     log:
         "test_grit_complement.log",
+    threads: 1
     params:
         command="complement",
         extra="",
@@ -86,9 +86,9 @@ rule test_grit_genomecov:
         genome="genome.size",
     output:
         "genome_coverage.bed",
-    threads: 1
     log:
         "test_grit_genomecov.log",
+    threads: 1
     params:
         command="genomecov",
         extra="",
@@ -103,9 +103,9 @@ rule test_grit_multiinter:
         bed=["a.bed", "b.bed"],
     output:
         "intersections.bed",
-    threads: 1
     log:
         "test_grit_multiinter.log",
+    threads: 1
     params:
         command="multiinter",
         extra="",
@@ -121,9 +121,9 @@ rule test_grit_intersect:
         genome="genome.size",
     output:
         "intersect.bed",
-    threads: 1
     log:
         "test_grit_intersect.log",
+    threads: 1
     params:
         command="intersect",
         extra="",
@@ -139,9 +139,9 @@ rule test_grit_closest:
         genome="genome.size",
     output:
         "closest.bed",
-    threads: 1
     log:
         "test_grit_closest.log",
+    threads: 1
     params:
         command="closest",
         extra="",
@@ -157,9 +157,9 @@ rule test_grit_window:
         genome="genome.size",
     output:
         "window.bed",
-    threads: 1
     log:
         "test_grit_window.log",
+    threads: 1
     params:
         command="window",
         extra="",
@@ -174,9 +174,9 @@ rule test_grit_jaccard:
         bed=["a.bed", "b.bed"],
     output:
         "jaccard.tsv",
-    threads: 1
     log:
         "test_grit_jaccard.log",
+    threads: 1
     params:
         command="jaccard",
         extra="",
@@ -192,9 +192,9 @@ rule test_grit_subtract:
         genome="genome.size",
     output:
         "subtract.bed",
-    threads: 1
     log:
         "test_grit_subtract.log",
+    threads: 1
     params:
         command="subtract",
         extra="",
@@ -210,9 +210,9 @@ rule test_grit_coverage:
         genome="genome.size",
     output:
         "coverage.bed",
-    threads: 1
     log:
         "test_grit_coverage.log",
+    threads: 1
     params:
         command="coverage",
         extra="",
