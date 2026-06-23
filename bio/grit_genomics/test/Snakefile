@@ -17,7 +17,7 @@ rule test_grit_sort:
         # Optional path to genome file
         genome="genome.size",
     output:
-        "test_grit_sort.bed",
+        "test_grit_sorted.bed",
     log:
         "test_grit_sort.log",
     threads: 1
@@ -34,7 +34,7 @@ rule test_grit_merge:
         # Optional path to genome file
         genome="genome.size",
     output:
-        "test_grit_merge.bed",
+        "test_grit_merged.bed",
     log:
         "test_grit_merge.log",
     threads: 1
@@ -51,7 +51,7 @@ rule test_grit_slop:
         # **Required** path to genome file
         genome="genome.size",
     output:
-        "extended.bed",
+        "test_grit_extended.bed",
     log:
         "test_grit_slop.log",
     threads: 1
