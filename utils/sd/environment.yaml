@@ -1,4 +1,4 @@
-channel:
+channels:
   - conda-forge
   - nodefaults
 dependencies:

@@ -14,7 +14,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 # Since `sd` changes files inplace,
 # we use `cat` to disable this behavior
 shell(
-    "cat {snakemake.input} | "
+    "cat {snakemake.input:q} | "
     "sd {extra} {snakemake.params.before:q} {snakemake.params.after:q} "
-    "> {snakemake.output} {log}"
+    "> {snakemake.output:q} {log}"
 )
