@@ -1325,6 +1325,43 @@ def test_goleft_indexcov(run):
     )
 
 
+def test_grit_genomics(run):
+    run(
+        "bio/grit_genomics",
+        [
+            "snakemake",
+            "synthetic_beds",
+            "test_grit_sorted.bed",
+            "test_grit_merged.bed",
+            "test_grit_extended.bed",
+            "test_grit_complement.bed",
+            "test_grit_genomecov.bed",
+            "intersections.bed",
+            "test_grit_intersect.bed",
+            "test_grit_closest.bed",
+            "test_grit_window.bed",
+            "test_grit_jaccard.tsv",
+            "test_grit_subtract.bed",
+            "test_grit_coverage.bed",
+        ],
+        cores=2,
+        compare_results_with_expected={
+            "test_grit_sorted.bed": "expected_sorted.bed",
+            "test_grit_merged.bed": "expected_merged.bed",
+            "test_grit_subtract.bed": "expected_subtract.bed",
+            "test_grit_intersect.bed": "expected_intersect.bed",
+            "test_grit_closest.bed": "expected_closest.bed",
+            "test_grit_window.bed": "expected_window.bed",
+            "test_grit_coverage.bed": "expected_coverage.tsv",
+            "test_grit_complement.bed": "expected_complement.bed",
+            "test_grit_extended.bed": "expected_slop.bed",
+            "test_grit_genomecov.bed": "expected_genomecov.bed",
+            "test_grit_jaccard.tsv": "expected_jaccard.tsv",
+            "intersections.bed": "expected_multiinter.bed",
+        },
+    )
+
+
 def test_gridss_call(run):
     run(
         "bio/gridss/call",
