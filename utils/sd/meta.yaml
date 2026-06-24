@@ -1,7 +1,8 @@
 name: sd
 url: https://github.com/chmln/sd
 description: |
-  `sd` is an intuitive find & replace CLI.
+  `sd` is an intuitive find & replace CLI. Faster than gnu `sed` for plain text
+  replacement.
 authors:
   - Thibault Dayris
 input:
