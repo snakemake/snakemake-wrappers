@@ -3,9 +3,9 @@ rule test_sd:
         "file.txt",
     output:
         "replaced.txt",
-    threads: 1
     log:
         "test_sd.log",
+    threads: 1
     params:
         # Pattern to search in original text
         before="change /this/path",
