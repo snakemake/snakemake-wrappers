@@ -9,7 +9,7 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 
-command = snakemake.params["command"]
+command = snakemake.params.command
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
