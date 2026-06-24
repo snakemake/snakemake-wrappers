@@ -523,6 +523,15 @@ def test_swarm(run):
     )
 
 
+def test_sd(run):
+    run(
+        "utils/sd",
+        ["snakemake"],
+        compare_results_with_expected={"replaced.txt": "expected_replacement.txt"},
+    )
+    
+
+
 def test_sed(run):
     run(
         "utils/sed",

@@ -1,0 +1,17 @@
+rule test_sd:
+    input:
+        "file.txt",
+    output:
+        "replaced.txt",
+    threads: 1
+    log:
+        "test_sd.log",
+    params:
+        # Pattern to search in original text
+        before="change /this/path",
+        # Replacement pattern in the output text
+        after="keep /that/one",
+        # Any non-positional argument
+        extra="",
+    wrapper:
+        "master/utils/sd"

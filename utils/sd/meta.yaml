@@ -1,0 +1,16 @@
+name: sd
+url: https://github.com/chmln/sd
+description: |
+  `sd` is an intuitive find & replace CLI.
+authors:
+  - Thibault Dayris
+input:
+  - Path to file to search and replace patterns into
+output:
+  - Path to processed file
+params:
+  - before: Regular expression to search
+  - after: Replacement expression
+  - extra: Optional parameters for `sd`, any non-positional parameter
+notes: |
+  See patterns examples at https://github.com/chmln/sd#quick-guide

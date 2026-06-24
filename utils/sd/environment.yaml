@@ -1,0 +1,5 @@
+channel:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - sd =1.0.0
