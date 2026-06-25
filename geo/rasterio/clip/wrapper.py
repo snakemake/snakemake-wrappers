@@ -114,7 +114,7 @@ def clip_wrapper(
     if buffer:
         buffer = float(buffer)
         if buffer < 0:
-            raise ValueError(f"buffer_degrees must be non-negative, got {buffer}.")
+            raise ValueError(f"buffer must be non-negative, got {buffer}.")
         l_minx -= buffer
         l_miny -= buffer
         l_maxx += buffer
@@ -130,16 +130,26 @@ def clip_wrapper(
 
     profile = PROFILE_DEFAULTS | profile_overrides
     co_commands = " ".join([f"--co {key}={value}" for key, value in profile.items()])
+    bounds_arg = f"{r_minx} {r_miny} {r_maxx} {r_maxy}"
 
-    cmd = f"""
-    rio clip {input_raster} {output_path} \
-        --bounds '{r_minx} {r_miny} {r_maxx} {r_maxy}' \
+    cmd = """
+    rio clip {input_raster:q} {output_path:q} \
+        --bounds {bounds_arg:q} \
         {co_commands} \
-        {" ".join(extra_options)}
+        {extra_options:q} \
         {log}
     """
     environment = ENV_DEFAULTS | environment_overrides
-    shell(cmd, additional_envvars=environment)
+    shell(
+        cmd,
+        input_raster=input_raster,
+        output_path=output_path,
+        bounds_arg=bounds_arg,
+        co_commands=co_commands,
+        extra_options=extra_options,
+        log=log,
+        additional_envvars=environment,
+    )
 
 
 clip_wrapper(
