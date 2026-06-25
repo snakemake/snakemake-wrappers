@@ -104,7 +104,7 @@ def clip_wrapper(
             CRS of the reference bounds (optional, defaults to None).
         buffer (float):
             Buffer to apply around the clipping area (optional, defaults to 0).
-        extra_options (list[str] | None): 
+        extra_options (list[str] | None):
             Additional options for the clip command (optional, defaults to None).
         profile_overrides (dict | None):
             Overrides for pre-defined file creation driver (optional, defaults to None).
@@ -161,6 +161,7 @@ def clip_wrapper(
     profile = PROFILE_DEFAULTS | (profile_overrides or {})
     co_commands = " ".join([f"--co {key}={value}" for key, value in profile.items()])
     bounds_arg = f"{r_minx} {r_miny} {r_maxx} {r_maxy}"
+    extra_options = extra_options or []
 
     cmd = """
     rio clip {input_raster:q} {output_path:q} \
