@@ -128,7 +128,7 @@ def clip_wrapper(
         like_crs, dst_crs, l_minx, l_miny, l_maxx, l_maxy, densify_pts=21
     )
 
-    profile = PROFILE_DEFAULTS | profile_overrides
+    profile = PROFILE_DEFAULTS | (profile_overrides or {})
     co_commands = " ".join([f"--co {key}={value}" for key, value in profile.items()])
     bounds_arg = f"{r_minx} {r_miny} {r_maxx} {r_maxy}"
 
@@ -139,7 +139,7 @@ def clip_wrapper(
         {extra_options:q} \
         {log}
     """
-    environment = ENV_DEFAULTS | environment_overrides
+    environment = ENV_DEFAULTS | (environment_overrides or {})
     shell(
         cmd,
         input_raster=input_raster,
