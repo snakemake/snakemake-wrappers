@@ -10,4 +10,4 @@ https://conda.anaconda.org/conda-forge/linux-64/isa-l-2.31.1-hb9d3cd8_1.conda#00
 https://conda.anaconda.org/conda-forge/linux-64/libdeflate-1.25-h17f619e_0.conda#6c77a605a7a689d17d4819c0f8ac9a00
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h934c35e_19.conda#5794b3bdc38177caf969dabd3af08549
 https://conda.anaconda.org/conda-forge/linux-64/libhwy-1.3.0-h4c17acf_1.conda#c2a0c1d0120520e979685034e0b79859
-https://conda.anaconda.org/bioconda/linux-64/fastp-1.3.4-h43da1c4_0.conda#b6de0278f5b2986e9545eb82e26a910e
+https://conda.anaconda.org/bioconda/linux-64/fastp-1.3.5-h43da1c4_0.conda#244a81057fe7607cf3d4b5542fb84c7c
