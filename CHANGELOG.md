@@ -1,5 +1,36 @@
 # Changelog
 
+## [9.12.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.11.0...v9.12.0) (2026-06-26)
+
+
+### Features
+
+* grit-genomics ([#5389](https://github.com/snakemake/snakemake-wrappers/issues/5389)) ([0c3b8c4](https://github.com/snakemake/snakemake-wrappers/commit/0c3b8c45ad111b083bc1f51959000857a0269de2))
+
+
+### Bug Fixes
+
+* Redirect ensembl-sequence wrapper output to log ([#5392](https://github.com/snakemake/snakemake-wrappers/issues/5392)) ([c84c87c](https://github.com/snakemake/snakemake-wrappers/commit/c84c87c29c1edda0262a94d55bdea506d5d7cea1))
+* windows support for rasterio - clip ([#5394](https://github.com/snakemake/snakemake-wrappers/issues/5394)) ([fa97cc8](https://github.com/snakemake/snakemake-wrappers/commit/fa97cc8f9b83314ff2eaa82f36de9f8b6d9cb43d))
+
+
+### Performance Improvements
+
+* autobump bio/diamond/blastp/environment.yaml ([#5404](https://github.com/snakemake/snakemake-wrappers/issues/5404)) ([262b101](https://github.com/snakemake/snakemake-wrappers/commit/262b101e2d6035c075ef3a1685a309193d6bea63))
+* autobump bio/diamond/blastx/environment.yaml ([#5405](https://github.com/snakemake/snakemake-wrappers/issues/5405)) ([d516a7d](https://github.com/snakemake/snakemake-wrappers/commit/d516a7d4aa44165696fc4b910f1881d5ac217935))
+* autobump bio/diamond/makedb/environment.yaml ([#5403](https://github.com/snakemake/snakemake-wrappers/issues/5403)) ([b324b7b](https://github.com/snakemake/snakemake-wrappers/commit/b324b7be1e4919fb9219f47b84f3604e9291330b))
+* autobump bio/fastp/environment.yaml ([#5406](https://github.com/snakemake/snakemake-wrappers/issues/5406)) ([0a2e5f8](https://github.com/snakemake/snakemake-wrappers/commit/0a2e5f8cb1eed8a537127f33f4163880b3a6ffad))
+* autobump bio/gdc-api/bam-slicing/environment.yaml ([#5408](https://github.com/snakemake/snakemake-wrappers/issues/5408)) ([51b58cb](https://github.com/snakemake/snakemake-wrappers/commit/51b58cb0e4067b778cc1374f673727c6432eb15a))
+* autobump bio/gseapy/gsea/environment.yaml ([#5407](https://github.com/snakemake/snakemake-wrappers/issues/5407)) ([fc844a6](https://github.com/snakemake/snakemake-wrappers/commit/fc844a640c3e84a98dc245497d878399e5b77183))
+* autobump bio/mehari/download-clinvar-db/environment.yaml ([#5411](https://github.com/snakemake/snakemake-wrappers/issues/5411)) ([ab49c74](https://github.com/snakemake/snakemake-wrappers/commit/ab49c74c89306a36a1e6aa24e6fbce8fde5d8190))
+* autobump bio/mehari/download-transcript-db/environment.yaml ([#5410](https://github.com/snakemake/snakemake-wrappers/issues/5410)) ([15198cb](https://github.com/snakemake/snakemake-wrappers/commit/15198cbe3ce6544ddf11d8b080849adfca59ffe2))
+* autobump bio/picard/collectinsertsizemetrics/environment.yaml ([#5412](https://github.com/snakemake/snakemake-wrappers/issues/5412)) ([99eb548](https://github.com/snakemake/snakemake-wrappers/commit/99eb548c7b43e889ebf8c04aa8ee8d818812adaf))
+* autobump bio/reference/ensembl-mysql-table/environment.yaml ([#5379](https://github.com/snakemake/snakemake-wrappers/issues/5379)) ([0240071](https://github.com/snakemake/snakemake-wrappers/commit/02400718d71e65d8b3760bf0de1408ecddc8cf39))
+* autobump bio/salmon/index/environment.yaml ([#5413](https://github.com/snakemake/snakemake-wrappers/issues/5413)) ([6efb419](https://github.com/snakemake/snakemake-wrappers/commit/6efb419c653933cc489dfeb71d3957580e27593c))
+* autobump utils/jq/environment.yaml ([#5409](https://github.com/snakemake/snakemake-wrappers/issues/5409)) ([940a3cc](https://github.com/snakemake/snakemake-wrappers/commit/940a3ccd47a7efa9e30d3d598074b06526857ce2))
+* autobump wrappers in meta/bio/alignoth_report/meta_wrapper.smk ([#5395](https://github.com/snakemake/snakemake-wrappers/issues/5395)) ([bf8da63](https://github.com/snakemake/snakemake-wrappers/commit/bf8da634b1dd21a9bebf8ebcfcdcd0c37154e1f2))
+* Update datavzrd wrapper ([#5415](https://github.com/snakemake/snakemake-wrappers/issues/5415)) ([8f9db2c](https://github.com/snakemake/snakemake-wrappers/commit/8f9db2c520d45149fb8abba5e74adbe7d0da7e7b))
+
 ## [9.11.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.10.1...v9.11.0) (2026-06-22)
 
 
