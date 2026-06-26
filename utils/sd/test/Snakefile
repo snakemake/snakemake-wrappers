@@ -15,3 +15,19 @@ rule test_sd:
         extra="",
     wrapper:
         "master/utils/sd"
+
+
+rule test_sd_regex:
+    input:
+        "file.txt",
+    output:
+        "trailing_whitespace_trimmed.txt",
+    log:
+        "test_sd_regex.log",
+    threads: 1
+    params:
+        before=r"\s+$",
+        after=r"",
+        extra="",
+    wrapper:
+        "master/utils/sd"
