@@ -523,6 +523,18 @@ def test_swarm(run):
     )
 
 
+def test_sd(run):
+    run(
+        "utils/sd",
+        ["snakemake", "replaced.txt", "trailing_whitespace_trimmed.txt"],
+        compare_results_with_expected={
+            "replaced.txt": "expected_replacement.txt",
+            "trailing_whitespace_trimmed.txt": "expected_whitespace_trimming.txt",
+        },
+    )
+    
+
+
 def test_sed(run):
     run(
         "utils/sed",
