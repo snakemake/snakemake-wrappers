@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.13.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.12.0...v9.13.0) (2026-06-27)
+
+
+### Features
+
+* sd text replacement ([#5390](https://github.com/snakemake/snakemake-wrappers/issues/5390)) ([ed988b7](https://github.com/snakemake/snakemake-wrappers/commit/ed988b7dc7fedc375a697e4499e0c2f8840e8809))
+
 ## [9.12.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.11.0...v9.12.0) (2026-06-26)
 
 
