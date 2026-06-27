@@ -1,0 +1,21 @@
+name: mofaflex training
+description: |
+  Train a MOFAFLEX model on multiomics data and store in h5
+  format for later analysis.
+url: https://github.com/bioFAM/mofaflex
+authors:
+  - Simon Sack
+input:
+  - >
+    MuData in h5mu format or AnnData in h5ad format containing
+    multimodal data for training, that has already been filtered
+output:
+  - An H5 file containing the trained MOFAFLEX-model.
+params:
+  - n_factors: number of latent factors.
+  - likelihoods: data likelihoods for all views. Can be `Normal`, `Bernoulli` or `NegativeBinomial`. `NegativeBinomial` is recommended for unnormalized count data.
+  - batch_size: the batch size during training as a positive integer.
+  - seed: seed for the pseudorandom number generator.
+notes: |
+  The output model can be used as an input for the mofaflex plotting wrapper.
+  The input data should be filtered before training the model to remove poor quality data.
