@@ -2,13 +2,30 @@ rule star_index:
     input:
         fasta="{genome}.fasta",
     output:
-        directory("{genome}"),
-    message:
-        "Testing STAR index"
-    threads: 1
-    params:
-        extra="",
+        # STAR reference genome index files. Only the common path in the first
+        # multiext entry can be chosen arbitrarily. All the filenames are
+        # hardcoded into STAR source code, so do not change them.
+        multiext(
+            "{genome}/",
+            "chrLength.txt",
+            "chrName.txt",
+            "chrNameLength.txt",
+            "chrStart.txt",
+            "genomeParameters.txt",
+            "Genome",
+            "SA",
+            "SAindex",
+        ),
     log:
         "logs/star_index_{genome}.log",
+    threads: 1
+    resources:
+        # We couldn't find clear guidance for dynamically estimating the
+        # required memory. Suggestions for mouse and human genome are
+        # usually around 32 - 35 GB, so try 38 GB if this dynamic
+        # setting here fails.
+        mem_mb=lambda wc, input: (input.size_mb + 1) * 10,
+    params:
+        extra="",
     wrapper:
         "master/bio/star/index"

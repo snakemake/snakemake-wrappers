@@ -1,4 +1,4 @@
-name: "star"
+name: "STAR align"
 description: Map reads with STAR.
 url: https://github.com/alexdobin/STAR
 authors:
@@ -6,6 +6,7 @@ authors:
   - Tomás Di Domenico
   - Filipe G. Vieira
   - Kashyap Chhatbar
+  - David Lähnemann
 notes: |
   * The `extra` param allows for additional program arguments.
   * It is advisable to consider updating the limits setting before running STAR,
