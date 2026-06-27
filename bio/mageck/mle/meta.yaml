@@ -1,0 +1,23 @@
+name: MAGeCK MLE
+description: |
+  Use MAGeCK to call gene essentialities
+url: https://sourceforge.net/p/mageck/wiki/demo/#the-fourth-demo-using-mageck-mle-module
+authors:
+  - Thibault Dayris
+input:
+  - count: Path to count table from MAGeCK count
+  - design: Optional path to design table
+  - cnv: Optional path to CNV table
+  - sgrna: Optional path to sgRNA efficiency file
+output:
+  - mle: Path to essential genes
+  - mle_log: Path to internal logs
+  - sgrna: Path to sgrna score ranking
+params:
+  - extra: Optional parameters besides `--count-table`, `--design-matrix`, `--output-prefix`, `--sgrna-efficiency` or `--cnv-norm`.
+notes: |
+  If no design table is provided, then at least `--day0-label` must be given in extra.
+  See official documentation for more information.
+
+  Python (3.10.20) and numpy (1.23.5) version in the environment file must not change,
+  as long as the owners do not fix their deprecation issues.
