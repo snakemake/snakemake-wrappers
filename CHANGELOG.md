@@ -1,5 +1,18 @@
 # Changelog
 
+## [9.13.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.12.0...v9.13.0) (2026-06-29)
+
+
+### Features
+
+* sd text replacement ([#5390](https://github.com/snakemake/snakemake-wrappers/issues/5390)) ([ed988b7](https://github.com/snakemake/snakemake-wrappers/commit/ed988b7dc7fedc375a697e4499e0c2f8840e8809))
+
+
+### Performance Improvements
+
+* autobump bio/salmon/quant/environment.yaml ([#5414](https://github.com/snakemake/snakemake-wrappers/issues/5414)) ([333a35a](https://github.com/snakemake/snakemake-wrappers/commit/333a35a018d4e8de4b4eab9e7d48601311763271))
+* autobump wrappers in meta/bio/salmon_tximport/meta_wrapper.smk ([#5364](https://github.com/snakemake/snakemake-wrappers/issues/5364)) ([5f2e595](https://github.com/snakemake/snakemake-wrappers/commit/5f2e5955c13e10c55a40bbe99fd01b9511133f78))
+
 ## [9.12.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.11.0...v9.12.0) (2026-06-26)
 
 
