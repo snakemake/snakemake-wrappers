@@ -70,17 +70,47 @@ def parse_bounds(raw) -> tuple[float, ...]:
 
 def clip_wrapper(
     output_path: str,
-    input_raster: str | None,
-    like_raster: str | None,
-    like_vector: str | None,
-    cog_url: str | None,
-    bounds: str | list | None,
-    bounds_crs: str | None,
-    buffer: float,
-    extra_options: list[str] | None,
-    profile_overrides: dict | None,
-    environment_overrides: dict | None,
+    input_raster: str | None = None,
+    cog_url: str | None = None,
+    like_raster: str | None = None,
+    like_vector: str | None = None,
+    bounds: str | list | None = None,
+    bounds_crs: str | None = None,
+    buffer: float = 0,
+    extra_options: list[str] | None = None,
+    profile_overrides: dict | None = None,
+    environment_overrides: dict | None = None,
 ):
+    """Wraps `rasterio`'s clipping functionality.
+
+    Can clip either local (`input_raster`) or remote (`cog_url`) rasters.
+    Clipping reference is either:
+     - a local file (`like_vector`, `like_raster`)
+     - parametrised bounds (needs `bounds` and `bounds_crs`).
+
+    Args:
+        output_path (str): location of the saved clipped raster.
+        input_raster (str | None):
+            local raster file to clip (optional, defaults to None).
+        cog_url (str | None):
+            URL of the raster file to clip (optional, defaults to None).
+        like_raster (str | None):
+            reference raster file for clipping (optional, defaults to None).
+        like_vector (str | None):
+            reference vector file for clipping (optional, defaults to None).
+        bounds (str | list | None):
+            reference bounds for clipping (optional, defaults to None).
+        bounds_crs (str | None):
+            CRS of the reference bounds (optional, defaults to None).
+        buffer (float):
+            Buffer to apply around the clipping area (optional, defaults to 0).
+        extra_options (list[str] | None):
+            Additional options for the clip command (optional, defaults to None).
+        profile_overrides (dict | None):
+            Overrides for pre-defined file creation driver (optional, defaults to None).
+        environment_overrides (dict | None): _description_
+            Overrides for GDAL driver setup (optional, defaults to None).
+    """
     if sum(x is not None for x in (like_raster, like_vector, bounds)) != 1:
         raise ValueError(
             "Multiple clipping references given. Specify only one of "
@@ -114,7 +144,7 @@ def clip_wrapper(
     if buffer:
         buffer = float(buffer)
         if buffer < 0:
-            raise ValueError(f"buffer_degrees must be non-negative, got {buffer}.")
+            raise ValueError(f"buffer must be non-negative, got {buffer}.")
         l_minx -= buffer
         l_miny -= buffer
         l_maxx += buffer
@@ -128,26 +158,37 @@ def clip_wrapper(
         like_crs, dst_crs, l_minx, l_miny, l_maxx, l_maxy, densify_pts=21
     )
 
-    profile = PROFILE_DEFAULTS | profile_overrides
+    profile = PROFILE_DEFAULTS | (profile_overrides or {})
     co_commands = " ".join([f"--co {key}={value}" for key, value in profile.items()])
+    bounds_arg = f"{r_minx} {r_miny} {r_maxx} {r_maxy}"
+    extra_options = extra_options or []
 
-    cmd = f"""
-    rio clip {input_raster} {output_path} \
-        --bounds '{r_minx} {r_miny} {r_maxx} {r_maxy}' \
+    cmd = """
+    rio clip {input_raster:q} {output_path:q} \
+        --bounds {bounds_arg:q} \
         {co_commands} \
-        {" ".join(extra_options)}
+        {extra_options:q} \
         {log}
     """
-    environment = ENV_DEFAULTS | environment_overrides
-    shell(cmd, additional_envvars=environment)
+    environment = ENV_DEFAULTS | (environment_overrides or {})
+    shell(
+        cmd,
+        input_raster=input_raster,
+        output_path=output_path,
+        bounds_arg=bounds_arg,
+        co_commands=co_commands,
+        extra_options=extra_options,
+        log=log,
+        additional_envvars=environment,
+    )
 
 
 clip_wrapper(
     output_path=snakemake.output.path,
     input_raster=snakemake.input.get("raster", None),
+    cog_url=snakemake.params.get("cog_url", None),
     like_raster=snakemake.input.get("like_raster", None),
     like_vector=snakemake.input.get("like_vector", None),
-    cog_url=snakemake.params.get("cog_url", None),
     bounds=snakemake.params.get("bounds", None),
     bounds_crs=snakemake.params.get("bounds_crs", None),
     buffer=snakemake.params.get("buffer", 0),
