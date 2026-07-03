@@ -17,7 +17,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.8.1-hecca717_1.conda#
 https://conda.anaconda.org/conda-forge/linux-64/libffi-3.5.2-h3435931_0.conda#a360c33a5abe61c07959e449fa1453eb
 https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.3-hb03c661_0.conda#b88d90cad08e6bc8ad540cb310a761fb
 https://conda.anaconda.org/conda-forge/linux-64/libmpdec-4.0.0-hb03c661_1.conda#2c21e66f50753a083cbe6b80f38268fa
-https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.53.2-h0c1763c_0.conda#062b0ac602fb0adf250e3dfa86f221c4
+https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.53.3-h0c1763c_0.conda#4aed8e657e9ff156bdbe849b4df44389
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h934c35e_19.conda#5794b3bdc38177caf969dabd3af08549
 https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.42.2-h5347b49_0.conda#01bb81d12c957de066ea7362007df642
 https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.6-hdb14827_0.conda#fc21868a1a5aacc937e7a18747acb8a5
@@ -27,7 +27,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libabseil-20250512.1-cxx17_hba17
 https://conda.anaconda.org/conda-forge/linux-64/readline-8.3-h853b02a_0.conda#d7d95fc8287ea7bf33e0e7116d2b95ec
 https://conda.anaconda.org/conda-forge/linux-64/libprotobuf-6.31.1-hfb7daa7_5.conda#da31d891434e50d7e7be8adc5832269b
 https://conda.anaconda.org/conda-forge/linux-64/python-3.14.6-habeac84_100_cp314.conda#0b9b2f83b5b600e1ac38becde8d0dd44
-https://conda.anaconda.org/conda-forge/linux-64/sqlite-3.53.2-hbc0de68_0.conda#38d9bf35a4cc83094a327811e548b660
-https://conda.anaconda.org/bioconda/linux-64/mehari-0.44.1-h957ea76_0.conda#2981f607283260fe6990c3a7ff0c326c
+https://conda.anaconda.org/conda-forge/linux-64/sqlite-3.53.3-hbc0de68_0.conda#b345ea7f13e4cae9809c69b1d1af2c99
+https://conda.anaconda.org/bioconda/linux-64/mehari-0.45.0-h957ea76_0.conda#d576ad28b586f712725db492ab7779c8
 https://conda.anaconda.org/conda-forge/noarch/pip-26.1.2-pyh145f28c_0.conda#733cc07ed34162ac50b936464b163366
 https://conda.anaconda.org/bioconda/noarch/snakemake-wrapper-utils-0.8.0-pyhdfd78af_0.conda#1650e521333852f45468d97b1b2fdcce
