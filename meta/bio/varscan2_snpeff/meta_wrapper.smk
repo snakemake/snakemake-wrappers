@@ -10,7 +10,7 @@ rule get_genome_fasta:
         release="105",
     threads: 1
     wrapper:
-        "v5.10.0/bio/reference/ensembl-sequence"
+        "v9.12.0/bio/reference/ensembl-sequence"
 
 
 rule samtools_mpileup:
