@@ -1,0 +1,35 @@
+name: Agat complete genome statistics
+url: https://agat.readthedocs.io/en/latest/tools/agat_sp_statistics.html
+description: >
+  Downlaod, fix, and filter Ensembl genomes, then compute genome size and
+  provide genome-wide statistics with Agat.
+  
+    +-------------+-----------+-----------------------------------------------------+
+    | Step        | Tool      | Reason                                              |
+    +=============+===========+=====================================================+
+    | Download    | curl      | Download genome sequence from Ensembl               |
+    +-------------+-----------+-----------------------------------------------------+
+    | Download    | curl      | Download genome annotation from Ensembl             |
+    +-------------+-----------+-----------------------------------------------------+
+    | Fix         | agat      | Fix common Ensembl format issues on GFF files       |
+    +-------------+-----------+-----------------------------------------------------+
+    | Filter      | pyfaidx   | Optionally remove contigs from genome sequences     |
+    +-------------+-----------+-----------------------------------------------------+
+    | Filter      | agat      | Remove features with TSL=NA from annotations        |
+    +-------------+-----------+-----------------------------------------------------+
+    | Filter      | agat      | Ensure same contigs are present in Fasta/GFF files  |
+    +-------------+-----------+-----------------------------------------------------+
+    | Statistics  | agat      | Compute genome-wide statistics                      |
+    +-------------+-----------+-----------------------------------------------------+
+authors:
+  - Thibault Dayris
+pathvars:
+  default:
+    - resources
+    - results
+    - logs
+  custom:
+    contigs: List of contigs to keep, e.g. cannonical chromosomes
+    species: Ensembl species name
+    release: Ensembl release tag
+    build: Ensembl genome build identifier

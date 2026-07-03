@@ -1,0 +1,16 @@
+from snakemake.utils import min_version
+
+min_version("9.13.1")
+
+
+configfile: "config.yaml"
+
+
+module agat_genome_statistics:
+    meta_wrapper:
+        "file:.."
+    config:
+        config
+
+
+use rule * from agat_genome_statistics as agat_genome_statistics_*

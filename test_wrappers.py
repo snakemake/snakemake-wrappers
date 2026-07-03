@@ -4839,6 +4839,15 @@ def test_rbt_collapse_reads_to_fragments(run):
     )
 
 
+def test_meta_agat_genome_statistics(run):
+    run(
+        "meta/bio/agat_genome_statistics",
+        [
+            "snakemake",
+            "results/saccharomyces_cerevisiae.R64-1-1.105/agat_genome_statistics.yaml",
+        ],
+    )
+
 def test_meta_gatk_mutect2_calling(run):
     run(
         "meta/bio/gatk_mutect2_calling",

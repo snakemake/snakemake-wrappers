@@ -1,0 +1,5 @@
+wrappers:
+  - bio/reference/ensembl-sequence
+  - bio/reference/ensembl-annotation
+  - bio/pyfaidx
+  - bio/agat
