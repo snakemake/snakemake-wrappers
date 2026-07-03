@@ -1,0 +1,74 @@
+rule fastaguard_pass:
+    input:
+        fasta="data/pass.fa",
+    output:
+        html="pass/fastaguard_report.html",
+        json="pass/fastaguard.json",
+        tsv="pass/fastaguard.tsv",
+        multiqc="pass/fastaguard_mqc.json",
+        exit_code="pass/fastaguard.exit_code",
+    log:
+        "logs/pass.fastaguard.log",
+    params:
+        profile="assembly",
+        gate="pipeline",
+        extra="",
+    wrapper:
+        "master/bio/fastaguard"
+
+
+rule fastaguard_warn:
+    input:
+        fasta="data/warn.fa",
+    output:
+        html="warn/fastaguard_report.html",
+        json="warn/fastaguard.json",
+        tsv="warn/fastaguard.tsv",
+        multiqc="warn/fastaguard_mqc.json",
+        exit_code="warn/fastaguard.exit_code",
+    log:
+        "logs/warn.fastaguard.log",
+    params:
+        profile="assembly",
+        gate="pipeline",
+        extra="",
+    wrapper:
+        "master/bio/fastaguard"
+
+
+rule fastaguard_fail:
+    input:
+        fasta="data/fail.fa",
+    output:
+        html="fail/fastaguard_report.html",
+        json="fail/fastaguard.json",
+        tsv="fail/fastaguard.tsv",
+        multiqc="fail/fastaguard_mqc.json",
+        exit_code="fail/fastaguard.exit_code",
+    log:
+        "logs/fail.fastaguard.log",
+    params:
+        profile="assembly",
+        gate="pipeline",
+        extra="",
+    wrapper:
+        "master/bio/fastaguard"
+
+
+rule fastaguard_invalid:
+    input:
+        fasta="data/invalid.fa",
+    output:
+        html="invalid/fastaguard_report.html",
+        json="invalid/fastaguard.json",
+        tsv="invalid/fastaguard.tsv",
+        multiqc="invalid/fastaguard_mqc.json",
+        exit_code="invalid/fastaguard.exit_code",
+    log:
+        "logs/invalid.fastaguard.log",
+    params:
+        profile="assembly",
+        gate="pipeline",
+        extra="",
+    wrapper:
+        "master/bio/fastaguard"

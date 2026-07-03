@@ -1,0 +1,20 @@
+name: fastaguard
+description: FASTA preflight QC for assembly and submission-readiness workflows.
+url: https://github.com/ehsanestaji/FastaGuard
+authors:
+  - FastaGuard contributors
+input:
+  fasta: Assembly FASTA file to validate before downstream QC.
+output:
+  html: Human-readable FastaGuard report.
+  json: Machine-readable FastaGuard report.
+  tsv: Tabular FastaGuard summary.
+  multiqc: MultiQC custom-content JSON.
+  exit_code: Captured FastaGuard process status for workflow routing.
+params:
+  profile: FastaGuard profile, normally assembly.
+  gate: FastaGuard gate mode, normally pipeline or submission.
+  extra: Additional command-line arguments passed to FastaGuard.
+notes: >
+  FastaGuard is a FASTA preflight layer. It should run before downstream
+  interpretive QC tools and official validators, not replace them.
