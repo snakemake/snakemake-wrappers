@@ -19,5 +19,5 @@ shell(
     'status="$?"; '
     "set -e; "
     'printf "%s\\n" "$status" > {snakemake.output.exit_code}; '
-    'if [ "$status" -eq 3 ]; then exit "$status"; fi'
+    'if [ "$status" -eq 3 ] || [ "$status" -gt 3 ]; then exit "$status"; fi'
 )

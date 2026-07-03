@@ -532,7 +532,6 @@ def test_sd(run):
             "trailing_whitespace_trimmed.txt": "expected_whitespace_trimming.txt",
         },
     )
-    
 
 
 def test_sed(run):
@@ -2468,6 +2467,12 @@ def test_fastaguard(run):
             "fail/fastaguard.exit_code",
             "invalid/fastaguard.exit_code",
         ],
+        compare_results_with_expected={
+            "pass/fastaguard.exit_code": "expected/pass.exit_code",
+            "warn/fastaguard.exit_code": "expected/warn.exit_code",
+            "fail/fastaguard.exit_code": "expected/fail.exit_code",
+            "invalid/fastaguard.exit_code": "expected/invalid.exit_code",
+        },
     )
 
 
