@@ -7,10 +7,10 @@ configfile: "config.yaml"
 
 
 module agat_genome_statistics:
-    meta_wrapper:
-        "file:.."
     config:
         config
+    meta_wrapper:
+        "file:.."
 
 
 use rule * from agat_genome_statistics as agat_genome_statistics_*
