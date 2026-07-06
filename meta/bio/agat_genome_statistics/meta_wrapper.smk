@@ -87,12 +87,13 @@ rule ensure_annotations_and_sequences_have_same_contigs:
 
 rule compute_genome_wide_statistics:
     input:
-        # Avoid useless pyfaidx filter in case user do not want to filter on contigs
+        # Avoid useless agat filter in case user do not want to filter on contigs
         gff=branch(
             condition=config.get("contigs"),
             then="<resources>/{species}.{build}.{release}/{build}.contigs_filtered.gff3",
             otherwise="<resources>/{species}.{build}.{release}/{build}.no_tsl_na.gff3",
         ),
+        # Avoid useless pyfaidx filter in case user do not want to filter on contigs
         gs=branch(
             condition=config.get("contigs"),
             then="<resources>/{species}.{build}.{release}/{build}.contigs_filtered.fasta",

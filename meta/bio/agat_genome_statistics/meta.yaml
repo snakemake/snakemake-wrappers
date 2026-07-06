@@ -28,8 +28,3 @@ pathvars:
     - resources
     - results
     - logs
-  custom:
-    contigs: List of contigs to keep, e.g. cannonical chromosomes
-    species: Ensembl species name
-    release: Ensembl release tag
-    build: Ensembl genome build identifier
