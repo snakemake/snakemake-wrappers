@@ -1,0 +1,220 @@
+rule test_grit_generate:
+    output:
+        directory("synthetic_beds"),
+    log:
+        "test_grit_synthetic_beds.log",
+    threads: 7
+    params:
+        command="generate",
+        extra="",
+    wrapper:
+        "master/bio/grit_genomics"
+
+
+rule test_grit_sort:
+    input:
+        bed="a.bed",
+        # Optional path to genome file
+        genome="genome.size",
+    output:
+        "test_grit_sorted.bed",
+    log:
+        "test_grit_sort.log",
+    threads: 1
+    params:
+        command="sort",
+        extra="",
+    wrapper:
+        "master/bio/grit_genomics"
+
+
+rule test_grit_merge:
+    input:
+        bed="a.bed",
+        # Optional path to genome file
+        genome="genome.size",
+    output:
+        "test_grit_merged.bed",
+    log:
+        "test_grit_merge.log",
+    threads: 1
+    params:
+        command="merge",
+        extra="",
+    wrapper:
+        "master/bio/grit_genomics"
+
+
+rule test_grit_slop:
+    input:
+        bed="a.bed",
+        # **Required** path to genome file
+        genome="genome.size",
+    output:
+        "test_grit_extended.bed",
+    log:
+        "test_grit_slop.log",
+    threads: 1
+    params:
+        command="slop",
+        extra="",
+    wrapper:
+        "master/bio/grit_genomics"
+
+
+rule test_grit_complement:
+    input:
+        bed="a.bed",
+        # **Required** path to genome file
+        genome="genome.size",
+    output:
+        "test_grit_complement.bed",
+    log:
+        "test_grit_complement.log",
+    threads: 1
+    params:
+        command="complement",
+        extra="",
+    wrapper:
+        "master/bio/grit_genomics"
+
+
+rule test_grit_genomecov:
+    input:
+        bed="a.bed",
+        # **Required** path to genome file
+        genome="genome.size",
+    output:
+        "test_grit_genomecov.bed",
+    log:
+        "test_grit_genomecov.log",
+    threads: 1
+    params:
+        command="genomecov",
+        extra="",
+    wrapper:
+        "master/bio/grit_genomics"
+
+
+rule test_grit_multiinter:
+    input:
+        # Any number of bed file(s)
+        # No genome file expected for this subcommand
+        bed=["a.bed", "b.bed"],
+    output:
+        "intersections.bed",
+    log:
+        "test_grit_multiinter.log",
+    threads: 1
+    params:
+        command="multiinter",
+        extra="",
+    wrapper:
+        "master/bio/grit_genomics"
+
+
+rule test_grit_intersect:
+    input:
+        # Exactly two files are expected
+        bed=["a.bed", "b.bed"],
+        # Optional path to genome file
+        genome="genome.size",
+    output:
+        "test_grit_intersect.bed",
+    log:
+        "test_grit_intersect.log",
+    threads: 1
+    params:
+        command="intersect",
+        extra="",
+    wrapper:
+        "master/bio/grit_genomics"
+
+
+rule test_grit_closest:
+    input:
+        # Exactly two files are expected
+        bed=["a.bed", "b.bed"],
+        # Optional path to genome file
+        genome="genome.size",
+    output:
+        "test_grit_closest.bed",
+    log:
+        "test_grit_closest.log",
+    threads: 1
+    params:
+        command="closest",
+        extra="",
+    wrapper:
+        "master/bio/grit_genomics"
+
+
+rule test_grit_window:
+    input:
+        # Exactly two files are expected
+        bed=["a.bed", "b.bed"],
+        # Optional path to genome file
+        genome="genome.size",
+    output:
+        "test_grit_window.bed",
+    log:
+        "test_grit_window.log",
+    threads: 1
+    params:
+        command="window",
+        extra="",
+    wrapper:
+        "master/bio/grit_genomics"
+
+
+rule test_grit_jaccard:
+    input:
+        # Exactly two files are expected
+        # No genome file expected for this subcommand
+        bed=["a.bed", "b.bed"],
+    output:
+        "test_grit_jaccard.tsv",
+    log:
+        "test_grit_jaccard.log",
+    threads: 1
+    params:
+        command="jaccard",
+        extra="",
+    wrapper:
+        "master/bio/grit_genomics"
+
+
+rule test_grit_subtract:
+    input:
+        # Exactly two files are expected
+        bed=["a.bed", "b.bed"],
+        # Optional path to genome file
+        genome="genome.size",
+    output:
+        "test_grit_subtract.bed",
+    log:
+        "test_grit_subtract.log",
+    threads: 1
+    params:
+        command="subtract",
+        extra="",
+    wrapper:
+        "master/bio/grit_genomics"
+
+
+rule test_grit_coverage:
+    input:
+        # Exactly two files are expected
+        bed=["a.bed", "b.bed"],
+        # Optional path to genome file
+        genome="genome.size",
+    output:
+        "test_grit_coverage.bed",
+    log:
+        "test_grit_coverage.log",
+    threads: 1
+    params:
+        command="coverage",
+        extra="",
+    wrapper:
+        "master/bio/grit_genomics"

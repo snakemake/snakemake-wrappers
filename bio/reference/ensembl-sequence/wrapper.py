@@ -21,7 +21,7 @@ if release >= 81 and build == "GRCh37":
 elif snakemake.params.get("branch"):
     branch = snakemake.params.branch + "/"
 
-log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 
 spec = ("{build}" if int(release) > 75 else "{build}.{release}").format(
     build=build, release=release
@@ -71,10 +71,10 @@ for suffix in suffixes:
     try:
         # --location follows redirects, --head only gets the header without any download,
         # Content-Length is only there if the file exists, for both https:// and ftp://
-        shell("curl --location --head {url} | grep 'Content-Length'")
+        shell("(curl --location --head {url} | grep 'Content-Length') {log}")
     except sp.CalledProcessError:
         try:
-            shell("curl --location --head {url_ftp} | grep 'Content-Length'")
+            shell("(curl --location --head {url_ftp} | grep 'Content-Length') {log}")
         except sp.CalledProcessError:
             if chromosome:
                 logger.error(
