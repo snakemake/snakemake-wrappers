@@ -65,7 +65,7 @@ rule remove_tsl_na_from_gff_annotations:
         "<logs>/remove_tsl_na_from_gff_annotations/{species}.{build}.{release}.log",
     params:
         command="agat_sp_filter_feature_by_attribute_value.pl",
-        extra="--attribute 'transcript_support_level' --value '\"NA\"' --test '='",
+        extra="--attribute 'transcript_support_level' --value 'NA' --test '='",
     wrapper:
         "v9.6.0/bio/agat"
 
