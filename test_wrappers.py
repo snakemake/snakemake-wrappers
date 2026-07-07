@@ -5327,8 +5327,6 @@ def test_go_yq(run):
             "foo_bar.yml": "expected_foobar.yml",
             "table.json": "expected_table.json",
             "data.yaml": "expected_data.yaml",
-            "table.json": "expected_table.json",
-            "data.yaml": "expected_data.yaml",
         },
     )
 
