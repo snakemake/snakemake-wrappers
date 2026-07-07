@@ -1,0 +1,15 @@
+name: sniffles
+description: Call structural variants from long reads (single- or multi-sample) with Sniffles2.
+url: https://github.com/fritzsedlazeck/Sniffles
+authors:
+  - Kateřina Havlová
+input:
+  - BAM/CRAM of aligned long reads, or one or more `.snf` files / a `.tsv` list for multi-sample calling (`samples`)
+  - reference genome FASTA (optional, `reference`; required to emit deletion sequences)
+  - tandem repeats BED file (optional, `tandem_repeats`)
+output:
+  - VCF of structural variants (optional, `vcf`)
+  - SNF file for multi-sample merging (optional, `snf`)
+notes: |
+  * At least one of `output.vcf` or `output.snf` must be given.
+  * The `extra` param allows for additional program arguments, e.g. `--mosaic`, `--minsupport`, `--output-rnames`.

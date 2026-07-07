@@ -5402,3 +5402,26 @@ def test_libarchive_compress(run):
         "utils/libarchive/compress",
         ["snakemake", "results/test.7z", "results/test.tar.gz", "results/test.zip"],
     )
+
+
+def test_sniffles_single_sample(run):
+    run(
+        "bio/sniffles",
+        [
+            "snakemake",
+            "calls/a.vcf",
+            "calls/a.snf",
+        ],
+        cores=4,
+    )
+
+
+def test_sniffles_multi_sample(run):
+    run(
+        "bio/sniffles",
+        [
+            "snakemake",
+            "calls/multisample.vcf",
+        ],
+        cores=4,
+    )
