@@ -336,6 +336,7 @@ def test_meta_alignoth_report(run):
     )
 
 
+
 def test_miller(run):
     run(
         "utils/miller",
@@ -5317,7 +5318,18 @@ def test_go_yq(run):
             "evaluated.yaml",
             "foo_bar.yml",
             "table.json",
+            "data.yaml",
         ],
+        compare_results_with_expected={
+            "concat.yaml": "expected_concat.yaml",
+            "updated.yaml": "expected_updated.yaml",
+            "evaluated.yaml": "expected_evaluated.yaml",
+            "foo_bar.yml": "expected_foobar.yml",
+            "table.json": "expected_table.json",
+            "data.yaml": "expected_data.yaml",
+            "table.json": "expected_table.json",
+            "data.yaml": "expected_data.yaml",
+        },
     )
 
 

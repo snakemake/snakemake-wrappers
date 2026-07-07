@@ -77,3 +77,17 @@ rule test_yq_format_conversion:
         expression="",
     wrapper:
         "master/utils/go-yq"
+
+
+rule test_yq_create_file:
+    output:
+        "data.yaml",
+    threads: 1
+    log:
+        "test_yq_create_file.log",
+    params:
+        extra="",
+        subcommand="",
+        expression='. = {"name": "data"}',
+    wrapper:
+        "master/utils/go-yq"
