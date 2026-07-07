@@ -3,9 +3,9 @@ rule test_yq_concat:
         ["bazquux.yaml", "foobar.yaml"],
     output:
         "concat.yaml",
-    threads: 1
     log:
         "test_yq_concat.log",
+    threads: 1
     params:
         extra="",
         subcommand="",
@@ -19,9 +19,9 @@ rule test_yq_simple_yaml_update:
         "foobar.yaml",
     output:
         "updated.yaml",
-    threads: 1
     log:
         "test_yq_simple_yaml_update.log",
+    threads: 1
     params:
         extra="",
         subcommand="",
@@ -35,9 +35,9 @@ rule test_yq_evaluate_yaml_content:
         "eval.yaml",
     output:
         "evaluated.yaml",
-    threads: 1
     log:
         "test_yq_evaluate_yaml_content.log",
+    threads: 1
     params:
         extra="",
         subcommand="",
@@ -52,9 +52,9 @@ rule test_yq_split_yaml:
     output:
         "foo_bar.yml",
         "foo_bar2.yml",
-    threads: 1
     log:
         "test_yq_split_yaml.log",
+    threads: 1
     params:
         extra="-s '\"foo_\" + .foo'",
         subcommand="",
@@ -68,9 +68,9 @@ rule test_yq_format_conversion:
         "table.csv",
     output:
         "table.json",
-    threads: 1
     log:
         "test_yq_format_conversion.log",
+    threads: 1
     params:
         extra="",
         subcommand="",
@@ -82,9 +82,9 @@ rule test_yq_format_conversion:
 rule test_yq_create_file:
     output:
         "data.yaml",
-    threads: 1
     log:
         "test_yq_create_file.log",
+    threads: 1
     params:
         extra="",
         subcommand="",
