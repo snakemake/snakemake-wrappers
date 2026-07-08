@@ -7,11 +7,11 @@ rule sniffles_single_sample:
     output:
         vcf="calls/{sample}.vcf",
         snf="calls/{sample}.snf",
-    params:
-        extra="",  # optional parameters for sniffles (except --input/--vcf/--snf)
     log:
         "logs/{sample}.log",
     threads: 4
+    params:
+        extra="",  # optional parameters for sniffles (except --input/--vcf/--snf)
     wrapper:
         "master/bio/sniffles"
 
@@ -21,10 +21,10 @@ rule sniffles_multi_sample:
         samples=["calls/a.snf", "calls/b.snf"],
     output:
         vcf="calls/multisample.vcf",
-    params:
-        extra="",  # optional parameters for sniffles (except --input/--vcf/--snf)
     log:
         "logs/sniffles_multi.log",
     threads: 4
+    params:
+        extra="",  # optional parameters for sniffles (except --input/--vcf/--snf)
     wrapper:
         "master/bio/sniffles"
