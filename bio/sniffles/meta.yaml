@@ -7,6 +7,7 @@ input:
   - BAM/CRAM of aligned long reads, or one or more `.snf` files / a `.tsv` list for multi-sample calling (`samples`)
   - reference genome FASTA (optional, `reference`; required to emit deletion sequences)
   - tandem repeats BED file (optional, `tandem_repeats`)
+  - VCF of known SVs to force-genotype (optional, `genotype_vcf`)
 output:
   - VCF of structural variants (optional, `vcf`)
   - SNF file for multi-sample merging (optional, `snf`)
