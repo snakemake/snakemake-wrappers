@@ -1,17 +1,16 @@
 rule sniffles_single_sample:
     input:
-        samples="mapped/a.bam",
-        bai="mapped/a.bam.bai",  # [hide] ensures the index is built first
+        samples="mapped/{sample}.bam",
+        bai="mapped/{sample}.bam.bai",  # [hide] ensures the index is built first
         # optional
         reference="genome.fasta",
-        tandem_repeats="repeats.bed",
     output:
-        vcf="calls/a.vcf",
-        snf="calls/a.snf",
+        vcf="calls/{sample}.vcf",
+        snf="calls/{sample}.snf",
     params:
         extra="",  # optional parameters for sniffles (except --input/--vcf/--snf)
     log:
-        "logs/sniffles_single.log",
+        "logs/{sample}.log",
     threads: 4
     wrapper:
         "master/bio/sniffles"
