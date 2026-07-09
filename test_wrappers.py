@@ -5404,7 +5404,7 @@ def test_libarchive_compress(run):
     )
 
 
-def test_sniffles_single_sample(run):
+def test_sniffles(run):
     run(
         "bio/sniffles",
         [
