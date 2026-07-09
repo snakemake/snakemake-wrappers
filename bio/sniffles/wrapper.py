@@ -12,13 +12,9 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 # Input: a single BAM/CRAM, or one or more .snf files / a .tsv list (multi-sample).
 samples = snakemake.input.get("samples")
-if not samples:
-    raise ValueError(
-        "input.samples is required (BAM/CRAM, or one or more .snf files / a .tsv list)."
-    )
 samples = " ".join(samples) if isinstance(samples, list) else samples
 
-reference = snakemake.input.get("reference", "")
+reference = snakemake.input.get("ref", "")
 if reference:
     reference = f"--reference {reference}"
 
