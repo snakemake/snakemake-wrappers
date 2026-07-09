@@ -5411,16 +5411,6 @@ def test_sniffles_single_sample(run):
             "snakemake",
             "calls/a.vcf",
             "calls/a.snf",
-        ],
-        cores=4,
-    )
-
-
-def test_sniffles_multi_sample(run):
-    run(
-        "bio/sniffles",
-        [
-            "snakemake",
             "calls/multisample.vcf",
         ],
         cores=4,
