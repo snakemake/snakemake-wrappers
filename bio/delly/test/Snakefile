@@ -7,6 +7,7 @@ rule delly_bcf:
     output:
         "sv/calls.bcf",
     params:
+        command="sr",
         uncompressed_bcf=True,
         extra="",  # optional parameters for delly (except -g, -x)
     log:
@@ -25,6 +26,7 @@ rule delly_vcfgz:
     output:
         "sv/calls.vcf.gz",
     params:
+        command="sr",
         extra="",  # optional parameters for delly (except -g, -x)
     log:
         "logs/delly.log",
