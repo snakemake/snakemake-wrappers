@@ -54,7 +54,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libfreetype-2.14.3-ha770c72_0.co
 https://conda.anaconda.org/conda-forge/linux-64/libglib-2.88.2-h0d30a3d_0.conda#889febc66cd9e4190f80ef9718fa239b
 https://conda.anaconda.org/conda-forge/linux-64/libnghttp2-1.68.1-h877daf1_0.conda#2a45e7f8af083626f009645a6481f12d
 https://conda.anaconda.org/conda-forge/linux-64/libpsl-0.22.0-hd9031aa_0.conda#e2834a423b3967e7b3b1e901c4a5f42f
-https://conda.anaconda.org/conda-forge/linux-64/libtiff-4.7.1-h9d88235_1.conda#cd5a90476766d53e901500df9215e927
+https://conda.anaconda.org/conda-forge/linux-64/libtiff-4.7.2-h9d88235_0.conda#c1fcb4a88bc15a9f77ad8d27d7af1df9
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libx11-1.8.13-he1eb515_0.conda#861fb6ccbc677bb9a9fb2468430b9c6a
 https://conda.anaconda.org/conda-forge/linux-64/fontconfig-2.18.1-h27c8c51_0.conda#e0e050cfa9fa85fe39632ab11cb7f3e0
 https://conda.anaconda.org/conda-forge/linux-64/freetype-2.14.3-ha770c72_0.conda#8462b5322567212beeb025f3519fb3e2
@@ -74,4 +74,4 @@ https://conda.anaconda.org/conda-forge/linux-64/xorg-libxtst-1.2.5-hb9d3cd8_3.co
 https://conda.anaconda.org/conda-forge/linux-64/libharfbuzz-devel-14.2.1-h17a8019_1.conda#99cf21100441e51272f1cd6fe0632a20
 https://conda.anaconda.org/conda-forge/linux-64/harfbuzz-14.2.1-ha770c72_1.conda#72e956a71241633d8c80aa198fd08784
 https://conda.anaconda.org/conda-forge/linux-64/openjdk-23.0.2-h68779a4_1.conda#64f73cc54c693c6be95518d6f186e657
-https://conda.anaconda.org/bioconda/noarch/nextflow-26.04.4-h2a3209d_0.conda#cc7fb4aef26ceaa9dd7cd63b63ab3dee
+https://conda.anaconda.org/bioconda/noarch/nextflow-26.04.6-h2a3209d_0.conda#30dd384c7c334c6fff49c3d3525ba554
