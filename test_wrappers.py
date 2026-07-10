@@ -2475,6 +2475,17 @@ def test_fastaguard(run):
         },
     )
 
+    with pytest.raises(subprocess.CalledProcessError):
+        run(
+            "bio/fastaguard",
+            [
+                "snakemake",
+                "default/fastaguard.json",
+                "--allowed-rules",
+                "fastaguard_warn_default",
+            ],
+        )
+
 
 def test_fastp(run):
     run(

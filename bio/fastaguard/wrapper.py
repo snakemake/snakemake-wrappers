@@ -1,15 +1,15 @@
 from snakemake.shell import shell
 
-profile = snakemake.params.get("profile", "assembly")
-gate = snakemake.params.get("gate", "pipeline")
 extra = snakemake.params.get("extra", "")
+allowed_exit_codes = snakemake.params.get("allowed_exit_codes", [0])
+if isinstance(allowed_exit_codes, int):
+    allowed_exit_codes = [allowed_exit_codes]
+allowed_exit_codes = " ".join(str(code) for code in allowed_exit_codes)
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 shell(
     "set +e; "
     "fastaguard {snakemake.input.fasta} "
-    "--profile {profile} "
-    "--gate {gate} "
     "--out {snakemake.output.html} "
     "--json {snakemake.output.json} "
     "--tsv {snakemake.output.tsv} "
@@ -19,5 +19,5 @@ shell(
     'status="$?"; '
     "set -e; "
     'printf "%s\\n" "$status" > {snakemake.output.exit_code}; '
-    'if [ "$status" -eq 3 ] || [ "$status" -gt 3 ]; then exit "$status"; fi'
+    'case " {allowed_exit_codes} " in *" $status "*) ;; *) exit "$status" ;; esac'
 )
