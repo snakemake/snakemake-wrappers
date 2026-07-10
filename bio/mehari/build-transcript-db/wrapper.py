@@ -10,10 +10,7 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 # Input
-sequences = snakemake.input.get("sequences")
-if not sequences:
-    raise ValueError("Input 'sequences' is required but not specified")
-
+sequences = snakemake.input.sequences
 if get_format(sequences) == "fasta":
     sequences = f"--transcript-sequences {sequences}"
 else:
