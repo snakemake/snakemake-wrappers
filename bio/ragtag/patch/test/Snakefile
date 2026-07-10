@@ -11,10 +11,10 @@ rule patch:
         ctg_fasta="{query}_{reference}.ctg.fasta",
         comps_fasta="{query}_{reference}.comps.fasta",
         asm_dir=directory("{query}_{reference}_asm"),  # Assembly alignment files
-    params:
-        extra="-s 100",
-    threads: 16
     log:
         "logs/ragtag/{query}_patch_{reference}.log",
+    threads: 16
+    params:
+        extra="-s 100",
     wrapper:
         "master/bio/ragtag/patch"
