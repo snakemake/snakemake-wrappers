@@ -3,7 +3,7 @@ rule sniffles_single_sample:
         samples="mapped/{sample}.bam",
         bai="mapped/{sample}.bam.bai",  # [hide] ensures the index is built first
         # optional
-        reference="genome.fasta",
+        ref="genome.fasta",
     output:
         vcf="calls/{sample}.vcf",
         snf="calls/{sample}.snf",
