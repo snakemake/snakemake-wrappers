@@ -6,9 +6,9 @@ rule markduplicates_bam:
     # and then merging
     output:
         bam="dedup/{sample}.bam",
-        metrics="dedup/{sample}.metrics.txt",
+        metrics="dedup/{sample}.bam.metrics.txt",
     log:
-        "logs/{sample}.log",
+        "logs/{sample}.bam.log",
     params:
         extra="--REMOVE_DUPLICATES true",
     # optional specification of memory usage of the JVM that snakemake will respect with global
@@ -36,7 +36,7 @@ use rule markduplicates_bam as markduplicateswithmatecigar_bam with:
 use rule markduplicates_bam as markduplicates_sam with:
     output:
         bam="dedup/{sample}.sam",
-        metrics="dedup/{sample}.metrics.txt",
+        metrics="dedup/{sample}.sam.metrics.txt",
     log:
         "logs/{sample}.sam.log",
     params:
@@ -50,7 +50,7 @@ use rule markduplicates_bam as markduplicates_cram with:
     output:
         bam="dedup/{sample}.cram",
         idx="dedup/{sample}.cram.crai",
-        metrics="dedup/{sample}.metrics.txt",
+        metrics="dedup/{sample}.cram.metrics.txt",
     log:
         "logs/{sample}.cram.log",
     params:
