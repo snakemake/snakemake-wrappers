@@ -1,6 +1,6 @@
 rule samtools_import:
     input:
-        expand("reads/{{sample}}.{R}.fastq.gz", R=[1, 2]),
+        fq=expand("reads/{{sample}}.{R}.fastq.gz", R=[1, 2]),
     output:
         bam="{sample}.bam",
     log:
