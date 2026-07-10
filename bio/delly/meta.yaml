@@ -10,6 +10,7 @@ input:
   - BED file (optional)
 output:
   - VCF/BCF with SVs.
-notes: |
-  * The `uncompressed_bcf` param sets output to uncompressed BCF (ignored if output is `vcf` or `vcf.gz`)
-  * The `extra` param allows for additional program arguments
+params:
+  - command: which command to run [sr/lr]
+  - uncompressed_bcf: sets output to uncompressed BCF (ignored if output is `vcf` or `vcf.gz`)
+  - extra: additional program arguments
