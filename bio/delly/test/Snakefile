@@ -4,15 +4,15 @@ rule delly_bcf:
         alns=["mapped/a.bam"],
         # optional
         exclude="human.hg19.excl.tsv",
+    log:
+        "logs/delly.log",
+    threads: 2  # It is best to use as many threads as samples
     output:
         "sv/calls.bcf",
     params:
         command="sr",
         uncompressed_bcf=True,
         extra="",  # optional parameters for delly (except -g, -x)
-    log:
-        "logs/delly.log",
-    threads: 2  # It is best to use as many threads as samples
     wrapper:
         "master/bio/delly"
 
@@ -23,13 +23,13 @@ rule delly_vcfgz:
         alns=["mapped/a.bam"],
         # optional
         exclude="human.hg19.excl.tsv",
+    log:
+        "logs/delly.log",
+    threads: 2  # It is best to use as many threads as samples
     output:
         "sv/calls.vcf.gz",
     params:
         command="sr",
         extra="",  # optional parameters for delly (except -g, -x)
-    log:
-        "logs/delly.log",
-    threads: 2  # It is best to use as many threads as samples
     wrapper:
         "master/bio/delly"
