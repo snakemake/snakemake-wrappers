@@ -3329,6 +3329,9 @@ def test_samtools_faidx(run):
         ],
     )
 
+def test_samtools_import(run):
+    run("bio/samtools/import", ["snakemake", "a.bam"])
+
 
 def test_bamtools_filter(run):
     run(

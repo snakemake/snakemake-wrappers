@@ -1,0 +1,12 @@
+rule samtools_import:
+    input:
+        expand("reads/{{sample}}.{R}.fastq.gz", R=[1, 2]),
+    output:
+        bam="{sample}.bam",
+    log:
+        "{sample}.log",
+    threads: 2
+    params:
+        extra="",
+    wrapper:
+        "master/bio/samtools/import"
