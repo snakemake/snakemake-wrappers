@@ -34,10 +34,6 @@ snf = snakemake.output.get("snf", "")
 if snf:
     snf = f"--snf {snf}"
 
-if not vcf and not snf:
-    raise ValueError("At least one of output.vcf or output.snf must be specified.")
-
-
 shell(
     "sniffles"
     " --input {samples}"

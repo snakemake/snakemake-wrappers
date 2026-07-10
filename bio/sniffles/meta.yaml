@@ -11,6 +11,5 @@ input:
 output:
   - vcf: VCF of structural variants (optional, `vcf`)
   - snf: SNF file for multi-sample merging (optional, `snf`)
-notes: |
-  * At least one of `output.vcf` or `output.snf` must be given.
-  * The `extra` param allows for additional program arguments, e.g. `--mosaic`, `--minsupport`, `--output-rnames`.
+params:
+  - extra: additional program arguments, e.g. `--mosaic`, `--minsupport`, `--output-rnames`.
