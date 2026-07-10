@@ -23,11 +23,11 @@ https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.42.2-h5347b49_0.conda#
 https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.6-hdb14827_0.conda#fc21868a1a5aacc937e7a18747acb8a5
 https://conda.anaconda.org/conda-forge/linux-64/openssl-3.6.3-h35e630c_0.conda#79dd2074b5cd5c5c6b2930514a11e22d
 https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_h366c992_103.conda#cffd3bdd58090148f4cfcd831f4b26ab
-https://conda.anaconda.org/conda-forge/linux-64/libabseil-20250512.1-cxx17_hba17884_0.conda#83b160d4da3e1e847bf044997621ed63
+https://conda.anaconda.org/conda-forge/linux-64/libabseil-20260107.1-cxx17_h7b12aa8_0.conda#6f7b4302263347698fd24565fbf11310
 https://conda.anaconda.org/conda-forge/linux-64/readline-8.3-h853b02a_0.conda#d7d95fc8287ea7bf33e0e7116d2b95ec
-https://conda.anaconda.org/conda-forge/linux-64/libprotobuf-6.31.1-hfb7daa7_5.conda#da31d891434e50d7e7be8adc5832269b
+https://conda.anaconda.org/conda-forge/linux-64/libprotobuf-6.31.1-h538a264_6.conda#09c17df4ca168114becd51698dd95072
 https://conda.anaconda.org/conda-forge/linux-64/python-3.14.6-habeac84_100_cp314.conda#0b9b2f83b5b600e1ac38becde8d0dd44
 https://conda.anaconda.org/conda-forge/linux-64/sqlite-3.53.3-hbc0de68_0.conda#b345ea7f13e4cae9809c69b1d1af2c99
-https://conda.anaconda.org/bioconda/linux-64/mehari-0.45.0-h957ea76_0.conda#d576ad28b586f712725db492ab7779c8
+https://conda.anaconda.org/bioconda/linux-64/mehari-0.45.1-h957ea76_0.conda#272f60c0427b6aa2bf01896bcfadce3e
 https://conda.anaconda.org/conda-forge/noarch/pip-26.1.2-pyh145f28c_0.conda#733cc07ed34162ac50b936464b163366
 https://conda.anaconda.org/bioconda/noarch/snakemake-wrapper-utils-0.8.0-pyhdfd78af_0.conda#1650e521333852f45468d97b1b2fdcce
