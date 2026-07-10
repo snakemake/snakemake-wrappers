@@ -1,10 +1,38 @@
-rule samtools_import:
+rule samtools_import_pe_interleaved:
     input:
-        fq=expand("reads/{{sample}}.{R}.fastq.gz", R=[1, 2]),
+        fq="reads/{sample}.fastq.gz",
     output:
         bam="{sample}.bam",
     log:
         "{sample}.log",
+    threads: 2
+    params:
+        extra="",
+    wrapper:
+        "master/bio/samtools/import"
+
+
+rule samtools_import_pe:
+    input:
+        fq=expand("reads/{{sample}}.{R}.fastq.gz", R=[1, 2]),
+    output:
+        bam="{sample}.pe.bam",
+    log:
+        "{sample}.pe.log",
+    threads: 2
+    params:
+        extra="",
+    wrapper:
+        "master/bio/samtools/import"
+
+
+rule samtools_import_se:
+    input:
+        fq="reads/{sample}.1.fastq.gz",
+    output:
+        bam="{sample}.se.bam",
+    log:
+        "{sample}.se.log",
     threads: 2
     params:
         extra="",
