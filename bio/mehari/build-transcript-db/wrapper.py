@@ -49,7 +49,7 @@ if transcript_source_version:
     )
 
 shell(
-    "mehari db create"
+    "mehari db transcripts create"
     " --threads {snakemake.threads}"
     " --annotation {snakemake.input.annotation:q}"
     " --assembly {snakemake.params.assembly:q}"
