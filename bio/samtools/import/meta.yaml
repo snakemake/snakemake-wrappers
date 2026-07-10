@@ -8,4 +8,4 @@ input:
 output:
   - SAM/BAM/CRAM file
 params:
-  - extra: additional program arguments (not `-@/--threads`, `--write-index`, `-o` or `-O/--output-fmt`).
+  - extra: additional program arguments (not `-@/--threads`, `-o` or `-O/--output-fmt`).

@@ -532,7 +532,6 @@ def test_sd(run):
             "trailing_whitespace_trimmed.txt": "expected_whitespace_trimming.txt",
         },
     )
-    
 
 
 def test_sed(run):
@@ -3328,6 +3327,7 @@ def test_samtools_faidx(run):
             "out/genome.region_bgzip.fas",
         ],
     )
+
 
 def test_samtools_import(run):
     run("bio/samtools/import", ["snakemake", "a.bam", "a.pe.bam", "a.se.bam"])
