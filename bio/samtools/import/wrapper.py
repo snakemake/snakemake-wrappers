@@ -8,7 +8,7 @@ from snakemake_wrapper_utils.samtools import get_samtools_opts
 
 samtools_opts = get_samtools_opts(snakemake)
 extra = snakemake.params.get("extra", "")
-log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
+log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=False)
 
 # Parse input
 fq_input = snakemake.input.fq
