@@ -2740,6 +2740,13 @@ def test_macs2_callpeak(run):
     )
 
 
+def test_mageck_test(run):
+    run(
+        "bio/mageck/test",
+        ["snakemake", "RRA.tsv"],
+    )
+
+
 def test_mageck_flute_rra(run):
     run(
         "bio/mageckflute/fluterra",
