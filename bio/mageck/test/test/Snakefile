@@ -15,9 +15,9 @@ rule test_mageck_test:
         pdf="RRA.pdf",
         # Optional path to normalized counts
         normalized="Normalized_counts.tsv",
-    threads: 1
     log:
         "test_mageck_test.log",
+    threads: 1
     params:
         extra="--treatment-id HL60.final,KBM7.final --control-id HL60.initial,KBM7.initial --cell-line HL60_HAEMATOPOIETIC_AND_LYMPHOID_TISSUE",
     wrapper:
