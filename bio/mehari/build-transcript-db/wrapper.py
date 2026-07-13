@@ -9,31 +9,14 @@ from snakemake_wrapper_utils.snakemake import get_format
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-# required inputs and outputs
-if not snakemake.input.get("annotation"):
-    raise ValueError("Input 'annotation' is required but not specified")
-
-if not snakemake.output.get("db"):
-    raise ValueError("Output 'db' is required but not specified")
-
-sequences = snakemake.input.get("sequences")
-if not sequences:
-    raise ValueError("Input 'sequences' is required but not specified")
-
+# Input
+sequences = snakemake.input.sequences
 if get_format(sequences) == "fasta":
     sequences = f"--transcript-sequences {sequences}"
 else:
     sequences = f"--seqrepo {sequences}"
 
-# required params
-if not snakemake.params.get("assembly"):
-    raise ValueError("Parameter 'assembly' is required but not specified")
-
-if not snakemake.params.get("transcript_source"):
-    raise ValueError("Parameter 'transcript_source' is required but not specified")
-
-
-# optional params
+# Params
 assembly_version = snakemake.params.get("assembly_version", "")
 if assembly_version:
     assembly_version = f"--assembly-version {assembly_version}"
@@ -49,7 +32,7 @@ if transcript_source_version:
     )
 
 shell(
-    "mehari db create"
+    "mehari db transcripts create"
     " --threads {snakemake.threads}"
     " --annotation {snakemake.input.annotation:q}"
     " --assembly {snakemake.params.assembly:q}"

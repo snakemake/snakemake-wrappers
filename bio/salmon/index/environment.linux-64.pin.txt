@@ -6,4 +6,4 @@
 https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-he0feb66_19.conda#faac990cb7aedc7f3a2224f2c9b0c26c
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda#a9f577daf3de00bca7c3c76c0ecbd1de
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-he0feb66_19.conda#57736f29cc2b0ec0b6c2952d3f101b6a
-https://conda.anaconda.org/bioconda/linux-64/salmon-2.0.1-hfa8f182_0.conda#aa21054bc07eca986efec4955ce62fb6
+https://conda.anaconda.org/bioconda/linux-64/salmon-2.3.2-hfa8f182_0.conda#890eb0550688e088ea5b71580539d63d

@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - ensembl-vep =116.0
-  - bcftools =1.23.1
+  - bcftools =1.24

@@ -336,6 +336,7 @@ def test_meta_alignoth_report(run):
     )
 
 
+
 def test_miller(run):
     run(
         "utils/miller",
@@ -520,6 +521,17 @@ def test_swarm(run):
             "out/a.bz2.seeds.fas",
         ],
         cores=2,
+    )
+
+
+def test_sd(run):
+    run(
+        "utils/sd",
+        ["snakemake", "replaced.txt", "trailing_whitespace_trimmed.txt"],
+        compare_results_with_expected={
+            "replaced.txt": "expected_replacement.txt",
+            "trailing_whitespace_trimmed.txt": "expected_whitespace_trimming.txt",
+        },
     )
 
 
@@ -1322,6 +1334,43 @@ def test_goleft_indexcov(run):
     run(
         "bio/goleft/indexcov",
         ["snakemake"],
+    )
+
+
+def test_grit_genomics(run):
+    run(
+        "bio/grit_genomics",
+        [
+            "snakemake",
+            "synthetic_beds",
+            "test_grit_sorted.bed",
+            "test_grit_merged.bed",
+            "test_grit_extended.bed",
+            "test_grit_complement.bed",
+            "test_grit_genomecov.bed",
+            "intersections.bed",
+            "test_grit_intersect.bed",
+            "test_grit_closest.bed",
+            "test_grit_window.bed",
+            "test_grit_jaccard.tsv",
+            "test_grit_subtract.bed",
+            "test_grit_coverage.bed",
+        ],
+        cores=2,
+        compare_results_with_expected={
+            "test_grit_sorted.bed": "expected_sorted.bed",
+            "test_grit_merged.bed": "expected_merged.bed",
+            "test_grit_subtract.bed": "expected_subtract.bed",
+            "test_grit_intersect.bed": "expected_intersect.bed",
+            "test_grit_closest.bed": "expected_closest.bed",
+            "test_grit_window.bed": "expected_window.bed",
+            "test_grit_coverage.bed": "expected_coverage.tsv",
+            "test_grit_complement.bed": "expected_complement.bed",
+            "test_grit_extended.bed": "expected_slop.bed",
+            "test_grit_genomecov.bed": "expected_genomecov.bed",
+            "test_grit_jaccard.tsv": "expected_jaccard.tsv",
+            "intersections.bed": "expected_multiinter.bed",
+        },
     )
 
 
@@ -2700,6 +2749,12 @@ def test_mageck_mle(run):
         ],
     )
 
+def test_mageck_test(run):
+    run(
+        "bio/mageck/test",
+        ["snakemake", "RRA.tsv"],
+    )
+
 
 def test_mageck_flute_rra(run):
     run(
@@ -3289,6 +3344,10 @@ def test_samtools_faidx(run):
             "out/genome.region_bgzip.fas",
         ],
     )
+
+
+def test_samtools_import(run):
+    run("bio/samtools/import", ["snakemake", "a.bam", "a.pe.bam", "a.se.bam"])
 
 
 def test_bamtools_filter(run):
@@ -5278,7 +5337,16 @@ def test_go_yq(run):
             "evaluated.yaml",
             "foo_bar.yml",
             "table.json",
+            "data.yaml",
         ],
+        compare_results_with_expected={
+            "concat.yaml": "expected/expected_concat.yaml",
+            "updated.yaml": "expected/expected_updated.yaml",
+            "evaluated.yaml": "expected/expected_evaluated.yaml",
+            "foo_bar.yml": "expected/expected_foobar.yml",
+            "table.json": "expected/expected_table.json",
+            "data.yaml": "expected/expected_data.yaml",
+        },
     )
 
 
@@ -5362,4 +5430,17 @@ def test_libarchive_compress(run):
     run(
         "utils/libarchive/compress",
         ["snakemake", "results/test.7z", "results/test.tar.gz", "results/test.zip"],
+    )
+
+
+def test_sniffles(run):
+    run(
+        "bio/sniffles",
+        [
+            "snakemake",
+            "calls/a.vcf",
+            "calls/a.snf",
+            "calls/multisample.vcf",
+        ],
+        cores=4,
     )

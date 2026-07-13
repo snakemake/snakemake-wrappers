@@ -1,0 +1,11 @@
+name: samtools import
+description: Converts FASTQ files to unmapped SAM/BAM/CRAM
+url: http://www.htslib.org/doc/samtools-import.html
+authors:
+  - Filipe G. Vieira
+input:
+  - FASTQ file(s)
+output:
+  - SAM/BAM/CRAM file
+params:
+  - extra: additional program arguments (not `-@/--threads`, `-o` or `-O/--output-fmt`).
