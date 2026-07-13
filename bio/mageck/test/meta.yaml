@@ -18,6 +18,3 @@ output:
   - normalized: Optional path to normalized read count file
 params:
   - extra: Optional parameters besides `--cnv-norm`, `--normcounts-to-file`, `-n|--output-prefix`, `--pdf-report`, or `--count-table`.
-notes: |
-  Python (3.10.20) and numpy (1.23.5) version in the environment file must not change, 
-  as long as the owners do not fix their deprecation issues.
