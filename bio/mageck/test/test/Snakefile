@@ -15,6 +15,7 @@ rule test_mageck_test:
         pdf="RRA.pdf",
         # Optional path to normalized counts
         normalized="Normalized_counts.tsv",
+    threads: 1
     log:
         "test_mageck_test.log",
     params:
