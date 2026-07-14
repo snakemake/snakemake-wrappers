@@ -1,7 +1,7 @@
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
-allowed_exit_codes = snakemake.params.get("allowed_exit_codes", [0])
+allowed_exit_codes = snakemake.params.get("allowed_exit_codes", 0)
 if isinstance(allowed_exit_codes, int):
     allowed_exit_codes = [allowed_exit_codes]
 allowed_exit_codes = " ".join(str(code) for code in allowed_exit_codes)
