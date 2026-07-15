@@ -10,7 +10,6 @@ __license__ = "MIT"
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from snakemake.shell import shell
-from snakemake_wrapper_utils.snakemake import move_files
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
@@ -37,5 +36,7 @@ with TemporaryDirectory() as tempdir:
         "--output-prefix {temp_prefix} {log} "
     )
 
-    for move_cmd in move_files(snakemake, outfile_mapping):
-        shell("{move_cmd} {log}")
+    for key, outfile in outfile_mapping.items():
+        destination = snakemake.output.get(key)
+        if destination:
+            shell("mv --verbose {outfile} {destination} {log}")
