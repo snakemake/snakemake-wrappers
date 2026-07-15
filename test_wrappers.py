@@ -3286,7 +3286,13 @@ def test_samtools_view(run):
 def test_samtools_fastx(run):
     run(
         "bio/samtools/fastx",
-        ["snakemake", "a.fasta"],
+        ["snakemake", "a.1.fasta"],
+        compare_results_with_expected={
+            "a.1.fasta": "expected/a.1.fasta",
+            "a.2.fasta": "expected/a.2.fasta",
+            "a.0.fasta": "expected/a.0.fasta",
+        },
+
     )
 
 

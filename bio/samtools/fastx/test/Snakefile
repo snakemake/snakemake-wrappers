@@ -2,7 +2,9 @@ rule samtools_fastq:
     input:
         "{prefix}.sam",
     output:
-        "{prefix}.fasta",
+        fq1="{prefix}.1.fasta",
+        fq2="{prefix}.2.fasta",
+        fq0="{prefix}.0.fasta",
     log:
         "{prefix}.log",
     message:
