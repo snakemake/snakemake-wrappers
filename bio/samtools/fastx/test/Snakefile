@@ -7,12 +7,12 @@ rule samtools_fastq:
         fq0="{prefix}.0.fasta",
     log:
         "{prefix}.log",
-    message:
-        ""
     # Samtools takes additional threads through its option -@
     threads: 2  # This value - 1 will be sent to -@
     params:
         outputtype="fasta",
         extra="",
+    message:
+        ""
     wrapper:
         "master/bio/samtools/fastx/"
