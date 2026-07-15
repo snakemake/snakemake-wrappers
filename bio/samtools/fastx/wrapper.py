@@ -17,7 +17,8 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 # Parse outputs
 fq_out = ""
 for label, out_file in snakemake.output.items():
-    fq_out += f" -{label.removeprefix('read')} {out_file}"
+    if label.startswith("read"):
+        fq_out += f" -{label.removeprefix('read')} {out_file}"
 
 shell(
     "samtools {snakemake.params.outputtype} {samtools_opts} {fq_out} {extra} {snakemake.input} {log}"
