@@ -7,11 +7,11 @@ authors:
 input:
   - bam or sam file (.bam, .sam)
 output:
-  - fq1: FASTA or FASTQ file for read 1
-  - fq2: FASTA or FASTQ file for read 2
-  - fqo: FASTA or FASTQ file for both reads 1 and 2
-  - fqs: FASTA or FASTQ file for singleton reads (both reads 1 and 2, where the pair is not present)
-  - fq0: FASTA or FASTQ file for other reads (marked as both/none read 1 and 2)
+  - read1: FASTA or FASTQ file for read 1
+  - read2: FASTA or FASTQ file for read 2
+  - reado: FASTA or FASTQ file for both reads 1 and 2
+  - reads: FASTA or FASTQ file for singleton reads (both reads 1 and 2, where the pair is not present)
+  - read0: FASTA or FASTQ file for other reads (marked as both/none read 1 and 2)
 params:
   - extra: additional program arguments (not `-@/--threads`, `-o`, `-1`, `-2`, `-s`, or `-0`).
 note: |
