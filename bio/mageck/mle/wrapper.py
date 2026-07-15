@@ -32,11 +32,11 @@ with TemporaryDirectory() as tempdir:
     }
 
     shell(
-        "mageck mle {extra} --count-table {snakemake.input.counts} "
-        "--output-prefix {temp_prefix} {log} "
+        "mageck mle {extra} --count-table {snakemake.input.counts:q} "
+        "--output-prefix {temp_prefix:q} {log} "
     )
 
     for key, outfile in outfile_mapping.items():
         destination = snakemake.output.get(key)
         if destination:
-            shell("mv --verbose {outfile} {destination} {log}")
+            shell("mv --verbose {outfile:q} {destination:q} {log}")
