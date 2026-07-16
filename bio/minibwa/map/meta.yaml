@@ -6,7 +6,7 @@ authors:
   - Thibault Dayris
 input:
   - index: List of paths to all index files produced by `minibwa index`
-  - fastq: List of paths to R1/R2 files, or path to a single-ended fastq file
+  - reads: List of paths to R1/R2 files, or path to a single-ended fastq file
   - fasta: Optional path to genome fasta file (for CRAM compression)
 output:
   - Path to sam/bam/cram file
