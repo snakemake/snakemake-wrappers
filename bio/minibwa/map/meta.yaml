@@ -1,0 +1,17 @@
+name: minibwa map
+description: |
+  Align reads with minibwa.
+url: https://github.com/lh3/minibwa
+authors:
+  - Thibault Dayris
+input:
+  - index: List of paths to all index files produced by `minibwa index`
+  - fastq: List of paths to R1/R2 files, or path to a single-ended fastq file
+  - fasta: Optional path to genome fasta file (for CRAM compression)
+output:
+  - Path to sam/bam/cram file
+  - idx: Optional path to bam index
+params:
+  - sort: Either `None` (no sort), `samtools`, `picard` or `sambamba`.
+  - sort_order: Either `coordinate`, or `queryname`.
+  - sort_extra: Optional parameters for sorting tools. Threading, IO paths and IO formats are automatically determined for every tool.
