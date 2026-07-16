@@ -39,7 +39,7 @@ if sort_order not in expected_sort_orders:
 
 # Extract index from input
 # and check that all required indices are declared
-index_prefix = commonprefix([str(o) for o in snakemake.input.index]).strip(".")
+index_prefix = commonprefix([str(o) for o in snakemake.input.index]).rstrip(".")
 if len(index_prefix) == 0:
     raise ValueError("Could not determine common prefix of `input.index` files.")
 
@@ -144,7 +144,7 @@ with TemporaryDirectory() as tempdir:
             if "idx" in snakemake.output.keys():
                 out_cmd += str(
                     f" && sambamba index --nthreads {snakemake.threads} "
-                    f"'{snakemake.output[0]}'"
+                    f"'{snakemake.output[0]}' '{snakemake.output.idx}'"
                 )
 
     # Run command(s)
