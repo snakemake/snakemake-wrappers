@@ -1,0 +1,11 @@
+name: minibwa index
+url: https://github.com/lh3/minibwa
+description: Index the reference genome with minibwa
+authors:
+  - Thibault Dayris
+input:
+  - Path to genome fasta file
+output:
+  ...
+params:
+  extra: Optional parameters, besides threading.

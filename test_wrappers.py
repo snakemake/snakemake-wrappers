@@ -627,6 +627,17 @@ def test_sickle_se(run):
     )
 
 
+def test_minibwa_index(run):
+    run(
+        "bio/minibwa/index",
+        [
+            "snakemake",
+            "index.l2b",
+            "meth_index.l2b",
+        ],
+    )
+
+
 def test_bwameth_memx(run):
     run(
         "bio/bwameth/memx",
