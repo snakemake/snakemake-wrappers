@@ -3578,7 +3578,7 @@ def test_cairosvg(run):
 def test_runiq(run):
     run(
         "utils/runiq",
-        ["snakemake"],
+        ["snakemake", "deduplicated.txt"],
         compare_results_with_expected={
             "deduplicated.txt": "expected_dedup.txt",
         },
