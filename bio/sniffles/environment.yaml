@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - sniffles =2.8
+  - sniffles =2.8.0
