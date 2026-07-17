@@ -13,6 +13,7 @@ rule bismark_pe:
         fq_ambiguous_2="results/bismark/{sample}_{genome}.ambiguous_reads_2.fq.gz",  # optional: implicitly activates --ambiguous
     log:
         "logs/bismark/{sample}_{genome}.log",
+    threads: 5  # bismark in pe mode will run parallel with a minimum of 5 threads, no matter what - please ensure your workflow provides at least --cores 5
     params:
         # optional params string, e.g: "-L32 -N0 -X400"
         # Useful options to tune:
@@ -25,7 +26,6 @@ rule bismark_pe:
         # -X: The maximum insert size for valid paired-end alignments. ~ max fragment size filter (for
         # PE reads)
         extra="",
-    threads: 5  # bismark in pe mode will run parallel with a minimum of 5 threads, no matter what - please ensure your workflow provides at least --cores 5
     wrapper:
         "master/bio/bismark/bismark"
 
@@ -37,7 +37,7 @@ rule bismark_se:
         bismark_indexes_dir="resources/{genome}/",
         genomic_freq="resources/{genome}/genomic_nucleotide_frequencies.txt",  # only required for nucleotide_stats output, to avoid race conditions; generate with bam2nuc wrapper
     output:
-        cram="results/bismark/{sample}_{genome}.cram",
+        bam="results/bismark/{sample}_{genome}.bam",
         report="results/bismark/{sample}_{genome}_se_report.txt",
         nucleotide_stats="results/bismark/{sample}_{genome}.nucleotide_stats.txt",  # optional: implicitly activates --nucleotide_coverage
         fq_unmapped="results/bismark/{sample}_{genome}.unmapped_reads.fq.gz",  # optional: implicitly activates --unmapped
@@ -45,8 +45,8 @@ rule bismark_se:
         bam_ambiguous="results/bismark/{sample}_{genome}.ambiguous_reads.bam",  # optional: implicitly activates --ambig_bam
     log:
         "logs/bismark/{sample}_{genome}.log",
+    threads: 3  # bismark in se mode will run parallel with a minimum of 3 threads, no matter what - please ensure your workflow provides at least --cores 3
     params:
         extra="",
-    threads: 3  # bismark in se mode will run parallel with a minimum of 3 threads, no matter what - please ensure your workflow provides at least --cores 3
     wrapper:
         "master/bio/bismark/bismark"

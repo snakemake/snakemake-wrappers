@@ -4438,7 +4438,7 @@ def test_bismark(run):
         [
             "snakemake",
             "results/bismark/a_genome_pe.bam",
-            "results/bismark/b_genome.cram",
+            "results/bismark/b_genome.bam",
         ],
         compare_results_with_expected={
             "results/bismark/b_genome.nucleotide_stats.txt": "expected/b_genome.nucleotide_stats.txt",
