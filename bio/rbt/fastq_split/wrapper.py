@@ -11,11 +11,13 @@ from os.path import splitext
 from snakemake_wrapper_utils.snakemake import get_format
 from snakemake.shell import shell
 
+
 def get_compression_threads(available_threads, compression_jobs):
     q, r = divmod(available_threads, compression_jobs)
     return tuple(q + 1 if job < r else q for job in range(compression_jobs))
 
-log = snakemake.log_fmt_shell(stdout=True, stderr=True, append = True)
+
+log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 compression_extra = snakemake.params.get("compression_extra", "")
 
 command_lines = []
@@ -68,4 +70,3 @@ else:
     command_lines = f"rbt fastq-split {snakemake.output} {read_cmd} {log}"
 
 shell(command_lines)
- 

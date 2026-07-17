@@ -16,9 +16,9 @@ rule test_rbt_fastq_split_compressed_input:
     output:
         "e.fq",
         "f.fq",
-    threads: 2
     log:
         "logs/test_rbt_fastq_split_compressed_input.log",
+    threads: 2
     wrapper:
         "master/bio/rbt/fastq_split"
 
@@ -29,8 +29,8 @@ rule test_rbt_fastq_split_compressed_output:
     output:
         "c.fq.gz",
         "d.fq",
-    threads: 2
     log:
         "logs/test_rbt_fastq_split_compressed_output.log",
+    threads: 2
     wrapper:
         "master/bio/rbt/fastq_split"
