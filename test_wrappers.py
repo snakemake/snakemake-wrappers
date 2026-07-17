@@ -3574,6 +3574,17 @@ def test_cairosvg(run):
     run("utils/cairosvg", ["snakemake", "pca.pdf"])
 
 
+
+def test_runiq(run):
+    run(
+        "utils/runiq",
+        ["snakemake"],
+        compare_results_with_expected={
+            "deduplicated.txt": "expected_dedup.txt",
+        },
+    )
+
+
 def test_ripgrep(run):
     run(
         "utils/ripgrep",
