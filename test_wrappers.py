@@ -4890,6 +4890,20 @@ def test_verifybamid2(run):
         ["snakemake"],
     )
 
+def test_rbt_fastq_split(run):
+    run(
+        "bio/rbt/fastq_split",
+        ["snakemake", "e.fq", "c.fq.gz", "a.fq"],
+        cores=2,
+        compare_results_with_expected={
+            "a.fq": "expected/a.fq",
+            "b.fq": "expected/b.fq",
+            "d.fq": "expected/d.fq",
+            "e.fq": "expected/a.fq",
+            "f.fq": "expected/b.fq",
+        },
+    )
+
 
 def test_rbt_csvreport(run):
     run(

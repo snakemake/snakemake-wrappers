@@ -1,0 +1,12 @@
+name: rbt vcf-annotate-dgidb
+url: https://github.com/rust-bio/rust-bio-tools
+description: >
+  Looks for interacting drugs in DGIdb and annotates them for every gene in records.
+authors:
+  - Thibault Dayris
+input:
+  - Path to variants to annotate (VCF, BCF or VCF.GZ)
+output:
+  - Path to variants with annotated variants (VCF, BCF, or VCF.GZ)
+notes: |
+  No optional parameter is expected in this wrapper.
