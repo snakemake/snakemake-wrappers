@@ -4,3 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - mageck =0.5.9.5
+  - snakemake-wrapper-utils =0.9.0
