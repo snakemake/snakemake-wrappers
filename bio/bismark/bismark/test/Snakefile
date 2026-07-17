@@ -39,7 +39,7 @@ rule bismark_se:
     output:
         bam="results/bismark/{sample}_{genome}.bam",
         report="results/bismark/{sample}_{genome}_se_report.txt",
-        nucleotide_stats="results/bismark/{sample}_{genome}.nucleotide_stats.txt",  # optional: implicitly activates --nucleotide_coverage
+        #nucleotide_stats="results/bismark/{sample}_{genome}.nucleotide_stats.txt",  # optional: implicitly activates --nucleotide_coverage [disabled since file is not generated. maybe in future versions?]
         fq_unmapped="results/bismark/{sample}_{genome}.unmapped_reads.fq.gz",  # optional: implicitly activates --unmapped
         fq_ambiguous="results/bismark/{sample}_{genome}.ambiguous_reads.fq.gz",  # optional: implicitly activates --ambiguous
         bam_ambiguous="results/bismark/{sample}_{genome}.ambiguous_reads.bam",  # optional: implicitly activates --ambig_bam
