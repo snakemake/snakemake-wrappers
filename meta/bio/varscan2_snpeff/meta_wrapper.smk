@@ -28,7 +28,7 @@ rule samtools_mpileup:
         extra="--count-orphans",
     threads: 1
     wrapper:
-        "v9.4.1/bio/samtools/mpileup"
+        "v9.14.0/bio/samtools/mpileup"
 
 
 rule varscan2_somatic:
@@ -55,7 +55,7 @@ rule snpeff_download:
         reference=lambda w: w.ref,
     threads: 1
     wrapper:
-        "v9.4.1/bio/snpeff/download"
+        "v9.14.0/bio/snpeff/download"
 
 
 rule snpeff_annotate:
@@ -72,4 +72,4 @@ rule snpeff_annotate:
         extra="-nodownload -noLog",
     threads: 1
     wrapper:
-        "v9.4.2/bio/snpeff/annotate"
+        "v9.14.0/bio/snpeff/annotate"
