@@ -35,7 +35,7 @@ if str(snakemake.input[0]).endswith("gz"):
 for outfile in snakemake.output:
     if get_format(outfile) == "gzip":
         # If user requests a compressed gzip, then
-        uncompressed_outfile = splitext(outfile)
+        uncompressed_outfile = splitext(outfile)[0]
         rbt_output_paths.append(uncompressed_outfile)
         files_to_compress[uncompressed_outfile] = outfile
     else:
@@ -54,7 +54,8 @@ if len(files_to_compress) > 0:
         available_threads=snakemake.threads - required_threads,
         compression_jobs=len(files_to_compress),
     )
-    command_lines.append(f"mkfifo {files_to_compress.keys()} ;")
+    uncompressed_paths = " ".join(files_to_compress.keys())
+    command_lines.append(f"mkfifo {uncompressed_paths} ;")
 
     crabz_params = zip(files_to_compress.items(), compression_threads)
     for uncompressed_compressed, threads in crabz_params:
@@ -64,6 +65,7 @@ if len(files_to_compress) > 0:
             f"--compression-threads {threads} {uncompressed_compressed[0]} {log} &"
         )
 
+    rbt_output_paths = " ".join(rbt_output_paths)
     command_lines.append(f"rbt fastq-split {rbt_output_paths} {read_cmd} {log} ; wait")
     command_lines = "\n".join(command_lines)
 else:
