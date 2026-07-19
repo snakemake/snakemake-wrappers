@@ -6,7 +6,6 @@ rule fastaguard_pass:
         json="pass/fastaguard.json",
         tsv="pass/fastaguard.tsv",
         multiqc="pass/fastaguard_mqc.json",
-        exit_code="pass/fastaguard.exit_code",
     log:
         "logs/pass.fastaguard.log",
     params:
@@ -23,11 +22,9 @@ rule fastaguard_warn:
         json="warn/fastaguard.json",
         tsv="warn/fastaguard.tsv",
         multiqc="warn/fastaguard_mqc.json",
-        exit_code="warn/fastaguard.exit_code",
     log:
         "logs/warn.fastaguard.log",
     params:
-        allowed_exit_codes=[0, 1, 2],
         extra="--profile assembly --gate pipeline",
     wrapper:
         "master/bio/fastaguard"
@@ -41,11 +38,9 @@ rule fastaguard_fail:
         json="fail/fastaguard.json",
         tsv="fail/fastaguard.tsv",
         multiqc="fail/fastaguard_mqc.json",
-        exit_code="fail/fastaguard.exit_code",
     log:
         "logs/fail.fastaguard.log",
     params:
-        allowed_exit_codes=[0, 1, 2],
         extra="--profile assembly --gate pipeline",
     wrapper:
         "master/bio/fastaguard"
@@ -59,27 +54,8 @@ rule fastaguard_invalid:
         json="invalid/fastaguard.json",
         tsv="invalid/fastaguard.tsv",
         multiqc="invalid/fastaguard_mqc.json",
-        exit_code="invalid/fastaguard.exit_code",
     log:
         "logs/invalid.fastaguard.log",
-    params:
-        allowed_exit_codes=[0, 1, 2],
-        extra="--profile assembly --gate pipeline",
-    wrapper:
-        "master/bio/fastaguard"
-
-
-rule fastaguard_warn_default:
-    input:
-        fasta="data/warn.fa",
-    output:
-        html="default/fastaguard_report.html",
-        json="default/fastaguard.json",
-        tsv="default/fastaguard.tsv",
-        multiqc="default/fastaguard_mqc.json",
-        exit_code="default/fastaguard.exit_code",
-    log:
-        "logs/default.fastaguard.log",
     params:
         extra="--profile assembly --gate pipeline",
     wrapper:

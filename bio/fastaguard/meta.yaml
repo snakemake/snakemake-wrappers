@@ -10,9 +10,7 @@ output:
   json: Machine-readable FastaGuard report.
   tsv: Tabular FastaGuard summary.
   multiqc: MultiQC custom-content JSON.
-  exit_code: Captured FastaGuard process status for workflow routing.
 params:
-  allowed_exit_codes: Exit codes treated as successful. Defaults to [0]; use [0, 1, 2] to preserve PASS, WARN, and QC-failure reports.
   extra: Additional command-line arguments passed to FastaGuard, including profile and gate options.
 notes: >
   FastaGuard is a FASTA preflight layer. It should run before downstream

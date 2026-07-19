@@ -2462,29 +2462,8 @@ def test_fastaguard(run):
             "warn/fastaguard.json",
             "fail/fastaguard.json",
             "invalid/fastaguard.json",
-            "pass/fastaguard.exit_code",
-            "warn/fastaguard.exit_code",
-            "fail/fastaguard.exit_code",
-            "invalid/fastaguard.exit_code",
         ],
-        compare_results_with_expected={
-            "pass/fastaguard.exit_code": "expected/pass.exit_code",
-            "warn/fastaguard.exit_code": "expected/warn.exit_code",
-            "fail/fastaguard.exit_code": "expected/fail.exit_code",
-            "invalid/fastaguard.exit_code": "expected/invalid.exit_code",
-        },
     )
-
-    with pytest.raises(subprocess.CalledProcessError):
-        run(
-            "bio/fastaguard",
-            [
-                "snakemake",
-                "default/fastaguard.json",
-                "--allowed-rules",
-                "fastaguard_warn_default",
-            ],
-        )
 
 
 def test_fastp(run):
