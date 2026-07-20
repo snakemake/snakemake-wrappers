@@ -7,7 +7,7 @@ rule test_crabz_file_compression:
         "test_crabz_single_file_compression.log",
     threads: 1
     params:
-        extra="--compression-level 9 --format mgzip",
+        extra="--compression-level 9",
     wrapper:
         "master/utils/crabz"
 

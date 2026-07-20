@@ -14,7 +14,6 @@ note: |
   Due to multiple compression formats having the same file extension,
   compression format is not always guessed right. Feel free to provide this parameter
   to override automatic detection.
-  
+
   The parameter `-d|--decompress` is provided, but 
   "this flag may change in future releases" according to the documentation.
-  
