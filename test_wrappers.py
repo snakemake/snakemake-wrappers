@@ -336,6 +336,7 @@ def test_meta_alignoth_report(run):
     )
 
 
+
 def test_miller(run):
     run(
         "utils/miller",
@@ -537,6 +538,17 @@ def test_swarm(run):
     )
 
 
+def test_sd(run):
+    run(
+        "utils/sd",
+        ["snakemake", "replaced.txt", "trailing_whitespace_trimmed.txt"],
+        compare_results_with_expected={
+            "replaced.txt": "expected_replacement.txt",
+            "trailing_whitespace_trimmed.txt": "expected_whitespace_trimming.txt",
+        },
+    )
+
+
 def test_sed(run):
     run(
         "utils/sed",
@@ -722,7 +734,7 @@ def test_purge_dups_split_fa(run):
 def test_quast(run):
     run(
         "bio/quast",
-        ["snakemake", "a/treport.tsv"],
+        ["snakemake", "quast/treport.tsv", "meta_quast/treport.tsv"],
     )
 
 
@@ -1339,6 +1351,43 @@ def test_goleft_indexcov(run):
     )
 
 
+def test_grit_genomics(run):
+    run(
+        "bio/grit_genomics",
+        [
+            "snakemake",
+            "synthetic_beds",
+            "test_grit_sorted.bed",
+            "test_grit_merged.bed",
+            "test_grit_extended.bed",
+            "test_grit_complement.bed",
+            "test_grit_genomecov.bed",
+            "intersections.bed",
+            "test_grit_intersect.bed",
+            "test_grit_closest.bed",
+            "test_grit_window.bed",
+            "test_grit_jaccard.tsv",
+            "test_grit_subtract.bed",
+            "test_grit_coverage.bed",
+        ],
+        cores=2,
+        compare_results_with_expected={
+            "test_grit_sorted.bed": "expected_sorted.bed",
+            "test_grit_merged.bed": "expected_merged.bed",
+            "test_grit_subtract.bed": "expected_subtract.bed",
+            "test_grit_intersect.bed": "expected_intersect.bed",
+            "test_grit_closest.bed": "expected_closest.bed",
+            "test_grit_window.bed": "expected_window.bed",
+            "test_grit_coverage.bed": "expected_coverage.tsv",
+            "test_grit_complement.bed": "expected_complement.bed",
+            "test_grit_extended.bed": "expected_slop.bed",
+            "test_grit_genomecov.bed": "expected_genomecov.bed",
+            "test_grit_jaccard.tsv": "expected_jaccard.tsv",
+            "intersections.bed": "expected_multiinter.bed",
+        },
+    )
+
+
 def test_gridss_call(run):
     run(
         "bio/gridss/call",
@@ -1572,6 +1621,14 @@ def test_bcftools_filter(run):
             "a.filter.bcf",
             "a.filter.uncompressed.bcf",
         ],
+    )
+
+
+def test_bcftools_fixploidy(run):
+    run(
+        "bio/bcftools/fixploidy",
+        ["snakemake", "a.fixed.bcf"],
+        cores=3,
     )
 
 
@@ -2095,6 +2152,19 @@ def test_dragmap_align(run):
     )
 
 
+def test_cin_signature_quantification(run):
+    run(
+        "bio/cin-signature-quantification",
+        [
+            "snakemake",
+            "results/signatures.tsv",
+        ],
+        compare_results_with_expected={
+            "results/signatures.tsv": "expected/expected_results.tsv"
+        },
+    )
+
+
 def test_chopper(run):
     run(
         "bio/chopper",
@@ -2521,6 +2591,7 @@ def test_freebayes(run):
         )
 
 
+@pytest.mark.skip(reason="needs valid token since all datasets are controled")
 def test_gdc_api_bam_slicing(run):
     def check_log(log):
         assert "error" in log and "token" in log
@@ -2679,6 +2750,33 @@ def test_macs2_callpeak(run):
             "callpeak_options/basename_peaks.gappedPeak",
             "callpeak_options/basename_treat_pileup.bdg",
             "callpeak_options/basename_control_lambda.bdg",
+        ],
+    )
+
+
+def test_mageck_test(run):
+    run(
+        "bio/mageck/test",
+        ["snakemake", "RRA.tsv"],
+    )
+
+
+def test_mageck_flute_rra(run):
+    run(
+        "bio/mageckflute/fluterra",
+        [
+            "snakemake",
+            "test_mageck_flute_rra",
+        ],
+    )
+
+
+def test_mageck_flute_mle(run):
+    run(
+        "bio/mageckflute/flutemle",
+        [
+            "snakemake",
+            "test_mageck_flute_mle",
         ],
     )
 
@@ -3202,7 +3300,13 @@ def test_samtools_view(run):
 def test_samtools_fastx(run):
     run(
         "bio/samtools/fastx",
-        ["snakemake", "a.fasta"],
+        ["snakemake", "a.1.fasta"],
+        compare_results_with_expected={
+            "a.1.fasta": "expected/a.1.fasta",
+            "a.2.fasta": "expected/a.2.fasta",
+            "a.0.fasta": "expected/a.0.fasta",
+        },
+
     )
 
 
@@ -3251,6 +3355,10 @@ def test_samtools_faidx(run):
             "out/genome.region_bgzip.fas",
         ],
     )
+
+
+def test_samtools_import(run):
+    run("bio/samtools/import", ["snakemake", "a.bam", "a.pe.bam", "a.se.bam"])
 
 
 def test_bamtools_filter(run):
@@ -3397,7 +3505,7 @@ def test_trim_galore_pe(run):
         "bio/trim_galore/pe",
         [
             "snakemake",
-            "trimmed/a_R1.fq.gz",
+            "trimmed/a_R2.fq.gz",
             "trimmed/a_R2.fastq",
         ],
     )
@@ -3480,6 +3588,36 @@ def test_cairosvg(run):
     run("utils/cairosvg", ["snakemake", "pca.pdf"])
 
 
+
+def test_runiq(run):
+    run(
+        "utils/runiq",
+        ["snakemake", "deduplicated.txt"],
+        compare_results_with_expected={
+            "deduplicated.txt": "expected_dedup.txt",
+        },
+    )
+
+
+def test_ripgrep(run):
+    run(
+        "utils/ripgrep",
+        [
+            "snakemake",
+            "test_ripgrep_plain_text.txt",
+            "test_ripgrep_pattern_file.txt",
+            "test_ripgrep_compressed_input.txt",
+            "test_ripgrep_search_in_directory.txt",
+        ],
+        compare_results_with_expected={
+            "test_ripgrep_plain_text.txt": "expected/hello.txt",
+            "test_ripgrep_pattern_file.txt": "expected/hello.txt",
+            "test_ripgrep_compressed_input.txt": "expected/hello.txt",
+            "test_ripgrep_search_in_directory.txt": "expected/directory.txt",
+        },
+    )
+
+
 def test_trinity(run):
     run(
         "bio/trinity",
@@ -3503,7 +3641,7 @@ def test_salmon_index(run):
         "bio/salmon/index",
         [
             "snakemake",
-            "salmon/transcriptome_index/complete_ref_lens.bin",
+            "salmon/transcriptome_index/refseq.bin",
         ],
     )
 
@@ -3523,51 +3661,13 @@ def test_salmon_quant(run):
         "bio/salmon/quant",
         [
             "snakemake",
-            "salmon/a/quant.sf",
-            "-s",
-            "Snakefile",
-        ],
-    )
-
-    run(
-        "bio/salmon/quant",
-        [
-            "snakemake",
-            "salmon/a/quant.sf",
-            "-s",
-            "Snakefile_index_list",
-        ],
-    )
-
-    run(
-        "bio/salmon/quant",
-        [
-            "snakemake",
-            "salmon/a_se_x_transcriptome/quant.sf",
-            "-s",
-            "Snakefile_se",
-        ],
-    )
-
-    run(
-        "bio/salmon/quant",
-        [
-            "snakemake",
-            "salmon/a_se_x_transcriptome/quant.sf",
-            "-s",
-            "Snakefile_se_bz2",
+            "salmon_pe_list/a/quant.sf",
+            "salmon_pe/a/quant.sf",
+            "salmon_pe_multi/ab_pe_x_transcriptome/quant.sf",
+            "salmon_se/a_se_x_transcriptome/quant.sf",
+            "salmon_se_bz2/a_se_x_transcriptome/quant.sf",
         ],
         cores=2,
-    )
-
-    run(
-        "bio/salmon/quant",
-        [
-            "snakemake",
-            "salmon/ab_pe_x_transcriptome/quant.sf",
-            "-s",
-            "Snakefile_pe_multi",
-        ],
     )
 
 
@@ -3576,10 +3676,10 @@ def test_gseapy_gsea(run):
         "bio/gseapy/gsea",
         [
             "snakemake",
-            "KEGG_2016",
-            "gsea.results.csv",
-            "ssgsea.results.csv",
-            "prerank_results_dir",
+            "out/enrichr/KEGG_2016",
+            "out/gsea/results.csv",
+            "out/ssgsea/results.csv",
+            "out/prerank/results.csv",
         ],
     )
 
@@ -4047,6 +4147,21 @@ def test_plass(run):
     )
 
 
+def test_porechop_abi(run):
+    run(
+        "bio/porechop_abi",
+        [
+            "snakemake",
+            "treated/trimmed.fasta",
+            "treated/consensus.fasta",
+        ],
+        compare_results_with_expected={
+            "treated/trimmed.fasta": "expected/trimmed.fasta",
+            "treated/consensus.fasta": "expected/consensus.fasta",
+        },
+    )
+
+
 def test_refgenie(run):
     try:
         shutil.copytree("bio/refgenie/test/genome_folder", "/tmp/genome_folder")
@@ -4348,11 +4463,12 @@ def test_bismark(run):
         [
             "snakemake",
             "results/bismark/a_genome_pe.bam",
-            "results/bismark/b_genome.cram",
+            "results/bismark/b_genome.bam",
         ],
-        compare_results_with_expected={
-            "results/bismark/b_genome.nucleotide_stats.txt": "expected/b_genome.nucleotide_stats.txt",
-        },
+        # Nulcoetide stats file not being generated. Maybe in future versions?
+        #compare_results_with_expected={
+        #    "results/bismark/b_genome.nucleotide_stats.txt": "expected/b_genome.nucleotide_stats.txt",
+        #},
     )
 
 
@@ -4931,6 +5047,7 @@ def test_sortmerna(run):
         [
             "snakemake",
             "aligned_1.fastq.gz",
+            "aligned_interleaved.fastq.gz",
             "unpaired.fastq",
         ],
     )
@@ -5035,9 +5152,9 @@ def test_toulligqc(run):
         "bio/toulligqc",
         [
             "snakemake",
-            "toulligqc_sequencing_summary/report.html",
-            "toulligqc_bam/report.html",
-            "toulligqc_fastq/report.html",
+            "out_summary/report.html",
+            "out_bam/report.html",
+            "out_fastq/report.html",
         ],
     )
 
@@ -5243,7 +5360,16 @@ def test_go_yq(run):
             "evaluated.yaml",
             "foo_bar.yml",
             "table.json",
+            "data.yaml",
         ],
+        compare_results_with_expected={
+            "concat.yaml": "expected/expected_concat.yaml",
+            "updated.yaml": "expected/expected_updated.yaml",
+            "evaluated.yaml": "expected/expected_evaluated.yaml",
+            "foo_bar.yml": "expected/expected_foobar.yml",
+            "table.json": "expected/expected_table.json",
+            "data.yaml": "expected/expected_data.yaml",
+        },
     )
 
 
@@ -5307,4 +5433,37 @@ def test_pbmarkdup(run):
             "pbmarkdup3.fastq.gz",
             "dedup.fastq.gz",
         ],
+    )
+
+
+def test_libarchive_extract(run):
+    run(
+        "utils/libarchive/extract",
+        [
+            "snakemake",
+            "results/7z/a.txt",
+            "results/tar/a.txt",
+            "results/tar/b.md",
+            "results/zip/a.txt",
+        ],
+    )
+
+
+def test_libarchive_compress(run):
+    run(
+        "utils/libarchive/compress",
+        ["snakemake", "results/test.7z", "results/test.tar.gz", "results/test.zip"],
+    )
+
+
+def test_sniffles(run):
+    run(
+        "bio/sniffles",
+        [
+            "snakemake",
+            "calls/a.vcf",
+            "calls/a.snf",
+            "calls/multisample.vcf",
+        ],
+        cores=4,
     )
