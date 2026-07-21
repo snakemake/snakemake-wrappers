@@ -1,0 +1,15 @@
+name: runiq
+url: https://github.com/whitfin/runiq
+description: |
+  An efficient way to filter duplicate lines from input. GNU uniq, but faster.
+authors:
+  - Thibault Dayris
+input:
+  - Path to file with duplicates
+output:
+  - Path to (de)duplicated data
+params:
+  - extra: Optional parameters
+notes: |
+  This tool handles unsorted files, and finds duplicates faster and with lesser RAM
+  than classic ` sort | uniq `.
