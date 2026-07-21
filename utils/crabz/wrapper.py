@@ -16,7 +16,6 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 def crabz_format(file_path):
     fmt = get_format(file_path, ignore_compression=False)
-    print(fmt)
     if fmt == "bgzip":
         return "bgzf"
     return fmt
