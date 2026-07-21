@@ -4,9 +4,9 @@ channels:
   - nodefaults
 dependencies:
   - bowtie2 =2.5.5
-  - bcftools =1.23.1
+  - bcftools =1.24
   - spades =4.3.0
-  - samtools =1.23.1
+  - samtools =1.24
   - pilon =1.24
   - racon =1.5.0
   - blast =2.17.0
