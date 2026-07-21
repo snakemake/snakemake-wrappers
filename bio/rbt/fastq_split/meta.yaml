@@ -1,12 +1,19 @@
-name: rbt vcf-annotate-dgidb
+name: rbt fastq-split
 url: https://github.com/rust-bio/rust-bio-tools
 description: >
-  Looks for interacting drugs in DGIdb and annotates them for every gene in records.
+  Split a given fastq file.
 authors:
   - Thibault Dayris
 input:
-  - Path to variants to annotate (VCF, BCF or VCF.GZ)
+  - Path to a single fastq file, gzipped or not.
 output:
-  - Path to variants with annotated variants (VCF, BCF, or VCF.GZ)
+  - Path to any number of fastq files, gzipped or not.
+params:
+  - compression_extra: Optional parameters for `crabz` compression.
 notes: |
-  No optional parameter is expected in this wrapper.
+  No optional parameter is expected for `rbt fastq-split`. Compression format
+  and multi-threading dispatch accross compression / uncompression / fastq splitting
+  is automatically handled.
+  
+  This wrapper required 1 thread for fastq-splitting, and at least one additional 
+  thread for each compression / uncompression requested by user.
