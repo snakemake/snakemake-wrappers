@@ -27,9 +27,9 @@ available_compression_formats = {"gzip", "bgzf", "mgzip", "zlib", "deflate", "sn
 input_file_format = crabz_format(str(snakemake.input))
 if input_file_format in available_compression_formats:
     extra += f" --decompress"
-    if is_arg("format", extra):
+    if not is_arg("format", extra):
         extra += f" --format '{input_file_format}'"
-elif is_arg("format", extra):
+elif not is_arg("format", extra):
     extra += f" --format '{crabz_format(str(snakemake.output))}'"
 
 shell(
