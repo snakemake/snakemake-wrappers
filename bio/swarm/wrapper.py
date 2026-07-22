@@ -3,7 +3,7 @@ __copyright__ = "Copyright 2026, Filipe G. Vieira"
 __license__ = "MIT"
 
 from snakemake.shell import shell
-from snakemake_wrapper_utils.snakemake import get_mem
+from snakemake_wrapper_utils.snakemake import get_mem, is_arg
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
