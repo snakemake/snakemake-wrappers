@@ -33,7 +33,7 @@ rule swarm_gz:
         "logs/{sample}.gz.log",
     threads: 4
     params:
-        extra="--fastidious --differences 1",
+        extra="--fastidious --differences 1 --usearch-abundance",
     wrapper:
         "master/bio/swarm"
 
