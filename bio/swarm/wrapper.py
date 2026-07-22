@@ -14,7 +14,9 @@ mem_mb = int(
 )
 
 ceiling = ""
-if (is_arg("-f", extra) or is_arg("--fastidious", extra)) and not (is_arg("-y", extra) or is_arg("--bloom-bits", extra)):
+if (is_arg("-f", extra) or is_arg("--fastidious", extra)) and not (
+    is_arg("-y", extra) or is_arg("--bloom-bits", extra)
+):
     ceiling = f"--ceiling {mem_mb}"
 
 
