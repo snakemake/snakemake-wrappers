@@ -13,6 +13,11 @@ mem_mb = int(
     get_mem(snakemake, "MiB", snakemake.params.get("mem_overhead_factor", 0.1))
 )
 
+ceiling = ""
+if (is_arg("-f", extra) or is_arg("--fastidious", extra)) and not (is_arg("-y", extra) or is_arg("--bloom-bits", extra)):
+    ceiling = f"--ceiling {mem_mb}"
+
+
 # Check input files
 in_cmd = "cat"
 if snakemake.input[0].endswith(".gz"):
@@ -33,5 +38,5 @@ for key, value in snakemake.output.items():
         raise ValueError(f"Unknown named output '{key}' with file name '{value}'.")
 
 shell(
-    "{in_cmd} {snakemake.input[0]} | swarm --threads {snakemake.threads} --ceiling {mem_mb} {extra} {output} {log}"
+    "{in_cmd} {snakemake.input[0]} | swarm --threads {snakemake.threads} {ceiling} {extra} {output} {log}"
 )
