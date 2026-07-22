@@ -13,7 +13,7 @@ rule swarm:
         "logs/{sample}.log",
     threads: 4
     params:
-        extra="--fastidious --differences 1 --usearch-abundance",
+        extra="--differences 1 --usearch-abundance",
     wrapper:
         "master/bio/swarm"
 
@@ -33,7 +33,7 @@ rule swarm_gz:
         "logs/{sample}.gz.log",
     threads: 4
     params:
-        extra="--fastidious --differences 1 --usearch-abundance",
+        extra="--fastidious --differences 1",
     wrapper:
         "master/bio/swarm"
 
@@ -53,6 +53,6 @@ rule swarm_bz2:
         "logs/{sample}.bz2.log",
     threads: 4
     params:
-        extra="--fastidious --differences 1 --usearch-abundance",
+        extra="--differences 1 --usearch-abundance",
     wrapper:
         "master/bio/swarm"
