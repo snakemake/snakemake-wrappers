@@ -32,6 +32,8 @@ rule swarm_gz:
     log:
         "logs/{sample}.gz.log",
     threads: 4
+    resources:
+        mem="2 GiB",
     params:
         extra="--fastidious --differences 1 --usearch-abundance",
     wrapper:
