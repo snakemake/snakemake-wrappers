@@ -15,12 +15,10 @@ mem_mb = int(
 
 ceiling = ""
 if (is_arg("-f", extra) or is_arg("--fastidious", extra)) and not (
-    is_arg("-y", extra) or is_arg("--bloom-bits", extra)
+    is_arg("-y", extra) or is_arg("--bloom-bits", extra)) and not (
+    is_arg("-c", extra) or is_arg("--ceiling", extra)
 ):
-    if (is_arg("-c", extra) or is_arg("--ceiling", extra)):
-        raise ValueError("-c/--ceiling option is autodetected from resources.")
     ceiling = f"--ceiling {mem_mb}"
-
 
 # Check input files
 in_cmd = "cat"
