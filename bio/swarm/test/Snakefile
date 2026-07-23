@@ -32,12 +32,12 @@ rule swarm_gz:
     log:
         "logs/{sample}.gz.log",
     threads: 4
-    params:
-        extra="--fastidious --boundary 3 --differences 1 --usearch-abundance",
     resources:
         # With '--fastidious' option, swarm 2 paper suggests a factor of 4.75 * input_data (https://peerj.com/articles/1420/#p-22)
         # A later PR suggests a 20% reduction (https://github.com/torognes/swarm/issues/7#issuecomment-420290892)
         mem_mb=lambda wc, input: input.size_mb * 4,
+    params:
+        extra="--fastidious --boundary 3 --differences 1 --usearch-abundance",
     wrapper:
         "master/bio/swarm"
 
@@ -56,10 +56,10 @@ rule swarm_bz2:
     log:
         "logs/{sample}.bz2.log",
     threads: 4
-    params:
-        extra="--differences 1 --usearch-abundance",
     resources:
         # Swarm readme suggests a factor of 0.6 (https://github.com/torognes/swarm/blob/68e0dc095b2bf52ee054c806d72101ea9d2142a9/README.md?plain=1#L103)
         mem_mb=lambda wc, input: input.size_mb * 0.7
+    params:
+        extra="--differences 1 --usearch-abundance",
     wrapper:
         "master/bio/swarm"
