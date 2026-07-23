@@ -859,6 +859,14 @@ def test_liftoff(run):
     )
 
 
+def test_bioconvert(run):
+    run(
+        "bio/bioconvert",
+        ["snakemake", "intervals.csv", "intervals.xls", "a.cram"],
+        cores=2,
+    )
+
+
 def test_biobambam2_bamsormadup(run):
     run(
         "bio/biobambam2/bamsormadup",

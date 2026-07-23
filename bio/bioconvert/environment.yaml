@@ -1,0 +1,6 @@
+channels:
+  - bioconda
+  - conda-forge
+  - nodefaults
+dependencies:
+  - bioconvert =1.2.0
