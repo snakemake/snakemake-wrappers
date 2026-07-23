@@ -1,0 +1,17 @@
+name: bioconvert
+url: https://bioconvert.readthedocs.io/
+description: Convert between bioinformatics formats
+authors:
+  - Thibault Dayris
+input:
+  - Path to the file to convert
+  - ref: Path to reference file (optional)
+output:
+  - Path to the converted file
+params:
+  - converter: Optional explicit converter
+  - extra: Optional parameters for bioconvert
+notes: |
+  Optional parameters are provided to converter tool by `bioconvert`.
+  Use `--extra-arguments` to provide additional parameters to the converter
+  tool (samtools, bedtools, bcftools, picard, etc.)
