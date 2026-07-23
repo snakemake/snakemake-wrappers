@@ -34,6 +34,8 @@ rule swarm_gz:
     threads: 4
     params:
         extra="--fastidious --boundary 3 --differences 1 --usearch-abundance",
+    resources:
+        mem_mb=lambda wc, input: input.size_mb * 4 # with the fastidious option, the original swarm 2 paper suggests a factor of 4.75 * input_data (https://peerj.com/articles/1420/#p-22), a later pull request then suggests a 20% reduction in memory usage (https://github.com/torognes/swarm/issues/7#issuecomment-420290892)
     wrapper:
         "master/bio/swarm"
 
@@ -54,5 +56,7 @@ rule swarm_bz2:
     threads: 4
     params:
         extra="--differences 1 --usearch-abundance",
+    resources:
+        mem_mb=lambda wc, input: input.size_mb * 0.7 # the swarm readme suggests a factor of 0.6 (https://github.com/torognes/swarm/blob/68e0dc095b2bf52ee054c806d72101ea9d2142a9/README.md?plain=1#L103), so this is a conservative memory reservation
     wrapper:
         "master/bio/swarm"
