@@ -18,7 +18,7 @@ checkpoint vembrane_table:
         expression="INDEX, CHROM, POS, REF, ALT",
         extra=""
     wrapper:
-        "v7.6.1/bio/vembrane/table"
+        "v9.9.0/bio/vembrane/table"
 
 
 rule alignoth:
@@ -37,7 +37,7 @@ rule alignoth:
     log:
         "<logs>/alignoth/{sample}_{index}.log"
     wrapper:
-        "v8.0.2/bio/alignoth"
+        "v9.4.1/bio/alignoth"
 
 
 rule datavzrd:
@@ -56,4 +56,4 @@ rule datavzrd:
     log:
         "<logs>/datavzrd/{sample}.log",
     wrapper:
-        "v7.9.1/utils/datavzrd"
+        "v9.12.0/utils/datavzrd"

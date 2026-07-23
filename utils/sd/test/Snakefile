@@ -1,0 +1,33 @@
+rule test_sd:
+    input:
+        "file.txt",
+    output:
+        "replaced.txt",
+    log:
+        "test_sd.log",
+    threads: 1
+    params:
+        # Pattern to search in original text
+        before="change /this/path",
+        # Replacement pattern in the output text
+        after="keep /that/one",
+        # Any non-positional argument
+        extra="",
+    wrapper:
+        "master/utils/sd"
+
+
+rule test_sd_regex:
+    input:
+        "file.txt",
+    output:
+        "trailing_whitespace_trimmed.txt",
+    log:
+        "test_sd_regex.log",
+    threads: 1
+    params:
+        before=r"\s+$",
+        after=r"",
+        extra="",
+    wrapper:
+        "master/utils/sd"

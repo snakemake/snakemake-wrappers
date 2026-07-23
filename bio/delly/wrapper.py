@@ -16,9 +16,11 @@ exclude = snakemake.input.get("exclude", "")
 if exclude:
     exclude = f"-x {exclude}"
 
+command = snakemake.params.get("cmd", "sr")
 
 shell(
-    "(OMP_NUM_THREADS={snakemake.threads} delly call"
+    "(OMP_NUM_THREADS={snakemake.threads} delly"
+    " {command}"
     " -g {snakemake.input.ref}"
     " {exclude}"
     " {extra}"

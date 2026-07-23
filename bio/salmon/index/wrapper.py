@@ -17,7 +17,7 @@ if decoys:
     decoys = f"--decoys {decoys}"
 
 output = snakemake.output
-if len(output) > 1:
+if isinstance(output, list) and len(output) > 1:
     output = dirname(snakemake.output[0])
 
 with TemporaryDirectory() as tempdir:

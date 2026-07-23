@@ -1,6 +1,6 @@
 rule toulligqc_sequencing_summary:
     input:
-        "demodata/sequencing_summary.txt",
+        "data/sequencing_summary.txt",
     output:
         "out_summary/report.html",
     log:
@@ -13,7 +13,7 @@ rule toulligqc_sequencing_summary:
 
 rule toulligqc_bam:
     input:
-        "demodata/test.sorted.bam",
+        "data/test.sorted.bam",
     output:
         "out_bam/report.html",
     log:
@@ -26,7 +26,7 @@ rule toulligqc_bam:
 
 rule toulligqc_fastq:
     input:
-        "demodata/test.fastq.gz",
+        "data/test.fastq.gz",
     output:
         "out_fastq/report.html",
     log:

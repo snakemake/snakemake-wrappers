@@ -1,0 +1,9 @@
+rule quantify_cin_signatures:
+    input:
+        segments="data/TCGA_478_Samples_SNP6_GOLD_truncated",
+    output:
+        signatures="results/signatures.tsv",
+    log:
+        "logs/cin_signature_quantification.log",
+    wrapper:
+        "master/bio/cin-signature-quantification"

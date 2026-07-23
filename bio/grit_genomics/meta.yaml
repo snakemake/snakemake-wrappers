@@ -1,0 +1,17 @@
+name: grit
+url: https://github.com/manish59/grit
+description: |
+  GRIT — A scalable genomic interval computation engine. Faster and more lightweight
+  than bedtools.
+authors:
+  - Thibault Dayris
+input:
+  - bed: Either a single path, or a list of paths to BED-formatted intervals
+  - genome: Path to genome file for contig order validation. See example to know whether this argument is optional or required.
+output:
+  - Path to result file (or directory for the subcommand `generate`).
+params:
+  - command: Name of the grit subcommand to use
+  - extra: Optional parameters besides `-i|--input`, `-a|--file-a`, `-b|--file-b`, `-t|--threads`, or `-o|--output`.
+notes: |
+  Refer to the examples to know which subcommand expects one or multiple file(s).
