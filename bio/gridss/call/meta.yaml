@@ -4,6 +4,10 @@ description: >
     It includes a genome-wide break-end assembler, as well as a structural variation caller for Illumina sequencing data.
     ``call`` performs variant calling.
     ``TMP_DIR`` is automatically set by ``resources.tmpdir`` when provided.
-    Documentation at: https://github.com/PapenfussLab/gridss
+url: https://github.com/PapenfussLab/GRIDSS
+description: >
+   GRIDSS is a module software suite containing tools useful for the detection of genomic rearrangements.
+   It includes a genome-wide break-end assembler, as well as a structural variation caller for Illumina sequencing data.
+   ``call`` performs variant calling.
 authors:
   - Christopher Schröder
