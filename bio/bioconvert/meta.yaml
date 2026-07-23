@@ -5,7 +5,7 @@ authors:
   - Thibault Dayris
 input:
   - Path to the file to convert
-  - ref: Optional path to reference file
+  - ref: Path to reference file (optional)
 output:
   - Path to the converted file
 params:
