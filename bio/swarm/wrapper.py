@@ -8,8 +8,13 @@ from snakemake_wrapper_utils.snakemake import get_mem, is_arg
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-assert not (is_arg("-y", extra) or is_arg("--bloom-bits", extra)), "option '-y/--bloom-bits' not supported by wrapper"
-assert not (is_arg("-c", extra) or is_arg("--ceiling", extra)), "option '-c/--ceiling' is inferred from 'resources.mem'"
+# Check extra options
+assert not (
+    is_arg("-y", extra) or is_arg("--bloom-bits", extra)
+), "option '-y/--bloom-bits' not supported by wrapper"
+assert not (
+    is_arg("-c", extra) or is_arg("--ceiling", extra)
+), "option '-c/--ceiling' is inferred from 'resources.mem'"
 
 # Define memory
 mem_mb = int(
