@@ -5,17 +5,15 @@ __copyright__ = "Copyright 2020, Christopher Schröder"
 __email__ = "christopher.schroede@tu-dortmund.de"
 __license__ = "MIT"
 
+import tempfile
 from snakemake.shell import shell
 from os import path
-from shlex import quote
 
 # Creating log
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 # Placeholder for optional parameters
 extra = snakemake.params.get("extra", "")
-tmpdir = snakemake.resources.get("tmpdir")
-tmpdir_arg = f" --picardoptions {quote(f'TMP_DIR={tmpdir}')}" if tmpdir else ""
 
 # Check inputs/arguments.
 reference = snakemake.input.get("reference")
@@ -33,15 +31,16 @@ for ending in (".amb", ".ann", ".bwt", ".pac", ".sa", ".dict"):
             )
         )
 
-shell(
-    "(gridss -s call "  # Tool
-    "--reference {snakemake.input.reference} "  # Reference
-    "--threads {snakemake.threads} "  # Threads
-    "--workingdir {snakemake.params.workingdir} "  # Working directory
-    "--assembly {snakemake.input.assembly} "  # Assembly input from gridss assemble
-    "--output {snakemake.output.vcf} "  # Assembly vcf
-    "{tmpdir_arg}"
-    "{snakemake.input.bams} "
-    "{extra}"
-    ") {log}"
-)
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "(gridss -s call "  # Tool
+        "--reference {snakemake.input.reference} "  # Reference
+        "--threads {snakemake.threads} "  # Threads
+        "--workingdir {snakemake.params.workingdir} "  # Working directory
+        "--assembly {snakemake.input.assembly} "  # Assembly input from gridss assemble
+        "--output {snakemake.output.vcf} "  # Assembly vcf
+        "--picardoptions TMP_DIR={tmpdir} "
+        "{snakemake.input.bams} "
+        "{extra}"
+        ") {log}"
+    )

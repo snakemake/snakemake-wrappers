@@ -8,7 +8,6 @@ __license__ = "MIT"
 import tempfile
 from snakemake.shell import shell
 from os import path
-from shlex import quote
 
 # Creating log
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -38,9 +37,9 @@ with tempfile.TemporaryDirectory() as tmpdir:
         "--reference {snakemake.input.reference} "  # Reference
         "--threads {snakemake.threads} "
         "--workingdir {snakemake.params.workingdir} "
+        "--picardoptions TMP_DIR={tmpdir} "
         "{snakemake.input.bam} "
         "{extra}"
-        "TMPDIR={tmpdir} "
         ") {log}"
     )
 
