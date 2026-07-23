@@ -33,5 +33,5 @@ elif not is_arg("format", extra):
 
 shell(
     "crabz --compression-threads {snakemake.threads} {extra} "
-    "--output {snakemake.output:q} {snakemake.input} {log}"
+    "--output {snakemake.output:q} {snakemake.input:q} {log}"
 )
