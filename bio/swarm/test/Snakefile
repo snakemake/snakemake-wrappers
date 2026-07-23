@@ -58,7 +58,7 @@ rule swarm_bz2:
     threads: 4
     resources:
         # Swarm readme suggests a factor of 0.6 (https://github.com/torognes/swarm/blob/68e0dc095b2bf52ee054c806d72101ea9d2142a9/README.md?plain=1#L103)
-        mem_mb=lambda wc, input: input.size_mb * 0.7
+        mem_mb=lambda wc, input: input.size_mb * 0.7,
     params:
         extra="--differences 1 --usearch-abundance",
     wrapper:
