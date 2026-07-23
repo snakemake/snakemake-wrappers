@@ -15,7 +15,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 # Placeholder for optional parameters
 extra = snakemake.params.get("extra", "")
 tmpdir = snakemake.resources.get("tmpdir")
-tmpdir_arg = f" TMP_DIR={quote(str(tmpdir))}" if tmpdir else ""
+tmpdir_arg = f" --picardoptions {quote(f'TMP_DIR={tmpdir}')}" if tmpdir else ""
 
 # Check inputs/arguments.
 reference = snakemake.input.get("reference")
@@ -38,7 +38,8 @@ shell(
     "--reference {snakemake.input.reference} "  # Reference
     "--threads {snakemake.threads} "
     "--workingdir {snakemake.params.workingdir} "
+    "{tmpdir_arg}"
     "{snakemake.input.bam} "
     "{extra}"
-    "{tmpdir_arg}) {log}"
+    ") {log}"
 )
