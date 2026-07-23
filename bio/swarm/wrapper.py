@@ -18,7 +18,7 @@ assert not (
 
 # Define memory
 mem_mb = int(
-    get_mem(snakemake, "MiB", snakemake.params.get("mem_overhead_factor", 0.1))
+    get_mem(snakemake, "MiB", snakemake.params.get("mem_overhead_factor", 0.01))
 )
 
 ceiling = ""
