@@ -7,12 +7,15 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 from os import path
+from shlex import quote
 
 # Creating log
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 # Placeholder for optional parameters
 extra = snakemake.params.get("extra", "")
+tmpdir = snakemake.resources.get("tmpdir")
+tmpdir_arg = f" TMP_DIR={quote(str(tmpdir))}" if tmpdir else ""
 
 # Check inputs/arguments.
 reference = snakemake.input.get("reference")
@@ -38,5 +41,6 @@ shell(
     "--workingdir {snakemake.params.workingdir} "  # Working directory
     "--assembly {snakemake.output.assembly} "  # Assembly output
     "{snakemake.input.bam} "
-    "{extra}) {log}"
+    "{extra}"
+    "{tmpdir_arg}) {log}"
 )
