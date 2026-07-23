@@ -45,6 +45,6 @@ rule test_bioconverter_auto_parameters:
         # Optional converter
         converter="bam2cram",
         # Optional parameters for bioconvert, except `-t|--threads`
-        extra="--method 'samtools'",
+        extra="--method 'samtools' --extra-arguments ' --min-MQ 10 '",
     wrapper:
         "master/bio/bioconvert"
