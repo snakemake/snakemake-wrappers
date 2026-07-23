@@ -5,6 +5,7 @@ __copyright__ = "Copyright 2020, Christopher Schröder"
 __email__ = "christopher.schroede@tu-dortmund.de"
 __license__ = "MIT"
 
+import tempfile
 from snakemake.shell import shell
 from os import path
 from shlex import quote
@@ -14,8 +15,6 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 # Placeholder for optional parameters
 extra = snakemake.params.get("extra", "")
-tmpdir = snakemake.resources.get("tmpdir")
-tmpdir_arg = f" --picardoptions {quote(f'TMP_DIR={tmpdir}')}" if tmpdir else ""
 
 # Check inputs/arguments.
 reference = snakemake.input.get("reference")
@@ -33,13 +32,15 @@ for ending in (".amb", ".ann", ".bwt", ".pac", ".sa", ".dict"):
             )
         )
 
-shell(
-    "(gridss -s preprocess "  # Tool
-    "--reference {snakemake.input.reference} "  # Reference
-    "--threads {snakemake.threads} "
-    "--workingdir {snakemake.params.workingdir} "
-    "{tmpdir_arg}"
-    "{snakemake.input.bam} "
-    "{extra}"
-    ") {log}"
-)
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "(gridss -s preprocess "  # Tool
+        "--reference {snakemake.input.reference} "  # Reference
+        "--threads {snakemake.threads} "
+        "--workingdir {snakemake.params.workingdir} "
+        "{snakemake.input.bam} "
+        "{extra}"
+        "TMPDIR={tmpdir} "
+        ") {log}"
+    )
+

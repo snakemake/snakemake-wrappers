@@ -1,0 +1,7 @@
+channels:
+  - bioconda
+  - conda-forge
+  - nodefaults
+dependencies:
+  - bioconvert =1.2.0
+  - snakemake-wrapper-utils =0.9.0
