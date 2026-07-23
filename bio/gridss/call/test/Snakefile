@@ -1,3 +1,5 @@
+import os
+
 WORKING_DIR = "working_dir"
 samples = ["A", "B"]
 
@@ -70,6 +72,8 @@ rule gridss_call:
     threads: 100
     params:
         extra="--jvmheap 1g",
-        workingdir=WORKING_DIR,
+        workingdir=lambda wildcards, output: os.path.dirname(
+            os.path.dirname(output.tmpidx)
+        ),
     wrapper:
         "master/bio/gridss/call"

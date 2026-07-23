@@ -1,3 +1,5 @@
+import os
+
 WORKING_DIR = "working_dir"
 
 
@@ -28,6 +30,8 @@ rule gridss_preprocess:
     threads: 8
     params:
         extra="--jvmheap 1g",
-        workingdir=WORKING_DIR,
+        workingdir=lambda wildcards, output: os.path.dirname(
+            os.path.dirname(output[0])
+        ),
     wrapper:
         "master/bio/gridss/preprocess"
