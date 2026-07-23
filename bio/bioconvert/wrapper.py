@@ -9,6 +9,7 @@ __license__ = "MIT"
 
 from snakemake.shell import shell
 from tempfile import TemporaryDirectory
+from snakemake_wrapper_utils.snakemake import is_arg
 
 extra = snakemake.params.get("extra", "")
 converter = snakemake.params.get("converter", "")
@@ -19,6 +20,11 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 # use odd conversion paths, especially when using `--allow-indirect-convertion`
 # We're setting optional parameters only when converter is provided.
 if converter:
+    # The `--force` argument can prevent snakemake re-run issues,
+    # but requires a converter to be explicitely provided by user.
+    if not is_arg("--force", extra):
+        extra += " --force"
+
     multi_threaded_commands = {
         "bam2bedgraph",
         "bam2cram",
@@ -50,4 +56,7 @@ if converter:
     if converter in commands_expecting_reference:
         extra += f" --reference '{snakemake.input.ref}'"
 
-shell("bioconvert {converter} {extra} {snakemake.input[0]} {snakemake.output[0]} {log}")
+shell(
+    "bioconvert {converter} {extra} {snakemake.input[0]:q} "
+    "{snakemake.output[0]:q} {log}"
+)
