@@ -3,9 +3,27 @@ __copyright__ = "Copyright 2026, Filipe G. Vieira"
 __license__ = "MIT"
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.snakemake import get_mem, is_arg
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
+
+# Check extra options
+assert not (
+    is_arg("-y", extra) or is_arg("--bloom-bits", extra)
+), "option '-y/--bloom-bits' not supported by wrapper"
+assert not (
+    is_arg("-c", extra) or is_arg("--ceiling", extra)
+), "option '-c/--ceiling' is inferred from 'resources.mem'"
+
+# Define memory
+mem_mb = int(
+    get_mem(snakemake, "MiB", snakemake.params.get("mem_overhead_factor", 0.01))
+)
+
+ceiling = ""
+if is_arg("-f", extra) or is_arg("--fastidious", extra):
+    ceiling = f"--ceiling {mem_mb}"
 
 # Check input files
 in_cmd = "cat"
@@ -27,5 +45,5 @@ for key, value in snakemake.output.items():
         raise ValueError(f"Unknown named output '{key}' with file name '{value}'.")
 
 shell(
-    "{in_cmd} {snakemake.input[0]} | swarm --threads {snakemake.threads} {extra} {output} {log}"
+    "{in_cmd} {snakemake.input[0]} | swarm --threads {snakemake.threads} {ceiling} {extra} {output} {log}"
 )
