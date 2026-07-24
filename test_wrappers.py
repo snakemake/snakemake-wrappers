@@ -656,6 +656,21 @@ def test_bwameth_memx(run):
     )
 
 
+def test_minibwa_map(run):
+    run(
+        "bio/minibwa/map",
+        [
+            "snakemake",
+            "mapped_single.sam",
+            "mapped_pairs.bam",
+            "mapped_meth.bam",
+            "mapped_samtools.cram",
+            "mapped_picard.cram",
+            "mapped_sambamba.cram",
+        ],
+    )
+
+
 def test_bwameth_index(run):
     run(
         "bio/bwameth/index",

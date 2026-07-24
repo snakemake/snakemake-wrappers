@@ -1,0 +1,123 @@
+rule test_minibwa_map_single_ended:
+    input:
+        index=multiext("index/genome.fasta", ".l2b", ".mbw"),
+        # Optional path to genome fasta file for CRAM compression
+        # fasta="index/genome.fasta"
+        reads=["reads/a.1.fastq.gz"],
+    output:
+        "mapped_single.sam",
+    log:
+        "test_minibwa_map_single_ended.log",
+    threads: 1
+    params:
+        sort=None,
+        # sort_extra="",
+        # sort_order="",
+        extra="",
+    wrapper:
+        "master/bio/minibwa/map"
+
+
+rule test_minibwa_map_pair_ended:
+    input:
+        index=multiext("index/genome.fasta", ".l2b", ".mbw"),
+        # Optional path to genome fasta file for CRAM compression
+        # fasta="index/genome.fasta"
+        reads=expand("reads/a.{stream}.fastq", stream=[1, 2]),
+    output:
+        "mapped_pairs.bam",
+        idx="mapped_pairs.bai",
+    log:
+        "test_minibwa_map_pair_ended.log",
+    threads: 1
+    params:
+        # sort=None,
+        # sort_extra="",
+        # sort_order="",
+        extra="",
+    wrapper:
+        "master/bio/minibwa/map"
+
+
+rule test_minibwa_map_meth:
+    input:
+        index=multiext("index_meth/genome.fasta", ".l2b", ".mbw", ".meth.mbw"),
+        reads=expand("reads/a.{stream}.fastq", stream=[1, 2]),
+        # Optional path to genome fasta file for CRAM compression
+        fasta="index_meth/genome.fasta",
+    output:
+        "mapped_meth.bam",
+        idx="mapped_meth.bam.bai",
+    log:
+        "test_minibwa_map_meth.log",
+    threads: 1
+    params:
+        # sort=None,
+        # sort_extra="",
+        # sort_order="",
+        extra="",
+    wrapper:
+        "master/bio/minibwa/map"
+
+
+rule test_minibwa_map_sort_samtools:
+    input:
+        index=multiext("index/genome.fasta", ".l2b", ".mbw"),
+        reads=expand("reads/a.{stream}.fastq", stream=[1, 2]),
+        # Optional path to genome fasta file for CRAM compression
+        fasta="index/genome.fasta",
+    output:
+        "mapped_samtools.cram",
+    log:
+        "test_minibwa_map_sort_samtools.log",
+    threads: 1
+    params:
+        extra="",
+        sort="samtools",
+        sort_extra="",
+        # Optional sort order, default is coordinate
+        sort_order="coordinate",
+    wrapper:
+        "master/bio/minibwa/map"
+
+
+rule test_minibwa_map_sort_picard:
+    input:
+        index=multiext("index/genome.fasta", ".l2b", ".mbw"),
+        reads=expand("reads/a.{stream}.fastq", stream=[1, 2]),
+        # Optional path to genome fasta file for CRAM compression
+        fasta="index/genome.fasta",
+    output:
+        "mapped_picard.cram",
+    log:
+        "test_minibwa_map_sort_picard.log",
+    threads: 1
+    params:
+        extra="",
+        sort="picard",
+        sort_extra="",
+        # Optional sort order, default is coordinate
+        sort_order="queryname",
+    wrapper:
+        "master/bio/minibwa/map"
+
+
+rule test_minibwa_map_sort_sambamba:
+    input:
+        index=multiext("index/genome.fasta", ".l2b", ".mbw"),
+        reads=expand("reads/a.{stream}.fastq", stream=[1, 2]),
+        # Optional path to genome fasta file for CRAM compression
+        fasta="index/genome.fasta",
+    output:
+        "mapped_sambamba.cram",
+    log:
+        "test_minibwa_map_sort_sambamba.log",
+    threads: 1
+    params:
+        extra="",
+        sort="sambamba",
+        sort_extra="",
+        # Optional sort order, default is coordinate
+        sort_order="coordinate",
+    wrapper:
+        "master/bio/minibwa/map"
