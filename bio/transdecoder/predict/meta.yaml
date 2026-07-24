@@ -2,7 +2,11 @@ name: transdecoder predict
 description: "Predict the likely coding regions from the ORFs identified by Transdecoder.LongOrfs. Optionally include results from homology searches (blast/hmmer results) as ORF retention criteria."
 authors:
   - N. Tessa Pierce
+url: https://github.com/TransDecoder/TransDecoder
 input:
-  - fasta assembly 
+  - fasta: assembly (can be gzipped)
+  - pfam_hits: retain ORFs with hits by inputting pfam results here (run separately) [optional]
+  - blastp_hits: retain ORFs with hits by inputting blastp results here (run separately) [optional]
+  - longorfs: transdecoder longorfs results
 output:
   - candidate coding regions (pep, cds, gff3, bed output formats) 
