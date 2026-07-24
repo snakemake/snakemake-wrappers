@@ -29,7 +29,7 @@ if sort not in available_sort_tools:
     )
 sort_extra = snakemake.params.get("sort_extra", "")
 
-expected_sort_orders = {"coordinate", "queryname", None}
+expected_sort_orders = {"coordinate", "queryname"}
 sort_order = snakemake.params.get("sort_order", "coordinate")
 if sort_order not in expected_sort_orders:
     raise ValueError(
