@@ -388,6 +388,20 @@ def test_jq(run):
     )
 
 
+def test_crabz(run):
+    run(
+        "utils/crabz",
+        [
+            "snakemake",
+            "hello.txt.gz",
+            "hello.decompressed.txt",
+        ],
+        compare_results_with_expected={
+            "hello.decompressed.txt": "hello.txt",
+        },
+    )
+
+
 def test_taxonkit(run):
     run(
         "bio/taxonkit",
@@ -871,6 +885,14 @@ def test_liftoff(run):
             "snakemake",
             "genome_annotation_genome.gff3",
         ],
+    )
+
+
+def test_bioconvert(run):
+    run(
+        "bio/bioconvert",
+        ["snakemake", "intervals.csv", "intervals.xls", "a.cram"],
+        cores=2,
     )
 
 
@@ -2754,6 +2776,15 @@ def test_macs2_callpeak(run):
         ],
     )
 
+
+def test_mageck_mle(run):
+    run(
+        "bio/mageck/mle",
+        [
+            "snakemake",
+            "test_mageck_mle.genes.tsv",
+        ],
+    )
 
 def test_mageck_test(run):
     run(

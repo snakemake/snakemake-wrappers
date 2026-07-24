@@ -4,4 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - trimmomatic =0.41
-  - snakemake-wrapper-utils =0.8.0
+  - snakemake-wrapper-utils =0.9.0
