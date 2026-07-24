@@ -13,8 +13,6 @@ rule salmon_index:
             "index.refinfo",
             "info.json",
             "duplicate_clusters.tsv",
-            "index.tct",
-            "index.tdct",
         ),
     log:
         "logs/salmon/transcriptome_index.log",
