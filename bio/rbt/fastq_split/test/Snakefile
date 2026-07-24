@@ -1,0 +1,36 @@
+rule test_rbt_fastq_split:
+    input:
+        "test.fq",
+    output:
+        "a.fq",
+        "b.fq",
+    log:
+        "logs/test_rbt_fastq_split.log",
+    wrapper:
+        "master/bio/rbt/fastq_split"
+
+
+rule test_rbt_fastq_split_compressed_input:
+    input:
+        "test.fq.gz",
+    output:
+        "e.fq",
+        "f.fq",
+    log:
+        "logs/test_rbt_fastq_split_compressed_input.log",
+    threads: 2
+    wrapper:
+        "master/bio/rbt/fastq_split"
+
+
+rule test_rbt_fastq_split_compressed_output:
+    input:
+        "b.fq",
+    output:
+        "c.fq.gz",
+        "d.fq",
+    log:
+        "logs/test_rbt_fastq_split_compressed_output.log",
+    threads: 2
+    wrapper:
+        "master/bio/rbt/fastq_split"
