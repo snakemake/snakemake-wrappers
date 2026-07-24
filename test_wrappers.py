@@ -2476,6 +2476,19 @@ def test_falco(run):
     )
 
 
+def test_fastaguard(run):
+    run(
+        "bio/fastaguard",
+        [
+            "snakemake",
+            "pass/fastaguard.json",
+            "warn/fastaguard.json",
+            "fail/fastaguard.json",
+            "invalid/fastaguard.json",
+        ],
+    )
+
+
 def test_fastp(run):
     run(
         "bio/fastp",
