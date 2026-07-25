@@ -1,7 +1,6 @@
 rule nanovar:
     input:
-        reads="mapped/a.bam",
-        bai="mapped/a.bam.bai",  # [hide] ensures the index is built first
+        reads="reads.fq.gz",
         ref="genome.fasta",
     output:
         vcf="calls/a.vcf",
