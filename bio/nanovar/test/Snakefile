@@ -1,0 +1,14 @@
+rule nanovar:
+    input:
+        reads="mapped/a.bam",
+        bai="mapped/a.bam.bai",  # [hide] ensures the index is built first
+        ref="genome.fasta",
+    output:
+        vcf="calls/a.vcf",
+    log:
+        "logs/a.log",
+    threads: 4
+    params:
+        extra="",  # optional parameters for nanovar (except -t/-f/positional args)
+    wrapper:
+        "master/bio/nanovar"

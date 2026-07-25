@@ -1,0 +1,15 @@
+name: nanovar
+description: Call structural variants from long reads with NanoVar.
+url: https://github.com/cytham/nanovar
+authors:
+  - Kateřina Havlová
+input:
+  - reads: long-read FASTA/FASTQ or aligned BAM/CRAM
+  - ref: reference genome FASTA
+  - filter_bed: BED of regions to filter out (optional, `-f`; a built-in genome name like hg38 can be passed via `extra`)
+output:
+  - vcf: VCF of PASS structural variants
+notes: |
+  * NanoVar writes several files into a working directory and names them after the input. The
+    wrapper runs it in a temporary directory and copies the single `*.nanovar.pass.vcf` to `output.vcf`.
+  * The `extra` param allows for additional arguments, e.g. `-x ont`, `-l` (min SV length), `-c` (min coverage), `-s` (score).

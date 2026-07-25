@@ -1,0 +1,6 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - nanovar =1.8
