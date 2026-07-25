@@ -1,0 +1,21 @@
+name: kraken2 classify
+description: Classify metagenomic sequences with Kraken2.
+url: https://github.com/DerrickWood/kraken2
+authors:
+  - Alessandro Leone
+input:
+  - fq1: Path to input FASTQ file(s) (single-end or read 1 of paired-end).
+  - fq2: (optional) Path to read 2 FASTQ file(s) for paired-end input.
+  - db: Path to a prebuilt Kraken2 database directory.
+output:
+  - report: Kraken2 report file with aggregate counts per taxon.
+  - classif: (optional) Per-read classification output file.
+  - classified_out: (optional) FASTQ file of classified reads.
+  - unclassified_out: (optional) FASTQ file of unclassified reads.
+params:
+  - extra: (optional) Additional arguments passed to `k2 classify`.
+notes: |
+  Supports single-end and paired-end reads.
+  Paired-end mode is activated automatically when `fq2` is provided.
+  Input files may be gzip, bzip2, or xz compressed.
+  The `db` input must point to a directory containing the Kraken2 database files.
