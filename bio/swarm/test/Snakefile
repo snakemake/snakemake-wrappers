@@ -14,6 +14,8 @@ rule swarm:
     threads: 4
     params:
         extra="--fastidious --differences 1 --usearch-abundance",
+    resources:
+        mem="12 GiB",
     wrapper:
         "master/bio/swarm"
 
@@ -38,6 +40,8 @@ rule swarm_gz:
         mem_mb=lambda wc, input: input.size_mb * 4,
     params:
         extra="--fastidious --boundary 3 --differences 1 --usearch-abundance",
+    resources:
+        mem="12 GiB",
     wrapper:
         "master/bio/swarm"
 
