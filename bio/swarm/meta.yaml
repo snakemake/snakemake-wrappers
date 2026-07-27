@@ -18,3 +18,4 @@ params:
   - extra: additional program arguments
 notes: |
   * Input files can be compressed with `gzip` or `bzip2`.
+  * Bloom filter size (if `--fastidious`) is controlled solely by `--ceiling` (`--bloom-bits` option is not allowed in this wrapper) and inferred from `resources.mem` and `params.mem_overhead_factor`.
