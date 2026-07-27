@@ -35,7 +35,7 @@ for ending in (".amb", ".ann", ".bwt", ".pac", ".sa", ".dict"):
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "(gridss -s assemble "  # Tool
-        "--reference {reference} "  # Reference
+        "--reference {snakemake.input.reference} "  # Reference
         "--threads {snakemake.threads} "  # Threads
         "--workingdir {snakemake.params.workingdir} "  # Working directory
         "--assembly {snakemake.output.assembly} "  # Assembly output
