@@ -6,7 +6,7 @@ authors:
 input:
   - reads: long-read FASTA/FASTQ or aligned BAM/CRAM
   - ref: reference genome FASTA
-  - filter_bed: BED of regions to filter out (optional)
+  - bed: BED of regions to filter out (optional)
 output:
   - vcf: VCF of PASS structural variants
 params:

@@ -15,9 +15,9 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 # Optional gap/filter BED (-f). Built-in names (hg19/hg38/mm10) can go via extra.
-filter_bed = snakemake.input.get("filter_bed", "")
-if filter_bed:
-    filter_bed = f"-f {shlex.quote(filter_bed)}"
+bed = snakemake.input.get("bed", "")
+if bed:
+    bed = f"-f {shlex.quote(bed)}"
 
 # NanoVar writes several files into a working directory, naming the VCF after the
 # input (e.g. <sample>.nanovar.pass.vcf). Run it in a temporary directory, then
@@ -28,7 +28,7 @@ with tempfile.TemporaryDirectory(dir=snakemake.resources.get("tmpdir")) as workd
     shell(
         "nanovar"
         " -t {snakemake.threads}"
-        " {filter_bed}"
+        " {bed}"
         " {extra}"
         " {snakemake.input.reads:q}"
         " {snakemake.input.ref:q}"
