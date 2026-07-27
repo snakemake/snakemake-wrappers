@@ -11,10 +11,10 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 # Check extra options
 assert not (
     is_arg("-y", extra) or is_arg("--bloom-bits", extra)
-), "option '-y/--bloom-bits' not supported by wrapper"
+), "option '-y/--bloom-bits' not supported by wrapper, do not provide via 'params.extra'"
 assert not (
     is_arg("-c", extra) or is_arg("--ceiling", extra)
-), "option '-c/--ceiling' is inferred from 'resources.mem'"
+), "option '-c/--ceiling' is inferred from 'resources.mem', do not provide via 'params.extra'"
 
 # Define memory
 mem_mb = int(
