@@ -15,7 +15,7 @@ rule swarm:
     resources:
         # With '--fastidious' option, swarm 2 paper suggests a factor of 4.75 * input_data (https://peerj.com/articles/1420/#p-22)
         # A later PR suggests a 20% reduction (https://github.com/torognes/swarm/issues/7#issuecomment-420290892)
-        mem_mb=lambda wc, input: input.size_mb * 4,
+        mem_mb=lambda wc, input: max(input.size_mb * 4, 50),
     params:
         extra="--fastidious --differences 1 --usearch-abundance",
     wrapper:
@@ -39,7 +39,7 @@ rule swarm_gz:
     resources:
         # With '--fastidious' option, swarm 2 paper suggests a factor of 4.75 * input_data (https://peerj.com/articles/1420/#p-22)
         # A later PR suggests a 20% reduction (https://github.com/torognes/swarm/issues/7#issuecomment-420290892)
-        mem_mb=lambda wc, input: max(input.size_mb * 4, 16),
+        mem_mb=lambda wc, input: max(input.size_mb * 4, 50),
     params:
         extra="--fastidious --boundary 3 --differences 1 --usearch-abundance",
     wrapper:
