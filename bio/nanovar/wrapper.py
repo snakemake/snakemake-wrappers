@@ -5,11 +5,11 @@ __license__ = "MIT"
 
 
 import shlex
-import shutil
 import tempfile
 from pathlib import Path
 
 from snakemake.shell import shell
+from snakemake_wrapper_utils.snakemake import move_files
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -21,7 +21,7 @@ if bed:
 
 # NanoVar writes several files into a working directory, naming the VCF after the
 # input (e.g. <sample>.nanovar.pass.vcf). Run it in a temporary directory, then
-# copy the single PASS VCF to the requested output path. The temp dir is placed
+# move the single PASS VCF to the requested output path. The temp dir is placed
 # under Snakemake's `tmpdir` resource, so on HPC it can be steered to node-local
 # scratch (e.g. `--default-resources tmpdir="'$SCRATCHDIR'"`).
 with tempfile.TemporaryDirectory(dir=snakemake.resources.get("tmpdir")) as workdir:
@@ -42,4 +42,17 @@ with tempfile.TemporaryDirectory(dir=snakemake.resources.get("tmpdir")) as workd
             f"Expected exactly one *.nanovar.pass.vcf in {workdir}, found {len(hits)}."
         )
 
-    shutil.copy(hits[0], snakemake.output.vcf)
+    mapping = {"vcf": hits[0]}
+
+    # Optional HTML report — only rescue it if the user declared output.report.
+    if snakemake.output.get("report"):
+        reports = list(Path(workdir).glob("*.nanovar.pass.report.html"))
+        if len(reports) != 1:
+            raise ValueError(
+                f"Expected exactly one *.nanovar.pass.report.html in {workdir}, found {len(reports)}."
+            )
+        mapping["report"] = reports[0]
+
+    log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
+    for move_cmd in move_files(snakemake, mapping):
+        shell("{move_cmd} {log}")
