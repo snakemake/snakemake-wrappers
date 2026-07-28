@@ -5492,7 +5492,6 @@ def test_nanovar(run):
         [
             "snakemake",
             "calls/a.vcf",
-            "calls/a.report.html",
         ],
         cores=4,
     )

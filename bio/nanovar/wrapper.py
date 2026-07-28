@@ -36,23 +36,17 @@ with tempfile.TemporaryDirectory(dir=snakemake.resources.get("tmpdir")) as workd
         " {log}"
     )
 
-    hits = list(Path(workdir).glob("*.nanovar.pass.vcf"))
-    if len(hits) != 1:
-        raise ValueError(
-            f"Expected exactly one *.nanovar.pass.vcf in {workdir}, found {len(hits)}."
-        )
-
-    mapping = {"vcf": hits[0]}
-
-    # Optional HTML report — only rescue it if the user declared output.report.
-    if snakemake.output.get("report"):
-        reports = list(Path(workdir).glob("*.nanovar.pass.report.html"))
-        if len(reports) != 1:
-            raise ValueError(
-                f"Expected exactly one *.nanovar.pass.report.html in {workdir}, found {len(reports)}."
-            )
-        mapping["report"] = reports[0]
+    # NanoVar names the VCF after the input file, mirroring its own logic
+    # (src/nanovar/nanovar.py): strip .bam/.cram, or for reads split off ".f".
+    name = Path(snakemake.input.reads).name
+    if name.endswith(".bam"):
+        prefix = name.rsplit(".bam", 1)[0]
+    elif name.endswith(".cram"):
+        prefix = name.rsplit(".cram", 1)[0]
+    else:
+        prefix = name.rsplit(".f", 1)[0]
+    vcf = Path(workdir) / f"{prefix}.nanovar.pass.vcf"
 
     log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
-    for move_cmd in move_files(snakemake, mapping):
+    for move_cmd in move_files(snakemake, {"vcf": vcf}):
         shell("{move_cmd} {log}")

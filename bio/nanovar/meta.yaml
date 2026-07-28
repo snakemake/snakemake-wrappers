@@ -9,6 +9,5 @@ input:
   - bed: BED of regions to filter out (optional)
 output:
   - vcf: VCF of PASS structural variants
-  - report: NanoVar HTML summary report (optional)
 params:
   - extra: additional arguments (e.g. `-x ont`, `-l <min SV length>`, `-c <min coverage>`, `-s <score>`, or `-f <built-in genome name>`).
