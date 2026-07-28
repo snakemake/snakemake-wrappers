@@ -1,0 +1,30 @@
+rule get_genome:
+    output:
+        "refs/genome.fasta",
+    params:
+        species="saccharomyces_cerevisiae",
+        datatype="dna",
+        build="R64-1-1",
+        release="98",
+    log:
+        "logs/get_genome.log",
+    cache: "mit-software"  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/reference/ensembl-sequence"
+
+
+rule get_chromosome:
+    output:
+        "refs/chr1.fasta",
+    params:
+        species="saccharomyces_cerevisiae",
+        datatype="dna",
+        build="R64-1-1",
+        release="101",
+        chromosome="I",  # optional: restrict to chromosome
+        # branch="plants",  # optional: specify branch
+    log:
+        "logs/get_genome.log",
+    cache: "omit-software"  # save space and time with between workflow caching (see docs)
+    wrapper:
+        "master/bio/reference/ensembl-sequence"
