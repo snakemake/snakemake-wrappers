@@ -4,8 +4,25 @@ rule nanovar:
         ref="genome.fasta",
     output:
         vcf="calls/a.vcf",
+        report="calls/a.report.html",
     log:
         "logs/a.log",
+    threads: 4
+    params:
+        extra="",  # optional parameters for nanovar (except -t/-f/positional args)
+    wrapper:
+        "master/bio/nanovar"
+
+
+# Same wrapper without a `report` output — exercises the optional-report skip path.
+rule nanovar_no_report:
+    input:
+        reads="reads.fq.gz",
+        ref="genome.fasta",
+    output:
+        vcf="calls/b.vcf",
+    log:
+        "logs/b.log",
     threads: 4
     params:
         extra="",  # optional parameters for nanovar (except -t/-f/positional args)

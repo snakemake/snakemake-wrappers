@@ -19,12 +19,10 @@ bed = snakemake.input.get("bed", "")
 if bed:
     bed = f"-f {shlex.quote(bed)}"
 
-# NanoVar writes several files into a working directory, naming the VCF after the
+# NanoVar writes several files into a working directory, naming them after the
 # input (e.g. <sample>.nanovar.pass.vcf). Run it in a temporary directory, then
-# move the single PASS VCF to the requested output path. The temp dir is placed
-# under Snakemake's `tmpdir` resource, so on HPC it can be steered to node-local
-# scratch (e.g. `--default-resources tmpdir="'$SCRATCHDIR'"`).
-with tempfile.TemporaryDirectory(dir=snakemake.resources.get("tmpdir")) as workdir:
+# move the requested outputs to their declared paths.
+with tempfile.TemporaryDirectory() as workdir:
     shell(
         "nanovar"
         " -t {snakemake.threads}"
@@ -45,8 +43,12 @@ with tempfile.TemporaryDirectory(dir=snakemake.resources.get("tmpdir")) as workd
         prefix = name.rsplit(".cram", 1)[0]
     else:
         prefix = name.rsplit(".f", 1)[0]
-    vcf = Path(workdir) / f"{prefix}.nanovar.pass.vcf"
+    mapping = {"vcf": Path(workdir) / f"{prefix}.nanovar.pass.vcf"}
+
+    # Optional HTML report (same prefix) — only rescued if the user declares it.
+    if snakemake.output.get("report"):
+        mapping["report"] = Path(workdir) / f"{prefix}.nanovar.pass.report.html"
 
     log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
-    for move_cmd in move_files(snakemake, {"vcf": vcf}):
+    for move_cmd in move_files(snakemake, mapping):
         shell("{move_cmd} {log}")
