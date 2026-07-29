@@ -5497,3 +5497,16 @@ def test_sniffles(run):
         ],
         cores=4,
     )
+
+
+def test_nanovar(run):
+    run(
+        "bio/nanovar",
+        [
+            "snakemake",
+            "calls/a.vcf",
+            "calls/a.report.html",
+            "calls/b.vcf",
+        ],
+        cores=4,
+    )
