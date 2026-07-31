@@ -21,21 +21,21 @@ assert (
 
 # Input files
 if n == 1 or is_arg("--interleaved", extra) or is_arg("--interleaved-input", extra):
-    reads = f"--in-file1 {snakemake.input.sample}"
+    in_reads = f"--in-file1 {snakemake.input.sample}"
 else:
-    reads = "--in-file1 {} --in-file2 {}".format(*snakemake.input.sample)
+    in_reads = "--in-file1 {} --in-file2 {}".format(*snakemake.input.sample)
 
 
 # Output files
 if n == 1 or is_arg("--interleaved", extra) or is_arg("--interleaved-output", extra):
-    trimmed = f"--out-file1 {snakemake.output.fq}"
+    out_trimmed = f"--out-file1 {snakemake.output.fq}"
 else:
-    trimmed = f"--out-file1 {snakemake.output.fq1} --out-file2 {snakemake.output.fq2}"
+    out_trimmed = f"--out-file1 {snakemake.output.fq1} --out-file2 {snakemake.output.fq2}"
 
     # Output singleton files
     singleton = snakemake.output.get("singleton", None)
     if singleton:
-        trimmed += f" --out-singleton {singleton}"
+        out_trimmed += f" --out-singleton {singleton}"
 
     # Output merged PE reads
     merged = snakemake.output.get("merged", None)
@@ -44,26 +44,31 @@ else:
             raise ValueError(
                 "output.merged specified but '--merge' option missing from params.extra"
             )
-        trimmed += f" --out-merged {merged}"
+        out_trimmed += f" --out-merged {merged}"
+
+    # Output discarded files
+    out_discarded = snakemake.output.get("discarded", "")
+    if out_discarded:
+        out_discarded += f"--out-discarded {out_discarded}"
 
     # Reports
     out_json = snakemake.output.get("json", "")
     if out_json:
-        out_json = f"--out-json {snakemake.output.json}"
+        out_json = f"--out-json {out_json}"
 
     out_html = snakemake.output.get("html", "")
     if out_html:
-        out_html = f"--out-html {snakemake.output.html}"
+        out_html = f"--out-html {out_html}"
 
 
 shell(
-    "(AdapterRemoval --threads {snakemake.threads} "
-    "{reads} "
-    "{adapters} "
-    "{extra} "
-    "{trimmed} "
-    "--out-discarded {snakemake.output.discarded} "
-    "{out_json}"
-    "{out_html}"
+    "(AdapterRemoval --threads {snakemake.threads}"
+    " {in_reads}"
+    " {adapters}"
+    " {extra}"
+    " {out_trimmed}"
+    " {out_discarded}"
+    " {out_json}"
+    " {out_html}"
     ") {log}"
 )
