@@ -30,7 +30,9 @@ else:
 if n == 1 or is_arg("--interleaved", extra) or is_arg("--interleaved-output", extra):
     out_trimmed = f"--out-file1 {snakemake.output.fq}"
 else:
-    out_trimmed = f"--out-file1 {snakemake.output.fq1} --out-file2 {snakemake.output.fq2}"
+    out_trimmed = (
+        f"--out-file1 {snakemake.output.fq1} --out-file2 {snakemake.output.fq2}"
+    )
 
     # Output singleton files
     singleton = snakemake.output.get("singleton", None)

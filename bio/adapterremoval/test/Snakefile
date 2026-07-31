@@ -31,6 +31,6 @@ rule adapterremoval_pe:
     threads: 2
     params:
         adapters="--adapter1 ACGGCTAGCTA --adapter2 AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC",
-        extra="--collapse --collapse-deterministic",
+        extra="--merge",
     wrapper:
         "master/bio/adapterremoval"
