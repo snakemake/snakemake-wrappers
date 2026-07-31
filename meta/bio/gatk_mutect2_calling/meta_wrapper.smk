@@ -11,7 +11,7 @@ rule create_dict:
     params:
         extra="",
     wrapper:
-        "v9.4.2/bio/picard/createsequencedictionary"
+        "v9.15.0/bio/picard/createsequencedictionary"
 
 
 rule samtools_index:
@@ -24,7 +24,7 @@ rule samtools_index:
     params:
         extra="",  # optional params string
     wrapper:
-        "v9.14.0/bio/samtools/faidx"
+        "v9.15.0/bio/samtools/faidx"
 
 
 rule picard_replace_read_groups:
@@ -41,7 +41,7 @@ rule picard_replace_read_groups:
         # Required for GATK
         extra="--RGLB lib1 --RGPL illumina --RGPU {sample} --RGSM {sample}",
     wrapper:
-        "v7.6.0/bio/picard/addorreplacereadgroups"
+        "v9.15.0/bio/picard/addorreplacereadgroups"
 
 
 rule sambamba_index_picard_bam:
@@ -78,7 +78,7 @@ rule mutect2_call:
     log:
         "<logs>/mutect/<per>.log",
     wrapper:
-        "v7.6.0/bio/gatk/mutect"
+        "v9.15.0/bio/gatk/mutect"
 
 
 rule gatk_get_pileup_summaries:
@@ -98,7 +98,7 @@ rule gatk_get_pileup_summaries:
     log:
         "<logs>/summary/<per>.log",
     wrapper:
-        "v7.6.0/bio/gatk/getpileupsummaries"
+        "v9.15.0/bio/gatk/getpileupsummaries"
 
 
 rule gatk_calculate_contamination:
@@ -114,7 +114,7 @@ rule gatk_calculate_contamination:
     params:
         extra="",
     wrapper:
-        "v7.6.0/bio/gatk/calculatecontamination"
+        "v9.15.0/bio/gatk/calculatecontamination"
 
 
 rule gatk_learn_read_orientation_model:
@@ -130,7 +130,7 @@ rule gatk_learn_read_orientation_model:
     log:
         "<logs>/learnreadorientationbias/<per>.log",
     wrapper:
-        "v7.6.0/bio/gatk/learnreadorientationmodel"
+        "v9.15.0/bio/gatk/learnreadorientationmodel"
 
 
 rule filter_mutect_calls:
@@ -155,4 +155,4 @@ rule filter_mutect_calls:
         extra="--create-output-variant-index --min-median-mapping-quality 35 --max-alt-allele-count 3",
         java_opts="",
     wrapper:
-        "v7.6.0/bio/gatk/filtermutectcalls"
+        "v9.15.0/bio/gatk/filtermutectcalls"
