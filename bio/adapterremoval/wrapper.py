@@ -2,9 +2,10 @@ __author__ = "Filipe G. Vieira"
 __copyright__ = "Copyright 2020, Filipe G. Vieira"
 __license__ = "MIT"
 
-from snakemake.shell import shell
-from pathlib import Path
 import re
+from pathlib import Path
+from snakemake.shell import shell
+from snakemake_wrapper_utils.snakemake import is_arg
 
 extra = snakemake.params.get("extra", "") + " "
 adapters = snakemake.params.get("adapters", "")
@@ -19,64 +20,40 @@ assert (
 
 
 # Input files
-if n == 1 or "--interleaved " in extra or "--interleaved-input " in extra:
-    reads = "--file1 {}".format(snakemake.input.sample)
+if n == 1 or is_arg("--interleaved", extra) or is_arg("--interleaved-input", extra):
+    reads = f"--in-file1 {snakemake.input.sample}"
 else:
-    reads = "--file1 {} --file2 {}".format(*snakemake.input.sample)
-
-
-# Gzip or Bzip compressed output?
-compress_out = ""
-if all(
-    [
-        Path(value).suffix == ".gz"
-        for key, value in snakemake.output.items()
-        if key != "settings"
-    ]
-):
-    compress_out = "--gzip"
-elif all(
-    [
-        Path(value).suffix == ".bz2"
-        for key, value in snakemake.output.items()
-        if key != "settings"
-    ]
-):
-    compress_out = "--bzip2"
-else:
-    raise ValueError(
-        "all output files (except for 'settings') must be compressed the same way"
-    )
+    reads = "--in-file1 {} --in-file2 {}".format(*snakemake.input.sample)
 
 
 # Output files
-if n == 1 or "--interleaved " in extra or "--interleaved-output " in extra:
-    trimmed = f"--output1 {snakemake.output.fq}"
+if n == 1 or is_arg("--interleaved", extra) or is_arg("--interleaved-output", extra):
+    trimmed = f"--out-file1 {snakemake.output.fq}"
 else:
-    trimmed = f"--output1 {snakemake.output.fq1} --output2 {snakemake.output.fq2}"
+    trimmed = f"--out-file1 {snakemake.output.fq1} --out-file2 {snakemake.output.fq2}"
 
     # Output singleton files
     singleton = snakemake.output.get("singleton", None)
     if singleton:
-        trimmed += f" --singleton {singleton}"
+        trimmed += f" --out-singleton {singleton}"
 
-    # Output collapsed PE reads
-    collapsed = snakemake.output.get("collapsed", None)
-    if collapsed:
-        if not re.search(r"--collapse\b", extra):
+    # Output merged PE reads
+    merged = snakemake.output.get("merged", None)
+    if merged:
+        if not is_arg("--merge", extra):
             raise ValueError(
-                "output.collapsed specified but '--collapse' option missing from params.extra"
+                "output.merged specified but '--merge' option missing from params.extra"
             )
-        trimmed += f" --outputcollapsed {collapsed}"
+        trimmed += f" --out-merged {merged}"
 
-    # Output collapsed and truncated PE reads
-    collapsed_trunc = snakemake.output.get("collapsed_trunc", None)
-    if collapsed_trunc:
-        if not re.search(r"--collapse\b", extra):
-            raise ValueError(
-                "output.collapsed_trunc specified but '--collapse' option missing from params.extra"
-            )
-        trimmed += f" --outputcollapsedtruncated {collapsed_trunc}"
+    # Reports
+    out_json = snakemake.output.get("json", "")
+    if out_json:
+        out_json = f"--out-json {snakemake.output.json}"
+
+    out_html = snakemake.output.get("html", "")
+    if out_html:
+        out_html = f"--out-html {snakemake.output.html}"
 
 
 shell(
@@ -84,9 +61,9 @@ shell(
     "{reads} "
     "{adapters} "
     "{extra} "
-    "{compress_out} "
     "{trimmed} "
-    "--discarded {snakemake.output.discarded} "
-    "--settings {snakemake.output.settings}"
+    "--out-discarded {snakemake.output.discarded} "
+    "{out_json}"
+    "{out_html}"
     ") {log}"
 )

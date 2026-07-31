@@ -4,3 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - adapterremoval =3.0.1
+  - snakemake-wrapper-utils =0.9.0
