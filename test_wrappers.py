@@ -990,16 +990,15 @@ def test_adapterremoval(run):
         "bio/adapterremoval",
         [
             "snakemake",
-            "trimmed/pe/a_R1.fastq.gz",
-            "trimmed/pe/a_R2.fastq.gz",
-            "trimmed/pe/a.singleton.fastq.gz",
-            "trimmed/pe/a.collapsed.fastq.gz",
-            "trimmed/pe/a.collapsed_trunc.fastq.gz",
-            "trimmed/pe/a.discarded.fastq.gz",
-            "stats/pe/a.settings",
             "trimmed/se/a.fastq.gz",
             "trimmed/se/a.discarded.fastq.gz",
-            "stats/se/a.settings",
+            "stats/se/a.json",
+            "trimmed/pe/a_R1.fastq.gz",
+            "trimmed/pe/a_R2.fastq.gz",
+            "trimmed/pe/a.merged.fastq.gz",
+            "trimmed/pe/a.singleton.fastq.gz",
+            "trimmed/pe/a.discarded.fastq.gz",
+            "stats/pe/a.html",
         ],
     )
 
