@@ -48,23 +48,24 @@ else:
             )
         out_trimmed += f" --out-merged {merged}"
 
-    # Output discarded files
-    out_discarded = snakemake.output.get("discarded", "")
-    if out_discarded:
-        out_discarded += f"--out-discarded {out_discarded}"
+# Output discarded files
+out_discarded = snakemake.output.get("discarded", "")
+if out_discarded:
+    out_discarded = f"--out-discarded {out_discarded}"
 
-    # Reports
-    out_json = snakemake.output.get("json", "")
-    if out_json:
-        out_json = f"--out-json {out_json}"
+# Reports
+out_json = snakemake.output.get("json", "")
+if out_json:
+    out_json = f"--out-json {out_json}"
 
-    out_html = snakemake.output.get("html", "")
-    if out_html:
-        out_html = f"--out-html {out_html}"
+out_html = snakemake.output.get("html", "")
+if out_html:
+    out_html = f"--out-html {out_html}"
 
 
 shell(
-    "(AdapterRemoval --threads {snakemake.threads}"
+    "adapterremoval3"
+    " --threads {snakemake.threads}"
     " {in_reads}"
     " {adapters}"
     " {extra}"
@@ -72,5 +73,5 @@ shell(
     " {out_discarded}"
     " {out_json}"
     " {out_html}"
-    ") {log}"
+    " {log}"
 )
