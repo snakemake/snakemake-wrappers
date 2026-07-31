@@ -43,7 +43,7 @@ rule varscan2_somatic:
         extra="--strand-filter 1",
     threads: 1
     wrapper:
-        "v9.1.0/bio/varscan/somatic"
+        "v9.15.0/bio/varscan/somatic"
 
 
 rule snpeff_download:
@@ -55,7 +55,7 @@ rule snpeff_download:
         reference=lambda w: w.ref,
     threads: 1
     wrapper:
-        "v9.14.0/bio/snpeff/download"
+        "v9.15.0/bio/snpeff/download"
 
 
 rule snpeff_annotate:
@@ -72,4 +72,4 @@ rule snpeff_annotate:
         extra="-nodownload -noLog",
     threads: 1
     wrapper:
-        "v9.14.0/bio/snpeff/annotate"
+        "v9.15.0/bio/snpeff/annotate"
