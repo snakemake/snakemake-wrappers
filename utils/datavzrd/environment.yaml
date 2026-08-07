@@ -2,7 +2,7 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - datavzrd =2.70.3
+  - datavzrd =2.71.0
   - yte
   - numpy
   - pandas
