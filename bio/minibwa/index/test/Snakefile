@@ -1,0 +1,26 @@
+rule test_minibwa_index:
+    input:
+        "genome.fasta",
+    output:
+        multiext("index", l2b=".l2b", mbw=".mbw"),
+    log:
+        "test_minibwa_index.log",
+    threads: 1
+    params:
+        extra="-l",
+    wrapper:
+        "master/bio/minibwa/index"
+
+
+rule test_minibwa_index_meth:
+    input:
+        "genome.fasta",
+    output:
+        multiext("meth_index", l2b=".l2b", mbw=".mbw", meth_mbw=".meth.mbw"),
+    log:
+        "test_minibwa_index_meth.log",
+    threads: 1
+    params:
+        extra="--meth",
+    wrapper:
+        "master/bio/minibwa/index"
