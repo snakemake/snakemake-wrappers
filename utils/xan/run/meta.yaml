@@ -4,8 +4,8 @@ description: Run the given xan pipeline or execute a xan script
 authors:
   - Thibault Dayris
 input:
-  - Path to a table. See `xan input`,  `xan from` and `xan scrape` to have a list of accepted formats
-  - xan_script: Path to a xan script. Avoid it if an expression is provided in `params.expression`
+  - data: Path to a table. See `xan input`,  `xan from` and `xan scrape` to have a list of accepted formats
+  - script: Path to a xan script. Avoid it if an expression is provided in `params.expression`
 output:
   - Path to output table, report, etc. See `xan to`, `xan matrix`, `xan network` to have a list of accepted formats
 params:
