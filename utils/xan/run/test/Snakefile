@@ -1,6 +1,6 @@
 rule test_xan_script:
     input:
-        "data.csv",
+        data="data.csv",
         # Path to xan script.
         # Provide it if and only if no expression is given in params
         xan_script="script.xan",
@@ -23,7 +23,7 @@ rule test_xan_expression:
         # Path to xan script.
         # Provide it if and only if no expression is given in params
         # xan="",
-        "data.csv",
+        data="data.csv",
     output:
         "processed_through_expression.csv",
     log:
