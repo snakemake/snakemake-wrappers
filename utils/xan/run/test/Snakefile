@@ -31,7 +31,7 @@ rule test_xan_expression:
     threads: 1
     params:
         # xan pipelin expression,
-        # Provide it if and only if no script if given in input
+        # Provide it if, and only if, no script is given in input
         expression="progress | groupby sample,pair 'sum(nb_read) as total_fragments'",
         extra="",
     wrapper:
