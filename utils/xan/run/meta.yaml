@@ -5,11 +5,12 @@ authors:
   - Thibault Dayris
 input:
   - Path to a table. See `xan input`,  `xan from` and `xan scrape` to have a list of accepted formats
-  - xan: Path to a xan script
+  - xan_script: Path to a xan script. Ignore it if an expression is provided in `params.expression`
 output:
   - Path to output table, report, etc. See `xan to`, `xan matrix`, `xan network` to have a list of accepted formats
 params:
   - extra: Optional parameter besides `-f | --file`
+  - expression: Expression for xan pipeline. Ignore it if a script is provided in `input.xan_script`
 notes: |
   Use `xan help functions` and `xan help cheatsheet` to see examples of pipelines and
   expressions avilable in this wrapper.
