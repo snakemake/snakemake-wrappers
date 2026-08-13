@@ -7,7 +7,7 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-script = snakemake.input.get("xan_script")
+script = snakemake.input.get("script")
 if script:
     extra += f" --file '{script}'"
 
@@ -18,6 +18,6 @@ elif not (script or expression):
     raise ValueError("Please provide either a xan script or a xan run expression.")
 
 shell(
-    "xan run {extra} {expression:q} {snakemake.input[0]:q} "
+    "xan run {extra} {expression:q} {snakemake.input.data:q} "
     "> {snakemake.output[0]:q} {log}"
 )
