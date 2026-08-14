@@ -14,4 +14,4 @@ params:
 notes: |
   - Use `xan help functions` and `xan help cheatsheet` to see examples of pipelines and
   expressions avilable in this wrapper.
-  - Parameters `input.xan_script` and `params.expression` are mutually exclusive.
+  - Parameters `input.script` and `params.expression` are mutually exclusive.
