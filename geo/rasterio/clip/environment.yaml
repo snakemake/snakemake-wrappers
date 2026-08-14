@@ -2,7 +2,7 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - rasterio =1.5.0
+  - rasterio =1.5.1
   - libgdal-arrow-parquet =3.13.2
   - geopandas =1.1.4
   - pyarrow =25.0.0
