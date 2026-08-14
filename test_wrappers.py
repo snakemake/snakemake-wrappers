@@ -1224,7 +1224,20 @@ def test_csvtk(run):
         },
     )
 
-
+def test_xan(run):
+    run(
+        "utils/xan/run",
+        [
+            "snakemake",
+            "processed_through_script.csv",
+            "processed_through_expression.csv",
+        ],
+        compare_results_with_expected={
+            "processed_through_script.csv": "expected/total_reads.csv",
+            "processed_through_expression.csv": "expected/total_fragments.csv",
+        },
+    )
+            
 def test_xsv(run):
     run(
         "utils/xsv",

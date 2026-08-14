@@ -1,0 +1,32 @@
+rule test_xan_script:
+    input:
+        data="data.csv",
+        script="script.xan",
+    output:
+        "processed_through_script.csv",
+    log:
+        "test_xan_script.log",
+    threads: 1
+    params:
+        # xan pipelin expression (only if no script given in input)
+        # expression="",
+        extra="",
+    wrapper:
+        "master/utils/xan/run"
+
+
+rule test_xan_expression:
+    input:
+        # Path to xan script (only if no expression given in params)
+        # script="",
+        data="data.csv",
+    output:
+        "processed_through_expression.csv",
+    log:
+        "test_xan_expression.log",
+    threads: 1
+    params:
+        expression="progress | groupby sample,pair 'sum(nb_read) as total_fragments'",
+        extra="",
+    wrapper:
+        "master/utils/xan/run"
