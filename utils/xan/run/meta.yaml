@@ -4,13 +4,13 @@ description: Run the given xan pipeline or execute a xan script
 authors:
   - Thibault Dayris
 input:
-  - data: Path to a table. See `xan input`,  `xan from` and `xan scrape` to have a list of accepted formats
-  - script: Path to a xan script. Avoid it if an expression is provided in `params.expression`
+  - data: Path to a table (see `xan input`,  `xan from` and `xan scrape` for a list of accepted formats).
+  - script: Path to a xan script.
 output:
-  - Path to output table, report, etc. See `xan to`, `xan matrix`, `xan network` to have a list of accepted formats
+  - Path to output table, report, etc (see `xan to`, `xan matrix`, `xan network` for a list of accepted formats).
 params:
-  - extra: Optional parameter besides `-f | --file`
-  - expression: Expression for xan pipeline. Avoid it if a script is provided in `input.script`
+  - extra: Optional parameter (not `-f | --file`)
+  - expression: Expression for xan pipeline.
 notes: |
   - Use `xan help functions` and `xan help cheatsheet` to see examples of pipelines and
   expressions avilable in this wrapper.
