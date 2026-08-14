@@ -1226,7 +1226,7 @@ def test_csvtk(run):
 
 def test_xan(run):
     run(
-        "utils/xan",
+        "utils/xan/run",
         [
             "snakemake",
             "processed_through_script.csv",
