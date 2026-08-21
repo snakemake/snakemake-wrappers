@@ -25,7 +25,7 @@ with TemporaryDirectory() as tempdir:
         "falco"
         " --threads {snakemake.threads}"
         " {extra}"
-        " --outdir {tempdir:q}"
+        " --output {tempdir:q}"
         " {snakemake.input[0]:q}"
         " {log}"
     )
