@@ -52,7 +52,7 @@ rule map_consensus_reads:
         "<logs>/bwa_mem/{sample}.{read_type}.consensus.log",
     threads: 8
     wrapper:
-        "v9.15.0/bio/bwa/mem"
+        "v9.16.0/bio/bwa/mem"
 
 
 rule sort_skipped_reads:
@@ -88,7 +88,7 @@ rule mark_duplicates_skipped:
     resources:
         mem_mb=1024,
     wrapper:
-        "v9.15.0/bio/picard/markduplicates"
+        "v9.16.0/bio/picard/markduplicates"
 
 
 rule merge_consensus_reads:
