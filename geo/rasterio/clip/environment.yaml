@@ -3,7 +3,7 @@ channels:
   - nodefaults
 dependencies:
   - rasterio =1.5.1
-  - libgdal-arrow-parquet =3.13.2
+  - libgdal-arrow-parquet =3.13.3
   - geopandas =1.1.4
   - pyarrow =25.0.0
   - pyproj =3.7.2
