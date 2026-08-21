@@ -11,7 +11,7 @@ rule create_dict:
     params:
         extra="",
     wrapper:
-        "v9.15.0/bio/picard/createsequencedictionary"
+        "v9.16.0/bio/picard/createsequencedictionary"
 
 
 rule samtools_index:
@@ -41,7 +41,7 @@ rule picard_replace_read_groups:
         # Required for GATK
         extra="--RGLB lib1 --RGPL illumina --RGPU {sample} --RGSM {sample}",
     wrapper:
-        "v9.15.0/bio/picard/addorreplacereadgroups"
+        "v9.16.0/bio/picard/addorreplacereadgroups"
 
 
 rule sambamba_index_picard_bam:
