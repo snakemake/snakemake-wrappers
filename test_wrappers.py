@@ -2803,6 +2803,13 @@ def test_mageck_test(run):
     )
 
 
+def test_dotmatch_crispr_count(run):
+    run(
+        "bio/dotmatch/crispr-count",
+        ["snakemake", "counts.mageck.tsv"],
+    )
+
+
 def test_mageck_flute_rra(run):
     run(
         "bio/mageckflute/fluterra",

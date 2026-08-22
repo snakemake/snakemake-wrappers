@@ -1,0 +1,20 @@
+rule dotmatch_crispr_count:
+    input:
+        library="guides.csv",
+        samples="samples.tsv",
+    output:
+        counts="counts.mageck.tsv",
+        summary="summary.json",
+        sample_qc="sample_qc.tsv",
+    log:
+        "dotmatch.log",
+    threads: 1
+    params:
+        guide_start=0,
+        guide_length=4,
+        k=0,
+        metric="hamming",
+        ambiguity_policy="radius",
+        ambiguous="discard",
+    wrapper:
+        "master/bio/dotmatch/crispr-count"
