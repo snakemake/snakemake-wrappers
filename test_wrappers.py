@@ -2807,6 +2807,9 @@ def test_dotmatch_crispr_count(run):
     run(
         "bio/dotmatch/crispr-count",
         ["snakemake", "counts.mageck.tsv"],
+        compare_results_with_expected={
+            "counts.mageck.tsv": "expected_counts.mageck.tsv",
+        },
     )
 
 
