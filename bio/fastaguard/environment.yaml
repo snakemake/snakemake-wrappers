@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - fastaguard =0.6.0
+  - fastaguard =0.7.0
