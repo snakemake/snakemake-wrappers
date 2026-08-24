@@ -1,9 +1,9 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
-# created-by: conda 24.9.2
+# created-by: conda 26.3.2
 @EXPLICIT
-https://conda.anaconda.org/conda-forge/linux-64/libgomp-16.1.0-he0feb66_1.conda#88f2d91cb1533194c323534253094d23
+https://conda.anaconda.org/conda-forge/linux-64/libgomp-16.1.0-he0feb66_3.conda#593dc8ed1ed687d4ffff6b8d2fce9d9f
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda#a9f577daf3de00bca7c3c76c0ecbd1de
-https://conda.anaconda.org/conda-forge/linux-64/libgcc-16.1.0-ha9f2e26_1.conda#5a7d954665c707c93311657cd779c705
-https://conda.anaconda.org/bioconda/linux-64/fastaguard-0.6.0-hfa8f182_0.conda#d19a3733e08a394af1921501c9dbccad
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-16.1.0-ha9f2e26_3.conda#c471b242d299f8bc1e2b3e0f6e9f4b77
+https://conda.anaconda.org/bioconda/linux-64/fastaguard-0.7.0-hfa8f182_0.conda#350e5bdc2240744ac9d1fb007c5c2f05
