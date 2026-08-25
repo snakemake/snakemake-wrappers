@@ -17,7 +17,7 @@ with TemporaryDirectory() as tempdir:
     genome_link = f"{tempdir}/genome.fasta"
     shell(
         "ln -sfrv {snakemake.input} {genome_link} {log} && "
-        "minibwa index -t {snakemake.threads} {extra} {genome_link} "
+        "minibwa index -t {snakemake.threads} {extra} {genome_link} {log} "
     )
 
     expected_outfiles = {
