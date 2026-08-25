@@ -6,6 +6,6 @@ authors:
 input:
   - Path to genome fasta file
 output:
-  ...
+  - Path to index files
 params:
   extra: Optional parameters, besides threading.
