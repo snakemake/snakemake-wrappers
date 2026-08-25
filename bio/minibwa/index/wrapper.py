@@ -15,10 +15,10 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 # There is no way to control output file name, which is why we have to move them.
 with TemporaryDirectory() as tempdir:
     genome_link = f"{tempdir}/genome.fasta"
-    shell(
-        "ln -sfrv {snakemake.input} {genome_link} {log} && "
-        "minibwa index -t {snakemake.threads} {extra} {genome_link} {log} "
-    )
+    from pathlib import Path
+    Path(genome_link).symlink_to(snakemake.input[0]) 
+
+    shell("minibwa index -t {snakemake.threads} {extra} {genome_link} {log}")
 
     expected_outfiles = {
         "l2b": f"{genome_link}.l2b",
