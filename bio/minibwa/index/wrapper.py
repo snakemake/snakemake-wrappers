@@ -5,6 +5,7 @@ __copyright__ = "Copyright 2026, Thibault Dayris"
 __email__ = "thibault.dayris@gustaveroussy.fr"
 __license__ = "MIT"
 
+from pathlib import Path
 from tempfile import TemporaryDirectory
 from snakemake.shell import shell
 from snakemake_wrapper_utils.snakemake import move_files, is_arg
@@ -15,8 +16,9 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True, append=True)
 # There is no way to control output file name, which is why we have to move them.
 with TemporaryDirectory() as tempdir:
     genome_link = f"{tempdir}/genome.fasta"
-    from pathlib import Path
-    Path(genome_link).symlink_to(snakemake.input[0]) 
+    Path(genome_link).symlink_to(Path(snakemake.input[0]).resolve())
+
+    shell("ls {tempdir} {log} && tree {tempdir} {log} ")
 
     shell("minibwa index -t {snakemake.threads} {extra} {genome_link} {log}")
 

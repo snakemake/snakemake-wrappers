@@ -632,7 +632,7 @@ def test_minibwa_index(run):
         "bio/minibwa/index",
         [
             "snakemake",
-            "index.l2b",
+            "index/genome.l2b",
             "meth_index.l2b",
         ],
     )

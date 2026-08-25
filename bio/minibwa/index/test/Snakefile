@@ -7,7 +7,7 @@ rule test_minibwa_index:
         "test_minibwa_index.log",
     threads: 1
     params:
-        extra="-l",
+        extra="",
     wrapper:
         "master/bio/minibwa/index"
 
