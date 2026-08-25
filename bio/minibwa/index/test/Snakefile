@@ -2,7 +2,7 @@ rule test_minibwa_index:
     input:
         "genome.fasta",
     output:
-        multiext("index", l2b=".l2b", mbw=".mbw"),
+        multiext("index/genome", l2b=".l2b", mbw=".mbw"),
     log:
         "test_minibwa_index.log",
     threads: 1
