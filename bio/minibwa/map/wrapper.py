@@ -44,14 +44,14 @@ if len(index_prefix) == 0:
     raise ValueError("Could not determine common prefix of `input.index` files.")
 
 # Build command line(s)
-align_format = get_format(snakemake.output[0])
+align_format = get_format(snakemake.output.aln)
 align_format_available = {"sam", "bam", "cram"}
 if align_format not in align_format_available:
     raise ValueError(
-        "Unexpected alignment format in `output[0]`: "
+        "Unexpected alignment format in `output.aln`: "
         f"{align_format_available}, got `{align_format}`."
     )
-out_cmd = f"> '{snakemake.output[0]}'"
+out_cmd = f"> '{snakemake.output.aln}'"
 
 with TemporaryDirectory() as tempdir:
     if (sort is None) and (align_format in {"bam", "cram"}):
@@ -96,7 +96,7 @@ with TemporaryDirectory() as tempdir:
             "--INPUT /dev/stdin "
             f"--TMP_DIR '{tempdir}' "
             f"--SORT_ORDER '{sort_order}' "
-            f"--OUTPUT '{snakemake.output[0]}' "
+            f"--OUTPUT '{snakemake.output.aln}' "
             f"{sort_extra}"  # Add user-defined sort arguments
         )
         if "fasta" in snakemake.input.keys():
@@ -138,13 +138,13 @@ with TemporaryDirectory() as tempdir:
             out_cmd += f" | samtools view {samtools_view_opts}"
         else:
             # Else, let sambamba write bam.
-            out_cmd += f"  --out '{snakemake.output[0]}' "
+            out_cmd += f"  --out '{snakemake.output.aln}' "
 
             # Optionally write index
             if "idx" in snakemake.output.keys():
                 out_cmd += str(
                     f" && sambamba index --nthreads {snakemake.threads} "
-                    f"'{snakemake.output[0]}' '{snakemake.output.idx}'"
+                    f"'{snakemake.output.aln}' '{snakemake.output.idx}'"
                 )
 
     # Run command(s)

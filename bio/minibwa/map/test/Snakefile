@@ -5,7 +5,7 @@ rule test_minibwa_map_single_ended:
         # fasta="index/genome.fasta"
         reads=["reads/a.1.fastq.gz"],
     output:
-        "mapped_single.sam",
+        aln="mapped_single.sam",
     log:
         "test_minibwa_map_single_ended.log",
     threads: 1
@@ -25,7 +25,7 @@ rule test_minibwa_map_pair_ended:
         # fasta="index/genome.fasta"
         reads=expand("reads/a.{stream}.fastq", stream=[1, 2]),
     output:
-        "mapped_pairs.bam",
+        aln="mapped_pairs.bam",
         idx="mapped_pairs.bai",
     log:
         "test_minibwa_map_pair_ended.log",
@@ -46,7 +46,7 @@ rule test_minibwa_map_meth:
         # Optional path to genome fasta file for CRAM compression
         fasta="index_meth/genome.fasta",
     output:
-        "mapped_meth.bam",
+        aln="mapped_meth.bam",
         idx="mapped_meth.bam.bai",
     log:
         "test_minibwa_map_meth.log",
@@ -67,7 +67,7 @@ rule test_minibwa_map_sort_samtools:
         # Optional path to genome fasta file for CRAM compression
         fasta="index/genome.fasta",
     output:
-        "mapped_samtools.cram",
+        aln="mapped_samtools.cram",
     log:
         "test_minibwa_map_sort_samtools.log",
     threads: 1
@@ -88,7 +88,7 @@ rule test_minibwa_map_sort_picard:
         # Optional path to genome fasta file for CRAM compression
         fasta="index/genome.fasta",
     output:
-        "mapped_picard.cram",
+        aln="mapped_picard.cram",
     log:
         "test_minibwa_map_sort_picard.log",
     threads: 1
@@ -109,7 +109,7 @@ rule test_minibwa_map_sort_sambamba:
         # Optional path to genome fasta file for CRAM compression
         fasta="index/genome.fasta",
     output:
-        "mapped_sambamba.cram",
+        aln="mapped_sambamba.cram",
     log:
         "test_minibwa_map_sort_sambamba.log",
     threads: 1
