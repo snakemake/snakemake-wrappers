@@ -18,8 +18,6 @@ with TemporaryDirectory() as tempdir:
     genome_link = f"{tempdir}/genome.fasta"
     Path(genome_link).symlink_to(Path(snakemake.input[0]).resolve())
 
-    shell("ls {tempdir} {log} && tree {tempdir} {log} ")
-
     shell("minibwa index -t {snakemake.threads} {extra} {genome_link} {log}")
 
     expected_outfiles = {
