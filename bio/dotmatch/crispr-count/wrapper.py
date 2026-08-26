@@ -8,7 +8,6 @@ from shlex import quote
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
-threads = snakemake.threads
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 summary = snakemake.output.get("summary")
@@ -23,7 +22,7 @@ shell(
     "(dotmatch crispr-count "
     "--library {snakemake.input.library:q} "
     "--samples {snakemake.input.samples:q} "
-    "--threads {threads} "
+    "--threads {snakemake.threads} "
     "--out {snakemake.output.counts:q} "
     "{summary} "
     "{sample_qc} "
