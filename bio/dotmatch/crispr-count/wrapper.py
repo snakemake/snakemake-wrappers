@@ -25,5 +25,6 @@ shell("dotmatch crispr-count "
     "--out {snakemake.output.counts:q} "
     "{summary} "
     "{sample_qc} "
-    "{extra} {log}"
+    "{extra}"
+    " {log}"
 )
