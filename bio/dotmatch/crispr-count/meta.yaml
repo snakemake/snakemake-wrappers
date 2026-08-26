@@ -13,22 +13,6 @@ output:
   - counts: MAGeCK-compatible guide count matrix.
   - summary: Optional run summary JSON.
   - sample_qc: Optional per-sample QC TSV.
-params:
-  - guide_start: Zero-based guide window start in each read.
-  - guide_length: Guide window length.
-  - k: Maximum correction radius.
-  - metric: hamming or levenshtein distance.
-  - ambiguity_policy: radius or best assignment policy.
-  - ambiguous: discard or include ambiguous counts.
-  - indel_window: Optional extraction slack for levenshtein indel rescue.
-  - extra: Optional additional DotMatch arguments.
 notes: |
   * Audit the guide library before using a correction radius greater than zero.
-  * The `extra` param can be used for options such as `--hamming-index` or
-    `--no-progress`.
-channels:
-  - conda-forge
-  - bioconda
-  - nodefaults
-dependencies:
-  - dotmatch =0.2.2
+  * The `extra` param allows for additional DotMatch arguments.
