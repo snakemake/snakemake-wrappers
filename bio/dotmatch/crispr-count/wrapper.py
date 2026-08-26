@@ -11,15 +11,13 @@ extra = snakemake.params.get("extra", "")
 threads = snakemake.threads
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-summary_arg = ""
 summary = snakemake.output.get("summary")
 if summary:
-    summary_arg = f"--summary {quote(summary)}"
+    summary = f"--summary {quote(summary)}"
 
-sample_qc_arg = ""
 sample_qc = snakemake.output.get("sample_qc")
 if sample_qc:
-    sample_qc_arg = f"--sample-qc {quote(sample_qc)}"
+    sample_qc = f"--sample-qc {quote(sample_qc)}"
 
 shell(
     "(dotmatch crispr-count "
@@ -27,7 +25,7 @@ shell(
     "--samples {snakemake.input.samples:q} "
     "--threads {threads} "
     "--out {snakemake.output.counts:q} "
-    "{summary_arg} "
-    "{sample_qc_arg} "
+    "{summary} "
+    "{sample_qc} "
     "{extra}) {log}"
 )

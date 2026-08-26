@@ -13,6 +13,7 @@ output:
   - counts: MAGeCK-compatible guide count matrix.
   - summary: Optional run summary JSON.
   - sample_qc: Optional per-sample QC TSV.
+params:
+  - extra: additional DotMatch arguments
 notes: |
   * Audit the guide library before using a correction radius greater than zero.
-  * The `extra` param allows for additional DotMatch arguments.
