@@ -4,7 +4,6 @@ __author__ = "Donncha O'Toole"
 __license__ = "MIT"
 
 from shlex import quote
-
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
