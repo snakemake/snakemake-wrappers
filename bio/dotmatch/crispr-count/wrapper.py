@@ -9,11 +9,11 @@ from snakemake.shell import shell
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-summary = snakemake.output.get("summary")
+summary = snakemake.output.get("summary", "")
 if summary:
     summary = f"--summary {quote(summary)}"
 
-sample_qc = snakemake.output.get("sample_qc")
+sample_qc = snakemake.output.get("sample_qc", "")
 if sample_qc:
     sample_qc = f"--sample-qc {quote(sample_qc)}"
 
