@@ -168,12 +168,6 @@ Please ensure that the wrapper:
 * writes any temporary files to a unique hidden folder in the working directory, or (better) stores them where the Python function `tempfile.gettempdir() <https://docs.python.org/3/library/tempfile.html#tempfile.gettempdir>`_ points (this also means that using any Python tempfile default behavior works)
 * is formatted according to the language's standards (for Python, format it with `black`_: ``black wrapper.py``)
 
-Wrapper interface design
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Wrappers should expose a predictable Snakemake interface and infer command-line arguments where possible:
-
-* use ``input:`` for input files and ``output:`` for output files
 * automatically infer file formats and paths from ``input:`` and ``output:`` whenever possible
 * avoid allowing users to specify parameters that the wrapper can infer from ``input:`` or ``output:``; add error handling and document the behavior in ``meta.yaml`` when needed
 * keep parameters that are only needed for wrapper logic as explicit ``params:`` entries
