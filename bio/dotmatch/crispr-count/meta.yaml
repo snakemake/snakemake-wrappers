@@ -1,0 +1,19 @@
+name: "DotMatch CRISPR count"
+description: |
+  Count known CRISPR guide sequences in FASTQ samples with deterministic
+  fixed-window assignment. The wrapper emits a MAGeCK-compatible count matrix
+  and optional run and sample QC tables.
+url: https://github.com/dnncha/dotmatch
+authors:
+  - Donncha O'Toole
+input:
+  - library: Guide library CSV or TSV with guide identifiers, sequences, and optional genes.
+  - samples: Sample sheet CSV or TSV with sample identifiers and FASTQ paths.
+output:
+  - counts: MAGeCK-compatible guide count matrix.
+  - summary: Optional run summary JSON.
+  - sample_qc: Optional per-sample QC TSV.
+params:
+  - extra: additional DotMatch arguments
+notes: |
+  * Audit the guide library before using a correction radius greater than zero.
