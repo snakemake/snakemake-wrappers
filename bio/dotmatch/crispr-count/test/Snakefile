@@ -10,13 +10,6 @@ rule dotmatch_crispr_count:
         "dotmatch.log",
     threads: 1
     params:
-        extra=(
-            "--guide-start 0 "
-            "--guide-length 4 "
-            "--k 0 "
-            "--metric hamming "
-            "--ambiguity-policy radius "
-            "--ambiguous discard"
-        ),
+        extra="--guide-start 0 --guide-length 4 --k 0 --metric hamming --ambiguity-policy radius --ambiguous discard",
     wrapper:
         "master/bio/dotmatch/crispr-count"
