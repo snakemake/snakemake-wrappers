@@ -1,5 +1,34 @@
 # Changelog
 
+## [9.17.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.16.0...v9.17.0) (2026-08-31)
+
+
+### Features
+
+* add DotMatch CRISPR count wrapper ([#5825](https://github.com/snakemake/snakemake-wrappers/issues/5825)) ([c0a0750](https://github.com/snakemake/snakemake-wrappers/commit/c0a07504c8ae48dc9d60d12cfa564320fb7f5864))
+
+
+### Performance Improvements
+
+* autobump bio/adapterremoval/environment.yaml ([#5832](https://github.com/snakemake/snakemake-wrappers/issues/5832)) ([7b7fb85](https://github.com/snakemake/snakemake-wrappers/commit/7b7fb853ee9a31bbf25556fe14e42162cef9a930))
+* autobump bio/delly/environment.yaml ([#5818](https://github.com/snakemake/snakemake-wrappers/issues/5818)) ([453a7eb](https://github.com/snakemake/snakemake-wrappers/commit/453a7eb3c3027ada7e9487ca6c3750f7e07e8f6c))
+* autobump bio/encode_fastq_downloader/environment.yaml ([#5820](https://github.com/snakemake/snakemake-wrappers/issues/5820)) ([c650f81](https://github.com/snakemake/snakemake-wrappers/commit/c650f81e5a6262e179545f9528cd9634a130d2bb))
+* autobump bio/falco/environment.yaml ([#5821](https://github.com/snakemake/snakemake-wrappers/issues/5821)) ([bcb6484](https://github.com/snakemake/snakemake-wrappers/commit/bcb648428a830277d0e3e209c9322e1faf87d9c6))
+* autobump bio/pretext/snapshot/environment.yaml ([#5804](https://github.com/snakemake/snakemake-wrappers/issues/5804)) ([eda19e7](https://github.com/snakemake/snakemake-wrappers/commit/eda19e7b9bd8e39ce6b82f6d106b58ce1732d9a1))
+* autobump bio/salmon/index/environment.yaml ([#5838](https://github.com/snakemake/snakemake-wrappers/issues/5838)) ([4340de0](https://github.com/snakemake/snakemake-wrappers/commit/4340de0a8641931ebd1269c8b57c9927abd1c983))
+* autobump bio/vep/plugins/environment.yaml ([#5824](https://github.com/snakemake/snakemake-wrappers/issues/5824)) ([014b36a](https://github.com/snakemake/snakemake-wrappers/commit/014b36a5c2a8ea26b242d9e3b8738ea24b09193b))
+* autobump geo/rasterio/clip/environment.yaml ([#5823](https://github.com/snakemake/snakemake-wrappers/issues/5823)) ([40e7436](https://github.com/snakemake/snakemake-wrappers/commit/40e7436807dec8913b176d38ef5a554290d86851))
+* autobump utils/datavzrd/environment.yaml ([#5819](https://github.com/snakemake/snakemake-wrappers/issues/5819)) ([351c186](https://github.com/snakemake/snakemake-wrappers/commit/351c186b20e2b5f90295751429dc0157a90a4cc8))
+* autobump utils/datavzrd/environment.yaml ([#5833](https://github.com/snakemake/snakemake-wrappers/issues/5833)) ([8912adc](https://github.com/snakemake/snakemake-wrappers/commit/8912adc5f0b637d752c8f5a9c06f052948a25f08))
+* autobump utils/go-yq/environment.yaml ([#5822](https://github.com/snakemake/snakemake-wrappers/issues/5822)) ([7f49f4f](https://github.com/snakemake/snakemake-wrappers/commit/7f49f4f9827037b568232d324147781f71e9c90b))
+* autobump wrappers in meta/bio/alignoth_report/meta_wrapper.smk ([#5583](https://github.com/snakemake/snakemake-wrappers/issues/5583)) ([f11ba78](https://github.com/snakemake/snakemake-wrappers/commit/f11ba787b74d5806a9b213542a58fc165ce37743))
+* autobump wrappers in meta/bio/bwa_mapping/meta_wrapper.smk ([#5744](https://github.com/snakemake/snakemake-wrappers/issues/5744)) ([71ffe99](https://github.com/snakemake/snakemake-wrappers/commit/71ffe996f261899bc5fbb79968ee1f1f686c019c))
+* autobump wrappers in meta/bio/calc_consensus_reads/meta_wrapper.smk ([#5745](https://github.com/snakemake/snakemake-wrappers/issues/5745)) ([41b0ed8](https://github.com/snakemake/snakemake-wrappers/commit/41b0ed82c959cdf71804b914f46a8c3d4b5b9816))
+* autobump wrappers in meta/bio/gatk_mutect2_calling/meta_wrapper.smk ([#5746](https://github.com/snakemake/snakemake-wrappers/issues/5746)) ([a8308b5](https://github.com/snakemake/snakemake-wrappers/commit/a8308b519a60d175df0280a2d27b3fbb95aa1591))
+* autobump wrappers in meta/bio/salmon_tximport/meta_wrapper.smk ([#5747](https://github.com/snakemake/snakemake-wrappers/issues/5747)) ([0c8782f](https://github.com/snakemake/snakemake-wrappers/commit/0c8782fe38e9bad2ae7a72968249239a5123fae9))
+* Bump datavzrd ([#5840](https://github.com/snakemake/snakemake-wrappers/issues/5840)) ([7510b7b](https://github.com/snakemake/snakemake-wrappers/commit/7510b7b39ef461b28db6d10416d2b6f6af9a5862))
+* update fastaguard to 0.7.0 ([#5826](https://github.com/snakemake/snakemake-wrappers/issues/5826)) ([4e37a76](https://github.com/snakemake/snakemake-wrappers/commit/4e37a76a9474c5f9493b927331b4fb6bd8360b38))
+
 ## [9.16.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.15.0...v9.16.0) (2026-08-14)
 
 
