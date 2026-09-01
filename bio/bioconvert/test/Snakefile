@@ -1,0 +1,50 @@
+rule test_bioconvert_explicit_conversion:
+    input:
+        "intervals.bed",
+    output:
+        "intervals.csv",
+    log:
+        "test_bioconverter_explicit_conversion.log",
+    threads: 1
+    params:
+        # Optional converter
+        converter="tsv2csv",
+        # Optional parameters for bioconvert, except `-t|--threads`
+        extra="",
+    wrapper:
+        "master/bio/bioconvert"
+
+
+rule test_bioconvert_implicit_conversion:
+    input:
+        "intervals.csv",
+    output:
+        "intervals.xls",
+    log:
+        "test_bioconverter_implicit_conversion.log",
+    threads: 1
+    params:
+        # Optional converter
+        converter="",
+        # Optional parameters for bioconvert, except `-t|--threads`
+        extra="",
+    wrapper:
+        "master/bio/bioconvert"
+
+
+rule test_bioconverter_auto_parameters:
+    input:
+        "a.bam",
+        ref="genome.fasta",
+    output:
+        "a.cram",
+    log:
+        "test_bioconverter_samtools_opts.log",
+    threads: 2
+    params:
+        # Optional converter
+        converter="bam2cram",
+        # Optional parameters for bioconvert, except `-t|--threads`
+        extra="--method 'samtools' --extra-arguments ' --min-MQ 10 '",
+    wrapper:
+        "master/bio/bioconvert"

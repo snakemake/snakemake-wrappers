@@ -3,8 +3,8 @@
 # platform: linux-64
 # created-by: conda 24.9.2
 @EXPLICIT
-https://conda.anaconda.org/conda-forge/linux-64/libgomp-15.2.0-he0feb66_18.conda#239c5e9546c38a1e884d69effcf4c882
+https://conda.anaconda.org/conda-forge/linux-64/libgomp-16.1.0-he0feb66_1.conda#88f2d91cb1533194c323534253094d23
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda#a9f577daf3de00bca7c3c76c0ecbd1de
-https://conda.anaconda.org/conda-forge/linux-64/libgcc-15.2.0-he0feb66_18.conda#0aa00f03f9e39fb9876085dee11a85d4
-https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-15.2.0-h934c35e_18.conda#1b08cd684f34175e4514474793d44bcb
-https://conda.anaconda.org/bioconda/linux-64/pretextsnapshot-0.0.7-hd63eeec_0.conda#fb4bd9019d1b27a7f4065dfa28cc5947
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-16.1.0-ha9f2e26_1.conda#5a7d954665c707c93311657cd779c705
+https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-16.1.0-h934c35e_1.conda#aed6cf89adc1e9b846e4367ac538e434
+https://conda.anaconda.org/bioconda/linux-64/pretextsnapshot-0.0.9-hc52dbad_0.conda#7e00519c2736b734e1aa1bb41ba1f01b

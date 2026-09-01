@@ -1,0 +1,3 @@
+id,gRNA.sequence,Gene
+guide_a,ACGT,GENE_A
+guide_b,TGCA,GENE_B
