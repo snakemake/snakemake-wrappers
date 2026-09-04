@@ -39,7 +39,7 @@ rule salmon_index_gentrome:
         # optional parameters
         extra="",
     wrapper:
-        "v9.16.0/bio/salmon/index"
+        "v9.17.0/bio/salmon/index"
 
 
 rule salmon_quant_reads:
