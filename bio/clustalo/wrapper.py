@@ -17,7 +17,7 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 shell(
     "clustalo {extra}"
     " --threads={snakemake.threads}"
-    " --in {snakemake.input[0]}"
-    " --out {snakemake.output[0]} "
+    " --in {snakemake.input[0]:q}"
+    " --out {snakemake.output[0]:q} "
     " {log}"
 )

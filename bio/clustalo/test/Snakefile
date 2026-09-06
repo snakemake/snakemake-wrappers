@@ -1,6 +1,6 @@
 rule clustalo:
     input:
-        "{sample}.fa"
+        "{sample} input.fa"
     output:
         "{sample}.msa.fa"
     params:
