@@ -3,10 +3,10 @@ rule clustalo:
         "{sample} input.fa"
     output:
         "{sample}.msa.fa"
-    params:
-        extra=""
     log:
         "logs/clustalo/test/{sample}.log"
+    params:
+        extra=""
     threads: 8
     wrapper:
         "master/bio/clustalo"
