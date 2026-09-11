@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - dotmatch =0.2.2
+  - dotmatch =0.5.0
