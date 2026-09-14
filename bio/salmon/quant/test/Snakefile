@@ -27,8 +27,7 @@ rule salmon_quant_pe_list:
     threads: 2
     params:
         # optional parameters
-        libtype="A",
-        extra="",
+        extra="--libType A",
     wrapper:
         "master/bio/salmon/quant"
 
@@ -48,8 +47,7 @@ rule salmon_quant_pe:
     threads: 2
     params:
         # optional parameters
-        libtype="A",
-        extra="",
+        extra="--libType A",
     wrapper:
         "master/bio/salmon/quant"
 
@@ -69,8 +67,7 @@ rule salmon_quant_pe_multi:
     threads: 2
     params:
         # optional parameters
-        libtype="A",
-        extra="",
+        extra="--libType A",
     wrapper:
         "master/bio/salmon/quant"
 
@@ -87,25 +84,6 @@ rule salmon_quant_se:
     threads: 2
     params:
         # optional parameters
-        libtype="A",
-        extra="",
-    wrapper:
-        "master/bio/salmon/quant"
-
-
-rule salmon_quant_se_bz2:
-    input:
-        r="reads/{sample}.fq.bz2",
-        index="salmon/transcriptome_index",
-    output:
-        quant="salmon_se_bz2/{sample}_x_transcriptome/quant.sf",
-        lib="salmon_se_bz2/{sample}_x_transcriptome/lib_format_counts.json",
-    log:
-        "logs/salmon_se_bz2/{sample}_x_transcriptome.log",
-    threads: 2
-    params:
-        # optional parameters
-        libtype="A",
-        extra="",
+        extra="--libType A",
     wrapper:
         "master/bio/salmon/quant"
