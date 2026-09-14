@@ -12,10 +12,10 @@ input:
   - r1: Path to upstream reads file.
   - r2: Path to downstream reads file.
 output:
-  - Path to quantification file
+  - quant: Path to quantification file
   - bam: Path to pseudo-bam file
 params:
-  - libType: Format string describing the library type, see `official documentation on Library Types <https://salmon.readthedocs.io/en/latest/library_type.html>`_ for list of accepted values.
+  - libtype: Format string describing the library type, see `official documentation on Library Types <https://salmon.readthedocs.io/en/latest/library_type.html>`_ for list of accepted values.
   - extra: Optional command line parameters, besides IO parameters and threads.
 notes: |
   Salmon accepted either a list of unpaired reads (`r` parameter), or two lists
