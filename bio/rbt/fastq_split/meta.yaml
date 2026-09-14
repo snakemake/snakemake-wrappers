@@ -1,0 +1,19 @@
+name: rbt fastq-split
+url: https://github.com/rust-bio/rust-bio-tools
+description: >
+  Split a given fastq file.
+authors:
+  - Thibault Dayris
+input:
+  - Path to a single fastq file, gzipped or not.
+output:
+  - Path to any number of fastq files, gzipped or not.
+params:
+  - compression_extra: Optional parameters for `crabz` compression.
+notes: |
+  No optional parameter is expected for `rbt fastq-split`. Compression format
+  and multi-threading dispatch accross compression / uncompression / fastq splitting
+  is automatically handled.
+  
+  This wrapper required 1 thread for fastq-splitting, and at least one additional 
+  thread for each compression / uncompression requested by user.
