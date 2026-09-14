@@ -3707,7 +3707,6 @@ def test_salmon_quant(run):
             "salmon_pe/a/quant.sf",
             "salmon_pe_multi/ab_pe_x_transcriptome/quant.sf",
             "salmon_se/a_se_x_transcriptome/quant.sf",
-            "salmon_se_bz2/a_se_x_transcriptome/quant.sf",
         ],
         cores=2,
     )
