@@ -32,26 +32,23 @@ extra = snakemake.params.get("extra", "")
 r1 = snakemake.input.get("r1")
 r2 = snakemake.input.get("r2")
 r = snakemake.input.get("r")
+assert not ((r1 or r2) and r), MixedPairedUnpairedInput()
 
-
-if all(mate is not None for mate in [r1, r2]):
-    if len(r1) != len(r2):
-        raise MissingMateError()
-    if r is not None:
-        raise MixedPairedUnpairedInput()
-
+if r1 and r2:
+    if not isinstance(r1, list):
+        r1 = [r1]
+    if not isinstance(r2, list):
+        r2 = [r2]
+    assert len(r1) == len(r2), MissingMateError()
     r1_cmd = "--mates1 {}".format(" ".join(r1))
     r2_cmd = "--mates2 {}".format(" ".join(r2))
     read_cmd = " ".join([r1_cmd, r2_cmd])
-
-elif r is not None:
-    if any(mate is not None for mate in [r1, r2]):
-        raise MixedPairedUnpairedInput()
-
+elif r:
+    if not isinstance(r, list):
+        r = [r]
     read_cmd = "--unmatedReads {}".format(" ".join(r))
-
 else:
-    raise MissingMateError()
+    MissingMateError()
 
 gene_map = snakemake.input.get("gtf", "")
 if gene_map:
@@ -68,7 +65,12 @@ if isinstance(index, list):
 outdir = dirname(snakemake.output.get("quant"))
 
 shell(
-    "salmon quant --index {index} "
-    " {read_cmd} --output {outdir} {gene_map} "
-    " --threads {snakemake.threads} {extra} {bam} {log}"
+    "salmon quant --threads {snakemake.threads}"
+    " --index {index}"
+    " {read_cmd}"
+    " --output {outdir}"
+    " {gene_map}"
+    " {extra}"
+    " {bam}"
+    " {log}"
 )
