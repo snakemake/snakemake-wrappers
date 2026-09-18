@@ -3,5 +3,5 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - minibwa =0.4
-  - snakemake-wrapper-utils =0.8.0
+  - minibwa =0.7
+  - snakemake-wrapper-utils =0.9.0
