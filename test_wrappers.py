@@ -336,7 +336,6 @@ def test_meta_alignoth_report(run):
     )
 
 
-
 def test_miller(run):
     run(
         "utils/miller",
@@ -672,8 +671,8 @@ def test_bwameth_index(run):
         "bio/bwameth/index",
         [
             "snakemake",
-            "genome.fasta.bwameth.c2t.sa",
-            "genome.fasta.bwameth.c2t.0123",
+            "mem/genome.fasta.bwameth.c2t.sa",
+            "mem2/genome.fasta.bwameth.c2t.0123",
         ],
     )
 
@@ -1235,6 +1234,7 @@ def test_csvtk(run):
         },
     )
 
+
 def test_xan(run):
     run(
         "utils/xan/run",
@@ -1248,7 +1248,8 @@ def test_xan(run):
             "processed_through_expression.csv": "expected/total_fragments.csv",
         },
     )
-            
+
+
 def test_xsv(run):
     run(
         "utils/xsv",
@@ -2807,6 +2808,7 @@ def test_mageck_mle(run):
         ],
     )
 
+
 def test_mageck_test(run):
     run(
         "bio/mageck/test",
@@ -3369,7 +3371,6 @@ def test_samtools_fastx(run):
             "a.2.fasta": "expected/a.2.fasta",
             "a.0.fasta": "expected/a.0.fasta",
         },
-
     )
 
 
@@ -3649,7 +3650,6 @@ def test_jannovar(run):
 
 def test_cairosvg(run):
     run("utils/cairosvg", ["snakemake", "pca.pdf"])
-
 
 
 def test_runiq(run):
@@ -4528,9 +4528,9 @@ def test_bismark(run):
             "results/bismark/b_genome.bam",
         ],
         # Nulcoetide stats file not being generated. Maybe in future versions?
-        #compare_results_with_expected={
+        # compare_results_with_expected={
         #    "results/bismark/b_genome.nucleotide_stats.txt": "expected/b_genome.nucleotide_stats.txt",
-        #},
+        # },
     )
 
 

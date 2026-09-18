@@ -3,7 +3,7 @@ rule test_bwameth_index_mem:
         "genome.fasta",
     output:
         multiext(
-            "genome.fasta.bwameth",
+            "mem/genome.fasta.bwameth",
             ".c2t",
             ".c2t.amb",
             ".c2t.ann",
@@ -11,10 +11,10 @@ rule test_bwameth_index_mem:
             ".c2t.pac",
             ".c2t.sa",
         ),
-    cache: True  # save space and time with between workflow caching (see docs)
-    threads: 1
     log:
         "bwameth_index.log",
+    cache: True  # save space and time with between workflow caching (see docs)
+    threads: 1
     wrapper:
         "master/bio/bwameth/index"
 
@@ -24,7 +24,7 @@ rule test_bwameth_index_mem2:
         "genome.fasta",
     output:
         multiext(
-            "genome.fasta.bwameth",
+            "mem2/genome.fasta.bwameth",
             ".c2t",
             ".c2t.amb",
             ".c2t.ann",
@@ -32,9 +32,9 @@ rule test_bwameth_index_mem2:
             ".c2t.pac",
             ".c2t.0123",
         ),
-    cache: True  # save space and time with between workflow caching (see docs)
-    threads: 1
     log:
         "bwameth_index.log",
+    cache: True  # save space and time with between workflow caching (see docs)
+    threads: 1
     wrapper:
         "master/bio/bwameth/index"
