@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - orthanq =1.22.3
+  - orthanq =1.22.5
