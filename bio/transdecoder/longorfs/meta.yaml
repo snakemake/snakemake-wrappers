@@ -2,7 +2,9 @@ name: transdecoder longorfs
 description: "TransDecoder.LongOrfs will identify coding regions within transcript sequences (ORFs) that are at least 100 amino acids long. You can lower this via the '-m' parameter, but know that the rate of false positive ORF predictions increases drastically with shorter minimum length criteria."
 authors:
   - N. Tessa Pierce
+url: https://github.com/TransDecoder/TransDecoder
 input:
-  - fasta transcripts
+  - fasta: transcripts
+  - gene_trans_map: gene-to-transcript identifier mapping file (gene_id<tab>trans_id) [optional]
 output:
   - ORFs peptide file(s)
