@@ -37,7 +37,7 @@ rule alignoth:
     log:
         "<logs>/alignoth/{sample}_{index}.log"
     wrapper:
-        "v9.16.0/bio/alignoth"
+        "v9.18.0/bio/alignoth"
 
 
 rule datavzrd:
@@ -56,4 +56,4 @@ rule datavzrd:
     log:
         "<logs>/datavzrd/{sample}.log",
     wrapper:
-        "v9.17.1/utils/datavzrd"
+        "v9.18.0/utils/datavzrd"
