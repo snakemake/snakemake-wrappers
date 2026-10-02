@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - go-yq =4.53.6
+  - go-yq =4.54.1
   - snakemake-wrapper-utils =0.9.0
