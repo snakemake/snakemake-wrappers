@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - falco =2.0.2
+  - falco =2.0.3
   - snakemake-wrapper-utils =0.9.0
