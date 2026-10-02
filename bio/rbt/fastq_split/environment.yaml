@@ -1,0 +1,8 @@
+channels:
+  - bioconda
+  - conda-forge
+  - nodefaults
+dependencies:
+  - rust-bio-tools =0.42.2
+  - crabz =0.10.0
+  - snakemake-wrapper-utils =0.8.0
