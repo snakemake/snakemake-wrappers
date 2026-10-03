@@ -1,0 +1,26 @@
+name: flye
+description: |
+  Flye is a de novo long-read assembler for PacBio and Oxford Nanopore data.
+  This wrapper supports Flye assembly mode only.
+
+url: https://github.com/mikolmogorov/Flye
+authors:
+  - Artur Gomes
+input:
+  - Long reads (FASTQ/FASTA, can be gzipped)
+output:
+  - |
+    Flye main assembly files:
+      - assembly.fasta (Final assembly)
+      - assembly_graph.{gfa/gv} (Final repeat graph)
+      - assembly_info.txt (Extra information about contigs)
+params:
+  - out_dir: Required Flye output directory folder.
+  - seq_type: >
+      Required sequencing type. Valid options are: nano-raw, nano-corr,
+      nano-hq, pacbio-raw, pacbio-corr, pacbio-hifi.
+  - keep_intermediates: Default value is False. Keep Flye intermediate files (`00-assembly`, `10-consensus`, `20-repeat`, `30-contigger`, and `40-polishing`).
+  - extra: Additional program arguments
+notes: |
+  * Assembly-mode wrapper only (`--polish-target` is not supported).
+  * Test data used is from https://zenodo.org/record/1172816 (First 500 reads)
