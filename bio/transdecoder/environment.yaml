@@ -3,4 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - transdecoder =5.7.1
+  - transdecoder =6.0.0
+  - gzip =1.14.0
