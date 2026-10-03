@@ -1,0 +1,9 @@
+date:
+    "2Jul2023"
+
+suffix:
+    "_refseq_genomes.fa"
+    #"_genomes_excluding_refseq.fa"
+
+prefix:
+    "https://millardlab-inphared.s3.climb.ac.uk/"
