@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.19.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.18.1...v9.19.0) (2026-10-06)
+
+
+### Features
+
+* add rbt fastq-split ([#5580](https://github.com/snakemake/snakemake-wrappers/issues/5580)) ([c905bd5](https://github.com/snakemake/snakemake-wrappers/commit/c905bd54b8648f5b2ca1dd9f8e844a6ba24064ea))
+
 ## [9.18.1](https://github.com/snakemake/snakemake-wrappers/compare/v9.18.0...v9.18.1) (2026-10-02)
 
 
