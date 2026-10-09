@@ -1,4 +1,5 @@
 name: pyfastaq replace_bases
 description: Replaces all occurrences of one letter with another.
+url: https://github.com/sanger-pathogens/Fastaq
 authors:
   - Michael Hall
