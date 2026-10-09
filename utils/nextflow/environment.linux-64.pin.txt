@@ -33,7 +33,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-16.2.0-h934c35e_7.cond
 https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.42.4-hcfc3c73_0.conda#54a948337e66706380ff24d6b5fde63f
 https://conda.anaconda.org/conda-forge/linux-64/libwebp-base-1.6.0-hd42ef1d_1.conda#9332b53d0ea93c5d39e33be03a0c611a
 https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.6-hdb14827_1.conda#ee6c0cd80a60961a1f48aa3e0b91f986
-https://conda.anaconda.org/conda-forge/linux-64/openssl-3.6.4-h781a0a9_0.conda#16e3034a330cc625f2c685edec60cf4e
+https://conda.anaconda.org/conda-forge/linux-64/openssl-3.6.5-h781a0a9_0.conda#5a51a2ea653f120240b1a9bf76e0aae9
 https://conda.anaconda.org/conda-forge/linux-64/pthread-stubs-0.4-h7cc23a3_1004.conda#bb66b610707b811e3c65181a6431e7a8
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libice-1.1.2-h280c20c_0.conda#85c9442aec283b4e464fa9ecc484a2f3
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libxau-1.0.12-h7cc23a3_2.conda#da33efee1a93603d92e06d4a2b68def6
@@ -41,7 +41,7 @@ https://conda.anaconda.org/conda-forge/linux-64/xorg-libxdmcp-1.1.5-h7cc23a3_2.c
 https://conda.anaconda.org/conda-forge/linux-64/graphite2-1.3.15-h54a6638_1.conda#f9fe2984587fa8235a6af6004760cd18
 https://conda.anaconda.org/conda-forge/linux-64/icu-78.3-py310h44b86e0_2.conda#72a381cbad04f24b1c2a43ef707f45b4
 https://conda.anaconda.org/conda-forge/linux-64/lerc-4.2.0-hdb68285_0.conda#fb9d356b1a57d6d54768be7ebd5fce09
-https://conda.anaconda.org/conda-forge/linux-64/libedit-3.1.20250104-pl5321h373387f_1.conda#50708d3b951d0f8e2d7f2df5b5edc040
+https://conda.anaconda.org/conda-forge/linux-64/libedit-3.1.20260512-pl5321h373387f_0.conda#27dbd7e2984b8fe48e069379636ccfdd
 https://conda.anaconda.org/conda-forge/linux-64/libfreetype6-2.14.3-h5e6c136_2.conda#b72a266a9317036fd0464cb98b027cd0
 https://conda.anaconda.org/conda-forge/linux-64/libnghttp2-1.68.1-h74cf4be_1.conda#75d211f04ac87506f1f43420712a69fe
 https://conda.anaconda.org/conda-forge/linux-64/libssh2-1.11.1-h6154650_1.conda#5c526561e1d2a2e071941174eae84557
@@ -67,7 +67,7 @@ https://conda.anaconda.org/conda-forge/linux-64/cairo-1.18.6-h3c89d7e_0.conda#79
 https://conda.anaconda.org/conda-forge/linux-64/curl-8.22.0-ha042cf0_0.conda#399a7c0b7ca511de34c5ee5762cee149
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libxi-1.8.3-h7cc23a3_1.conda#a1412b2b1184dacda45f8476fef2cc25
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libxrandr-1.5.5-h7cc23a3_1.conda#798a8c9d171859a022e1cb89e7d0eb10
-https://conda.anaconda.org/conda-forge/linux-64/libharfbuzz-14.5.1-h23af247_0.conda#c29c810ee25f6ef4f3fefc183142a0ab
+https://conda.anaconda.org/conda-forge/linux-64/libharfbuzz-14.6.0-h23af247_1.conda#bd7ae146a629d6c17e4be9365d4ec811
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libxtst-1.2.5-h7cc23a3_4.conda#752a5ac9322e0fbbc24146c1ce3ae44e
 https://conda.anaconda.org/conda-forge/linux-64/openjdk-25.0.2-h1602c4f_26.conda#920916925a5d103cf923d51813cc947d
-https://conda.anaconda.org/bioconda/noarch/nextflow-26.04.6-h2a3209d_1.conda#4fea597e1977b0221de342a3bfb2d971
+https://conda.anaconda.org/bioconda/noarch/nextflow-26.04.7-h2a3209d_0.conda#6d8cd7fcb2fa12f189e7cc766a5bbd33
