@@ -1,5 +1,22 @@
 # Changelog
 
+## [9.19.1](https://github.com/snakemake/snakemake-wrappers/compare/v9.19.0...v9.19.1) (2026-10-09)
+
+
+### Performance Improvements
+
+* autobump bio/alignoth/environment.yaml ([#5927](https://github.com/snakemake/snakemake-wrappers/issues/5927)) ([7d8cb42](https://github.com/snakemake/snakemake-wrappers/commit/7d8cb42f3a930b0970660f2b4c2772fdba832fb2))
+* autobump bio/delly/environment.yaml ([#5929](https://github.com/snakemake/snakemake-wrappers/issues/5929)) ([b5ca8f9](https://github.com/snakemake/snakemake-wrappers/commit/b5ca8f9df15b6b175a7967a91ae6c0ee263a1060))
+* autobump bio/dotmatch/crispr-count/environment.yaml ([#5930](https://github.com/snakemake/snakemake-wrappers/issues/5930)) ([204d236](https://github.com/snakemake/snakemake-wrappers/commit/204d236518dc86c8e18733d2e5215129e11ec46c))
+* autobump bio/encode_fastq_downloader/environment.yaml ([#5931](https://github.com/snakemake/snakemake-wrappers/issues/5931)) ([6d2a74e](https://github.com/snakemake/snakemake-wrappers/commit/6d2a74e61489cfb21ef4fe8c400f38a0ede9a63c))
+* autobump bio/fastp/environment.yaml ([#5932](https://github.com/snakemake/snakemake-wrappers/issues/5932)) ([190a78b](https://github.com/snakemake/snakemake-wrappers/commit/190a78b3bf21212b41335f9ff8002d2335d0e789))
+* autobump bio/fastqc/environment.yaml ([#5933](https://github.com/snakemake/snakemake-wrappers/issues/5933)) ([cd2506c](https://github.com/snakemake/snakemake-wrappers/commit/cd2506c0d199f5baf457044d72db692324fe5ad7))
+* autobump bio/rbt/fastq_split/environment.yaml ([#5935](https://github.com/snakemake/snakemake-wrappers/issues/5935)) ([909e2b0](https://github.com/snakemake/snakemake-wrappers/commit/909e2b00c077566fe207153ebd5cfa69621375a2))
+* autobump bio/reference/ensembl-biomart-table/environment.yaml ([#5890](https://github.com/snakemake/snakemake-wrappers/issues/5890)) ([6920856](https://github.com/snakemake/snakemake-wrappers/commit/69208563ff63b245c9b26676ffe59f60c1d70456))
+* autobump bio/vep/plugins/environment.yaml ([#5936](https://github.com/snakemake/snakemake-wrappers/issues/5936)) ([4d3e6b5](https://github.com/snakemake/snakemake-wrappers/commit/4d3e6b5636f23e8ebade67c8b06306a70541778d))
+* autobump wrappers in meta/bio/alignoth_report/meta_wrapper.smk ([#5925](https://github.com/snakemake/snakemake-wrappers/issues/5925)) ([9dadacd](https://github.com/snakemake/snakemake-wrappers/commit/9dadacd74d431b417e5d2c228da4938b57df40d1))
+* autobump wrappers in meta/bio/salmon_tximport/meta_wrapper.smk ([#5926](https://github.com/snakemake/snakemake-wrappers/issues/5926)) ([dfd3516](https://github.com/snakemake/snakemake-wrappers/commit/dfd35161b56fb7323de55e2ae4d378a1821a3c97))
+
 ## [9.19.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.18.1...v9.19.0) (2026-10-06)
 
 
