@@ -3,11 +3,11 @@
 # platform: linux-64
 # created-by: conda 24.9.2
 @EXPLICIT
-https://conda.anaconda.org/conda-forge/linux-64/libgomp-16.2.0-he0feb66_5.conda#af44890f8a2beefd3a83805a59a65014
+https://conda.anaconda.org/conda-forge/linux-64/libgomp-16.2.0-he0feb66_7.conda#d904c7ddd95e026254b4b80808ee9e12
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda#a9f577daf3de00bca7c3c76c0ecbd1de
-https://conda.anaconda.org/conda-forge/linux-64/libgcc-16.2.0-ha9f2e26_5.conda#3b62b92f0f082b67c59618ebf07617a7
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-16.2.0-ha9f2e26_7.conda#735629b400b70eeab21a2ba8f5b1c2ce
 https://conda.anaconda.org/conda-forge/linux-64/isa-l-2.32.1-hb03c661_0.conda#aee2e139304e7b59d3369222bb9eb288
 https://conda.anaconda.org/conda-forge/linux-64/libdeflate-1.25-hd45a770_1.conda#40f9b31aa9cf007789867df0decd0492
-https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-16.2.0-h934c35e_5.conda#75b43a2912a0354204696708e4f34b8d
+https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-16.2.0-h934c35e_7.conda#9b6707e0caca917fa6ea9ee473f37a5d
 https://conda.anaconda.org/conda-forge/linux-64/libhwy-1.3.0-h4c17acf_1.conda#c2a0c1d0120520e979685034e0b79859
-https://conda.anaconda.org/bioconda/linux-64/fastp-1.3.7-h43da1c4_0.conda#718a219a4b1041adf7eee9dff6052c84
+https://conda.anaconda.org/bioconda/linux-64/fastp-1.4.0-h43da1c4_0.conda#fe578e7d77366d9ea93f9f0caaca226b
