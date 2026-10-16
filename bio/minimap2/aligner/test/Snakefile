@@ -100,6 +100,24 @@ rule minimap2_ubam_sam:
         "master/bio/minimap2/aligner"
 
 
+rule minimap2_ubam_sam_tags:
+    input:
+        target="target/{input1}.mmi",  # can be either genome index or genome fasta
+        query="query/reads.bam",
+    output:
+        "aligned/{input1}_aln.ubam.tags.sam",
+    log:
+        "logs/minimap2/{input1}.ubam.tags.log",
+    params:
+        extra="-x map-pb",  # optional
+        sorting="none",  # optional: Enable sorting. Possible values: 'none', 'queryname' or 'coordinate'
+        sort_extra="",  # optional: extra arguments for samtools/picard
+        samtools_fastq_extra="-T s1,s2",  # optional: carry only these tags from the uBAM (default: -T "*")
+    threads: 3
+    wrapper:
+        "master/bio/minimap2/aligner"
+
+
 rule minimap2_ubam_sam_sorted:
     input:
         target="target/{input1}.mmi",  # can be either genome index or genome fasta
