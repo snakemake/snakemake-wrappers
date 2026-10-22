@@ -119,6 +119,20 @@ rule test_miller_cut:
         "master/utils/miller"
 
 
+rule test_miller_cut_headerless_output:
+    input:
+        table="table.csv",
+    output:
+        "miller/cut.headerless.csv",
+    log:
+        "logs/cut.headerless.log",
+    params:
+        extra="--headerless-csv-output cut -f gene_id",
+    threads: 2
+    wrapper:
+        "master/utils/miller"
+
+
 ### Sort ###
 rule test_miller_sort:
     input:
@@ -127,6 +141,20 @@ rule test_miller_sort:
         "miller/sort.csv",
     log:
         "logs/sort.log",
+    params:
+        extra="sort -r gene_id",
+    threads: 2
+    wrapper:
+        "master/utils/miller"
+
+
+rule test_miller_sort_gzipped_tsv:
+    input:
+        table="table.tsv.gz",
+    output:
+        "miller/sort.csv.gz",
+    log:
+        "logs/sort_gzipped_tsv.log",
     params:
         extra="sort -r gene_id",
     threads: 2
