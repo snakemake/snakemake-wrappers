@@ -95,9 +95,11 @@ elif is_arg("split", extra):
     extra += f" --prefix {os.path.commonprefix(snakemake.output).rstrip('_')}"
     output = ""
 
-shell_cmd = f"( GOMAXPROCS={snakemake.threads} mlr {io_opts} {extra} {inputs} {output} ) {log}"
+shell_cmd = (
+    f"( GOMAXPROCS={snakemake.threads} mlr {io_opts} {extra} {inputs} {output} ) {log}"
+)
 
-with open(snakemake.log[0], 'w') as log_file:
+with open(snakemake.log[0], "w") as log_file:
     print(f"Will now run this shell command:\n{shell_cmd}", file=log_file)
 
 shell(shell_cmd)
