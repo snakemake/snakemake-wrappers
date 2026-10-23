@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - methyldackel =0.6.1
+  - methyldackel =0.6.2
