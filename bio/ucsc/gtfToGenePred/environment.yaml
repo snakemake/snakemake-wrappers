@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - ucsc-gtftogenepred =482
+  - ucsc-gtftogenepred =502
   - csvkit =2.2.0
