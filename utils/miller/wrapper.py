@@ -5,6 +5,7 @@ __license__ = "MIT"
 import os
 from pathlib import Path
 from snakemake.shell import shell
+from snakemake.utils import format as snakemake_format
 from snakemake_wrapper_utils.snakemake import get_format, is_arg
 
 # The append=True is set, because we log the shell command to the log
@@ -105,10 +106,13 @@ elif is_arg("split", extra):
     output = ""
 
 shell_cmd = (
-    f"( GOMAXPROCS={snakemake.threads} mlr {io_opts} {extra} {inputs} {output} ) {log}"
+    "( GOMAXPROCS={snakemake.threads} mlr {io_opts} {extra} {inputs} {output} ) {log}"
 )
 
 with open(snakemake.log[0], "w") as log_file:
-    print(f"Will now run this shell command:\n{shell_cmd}", file=log_file)
+    print(
+        f"Will now run this shell command:\n{snakemake_format(shell_cmd)}",
+        file=log_file,
+    )
 
 shell(shell_cmd)
