@@ -14,10 +14,10 @@ extra = snakemake.params.get("extra", "")
 
 
 compress_formats_command_map = {
-    ".gz": "pigz",
+    ".gz": f"pigz --stdout --processes {snakemake.threads}",
     ".bz2": "bzip2",
     ".z": f"pigz --zlib --stdout --processes {snakemake.threads}",
-    ".zst": "zstd",
+    ".zst": f"zstd --stdout -T {snakemake.threads}",
 }
 compress_formats = list(compress_formats_command_map.keys())
 io_formats = [
