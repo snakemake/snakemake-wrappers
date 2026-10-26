@@ -13,12 +13,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True, append=True)
 extra = snakemake.params.get("extra", "")
 
 
-compress_formats = [
-    ".gz",
-    ".bz2",
-    ".z",
-    ".zst",
-]
+    ".z": "pigz --zlib",
 io_formats = [
     ".asv",
     ".asvlite",
@@ -70,9 +65,10 @@ else:
 ### OUTPUT
 output_path = Path(snakemake.output[0])
 output = f"> {output_path}"
+output_outermost_suffix = output_path.suffix
 # Compressed
-if output_path.suffix in compress_formats:
-    prog = get_format(output_path, ignore_compression=False)
+if output_outermost_suffix in compress_formats:
+    prog = compress_formats_command_map[output_outermost_suffix]
     output = f" | {prog} {output}"
 
 # Delimiter

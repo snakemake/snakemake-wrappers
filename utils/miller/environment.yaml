@@ -6,6 +6,5 @@ dependencies:
   - miller =6.22
   - snakemake-wrapper-utils =0.10
   - bzip2 =1.0
-  - gzip =1.14
-  - zlib =1.3
+  - pigz =2.8
   - zstd =1.5
