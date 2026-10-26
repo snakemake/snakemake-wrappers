@@ -13,7 +13,13 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True, append=True)
 extra = snakemake.params.get("extra", "")
 
 
+compress_formats_command_map = {
+    ".gz": "pigz",
+    ".bz2": "bzip2",
     ".z": "pigz --zlib",
+    ".zst": "zstd",
+}
+compress_formats = list(compress_formats_command_map.keys())
 io_formats = [
     ".asv",
     ".asvlite",
@@ -70,8 +76,15 @@ output_outermost_suffix = output_path.suffix
 if output_outermost_suffix in compress_formats:
     prog = compress_formats_command_map[output_outermost_suffix]
     output = f" | {prog} {output}"
+elif output_outermost_suffix not in io_formats:
+    raise ValueError(
+        f"The output suffix '{output_outermost_suffix}' of '{output_path}' is not supported by miller.\n"
+        "Supported input and output formats are:\n"
+        f"{io_formats}\n"
+        "Supported input and output compression formats are:\n"
+        f"{compress_formats}\n"
+    )
 
-# Delimiter
 out_format = get_format(output_path, ignore_compression=True)
 if f".{out_format}" not in io_formats:
     raise ValueError(
