@@ -7,3 +7,6 @@ __pycache__
 *~
 docs/_build
 docs/meta-wrappers
+# pixi environments
+.pixi/*
+!.pixi/config.toml

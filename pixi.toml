@@ -1,0 +1,14 @@
+[workspace]
+authors = ["Johannes Köster <johannes.koester@uni-due.de>"]
+channels = ["conda-forge", "bioconda"]
+platforms = ["linux-64", "osx-64"]
+
+[tasks]
+test = "pytest -v test_wrappers.py"
+
+[dependencies]
+snakemake-minimal = ">=9.27.1,<10"
+snakemake-storage-plugin-http = ">=0.3.1,<0.4"
+pytest = ">=9.1.1,<10"
+pandas = ">=3.1.0,<4"
+conda = ">=26.7.3,<27"
