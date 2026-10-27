@@ -18,7 +18,7 @@ compress_formats_command_map = {
     ".gz": f"pigz --stdout --processes {snakemake.threads}",
     ".bz2": "bzip2",
     ".z": f"pigz --zlib --stdout --processes {snakemake.threads}",
-    ".zst": f"zstd --stdout -T {snakemake.threads}",
+    ".zst": f"zstd --stdout --threads={snakemake.threads}",
 }
 compress_formats = list(compress_formats_command_map.keys())
 io_formats = [
