@@ -4978,6 +4978,7 @@ def test_verifybamid2(run):
         ["snakemake"],
     )
 
+
 def test_rbt_fastq_split(run):
     run(
         "bio/rbt/fastq_split",

@@ -7,8 +7,9 @@ platforms = ["linux-64", "osx-64"]
 test = "pytest -v test_wrappers.py"
 
 [dependencies]
-snakemake-minimal = ">=9.27.1,<10"
-snakemake-storage-plugin-http = ">=0.3.1,<0.4"
+snakemake-minimal = "*"
+snakemake-storage-plugin-http = "*"
 pytest = ">=9.1.1,<10"
 pandas = ">=3.1.0,<4"
 conda = ">=26.7.3,<27"
+black = ">=26.10.1,<27"

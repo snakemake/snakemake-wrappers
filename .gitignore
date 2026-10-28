@@ -10,4 +10,5 @@ docs/meta-wrappers
 # pixi environments
 .pixi/*
 !.pixi/config.toml
+pixi.lock
 bio/rebaler/environment.yaml
