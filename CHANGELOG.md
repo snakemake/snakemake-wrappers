@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.19.4](https://github.com/snakemake/snakemake-wrappers/compare/v9.19.3...v9.19.4) (2026-10-28)
+
+
+### Bug Fixes
+
+* bump pinnings to avoid emudhra vulnerability ([#6116](https://github.com/snakemake/snakemake-wrappers/issues/6116)) ([7cbf4c2](https://github.com/snakemake/snakemake-wrappers/commit/7cbf4c27ac249d53da96939071de930b33d101a7))
+
 ## [9.19.3](https://github.com/snakemake/snakemake-wrappers/compare/v9.19.2...v9.19.3) (2026-10-23)
 
 

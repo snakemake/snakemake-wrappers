@@ -2966,7 +2966,7 @@ def test_ngsderive(run):
             "A.strandedness.tsv",
             "A.encoding.tsv",
             "A.junctions.tsv",
-            "junctions/A.rg.bam.junctions.tsv",
+            "results/junctions/A.rg.bam.junctions.tsv",
             "A.endedness.tsv",
         ],
     )
@@ -3469,11 +3469,11 @@ def test_star_align(run):
     os.makedirs("bio/star/align/test/index", exist_ok=True)
     try:
         subprocess.check_call(
-            "mamba env create --file bio/star/align/environment.yaml -n star-env",
+            "conda env create --file bio/star/align/environment.yaml -n star-env",
             shell=True,
         )
         subprocess.check_call(
-            "bash -l -c 'source $(dirname $(dirname $(which mamba)))/bin/activate star-env; STAR --genomeDir "
+            "bash -l -c 'source $(dirname $(dirname $(which conda)))/bin/activate star-env; STAR --genomeDir "
             "bio/star/align/test/index "
             "--genomeFastaFiles bio/star/align/test/genome.fasta "
             "--runMode genomeGenerate "
@@ -4977,6 +4977,7 @@ def test_verifybamid2(run):
         "bio/verifybamid/verifybamid2",
         ["snakemake"],
     )
+
 
 def test_rbt_fastq_split(run):
     run(

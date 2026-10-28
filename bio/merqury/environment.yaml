@@ -4,3 +4,7 @@ channels:
   - nodefaults
 dependencies:
   - merqury =1.4.1
+  # bioconda's merqury package should have the following constraints:
+  - meryl =1.4.1
+  - r-ggplot2 =3.3.6
+  - r-base =4.2
