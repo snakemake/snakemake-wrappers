@@ -4,3 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - merqury =1.4.1
+  - meryl =1.4.1
+  - r-ggplot2 <4
