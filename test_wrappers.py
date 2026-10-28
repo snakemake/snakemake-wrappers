@@ -2966,7 +2966,7 @@ def test_ngsderive(run):
             "A.strandedness.tsv",
             "A.encoding.tsv",
             "A.junctions.tsv",
-            "junctions/A.rg.bam.junctions.tsv",
+            "results/junctions/A.rg.bam.junctions.tsv",
             "A.endedness.tsv",
         ],
     )
