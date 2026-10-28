@@ -11,32 +11,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup mamba
-        uses: conda-incubator/setup-miniconda@v3
-        with:
-          activate-environment: fmt
-          channels: "conda-forge, bioconda"
-          miniforge-version: latest
-
-      - name: Setup environment
-        shell: bash -el {0}
-        run: |
-          conda config --set channel_priority strict
-          conda install -n fmt -y black snakefmt
+      - uses: prefix-dev/setup-pixi@v0.11.2
 
       - name: Fetch master
         run: |
           git fetch origin master
 
       - name: Check Python formatting
-        shell: bash -el {0}
         run: |
-          black --check */*/*/wrapper.py */*/wrapper.py
+          pixi run black --check */*/*/wrapper.py */*/wrapper.py
 
       - name: Check Snakemake formatting
         shell: bash -el {0}
         run: |
-          snakefmt --check $(git diff origin/master --diff-filter=d --name-only | grep Snakefile)
+          pixi run snakefmt --check $(git diff origin/master --diff-filter=d --name-only | grep Snakefile)
 
   linting:
     runs-on: ubuntu-latest

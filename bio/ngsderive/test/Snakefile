@@ -41,7 +41,7 @@ rule test_ngsderive_junction_annotation_list:
         command="junction-annotation",
         extra="--min-intron 2 --consider-unannotated-references-novel",
     wrapper:
-        "master/bio/ngsderive"        
+        "master/bio/ngsderive"
 
 
 rule test_ngsderive_strandeness:
