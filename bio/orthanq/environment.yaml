@@ -4,3 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - orthanq =1.21.0
+  - htslib =1.23
+  - minimap2 =2.30

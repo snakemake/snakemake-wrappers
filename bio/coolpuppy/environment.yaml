@@ -4,3 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - coolpuppy =1.1.0
+  - setuptools =81.*
+  - pandas =2.1.2
