@@ -3469,11 +3469,11 @@ def test_star_align(run):
     os.makedirs("bio/star/align/test/index", exist_ok=True)
     try:
         subprocess.check_call(
-            "mamba env create --file bio/star/align/environment.yaml -n star-env",
+            "conda env create --file bio/star/align/environment.yaml -n star-env",
             shell=True,
         )
         subprocess.check_call(
-            "bash -l -c 'source $(dirname $(dirname $(which mamba)))/bin/activate star-env; STAR --genomeDir "
+            "bash -l -c 'source $(dirname $(dirname $(which conda)))/bin/activate star-env; STAR --genomeDir "
             "bio/star/align/test/index "
             "--genomeFastaFiles bio/star/align/test/genome.fasta "
             "--runMode genomeGenerate "
