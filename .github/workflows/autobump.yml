@@ -32,10 +32,7 @@ jobs:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         with:
           subcommand: update-conda-envs
-          # ensure that envs are emudhra-safe (https://discuss.python.org/t/information-for-python-users-regarding-emudhra-emsign-ca-certificate-security-incident/109576) via --ensure
-          args: >-
-            */${{ matrix.prefix }}*/environment.yaml */${{ matrix.prefix }}*/*/environment.yaml --create-prs --warn-on-error --entity-regex '(?P<entity>.+)/environment.yaml' --pr-add-label --pin-envs
-            --ensure "certifi>=2026.10.19" "pip>=26.2.2" "uv>=0.13.4" "sigstore>=4.5.1" "pixi>=0.82.1" "virtualenv>=21.14.12" "conda>=26.9.4"
+          args: "*/${{ matrix.prefix }}*/environment.yaml */${{ matrix.prefix }}*/*/environment.yaml --create-prs --warn-on-error --entity-regex '(?P<entity>.+)/environment.yaml' --pr-add-label --pin-envs"
 
   autobump_meta:
     strategy:
