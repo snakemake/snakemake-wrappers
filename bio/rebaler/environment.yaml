@@ -4,3 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - rebaler =0.2.0
+  - setuptools =81.*

@@ -3,4 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - ngscheckmate=1.0.1
+  - ngscheckmate =1.0.1
+  - samtools =1.6
