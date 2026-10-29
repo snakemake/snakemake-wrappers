@@ -15,6 +15,8 @@ library("cli")
 
 library("biomaRt")
 
+options(timeout = 300)
+
 wanted_biomart <- snakemake@params[["biomart"]]
 # bioconductor-biomart needs the species as something like `hsapiens` instead
 # of `homo_sapiens`, and `chyarkandensis` instead of `cervus_hanglu_yarkandensis`
