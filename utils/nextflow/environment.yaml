@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - nextflow =26.10.3
+  - nextflow =26.10.4
