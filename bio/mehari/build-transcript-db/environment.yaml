@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - mehari =0.46.0
+  - mehari =0.49.1
   - snakemake-wrapper-utils =0.10.0
