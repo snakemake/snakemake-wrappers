@@ -4,5 +4,5 @@ channels:
   - nodefaults
 dependencies:
   - bellerophon =1.0
-  - samtools =1.24
+  - samtools =1.25
   - snakemake-wrapper-utils =0.10.0
