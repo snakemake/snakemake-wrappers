@@ -6,4 +6,4 @@ dependencies:
   - openjdk =25.0.2
   - gatk4 =4.6.2.0
   - snakemake-wrapper-utils =0.10.0
-  - samtools =1.24
+  - samtools =1.25
