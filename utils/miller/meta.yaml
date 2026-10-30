@@ -4,6 +4,7 @@ description: >
   Miller is like awk, sed, cut, join, and sort for name-indexed data such as CSV, TSV, and tabular JSON. You get to work with your data using named fields, without needing to count positional column indices.
 authors:
   - Filipe G. Vieira
+  - David Laehnemann
 input:
   - Path to input file(s).
 output:

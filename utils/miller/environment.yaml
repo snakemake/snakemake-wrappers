@@ -3,5 +3,8 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - miller =6.22.0
-  - snakemake-wrapper-utils =0.10.0
+  - miller =6.22
+  - snakemake-wrapper-utils =0.10
+  - bzip2 =1.0
+  - pigz =2.8
+  - zstd =1.5
