@@ -64,4 +64,4 @@ rule arriba:
         "<logs>/arriba/<per>.log",
     threads: 1
     wrapper:
-        "v9.0.1/bio/arriba"
+        "v9.19.4/bio/arriba"
