@@ -5,5 +5,5 @@ channels:
 dependencies:
   - bowtie2 =2.5.5
   - bismark =3.1.0
-  - samtools =1.24
+  - samtools =1.25
   - perl-gdgraph =1.56
