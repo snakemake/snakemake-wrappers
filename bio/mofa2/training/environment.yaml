@@ -6,4 +6,4 @@ dependencies:
   - bioconductor-mofa2 =1.20.2
   - r-arrow =25.0.0
   - mofapy2 =0.7.5
-  - python =3.14
+  - python =3.15.2
