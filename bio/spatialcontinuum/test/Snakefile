@@ -1,0 +1,12 @@
+rule cri_calc:
+    output:
+        report="results/cri_report.txt",
+    params:
+        pattern="solid",
+        tp53="mutated",
+        rb1="mutated",
+        stroma="dense",
+    log:
+        "logs/cri_calc.log",
+    wrapper:
+        "master/bio/spatialcontinuum"
