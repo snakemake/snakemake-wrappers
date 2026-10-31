@@ -6,7 +6,12 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
-pattern = snakemake.params.get("pattern", "solid")
+pattern = snakemake.params["pattern"]
+if "micropapillary" in pattern.lower():
+    raise ValueError(
+        "The 'micropapillary' pattern is temporarily unsupported in "
+        "spatial-continuum 1.0.2 due to upstream matching order."
+    )
 tp53 = snakemake.params.get("tp53", "wt")
 rb1 = snakemake.params.get("rb1", "wt")
 stroma = snakemake.params.get("stroma", "moderate")
@@ -20,6 +25,6 @@ shell(
     " --rb1 '{rb1}'"
     " --stroma '{stroma}'"
     " {extra}"
-    " > '{snakemake.output.report}'"
+    " > {snakemake.output.report:q}"
     " {log}"
 )

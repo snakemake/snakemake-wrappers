@@ -5565,3 +5565,16 @@ def test_nanovar(run):
         ],
         cores=4,
     )
+
+
+def test_spatialcontinuum(run):
+    run(
+        "bio/spatialcontinuum",
+        [
+            "snakemake",
+            "results/cri_report.txt",
+        ],
+        compare_results_with_expected={
+            "results/cri_report.txt": "expected_cri_report.txt",
+        },
+    )
