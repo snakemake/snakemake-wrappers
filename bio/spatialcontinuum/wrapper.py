@@ -6,8 +6,12 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
+if "--pattern" in extra:
+    raise ValueError("Specify pattern via params.pattern, not extra.")
+
 pattern = snakemake.params["pattern"]
-if "micropapillary" in pattern.lower():
+normalized_pattern = pattern.lower().replace("-", "").strip()
+if "micropapillary" in normalized_pattern:
     raise ValueError(
         "The 'micropapillary' pattern is temporarily unsupported in "
         "spatial-continuum 1.0.2 due to upstream matching order."
