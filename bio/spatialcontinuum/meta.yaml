@@ -1,0 +1,16 @@
+name: "spatialcontinuum"
+description: Calculate the Composite Resistance Index (CRI) and evaluate perivascular pharmacological sanctuaries for NSCLC targeted therapy post-ADAURA.
+url: https://github.com/Lukecele/spatial-continuum-oncology
+authors:
+  - Luca Celebrano
+input: []
+output:
+  - report: Bedside CRI clinical decision report (plain text format)
+params:
+  - pattern: Histologic pattern (solid, micropapillary, papillary, acinar, lepidic)
+  - tp53: TP53 status (wt, mutated)
+  - rb1: RB1 status (wt, mutated)
+  - stroma: Stromal density (dense, moderate, low)
+  - extra: Additional command line flags passed to cri-calc
+notes: |
+  Standard clinical calculation tool based on the spatial-continuum Bioconda package.
