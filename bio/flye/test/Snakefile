@@ -1,0 +1,23 @@
+container: "docker://continuumio/miniconda3:4.4.10"
+
+
+rule run_flye:
+    input:
+        reads="test_reads/Loman_E.coli_MAP006-1_2D_50x.first500.fasta.gz",
+    output:
+        assembly="{dir_path}/assembly.fasta",
+        path=directory("{dir_path}/00-assembly"),
+    benchmark:
+        "logs/benchmarks/{dir_path}/flye.txt"
+    params:
+        out_dir=lambda wildcards: wildcards.dir_path,
+        seq_type="nano-raw",
+        keep_intermediates="yes",
+        extra="--iterations 1",
+    log:
+        "logs/{dir_path}/flye.log",
+    threads: 8
+    resources:
+        mem_mb=250000,
+    wrapper:
+        "master/bio/flye"
