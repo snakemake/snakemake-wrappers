@@ -6,29 +6,13 @@ __license__ = "MIT"
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
-if "--pattern" in extra:
-    raise ValueError("Specify pattern via params.pattern, not extra.")
 
-pattern = snakemake.params["pattern"]
-normalized_pattern = pattern.lower().replace("-", "").strip()
-if "micropapillary" in normalized_pattern:
-    raise ValueError(
-        "The 'micropapillary' pattern is temporarily unsupported in "
-        "spatial-continuum 1.0.2 due to upstream matching order."
-    )
-tp53 = snakemake.params.get("tp53", "wt")
-rb1 = snakemake.params.get("rb1", "wt")
-stroma = snakemake.params.get("stroma", "moderate")
+# Support optional batch cohort file input (TSV/CSV)
+batch_cmd = ""
+if snakemake.input:
+    cohort = getattr(snakemake.input, "cohort", snakemake.input[0])
+    batch_cmd = f"--batch {cohort:q}"
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell(
-    "cri-calc"
-    " --pattern '{pattern}'"
-    " --tp53 '{tp53}'"
-    " --rb1 '{rb1}'"
-    " --stroma '{stroma}'"
-    " {extra}"
-    " > {snakemake.output.report:q}"
-    " {log}"
-)
+shell("cri-calc" " {batch_cmd}" " {extra}" " > {snakemake.output.report:q}" " {log}")

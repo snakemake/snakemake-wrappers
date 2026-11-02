@@ -3,14 +3,11 @@ description: Calculate the Composite Resistance Index (CRI) and evaluate perivas
 url: https://github.com/Lukecele/spatial-continuum-oncology
 authors:
   - Luca Celebrano
-input: []
+input:
+  - cohort: Optional patient cohort table (TSV or CSV) for batch processing
 output:
-  - report: Bedside CRI clinical decision report (plain text format)
+  - report: Bedside CRI clinical decision report (plain text) or batch cohort results (TSV)
 params:
-  - pattern: Histologic pattern (solid, micropapillary, papillary, acinar, lepidic)
-  - tp53: TP53 status (wt, mutated)
-  - rb1: RB1 status (wt, mutated)
-  - stroma: Stromal density (dense, moderate, low)
-  - extra: Additional command line flags passed to cri-calc
+  - extra: Additional command line flags passed to cri-calc (e.g. '--pattern solid --tp53 mutated --rb1 mutated --stroma dense')
 notes: |
   Standard clinical calculation tool based on the spatial-continuum Bioconda package.
