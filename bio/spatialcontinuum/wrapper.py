@@ -3,6 +3,7 @@ __copyright__ = "Copyright 2026, Luca Celebrano"
 __email__ = "l.celebrano@studenti.unina.it"
 __license__ = "MIT"
 
+import shlex
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
@@ -11,7 +12,7 @@ extra = snakemake.params.get("extra", "")
 batch_cmd = ""
 if snakemake.input:
     cohort = getattr(snakemake.input, "cohort", snakemake.input[0])
-    batch_cmd = f"--batch {cohort:q}"
+    batch_cmd = f"--batch {shlex.quote(str(cohort))}"
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
