@@ -167,6 +167,7 @@ Please ensure that the wrapper:
 * passes on the `threads` value, if the used tool(s) allow(s) it
 * writes any temporary files to a unique hidden folder in the working directory, or (better) stores them where the Python function `tempfile.gettempdir() <https://docs.python.org/3/library/tempfile.html#tempfile.gettempdir>`_ points (this also means that using any Python tempfile default behavior works)
 * is formatted according to the language's standards (for Python, format it with `black`_: ``black wrapper.py``)
+* use explicit parameters only for those needed for wrapper logic, and prefer ``params.extra`` for all other parameters
 
 For repeatedly needed functionality you can use the `snakemake-wrapper-utils <https://github.com/snakemake/snakemake-wrapper-utils>`_.
 Use what is available or create new functionality there, whenever you start repeating functions across wrappers.

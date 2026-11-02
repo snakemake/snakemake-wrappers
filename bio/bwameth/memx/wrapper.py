@@ -30,7 +30,6 @@ samtools_opts = get_samtools_opts(snakemake, param_name="sort_extra")
 java_opts = get_java_opts(snakemake)
 
 bwa_threads = snakemake.threads
-samtools_threads = snakemake.threads - 1
 
 # Check arguments
 if sort_order not in {"coordinate", "queryname"}:
@@ -38,10 +37,6 @@ if sort_order not in {"coordinate", "queryname"}:
 
 # Determine which pipe command to use for converting to bam or sorting.
 if sort == "none":
-    # Correctly assign number of threads according to user request
-    if samtools_threads >= 1:
-        samtools_opts += f" --threads {samtools_threads} "
-
     if str(snakemake.output[0]).lower().endswith(("bam", "cram")):
         # Simply convert to bam using samtools view.
         pipe_cmd = f" | samtools view {samtools_opts} > {snakemake.output[0]}"
@@ -51,10 +46,6 @@ if sort == "none":
 
 
 elif sort == "samtools":
-    # Correctly assign number of threads according to user request
-    if samtools_threads >= 1:
-        samtools_opts += " --threads {samtools_threads} "
-
     # Add name flag if needed.
     if sort_order == "queryname":
         sort_extra += " -n"

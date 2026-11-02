@@ -1,0 +1,18 @@
+name: mehari build transcript db
+description: Build a transcript database for mehari.
+url: https://github.com/varfish-org/mehari
+input:
+  annotation: Path to GFF3 or CDOT annotation.
+  sequences: Path to reference FASTA (uncompressed) containing cDNA / ncDNA sequences OR path to a biocommons SeqRepo instance directory.
+output:
+  db: Path to transcript database.
+params:
+  assembly: Assembly name, e.g., "GRCh38".
+  assembly_version: Assembly version, e.g., "GRCh38.p14".
+  annotation_version: Version of the annotation.
+  transcript_source: Source of the transcript sequences, e.g., "Ensembl" or "RefSeq".
+  transcript_source_version: Version of the transcript sequences, e.g., "115".
+  extra: |
+    Extra arguments for the `mehari db create` invocation.
+authors:
+  - Till Hartmann

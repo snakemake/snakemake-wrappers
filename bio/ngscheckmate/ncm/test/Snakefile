@@ -7,6 +7,8 @@ rule test_ngscheckmate_fastq_pair_ended:
         pdf="fastq_paired.pdf",
         match="fastq_paired_matched.txt",
         txt="fastq_paired_all.txt",
+    log:
+        "logs/fastq_paired.log",
     threads: 1
     params:
         # Optional parameters besides IO and threading
@@ -15,8 +17,6 @@ rule test_ngscheckmate_fastq_pair_ended:
         #    or  `False` for single-ended fastq files
         # Used only for FastQ input files.
         paired=True,
-    log:
-        "test_ngscheckmate_fastq_paired.log",
     wrapper:
         "master/bio/ngscheckmate/ncm"
 
@@ -30,6 +30,8 @@ rule test_ngscheckmate_fastq_single_ended:
         pdf="fastq.pdf",
         match="fastq_matched.txt",
         txt="fastq_all.txt",
+    log:
+        "logs/fastq.log",
     threads: 1
     params:
         # Optional parameters besides IO and threading
@@ -38,8 +40,6 @@ rule test_ngscheckmate_fastq_single_ended:
         #    or  `False` for single-ended fastq files
         # Used only for FastQ input files.
         paired=False,
-    log:
-        "test_ngscheckmate_fastq.log",
     wrapper:
         "master/bio/ngscheckmate/ncm"
 
@@ -54,9 +54,9 @@ rule test_ngscheckmate_bam:
         matrix="bam_matrix.txt",
         match="bam_matched.txt",
         txt="small_all.txt",
-    threads: 1
     log:
-        "test_ngscheckmate_bam.log",
+        "logs/bam.log",
+    threads: 1
     params:
         # Optional parameters besides IO and threading
         extra="--nonzero",
@@ -74,9 +74,9 @@ rule test_ngscheckmate_vcf:
         matrix="vcf_matrix.txt",
         match="vcf_matched.txt",
         txt="vcf_all.txt",
-    threads: 1
     log:
-        "test_ngscheckmate_vcf.log",
+        "logs/vcf.log",
+    threads: 1
     params:
         # Optional parameters besides IO and threading
         extra="--nonzero",

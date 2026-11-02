@@ -4,3 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - pyfastaq =3.17.0
+  - setuptools =81.*

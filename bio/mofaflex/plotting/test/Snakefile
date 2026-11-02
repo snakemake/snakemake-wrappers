@@ -1,0 +1,18 @@
+rule mofaflex_plotting:
+    input:
+        "{data}.h5",  # the trained model
+    output:
+        training_curve="results/{data}_training_curve.pdf",
+        factor_correlation="results/{data}_factor_correlation.pdf",
+        variance_explained="results/{data}_variance_explained.pdf",
+        top_weights="results/{data}_top_weights.pdf",
+        weights="results/{data}_weights.pdf",
+        factors_scatter="results/{data}_factors_scatter.pdf",
+    log:
+        "logs/mofaflex_plotting_{data}.log",
+    params:
+        factors_scatter_x=1,  # index of factor on x axis to compare in scatter plot
+        factors_scatter_y=2,  # index of factor on y axis to compare in scatter plot
+        weight_factors=(1, 2),  # indices of factors to plot in the weights plot
+    wrapper:
+        "master/bio/mofaflex/plotting"

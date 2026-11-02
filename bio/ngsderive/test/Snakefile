@@ -4,7 +4,7 @@ rule test_ngsderive_endedness:
     output:
         tsv="A.endedness.tsv",
     log:
-        "ngsderive/endedness.log",
+        "logs/ngsderive/endedness.log",
     params:
         command="endedness",
         extra="--n-reads 2",
@@ -20,7 +20,7 @@ rule test_ngsderive_junction_annotation:
         tsv="A.junctions.tsv",
         junction_dir=directory("junctions"),
     log:
-        "ngsderive/junctions.log",
+        "logs/ngsderive/junctions.log",
     params:
         command="junction-annotation",
         extra="--min-intron 2 --consider-unannotated-references-novel",
@@ -34,14 +34,14 @@ rule test_ngsderive_junction_annotation_list:
         gene_model="annotation.sorted.gtf.gz",
     output:
         tsv="A.junctions_list.tsv",
-        junction_dir=["junctions/A.rg.bam.junctions.tsv"],
+        junction_dir=["results/junctions/A.rg.bam.junctions.tsv"],
     log:
-        "ngsderive/junctions.log",
+        "logs/ngsderive/junctions.log",
     params:
         command="junction-annotation",
         extra="--min-intron 2 --consider-unannotated-references-novel",
     wrapper:
-        "master/bio/ngsderive"        
+        "master/bio/ngsderive"
 
 
 rule test_ngsderive_strandeness:
@@ -51,7 +51,7 @@ rule test_ngsderive_strandeness:
     output:
         tsv="A.strandedness.tsv",
     log:
-        "ngsderive/strand.log",
+        "logs/ngsderive/strand.log",
     params:
         command="strandedness",
         extra="--verbose --minimum-reads-per-gene 2 --n-genes 1",
@@ -65,7 +65,7 @@ rule test_ngsderive_encoding:
     output:
         tsv="A.encoding.tsv",
     log:
-        "ngsderive/encoding.log",
+        "logs/ngsderive/encoding.log",
     params:
         command="encoding",
         extra="--n-reads 2",
@@ -79,7 +79,7 @@ rule test_ngsderive_instrument:
     output:
         tsv="A.instrument.tsv",
     log:
-        "ngsderive/instrument.log",
+        "logs/ngsderive/instrument.log",
     params:
         command="instrument",
         extra="--n-reads 2 --verbose",
@@ -93,7 +93,7 @@ rule test_ngsderive_readlen:
     output:
         tsv="A.readlen.tsv",
     log:
-        "ngsderive/readlen.log",
+        "logs/ngsderive/readlen.log",
     params:
         command="readlen",
         extra="--majority-vote-cutoff 10 --n-reads 2",

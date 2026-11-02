@@ -1,0 +1,14 @@
+rule test_mageck_flute_mle:
+    input:
+        "gene_summary.txt",
+    output:
+        directory("test_mageck_flute_mle"),
+    log:
+        "test_mageck_flute_mle.log",
+    params:
+        treatname="Pmel1",
+        ctrlname="Pmel1_Input",
+        organism="mmu",
+        omitEssential=True,
+    wrapper:
+        "master/bio/mageckflute/flutemle"

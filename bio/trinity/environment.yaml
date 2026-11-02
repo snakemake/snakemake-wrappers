@@ -4,3 +4,4 @@ channels:
   - nodefaults
 dependencies:
   - trinity =2.15.2
+  - salmon =1.10

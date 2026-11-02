@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - hisat2 =2.2.2
-  - samtools =1.23.1
+  - hisat2 =2.2.3
+  - samtools =1.25

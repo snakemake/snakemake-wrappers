@@ -1,13 +1,27 @@
 rule bedtools_merge:
     input:
         # Multiple bed-files can be added as list
-        "A.bed"
+        "A.bed",
     output:
-        "A.merged.bed"
-    params:
-        ## Add optional parameters 
-        extra="-c 1 -o count" ## In this example, we want to count how many input lines we merged per output line
+        "A.merged.bed",
     log:
-        "logs/merge/A.log"
+        "logs/merge/A.log",
+    params:
+        ## Add optional parameters
+        extra="-c 1 -o count",  ## In this example, we want to count how many input lines we merged per output line
+    wrapper:
+        "master/bio/bedtools/merge"
+
+
+rule bedtools_merge_multi:
+    input:
+        ["A.bed.gz", "B.bed.gz"],
+    output:
+        "AB.merged.bed",
+    log:
+        "logs/merge/AB.log",
+    params:
+        ## Add optional parameters
+        extra="-c 1 -o count",  ## In this example, we want to count how many input lines we merged per output line
     wrapper:
         "master/bio/bedtools/merge"

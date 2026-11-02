@@ -1,0 +1,6 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: linux-64
+# created-by: conda 24.9.2
+@EXPLICIT
+https://conda.anaconda.org/bioconda/linux-64/pbmarkdup-1.2.0-h9ee0642_0.tar.bz2#8c647c29064f3113eb26e2580ecc7b2d

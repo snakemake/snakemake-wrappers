@@ -12,3 +12,5 @@ output:
   - summ: summary file in TXT format
 params:
   - extra: additional program arguments
+note: |
+  - This wrapper only performs QC for a single FASTQ file.

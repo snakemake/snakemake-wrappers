@@ -44,7 +44,6 @@ def detect_fmt(files, long_option, short_option, extra) -> str:
 
 # Enhance extra parameters if needed
 extra = snakemake.params.get("extra", "")
-extra += detect_fmt(snakemake.input, "--input-format", "-p", extra)
 extra += detect_fmt(snakemake.output, "--output-format", "-o", extra)
 
 subcommand = snakemake.params.get("subcommand", "")
@@ -54,6 +53,8 @@ expression = snakemake.params.get("expression", "")
 infile = snakemake.input
 if len(infile) == 0:
     infile = " --null-input "
+else:
+    extra += detect_fmt(snakemake.input, "--input-format", "-p", extra)
 
 # Handling file splitting
 outfile = snakemake.output

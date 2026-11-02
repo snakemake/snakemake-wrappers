@@ -1,0 +1,17 @@
+rule mehari_build_transcript_database:
+    input:
+        annotation="resources/{prefix}.gff3.gz",
+        sequences="resources/{prefix}.cdna.fasta",
+    output:
+        db="{prefix}.bin.zst",
+    log:
+        "logs/mehari/build_transcript_db/{prefix}.log",
+    threads: 4
+    params:
+        assembly="GRCh38",
+        assembly_version="GRCh38.p14",
+        transcript_source="Ensembl",
+        transcript_source_version="115",
+        annotation_version="115",
+    wrapper:
+        "master/bio/mehari/build-transcript-db"

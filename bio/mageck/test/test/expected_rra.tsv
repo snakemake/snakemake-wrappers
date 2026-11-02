@@ -1,0 +1,4 @@
+id	num	neg|score	neg|p-value	neg|fdr	neg|rank	neg|goodsgrna	neg|lfc	pos|score	pos|p-value	pos|fdr	pos|rank	pos|goodsgrna	pos|lfc
+A1CF	9	0.26296	0.47557	0.713357	1	3	-0.017592	0.26296	0.47557	0.551397	1	2	-0.017592
+AATF	3	0.271	0.3363	0.713357	2	1	-0.74435	0.54937	0.5514	0.551397	3	1	-0.74435
+AAK1	3	0.74596	0.7456	0.745598	3	0	0.34774	0.271	0.3363	0.551397	2	1	0.34774

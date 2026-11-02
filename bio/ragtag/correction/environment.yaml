@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - ragtag =2.1.0
+  - ragtag =2.1.1
