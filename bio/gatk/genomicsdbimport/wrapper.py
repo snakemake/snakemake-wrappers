@@ -8,7 +8,6 @@ import tempfile
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
-
 extra = snakemake.params.get("extra", "")
 # uses Java native library TileDB, which requires a lot of memory outside
 # of the `-Xmx` memory, so we reserve 40% instead of the default 20%. See:

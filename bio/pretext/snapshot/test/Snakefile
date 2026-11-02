@@ -2,7 +2,7 @@ rule pretext_snapshot_png:
     input:
         "map.pretext",
     output:
-        all=directory("all_maps/"),
+        all=directory("all_maps_png/"),
         full="full_map.png",
     log:
         "logs/pretext_snapshot_png.log",
@@ -16,7 +16,7 @@ rule pretext_snapshot_jpg:
     input:
         "map.pretext",
     output:
-        all=directory("all_maps/"),
+        all=directory("all_maps_jpg/"),
         full="full_map.jpg",
     log:
         "logs/pretext_snapshot_jpg.log",

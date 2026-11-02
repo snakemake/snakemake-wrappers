@@ -9,7 +9,6 @@ import os
 import tempfile
 import re
 
-
 # Create temporary directory that will only contain the symbolic link to the
 # input file, in order to sanely work with the art_profiler_illumina cli
 with tempfile.TemporaryDirectory() as temp_input:

@@ -1,0 +1,15 @@
+rule all:
+    input:
+        "ab.vcf",
+
+
+rule test_jasminesv:
+    input:
+        vcfs=["a.vcf", "b.vcf"],
+    output:
+        vcf="ab.vcf",
+    log:
+        "logs/jasminesv.log",
+    threads: 1
+    wrapper:
+        "master/bio/jasminesv"

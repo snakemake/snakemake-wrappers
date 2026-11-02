@@ -12,7 +12,8 @@ input:
   - vcf: Path to indexed VCF file (Optional)
   - vcf_idx: Path to index of VCF file (required when VCF is used)
   - bed: Path to BED file (Optional)
-output: "HTML, JSON or directory path"
+output:
+  - HTML, JSON or directory path
 authors:
   - Felix Wiegand
 params:

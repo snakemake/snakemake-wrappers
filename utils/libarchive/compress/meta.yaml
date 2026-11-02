@@ -1,0 +1,24 @@
+name: libarchive - compress
+url: https://github.com/libarchive/libarchive
+description: A simple tool to compress multiple files into commonly used archives (.zip, .7zip, .tar, etc).
+authors:
+  - Ivan Ruiz Manuel
+input:
+  - Paths of the files to compress.
+output:
+  - Location of the compressed archive (.zip, .7zip, .tar, etc.).
+params:
+  - format_name: >
+      Compression format (e.g., "7zip", "pax", "zip").
+      See the libarchive documentation for the full list.
+  - filter_name: |
+      Compression filter to use. Options vary per format.
+      Common combinations: 
+        * For zip and 7zip: none.
+        * For pax: gzip or xz (*.tar.gz, and *.tar.xz).
+  - internal_paths: >
+      Optional. Destination path(s) for the files within the archive.
+      Must correspond one-to-one with the output files, in the same order.
+      If omitted, all files are added at the archive root.
+  - extra: >
+      Optional. Dictionary with additional arguments for `libarchive.file_writer()`.

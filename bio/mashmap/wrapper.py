@@ -1,7 +1,7 @@
 #!/usr/bin/python3.8
 # coding: utf-8
 
-""" Snakemake wrapper for MashMap """
+"""Snakemake wrapper for MashMap"""
 
 __author__ = "Thibault Dayris"
 __copyright__ = "Copyright 2022, Thibault Dayris"

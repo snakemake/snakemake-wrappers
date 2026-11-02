@@ -8,7 +8,6 @@ import tempfile
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
-
 input_copy_ratio_seg = snakemake.input.copy_ratio_seg
 
 called_copy_ratio_seg = snakemake.output.called_copy_ratio_seg

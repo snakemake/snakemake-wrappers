@@ -1,0 +1,16 @@
+rule test_mageck_flute_rra:
+    input:
+        rra="gene_summary_small.txt",
+        # Optional path to sgRNA
+        sgrna="sgrna_summary_small.txt",
+    output:
+        directory("test_mageck_flute_rra"),
+    log:
+        "test_mageck_flute_rra.log",
+    params:
+        keytype="Symbol",
+        organism="mmu",
+        proj="testing",
+        verbose=True,
+    wrapper:
+        "master/bio/mageckflute/fluterra"

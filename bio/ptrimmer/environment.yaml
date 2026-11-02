@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - ptrimmer =1.4.0
+  - ptrimmer =1.4.1

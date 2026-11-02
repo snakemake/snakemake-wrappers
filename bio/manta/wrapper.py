@@ -8,7 +8,6 @@ from snakemake.shell import shell
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-
 extra_cfg = snakemake.params.get("extra_cfg", "")
 extra_run = snakemake.params.get("extra_run", "")
 

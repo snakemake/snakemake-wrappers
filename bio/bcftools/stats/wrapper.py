@@ -7,7 +7,6 @@ __license__ = "MIT"
 from snakemake.shell import shell
 from snakemake_wrapper_utils.bcftools import get_bcftools_opts
 
-
 bcftools_opts = get_bcftools_opts(
     snakemake, parse_output=False, parse_output_format=False, parse_memory=False
 )

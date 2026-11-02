@@ -9,7 +9,7 @@ rule salmon_decoy_sequences:
     log:
         "decoys.log",
     wrapper:
-        "master/bio/salmon/decoys"
+        "v6.0.0/bio/salmon/decoys"
 
 
 rule salmon_index_gentrome:
@@ -19,21 +19,17 @@ rule salmon_index_gentrome:
     output:
         multiext(
             "salmon/transcriptome_index/",
-            "complete_ref_lens.bin",
-            "ctable.bin",
-            "ctg_offsets.bin",
-            "duplicate_clusters.tsv",
-            "info.json",
-            "mphf.bin",
-            "pos.bin",
-            "pre_indexing.log",
-            "rank.bin",
-            "refAccumLengths.bin",
-            "ref_indexing.log",
-            "reflengths.bin",
+            "index.ssi",
+            "refseq_offsets.json",
+            "index.ectab",
+            "index.ctab",
             "refseq.bin",
-            "seq.bin",
-            "versionInfo.json",
+            "index.ssi.mphf",
+            "index.refinfo",
+            "info.json",
+            "duplicate_clusters.tsv",
+            "index.tct",
+            "index.tdct",
         ),
     cache: True
     log:
@@ -43,30 +39,13 @@ rule salmon_index_gentrome:
         # optional parameters
         extra="",
     wrapper:
-        "master/bio/salmon/index"
+        "v9.18.1/bio/salmon/index"
 
 
 rule salmon_quant_reads:
     input:
         r="reads/{sample}.fastq.gz",
-        index=multiext(
-            "salmon/transcriptome_index/",
-            "complete_ref_lens.bin",
-            "ctable.bin",
-            "ctg_offsets.bin",
-            "duplicate_clusters.tsv",
-            "info.json",
-            "mphf.bin",
-            "pos.bin",
-            "pre_indexing.log",
-            "rank.bin",
-            "refAccumLengths.bin",
-            "ref_indexing.log",
-            "reflengths.bin",
-            "refseq.bin",
-            "seq.bin",
-            "versionInfo.json",
-        ),
+        index=rules.salmon_index_gentrome.output,
         gtf="resources/annotation.gtf",
     output:
         quant=temp("pseudo_mapping/{sample}/quant.sf"),
@@ -84,7 +63,7 @@ rule salmon_quant_reads:
         extra="--numBootstraps 32",
     threads: 2
     wrapper:
-        "master/bio/salmon/quant"
+        "v9.18.1/bio/salmon/quant"
 
 
 rule tximport:
@@ -114,4 +93,4 @@ rule tximport:
     log:
         "logs/tximport.log"
     wrapper:
-        "master/bio/tximport"
+        "v9.3.0/bio/tximport"

@@ -2,7 +2,6 @@
 
 """This snakemake wrapper handles sample sheet conversions"""
 
-
 __author__ = "Thibault Dayris"
 __copyright__ = "Copyright 2025, Thibault Dayris"
 __email__ = "thibault.dayris@gustaveroussy.fr"

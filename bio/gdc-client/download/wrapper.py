@@ -31,10 +31,10 @@ with TemporaryDirectory() as tempdir:
     for out_path in snakemake.output:
         tmp_path = path.join(tempdir, uuid, path.basename(out_path))
         if not path.exists(tmp_path):
-            (root, ext1) = path.splitext(out_path)
+            root, ext1 = path.splitext(out_path)
             paths = glob.glob(path.join(tempdir, uuid, "*" + ext1))
             if len(paths) > 1:
-                (root, ext2) = path.splitext(root)
+                root, ext2 = path.splitext(root)
                 paths = glob.glob(path.join(tempdir, uuid, "*" + ext2 + ext1))
             if len(paths) == 0:
                 raise ValueError(

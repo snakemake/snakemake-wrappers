@@ -8,7 +8,6 @@ __license__ = "MIT"
 import tempfile
 from snakemake.shell import shell
 
-
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 extra = snakemake.params.get("extra", "")
 
@@ -32,8 +31,8 @@ for key in snakemake.output.keys():
 with tempfile.TemporaryDirectory() as tmpdir:
     shell(
         "ragtag.py patch"
-        " {snakemake.input.ref}"
         " {snakemake.input.query}"
+        " {snakemake.input.ref}"
         " {extra}"
         " -o {tmpdir} -t {snakemake.threads}"
         " {log}"

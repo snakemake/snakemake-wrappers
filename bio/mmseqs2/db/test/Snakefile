@@ -1,0 +1,68 @@
+rule mmseqs2_databases:
+    output:
+        db=multiext(
+            "out/databases/{sample}",
+            "",
+            ".dbtype",
+            ".index",
+            ".lookup",
+            ".source",
+            ".version",
+            "_h",
+            "_h.dbtype",
+            "_h.index",
+            "_mapping",
+            "_taxonomy",
+        ),
+    log:
+        "logs/databases/{sample}.log",
+    params:
+        module="databases SILVA",
+        extra="-v 3",
+    threads: 1
+    wrapper:
+        "master/bio/mmseqs2/db"
+
+
+rule mmseqs2_createdb:
+    input:
+        fas="seqs/{sample}.fasta",
+    output:
+        db=multiext(
+            "out/createdb/{sample}",
+            "",
+            ".dbtype",
+            ".index",
+            ".lookup",
+            ".source",
+            "_h",
+            "_h.dbtype",
+            "_h.index",
+        ),
+    log:
+        "logs/createdb/{sample}.log",
+    params:
+        module="createdb",
+        extra="-v 3 --dbtype 2",
+    threads: 1
+    wrapper:
+        "master/bio/mmseqs2/db"
+
+
+rule mmseqs2_createtaxdb:
+    input:
+        db="out/createdb/{sample}/",
+        tax_dump=storage.http("http://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdump.tar.gz"),
+        tax_map="seqs/{sample}.map",
+    output:
+        # Touch empty file since createtaxdb edits DB in place.
+        # Make sure to include this file as input in rules that need the annotated database.
+        touch("out/createtaxdb/{sample}.done"),
+    log:
+        "logs/createtaxdb/{sample}.log",
+    params:
+        module="createtaxdb",
+        extra="-v 3",
+    threads: 1
+    wrapper:
+        "master/bio/mmseqs2/db"

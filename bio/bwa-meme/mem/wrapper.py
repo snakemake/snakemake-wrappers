@@ -10,7 +10,6 @@ from os import path
 
 from snakemake.shell import shell
 
-
 # Extract arguments.
 extra = snakemake.params.get("extra", "")
 

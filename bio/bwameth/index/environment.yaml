@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bwameth =0.2.9
+  - bwameth =0.2.10
   - bwa-mem2 =2.3

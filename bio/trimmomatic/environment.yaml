@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - trimmomatic =0.40
-  - snakemake-wrapper-utils =0.8.0
+  - trimmomatic =0.41
+  - snakemake-wrapper-utils =0.10.0

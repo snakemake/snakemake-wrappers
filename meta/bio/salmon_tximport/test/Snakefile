@@ -3,6 +3,6 @@ from snakemake.utils import min_version
 min_version("9.13.1")
 
 module salmon_tximport:
-    meta_wrapper: "master/meta/bio/salmon_tximport"
+    meta_wrapper: "file:.."
 
 use rule * from salmon_tximport

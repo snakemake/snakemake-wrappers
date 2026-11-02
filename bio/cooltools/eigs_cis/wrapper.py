@@ -6,7 +6,6 @@ __license__ = "MIT"
 from snakemake.shell import shell
 import tempfile
 
-
 ## Extract arguments
 view = snakemake.input.get("view", "")
 if view:

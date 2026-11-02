@@ -5,18 +5,14 @@ __license__ = "CECILL-2.1"
 
 from snakemake.shell import shell
 from pathlib import Path
+from snakemake_wrapper_utils.snakemake import get_format
 
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
-input_path = Path(snakemake.input[0])
-if input_path.suffix == ".gz":
-    input_path = input_path.with_suffix("")
-
-if input_path.suffix in [".fastq", ".fq"]:
-    input_flag = "--fastq "
-elif input_path.suffix == ".bam":
-    input_flag = "--bam "
+in_format = get_format(snakemake.input[0])
+if in_format in ["fastq", "bam"]:
+    input_flag = f"--{in_format}"
 else:
     input_flag = "--sequencing-summary-source "
 

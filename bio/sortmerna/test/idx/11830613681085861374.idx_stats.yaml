@@ -1,0 +1,25 @@
+reference: database2.fa
+stats:
+  numseq: 1
+  full_len: 1200
+  part_num: 1
+  seed_win_len: 18
+  background_freq: {A: 0.2558, C: 0.2175, G: 0.3192, T: 0.2075}
+  files:
+    stats: 130
+parts:
+  - part: 0
+    numseq_part: 1
+    seq_part_size: 1359
+    files:
+      bursttrie_0.dat: 2134912
+      pos_0.dat: 14188
+      kmer_0.dat: 1048576
+    kmer:
+      num_nonzero: 1186
+      total_count: 2358
+      max_count: 3
+    pos:
+      num_elements: 1182
+      total_positions: 1182
+      max_positions: 1

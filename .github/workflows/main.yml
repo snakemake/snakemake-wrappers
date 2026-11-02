@@ -35,19 +35,10 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
-
-      - name: Setup mamba
-        uses: conda-incubator/setup-miniconda@v2
+      
+      - uses: prefix-dev/setup-pixi@v0.11.2
         with:
-          activate-environment: snakemake
-          channels: "conda-forge, bioconda"
-          miniforge-version: latest
-
-      - name: Setup Snakemake environment
-        shell: bash -el {0}
-        run: |
-          conda config --set channel_priority strict
-          conda install -n snakemake -y snakemake-minimal snakemake-storage-plugin-http pytest pandas
+          cache: false # we want to test with latest stable snakemake
 
       - name: Fetch master
         if: github.ref != 'refs/heads/master'
@@ -55,10 +46,7 @@ jobs:
           git fetch origin master
 
       - name: Run tests
-        shell: bash -el {0}
         env:
           DIFF_MASTER: ${{ github.event_name == 'pull_request' }}
           DIFF_LAST_COMMIT: ${{ github.ref == 'refs/heads/master' }}
-        run: |
-          # run tests
-          pytest -v test_wrappers.py
+        run: pixi run test

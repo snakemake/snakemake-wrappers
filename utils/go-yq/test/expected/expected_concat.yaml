@@ -1,0 +1,6 @@
+baz: quux
+---
+- foo: bar
+  boo: far
+- foo: bar2
+  boo: far2

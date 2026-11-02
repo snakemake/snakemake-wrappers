@@ -9,7 +9,6 @@ __license__ = "MIT"
 from snakemake.shell import shell
 from snakemake_wrapper_utils.samtools import get_samtools_opts
 
-
 bed = snakemake.input.get("bed", "")
 if bed:
     bed = f"-t {bed}"

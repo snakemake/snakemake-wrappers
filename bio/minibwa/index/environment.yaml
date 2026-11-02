@@ -1,0 +1,7 @@
+channels:
+  - bioconda
+  - conda-forge
+  - nodefaults
+dependencies:
+  - minibwa =0.7
+  - snakemake-wrapper-utils =0.10.0

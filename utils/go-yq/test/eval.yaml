@@ -1,0 +1,5 @@
+pathExp: .a.b[] | select(.name == "cat")
+a:
+  b:
+    - name: dog
+    - name: cat

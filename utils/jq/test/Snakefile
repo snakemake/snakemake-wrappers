@@ -1,0 +1,13 @@
+rule test_jq:
+    input:
+        "input/data.json",
+    output:
+        "out/sum.json",
+    log:
+        "logs/jq.log",
+    params:
+        expression=".array_tot = .array[0] + .array[1]",
+        extra="-cr",
+    threads: 1
+    wrapper:
+        "master/utils/jq"

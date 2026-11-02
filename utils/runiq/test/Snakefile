@@ -1,0 +1,12 @@
+rule test_runiq:
+    input:
+        "unsorted_duplicates.txt",
+    output:
+        "deduplicated.txt",
+    log:
+        "test_runiq.log",
+    threads: 1
+    params:
+        extra="",
+    wrapper:
+        "master/utils/runiq"

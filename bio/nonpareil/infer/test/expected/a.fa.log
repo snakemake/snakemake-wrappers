@@ -1,0 +1,21 @@
+ [      0.0]    Reducing query reads (-X) to 11
+ [      0.0]  WARNING: The kmer kernel implements an error correction function only compatible with FastQ
+ [      0.0]  Reading reads/a.fa
+ [      0.0]   Picking 11 random sequences
+ [      0.0]   Counting Kmers
+ [      0.0]  Read file with 15 sequences
+ [      0.0]  Average read length is 7.000000bp
+ [      0.0]  Sub-sampling library
+ [      0.0]     Sampling at 0.000000%
+ [      0.0]     Sampling at 11.764900%
+ [      0.0]     Sampling at 16.807000%
+ [      0.0]     Sampling at 24.010000%
+ [      0.0]     Sampling at 34.300000%
+ [      0.0]     Sampling at 49.000000%
+ [      0.0]     Sampling at 70.000000%
+ [      0.0]     Sampling at 100.000000%
+ [      0.0]  Evaluating consistency
+ [      0.0]  The coverage of this dataset is very high, and the precise value might be slighly off
+ [      0.0]  Not to be worried, this simply means that your dataset is too good to need heuristic estimates!
+ [      0.0]  WARNING: The curve reached near-saturation in 6 or fewer points, hence diversity estimations could be unreliable
+ [      0.0]  To increase the resolution of the curve increase -d, currently set at 0.700000

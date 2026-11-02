@@ -26,9 +26,7 @@ automatic_command_line_args = [
     "--unmapped",
     "--ambiguous",
     "--sam",
-    "--bam",
     "--cram",
-    "--samtools_path",
     "--prefix",
     "-B",
     "--basename",
@@ -115,9 +113,9 @@ threads = snakemake.threads
 
 
 def get_auto_prefix(file_path):
-    (pref, ext) = path.splitext(path.basename(file_path))
+    pref, ext = path.splitext(path.basename(file_path))
     if ext == ".gz":
-        (pref, _) = path.splitext(pref)
+        pref, _ = path.splitext(pref)
     return pref
 
 

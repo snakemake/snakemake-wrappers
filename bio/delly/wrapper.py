@@ -7,7 +7,6 @@ __license__ = "MIT"
 from snakemake.shell import shell
 from snakemake_wrapper_utils.bcftools import get_bcftools_opts
 
-
 bcftools_opts = get_bcftools_opts(snakemake, parse_ref=False, parse_memory=False)
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
@@ -17,9 +16,11 @@ exclude = snakemake.input.get("exclude", "")
 if exclude:
     exclude = f"-x {exclude}"
 
+command = snakemake.params.get("cmd", "sr")
 
 shell(
-    "(OMP_NUM_THREADS={snakemake.threads} delly call"
+    "(OMP_NUM_THREADS={snakemake.threads} delly"
+    " {command}"
     " -g {snakemake.input.ref}"
     " {exclude}"
     " {extra}"

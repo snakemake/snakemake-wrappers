@@ -1,0 +1,16 @@
+rule test_mageck_mle:
+    input:
+        counts="gene_summary.txt",
+        # Optional input files
+        design="designmat.txt",
+        cnv="cnv_data.txt",
+    output:
+        mle="test_mageck_mle.genes.tsv",
+        mle_log="test_mageck_mle.log",
+        sgrna="test_mageck_mle.sgrna.tsv",
+    log:
+        "test_mageck_mle.log",
+    params:
+        extra="--cell-line HL60_HAEMATOPOIETIC_AND_LYMPHOID_TISSUE --permutation-round 2",
+    wrapper:
+        "master/bio/mageck/mle"

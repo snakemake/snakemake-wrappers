@@ -1,0 +1,17 @@
+name: xan run
+url: https://github.com/medialab/xan
+description: Run the given xan pipeline or execute a xan script
+authors:
+  - Thibault Dayris
+input:
+  - data: Path to a table (see `xan input`,  `xan from` and `xan scrape` for a list of accepted formats).
+  - script: Path to a xan script.
+output:
+  - Path to output table, report, etc (see `xan to`, `xan matrix`, `xan network` for a list of accepted formats).
+params:
+  - extra: Optional parameter (not `-f | --file`)
+  - expression: Expression for xan pipeline.
+notes: |
+  - Use `xan help functions` and `xan help cheatsheet` to see examples of pipelines and
+  expressions avilable in this wrapper.
+  - Parameters `input.script` and `params.expression` are mutually exclusive.

@@ -1,0 +1,5 @@
+sample,pair,nb_read,date
+S1,R1,1275,yesterday
+S1,R2,1275,yesterday
+S1,R1,786,today
+S1,R2,786,today

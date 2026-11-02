@@ -10,7 +10,6 @@ import tempfile
 from snakemake.shell import shell
 from snakemake_wrapper_utils.java import get_java_opts
 
-
 inputs = " ".join("--INPUT {}".format(f) for f in snakemake.input.vcfs)
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 extra = snakemake.params.get("extra", "")

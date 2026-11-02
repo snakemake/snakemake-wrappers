@@ -8,7 +8,6 @@ from pathlib import Path
 from snakemake.shell import shell
 from snakemake_wrapper_utils.samtools import get_samtools_opts
 
-
 samtools_opts = get_samtools_opts(snakemake, parse_write_index=False)
 extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
