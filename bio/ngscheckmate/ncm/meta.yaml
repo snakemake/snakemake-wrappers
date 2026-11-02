@@ -3,6 +3,7 @@ url: https://github.com/parklab/NGSCheckMate
 description: Identify BAM/VCF/Fastq files that belong to the same individuals.
 authors:
   - Thibault Dayris
+url: https://github.com/parklab/NGSCheckMate
 input:
   samples: Either a path to a list-file, or list of paths to alignment (BAM/SAM) files, or list of paths to variants files (VCF/BCF), or list of paths to FastQ files.
   bed: Path to a interval (BED) file, required for VCF/BAM input.
