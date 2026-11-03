@@ -5,15 +5,15 @@ rule gatk_annotator:
         bai="mapped/a.bam.bai",
         ref="genome.fasta",
         db="calls/snvs.vcf.gz",
-#        intervals="targets.bed",
+        #intervals="targets.bed",
     output:
         vcf="snvs.annot.vcf",
     log:
         "logs/gatk/annotator/snvs.log",
-    params:
-        extra="--resource-allele-concordance -A Coverage --expression db.END",
-        java_opts="",  # optional
     resources:
         mem_mb=1024,
+    params:
+        extra="--resource-allele-concordance -A Coverage --expression db.END",
+        java_opts="",
     wrapper:
         "master/bio/gatk/variantannotator"

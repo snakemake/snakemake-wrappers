@@ -6,12 +6,11 @@ rule modelsegments_denoise_input:
         "a.n.cr.seg",
     log:
         "logs/gatk/modelsegments_denoise.log",
-    params:
-        #prefix="a.den.test",
-        extra="",  # optional
-        java_opts="",  # optional
     resources:
         mem_mb=1024,
+    params:
+        #prefix="a.den.test",
+        extra="",
+        java_opts="",
     wrapper:
         "master/bio/gatk/modelsegments"
-

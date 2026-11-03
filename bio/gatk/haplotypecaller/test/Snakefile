@@ -3,37 +3,38 @@ rule haplotype_caller:
         # single or list of bam files
         bam="mapped/{sample}.bam",
         ref="genome.fasta",
-        # known="dbsnp.vcf"  # optional
+        #known="dbsnp.vcf"
     output:
         vcf="calls/{sample}.vcf",
-    # 	bam="{sample}.assemb_haplo.bam",
+        #bam="{sample}.assemb_haplo.bam",
     log:
         "logs/gatk/haplotypecaller/{sample}.log",
-    params:
-        extra="",  # optional
-        java_opts="",  # optional
     threads: 4
     resources:
         mem_mb=1024,
+    params:
+        extra="",
+        java_opts="",
     wrapper:
         "master/bio/gatk/haplotypecaller"
+
 
 rule haplotype_caller_gvcf:
     input:
         # single or list of bam files
         bam="mapped/{sample}.bam",
         ref="genome.fasta",
-        # known="dbsnp.vcf"  # optional
+        # known="dbsnp.vcf",
     output:
         gvcf="calls/{sample}.g.vcf",
-    # 	bam="{sample}.assemb_haplo.bam",
+        # bam="{sample}.assemb_haplo.bam",
     log:
         "logs/gatk/haplotypecaller/{sample}.log",
-    params:
-        extra="",  # optional
-        java_opts="",  # optional
     threads: 4
     resources:
         mem_mb=1024,
+    params:
+        extra="",
+        java_opts="",
     wrapper:
         "master/bio/gatk/haplotypecaller"
