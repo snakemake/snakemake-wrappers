@@ -44,7 +44,7 @@ https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.3-hb03c661_1.conda#1
 https://conda.anaconda.org/conda-forge/linux-64/libmpdec-4.0.0-hb03c661_2.conda#fcfed1dc5053eb1901b66e7b1fc32588
 https://conda.anaconda.org/conda-forge/linux-64/libpng-1.6.59-h922cc85_0.conda#8c9caf742a485ac688ffa88bbadbf0be
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-16.2.0-h934c35e_7.conda#9b6707e0caca917fa6ea9ee473f37a5d
-https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.42.4-hcfc3c73_0.conda#54a948337e66706380ff24d6b5fde63f
+https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.42.4-hcfc3c73_1.conda#d852293faea3c04a6e896b908b43aded
 https://conda.anaconda.org/conda-forge/linux-64/libuv-1.52.1-h280c20c_1.conda#01c4ed87826af55996768af6dbc936b4
 https://conda.anaconda.org/conda-forge/linux-64/libwebp-base-1.6.0-hd42ef1d_1.conda#9332b53d0ea93c5d39e33be03a0c611a
 https://conda.anaconda.org/conda-forge/linux-64/libxcrypt-4.4.38-h280c20c_0.conda#f7a7ff5a6ab331e037abd34f379a631d
@@ -53,7 +53,7 @@ https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.6-hdb14827_1.conda#ee6
 https://conda.anaconda.org/conda-forge/linux-64/oniguruma-6.9.10-hebe6cf0_1.conda#d0d628a0259bb9cbcd73f792b0b61387
 https://conda.anaconda.org/conda-forge/linux-64/openssl-3.6.5-h781a0a9_0.conda#5a51a2ea653f120240b1a9bf76e0aae9
 https://conda.anaconda.org/conda-forge/linux-64/pthread-stubs-0.4-h7cc23a3_1004.conda#bb66b610707b811e3c65181a6431e7a8
-https://conda.anaconda.org/bioconda/linux-64/salmon-2.8.0-hfa8f182_0.conda#b11b7bfe5747a772dd1328d757711933
+https://conda.anaconda.org/bioconda/linux-64/salmon-2.11.0-hfa8f182_0.conda#3dea85b09bb2dacb972c0ae86710a1db
 https://conda.anaconda.org/conda-forge/linux-64/sed-4.10-h19d0853_0.conda#e4a1ff2e59a5d9b38be71d15c93cf1bd
 https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_h1df4ec4_4.conda#676a2f9b1c4fcf57b70aa5c65f6c60d0
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libice-1.1.2-h280c20c_0.conda#85c9442aec283b4e464fa9ecc484a2f3
@@ -66,12 +66,12 @@ https://conda.anaconda.org/conda-forge/linux-64/gmp-6.3.0-hfd2156b_3.conda#576e3
 https://conda.anaconda.org/conda-forge/linux-64/graphite2-1.3.15-h54a6638_1.conda#f9fe2984587fa8235a6af6004760cd18
 https://conda.anaconda.org/conda-forge/linux-64/icu-78.3-py310h44b86e0_2.conda#72a381cbad04f24b1c2a43ef707f45b4
 https://conda.anaconda.org/conda-forge/linux-64/jq-1.8.2-h280c20c_1.conda#6ec056e539486e84f0c7acef6b5863f9
-https://conda.anaconda.org/conda-forge/linux-64/lerc-4.2.0-hdb68285_0.conda#fb9d356b1a57d6d54768be7ebd5fce09
+https://conda.anaconda.org/conda-forge/linux-64/lerc-4.3.0-he78707d_0.conda#78908f9592dbe2cebd57082bf8c57000
 https://conda.anaconda.org/conda-forge/linux-64/libaec-1.1.7-h659bb9a_0.conda#779052a50021fa0d3cf1a26c42bf15c6
 https://conda.anaconda.org/conda-forge/linux-64/libedit-3.1.20260512-pl5321h373387f_0.conda#27dbd7e2984b8fe48e069379636ccfdd
 https://conda.anaconda.org/conda-forge/linux-64/libfreetype6-2.14.3-h5e6c136_2.conda#b72a266a9317036fd0464cb98b027cd0
 https://conda.anaconda.org/conda-forge/linux-64/libgfortran-16.2.0-h69a702a_7.conda#3a8d285f5f22138ef826ad54cf267e73
-https://conda.anaconda.org/conda-forge/linux-64/libnghttp2-1.70.0-hc5e5977_0.conda#1a2439373d982a874d6e3a50702099bd
+https://conda.anaconda.org/conda-forge/linux-64/libnghttp2-1.71.0-hc5e5977_0.conda#726df214814a8b06135a6a674bc54589
 https://conda.anaconda.org/conda-forge/linux-64/libsanitizer-16.2.0-h3048135_7.conda#9cdd9af432fa4eb62094aaf6211425bf
 https://conda.anaconda.org/conda-forge/linux-64/libssh2-1.11.1-h6154650_1.conda#5c526561e1d2a2e071941174eae84557
 https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-16.2.0-hdf11a46_7.conda#25a23bde5e26d548374f3e02b4669670
@@ -100,8 +100,8 @@ https://conda.anaconda.org/conda-forge/linux-64/freetype-2.14.3-ha770c72_2.conda
 https://conda.anaconda.org/conda-forge/linux-64/gcc_linux-64-16.2.0-h0ab548f_2.conda#3928593d74a0b17f84fba5977cb7023d
 https://conda.anaconda.org/conda-forge/linux-64/gfortran_impl_linux-64-16.2.0-hf930d89_7.conda#b8fa9e9457b9e75f2bf85ad8017fa1d7
 https://conda.anaconda.org/conda-forge/linux-64/gxx_impl_linux-64-16.2.0-h0d273dc_7.conda#ea011fbfe6ce5b3a74a8e34fc9c8481a
-https://conda.anaconda.org/conda-forge/linux-64/lcms2-2.19.1-h9073bf1_3.conda#596464faa06e0b656b35416188ef9bba
-https://conda.anaconda.org/conda-forge/linux-64/libblas-3.11.0-11_h4a7cf45_openblas.conda#b8cce1486f3c62f33291d6318c193d0d
+https://conda.anaconda.org/conda-forge/linux-64/lcms2-2.20-h9073bf1_0.conda#28057b2f2bbd8d88a2098c189022de93
+https://conda.anaconda.org/conda-forge/linux-64/libblas-3.11.0-12_h4a7cf45_openblas.conda#d718330824f78deef9ca46fe62a33820
 https://conda.anaconda.org/conda-forge/linux-64/libcups-2.3.3-h7a8fb5f_6.conda#49c553b47ff679a6a1e9fc80b9c5a2d4
 https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.23.0-ha042cf0_0.conda#0ad16151226df493aed967f0efce0e80
 https://conda.anaconda.org/conda-forge/linux-64/libxml2-2.15.4-h7df9aa5_1.conda#51e5162f95bd6840f6b2b3169125fff5
@@ -119,11 +119,11 @@ https://conda.anaconda.org/conda-forge/linux-64/curl-8.23.0-ha042cf0_0.conda#ae8
 https://conda.anaconda.org/conda-forge/linux-64/gxx_linux-64-16.2.0-h23aca61_2.conda#38b21695fc42aa9bf6d4883e45a80fd9
 https://conda.anaconda.org/conda-forge/linux-64/hdf5-1.14.3-nompi_h2d575fe_109.conda#e7a7a6e6f70553a31e6e79c65768d089
 https://conda.anaconda.org/bioconda/linux-64/htslib-1.24-ha79157c_0.conda#232775112c6fea38e9e7c25d2a58d7d2
-https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.11.0-11_h0358290_openblas.conda#73a248c30811075059b5aeda766c2624
-https://conda.anaconda.org/conda-forge/linux-64/liblapack-3.11.0-11_h47877c9_openblas.conda#5622a13917855ce4b953b9e655cf9262
+https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.11.0-12_h0358290_openblas.conda#074ad2000c240d26e791e6aa9d055e30
+https://conda.anaconda.org/conda-forge/linux-64/liblapack-3.11.0-12_h47877c9_openblas.conda#fdb860223496082e2b4922f00fd9233f
 https://conda.anaconda.org/conda-forge/linux-64/libxml2-devel-2.15.4-h7df9aa5_1.conda#c6f14f767cbfe20fa03a324beb6cd7eb
-https://conda.anaconda.org/conda-forge/noarch/pip-26.2.2-pyh145f28c_0.conda#39d4f1dfe506a870f6be9047f0b31246
-https://conda.anaconda.org/conda-forge/linux-64/pyyaml-6.0.3-py315h4d0d421_2.conda#be47535b01a33a1798797a0df8ac12c2
+https://conda.anaconda.org/conda-forge/noarch/pip-26.2.2-pyh145f28c_2.conda#48dd7d949a3d2106ed942dcd8f9ceb80
+https://conda.anaconda.org/conda-forge/linux-64/pyyaml-6.0.3-py315h178884a_3.conda#8a07113e62a8e7977bb0ff67506442a7
 https://conda.anaconda.org/conda-forge/noarch/tomlkit-0.15.2-pyh5ded981_0.conda#eadfe340211fea481536d602af9ace99
 https://conda.anaconda.org/conda-forge/noarch/xmltodict-1.0.4-pyhcf101f3_0.conda#0f02dbcae61967ced21fea829a8ee927
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libxi-1.8.4-h7cc23a3_0.conda#4ae02f09591c09bbe61a2b675d799ce5
@@ -215,7 +215,7 @@ https://conda.anaconda.org/bioconda/noarch/bioconductor-biocgenerics-0.56.0-r45h
 https://conda.anaconda.org/bioconda/noarch/bioconductor-ctc-1.84.0-r45hdfd78af_0.conda#7b97e4f0a8f49aab41249fbf2912bfdd
 https://conda.anaconda.org/bioconda/linux-64/bioconductor-limma-3.68.5-r45h262fe30_0.conda#7ba7d58e1fee0864cf75ae60e1b2b36f
 https://conda.anaconda.org/bioconda/noarch/bioconductor-matrixgenerics-1.22.0-r45hdfd78af_1.conda#cdf0406fc3caa814ff7b7876a42973a5
-https://conda.anaconda.org/conda-forge/noarch/r-argparse-2.3.1-r45hc72bb7e_0.conda#365ed5e429cc64db1cffcb57d2e4fbfc
+https://conda.anaconda.org/conda-forge/noarch/r-argparse-2.3.3-r45hacb3a79_0.conda#fa4949b2e01008ee453e838a4bb96ce2
 https://conda.anaconda.org/conda-forge/linux-64/r-askpass-1.2.1-r45h54b55ab_1.conda#1ae3c72e90c6a3871c594448d3e152e4
 https://conda.anaconda.org/conda-forge/linux-64/r-bit64-4.8.6-r45hddc5280_0.conda#5cea8ea9e1bf30dc0b863e2b2fcb972b
 https://conda.anaconda.org/conda-forge/linux-64/r-cachem-1.1.0-r45h54b55ab_2.conda#42617e710293f0b76ccc08855e0edbc4
@@ -253,7 +253,7 @@ https://conda.anaconda.org/conda-forge/noarch/r-knitr-1.52-r45hacb3a79_0.conda#b
 https://conda.anaconda.org/conda-forge/linux-64/r-lubridate-1.9.5-r45h54b55ab_0.conda#cec48e713c16eb74b4984019282ad03a
 https://conda.anaconda.org/conda-forge/noarch/r-memoise-2.0.1-r45hc72bb7e_4.conda#2b04206ff6ea5a92e8e36bdaa5feb3cc
 https://conda.anaconda.org/conda-forge/linux-64/r-mgcv-1.9_4-r45h0e4624f_0.conda#e33882c93c191f5d9a9b346431f02b43
-https://conda.anaconda.org/conda-forge/linux-64/r-openssl-2.4.2-r45h68c19f5_0.conda#6568a5797c9d74e89ef94b82724665aa
+https://conda.anaconda.org/conda-forge/linux-64/r-openssl-2.5.0-r45haecc533_0.conda#5bca37a09e497e5a8ea31f3b106f9e38
 https://conda.anaconda.org/conda-forge/noarch/r-scales-1.4.0-r45hc72bb7e_1.conda#8bc81cc6fd130cef963bc9e082726a14
 https://conda.anaconda.org/conda-forge/linux-64/r-survival-3.8_12-r45hddc5280_0.conda#2165bf9ffcefc182e65ada290f3dbe29
 https://conda.anaconda.org/conda-forge/linux-64/r-systemfonts-1.3.2-r45h74f4acd_0.conda#7982f08c8aabb6f0e4936a613b07a099
