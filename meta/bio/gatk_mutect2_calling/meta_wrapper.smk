@@ -24,7 +24,7 @@ rule samtools_index:
     params:
         extra="",  # optional params string
     wrapper:
-        "v9.19.3/bio/samtools/faidx"
+        "v9.19.5/bio/samtools/faidx"
 
 
 rule picard_replace_read_groups:
