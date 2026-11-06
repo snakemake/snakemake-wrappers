@@ -1,0 +1,2 @@
+TAXID	seq1|kraken:taxid|562	562		test_db/library/tiny.fa
+TAXID	seq2|kraken:taxid|562	562		test_db/library/tiny.fa

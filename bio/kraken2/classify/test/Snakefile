@@ -1,0 +1,41 @@
+rule kraken2_classify_pe:
+    input:
+        fq1="reads/{sample}_R1.fastq",
+        fq2="reads/{sample}_R2.fastq",
+        hash="test_db/hash.k2d",  # this filename is required by kraken2
+        opts="test_db/opts.k2d",  # this filename is required by kraken2
+        taxo="test_db/taxo.k2d",  # this filename is required by kraken2
+    output:
+        report="kraken2/pe/{sample}.report.tsv",
+        classif="kraken2/pe/{sample}.kraken2.tsv",
+        classified_out=[
+            "kraken2/pe/{sample}.classified_1.fastq",
+            "kraken2/pe/{sample}.classified_2.fastq",
+        ],
+        unclassified_out=[
+            "kraken2/pe/{sample}.unclassified_1.fastq",
+            "kraken2/pe/{sample}.unclassified_2.fastq",
+        ],
+    log:
+        "logs/kraken2/classify/{sample}.log",
+    threads: 4
+    wrapper:
+        "master/bio/kraken2/classify/"
+
+
+rule kraken2_classify_se:
+    input:
+        fq1="reads/{sample}_R1.fastq",
+        hash="test_db/hash.k2d",  # this filename is required by kraken2
+        opts="test_db/opts.k2d",  # this filename is required by kraken2
+        taxo="test_db/taxo.k2d",  # this filename is required by kraken2
+    output:
+        report="kraken2/se/{sample}.report.tsv",
+        classif="kraken2/se/{sample}.kraken2.tsv",
+        classified_out="kraken2/se/{sample}.classified.fastq",
+        unclassified_out="kraken2/se/{sample}.unclassified.fastq",
+    log:
+        "logs/kraken2/classify/{sample}.log",
+    threads: 4
+    wrapper:
+        "master/bio/kraken2/classify/"
