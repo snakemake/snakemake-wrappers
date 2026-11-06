@@ -16,4 +16,4 @@ if snakemake.input:
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
-shell("cri-calc" " {batch_cmd}" " {extra}" " > {snakemake.output.report:q}" " {log}")
+shell("cri-calc {batch_cmd} {extra} > {snakemake.output.report:q} {log}")
