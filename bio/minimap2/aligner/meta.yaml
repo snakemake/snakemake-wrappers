@@ -15,3 +15,4 @@ params:
   - sort: Enable sorting (if output not PAF), and can be either 'none', 'queryname' or 'coordinate'.
   - sort_extra: Additional arguments for samtools/picard.
   - extra: Additional arguments for minimap2.
+  - samtools_fastq_extra: "Additional arguments for samtools fastq when the query is an unaligned BAM. Defaults to -T '*', which carries all tags; use e.g. -T MM,ML to carry only the base-modification tags."
