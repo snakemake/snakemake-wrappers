@@ -8,6 +8,7 @@ rule cri_calc:
     wrapper:
         "master/bio/spatialcontinuum"
 
+
 rule cri_calc_batch:
     input:
         cohort="patient_cohort.tsv",
