@@ -1,0 +1,20 @@
+rule cri_calc:
+    output:
+        report="results/cri_report.txt",
+    log:
+        "logs/cri_calc.log",
+    params:
+        extra="--pattern solid --tp53 mutated --rb1 mutated --stroma dense",
+    wrapper:
+        "master/bio/spatialcontinuum"
+
+
+rule cri_calc_batch:
+    input:
+        cohort="patient_cohort.tsv",
+    output:
+        report="results/cohort_output.tsv",
+    log:
+        "logs/cri_calc_batch.log",
+    wrapper:
+        "master/bio/spatialcontinuum"
