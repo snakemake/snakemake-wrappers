@@ -43,7 +43,7 @@ rule bowtie2_alignment:
         ),
     threads: 8
     wrapper:
-        "v9.19.3/bio/bowtie2/align"
+        "v9.19.5/bio/bowtie2/align"
 
 
 rule sambamba_sort:
