@@ -5573,8 +5573,10 @@ def test_spatialcontinuum(run):
         [
             "snakemake",
             "results/cri_report.txt",
+            "results/cohort_output.tsv",
         ],
         compare_results_with_expected={
             "results/cri_report.txt": "expected_cri_report.txt",
+            "results/cohort_output.tsv": "expected_cohort_output.tsv",
         },
     )
