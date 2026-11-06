@@ -16,4 +16,4 @@ https://conda.anaconda.org/conda-forge/linux-64/libabseil-20260107.1-cxx17_h7b12
 https://conda.anaconda.org/conda-forge/linux-64/readline-8.3-hd6e31c0_1.conda#69c01c781e7c8190bbdaf79e3848c5ca
 https://conda.anaconda.org/conda-forge/linux-64/libprotobuf-6.31.1-h538a264_6.conda#09c17df4ca168114becd51698dd95072
 https://conda.anaconda.org/conda-forge/linux-64/sqlite-3.54.1-h6e79ffa_101.conda#78e5fb402183c557fb392b0e233f7319
-https://conda.anaconda.org/bioconda/linux-64/mehari-0.49.1-h3628714_0.conda#ca4b264fe0c86aa2292d71e5bb8adb91
+https://conda.anaconda.org/bioconda/linux-64/mehari-0.50.0-h3628714_0.conda#a0a35960758aecab111e8b98d65b3b6e
