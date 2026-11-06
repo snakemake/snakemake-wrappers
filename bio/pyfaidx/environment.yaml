@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - pyfaidx =0.9.2.1
+  - pyfaidx =0.9.2.2
   - snakemake-wrapper-utils =0.10.0
