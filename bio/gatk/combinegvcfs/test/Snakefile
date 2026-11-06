@@ -6,10 +6,10 @@ rule genotype_gvcfs:
         gvcf="calls/all.g.vcf",
     log:
         "logs/gatk/combinegvcfs.log",
-    params:
-        extra="",  # optional
-        java_opts="",  # optional
     resources:
         mem_mb=1024,
+    params:
+        extra="",
+        java_opts="",
     wrapper:
         "master/bio/gatk/combinegvcfs"

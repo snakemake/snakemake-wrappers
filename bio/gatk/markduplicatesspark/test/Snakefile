@@ -6,16 +6,16 @@ rule mark_duplicates_spark:
         metrics="dedup/{sample}.metrics.txt",
     log:
         "logs/dedup/{sample}.log",
-    params:
-        extra="--remove-sequencing-duplicates",  # optional
-        java_opts="",  # optional
-        #spark_runner="",  # optional, local by default
-        #spark_master="",  # optional
-        #spark_extra="", # optional
+    threads: 8
     resources:
         # Memory needs to be at least 471859200 for Spark, so 589824000 when
         # accounting for default JVM overhead of 20%. We round round to 650M.
         mem_mb=lambda wildcards, input: max([input.size_mb * 0.25, 650]),
-    threads: 8
+    params:
+        extra="--remove-sequencing-duplicates",
+        java_opts="",
+        #spark_runner="",
+        #spark_master="",
+        #spark_extra="",
     wrapper:
         "master/bio/gatk/markduplicatesspark"
