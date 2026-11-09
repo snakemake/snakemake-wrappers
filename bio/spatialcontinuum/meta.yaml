@@ -1,0 +1,13 @@
+name: "spatialcontinuum"
+description: In silico biophysical transport solver and Composite Resistance Index (CRI) calculation engine for cohort stratification (RUO).
+url: https://github.com/Lukecele/spatial-continuum-oncology
+authors:
+  - Luca Celebrano
+input:
+  - cohort: Optional patient cohort table (TSV or CSV) for batch processing
+output:
+  - report: In silico CRI stratification report (plain text) or batch cohort results (TSV)
+params:
+  - extra: Additional command line flags passed to cri-calc (e.g. '--pattern solid --tp53 mutated --rb1 mutated --stroma dense')
+notes: |
+  In silico biophysical transport calculation tool based on the spatial-continuum Bioconda package (RUO).

@@ -1,0 +1,4 @@
+patient_id	histology	tp53_status	rb1_status	stroma	S_score	G_score	M_score	CRI_Score	Risk_Tier	Expected_5yr_DFS	Actionable_Recommendation
+PT_001	lepidic	wt	wt	low	0.00	0.00	0.00	0.000	TIER 1 (LOW RESISTANCE & SANCTUARY RISK)	> 85 %	Safe discontinuation at Month 36 (sanctuaries absent)
+PT_002	solid	mutated	mutated	dense	1.00	1.00	1.00	1.000	TIER 3 (HIGH RESISTANCE & SANCTUARY RISK)	< 25 %	DO NOT DISCONTINUE: Maintain osimertinib or consolidate with anti-VEGFR2
+PT_003	acinar	mutated	wt	moderate	0.40	0.50	0.50	0.453	TIER 2 (INTERMEDIATE RISK / BORDERLINE SANCTUARY)	~ 55 %	Cessation with ultra-dense ctDNA surveillance every 60 days

@@ -1,0 +1,24 @@
+========================================================================
+  COMPOSITE RESISTANCE INDEX (CRI) CLINICAL DECISION SUPPORT
+  Spatial-Genomic Precision Oncology Engine for NSCLC (Post-ADAURA)
+  ⭐ Star on GitHub: https://github.com/Lukecele/spatial-continuum-oncology
+========================================================================
+  [1] Spatial Decoupling (S):   1.00  (Solid/Micropapillary predominant (>50%, severe vascular decoupling))
+  [2] Genomic Risk Tier (G):    1.00  (EGFR + TP53 + RB1 triple mutant (high SCLC lineage plasticity risk))
+  [3] Stromal Desmoplasia (M):  1.00  (Dense collagen desmoplasia, high IFP (>20 mmHg), convective shutdown)
+------------------------------------------------------------------------
+  COMPOSITE RESISTANCE INDEX (CRI): 1.000 / 1.000
+  CLINICAL RISK STRATIFICATION:    TIER 3 (HIGH RESISTANCE & SANCTUARY RISK)
+  EXPECTED 5-YEAR RELAPSE-FREE:    < 25 %
+------------------------------------------------------------------------
+  EVIDENCE-BASED BEDSIDE RECOMMENDATION:
+  🚨 DO NOT DISCONTINUE OSIMERTINIB AT MONTH 36!
+  • High probability of viable persister sanctuaries (Delta r > 34 um).
+  • Mandatory ongoing treatment:
+    1. Extended indefinite osimertinib maintenance (80 mg/day) OR
+    2. Dual therapy: Osimertinib + Ramucirumab (anti-VEGFR2) consolidation
+       to remodel vasculature and eliminate the sanctuary (SG-ADAURA Arm B3).
+========================================================================
+  ⭐ Support Open-Science Oncology: Star this repo on GitHub:
+     👉 https://github.com/Lukecele/spatial-continuum-oncology
+========================================================================

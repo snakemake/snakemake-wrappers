@@ -1,0 +1,4 @@
+patient_id	histology	tp53_status	rb1_status	stroma
+PT_001	lepidic	wt	wt	low
+PT_002	solid	mutated	mutated	dense
+PT_003	acinar	mutated	wt	moderate
