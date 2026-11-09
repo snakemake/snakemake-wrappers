@@ -7,13 +7,11 @@ import shlex
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 # Support optional batch cohort file input (TSV/CSV)
 batch_cmd = ""
 if snakemake.input:
-    cohort = getattr(snakemake.input, "cohort", snakemake.input[0])
-    batch_cmd = f"--batch {shlex.quote(str(cohort))}"
-
-log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+    batch_cmd = f"--batch {shlex.quote(str(snakemake.input[0]))}"
 
 shell("cri-calc {batch_cmd} {extra} > {snakemake.output.report:q} {log}")
