@@ -1,5 +1,29 @@
 # Changelog
 
+## [9.20.0](https://github.com/snakemake/snakemake-wrappers/compare/v9.19.5...v9.20.0) (2026-11-09)
+
+
+### Features
+
+* **bio:** add spatialcontinuum wrapper ([#6233](https://github.com/snakemake/snakemake-wrappers/issues/6233)) ([99a823b](https://github.com/snakemake/snakemake-wrappers/commit/99a823b1f908af957d3cd736379c0a2d74a4673d))
+
+
+### Performance Improvements
+
+* autobump bio/chopper/environment.yaml ([#6241](https://github.com/snakemake/snakemake-wrappers/issues/6241)) ([4753c9a](https://github.com/snakemake/snakemake-wrappers/commit/4753c9a31f3ef5b8b63f17900ca202ea1c48835a))
+* autobump bio/galah/environment.yaml ([#6243](https://github.com/snakemake/snakemake-wrappers/issues/6243)) ([7c3c486](https://github.com/snakemake/snakemake-wrappers/commit/7c3c486f9ed0feb9bf6e34089647ff3b527215f7))
+* autobump bio/gseapy/gsea/environment.yaml ([#6242](https://github.com/snakemake/snakemake-wrappers/issues/6242)) ([4be3069](https://github.com/snakemake/snakemake-wrappers/commit/4be3069491661561007513cff02ee998f735339f))
+* autobump bio/mehari/build-transcript-db/environment.yaml ([#6244](https://github.com/snakemake/snakemake-wrappers/issues/6244)) ([8a8934f](https://github.com/snakemake/snakemake-wrappers/commit/8a8934fbf15b8b0bc1028c66e568beba3caa9f10))
+* autobump bio/pyfaidx/environment.yaml ([#6246](https://github.com/snakemake/snakemake-wrappers/issues/6246)) ([b9849f3](https://github.com/snakemake/snakemake-wrappers/commit/b9849f30e5dd8c8b0bd07d23b0f3e6b251df2cb5))
+* autobump bio/salmon/index/environment.yaml ([#6248](https://github.com/snakemake/snakemake-wrappers/issues/6248)) ([d7a9e2a](https://github.com/snakemake/snakemake-wrappers/commit/d7a9e2a9e957f939d541ad90c591674dff28dac4))
+* autobump bio/vembrane/filter/environment.yaml ([#6250](https://github.com/snakemake/snakemake-wrappers/issues/6250)) ([54a9432](https://github.com/snakemake/snakemake-wrappers/commit/54a9432bb08dc1991b3363344fcaf5ed847b3179))
+* autobump bio/vembrane/table/environment.yaml ([#6251](https://github.com/snakemake/snakemake-wrappers/issues/6251)) ([dbc5260](https://github.com/snakemake/snakemake-wrappers/commit/dbc5260d7a0c5610b69b4deea353ce79d606bdf6))
+* autobump geo/rasterio/clip/environment.yaml ([#6247](https://github.com/snakemake/snakemake-wrappers/issues/6247)) ([dc92465](https://github.com/snakemake/snakemake-wrappers/commit/dc92465dcfae4226060125943acd47caaed92994))
+* autobump wrappers in meta/bio/bowtie2_sambamba/meta_wrapper.smk ([#6236](https://github.com/snakemake/snakemake-wrappers/issues/6236)) ([1b89e75](https://github.com/snakemake/snakemake-wrappers/commit/1b89e75c20e6e5bbf25d45b00ec96c90f73e4d4f))
+* autobump wrappers in meta/bio/bwa_mapping/meta_wrapper.smk ([#6237](https://github.com/snakemake/snakemake-wrappers/issues/6237)) ([242e4d8](https://github.com/snakemake/snakemake-wrappers/commit/242e4d8e69f141ca978376be80e0c069bc080f92))
+* autobump wrappers in meta/bio/calc_consensus_reads/meta_wrapper.smk ([#6238](https://github.com/snakemake/snakemake-wrappers/issues/6238)) ([8a1a69f](https://github.com/snakemake/snakemake-wrappers/commit/8a1a69fe813bc021c0823b33bb7908513480f429))
+* autobump wrappers in meta/bio/gatk_mutect2_calling/meta_wrapper.smk ([#6239](https://github.com/snakemake/snakemake-wrappers/issues/6239)) ([e2a53ff](https://github.com/snakemake/snakemake-wrappers/commit/e2a53ffbf443e8a61bd2cd7dc8f2af3876411a04))
+
 ## [9.19.5](https://github.com/snakemake/snakemake-wrappers/compare/v9.19.4...v9.19.5) (2026-11-02)
 
 
