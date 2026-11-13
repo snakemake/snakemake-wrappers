@@ -5,5 +5,5 @@ channels:
 dependencies:
   - swarm =3.2.0
   - snakemake-wrapper-utils =0.10.0
-  - gzip =1.14
+  - gzip =1.15
   - bzip2 =1.0.8
