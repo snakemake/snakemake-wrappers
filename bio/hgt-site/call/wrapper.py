@@ -4,6 +4,8 @@ __email__ = "98648540+iraajgangavaram@users.noreply.github.com"
 __license__ = "MIT"
 
 
+from shlex import quote
+
 from snakemake.shell import shell
 
 extra = snakemake.params.get("extra", "")
@@ -13,30 +15,26 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 classifications = snakemake.input.classifications
 if isinstance(classifications, str):
     classifications = [classifications]
-classifications = " ".join(classifications)
 
-reference = snakemake.input.get("reference", "")
-reference = f"--reference {reference}" if reference else ""
 
-annotation = snakemake.input.get("annotation", "")
-annotation = f"--annotation {annotation}" if annotation else ""
+def option(flag, path):
+    """An optional flag with its filename quoted, or nothing."""
+    return f"{flag} {quote(path)}" if path else ""
 
-bed = snakemake.output.get("bed", "")
-bed = f"--bed {bed}" if bed else ""
 
-vcf = snakemake.output.get("vcf", "")
-vcf = f"--vcf {vcf}" if vcf else ""
-
-multiqc = snakemake.output.get("multiqc", "")
-multiqc = f"--multiqc {multiqc}" if multiqc else ""
+reference = option("--reference", snakemake.input.get("reference", ""))
+annotation = option("--annotation", snakemake.input.get("annotation", ""))
+bed = option("--bed", snakemake.output.get("bed", ""))
+vcf = option("--vcf", snakemake.output.get("vcf", ""))
+multiqc = option("--multiqc", snakemake.output.get("multiqc", ""))
 
 shell(
     "hgt-site call"
-    " --bam {snakemake.input.alignment}"
-    " --classifications {classifications}"
+    " --bam {snakemake.input.alignment:q}"
+    " --classifications {classifications:q}"
     " --host-taxid {host_taxid}"
     " --threads {snakemake.threads}"
     " {reference} {annotation} {bed} {vcf} {multiqc} {extra}"
-    " -o {snakemake.output.tsv}"
+    " -o {snakemake.output.tsv:q}"
     " {log}"
 )
