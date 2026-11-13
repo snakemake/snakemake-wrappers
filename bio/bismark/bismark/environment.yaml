@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - bismark =3.1.0
+  - bismark =3.2.0
