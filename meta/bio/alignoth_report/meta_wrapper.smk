@@ -18,7 +18,7 @@ checkpoint vembrane_table:
         expression="INDEX, CHROM, POS, REF, ALT",
         extra=""
     wrapper:
-        "v9.19.4/bio/vembrane/table"
+        "v9.20.0/bio/vembrane/table"
 
 
 rule alignoth:
