@@ -29,6 +29,6 @@ https://conda.anaconda.org/conda-forge/linux-64/readline-8.3-hd6e31c0_1.conda#69
 https://conda.anaconda.org/conda-forge/linux-64/libprotobuf-6.31.1-h538a264_6.conda#09c17df4ca168114becd51698dd95072
 https://conda.anaconda.org/conda-forge/linux-64/python-3.15.2-h6e52b48_100_cp315.conda#38c3edc23439db3ca383be02ae2b702e
 https://conda.anaconda.org/conda-forge/linux-64/sqlite-3.54.1-h6e79ffa_101.conda#78e5fb402183c557fb392b0e233f7319
-https://conda.anaconda.org/bioconda/linux-64/mehari-0.50.0-h3628714_0.conda#a0a35960758aecab111e8b98d65b3b6e
+https://conda.anaconda.org/bioconda/linux-64/mehari-0.51.0-h3628714_0.conda#c062b18907f28ca3abe245482a57a196
 https://conda.anaconda.org/conda-forge/noarch/pip-26.2.2-pyh145f28c_2.conda#48dd7d949a3d2106ed942dcd8f9ceb80
 https://conda.anaconda.org/bioconda/noarch/snakemake-wrapper-utils-0.10.0-pyhdfd78af_0.conda#3508b338d17b40b61bac5aabe376ec26
