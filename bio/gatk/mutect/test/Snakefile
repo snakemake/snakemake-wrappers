@@ -4,13 +4,13 @@ rule mutect2:
         map="mapped/{sample}.bam",
     output:
         vcf="variant/{sample}.vcf",
-    message:
-        "Testing Mutect2 with {wildcards.sample}"
+    log:
+        "logs/mutect_{sample}.log",
     threads: 1
     resources:
         mem_mb=1024,
-    log:
-        "logs/mutect_{sample}.log",
+    message:
+        "Testing Mutect2 with {wildcards.sample}"
     wrapper:
         "master/bio/gatk/mutect"
 
@@ -22,13 +22,13 @@ rule mutect2_bam:
     output:
         vcf="variant_bam/{sample}.vcf",
         bam="variant_bam/{sample}.bam",
-    message:
-        "Testing Mutect2 with {wildcards.sample}"
+    log:
+        "logs/mutect_{sample}.log",
     threads: 1
     resources:
         mem_mb=1024,
-    log:
-        "logs/mutect_{sample}.log",
+    message:
+        "Testing Mutect2 with {wildcards.sample}"
     wrapper:
         "master/bio/gatk/mutect"
 
@@ -42,15 +42,16 @@ rule mutect2_complete:
         vcf="variant_complete/{sample}.vcf",
         bam="variant_complete/{sample}.bam",
         f1r2="counts/{sample}.f1r2.tar.gz",
-    message:
-        "Testing Mutect2 with {wildcards.sample}"
+    log:
+        "logs/mutect_{sample}.log",
     threads: 1
     resources:
         mem_mb=1024,
-    log:
-        "logs/mutect_{sample}.log",
+    message:
+        "Testing Mutect2 with {wildcards.sample}"
     wrapper:
         "master/bio/gatk/mutect"
+
 
 rule mutect2_list:
     input:
@@ -58,11 +59,11 @@ rule mutect2_list:
         map=expand("mapped/{sample}.bam", sample=["a", "b"]),
     output:
         vcf="variant_list/a_b.vcf",
+    log:
+        "logs/mutect2_list.log",
     threads: 1
     resources:
         mem_mb=1024,
-    log:
-        "logs/mutect2_list.log",
     params:
         extra="--tumor-sample a_normal --normal-sample b_normal",
     wrapper:

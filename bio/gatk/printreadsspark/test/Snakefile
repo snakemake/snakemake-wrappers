@@ -7,14 +7,14 @@ rule gatk_printreadsspark:
         bam="{sample}.bam",
     log:
         "logs/{sample}.log",
-    params:
-        extra="",  # optional
-        java_opts="",  # optional
-        #spark_runner="",  # optional, local by default
-        #spark_master="",  # optional
-        #spark_extra="", # optional
+    threads: 8
     resources:
         mem_mb=1024,
-    threads: 8
+    params:
+        extra="",
+        java_opts="",
+        #spark_runner="",
+        #spark_master="",
+        #spark_extra="",
     wrapper:
         "master/bio/gatk/printreadsspark"

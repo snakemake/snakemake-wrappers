@@ -16,37 +16,23 @@ spark_master = snakemake.params.get(
 )
 spark_extra = snakemake.params.get("spark_extra", "")
 embed_ref = snakemake.params.get("embed_ref", False)
-samtools_threads = (
-    snakemake.threads if snakemake.params.get("exceed_thread_limit", False) else 1
-)
-
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 java_opts = get_java_opts(snakemake)
-
-
-if snakemake.output.bam.endswith(".cram") and embed_ref:
-    output = "/dev/stdout --create-output-bam-splitting-index false"
-    pipe_cmd = "| samtools view --threads {samtools_threads} --with-header --reference {snakemake.input.ref} --output-fmt cram,embed_ref --output {snakemake.output.bam}"
-else:
-    output = snakemake.output.bam
-    pipe_cmd = ""
-
 
 with tempfile.TemporaryDirectory() as tmpdir:
     # This folder must not exist; it is created by GATK
     tmpdir_shards = Path(tmpdir) / "shards_{:06d}".format(random.randrange(10**6))
 
     shell(
-        "(gatk --java-options '{java_opts}' ApplyBQSRSpark"
+        "gatk --java-options '{java_opts}' ApplyBQSRSpark"
         " --input {snakemake.input.bam}"
         " --bqsr-recal-file {snakemake.input.recal_table}"
         " --reference {snakemake.input.ref}"
         " {extra}"
         " --tmp-dir {tmpdir}"
         " --output-shard-tmp-dir {tmpdir_shards}"
-        " --output {output}"
+        " --output {snakemake.output.bam}"
         " -- --spark-runner {spark_runner} --spark-master {spark_master} {spark_extra}"
-        + pipe_cmd
-        + ") {log}"
+        " {log}"
     )

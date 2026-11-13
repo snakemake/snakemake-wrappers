@@ -5,10 +5,10 @@ rule gatk_clean_sam:
         clean="{sample}.clean.bam",
     log:
         "logs/{sample}.log",
-    params:
-        extra="",
-        java_opts="",  # optional
     resources:
         mem_mb=1024,
+    params:
+        extra="",
+        java_opts="",
     wrapper:
         "master/bio/gatk/cleansam"

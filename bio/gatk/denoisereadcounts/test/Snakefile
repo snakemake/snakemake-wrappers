@@ -6,10 +6,10 @@ rule denoisereadcounts:
         denoised_copy_ratio="a.denoisedCR.tsv",
     log:
         "logs/gatk/denoisereadcounts.log",
-    params:
-        extra="",  # optional
-        java_opts="",  # optional
     resources:
         mem_mb=1024,
+    params:
+        extra="",
+        java_opts="",
     wrapper:
         "master/bio/gatk/denoisereadcounts"

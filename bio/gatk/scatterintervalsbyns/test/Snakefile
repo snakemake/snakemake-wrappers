@@ -7,10 +7,10 @@ rule gatk_scatter_interval_by_ns:
         intervals="genome.intervals",
     log:
         "logs/genome.log",
-    params:
-        extra="--MAX_TO_MERGE 10 --OUTPUT_TYPE ACGT",
-        java_opts="",  # optional
     resources:
         mem_mb=1024,
+    params:
+        extra="--MAX_TO_MERGE 10 --OUTPUT_TYPE ACGT",
+        java_opts="",
     wrapper:
         "master/bio/gatk/scatterintervalsbyns"

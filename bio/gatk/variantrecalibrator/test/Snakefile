@@ -43,6 +43,9 @@ rule haplotype_caller:
         tranches="calls/all.tranches",
     log:
         "logs/gatk/variantrecalibrator.log",
+    threads: 1
+    resources:
+        mem_mb=1024,
     params:
         mode="SNP",  # set mode, must be either SNP, INDEL or BOTH
         resources={
@@ -52,9 +55,6 @@ rule haplotype_caller:
             "dbsnp": {"known": True, "training": False, "truth": False, "prior": 2.0},
         },
         annotation=["MQ", "QD", "SB"],
-        extra="--max-gaussians 2",  # optional
-    threads: 1
-    resources:
-        mem_mb=1024,
+        extra="--max-gaussians 2",
     wrapper:
         "master/bio/gatk/variantrecalibrator"
