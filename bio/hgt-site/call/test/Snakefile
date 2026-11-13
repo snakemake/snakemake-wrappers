@@ -7,9 +7,9 @@ rule hgt_site_call:
         tsv="sites.tsv",
     log:
         "logs/sites.log",
+    threads: 2
     params:
         host_taxid=9606,
-    threads: 2
     wrapper:
         "master/bio/hgt-site/call"
 
@@ -26,9 +26,9 @@ rule hgt_site_call_all_outputs:
         multiqc="all/sites_mqc.json",
     log:
         "logs/all.log",
+    threads: 2
     params:
         host_taxid=9606,
         extra="--min-support 2",
-    threads: 2
     wrapper:
         "master/bio/hgt-site/call"
