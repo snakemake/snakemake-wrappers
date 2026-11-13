@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - spatial-continuum ==1.0.3
+  - spatial-continuum =1.0.3
