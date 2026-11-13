@@ -1,0 +1,19 @@
+name: hgt-site call
+description: Call candidate horizontal gene transfer sites from a host alignment and per-read taxonomic classifications, testing each candidate against the number of chimeric pairs chance alone would place there.
+url: https://iraajgangavaram.github.io/hgt-site/
+authors:
+  - Iraaj Gangavaram
+input:
+  - Paired-end reads aligned to the host genome (BAM, CRAM or SAM), keeping the pairs where one mate did not align
+  - Per-read taxonomic calls for the unmapped reads, from Kraken2, KrakenUniq, Kaiju, Centrifuge, DIAMOND or BLAST, or a two-column file of read name and taxid. Several files may be given
+  - Optional reference FASTA, needed for CRAM input
+  - Optional GTF or GFF3 annotation, to report the gene at each site
+output:
+  - Table of every candidate site, with the reason each one failed in the filter column
+  - Optional BED file of the sites that passed every filter
+  - Optional VCF file of every candidate site, block compressed and indexed if the name ends in .gz
+  - Optional MultiQC summary table
+notes: |
+  * The `host_taxid` param is required, for example 9606 for human.
+  * An indexed BAM or CRAM lets hgt-site find the exact junctions in soft-clipped reads. Pass the index as the `index` input.
+  * The `extra` param takes further hgt-site options, such as thresholds. Do not pass `--bam`, `--classifications`, `--host-taxid`, `--threads`, `-o`, `--bed`, `--vcf`, `--annotation`, `--reference` or `--multiqc`; the wrapper sets those from the rule.

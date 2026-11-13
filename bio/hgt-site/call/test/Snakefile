@@ -1,0 +1,34 @@
+rule hgt_site_call:
+    input:
+        alignment="sim.bam",
+        index="sim.bam.bai",
+        classifications="sim.kraken2.txt",
+    output:
+        tsv="sites.tsv",
+    log:
+        "logs/sites.log",
+    params:
+        host_taxid=9606,
+    threads: 2
+    wrapper:
+        "master/bio/hgt-site/call"
+
+
+rule hgt_site_call_all_outputs:
+    input:
+        alignment="sim.bam",
+        index="sim.bam.bai",
+        classifications="sim.kraken2.txt",
+    output:
+        tsv="all/sites.tsv",
+        bed="all/sites.bed",
+        vcf="all/sites.vcf",
+        multiqc="all/sites_mqc.json",
+    log:
+        "logs/all.log",
+    params:
+        host_taxid=9606,
+        extra="--min-support 2",
+    threads: 2
+    wrapper:
+        "master/bio/hgt-site/call"
