@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - salmon =2.11.0
+  - salmon =2.12.0
