@@ -2,4 +2,4 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - overturemaps =2.1.0
+  - overturemaps =2.1.1
