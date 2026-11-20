@@ -57,7 +57,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.34-pthreads_hf13
 https://conda.anaconda.org/conda-forge/linux-64/libpsl-0.23.1-h7fe8442_2.conda#3a377a6b03bcad2601a820b07fab0c64
 https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.54.1-hf739112_1.conda#5c95bcc875a77e89afab63821a504e3f
 https://conda.anaconda.org/bioconda/linux-64/minimap2-2.31-h118bc1c_0.conda#9134876c84df5b48841bfe743cfd7b67
-https://conda.anaconda.org/conda-forge/linux-64/fontconfig-2.18.3-h4db4eae_1.conda#922776b528a470ab5afa81fd42abfa1d
+https://conda.anaconda.org/conda-forge/linux-64/fontconfig-2.18.4-h4db4eae_0.conda#794ed3b23b32d04f9cb91e4e0df140dd
 https://conda.anaconda.org/conda-forge/linux-64/libblas-3.11.0-12_h4a7cf45_openblas.conda#d718330824f78deef9ca46fe62a33820
 https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.23.0-ha042cf0_0.conda#0ad16151226df493aed967f0efce0e80
 https://conda.anaconda.org/conda-forge/linux-64/python-3.13.18-hf47f18c_100_cp313.conda#8a8f008a3e3ae6e4eb6e149d639ab43e
