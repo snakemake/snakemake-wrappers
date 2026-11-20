@@ -6,11 +6,11 @@ rule call_copy_ratio_segments:
         igv_seg="a.called.igv.seg",
     log:
         "logs/gatk/call_copy_ratio_segments.log",
-    params:
-        #prefix="a.den.test",
-        extra="",  # optional
-        java_opts="",  # optional
     resources:
         mem_mb=1024,
+    params:
+        #prefix="a.den.test",
+        extra="",
+        java_opts="",
     wrapper:
         "master/bio/gatk/callcopyratiosegments"

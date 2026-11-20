@@ -4,15 +4,15 @@ rule gatk_leftalignandtrimvariants:
         ref="Homo_sapiens_assembly38.chrM.fasta",
         fai="Homo_sapiens_assembly38.chrM.fasta.fai",
         dict="Homo_sapiens_assembly38.chrM.dict",
-#       intervals="intervals.bed", # optional
+        #intervals="intervals.bed",
     output:
         vcf="calls/split_multiallelics.vcf",
     log:
         "logs/gatk/leftalignandtrimvariants.log",
-    params:
-        extra="--split-multi-allelics", # optional
-        java_opts="",  # optional
     resources:
         mem_mb=1024,
+    params:
+        extra="--split-multi-allelics",
+        java_opts="",
     wrapper:
         "master/bio/gatk/leftalignandtrimvariants"

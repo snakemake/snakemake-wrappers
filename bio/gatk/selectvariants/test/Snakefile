@@ -6,10 +6,10 @@ rule gatk_select:
         vcf="calls/snvs.vcf",
     log:
         "logs/gatk/select/snvs.log",
-    params:
-        extra="--select-type-to-include SNP",  # optional filter arguments, see GATK docs
-        java_opts="",  # optional
     resources:
         mem_mb=1024,
+    params:
+        extra="--select-type-to-include SNP",
+        java_opts="",
     wrapper:
         "master/bio/gatk/selectvariants"

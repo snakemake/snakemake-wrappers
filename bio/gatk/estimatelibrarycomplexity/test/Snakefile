@@ -5,10 +5,10 @@ rule gatk_estimate_library_complexity:
         metrics="{sample}.metrics",
     log:
         "logs/{sample}.log",
-    params:
-        extra="",
-        java_opts="",  # optional
     resources:
         mem_mb=1024,
+    params:
+        extra="",
+        java_opts="",
     wrapper:
         "master/bio/gatk/estimatelibrarycomplexity"

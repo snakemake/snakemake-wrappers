@@ -3,15 +3,15 @@ rule gatk_baserecalibrator:
         bam="mapped/{sample}.bam",
         ref="genome.fasta",
         dict="genome.dict",
-        known="dbsnp.vcf.gz",  # optional known sites - single or a list
+        known="dbsnp.vcf.gz",
     output:
         recal_table="recal/{sample}.grp",
     log:
         "logs/gatk/baserecalibrator/{sample}.log",
-    params:
-        extra="",  # optional
-        java_opts="",  # optional
     resources:
         mem_mb=1024,
+    params:
+        extra="",
+        java_opts="",
     wrapper:
         "master/bio/gatk/baserecalibrator"

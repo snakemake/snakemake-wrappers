@@ -8,11 +8,11 @@ rule gatk_applybqsr:
         bam="recal/{sample}.bam",
     log:
         "logs/gatk/applybqsr/{sample}.log",
-    params:
-        extra="",  # optional
-        java_opts="",  # optional
     resources:
         mem_mb=1024,
+    params:
+        extra="",
+        java_opts="",
     wrapper:
         "master/bio/gatk/applybqsr"
 
@@ -27,12 +27,11 @@ rule gatk_applybqsr_cram:
         bam="recal/{sample}.cram",
     log:
         "logs/gatk/applybqsr/{sample}.cram.log",
-    params:
-        extra="",  # optional
-        java_opts="",  # optional
-        embed_ref=False,  # embed the reference in cram output
     resources:
         mem_mb=1024,
+    params:
+        extra="",
+        java_opts="",
     wrapper:
         "master/bio/gatk/applybqsr"
 
@@ -47,11 +46,10 @@ rule gatk_applybqsr_cram_embed:
         bam="recal/{sample}.embed.cram",
     log:
         "logs/gatk/applybqsr/{sample}.embed.cram.log",
-    params:
-        extra="",  # optional
-        java_opts="",  # optional
-        embed_ref=True,  # embed the reference in cram output
     resources:
         mem_mb=1024,
+    params:
+        extra="",
+        java_opts="",
     wrapper:
         "master/bio/gatk/applybqsr"

@@ -5,12 +5,12 @@ rule test_gatk_get_pileup_summaries:
         variants="genome/variants.vcf.gz",
     output:
         "summaries.table",
+    log:
+        "logs/summary.log",
     threads: 1
     resources:
         mem_mb=1024,
     params:
         extra="",
-    log:
-        "logs/summary.log",
     wrapper:
         "master/bio/gatk/getpileupsummaries"

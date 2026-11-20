@@ -3,26 +3,26 @@ rule test_gatk_learnreadorientationmodel:
         f1r2="f1r2.tar.gz",
     output:
         "artifacts_prior.tar.gz",
+    log:
+        "learnreadorientationbias.log",
     resources:
         mem_mb=1024,
     params:
         extra="",
-    log:
-        "learnreadorientationbias.log",
     wrapper:
         "master/bio/gatk/learnreadorientationmodel"
+
 
 rule test_gatk_learnreadorientationmodel_multiple_input:
     input:
         f1r2=["f1r2.tar.gz", "f1r2.2.tar.gz"],
     output:
         "artifacts_prior_multi.tar.gz",
+    log:
+        "learnreadorientationbias_multi.log",
     resources:
         mem_mb=1024,
     params:
         extra="",
-    log:
-        "learnreadorientationbias_multi.log",
     wrapper:
         "master/bio/gatk/learnreadorientationmodel"
-
