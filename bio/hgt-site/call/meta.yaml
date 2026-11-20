@@ -1,0 +1,19 @@
+name: hgt-site call
+description: Call candidate horizontal gene transfer sites from a host alignment and per-read taxonomic classifications, testing each candidate against the number of chimeric pairs chance alone would place there.
+url: https://iraajgangavaram.github.io/hgt-site/
+authors:
+  - Iraaj Gangavaram
+input:
+  - alignment: Path to paired-end reads aligned to the host genome (BAM, CRAM or SAM), keeping the pairs where one mate did not align.
+  - index: (optional) Path to the index of the alignment, which lets hgt-site read the soft-clipped reads that cross a junction and report the insertion point to the base pair. hgt-site finds the index by name beside the alignment rather than being told where it is, so this entry only adds the dependency to the DAG, and the file must keep its default name and location, for example ``sample.bam.bai`` next to ``sample.bam``. An index anywhere else is not found, and junctions are placed from read pairs alone.
+  - classifications: Path to per-read taxonomic calls for the unmapped reads, from Kraken2, KrakenUniq, Kaiju, Centrifuge, DIAMOND or BLAST, or a two-column file of read name and taxid. Several files may be given.
+  - reference: (optional) Path to FASTA formatted reference sequence, required for CRAM input.
+  - annotation: (optional) Path to GTF or GFF3 formatted annotation, to report the gene at each site.
+output:
+  - tsv: Path to table of every candidate site, with the reason each one failed in the filter column.
+  - bed: (optional) Path to BED formatted file of the sites that passed every filter.
+  - vcf: (optional) Path to VCF formatted file of every candidate site, block compressed and indexed if the name ends in ``.gz``.
+  - multiqc: (optional) Path to MultiQC summary table.
+params:
+  - host_taxid: Taxid of the host, for example ``9606`` for human. Required.
+  - extra: Other `optional parameters <https://iraajgangavaram.github.io/hgt-site/cli/>`_. Do not pass ``--bam``, ``--classifications``, ``--host-taxid``, ``--threads``, ``-o``, ``--bed``, ``--vcf``, ``--annotation``, ``--reference`` or ``--multiqc``; the wrapper sets those from the rule.

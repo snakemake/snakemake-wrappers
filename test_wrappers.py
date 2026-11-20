@@ -2666,6 +2666,20 @@ def test_happy_prepy(run):
     )
 
 
+def test_hgt_site_call(run):
+    run(
+        "bio/hgt-site/call",
+        [
+            "snakemake",
+            "sites.tsv",
+            "all/sites.tsv",
+            "all/sites.bed",
+            "all/sites.vcf",
+            "all/sites_mqc.json",
+        ],
+    )
+
+
 def test_hisat2_index(run):
     run(
         "bio/hisat2/index",
