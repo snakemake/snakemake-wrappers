@@ -38,6 +38,6 @@ https://conda.anaconda.org/bioconda/linux-64/racon-1.5.0-h077b44d_8.conda#4f0d65
 https://conda.anaconda.org/conda-forge/noarch/setuptools-84.2.1-pyhe730653_0.conda#d41f95b8f1553165b2cc2f37162dac9c
 https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.11.0-12_h0358290_openblas.conda#074ad2000c240d26e791e6aa9d055e30
 https://conda.anaconda.org/conda-forge/linux-64/liblapack-3.11.0-12_h47877c9_openblas.conda#fdb860223496082e2b4922f00fd9233f
-https://conda.anaconda.org/conda-forge/linux-64/numpy-2.5.4-py315h11958a5_0.conda#9826d4c893d56867548d8aa126f6e5ec
-https://conda.anaconda.org/conda-forge/linux-64/biopython-1.88-py315hb246bd9_1.conda#06fa693eb95aec9cd78d72b91f490ca4
+https://conda.anaconda.org/conda-forge/linux-64/numpy-2.5.5-py315h50affdf_1.conda#ad1997c9d2c8dfb3bf09b41dfd8863ef
+https://conda.anaconda.org/conda-forge/linux-64/biopython-1.88-py315hb246bd9_2.conda#2c77fb86ed48780be7c8a8f70dc00edd
 https://conda.anaconda.org/bioconda/noarch/rebaler-0.2.0-py_1.tar.bz2#74642a3df2edab17ed59fdd5d2e40143
