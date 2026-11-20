@@ -7,9 +7,9 @@ rule test_miller_cat:
         "miller/cat.tsv",
     log:
         "logs/cat.log",
+    threads: 2
     params:
         extra="cat",
-    threads: 2
     wrapper:
         "master/utils/miller"
 
@@ -22,9 +22,9 @@ rule test_miller_summary_csv:
         "miller/summary.tsv",
     log:
         "logs/summary_csv.log",
+    threads: 2
     params:
         extra="summary",
-    threads: 2
     wrapper:
         "master/utils/miller"
 
@@ -36,9 +36,9 @@ rule test_miller_summary_tsv:
         "miller/summary.csv",
     log:
         "logs/summary_tsv.log",
+    threads: 2
     params:
         extra="summary",
-    threads: 2
     wrapper:
         "master/utils/miller"
 
@@ -51,9 +51,9 @@ rule test_miller_histogram:
         "miller/histogram.tsv",
     log:
         "logs/histogram.log",
+    threads: 2
     params:
         extra="histogram -f s1,s2 --auto --nbins 3",
-    threads: 2
     wrapper:
         "master/utils/miller"
 
@@ -67,9 +67,9 @@ rule test_miller_join:
         "miller/join.csv",
     log:
         "logs/join.log",
+    threads: 2
     params:
         extra=lambda w, input: f"join -f {input.csv2} -u -j gene_id",
-    threads: 2
     wrapper:
         "master/utils/miller"
 
@@ -82,9 +82,9 @@ rule test_miller_sample:
         "miller/sample.csv",
     log:
         "logs/sample.log",
+    threads: 2
     params:
         extra="sample -k 3",
-    threads: 2
     wrapper:
         "master/utils/miller"
 
@@ -97,9 +97,9 @@ rule test_miller_grep:
         "miller/grep.csv",
     log:
         "logs/grep.log",
+    threads: 2
     params:
         extra="grep -i gene_id=ENSG01",
-    threads: 2
     wrapper:
         "master/utils/miller"
 
@@ -112,9 +112,23 @@ rule test_miller_cut:
         "miller/cut.csv",
     log:
         "logs/cut.log",
+    threads: 2
     params:
         extra="cut -f gene_id",
+    wrapper:
+        "master/utils/miller"
+
+
+rule test_miller_cut_headerless_output:
+    input:
+        table="table.csv",
+    output:
+        "miller/cut.headerless.csv",
+    log:
+        "logs/cut.headerless.log",
     threads: 2
+    params:
+        extra="--headerless-csv-output cut -f gene_id",
     wrapper:
         "master/utils/miller"
 
@@ -127,9 +141,23 @@ rule test_miller_sort:
         "miller/sort.csv",
     log:
         "logs/sort.log",
+    threads: 2
     params:
         extra="sort -r gene_id",
+    wrapper:
+        "master/utils/miller"
+
+
+rule test_miller_sort_gzipped_tsv:
+    input:
+        table="table.tsv.gz",
+    output:
+        "miller/sort.csv.gz",
+    log:
+        "logs/sort_gzipped_tsv.log",
     threads: 2
+    params:
+        extra="sort -r gene_id",
     wrapper:
         "master/utils/miller"
 
@@ -143,9 +171,9 @@ rule test_miller_split:
         "miller/split_2.csv",
     log:
         "logs/split.log",
+    threads: 2
     params:
         extra=lambda w, output: f"split -m {len(output)}",
-    threads: 2
     wrapper:
         "master/utils/miller"
 
@@ -158,9 +186,9 @@ rule test_miller_uniq:
         "miller/uniq.tsv",
     log:
         "logs/uniq.log",
+    threads: 2
     params:
         extra="uniq -g gene_id",
-    threads: 2
     wrapper:
         "master/utils/miller"
 
@@ -173,8 +201,8 @@ rule test_miller_pipe:
         "miller/pipe.tsv",
     log:
         "logs/pipe.log",
+    threads: 2
     params:
         extra="summary then sort -nr max",
-    threads: 2
     wrapper:
         "master/utils/miller"
