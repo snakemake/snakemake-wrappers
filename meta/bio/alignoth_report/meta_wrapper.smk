@@ -56,4 +56,4 @@ rule datavzrd:
     log:
         "<logs>/datavzrd/{sample}.log",
     wrapper:
-        "v9.19.3/utils/datavzrd"
+        "v9.18.1/utils/datavzrd"
