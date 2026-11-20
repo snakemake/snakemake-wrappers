@@ -39,4 +39,4 @@ https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.23.0-ha042cf0_0.conda#
 https://conda.anaconda.org/conda-forge/linux-64/python-3.14.10-hcd007b5_100_cp314.conda#1ce8b91e22d9210ca907a2df3a7ddfc2
 https://conda.anaconda.org/conda-forge/noarch/pip-26.2.2-pyh145f28c_2.conda#48dd7d949a3d2106ed942dcd8f9ceb80
 https://conda.anaconda.org/bioconda/linux-64/pysam-0.24.1-py314ha0fe93d_0.conda#22db94839eed2ec1ec8f57edfd416c3c
-https://conda.anaconda.org/bioconda/noarch/hgt-site-0.4.0-pyhdfd78af_0.conda#9dd861da79f1ca8825d9fde7c4f1cf10
+https://conda.anaconda.org/bioconda/noarch/hgt-site-0.5.0-pyhdfd78af_0.conda#ee8837e57991474d3c874a7e90ae0aa2
