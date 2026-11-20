@@ -44,7 +44,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libfreetype-2.14.3-ha770c72_2.co
 https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.54.1-h13e7031_0.conda#8f15f0ec9b69344df5c3bb5cce1751a1
 https://conda.anaconda.org/conda-forge/linux-64/libtiff-4.7.2-h6d37cbf_2.conda#18023fe8fbec4f031ca88444572590e4
 https://conda.anaconda.org/conda-forge/linux-64/libxml2-16-2.15.4-hf3af7cc_1.conda#046d9eada488e1a1657c80b55c23da52
-https://conda.anaconda.org/conda-forge/linux-64/fontconfig-2.18.3-h4db4eae_1.conda#922776b528a470ab5afa81fd42abfa1d
+https://conda.anaconda.org/conda-forge/linux-64/fontconfig-2.18.4-h4db4eae_0.conda#794ed3b23b32d04f9cb91e4e0df140dd
 https://conda.anaconda.org/conda-forge/linux-64/libxml2-2.15.4-h7df9aa5_1.conda#51e5162f95bd6840f6b2b3169125fff5
 https://conda.anaconda.org/conda-forge/linux-64/python-3.15.2-h6e52b48_100_cp315.conda#38c3edc23439db3ca383be02ae2b702e
 https://conda.anaconda.org/bioconda/linux-64/bowtie2-2.5.5-h63e9258_2.conda#4af3e31e3f1166a7a54021f9790fd261
@@ -52,7 +52,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libgd-2.3.3-h5fbf134_12.conda#88
 https://conda.anaconda.org/conda-forge/linux-64/libhwloc-2.15.0-default_hd7c4d0c_1001.conda#66c755b3bd9ec82308fa6ec7674f473f
 https://conda.anaconda.org/conda-forge/noarch/pip-26.2.2-pyh145f28c_2.conda#48dd7d949a3d2106ed942dcd8f9ceb80
 https://conda.anaconda.org/bioconda/linux-64/perl-gd-2.56-0.tar.bz2#568f7200ecb89b174e0501a7558517e0
-https://conda.anaconda.org/conda-forge/linux-64/tbb-2023.1.0-haa8c3ee_2.conda#f805909f478c179e230baf7bd5878e26
+https://conda.anaconda.org/conda-forge/linux-64/tbb-2023.1.0-haa8c3ee_4.conda#93f6be4a159d207e79419ac4066c3ec1
 https://conda.anaconda.org/bioconda/linux-64/bowtie-1.3.1-hb82490e_11.conda#007449bdcc7c6289936e03d8b8d67650
 https://conda.anaconda.org/bioconda/linux-64/perl-gdtextutil-0.86-0.tar.bz2#f6a8180a41da72a6f370bdd3749b45c7
 https://conda.anaconda.org/bioconda/noarch/perl-gdgraph-1.56-pl5321hdfd78af_0.tar.bz2#72bfe58dbdaa448a9d263bf186c58403
