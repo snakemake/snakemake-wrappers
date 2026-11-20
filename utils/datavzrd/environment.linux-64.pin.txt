@@ -43,8 +43,8 @@ https://conda.anaconda.org/conda-forge/noarch/python-dateutil-4.0.0-pyh5ded981_0
 https://conda.anaconda.org/conda-forge/noarch/python-gil-3.15.2-h4df99d1_100.conda#beef54f8f4201e9f86f8733cef15506d
 https://conda.anaconda.org/conda-forge/noarch/yte-1.9.4-pyhd8ed1ab_0.conda#89d5edf5d52d3bc1ed4d7d3feef508ba
 https://conda.anaconda.org/conda-forge/noarch/_python_abi3_support-1.0-hd8ed1ab_3.conda#3845f3d75991bae0fb90884662f4327c
-https://conda.anaconda.org/conda-forge/linux-64/datavzrd-2.78.1-py315h2046ffa_0.conda#8b21f01e26a4651ce237c607b9497bb4
-https://conda.anaconda.org/conda-forge/linux-64/numpy-2.5.4-py315h11958a5_0.conda#9826d4c893d56867548d8aa126f6e5ec
+https://conda.anaconda.org/conda-forge/linux-64/datavzrd-2.80.0-py315hed8b856_0.conda#502eb6fd20d9e4ecd19fd91b0400f8c6
+https://conda.anaconda.org/conda-forge/linux-64/numpy-2.5.5-py315h50affdf_1.conda#ad1997c9d2c8dfb3bf09b41dfd8863ef
 https://conda.anaconda.org/conda-forge/linux-64/pandas-3.1.1-np2py315h105398f_0.conda#d185d5e75923f4584d813bbd101401d4
 https://conda.anaconda.org/conda-forge/linux-64/polars-runtime-32-2.1.0-py311hb519a9e_0.conda#b61e4c5a066c86ddd692eab0027bb930
 https://conda.anaconda.org/conda-forge/noarch/polars-2.1.0-pyh3138b34_0.conda#3e2d5d685bbde2dce96887d79fa481e9
