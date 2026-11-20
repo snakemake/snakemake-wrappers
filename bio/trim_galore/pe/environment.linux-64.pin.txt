@@ -7,4 +7,4 @@ https://conda.anaconda.org/conda-forge/linux-64/libgomp-16.2.0-he0feb66_7.conda#
 https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.2-h25fd6f3_3.conda#0de0122d9570a8ab637c6b73db268389
 https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda#a9f577daf3de00bca7c3c76c0ecbd1de
 https://conda.anaconda.org/conda-forge/linux-64/libgcc-16.2.0-ha9f2e26_7.conda#735629b400b70eeab21a2ba8f5b1c2ce
-https://conda.anaconda.org/bioconda/linux-64/trim-galore-2.4.0-hf1b6044_0.conda#c4992823b4b76c8c4e27cc075e0a89e1
+https://conda.anaconda.org/bioconda/linux-64/trim-galore-2.6.0-hf1b6044_0.conda#198db4d6dac695766eef43b43b9bcb08
