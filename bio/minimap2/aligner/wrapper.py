@@ -14,6 +14,7 @@ extra = snakemake.params.get("extra", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 sort = snakemake.params.get("sorting", "none")
 sort_extra = snakemake.params.get("sort_extra", "")
+samtools_fastq_extra = snakemake.params.get("samtools_fastq_extra", '-T "*"')
 
 if isinstance(snakemake.input.query, list):
     in_ext = infer_out_format(snakemake.input.query[0])
@@ -25,8 +26,8 @@ else:
 pre_cmd = ""
 query = ""
 if in_ext == "BAM":
-    # convert uBAM to fastq keeping all tags
-    pre_cmd = f'samtools fastq -T "*" {snakemake.input.query} |'
+    # convert uBAM to fastq (by default keeping all tags)
+    pre_cmd = f"samtools fastq {samtools_fastq_extra} {snakemake.input.query} |"
     # tell minimap2 to parse tags from fastq header
     extra += " -y"
     query = "-"

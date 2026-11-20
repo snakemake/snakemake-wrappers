@@ -2857,6 +2857,7 @@ def test_minimap2_aligner(run):
             "aligned/genome_aln.sorted.bam",
             "aligned/genome_aln.ubam.paf",
             "aligned/genome_aln.ubam.sam",
+            "aligned/genome_aln.ubam.tags.sam",
             "aligned/genome_aln.sorted.ubam.sam",
             "aligned/genome_aln.sorted.ubam.bam",
         ],
