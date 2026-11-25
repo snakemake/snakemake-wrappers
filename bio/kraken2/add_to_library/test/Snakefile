@@ -1,0 +1,15 @@
+rule kraken2_add_to_library:
+    input:
+        db="test_db",  # path to kraken2 database
+        fasta=[
+            "{db}/library/tiny.fa",  # path to fasta(s) file to add to library
+            "{db}/library/tiny2.fa",
+        ],
+    output:
+        db=directory("{db}/library/added"),
+    log:
+        "{db}/library/added.log",
+    params:
+        extra="",
+    wrapper:
+        "master/bio/kraken2/add_to_library"
