@@ -1,20 +1,37 @@
-WORKING_DIR="working_dir"
+import os
+
+WORKING_DIR = "working_dir"
+
 
 rule gridss_preprocess:
     input:
         bam="mapped/{sample}.bam",
         bai="mapped/{sample}.bam.bai",
         reference="reference/genome.fasta",
-        dictionary="reference/genome.dict",
-        refindex=multiext("reference/genome.fasta", ".amb", ".ann", ".bwt", ".pac", ".sa")
+        refindex=multiext(
+            "reference/genome.fasta", ".amb", ".ann", ".bwt", ".pac", ".sa", ".dict"
+        ),
     output:
-        multiext("{WORKING_DIR}/{sample}.bam.gridss.working/{sample}.bam", ".cigar_metrics", ".computesamtags.changes.tsv", ".coverage.blacklist.bed", ".idsv_metrics", ".insert_size_histogram.pdf", ".insert_size_metrics", ".mapq_metrics", ".sv.bam", ".sv.bam.csi", ".tag_metrics")
+        multiext(
+            "{WORKING_DIR}/{sample}.bam.gridss.working/{sample}.bam",
+            ".cigar_metrics",
+            ".computesamtags.changes.tsv",
+            ".coverage.blacklist.bed",
+            ".idsv_metrics",
+            ".insert_size_histogram.pdf",
+            ".insert_size_metrics",
+            ".mapq_metrics",
+            ".sv.bam",
+            ".sv.bam.csi",
+            ".tag_metrics",
+        ),
+    log:
+        "log/gridss/preprocess/{WORKING_DIR}/{sample}.preprocess.log",
+    threads: 8
     params:
         extra="--jvmheap 1g",
-        workingdir=WORKING_DIR
-    log:
-        "log/gridss/preprocess/{WORKING_DIR}/{sample}.preprocess.log"
-    threads:
-        8
+        workingdir=lambda wildcards, output: os.path.dirname(
+            os.path.dirname(output[0])
+        ),
     wrapper:
         "master/bio/gridss/preprocess"

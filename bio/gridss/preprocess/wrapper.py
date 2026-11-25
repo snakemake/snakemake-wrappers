@@ -5,6 +5,7 @@ __copyright__ = "Copyright 2020, Christopher Schröder"
 __email__ = "christopher.schroede@tu-dortmund.de"
 __license__ = "MIT"
 
+import tempfile
 from snakemake.shell import shell
 from os import path
 
@@ -16,14 +17,13 @@ extra = snakemake.params.get("extra", "")
 
 # Check inputs/arguments.
 reference = snakemake.input.get("reference")
-dictionary = snakemake.input.get("dictionary")
 if not snakemake.params.workingdir:
     raise ValueError("Please set params.workingdir to provide a working directory.")
 
 if not snakemake.input.reference:
     raise ValueError("Please set input.reference to provide reference genome.")
 
-for ending in (".amb", ".ann", ".bwt", ".pac", ".sa"):
+for ending in (".amb", ".ann", ".bwt", ".pac", ".sa", ".dict"):
     if not path.exists("{}{}".format(reference, ending)):
         raise ValueError(
             "{reference}{ending} missing. Please make sure the reference was properly indexed by bwa.".format(
@@ -31,19 +31,15 @@ for ending in (".amb", ".ann", ".bwt", ".pac", ".sa"):
             )
         )
 
-dictionary = path.splitext(reference)[0] + ".dict"
-if not path.exists(dictionary):
-    raise ValueError(
-        "{dictionary}.dict missing. Please make sure the reference dictionary was properly created. This can be accomplished for example by CreateSequenceDictionary.jar from Picard".format(
-            dictionary=dictionary
-        )
+with tempfile.TemporaryDirectory() as tmpdir:
+    shell(
+        "(gridss -s preprocess "  # Tool
+        "--reference {snakemake.input.reference} "  # Reference
+        "--threads {snakemake.threads} "
+        "--workingdir {snakemake.params.workingdir} "
+        "--picardoptions TMP_DIR={tmpdir} "
+        "{snakemake.input.bam} "
+        "{extra}"
+        ") {log}"
     )
 
-shell(
-    "(gridss -s preprocess "  # Tool
-    "--reference {reference} "  # Reference
-    "--threads {snakemake.threads} "
-    "--workingdir {snakemake.params.workingdir} "
-    "{snakemake.input.bam} "
-    "{extra}) {log}"
-)
