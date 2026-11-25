@@ -5,20 +5,41 @@ rule star_pe_multi:
         fq1=["reads/{sample}_R1.1.fastq", "reads/{sample}_R1.2.fastq"],
         # paired end reads needs to be ordered so each item in the two lists match
         fq2=["reads/{sample}_R2.1.fastq", "reads/{sample}_R2.2.fastq"],  #optional
-        # path to STAR reference genome index
-        idx="index",
+        # STAR reference genome index files. Only the common path in the first
+        # multiext entry can be chosen arbitrarily. All the filenames are
+        # hardcoded into STAR source code, so do not change them.
+        idx=multiext(
+            "index/",
+            "chrLength.txt",
+            "chrName.txt",
+            "chrNameLength.txt",
+            "chrStart.txt",
+            "genomeParameters.txt",
+            "Genome",
+            "SA",
+            "SAindex",
+        ),
     output:
         # see STAR manual for additional output files
         aln="star/pe/{sample}/pe_aligned.sam",
         log="logs/pe/{sample}/Log.out",
         sj="star/pe/{sample}/SJ.out.tab",
-        unmapped=["star/pe/{sample}/unmapped.1.fastq.gz","star/pe/{sample}/unmapped.2.fastq.gz"],
+        unmapped=[
+            "star/pe/{sample}/unmapped.1.fastq.gz",
+            "star/pe/{sample}/unmapped.2.fastq.gz",
+        ],
     log:
         "logs/pe/{sample}.log",
+    threads: 8
+    resources:
+        # The memory estimation is based on:
+        # https://github.com/alexdobin/STAR/issues/1063#issuecomment-713734761
+        # As that recommendation only factors in the genome index size, the
+        # FASTQ file sizes will add an extra buffer to the memory reservation.
+        mem_mb=lambda wc, input, threads: input.size_mb + threads * 150,
     params:
         # optional parameters
         extra="",
-    threads: 8
     wrapper:
         "master/bio/star/align"
 
@@ -26,8 +47,20 @@ rule star_pe_multi:
 rule star_se:
     input:
         fq1="reads/{sample}_R1.1.fastq",
-        # path to STAR reference genome index
-        idx="index",
+        # STAR reference genome index files. Only the common path in the first
+        # multiext entry can be chosen arbitrarily. All the filenames are
+        # hardcoded into STAR source code, so do not change them.
+        idx=multiext(
+            "index/",
+            "chrLength.txt",
+            "chrName.txt",
+            "chrNameLength.txt",
+            "chrStart.txt",
+            "genomeParameters.txt",
+            "Genome",
+            "SA",
+            "SAindex",
+        ),
     output:
         # see STAR manual for additional output files
         aln="star/se/{sample}/se_aligned.bam",
@@ -36,9 +69,15 @@ rule star_se:
         unmapped="star/se/{sample}/unmapped.fastq",
     log:
         "logs/se/{sample}.log",
+    threads: 8
+    resources:
+        # The memory estimation is based on:
+        # https://github.com/alexdobin/STAR/issues/1063#issuecomment-713734761
+        # As that recommendation only factors in the genome index size, the
+        # FASTQ file sizes will add an extra buffer to the memory reservation.
+        mem_mb=lambda wc, input, threads: input.size_mb + threads * 150,
     params:
         # optional parameters
         extra="--outSAMtype BAM Unsorted",
-    threads: 8
     wrapper:
         "master/bio/star/align"
