@@ -2621,6 +2621,14 @@ def test_filtlong(run):
         ["snakemake", "reads.filtered.fastq"],
     )
 
+def test_flye(run):
+    run(
+        "bio/flye",
+        [
+            "snakemake",
+            "assembly/assembly.fasta",
+        ],
+    )
 
 def test_freebayes(run):
     for c in [1, 2]:
