@@ -3,5 +3,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - trinity =2.15.2
+  - trinity =2.16.5
   - salmon =2.12.0
