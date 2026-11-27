@@ -3,19 +3,19 @@ rule gatk_baserecalibratorspark:
         bam="mapped/{sample}.bam",
         ref="genome.fasta",
         dict="genome.dict",
-        known="dbsnp.vcf.gz",  # optional known sites
+        known="dbsnp.vcf.gz",
     output:
         recal_table="recal/{sample}.grp",
     log:
         "logs/gatk/baserecalibrator/{sample}.log",
-    params:
-        extra="",  # optional
-        java_opts="",  # optional
-        #spark_runner="",  # optional, local by default
-        #spark_master="",  # optional
-        #spark_extra="", # optional
+    threads: 8
     resources:
         mem_mb=1024,
-    threads: 8
+    params:
+        extra="",
+        java_opts="",
+        #spark_runner="",
+        #spark_master="",
+        #spark_extra="",
     wrapper:
         "master/bio/gatk/baserecalibratorspark"

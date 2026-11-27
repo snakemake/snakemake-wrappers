@@ -16,10 +16,10 @@ rule gatk_depth_of_coverage:
         ),
     log:
         "logs/gatk/depthofcoverage.log",
+    resources:
+        mem_mb=1024,
     params:
         extra="",
         java_opts="",
-    resources:
-        mem_mb=1024,
     wrapper:
         "master/bio/gatk/depthofcoverage"

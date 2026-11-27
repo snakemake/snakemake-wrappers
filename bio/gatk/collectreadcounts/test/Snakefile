@@ -6,10 +6,10 @@ rule collectreadcounts:
         counts="a.counts.hdf5",
     log:
         "logs/gatk/collectreadcounts.log",
-    params:
-        extra="",  # optional
-        java_opts="",  # optional
     resources:
         mem_mb=1024,
+    params:
+        extra="",
+        java_opts="",
     wrapper:
         "master/bio/gatk/collectreadcounts"

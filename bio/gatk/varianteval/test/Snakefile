@@ -3,15 +3,15 @@ rule gatk_varianteval:
         vcf="calls/snvs.vcf",
         ref="genome.fasta",
         dict="genome.dict",
-        # comp="calls/comp.vcf", # optional comparison VCF
+        #comp="calls/comp.vcf",
     output:
         vcf="snvs.varianteval.grp",
     log:
         "logs/gatk/varianteval/snvs.log",
-    params:
-        extra="",  # optional arguments, see GATK docs
-        java_opts="",  # optional
     resources:
         mem_mb=1024,
+    params:
+        extra="",
+        java_opts="",
     wrapper:
         "master/bio/gatk/varianteval"
